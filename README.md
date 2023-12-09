@@ -9,7 +9,7 @@
 
 # ContactBook
 
-This website helps to storage contacts data and share it with others. It's second version of my [project](https://github.com/SzymCode/ContactBook-sandbox), now with completely other tech stack.
+This website helps to storage contacts data and share it with others. It's second version of my [project](https://github.com/SzymCode/ContactBook-sandbox), now with completely other tech stack. My target is to create fully responsive, functional and scalable website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) and [FDD](https://en.wikipedia.org/wiki/Feature-driven_development) principles.
 
 
 <details><summary> <h2>  🛠️ Installation & Setup  </summary>
@@ -47,7 +47,6 @@ php artisan migrate:fresh --seed
 
 
 <details><summary> <h2>  🚀 Run  </summary>
-
 <br/>
 
 - root directory:
@@ -58,29 +57,51 @@ php artisan serve
 ```
 
 <br/>
-
 </details>  
 
 
 
 <details><summary> <h2>  ❓ Usage  </summary>
 
-- Run factories to generate fake data:
+<details><summary> <h3> Factories </summary>
+    
 ```bash
 php artisan tinker
 User::factory()->count(100)->create();
 Contact::factory()->count(100)->create();      
 ```
 
-- Run tests:
+</details>
+
+<details><summary> <h3> Tests </summary>
+    
 ```bash
 ./vendor/bin/pest 
 ```
 
-- Run prettier:
+</details>
+
+<details><summary> <h3> npm </summary>
+
+1. Vite build:
+
+```
+npm run build
+```
+
+2. Eslint fix:
+
+```
+npm run lint
+```
+
+3. Run prettier:
+
 ```
 npm run write
 ```
-<br/>
 
+</details>
+
+<br/>
 </details>
