@@ -5,7 +5,8 @@
     "lint": "eslint \"resources/**/*.{js,vue}\" --fix",
     "dev": "vite",
     "prepare": "husky install",
-    "write": "prettier --write resources"
+    "write": "prettier --write resources",
+    "open": "cypress open"
   },
   "dependencies": {
     "vue-class-component": "^8.0.0-0"
@@ -17,6 +18,7 @@
     "@vue/cli-service": "^5.0.8",
     "axios": "^1.6.1",
     "bootstrap": "^5.2.3",
+    "cypress": "^13.6.1",
     "eslint": "^8.55.0",
     "eslint-plugin-vue": "^9.19.2",
     "husky": "^8.0.3",

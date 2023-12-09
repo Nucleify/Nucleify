@@ -78,6 +78,7 @@ User::factory(100)->create();
 
 <details><summary> <h3> Tests </summary>
 
+Backend tests:
 ```bash
 # run all tests
 ./vendor/bin/pest
@@ -90,6 +91,13 @@ user-api, contact-api, feature, global, unit, controllers, database, factories, 
 ```
 
 ![Tests](https://github.com/SzymCode/ContactBook/assets/107359025/ea49e771-9963-4cb8-b103-7e2a0c91c6b7)
+
+<br/>
+
+Frontend tests:
+```
+npm run open  # after this command cypress window will open automatically 
+```
 
 </details>
 
