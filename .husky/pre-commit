@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-./vendor/bin/pest
+# ./vendor/bin/pest - I'm testing before commit manually & in this console messages are colorless
 npm run lint

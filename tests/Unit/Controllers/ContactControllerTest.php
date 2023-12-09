@@ -10,7 +10,7 @@ beforeEach(function () {
     $this->controller = app()->makeWith(ContactController::class, ['contactService' => app()->make(ContactService::class)]);
 });
 
-it('index method', function () {
+it('runs index method successfully', function () {
     Contact::factory()->count(3)->create();
 
     $response = $this->controller->index();
@@ -19,7 +19,7 @@ it('index method', function () {
     expect($response->getData(true))->toHaveCount(3);
 });
 
-it('show method', function () {
+it('runs show method successfully', function () {
     $contact = Contact::factory()->create();
 
     $response = $this->controller->show($contact->id);
@@ -27,8 +27,7 @@ it('show method', function () {
     expect($response->getStatusCode())->toEqual(200);
 });
 
-$data['contact_groups'] = ['Friends'];
-it('store method', function () {
+it('runs store method successfully', function () {
     $request = Mockery::mock(ContactRequest::class);
     $request->shouldReceive('validated')->once()->andReturn(data);
 
@@ -37,7 +36,7 @@ it('store method', function () {
     expect($response->getStatusCode())->toEqual(200);
 });
 
-it('update method', function () {
+it('runs update method successfully', function () {
     $contact = Contact::factory()->create();
 
     $request = Mockery::mock(ContactRequest::class);
@@ -48,7 +47,7 @@ it('update method', function () {
     expect($response->getStatusCode())->toEqual(200);
 });
 
-it('delete method', function () {
+it('runs delete method successfully', function () {
     $contact = Contact::factory()->create();
 
     $response = $this->controller->destroy($contact->id);

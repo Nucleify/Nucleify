@@ -3,14 +3,14 @@
 use App\Models\Contact;
 
 
-test('factory creates record', function () {
+it('creates record successfully', function () {
     $contact = Contact::factory()->create();
 
     $this->assertDatabaseCount('contacts', 1);
     $this->assertDatabaseHas('contacts', ['id' => $contact->id]);
 });
 
-test('factory creates multiple records', function () {
+it('creates multiple records successfully', function () {
     $contacts = Contact::factory()->count(3)->create();
 
     $this->assertDatabaseCount('contacts', 3);
@@ -19,7 +19,7 @@ test('factory creates multiple records', function () {
     }
 });
 
-test('factory creates wrong record', function () {
+it('creates wrong record unsuccessfully', function () {
     try {
         Contact::factory()->create(['birthday' => 'invalid_date']);
     } catch (Exception $e) {
@@ -30,7 +30,7 @@ test('factory creates wrong record', function () {
     $this->fail('Expected exception not thrown.');
 });
 
-test('factory creates multiple wrong records', function () {
+it('creates multiple wrong records unsuccessfully', function () {
     try {
         Contact::factory()->count(2)->create(['birthday' => 'invalid_date']);
     } catch (Exception $e) {
