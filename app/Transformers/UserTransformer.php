@@ -10,6 +10,7 @@ class UserTransformer extends TransformerAbstract
     public function transform(UserShouldReceiveFields $model): array
     {
         return [
+            'id' => $model->getId(),
             'name' => $model->getName(),
             'email' => $model->getEmail(),
             'role' => $model->getRole(),

@@ -15,8 +15,11 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
+import ContactDashboard from './components/Contact/ContactDashboard.vue';
+import UserDashboard from './components/User/UserDashboard.vue';
+
+app.component('contact-dashboard', ContactDashboard);
+app.component('user-dashboard', UserDashboard);
 
 /**
  * The following block of code may be used to automatically register your

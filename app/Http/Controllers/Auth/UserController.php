@@ -28,14 +28,14 @@ class UserController extends Controller
     {
         $result = $this->service->getAllUsers();
 
-        return response()->json(['data' => $result]);
+        return response()->json($result);
     }
 
     public function show($id): JsonResponse
     {
         $result = $this->service->getUserById($id);
 
-        return response()->json(['data' => $result]);
+        return response()->json($result);
     }
 
     public function store(UserRequest $request): JsonResponse
@@ -44,7 +44,7 @@ class UserController extends Controller
 
         $result = $this->service->createUser($input);
 
-        return response()->json(['data' => $result]);
+        return response()->json($result);
     }
 
     public function update(UserRequest $request, $id): JsonResponse
@@ -53,7 +53,7 @@ class UserController extends Controller
 
         $result = $this->service->updateUser($id, $input);
 
-        return response()->json(['data' => $result]);
+        return response()->json($result);
     }
 
     public function destroy($id): JsonResponse

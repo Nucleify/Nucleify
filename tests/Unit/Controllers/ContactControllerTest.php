@@ -16,7 +16,7 @@ it('index method', function () {
     $response = $this->controller->index();
 
     expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true)['data'])->toHaveCount(4);
+    expect($response->getData(true))->toHaveCount(3);
 });
 
 it('show method', function () {

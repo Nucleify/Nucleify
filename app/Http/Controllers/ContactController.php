@@ -21,14 +21,14 @@ class ContactController extends Controller
     {
         $result = $this->service->getAllContacts();
 
-        return response()->json(['data' => $result]);
+        return response()->json($result);
     }
 
     public function show($id): JsonResponse
     {
         $result = $this->service->getContactById($id);
 
-        return response()->json(['data' => $result]);
+        return response()->json($result);
     }
 
     public function store(ContactRequest $request): JsonResponse
@@ -37,7 +37,7 @@ class ContactController extends Controller
 
         $result = $this->service->createContact($input);
 
-        return response()->json(['data' => $result]);
+        return response()->json($result);
     }
 
     public function update(ContactRequest $request, $id): JsonResponse
@@ -46,7 +46,7 @@ class ContactController extends Controller
 
         $result = $this->service->updateContact($id, $input);
 
-        return response()->json(['data' => $result]);
+        return response()->json($result);
     }
 
     public function destroy($id): JsonResponse

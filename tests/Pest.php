@@ -1,15 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Test Case
-|--------------------------------------------------------------------------
-|
-| The closure you provide to your test functions is always bound to a specific PHPUnit test
-| case class. By default, that class is "PHPUnit\Framework\TestCase". Of course, you may
-| need to change it using the "uses()" function to bind a different classes or traits.
-|
-*/
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 $data = require_once 'tests\TestConstants.php';
 $updatedData = require_once 'tests\TestConstants.php';
@@ -17,19 +8,11 @@ $userData = require_once 'tests\TestConstants.php';
 $updatedUserData = require_once 'tests\TestConstants.php';
 
 
-uses(Tests\TestCase::class,)
-    ->in('Feature', 'Unit', 'Global');
-
-uses(Illuminate\Foundation\Testing\RefreshDatabase::class)
-    ->beforeEach(function () {
-        $this->artisan('db:seed');
-    })->in( 'Unit');
-
-uses()
+uses(Tests\TestCase::class)
     ->beforeEach(function () {
         $this->artisan('migrate:fresh');
     })
-    ->in(  'Feature', 'Global');
+    ->in('Feature', 'Unit', 'Global');
 
 /*
 |--------------------------------------------------------------------------

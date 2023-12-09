@@ -15,7 +15,7 @@ it('runs index method successfully', function () {
     $response = $this->controller->index();
 
     expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true)['data'])->toHaveCount(4);
+    expect($response->getData(true))->toHaveCount(3);
 });
 
 it('runs show method successfully', function () {
@@ -24,8 +24,8 @@ it('runs show method successfully', function () {
     $response = $this->controller->show($user->id);
 
     expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true)['data']['name'])->toEqual($user->name);
-    expect($response->getData(true)['data']['email'])->toEqual($user->email);
+    expect($response->getData(true)['name'])->toEqual($user->name);
+    expect($response->getData(true)['email'])->toEqual($user->email);
 });
 
 it('runs store method successfully', function () {
@@ -36,8 +36,8 @@ it('runs store method successfully', function () {
     $response = $this->controller->store($request);
 
     expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true)['data']['name'])->toEqual(userData['name']);
-    expect($response->getData(true)['data']['email'])->toEqual(userData['email']);
+    expect($response->getData(true)['name'])->toEqual(userData['name']);
+    expect($response->getData(true)['email'])->toEqual(userData['email']);
 });
 
 it('runs update method successfully', function () {
@@ -50,8 +50,8 @@ it('runs update method successfully', function () {
     $response = $this->controller->update($request, $user->id);
 
     expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true)['data']['name'])->toEqual(updatedUserData['name']);
-    expect($response->getData(true)['data']['email'])->toEqual(updatedUserData['email']);
+    expect($response->getData(true)['name'])->toEqual(updatedUserData['name']);
+    expect($response->getData(true)['email'])->toEqual(updatedUserData['email']);
 });
 
 it('runs delete method successfully', function () {
