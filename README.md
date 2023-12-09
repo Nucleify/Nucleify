@@ -35,6 +35,7 @@ composer update
 ```bash
 mysql -u root -p
 create database contactbook
+create database contactbook_test    # it's not necessary, only for tests
 ```
 
 - Migrate and seed database.
@@ -64,20 +65,31 @@ php artisan serve
 <details><summary> <h2>  ❓ Usage  </summary>
 
 <details><summary> <h3> Factories </summary>
-    
+
 ```bash
 php artisan tinker
-User::factory()->count(100)->create();
-Contact::factory()->count(100)->create();      
+
+# if you wish, you can specify count in factory() or attributes in create()
+Contact::factory(100)->create(); 
+User::factory(100)->create();        
 ```
 
 </details>
 
 <details><summary> <h3> Tests </summary>
-    
+
 ```bash
-./vendor/bin/pest 
+# run all tests
+./vendor/bin/pest
+
+# or specify group
+./vendor/bin/pest --group=user-api
+
+# defined tests groups:
+user-api, contact-api, feature, global, unit, controllers, database, factories, migrations, models
 ```
+
+![Tests](https://github.com/SzymCode/ContactBook/assets/107359025/ea49e771-9963-4cb8-b103-7e2a0c91c6b7)
 
 </details>
 

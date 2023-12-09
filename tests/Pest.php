@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
 $data = require_once 'tests\TestConstants.php';
 $updatedData = require_once 'tests\TestConstants.php';
 $userData = require_once 'tests\TestConstants.php';
@@ -59,43 +57,19 @@ function apiTest($method, $route, $status, $data = null, $expectedJsonStructure 
     };
 }
 
-// TEST GROUPS
+// TESTS GROUPS
+
+uses()
+    ->group('user-api')
+    ->in('Feature/Api/User');
+
+uses()
+    ->group('contact-api')
+    ->in('Feature/Api/Contact');
 
 uses()
     ->group('feature')
     ->in('Feature');
-
-uses()
-    ->group('contactapi')
-    ->in('Feature/Api/Contact');
-
-uses()
-    ->group('userapi')
-    ->in('Feature/Api/User');
-
-uses()
-    ->group('database')
-    ->in('Feature/Database');
-
-uses()
-    ->group('factories')
-    ->in('Feature/Database/Factories');
-
-uses()
-    ->group('migrations')
-    ->in('Feature/Database/Migrations');
-
-uses()
-    ->group('database-sanctum')
-    ->in('Feature/Database/Sanctum');
-
-uses()
-    ->group('seeders')
-    ->in('Feature/Database/Seeders');
-
-uses()
-    ->group('sanctum')
-    ->in('Feature/Sanctum');
 
 uses()
     ->group('global')
@@ -108,6 +82,18 @@ uses()
 uses()
     ->group('controllers')
     ->in('Unit/Controllers');
+
+uses()
+    ->group('database')
+    ->in('Feature/Database');
+
+uses()
+    ->group('factories')
+    ->in('Feature/Database/Factories');
+
+uses()
+    ->group('migrations')
+    ->in('Feature/Database/Migrations');
 
 uses()
     ->group('models')
