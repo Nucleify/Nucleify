@@ -6,8 +6,8 @@ describe('login spec', () => {
   it('renders successfully when unauthorized', function () {
     cy.visit('/login')
 
-    cy.contains('Login')
-    cy.contains('Register')
+    cy.contains('Register').click()
+    cy.contains('Login').click()
 
     cy.contains('Email Address')
     cy.contains('Password')
@@ -21,5 +21,15 @@ describe('login spec', () => {
     cy.visit('/')
 
     cy.url().should('include', '/')
+  })
+
+  it('retrieves forgotten password', function () {
+    cy.visit('/login')
+
+    cy.contains('Forgot Your Password?').click()
+
+    cy.get('input[name=email]').type('test@example.com')
+
+    cy.contains('Send Password Reset Link').click()
   })
 })

@@ -3,6 +3,10 @@ describe('admin spec', () => {
     cy.login('test@example.com', 'admin123')
 
     cy.visit('/admin')
+    cy.get('a').contains('Test Admin')
+
+    cy.get('h3').contains('Manage Users')
+    cy.get('h3').contains('Manage Contacts')
   })
 
   it('redirects when unauthorized', function () {

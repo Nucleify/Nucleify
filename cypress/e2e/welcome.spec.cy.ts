@@ -6,11 +6,11 @@ describe('welcome spec', () => {
     cy.contains('Register')
   })
 
-  it('redirects when authorized', function () {
+  it('renders successfully when authorized', function () {
     cy.login('test@example.com', 'admin123')
 
     cy.visit('/')
 
-    cy.url().should('include', '/')
+    cy.contains('Home')
   })
 })

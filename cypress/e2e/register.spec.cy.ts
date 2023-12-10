@@ -2,8 +2,8 @@ describe('login spec', () => {
   it('renders successfully when unauthorized', function () {
     cy.visit('/register')
 
-    cy.contains('Login')
-    cy.contains('Register')
+    cy.contains('Login').click()
+    cy.contains('Register').click()
 
     cy.contains('Name')
     cy.contains('Email Address')
