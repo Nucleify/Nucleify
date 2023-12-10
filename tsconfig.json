@@ -33,6 +33,7 @@
     ]
   },
   "include": [
+    "cypress/**/*.ts",
     "resources/**/*.ts",
     "resources/**/*.tsx",
     "resources/**/*.vue",

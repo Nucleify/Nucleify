@@ -17,6 +17,9 @@ const app = createApp({});
 
 import ContactDashboard from './components/Contact/ContactDashboard.vue';
 import UserDashboard from './components/User/UserDashboard.vue';
+import TestLoginButton from "./components/User/TestLoginButton.vue";
+
+app.component('test-login-button', TestLoginButton);
 
 app.component('contact-dashboard', ContactDashboard);
 app.component('user-dashboard', UserDashboard);
