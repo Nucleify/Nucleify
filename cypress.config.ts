@@ -9,7 +9,7 @@ export default defineConfig({
   },
 
   e2e: {
-    setupNodeEvents(on, config) {
+    setupNodeEvents(on: any, config: any) {
       // implement node event listeners here
     },
   },
