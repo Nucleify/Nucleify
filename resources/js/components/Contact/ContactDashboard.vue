@@ -3,31 +3,28 @@
         <div class="card-body pt-4">
             <h3>Manage Contacts</h3>
 
-            <table class="table table-hover" v-if="results">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                </tr>
-                </thead>
-                <tbody v-if="true">
-                <tr v-for="contact in results" :key="contact.id">
-                    <td> {{ contact.id }} </td>
-                    <td> {{ contact.first_name }} {{ contact.last_name }} </td>
-                    <td> {{ contact.email }} </td>
-                </tr>
-                </tbody>
-            </table>
-            <div v-else>
-                Loading data or no data available...
-            </div>
+            <DataTable
+                :value="results"
+                v-if="results"
+                paginator
+                :rows="11"
+                resizableColumns
+                columnResizeMode="fit"
+                stripedRows
+            >
+                <Column field="id" sortable header="Id"></Column>
+                <Column field="first_name" sortable header="First Name"></Column>
+                <Column field="last_name" sortable header="Last Name"></Column>
+                <Column field="email" sortable header="Email"></Column>
+                <Column field="birthday" sortable header="Birthday"></Column>
+            </DataTable>
+            <div v-else>Loading data or no data available...</div>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 import { ref, onMounted } from 'vue';
 
 import axios from 'axios';
@@ -35,14 +32,14 @@ import axios from 'axios';
 export default defineComponent({
     setup() {
         const results = ref(null);
-
         function getContacts() {
-            axios.get('/api/contacts')
-                .then(response => {
+            axios
+                .get('/api/contacts')
+                .then((response) => {
                     results.value = response.data;
-                    console.log(response)
+                    console.log(response);
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.log(error);
                 });
         }
@@ -50,8 +47,8 @@ export default defineComponent({
         onMounted(getContacts);
 
         return {
-            results
+            results,
         };
-    }
-})
+    },
+});
 </script>

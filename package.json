@@ -9,6 +9,7 @@
     "open": "cypress open"
   },
   "dependencies": {
+    "primevue": "^3.43.0",
     "vue-class-component": "^8.0.0-0"
   },
   "devDependencies": {
