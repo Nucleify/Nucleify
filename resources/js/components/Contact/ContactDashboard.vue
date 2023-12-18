@@ -8,19 +8,22 @@
                 v-if="results"
                 paginator
                 :rows="11"
-                resizableColumns
-                columnResizeMode="fit"
                 stripedRows
+                :row-hover="true"
+                :size="'small'"
+                paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
-                <Column field="id" sortable header="Id"></Column>
-                <Column field="first_name" sortable header="First Name"></Column>
-                <Column field="last_name" sortable header="Last Name"></Column>
-                <Column field="email" sortable header="Email"></Column>
-                <Column field="birthday" sortable header="Birthday"></Column>
+                <Column field="id" :sortable="true" header="Id"></Column>
+                <Column field="first_name" :sortable="true" header="First Name"></Column>
+                <Column field="last_name" :sortable="true" header="Last Name"></Column>
+                <Column field="email" :sortable="true" header="Email"></Column>
+                <Column field="birthday" :sortable="true" header="Birthday"></Column>
             </DataTable>
             <div v-else>Loading data or no data available...</div>
         </div>
     </div>
+
 </template>
 
 <script lang="ts">

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\UserShouldReceiveFields;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -12,11 +13,13 @@ use Laravel\Sanctum\HasApiTokens;
 /**
  * Fix error: Property accessed via magic method
  *
- * @property integer $id
- * @property string $name
- * @property string $email
- * @property string $password
- * @property string $role
+ * @property integer id
+ * @property string name
+ * @property string email
+ * @property string password
+ * @property string role
+ * @property DateTime created_at
+ * @property DateTime updated_at
  */
 
 class User extends Authenticatable implements UserShouldReceiveFields

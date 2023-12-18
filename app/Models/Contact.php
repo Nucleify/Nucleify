@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Contracts\ContactShouldReceiveFields;
+use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -10,19 +11,19 @@ use Illuminate\Notifications\Notifiable;
 /**
  *  Fix error: Property accessed via magic method
  *
- * @property integer $id
- * @property integer $user_id
- * @property string $first_name
- * @property string $last_name
- * @property string $email
- * @property string|null $personal_phone
- * @property string|null $work_phone
- * @property string|null $address
- * @property string|null $birthday
- * @property mixed|null $contact_groups
- * @property string $role
- * @property integer $created_at
- * @property integer $updated_at
+ * @property integer id
+ * @property integer user_id
+ * @property string first_name
+ * @property string last_name
+ * @property string email
+ * @property string|null personal_phone
+ * @property string|null work_phone
+ * @property string|null address
+ * @property string|null birthday
+ * @property mixed|null contact_groups
+ * @property string role
+ * @property DateTime created_at
+ * @property DateTime updated_at
  */
 class Contact extends Model implements ContactShouldReceiveFields
 {
