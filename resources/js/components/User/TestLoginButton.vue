@@ -3,29 +3,29 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import axios from 'axios';
+import { defineComponent } from 'vue'
+import axios from 'axios'
 
 export default defineComponent({
     setup() {
         function postLogin() {
-            const email = 'test@example.com';
-            const password = 'admin123';
+            const email = 'test@example.com'
+            const password = 'admin123'
 
             axios
                 .post('/login', { email, password })
                 .then((response) => {
-                    console.log(response.data);
-                    location.href = '/home';
+                    console.log(response.data)
+                    location.href = '/home'
                 })
                 .catch((error) => {
-                    console.error(error);
-                });
+                    console.error(error)
+                })
         }
 
         return {
             postLogin,
-        };
+        }
     },
-});
+})
 </script>

@@ -20,7 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <img src="{{ asset('images/logo.png') }}" class="w-3rem h-3rem"/>
+{{--                <img src="{{ asset('images/logo.png') }}" class="w-3rem h-3rem"/>--}}
 
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'ContactBook') }}

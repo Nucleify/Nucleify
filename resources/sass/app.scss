@@ -6,3 +6,35 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+.p-button {
+    border-radius: 10px;
+    max-height: 33px;
+    min-height: 33px;
+    padding: 10px;
+}
+.p-dialog-mask {
+    padding: 0 10px;
+}
+.p-dialog-content {
+    padding-bottom: 0;
+}
+.p-dropdown-items {
+    padding: 0;
+}
+.p-inputtext {
+    max-height: 44px;
+}
+.p-inline-message {
+    display: flex;
+    justify-content: start;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.p-inline-message-icon {
+    margin-right: 20px;
+}
+.p-dialog-footer {
+    border-top: 1px gray;
+    padding: 20px;
+}
