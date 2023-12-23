@@ -5,6 +5,12 @@
                 <h3>Manage Users</h3>
 
                 <CreateUser></CreateUser>
+                <ShowUser
+                    :visible="visible"
+                    v-bind:toggle="toggleVisibility"
+                    v-bind:user="selectedUser"
+                >
+                </ShowUser>
             </div>
 
             <DataTable
@@ -15,6 +21,7 @@
                 stripedRows
                 :row-hover="true"
                 :size="'small'"
+                @row-click="toggleVisibility"
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
@@ -33,18 +40,21 @@
                     class="desktopColumn"
                 ></Column>
                 <Column class="w-1rem">
-                    <template #body>
+                    <template #body="rowData">
                         <div class="flex gap-1 justify-content-around">
-                            <Button class="desktopButton userButton">
+                            <Button
+                                class="desktopButton contactButton"
+                                @click="toggleVisibility(rowData)"
+                            >
                                 <i class="pi pi-eye"></i>
                             </Button>
-                            <Button class="desktopButton userButton">
+                            <Button class="desktopButton contactButton">
                                 <i class="pi pi-pencil"></i>
                             </Button>
-                            <Button class="desktopButton userButton">
+                            <Button class="desktopButton contactButton">
                                 <i class="pi pi-trash"></i>
                             </Button>
-                            <Button class="mobileButton userButton">
+                            <Button class="mobileButton contactButton">
                                 <i class="pi pi-bars"></i>
                             </Button>
                         </div>
@@ -57,15 +67,32 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import { ref, onMounted } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import axios from 'axios'
 
 import CreateUser from './CreateUser.vue'
+import ShowUser from './ShowUser.vue'
+import ShowContact from '../Contact/ShowContact.vue'
+
+interface UserData {
+    id: number
+    name: string
+    email: string
+    role: string
+}
 
 export default defineComponent({
     setup() {
-        const results = ref(null)
+        const results = ref<any>(null)
+        const visible = ref(false)
+        const selectedUser = ref<UserData | null>(null)
+
+        function toggleVisibility(userData: any) {
+            if (userData) {
+                selectedUser.value = userData
+                visible.value = !visible.value
+            }
+        }
 
         function getUsers() {
             axios
@@ -83,9 +110,14 @@ export default defineComponent({
 
         return {
             results,
+            visible,
+            selectedUser,
+            toggleVisibility,
         }
     },
     components: {
+        ShowContact,
+        ShowUser,
         CreateUser,
     },
 })

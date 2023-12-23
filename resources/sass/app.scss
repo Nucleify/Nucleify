@@ -26,12 +26,15 @@ td {
     padding: 0 10px;
 }
 .p-dialog-header {
+    padding-top: 18px;
     padding-bottom: 15px;
 }
 .p-dialog-content {
-    padding: 10px 20px;
+    padding: 20px;
 }
-
+.p-dialog-header-icon {
+    display: none;
+}
 .p-dropdown-items {
     padding: 0;
 }
