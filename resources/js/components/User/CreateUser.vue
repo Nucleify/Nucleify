@@ -3,7 +3,7 @@
 
     <Dialog v-model:visible="visible" modal header="Header" class="w-30rem">
         <template #header>
-            <h2>Create new user</h2>
+            <h2 class="m-0">Create new user</h2>
         </template>
 
         <InlineMessage v-if="errors.length > 0" severity="warn">

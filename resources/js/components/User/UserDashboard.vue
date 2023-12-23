@@ -20,8 +20,36 @@
             >
                 <Column field="id" :sortable="true" header="Id"></Column>
                 <Column field="name" :sortable="true" header="Name"></Column>
-                <Column field="email" :sortable="true" header="Email"></Column>
-                <Column field="role" :sortable="true" header="Role"></Column>
+                <Column
+                    field="email"
+                    :sortable="true"
+                    header="Email"
+                    class="tabletColumn"
+                ></Column>
+                <Column
+                    field="role"
+                    :sortable="true"
+                    header="Role"
+                    class="desktopColumn"
+                ></Column>
+                <Column class="w-1rem">
+                    <template #body>
+                        <div class="flex gap-1 justify-content-around">
+                            <Button class="desktopButton userButton">
+                                <i class="pi pi-eye"></i>
+                            </Button>
+                            <Button class="desktopButton userButton">
+                                <i class="pi pi-pencil"></i>
+                            </Button>
+                            <Button class="desktopButton userButton">
+                                <i class="pi pi-trash"></i>
+                            </Button>
+                            <Button class="mobileButton userButton">
+                                <i class="pi pi-bars"></i>
+                            </Button>
+                        </div>
+                    </template>
+                </Column>
             </DataTable>
             <div v-else>Loading data or no data available...</div>
         </div>

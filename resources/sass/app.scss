@@ -7,6 +7,15 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+// Primeicons
+@import 'primeicons/primeicons.css';
+
+* {
+    box-sizing: border-box;
+}
+td {
+    cursor: pointer;
+}
 .p-button {
     border-radius: 10px;
     max-height: 33px;
@@ -16,9 +25,13 @@
 .p-dialog-mask {
     padding: 0 10px;
 }
-.p-dialog-content {
-    padding-bottom: 0;
+.p-dialog-header {
+    padding-bottom: 15px;
 }
+.p-dialog-content {
+    padding: 10px 20px;
+}
+
 .p-dropdown-items {
     padding: 0;
 }
@@ -35,6 +48,50 @@
     margin-right: 20px;
 }
 .p-dialog-footer {
-    border-top: 1px gray;
     padding: 20px;
+}
+.p-column-title {
+    font-size: 15px;
+}
+.p-paginator {
+    font-size: 14px;
+}
+.p-paginator-element {
+    max-height: 33px;
+    max-width: 33px;
+}
+
+.tabletColumn,
+.desktopButton,
+.desktopColumn {
+    display: none;
+}
+.mobileButton {
+    display: inline;
+}
+
+.userButton,
+.contactButton {
+    padding: 4px 9px 9px 8px;
+}
+
+@media (min-width: 768px) {
+    .tabletColumn {
+        display: table-cell;
+    }
+}
+@media (min-width: 992px) {
+    .desktopColumn {
+        display: table-cell;
+    }
+    .desktopButton {
+        display: flex;
+    }
+    .userButton,
+    .contactButton {
+        padding: 9px 8.5px 10px 8px;
+    }
+    .mobileButton {
+        display: none;
+    }
 }

@@ -18,7 +18,6 @@
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
-                <Column field="id" :sortable="true" header="Id"></Column>
                 <Column
                     field="first_name"
                     :sortable="true"
@@ -29,12 +28,36 @@
                     :sortable="true"
                     header="Last Name"
                 ></Column>
-                <Column field="email" :sortable="true" header="Email"></Column>
+                <Column
+                    field="email"
+                    :sortable="true"
+                    header="Email"
+                    class="tabletColumn"
+                ></Column>
                 <Column
                     field="birthday"
                     :sortable="true"
                     header="Birthday"
+                    class="desktopColumn"
                 ></Column>
+                <Column class="w-1rem">
+                    <template #body>
+                        <div class="flex gap-1 justify-content-around">
+                            <Button class="desktopButton contactButton">
+                                <i class="pi pi-eye"></i>
+                            </Button>
+                            <Button class="desktopButton contactButton">
+                                <i class="pi pi-pencil"></i>
+                            </Button>
+                            <Button class="desktopButton contactButton">
+                                <i class="pi pi-trash"></i>
+                            </Button>
+                            <Button class="mobileButton contactButton">
+                                <i class="pi pi-bars"></i>
+                            </Button>
+                        </div>
+                    </template>
+                </Column>
             </DataTable>
             <div v-else>Loading data or no data available...</div>
         </div>
