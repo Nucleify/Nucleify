@@ -91,14 +91,14 @@
         <template #footer>
             <div class="flex gap-2 justify-content-end">
                 <Button
-                    label="Create"
-                    @click.prevent="storeContact"
-                    autofocus
-                />
-                <Button
                     severity="secondary"
                     label="Cancel"
                     @click="visible = false"
+                />
+                <Button
+                    label="Create"
+                    @click.prevent="storeContact"
+                    autofocus
                 />
             </div>
         </template>

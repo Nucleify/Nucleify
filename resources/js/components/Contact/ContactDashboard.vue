@@ -7,7 +7,7 @@
                 <CreateContact></CreateContact>
                 <ShowContact
                     :visible="visible"
-                    v-bind:toggle="toggleVisibility"
+                    v-bind:toggle="toggleVisibilityShow"
                     v-bind:contact="selectedContact"
                 >
                 </ShowContact>
@@ -20,7 +20,7 @@
                 :rows="11"
                 stripedRows
                 :row-hover="true"
-                @row-click="toggleVisibility"
+                @row-click="toggleVisibilityShow"
                 :size="'small'"
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}"
@@ -52,14 +52,17 @@
                         <div class="flex gap-1 justify-content-around">
                             <Button
                                 class="desktopButton contactButton"
-                                @click="toggleVisibility(rowData)"
+                                @click="toggleVisibilityShow(rowData)"
                             >
                                 <i class="pi pi-eye"></i>
                             </Button>
                             <Button class="desktopButton contactButton">
                                 <i class="pi pi-pencil"></i>
                             </Button>
-                            <Button class="desktopButton contactButton">
+                            <Button
+                                class="desktopButton contactButton"
+                                @click="toggleVisibilityDelete(rowData)"
+                            >
                                 <i class="pi pi-trash"></i>
                             </Button>
                             <Button class="mobileButton contactButton">
@@ -71,8 +74,26 @@
             </DataTable>
             <div v-else>Loading data or no data available...</div>
         </div>
+        <Dialog
+            v-model:visible="visibleDelete"
+            modal
+            header="Confirm delete user"
+        >
+            <div class="flex justify-content-between">
+                <Button
+                    severity="secondary"
+                    label="Cancel"
+                    @click="visibleDelete = false"
+                ></Button>
+                <Button
+                    label="Confirm"
+                    @click="deleteContact(selectedContact)"
+                ></Button>
+            </div>
+        </Dialog>
     </div>
 </template>
+
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import axios from 'axios'
@@ -96,13 +117,23 @@ export default defineComponent({
     setup() {
         const results = ref<any>(null)
         const visible = ref(false)
+        const visibleDelete = ref(false)
         const selectedContact = ref<ContactData | null>(null)
 
-        function toggleVisibility(contactData: any) {
+        function toggleSelectContact(userData: any) {
+            selectedContact.value = userData
+        }
+        function toggleVisibilityShow(contactData: any) {
             if (contactData) {
-                selectedContact.value = contactData
-                visible.value = !visible.value
+                toggleSelectContact(contactData)
             }
+            visible.value = !visible.value
+        }
+        function toggleVisibilityDelete(contactData: any) {
+            if (contactData) {
+                toggleSelectContact(contactData)
+            }
+            visibleDelete.value = !visible.value
         }
 
         function getContacts() {
@@ -116,14 +147,31 @@ export default defineComponent({
                     console.log(error)
                 })
         }
+        function deleteContact(contact: any) {
+            axios
+                .delete(`/api/contacts/${contact.data.id}`)
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+                .finally(() => {
+                    visibleDelete.value = false
+                    getContacts()
+                })
+        }
 
         onMounted(getContacts)
 
         return {
             results,
             visible,
+            visibleDelete,
             selectedContact,
-            toggleVisibility,
+            toggleVisibilityShow,
+            toggleVisibilityDelete,
+            deleteContact,
         }
     },
     components: {

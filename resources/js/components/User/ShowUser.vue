@@ -27,7 +27,7 @@
                 <Button
                     severity="secondary"
                     label="Close"
-                    @click="toggleVisibility"
+                    @click="toggleVisibilityShow"
                 />
             </div>
         </template>
@@ -56,7 +56,7 @@ export default defineComponent({
         const { user } = toRefs(props)
 
         return {
-            toggleVisibility() {
+            toggleVisibilityShow() {
                 props.toggle(user)
             },
             user,

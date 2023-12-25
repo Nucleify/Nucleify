@@ -55,13 +55,13 @@
 
         <template #footer>
             <div class="flex gap-2 justify-content-end">
-                <Button label="Confirm" @click.prevent="storeUser" autofocus />
                 <Button
                     severity="secondary"
                     label="Cancel"
                     @click="visible = false"
                     autofocus
                 />
+                <Button label="Confirm" @click.prevent="storeUser" autofocus />
             </div>
         </template>
     </Dialog>

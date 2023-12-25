@@ -7,7 +7,7 @@
                 <CreateUser></CreateUser>
                 <ShowUser
                     :visible="visible"
-                    v-bind:toggle="toggleVisibility"
+                    v-bind:toggle="toggleVisibilityShow"
                     v-bind:user="selectedUser"
                 >
                 </ShowUser>
@@ -21,7 +21,7 @@
                 stripedRows
                 :row-hover="true"
                 :size="'small'"
-                @row-click="toggleVisibility"
+                @row-click="toggleVisibilityShow"
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
@@ -44,14 +44,17 @@
                         <div class="flex gap-1 justify-content-around">
                             <Button
                                 class="desktopButton contactButton"
-                                @click="toggleVisibility(rowData)"
+                                @click="toggleVisibilityShow(rowData)"
                             >
                                 <i class="pi pi-eye"></i>
                             </Button>
                             <Button class="desktopButton contactButton">
                                 <i class="pi pi-pencil"></i>
                             </Button>
-                            <Button class="desktopButton contactButton">
+                            <Button
+                                class="desktopButton contactButton"
+                                @click="toggleVisibilityDelete(rowData)"
+                            >
                                 <i class="pi pi-trash"></i>
                             </Button>
                             <Button class="mobileButton contactButton">
@@ -63,6 +66,23 @@
             </DataTable>
             <div v-else>Loading data or no data available...</div>
         </div>
+        <Dialog
+            v-model:visible="visibleDelete"
+            modal
+            header="Confirm delete user"
+        >
+            <div class="flex justify-content-between">
+                <Button
+                    severity="secondary"
+                    label="Cancel"
+                    @click="visibleDelete = false"
+                ></Button>
+                <Button
+                    label="Confirm"
+                    @click="deleteUser(selectedUser)"
+                ></Button>
+            </div>
+        </Dialog>
     </div>
 </template>
 
@@ -85,13 +105,23 @@ export default defineComponent({
     setup() {
         const results = ref<any>(null)
         const visible = ref(false)
+        const visibleDelete = ref(false)
         const selectedUser = ref<UserData | null>(null)
 
-        function toggleVisibility(userData: any) {
+        function toggleSelectUser(userData: any) {
+            selectedUser.value = userData
+        }
+        function toggleVisibilityShow(userData: any) {
             if (userData) {
-                selectedUser.value = userData
-                visible.value = !visible.value
+                toggleSelectUser(userData)
             }
+            visible.value = !visible.value
+        }
+        function toggleVisibilityDelete(userData: any) {
+            if (userData) {
+                toggleSelectUser(userData)
+            }
+            visibleDelete.value = !visible.value
         }
 
         function getUsers() {
@@ -105,14 +135,31 @@ export default defineComponent({
                     console.log(error)
                 })
         }
+        function deleteUser(user: any) {
+            axios
+                .delete(`/api/users/${user.data.id}`)
+                .then((response) => {
+                    console.log(response)
+                })
+                .catch((error) => {
+                    console.log(error)
+                })
+                .finally(() => {
+                    visibleDelete.value = false
+                    getUsers()
+                })
+        }
 
         onMounted(getUsers)
 
         return {
             results,
             visible,
+            visibleDelete,
             selectedUser,
-            toggleVisibility,
+            toggleVisibilityShow,
+            toggleVisibilityDelete,
+            deleteUser,
         }
     },
     components: {
