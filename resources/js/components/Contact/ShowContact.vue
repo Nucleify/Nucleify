@@ -82,11 +82,13 @@ export default defineComponent({
     setup(props) {
         const { contact } = toRefs(props)
 
+        function toggleVisibilityShow(): void {
+            props.toggle(contact)
+        }
+
         return {
-            toggleVisibilityShow() {
-                props.toggle(contact)
-            },
             contact,
+            toggleVisibilityShow,
         }
     },
 })

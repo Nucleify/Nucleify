@@ -55,11 +55,13 @@ export default defineComponent({
     setup(props) {
         const { user } = toRefs(props)
 
+        function toggleVisibilityShow() {
+            props.toggle(user)
+        }
+
         return {
-            toggleVisibilityShow() {
-                props.toggle(user)
-            },
             user,
+            toggleVisibilityShow,
         }
     },
 })

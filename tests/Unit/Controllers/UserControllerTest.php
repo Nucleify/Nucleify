@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\Auth\UserController;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\PostUserRequest;
+use App\Http\Requests\PutUserRequest;
 use App\Models\User;
 use App\Services\UserService;
 
@@ -29,7 +30,7 @@ it('runs show method successfully', function () {
 });
 
 it('runs store method successfully', function () {
-    $request = Mockery::mock(UserRequest::class);
+    $request = Mockery::mock(PostUserRequest::class);
     $request->shouldReceive('validated')
         ->andReturn(userData);
 
@@ -43,7 +44,7 @@ it('runs store method successfully', function () {
 it('runs update method successfully', function () {
     $user = User::factory()->create();
 
-    $request = Mockery::mock(UserRequest::class);
+    $request = Mockery::mock(PutUserRequest::class);
     $request->shouldReceive('validated')
         ->andReturn(updatedUserData);
 

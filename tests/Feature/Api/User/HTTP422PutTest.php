@@ -178,7 +178,7 @@ describe('422 > PUT', function ($updatedUserData = updatedUserData) {
         $updatedUserData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field is required.']
+            'password' => ['The password field must be at least 8 characters.']
         ]]
     ));
 
@@ -190,7 +190,7 @@ describe('422 > PUT', function ($updatedUserData = updatedUserData) {
         $updatedUserData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field is required.']
+            'password' => ['The password field must be at least 8 characters.']
         ]]
     ));
 

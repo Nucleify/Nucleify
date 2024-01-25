@@ -92,7 +92,6 @@ import axios from 'axios'
 
 import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
-import ShowContact from '../Contact/ShowContact.vue'
 
 interface UserData {
     id: number
@@ -105,26 +104,28 @@ export default defineComponent({
     setup() {
         const results = ref<any>(null)
         const visible = ref(false)
+        const visibleEdit = ref(false)
         const visibleDelete = ref(false)
         const selectedUser = ref<UserData | null>(null)
 
-        function toggleSelectUser(userData: any) {
+        function toggleSelectUser(userData: any): void {
             selectedUser.value = userData
         }
-        function toggleVisibilityShow(userData: any) {
+        function toggleVisibilityShow(userData: any): void {
             if (userData) {
-                toggleSelectUser(userData)
+                selectedUser.value = userData
+                visible.value = !visible.value
             }
-            visible.value = !visible.value
-        }
-        function toggleVisibilityDelete(userData: any) {
-            if (userData) {
-                toggleSelectUser(userData)
-            }
-            visibleDelete.value = !visible.value
         }
 
-        function getUsers() {
+        function toggleVisibilityDelete(userData: any): void {
+            if (userData) {
+                toggleSelectUser(userData)
+                visibleDelete.value = !visibleDelete.value
+            }
+        }
+
+        function getUsers(): void {
             axios
                 .get('/api/users')
                 .then((response) => {
@@ -135,7 +136,7 @@ export default defineComponent({
                     console.log(error)
                 })
         }
-        function deleteUser(user: any) {
+        function deleteUser(user: any): void {
             axios
                 .delete(`/api/users/${user.data.id}`)
                 .then((response) => {
@@ -163,7 +164,6 @@ export default defineComponent({
         }
     },
     components: {
-        ShowContact,
         ShowUser,
         CreateUser,
     },

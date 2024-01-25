@@ -129,7 +129,7 @@ export default defineComponent({
         const errors = ref<string[]>([])
         const options = ref(['user', 'admin'])
 
-        function storeContact() {
+        function storeContact(): void {
             errors.value = []
             axios
                 .post('/api/contacts', {
@@ -149,7 +149,7 @@ export default defineComponent({
                 })
         }
 
-        function flashErrors(errorsData: Record<string, string[]>) {
+        function flashErrors(errorsData: Record<string, string[]>): void {
             for (const value in errorsData) {
                 if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
                     errors.value.push(...errorsData[value])

@@ -77,7 +77,7 @@
         <Dialog
             v-model:visible="visibleDelete"
             modal
-            header="Confirm delete user"
+            header="Confirm delete contact"
         >
             <div class="flex justify-content-between">
                 <Button
@@ -120,23 +120,20 @@ export default defineComponent({
         const visibleDelete = ref(false)
         const selectedContact = ref<ContactData | null>(null)
 
-        function toggleSelectContact(userData: any) {
-            selectedContact.value = userData
-        }
-        function toggleVisibilityShow(contactData: any) {
+        function toggleVisibilityShow(contactData: any): void {
             if (contactData) {
-                toggleSelectContact(contactData)
+                selectedContact.value = contactData
+                visible.value = !visible.value
             }
-            visible.value = !visible.value
         }
-        function toggleVisibilityDelete(contactData: any) {
+        function toggleVisibilityDelete(contactData: any): void {
             if (contactData) {
-                toggleSelectContact(contactData)
+                selectedContact.value = contactData
+                visibleDelete.value = !visibleDelete.value
             }
-            visibleDelete.value = !visible.value
         }
 
-        function getContacts() {
+        function getContacts(): void {
             axios
                 .get('/api/contacts')
                 .then((response) => {
@@ -147,7 +144,7 @@ export default defineComponent({
                     console.log(error)
                 })
         }
-        function deleteContact(contact: any) {
+        function deleteContact(contact: any): void {
             axios
                 .delete(`/api/contacts/${contact.data.id}`)
                 .then((response) => {
@@ -157,7 +154,7 @@ export default defineComponent({
                     console.log(error)
                 })
                 .finally(() => {
-                    visibleDelete.value = false
+                    visibleDelete.value = !visibleDelete.value
                     getContacts()
                 })
         }

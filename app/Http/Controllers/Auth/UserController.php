@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\PostUserRequest;
+use App\Http\Requests\PutUserRequest;
 use App\Services\UserService;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
@@ -38,7 +39,7 @@ class UserController extends Controller
         return response()->json($result);
     }
 
-    public function store(UserRequest $request): JsonResponse
+    public function store(PostUserRequest $request): JsonResponse
     {
         $input = $request->validated();
 
@@ -47,7 +48,7 @@ class UserController extends Controller
         return response()->json($result);
     }
 
-    public function update(UserRequest $request, $id): JsonResponse
+    public function update(PutUserRequest $request, $id): JsonResponse
     {
         $input = $request->validated();
 

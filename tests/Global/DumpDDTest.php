@@ -6,7 +6,7 @@ it('does not contain dd and dump in app')
     ->not->toUse(['dd', 'dump']);
 
 it('does not contain dd and dump in database')
-    ->expect('resources')
+    ->expect('database')
     ->not->toUse(['dd', 'dump']);
 
 it('does not contain dd and dump in resources')

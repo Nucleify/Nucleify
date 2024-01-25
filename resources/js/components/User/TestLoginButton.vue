@@ -8,7 +8,7 @@ import axios from 'axios'
 
 export default defineComponent({
     setup() {
-        function postLogin() {
+        function postLogin(): void {
             const email = 'test@example.com'
             const password = 'admin123'
 
