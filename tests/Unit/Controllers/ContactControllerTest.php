@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Requests\PutContactRequest;
 use App\Models\Contact;
 use App\Http\Controllers\ContactController;
-use App\Http\Requests\ContactRequest;
+use App\Http\Requests\PostContactRequest;
 use App\Services\ContactService;
-use Illuminate\Http\JsonResponse;
 
 beforeEach(function () {
     $this->controller = app()->makeWith(ContactController::class, ['contactService' => app()->make(ContactService::class)]);
@@ -28,7 +28,7 @@ it('runs show method successfully', function () {
 });
 
 it('runs store method successfully', function () {
-    $request = Mockery::mock(ContactRequest::class);
+    $request = Mockery::mock(PostContactRequest::class);
     $request->shouldReceive('validated')->once()->andReturn(data);
 
     $response = $this->controller->store($request);
@@ -39,7 +39,7 @@ it('runs store method successfully', function () {
 it('runs update method successfully', function () {
     $contact = Contact::factory()->create();
 
-    $request = Mockery::mock(ContactRequest::class);
+    $request = Mockery::mock(PutContactRequest::class);
     $request->shouldReceive('validated')->once()->andReturn(updatedData);
 
     $response = $this->controller->update($request, $contact->id);

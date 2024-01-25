@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ContactRequest;
+use App\Http\Requests\PostContactRequest;
+use App\Http\Requests\PutContactRequest;
 use App\Models\User;
 use App\Services\ContactService;
 use Illuminate\Http\JsonResponse;
@@ -31,7 +32,7 @@ class ContactController extends Controller
         return response()->json($result);
     }
 
-    public function store(ContactRequest $request): JsonResponse
+    public function store(PostContactRequest $request): JsonResponse
     {
         $input = $request->validated();
 
@@ -40,7 +41,7 @@ class ContactController extends Controller
         return response()->json($result);
     }
 
-    public function update(ContactRequest $request, $id): JsonResponse
+    public function update(PutContactRequest $request, $id): JsonResponse
     {
         $input = $request->validated();
 
