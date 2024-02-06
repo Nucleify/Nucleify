@@ -11,6 +11,13 @@
                     v-bind:contact="selectedContact"
                 >
                 </ShowContact>
+                <EditContact
+                    :visible="visibleEdit"
+                    v-bind:toggle="toggleVisibilityEdit"
+                    v-bind:contact="selectedContact"
+                    :options="options"
+                >
+                </EditContact>
             </div>
 
             <DataTable
@@ -56,7 +63,10 @@
                             >
                                 <i class="pi pi-eye"></i>
                             </Button>
-                            <Button class="desktopButton contactButton">
+                            <Button
+                                class="desktopButton contactButton"
+                                @click="toggleVisibilityEdit(rowData)"
+                            >
                                 <i class="pi pi-pencil"></i>
                             </Button>
                             <Button
@@ -100,6 +110,7 @@ import axios from 'axios'
 
 import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
+import EditContact from './EditContact.vue'
 
 interface ContactData {
     first_name: string
@@ -115,12 +126,17 @@ interface ContactData {
 
 const results = ref<any>(null)
 const visible = ref(false)
+const visibleEdit = ref(false)
 const visibleDelete = ref(false)
 const selectedContact = ref<ContactData | null>(null)
 
 function toggleVisibilityShow(contactData: any): void {
     selectedContact.value = contactData
     visible.value = !visible.value
+}
+function toggleVisibilityEdit(contactData: any): void {
+    selectedContact.value = contactData
+    visibleEdit.value = !visibleEdit.value
 }
 function toggleVisibilityDelete(contactData: any): void {
     selectedContact.value = contactData

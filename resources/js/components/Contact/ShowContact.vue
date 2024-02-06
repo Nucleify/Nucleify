@@ -63,7 +63,7 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue'
-import {Ref} from "vue/dist/vue"
+import { Ref } from 'vue/dist/vue'
 
 const props = defineProps<{
     visible: boolean

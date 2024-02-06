@@ -1,14 +1,9 @@
 <template>
     <Button label="Create contact" @click="visible = true" />
 
-    <Dialog
-        v-model:visible="visible"
-        modal
-        header="Create new contact"
-        class="w-30rem"
-    >
+    <Dialog v-model:visible="visible" modal class="w-30rem">
         <template #header>
-            <h2 class="m-0">Create New Contact</h2>
+            <h2 class="m-0">Create new contact</h2>
         </template>
 
         <InlineMessage v-if="errors.length > 0" severity="warn">

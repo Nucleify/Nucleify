@@ -4,16 +4,20 @@
             <div class="flex justify-content-between mb-5">
                 <h3>Manage Users</h3>
 
-                <CreateUser
-                    :options="options"
-                >
-                </CreateUser>
+                <CreateUser :options="options"> </CreateUser>
                 <ShowUser
                     :visible="visible"
                     v-bind:toggle="toggleVisibilityShow"
                     v-bind:user="selectedUser"
                 >
                 </ShowUser>
+                <EditUser
+                    :visible="visibleEdit"
+                    v-bind:toggle="toggleVisibilityEdit"
+                    v-bind:user="selectedUser"
+                    :options="options"
+                >
+                </EditUser>
             </div>
 
             <DataTable
@@ -51,7 +55,10 @@
                             >
                                 <i class="pi pi-eye"></i>
                             </Button>
-                            <Button class="desktopButton contactButton">
+                            <Button
+                                class="desktopButton contactButton"
+                                @click="toggleVisibilityEdit(rowData)"
+                            >
                                 <i class="pi pi-pencil"></i>
                             </Button>
                             <Button
@@ -95,6 +102,7 @@ import axios from 'axios'
 
 import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
+import EditUser from './EditUser.vue'
 
 interface UserData {
     id: number
@@ -105,6 +113,7 @@ interface UserData {
 
 const results = ref<any>(null)
 const visible = ref(false)
+const visibleEdit = ref(false)
 const visibleDelete = ref(false)
 const selectedUser = ref<UserData | null>(null)
 const options = ['user', 'admin']
@@ -115,6 +124,11 @@ function toggleSelectUser(userData: any): void {
 function toggleVisibilityShow(userData: any): void {
     toggleSelectUser(userData)
     visible.value = !visible.value
+}
+
+function toggleVisibilityEdit(userData: any): void {
+    toggleSelectUser(userData)
+    visibleEdit.value = !visibleEdit.value
 }
 
 function toggleVisibilityDelete(userData: any): void {

@@ -18,7 +18,7 @@ describe('422 > PUT', function($updatedData = updatedData) {
         $updatedData,
         ['errors' => ['user_id']],
         ['errors' => [
-            'user_id' => ['The user id field is required.']
+            'user_id' => ['The user id field must be an integer.']
         ]]
     ));
 
@@ -30,7 +30,7 @@ describe('422 > PUT', function($updatedData = updatedData) {
         $updatedData,
         ['errors' => ['user_id']],
         ['errors' => [
-            'user_id' => ['The user id field is required.']
+            'user_id' => ['The user id field must be an integer.']
         ]]
     ));
 

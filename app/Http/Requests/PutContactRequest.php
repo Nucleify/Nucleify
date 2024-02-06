@@ -25,7 +25,7 @@ class PutContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|integer',
+            'user_id' => 'integer',
             'first_name' => 'required|string|min:3|max:30',
             'last_name' => 'nullable|string|min:3|max:30',
             'email' => 'nullable|email|min:3|max:70',
