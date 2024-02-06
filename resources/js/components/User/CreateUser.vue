@@ -23,7 +23,6 @@
                 <InputText id="email" type="text" v-model="data.email" />
             </div>
 
-            <!-- Use Dropdown component for role selection -->
             <div class="flex flex-column gap-1 mb-3">
                 <label for="role">Role</label>
                 <Dropdown
@@ -67,58 +66,46 @@
     </Dialog>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 import axios from 'axios'
 
-export default defineComponent({
-    setup() {
-        const data = ref({
-            name: '',
-            email: '',
-            role: '',
-            password: '',
-            confirm_password: '',
-        })
-
-        const visible = ref(false)
-        const errors = ref<string[]>([])
-        const options = ref(['user', 'admin'])
-
-        function storeUser() {
-            errors.value = []
-            axios
-                .post('/api/users', {
-                    name: data.value.name,
-                    email: data.value.email,
-                    role: data.value.role,
-                    password: data.value.password,
-                    confirm_password: data.value.confirm_password,
-                })
-                .then((response) => console.log(response))
-                .catch((error) => {
-                    flashErrors(error.response.data.errors)
-                })
-        }
-
-        function flashErrors(errorsData: Record<string, string[]>) {
-            for (const value in errorsData) {
-                if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
-                    errors.value.push(...errorsData[value])
-                }
-            }
-            setTimeout(() => {
-                errors.value = []
-            }, 5000)
-        }
-
-        return {
-            data,
-            errors,
-            storeUser,
-            visible,
-            options,
-        }
-    },
+const data = ref({
+    name: '',
+    email: '',
+    role: '',
+    password: '',
+    confirm_password: '',
 })
+
+const visible = ref(false)
+const errors = ref<string[]>([])
+const options = ref(['user', 'admin'])
+
+function storeUser() {
+    errors.value = []
+    axios
+        .post('/api/users', {
+            name: data.value.name,
+            email: data.value.email,
+            role: data.value.role,
+            password: data.value.password,
+            confirm_password: data.value.confirm_password,
+        })
+        .then((response) => console.log(response))
+        .catch((error) => {
+            flashErrors(error.response.data.errors)
+        })
+}
+
+function flashErrors(errorsData: Record<string, string[]>) {
+    for (const value in errorsData) {
+        if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
+            errors.value.push(...errorsData[value])
+        }
+    }
+    setTimeout(() => {
+        errors.value = []
+    }, 5000)
+}
 </script>

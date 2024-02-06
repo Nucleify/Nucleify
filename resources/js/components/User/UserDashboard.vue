@@ -4,7 +4,10 @@
             <div class="flex justify-content-between mb-5">
                 <h3>Manage Users</h3>
 
-                <CreateUser></CreateUser>
+                <CreateUser
+                    :options="options"
+                >
+                </CreateUser>
                 <ShowUser
                     :visible="visible"
                     v-bind:toggle="toggleVisibilityShow"
@@ -86,8 +89,8 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
 import CreateUser from './CreateUser.vue'
@@ -100,72 +103,50 @@ interface UserData {
     role: string
 }
 
-export default defineComponent({
-    setup() {
-        const results = ref<any>(null)
-        const visible = ref(false)
-        const visibleEdit = ref(false)
-        const visibleDelete = ref(false)
-        const selectedUser = ref<UserData | null>(null)
+const results = ref<any>(null)
+const visible = ref(false)
+const visibleDelete = ref(false)
+const selectedUser = ref<UserData | null>(null)
+const options = ['user', 'admin']
 
-        function toggleSelectUser(userData: any): void {
-            selectedUser.value = userData
-        }
-        function toggleVisibilityShow(userData: any): void {
-            if (userData) {
-                selectedUser.value = userData
-                visible.value = !visible.value
-            }
-        }
+function toggleSelectUser(userData: any): void {
+    selectedUser.value = userData
+}
+function toggleVisibilityShow(userData: any): void {
+    toggleSelectUser(userData)
+    visible.value = !visible.value
+}
 
-        function toggleVisibilityDelete(userData: any): void {
-            if (userData) {
-                toggleSelectUser(userData)
-                visibleDelete.value = !visibleDelete.value
-            }
-        }
+function toggleVisibilityDelete(userData: any): void {
+    toggleSelectUser(userData)
+    visibleDelete.value = !visibleDelete.value
+}
 
-        function getUsers(): void {
-            axios
-                .get('/api/users')
-                .then((response) => {
-                    results.value = response.data
-                    console.log(response)
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
-        function deleteUser(user: any): void {
-            axios
-                .delete(`/api/users/${user.data.id}`)
-                .then((response) => {
-                    console.log(response)
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-                .finally(() => {
-                    visibleDelete.value = false
-                    getUsers()
-                })
-        }
+function getUsers(): void {
+    axios
+        .get('/api/users')
+        .then((response) => {
+            results.value = response.data
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+function deleteUser(user: any): void {
+    axios
+        .delete(`/api/users/${user.data.id}`)
+        .then((response) => {
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        .finally(() => {
+            visibleDelete.value = false
+            getUsers()
+        })
+}
 
-        onMounted(getUsers)
-
-        return {
-            results,
-            visible,
-            visibleDelete,
-            selectedUser,
-            toggleVisibilityShow,
-            toggleVisibilityDelete,
-            deleteUser,
-        }
-    },
-    components: {
-        ShowUser,
-        CreateUser,
-    },
-})
+onMounted(getUsers)
 </script>

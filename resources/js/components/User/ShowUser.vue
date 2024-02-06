@@ -34,35 +34,18 @@
     </Dialog>
 </template>
 
-<script lang="ts">
-import { defineComponent, PropType, Ref, toRefs } from 'vue'
+<script setup lang="ts">
+import { defineProps, Ref, toRefs } from 'vue'
 
-export default defineComponent({
-    props: {
-        visible: {
-            type: Boolean,
-            required: true,
-        },
-        toggle: {
-            type: Function as PropType<(selectedUser: Ref<any>) => void>,
-            required: true,
-        },
-        user: {
-            type: Object as PropType<any>,
-            required: true,
-        },
-    },
-    setup(props) {
-        const { user } = toRefs(props)
+const props = defineProps<{
+    visible: boolean
+    toggle: (selectedUser: Ref<any>) => void
+    user: any
+}>()
 
-        function toggleVisibilityShow() {
-            props.toggle(user)
-        }
+const { user } = toRefs(props)
 
-        return {
-            user,
-            toggleVisibilityShow,
-        }
-    },
-})
+function toggleVisibilityShow() {
+    props.toggle(user)
+}
 </script>

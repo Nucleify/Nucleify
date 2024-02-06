@@ -94,8 +94,8 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue'
+<script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
 import CreateContact from './CreateContact.vue'
@@ -113,67 +113,45 @@ interface ContactData {
     role: string
 }
 
-export default defineComponent({
-    setup() {
-        const results = ref<any>(null)
-        const visible = ref(false)
-        const visibleDelete = ref(false)
-        const selectedContact = ref<ContactData | null>(null)
+const results = ref<any>(null)
+const visible = ref(false)
+const visibleDelete = ref(false)
+const selectedContact = ref<ContactData | null>(null)
 
-        function toggleVisibilityShow(contactData: any): void {
-            if (contactData) {
-                selectedContact.value = contactData
-                visible.value = !visible.value
-            }
-        }
-        function toggleVisibilityDelete(contactData: any): void {
-            if (contactData) {
-                selectedContact.value = contactData
-                visibleDelete.value = !visibleDelete.value
-            }
-        }
+function toggleVisibilityShow(contactData: any): void {
+    selectedContact.value = contactData
+    visible.value = !visible.value
+}
+function toggleVisibilityDelete(contactData: any): void {
+    selectedContact.value = contactData
+    visibleDelete.value = !visibleDelete.value
+}
 
-        function getContacts(): void {
-            axios
-                .get('/api/contacts')
-                .then((response) => {
-                    results.value = response.data
-                    console.log(response)
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-        }
-        function deleteContact(contact: any): void {
-            axios
-                .delete(`/api/contacts/${contact.data.id}`)
-                .then((response) => {
-                    console.log(response)
-                })
-                .catch((error) => {
-                    console.log(error)
-                })
-                .finally(() => {
-                    visibleDelete.value = !visibleDelete.value
-                    getContacts()
-                })
-        }
+function getContacts(): void {
+    axios
+        .get('/api/contacts')
+        .then((response) => {
+            results.value = response.data
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+function deleteContact(contact: any): void {
+    axios
+        .delete(`/api/contacts/${contact.data.id}`)
+        .then((response) => {
+            console.log(response)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+        .finally(() => {
+            visibleDelete.value = !visibleDelete.value
+            getContacts()
+        })
+}
 
-        onMounted(getContacts)
-
-        return {
-            results,
-            visible,
-            visibleDelete,
-            selectedContact,
-            toggleVisibilityShow,
-            toggleVisibilityDelete,
-            deleteContact,
-        }
-    },
-    components: {
-        ShowContact,
-        CreateContact,
-    },
-})
+onMounted(getContacts)
 </script>

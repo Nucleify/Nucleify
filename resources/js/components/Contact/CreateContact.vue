@@ -105,68 +105,56 @@
     </Dialog>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 import axios from 'axios'
 
-export default defineComponent({
-    setup() {
-        const data = ref({
-            first_name: '',
-            last_name: '',
-            email: '',
-            personal_phone: '',
-            work_phone: '',
-            address: '',
-            birthday: '',
-            contact_groups: '',
-            role: '',
-            password: '',
-            confirm_password: '',
-        })
-
-        const visible = ref(false)
-        const errors = ref<string[]>([])
-        const options = ref(['user', 'admin'])
-
-        function storeContact(): void {
-            errors.value = []
-            axios
-                .post('/api/contacts', {
-                    first_name: data.value.first_name,
-                    last_name: data.value.last_name,
-                    email: data.value.email,
-                    personal_phone: data.value.personal_phone,
-                    work_phone: data.value.work_phone,
-                    address: data.value.address,
-                    birthday: data.value.birthday,
-                    contact_groups: data.value.contact_groups,
-                    role: data.value.role,
-                })
-                .then((response) => console.log(response))
-                .catch((error) => {
-                    flashErrors(error.response.data.errors)
-                })
-        }
-
-        function flashErrors(errorsData: Record<string, string[]>): void {
-            for (const value in errorsData) {
-                if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
-                    errors.value.push(...errorsData[value])
-                }
-            }
-            setTimeout(() => {
-                errors.value = []
-            }, 5000)
-        }
-
-        return {
-            data,
-            errors,
-            storeContact,
-            visible,
-            options,
-        }
-    },
+const data = ref({
+    first_name: '',
+    last_name: '',
+    email: '',
+    personal_phone: '',
+    work_phone: '',
+    address: '',
+    birthday: '',
+    contact_groups: '',
+    role: '',
+    password: '',
+    confirm_password: '',
 })
+
+const visible = ref(false)
+const errors = ref<string[]>([])
+const options = ref(['user', 'admin'])
+
+function storeContact(): void {
+    errors.value = []
+    axios
+        .post('/api/contacts', {
+            first_name: data.value.first_name,
+            last_name: data.value.last_name,
+            email: data.value.email,
+            personal_phone: data.value.personal_phone,
+            work_phone: data.value.work_phone,
+            address: data.value.address,
+            birthday: data.value.birthday,
+            contact_groups: data.value.contact_groups,
+            role: data.value.role,
+        })
+        .then((response) => console.log(response))
+        .catch((error) => {
+            flashErrors(error.response.data.errors)
+        })
+}
+
+function flashErrors(errorsData: Record<string, string[]>): void {
+    for (const value in errorsData) {
+        if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
+            errors.value.push(...errorsData[value])
+        }
+    }
+    setTimeout(() => {
+        errors.value = []
+    }, 5000)
+}
 </script>
