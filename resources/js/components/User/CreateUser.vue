@@ -1,11 +1,24 @@
 <template>
-    <Button label="Create user" @click="visible = true" />
-
     <Dialog v-model:visible="visible" modal header="Header" class="w-30rem">
         <template #header>
             <h2 class="m-0">Create new user</h2>
         </template>
 
+        <!-- Display success messages-->
+        <InlineMessage v-if="success_message !== null" severity="success">
+            <div class="text-sm">
+                {{ success_message }}
+            </div>
+        </InlineMessage>
+
+        <!-- Display danger messages -->
+        <InlineMessage v-if="danger_message !== null" severity="error">
+            <div class="text-sm">
+                {{ danger_message }}
+            </div>
+        </InlineMessage>
+
+        <!-- Display errors -->
         <InlineMessage v-if="errors.length > 0" severity="warn">
             <div class="text-sm" v-for="error in errors" :key="error">
                 {{ error }}
@@ -57,18 +70,28 @@
                 <Button
                     severity="secondary"
                     label="Cancel"
-                    @click="visible = false"
-                    autofocus
+                    @click="props.close('create')"
                 />
-                <Button label="Confirm" @click.prevent="storeUser" autofocus />
+                <Button
+                    label="Confirm"
+                    @click="storeUser"
+                />
             </div>
         </template>
     </Dialog>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { Ref, ref, toRefs } from 'vue'
 import axios from 'axios'
+
+const props = defineProps<{
+    visible: boolean
+    options: any
+    errors: Ref<string[]>
+    flashValidationErrors: (errors: Record<string, string[]>) => void
+    close: (action: string) => void
+}>()
 
 const data = ref({
     name: '',
@@ -78,13 +101,13 @@ const data = ref({
     confirm_password: '',
 })
 
-const visible = ref(false)
-const errors = ref<string[]>([])
-const options = ref(['user', 'admin'])
+const { visible, options, errors } = toRefs(props)
+const success_message = ref<string | null>(null)
+const danger_message = ref<string | null>(null)
 
-function storeUser() {
+async function storeUser() {
     errors.value = []
-    axios
+    await axios
         .post('/api/users', {
             name: data.value.name,
             email: data.value.email,
@@ -92,20 +115,25 @@ function storeUser() {
             password: data.value.password,
             confirm_password: data.value.confirm_password,
         })
-        .then((response) => console.log(response))
-        .catch((error) => {
-            flashErrors(error.response.data.errors)
+        .then((response) => {
+            success_message.value =
+                'Successfully created user: ' + response.data.name + '.'
+            setTimeout(() => {
+                success_message.value = null
+                props.close('create')
+            }, 1500)
         })
-}
-
-function flashErrors(errorsData: Record<string, string[]>) {
-    for (const value in errorsData) {
-        if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
-            errors.value.push(...errorsData[value])
-        }
-    }
-    setTimeout(() => {
-        errors.value = []
-    }, 5000)
+        .catch((error) => {
+            if (error.response.status === 500) {
+                errors.value = ['HTTP 500: Internal Server Error']
+            } else if (error.response.status === 403 || (401 && !422)) {
+                danger_message.value = 'Unauthorized access.'
+                setTimeout(() => {
+                    danger_message.value = null
+                }, 5000)
+            } else {
+                props.flashValidationErrors(error.response.data.errors)
+            }
+        })
 }
 </script>

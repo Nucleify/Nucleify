@@ -14,14 +14,14 @@ use Illuminate\Notifications\Notifiable;
  * @property integer id
  * @property integer user_id
  * @property string first_name
- * @property string last_name
- * @property string email
+ * @property string|null last_name
+ * @property string|null email
  * @property string|null personal_phone
  * @property string|null work_phone
  * @property string|null address
  * @property string|null birthday
  * @property mixed|null contact_groups
- * @property string role
+ * @property string|null role
  * @property DateTime created_at
  * @property DateTime updated_at
  */
@@ -64,31 +64,31 @@ class Contact extends Model implements ContactShouldReceiveFields
     {
         return $this->first_name;
     }
-    public function getLastName(): string
+    public function getLastName(): string|null
     {
         return $this->last_name;
     }
-    public function getEmail(): string
+    public function getEmail(): string|null
     {
         return $this->email;
     }
-    public function getPersonalPhone(): string
+    public function getPersonalPhone(): string|null
     {
         return $this->personal_phone;
     }
-    public function getWorkPhone(): string
+    public function getWorkPhone(): string|null
     {
         return $this->work_phone;
     }
-    public function getAddress(): string
+    public function getAddress(): string|null
     {
         return $this->address;
     }
-    public function getBirthday(): string
+    public function getBirthday(): string|null
     {
         return $this->birthday;
     }
-    public function getRole(): string
+    public function getRole(): string|null
     {
         return $this->role;
     }

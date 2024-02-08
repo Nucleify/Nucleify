@@ -16,13 +16,13 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->string('first_name');
             $table->string('last_name')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('personal_phone')->nullable();
             $table->string('work_phone')->nullable();
             $table->text('address')->nullable();
             $table->date('birthday')->nullable();
             $table->json('contact_groups')->nullable();
-            $table->string('role')->default('user');
+            $table->string('role')->nullable();
             $table->timestamps();
         });
     }

@@ -1,10 +1,16 @@
 <?php
 
-$data = require_once 'tests\TestConstants.php';
-$updatedData = require_once 'tests\TestConstants.php';
-$userData = require_once 'tests\TestConstants.php';
-$updatedUserData = require_once 'tests\TestConstants.php';
+// USE THIS IF YOU RUN TESTS ON LINUX
+$data = require_once 'tests/TestConstants.php';
+$updatedData = require_once 'tests/TestConstants.php';
+$userData = require_once 'tests/TestConstants.php';
+$updatedUserData = require_once 'tests/TestConstants.php';
 
+// USE THIS IF YOU RUN TESTS ON WINDOWS
+// $data = require_once 'tests\TestConstants.php';
+// $updatedData = require_once 'tests\TestConstants.php';
+// $userData = require_once 'tests\TestConstants.php';
+// $updatedUserData = require_once 'tests\TestConstants.php';
 
 uses(Tests\TestCase::class)
     ->beforeEach(function () {

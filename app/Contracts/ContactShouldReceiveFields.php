@@ -8,12 +8,12 @@ interface ContactShouldReceiveFields
     public function getId(): int;
     public function getUserId(): int;
     public function getFirstName(): string;
-    public function getLastName(): string;
-    public function getEmail(): string;
-    public function getPersonalPhone(): string;
-    public function getWorkPhone(): string;
-    public function getAddress(): string;
-    public function getBirthday(): string;
-    public function getRole(): string;
+    public function getLastName(): string|null;
+    public function getEmail(): string|null;
+    public function getPersonalPhone(): string|null;
+    public function getWorkPhone(): string|null;
+    public function getAddress(): string|null;
+    public function getBirthday(): string|null;
+    public function getRole(): string|null;
     public function getContactGroups(): array|null;
 }

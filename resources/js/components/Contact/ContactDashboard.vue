@@ -4,20 +4,10 @@
             <div class="flex justify-content-between mb-5">
                 <h3>Manage Contacts</h3>
 
-                <CreateContact></CreateContact>
-                <ShowContact
-                    :visible="visible"
-                    v-bind:toggle="toggleVisibilityShow"
-                    v-bind:contact="selectedContact"
-                >
-                </ShowContact>
-                <EditContact
-                    :visible="visibleEdit"
-                    v-bind:toggle="toggleVisibilityEdit"
-                    v-bind:contact="selectedContact"
-                    :options="options"
-                >
-                </EditContact>
+                <Button
+                    label="Create contact"
+                    @click="openModal('create')"
+                />
             </div>
 
             <DataTable
@@ -27,7 +17,7 @@
                 :rows="11"
                 stripedRows
                 :row-hover="true"
-                @row-click="toggleVisibilityShow"
+                @row-click="openModal('show', $event)"
                 :size="'small'"
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}"
@@ -36,47 +26,47 @@
                     field="first_name"
                     :sortable="true"
                     header="First Name"
-                ></Column>
+                />
                 <Column
                     field="last_name"
                     :sortable="true"
                     header="Last Name"
-                ></Column>
+                />
                 <Column
                     field="email"
                     :sortable="true"
                     header="Email"
                     class="tabletColumn"
-                ></Column>
+                />
                 <Column
                     field="birthday"
                     :sortable="true"
                     header="Birthday"
                     class="desktopColumn"
-                ></Column>
+                />
                 <Column class="w-1rem">
                     <template #body="rowData">
                         <div class="flex gap-1 justify-content-around">
                             <Button
                                 class="desktopButton contactButton"
-                                @click="toggleVisibilityShow(rowData)"
+                                @click="openModal('show', rowData)"
                             >
-                                <i class="pi pi-eye"></i>
+                                <i class="pi pi-eye" />
                             </Button>
                             <Button
                                 class="desktopButton contactButton"
-                                @click="toggleVisibilityEdit(rowData)"
+                                @click="openModal('edit', rowData)"
                             >
-                                <i class="pi pi-pencil"></i>
+                                <i class="pi pi-pencil" />
                             </Button>
                             <Button
                                 class="desktopButton contactButton"
-                                @click="toggleVisibilityDelete(rowData)"
+                                @click="openModal('delete', rowData)"
                             >
-                                <i class="pi pi-trash"></i>
+                                <i class="pi pi-trash" />
                             </Button>
                             <Button class="mobileButton contactButton">
-                                <i class="pi pi-bars"></i>
+                                <i class="pi pi-bars" />
                             </Button>
                         </div>
                     </template>
@@ -93,15 +83,35 @@
                 <Button
                     severity="secondary"
                     label="Cancel"
-                    @click="visibleDelete = false"
-                ></Button>
+                    @click="closeModal('delete')"
+                />
                 <Button
                     label="Confirm"
                     @click="deleteContact(selectedContact)"
-                ></Button>
+                />
             </div>
         </Dialog>
     </div>
+    <ShowContact
+        :visible="visibleShow"
+        :contact="selectedContact"
+        :close="closeModal"
+    />
+    <CreateContact
+        :visible="visibleCreate"
+        :options="options"
+        :close="closeModal"
+        :errors="errors"
+        :flashValidationErrors="flashValidationErrors"
+    />
+    <EditContact
+        :visible="visibleEdit"
+        :contact="selectedContact"
+        :options="options"
+        :close="closeModal"
+        :errors="errors"
+        :flashValidationErrors="flashValidationErrors"
+    />
 </template>
 
 <script setup lang="ts">
@@ -125,26 +135,88 @@ interface ContactData {
 }
 
 const results = ref<any>(null)
-const visible = ref(false)
+const selectedContact = ref<ContactData | null>(null)
+const options = ['user', 'admin']
+const errors = ref<string[]>([])
+
+const visibleShow = ref(false)
+const visibleCreate = ref(false)
 const visibleEdit = ref(false)
 const visibleDelete = ref(false)
-const selectedContact = ref<ContactData | null>(null)
 
-function toggleVisibilityShow(contactData: any): void {
+
+/**
+ * Fetch contacts after component mounts
+ */
+onMounted(getContacts)
+
+/**
+ * Set selected contact function
+ *
+ * @param contactData
+ */
+function setSelectedContact(contactData: any): void {
     selectedContact.value = contactData
-    visible.value = !visible.value
-}
-function toggleVisibilityEdit(contactData: any): void {
-    selectedContact.value = contactData
-    visibleEdit.value = !visibleEdit.value
-}
-function toggleVisibilityDelete(contactData: any): void {
-    selectedContact.value = contactData
-    visibleDelete.value = !visibleDelete.value
 }
 
-function getContacts(): void {
-    axios
+/**
+ * Open modal function
+ *
+ * @param action
+ * @param contactData
+ */
+function openModal(action: string, contactData?: any): void {
+    setSelectedContact(contactData)
+
+    switch (action) {
+        case 'show':
+            visibleShow.value = true
+            break
+        case 'create':
+            visibleCreate.value = true
+            break
+        case 'edit':
+            visibleEdit.value = true
+            break
+        case 'delete':
+            visibleDelete.value = true
+            break
+        default:
+            console.error('Invalid action:', action)
+            break
+    }
+}
+
+/**
+ * Close modal function
+ *
+ * @param action
+ */
+function closeModal(action: string): void {
+    switch (action) {
+        case 'show':
+            visibleShow.value = false
+            break
+        case 'create':
+            visibleCreate.value = false
+            break
+        case 'edit':
+            visibleEdit.value = false
+            break
+        case 'delete':
+            visibleDelete.value = false
+            break
+        default:
+            console.error('Invalid action:', action)
+            break
+    }
+}
+
+/**
+ * HTTP requests functions
+ */
+async function getContacts() {
+    await axios
         .get('/api/contacts')
         .then((response) => {
             results.value = response.data
@@ -154,8 +226,8 @@ function getContacts(): void {
             console.log(error)
         })
 }
-function deleteContact(contact: any): void {
-    axios
+async function deleteContact(contact: any) {
+    await axios
         .delete(`/api/contacts/${contact.data.id}`)
         .then((response) => {
             console.log(response)
@@ -169,5 +241,19 @@ function deleteContact(contact: any): void {
         })
 }
 
-onMounted(getContacts)
+/**
+ * Flash validation errors function
+ *
+ * @param errorsData
+ */
+function flashValidationErrors(errorsData: Record<string, string[]>): void {
+    for (const value in errorsData) {
+        if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
+            errors.value.push(...errorsData[value])
+        }
+    }
+    setTimeout(() => {
+        errors.value = []
+    }, 5000)
+}
 </script>

@@ -1,9 +1,24 @@
 <template>
     <Dialog v-model:visible="visible" modal header="Header" class="w-30rem">
         <template #header>
-            <h2 class="m-0">Edit user: {{ user.data.name }}</h2>
+            <h2 class="m-0">Edit: {{ user.data.name }}</h2>
         </template>
 
+        <!-- Display success messages-->
+        <InlineMessage v-if="success_message !== null" severity="success">
+            <div class="text-sm">
+                {{ success_message }}
+            </div>
+        </InlineMessage>
+
+        <!-- Display danger messages -->
+        <InlineMessage v-if="danger_message !== null" severity="error">
+            <div class="text-sm">
+                {{ danger_message }}
+            </div>
+        </InlineMessage>
+
+        <!-- Display errors -->
         <InlineMessage v-if="errors.length > 0" severity="warn">
             <div class="text-sm" v-for="error in errors" :key="error">
                 {{ error }}
@@ -37,7 +52,7 @@
                 <Button
                     severity="secondary"
                     label="Cancel"
-                    @click="toggleVisibilityEdit"
+                    @click="props.close('edit')"
                 />
                 <Button label="Confirm" @click.prevent="editUser" autofocus />
             </div>
@@ -51,12 +66,12 @@ import axios from 'axios'
 
 const props = defineProps<{
     visible: boolean
-    toggle: (selectedUser: Ref<any>) => void
     user: any
     options: any
+    errors: Ref<string[]>
+    flashValidationErrors: (errors: Record<string, string[]>) => void
+    close: (action: string) => void
 }>()
-
-const { user, visible, options } = toRefs(props)
 
 const data = ref({
     id: '',
@@ -64,41 +79,45 @@ const data = ref({
     email: '',
     role: '',
 })
-const errors = ref<string[]>([])
 
-function toggleVisibilityEdit() {
-    props.toggle(user.value)
-}
+const { visible, user, options, errors } = toRefs(props)
+const success_message = ref<string | null>(null)
+const danger_message = ref<string | null>(null)
 
-function editUser() {
+/**
+ * Check modal open with watch visible variable, then pass props to data
+ */
+watch(visible, () => {
+    Object.assign(data.value, user.value.data)
+})
+
+async function editUser() {
     errors.value = []
-    axios
+    await axios
         .put('/api/users/' + data.value.id, {
             name: data.value.name,
             email: data.value.email,
             role: data.value.role,
         })
         .then((response) => {
-            toggleVisibilityEdit()
-            console.log(response)
+            success_message.value =
+                'Successfully updated user: ' + response.data.name + '.'
+            setTimeout(() => {
+                success_message.value = null
+                props.close('edit')
+            }, 1500)
         })
         .catch((error) => {
-            flashErrors(error.response.data.errors)
+            if (error.response.status === 500) {
+                errors.value = ['HTTP 500: Internal Server Error']
+            } else if (error.response.status === 403 || (401 && !422)) {
+                danger_message.value = 'Unauthorized access.'
+                setTimeout(() => {
+                    danger_message.value = null
+                }, 5000)
+            } else {
+                props.flashValidationErrors(error.response.data.errors)
+            }
         })
 }
-
-function flashErrors(errorsData: Record<string, string[]>) {
-    for (const value in errorsData) {
-        if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
-            errors.value.push(...errorsData[value])
-        }
-    }
-    setTimeout(() => {
-        errors.value = []
-    }, 5000)
-}
-
-watch(visible, () => {
-    Object.assign(data.value, user.value.data)
-})
 </script>

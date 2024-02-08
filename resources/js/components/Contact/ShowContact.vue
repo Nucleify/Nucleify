@@ -54,7 +54,7 @@
                 <Button
                     severity="secondary"
                     label="Close"
-                    @click="toggleVisibilityShow"
+                    @click="props.close('show')"
                 />
             </div>
         </template>
@@ -63,17 +63,12 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue'
-import { Ref } from 'vue/dist/vue'
 
 const props = defineProps<{
     visible: boolean
-    toggle: (selectedUser: Ref<any>) => void
     contact: any
+    close: (action: string) => void
 }>()
 
-const { visible, toggle, contact } = toRefs(props)
-
-function toggleVisibilityShow(): void {
-    props.toggle(contact)
-}
+const { visible, contact } = toRefs(props)
 </script>
