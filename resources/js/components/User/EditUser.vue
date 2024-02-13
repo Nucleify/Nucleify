@@ -70,6 +70,7 @@ const props = defineProps<{
     options: any
     errors: Ref<string[]>
     flashValidationErrors: (errors: Record<string, string[]>) => void
+    hideErrors: () => void
     close: (action: string) => void
 }>()
 
@@ -92,7 +93,7 @@ watch(visible, () => {
 })
 
 async function editUser() {
-    errors.value = []
+    props.hideErrors()
     await axios
         .put('/api/users/' + data.value.id, {
             name: data.value.name,

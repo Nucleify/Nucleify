@@ -127,6 +127,7 @@ const props = defineProps<{
     options: any
     errors: Ref<string[]>
     flashValidationErrors: (errors: Record<string, string[]>) => void
+    hideErrors: () => void
     close: (action: string) => void
 }>()
 
@@ -157,7 +158,7 @@ watch(visible, () => {
 })
 
 function editContact() {
-    errors.value = []
+    props.hideErrors()
     axios
         .put('/api/contacts/' + data.value.id, {
             first_name: data.value.first_name,

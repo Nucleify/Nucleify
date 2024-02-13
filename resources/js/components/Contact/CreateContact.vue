@@ -118,6 +118,7 @@ const props = defineProps<{
     options: any
     errors: Ref<string[]>
     flashValidationErrors: (errors: Record<string, string[]>) => void
+    hideErrors: () => void
     close: (action: string) => void
 }>()
 
@@ -140,7 +141,7 @@ const success_message = ref<string | null>(null)
 const danger_message = ref<string | null>(null)
 
 async function storeContact(): Promise<void> {
-    errors.value = []
+    props.hideErrors()
 
     try {
         const responseUser = await axios.get('/api/user')

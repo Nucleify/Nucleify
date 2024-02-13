@@ -100,17 +100,19 @@
     <CreateContact
         :visible="visibleCreate"
         :options="options"
-        :close="closeModal"
         :errors="errors"
         :flashValidationErrors="flashValidationErrors"
+        :hideErrors="hideErrors"
+        :close="closeModal"
     />
     <EditContact
         :visible="visibleEdit"
         :contact="selectedContact"
         :options="options"
-        :close="closeModal"
         :errors="errors"
         :flashValidationErrors="flashValidationErrors"
+        :hideErrors="hideErrors"
+        :close="closeModal"
     />
 </template>
 
@@ -143,7 +145,6 @@ const visibleShow = ref(false)
 const visibleCreate = ref(false)
 const visibleEdit = ref(false)
 const visibleDelete = ref(false)
-
 
 /**
  * Fetch contacts after component mounts
@@ -253,7 +254,11 @@ function flashValidationErrors(errorsData: Record<string, string[]>): void {
         }
     }
     setTimeout(() => {
-        errors.value = []
+        hideErrors()
     }, 5000)
+}
+
+function hideErrors() {
+    errors.value = []
 }
 </script>

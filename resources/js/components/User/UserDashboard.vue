@@ -75,25 +75,23 @@
             <div v-else>Loading data or no data available...</div>
         </div>
     </div>
-    <ShowUser
-        :visible="visibleShow"
-        :user="selectedUser"
-        :close="closeModal"
-    />
+    <ShowUser :visible="visibleShow" :user="selectedUser" :close="closeModal" />
     <CreateUser
         :visible="visibleCreate"
         :options="options"
-        :close="closeModal"
         :errors="errors"
         :flashValidationErrors="flashValidationErrors"
+        :hideErrors="hideErrors"
+        :close="closeModal"
     />
     <EditUser
         :visible="visibleEdit"
         :user="selectedUser"
         :options="options"
-        :close="closeModal"
         :errors="errors"
         :flashValidationErrors="flashValidationErrors"
+        :hideErrors="hideErrors"
+        :close="closeModal"
     />
     <Dialog v-model:visible="visibleDelete" modal header="Confirm delete user">
         <div class="flex justify-content-between">
@@ -134,7 +132,6 @@ const visibleShow = ref(false)
 const visibleCreate = ref(false)
 const visibleEdit = ref(false)
 const visibleDelete = ref(false)
-
 
 /**
  * Fetch users after component mounts
@@ -244,7 +241,11 @@ function flashValidationErrors(errorsData: Record<string, string[]>): void {
         }
     }
     setTimeout(() => {
-        errors.value = []
+        hideErrors()
     }, 5000)
+}
+
+function hideErrors() {
+    errors.value = []
 }
 </script>
