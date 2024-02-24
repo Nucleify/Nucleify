@@ -1,2 +1,2 @@
 web: heroku-php-apache2 public/
-release: yes |php artisan migrate:fresh --seed
+release: php artisan migrate:fresh --seed
