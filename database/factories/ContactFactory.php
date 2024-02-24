@@ -12,7 +12,8 @@ class ContactFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => $this->faker->numberBetween(0, 1000),
+            'id' => $this->faker->unique()->numberBetween(3, 1000),
+            'user_id' => $this->faker->numberBetween(3, 1000),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail,
@@ -20,7 +21,7 @@ class ContactFactory extends Factory
             'work_phone' => $this->faker->phoneNumber,
             'address' => $this->faker->address,
             'birthday' => $this->faker->date(),
-            'role' => 'user',
+            'role' => $this->faker->randomElement(['admin', 'user'])
         ];
     }
 }
