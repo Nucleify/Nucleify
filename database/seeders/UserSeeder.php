@@ -25,5 +25,9 @@ class UserSeeder extends Seeder
             'role' => 'user',
             'password' => Hash::make('user123'),
         ]);
+
+        if (env('APP_ENV') === 'production') {
+            User::factory(1000)->create();
+        }
     }
 }

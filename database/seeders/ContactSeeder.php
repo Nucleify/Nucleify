@@ -20,5 +20,9 @@ class ContactSeeder extends Seeder
             'birthday' => '2022-04-10',
             'role' => 'user'
         ]);
+
+        if (env('APP_ENV') === 'production') {
+            Contact::factory(1000)->create();
+        }
     }
 }
