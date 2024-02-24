@@ -54,7 +54,10 @@
                     label="Cancel"
                     @click="props.close('edit')"
                 />
-                <Button label="Confirm" @click.prevent="editUser" autofocus />
+                <Button
+                    label="Confirm"
+                    @click.prevent="editUser"
+                />
             </div>
         </template>
     </Dialog>

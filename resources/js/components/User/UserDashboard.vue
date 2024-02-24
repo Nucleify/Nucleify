@@ -26,46 +26,48 @@
                     field="id"
                     :sortable="true"
                     header="Id"
+                    class="idColumn"
                 />
                 <Column
                     field="name"
                     :sortable="true"
                     header="Name"
+                    class="nameColumn"
                 />
                 <Column
                     field="email"
                     :sortable="true"
                     header="Email"
-                    class="tabletColumn"
+                    class="emailColumn tabletColumn"
                 />
                 <Column
                     field="role"
                     :sortable="true"
                     header="Role"
-                    class="desktopColumn"
+                    class="roleColumn desktopColumn"
                 />
                 <Column class="w-1rem">
                     <template #body="rowData">
                         <div class="flex gap-1 justify-content-around">
                             <Button
-                                class="desktopButton contactButton"
+                                class="desktopButton myButton"
                                 @click="openModal('show', rowData)"
                             >
                                 <i class="pi pi-eye" />
                             </Button>
                             <Button
-                                class="desktopButton contactButton"
+                                class="desktopButton myButton"
                                 @click="openModal('edit', rowData)"
                             >
                                 <i class="pi pi-pencil" />
                             </Button>
                             <Button
-                                class="desktopButton contactButton"
+                                class="desktopButton myButton"
                                 @click="openModal('delete', rowData)"
                             >
                                 <i class="pi pi-trash" />
                             </Button>
-                            <Button class="mobileButton contactButton">
+                            <Button class="mobileButton myButton">
                                 <i class="pi pi-bars" />
                             </Button>
                         </div>
@@ -75,7 +77,11 @@
             <div v-else>Loading data or no data available...</div>
         </div>
     </div>
-    <ShowUser :visible="visibleShow" :user="selectedUser" :close="closeModal" />
+    <ShowUser
+        :visible="visibleShow"
+        :user="selectedUser"
+        :close="closeModal"
+    />
     <CreateUser
         :visible="visibleCreate"
         :options="options"

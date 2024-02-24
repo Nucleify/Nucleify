@@ -60,13 +60,17 @@ class Contact extends Model implements ContactShouldReceiveFields
     {
         return $this->user_id;
     }
-    public function getFirstName(): string
+//    public function getFirstName(): string
+//    {
+//        return $this->first_name;
+//    }
+//    public function getLastName(): string|null
+//    {
+//        return $this->last_name;
+//    }
+    public function getFullName(): string|null
     {
-        return $this->first_name;
-    }
-    public function getLastName(): string|null
-    {
-        return $this->last_name;
+        return $this->first_name . ' ' . $this->last_name;
     }
     public function getEmail(): string|null
     {

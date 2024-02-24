@@ -80,7 +80,7 @@
             </div>
         </nav>
 
-        <main class="p-2">
+        <main class="p-2 md:p-3 lg:p-4 xl:p-6">
             @yield('content')
         </main>
     </div>

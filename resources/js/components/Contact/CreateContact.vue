@@ -103,7 +103,10 @@
                     label="Cancel"
                     @click="props.close('create')"
                 />
-                <Button label="Create" @click="storeContact" />
+                <Button
+                    label="Create"
+                    @click="storeContact"
+                />
             </div>
         </template>
     </Dialog>

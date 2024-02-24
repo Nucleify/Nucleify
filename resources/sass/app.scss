@@ -16,6 +16,11 @@
 td {
     cursor: pointer;
 }
+.card {
+    max-width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .p-button {
     border-radius: 10px;
     max-height: 33px;
@@ -66,23 +71,36 @@ td {
 .p-inline-message {
     margin-top: -20px;
 }
+.mobileButton {
+    display: inline;
+}
+.myButton {
+    padding: 4px 9px 9px 8px;
+}
+
+.idColumn {
+    width: 15%;
+}
+.nameColumn, .fullNameColumn {
+    width: 70%;
+}
 .tabletColumn,
 .desktopButton,
 .desktopColumn {
     display: none;
 }
-.mobileButton {
-    display: inline;
-}
-
-.userButton,
-.contactButton {
-    padding: 4px 9px 9px 8px;
-}
-
 @media (min-width: 768px) {
     .tabletColumn {
         display: table-cell;
+    }
+    .card {
+        margin-bottom: 30px;
+    }
+    .idColumn {
+        width: 10%;
+    }
+    .nameColumn, .fullNameColumn {
+        width: 30%;
     }
 }
 @media (min-width: 992px) {
@@ -92,11 +110,13 @@ td {
     .desktopButton {
         display: flex;
     }
-    .userButton,
-    .contactButton {
+    .myButton {
         padding: 9px 8.5px 10px 8px;
     }
     .mobileButton {
         display: none;
+    }
+    .roleColumn, .birthdayColumn {
+        width: 15%;
     }
 }

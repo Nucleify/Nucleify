@@ -72,7 +72,10 @@
                     label="Cancel"
                     @click="props.close('create')"
                 />
-                <Button label="Confirm" @click="storeUser" />
+                <Button
+                    label="Confirm"
+                    @click="storeUser"
+                />
             </div>
         </template>
     </Dialog>

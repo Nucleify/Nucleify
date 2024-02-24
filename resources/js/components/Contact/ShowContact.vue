@@ -3,14 +3,14 @@
         <template #header>
             <h2 class="m-0">
                 Show:
-                {{ contact.data.first_name }} {{ contact.data.last_name }}
+                {{ contact.data.full_name }}
             </h2>
         </template>
         <div v-if="contact" class="flex flex-column gap-3">
             <div>
                 <h5 class="mb-0">Full Name</h5>
                 <div>
-                    {{ contact.data.first_name }} {{ contact.data.last_name }}
+                    {{ contact.data.full_name }}
                 </div>
             </div>
             <div>

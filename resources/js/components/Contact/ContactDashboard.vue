@@ -23,49 +23,51 @@
                 currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
                 <Column
-                    field="first_name"
+                    field="id"
                     :sortable="true"
-                    header="First Name"
+                    header="Id"
+                    class="idColumn"
                 />
                 <Column
-                    field="last_name"
+                    field="full_name"
                     :sortable="true"
-                    header="Last Name"
+                    header="Full name"
+                    class="fullNameColumn"
                 />
                 <Column
                     field="email"
                     :sortable="true"
                     header="Email"
-                    class="tabletColumn"
+                    class="emailColumn tabletColumn"
                 />
                 <Column
                     field="birthday"
                     :sortable="true"
                     header="Birthday"
-                    class="desktopColumn"
+                    class="birthdayColumn desktopColumn"
                 />
                 <Column class="w-1rem">
                     <template #body="rowData">
                         <div class="flex gap-1 justify-content-around">
                             <Button
-                                class="desktopButton contactButton"
+                                class="desktopButton myButton"
                                 @click="openModal('show', rowData)"
                             >
                                 <i class="pi pi-eye" />
                             </Button>
                             <Button
-                                class="desktopButton contactButton"
+                                class="desktopButton myButton"
                                 @click="openModal('edit', rowData)"
                             >
                                 <i class="pi pi-pencil" />
                             </Button>
                             <Button
-                                class="desktopButton contactButton"
+                                class="desktopButton myButton"
                                 @click="openModal('delete', rowData)"
                             >
                                 <i class="pi pi-trash" />
                             </Button>
-                            <Button class="mobileButton contactButton">
+                            <Button class="mobileButton myButton">
                                 <i class="pi pi-bars" />
                             </Button>
                         </div>

@@ -7,8 +7,9 @@ interface ContactShouldReceiveFields
 {
     public function getId(): int;
     public function getUserId(): int;
-    public function getFirstName(): string;
-    public function getLastName(): string|null;
+//    public function getFirstName(): string;
+//    public function getLastName(): string|null;
+    public function getFullName(): string|null;
     public function getEmail(): string|null;
     public function getPersonalPhone(): string|null;
     public function getWorkPhone(): string|null;

@@ -2,8 +2,7 @@
     <Dialog v-model:visible="visible" modal class="w-30rem">
         <template #header>
             <h2 class="m-0">
-                Edit: {{ contact.data.first_name }}
-                {{ contact.data.last_name }}
+                Edit: {{ contact.data.full_name }}
             </h2>
         </template>
 
@@ -110,7 +109,6 @@
                 <Button
                     label="Confirm"
                     @click.prevent="editContact"
-                    autofocus
                 />
             </div>
         </template>
