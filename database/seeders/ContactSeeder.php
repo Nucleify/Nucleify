@@ -21,8 +21,8 @@ class ContactSeeder extends Seeder
             'role' => 'user'
         ]);
 
-//        if (env('APP_ENV') === 'production' || 'dev') {
-//            Contact::factory(100)->create();
-//        }
+        if (env('APP_ENV') === 'production' || 'dev') {
+            Contact::factory(100)->create();
+        }
     }
 }
