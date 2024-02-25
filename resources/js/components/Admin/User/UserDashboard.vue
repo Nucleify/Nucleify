@@ -8,13 +8,13 @@
             </div>
 
             <DataTable
-                :value="results"
+                v-bind:value="results"
+                v-bind:size="'small'"
+                v-bind:rows="11"
+                v-bind:row-hover="true"
                 v-if="results"
                 paginator
-                :rows="11"
                 stripedRows
-                :row-hover="true"
-                :size="'small'"
                 @row-click="openModal('show', $event)"
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}"

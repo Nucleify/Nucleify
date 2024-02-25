@@ -1,16 +1,16 @@
 <template>
     <Toast position="top-right" />
     <user-dashboard
-        :roleOptions="roleOptions"
-        :flashSuccessMessage="flashSuccessMessage"
-        :flashValidationErrors="flashValidationErrors"
-        :flashDangerMessage="flashDangerMessage"
+        v-bind:roleOptions="roleOptions"
+        v-bind:flashSuccessMessage="flashSuccessMessage"
+        v-bind:flashValidationErrors="flashValidationErrors"
+        v-bind:flashDangerMessage="flashDangerMessage"
     />
     <contact-dashboard
-        :roleOptions="roleOptions"
-        :flashSuccessMessage="flashSuccessMessage"
-        :flashValidationErrors="flashValidationErrors"
-        :flashDangerMessage="flashDangerMessage"
+        v-bind:roleOptions="roleOptions"
+        v-bind:flashSuccessMessage="flashSuccessMessage"
+        v-bind:flashValidationErrors="flashValidationErrors"
+        v-bind:flashDangerMessage="flashDangerMessage"
     />
 </template>
 
