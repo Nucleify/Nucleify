@@ -22,6 +22,8 @@
     "@popperjs/core": "2.11.6",
     "@types/jest": "29.5.11",
     "@types/mocha": "10.0.6",
+    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-vue": "4.0.0",
     "@vue/cli-plugin-typescript": "5.0.0",
     "@vue/cli-service": "5.0.8",
