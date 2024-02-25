@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostUserRequest;
 use App\Http\Requests\PutUserRequest;
 use App\Services\UserService;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -59,9 +60,15 @@ class UserController extends Controller
 
     public function destroy($id): JsonResponse
     {
-        $this->service->deleteUser($id);
-
-        return response()->json(['deleted' => true]);
+        try {
+            $this->service->deleteUser($id);
+            return response()->json([
+                'deleted' => true,
+                'message' => 'User deleted successfully'
+            ]);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
 }

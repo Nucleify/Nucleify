@@ -218,30 +218,48 @@ function getUsers(): void {
             console.log(response)
         })
         .catch((error) => {
-            console.log(error)
+            switch (error.response.status) {
+                case 500:
+                    props.flashDangerMessage(
+                        error.response.data.error ||
+                            'HTTP 500: Internal Server Error'
+                    )
+                    break
+                case 403:
+                case 401:
+                    props.flashDangerMessage('Unauthorized access')
+                    break
+                default:
+                    props.flashValidationErrors(error.response.data.errors)
+            }
         })
 }
 function deleteUser(user: any): void {
     axios
         .delete(`/api/users/${user.data.id}`)
         .then(() => {
-            let success_message =
-                'Successfully deleted: ' + user.data.name
+            let success_message = 'Successfully deleted: ' + user.data.name
 
             props.flashSuccessMessage(success_message)
-        })
-        .catch((error) => {
-            if (error.response.status === 500) {
-                props.flashDangerMessage('HTTP 500: Internal Server Error')
-            } else if (error.response.status === 403 || (401 && !422)) {
-                props.flashDangerMessage('Unauthorized access')
-            } else {
-                props.flashValidationErrors(error.response.data.errors)
-            }
-        })
-        .finally(() => {
             closeModal('delete')
             getUsers()
+        })
+        .catch((error) => {
+            closeModal('delete')
+            switch (error.response.status) {
+                case 500:
+                    props.flashDangerMessage(
+                        error.response.data.error ||
+                            'HTTP 500: Internal Server Error'
+                    )
+                    break
+                case 403:
+                case 401:
+                    props.flashDangerMessage('Unauthorized access')
+                    break
+                default:
+                    props.flashValidationErrors(error.response.data.errors)
+            }
         })
 }
 </script>

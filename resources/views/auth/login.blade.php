@@ -66,7 +66,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 p-2">
                     <test-login-button></test-login-button>
                 </div>
             </div>

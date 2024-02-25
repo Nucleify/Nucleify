@@ -4,6 +4,8 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Transformers\UserTransformer;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 
 class UserService
 {
@@ -51,10 +53,18 @@ class UserService
             ->toArray()['data'];
     }
 
-    public function deleteUser($id): void
+    /**
+     * @throws Exception
+     */
+    public function deleteUser($id)
     {
-        $model = $this->model::findOrFail($id);
+        $loggedInUserId = Auth::id();
+        $user = User::findOrFail($id);
 
-        $model->delete();
+        if ($user->id === $loggedInUserId) {
+            throw new Exception('Cannot delete the logged-in user');
+        } else {
+            $user->delete();
+        }
     }
 }

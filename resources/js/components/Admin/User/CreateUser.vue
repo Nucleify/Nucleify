@@ -90,19 +90,25 @@ async function storeUser() {
             confirm_password: data.value.confirm_password,
         })
         .then((response) => {
-            let success_message =
-                'Successfully created: ' + response.data.name
+            let success_message = 'Successfully created: ' + response.data.name
 
             props.flashSuccessMessage(success_message)
             props.close('create')
         })
         .catch((error) => {
-            if (error.response.status === 500) {
-                props.flashDangerMessage('HTTP 500: Internal Server Error')
-            } else if (error.response.status === 403 || (401 && !422)) {
-                props.flashDangerMessage('Unauthorized access')
-            } else {
-                props.flashValidationErrors(error.response.data.errors)
+            switch (error.response.status) {
+                case 500:
+                    props.flashDangerMessage(
+                        error.response.data.error ||
+                            'HTTP 500: Internal Server Error'
+                    )
+                    break
+                case 403:
+                case 401:
+                    props.flashDangerMessage('Unauthorized access')
+                    break
+                default:
+                    props.flashValidationErrors(error.response.data.errors)
             }
         })
 }
