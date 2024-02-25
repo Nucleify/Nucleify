@@ -22,7 +22,7 @@ class ContactSeeder extends Seeder
         ]);
 
         if (env('APP_ENV') === 'production' || 'dev') {
-            Contact::factory(100)->create();
+            Contact::factory(5000)->create();
         }
     }
 }

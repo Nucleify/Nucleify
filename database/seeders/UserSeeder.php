@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         ]);
 
         if (env('APP_ENV') === 'production' || 'dev') {
-            User::factory(100)->create();
+            User::factory(5000)->create();
         }
     }
 }
