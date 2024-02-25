@@ -117,6 +117,7 @@ const data = ref({
 })
 
 const { visible, options } = toRefs(props)
+const success_message = ref<string | undefined>(undefined)
 
 async function storeContact(): Promise<void> {
     try {
@@ -134,10 +135,10 @@ async function storeContact(): Promise<void> {
             role: data.value.role,
         })
 
-        let success_message =
+        success_message.value =
             'Successfully created: ' + responseContact.data.full_name
 
-        props.flashSuccessMessage(success_message)
+        props.flashSuccessMessage(success_message.value)
         props.close('create')
     } catch (error: any) {
         switch (error.response.status) {

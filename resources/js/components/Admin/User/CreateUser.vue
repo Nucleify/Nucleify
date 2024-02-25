@@ -79,6 +79,7 @@ const data = ref({
 })
 
 const { visible, options } = toRefs(props)
+const success_message = ref<string | undefined>(undefined)
 
 async function storeUser() {
     await axios
@@ -90,9 +91,10 @@ async function storeUser() {
             confirm_password: data.value.confirm_password,
         })
         .then((response) => {
-            let success_message = 'Successfully created: ' + response.data.name
+            success_message.value =
+                'Successfully created: ' + response.data.name
 
-            props.flashSuccessMessage(success_message)
+            props.flashSuccessMessage(success_message.value)
             props.close('create')
         })
         .catch((error) => {

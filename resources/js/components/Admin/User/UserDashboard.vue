@@ -132,6 +132,7 @@ const props = defineProps<{
 
 const results = ref<UserData[]>([])
 const selectedUser = ref<UserData | null>(null)
+const success_message = ref<string | undefined>(undefined)
 
 const visibleShow = ref(false)
 const visibleCreate = ref(false)
@@ -237,9 +238,10 @@ function deleteUser(user: any): void {
     axios
         .delete(`/api/users/${user.data.id}`)
         .then(() => {
-            let success_message = 'Successfully deleted: ' + user.data.name
+            success_message.value =
+                'Successfully deleted: ' + user.data.name
 
-            props.flashSuccessMessage(success_message)
+            props.flashSuccessMessage(success_message.value)
             closeModal('delete')
             getUsers()
         })

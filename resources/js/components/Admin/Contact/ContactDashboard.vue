@@ -144,6 +144,7 @@ const props = defineProps<{
 
 const results = ref<ContactData[]>([])
 const selectedContact = ref<ContactData | null>(null)
+const success_message = ref<string | undefined>(undefined)
 
 const visibleShow = ref(false)
 const visibleCreate = ref(false)
@@ -249,10 +250,10 @@ function deleteContact(contact: any): void {
     axios
         .delete(`/api/contacts/${contact.data.id}`)
         .then(() => {
-            let success_message =
+            success_message.value =
                 'Successfully deleted: ' + contact.data.full_name
 
-            props.flashSuccessMessage(success_message)
+            props.flashSuccessMessage(success_message.value)
             closeModal('delete')
             getContacts()
         })

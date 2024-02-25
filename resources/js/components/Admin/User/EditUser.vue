@@ -61,6 +61,7 @@ const data = ref({
 })
 
 const { visible, user, options } = toRefs(props)
+const success_message = ref<string | undefined>(undefined)
 
 /**
  * Check modal open with watch visible variable, then pass props to data
@@ -77,9 +78,10 @@ async function editUser() {
             role: data.value.role,
         })
         .then((response) => {
-            let success_message = 'Successfully edited: ' + response.data.name
+            success_message.value =
+                'Successfully edited: ' + response.data.name
 
-            props.flashSuccessMessage(success_message)
+            props.flashSuccessMessage(success_message.value)
             props.close('edit')
         })
         .catch((error) => {
