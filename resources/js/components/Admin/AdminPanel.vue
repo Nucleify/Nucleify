@@ -1,41 +1,74 @@
 <template>
+    <Toast position="top-right" />
     <user-dashboard
-        :errors="errors"
+        :roleOptions="roleOptions"
+        :flashSuccessMessage="flashSuccessMessage"
         :flashValidationErrors="flashValidationErrors"
-        :hideErrors="hideErrors"
+        :flashDangerMessage="flashDangerMessage"
     />
     <contact-dashboard
-        :errors="errors"
+        :roleOptions="roleOptions"
+        :flashSuccessMessage="flashSuccessMessage"
         :flashValidationErrors="flashValidationErrors"
-        :hideErrors="hideErrors"
+        :flashDangerMessage="flashDangerMessage"
     />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
 import ContactDashboard from './Contact/ContactDashboard.vue'
 import UserDashboard from './User/UserDashboard.vue'
+import { useToast } from 'primevue/usetoast'
 
-const errors = ref<string[]>([])
+const toast = useToast()
+
+const roleOptions = ['user', 'admin']
 
 /**
- * Flash validation errors function
- *
- * @param errorsData
+ * Flash toast functions
  */
 function flashValidationErrors(errorsData: Record<string, string[]>): void {
+    closeToast()
+
+    let errorMessage = 'Validation errors:'
     for (const value in errorsData) {
         if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
-            errors.value.push(...errorsData[value])
+            errorMessage += `\n- ${errorsData[value].join(', ')}`
         }
     }
-    setTimeout(() => {
-        hideErrors()
-    }, 5000)
+
+    toast.add({
+        severity: 'warn',
+        summary: errorMessage,
+        life: 5000,
+    })
 }
 
-function hideErrors() {
-    errors.value = []
+function flashDangerMessage(errorMessage: string): void {
+    closeToast()
+
+    toast.add({
+        severity: 'error',
+        summary: errorMessage,
+        life: 5000,
+    })
+}
+
+function flashSuccessMessage(successMessage: string): void {
+    closeToast()
+
+    toast.add({
+        severity: 'success',
+        summary: successMessage,
+        life: 5000,
+    })
+}
+
+/**
+ * Close toast function
+ */
+function closeToast(): void {
+    document.querySelectorAll('.p-toast-message').forEach((element) => {
+        element.remove()
+    })
 }
 </script>

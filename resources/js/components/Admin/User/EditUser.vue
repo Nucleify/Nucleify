@@ -4,27 +4,6 @@
             <h2 class="m-0">Edit: {{ user.data.name }}</h2>
         </template>
 
-        <!-- Display success messages-->
-        <InlineMessage v-if="success_message !== null" severity="success">
-            <div class="text-sm">
-                {{ success_message }}
-            </div>
-        </InlineMessage>
-
-        <!-- Display danger messages -->
-        <InlineMessage v-if="danger_message !== null" severity="error">
-            <div class="text-sm">
-                {{ danger_message }}
-            </div>
-        </InlineMessage>
-
-        <!-- Display errors -->
-        <InlineMessage v-if="errors.length > 0" severity="warn">
-            <div class="text-sm" v-for="error in errors" :key="error">
-                {{ error }}
-            </div>
-        </InlineMessage>
-
         <form action="#" class="text-sm">
             <div class="flex flex-column gap-1 mb-3">
                 <label for="name">Name</label>
@@ -61,16 +40,16 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, ref, toRefs, watch } from 'vue'
+import { ref, toRefs, watch } from 'vue'
 import axios from 'axios'
 
 const props = defineProps<{
     visible: boolean
     user: any
-    options: any
-    errors: Ref<string[]>
+    options: string[]
+    flashSuccessMessage: (message: string) => void
+    flashDangerMessage: (message: string) => void
     flashValidationErrors: (errors: Record<string, string[]>) => void
-    hideErrors: () => void
     close: (action: string) => void
 }>()
 
@@ -81,9 +60,7 @@ const data = ref({
     role: '',
 })
 
-const { visible, user, options, errors } = toRefs(props)
-const success_message = ref<string | null>(null)
-const danger_message = ref<string | null>(null)
+const { visible, user, options } = toRefs(props)
 
 /**
  * Check modal open with watch visible variable, then pass props to data
@@ -93,7 +70,6 @@ watch(visible, () => {
 })
 
 async function editUser() {
-    props.hideErrors()
     await axios
         .put('/api/users/' + data.value.id, {
             name: data.value.name,
@@ -101,21 +77,18 @@ async function editUser() {
             role: data.value.role,
         })
         .then((response) => {
-            success_message.value =
-                'Successfully updated user: ' + response.data.name + '.'
-            setTimeout(() => {
-                success_message.value = null
-                props.close('edit')
-            }, 1500)
+            let success_message =
+                'Successfully edited: ' + response.data.name
+
+            props.flashSuccessMessage(success_message)
+            props.close('edit')
         })
         .catch((error) => {
             if (error.response.status === 500) {
-                errors.value = ['HTTP 500: Internal Server Error']
-            } else if (error.response.status === 403 || (401 && !422)) {
-                danger_message.value = 'Unauthorized access.'
-                setTimeout(() => {
-                    danger_message.value = null
-                }, 5000)
+                props.flashDangerMessage('HTTP 500: Internal Server Error')
+            }
+            if (error.response.status === 403 || (401 && !422)) {
+                props.flashDangerMessage('Unauthorized access')
             } else {
                 props.flashValidationErrors(error.response.data.errors)
             }

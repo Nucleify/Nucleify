@@ -4,27 +4,6 @@
             <h2 class="m-0">Create new user</h2>
         </template>
 
-        <!-- Display success messages-->
-        <InlineMessage v-if="success_message !== null" severity="success">
-            <div class="text-sm">
-                {{ success_message }}
-            </div>
-        </InlineMessage>
-
-        <!-- Display danger messages -->
-        <InlineMessage v-if="danger_message !== null" severity="error">
-            <div class="text-sm">
-                {{ danger_message }}
-            </div>
-        </InlineMessage>
-
-        <!-- Display errors -->
-        <InlineMessage v-if="errors.length > 0" severity="warn">
-            <div class="text-sm" v-for="error in errors" :key="error">
-                {{ error }}
-            </div>
-        </InlineMessage>
-
         <form action="#" class="text-sm">
             <div class="flex flex-column gap-1 mb-3">
                 <label for="name">Name</label>
@@ -79,15 +58,15 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, ref, toRefs } from 'vue'
+import { ref, toRefs } from 'vue'
 import axios from 'axios'
 
 const props = defineProps<{
     visible: boolean
-    options: any
-    errors: Ref<string[]>
+    options: string[]
+    flashSuccessMessage: (message: string) => void
+    flashDangerMessage: (message: string) => void
     flashValidationErrors: (errors: Record<string, string[]>) => void
-    hideErrors: () => void
     close: (action: string) => void
 }>()
 
@@ -99,12 +78,9 @@ const data = ref({
     confirm_password: '',
 })
 
-const { visible, options, errors } = toRefs(props)
-const success_message = ref<string | null>(null)
-const danger_message = ref<string | null>(null)
+const { visible, options } = toRefs(props)
 
 async function storeUser() {
-    props.hideErrors()
     await axios
         .post('/api/users', {
             name: data.value.name,
@@ -114,21 +90,17 @@ async function storeUser() {
             confirm_password: data.value.confirm_password,
         })
         .then((response) => {
-            success_message.value =
-                'Successfully created user: ' + response.data.name + '.'
-            setTimeout(() => {
-                success_message.value = null
-                props.close('create')
-            }, 1500)
+            let success_message =
+                'Successfully created: ' + response.data.name
+
+            props.flashSuccessMessage(success_message)
+            props.close('create')
         })
         .catch((error) => {
             if (error.response.status === 500) {
-                errors.value = ['HTTP 500: Internal Server Error']
+                props.flashDangerMessage('HTTP 500: Internal Server Error')
             } else if (error.response.status === 403 || (401 && !422)) {
-                danger_message.value = 'Unauthorized access.'
-                setTimeout(() => {
-                    danger_message.value = null
-                }, 5000)
+                props.flashDangerMessage('Unauthorized access')
             } else {
                 props.flashValidationErrors(error.response.data.errors)
             }

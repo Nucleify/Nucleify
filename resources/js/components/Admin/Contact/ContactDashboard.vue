@@ -98,25 +98,25 @@
     />
     <CreateContact
         :visible="visibleCreate"
-        :options="options"
-        :errors="errors"
+        :options="roleOptions"
+        :flashSuccessMessage="flashSuccessMessage"
+        :flashDangerMessage="flashDangerMessage"
         :flashValidationErrors="flashValidationErrors"
-        :hideErrors="hideErrors"
         :close="closeModal"
     />
     <EditContact
         :visible="visibleEdit"
         :contact="selectedContact"
-        :options="options"
-        :errors="errors"
+        :options="roleOptions"
+        :flashSuccessMessage="flashSuccessMessage"
+        :flashDangerMessage="flashDangerMessage"
         :flashValidationErrors="flashValidationErrors"
-        :hideErrors="hideErrors"
         :close="closeModal"
     />
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, Ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
 import CreateContact from './CreateContact.vue'
@@ -136,14 +136,14 @@ interface ContactData {
 }
 
 const props = defineProps<{
-    errors: Ref<string[]>
+    roleOptions: string[]
+    flashSuccessMessage: (message: string) => void
+    flashDangerMessage: (message: string) => void
     flashValidationErrors: (errors: Record<string, string[]>) => void
-    hideErrors: () => void
 }>()
 
-const results = ref<any>(null)
+const results = ref<ContactData[]>([])
 const selectedContact = ref<ContactData | null>(null)
-const options = ['user', 'admin']
 
 const visibleShow = ref(false)
 const visibleCreate = ref(false)
@@ -160,7 +160,7 @@ onMounted(getContacts)
  *
  * @param contactData
  */
-function setSelectedContact(contactData: any): void {
+function setSelectedContact(contactData: ContactData): void {
     selectedContact.value = contactData
 }
 
@@ -168,10 +168,12 @@ function setSelectedContact(contactData: any): void {
  * Open modal function
  *
  * @param action
- * @param contactData
+ * @param contact
  */
-function openModal(action: string, contactData?: any): void {
-    setSelectedContact(contactData)
+function openModal(action: string, contact?: ContactData | undefined): void {
+    if (contact) {
+        setSelectedContact(contact)
+    }
 
     switch (action) {
         case 'show':
@@ -228,21 +230,28 @@ async function getContacts() {
             console.log(response)
         })
         .catch((error) => {
-            console.log(error)
+            props.flashDangerMessage(error)
         })
 }
-async function deleteContact(contact: any) {
-    await axios
+function deleteContact(contact: any): void {
+    axios
         .delete(`/api/contacts/${contact.data.id}`)
-        .then((response) => {
-            console.log(response)
+        .then(() => {
+            let success_message =
+                'Successfully deleted: ' + contact.data.full_name
+
+            props.flashSuccessMessage(success_message)
+            closeModal('delete')
+            getContacts()
         })
         .catch((error) => {
-            console.log(error)
-        })
-        .finally(() => {
-            visibleDelete.value = !visibleDelete.value
-            getContacts()
+            if (error.response.status === 500) {
+                props.flashDangerMessage('HTTP 500: Internal Server Error')
+            } else if (error.response.status === 403 || (401 && !422)) {
+                props.flashDangerMessage('Unauthorized access')
+            } else {
+                props.flashValidationErrors(error.response.data.errors)
+            }
         })
 }
 </script>

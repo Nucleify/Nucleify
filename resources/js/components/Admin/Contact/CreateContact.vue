@@ -4,27 +4,6 @@
             <h2 class="m-0">Create new contact</h2>
         </template>
 
-        <!-- Display success messages-->
-        <InlineMessage v-if="success_message !== null" severity="success">
-            <div class="text-sm">
-                {{ success_message }}
-            </div>
-        </InlineMessage>
-
-        <!-- Display danger messages -->
-        <InlineMessage v-if="danger_message !== null" severity="error">
-            <div class="text-sm">
-                {{ danger_message }}
-            </div>
-        </InlineMessage>
-
-        <!-- Display errors -->
-        <InlineMessage v-if="errors.length > 0" severity="warn">
-            <div class="text-sm" v-for="error in errors" :key="error">
-                {{ error }}
-            </div>
-        </InlineMessage>
-
         <form action="#" class="text-sm">
             <div class="flex flex-column gap-1 mb-3">
                 <label for="first_name">First Name</label>
@@ -110,15 +89,15 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, ref, toRefs } from 'vue'
+import { ref, toRefs } from 'vue'
 import axios from 'axios'
 
 const props = defineProps<{
     visible: boolean
-    options: any
-    errors: Ref<string[]>
+    options: string[]
+    flashSuccessMessage: (message: string) => void
+    flashDangerMessage: (message: string) => void
     flashValidationErrors: (errors: Record<string, string[]>) => void
-    hideErrors: () => void
     close: (action: string) => void
 }>()
 
@@ -137,13 +116,9 @@ const data = ref({
     confirm_password: '',
 })
 
-const { visible, options, errors } = toRefs(props)
-const success_message = ref<string | null>(null)
-const danger_message = ref<string | null>(null)
+const { visible, options } = toRefs(props)
 
 async function storeContact(): Promise<void> {
-    props.hideErrors()
-
     try {
         const responseUser = await axios.get('/api/user')
         const responseContact = await axios.post('/api/contacts', {
@@ -159,23 +134,16 @@ async function storeContact(): Promise<void> {
             role: data.value.role,
         })
 
-        success_message.value =
-            'Successfully created contact: ' +
-            responseContact.data.full_name +
-            '.'
+        let success_message =
+            'Successfully created: ' + responseContact.data.full_name
 
-        setTimeout(() => {
-            success_message.value = null
-            props.close('create')
-        }, 1500)
+        props.flashSuccessMessage(success_message)
+        props.close('create')
     } catch (error: any) {
         if (error.response.status === 500) {
-            errors.value = ['HTTP 500: Internal Server Error']
+            props.flashDangerMessage('HTTP 500: Internal Server Error')
         } else if (error.response.status === 403 || (401 && !422)) {
-            danger_message.value = 'Unauthorized access.'
-            setTimeout(() => {
-                danger_message.value = null
-            }, 5000)
+            props.flashDangerMessage('Unauthorized access')
         } else {
             props.flashValidationErrors(error.response.data.errors)
         }

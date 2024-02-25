@@ -74,22 +74,26 @@
             <div v-else>Loading data or no data available...</div>
         </div>
     </div>
-    <ShowUser :visible="visibleShow" :user="selectedUser" :close="closeModal" />
+    <ShowUser
+        :visible="visibleShow"
+        :user="selectedUser"
+        :close="closeModal"
+    />
     <CreateUser
         :visible="visibleCreate"
-        :options="options"
-        :errors="errors"
+        :options="roleOptions"
+        :flashSuccessMessage="flashSuccessMessage"
+        :flashDangerMessage="flashDangerMessage"
         :flashValidationErrors="flashValidationErrors"
-        :hideErrors="hideErrors"
         :close="closeModal"
     />
     <EditUser
         :visible="visibleEdit"
         :user="selectedUser"
-        :options="options"
-        :errors="errors"
+        :options="roleOptions"
+        :flashSuccessMessage="flashSuccessMessage"
+        :flashDangerMessage="flashDangerMessage"
         :flashValidationErrors="flashValidationErrors"
-        :hideErrors="hideErrors"
         :close="closeModal"
     />
     <Dialog v-model:visible="visibleDelete" modal header="Confirm delete user">
@@ -105,14 +109,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, Ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
 import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
 import EditUser from './EditUser.vue'
 
-interface UserData {
+export interface UserData {
     id: number
     name: string
     email: string
@@ -120,14 +124,14 @@ interface UserData {
 }
 
 const props = defineProps<{
-    errors: Ref<string[]>
+    roleOptions: string[]
+    flashSuccessMessage: (message: string) => void
+    flashDangerMessage: (message: string) => void
     flashValidationErrors: (errors: Record<string, string[]>) => void
-    hideErrors: () => void
 }>()
 
-const results = ref<any>(null)
+const results = ref<UserData[]>([])
 const selectedUser = ref<UserData | null>(null)
-const options = ['user', 'admin']
 
 const visibleShow = ref(false)
 const visibleCreate = ref(false)
@@ -144,7 +148,7 @@ onMounted(getUsers)
  *
  * @param userData
  */
-function setSelectedUser(userData: any): void {
+function setSelectedUser(userData: UserData): void {
     selectedUser.value = userData
 }
 
@@ -152,10 +156,12 @@ function setSelectedUser(userData: any): void {
  * Open modal function
  *
  * @param action
- * @param contactData
+ * @param user
  */
-function openModal(action: string, contactData?: any): void {
-    setSelectedUser(contactData)
+function openModal(action: string, user?: UserData | undefined): void {
+    if (user) {
+        setSelectedUser(user)
+    }
 
     switch (action) {
         case 'show':
@@ -218,14 +224,23 @@ function getUsers(): void {
 function deleteUser(user: any): void {
     axios
         .delete(`/api/users/${user.data.id}`)
-        .then((response) => {
-            console.log(response)
+        .then(() => {
+            let success_message =
+                'Successfully deleted: ' + user.data.name
+
+            props.flashSuccessMessage(success_message)
         })
         .catch((error) => {
-            console.log(error)
+            if (error.response.status === 500) {
+                props.flashDangerMessage('HTTP 500: Internal Server Error')
+            } else if (error.response.status === 403 || (401 && !422)) {
+                props.flashDangerMessage('Unauthorized access')
+            } else {
+                props.flashValidationErrors(error.response.data.errors)
+            }
         })
         .finally(() => {
-            visibleDelete.value = false
+            closeModal('delete')
             getUsers()
         })
 }

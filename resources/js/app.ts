@@ -1,5 +1,6 @@
 import './bootstrap'
 import { createApp } from 'vue'
+import ToastService from 'primevue/toastservice'
 import PrimeVue from 'primevue/config'
 import DataTable from 'primevue/datatable'
 import Button from 'primevue/button'
@@ -8,6 +9,7 @@ import Dialog from 'primevue/dialog'
 import InputText from 'primevue/inputtext'
 import Dropdown from 'primevue/dropdown'
 import InlineMessage from 'primevue/inlinemessage'
+import Toast from 'primevue/toast'
 
 import 'primeflex/primeflex.css'
 import 'primevue/resources/themes/lara-light-green/theme.css'
@@ -25,6 +27,7 @@ app.component('Dialog', Dialog)
 app.component('Dropdown', Dropdown)
 app.component('InlineMessage', InlineMessage)
 app.component('InputText', InputText)
+app.component('Toast', Toast)
 
 /**
  * BLADE COMPONENTS
@@ -34,5 +37,6 @@ import TestLoginButton from './components/Admin/User/TestLoginButton.vue'
 
 app.component('test-login-button', TestLoginButton)
 app.component('admin-panel', AdminPanel)
+app.use(ToastService)
 
 app.mount('#app')

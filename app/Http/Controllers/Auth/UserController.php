@@ -22,7 +22,7 @@ class UserController extends Controller
                 throw new AuthorizationException('Unauthorized', 403);
             }
             return $next($request);
-        })->only('index', 'show', 'store', 'update', 'delete');
+        })->only('index', 'show', 'store', 'update', 'destroy');
     }
 
     public function index(): JsonResponse

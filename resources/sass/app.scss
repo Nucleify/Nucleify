@@ -21,6 +21,19 @@ td {
     margin-left: auto;
     margin-right: auto;
 }
+.p-toast-message {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 95vw;
+}
+.p-toast-message-content {
+    display: flex;
+    gap: 5px;
+}
+.p-toast-icon-close {
+    margin-left: 5px;
+}
 .p-button {
     border-radius: 10px;
     max-height: 33px;
@@ -90,6 +103,13 @@ td {
 .desktopColumn {
     display: none;
 }
+@media (min-width: 530px) {
+    .p-toast-message {
+        width: max-content;
+        max-width: max-content;
+    }
+}
+
 @media (min-width: 768px) {
     .tabletColumn {
         display: table-cell;
