@@ -1,5 +1,5 @@
 <template>
-    <Dialog :visible="visible" modal header="Header" class="w-30rem">
+    <Dialog v-model:visible="visible" modal header="Header" class="w-30rem">
         <template #header>
             <h2 class="m-0">Create new user</h2>
         </template>

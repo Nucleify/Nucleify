@@ -11,8 +11,7 @@ function postLogin(): void {
 
     axios
         .post('/login', { email, password })
-        .then((response) => {
-            console.log(response.data)
+        .then(() => {
             location.href = '/home'
         })
         .catch((error) => {

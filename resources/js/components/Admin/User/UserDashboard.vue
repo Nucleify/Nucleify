@@ -75,26 +75,26 @@
         </div>
     </div>
     <ShowUser
-        :visible="visibleShow"
-        :user="selectedUser"
-        :close="closeModal"
+        v-bind:visible="visibleShow"
+        v-bind:user="selectedUser"
+        v-bind:close="closeModal"
     />
     <CreateUser
-        :visible="visibleCreate"
-        :options="roleOptions"
-        :flashSuccessMessage="flashSuccessMessage"
-        :flashDangerMessage="flashDangerMessage"
-        :flashValidationErrors="flashValidationErrors"
-        :close="closeModal"
+        v-bind:visible="visibleCreate"
+        v-bind:options="roleOptions"
+        v-bind:flashSuccessMessage="flashSuccessMessage"
+        v-bind:flashDangerMessage="flashDangerMessage"
+        v-bind:flashValidationErrors="flashValidationErrors"
+        v-bind:close="closeModal"
     />
     <EditUser
-        :visible="visibleEdit"
-        :user="selectedUser"
-        :options="roleOptions"
-        :flashSuccessMessage="flashSuccessMessage"
-        :flashDangerMessage="flashDangerMessage"
-        :flashValidationErrors="flashValidationErrors"
-        :close="closeModal"
+        v-bind:visible="visibleEdit"
+        v-bind:user="selectedUser"
+        v-bind:options="roleOptions"
+        v-bind:flashSuccessMessage="flashSuccessMessage"
+        v-bind:flashDangerMessage="flashDangerMessage"
+        v-bind:flashValidationErrors="flashValidationErrors"
+        v-bind:close="closeModal"
     />
     <Dialog v-model:visible="visibleDelete" modal header="Confirm delete user">
         <div class="flex justify-content-between">
@@ -215,7 +215,6 @@ function getUsers(): void {
         .get('/api/users')
         .then((response) => {
             results.value = response.data
-            console.log(response)
         })
         .catch((error) => {
             switch (error.response.status) {

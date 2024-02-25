@@ -8,14 +8,14 @@
             </div>
 
             <DataTable
-                :value="results"
+                v-bind:value="results"
+                v-bind:rows="11"
+                v-bind:row-hover="true"
+                v-bind:size="'small'"
                 v-if="results"
                 paginator
-                :rows="11"
                 stripedRows
-                :row-hover="true"
                 @row-click="openModal('show', $event)"
-                :size="'small'"
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
@@ -92,26 +92,26 @@
         </Dialog>
     </div>
     <ShowContact
-        :visible="visibleShow"
-        :contact="selectedContact"
-        :close="closeModal"
+        v-bind:visible="visibleShow"
+        v-bind:contact="selectedContact"
+        v-bind:close="closeModal"
     />
     <CreateContact
-        :visible="visibleCreate"
-        :options="roleOptions"
-        :flashSuccessMessage="flashSuccessMessage"
-        :flashDangerMessage="flashDangerMessage"
-        :flashValidationErrors="flashValidationErrors"
-        :close="closeModal"
+        v-bind:visible="visibleCreate"
+        v-bind:options="roleOptions"
+        v-bind:flashSuccessMessage="flashSuccessMessage"
+        v-bind:flashDangerMessage="flashDangerMessage"
+        v-bind:flashValidationErrors="flashValidationErrors"
+        v-bind:close="closeModal"
     />
     <EditContact
-        :visible="visibleEdit"
-        :contact="selectedContact"
-        :options="roleOptions"
-        :flashSuccessMessage="flashSuccessMessage"
-        :flashDangerMessage="flashDangerMessage"
-        :flashValidationErrors="flashValidationErrors"
-        :close="closeModal"
+        v-bind:visible="visibleEdit"
+        v-bind:contact="selectedContact"
+        v-bind:options="roleOptions"
+        v-bind:flashSuccessMessage="flashSuccessMessage"
+        v-bind:flashDangerMessage="flashDangerMessage"
+        v-bind:flashValidationErrors="flashValidationErrors"
+        v-bind:close="closeModal"
     />
 </template>
 
@@ -227,7 +227,6 @@ async function getContacts() {
         .get('/api/contacts')
         .then((response) => {
             results.value = response.data
-            console.log(response)
         })
         .catch((error) => {
             switch (error.response.status) {
