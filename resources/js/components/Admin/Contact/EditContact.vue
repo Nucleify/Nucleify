@@ -1,9 +1,7 @@
 <template>
     <Dialog v-model:visible="visible" modal class="w-30rem">
         <template #header>
-            <h2 class="m-0">
-                Edit: {{ contact.data.full_name }}
-            </h2>
+            <h2 class="m-0">Edit: {{ contact.data.full_name }}</h2>
         </template>
 
         <!-- Display success messages-->
@@ -106,10 +104,7 @@
                     label="Cancel"
                     @click="props.close('edit')"
                 />
-                <Button
-                    label="Confirm"
-                    @click.prevent="editContact"
-                />
+                <Button label="Confirm" @click.prevent="editContact" />
             </div>
         </template>
     </Dialog>

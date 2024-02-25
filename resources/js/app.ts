@@ -29,12 +29,10 @@ app.component('InputText', InputText)
 /**
  * BLADE COMPONENTS
  */
-import ContactDashboard from './components/Contact/ContactDashboard.vue'
-import UserDashboard from './components/User/UserDashboard.vue'
-import TestLoginButton from './components/User/TestLoginButton.vue'
+import AdminPanel from './components/Admin/AdminPanel.vue'
+import TestLoginButton from './components/Admin/User/TestLoginButton.vue'
 
 app.component('test-login-button', TestLoginButton)
-app.component('contact-dashboard', ContactDashboard)
-app.component('user-dashboard', UserDashboard)
+app.component('admin-panel', AdminPanel)
 
 app.mount('#app')

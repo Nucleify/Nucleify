@@ -4,10 +4,7 @@
             <div class="flex justify-content-between mb-5">
                 <h3>Manage Users</h3>
 
-                <Button
-                    label="Create user"
-                    @click="openModal('create')"
-                />
+                <Button label="Create user" @click="openModal('create')" />
             </div>
 
             <DataTable
@@ -77,11 +74,7 @@
             <div v-else>Loading data or no data available...</div>
         </div>
     </div>
-    <ShowUser
-        :visible="visibleShow"
-        :user="selectedUser"
-        :close="closeModal"
-    />
+    <ShowUser :visible="visibleShow" :user="selectedUser" :close="closeModal" />
     <CreateUser
         :visible="visibleCreate"
         :options="options"
@@ -106,16 +99,13 @@
                 label="Cancel"
                 @click="closeModal('delete')"
             />
-            <Button
-                label="Confirm"
-                @click="deleteUser(selectedUser)"
-            />
+            <Button label="Confirm" @click="deleteUser(selectedUser)" />
         </div>
     </Dialog>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, Ref } from 'vue'
 import axios from 'axios'
 
 import CreateUser from './CreateUser.vue'
@@ -129,10 +119,15 @@ interface UserData {
     role: string
 }
 
+const props = defineProps<{
+    errors: Ref<string[]>
+    flashValidationErrors: (errors: Record<string, string[]>) => void
+    hideErrors: () => void
+}>()
+
 const results = ref<any>(null)
 const selectedUser = ref<UserData | null>(null)
 const options = ['user', 'admin']
-const errors = ref<string[]>([])
 
 const visibleShow = ref(false)
 const visibleCreate = ref(false)
@@ -233,25 +228,5 @@ function deleteUser(user: any): void {
             visibleDelete.value = false
             getUsers()
         })
-}
-
-/**
- * Flash validation errors function
- *
- * @param errorsData
- */
-function flashValidationErrors(errorsData: Record<string, string[]>): void {
-    for (const value in errorsData) {
-        if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
-            errors.value.push(...errorsData[value])
-        }
-    }
-    setTimeout(() => {
-        hideErrors()
-    }, 5000)
-}
-
-function hideErrors() {
-    errors.value = []
 }
 </script>

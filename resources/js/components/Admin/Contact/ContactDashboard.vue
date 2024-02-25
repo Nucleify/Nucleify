@@ -4,10 +4,7 @@
             <div class="flex justify-content-between mb-5">
                 <h3>Manage Contacts</h3>
 
-                <Button
-                    label="Create contact"
-                    @click="openModal('create')"
-                />
+                <Button label="Create contact" @click="openModal('create')" />
             </div>
 
             <DataTable
@@ -119,7 +116,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, Ref } from 'vue'
 import axios from 'axios'
 
 import CreateContact from './CreateContact.vue'
@@ -138,10 +135,15 @@ interface ContactData {
     role: string
 }
 
+const props = defineProps<{
+    errors: Ref<string[]>
+    flashValidationErrors: (errors: Record<string, string[]>) => void
+    hideErrors: () => void
+}>()
+
 const results = ref<any>(null)
 const selectedContact = ref<ContactData | null>(null)
 const options = ['user', 'admin']
-const errors = ref<string[]>([])
 
 const visibleShow = ref(false)
 const visibleCreate = ref(false)
@@ -242,25 +244,5 @@ async function deleteContact(contact: any) {
             visibleDelete.value = !visibleDelete.value
             getContacts()
         })
-}
-
-/**
- * Flash validation errors function
- *
- * @param errorsData
- */
-function flashValidationErrors(errorsData: Record<string, string[]>): void {
-    for (const value in errorsData) {
-        if (Object.prototype.hasOwnProperty.call(errorsData, value)) {
-            errors.value.push(...errorsData[value])
-        }
-    }
-    setTimeout(() => {
-        hideErrors()
-    }, 5000)
-}
-
-function hideErrors() {
-    errors.value = []
 }
 </script>

@@ -1,10 +1,5 @@
 <template>
-    <button
-        @click="postLogin"
-        class="btn btn-primary"
-    >
-        Test Login
-    </button>
+    <button @click="postLogin" class="btn btn-primary">Test Login</button>
 </template>
 
 <script setup lang="ts">

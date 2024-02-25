@@ -103,17 +103,14 @@
                     label="Cancel"
                     @click="props.close('create')"
                 />
-                <Button
-                    label="Create"
-                    @click="storeContact"
-                />
+                <Button label="Create" @click="storeContact" />
             </div>
         </template>
     </Dialog>
 </template>
 
 <script setup lang="ts">
-import { Ref, ref, toRefs, watch } from 'vue'
+import { Ref, ref, toRefs } from 'vue'
 import axios from 'axios'
 
 const props = defineProps<{
@@ -163,7 +160,9 @@ async function storeContact(): Promise<void> {
         })
 
         success_message.value =
-            'Successfully created contact: ' + responseContact.data.full_name + '.'
+            'Successfully created contact: ' +
+            responseContact.data.full_name +
+            '.'
 
         setTimeout(() => {
             success_message.value = null

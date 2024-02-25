@@ -81,7 +81,8 @@ td {
 .idColumn {
     width: 15%;
 }
-.nameColumn, .fullNameColumn {
+.nameColumn,
+.fullNameColumn {
     width: 70%;
 }
 .tabletColumn,
@@ -99,7 +100,8 @@ td {
     .idColumn {
         width: 10%;
     }
-    .nameColumn, .fullNameColumn {
+    .nameColumn,
+    .fullNameColumn {
         width: 30%;
     }
 }
@@ -116,7 +118,8 @@ td {
     .mobileButton {
         display: none;
     }
-    .roleColumn, .birthdayColumn {
+    .roleColumn,
+    .birthdayColumn {
         width: 15%;
     }
 }

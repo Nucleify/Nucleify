@@ -1,7 +1,7 @@
 <template>
     <Dialog v-model:visible="visible" modal header="Header" class="w-30rem">
         <template #header>
-            <h2 class="m-0">Create new user</h2>
+            <h2 class="m-0">Edit: {{ user.data.name }}</h2>
         </template>
 
         <!-- Display success messages-->
@@ -45,24 +45,6 @@
                     class="p-0"
                 />
             </div>
-
-            <div class="flex flex-column gap-1 mb-3">
-                <label for="password">Password</label>
-                <InputText
-                    id="password"
-                    type="password"
-                    v-model="data.password"
-                />
-            </div>
-
-            <div class="flex flex-column gap-1">
-                <label for="confirmPassword">Confirm Password</label>
-                <InputText
-                    id="confirmPassword"
-                    type="password"
-                    v-model="data.confirm_password"
-                />
-            </div>
         </form>
 
         <template #footer>
@@ -70,23 +52,21 @@
                 <Button
                     severity="secondary"
                     label="Cancel"
-                    @click="props.close('create')"
+                    @click="props.close('edit')"
                 />
-                <Button
-                    label="Confirm"
-                    @click="storeUser"
-                />
+                <Button label="Confirm" @click.prevent="editUser" />
             </div>
         </template>
     </Dialog>
 </template>
 
 <script setup lang="ts">
-import { Ref, ref, toRefs } from 'vue'
+import { Ref, ref, toRefs, watch } from 'vue'
 import axios from 'axios'
 
 const props = defineProps<{
     visible: boolean
+    user: any
     options: any
     errors: Ref<string[]>
     flashValidationErrors: (errors: Record<string, string[]>) => void
@@ -95,33 +75,37 @@ const props = defineProps<{
 }>()
 
 const data = ref({
+    id: '',
     name: '',
     email: '',
     role: '',
-    password: '',
-    confirm_password: '',
 })
 
-const { visible, options, errors } = toRefs(props)
+const { visible, user, options, errors } = toRefs(props)
 const success_message = ref<string | null>(null)
 const danger_message = ref<string | null>(null)
 
-async function storeUser() {
+/**
+ * Check modal open with watch visible variable, then pass props to data
+ */
+watch(visible, () => {
+    Object.assign(data.value, user.value.data)
+})
+
+async function editUser() {
     props.hideErrors()
     await axios
-        .post('/api/users', {
+        .put('/api/users/' + data.value.id, {
             name: data.value.name,
             email: data.value.email,
             role: data.value.role,
-            password: data.value.password,
-            confirm_password: data.value.confirm_password,
         })
         .then((response) => {
             success_message.value =
-                'Successfully created user: ' + response.data.name + '.'
+                'Successfully updated user: ' + response.data.name + '.'
             setTimeout(() => {
                 success_message.value = null
-                props.close('create')
+                props.close('edit')
             }, 1500)
         })
         .catch((error) => {
