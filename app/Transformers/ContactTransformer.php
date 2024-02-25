@@ -22,7 +22,9 @@ class ContactTransformer extends TransformerAbstract
             'address' => $model->getAddress(),
             'birthday' => $model->getBirthday(),
             'role' => $model->getRole(),
-            'contact_groups' => $model->getContactGroups()
+            'contact_groups' => $model->getContactGroups(),
+            'created_at' => $model->getCreatedAt(),
+            'updated_at' => $model->getUpdatedAt()
         ];
     }
 }

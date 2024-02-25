@@ -17,4 +17,6 @@ interface ContactShouldReceiveFields
     public function getBirthday(): string|null;
     public function getRole(): string|null;
     public function getContactGroups(): array|null;
+    public function getCreatedAt(): string|null;
+    public function getUpdatedAt(): string|null;
 }

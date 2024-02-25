@@ -14,6 +14,8 @@ class UserTransformer extends TransformerAbstract
             'name' => $model->getName(),
             'email' => $model->getEmail(),
             'role' => $model->getRole(),
+            'created_at' => $model->getCreatedAt(),
+            'updated_at' => $model->getUpdatedAt()
         ];
     }
 }

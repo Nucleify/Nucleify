@@ -21,6 +21,16 @@
                 <h5 class="mb-0">Role</h5>
                 <div>{{ user.data.role }}</div>
             </div>
+            <div class="flex">
+                <div class="col-6 p-0">
+                    <h5 class="mb-0">Created At</h5>
+                    <div>{{ user.data.created_at }}</div>
+                </div>
+                <div class="col-6 p-0">
+                    <h5 class="mb-0">Updated At</h5>
+                    <div>{{ user.data.updated_at }}</div>
+                </div>
+            </div>
         </div>
         <template #footer>
             <div class="flex gap-2 justify-content-end">

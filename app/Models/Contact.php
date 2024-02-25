@@ -100,6 +100,14 @@ class Contact extends Model implements ContactShouldReceiveFields
     {
         return $this->contact_groups;
     }
+    public function getCreatedAt(): string|null
+    {
+        return $this->created_at;
+    }
+    public function getUpdatedAt(): string|null
+    {
+        return $this->updated_at;
+    }
 
     // AUTH METHODS
     public function isAdmin(): bool

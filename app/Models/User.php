@@ -67,6 +67,14 @@ class User extends Authenticatable implements UserShouldReceiveFields
     {
         return $this->role;
     }
+    public function getCreatedAt(): string|null
+    {
+        return $this->created_at;
+    }
+    public function getUpdatedAt(): string|null
+    {
+        return $this->updated_at;
+    }
 
     // AUTH METHODS
 

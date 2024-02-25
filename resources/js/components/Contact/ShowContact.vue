@@ -17,12 +17,12 @@
                 <h5 class="mb-0">Email</h5>
                 <div>{{ contact.data.email }}</div>
             </div>
-            <div class="flex gap-5">
-                <div>
+            <div class="flex">
+                <div class="col-6 p-0">
                     <h5 class="mb-0">Personal Phone</h5>
                     <div>{{ contact.data.personal_phone }}</div>
                 </div>
-                <div>
+                <div class="col-6 p-0">
                     <h5 class="mb-0">Work Phone</h5>
                     <div>{{ contact.data.work_phone }}</div>
                 </div>
@@ -47,6 +47,16 @@
             <div class="-mt-3">
                 <h5 class="mb-0">Role</h5>
                 <div>{{ contact.data.role }}</div>
+            </div>
+            <div class="flex">
+                <div class="col-6 p-0">
+                    <h5 class="mb-0">Created At</h5>
+                    <div>{{ contact.data.created_at }}</div>
+                </div>
+                <div class="col-6 p-0">
+                    <h5 class="mb-0">Updated At</h5>
+                    <div>{{ contact.data.updated_at }}</div>
+                </div>
             </div>
         </div>
         <template #footer>
