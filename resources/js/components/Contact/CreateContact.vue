@@ -128,6 +128,7 @@ const props = defineProps<{
 const data = ref({
     first_name: '',
     last_name: '',
+    full_name: '',
     email: '',
     personal_phone: '',
     work_phone: '',
@@ -162,7 +163,7 @@ async function storeContact(): Promise<void> {
         })
 
         success_message.value =
-            'Successfully created contact: ' + responseContact.data.name + '.'
+            'Successfully created contact: ' + responseContact.data.full_name + '.'
 
         setTimeout(() => {
             success_message.value = null

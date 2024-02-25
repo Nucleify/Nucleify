@@ -171,7 +171,7 @@ function editContact() {
         })
         .then((response) => {
             success_message.value =
-                'Successfully edited contact: ' + response.data.first_name + '.'
+                'Successfully edited contact: ' + response.data.full_name + '.'
             setTimeout(() => {
                 success_message.value = null
                 props.close('edit')
