@@ -31,4 +31,7 @@ export default defineConfig({
             vue: 'vue/dist/vue.esm-bundler.js',
         },
     },
+    build: {
+        chunkSizeWarningLimit: 1600
+    }
 });
