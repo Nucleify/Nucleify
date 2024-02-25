@@ -20,9 +20,11 @@ td {
     max-width: 1500px;
     margin-left: auto;
     margin-right: auto;
+    width: 100%;
 }
 .p-toast-message {
     position: fixed;
+    font-size: 15px;
     top: 10px;
     right: 10px;
     width: 95vw;
@@ -45,7 +47,7 @@ td {
 }
 .p-dialog-header {
     padding-top: 18px;
-    padding-bottom: 15px;
+    padding-bottom: 0;
 }
 .p-dialog-content {
     padding: 20px;
@@ -76,6 +78,7 @@ td {
 }
 .p-paginator {
     font-size: 14px;
+    padding: 10px 0;
 }
 .p-paginator-element {
     max-height: 33px;
@@ -92,11 +95,11 @@ td {
 }
 
 .idColumn {
-    width: 15%;
+    width: 25%;
 }
 .nameColumn,
 .fullNameColumn {
-    width: 70%;
+    width: 60%;
 }
 .tabletColumn,
 .desktopButton,
@@ -118,11 +121,11 @@ td {
         margin-bottom: 30px;
     }
     .idColumn {
-        width: 10%;
+        width: 15%;
     }
     .nameColumn,
     .fullNameColumn {
-        width: 30%;
+        width: 35%;
     }
 }
 @media (min-width: 992px) {
@@ -137,6 +140,9 @@ td {
     }
     .mobileButton {
         display: none;
+    }
+    .emailColumn {
+        width: 35%;
     }
     .roleColumn,
     .birthdayColumn {
