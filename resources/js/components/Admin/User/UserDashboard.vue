@@ -1,12 +1,17 @@
 <template>
-    <div class="card mt-1">
-        <div class="card-body pt-4">
-            <div class="flex justify-content-between mb-5">
+    <Card class="myCard userDashboard mt-7">
+        <template #title>
+            <div class="flex justify-content-between">
                 <h3>Manage Users</h3>
 
-                <Button label="Create user" @click="openModal('create')" />
+                <Button
+                    label="New User"
+                    @click="openModal('create')"
+                    class="text-sm"
+                />
             </div>
-
+        </template>
+        <template #content="rowData">
             <DataTable
                 v-bind:value="results"
                 v-bind:size="'small'"
@@ -43,7 +48,7 @@
                     header="Role"
                     class="roleColumn desktopColumn"
                 />
-                <Column class="w-1rem">
+                <Column class="actionColumn">
                     <template #body="rowData">
                         <div class="flex gap-1 justify-content-around">
                             <Button
@@ -66,14 +71,19 @@
                                 icon="pi pi-bars"
                                 @click="openMenu($event, rowData)"
                             />
-                            <Menu ref="menu" :model="items" :popup="true" />
+                            <Menu
+                                ref="menu"
+                                :model="items"
+                                :popup="true"
+                                class="w-10rem"
+                            />
                         </div>
                     </template>
                 </Column>
             </DataTable>
             <div v-else>Loading data or no data available...</div>
-        </div>
-    </div>
+        </template>
+    </Card>
     <ShowUser
         v-bind:visible="visibleShow"
         v-bind:user="selectedUser"
@@ -152,7 +162,6 @@ const items = ref([
                 command: () => {
                     openModal('show', selectedUser.value)
                 },
-                shortcut: '⌘+S',
             },
             {
                 label: 'Edit',

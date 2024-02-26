@@ -19,11 +19,15 @@
 td {
     cursor: pointer;
 }
-.card {
+.myCard {
     max-width: 1500px;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+}
+.p-card {
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
 }
 .p-toast-message {
     position: fixed;
@@ -95,8 +99,8 @@ td {
     padding: 0;
     margin: 0;
     gap: 5px;
-    min-width: 140px;
-    max-width: 140px;
+    min-width: 170px;
+    max-width: 170px;
 }
 .p-menu,
 .p-menu-list,
@@ -109,7 +113,31 @@ td {
 .p-menuitem-icon {
     margin-right: 20px;
 }
-
+.p-menubar {
+    width: 100vw;
+    position: fixed;
+    z-index: 100;
+    padding: 5px;
+    margin: 0;
+    justify-content: space-between;
+}
+.p-avatar {
+    position: relative;
+    right: 15px;
+}
+.p-menubar-button {
+    position: relative;
+    left: 10px;
+    color: black;
+}
+.p-menubar-button .p-icon {
+    width: 20px;
+    height: 20px;
+}
+.p-menubar-root-list {
+    margin: 0;
+    padding: 0;
+}
 .mobileButton {
     display: inline;
 }
@@ -120,7 +148,7 @@ td {
 }
 
 .idColumn {
-    width: 25%;
+    width: 20%;
 }
 .nameColumn,
 .fullNameColumn {
@@ -131,10 +159,16 @@ td {
 .desktopColumn {
     display: none;
 }
+.actionColumn {
+    width: 1%;
+}
 @media (min-width: 530px) {
     .p-toast-message {
         width: max-content;
         max-width: max-content;
+    }
+    .p-avatar {
+        right: 25px;
     }
 }
 
@@ -142,7 +176,7 @@ td {
     .tabletColumn {
         display: table-cell;
     }
-    .card {
+    .myCard {
         margin-bottom: 30px;
     }
     .idColumn {
@@ -151,6 +185,18 @@ td {
     .nameColumn,
     .fullNameColumn {
         width: 35%;
+    }
+}
+.userDashboard {
+    top: -2px;
+}
+@media (min-width: 961px) {
+    .p-avatar {
+        right: 65px;
+    }
+    .p-menubar .p-menuitem-content {
+        position: relative;
+        left: 40px;
     }
 }
 @media (min-width: 992px) {
@@ -178,4 +224,16 @@ td {
 .p-menuitem:nth-child(5) .p-menuitem-link {
     opacity: 0.3;
     cursor: default;
+}
+
+@media (max-width: 550px) {
+    .p-toast-message-success {
+        background: #EAF8F3;
+    }
+    .p-toast-message-warn {
+        background: #DFD7CC;
+    }
+    .p-toast-message-error {
+        background: #FDEDEC;
+    }
 }

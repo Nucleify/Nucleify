@@ -1,12 +1,17 @@
 <template>
-    <div class="card mt-2">
-        <div class="card-body pt-4">
-            <div class="flex justify-content-between mb-5">
+    <Card class="myCard contactDashboard mt-3">
+        <template #title>
+            <div class="flex justify-content-between">
                 <h3>Manage Contacts</h3>
 
-                <Button label="Create contact" @click="openModal('create')" />
+                <Button
+                    label="New Contact"
+                    @click="openModal('create')"
+                    class="text-sm"
+                />
             </div>
-
+        </template>
+        <template #content="rowData">
             <DataTable
                 v-bind:value="results"
                 v-bind:rows="11"
@@ -43,7 +48,7 @@
                     header="Birthday"
                     class="birthdayColumn desktopColumn"
                 />
-                <Column class="w-1rem">
+                <Column class="actionColumn">
                     <template #body="rowData">
                         <div class="flex gap-1 justify-content-around">
                             <Button
@@ -72,25 +77,9 @@
                 </Column>
             </DataTable>
             <div v-else>Loading data or no data available...</div>
-        </div>
-        <Dialog
-            v-model:visible="visibleDelete"
-            modal
-            header="Confirm delete contact"
-        >
-            <div class="flex justify-content-between">
-                <Button
-                    severity="secondary"
-                    label="Cancel"
-                    @click="closeModal('delete')"
-                />
-                <Button
-                    label="Confirm"
-                    @click="deleteContact(selectedContact)"
-                />
-            </div>
-        </Dialog>
-    </div>
+        </template>
+    </Card>
+
     <ShowContact
         v-bind:visible="visibleShow"
         v-bind:contact="selectedContact"
@@ -113,6 +102,20 @@
         v-bind:flashValidationErrors="flashValidationErrors"
         v-bind:close="closeModal"
     />
+    <Dialog
+        v-model:visible="visibleDelete"
+        modal
+        header="Confirm delete contact"
+    >
+        <div class="flex justify-content-between">
+            <Button
+                severity="secondary"
+                label="Cancel"
+                @click="closeModal('delete')"
+            />
+            <Button label="Confirm" @click="deleteContact(selectedContact)" />
+        </div>
+    </Dialog>
 </template>
 
 <script setup lang="ts">
@@ -164,7 +167,6 @@ const items = ref([
                 command: () => {
                     openModal('show', selectedContact.value)
                 },
-                shortcut: '⌘+S',
             },
             {
                 label: 'Edit',
