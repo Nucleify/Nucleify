@@ -6,6 +6,8 @@
 
 This website helps to storage contacts data and share it with others. It's second version of my [project](https://github.com/SzymCode/ContactBook-sandbox), now with completely other tech stack. My target is to create fully responsive, functional and scalable website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) and [FDD](https://en.wikipedia.org/wiki/Feature-driven_development) principles.
 
+[Preview!](https://contactbook-sc-0dd9929a94e1.herokuapp.com)
+
 
 <details><summary> <h2>  🛠️ Installation & Setup  </summary>
 
@@ -46,7 +48,7 @@ php artisan migrate:fresh --seed
 <details><summary> <h3> &nbsp;<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=20/> &nbsp;Docker </summary> 
 
 - First make sure u have installed latest versions of [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), and [Composer](https://getcomposer.org/)
-  
+
 - Clone this repository
 
 ```
@@ -68,7 +70,7 @@ php artisan sail:install
 <details><summary> <h2>  🚀 Run  </summary>
 
 <details><summary> <h3> &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=20/> &nbsp;Standard </summary> 
-    
+
 - root directory:
 
 ```bash
@@ -79,9 +81,9 @@ php artisan serve
 </details>
 
 <details><summary> <h3> &nbsp;<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=20/> &nbsp;Docker </summary> 
-    
+
 **Remember to shutdown all XAMPP processes!**
- - root directory: 
+- root directory:
 
 ```bash
 ./vendor/bin/sail up -d    # run containers in background
