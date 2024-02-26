@@ -34,7 +34,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -58,6 +57,10 @@
         <main class="p-2 md:p-3 lg:p-4 xl:p-6">
             @yield('content')
         </main>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none hidden">
+            @csrf
+        </form>
     </div>
 </body>
 </html>
