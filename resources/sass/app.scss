@@ -13,6 +13,9 @@
 * {
     box-sizing: border-box;
 }
+.p-menuitem a {
+    text-decoration: none;
+}
 td {
     cursor: pointer;
 }
@@ -87,11 +90,33 @@ td {
 .p-inline-message {
     margin-top: -20px;
 }
+.p-menu,
+.p-menu-list {
+    padding: 0;
+    margin: 0;
+    gap: 5px;
+    min-width: 140px;
+    max-width: 140px;
+}
+.p-menu,
+.p-menu-list,
+.p-menuitem-content {
+    border-radius: 5px;
+}
+.p-submenu-header {
+    display: none;
+}
+.p-menuitem-icon {
+    margin-right: 20px;
+}
+
 .mobileButton {
     display: inline;
 }
 .myButton {
-    padding: 4px 9px 9px 8px;
+    padding: 4px 8.5px 10px 8px;
+    max-width: 34px;
+    min-width: 34px;
 }
 
 .idColumn {
@@ -148,4 +173,9 @@ td {
     .birthdayColumn {
         width: 15%;
     }
+}
+
+.p-menuitem:nth-child(5) .p-menuitem-link {
+    opacity: 0.3;
+    cursor: default;
 }

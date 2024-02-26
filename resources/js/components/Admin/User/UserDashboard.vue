@@ -48,25 +48,25 @@
                         <div class="flex gap-1 justify-content-around">
                             <Button
                                 class="desktopButton myButton"
+                                icon="pi pi-eye"
                                 @click="openModal('show', rowData)"
-                            >
-                                <i class="pi pi-eye" />
-                            </Button>
+                            />
                             <Button
                                 class="desktopButton myButton"
+                                icon="pi pi-pencil"
                                 @click="openModal('edit', rowData)"
-                            >
-                                <i class="pi pi-pencil" />
-                            </Button>
+                            />
                             <Button
                                 class="desktopButton myButton"
+                                icon="pi pi-trash"
                                 @click="openModal('delete', rowData)"
-                            >
-                                <i class="pi pi-trash" />
-                            </Button>
-                            <Button class="mobileButton myButton">
-                                <i class="pi pi-bars" />
-                            </Button>
+                            />
+                            <Button
+                                class="mobileButton myButton"
+                                icon="pi pi-bars"
+                                @click="openMenu($event, rowData)"
+                            />
+                            <Menu ref="menu" :model="items" :popup="true" />
                         </div>
                     </template>
                 </Column>
@@ -131,13 +131,57 @@ const props = defineProps<{
 }>()
 
 const results = ref<UserData[]>([])
-const selectedUser = ref<UserData | null>(null)
+const selectedUser = ref<UserData | undefined>(undefined)
 const success_message = ref<string | undefined>(undefined)
 
 const visibleShow = ref(false)
 const visibleCreate = ref(false)
 const visibleEdit = ref(false)
 const visibleDelete = ref(false)
+
+/**
+ * Menu variables and function
+ */
+const menu = ref()
+const items = ref([
+    {
+        items: [
+            {
+                label: 'Show',
+                icon: 'pi pi-eye',
+                command: () => {
+                    openModal('show', selectedUser.value)
+                },
+                shortcut: '⌘+S',
+            },
+            {
+                label: 'Edit',
+                icon: 'pi pi-pencil',
+                command: () => {
+                    openModal('edit', selectedUser.value)
+                },
+            },
+            {
+                label: 'Delete',
+                icon: 'pi pi-trash',
+                command: () => {
+                    openModal('delete', selectedUser.value)
+                },
+            },
+            {
+                label: 'Share',
+                icon: 'pi pi-share-alt',
+            },
+        ],
+    },
+])
+
+function openMenu(event: MouseEvent, user: UserData): void {
+    if (user) {
+        setSelectedUser(user)
+    }
+    menu.value.toggle(event)
+}
 
 /**
  * Fetch users after component mounts
@@ -238,8 +282,7 @@ function deleteUser(user: any): void {
     axios
         .delete(`/api/users/${user.data.id}`)
         .then(() => {
-            success_message.value =
-                'Successfully deleted: ' + user.data.name
+            success_message.value = 'Successfully deleted: ' + user.data.name
 
             props.flashSuccessMessage(success_message.value)
             closeModal('delete')

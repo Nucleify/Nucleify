@@ -48,25 +48,25 @@
                         <div class="flex gap-1 justify-content-around">
                             <Button
                                 class="desktopButton myButton"
+                                icon="pi pi-eye"
                                 @click="openModal('show', rowData)"
-                            >
-                                <i class="pi pi-eye" />
-                            </Button>
+                            />
                             <Button
                                 class="desktopButton myButton"
+                                icon="pi pi-pencil"
                                 @click="openModal('edit', rowData)"
-                            >
-                                <i class="pi pi-pencil" />
-                            </Button>
+                            />
                             <Button
                                 class="desktopButton myButton"
+                                icon="pi pi-trash"
                                 @click="openModal('delete', rowData)"
-                            >
-                                <i class="pi pi-trash" />
-                            </Button>
-                            <Button class="mobileButton myButton">
-                                <i class="pi pi-bars" />
-                            </Button>
+                            />
+                            <Button
+                                class="mobileButton myButton"
+                                icon="pi pi-bars"
+                                @click="openMenu($event, rowData)"
+                            />
+                            <Menu ref="menu" :model="items" :popup="true" />
                         </div>
                     </template>
                 </Column>
@@ -143,13 +143,57 @@ const props = defineProps<{
 }>()
 
 const results = ref<ContactData[]>([])
-const selectedContact = ref<ContactData | null>(null)
+const selectedContact = ref<ContactData | undefined>(undefined)
 const success_message = ref<string | undefined>(undefined)
 
 const visibleShow = ref(false)
 const visibleCreate = ref(false)
 const visibleEdit = ref(false)
 const visibleDelete = ref(false)
+
+/**
+ * Menu variables and function
+ */
+const menu = ref()
+const items = ref([
+    {
+        items: [
+            {
+                label: 'Show',
+                icon: 'pi pi-eye',
+                command: () => {
+                    openModal('show', selectedContact.value)
+                },
+                shortcut: '⌘+S',
+            },
+            {
+                label: 'Edit',
+                icon: 'pi pi-pencil',
+                command: () => {
+                    openModal('edit', selectedContact.value)
+                },
+            },
+            {
+                label: 'Delete',
+                icon: 'pi pi-trash',
+                command: () => {
+                    openModal('delete', selectedContact.value)
+                },
+            },
+            {
+                label: 'Share',
+                icon: 'pi pi-share-alt',
+            },
+        ],
+    },
+])
+
+function openMenu(event: MouseEvent, contact: ContactData): void {
+    if (contact) {
+        setSelectedContact(contact)
+    }
+    menu.value.toggle(event)
+}
 
 /**
  * Fetch contacts after component mounts

@@ -6,9 +6,10 @@ import DataTable from 'primevue/datatable'
 import Button from 'primevue/button'
 import Column from 'primevue/column'
 import Dialog from 'primevue/dialog'
+import InlineMessage from 'primevue/inlinemessage'
 import InputText from 'primevue/inputtext'
 import Dropdown from 'primevue/dropdown'
-import InlineMessage from 'primevue/inlinemessage'
+import Menu from 'primevue/menu'
 import Toast from 'primevue/toast'
 
 import 'primeflex/primeflex.css'
@@ -27,6 +28,8 @@ app.component('Dialog', Dialog)
 app.component('Dropdown', Dropdown)
 app.component('InlineMessage', InlineMessage)
 app.component('InputText', InputText)
+app.component('Menu', Menu)
+
 app.component('Toast', Toast)
 
 /**

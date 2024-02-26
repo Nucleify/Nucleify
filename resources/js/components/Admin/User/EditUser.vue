@@ -78,8 +78,7 @@ async function editUser() {
             role: data.value.role,
         })
         .then((response) => {
-            success_message.value =
-                'Successfully edited: ' + response.data.name
+            success_message.value = 'Successfully edited: ' + response.data.name
 
             props.flashSuccessMessage(success_message.value)
             props.close('edit')
