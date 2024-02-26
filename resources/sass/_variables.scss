@@ -1,7 +1,115 @@
+// All
+$box-sizing-all: border-box;
+
+// min/max width/height
+$min-max-width-height-small: 33px;
+$min-max-width-height-medium: 44px;
+
 // Body
 $body-bg: #f8fafc;
+
+// Button
+$button-border-radius: 10px;
+$button-padding: 10px;
+$mobile-button-display: inline;
+$my-button-padding: 4px 9px 10px 7.5px;
+
+// Card
+$card-width: 100%;
+$card-max-width: 1500px;
+$card-margin-left: auto;
+$card-margin-right: auto;
+
+// Dashboard
+$user-dashboard-top: -2px;
+
+// DataTable
+$td-cursor: pointer;
+$id-column-width-phone: 20%;
+$name-full-name-columns-width-phone: 60%;
+$tablet-desktop-columns-display-phone: none;
+$action-column-width: 1%;
+
+// Dialog
+$dialog-mask-padding: 0 10px;
+$dialog-header-padding-top: 18px;
+$dialog-header-padding-bottom: 0;
+$dialog-content-padding: 20px;
+$dialog-header-icon-display: none;
+$dialog-footer-padding: 20px;
+
+// Dropdown
+$dropdown-items-padding: 0;
+
+// Menu, MenuBar
+$menu-item-a-text-decoration: none;
+$avatar-position: relative;
+$avatar-right: 15px;
+$menu-menu-list-padding: 0;
+$menu-menu-list-margin: 0;
+$menu-menu-list-gap: 5px;
+$menu-menu-list-min-width: 170px;
+$menu-menu-list-max-width: 170px;
+$menu-menu-list-menu-item-content-border-radius: 5px;
+$submenu-header-display: none;
+$menu-item-icon-margin-right: 20px;
+$menubar-width: 100vw;
+$menubar-position: fixed;
+$menubar-z-index: 100;
+$menubar-padding: 5px;
+$menubar-margin: 0;
+$menubar-justify-content: space-between;
+$menubar-button-position: relative;
+$menubar-button-left: 10px;
+$menubar-button-color: black;
+$menubar-button-icon-width: 20px;
+$menubar-button-icon-height: 20px;
+$menubar-root-list-padding: 0;
+$menubar-root-list-margin: 0;
+
+// Paginator
+$paginator-padding-top: 25px;
+$paginator-margin-bottom: -20px;
+
+// Toast
+$toast-position: fixed;
+$toast-top: 10px;
+$toast-right: 10px;
+$toast-width: 95vw;
+$toast-message-content-display: flex;
+$toast-message-content-gap: 5px;
+$toast-icon-close-margin-left: 5px;
+$success-toast-bg: #EAF8F3;
+$warn-toast-bg: #FFF5E8;
+$error-toast-bg: #FDEDEC;
 
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+
+
+// Media min width 530px
+$toast-message-media-min-width-530px-width: max-content;
+$toast-message-media-min-width-530px-max-width: max-content;
+$avatar-min-width-530px-right: 25px;
+
+// Media min width 768px
+$tablet-column-min-width-768px-display: table-cell;
+$my-card-min-width-768px-margin-bottom: 30px;
+$id-column-min-width-768px-width: 15%;
+$name-full-name-column-min-width-768px-width: 35%;
+
+// Media min width 961px
+$avatar-min-width-961px-right: 65px;
+$menubar-menuitem-content-min-width-961px-position: relative;
+$menubar-menuitem-content-min-width-961px-left: 40px;
+
+// Media min width 992px
+$desktop-column-min-width-992px-display: table-cell;
+$desktop-button-min-width-992px-display: flex;
+$my-button-min-width-992px-padding: 9px 8.5px 10px 8px;
+$mobile-button-min-width-992px-display: none;
+$email-column-min-width-992px-width: 35%;
+$role-birthday-column-min-width-992px-width: 15%;

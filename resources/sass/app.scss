@@ -11,229 +11,249 @@
 @import 'primeicons/primeicons.css';
 
 * {
-    box-sizing: border-box;
-}
-.p-menuitem a {
-    text-decoration: none;
-}
-td {
-    cursor: pointer;
-}
-.myCard {
-    max-width: 1500px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-}
-.p-card {
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 0;
-}
-.p-toast-message {
-    position: fixed;
-    font-size: 15px;
-    top: 10px;
-    right: 10px;
-    width: 95vw;
-}
-.p-toast-message-content {
-    display: flex;
-    gap: 5px;
-}
-.p-toast-icon-close {
-    margin-left: 5px;
-}
-.p-button {
-    border-radius: 10px;
-    max-height: 33px;
-    min-height: 33px;
-    padding: 10px;
-}
-.p-dialog-mask {
-    padding: 0 10px;
-}
-.p-dialog-header {
-    padding-top: 18px;
-    padding-bottom: 0;
-}
-.p-dialog-content {
-    padding: 20px;
-}
-.p-dialog-header-icon {
-    display: none;
-}
-.p-dropdown-items {
-    padding: 0;
-}
-.p-inputtext {
-    max-height: 44px;
-}
-.p-inline-message {
-    display: flex;
-    justify-content: start;
-    width: 100%;
-    margin-bottom: 20px;
-}
-.p-inline-message-icon {
-    margin-right: 20px;
-}
-.p-dialog-footer {
-    padding: 20px;
-}
-.p-column-title {
-    font-size: 15px;
-}
-.p-paginator {
-    font-size: 14px;
-    padding: 10px 0;
-}
-.p-paginator-element {
-    max-height: 33px;
-    max-width: 33px;
-}
-.p-inline-message {
-    margin-top: -20px;
-}
-.p-menu,
-.p-menu-list {
-    padding: 0;
-    margin: 0;
-    gap: 5px;
-    min-width: 170px;
-    max-width: 170px;
-}
-.p-menu,
-.p-menu-list,
-.p-menuitem-content {
-    border-radius: 5px;
-}
-.p-submenu-header {
-    display: none;
-}
-.p-menuitem-icon {
-    margin-right: 20px;
-}
-.p-menubar {
-    width: 100vw;
-    position: fixed;
-    z-index: 100;
-    padding: 5px;
-    margin: 0;
-    justify-content: space-between;
-}
-.p-avatar {
-    position: relative;
-    right: 15px;
-}
-.p-menubar-button {
-    position: relative;
-    left: 10px;
-    color: black;
-}
-.p-menubar-button .p-icon {
-    width: 20px;
-    height: 20px;
-}
-.p-menubar-root-list {
-    margin: 0;
-    padding: 0;
-}
-.mobileButton {
-    display: inline;
-}
-.myButton {
-    padding: 4px 8.5px 10px 8px;
-    max-width: 34px;
-    min-width: 34px;
+    box-sizing: $box-sizing-all;
 }
 
+// Button
+.p-button {
+    border-radius: $button-border-radius;
+    max-height: $min-max-width-height-small;
+    min-height: $min-max-width-height-small;
+    padding: $button-padding;
+}
+.mobileButton {
+    display: $mobile-button-display;
+}
+.myButton {
+    padding: $my-button-padding;
+    max-width: $min-max-width-height-small;
+    min-width: $min-max-width-height-small;
+}
+
+
+// Card
+.myCard {
+    width: $card-width;
+    max-width: $card-max-width;
+    margin-left: $card-margin-left;
+    margin-right: $card-margin-right;
+}
+
+
+// Dashboards
+.userDashboard {
+    top: $user-dashboard-top;
+}
+
+
+// DataTable
+td {
+    cursor: $td-cursor;
+}
+.p-column-title {
+    font-size: $font-size-base
+}
 .idColumn {
-    width: 20%;
+    width: $id-column-width-phone;
 }
 .nameColumn,
 .fullNameColumn {
-    width: 60%;
+    width: $name-full-name-columns-width-phone;
 }
 .tabletColumn,
 .desktopButton,
 .desktopColumn {
-    display: none;
+    display: $tablet-desktop-columns-display-phone;
 }
 .actionColumn {
-    width: 1%;
+    width: $action-column-width;
 }
+
+
+// Dialog
+.p-dialog-mask {
+    padding: $dialog-mask-padding;
+}
+.p-dialog-header {
+    padding-top: $dialog-header-padding-top;
+    padding-bottom: $dialog-header-padding-bottom;
+}
+.p-dialog-content {
+    padding: $dialog-content-padding;
+}
+.p-dialog-header-icon {
+    display: $dialog-header-icon-display;
+}
+.p-dialog-footer {
+    padding: $dialog-footer-padding;
+}
+
+
+// Dropdown
+.p-dropdown-items {
+    padding: $dropdown-items-padding;
+}
+
+
+// InputText
+.p-inputtext {
+    max-height: $min-max-width-height-medium;
+}
+
+
+// Menu, MenuBar
+.p-menuitem a {
+    text-decoration: $menu-item-a-text-decoration;
+}
+.p-avatar {
+    position: $avatar-position;
+    right: $avatar-right;
+}
+.p-menu,
+.p-menu-list {
+    padding: $menu-menu-list-padding;
+    margin: $menu-menu-list-margin;
+    gap: $menu-menu-list-gap;
+    min-width: $menu-menu-list-min-width;
+    max-width: $menu-menu-list-max-width;
+}
+.p-menu,
+.p-menu-list,
+.p-menuitem-content {
+    border-radius: $menu-menu-list-menu-item-content-border-radius;
+}
+.p-submenu-header {
+    display: $submenu-header-display;
+}
+.p-menuitem-icon {
+    margin-right: $menu-item-icon-margin-right;
+}
+.p-menubar {
+    width: $menubar-width;
+    position: $menubar-position;
+    z-index: $menubar-z-index;
+    padding: $menubar-padding;
+    margin: $menubar-margin;
+    justify-content: $menubar-justify-content;
+}
+.p-menubar-button {
+    position: $menubar-button-position;
+    left: $menubar-button-left;
+    color: $menubar-button-color;
+}
+.p-menubar-button .p-icon {
+    width: $menubar-button-icon-width;
+    height: $menubar-button-icon-height;
+}
+.p-menubar-root-list {
+    padding: $menubar-root-list-padding;
+    margin: $menubar-root-list-margin;
+}
+
+
+// Paginator
+.p-paginator {
+    font-size: $font-size-base;
+    padding-top: $paginator-padding-top;
+    margin-bottom: $paginator-margin-bottom;
+}
+.p-paginator-element {
+    max-height: $min-max-width-height-small;
+    max-width: $min-max-width-height-small;
+    min-width: $min-max-width-height-small;
+}
+
+
+// Toast
+.p-toast-message {
+    position: $toast-position;
+    font-size: $font-size-base;
+    top: $toast-top;
+    right: $toast-right;
+    width: $toast-width;
+}
+.p-toast-message-content {
+    display: $toast-message-content-display;
+    gap: $toast-message-content-gap;
+}
+.p-toast-icon-close {
+    margin-left: $toast-icon-close-margin-left;
+}
+
+
+
 @media (min-width: 530px) {
     .p-toast-message {
-        width: max-content;
-        max-width: max-content;
+        width: $toast-message-media-min-width-530px-width;
+        max-width: $toast-message-media-min-width-530px-max-width;
     }
     .p-avatar {
-        right: 25px;
+        right: $avatar-min-width-530px-right;
     }
 }
 
 @media (min-width: 768px) {
     .tabletColumn {
-        display: table-cell;
+        display: $tablet-column-min-width-768px-display;
     }
     .myCard {
-        margin-bottom: 30px;
+        margin-bottom: $my-card-min-width-768px-margin-bottom;
     }
     .idColumn {
-        width: 15%;
+        width: $id-column-min-width-768px-width;
     }
     .nameColumn,
     .fullNameColumn {
-        width: 35%;
+        width: $name-full-name-column-min-width-768px-width;
     }
-}
-.userDashboard {
-    top: -2px;
 }
 @media (min-width: 961px) {
     .p-avatar {
-        right: 65px;
+        right: $avatar-min-width-961px-right;
     }
     .p-menubar .p-menuitem-content {
-        position: relative;
-        left: 40px;
+        position: $menubar-menuitem-content-min-width-961px-position;
+        left: $menubar-menuitem-content-min-width-961px-left;
     }
 }
 @media (min-width: 992px) {
     .desktopColumn {
-        display: table-cell;
+        display: $desktop-column-min-width-992px-display;
     }
     .desktopButton {
-        display: flex;
+        display: $desktop-button-min-width-992px-display;
     }
     .myButton {
-        padding: 9px 8.5px 10px 8px;
+        padding: $my-button-min-width-992px-padding;
     }
     .mobileButton {
-        display: none;
+        display: $mobile-button-min-width-992px-display;
     }
     .emailColumn {
-        width: 35%;
+        width: $email-column-min-width-992px-width;
     }
     .roleColumn,
     .birthdayColumn {
-        width: 15%;
+        width: $role-birthday-column-min-width-992px-width;
     }
 }
 
-.p-menuitem:nth-child(5) .p-menuitem-link {
-    opacity: 0.3;
-    cursor: default;
-}
 
 @media (max-width: 550px) {
     .p-toast-message-success {
-        background: #EAF8F3;
+        background: $success-toast-bg;
     }
     .p-toast-message-warn {
-        background: #FFF5E8;
+        background: $warn-toast-bg;
     }
     .p-toast-message-error {
-        background: #FDEDEC;
+        background: $error-toast-bg;
     }
+}
+
+
+// Share menuitem disabled for now
+.p-menuitem:nth-child(5) .p-menuitem-link {
+    opacity: 0.3;
+    cursor: default;
 }
