@@ -135,11 +135,11 @@ async function storeContact(): Promise<void> {
             role: data.value.role,
         })
 
+        props.close('create')
         success_message.value =
-            'Successfully created: ' + responseContact.data.full_name
+              'Successfully created: ' + responseContact.data.full_name
 
         props.flashSuccessMessage(success_message.value)
-        props.close('create')
     } catch (error: any) {
         switch (error.response.status) {
             case 500:

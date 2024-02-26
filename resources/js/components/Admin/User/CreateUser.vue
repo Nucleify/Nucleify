@@ -91,11 +91,11 @@ async function storeUser() {
             confirm_password: data.value.confirm_password,
         })
         .then((response) => {
+            props.close('create')
             success_message.value =
                 'Successfully created: ' + response.data.name
 
             props.flashSuccessMessage(success_message.value)
-            props.close('create')
         })
         .catch((error) => {
             switch (error.response.status) {

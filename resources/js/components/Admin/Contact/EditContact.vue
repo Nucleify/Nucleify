@@ -142,11 +142,11 @@ async function editContact() {
             role: data.value.role,
         })
         .then((response) => {
+            props.close('edit')
             success_message.value =
                 'Successfully edited: ' + response.data.full_name
 
             props.flashSuccessMessage(success_message.value)
-            props.close('edit')
         })
         .catch((error) => {
             switch (error.response.status) {

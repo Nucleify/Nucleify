@@ -296,12 +296,12 @@ function deleteContact(contact: any): void {
     axios
         .delete(`/api/contacts/${contact.data.id}`)
         .then(() => {
+            closeModal('delete')
+            getContacts()
             success_message.value =
                 'Successfully deleted: ' + contact.data.full_name
 
             props.flashSuccessMessage(success_message.value)
-            closeModal('delete')
-            getContacts()
         })
         .catch((error) => {
             switch (error.response.status) {

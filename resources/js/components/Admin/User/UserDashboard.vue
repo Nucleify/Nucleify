@@ -291,11 +291,11 @@ function deleteUser(user: any): void {
     axios
         .delete(`/api/users/${user.data.id}`)
         .then(() => {
+            closeModal('delete')
+            getUsers()
             success_message.value = 'Successfully deleted: ' + user.data.name
 
             props.flashSuccessMessage(success_message.value)
-            closeModal('delete')
-            getUsers()
         })
         .catch((error) => {
             closeModal('delete')
