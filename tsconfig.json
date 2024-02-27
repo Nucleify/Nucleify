@@ -35,9 +35,9 @@
   "include": [
     "cypress/**/*.ts",
     "cypress/**/*.tsx",
-    "resources/**/*.ts",
-    "resources/**/*.tsx",
-    "resources/**/*.vue",
+    "resources/**/**/*.ts",
+    "resources/**/**/*.tsx",
+    "resources/**/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
