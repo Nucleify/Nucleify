@@ -1,4 +1,4 @@
-export function removeUserFromSessionStorage(): void {
+export default function removeUserFromSessionStorage(): void {
     const userKeys = [
         'id',
         'name',

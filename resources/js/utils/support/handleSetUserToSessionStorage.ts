@@ -1,6 +1,6 @@
-import { UserData } from '../handleInterfaces'
+import { UserInterface } from '../../interfaces'
 
-export function setUserToSessionStorage(user: UserData): void {
+export default function setUserToSessionStorage(user: UserInterface): void {
     const sanitizedUser = {
         id: user.id,
         name: user.name,

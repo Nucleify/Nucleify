@@ -122,12 +122,11 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-import { UserData } from "../../../utils/handleInterfaces"
+import { UserInterface } from '../../../interfaces'
 
 import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
 import EditUser from './EditUser.vue'
-
 
 const props = defineProps<{
     roleOptions: string[]
@@ -136,8 +135,8 @@ const props = defineProps<{
     flashValidationErrors: (errors: Record<string, string[]>) => void
 }>()
 
-const results = ref<UserData[]>([])
-const selectedUser = ref<UserData | undefined>(undefined)
+const results = ref<UserInterface[]>([])
+const selectedUser = ref<UserInterface | undefined>(undefined)
 const success_message = ref<string | undefined>(undefined)
 
 const visibleShow = ref(false)
@@ -181,7 +180,7 @@ const items = ref([
     },
 ])
 
-function openMenu(event: MouseEvent, user: UserData): void {
+function openMenu(event: MouseEvent, user: UserInterface): void {
     if (user) {
         setSelectedUser(user)
     }
@@ -196,10 +195,10 @@ onMounted(getUsers)
 /**
  * Set selected user function
  *
- * @param userData
+ * @param user
  */
-function setSelectedUser(userData: UserData): void {
-    selectedUser.value = userData
+function setSelectedUser(user: UserInterface): void {
+    selectedUser.value = user
 }
 
 /**
@@ -208,7 +207,7 @@ function setSelectedUser(userData: UserData): void {
  * @param action
  * @param user
  */
-function openModal(action: string, user?: UserData | undefined): void {
+function openModal(action: string, user?: UserInterface | undefined): void {
     if (user) {
         setSelectedUser(user)
     }

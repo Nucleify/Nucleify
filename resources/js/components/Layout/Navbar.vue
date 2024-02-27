@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { logout } from '../../utils/auth/handleLogout'
+import { logout } from '../../utils'
 
 const menu = ref()
 const userMenuItems = ref([
@@ -22,15 +22,15 @@ const userMenuItems = ref([
         items: [
             {
                 label: 'Profile',
-                icon: 'pi pi-user'
+                icon: 'pi pi-user',
             },
             {
                 label: 'Log out',
                 icon: 'pi pi-sign-out',
-                command: logout
-            }
-        ]
-    }
+                command: logout,
+            },
+        ],
+    },
 ])
 
 function openUserMenu(event: MouseEvent): void {

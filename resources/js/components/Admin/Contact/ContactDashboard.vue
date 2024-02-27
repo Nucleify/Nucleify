@@ -122,7 +122,7 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-import { ContactData } from '../../../utils/handleInterfaces'
+import { ContactInterface } from '../../../interfaces'
 
 import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
@@ -135,8 +135,8 @@ const props = defineProps<{
     flashValidationErrors: (errors: Record<string, string[]>) => void
 }>()
 
-const results = ref<ContactData[]>([])
-const selectedContact = ref<ContactData | undefined>(undefined)
+const results = ref<ContactInterface[]>([])
+const selectedContact = ref<ContactInterface | undefined>(undefined)
 const success_message = ref<string | undefined>(undefined)
 
 const visibleShow = ref(false)
@@ -180,7 +180,7 @@ const items = ref([
     },
 ])
 
-function openMenu(event: MouseEvent, contact: ContactData): void {
+function openMenu(event: MouseEvent, contact: ContactInterface): void {
     if (contact) {
         setSelectedContact(contact)
     }
@@ -195,10 +195,10 @@ onMounted(getContacts)
 /**
  * Set selected contact function
  *
- * @param contactData
+ * @param contact
  */
-function setSelectedContact(contactData: ContactData): void {
-    selectedContact.value = contactData
+function setSelectedContact(contact: ContactInterface): void {
+    selectedContact.value = contact
 }
 
 /**
@@ -207,7 +207,10 @@ function setSelectedContact(contactData: ContactData): void {
  * @param action
  * @param contact
  */
-function openModal(action: string, contact?: ContactData | undefined): void {
+function openModal(
+    action: string,
+    contact?: ContactInterface | undefined
+): void {
     if (contact) {
         setSelectedContact(contact)
     }

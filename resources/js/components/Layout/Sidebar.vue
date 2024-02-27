@@ -5,19 +5,20 @@
             <div class="flex flex-column mt-auto justify-content-center">
                 <hr class="mx-2 border-top-1" />
 
-                <div class="sidebarUser flex align-items-center gap-3 cursor-pointer p-2 border-round-xl" @click="openUserMenu">
+                <div
+                    class="sidebarUser flex align-items-center gap-3 cursor-pointer p-2 border-round-xl"
+                    @click="openUserMenu"
+                >
                     <Avatar
                         icon="pi pi-user"
                         shape="circle"
                         class="w-2rem h-2rem"
                     />
-                    <p class="font-bold text-lg vertical-align-middle m-0 w-8">{{ userName }}</p>
+                    <p class="font-bold text-lg vertical-align-middle m-0 w-8">
+                        {{ userName || 'undefined' }}
+                    </p>
                 </div>
-                <Menu
-                    ref="menu"
-                    :model="userMenuItems"
-                    :popup="true"
-                />
+                <Menu ref="menu" :model="userMenuItems" :popup="true" />
             </div>
         </div>
     </Sidebar>
@@ -30,31 +31,30 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import {logout} from "../../utils/auth/handleLogout";
+import { logout } from '../../utils'
 
-const visible = ref(false)
 const userName = window.sessionStorage.getItem('user_name')
-
 const menu = ref()
+const visible = ref(false)
 
 const userMenuItems = ref([
-  {
-    items: [
-      {
-        label: 'Profile',
-        icon: 'pi pi-user'
-      },
-      {
-        label: 'Log out',
-        icon: 'pi pi-sign-out',
-        command: logout
-      }
-    ]
-  }
+    {
+        items: [
+            {
+                label: 'Profile',
+                icon: 'pi pi-user',
+            },
+            {
+                label: 'Log out',
+                icon: 'pi pi-sign-out',
+                command: logout,
+            },
+        ],
+    },
 ])
 
 function openUserMenu(event: MouseEvent): void {
-  menu.value.toggle(event)
+    menu.value.toggle(event)
 }
 
 const items = ref([

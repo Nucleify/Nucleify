@@ -8,6 +8,8 @@ export interface ContactData {
     birthday: string
     contact_groups: string
     role: string
+    created_at: string
+    updated_at: string
 }
 
 export interface UserData {

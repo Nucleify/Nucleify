@@ -1,6 +1,6 @@
-import { removeUserFromSessionStorage } from './handleRemoveUserFromSessionStorage'
+import { removeUserFromSessionStorage } from '../../utils'
 
-export function logout(): void {
+export default function logout(): void {
     const csrf = document
         .querySelector('meta[name="csrf-token"]')
         ?.getAttribute('content')
