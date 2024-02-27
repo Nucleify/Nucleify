@@ -17,8 +17,6 @@
 // Button
 .p-button {
     border-radius: $button-border-radius;
-    max-height: $min-max-width-height-small;
-    min-height: $min-max-width-height-small;
     padding: $button-padding;
 }
 .mobileButton {
@@ -26,10 +24,25 @@
 }
 .myButton {
     padding: $my-button-padding;
+    max-height: $min-max-width-height-small;
+    min-height: $min-max-width-height-small;
     max-width: $min-max-width-height-small;
     min-width: $min-max-width-height-small;
 }
-
+.myBigButton {
+    position: $my-big-button-position;
+    left: $my-big-button-left;
+    top: $my-big-button-top;
+    padding-left: $my-big-button-padding-left;
+    max-height: $min-max-width-height-big;
+    min-height: $min-max-width-height-big;
+    max-width: $min-max-width-height-big;
+    min-width: $min-max-width-height-big;
+}
+.newButton {
+    max-height: $min-max-width-height-small;
+    min-height: $min-max-width-height-small;
+}
 
 // Card
 .myCard {
@@ -37,21 +50,21 @@
     max-width: $card-max-width;
     margin-left: $card-margin-left;
     margin-right: $card-margin-right;
+    box-shadow: $card-box-shadow;
 }
-
 
 // Dashboards
 .userDashboard {
+    position: $user-dashboard-position;
     top: $user-dashboard-top;
 }
-
 
 // DataTable
 td {
     cursor: $td-cursor;
 }
 .p-column-title {
-    font-size: $font-size-base
+    font-size: $font-size-base;
 }
 .idColumn {
     width: $id-column-width-phone;
@@ -68,7 +81,6 @@ td {
 .actionColumn {
     width: $action-column-width;
 }
-
 
 // Dialog
 .p-dialog-mask {
@@ -88,18 +100,15 @@ td {
     padding: $dialog-footer-padding;
 }
 
-
 // Dropdown
 .p-dropdown-items {
     padding: $dropdown-items-padding;
 }
 
-
 // InputText
 .p-inputtext {
-    max-height: $min-max-width-height-medium;
+    max-height: $min-max-width-height-big;
 }
-
 
 // Menu, MenuBar
 .p-menuitem a {
@@ -115,7 +124,6 @@ td {
     margin: $menu-menu-list-margin;
     gap: $menu-menu-list-gap;
     min-width: $menu-menu-list-min-width;
-    max-width: $menu-menu-list-max-width;
 }
 .p-menu,
 .p-menu-list,
@@ -149,7 +157,9 @@ td {
     padding: $menubar-root-list-padding;
     margin: $menubar-root-list-margin;
 }
-
+.myNavbar {
+    display: $my-navbar-display;
+}
 
 // Paginator
 .p-paginator {
@@ -163,6 +173,29 @@ td {
     min-width: $min-max-width-height-small;
 }
 
+// PanelMenu
+.p-panelmenu {
+    display: $panel-menu-display;
+    flex-direction: $panel-menu-flex-direction;
+    gap: $panel-menu-gap;
+    margin-top: $panel-menu-margin-top;
+}
+.p-panelmenu-header-action {
+    padding: $panel-menu-header-action-padding;
+    text-decoration: $panel-menu-header-action-text-decoration;
+    color: $panel-menu-header-action-color;
+}
+
+// Sidebar
+.p-sidebar {
+    max-width: $sidebar-max-width;
+}
+.toggleSidebarButton {
+    border-radius: $toggle-sidebar-button-border-radius;
+}
+.toggleSidebarButton .p-button-icon {
+    font-size: $font-size-small;
+}
 
 // Toast
 .p-toast-message {
@@ -180,9 +213,8 @@ td {
     margin-left: $toast-icon-close-margin-left;
 }
 
-
-
-@media (min-width: 530px) {
+@media (min-width: $minWidthSm) // 530px
+{
     .p-toast-message {
         width: $toast-message-media-min-width-530px-width;
         max-width: $toast-message-media-min-width-530px-max-width;
@@ -192,7 +224,8 @@ td {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: $minWidthMd) // 768px
+{
     .tabletColumn {
         display: $tablet-column-min-width-768px-display;
     }
@@ -207,7 +240,8 @@ td {
         width: $name-full-name-column-min-width-768px-width;
     }
 }
-@media (min-width: 961px) {
+@media (min-width: $minWidthLg) // 961px
+{
     .p-avatar {
         right: $avatar-min-width-961px-right;
     }
@@ -215,16 +249,20 @@ td {
         position: $menubar-menuitem-content-min-width-961px-position;
         left: $menubar-menuitem-content-min-width-961px-left;
     }
+    .myNavbar {
+        display: $my-navbar-min-width-961px-display;
+    }
+    .myButton {
+        padding: $my-button-min-width-961px-padding;
+    }
 }
-@media (min-width: 992px) {
+@media (min-width: $minWidthLg2) // 992px
+{
     .desktopColumn {
         display: $desktop-column-min-width-992px-display;
     }
     .desktopButton {
         display: $desktop-button-min-width-992px-display;
-    }
-    .myButton {
-        padding: $my-button-min-width-992px-padding;
     }
     .mobileButton {
         display: $mobile-button-min-width-992px-display;
@@ -238,8 +276,8 @@ td {
     }
 }
 
-
-@media (max-width: 550px) {
+@media (max-width: $maxWidthSm) // 550px
+{
     .p-toast-message-success {
         background: $success-toast-bg;
     }
@@ -250,7 +288,6 @@ td {
         background: $error-toast-bg;
     }
 }
-
 
 // Share menuitem disabled for now
 .p-menuitem:nth-child(5) .p-menuitem-link {

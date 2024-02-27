@@ -17,6 +17,8 @@ import InlineMessage from 'primevue/inlinemessage'
 import InputText from 'primevue/inputtext'
 import Menu from 'primevue/menu'
 import Menubar from 'primevue/menubar'
+import PanelMenu from 'primevue/panelmenu'
+import Sidebar from 'primevue/sidebar'
 import Toast from 'primevue/toast'
 /**
  *
@@ -42,6 +44,8 @@ app.component('InlineMessage', InlineMessage)
 app.component('InputText', InputText)
 app.component('Menu', Menu)
 app.component('Menubar', Menubar)
+app.component('PanelMenu', PanelMenu)
+app.component('Sidebar', Sidebar)
 app.component('Toast', Toast)
 
 /**
@@ -49,11 +53,13 @@ app.component('Toast', Toast)
  */
 import AdminPanel from './components/Admin/AdminPanel.vue'
 import TestLoginButton from './components/Admin/User/TestLoginButton.vue'
-import Navbar from './components/Layout/Navbar.vue'
+import MyNavbar from './components/Layout/Navbar.vue'
+import MySidebar from './components/Layout/Sidebar.vue'
 
 app.component('test-login-button', TestLoginButton)
 app.component('admin-panel', AdminPanel)
-app.component('nav-bar', Navbar)
+app.component('nav-bar', MyNavbar)
+app.component('side-bar', MySidebar)
 
 app.use(ToastService)
 

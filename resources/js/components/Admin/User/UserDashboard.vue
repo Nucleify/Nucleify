@@ -7,7 +7,7 @@
                 <Button
                     label="New User"
                     @click="openModal('create')"
-                    class="text-sm"
+                    class="text-sm newButton"
                 />
             </div>
         </template>

@@ -7,7 +7,7 @@
                 <Button
                     label="New Contact"
                     @click="openModal('create')"
-                    class="text-sm"
+                    class="text-sm newButton"
                 />
             </div>
         </template>

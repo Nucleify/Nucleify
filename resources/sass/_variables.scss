@@ -3,7 +3,7 @@ $box-sizing-all: border-box;
 
 // min/max width/height
 $min-max-width-height-small: 33px;
-$min-max-width-height-medium: 44px;
+$min-max-width-height-big: 44px;
 
 // Body
 $body-bg: #f8fafc;
@@ -13,15 +13,21 @@ $button-border-radius: 10px;
 $button-padding: 10px;
 $mobile-button-display: inline;
 $my-button-padding: 4px 9px 10px 7.5px;
+$my-big-button-position: fixed;
+$my-big-button-left: -22px;
+$my-big-button-top: 8px;
+$my-big-button-padding-left: 28px;
 
 // Card
 $card-width: 100%;
 $card-max-width: 1500px;
 $card-margin-left: auto;
 $card-margin-right: auto;
+$card-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
 // Dashboard
-$user-dashboard-top: -2px;
+$user-dashboard-position: relative;
+$user-dashboard-top: -4px;
 
 // DataTable
 $td-cursor: pointer;
@@ -66,10 +72,24 @@ $menubar-button-icon-width: 20px;
 $menubar-button-icon-height: 20px;
 $menubar-root-list-padding: 0;
 $menubar-root-list-margin: 0;
+$my-navbar-display: fixed;
 
 // Paginator
 $paginator-padding-top: 25px;
 $paginator-margin-bottom: -20px;
+
+// PanelMenu
+$panel-menu-display: flex;
+$panel-menu-flex-direction: column;
+$panel-menu-gap: 10px;
+$panel-menu-margin-top: 10px;
+$panel-menu-header-action-padding: 15px;
+$panel-menu-header-action-text-decoration: none;
+$panel-menu-header-action-color: #5e5e5e;
+
+// Sidebar
+$sidebar-max-width: 270px;
+$toggle-sidebar-button-border-radius: 50%;
 
 // Toast
 $toast-position: fixed;
@@ -79,16 +99,15 @@ $toast-width: 95vw;
 $toast-message-content-display: flex;
 $toast-message-content-gap: 5px;
 $toast-icon-close-margin-left: 5px;
-$success-toast-bg: #EAF8F3;
-$warn-toast-bg: #FFF5E8;
-$error-toast-bg: #FDEDEC;
+$success-toast-bg: #eaf8f3;
+$warn-toast-bg: #fff5e8;
+$error-toast-bg: #fdedec;
 
 // Typography
 $font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-small: 0.75rem;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
-
-
 
 // Media min width 530px
 $toast-message-media-min-width-530px-width: max-content;
@@ -105,11 +124,22 @@ $name-full-name-column-min-width-768px-width: 35%;
 $avatar-min-width-961px-right: 65px;
 $menubar-menuitem-content-min-width-961px-position: relative;
 $menubar-menuitem-content-min-width-961px-left: 40px;
+$my-navbar-min-width-961px-display: none;
+$my-button-min-width-961px-padding: 9px 8.5px 10px 8px;
 
 // Media min width 992px
 $desktop-column-min-width-992px-display: table-cell;
 $desktop-button-min-width-992px-display: flex;
-$my-button-min-width-992px-padding: 9px 8.5px 10px 8px;
 $mobile-button-min-width-992px-display: none;
 $email-column-min-width-992px-width: 35%;
 $role-birthday-column-min-width-992px-width: 15%;
+
+
+
+
+// Medias
+$minWidthSm: 530px;
+$minWidthMd: 768px;
+$minWidthLg: 961px;
+$minWidthLg2: 992px;
+$maxWidthSm: 550px;

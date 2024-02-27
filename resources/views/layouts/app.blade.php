@@ -20,6 +20,7 @@
     <div id="app">
         @auth
             <nav-bar></nav-bar>
+            <side-bar></side-bar>
         @endauth
 
 

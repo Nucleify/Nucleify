@@ -1,5 +1,5 @@
 <template>
-    <Menubar :model="items">
+    <Menubar :model="items" class="myNavbar">
         <template #end>
             <Avatar
                 icon="pi pi-user"
@@ -14,6 +14,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { logout } from '../../utils/auth/handleLogout'
 
 const menu = ref()
 const userMenuItems = ref([
@@ -56,20 +57,4 @@ const items = ref([
         url: '/admin',
     },
 ])
-
-function logout(): void {
-    const csrf = document
-        .querySelector('meta[name="csrf-token"]')
-        ?.getAttribute('content')
-    const form = document.getElementById(
-        'logout-form'
-    ) as HTMLFormElement | null
-
-    if (csrf && form) {
-        form.querySelector('input[name="_token"]').setAttribute('value', csrf)
-        form.submit()
-    } else {
-        console.error('Logout form or CSRF token not found.')
-    }
-}
 </script>
