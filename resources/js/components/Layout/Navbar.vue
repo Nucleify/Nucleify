@@ -22,15 +22,15 @@ const userMenuItems = ref([
         items: [
             {
                 label: 'Profile',
-                icon: 'pi pi-user',
+                icon: 'pi pi-user'
             },
             {
                 label: 'Log out',
                 icon: 'pi pi-sign-out',
-                command: logout,
-            },
-        ],
-    },
+                command: logout
+            }
+        ]
+    }
 ])
 
 function openUserMenu(event: MouseEvent): void {

@@ -16,7 +16,7 @@
 
 // Button
 .p-button {
-    border-radius: $button-border-radius;
+    border-radius: $small-border-radius;
     padding: $button-padding;
 }
 .mobileButton {
@@ -114,7 +114,7 @@ td {
 .p-menuitem a {
     text-decoration: $menu-item-a-text-decoration;
 }
-.p-avatar {
+.p-menubar .p-avatar {
     position: $avatar-position;
     right: $avatar-right;
 }
@@ -185,16 +185,42 @@ td {
     text-decoration: $panel-menu-header-action-text-decoration;
     color: $panel-menu-header-action-color;
 }
+.p-panelmenu-header-content:hover,
+.p-panelmenu-header-action:hover {
+    color: $primary-hover-color;
+    background: $primary-hover-bg-color;
+    transition: $transition-colors-300ms;
+    border-radius: $small-border-radius;
+}
+.p-panelmenu .p-panelmenu-header .p-panelmenu-header-content {
+    border-color: $panel-menu-header-content-border;
+    border-radius: $small-border-radius;
+}
 
 // Sidebar
 .p-sidebar {
     max-width: $sidebar-max-width;
+}
+.p-sidebar-header {
+    padding-left: $sidebar-header-padding-left;
+}
+.p-sidebar-header .p-sidebar-header-content {
+    font-size: $font-size-big;
 }
 .toggleSidebarButton {
     border-radius: $toggle-sidebar-button-border-radius;
 }
 .toggleSidebarButton .p-button-icon {
     font-size: $font-size-small;
+}
+.sidebarHr {
+    position: $sidebar-hr-position;
+    bottom: $sidebar-hr-bottom;
+}
+.sidebarUser:hover {
+    color: $primary-hover-color;
+    background: $primary-hover-bg-color;
+    transition: $transition-colors-300ms;
 }
 
 // Toast
@@ -242,9 +268,6 @@ td {
 }
 @media (min-width: $minWidthLg) // 961px
 {
-    .p-avatar {
-        right: $avatar-min-width-961px-right;
-    }
     .p-menubar .p-menuitem-content {
         position: $menubar-menuitem-content-min-width-961px-position;
         left: $menubar-menuitem-content-min-width-961px-left;
@@ -276,8 +299,12 @@ td {
     }
 }
 
-@media (max-width: $maxWidthSm) // 550px
+@media (max-width: $maxWidthSm1) // 550px
 {
+    .p-sidebar,
+    .p-sidebar-mask {
+        display: $sidebar-sidebar-mask-max-width-550px-display;
+    }
     .p-toast-message-success {
         background: $success-toast-bg;
     }
@@ -286,6 +313,14 @@ td {
     }
     .p-toast-message-error {
         background: $error-toast-bg;
+    }
+}
+
+@media (min-width: $minWidthSm1) // 550px
+{
+    .p-sidebar,
+    .p-sidebar-mask {
+        display: $sidebar-sidebar-mask-min-width-550px-display;
     }
 }
 

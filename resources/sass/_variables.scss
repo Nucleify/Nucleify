@@ -1,3 +1,19 @@
+// Colors
+$primary-hover-color: #0F9B6E;
+$primary-hover-bg-color: #F3F4F6;
+$transition-colors-300ms: color 300ms, background-color 300ms;
+
+// Border radius
+$small-border-radius: 10px;
+
+
+// Fonts
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-big: 1.563rem;
+$font-size-small: 0.75rem;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
 // All
 $box-sizing-all: border-box;
 
@@ -9,7 +25,6 @@ $min-max-width-height-big: 44px;
 $body-bg: #f8fafc;
 
 // Button
-$button-border-radius: 10px;
 $button-padding: 10px;
 $mobile-button-display: inline;
 $my-button-padding: 4px 9px 10px 7.5px;
@@ -86,10 +101,14 @@ $panel-menu-margin-top: 10px;
 $panel-menu-header-action-padding: 15px;
 $panel-menu-header-action-text-decoration: none;
 $panel-menu-header-action-color: #5e5e5e;
+$panel-menu-header-content-border: transparent;
 
 // Sidebar
 $sidebar-max-width: 270px;
+$sidebar-header-padding-left: 30px;
 $toggle-sidebar-button-border-radius: 50%;
+$sidebar-hr-position: relative;
+$sidebar-hr-bottom: 4px;
 
 // Toast
 $toast-position: fixed;
@@ -103,11 +122,6 @@ $success-toast-bg: #eaf8f3;
 $warn-toast-bg: #fff5e8;
 $error-toast-bg: #fdedec;
 
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-small: 0.75rem;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
 
 // Media min width 530px
 $toast-message-media-min-width-530px-width: max-content;
@@ -134,12 +148,14 @@ $mobile-button-min-width-992px-display: none;
 $email-column-min-width-992px-width: 35%;
 $role-birthday-column-min-width-992px-width: 15%;
 
-
-
+// Media max width 550px
+$sidebar-sidebar-mask-max-width-550px-display: none;
+$sidebar-sidebar-mask-min-width-550px-display: flex;
 
 // Medias
 $minWidthSm: 530px;
 $minWidthMd: 768px;
 $minWidthLg: 961px;
 $minWidthLg2: 992px;
-$maxWidthSm: 550px;
+$maxWidthSm1: 550px;
+$minWidthSm1: 550px;
