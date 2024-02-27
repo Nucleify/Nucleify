@@ -122,21 +122,11 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
+import { ContactData } from '../../../utils/handleInterfaces'
+
 import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
-
-interface ContactData {
-    first_name: string
-    last_name: string
-    email: string
-    personal_phone: string
-    work_phone: string
-    address: string
-    birthday: string
-    contact_groups: string
-    role: string
-}
 
 const props = defineProps<{
     roleOptions: string[]

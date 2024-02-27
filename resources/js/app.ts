@@ -55,6 +55,7 @@ import AdminPanel from './components/Admin/AdminPanel.vue'
 import TestLoginButton from './components/Admin/User/TestLoginButton.vue'
 import MyNavbar from './components/Layout/Navbar.vue'
 import MySidebar from './components/Layout/Sidebar.vue'
+import axios from 'axios'
 
 app.component('test-login-button', TestLoginButton)
 app.component('admin-panel', AdminPanel)
@@ -64,3 +65,26 @@ app.component('side-bar', MySidebar)
 app.use(ToastService)
 
 app.mount('#app')
+
+/**
+ * Set user to session storage
+ */
+import { UserData } from './utils/handleInterfaces'
+import { setUserToSessionStorage } from './utils/auth/handleSetUserToSessionStorage'
+
+if (
+    !window.localStorage.getItem('user_id') &&
+    !window.location.pathname.includes('/login') &&
+    !window.location.pathname.includes('/register')
+) {
+    axios
+        .get('/api/user')
+        .then((response) => {
+            const user: UserData = response.data
+            console.log(user)
+            setUserToSessionStorage(user)
+        })
+        .catch((error) => {
+            console.error('Error fetching user data:', error)
+        })
+}

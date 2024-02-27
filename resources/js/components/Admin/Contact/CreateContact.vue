@@ -120,10 +120,11 @@ const { visible, options } = toRefs(props)
 const success_message = ref<string | undefined>(undefined)
 
 async function storeContact(): Promise<void> {
-    try {
-        const responseUser = await axios.get('/api/user')
-        const responseContact = await axios.post('/api/contacts', {
-            user_id: responseUser.data.id,
+    const user_id = window.sessionStorage.getItem('user_id')
+
+    await axios
+        .post('/api/contacts', {
+            user_id: user_id,
             first_name: data.value.first_name,
             last_name: data.value.last_name,
             email: data.value.email,
@@ -134,27 +135,27 @@ async function storeContact(): Promise<void> {
             contact_groups: data.value.contact_groups,
             role: data.value.role,
         })
-
-        props.close('create')
-        success_message.value =
-              'Successfully created: ' + responseContact.data.full_name
-
-        props.flashSuccessMessage(success_message.value)
-    } catch (error: any) {
-        switch (error.response.status) {
-            case 500:
-                props.flashDangerMessage(
-                    error.response.data.error ||
-                        'HTTP 500: Internal Server Error'
-                )
-                break
-            case 403:
-            case 401:
-                props.flashDangerMessage('Unauthorized access')
-                break
-            default:
-                props.flashValidationErrors(error.response.data.errors)
-        }
-    }
+        .then((response) => {
+            props.close('create')
+            success_message.value =
+                'Successfully created: ' + response.data.full_name
+            props.flashSuccessMessage(success_message.value)
+        })
+        .catch((error) => {
+            switch (error.response.status) {
+                case 500:
+                    props.flashDangerMessage(
+                        error.response.data.error ||
+                            'HTTP 500: Internal Server Error'
+                    )
+                    break
+                case 403:
+                case 401:
+                    props.flashDangerMessage('Unauthorized access')
+                    break
+                default:
+                    props.flashValidationErrors(error.response.data.errors)
+            }
+        })
 }
 </script>

@@ -122,16 +122,12 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
+import { UserData } from "../../../utils/handleInterfaces"
+
 import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
 import EditUser from './EditUser.vue'
 
-export interface UserData {
-    id: number
-    name: string
-    email: string
-    role: string
-}
 
 const props = defineProps<{
     roleOptions: string[]
