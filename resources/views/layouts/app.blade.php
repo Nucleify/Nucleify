@@ -19,8 +19,9 @@
 <body>
     <div id="app">
         @auth
-            <nav-bar></nav-bar>
-            <side-bar></side-bar>
+            <my-layout>
+
+            </my-layout>
         @endauth
 
 

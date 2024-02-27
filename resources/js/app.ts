@@ -51,14 +51,17 @@ app.component('Toast', Toast)
 /**
  * BLADE COMPONENTS
  */
-import { AdminPanel, MyNavbar, MySidebar, LoginButton, TestLoginButton } from './components'
+import {
+    AdminPanel,
+    MyLayout,
+    LoginButton,
+    TestLoginButton,
+} from './components'
 
 app.component('admin-panel', AdminPanel)
-app.component('nav-bar', MyNavbar)
-app.component('side-bar', MySidebar)
+app.component('my-layout', MyLayout)
 app.component('test-login-button', TestLoginButton)
 app.component('login-button', LoginButton)
-
 
 app.use(ToastService)
 app.mount('#app')

@@ -1,6 +1,6 @@
 <template>
     <Button @click="login(credentials)" class="myButton min-w-max">
-      Test User Login
+        Test User Login
     </Button>
 </template>
 
@@ -9,6 +9,6 @@ import { login } from '../../utils'
 
 const credentials = {
     email: '',
-    password: ''
+    password: '',
 }
 </script>

@@ -1,5 +1,6 @@
 import { UserInterface } from '../../interfaces'
 
+// TODO: Use it in login function when we replace Blade Auth::routes() views to Vue components
 export default function setUserToSessionStorage(user: UserInterface): void {
     const sanitizedUser = {
         id: user.id,
