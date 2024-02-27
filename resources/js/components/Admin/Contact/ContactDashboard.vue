@@ -7,7 +7,7 @@
                 <Button
                     label="New Contact"
                     @click="openModal('create')"
-                    class="text-sm newButton"
+                    class="text-sm smallHeightButton"
                 />
             </div>
         </template>
@@ -112,8 +112,13 @@
                 severity="secondary"
                 label="Cancel"
                 @click="closeModal('delete')"
+                class="smallHeightButton"
             />
-            <Button label="Confirm" @click="deleteContact(selectedContact)" />
+            <Button
+                label="Confirm"
+                @click="deleteContact(selectedContact)"
+                class="smallHeightButton"
+            />
         </div>
     </Dialog>
 </template>

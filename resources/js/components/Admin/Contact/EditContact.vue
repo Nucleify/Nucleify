@@ -82,8 +82,13 @@
                     severity="secondary"
                     label="Cancel"
                     @click="props.close('edit')"
+                    class="smallHeightButton"
                 />
-                <Button label="Confirm" @click.prevent="editContact" />
+                <Button
+                    label="Confirm"
+                    @click.prevent="editContact"
+                    class="smallHeightButton"
+                />
             </div>
         </template>
     </Dialog>

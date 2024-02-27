@@ -81,8 +81,13 @@
                     severity="secondary"
                     label="Cancel"
                     @click="props.close('create')"
+                    class="smallHeightButton"
                 />
-                <Button label="Create" @click="storeContact" />
+                <Button
+                    label="Create"
+                    @click="storeContact"
+                    class="smallHeightButton"
+                />
             </div>
         </template>
     </Dialog>
