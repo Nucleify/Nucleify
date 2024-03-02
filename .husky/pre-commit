@@ -3,3 +3,8 @@
 
 # ./vendor/bin/pest - I'm testing before commit manually & in this console messages are colorless
 npm run write
+
+if [ -n "$(git status --porcelain)" ]; then
+  # Commit all modified files
+  git add .
+fi
