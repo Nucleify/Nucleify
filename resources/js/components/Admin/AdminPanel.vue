@@ -21,7 +21,7 @@ import { useToast } from 'primevue/usetoast'
 
 const toast = useToast()
 
-const roleOptions = ['user', 'admin', 'staff']
+const roleOptions = ['user', 'tech', 'test_admin', 'admin', 'super_admin']
 
 /**
  * Flash toast functions

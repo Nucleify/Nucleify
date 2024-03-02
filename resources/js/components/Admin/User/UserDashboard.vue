@@ -90,6 +90,7 @@
         v-bind:close="closeModal"
     />
     <CreateUser
+        v-bind:getUsers="getUsers"
         v-bind:visible="visibleCreate"
         v-bind:options="roleOptions"
         v-bind:flashSuccessMessage="flashSuccessMessage"
@@ -98,8 +99,9 @@
         v-bind:close="closeModal"
     />
     <EditUser
-        v-bind:visible="visibleEdit"
         v-bind:user="selectedUser"
+        v-bind:getUsers="getUsers"
+        v-bind:visible="visibleEdit"
         v-bind:options="roleOptions"
         v-bind:flashSuccessMessage="flashSuccessMessage"
         v-bind:flashDangerMessage="flashDangerMessage"

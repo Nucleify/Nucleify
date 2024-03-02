@@ -98,6 +98,7 @@ import { ref, toRefs } from 'vue'
 import axios from 'axios'
 
 const props = defineProps<{
+    getContacts: () => void
     visible: boolean
     options: string[]
     flashSuccessMessage: (message: string) => void
@@ -142,6 +143,8 @@ async function storeContact(): Promise<void> {
         })
         .then((response) => {
             props.close('create')
+            props.getContacts()
+
             success_message.value =
                 'Successfully created: ' + response.data.full_name
             props.flashSuccessMessage(success_message.value)

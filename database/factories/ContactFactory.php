@@ -4,13 +4,17 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Validator;
+use App\Models\User;
 
 class ContactFactory extends Factory
 {
     public function definition(): array
     {
+        $users = User::all();
+        $userIds = $users->pluck('id')->toArray();
+
         $data = [
-            'user_id' => $this->faker->numberBetween(3, 10000),
+            'user_id' => $this->faker->randomElement($userIds),
             'first_name' => $this->faker->firstName,
             'last_name' => $this->faker->lastName,
             'email' => $this->faker->unique()->safeEmail,
@@ -18,12 +22,12 @@ class ContactFactory extends Factory
             'work_phone' => $this->faker->regexify('/^\d{9}$/'),
             'address' => $this->faker->address,
             'birthday' => $this->faker->date(),
-            'role' => $this->faker->randomElement(['admin', 'user'])
+            'role' => $this->faker->randomElement(['', 'user', 'tech', 'test_admin', 'admin', 'super_admin'])
         ];
 
         $validator = Validator::make($data, [
-            'id' => 'required|integer|min:3|max:10000',
-            'user_id' => 'required|integer',
+            'id' => 'required|integer',
+            'user_id' => 'required|integer|in:' . implode(',', $userIds),
             'first_name' => 'required|string|min:3|max:30',
             'last_name' => 'nullable|string|min:3|max:30',
             'email' => 'nullable|email|min:3|max:70',
@@ -31,7 +35,7 @@ class ContactFactory extends Factory
             'work_phone' => 'nullable|string|min:9|max:9|regex:/^\d{9}/',
             'address' => 'nullable|string|min:15|max:100',
             'birthday' => 'nullable|date',
-            'role' => 'nullable|string|in:user,admin,staff'
+            'role' => 'nullable|string|in:user,tech,test_admin,admin,super_admin'
         ]);
 
         while ($validator->fails()) {

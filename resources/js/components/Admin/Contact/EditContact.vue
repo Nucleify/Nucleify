@@ -99,8 +99,9 @@ import { ref, toRefs, watch } from 'vue'
 import axios from 'axios'
 
 const props = defineProps<{
-    visible: boolean
     contact: any
+    getContacts: () => void
+    visible: boolean
     options: string[]
     flashSuccessMessage: (message: string) => void
     flashDangerMessage: (message: string) => void
@@ -148,9 +149,10 @@ async function editContact() {
         })
         .then((response) => {
             props.close('edit')
+            props.getContacts()
+
             success_message.value =
                 'Successfully edited: ' + response.data.full_name
-
             props.flashSuccessMessage(success_message.value)
         })
         .catch((error) => {

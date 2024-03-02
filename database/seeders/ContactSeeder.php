@@ -21,8 +21,14 @@ class ContactSeeder extends Seeder
             'role' => 'user'
         ]);
 
+
+        // Create contacts for every test user defined in UserSeeder
         if (env('APP_ENV') === 'production' || 'dev') {
-            Contact::factory(200)->create();
+            for ($i = 1; $i <= 6; $i++) {
+                Contact::factory(50)->create([
+                    'user_id' => $i,
+                ]);
+            }
         }
     }
 }

@@ -27,7 +27,7 @@ class PostUserRequest extends FormRequest
             'name' => 'required|string|min:3|max:30',
             'email' => 'required|email|min:3|max:70|unique:users,email',
             'password' => 'required|min:8|max:50',
-            'role' => 'required|in:user,admin,staff'
+            'role' => 'required|in:user,tech,test_admin,admin,super_admin'
         ];
     }
 }

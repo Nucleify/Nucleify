@@ -27,7 +27,7 @@ class PutUserRequest extends FormRequest
             'name' => 'required|string|min:3|max:30',
             'email' => 'required|email|min:3|max:70',
             'password' => 'min:8|max:50',
-            'role' => 'required|in:user,admin,staff'
+            'role' => 'required|in:user,tech,test_admin,admin,super_admin'
         ];
     }
 }

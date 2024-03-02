@@ -6,13 +6,12 @@ use App\Contracts\ContactShouldReceiveFields;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
 /**
- *  Fix error: Property accessed via magic method
- *
- * @property integer id
- * @property integer user_id
+ * @property int id
+ * @property int user_id
  * @property string first_name
  * @property string|null last_name
  * @property string|null email
@@ -24,7 +23,22 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null role
  * @property DateTime created_at
  * @property DateTime updated_at
+ * @property int getId
+ * @property string getFirstName
+ * @property string|null getLastName
+ * @property string|null getFullName
+ * @property string|null getEmail
+ * @property string|null getRole
+ * @property string|null getPersonalPhone
+ * @property string|null getWorkPhone
+ * @property string|null getAddress
+ * @property string|null getBirthday
+ * @property array|null getContactGroups
+ * @property string getCreatedAt
+ * @property string getUpdatedAt
+ * @property BelongsTo user
  */
+
 class Contact extends Model implements ContactShouldReceiveFields
 {
     use HasFactory, Notifiable;
@@ -100,22 +114,17 @@ class Contact extends Model implements ContactShouldReceiveFields
     {
         return $this->contact_groups;
     }
-    public function getCreatedAt(): string|null
+    public function getCreatedAt(): string
     {
         return $this->created_at;
     }
-    public function getUpdatedAt(): string|null
+    public function getUpdatedAt(): string
     {
         return $this->updated_at;
     }
 
-    // AUTH METHODS
-    public function isAdmin(): bool
+    public function user(): BelongsTo
     {
-        return $this->role === 'admin';
-    }
-    public function isStaff(): bool
-    {
-        return $this->role === 'staff';
+        return $this->belongsTo(User::class);
     }
 }

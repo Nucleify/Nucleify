@@ -86,6 +86,7 @@
         v-bind:close="closeModal"
     />
     <CreateContact
+        v-bind:getContacts="getContacts"
         v-bind:visible="visibleCreate"
         v-bind:options="roleOptions"
         v-bind:flashSuccessMessage="flashSuccessMessage"
@@ -94,8 +95,9 @@
         v-bind:close="closeModal"
     />
     <EditContact
-        v-bind:visible="visibleEdit"
         v-bind:contact="selectedContact"
+        v-bind:getContacts="getContacts"
+        v-bind:visible="visibleEdit"
         v-bind:options="roleOptions"
         v-bind:flashSuccessMessage="flashSuccessMessage"
         v-bind:flashDangerMessage="flashDangerMessage"

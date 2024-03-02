@@ -3,37 +3,75 @@
 namespace App\Services;
 
 use App\Models\Contact;
+use App\Models\User;
 use App\Transformers\ContactTransformer;
 
 class ContactService
 {
     public function __construct(private readonly Contact $model){}
 
-    public function getAllContacts()
+    public function getAll(): array
     {
-        $model = $this->model->all();
+        $causer = auth()->user();
+        $contacts = [];
 
-        activity()
-            ->causedBy(auth()->user())
-            ->log(
-                'User:  "'. auth()->user()->name. '" has fetched all contacts data.'
-            );
+        switch (true) {
+            case $causer->isUser():
+                $contacts = $causer
+                    ->contacts()
+                    ->where('user_id', $causer->id)
+                    ->get();
+
+                activity()
+                    ->log(
+                        'User: "'. $causer->name. '" has fetched all his contacts'
+                    );
+                break;
+
+            case !$causer->isUser():
+                $contacts = $this->model->all();
+                activity()
+                    ->log(
+                        'User: "'. $causer->name. '" has fetched all contacts for all users'
+                    );
+                break;
+        }
 
         return fractal()
-            ->collection($model)
+            ->collection($contacts)
             ->transformWith(new ContactTransformer())
             ->toArray()['data'];
     }
 
-    public function getContactById($id): array
-    {
-        $model = $this->model::findOrFail($id);
 
-        activity()
-            ->causedBy(auth()->user())
-            ->log(
-                'User:  "'. auth()->user()->name. '" has fetched contact: "'. $model->first_name .' '. $model->last_name
-            );
+    public function getById($id): array
+    {
+        $causer = auth()->user();
+
+        switch (true) {
+            case !$causer->isUser():
+                $model = $this->model::findOrFail($id);
+                $targetUser = User::findOrFail($model->user_id);
+
+                $logMessage = $causer->id === $targetUser->id ?
+                    'User: "'. $causer->name. '" has fetched his contact: "'. $model->first_name .' '. $model->last_name .'"' :
+                    'User: "' . $causer->name . '" has fetched contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
+
+                activity()->log($logMessage);
+                break;
+
+            default:
+                $model = $causer
+                    ->contacts()
+                    ->where('user_id', $causer->id)
+                    ->findOrFail($id);
+
+                activity()
+                    ->log(
+                        'User: "'. $causer->name. '" has fetched his contact: "'. $model->first_name .' '. $model->last_name .'"'
+                    );
+                break;
+        }
 
         return fractal()
             ->item($model)
@@ -41,14 +79,14 @@ class ContactService
             ->toArray()['data'];
     }
 
-    public function createContact(array $data): array
+    public function create(array $data): array
     {
         $model = $this->model::create($data);
+        $causer = auth()->user();
 
         activity()
-            ->causedBy(auth()->user())
             ->log(
-                'User:  "'. auth()->user()->name. '" has created contact: "'. $model->first_name .' '. $model->last_name
+                'User: "'. $causer->name. '" has created contact: "'. $model->first_name .' '. $model->last_name .'"'
             );
 
         return fractal()
@@ -57,17 +95,36 @@ class ContactService
             ->toArray()['data'];
     }
 
-    public function updateContact($id, array $data): array
+    public function update($id, array $data): array
     {
-        $model = $this->model::findOrFail($id);
+        $causer = auth()->user();
 
-        $model->update($data);
+        switch (true) {
+            case !$causer->isUser():
+                $model = $this->model::findOrFail($id);
+                $model->update($data);
+                $targetUser = User::findOrFail($model->user_id);
 
-        activity()
-            ->causedBy(auth()->user())
-            ->log(
-                'User:  "'. auth()->user()->name. '" has updated contact: "'. $model->first_name .' '. $model->last_name
-            );
+                $logMessage = $causer->id === $targetUser->id ?
+                    'User: "'. $causer->name. '" has updated his contact: "'. $model->first_name .' '. $model->last_name .'"' :
+                    'User: "'. $causer->name . '" has updated contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
+
+                activity()->log($logMessage);
+                break;
+
+            default:
+                $model = $causer
+                    ->contacts()
+                    ->where('user_id', $causer->id)
+                    ->findOrFail($id);
+                $model->update($data);
+
+                activity()
+                    ->log(
+                        'User: "'. $causer->name. '" has updated his contact: "'. $model->first_name .' '. $model->last_name .'"'
+                    );
+                break;
+        }
 
         return fractal()
             ->item($model->fresh())
@@ -75,16 +132,37 @@ class ContactService
             ->toArray()['data'];
     }
 
-    public function deleteContact($id): void
+
+    public function delete($id): void
     {
-        $model = $this->model::findOrFail($id);
+        $causer = auth()->user();
 
-        $model->delete();
+        switch (true) {
+            case !$causer->isUser():
+                $model = $this->model::findOrFail($id);
+                $targetUser = User::findOrFail($model->user_id);
 
-        activity()
-            ->causedBy(auth()->user())
-            ->log(
-                'User:  "'. auth()->user()->name. '" has deleted contact: "'. $model->first_name .' '. $model->last_name
-            );
+                $logMessage = $causer->id === $targetUser->id ?
+                    'User: "'. $causer->name. '" has deleted his contact: "'. $model->first_name .' '. $model->last_name .'"' :
+                    'User: "' . $causer->name . '" has deleted contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
+
+                $model->delete();
+                activity()->log($logMessage);
+                break;
+
+            default:
+                $model = $causer
+                    ->contacts()
+                    ->where('user_id', $causer->id)
+                    ->findOrFail($id);
+
+                $model->delete();
+
+                activity()
+                    ->log(
+                        'User: "'. $causer->name. '" has deleted his contact: "'. $model->first_name .' '. $model->last_name .'"'
+                    );
+                break;
+        }
     }
 }

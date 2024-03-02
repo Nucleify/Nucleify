@@ -11,15 +11,26 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 /**
- * Fix error: Property accessed via magic method
- *
- * @property integer id
+ * @property int id
  * @property string name
  * @property string email
  * @property string password
  * @property string role
  * @property DateTime created_at
  * @property DateTime updated_at
+ * @property int getId
+ * @property string getName
+ * @property string getEmail
+ * @property string getRole
+ * @property string getCreatedAt
+ * @property string getUpdatedAt
+ * @property bool isUser
+ * @property bool isTech
+ * @property bool isTestAdmin
+ * @property bool isAdmin
+ * @property bool isSuperAdmin
+ * @property HasMany contacts
+ * @property void createContactFromUserDetails
  */
 
 class User extends Authenticatable implements UserShouldReceiveFields
@@ -32,7 +43,6 @@ class User extends Authenticatable implements UserShouldReceiveFields
     }
 
     protected $fillable = [
-        'id',
         'name',
         'email',
         'password',
@@ -48,8 +58,6 @@ class User extends Authenticatable implements UserShouldReceiveFields
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-
-
 
     public function getId(): int
     {
@@ -67,24 +75,35 @@ class User extends Authenticatable implements UserShouldReceiveFields
     {
         return $this->role;
     }
-    public function getCreatedAt(): string|null
+    public function getCreatedAt(): string
     {
         return $this->created_at;
     }
-    public function getUpdatedAt(): string|null
+    public function getUpdatedAt(): string
     {
         return $this->updated_at;
     }
 
     // AUTH METHODS
-
+    public function isUser(): bool
+    {
+        return $this->role === 'user';
+    }
+    public function isTech(): bool
+    {
+        return $this->role === 'tech';
+    }
+    public function isTestAdmin(): bool
+    {
+        return $this->role === 'test_admin';
+    }
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
     }
-    public function isStaff(): bool
+    public function isSuperAdmin(): bool
     {
-        return $this->role === 'staff';
+        return $this->role === 'super_admin';
     }
 
     // CONTACT METHODS

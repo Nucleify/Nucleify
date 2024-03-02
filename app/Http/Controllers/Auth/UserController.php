@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Exception;
+use Illuminate\Http\JsonResponse;
+
 use App\Http\Requests\PostUserRequest;
 use App\Http\Requests\PutUserRequest;
 use App\Services\UserService;
-use Exception;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -18,50 +18,60 @@ class UserController extends Controller
     public function __construct(UserService $service)
     {
         $this->service = $service;
-        $this->middleware(function($request, $next) {
-            if(!Auth::user()->isAdmin()) {
-                throw new AuthorizationException('Unauthorized', 403);
-            }
-            return $next($request);
-        })->only('index', 'show', 'store', 'update', 'destroy');
     }
 
     public function index(): JsonResponse
     {
-        $result = $this->service->getAllUsers();
+        try {
+            $result = $this->service->getAll();
 
-        return response()->json($result);
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     public function show($id): JsonResponse
     {
-        $result = $this->service->getUserById($id);
+        try {
+            $result = $this->service->getById($id);
 
-        return response()->json($result);
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     public function store(PostUserRequest $request): JsonResponse
     {
-        $input = $request->validated();
+        try {
+            $input = $request->validated();
 
-        $result = $this->service->createUser($input);
+            $result = $this->service->create($input);
 
-        return response()->json($result);
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     public function update(PutUserRequest $request, $id): JsonResponse
     {
-        $input = $request->validated();
+        try {
+            $input = $request->validated();
 
-        $result = $this->service->updateUser($id, $input);
+            $result = $this->service->update($id, $input);
 
-        return response()->json($result);
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     public function destroy($id): JsonResponse
     {
         try {
-            $this->service->deleteUser($id);
+            $this->service->delete($id);
             return response()->json([
                 'deleted' => true,
                 'message' => 'User deleted successfully'

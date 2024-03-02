@@ -20,7 +20,9 @@
             </div>
             <div>
                 <h5 class="mb-0">Email</h5>
-                <div>{{ contact.data.email }}</div>
+                <div>
+                    {{ contact.data.email }}
+                </div>
             </div>
             <div class="flex">
                 <div class="col-6 p-0">

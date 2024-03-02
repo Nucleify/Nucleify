@@ -14,13 +14,13 @@ class UserFactory extends Factory
     public function definition(): array
     {
         $data = [
-            'id' => $this->faker->unique()->numberBetween(3, 10000),
+            'id' => $this->faker->unique()->numberBetween(10, 10000),
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'role' => $this->faker->randomElement(['admin', 'user'])
+            'role' => $this->faker->randomElement(['user', 'test_admin'])
         ];
 
         $validator = Validator::make($data, [
@@ -28,7 +28,7 @@ class UserFactory extends Factory
             'name' => 'required|string|min:3|max:30',
             'email' => 'required|email|min:3|max:70|unique:users,email',
             'password' => 'required|min:8|max:50',
-            'role' => 'required|in:user,admin,staff'
+            'role' => 'required|in:user,test_admin'
         ]);
 
         while ($validator->fails()) {
