@@ -27,7 +27,7 @@
                 <Column
                     field="id"
                     :sortable="true"
-                    header="Id"
+                    header="ID"
                     class="idColumn"
                 />
                 <Column
@@ -40,13 +40,25 @@
                     field="email"
                     :sortable="true"
                     header="Email"
-                    class="emailColumn tabletColumn"
+                    class="emailColumn"
                 />
                 <Column
                     field="role"
                     :sortable="true"
                     header="Role"
-                    class="roleColumn desktopColumn"
+                    class="roleColumn"
+                />
+                <Column
+                    field="created_at"
+                    :sortable="true"
+                    header="Created At"
+                    class="createdAtColumn"
+                />
+                <Column
+                    field="updated_at"
+                    :sortable="true"
+                    header="Updated At"
+                    class="updatedAtColumn"
                 />
                 <Column class="actionColumn">
                     <template #body="rowData">

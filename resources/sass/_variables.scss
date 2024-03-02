@@ -24,6 +24,9 @@ $min-max-width-height-big: 44px;
 // Body
 $body-bg: #f8fafc;
 
+// ActivityLog
+$activity-my-button: 9px 8.5px 10px 8px;
+
 // Button
 $button-padding: 10px;
 $mobile-button-display: inline;
@@ -50,6 +53,9 @@ $id-column-width-phone: 20%;
 $name-full-name-columns-width-phone: 60%;
 $tablet-desktop-columns-display-phone: none;
 $action-column-width: 1%;
+$description-name-columns-overflow: hidden;
+$description-name-columns-whitespace: nowrap;
+$description-name-columns-max-width: 280px;
 
 // Dialog
 $dialog-mask-padding: 0 10px;
@@ -127,12 +133,17 @@ $error-toast-bg: #fdedec;
 $toast-message-media-min-width-530px-width: max-content;
 $toast-message-media-min-width-530px-max-width: max-content;
 $avatar-min-width-530px-right: 25px;
+$role-birthday-id-activity-columns-min-width-530px-display: table-cell;
+$id-column-min-width-530px-width: 15%;
+$name-full-name-columns-min-width-530px-width: 45%;
 
 // Media min width 768px
 $tablet-column-min-width-768px-display: table-cell;
 $my-card-min-width-768px-margin-bottom: 30px;
-$id-column-min-width-768px-width: 15%;
-$name-full-name-column-min-width-768px-width: 35%;
+$id-column-min-width-768px-width: 10%;
+$name-full-name-columns-min-width-768px-width: 25%;
+$role-birthday-columns-min-width-768px-width: 18%;
+$created-at-activity-column: 28%;
 
 // Media min width 961px
 $avatar-min-width-961px-right: 65px;
@@ -140,13 +151,33 @@ $menubar-menuitem-content-min-width-961px-position: relative;
 $menubar-menuitem-content-min-width-961px-left: 40px;
 $my-navbar-min-width-961px-display: none;
 $my-button-min-width-961px-padding: 9px 8.5px 10px 8px;
+$id-column-min-width-961px-width: 10%;
 
 // Media min width 992px
 $desktop-column-min-width-992px-display: table-cell;
 $desktop-button-min-width-992px-display: flex;
 $mobile-button-min-width-992px-display: none;
-$email-column-min-width-992px-width: 35%;
+$email-column-min-width-992px-width: 32%;
 $role-birthday-column-min-width-992px-width: 15%;
+$created-at-activity-column-width: 20%;
+
+// Media min width 1200px
+$id-column-min-width-1200px-width: 8%;
+$name-full-name-columns-min-width-1200px-width: 20%;
+$email-column-min-width-1200px-width: 28%;
+$created-at-column-min-width-1200px-display: table-cell;
+$created-at-column-min-width-1200px-width: 20%;
+
+// Media min width 1400px
+$id-column-min-width-1400px-width: 6%;
+$name-full-name-columns-min-width-1400px-width: 12%;
+$email-column-min-width-1400px-width: 16%;
+$role-birthday-columns-min-width-1400px-width: 10%;
+$created-at-updated-at-columns-min-width-1400px-display: table-cell;
+$created-at-updated-at-columns-min-width-1400px-width: 14%;
+
+// Media min width 1500px
+$created-at-updated-at-columns-min-width-1500px-width: 12%;
 
 // Media max width 550px
 $sidebar-sidebar-mask-max-width-550px-display: none;
@@ -154,8 +185,12 @@ $sidebar-sidebar-mask-min-width-550px-display: flex;
 
 // Medias
 $minWidthSm: 530px;
+$minWidthSm1: 550px;
 $minWidthMd: 768px;
 $minWidthLg: 961px;
 $minWidthLg2: 992px;
+$minWidthXl: 1200px;
+$minWidth2Xl: 1400px;
+$minWidth3Xl: 1500px;
+
 $maxWidthSm1: 550px;
-$minWidthSm1: 550px;

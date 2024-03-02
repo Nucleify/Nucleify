@@ -1,14 +1,15 @@
 <template>
-    <my-navbar
-        :items="items"
-        :user-menu-items="userMenuItems"
-        :user-name="userName"
-    />
     <my-sidebar
         :items="items"
         :user-menu-items="userMenuItems"
         :user-name="userName"
     />
+    <my-navbar
+        :items="items"
+        :user-menu-items="userMenuItems"
+        :user-name="userName"
+    />
+
 </template>
 
 <script setup lang="ts">
@@ -30,6 +31,7 @@ const items = ref([
     {
         label: 'Activity Log',
         icon: 'pi pi-clock',
+        url: '/activity-log',
     },
 ])
 
@@ -60,7 +62,11 @@ onMounted(async () => {
                 setUserToSessionStorage(user)
                 userName.value = window.sessionStorage.getItem('user_name')
                 const userRole = window.sessionStorage.getItem('user_role')
-                if (userRole === 'admin') {
+                if (
+                    userRole === 'admin' ||
+                    userRole === 'test_admin' ||
+                    userRole === 'super_admin'
+                ) {
                     items.value.push({
                         label: 'Admin Panel',
                         icon: 'pi pi-users',
@@ -71,7 +77,11 @@ onMounted(async () => {
         } else {
             userName.value = window.sessionStorage.getItem('user_name')
             const userRole = window.sessionStorage.getItem('user_role')
-            if (userRole === 'admin') {
+            if  (
+                userRole === 'admin' ||
+                userRole === 'test_admin' ||
+                userRole === 'super_admin'
+            ) {
                 items.value.push({
                     label: 'Admin Panel',
                     icon: 'pi pi-users',

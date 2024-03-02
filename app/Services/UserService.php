@@ -22,14 +22,14 @@ class UserService
             case $causer->isUser():
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" tried to fetch all users data, but he doesn\'t have permissions'
+                        '"'. $causer->name. '" tried to fetch all users data, but he doesn\'t have permissions'
                     );
                 throw new Exception('Only admins or tech users can fetch all users data');
 
             default:
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" has fetched all users data'
+                        '"'. $causer->name. '" has fetched all users data'
                     );
 
                 return fractal()
@@ -51,14 +51,14 @@ class UserService
             case $causer->isUser() && $causer->id !== $model->id:
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" tried to fetch other user data, but he doesn\'t have permissions'
+                        '"'. $causer->name. '" tried to fetch other user data, but he doesn\'t have permissions'
                     );
                 throw new Exception('You don\'t have permission to fetch this user');
 
             default:
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" has fetched user: "'. $model->name . '"'
+                        '"'. $causer->name. '" has fetched user: "'. $model->name . '"'
                     );
 
                 return fractal()
@@ -79,7 +79,7 @@ class UserService
             case $causer->isUser():
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" tried to create user, but he doesn\'t have permissions'
+                        '"'. $causer->name. '" tried to create user, but he doesn\'t have permissions'
                     );
                 throw new Exception('Only admins can create users');
 
@@ -88,7 +88,7 @@ class UserService
 
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" has created user: "'. $model->name . '"'
+                        '"'. $causer->name. '" has created user: "'. $model->name . '"'
                     );
 
                 return fractal()
@@ -131,7 +131,7 @@ class UserService
             case $causer->isUser() && $causer->id !== $model->id:
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" tried to edit other user data, but he doesn\'t have permissions'
+                        '"'. $causer->name. '" tried to edit other user data, but he doesn\'t have permissions'
                     );
                 throw new Exception('You don\'t have permission to edit other user data');
 
@@ -147,7 +147,7 @@ class UserService
 
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" has updated user: "'. $model->name . '"'
+                        '"'. $causer->name. '" has updated user: "'. $model->name . '"'
                     );
 
                 return fractal()
@@ -169,28 +169,28 @@ class UserService
             case str_contains($causer->name, 'Test Admin') && $model->isSuperAdmin():
                 activity()
                     ->log(
-                        $causer->name. '" tried to delete super admin data, but he doesn\'t have permissions'
+                        '"'. $causer->name. '" tried to delete super admin data, but he doesn\'t have permissions'
                     );
                 throw new Exception('Test Admin can\'t delete super admin');
 
             case str_contains($causer->name, 'Test Admin') && $model->isAdmin():
                 activity()
                     ->log(
-                        $causer->name. '" tried to delete admin data, but he doesn\'t have permissions'
+                        '"'. $causer->name. '" tried to delete admin data, but he doesn\'t have permissions'
                     );
                 throw new Exception('Test Admin can\'t delete admin');
 
             case str_contains($causer->name, 'Test Admin') && $causer->id === $model->id:
                 activity()
                     ->log(
-                        $causer->name. '" tried to delete his user data, but he can\'t delete himself'
+                        '"'. $causer->name. '" tried to delete his user data, but he can\'t delete himself'
                     );
                 throw new Exception('Test Admin can\'t delete himself');
 
             case str_contains($causer->name, 'Test Admin') && str_contains($model->name, 'Test'):
                 activity()
                     ->log(
-                        $causer->name. '" tried to delete test user data, but he can\'t delete test users'
+                        '"'. $causer->name. '" tried to delete test user data, but he can\'t delete test users'
                     );
                 throw new Exception('Test Admin can\'t delete test users');
 
@@ -204,7 +204,7 @@ class UserService
             case $causer->isUser() && $causer->id !== $model->id:
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" tried to delete other user data, but he doesn\'t have permissions'
+                        '"'. $causer->name. '" tried to delete other user data, but he doesn\'t have permissions'
                     );
                 throw new Exception('Can\'t delete other user without admin permissions');
 
@@ -213,7 +213,7 @@ class UserService
 
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" has deleted user: "'. $model->name . '"'
+                        '"'. $causer->name. '" has deleted user: "'. $model->name . '"'
                     );
 
                 return ['success' => true];

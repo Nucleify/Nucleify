@@ -47,7 +47,6 @@
 // Card
 .myCard {
     width: $card-width;
-    max-width: $card-max-width;
     margin-left: $card-margin-left;
     margin-right: $card-margin-right;
     box-shadow: $card-box-shadow;
@@ -239,6 +238,25 @@ td {
     margin-left: $toast-icon-close-margin-left;
 }
 
+.emailColumn,
+.roleColumn,
+.createdAtColumn,
+.updatedAtColumn,
+.idActivityColumn,
+.causerIdColumn,
+.createdAtActivityColumn
+{
+    display: $tablet-desktop-columns-display-phone;
+}
+.descriptionColumn,
+.nameColumn {
+    overflow: $description-name-columns-overflow;
+    white-space: $description-name-columns-whitespace;
+    max-width: $description-name-columns-max-width;
+}
+.activityMyButton {
+    padding: $activity-my-button;
+}
 @media (min-width: $minWidthSm) // 530px
 {
     .p-toast-message {
@@ -248,13 +266,22 @@ td {
     .p-avatar {
         right: $avatar-min-width-530px-right;
     }
+    .roleColumn,
+    .birthdayColumn,
+    .idActivityColumn {
+        display: $role-birthday-id-activity-columns-min-width-530px-display;
+    }
+    .idColumn {
+        width: $id-column-min-width-530px-width;
+    }
+    .nameColumn,
+    .fullNameColumn {
+        width: $name-full-name-columns-min-width-530px-width;
+    }
 }
 
 @media (min-width: $minWidthMd) // 768px
 {
-    .tabletColumn {
-        display: $tablet-column-min-width-768px-display;
-    }
     .myCard {
         margin-bottom: $my-card-min-width-768px-margin-bottom;
     }
@@ -263,7 +290,18 @@ td {
     }
     .nameColumn,
     .fullNameColumn {
-        width: $name-full-name-column-min-width-768px-width;
+        width: $name-full-name-columns-min-width-768px-width;
+    }
+    .roleColumn,
+    .birthdayColumn {
+        width: $role-birthday-columns-min-width-768px-width;
+    }
+    .emailColumn,
+    .createdAtActivityColumn {
+        display: $tablet-column-min-width-768px-display;
+    }
+    .createdAtActivityColumn {
+        width: $created-at-activity-column;
     }
 }
 @media (min-width: $minWidthLg) // 961px
@@ -275,8 +313,8 @@ td {
     .myNavbar {
         display: $my-navbar-min-width-961px-display;
     }
-    .myButton {
-        padding: $my-button-min-width-961px-padding;
+    .idColumn {
+        width: $id-column-min-width-961px-width;
     }
 }
 @media (min-width: $minWidthLg2) // 992px
@@ -290,6 +328,9 @@ td {
     .mobileButton {
         display: $mobile-button-min-width-992px-display;
     }
+    .myButton {
+        padding: $my-button-min-width-961px-padding;
+    }
     .emailColumn {
         width: $email-column-min-width-992px-width;
     }
@@ -297,8 +338,56 @@ td {
     .birthdayColumn {
         width: $role-birthday-column-min-width-992px-width;
     }
+    .createdAtActivityColumn {
+        width: $created-at-activity-column-width;
+    }
 }
-
+@media (min-width: $minWidthXl) // 1200px
+{
+    .idColumn {
+        width: $id-column-min-width-1200px-width;
+    }
+    .nameColumn,
+    .fullNameColumn {
+        width: $name-full-name-columns-min-width-1200px-width;
+    }
+    .emailColumn {
+        width: $email-column-min-width-1200px-width;
+    }
+    .createdAtColumn {
+        display: $created-at-column-min-width-1200px-display;
+        width: $created-at-column-min-width-1200px-width;
+    }
+}
+@media (min-width: $minWidth2Xl) // 1400px
+{
+    .idColumn {
+        width: $id-column-min-width-1400px-width;
+    }
+    .nameColumn,
+    .fullNameColumn {
+        width: $name-full-name-columns-min-width-1400px-width;
+    }
+    .emailColumn {
+        width: $email-column-min-width-1400px-width;
+    }
+    .roleColumn,
+    .birthdayColumn {
+        width: $role-birthday-columns-min-width-1400px-width;
+    }
+    .createdAtColumn,
+    .updatedAtColumn, {
+        display: $created-at-updated-at-columns-min-width-1400px-display;
+        width: $created-at-updated-at-columns-min-width-1400px-width;
+    }
+}
+@media (min-width: $minWidth3Xl) // 1500px
+{
+    .createdAtColumn,
+    .updatedAtColumn, {
+        width: $created-at-updated-at-columns-min-width-1500px-width;
+    }
+}
 @media (max-width: $maxWidthSm1) // 550px
 {
     .p-sidebar,

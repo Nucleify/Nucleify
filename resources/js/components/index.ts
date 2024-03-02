@@ -1,3 +1,5 @@
+export { default as ActivityLog } from './ActivityLog/ActivityLog.vue'
+
 export { default as AdminPanel } from './Admin/AdminPanel.vue'
 
 export { default as MyLayout } from './Layout/Layout.vue'

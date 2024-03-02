@@ -1,3 +1,10 @@
+export interface ActivityLogData {
+    id: number;
+    description: string;
+    created_at: string;
+    causer_id: number;
+}
+
 export interface ContactData {
     first_name: string
     last_name: string

@@ -52,12 +52,14 @@ app.component('Toast', Toast)
  * BLADE COMPONENTS
  */
 import {
+    ActivityLog,
     AdminPanel,
     MyLayout,
     LoginButton,
     TestLoginButton,
 } from './components'
 
+app.component('activity-log', ActivityLog)
 app.component('admin-panel', AdminPanel)
 app.component('my-layout', MyLayout)
 app.component('test-login-button', TestLoginButton)

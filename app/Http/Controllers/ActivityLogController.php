@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 
 use App\Services\ActivityLogService;
@@ -15,6 +16,16 @@ class ActivityLogController extends Controller
     public function __construct(ActivityLogService $service)
     {
         $this->service = $service;
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return Renderable
+     */
+    public function render(): Renderable
+    {
+        return view('activity-log');
     }
 
     public function index(): JsonResponse

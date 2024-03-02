@@ -24,7 +24,7 @@ class ContactService
 
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" has fetched all his contacts'
+                        '"'. $causer->name. '" has fetched all his contacts'
                     );
                 break;
 
@@ -32,7 +32,7 @@ class ContactService
                 $contacts = $this->model->all();
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" has fetched all contacts for all users'
+                        '"'. $causer->name. '" has fetched all contacts for all users'
                     );
                 break;
         }
@@ -54,8 +54,8 @@ class ContactService
                 $targetUser = User::findOrFail($model->user_id);
 
                 $logMessage = $causer->id === $targetUser->id ?
-                    'User: "'. $causer->name. '" has fetched his contact: "'. $model->first_name .' '. $model->last_name .'"' :
-                    'User: "' . $causer->name . '" has fetched contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
+                    '"'. $causer->name. '" has fetched his contact: "'. $model->first_name .' '. $model->last_name .'"' :
+                    '"' . $causer->name . '" has fetched contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
 
                 activity()->log($logMessage);
                 break;
@@ -68,7 +68,7 @@ class ContactService
 
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" has fetched his contact: "'. $model->first_name .' '. $model->last_name .'"'
+                        '"'. $causer->name. '" has fetched his contact: "'. $model->first_name .' '. $model->last_name .'"'
                     );
                 break;
         }
@@ -86,7 +86,7 @@ class ContactService
 
         activity()
             ->log(
-                'User: "'. $causer->name. '" has created contact: "'. $model->first_name .' '. $model->last_name .'"'
+                '"'. $causer->name. '" has created contact: "'. $model->first_name .' '. $model->last_name .'"'
             );
 
         return fractal()
@@ -106,8 +106,8 @@ class ContactService
                 $targetUser = User::findOrFail($model->user_id);
 
                 $logMessage = $causer->id === $targetUser->id ?
-                    'User: "'. $causer->name. '" has updated his contact: "'. $model->first_name .' '. $model->last_name .'"' :
-                    'User: "'. $causer->name . '" has updated contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
+                    '"'. $causer->name. '" has updated his contact: "'. $model->first_name .' '. $model->last_name .'"' :
+                    '"'. $causer->name . '" has updated contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
 
                 activity()->log($logMessage);
                 break;
@@ -121,7 +121,7 @@ class ContactService
 
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" has updated his contact: "'. $model->first_name .' '. $model->last_name .'"'
+                        '"'. $causer->name. '" has updated his contact: "'. $model->first_name .' '. $model->last_name .'"'
                     );
                 break;
         }
@@ -143,8 +143,8 @@ class ContactService
                 $targetUser = User::findOrFail($model->user_id);
 
                 $logMessage = $causer->id === $targetUser->id ?
-                    'User: "'. $causer->name. '" has deleted his contact: "'. $model->first_name .' '. $model->last_name .'"' :
-                    'User: "' . $causer->name . '" has deleted contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
+                    '"'. $causer->name. '" has deleted his contact: "'. $model->first_name .' '. $model->last_name .'"' :
+                    '"' . $causer->name . '" has deleted contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
 
                 $model->delete();
                 activity()->log($logMessage);
@@ -160,7 +160,7 @@ class ContactService
 
                 activity()
                     ->log(
-                        'User: "'. $causer->name. '" has deleted his contact: "'. $model->first_name .' '. $model->last_name .'"'
+                        '"'. $causer->name. '" has deleted his contact: "'. $model->first_name .' '. $model->last_name .'"'
                     );
                 break;
         }
