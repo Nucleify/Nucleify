@@ -150,7 +150,7 @@ Frontend tests:
 npm run open  # after this command cypress window will open automatically 
 ```
 
-<br/>
+<br>
 </details>
 
 <details><summary> npm </summary>
@@ -177,4 +177,14 @@ npm run write
 </details>
 
 <hr/>
+</details>
+
+<details><summary> 🖼️ Preview Images </summary>
+<br>
+    
+![desktop-preview](https://github.com/SzymCode/ContactBook/assets/107359025/23428885-cf08-46a8-9700-cd322e4b6489) 
+
+![tablet-preview](https://github.com/SzymCode/ContactBook/assets/107359025/b6fc2123-b9ac-4d64-ad43-14affc5b930d) 
+
+![phone-preview](https://github.com/SzymCode/ContactBook/assets/107359025/082a2a84-d875-467d-9957-75d83c4d3a28)
 </details>
