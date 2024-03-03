@@ -89,12 +89,12 @@ class ActivityLogService
                 $model = $this->model->findOrFail($id);
                 break;
         }
-
         $model->delete();
 
-        activity()->log(
-            '"'. $causer->name. '" has deleted his activity log with ID: "'. $id .'" and description: "'. $model->description
-        );
+        if (strpos($model->description, '"'. $causer->name. '" has deleted his activity log with ID: "') === false) {
+            activity()->log(
+                '"'. $causer->name. '" has deleted his activity log with ID: "'. $id .'" and description: "'. $model->description
+            );
+        }
     }
-
 }
