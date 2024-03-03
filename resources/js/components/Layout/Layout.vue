@@ -7,6 +7,7 @@
         />
 
         <my-sidebar
+            :isAdmin="isAdmin"
             :items="items"
             :user-menu-items="userMenuItems"
             :user-name="userName"
@@ -17,8 +18,10 @@
 <script setup lang="ts">
 import MyNavbar from './MyNavbar.vue'
 import MySidebar from './MySidebar.vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, Ref } from 'vue'
 import { fetchUser, logout, setUserToSessionStorage } from '../../utils'
+
+const isAdmin: Ref | null = ref(null)
 
 const items = ref([
     {
@@ -69,6 +72,7 @@ onMounted(async () => {
                     userRole === 'test_admin' ||
                     userRole === 'super_admin'
                 ) {
+                    isAdmin.value = true
                     items.value.push({
                         label: 'Admin Panel',
                         icon: 'pi pi-users',
@@ -84,6 +88,7 @@ onMounted(async () => {
                 userRole === 'test_admin' ||
                 userRole === 'super_admin'
             ) {
+                isAdmin.value = true
                 items.value.push({
                     label: 'Admin Panel',
                     icon: 'pi pi-users',

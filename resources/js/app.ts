@@ -20,6 +20,8 @@ import Menubar from 'primevue/menubar'
 import PanelMenu from 'primevue/panelmenu'
 import Sidebar from 'primevue/sidebar'
 import Toast from 'primevue/toast'
+import Tooltip from 'primevue/tooltip'
+
 /**
  *
  */
@@ -64,6 +66,8 @@ app.component('admin-panel', AdminPanel)
 app.component('my-layout', MyLayout)
 app.component('test-login-button', TestLoginButton)
 app.component('login-button', LoginButton)
+
+app.directive('tooltip', Tooltip)
 
 app.use(ToastService)
 app.mount('#app')

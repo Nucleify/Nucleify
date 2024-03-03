@@ -180,24 +180,25 @@ td {
     gap: $panel-menu-gap;
     margin-top: $panel-menu-margin-top;
 }
-.p-panelmenu-header-action {
-    padding: $panel-menu-header-action-padding;
+.sidebarItem {
+    margin-left: $sidebar-item-margin-left;
+    min-width: $sidebar-item-dimensions;
+    min-height: $sidebar-item-dimensions;
+    max-width: $sidebar-item-dimensions;
+    max-height: $sidebar-item-dimensions;
+    padding: $sidebar-item-padding;
     text-decoration: $panel-menu-header-action-text-decoration;
     color: $panel-menu-header-action-color;
 }
-.p-panelmenu-header-content:hover,
-.p-panelmenu-header-action:hover {
+.sidebarItem:hover {
     color: $primary-hover-color;
     background: $primary-hover-bg-color;
     transition: $transition-colors-300ms;
-    border-radius: $small-border-radius;;
-}
-.p-panelmenu .p-panelmenu-header .p-panelmenu-header-content {
-    border-color: $panel-menu-header-content-border;
     border-radius: $small-border-radius;
 }
-.p-panelmenu .p-panelmenu-header .p-panelmenu-header-action .p-menuitem-icon {
-    font-size: $panel-menu-header-action-icon-font-size;
+.sidebarItem {
+    border-color: $panel-menu-header-content-border;
+    border-radius: $small-border-radius;
 }
 // Sidebar
 .p-sidebar {
@@ -214,9 +215,22 @@ td {
     bottom: $sidebar-hr-bottom;
 }
 .sidebarUser:hover {
-    color: $primary-hover-color;
     background: $primary-hover-bg-color;
     transition: $transition-colors-300ms;
+}
+.sidebarUser {
+    color: $primary-hover-color;
+}
+.sidebarIcon,
+.sidebarUser {
+    color: $secondary-text-color;
+}
+.p-tooltip-arrow {
+    display: $tooltip-arrow-display;
+}
+.p-tooltip-text {
+    padding: $tooltip-text-padding;
+    font-size: $font-size-small;
 }
 
 // Toast

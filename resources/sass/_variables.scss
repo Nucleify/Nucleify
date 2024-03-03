@@ -1,6 +1,7 @@
 // Colors
-$primary-hover-color: #1bbd79;
-$primary-hover-bg-color: #F3F4F6;
+$secondary-text-color: #5E5E5E;
+$primary-hover-color: #1BBD79;
+$primary-hover-bg-color: #F6F6F8;
 $transition-colors-300ms: color 300ms, background-color 300ms;
 
 // Border radius
@@ -107,7 +108,7 @@ $panel-menu-gap: 10px;
 $panel-menu-margin-top: 10px;
 $panel-menu-header-action-padding: 13px;
 $panel-menu-header-action-text-decoration: none;
-$panel-menu-header-action-color: #5e5e5e;
+$panel-menu-header-action-color: #5E5E5E;
 $panel-menu-header-content-border: transparent;
 $panel-menu-header-action-icon-font-size: 20px;
 
@@ -118,6 +119,13 @@ $sidebar-hr-position: relative;
 $sidebar-hr-bottom: 4px;
 $my-sidebar-display: none;
 $my-sidebar-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+$sidebar-item-margin-left: -1px;
+$sidebar-item-dimensions: 50px;
+$sidebar-item-padding: 14px 13px 13px 13px;
+
+// Tooltip
+$tooltip-arrow-display: none;
+$tooltip-text-padding: 5px 10px;
 
 // Toast
 $toast-position: fixed;
@@ -127,9 +135,9 @@ $toast-width: 95vw;
 $toast-message-content-display: flex;
 $toast-message-content-gap: 5px;
 $toast-icon-close-margin-left: 5px;
-$success-toast-bg: #eaf8f3;
-$warn-toast-bg: #fff5e8;
-$error-toast-bg: #fdedec;
+$success-toast-bg: #EAF8F3;
+$warn-toast-bg: #FFF5E8;
+$error-toast-bg: #FDEDEC;
 
 
 // Media min width 530px
