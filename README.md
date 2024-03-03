@@ -9,9 +9,12 @@ This website helps to storage contacts data and share it with others. It's secon
 [Preview!](https://contactbook-sc-0dd9929a94e1.herokuapp.com)
 
 
-<details><summary> <h2>  🛠️ Installation & Setup  </summary>
+<br>
+<details><summary>  🛠️ Installation & Setup  </summary>
 
-<details><summary> <h3> &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=20/> &nbsp;Standard </summary> 
+<br>
+
+<details><summary> &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=20/> &nbsp;Standard </summary> 
 
 - First make sure u have installed latest versions of [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
 
@@ -42,10 +45,10 @@ create database contactbook_test    # it's not necessary, only for tests
 php artisan migrate:fresh --seed
 ```
 
-<br/>
+<br>
 </details>
 
-<details><summary> <h3> &nbsp;<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=20/> &nbsp;Docker </summary> 
+<details><summary> &nbsp;<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=20/> &nbsp;Docker </summary> 
 
 - First make sure u have installed latest versions of [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), and [Composer](https://getcomposer.org/)
 
@@ -63,14 +66,17 @@ php artisan sail:install
 ```
 
 </details>
-<hr/>
+<hr>
 </details>
 
 
-<details><summary> <h2>  🚀 Run  </summary>
+<details><summary> 🚀 Run </summary>
 
-<details><summary> <h3> &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=20/> &nbsp;Standard </summary> 
+<br>
 
+<details><summary> &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=20/> &nbsp;XAMPP </summary> 
+<br>
+    
 - root directory:
 
 ```bash
@@ -78,9 +84,12 @@ npm run dev
 php artisan serve
 ```
 
+<br>
 </details>
 
-<details><summary> <h3> &nbsp;<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=20/> &nbsp;Docker </summary> 
+
+<details><summary> &nbsp;<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=20/> &nbsp;Docker </summary> 
+<br>
 
 **Remember to shutdown all XAMPP processes!**
 - root directory:
@@ -95,15 +104,17 @@ npm run dev
 Possible problem: [Sail: no such file or directory found](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
 </details>
 
-<hr/>
+<hr>
 </details>  
 
 
 
-<details><summary> <h2>  ❓ Usage  </summary>
-
-<details><summary> <h3> Factories </summary>
-
+<details><summary> ❓ Usage </summary>
+<br>
+    
+<details><summary> Factories </summary>
+<br>
+    
 ```bash
 php artisan tinker
 
@@ -112,10 +123,12 @@ Contact::factory(100)->create();
 User::factory(100)->create();        
 ```
 
+<br/>
 </details>
 
-<details><summary> <h3> Tests </summary>
-
+<details><summary> Tests </summary>
+<br>
+    
 Backend tests:
 ```bash
 # run all tests
@@ -130,17 +143,19 @@ user-api, contact-api, feature, global, unit, controllers, database, factories, 
 
 ![Tests](https://github.com/SzymCode/ContactBook/assets/107359025/ea49e771-9963-4cb8-b103-7e2a0c91c6b7)
 
-<br/>
+<br>
 
 Frontend tests:
 ```bash
 npm run open  # after this command cypress window will open automatically 
 ```
 
+<br/>
 </details>
 
-<details><summary> <h3> npm </summary>
-
+<details><summary> npm </summary>
+<br>
+    
 1. Vite build:
 
 ```
