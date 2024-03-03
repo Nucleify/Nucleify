@@ -89,7 +89,7 @@ onMounted(async () => {
                     userRole === 'super_admin'
                 ) {
                     isAdmin.value = true
-                    items.value.push({
+                    items.value.splice(5, 0, {
                         label: 'Admin Panel',
                         icon: 'pi pi-users',
                         url: '/admin',
@@ -105,7 +105,7 @@ onMounted(async () => {
                 userRole === 'super_admin'
             ) {
                 isAdmin.value = true
-                items.value.push({
+                items.value.splice(5, 0, {
                     label: 'Admin Panel',
                     icon: 'pi pi-users',
                     url: '/admin',

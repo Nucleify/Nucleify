@@ -434,9 +434,3 @@ td {
         display: $sidebar-sidebar-mask-min-width-550px-display;
     }
 }
-
-// Share menuitem disabled for now
-.p-menuitem:nth-child(5) .p-menuitem-link {
-    opacity: 0.3;
-    cursor: default;
-}
