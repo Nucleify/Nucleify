@@ -20,19 +20,19 @@ class ActivityLogService
                     ->where('causer_id', $causer->id)
                     ->get();
 
-                activity()
-                    ->log(
-                        '"'. $causer->name. '" has fetched his activity log data'
-                    );
+//                activity()
+//                    ->log(
+//                        '"'. $causer->name. '" has fetched his activity log data'
+//                    );
                 break;
 
             default:
                 $model = $this->model->all();
 
-                activity()
-                    ->log(
-                        '"'. $causer->name. '" has fetched all activity log data'
-                    );
+//                activity()
+//                    ->log(
+//                        '"'. $causer->name. '" has fetched all activity log data'
+//                    );
                 break;
         }
 
@@ -62,10 +62,10 @@ class ActivityLogService
                 }
 
             default:
-                activity()
-                    ->log(
-                        '"'. $causer->name. '" has fetched activity log "'. $model->description .'"'. 'from: '. User::findOrFail($model->causer_id)
-                    );
+//                activity()
+//                    ->log(
+//                        '"'. $causer->name. '" has fetched activity log "'. $model->description .'"'. 'from: '. User::findOrFail($model->causer_id)
+//                    );
 
                 return fractal()
                     ->item($model)
@@ -92,9 +92,9 @@ class ActivityLogService
 
         $model->delete();
 
-        $logMessage = '"'. $causer->name. '" has deleted his activity log with ID: "'. $id .'" and description: "'. $model->description;
-
-        activity()->log($logMessage);
+        activity()->log(
+            '"'. $causer->name. '" has deleted his activity log with ID: "'. $id .'" and description: "'. $model->description
+        );
     }
 
 }
