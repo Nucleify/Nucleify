@@ -181,8 +181,8 @@ npm run write
 
 <details><summary> 🖼️ Preview Images </summary>
 <br>
-    
-![desktop-preview](https://github.com/SzymCode/ContactBook/assets/107359025/23428885-cf08-46a8-9700-cd322e4b6489) 
+
+![desktop-preview](https://github.com/SzymCode/ContactBook/assets/107359025/ccf11c16-3553-437b-9321-e5819db3085b) 
 
 ![tablet-preview](https://github.com/SzymCode/ContactBook/assets/107359025/b6fc2123-b9ac-4d64-ad43-14affc5b930d) 
 
