@@ -34,9 +34,25 @@ const items = ref([
         icon: 'pi pi-envelope',
     },
     {
+        label: 'Tasks',
+        icon: 'pi pi-check-square',
+    },
+    {
+        label: 'Export Data',
+        icon: 'pi pi-file',
+    },
+    {
         label: 'Activity Log',
         icon: 'pi pi-clock',
         url: '/activity-log',
+    },
+    {
+        label: 'Help',
+        icon: 'pi pi-info-circle',
+    },
+    {
+        label: 'Settings',
+        icon: 'pi pi-cog',
     },
 ])
 

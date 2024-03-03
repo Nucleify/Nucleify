@@ -25,6 +25,22 @@
                 <i class="pi pi-envelope text-xl"></i>
             </a>
             <a
+                href="#"
+                :class="{ active: isCurrentUrl('/todo') }"
+                class="sidebarItem text-center"
+                v-tooltip.left="'Tasks'"
+            >
+                <i class="pi pi-check-square text-xl"></i>
+            </a>
+            <a
+                href="#"
+                :class="{ active: isCurrentUrl('/export') }"
+                class="sidebarItem text-center"
+                v-tooltip.left="'Export Data'"
+            >
+                <i class="pi pi-file text-xl"></i>
+            </a>
+            <a
                 href="/activity-log"
                 :class="{ active: isCurrentUrl('/activity-log') }"
                 class="sidebarItem text-center"
@@ -43,6 +59,24 @@
             </a>
         </div>
         <div class="flex flex-column mt-auto justify-content-center">
+            <div class="flex flex-column gap-3">
+                <a
+                    href="#"
+                    :class="{ active: isCurrentUrl('/help') }"
+                    class="sidebarItem text-center"
+                    v-tooltip.left="'Help'"
+                >
+                    <i class="pi pi-info-circle text-xl"></i>
+                </a>
+                <a
+                    href="#"
+                    :class="{ active: isCurrentUrl('/settings') }"
+                    class="sidebarItem text-center"
+                    v-tooltip.left="'Settings'"
+                >
+                    <i class="pi pi-cog text-xl"></i>
+                </a>
+            </div>
             <hr class="border-top-1" />
 
             <div
@@ -82,7 +116,7 @@ function isCurrentUrl(url: string): boolean {
 
 <style scoped>
 .active {
-    color: #1BBD79;
+    color: #1bbd79;
     background: hsl(156, 100%, 97%);
 }
 .sidebarItem:hover {
