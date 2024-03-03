@@ -1,5 +1,5 @@
 <template>
-    <Card class="myCard userDashboard mt-7">
+    <Card class="myCard userDashboard w-full mt-7 lg:mt-1 lg:ml-2 lg:mr-5">
         <template #title>
             <div class="flex justify-content-between">
                 <h3>Manage Users</h3>
@@ -15,7 +15,7 @@
             <DataTable
                 v-bind:value="results"
                 v-bind:size="'small'"
-                v-bind:rows="11"
+                v-bind:rows="10"
                 v-bind:row-hover="true"
                 v-if="results"
                 paginator

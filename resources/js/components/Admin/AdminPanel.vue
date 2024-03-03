@@ -1,17 +1,19 @@
 <template>
     <Toast position="top-right" />
-    <user-dashboard
-        v-bind:roleOptions="roleOptions"
-        v-bind:flashSuccessMessage="flashSuccessMessage"
-        v-bind:flashValidationErrors="flashValidationErrors"
-        v-bind:flashDangerMessage="flashDangerMessage"
-    />
-    <contact-dashboard
-        v-bind:roleOptions="roleOptions"
-        v-bind:flashSuccessMessage="flashSuccessMessage"
-        v-bind:flashValidationErrors="flashValidationErrors"
-        v-bind:flashDangerMessage="flashDangerMessage"
-    />
+    <div class="adminPanel flex flex-column gap-1 lg:pb-1">
+        <user-dashboard
+            v-bind:roleOptions="roleOptions"
+            v-bind:flashSuccessMessage="flashSuccessMessage"
+            v-bind:flashValidationErrors="flashValidationErrors"
+            v-bind:flashDangerMessage="flashDangerMessage"
+        />
+        <contact-dashboard
+            v-bind:roleOptions="roleOptions"
+            v-bind:flashSuccessMessage="flashSuccessMessage"
+            v-bind:flashValidationErrors="flashValidationErrors"
+            v-bind:flashDangerMessage="flashDangerMessage"
+        />
+    </div>
 </template>
 
 <script setup lang="ts">

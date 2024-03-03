@@ -1,5 +1,5 @@
 <template>
-    <Card class="myCard contactDashboard mt-3">
+    <Card class="myCard contactDashboard w-full lg:ml-2 lg:mr-5 mt-1">
         <template #title>
             <div class="flex justify-content-between">
                 <h3>Manage Contacts</h3>
@@ -14,7 +14,7 @@
         <template #content="rowData">
             <DataTable
                 v-bind:value="results"
-                v-bind:rows="11"
+                v-bind:rows="10"
                 v-bind:row-hover="true"
                 v-bind:size="'small'"
                 v-if="results"

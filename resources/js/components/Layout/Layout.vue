@@ -1,15 +1,17 @@
 <template>
-    <my-sidebar
-        :items="items"
-        :user-menu-items="userMenuItems"
-        :user-name="userName"
-    />
-    <my-navbar
-        :items="items"
-        :user-menu-items="userMenuItems"
-        :user-name="userName"
-    />
+    <div class="flex">
+        <my-navbar
+            :items="items"
+            :user-menu-items="userMenuItems"
+            :user-name="userName"
+        />
 
+        <my-sidebar
+            :items="items"
+            :user-menu-items="userMenuItems"
+            :user-name="userName"
+        />
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -77,7 +79,7 @@ onMounted(async () => {
         } else {
             userName.value = window.sessionStorage.getItem('user_name')
             const userRole = window.sessionStorage.getItem('user_role')
-            if  (
+            if (
                 userRole === 'admin' ||
                 userRole === 'test_admin' ||
                 userRole === 'super_admin'

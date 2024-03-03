@@ -17,7 +17,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.ts'])
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="flex flex-column">
         @auth
             <my-layout>
 
@@ -56,7 +56,7 @@
         </nav>
         @endguest
 
-        <main class="p-2 md:p-3 lg:p-4 xl:p-6">
+        <main class="myContent p-2 lg:p-1 lg:pl-8 lg:pr-3">
             @yield('content')
         </main>
 

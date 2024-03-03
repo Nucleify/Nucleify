@@ -1,38 +1,27 @@
 <template>
-    <Sidebar v-model:visible="visible" header="ContactBook">
-        <div class="flex flex-column h-full">
-            <PanelMenu :model="items" />
-            <div class="flex flex-column mt-auto justify-content-center">
-                <hr class="mx-2 border-top-1" />
+    <div class="fixed flex-column h-screen p-3 mySidebar">
+        <PanelMenu :model="items" class="w-3rem m-0 text-3xl" />
+        <div class="flex flex-column mt-auto justify-content-center">
+            <hr class="border-top-1" />
 
-                <div
-                    class="sidebarUser flex align-items-center gap-3 cursor-pointer p-2 border-round-xl"
-                    @click="openUserMenu"
-                >
-                    <Avatar
-                        icon="pi pi-user"
-                        shape="circle"
-                        class="w-2rem h-2rem"
-                    />
-                    <p class="font-bold text-lg vertical-align-middle m-0 w-8">
-                        {{ userName || 'undefined' }}
-                    </p>
-                </div>
-                <Menu ref="menu" :model="userMenuItems" :popup="true" />
+            <div
+                class="sidebarUser flex align-items-center gap-3 cursor-pointer p-2 border-round-xl"
+                @click="openUserMenu"
+            >
+                <Avatar
+                    icon="pi pi-user"
+                    shape="circle"
+                    class="w-2rem h-2rem"
+                />
             </div>
+            <Menu ref="menu" :model="userMenuItems" :popup="true" />
         </div>
-    </Sidebar>
-    <Button
-        class="myBigButton toggleSidebarButton fixed"
-        icon="pi pi-chevron-right"
-        @click="visible = true"
-    />
+    </div>
 </template>
 <script setup lang="ts">
 import { ref } from 'vue'
 
 const menu = ref()
-const visible = ref(false)
 
 defineProps<{
     items: any[]

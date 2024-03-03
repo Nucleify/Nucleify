@@ -1,5 +1,5 @@
 <template>
-    <Menubar :model="items" class="myNavbar">
+    <Menubar :model="items" class="myNavbar" breakpoint="992px">
         <template #end>
             <Avatar
                 icon="pi pi-user"

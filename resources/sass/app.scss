@@ -46,16 +46,16 @@
 
 // Card
 .myCard {
-    width: $card-width;
     margin-left: $card-margin-left;
     margin-right: $card-margin-right;
-    box-shadow: $card-box-shadow;
+    box-shadow: $my-card-box-shadow;
 }
 
 // Dashboards
-.userDashboard {
-    position: $user-dashboard-position;
-    top: $user-dashboard-top;
+.adminPanel {
+    position: $admin-panel-position;
+    top: $admin-panel-top;
+    margin-bottom: $admin-panel-margin-bottom;
 }
 
 // DataTable
@@ -142,6 +142,7 @@ td {
     padding: $menubar-padding;
     margin: $menubar-margin;
     justify-content: $menubar-justify-content;
+    box-shadow: $menubar-box-shadow;
 }
 .p-menubar-button {
     position: $menubar-button-position;
@@ -157,7 +158,7 @@ td {
     margin: $menubar-root-list-margin;
 }
 .myNavbar {
-    display: $my-navbar-display;
+    position: $my-navbar-position;
 }
 
 // Paginator
@@ -189,13 +190,15 @@ td {
     color: $primary-hover-color;
     background: $primary-hover-bg-color;
     transition: $transition-colors-300ms;
-    border-radius: $small-border-radius;
+    border-radius: $small-border-radius;;
 }
 .p-panelmenu .p-panelmenu-header .p-panelmenu-header-content {
     border-color: $panel-menu-header-content-border;
     border-radius: $small-border-radius;
 }
-
+.p-panelmenu .p-panelmenu-header .p-panelmenu-header-action .p-menuitem-icon {
+    font-size: $panel-menu-header-action-icon-font-size;
+}
 // Sidebar
 .p-sidebar {
     max-width: $sidebar-max-width;
@@ -205,12 +208,6 @@ td {
 }
 .p-sidebar-header .p-sidebar-header-content {
     font-size: $font-size-big;
-}
-.toggleSidebarButton {
-    border-radius: $toggle-sidebar-button-border-radius;
-}
-.toggleSidebarButton .p-button-icon {
-    font-size: $font-size-small;
 }
 .sidebarHr {
     position: $sidebar-hr-position;
@@ -257,6 +254,11 @@ td {
 .activityMyButton {
     padding: $activity-my-button;
 }
+.mySidebar {
+    display: $my-sidebar-display;
+    background: $content-bg;
+    box-shadow: $my-sidebar-box-shadow;
+}
 @media (min-width: $minWidthSm) // 530px
 {
     .p-toast-message {
@@ -282,9 +284,6 @@ td {
 
 @media (min-width: $minWidthMd) // 768px
 {
-    .myCard {
-        margin-bottom: $my-card-min-width-768px-margin-bottom;
-    }
     .idColumn {
         width: $id-column-min-width-768px-width;
     }
@@ -300,19 +299,15 @@ td {
     .createdAtActivityColumn {
         display: $tablet-column-min-width-768px-display;
     }
+    .emailColumn {
+        width: $email-column-min-width-768px-width;
+    }
     .createdAtActivityColumn {
         width: $created-at-activity-column;
     }
 }
 @media (min-width: $minWidthLg) // 961px
 {
-    .p-menubar .p-menuitem-content {
-        position: $menubar-menuitem-content-min-width-961px-position;
-        left: $menubar-menuitem-content-min-width-961px-left;
-    }
-    .myNavbar {
-        display: $my-navbar-min-width-961px-display;
-    }
     .idColumn {
         width: $id-column-min-width-961px-width;
     }
@@ -338,8 +333,21 @@ td {
     .birthdayColumn {
         width: $role-birthday-column-min-width-992px-width;
     }
+    .myNavbar {
+        display: $my-navbar-min-width-992px-display;
+    }
+    .mySidebar {
+        display: $my-sidebar-min-width-992px-display;
+    }
+    .mySidebar .p-menuitem-text {
+        display: $my-sidebar-menuitem-text-min-width-992px-display;
+    }
     .createdAtActivityColumn {
         width: $created-at-activity-column-width;
+    }
+    .adminPanel {
+        top: $admin-panel-min-width-992px-top;
+        margin-bottom: $admin-panel-min-width-992px-margin-bottom;
     }
 }
 @media (min-width: $minWidthXl) // 1200px
