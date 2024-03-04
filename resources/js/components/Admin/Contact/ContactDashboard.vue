@@ -94,18 +94,18 @@
 
     <ShowContact
         v-bind:visible="visibleShow"
-        v-bind:contact="selectedContact"
+        v-bind:contact="selectedObject"
         v-bind:close="closeModal"
     />
     <CreateContact
-        v-bind:getContacts="getContacts"
+        v-bind:getAllContacts="getAllContacts"
         v-bind:visible="visibleCreate"
         v-bind:options="roleOptions"
         v-bind:close="closeModal"
     />
     <EditContact
-        v-bind:contact="selectedContact"
-        v-bind:getContacts="getContacts"
+        v-bind:contact="selectedObject"
+        v-bind:getAllContacts="getAllContacts"
         v-bind:visible="visibleEdit"
         v-bind:options="roleOptions"
         v-bind:close="closeModal"
@@ -124,7 +124,7 @@
             />
             <Button
                 label="Confirm"
-                @click="deleteContact(selectedContact)"
+                @click="deleteContact(selectedObject)"
                 class="smallHeightButton"
             />
         </div>
@@ -135,29 +135,35 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-import { ContactInterface } from '../../../interfaces'
-
 import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
 
-import { useApiErrorsService, useToastService } from '../../../utils'
+import {
+    contactApiMethods,
+    useApiErrors,
+    useFlashToast,
+    useModal,
+} from '../../../utils'
+import { ContactInterface } from '../../../interfaces'
 
-const { flashToast } = useToastService()
-const { apiErrors } = useApiErrorsService()
-
+const { flashToast } = useFlashToast()
+const { apiErrors } = useApiErrors()
+const {
+    visibleShow,
+    visibleCreate,
+    visibleEdit,
+    visibleDelete,
+    selectedObject,
+    setSelectedObject,
+    openModal,
+    closeModal,
+} = useModal()
+const { results, getAllContacts } = contactApiMethods()
 
 defineProps<{
     roleOptions: string[]
 }>()
-
-const results = ref<ContactInterface[]>([])
-const selectedContact = ref<ContactInterface | undefined>(undefined)
-
-const visibleShow = ref(false)
-const visibleCreate = ref(false)
-const visibleEdit = ref(false)
-const visibleDelete = ref(false)
 
 /**
  * Menu variables and function
@@ -170,21 +176,21 @@ const items = ref([
                 label: 'Show',
                 icon: 'pi pi-eye',
                 command: () => {
-                    openModal('show', selectedContact.value)
+                    openModal('show', selectedObject.value)
                 },
             },
             {
                 label: 'Edit',
                 icon: 'pi pi-pencil',
                 command: () => {
-                    openModal('edit', selectedContact.value)
+                    openModal('edit', selectedObject.value)
                 },
             },
             {
                 label: 'Delete',
                 icon: 'pi pi-trash',
                 command: () => {
-                    openModal('delete', selectedContact.value)
+                    openModal('delete', selectedObject.value)
                 },
             },
             {
@@ -197,7 +203,7 @@ const items = ref([
 
 function openMenu(event: MouseEvent, contact: ContactInterface): void {
     if (contact) {
-        setSelectedContact(contact)
+        setSelectedObject(contact)
     }
     menu.value.toggle(event)
 }
@@ -205,94 +211,17 @@ function openMenu(event: MouseEvent, contact: ContactInterface): void {
 /**
  * Fetch contacts after component mounts
  */
-onMounted(getContacts)
-
-/**
- * Set selected contact function
- *
- * @param contact
- */
-function setSelectedContact(contact: ContactInterface): void {
-    selectedContact.value = contact
-}
-
-/**
- * Open modal function
- *
- * @param action
- * @param contact
- */
-function openModal(
-    action: string,
-    contact?: ContactInterface | undefined
-): void {
-    if (contact) {
-        setSelectedContact(contact)
-    }
-
-    switch (action) {
-        case 'show':
-            visibleShow.value = true
-            break
-        case 'create':
-            visibleCreate.value = true
-            break
-        case 'edit':
-            visibleEdit.value = true
-            break
-        case 'delete':
-            visibleDelete.value = true
-            break
-        default:
-            console.error('Invalid action:', action)
-            break
-    }
-}
-
-/**
- * Close modal function
- *
- * @param action
- */
-function closeModal(action: string): void {
-    switch (action) {
-        case 'show':
-            visibleShow.value = false
-            break
-        case 'create':
-            visibleCreate.value = false
-            break
-        case 'edit':
-            visibleEdit.value = false
-            break
-        case 'delete':
-            visibleDelete.value = false
-            break
-        default:
-            console.error('Invalid action:', action)
-            break
-    }
-}
+onMounted(getAllContacts)
 
 /**
  * HTTP requests functions
  */
-async function getContacts() {
-    await axios
-        .get('/api/contacts')
-        .then((response) => {
-            results.value = response.data
-        })
-        .catch((error) => {
-            apiErrors(error)
-        })
-}
 function deleteContact(contact: any): void {
     axios
         .delete(`/api/contacts/${contact.data.id}`)
-        .then(() => {
+        .then(async () => {
             closeModal('delete')
-            getContacts()
+            await getAllContacts()
 
             flashToast(
                 'Successfully deleted: ' + contact.data.full_name,

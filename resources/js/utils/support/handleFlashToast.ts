@@ -1,17 +1,17 @@
 import { useToast } from 'primevue/usetoast'
 import { ToastServiceMethods } from 'primevue/toastservice'
 
-import { MessageOrMessagesType, ToastSeverityType, UseToastServiceInterface } from '../../interfaces'
+import { MessageOrMessagesType, ToastSeverityType, UseFlashToastInterface } from '../../interfaces'
 import { closeToast } from '../index'
 
 
-export default function useToastService(): UseToastServiceInterface {
+export default function useFlashToast(): UseFlashToastInterface {
     const toast: ToastServiceMethods = useToast()
 
     function flashToast(messageOrMessages: MessageOrMessagesType, severity: ToastSeverityType): void {
         closeToast()
 
-        let message = ''
+        let message: string = ''
 
         switch (typeof messageOrMessages) {
             case 'string':

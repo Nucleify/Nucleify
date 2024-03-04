@@ -73,11 +73,10 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
 import { ActivityLogInterface } from '../../interfaces'
-import { useApiErrorsService, useToastService } from '../../utils'
+import { useApiErrors, useFlashToast } from '../../utils'
 
-const { flashToast } = useToastService()
-const { apiErrors } = useApiErrorsService()
-
+const { flashToast } = useFlashToast()
+const { apiErrors } = useApiErrors()
 
 const activityLogs = ref<ActivityLogInterface[]>([])
 const selectedLog = ref<ActivityLogInterface | null>(null)

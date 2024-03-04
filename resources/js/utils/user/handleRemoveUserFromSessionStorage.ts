@@ -1,5 +1,5 @@
 export default function removeUserFromSessionStorage(): void {
-    const userKeys = [
+    const userKeys: string[] = [
         'id',
         'name',
         'email',
@@ -9,7 +9,7 @@ export default function removeUserFromSessionStorage(): void {
         'email_verified_at',
     ]
 
-    userKeys.forEach((key) => {
+    userKeys.forEach((key: string): void => {
         window.sessionStorage.removeItem(`user_${key}`)
     })
 }

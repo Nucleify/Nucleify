@@ -98,23 +98,23 @@
     </Card>
     <ShowUser
         v-bind:visible="visibleShow"
-        v-bind:user="selectedUser"
+        v-bind:user="selectedObject"
         v-bind:close="closeModal"
     />
     <CreateUser
-        v-bind:getUsers="getUsers"
         v-bind:visible="visibleCreate"
+        v-bind:getAllUsers="getAllUsers"
         v-bind:options="roleOptions"
         v-bind:close="closeModal"
     />
     <EditUser
-        v-bind:user="selectedUser"
-        v-bind:getUsers="getUsers"
         v-bind:visible="visibleEdit"
+        v-bind:user="selectedObject"
+        v-bind:getAllUsers="getAllUsers"
         v-bind:options="roleOptions"
         v-bind:close="closeModal"
     />
-    <Dialog v-model:visible="visibleDelete" modal header="Confirm delete user">
+    <Dialog v-bind:visible="visibleDelete" modal header="Confirm delete user">
         <div class="flex justify-content-between">
             <Button
                 severity="secondary"
@@ -124,7 +124,7 @@
             />
             <Button
                 label="Confirm"
-                @click="deleteUser(selectedUser)"
+                @click="deleteUser(selectedObject)"
                 class="smallHeightButton"
             />
         </div>
@@ -141,23 +141,31 @@ import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
 import EditUser from './EditUser.vue'
 
-import { useApiErrorsService, useToastService } from '../../../utils'
+import {
+    userApiMethods,
+    useApiErrors,
+    useFlashToast,
+    useModal,
+} from '../../../utils'
 
-
-const { flashToast } = useToastService()
-const { apiErrors } = useApiErrorsService()
+const { results, getAllUsers } = userApiMethods()
+const { apiErrors } = useApiErrors()
+const { flashToast } = useFlashToast()
+const {
+    visibleShow,
+    visibleCreate,
+    visibleEdit,
+    visibleDelete,
+    selectedObject,
+    setSelectedObject,
+    openModal,
+    closeModal,
+} = useModal()
 
 defineProps<{
     roleOptions: string[]
 }>()
 
-const results = ref<UserInterface[]>([])
-const selectedUser = ref<UserInterface | undefined>(undefined)
-
-const visibleShow = ref(false)
-const visibleCreate = ref(false)
-const visibleEdit = ref(false)
-const visibleDelete = ref(false)
 
 /**
  * Menu variables and function
@@ -170,21 +178,21 @@ const items = ref([
                 label: 'Show',
                 icon: 'pi pi-eye',
                 command: () => {
-                    openModal('show', selectedUser.value)
+                    openModal('show', selectedObject.value)
                 },
             },
             {
                 label: 'Edit',
                 icon: 'pi pi-pencil',
                 command: () => {
-                    openModal('edit', selectedUser.value)
+                    openModal('edit', selectedObject.value)
                 },
             },
             {
                 label: 'Delete',
                 icon: 'pi pi-trash',
                 command: () => {
-                    openModal('delete', selectedUser.value)
+                    openModal('delete', selectedObject.value)
                 },
             },
             {
@@ -197,7 +205,7 @@ const items = ref([
 
 function openMenu(event: MouseEvent, user: UserInterface): void {
     if (user) {
-        setSelectedUser(user)
+        setSelectedObject(user)
     }
     menu.value.toggle(event)
 }
@@ -205,91 +213,14 @@ function openMenu(event: MouseEvent, user: UserInterface): void {
 /**
  * Fetch users after component mounts
  */
-onMounted(getUsers)
+onMounted(getAllUsers)
 
-/**
- * Set selected user function
- *
- * @param user
- */
-function setSelectedUser(user: UserInterface): void {
-    selectedUser.value = user
-}
-
-/**
- * Open modal function
- *
- * @param action
- * @param user
- */
-function openModal(action: string, user?: UserInterface | undefined): void {
-    if (user) {
-        setSelectedUser(user)
-    }
-
-    switch (action) {
-        case 'show':
-            visibleShow.value = true
-            break
-        case 'create':
-            visibleCreate.value = true
-            break
-        case 'edit':
-            visibleEdit.value = true
-            break
-        case 'delete':
-            visibleDelete.value = true
-            break
-        default:
-            console.error('Invalid action:', action)
-            break
-    }
-}
-
-/**
- * Close modal function
- *
- * @param action
- */
-function closeModal(action: string): void {
-    switch (action) {
-        case 'show':
-            visibleShow.value = false
-            break
-        case 'create':
-            visibleCreate.value = false
-            break
-        case 'edit':
-            visibleEdit.value = false
-            break
-        case 'delete':
-            visibleDelete.value = false
-            break
-        default:
-            console.error('Invalid action:', action)
-            break
-    }
-}
-
-/**
- * HTTP requests functions
- */
-function getUsers(): void {
-    axios
-        .get('/api/users')
-        .then((response) => {
-            results.value = response.data
-        })
-        .catch((error) => {
-            apiErrors(error)
-        })
-}
 function deleteUser(user: any): void {
     axios
         .delete(`/api/users/${user.data.id}`)
-        .then(() => {
+        .then(async () => {
             closeModal('delete')
-            getUsers()
+            await getAllUsers()
 
             flashToast('Successfully deleted: ' + user.data.name, 'success')
         })

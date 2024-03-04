@@ -66,14 +66,13 @@
 import { ref, toRefs } from 'vue'
 import axios from 'axios'
 
-import { useApiErrorsService, useToastService } from '../../../utils'
+import { useApiErrors, useFlashToast } from '../../../utils'
 
-const { flashToast } = useToastService()
-const { apiErrors } = useApiErrorsService()
-
+const { flashToast } = useFlashToast()
+const { apiErrors } = useApiErrors()
 
 const props = defineProps<{
-    getUsers: () => void
+  getAllUsers: () => void
     visible: boolean
     options: string[]
     close: (action: string) => void
@@ -100,7 +99,7 @@ async function storeUser() {
         })
         .then((response) => {
             props.close('create')
-            props.getUsers()
+            props.getAllUsers()
 
             flashToast('Successfully created: ' + response.data.name, 'success')
         })

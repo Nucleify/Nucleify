@@ -34,7 +34,7 @@ class PutContactRequest extends FormRequest
             'address' => 'nullable|string|min:15|max:100',
             'birthday' => 'nullable|date',
             'contact_groups' => 'nullable|json',
-            'role' => 'nullable|string|in:user,admin,staff'
+            'role' => 'nullable|string|in:user,tech,test_admin,admin,super_admin'
         ];
     }
 }

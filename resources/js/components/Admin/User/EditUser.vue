@@ -48,15 +48,14 @@
 import { ref, toRefs, watch } from 'vue'
 import axios from 'axios'
 
-import { useApiErrorsService, useToastService } from '../../../utils'
+import { useApiErrors, useFlashToast } from '../../../utils'
 
-const { flashToast } = useToastService()
-const { apiErrors } = useApiErrorsService()
-
+const { flashToast } = useFlashToast()
+const { apiErrors } = useApiErrors()
 
 const props = defineProps<{
     user: any
-    getUsers: () => void
+    getAllUsers: () => void
     visible: boolean
     options: string[]
     close: (action: string) => void
@@ -87,7 +86,7 @@ async function editUser() {
         })
         .then((response) => {
             props.close('edit')
-            props.getUsers()
+            props.getAllUsers()
 
             flashToast('Successfully edited: ' + response.data.name, 'success')
         })

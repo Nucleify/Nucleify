@@ -97,15 +97,14 @@
 <script setup lang="ts">
 import { ref, toRefs, watch } from 'vue'
 import axios from 'axios'
-import { useApiErrorsService, useToastService } from '../../../utils'
+import { useApiErrors, useFlashToast } from '../../../utils'
 
-const { flashToast } = useToastService()
-const { apiErrors } = useApiErrorsService()
-
+const { flashToast } = useFlashToast()
+const { apiErrors } = useApiErrors()
 
 const props = defineProps<{
     contact: any
-    getContacts: () => void
+    getAllContacts: () => void
     visible: boolean
     options: string[]
     close: (action: string) => void
@@ -150,7 +149,7 @@ async function editContact() {
         })
         .then((response) => {
             props.close('edit')
-            props.getContacts()
+            props.getAllContacts()
 
             flashToast(
                 'Successfully edited: ' + response.data.full_name,

@@ -7,7 +7,6 @@
 <script setup lang="ts">
 import { login } from '../../utils'
 
-
 const credentials = {
     email: '',
     password: '',

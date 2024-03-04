@@ -17,8 +17,10 @@ import { onMounted, ref } from 'vue'
 import MyNavbar from './MyNavbar.vue'
 import MySidebar from './MySidebar.vue'
 
-import { fetchUser, logout, setUserToSessionStorage } from '../../utils'
+import { userApiMethods, logout, setUserToSessionStorage } from '../../utils'
 import { IsAdminType } from '../../interfaces'
+
+const { getUser } = userApiMethods()
 
 const isAdmin: IsAdminType = ref(null)
 
@@ -76,7 +78,7 @@ onMounted(async () => {
 
     switch (!user_id) {
         case true:
-            await fetchUser().then((user) => {
+            await getUser().then((user) => {
                 if (user) {
                     setUserToSessionStorage(user)
                     userRole = window.sessionStorage.getItem('user_role') ?? ''

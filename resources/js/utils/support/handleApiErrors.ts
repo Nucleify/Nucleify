@@ -1,9 +1,9 @@
-import { useToastService } from '../'
+import { useFlashToast } from '../'
 import { ApiErrorsInterface, UseApiErrorsServiceInterface } from '../../interfaces'
 
 
-export default function useApiErrorsService(): UseApiErrorsServiceInterface {
-    const { flashToast } = useToastService()
+export default function useApiErrors(): UseApiErrorsServiceInterface {
+    const { flashToast } = useFlashToast()
 
     function apiErrors(error: ApiErrorsInterface): void {
         switch (error.response.status) {

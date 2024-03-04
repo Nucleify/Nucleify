@@ -6,8 +6,6 @@ import 'primevue/resources/themes/lara-light-green/theme.css'
 
 export const app = createApp({})
 
-
-
 /**
  *  PrimeVue components
  */
@@ -26,8 +24,7 @@ import PanelMenu from 'primevue/panelmenu'
 import Sidebar from 'primevue/sidebar'
 import Toast from 'primevue/toast'
 
-app
-    .component('Avatar', Avatar)
+app.component('Avatar', Avatar)
     .component('Card', Card)
     .component('Button', Button)
     .component('Column', Column)
@@ -42,8 +39,6 @@ app
     .component('Sidebar', Sidebar)
     .component('Toast', Toast)
 
-
-
 /**
  *  Components
  */
@@ -55,14 +50,11 @@ import {
     TestLoginButton,
 } from './components'
 
-app
-    .component('activity-log', ActivityLog)
+app.component('activity-log', ActivityLog)
     .component('admin-panel', AdminPanel)
     .component('my-layout', MyLayout)
     .component('test-login-button', TestLoginButton)
     .component('login-button', LoginButton)
-
-
 
 /**
  *  Directives
@@ -71,15 +63,10 @@ import Tooltip from 'primevue/tooltip'
 
 app.directive('tooltip', Tooltip)
 
-
-
 /**
  *  App uses & mount
  */
 import ToastService from 'primevue/toastservice'
 import PrimeVue from 'primevue/config'
 
-app
-    .use(PrimeVue)
-    .use(ToastService)
-    .mount('#app')
+app.use(PrimeVue).use(ToastService).mount('#app')

@@ -96,14 +96,13 @@
 <script setup lang="ts">
 import { ref, toRefs } from 'vue'
 import axios from 'axios'
-import { useApiErrorsService, useToastService } from '../../../utils'
+import { useApiErrors, useFlashToast } from '../../../utils'
 
-const { flashToast } = useToastService()
-const { apiErrors } = useApiErrorsService()
-
+const { flashToast } = useFlashToast()
+const { apiErrors } = useApiErrors()
 
 const props = defineProps<{
-    getContacts: () => void
+    getAllContacts: () => void
     visible: boolean
     options: string[]
     close: (action: string) => void
@@ -144,7 +143,7 @@ async function storeContact(): Promise<void> {
         })
         .then((response) => {
             props.close('create')
-            props.getContacts()
+            props.getAllContacts()
 
             flashToast(
                 'Successfully created: ' + response.data.full_name,

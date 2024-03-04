@@ -81,7 +81,7 @@
 
             <div
                 class="sidebarUser flex align-items-center gap-3 cursor-pointer p-2 border-round-xl"
-                @click="openUserMenu"
+                @click="openMenu($refs.menu, $event)"
             >
                 <Avatar
                     icon="pi pi-user"
@@ -96,6 +96,7 @@
 <script setup lang="ts">
 import { ref, Ref } from 'vue'
 
+import { isCurrentUrl, openMenu } from '../../utils'
 
 const menu = ref()
 
@@ -104,14 +105,6 @@ defineProps<{
     items: any[]
     userMenuItems: any[]
 }>()
-
-function openUserMenu(event: MouseEvent): void {
-    menu.value.toggle(event)
-}
-
-function isCurrentUrl(url: string): boolean {
-    return window.location.pathname.includes(url)
-}
 </script>
 
 <style scoped>

@@ -1,14 +1,15 @@
 import { MessageOrMessagesType } from './handleVariablesTypes'
-import { ApiErrorsInterface, ToastSeverityType } from './index'
+import {ApiErrorsInterface, ContactInterface, ToastSeverityType, UserInterface} from './index'
+import {Ref} from "vue";
 
-export interface ActivityLogData {
+export interface ActivityLog {
     id: number
     description: string
     created_at: string
     causer_id: number
 }
 
-export interface ApiErrorsData {
+export interface ApiErrors {
     response: {
         status: number
         data: {
@@ -18,7 +19,13 @@ export interface ApiErrorsData {
     }
 }
 
-export interface ContactData {
+export type AxiosFunction = Promise<undefined> & {
+    then: Promise<undefined>['then']
+    catch: Promise<undefined>['catch']
+    finally: Promise<undefined>['finally']
+}
+
+export interface Contact {
     first_name: string
     last_name: string
     email: string
@@ -32,7 +39,12 @@ export interface ContactData {
     updated_at: string
 }
 
-export interface UserData {
+export interface ContactApiMethods {
+    results: Ref,
+    getAllContacts: () => Promise<ContactInterface[]>
+}
+
+export interface User {
     id: number
     name: string
     email: string
@@ -42,11 +54,17 @@ export interface UserData {
     email_verified_at: string
 }
 
-export interface UseApiErrorsServiceData {
+export interface UseApiErrorsService {
     apiErrors: (error: ApiErrorsInterface) => void
 }
 
-export interface UseToastServiceData {
+export interface UserApiMethods {
+    results: Ref,
+    getAllUsers: () => Promise<UserInterface[]>
+    getUser: () => Promise<UserInterface>
+}
+
+export interface UseFlashToast {
     flashToast: (
         messageOrMessages: MessageOrMessagesType,
         severity: ToastSeverityType
