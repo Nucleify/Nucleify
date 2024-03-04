@@ -17,16 +17,8 @@ import { onMounted, ref } from 'vue'
 import MyNavbar from './MyNavbar.vue'
 import MySidebar from './MySidebar.vue'
 
-import {
-    fetchUser,
-    logout,
-    setUserToSessionStorage,
-    useApiErrorsService
-} from '../../utils'
+import { fetchUser, logout, setUserToSessionStorage } from '../../utils'
 import { IsAdminType } from '../../interfaces'
-
-
-const { apiErrors } = useApiErrorsService()
 
 const isAdmin: IsAdminType = ref(null)
 
@@ -78,36 +70,38 @@ const userMenuItems = ref([
         ],
     },
 ])
-onMounted(() => {
+onMounted(async () => {
     const user_id = window.sessionStorage.getItem('user_id')
-    const userRole = window.sessionStorage.getItem('user_role') ?? ''
+    let userRole = ''
 
     switch (!user_id) {
         case true:
-            fetchUser()
-                .then((user) => {
-                    if (user) {
-                        setUserToSessionStorage(user)
-                        if (
-                            ['admin', 'test_admin', 'super_admin'].includes(
-                                userRole
-                            )
-                        ) {
-                            isAdmin.value = true
-                            items.value.splice(5, 0, {
-                                label: 'Admin Panel',
-                                icon: 'pi pi-users',
-                                url: '/admin',
-                            })
-                        }
+            await fetchUser().then((user) => {
+                if (user) {
+                    setUserToSessionStorage(user)
+                    userRole = window.sessionStorage.getItem('user_role') ?? ''
+                    if (
+                        userRole === 'admin' ||
+                        userRole === 'test_admin' ||
+                        userRole === 'super_admin'
+                    ) {
+                        isAdmin.value = true
+                        items.value.splice(5, 0, {
+                            label: 'Admin Panel',
+                            icon: 'pi pi-users',
+                            url: '/admin',
+                        })
                     }
-                })
-                .catch((error) => {
-                    apiErrors(error)
-                })
+                }
+            })
             break
         default:
-            if (['admin', 'test_admin', 'super_admin'].includes(userRole)) {
+            userRole = window.sessionStorage.getItem('user_role') ?? ''
+            if (
+                userRole === 'admin' ||
+                userRole === 'test_admin' ||
+                userRole === 'super_admin'
+            ) {
                 isAdmin.value = true
                 items.value.splice(5, 0, {
                     label: 'Admin Panel',
