@@ -1,27 +1,34 @@
 <template>
+    <Toast position="top-right" />
     <div class="flex">
-        <my-navbar
-            :items="items"
-            :user-menu-items="userMenuItems"
-            :user-name="userName"
-        />
+        <my-navbar :items="items" :user-menu-items="userMenuItems" />
 
         <my-sidebar
             :isAdmin="isAdmin"
             :items="items"
             :user-menu-items="userMenuItems"
-            :user-name="userName"
         />
     </div>
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
+
 import MyNavbar from './MyNavbar.vue'
 import MySidebar from './MySidebar.vue'
-import { onMounted, ref, Ref } from 'vue'
-import { fetchUser, logout, setUserToSessionStorage } from '../../utils'
 
-const isAdmin: Ref | null = ref(null)
+import {
+    fetchUser,
+    logout,
+    setUserToSessionStorage,
+    useApiErrorsService
+} from '../../utils'
+import { IsAdminType } from '../../interfaces'
+
+
+const { apiErrors } = useApiErrorsService()
+
+const isAdmin: IsAdminType = ref(null)
 
 const items = ref([
     {
@@ -71,39 +78,36 @@ const userMenuItems = ref([
         ],
     },
 ])
+onMounted(() => {
+    const user_id = window.sessionStorage.getItem('user_id')
+    const userRole = window.sessionStorage.getItem('user_role') ?? ''
 
-const userName = ref<string | null>(null)
-
-onMounted(async () => {
-    try {
-        const user_id = window.sessionStorage.getItem('user_id')
-        if (!user_id) {
-            const user = await fetchUser()
-            if (user) {
-                setUserToSessionStorage(user)
-                userName.value = window.sessionStorage.getItem('user_name')
-                const userRole = window.sessionStorage.getItem('user_role')
-                if (
-                    userRole === 'admin' ||
-                    userRole === 'test_admin' ||
-                    userRole === 'super_admin'
-                ) {
-                    isAdmin.value = true
-                    items.value.splice(5, 0, {
-                        label: 'Admin Panel',
-                        icon: 'pi pi-users',
-                        url: '/admin',
-                    })
-                }
-            }
-        } else {
-            userName.value = window.sessionStorage.getItem('user_name')
-            const userRole = window.sessionStorage.getItem('user_role')
-            if (
-                userRole === 'admin' ||
-                userRole === 'test_admin' ||
-                userRole === 'super_admin'
-            ) {
+    switch (!user_id) {
+        case true:
+            fetchUser()
+                .then((user) => {
+                    if (user) {
+                        setUserToSessionStorage(user)
+                        if (
+                            ['admin', 'test_admin', 'super_admin'].includes(
+                                userRole
+                            )
+                        ) {
+                            isAdmin.value = true
+                            items.value.splice(5, 0, {
+                                label: 'Admin Panel',
+                                icon: 'pi pi-users',
+                                url: '/admin',
+                            })
+                        }
+                    }
+                })
+                .catch((error) => {
+                    apiErrors(error)
+                })
+            break
+        default:
+            if (['admin', 'test_admin', 'super_admin'].includes(userRole)) {
                 isAdmin.value = true
                 items.value.splice(5, 0, {
                     label: 'Admin Panel',
@@ -111,9 +115,7 @@ onMounted(async () => {
                     url: '/admin',
                 })
             }
-        }
-    } catch (error) {
-        console.error('Error fetching user data:', error)
+            break
     }
 })
 </script>

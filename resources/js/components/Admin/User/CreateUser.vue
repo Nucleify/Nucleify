@@ -66,13 +66,16 @@
 import { ref, toRefs } from 'vue'
 import axios from 'axios'
 
+import { useApiErrorsService, useToastService } from '../../../utils'
+
+const { flashToast } = useToastService()
+const { apiErrors } = useApiErrorsService()
+
+
 const props = defineProps<{
     getUsers: () => void
     visible: boolean
     options: string[]
-    flashSuccessMessage: (message: string) => void
-    flashDangerMessage: (message: string) => void
-    flashValidationErrors: (errors: Record<string, string[]>) => void
     close: (action: string) => void
 }>()
 
@@ -85,7 +88,6 @@ const data = ref({
 })
 
 const { visible, options } = toRefs(props)
-const success_message = ref<string | undefined>(undefined)
 
 async function storeUser() {
     await axios
@@ -100,25 +102,10 @@ async function storeUser() {
             props.close('create')
             props.getUsers()
 
-            success_message.value =
-                'Successfully created: ' + response.data.name
-            props.flashSuccessMessage(success_message.value)
+            flashToast('Successfully created: ' + response.data.name, 'success')
         })
         .catch((error) => {
-            switch (error.response.status) {
-                case 500:
-                    props.flashDangerMessage(
-                        error.response.data.error ||
-                            'HTTP 500: Internal Server Error'
-                    )
-                    break
-                case 403:
-                case 401:
-                    props.flashDangerMessage('Unauthorized access')
-                    break
-                default:
-                    props.flashValidationErrors(error.response.data.errors)
-            }
+            apiErrors(error)
         })
 }
 </script>

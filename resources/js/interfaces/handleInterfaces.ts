@@ -1,8 +1,21 @@
+import { MessageOrMessagesType } from './handleVariablesTypes'
+import { ApiErrorsInterface, ToastSeverityType } from './index'
+
 export interface ActivityLogData {
     id: number
     description: string
     created_at: string
     causer_id: number
+}
+
+export interface ApiErrorsData {
+    response: {
+        status: number
+        data: {
+            error?: string
+            errors: MessageOrMessagesType
+        }
+    }
 }
 
 export interface ContactData {
@@ -27,4 +40,15 @@ export interface UserData {
     created_at: string
     updated_at: string
     email_verified_at: string
+}
+
+export interface UseApiErrorsServiceData {
+    apiErrors: (error: ApiErrorsInterface) => void
+}
+
+export interface UseToastServiceData {
+    flashToast: (
+        messageOrMessages: MessageOrMessagesType,
+        severity: ToastSeverityType
+    ) => void
 }

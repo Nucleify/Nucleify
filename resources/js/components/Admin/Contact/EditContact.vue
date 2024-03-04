@@ -97,15 +97,17 @@
 <script setup lang="ts">
 import { ref, toRefs, watch } from 'vue'
 import axios from 'axios'
+import { useApiErrorsService, useToastService } from '../../../utils'
+
+const { flashToast } = useToastService()
+const { apiErrors } = useApiErrorsService()
+
 
 const props = defineProps<{
     contact: any
     getContacts: () => void
     visible: boolean
     options: string[]
-    flashSuccessMessage: (message: string) => void
-    flashDangerMessage: (message: string) => void
-    flashValidationErrors: (errors: Record<string, string[]>) => void
     close: (action: string) => void
 }>()
 
@@ -125,7 +127,6 @@ const data = ref({
 })
 
 const { visible, contact, options } = toRefs(props)
-const success_message = ref<string | undefined>(undefined)
 
 /**
  * Check modal open with watch visible variable, then pass props to data
@@ -151,25 +152,13 @@ async function editContact() {
             props.close('edit')
             props.getContacts()
 
-            success_message.value =
-                'Successfully edited: ' + response.data.full_name
-            props.flashSuccessMessage(success_message.value)
+            flashToast(
+                'Successfully edited: ' + response.data.full_name,
+                'success'
+            )
         })
         .catch((error) => {
-            switch (error.response.status) {
-                case 500:
-                    props.flashDangerMessage(
-                        error.response.data.error ||
-                            'HTTP 500: Internal Server Error'
-                    )
-                    break
-                case 403:
-                case 401:
-                    props.flashDangerMessage('Unauthorized access')
-                    break
-                default:
-                    props.flashValidationErrors(error.response.data.errors)
-            }
+            apiErrors(error)
         })
 }
 </script>

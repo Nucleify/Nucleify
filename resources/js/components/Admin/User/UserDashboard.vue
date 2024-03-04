@@ -105,9 +105,6 @@
         v-bind:getUsers="getUsers"
         v-bind:visible="visibleCreate"
         v-bind:options="roleOptions"
-        v-bind:flashSuccessMessage="flashSuccessMessage"
-        v-bind:flashDangerMessage="flashDangerMessage"
-        v-bind:flashValidationErrors="flashValidationErrors"
         v-bind:close="closeModal"
     />
     <EditUser
@@ -115,9 +112,6 @@
         v-bind:getUsers="getUsers"
         v-bind:visible="visibleEdit"
         v-bind:options="roleOptions"
-        v-bind:flashSuccessMessage="flashSuccessMessage"
-        v-bind:flashDangerMessage="flashDangerMessage"
-        v-bind:flashValidationErrors="flashValidationErrors"
         v-bind:close="closeModal"
     />
     <Dialog v-model:visible="visibleDelete" modal header="Confirm delete user">
@@ -147,16 +141,18 @@ import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
 import EditUser from './EditUser.vue'
 
-const props = defineProps<{
+import { useApiErrorsService, useToastService } from '../../../utils'
+
+
+const { flashToast } = useToastService()
+const { apiErrors } = useApiErrorsService()
+
+defineProps<{
     roleOptions: string[]
-    flashSuccessMessage: (message: string) => void
-    flashDangerMessage: (message: string) => void
-    flashValidationErrors: (errors: Record<string, string[]>) => void
 }>()
 
 const results = ref<UserInterface[]>([])
 const selectedUser = ref<UserInterface | undefined>(undefined)
-const success_message = ref<string | undefined>(undefined)
 
 const visibleShow = ref(false)
 const visibleCreate = ref(false)
@@ -285,20 +281,7 @@ function getUsers(): void {
             results.value = response.data
         })
         .catch((error) => {
-            switch (error.response.status) {
-                case 500:
-                    props.flashDangerMessage(
-                        error.response.data.error ||
-                            'HTTP 500: Internal Server Error'
-                    )
-                    break
-                case 403:
-                case 401:
-                    props.flashDangerMessage('Unauthorized access')
-                    break
-                default:
-                    props.flashValidationErrors(error.response.data.errors)
-            }
+            apiErrors(error)
         })
 }
 function deleteUser(user: any): void {
@@ -307,26 +290,12 @@ function deleteUser(user: any): void {
         .then(() => {
             closeModal('delete')
             getUsers()
-            success_message.value = 'Successfully deleted: ' + user.data.name
 
-            props.flashSuccessMessage(success_message.value)
+            flashToast('Successfully deleted: ' + user.data.name, 'success')
         })
         .catch((error) => {
             closeModal('delete')
-            switch (error.response.status) {
-                case 500:
-                    props.flashDangerMessage(
-                        error.response.data.error ||
-                            'HTTP 500: Internal Server Error'
-                    )
-                    break
-                case 403:
-                case 401:
-                    props.flashDangerMessage('Unauthorized access')
-                    break
-                default:
-                    props.flashValidationErrors(error.response.data.errors)
-            }
+            apiErrors(error)
         })
 }
 </script>

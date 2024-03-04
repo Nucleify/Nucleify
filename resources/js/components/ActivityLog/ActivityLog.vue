@@ -73,6 +73,11 @@ import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
 import { ActivityLogInterface } from '../../interfaces'
+import { useApiErrorsService, useToastService } from '../../utils'
+
+const { flashToast } = useToastService()
+const { apiErrors } = useApiErrorsService()
+
 
 const activityLogs = ref<ActivityLogInterface[]>([])
 const selectedLog = ref<ActivityLogInterface | null>(null)
@@ -85,10 +90,9 @@ function getActivityLogs(): void {
         .get('/api/activity-log')
         .then((response) => {
             activityLogs.value = response.data
-            console.log(activityLogs.value)
         })
         .catch((error) => {
-            console.error('Failed to fetch activity logs:', error)
+            apiErrors(error)
         })
 }
 
@@ -111,10 +115,16 @@ function closeModal(action: string): void {
 function deleteActivityLog(log: any): void {
     axios
         .delete(`/api/activity-log/${log.id}`)
-        .then(() => {
+        .then((response) => {
             closeModal('delete')
             getActivityLogs()
+
+            console.log(response.data)
+            flashToast(response.data.message, 'success')
         })
-        .catch(() => {})
+        .catch((error) => {
+            closeModal('delete')
+            apiErrors(error)
+        })
 }
 </script>

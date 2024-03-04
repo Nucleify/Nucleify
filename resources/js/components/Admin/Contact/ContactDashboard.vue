@@ -101,9 +101,6 @@
         v-bind:getContacts="getContacts"
         v-bind:visible="visibleCreate"
         v-bind:options="roleOptions"
-        v-bind:flashSuccessMessage="flashSuccessMessage"
-        v-bind:flashDangerMessage="flashDangerMessage"
-        v-bind:flashValidationErrors="flashValidationErrors"
         v-bind:close="closeModal"
     />
     <EditContact
@@ -111,9 +108,6 @@
         v-bind:getContacts="getContacts"
         v-bind:visible="visibleEdit"
         v-bind:options="roleOptions"
-        v-bind:flashSuccessMessage="flashSuccessMessage"
-        v-bind:flashDangerMessage="flashDangerMessage"
-        v-bind:flashValidationErrors="flashValidationErrors"
         v-bind:close="closeModal"
     />
     <Dialog
@@ -147,16 +141,18 @@ import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
 
-const props = defineProps<{
+import { useApiErrorsService, useToastService } from '../../../utils'
+
+const { flashToast } = useToastService()
+const { apiErrors } = useApiErrorsService()
+
+
+defineProps<{
     roleOptions: string[]
-    flashSuccessMessage: (message: string) => void
-    flashDangerMessage: (message: string) => void
-    flashValidationErrors: (errors: Record<string, string[]>) => void
 }>()
 
 const results = ref<ContactInterface[]>([])
 const selectedContact = ref<ContactInterface | undefined>(undefined)
-const success_message = ref<string | undefined>(undefined)
 
 const visibleShow = ref(false)
 const visibleCreate = ref(false)
@@ -288,20 +284,7 @@ async function getContacts() {
             results.value = response.data
         })
         .catch((error) => {
-            switch (error.response.status) {
-                case 500:
-                    props.flashDangerMessage(
-                        error.response.data.error ||
-                            'HTTP 500: Internal Server Error'
-                    )
-                    break
-                case 403:
-                case 401:
-                    props.flashDangerMessage('Unauthorized access')
-                    break
-                default:
-                    props.flashValidationErrors(error.response.data.errors)
-            }
+            apiErrors(error)
         })
 }
 function deleteContact(contact: any): void {
@@ -310,26 +293,15 @@ function deleteContact(contact: any): void {
         .then(() => {
             closeModal('delete')
             getContacts()
-            success_message.value =
-                'Successfully deleted: ' + contact.data.full_name
 
-            props.flashSuccessMessage(success_message.value)
+            flashToast(
+                'Successfully deleted: ' + contact.data.full_name,
+                'success'
+            )
         })
         .catch((error) => {
-            switch (error.response.status) {
-                case 500:
-                    props.flashDangerMessage(
-                        error.response.data.error ||
-                            'HTTP 500: Internal Server Error'
-                    )
-                    break
-                case 403:
-                case 401:
-                    props.flashDangerMessage('Unauthorized access')
-                    break
-                default:
-                    props.flashValidationErrors(error.response.data.errors)
-            }
+            closeModal('delete')
+            apiErrors(error)
         })
 }
 </script>

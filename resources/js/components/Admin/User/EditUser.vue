@@ -48,14 +48,17 @@
 import { ref, toRefs, watch } from 'vue'
 import axios from 'axios'
 
+import { useApiErrorsService, useToastService } from '../../../utils'
+
+const { flashToast } = useToastService()
+const { apiErrors } = useApiErrorsService()
+
+
 const props = defineProps<{
     user: any
     getUsers: () => void
     visible: boolean
     options: string[]
-    flashSuccessMessage: (message: string) => void
-    flashDangerMessage: (message: string) => void
-    flashValidationErrors: (errors: Record<string, string[]>) => void
     close: (action: string) => void
 }>()
 
@@ -67,7 +70,6 @@ const data = ref({
 })
 
 const { visible, user, options } = toRefs(props)
-const success_message = ref<string | undefined>(undefined)
 
 /**
  * Check modal open with watch visible variable, then pass props to data
@@ -87,24 +89,10 @@ async function editUser() {
             props.close('edit')
             props.getUsers()
 
-            success_message.value = 'Successfully edited: ' + response.data.name
-            props.flashSuccessMessage(success_message.value)
+            flashToast('Successfully edited: ' + response.data.name, 'success')
         })
         .catch((error) => {
-            switch (error.response.status) {
-                case 500:
-                    props.flashDangerMessage(
-                        error.response.data.error ||
-                            'HTTP 500: Internal Server Error'
-                    )
-                    break
-                case 403:
-                case 401:
-                    props.flashDangerMessage('Unauthorized access')
-                    break
-                default:
-                    props.flashValidationErrors(error.response.data.errors)
-            }
+            apiErrors(error)
         })
 }
 </script>

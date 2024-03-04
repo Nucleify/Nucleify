@@ -15,10 +15,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+
 defineProps<{
     items: any[]
     userMenuItems: any[]
-    userName: string | null
 }>()
 
 const menu = ref()

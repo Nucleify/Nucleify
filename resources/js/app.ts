@@ -1,10 +1,15 @@
 import './bootstrap'
 import { createApp } from 'vue'
-import ToastService from 'primevue/toastservice'
-import PrimeVue from 'primevue/config'
+
+import 'primeflex/primeflex.css'
+import 'primevue/resources/themes/lara-light-green/theme.css'
+
+export const app = createApp({})
+
+
 
 /**
- * Primevue components
+ *  PrimeVue components
  */
 import Avatar from 'primevue/avatar'
 import Card from 'primevue/card'
@@ -20,38 +25,27 @@ import Menubar from 'primevue/menubar'
 import PanelMenu from 'primevue/panelmenu'
 import Sidebar from 'primevue/sidebar'
 import Toast from 'primevue/toast'
-import Tooltip from 'primevue/tooltip'
+
+app
+    .component('Avatar', Avatar)
+    .component('Card', Card)
+    .component('Button', Button)
+    .component('Column', Column)
+    .component('DataTable', DataTable)
+    .component('Dialog', Dialog)
+    .component('Dropdown', Dropdown)
+    .component('InlineMessage', InlineMessage)
+    .component('InputText', InputText)
+    .component('Menu', Menu)
+    .component('Menubar', Menubar)
+    .component('PanelMenu', PanelMenu)
+    .component('Sidebar', Sidebar)
+    .component('Toast', Toast)
+
+
 
 /**
- *
- */
-
-import 'primeflex/primeflex.css'
-import 'primevue/resources/themes/lara-light-green/theme.css'
-
-const app = createApp({})
-
-/**
- * VUE COMPONENTS
- */
-app.use(PrimeVue)
-app.component('Avatar', Avatar)
-app.component('Card', Card)
-app.component('Button', Button)
-app.component('Column', Column)
-app.component('DataTable', DataTable)
-app.component('Dialog', Dialog)
-app.component('Dropdown', Dropdown)
-app.component('InlineMessage', InlineMessage)
-app.component('InputText', InputText)
-app.component('Menu', Menu)
-app.component('Menubar', Menubar)
-app.component('PanelMenu', PanelMenu)
-app.component('Sidebar', Sidebar)
-app.component('Toast', Toast)
-
-/**
- * BLADE COMPONENTS
+ *  Components
  */
 import {
     ActivityLog,
@@ -61,13 +55,31 @@ import {
     TestLoginButton,
 } from './components'
 
-app.component('activity-log', ActivityLog)
-app.component('admin-panel', AdminPanel)
-app.component('my-layout', MyLayout)
-app.component('test-login-button', TestLoginButton)
-app.component('login-button', LoginButton)
+app
+    .component('activity-log', ActivityLog)
+    .component('admin-panel', AdminPanel)
+    .component('my-layout', MyLayout)
+    .component('test-login-button', TestLoginButton)
+    .component('login-button', LoginButton)
+
+
+
+/**
+ *  Directives
+ */
+import Tooltip from 'primevue/tooltip'
 
 app.directive('tooltip', Tooltip)
 
-app.use(ToastService)
-app.mount('#app')
+
+
+/**
+ *  App uses & mount
+ */
+import ToastService from 'primevue/toastservice'
+import PrimeVue from 'primevue/config'
+
+app
+    .use(PrimeVue)
+    .use(ToastService)
+    .mount('#app')

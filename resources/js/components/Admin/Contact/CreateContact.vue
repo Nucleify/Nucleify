@@ -96,14 +96,16 @@
 <script setup lang="ts">
 import { ref, toRefs } from 'vue'
 import axios from 'axios'
+import { useApiErrorsService, useToastService } from '../../../utils'
+
+const { flashToast } = useToastService()
+const { apiErrors } = useApiErrorsService()
+
 
 const props = defineProps<{
     getContacts: () => void
     visible: boolean
     options: string[]
-    flashSuccessMessage: (message: string) => void
-    flashDangerMessage: (message: string) => void
-    flashValidationErrors: (errors: Record<string, string[]>) => void
     close: (action: string) => void
 }>()
 
@@ -123,7 +125,6 @@ const data = ref({
 })
 
 const { visible, options } = toRefs(props)
-const success_message = ref<string | undefined>(undefined)
 
 async function storeContact(): Promise<void> {
     const user_id = window.sessionStorage.getItem('user_id')
@@ -145,25 +146,13 @@ async function storeContact(): Promise<void> {
             props.close('create')
             props.getContacts()
 
-            success_message.value =
-                'Successfully created: ' + response.data.full_name
-            props.flashSuccessMessage(success_message.value)
+            flashToast(
+                'Successfully created: ' + response.data.full_name,
+                'success'
+            )
         })
         .catch((error) => {
-            switch (error.response.status) {
-                case 500:
-                    props.flashDangerMessage(
-                        error.response.data.error ||
-                            'HTTP 500: Internal Server Error'
-                    )
-                    break
-                case 403:
-                case 401:
-                    props.flashDangerMessage('Unauthorized access')
-                    break
-                default:
-                    props.flashValidationErrors(error.response.data.errors)
-            }
+            apiErrors(error)
         })
 }
 </script>

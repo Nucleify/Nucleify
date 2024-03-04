@@ -96,13 +96,13 @@
 <script setup lang="ts">
 import { ref, Ref } from 'vue'
 
+
 const menu = ref()
 
 defineProps<{
     isAdmin: Ref | null
     items: any[]
     userMenuItems: any[]
-    userName: string | null
 }>()
 
 function openUserMenu(event: MouseEvent): void {

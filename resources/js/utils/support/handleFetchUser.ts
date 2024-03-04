@@ -1,13 +1,17 @@
-import axios from "axios";
+import axios, { AxiosResponse } from 'axios'
 
-export default async function fetchUser(): Promise< | undefined> {
-    try {
-        const response = await axios.get('/api/user')
+import { FetchUserFunctionType } from '../../interfaces'
+import { useApiErrorsService } from '../../utils'
 
-        console.log(response)
 
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching user data:', error)
-    }
+export default function fetchUser(): FetchUserFunctionType {
+    const { apiErrors } = useApiErrorsService()
+
+    return axios.get('/api/user')
+        .then((response: AxiosResponse) => {
+            return response.data
+        })
+        .catch((error) => {
+            apiErrors(error)
+        })
 }

@@ -1,6 +1,9 @@
-import axios from "axios"
+import axios from 'axios'
 
-export default function login(credentials: { email: string; password: string }): void {
+export default function login(credentials: {
+    email: string
+    password: string
+}): void {
     axios
         .post('/login', credentials)
         .then(() => {
