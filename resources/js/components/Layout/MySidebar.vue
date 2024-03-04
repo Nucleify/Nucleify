@@ -19,7 +19,7 @@
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/messages') }"
-                class="sidebarItem text-center"
+                class="sidebarItem text-center opacity-25 cursor-auto"
                 v-tooltip.left="'Messages'"
             >
                 <i class="pi pi-envelope text-xl"></i>
@@ -27,7 +27,7 @@
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/todo') }"
-                class="sidebarItem text-center"
+                class="sidebarItem text-center opacity-25 cursor-auto"
                 v-tooltip.left="'Tasks'"
             >
                 <i class="pi pi-check-square text-xl"></i>
@@ -35,7 +35,7 @@
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/export') }"
-                class="sidebarItem text-center"
+                class="sidebarItem text-center opacity-25 cursor-auto"
                 v-tooltip.left="'Export Data'"
             >
                 <i class="pi pi-file text-xl"></i>
@@ -63,7 +63,7 @@
                 <a
                     href="#"
                     :class="{ active: isCurrentUrl('/help') }"
-                    class="sidebarItem text-center"
+                    class="sidebarItem text-center opacity-25 cursor-auto"
                     v-tooltip.left="'Help'"
                 >
                     <i class="pi pi-info-circle text-xl"></i>
@@ -71,7 +71,7 @@
                 <a
                     href="#"
                     :class="{ active: isCurrentUrl('/settings') }"
-                    class="sidebarItem text-center"
+                    class="sidebarItem text-center opacity-25 cursor-auto"
                     v-tooltip.left="'Settings'"
                 >
                     <i class="pi pi-cog text-xl"></i>
