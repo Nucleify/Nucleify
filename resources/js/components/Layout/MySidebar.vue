@@ -11,7 +11,7 @@
                 href="/home"
                 :class="{ active: isCurrentUrl('/home') }"
                 class="sidebarItem text-center"
-                v-tooltip.left="'Home'"
+                v-tooltip.right="'Home'"
             >
                 <i class="pi pi-home text-xl"></i>
             </a>
@@ -20,7 +20,7 @@
                 :class="{ active: isCurrentUrl('/admin') && isAdmin }"
                 class="sidebarItem text-center"
                 v-if="isAdmin"
-                v-tooltip.left="'Admin Panel'"
+                v-tooltip.right="'Admin Panel'"
             >
                 <i class="pi pi-users text-xl"></i>
             </a>
@@ -28,7 +28,7 @@
                 href="#"
                 :class="{ active: isCurrentUrl('/contacts') }"
                 class="sidebarItem text-center opacity-25 cursor-auto"
-                v-tooltip.left="'Contacts'"
+                v-tooltip.right="'Contacts'"
             >
                 <i class="pi pi-user text-lg"></i>
             </a>
@@ -36,7 +36,7 @@
                 href="#"
                 :class="{ active: isCurrentUrl('/posts') }"
                 class="sidebarItem text-center opacity-25 cursor-auto"
-                v-tooltip.left="'Posts'"
+                v-tooltip.right="'Posts'"
             >
                 <i class="pi pi-comment text-xl"></i>
             </a>
@@ -44,7 +44,7 @@
                 href="#"
                 :class="{ active: isCurrentUrl('/messages') }"
                 class="sidebarItem text-center opacity-25 cursor-auto"
-                v-tooltip.left="'Messages'"
+                v-tooltip.right="'Messages'"
             >
                 <i class="pi pi-envelope text-xl"></i>
             </a>
@@ -52,7 +52,7 @@
                 href="#"
                 :class="{ active: isCurrentUrl('/tasks') }"
                 class="sidebarItem text-center opacity-25 cursor-auto"
-                v-tooltip.left="'Tasks'"
+                v-tooltip.right="'Tasks'"
             >
                 <i class="pi pi-check-square text-xl"></i>
             </a>
@@ -60,7 +60,7 @@
                 href="#"
                 :class="{ active: isCurrentUrl('/money-manager') }"
                 class="sidebarItem text-center opacity-25 cursor-auto"
-                v-tooltip.left="'Money manager'"
+                v-tooltip.right="'Money manager'"
             >
                 <i class="pi pi pi-dollar text-xl"></i>
             </a>
@@ -68,7 +68,7 @@
                 href="/activity-log"
                 :class="{ active: isCurrentUrl('/activity-log') }"
                 class="sidebarItem text-center"
-                v-tooltip.left="'Activity Log'"
+                v-tooltip.right="'Activity Log'"
             >
                 <i class="pi pi-clock text-xl"></i>
             </a>
@@ -79,7 +79,7 @@
                     href="#"
                     :class="{ active: isCurrentUrl('/help') }"
                     class="sidebarItem text-center opacity-25 cursor-auto"
-                    v-tooltip.left="'Help'"
+                    v-tooltip.right="'Help'"
                 >
                     <i class="pi pi-info-circle text-xl"></i>
                 </a>
@@ -87,7 +87,7 @@
                     href="#"
                     :class="{ active: isCurrentUrl('/settings') }"
                     class="sidebarItem text-center opacity-25 cursor-auto"
-                    v-tooltip.left="'Settings'"
+                    v-tooltip.right="'Settings'"
                 >
                     <i class="pi pi-cog text-xl"></i>
                 </a>

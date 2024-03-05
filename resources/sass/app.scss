@@ -112,11 +112,17 @@ td {
 // Login & Register
 .loginCard,
 .registerCard {
-    margin: $login-card-margin;
-    position: $login-card-position;
-    top: $login-card-position-top;
-    max-width: $login-card-position-max-width;
+    padding-bottom: $auth-card-padding-bottom;
+    margin: $auth-card-margin;
+    position: $auth-card-position;
+    top: $auth-card-position-top;
     box-shadow: $login-card-box-shadow;
+}
+.loginCard {
+    max-width: $login-card-position-max-width;
+}
+.registerCard {
+    max-width: $register-card-position-max-width;
 }
 .backLink,
 .loginLink,
@@ -125,6 +131,12 @@ td {
     font-size: $font-size-medium;
     text-decoration: $links-text-decoration;
     color: $primary-text-color;
+    transition: $transition-colors-300ms;
+}
+.backLink:hover,
+.loginLink:hover,
+.registerLink:hover {
+    color: $primary-hover-color
 }
 .backLink {
     top: $back-link-top;
@@ -134,6 +146,9 @@ td {
 .registerLink {
     top: $auth-links-top;
     right: $auth-links-right;
+}
+.authInputText {
+    height: $auth-input-text-height;
 }
 
 // Menu, MenuBar
@@ -186,6 +201,21 @@ td {
 }
 .myNavbar {
     position: $my-navbar-position;
+}
+.applicationHeader {
+    text-decoration: $application-header-text-decoration;
+    color: $primary-text-color;
+    font-size: $application-header-font-size;
+}
+.applicationHeader:hover {
+    color: $primary-text-color;
+}
+.guestNavLink {
+    font-size: $guest-nav-link-font-size;
+}
+.guestNavLink:hover,
+.guestNavLink:focus {
+    color: $primary-hover-color;
 }
 
 // Paginator
@@ -463,14 +493,379 @@ td {
 }
 
 // Menuitems disabled for now
-.p-menuitem:nth-child(5) .p-menuitem-link,
-.p-menubar .p-menuitem:nth-child(3) .p-menuitem-link,
-.p-menubar .p-menuitem:nth-child(4) .p-menuitem-link,
-.p-menubar .p-menuitem:nth-child(5) .p-menuitem-link,
-.p-menubar .p-menuitem:nth-child(6) .p-menuitem-link,
-.p-menubar .p-menuitem:nth-child(7) .p-menuitem-link,
-.p-menubar .p-menuitem:nth-child(9) .p-menuitem-link,
-.p-menubar .p-menuitem:nth-child(10) .p-menuitem-link{
+.myNavbar .p-menuitem:nth-child(5) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(3) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(4) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(5) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(6) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(7) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(9) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(10) .p-menuitem-link {
     opacity: 0.3;
     cursor: default;
+}
+
+
+// Welcome page
+.navbar {
+    padding: 0 20px;
+}
+.startContainer {
+    padding: 10px;
+}
+.startHeader {
+    font-size: 40px;
+}
+.startDescription {
+    font-size: 22px;
+}
+.startHeader {
+    margin-top: 100px;
+    font-weight: bolder;
+    font-family: Inter, sans-serif;
+    color: $text-color;
+}
+.startDescription {
+    margin-top: 20px;
+    max-width: 600px;
+    color: $secondary-text-color;
+}
+.startButton {
+    margin-top: 20px;
+    width: 150px;
+    justify-content: center;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 18px;
+    transition: transform 150ms ease-out;
+}
+.startButton:active {
+    transform: scale(0.95);
+}
+
+.startItem {
+    color: $secondary-gray-color;
+    background: $secondary-gray-bg-color;
+    transition: $transition-colors-300ms;
+    border-radius: $small-border-radius;
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+    padding: 8px 11px;
+    text-decoration: $panel-menu-header-action-text-decoration;
+}
+
+.activitiesIcon,
+.contactsIcon,
+.moneyIcon,
+.postsIcon,
+.tasksIcon,
+.usersIcon {
+    font-size: 15px;
+}
+.startItem:hover {
+    color: $primary-hover-color;
+    background: #E3FFF4;
+    transition: $transition-colors-300ms;
+    border-radius: $small-border-radius;
+}
+
+.activitiesIcon,
+.activitiesItem,
+.contactsIcon,
+.contactsItem,
+.moneyIcon,
+.moneyItem,
+.postsIcon,
+.postsItem,
+.tasksIcon,
+.tasksItem,
+.usersIcon,
+.usersItem {
+    position: relative
+}
+.contactsIcon,
+.moneyIcon,
+.postsIcon,
+.usersIcon {
+    top: 2px;
+}
+
+.activitiesIcon,
+.tasksIcon {
+    top: 1px;
+}
+.contactsItem {
+    top: 15px;
+    left: 240px;
+}
+.tasksItem {
+    bottom: 80px;
+    left: 170px;
+}
+.postsItem {
+    bottom: 410px;
+    left: 50px;
+}
+.moneyItem {
+    bottom: 285px;
+    left: 150px;
+}
+.activitiesItem {
+    top: 50px;
+    left: -140px;
+}
+.usersItem {
+    top: 30px;
+    left: 170px;
+}
+
+@media (min-width: 411px) {
+    .contactsItem {
+        top: 40px;
+        left: 280px;
+    }
+    .tasksItem {
+        bottom: 60px;
+        left: 220px;
+    }
+    .postsItem {
+        bottom: 370px;
+        left: 50px;
+    }
+    .moneyItem {
+        bottom: 250px;
+        left: 180px;
+    }
+    .activitiesItem {
+        top: 50px;
+        left: -140px;
+    }
+    .usersItem {
+        top: 20px;
+        left: 200px;
+    }
+}
+@media (min-width: 545px) {
+    .moneyItem {
+        bottom: 215px;
+        left: 190px;
+    }
+    .postsItem {
+        bottom: 345px;
+    }
+}
+
+@media (min-width: 547px) {
+    .contactsItem {
+        bottom: 20px;
+        left: 400px;
+    }
+    .tasksItem {
+        bottom: 30px;
+        left: 250px;
+    }
+    .postsItem {
+        bottom: 295px;
+        left: 100px;
+    }
+    .moneyItem {
+        bottom: 280px;
+        left: 270px;
+    }
+    .activitiesItem {
+        top: 50px;
+        left: -140px;
+    }
+    .usersItem {
+        top: 20px;
+        left: 200px;
+    }
+}
+
+@media (min-width: 576px) {
+    .startContainer {
+        padding: 0;
+    }
+}
+
+@media (min-width: $minWidthMd) // 768px
+{
+    .startItem {
+        color: $secondary-gray-color;
+        background: $secondary-gray-bg-color;
+        transition: $transition-colors-300ms;
+        border-radius: $small-border-radius;
+        min-width: $sidebar-item-dimensions;
+        min-height: $sidebar-item-dimensions;
+        max-width: $sidebar-item-dimensions;
+        max-height: $sidebar-item-dimensions;
+        padding: 14px;
+        text-decoration: $panel-menu-header-action-text-decoration;
+    }
+    .activitiesIcon,
+    .contactsIcon,
+    .moneyIcon,
+    .postsIcon,
+    .tasksIcon,
+    .usersIcon {
+        font-size: 20px;
+    }
+    .activitiesIcon,
+    .contactsIcon,
+    .postsIcon {
+        top: 2px;
+    }
+    .moneyIcon,
+    .tasksIcon,
+    .usersIcon {
+        top: 3px;
+    }
+    .startHeader {
+        margin-top: 140px;
+        font-size: 52px;
+    }
+    .startDescription {
+        margin-top: 30px;
+    }
+    .startButton {
+        margin-top: 30px;
+    }
+    .usersItem {
+        left: 350px;
+    }
+    .contactsItem {
+        top: 50px;
+        left: 560px;
+    }
+    .tasksItem {
+        bottom: 70px;
+        left: 430px;
+    }
+    .postsItem {
+        bottom: 340px;
+        left: 400px;
+    }
+    .moneyItem {
+        bottom: 150px;
+        left: 470px;
+    }
+    .activitiesItem {
+        top: 60px;
+        left: -110px;
+    }
+}
+
+@media (min-width: $minWidthLg2) // 992px
+{
+    .startHeader {
+        font-size: 55px;
+    }
+    .applicationHeader {
+        font-size: 25px;
+    }
+    .startHeader {
+        margin-top: 160px;
+    }
+    .startDescription {
+        max-width: 650px;
+    }
+    .usersItem {
+        bottom: 50px;
+        left: 500px;
+    }
+    .contactsItem {
+        top: 30px;
+        left: 740px;
+    }
+    .tasksItem {
+        bottom: 120px;
+        left: 630px;
+    }
+    .postsItem {
+        bottom: 340px;
+        left: 600px;
+    }
+    .moneyItem {
+        bottom: 230px;
+        left: 700px;
+    }
+    .activitiesItem {
+        top: 50px;
+        left: 40px;
+    }
+}
+@media (min-width: $minWidthXl) // 1200px
+{
+    .startContainer {
+        margin-left: 110px;
+    }
+    .startHeader {
+        margin-top: 180px;
+    }
+    .startButton {
+        margin-top: 40px;
+    }
+    .usersItem {
+        bottom: 50px;
+        left: 620px;
+    }
+    .contactsItem {
+        left: 850px;
+    }
+    .tasksItem {
+        bottom: 120px;
+        left: 730px;
+    }
+    .postsItem {
+        bottom: 330px;
+        left: 740px;
+    }
+    .moneyItem {
+        bottom: 200px;
+        left: 790px;
+    }
+    .activitiesItem {
+        top: 50px;
+        left: 150px;
+    }
+}
+@media (min-width: $minWidth2Xl) // 1400px
+{
+    .startHeader {
+        margin-top: 200px;
+    }
+    .startContainer {
+        margin-left: 130px;
+    }
+    .startHeader {
+        font-size: 60px;
+    }
+    .startDescription {
+        font-size: 25px;
+    }
+    .usersItem {
+        bottom: 50px;
+        left: 720px;
+    }
+    .contactsItem {
+        left: 950px;
+    }
+    .tasksItem {
+        bottom: 120px;
+        left: 830px;
+    }
+    .postsItem {
+        bottom: 340px;
+        left: 860px;
+    }
+    .moneyItem {
+        bottom: 200px;
+        left: 890px;
+    }
+    .activitiesItem {
+        top: 50px;
+        left: 250px;
+    }
 }

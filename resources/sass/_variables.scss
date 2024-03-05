@@ -1,6 +1,9 @@
 // Colors
+$text-color: #333941;
 $primary-text-color: #4B5563;
 $secondary-text-color: #5E5E5E;
+$secondary-gray-color: #989898;
+$secondary-gray-bg-color: #f5f4f4;
 $primary-hover-color: #1BBD79;
 $primary-hover-bg-color: #F6F6F8;
 $transition-colors-300ms: color 300ms, background-color 300ms;
@@ -72,10 +75,12 @@ $dialog-footer-padding: 20px;
 $dropdown-items-padding: 0;
 
 // Login
-$login-card-margin: auto;
-$login-card-position: relative;
-$login-card-position-top: 150px;
-$login-card-position-max-width: 550px;
+$auth-card-padding-bottom: 20px;
+$auth-card-margin: auto;
+$auth-card-position: relative;
+$auth-card-position-top: 150px;
+$login-card-position-max-width: 560px;
+$register-card-position-max-width: 640px;
 $login-card-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
 $links-text-decoration: none;
 $links-position: absolute;
@@ -83,8 +88,11 @@ $back-link-top: 15px;
 $back-link-left: 20px;
 $auth-links-top: 12px;
 $auth-links-right: 20px;
+$auth-input-text-height: 40px;
 
 // Menu, MenuBar
+$application-header-text-decoration: none;
+$application-header-font-size: 20px;
 $menu-item-a-text-decoration: none;
 $avatar-position: relative;
 $avatar-right: 15px;
@@ -111,6 +119,7 @@ $menubar-root-list-padding: 0;
 $menubar-root-list-margin: 0;
 $my-navbar-position: fixed;
 $menubar-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
+$guest-nav-link-font-size: 18px;
 
 // Paginator
 $paginator-padding-top: 25px;

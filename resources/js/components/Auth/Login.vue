@@ -5,7 +5,7 @@
         <Card class="loginCard">
             <template #header>
                 <div class="flex justify-content-center">
-                    <h2 class="mt-5">Log In</h2>
+                    <h2 class="mt-6">Log In</h2>
                 </div>
             </template>
             <template #content>
@@ -19,12 +19,13 @@
                         </label>
 
                         <div class="col-md-6">
-                            <input
+                            <InputText
                                 v-model="formData.email"
                                 type="email"
-                                class="form-control"
                                 id="email"
                                 required
+                                autofocus
+                                class="authInputText"
                             />
                         </div>
                     </div>
@@ -35,12 +36,12 @@
                         </label>
 
                         <div class="col-md-6">
-                            <input
+                            <InputText
                                 v-model="formData.password"
                                 type="password"
-                                class="form-control"
                                 id="password"
                                 required
+                                class="authInputText"
                             />
                         </div>
                     </div>
@@ -49,17 +50,18 @@
                         <div
                             class="col-md-6 offset-md-4 flex justify-content-between"
                         >
-                            <Button type="submit" class="smallHeightButton">
+                            <Button
+                                type="submit"
+                                class="smallHeightButton text-sm"
+                            >
                                 Log In
                             </Button>
                         </div>
                     </div>
                 </form>
             </template>
-            <template #footer>
-                <TestLoginButton />
-            </template>
         </Card>
+        <TestLoginButton class="absolute bottom-0 mb-2" />
     </div>
 </template>
 

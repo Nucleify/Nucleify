@@ -5,7 +5,7 @@
         <Card class="registerCard">
             <template #header>
                 <div class="flex justify-content-center">
-                    <h2 class="mt-5">Register</h2>
+                    <h2 class="mt-6">Register</h2>
                 </div>
             </template>
             <template #content>
@@ -19,13 +19,13 @@
                         </label>
 
                         <div class="col-md-6">
-                            <input
+                            <InputText
                                 v-model="formData.name"
                                 type="text"
-                                class="form-control"
                                 id="name"
                                 required
                                 autofocus
+                                class="authInputText"
                             />
                         </div>
                     </div>
@@ -39,12 +39,12 @@
                         </label>
 
                         <div class="col-md-6">
-                            <input
+                            <InputText
                                 v-model="formData.email"
                                 type="email"
-                                class="form-control"
                                 id="email"
                                 required
+                                class="authInputText"
                             />
                         </div>
                     </div>
@@ -58,12 +58,12 @@
                         </label>
 
                         <div class="col-md-6">
-                            <input
+                            <InputText
                                 v-model="formData.password"
                                 type="password"
-                                class="form-control"
                                 id="password"
                                 required
+                                class="authInputText"
                             />
                         </div>
                     </div>
@@ -77,12 +77,12 @@
                         </label>
 
                         <div class="col-md-6">
-                            <input
+                            <InputText
                                 v-model="formData.password_confirmation"
                                 type="password"
-                                class="form-control"
                                 id="password-confirm"
                                 required
+                                class="authInputText"
                             />
                         </div>
                     </div>
@@ -91,7 +91,10 @@
                         <div
                             class="col-md-6 offset-md-4 flex justify-content-between"
                         >
-                            <Button type="submit" class="smallHeightButton">
+                            <Button
+                                type="submit"
+                                class="smallHeightButton text-sm"
+                            >
                                 Register
                             </Button>
                         </div>
@@ -125,7 +128,6 @@ const formData = ref<FormData>({
     password: '',
     password_confirmation: '',
 })
-
 
 async function submitForm() {
     await axios
