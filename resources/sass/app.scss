@@ -112,7 +112,6 @@ td {
 // Login & Register
 .loginCard,
 .registerCard {
-    padding-bottom: $auth-card-padding-bottom;
     margin: $auth-card-margin;
     position: $auth-card-position;
     top: $auth-card-position-top;
@@ -149,6 +148,17 @@ td {
 }
 .authInputText {
     height: $auth-input-text-height;
+    width: $auth-input-text-width;
+    max-width: $auth-input-text-max-width;
+}
+.loginCard .p-card-body,
+.registerCard .p-card-body {
+    padding: $auth-card-body-padding;
+}
+
+.loginCard .p-card-content,
+.registerCard .p-card-content {
+    padding: $auth-card-content-padding;
 }
 
 // Menu, MenuBar
@@ -355,6 +365,17 @@ td {
 
 @media (min-width: $minWidthMd) // 768px
 {
+    .loginCard,
+    .registerCard {
+        padding-bottom: $auth-card-padding-bottom;
+        top: $auth-card-position-min-width-768px-top;
+    }
+    .loginCard .p-card-content,
+    .registerCard .p-card-content,
+    .loginCard .p-card-body,
+    .registerCard .p-card-body {
+        padding: $auth-card-body-content-padding-min-width-768px;
+    }
     .idColumn {
         width: $id-column-min-width-768px-width;
     }
@@ -484,7 +505,7 @@ td {
     }
 }
 
-@media (min-width: $minWidthSm1) // 550px
+@media (min-width: $minWidthSm3) // 550px
 {
     .p-sidebar,
     .p-sidebar-mask {
@@ -501,46 +522,42 @@ td {
 .myNavbar .p-menuitem:nth-child(7) .p-menuitem-link,
 .myNavbar .p-menuitem:nth-child(9) .p-menuitem-link,
 .myNavbar .p-menuitem:nth-child(10) .p-menuitem-link {
-    opacity: 0.3;
-    cursor: default;
+    opacity: $disabled-item-opacity;
+    cursor: $disabled-item-cursor;
 }
 
 
 // Welcome page
 .navbar {
-    padding: 0 20px;
+    padding: $navbar-padding;
 }
 .startContainer {
-    padding: 10px;
+    padding: $start-container-padding;
 }
 .startHeader {
-    font-size: 40px;
-}
-.startDescription {
-    font-size: 22px;
-}
-.startHeader {
-    margin-top: 100px;
-    font-weight: bolder;
-    font-family: Inter, sans-serif;
+    margin-top: $start-header-margin-top;
+    font-size: $start-header-font-size;
+    font-weight: $start-header-font-weight;
+    font-family: $font-family-inter-sans-serif;
     color: $text-color;
 }
 .startDescription {
-    margin-top: 20px;
-    max-width: 600px;
+    margin-top: $start-description-margin-top;
+    max-width: $start-description-max-width;
+    font-size: $start-description-font-size;
     color: $secondary-text-color;
 }
 .startButton {
-    margin-top: 20px;
-    width: 150px;
-    justify-content: center;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 18px;
-    transition: transform 150ms ease-out;
+    margin-top: $start-button-margin-top;
+    width: $start-button-width;
+    justify-content: $start-button-justify-content;
+    border-radius: $start-button-border-radius;
+    font-weight: $start-button-font-weight;
+    font-size: $font-size-medium;
+    transition: $start-button-transition;
 }
 .startButton:active {
-    transform: scale(0.95);
+    transform: $start-button-active-transform;
 }
 
 .startItem {
@@ -548,11 +565,11 @@ td {
     background: $secondary-gray-bg-color;
     transition: $transition-colors-300ms;
     border-radius: $small-border-radius;
-    min-width: 20px;
-    min-height: 20px;
-    max-width: 20px;
-    max-height: 20px;
-    padding: 8px 11px;
+    min-width: $start-item-min-max-width-height-small;
+    min-height: $start-item-min-max-width-height-small;
+    max-width: $start-item-min-max-width-height-small;
+    max-height: $start-item-min-max-width-height-small;
+    padding: $start-item-padding-small;
     text-decoration: $panel-menu-header-action-text-decoration;
 }
 
@@ -562,11 +579,11 @@ td {
 .postsIcon,
 .tasksIcon,
 .usersIcon {
-    font-size: 15px;
+    font-size: $font-size-base1;
 }
 .startItem:hover {
     color: $primary-hover-color;
-    background: #E3FFF4;
+    background: $secondary-hover-bg-color;
     transition: $transition-colors-300ms;
     border-radius: $small-border-radius;
 }
@@ -583,18 +600,16 @@ td {
 .tasksItem,
 .usersIcon,
 .usersItem {
-    position: relative
-}
-.contactsIcon,
-.moneyIcon,
-.postsIcon,
-.usersIcon {
-    top: 2px;
+    position: $start-items-icons-position;
 }
 
+.postsIcon,
+.contactsIcon,
 .activitiesIcon,
-.tasksIcon {
-    top: 1px;
+.moneyIcon,
+.tasksIcon,
+.usersIcon {
+    top: $start-icons-small-top;
 }
 .contactsItem {
     top: 15px;
@@ -621,7 +636,8 @@ td {
     left: 170px;
 }
 
-@media (min-width: 411px) {
+@media (min-width: $minWidthXs) // 411px
+{
     .contactsItem {
         top: 40px;
         left: 280px;
@@ -647,7 +663,8 @@ td {
         left: 200px;
     }
 }
-@media (min-width: 545px) {
+@media (min-width: $minWidthSm1) // 545px
+{
     .moneyItem {
         bottom: 215px;
         left: 190px;
@@ -657,7 +674,7 @@ td {
     }
 }
 
-@media (min-width: 547px) {
+@media (min-width: $minWidthSm2) {
     .contactsItem {
         bottom: 20px;
         left: 400px;
@@ -684,7 +701,7 @@ td {
     }
 }
 
-@media (min-width: 576px) {
+@media (min-width: $minWidthSm4) {
     .startContainer {
         padding: 0;
     }
@@ -712,15 +729,14 @@ td {
     .usersIcon {
         font-size: 20px;
     }
+
     .activitiesIcon,
     .contactsIcon,
-    .postsIcon {
-        top: 2px;
-    }
     .moneyIcon,
+    .postsIcon,
     .tasksIcon,
     .usersIcon {
-        top: 3px;
+        top: $start-icons-big-top;
     }
     .startHeader {
         margin-top: 140px;

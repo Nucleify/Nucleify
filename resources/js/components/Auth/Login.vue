@@ -5,7 +5,7 @@
         <Card class="loginCard">
             <template #header>
                 <div class="flex justify-content-center">
-                    <h2 class="mt-6">Log In</h2>
+                    <h2 class="-mb-2 mt-5 md:mt-6">Log In</h2>
                 </div>
             </template>
             <template #content>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
 
-                    <div class="row mb-3">
+                    <div class="row mb-4 md:mb-3">
                         <label for="password" class="col-md-4 text-md-end">
                             Password
                         </label>
@@ -48,11 +48,11 @@
 
                     <div class="row mb-0">
                         <div
-                            class="col-md-6 offset-md-4 flex justify-content-between"
+                            class="col-md-6 offset-md-4 text-center md:text-left"
                         >
                             <Button
                                 type="submit"
-                                class="smallHeightButton text-sm"
+                                class="smallHeightButton text-sm px-3"
                             >
                                 Log In
                             </Button>

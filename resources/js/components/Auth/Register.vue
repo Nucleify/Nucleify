@@ -5,7 +5,7 @@
         <Card class="registerCard">
             <template #header>
                 <div class="flex justify-content-center">
-                    <h2 class="mt-6">Register</h2>
+                    <h2 class="-mb-2 mt-5 md:mt-6">Register</h2>
                 </div>
             </template>
             <template #content>
@@ -68,7 +68,7 @@
                         </div>
                     </div>
 
-                    <div class="row mb-3">
+                    <div class="row mb-4 md:mb-3">
                         <label
                             for="password-confirm"
                             class="col-md-4 col-form-label text-md-end"
@@ -89,7 +89,7 @@
 
                     <div class="row mb-0">
                         <div
-                            class="col-md-6 offset-md-4 flex justify-content-between"
+                            class="col-md-6 offset-md-4 text-center md:text-left"
                         >
                             <Button
                                 type="submit"

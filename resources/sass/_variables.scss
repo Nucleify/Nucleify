@@ -3,9 +3,10 @@ $text-color: #333941;
 $primary-text-color: #4B5563;
 $secondary-text-color: #5E5E5E;
 $secondary-gray-color: #989898;
-$secondary-gray-bg-color: #f5f4f4;
+$secondary-gray-bg-color: #F5F4F4;
 $primary-hover-color: #1BBD79;
 $primary-hover-bg-color: #F6F6F8;
+$secondary-hover-bg-color: #E3FFF4;
 $transition-colors-300ms: color 300ms, background-color 300ms;
 
 // Border radius
@@ -17,10 +18,12 @@ $content-bg: #FFFFFF;
 
 // Fonts
 $font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-big: 1.563rem;
-$font-size-medium: 1.1rem;
-$font-size-small: 0.75rem;
-$font-size-base: 0.9rem;
+$font-family-inter-sans-serif: 'Inter', sans-serif;
+$font-size-big: 1.563rem; // 25px
+$font-size-medium: 1.125rem; // 18px
+$font-size-base1: 0.9375rem; // 15px
+$font-size-base: 0.9rem; // 14.4px
+$font-size-small: 0.75rem; // 12px
 $line-height-base: 1.6;
 
 // All
@@ -78,7 +81,7 @@ $dropdown-items-padding: 0;
 $auth-card-padding-bottom: 20px;
 $auth-card-margin: auto;
 $auth-card-position: relative;
-$auth-card-position-top: 150px;
+$auth-card-position-top: 100px;
 $login-card-position-max-width: 560px;
 $register-card-position-max-width: 640px;
 $login-card-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
@@ -89,6 +92,10 @@ $back-link-left: 20px;
 $auth-links-top: 12px;
 $auth-links-right: 20px;
 $auth-input-text-height: 40px;
+$auth-input-text-width: 100%;
+$auth-input-text-max-width: 100%;
+$auth-card-body-padding: 10px;
+$auth-card-content-padding: 20px;
 
 // Menu, MenuBar
 $application-header-text-decoration: none;
@@ -120,6 +127,8 @@ $menubar-root-list-margin: 0;
 $my-navbar-position: fixed;
 $menubar-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
 $guest-nav-link-font-size: 18px;
+$navbar-padding: 0 20px;
+
 
 // Paginator
 $paginator-padding-top: 25px;
@@ -163,6 +172,26 @@ $success-toast-bg: #EAF8F3;
 $warn-toast-bg: #FFF5E8;
 $error-toast-bg: #FDEDEC;
 
+// Welcome
+$start-container-padding: 0 10px;
+$start-header-margin-top: 100px;
+$start-header-font-size: 40px;
+$start-description-margin-top: 20px;
+$start-description-max-width: 600px;
+$start-description-font-size: 22px;
+$start-header-font-weight: bold;
+$start-button-margin-top: 20px;
+$start-button-width: 150px;
+$start-button-justify-content: center;
+$start-button-border-radius: 25px;
+$start-button-font-weight: bold;
+$start-button-transition: transform 150ms ease-out;
+$start-button-active-transform: scale(0.95);
+$start-item-min-max-width-height-small: 20px;
+$start-item-padding-small: 8px 11px;
+$start-items-icons-position: relative;
+$start-icons-small-top: 1px;
+$start-icons-big-top: 3px;
 
 // Media min width 530px
 $toast-message-media-min-width-530px-width: max-content;
@@ -180,6 +209,8 @@ $name-full-name-columns-min-width-768px-width: 25%;
 $role-birthday-columns-min-width-768px-width: 18%;
 $created-at-activity-column: 28%;
 $email-column-min-width-768px-width: 30%;
+$auth-card-position-min-width-768px-top: 150px;
+$auth-card-body-content-padding-min-width-768px: 20px;
 
 // Media min width 961px
 $avatar-min-width-961px-right: 65px;
@@ -224,13 +255,20 @@ $sidebar-sidebar-mask-max-width-550px-display: none;
 $sidebar-sidebar-mask-min-width-550px-display: flex;
 
 // Medias
+$minWidthXs: 411px;
 $minWidthSm: 530px;
-$minWidthSm1: 550px;
+$minWidthSm1: 545px;
+$minWidthSm2: 547px;
+$minWidthSm3: 550px;
+$minWidthSm4: 576px;
 $minWidthMd: 768px;
 $minWidthLg: 961px;
 $minWidthLg2: 992px;
 $minWidthXl: 1200px;
 $minWidth2Xl: 1400px;
 $minWidth3Xl: 1500px;
-
 $maxWidthSm1: 550px;
+
+
+$disabled-item-opacity: 0.3;
+$disabled-item-cursor: default;
