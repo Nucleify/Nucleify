@@ -72,7 +72,7 @@ const { flashToast } = useFlashToast()
 const { apiErrors } = useApiErrors()
 
 const props = defineProps<{
-  getAllUsers: () => void
+    getAllUsers: () => void
     visible: boolean
     options: string[]
     close: (action: string) => void

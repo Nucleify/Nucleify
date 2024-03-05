@@ -1,6 +1,6 @@
 
 
-# ContactBook <div> ![PHP](https://img.shields.io/badge/PHP-%234F5B93.svg?style=for-the-badge&logo=php&logoColor=white&style=plastic) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white&style=plastic) ![Laravel](https://img.shields.io/badge/Laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white&style=plastic) ![Vue.js](https://img.shields.io/badge/Vue.js-%234FC08D.svg?style=for-the-badge&logo=vue.js&logoColor=white&style=plastic) [![Cypress](https://img.shields.io/badge/Cypress-17202C?logo=cypress&logoColor=white)](https://www.cypress.io/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) </div>
+# DataManager <div> ![PHP](https://img.shields.io/badge/PHP-%234F5B93.svg?style=for-the-badge&logo=php&logoColor=white&style=plastic) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white&style=plastic) ![Laravel](https://img.shields.io/badge/Laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white&style=plastic) ![Vue.js](https://img.shields.io/badge/Vue.js-%234FC08D.svg?style=for-the-badge&logo=vue.js&logoColor=white&style=plastic) [![Cypress](https://img.shields.io/badge/Cypress-17202C?logo=cypress&logoColor=white)](https://www.cypress.io/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) </div>
 
 
 
@@ -21,7 +21,7 @@ This website helps to storage contacts data and share it with others. It's secon
 - Clone this repository
 
 ```
-git clone https://github.com/SzymCode/ContactBook.git
+git clone https://github.com/SzymCode/DataManager.git
 ```
 
 - Install modules in root directory
@@ -55,7 +55,7 @@ php artisan migrate:fresh --seed
 - Clone this repository
 
 ```
-git clone https://github.com/SzymCode/ContactBook.git
+git clone https://github.com/SzymCode/DataManager.git
 ```
 
 - Install modules in root directory

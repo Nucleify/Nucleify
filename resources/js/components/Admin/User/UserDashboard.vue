@@ -166,7 +166,6 @@ defineProps<{
     roleOptions: string[]
 }>()
 
-
 /**
  * Menu variables and function
  */

@@ -6,13 +6,13 @@ export default function testLogin(role: string): void {
     switch (role) {
         case 'user':
             credentials = {
-                email: 'test_user@contactbook.com',
+                email: 'test_user@datamanager.com',
                 password: 'test_user123',
             }
             break
         case 'admin':
             credentials = {
-                email: 'test_admin@contactbook.com',
+                email: 'test_admin@datamanager.com',
                 password: 'test_admin123',
             }
             break

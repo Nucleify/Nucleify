@@ -45,16 +45,26 @@ app.component('Avatar', Avatar)
 import {
     ActivityLog,
     AdminPanel,
-    MyLayout,
+    GuestNavbar,
+    Home,
+    Login,
     LoginButton,
+    MyLayout,
+    Register,
     TestLoginButton,
+    Welcome,
 } from './components'
 
 app.component('activity-log', ActivityLog)
     .component('admin-panel', AdminPanel)
-    .component('my-layout', MyLayout)
-    .component('test-login-button', TestLoginButton)
+    .component('guest-navbar', GuestNavbar)
+    .component('home', Home)
+    .component('login', Login)
     .component('login-button', LoginButton)
+    .component('my-layout', MyLayout)
+    .component('register', Register)
+    .component('test-login-button', TestLoginButton)
+    .component('welcome', Welcome)
 
 /**
  *  Directives

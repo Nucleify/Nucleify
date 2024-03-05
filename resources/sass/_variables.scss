@@ -1,4 +1,5 @@
 // Colors
+$primary-text-color: #4B5563;
 $secondary-text-color: #5E5E5E;
 $primary-hover-color: #1BBD79;
 $primary-hover-bg-color: #F6F6F8;
@@ -14,6 +15,7 @@ $content-bg: #FFFFFF;
 // Fonts
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-big: 1.563rem;
+$font-size-medium: 1.1rem;
 $font-size-small: 0.75rem;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
@@ -68,6 +70,19 @@ $dialog-footer-padding: 20px;
 
 // Dropdown
 $dropdown-items-padding: 0;
+
+// Login
+$login-card-margin: auto;
+$login-card-position: relative;
+$login-card-position-top: 150px;
+$login-card-position-max-width: 550px;
+$login-card-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+$links-text-decoration: none;
+$links-position: absolute;
+$back-link-top: 15px;
+$back-link-left: 20px;
+$auth-links-top: 12px;
+$auth-links-right: 20px;
 
 // Menu, MenuBar
 $menu-item-a-text-decoration: none;

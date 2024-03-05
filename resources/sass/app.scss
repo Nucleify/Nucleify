@@ -109,6 +109,33 @@ td {
     max-height: $min-max-width-height-big;
 }
 
+// Login & Register
+.loginCard,
+.registerCard {
+    margin: $login-card-margin;
+    position: $login-card-position;
+    top: $login-card-position-top;
+    max-width: $login-card-position-max-width;
+    box-shadow: $login-card-box-shadow;
+}
+.backLink,
+.loginLink,
+.registerLink {
+    position: $links-position;
+    font-size: $font-size-medium;
+    text-decoration: $links-text-decoration;
+    color: $primary-text-color;
+}
+.backLink {
+    top: $back-link-top;
+    left: $back-link-left;
+}
+.loginLink,
+.registerLink {
+    top: $auth-links-top;
+    right: $auth-links-right;
+}
+
 // Menu, MenuBar
 .p-menuitem a {
     text-decoration: $menu-item-a-text-decoration;
@@ -433,4 +460,17 @@ td {
     .p-sidebar-mask {
         display: $sidebar-sidebar-mask-min-width-550px-display;
     }
+}
+
+// Menuitems disabled for now
+.p-menuitem:nth-child(5) .p-menuitem-link,
+.p-menubar .p-menuitem:nth-child(3) .p-menuitem-link,
+.p-menubar .p-menuitem:nth-child(4) .p-menuitem-link,
+.p-menubar .p-menuitem:nth-child(5) .p-menuitem-link,
+.p-menubar .p-menuitem:nth-child(6) .p-menuitem-link,
+.p-menubar .p-menuitem:nth-child(7) .p-menuitem-link,
+.p-menubar .p-menuitem:nth-child(9) .p-menuitem-link,
+.p-menubar .p-menuitem:nth-child(10) .p-menuitem-link{
+    opacity: 0.3;
+    cursor: default;
 }

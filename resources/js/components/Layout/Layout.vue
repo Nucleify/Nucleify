@@ -31,6 +31,14 @@ const items = ref([
         url: '/home',
     },
     {
+        label: 'Contacts',
+        icon: 'pi pi-user',
+    },
+    {
+        label: 'Posts',
+        icon: 'pi pi-comment',
+    },
+    {
         label: 'Messages',
         icon: 'pi pi-envelope',
     },
@@ -39,8 +47,8 @@ const items = ref([
         icon: 'pi pi-check-square',
     },
     {
-        label: 'Export Data',
-        icon: 'pi pi-file',
+        label: 'Money manager',
+        icon: 'pi pi-dollar',
     },
     {
         label: 'Activity Log',
@@ -88,7 +96,7 @@ onMounted(async () => {
                         userRole === 'super_admin'
                     ) {
                         isAdmin.value = true
-                        items.value.splice(5, 0, {
+                        items.value.splice(1, 0, {
                             label: 'Admin Panel',
                             icon: 'pi pi-users',
                             url: '/admin',
@@ -105,7 +113,7 @@ onMounted(async () => {
                 userRole === 'super_admin'
             ) {
                 isAdmin.value = true
-                items.value.splice(5, 0, {
+                items.value.splice(1, 0, {
                     label: 'Admin Panel',
                     icon: 'pi pi-users',
                     url: '/admin',

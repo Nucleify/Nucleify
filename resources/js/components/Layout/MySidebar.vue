@@ -1,11 +1,10 @@
 <template>
-    <div class="fixed flex-column h-screen p-3 mySidebar">
-        <a href="/" class="mt-2 mb-4 mx-auto">
-            <Avatar
-                image="https://gravatar.com/userimage/238510040/957772438776e8ef52497073f56790ea.jpeg?size=256"
-                class="w-2rem h-2rem"
-            />
-        </a>
+    <div class="fixed flex-column h-screen p-3 mySidebar z-100">
+        <!--        <a href="/" class="mt-2 mb-4 mx-auto">-->
+        <!--            <Avatar-->
+        <!--                class="w-2rem h-2rem"-->
+        <!--            />-->
+        <!--        </a>-->
 
         <div class="flex flex-column justify-content-center w-3rem m-0 gap-3">
             <a
@@ -17,6 +16,31 @@
                 <i class="pi pi-home text-xl"></i>
             </a>
             <a
+                href="/admin"
+                :class="{ active: isCurrentUrl('/admin') && isAdmin }"
+                class="sidebarItem text-center"
+                v-if="isAdmin"
+                v-tooltip.left="'Admin Panel'"
+            >
+                <i class="pi pi-users text-xl"></i>
+            </a>
+            <a
+                href="#"
+                :class="{ active: isCurrentUrl('/contacts') }"
+                class="sidebarItem text-center opacity-25 cursor-auto"
+                v-tooltip.left="'Contacts'"
+            >
+                <i class="pi pi-user text-lg"></i>
+            </a>
+            <a
+                href="#"
+                :class="{ active: isCurrentUrl('/posts') }"
+                class="sidebarItem text-center opacity-25 cursor-auto"
+                v-tooltip.left="'Posts'"
+            >
+                <i class="pi pi-comment text-xl"></i>
+            </a>
+            <a
                 href="#"
                 :class="{ active: isCurrentUrl('/messages') }"
                 class="sidebarItem text-center opacity-25 cursor-auto"
@@ -26,7 +50,7 @@
             </a>
             <a
                 href="#"
-                :class="{ active: isCurrentUrl('/todo') }"
+                :class="{ active: isCurrentUrl('/tasks') }"
                 class="sidebarItem text-center opacity-25 cursor-auto"
                 v-tooltip.left="'Tasks'"
             >
@@ -34,11 +58,11 @@
             </a>
             <a
                 href="#"
-                :class="{ active: isCurrentUrl('/export') }"
+                :class="{ active: isCurrentUrl('/money-manager') }"
                 class="sidebarItem text-center opacity-25 cursor-auto"
-                v-tooltip.left="'Export Data'"
+                v-tooltip.left="'Money manager'"
             >
-                <i class="pi pi-file text-xl"></i>
+                <i class="pi pi pi-dollar text-xl"></i>
             </a>
             <a
                 href="/activity-log"
@@ -47,15 +71,6 @@
                 v-tooltip.left="'Activity Log'"
             >
                 <i class="pi pi-clock text-xl"></i>
-            </a>
-            <a
-                href="/admin"
-                :class="{ active: isCurrentUrl('/admin') && isAdmin }"
-                class="sidebarItem text-center"
-                v-if="isAdmin"
-                v-tooltip.left="'Admin Panel'"
-            >
-                <i class="pi pi-users text-xl"></i>
             </a>
         </div>
         <div class="flex flex-column mt-auto justify-content-center">
