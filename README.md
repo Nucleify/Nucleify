@@ -1,10 +1,8 @@
-
-
 # DataManager <div> ![PHP](https://img.shields.io/badge/PHP-%234F5B93.svg?style=for-the-badge&logo=php&logoColor=white&style=plastic) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white&style=plastic) ![Laravel](https://img.shields.io/badge/Laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white&style=plastic) ![Vue.js](https://img.shields.io/badge/Vue.js-%234FC08D.svg?style=for-the-badge&logo=vue.js&logoColor=white&style=plastic) [![Cypress](https://img.shields.io/badge/Cypress-17202C?logo=cypress&logoColor=white)](https://www.cypress.io/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) </div>
 
 
 
-This website helps to storage contacts data and share it with others. It's second version of my [project](https://github.com/SzymCode/ContactBook-sandbox), now with completely other tech stack. My target is to create fully responsive, functional and scalable website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) and [FDD](https://en.wikipedia.org/wiki/Feature-driven_development) principles.
+This website helps to storage various data types and share it with others. My target is to create fully responsive, functional and scalable website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) and [FDD](https://en.wikipedia.org/wiki/Feature-driven_development) principles.
 
 [Preview!](https://datamanager-sc-9f0092230dcb.herokuapp.com)
 
@@ -36,8 +34,8 @@ composer update
 - Change *.env.example* file to *.env* in root directory, run XAMPP mysql server and create database
 ```bash
 mysql -u root -p
-create database contactbook
-create database contactbook_test    # it's not necessary, only for tests
+create database datamanager
+create database datamanager_test    # it's not necessary, only for tests
 ```
 
 - Migrate and seed database
@@ -65,6 +63,9 @@ composer update
 php artisan sail:install
 ```
 
+### **Make sure u have installed all modules!**
+
+- Change .env.example file to .env in root directory
 </details>
 <hr>
 </details>
@@ -76,7 +77,7 @@ php artisan sail:install
 
 <details><summary> &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=20/> &nbsp;XAMPP </summary> 
 <br>
-    
+
 - root directory:
 
 ```bash
@@ -111,10 +112,10 @@ Possible problem: [Sail: no such file or directory found](https://stackoverflow.
 
 <details><summary> ❓ Usage </summary>
 <br>
-    
+
 <details><summary> Factories </summary>
 <br>
-    
+
 ```bash
 php artisan tinker
 
@@ -128,7 +129,7 @@ User::factory(100)->create();
 
 <details><summary> Tests </summary>
 <br>
-    
+
 Backend tests:
 ```bash
 # run all tests
@@ -155,7 +156,7 @@ npm run open  # after this command cypress window will open automatically
 
 <details><summary> npm </summary>
 <br>
-    
+
 1. Vite build:
 
 ```
@@ -182,9 +183,9 @@ npm run write
 <details><summary> 🖼️ Preview Images </summary>
 <br>
 
-![desktop-preview](https://github.com/SzymCode/ContactBook/assets/107359025/ccf11c16-3553-437b-9321-e5819db3085b) 
+![desktop-preview](https://github.com/SzymCode/ContactBook/assets/107359025/ccf11c16-3553-437b-9321-e5819db3085b)
 
-![tablet-preview](https://github.com/SzymCode/ContactBook/assets/107359025/b6fc2123-b9ac-4d64-ad43-14affc5b930d) 
+![tablet-preview](https://github.com/SzymCode/ContactBook/assets/107359025/b6fc2123-b9ac-4d64-ad43-14affc5b930d)
 
 ![phone-preview](https://github.com/SzymCode/ContactBook/assets/107359025/082a2a84-d875-467d-9957-75d83c4d3a28)
 </details>
