@@ -3,7 +3,9 @@ $text-color: #333941;
 $primary-text-color: #4B5563;
 $secondary-text-color: #5E5E5E;
 $secondary-gray-color: #989898;
+$secondary-whitesmoke-color: #e8e8e8;
 $secondary-gray-bg-color: #F5F4F4;
+$secondary-green-bg-color: #e9fff8;
 $primary-hover-color: #1BBD79;
 $primary-hover-bg-color: #F6F6F8;
 $secondary-hover-bg-color: #E3FFF4;
@@ -19,6 +21,9 @@ $content-bg: #FFFFFF;
 // Fonts
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-family-inter-sans-serif: 'Inter', sans-serif;
+$font-size-xxl: 3.75rem; // 60px
+$font-size-xl: 3rem; // 48px;
+$font-size-l: 2.5rem; // 40px;
 $font-size-big: 1.563rem; // 25px
 $font-size-medium: 1.125rem; // 18px
 $font-size-base1: 0.9375rem; // 15px
@@ -84,7 +89,7 @@ $auth-card-position: relative;
 $auth-card-position-top: 100px;
 $login-card-position-max-width: 560px;
 $register-card-position-max-width: 640px;
-$login-card-box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+$login-card-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
 $links-text-decoration: none;
 $links-position: absolute;
 $back-link-top: 15px;
@@ -98,6 +103,7 @@ $auth-card-body-padding: 10px;
 $auth-card-content-padding: 20px;
 
 // Menu, MenuBar
+$application-header-margin-left: 11px;
 $application-header-text-decoration: none;
 $application-header-font-size: 20px;
 $menu-item-a-text-decoration: none;
@@ -126,7 +132,7 @@ $menubar-root-list-padding: 0;
 $menubar-root-list-margin: 0;
 $my-navbar-position: fixed;
 $menubar-box-shadow: 5px 0 5px rgba(0, 0, 0, 0.1);
-$guest-nav-link-font-size: 18px;
+$welcome-nav-link-font-size: 18px;
 $navbar-padding: 0 20px;
 
 
@@ -174,7 +180,7 @@ $error-toast-bg: #FDEDEC;
 
 // Welcome
 $start-container-padding: 0 10px;
-$start-header-margin-top: 100px;
+$start-header-margin-top: 170px;
 $start-header-font-size: 40px;
 $start-description-margin-top: 20px;
 $start-description-max-width: 600px;
@@ -260,7 +266,7 @@ $minWidthSm: 530px;
 $minWidthSm1: 545px;
 $minWidthSm2: 547px;
 $minWidthSm3: 550px;
-$minWidthSm4: 576px;
+$minWidthSm4: 560px;
 $minWidthMd: 768px;
 $minWidthLg: 961px;
 $minWidthLg2: 992px;

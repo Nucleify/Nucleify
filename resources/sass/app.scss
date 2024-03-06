@@ -213,6 +213,7 @@ td {
     position: $my-navbar-position;
 }
 .applicationHeader {
+    margin-left: $application-header-margin-left;
     text-decoration: $application-header-text-decoration;
     color: $primary-text-color;
     font-size: $application-header-font-size;
@@ -220,11 +221,11 @@ td {
 .applicationHeader:hover {
     color: $primary-text-color;
 }
-.guestNavLink {
-    font-size: $guest-nav-link-font-size;
+.welcomeNavLink {
+    font-size: $welcome-nav-link-font-size;
 }
-.guestNavLink:hover,
-.guestNavLink:focus {
+.welcomeNavLink:hover,
+.welcomeNavLink:focus {
     color: $primary-hover-color;
 }
 
@@ -528,6 +529,15 @@ td {
 
 
 // Welcome page
+#start {
+    scroll-margin-top: 350px;
+}
+#features {
+    scroll-margin-top: 250px;
+}
+.welcomeNavbar {
+    z-index: 100;
+}
 .navbar {
     padding: $navbar-padding;
 }
@@ -600,6 +610,7 @@ td {
 .tasksItem,
 .usersIcon,
 .usersItem {
+    z-index: 50;
     position: $start-items-icons-position;
 }
 
@@ -613,19 +624,19 @@ td {
 }
 .contactsItem {
     top: 15px;
-    left: 240px;
+    left: 250px;
 }
 .tasksItem {
-    bottom: 80px;
+    bottom: 60px;
     left: 170px;
 }
 .postsItem {
-    bottom: 410px;
+    bottom: 340px;
     left: 50px;
 }
 .moneyItem {
-    bottom: 285px;
-    left: 150px;
+    bottom: 230px;
+    left: 140px;
 }
 .activitiesItem {
     top: 50px;
@@ -635,46 +646,139 @@ td {
     top: 30px;
     left: 170px;
 }
+#features {
+    position: relative;
+    top: 300px;
+    padding-bottom: 100px;
+}
+.accessContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 10px 0 10px;
+    height: 990px;
+    width: 100%;
+    background: $secondary-green-bg-color;
+    margin-bottom: 100px;
+}
+.accessHeader {
+    font-family: $font-family-inter-sans-serif;
+    font-weight: bold;
+    color: $text-color;
+}
+.accessDescription {
+    margin-top: 5px;
+    max-width: 900px;
+    font-size: $start-description-font-size;
+    color: $secondary-text-color;
+    text-align: center;
+}
+.accessCardContainer {
+    position: relative;
+    top: 50px;
+}
+.accessCard {
+    min-width: 370px;
+    max-width: 370px;
+    min-height: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.accessCardImage {
+    margin: 15px 0 20px 0;
+    max-height: 100px;
+    height: 100px;
+}
+.accessCardHeader {
+  font-family: $font-family-inter-sans-serif;
+}
+
+.accessHeader {
+    font-size: 35px;
+    max-width: 320px;
+    margin-bottom: 15px;
+}
+.accessDescription {
+    padding: 0 40px;
+    font-size: 16px;
+}
+
+// Flip card
+
+.flip-card {
+    background-color: transparent;
+    min-width: 370px;
+    max-width: 370px;
+    min-height: 210px;
+    perspective: 1000px;
+}
+.flip-card-inner {
+    position: relative;
+    border-radius: 18px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s, box-shadow 500ms 300ms;
+    transform-style: preserve-3d;
+    border: 1px solid $secondary-whitesmoke-color;
+}
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+    box-shadow: $login-card-box-shadow;
+}
+.flip-card-front, .flip-card-back {
+    border-radius: 18px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+.flip-card-front {
+    background: white;
+    color: black;
+    padding-top: 8px;
+}
+.flip-card-back {
+    padding: 50px 20px;
+    background: white;
+    transform: rotateY(180deg);
+}
+
+
 
 @media (min-width: $minWidthXs) // 411px
 {
     .contactsItem {
-        top: 40px;
-        left: 280px;
+        top: 60px;
+        left: 270px;
     }
     .tasksItem {
         bottom: 60px;
         left: 220px;
     }
     .postsItem {
-        bottom: 370px;
+        bottom: 320px;
         left: 50px;
     }
     .moneyItem {
-        bottom: 250px;
+        bottom: 200px;
         left: 180px;
     }
     .activitiesItem {
-        top: 50px;
+        top: 60px;
         left: -140px;
     }
     .usersItem {
-        top: 20px;
-        left: 200px;
-    }
-}
-@media (min-width: $minWidthSm1) // 545px
-{
-    .moneyItem {
-        bottom: 215px;
-        left: 190px;
-    }
-    .postsItem {
-        bottom: 345px;
+        top: 30px;
+        left: 180px;
     }
 }
 
-@media (min-width: $minWidthSm2) {
+@media (min-width: $minWidthSm2) // 547px
+{
     .contactsItem {
         bottom: 20px;
         left: 400px;
@@ -684,11 +788,11 @@ td {
         left: 250px;
     }
     .postsItem {
-        bottom: 295px;
+        bottom: 320px;
         left: 100px;
     }
     .moneyItem {
-        bottom: 280px;
+        bottom: 210px;
         left: 270px;
     }
     .activitiesItem {
@@ -699,14 +803,40 @@ td {
         top: 20px;
         left: 200px;
     }
-}
-
-@media (min-width: $minWidthSm4) {
-    .startContainer {
-        padding: 0;
+    .accessHeader {
+        max-width: 100%;
+    }
+    .accessDescription {
+        font-size: 20px;
     }
 }
 
+@media (min-width: $minWidthSm4) // 560px
+{
+    .startHeader {
+        margin-top: 140px;
+    }
+    .startContainer {
+        padding: 0;
+    }
+    .postsItem {
+        bottom: 270px;
+        left: 100px;
+    }
+    .moneyItem {
+        bottom: 250px;
+        left: 270px;
+    }
+    .accessContainer {
+        height: 970px;
+    }
+}
+
+@media (min-width: 759px) {
+    .accessContainer {
+        height: 730px;
+    }
+}
 @media (min-width: $minWidthMd) // 768px
 {
     .startItem {
@@ -739,7 +869,7 @@ td {
         top: $start-icons-big-top;
     }
     .startHeader {
-        margin-top: 140px;
+        margin-top: 160px;
         font-size: 52px;
     }
     .startDescription {
@@ -760,7 +890,7 @@ td {
         left: 430px;
     }
     .postsItem {
-        bottom: 340px;
+        bottom: 330px;
         left: 400px;
     }
     .moneyItem {
@@ -770,6 +900,12 @@ td {
     .activitiesItem {
         top: 60px;
         left: -110px;
+    }
+    .accessHeader {
+        font-size: 45px;
+    }
+    #features {
+        top: 450px;
     }
 }
 
@@ -782,7 +918,7 @@ td {
         font-size: 25px;
     }
     .startHeader {
-        margin-top: 160px;
+        margin-top: 180px;
     }
     .startDescription {
         max-width: 650px;
@@ -812,13 +948,24 @@ td {
         left: 40px;
     }
 }
+@media (min-width: 1129px) {
+    .accessContainer {
+        height: 500px;
+    }
+    .accessHeader {
+        font-size: $font-size-xl;
+    }
+}
+
 @media (min-width: $minWidthXl) // 1200px
 {
-    .startContainer {
-        margin-left: 110px;
-    }
     .startHeader {
-        margin-top: 180px;
+        margin-top: 200px;
+    }
+    .startHeader,
+    .startDescription,
+    .startButton {
+        margin-left: 110px;
     }
     .startButton {
         margin-top: 40px;
@@ -850,13 +997,15 @@ td {
 @media (min-width: $minWidth2Xl) // 1400px
 {
     .startHeader {
-        margin-top: 200px;
+        margin-top: 230px;
     }
-    .startContainer {
+    .startHeader,
+    .startDescription,
+    .startButton {
         margin-left: 130px;
     }
     .startHeader {
-        font-size: 60px;
+        font-size: $font-size-xxl;
     }
     .startDescription {
         font-size: 25px;

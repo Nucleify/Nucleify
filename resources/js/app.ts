@@ -45,7 +45,6 @@ app.component('Avatar', Avatar)
 import {
     ActivityLog,
     AdminPanel,
-    GuestNavbar,
     Home,
     Login,
     LoginButton,
@@ -53,11 +52,11 @@ import {
     Register,
     TestLoginButton,
     Welcome,
+    WelcomeNavbar,
 } from './components'
 
 app.component('activity-log', ActivityLog)
     .component('admin-panel', AdminPanel)
-    .component('guest-navbar', GuestNavbar)
     .component('home', Home)
     .component('login', Login)
     .component('login-button', LoginButton)
@@ -65,6 +64,7 @@ app.component('activity-log', ActivityLog)
     .component('register', Register)
     .component('test-login-button', TestLoginButton)
     .component('welcome', Welcome)
+    .component('welcome-navbar', WelcomeNavbar)
 
 /**
  *  Directives

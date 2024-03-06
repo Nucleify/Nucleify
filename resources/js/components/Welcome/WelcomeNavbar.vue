@@ -1,5 +1,7 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+    <nav
+        class="welcomeNavbar navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 fixed w-full z-100"
+    >
         <div class="container">
             <a class="applicationHeader" href="/"> DataManager </a>
             <button
@@ -17,21 +19,21 @@
                 <!-- Right Side Of Navbar -->
                 <div class="navbar-nav ms-auto md:gap-7">
                     <div class="navbar-nav flex md:gap-3">
-                        <a class="nav-link guestNavLink" href="#start">
+                        <a class="nav-link welcomeNavLink" href="#start">
                             Start
                         </a>
-                        <a class="nav-link guestNavLink" href="#features">
+                        <a class="nav-link welcomeNavLink" href="#features">
                             Features
                         </a>
-                        <a class="nav-link guestNavLink" href="#why-us">
+                        <a class="nav-link welcomeNavLink" href="#why-us">
                             Why Us?
                         </a>
-                        <a class="nav-link guestNavLink" href="#contact">
+                        <a class="nav-link welcomeNavLink" href="#contact">
                             Contact
                         </a>
                     </div>
 
-                    <a class="nav-link guestNavLink" href="/login">Log In</a>
+                    <a class="nav-link welcomeNavLink" href="/login">Log In</a>
                 </div>
             </div>
         </div>

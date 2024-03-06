@@ -1,8 +1,12 @@
 <template>
-    <guest-navbar></guest-navbar>
-    <start></start>
+    <welcome-navbar></welcome-navbar>
+    <div class="mt-8">
+        <start></start>
+        <features></features>
+    </div>
 </template>
 
 <script setup lang="ts">
 import Start from './Start.vue'
+import Features from './Features.vue'
 </script>

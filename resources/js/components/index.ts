@@ -33,5 +33,5 @@ export { default as TestLoginButton } from './Support/TestLoginButton.vue'
 /**
  *  Welcome
  */
-export { default as GuestNavbar } from './Welcome/GuestNavbar.vue'
+export { default as WelcomeNavbar } from './Welcome/WelcomeNavbar.vue'
 export { default as Welcome } from './Welcome/Welcome.vue'
