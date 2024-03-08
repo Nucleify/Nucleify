@@ -1,0 +1,21 @@
+@import '../../../variables/pages/welcome/sections_variables';
+
+@import '../../../variables/base/medias_variables';
+
+#start {
+    scroll-margin-top: $start-section-scroll-margin-top;
+}
+
+#features {
+    scroll-margin-top: $features-section-scroll-margin-top;
+    position: $features-section-position;
+    top: $features-section-top;
+    padding-bottom: $features-section-padding-bottom;
+}
+
+// Min width 768px
+@media (min-width: $minWidthMd) {
+    #features {
+        top: $features-section-top-min-width-768px;
+    }
+}

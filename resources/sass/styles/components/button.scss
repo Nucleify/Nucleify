@@ -1,0 +1,34 @@
+@import '../../variables/components/button_variables';
+
+@import '../../variables/base/borders_variables';
+@import '../../variables/base/dimensions_variables';
+@import '../../variables/base/medias_variables';
+
+.p-button {
+    border-radius: $small-border-radius;
+    padding: $button-padding;
+}
+.mobileButton {
+    display: $mobile-button-display;
+}
+.myButton {
+    padding: $my-button-padding;
+    max-height: $min-max-width-height-small;
+    min-height: $min-max-width-height-small;
+    max-width: $min-max-width-height-small;
+    min-width: $min-max-width-height-small;
+}
+.myBigButton {
+    position: $my-big-button-position;
+    left: $my-big-button-left;
+    top: $my-big-button-top;
+    padding-left: $my-big-button-padding-left;
+    max-height: $min-max-width-height-big;
+    min-height: $min-max-width-height-big;
+    max-width: $min-max-width-height-big;
+    min-width: $min-max-width-height-big;
+}
+.smallHeightButton {
+    max-height: $min-max-width-height-small;
+    min-height: $min-max-width-height-small;
+}

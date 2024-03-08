@@ -1,0 +1,33 @@
+@import '../../../variables/pages/welcome/navbar_variables';
+
+@import '../../../variables/base/colors_variables';
+@import '../../../variables/base/medias_variables';
+
+.welcomeNavbar {
+    z-index: $welcome-navbar-z-index;
+}
+
+.welcomeNavLink {
+    font-size: $welcome-nav-link-font-size;
+}
+.welcomeNavLink:hover,
+.welcomeNavLink:focus {
+    color: $primary-hover-color;
+}
+
+.applicationHeader {
+    margin-left: $application-header-margin-left;
+    text-decoration: $application-header-text-decoration;
+    color: $primary-text-color;
+    font-size: $application-header-font-size;
+}
+.applicationHeader:hover {
+    color: $primary-text-color;
+}
+
+// Min width 992px
+@media (min-width: $minWidthLg2) {
+    .applicationHeader {
+        font-size: $application-header-font-size-min-width-992px;
+    }
+}

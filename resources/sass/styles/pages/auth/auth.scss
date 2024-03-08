@@ -1,0 +1,71 @@
+@import '../../../variables/pages/auth/auth_variables';
+
+@import '../../../variables/base/colors_variables';
+@import '../../../variables/base/fonts_variables';
+@import '../../../variables/base/medias_variables';
+
+.loginCard,
+.registerCard {
+    margin: $auth-card-margin;
+    position: $auth-card-position;
+    top: $auth-card-position-top;
+    box-shadow: $login-card-box-shadow;
+}
+.loginCard {
+    max-width: $login-card-position-max-width;
+}
+.registerCard {
+    max-width: $register-card-position-max-width;
+}
+.backLink,
+.loginLink,
+.registerLink {
+    position: $links-position;
+    font-size: $font-size-medium;
+    text-decoration: $links-text-decoration;
+    color: $primary-text-color;
+    transition: $transition-colors-300ms;
+}
+.backLink:hover,
+.loginLink:hover,
+.registerLink:hover {
+    color: $primary-hover-color;
+}
+.backLink {
+    top: $back-link-top;
+    left: $back-link-left;
+}
+.loginLink,
+.registerLink {
+    top: $auth-links-top;
+    right: $auth-links-right;
+}
+.authInputText {
+    height: $auth-input-text-height;
+    width: $auth-input-text-width;
+    max-width: $auth-input-text-max-width;
+}
+.loginCard .p-card-body,
+.registerCard .p-card-body {
+    padding: $auth-card-body-padding;
+}
+
+.loginCard .p-card-content,
+.registerCard .p-card-content {
+    padding: $auth-card-content-padding;
+}
+
+// Min width 768px
+@media (min-width: $minWidthMd) {
+    .loginCard,
+    .registerCard {
+        padding-bottom: $auth-card-padding-bottom;
+        top: $auth-card-position-top-min-width-768px;
+    }
+    .loginCard .p-card-content,
+    .registerCard .p-card-content,
+    .loginCard .p-card-body,
+    .registerCard .p-card-body {
+        padding: $auth-card-body-content-padding-min-width-768px;
+    }
+}

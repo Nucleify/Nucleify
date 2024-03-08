@@ -1,0 +1,12 @@
+@import '../../variables/components/tooltip_variables';
+
+@import '../../variables/base/dimensions_variables';
+@import '../../variables/base/fonts_variables';
+
+.p-tooltip-arrow {
+    display: $tooltip-arrow-display;
+}
+.p-tooltip-text {
+    padding: $tooltip-text-padding;
+    font-size: $font-size-small;
+}

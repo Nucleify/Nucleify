@@ -1,0 +1,368 @@
+@import '../../../variables/pages/welcome/start_variables';
+
+@import '../../../variables/base/borders_variables';
+@import '../../../variables/base/colors_variables';
+@import '../../../variables/base/fonts_variables';
+@import '../../../variables/base/medias_variables';
+
+.startContainer {
+    padding: $start-container-padding;
+}
+.startHeader {
+    margin-top: $start-header-margin-top;
+    font-size: $start-header-font-size;
+    font-weight: $start-header-font-weight;
+    font-family: $font-family-inter-sans-serif;
+    color: $dark-text-color;
+}
+.startDescription {
+    margin-top: $start-description-margin-top;
+    max-width: $start-description-max-width;
+    font-size: $font-size-medium2;
+    color: $secondary-text-color;
+}
+.startButton {
+    margin-top: $start-button-margin-top;
+    width: $start-button-width;
+    justify-content: $start-button-justify-content;
+    border-radius: $start-button-border-radius !important;
+    font-weight: $start-button-font-weight;
+    font-size: $font-size-medium;
+    transition: $start-button-transition;
+}
+.startButton:active {
+    transform: $start-button-active-transform;
+}
+
+.startItem {
+    color: $secondary-gray-color;
+    background: $secondary-gray-bg-color;
+    transition: $transition-colors-300ms;
+    border-radius: $small-border-radius;
+    min-width: $start-item-small-dimensions;
+    min-height: $start-item-small-dimensions;
+    max-width: $start-item-small-dimensions;
+    max-height: $start-item-small-dimensions;
+    padding: $start-item-small-padding;
+    text-decoration: $start-item-text-decoration;
+}
+
+.startItem:hover {
+    color: $primary-hover-color;
+    background: $secondary-hover-bg-color;
+    transition: $transition-colors-300ms;
+    border-radius: $small-border-radius;
+}
+
+.activitiesIcon,
+.activitiesItem,
+.contactsIcon,
+.contactsItem,
+.moneyIcon,
+.moneyItem,
+.postsIcon,
+.postsItem,
+.tasksIcon,
+.tasksItem,
+.usersIcon,
+.usersItem {
+    z-index: $start-items-index;
+    position: $start-items-icons-position;
+}
+
+.activitiesIcon,
+.contactsIcon,
+.moneyIcon,
+.postsIcon,
+.tasksIcon,
+.usersIcon {
+    font-size: $font-size-base1;
+    top: $start-icons-small-top;
+}
+
+.activitiesItem {
+    top: $activities-item-top;
+    left: $activities-item-left;
+}
+.contactsItem {
+    top: $contacts-item-top;
+    left: $contacts-item-left;
+}
+.moneyItem {
+    bottom: $money-item-bottom;
+    left: $money-item-left;
+}
+.postsItem {
+    bottom: $posts-item-bottom;
+    left: $posts-item-left;
+}
+.tasksItem {
+    bottom: $tasks-item-bottom;
+    left: $tasks-item-left;
+}
+.usersItem {
+    top: $users-item-top;
+    left: $users-item-left;
+}
+
+// Min width 411px
+@media (min-width: $minWidthXs) {
+    .activitiesItem {
+        top: $activities-item-top-min-width-411px;
+        left: $activities-item-left-min-width-411px;
+    }
+    .contactsItem {
+        top: $contacts-item-top-min-width-411px;
+        left: $contacts-item-left-min-width-411px;
+    }
+    .moneyItem {
+        bottom: $money-item-bottom-min-width-411px;
+        left: $money-item-left-min-width-411px;
+    }
+    .postsItem {
+        bottom: $posts-item-bottom-min-width-411px;
+        left: $posts-item-left-min-width-411px;
+    }
+    .tasksItem {
+        bottom: $tasks-item-bottom-min-width-411px;
+        left: $tasks-item-left-min-width-411px;
+    }
+    .usersItem {
+        top: $users-item-top-min-width-411px;
+        left: $users-item-left-min-width-411px;
+    }
+}
+
+// Min width 454px
+@media (min-width: $minWidthXs2) {
+    .moneyItem {
+        bottom: $money-item-bottom-min-width-456px;
+        left: $money-item-left-min-width-456px;
+    }
+    .tasksItem {
+        bottom: $tasks-item-bottom-min-width-456px;
+        left: $tasks-item-left-min-width-456px;
+    }
+    .contactsItem {
+        top: $contacts-item-top-min-width-456px;
+        left: $contacts-item-left-min-width-456px;
+    }
+}
+
+// Min width 547px
+@media (min-width: $minWidthSm2) {
+    .activitiesItem {
+        top: $activities-item-top-min-width-547px;
+        left: $activities-item-left-min-width-547px;
+    }
+    .contactsItem {
+        top: $contacts-item-top-min-width-547px;
+        left: $contacts-item-left-min-width-547px;
+    }
+    .moneyItem {
+        bottom: $money-item-bottom-min-width-547px;
+        left: $money-item-left-min-width-547px;
+    }
+    .postsItem {
+        bottom: $posts-item-bottom-min-width-547px;
+        left: $posts-item-left-min-width-547px;
+    }
+    .tasksItem {
+        bottom: $tasks-item-bottom-min-width-547px;
+        left: $tasks-item-left-min-width-547px;
+    }
+    .usersItem {
+        top: $users-item-top-min-width-547px;
+        left: $users-item-left-min-width-547px;
+    }
+}
+
+// Min width 560px
+@media (min-width: $minWidthSm4) {
+    .startHeader {
+        margin-top: $start-header-margin-top-min-width-560px;
+    }
+    .startContainer {
+        padding: $start-container-padding-min-width-560px;
+    }
+    .moneyItem {
+        bottom: $money-item-bottom-min-width-560px;
+        left: $money-item-left-min-width-560px;
+    }
+    .postsItem {
+        bottom: $posts-item-bottom-min-width-560px;
+        left: $posts-item-left-min-width-560px;
+    }
+}
+
+// Min width 768px
+@media (min-width: $minWidthMd) {
+    .startHeader {
+        margin-top: $start-header-margin-top-min-width-768px;
+        font-size: $start-header-font-size-min-width-768px;
+    }
+    .startDescription {
+        margin-top: $start-description-margin-top-min-width-768px;
+    }
+    .startButton {
+        margin-top: $start-button-margin-top-min-width-768px;
+    }
+    .startItem {
+        border-radius: $small-border-radius;
+        min-width: $start-item-large-dimensions;
+        min-height: $start-item-large-dimensions;
+        max-width: $start-item-large-dimensions;
+        max-height: $start-item-large-dimensions;
+        padding: $start-item-text-large-padding;
+    }
+    .activitiesIcon,
+    .contactsIcon,
+    .moneyIcon,
+    .postsIcon,
+    .tasksIcon,
+    .usersIcon {
+        font-size: $start-icons-font-size-min-width-768px;
+        top: $start-icons-big-top;
+    }
+
+    .activitiesItem {
+        top: $activities-item-top-min-width-768px;
+        left: $activities-item-left-min-width-768px;
+    }
+    .contactsItem {
+        top: $contacts-item-top-min-width-768px;
+        left: $contacts-item-left-min-width-768px;
+    }
+    .moneyItem {
+        bottom: $money-item-bottom-min-width-768px;
+        left: $money-item-left-min-width-768px;
+    }
+    .postsItem {
+        bottom: $posts-item-bottom-min-width-768px;
+        left: $posts-item-left-min-width-768px;
+    }
+    .tasksItem {
+        top: $tasks-item-top-min-width-768px;
+        left: $tasks-item-left-min-width-768px;
+    }
+    .usersItem {
+        left: $users-item-left-min-width-768px;
+    }
+}
+
+// Min width 992px
+@media (min-width: $minWidthLg2) {
+    .startHeader {
+        margin-top: $start-header-margin-top-min-width-992px;
+        font-size: $start-header-font-size-min-width-992px;
+    }
+    .startDescription {
+        max-width: $start-description-max-width-min-width-992px;
+    }
+
+    .activitiesItem {
+        top: $activities-item-top-min-width-992px;
+        left: $activities-item-left-min-width-992px;
+    }
+    .contactsItem {
+        top: $contacts-item-top-min-width-992px;
+        left: $contacts-item-left-min-width-992px;
+    }
+    .moneyItem {
+        bottom: $money-item-bottom-min-width-992px;
+        left: $money-item-left-min-width-992px;
+    }
+    .postsItem {
+        bottom: $posts-item-bottom-min-width-992px;
+        left: $posts-item-left-min-width-992px;
+    }
+    .tasksItem {
+        top: $tasks-item-top-min-width-992px;
+        left: $tasks-item-left-min-width-992px;
+    }
+    .usersItem {
+        bottom: $users-item-bottom-min-width-992px;
+        left: $users-item-left-min-width-992px;
+    }
+}
+
+// Min width 1200px
+@media (min-width: $minWidthXl) {
+    .startHeader {
+        margin-top: $start-header-margin-top-min-width-1200px;
+    }
+    .startHeader,
+    .startDescription,
+    .startButton {
+        margin-left: $start-header-description-button-margin-left-min-width-1200px;
+    }
+    .startButton {
+        margin-top: $start-button-margin-top-min-width-1200px;
+    }
+
+    .activitiesItem {
+        top: $activities-item-top-min-width-1200px;
+        left: $activities-item-left-min-width-1200px;
+    }
+    .contactsItem {
+        top: $contacts-item-top-min-width-1200px;
+        left: $contacts-item-left-min-width-1200px;
+    }
+    .moneyItem {
+        bottom: $money-item-bottom-min-width-1200px;
+        left: $money-item-left-min-width-1200px;
+    }
+    .postsItem {
+        bottom: $posts-item-bottom-min-width-1200px;
+        left: $posts-item-left-min-width-1200px;
+    }
+    .tasksItem {
+        top: $tasks-item-top-min-width-1200px;
+        left: $tasks-item-left-min-width-1200px;
+    }
+    .usersItem {
+        top: $users-item-top-min-width-1200px;
+        left: $users-item-left-min-width-1200px;
+    }
+}
+
+// Min width 1400px
+@media (min-width: $minWidth2Xl) {
+    .startHeader {
+        margin-top: $start-header-margin-top-min-width-1400px;
+        font-size: $font-size-xxl;
+    }
+    .startHeader,
+    .startDescription,
+    .startButton {
+        margin-left: $start-header-description-button-margin-left-min-width-1400px;
+    }
+    .startDescription {
+        font-size: $font-size-big;
+    }
+
+    .activitiesItem {
+        top: $activities-item-top-min-width-1400px;
+        left: $activities-item-left-min-width-1400px;
+    }
+    .contactsItem {
+        top: $contacts-item-top-min-width-1400px;
+        left: $contacts-item-left-min-width-1400px;
+    }
+    .moneyItem {
+        bottom: $money-item-bottom-min-width-1400px;
+        left: $money-item-left-min-width-1400px;
+    }
+    .postsItem {
+        bottom: $posts-item-bottom-min-width-1400px;
+        left: $posts-item-left-min-width-1400px;
+    }
+    .tasksItem {
+        top: $tasks-item-top-min-width-1400px;
+        left: $tasks-item-left-min-width-1400px;
+    }
+    .usersItem {
+        bottom: $users-item-bottom-min-width-1400px;
+        left: $users-item-left-min-width-1400px;
+    }
+}

@@ -1,0 +1,9 @@
+@import '../../variables/components/card_variables';
+
+@import '../../variables/base/box_shadows_variables';
+
+.myCard {
+    margin-left: $card-margin-left;
+    margin-right: $card-margin-right;
+    box-shadow: $my-card-box-shadow;
+}

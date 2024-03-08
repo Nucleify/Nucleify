@@ -1,0 +1,52 @@
+$td-cursor: pointer;
+$id-column-width-phone: 20%;
+$name-full-name-columns-width-phone: 60%;
+$tablet-desktop-columns-display-phone: none;
+$action-column-width: 1%;
+$description-name-columns-overflow: hidden;
+$description-name-columns-whitespace: nowrap;
+$description-name-columns-max-width: 280px;
+
+// Min width 530px
+$role-birthday-id-activity-columns-display-min-width-530px: table-cell;
+$id-column-width-min-width-530px: 15%;
+$name-full-name-columns-width-min-width-530px: 45%;
+
+// Min width 768px
+$tablet-column-display-min-width-768px: table-cell;
+$id-column-width-min-width-768px: 10%;
+$name-full-name-columns-width-min-width-768px: 25%;
+$role-birthday-columns-width-min-width-768px: 18%;
+$created-at-activity-column: 28%;
+$email-column-width-min-width-768px: 30%;
+
+// Min width 961px
+$id-column-min-width-961px-width: 10%;
+
+// Min width 992px
+$desktop-column-display-min-width-992px: table-cell;
+$desktop-button-display-min-width-992px: flex;
+$mobile-button-display-min-width-992px: none;
+$my-button-padding-min-width-992px: 9px 8.5px 10px 8px;
+
+// Media min width 992px
+$email-column-width-min-width-992px: 32%;
+$role-birthday-column-width-min-width-992px: 15%;
+
+// Media min width 1200px
+$id-column-width-min-width-1200px: 8%;
+$name-full-name-columns-width-min-width-1200px: 20%;
+$email-column-width-min-width-1200px: 28%;
+$created-at-column-display-min-width-1200px: table-cell;
+$created-at-column-width-min-width-1200px: 20%;
+
+// Media min width 1400px
+$id-column-width-min-width-1400px: 6%;
+$name-full-name-columns-width-min-width-1400px: 12%;
+$email-column-width-min-width-1400px: 16%;
+$role-birthday-columns-width-min-width-1400px: 10%;
+$created-at-updated-at-columns-display-min-width-1400px: table-cell;
+$created-at-updated-at-columns-width-min-width-1400px: 14%;
+
+// Media min width 1500px
+$created-at-updated-at-columns-width-min-width-1500px: 12%;

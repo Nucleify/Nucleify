@@ -1,0 +1,157 @@
+// Start container
+$start-container-padding: 0 10px;
+
+// Start header
+$start-header-margin-top: 150px;
+$start-header-font-size: 40px;
+$start-header-font-weight: bold;
+
+// Start description
+$start-description-margin-top: 20px;
+$start-description-max-width: 600px;
+
+// Start button
+$start-button-margin-top: 20px;
+$start-button-width: 150px;
+$start-button-justify-content: center;
+$start-button-border-radius: 25px;
+$start-button-font-weight: bold;
+$start-button-transition: transform 150ms ease-out;
+$start-button-active-transform: scale(0.95);
+
+// Start items
+$start-item-large-dimensions: 50px;
+$start-item-small-dimensions: 20px;
+$start-item-text-large-padding: 14px;
+$start-item-small-padding: 8px 11px;
+$start-item-text-decoration: none;
+$start-items-index: 50;
+$start-items-icons-position: relative;
+$start-icons-small-top: 1px;
+$start-icons-big-top: 3px;
+
+// Max width 411px
+$activities-item-top: 50px;
+$activities-item-left: -140px;
+$contacts-item-top: 15px;
+$contacts-item-left: 250px;
+$money-item-bottom: 240px;
+$money-item-left: 140px;
+$posts-item-bottom: 350px;
+$posts-item-left: 50px;
+$tasks-item-bottom: 60px;
+$tasks-item-left: 170px;
+$users-item-top: 30px;
+$users-item-left: 170px;
+
+// Min width 411px
+$activities-item-top-min-width-411px: 60px;
+$activities-item-left-min-width-411px: -140px;
+$contacts-item-top-min-width-411px: 60px;
+$contacts-item-left-min-width-411px: 285px;
+$money-item-bottom-min-width-411px: 240px;
+$money-item-left-min-width-411px: 150px;
+$posts-item-bottom-min-width-411px: 350px;
+$posts-item-left-min-width-411px: 50px;
+$tasks-item-bottom-min-width-411px: 60px;
+$tasks-item-left-min-width-411px: 220px;
+$users-item-top-min-width-411px: 30px;
+$users-item-left-min-width-411px: 180px;
+
+// Min width 456px
+$money-item-bottom-min-width-456px: 210px;
+$money-item-left-min-width-456px: 150px;
+$tasks-item-bottom-min-width-456px: 50px;
+$tasks-item-left-min-width-456px: 230px;
+$contacts-item-top-min-width-456px: 60px;
+$contacts-item-left-min-width-456px: 290px;
+
+// Min width 547px
+$activities-item-top-min-width-547px: 50px;
+$activities-item-left-min-width-547px: -140px;
+$contacts-item-top-min-width-547px: 20px;
+$contacts-item-left-min-width-547px: 400px;
+$money-item-bottom-min-width-547px: 210px;
+$money-item-left-min-width-547px: 270px;
+$posts-item-bottom-min-width-547px: 320px;
+$posts-item-left-min-width-547px: 100px;
+$tasks-item-bottom-min-width-547px: 30px;
+$tasks-item-left-min-width-547px: 250px;
+$users-item-top-min-width-547px: 20px;
+$users-item-left-min-width-547px: 200px;
+
+// Min width 560px
+$money-item-bottom-min-width-560px: 290px;
+$money-item-left-min-width-560px: 270px;
+$posts-item-bottom-min-width-560px: 320px;
+$posts-item-left-min-width-560px: 100px;
+$start-header-margin-top-min-width-560px: 140px;
+$start-container-padding-min-width-560px: 0;
+
+// Min width 768px
+$start-header-margin-top-min-width-768px: 160px;
+$start-header-font-size-min-width-768px: 52px;
+$start-description-margin-top-min-width-768px: 30px;
+$start-icons-font-size-min-width-768px: 20px;
+$start-button-margin-top-min-width-768px: 30px;
+$activities-item-top-min-width-768px: 60px;
+$activities-item-left-min-width-768px: -110px;
+$contacts-item-top-min-width-768px: 50px;
+$contacts-item-left-min-width-768px: 560px;
+$money-item-bottom-min-width-768px: 150px;
+$money-item-left-min-width-768px: 470px;
+$posts-item-bottom-min-width-768px: 330px;
+$posts-item-left-min-width-768px: 400px;
+$tasks-item-top-min-width-768px: -50px;
+$tasks-item-left-min-width-768px: 430px;
+$users-item-left-min-width-768px: 350px;
+
+// Min width 992px
+$start-header-font-size-min-width-992px: 55px;
+$start-header-margin-top-min-width-992px: 180px;
+$start-description-max-width-min-width-992px: 650px;
+$activities-item-top-min-width-992px: 50px;
+$activities-item-left-min-width-992px: 40px;
+$contacts-item-top-min-width-992px: 70px;
+$contacts-item-left-min-width-992px: 740px;
+$money-item-bottom-min-width-992px: 200px;
+$money-item-left-min-width-992px: 670px;
+$posts-item-bottom-min-width-992px: 340px;
+$posts-item-left-min-width-992px: 600px;
+$tasks-item-top-min-width-992px: -40px;
+$tasks-item-left-min-width-992px: 630px;
+$users-item-bottom-min-width-992px: 50px;
+$users-item-left-min-width-992px: 500px;
+
+// Min width 1200px
+$start-header-margin-top-min-width-1200px: 200px;
+$start-header-description-button-margin-left-min-width-1200px: 110px;
+$start-button-margin-top-min-width-1200px: 40px;
+$activities-item-top-min-width-1200px: 30px;
+$activities-item-left-min-width-1200px: 150px;
+$contacts-item-top-min-width-1200px: -20px;
+$contacts-item-left-min-width-1200px: 850px;
+$money-item-bottom-min-width-1200px: 240px;
+$money-item-left-min-width-1200px: 790px;
+$posts-item-bottom-min-width-1200px: 380px;
+$posts-item-left-min-width-1200px: 650px;
+$tasks-item-top-min-width-1200px: -150px;
+$tasks-item-left-min-width-1200px: 730px;
+$users-item-top-min-width-1200px: -20px;
+$users-item-left-min-width-1200px: 620px;
+
+// Min width 1400px
+$start-header-margin-top-min-width-1400px: 230px;
+$start-header-description-button-margin-left-min-width-1400px: 130px;
+$activities-item-top-min-width-1400px: 40px;
+$activities-item-left-min-width-1400px: 260px;
+$contacts-item-top-min-width-1400px: 40px;
+$contacts-item-left-min-width-1400px: 960px;
+$money-item-bottom-min-width-1400px: 210px;
+$money-item-left-min-width-1400px: 900px;
+$posts-item-bottom-min-width-1400px: 340px;
+$posts-item-left-min-width-1400px: 860px;
+$tasks-item-top-min-width-1400px: -120px;
+$tasks-item-left-min-width-1400px: 840px;
+$users-item-bottom-min-width-1400px: 90px;
+$users-item-left-min-width-1400px: 730px;

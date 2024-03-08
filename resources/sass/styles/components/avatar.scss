@@ -1,0 +1,10 @@
+@import '../../variables/components/avatar_variables';
+
+@import '../../variables/base/medias_variables';
+
+// Min width 530px
+@media (min-width: $minWidthSm) {
+    .p-avatar {
+        right: $avatar-right-min-width-530px;
+    }
+}

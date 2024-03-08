@@ -1,0 +1,22 @@
+$auth-card-padding-bottom: 20px;
+$auth-card-margin: auto;
+$auth-card-position: relative;
+$auth-card-position-top: 100px;
+$login-card-position-max-width: 560px;
+$register-card-position-max-width: 640px;
+$login-card-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+$links-text-decoration: none;
+$links-position: absolute;
+$back-link-top: 15px;
+$back-link-left: 20px;
+$auth-links-top: 12px;
+$auth-links-right: 20px;
+$auth-input-text-height: 40px;
+$auth-input-text-width: 100%;
+$auth-input-text-max-width: 100%;
+$auth-card-body-padding: 10px;
+$auth-card-content-padding: 20px;
+
+// Min width 768px
+$auth-card-position-top-min-width-768px: 150px;
+$auth-card-body-content-padding-min-width-768px: 20px;

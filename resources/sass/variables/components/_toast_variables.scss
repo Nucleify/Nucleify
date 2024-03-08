@@ -1,0 +1,14 @@
+$toast-position: fixed;
+$toast-top: 10px;
+$toast-right: 10px;
+$toast-width: 95vw;
+$toast-message-content-display: flex;
+$toast-message-content-gap: 5px;
+$toast-icon-close-margin-left: 5px;
+$success-toast-bg: #eaf8f3;
+$warn-toast-bg: #fff5e8;
+$error-toast-bg: #fdedec;
+
+// Min width 530px
+$toast-message-media-width-min-width-530px: max-content;
+$toast-message-media-max-width-min-width-530px: max-content;

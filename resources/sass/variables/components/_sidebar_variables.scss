@@ -1,0 +1,28 @@
+$panel-menu-display: flex;
+$panel-menu-flex-direction: column;
+$panel-menu-gap: 10px;
+$panel-menu-margin-top: 10px;
+$panel-menu-header-action-padding: 13px;
+$panel-menu-header-action-text-decoration: none;
+$panel-menu-header-action-color: #5e5e5e;
+$panel-menu-header-content-border: transparent;
+$panel-menu-header-action-icon-font-size: 20px;
+$sidebar-max-width: 270px;
+$sidebar-header-padding-left: 30px;
+$sidebar-hr-position: relative;
+$sidebar-hr-bottom: 4px;
+$my-sidebar-display: none;
+$my-sidebar-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+$sidebar-item-margin-left: -1px;
+$sidebar-item-dimensions: 50px;
+$sidebar-item-padding: 14px 13px 13px 13px;
+
+// Max width 550px
+$sidebar-sidebar-mask-display-max-width-550px: none;
+
+// Min width 550px
+$sidebar-sidebar-mask-display-min-width-550px: flex;
+
+// Min width 992px
+$my-sidebar-display-min-width-992px: flex;
+$my-sidebar-menuitem-text-display-min-width-992px: none;

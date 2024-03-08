@@ -1,0 +1,76 @@
+@import '../../base/colors_variables';
+
+// Access container
+$access-container-display: flex;
+$access-container-flex-direction: column;
+$access-container-padding: 60px 10px 0 10px;
+$access-container-height: 990px;
+$access-container-width: 100%;
+$access-container-margin-bottom: 100px;
+
+// Access header
+$access-header-font-weight: bold;
+$access-header-font-size: 35px;
+$access-header-max-width: 320px;
+$access-header-margin-bottom: 15px;
+$access-description-padding: 0 40px;
+$access-description-font-size: 16px;
+$flip-card-hover-transform: rotateY(180deg);
+
+// Access description
+$access-description-margin-top: 5px;
+$access-description-max-width: 900px;
+$access-description-text-align: center;
+
+// Access card
+$access-card-container-position: relative;
+$access-card-container-top: 50px;
+$access-card-width: 370px;
+$access-card-min-height: 210px;
+$access-card-display: flex;
+$access-card-flex-direction: column;
+$access-card-align-items: center;
+$access-card-justify-content: center;
+$access-card-cursor: pointer;
+
+// Access card image
+$access-card-image-margin: 15px 0 20px 0;
+$access-card-image-height: 100px;
+
+// Flip card
+$flip-card-bg-color: transparent;
+$flip-card-width: 370px;
+$flip-card-height: 210px;
+$flip-card-perspective: 1000px;
+$flip-card-border: 1px solid $secondary-whitesmoke-color;
+$flip-card-inner-position: relative;
+$flip-card-inner-width: 100%;
+$flip-card-inner-height: 100%;
+$flip-card-inner-text-align: center;
+$flip-card-inner-transition:
+    transform 0.8s,
+    box-shadow 500ms 300ms;
+$flip-card-inner-transform-style: preserve-3d;
+$flip-card-sides-border-radius: 18px;
+$flip-card-sides-position: absolute;
+$flip-card-sides-dimensions: 100%;
+$flip-card-front-color: black;
+$flip-card-front-padding-top: 8px;
+$flip-card-back-padding: 50px 20px;
+$flip-card-back-transform: rotateY(180deg);
+
+// Min width 547px
+$access-header-max-width-min-width-547px: 100%;
+$access-description-font-size-min-width-547px: 20px;
+
+// Min width 560px
+$access-container-height-min-width-560px: 970px;
+
+// Min width 759px
+$access-container-height-min-width-759px: 730px;
+
+// Min width 768px
+$access-header-font-size-min-width-768px: 45px;
+
+// Min width 1129
+$access-container-height-min-width-1129px: 520px;

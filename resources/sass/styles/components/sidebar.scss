@@ -1,0 +1,90 @@
+@import '../../variables/components/sidebar_variables';
+
+@import '../../variables/base/borders_variables';
+@import '../../variables/base/colors_variables';
+@import '../../variables/base/fonts_variables';
+@import '../../variables/base/medias_variables';
+
+.p-panelmenu {
+    display: $panel-menu-display;
+    flex-direction: $panel-menu-flex-direction;
+    gap: $panel-menu-gap;
+    margin-top: $panel-menu-margin-top;
+}
+.sidebarItem {
+    margin-left: $sidebar-item-margin-left;
+    min-width: $sidebar-item-dimensions;
+    min-height: $sidebar-item-dimensions;
+    max-width: $sidebar-item-dimensions;
+    max-height: $sidebar-item-dimensions;
+    padding: $sidebar-item-padding;
+    text-decoration: $panel-menu-header-action-text-decoration;
+    color: $panel-menu-header-action-color;
+}
+.sidebarItem:hover {
+    color: $primary-hover-color;
+    background: $primary-hover-bg-color;
+    transition: $transition-colors-300ms;
+    border-radius: $small-border-radius;
+}
+.sidebarItem {
+    border-color: $panel-menu-header-content-border;
+    border-radius: $small-border-radius;
+}
+
+.p-sidebar {
+    max-width: $sidebar-max-width;
+}
+.p-sidebar-header {
+    padding-left: $sidebar-header-padding-left;
+}
+.p-sidebar-header .p-sidebar-header-content {
+    font-size: $font-size-big;
+}
+.sidebarHr {
+    position: $sidebar-hr-position;
+    bottom: $sidebar-hr-bottom;
+}
+.sidebarUser:hover {
+    background: $primary-hover-bg-color;
+    transition: $transition-colors-300ms;
+}
+.sidebarUser {
+    color: $primary-hover-color;
+}
+.sidebarIcon,
+.sidebarUser {
+    color: $secondary-text-color;
+}
+
+.mySidebar {
+    display: $my-sidebar-display;
+    background: $content-bg;
+    box-shadow: $my-sidebar-box-shadow;
+}
+
+// Max width  550px
+@media (max-width: $maxWidthSm1) {
+    .p-sidebar,
+    .p-sidebar-mask {
+        display: $sidebar-sidebar-mask-display-max-width-550px;
+    }
+}
+
+// Min width 550px
+@media (min-width: $minWidthSm3) {
+    .p-sidebar,
+    .p-sidebar-mask {
+        display: $sidebar-sidebar-mask-display-min-width-550px;
+    }
+}
+
+// Min width 992px
+@media (min-width: $minWidthLg2) {
+    .mySidebar {
+        display: $my-sidebar-display-min-width-992px;
+    }
+    .mySidebar .p-menuitem-text {
+        display: $my-sidebar-menuitem-text-display-min-width-992px;
+    }
+}

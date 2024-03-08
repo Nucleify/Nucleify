@@ -1,0 +1,14 @@
+@import '../../../variables/pages/activity/activity_variables';
+
+@import '../../../variables/base/medias_variables';
+
+.activityMyButton {
+    padding: $activity-my-button;
+}
+
+// Min width 1400px
+@media (min-width: $minWidthXl) {
+    .createdAtActivityColumn {
+        width: $created-at-activity-column-width-min-width-1400px;
+    }
+}

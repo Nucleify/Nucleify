@@ -1,0 +1,18 @@
+@import '../../variables/components/dialog_variables';
+
+.p-dialog-mask {
+    padding: $dialog-mask-padding;
+}
+.p-dialog-header {
+    padding-top: $dialog-header-padding-top;
+    padding-bottom: $dialog-header-padding-bottom;
+}
+.p-dialog-content {
+    padding: $dialog-content-padding;
+}
+.p-dialog-header-icon {
+    display: $dialog-header-icon-display;
+}
+.p-dialog-footer {
+    padding: $dialog-footer-padding;
+}

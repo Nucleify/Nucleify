@@ -1,0 +1,142 @@
+@import '../../../variables/pages/welcome/features_variables';
+
+@import '../../../variables/base/borders_variables';
+@import '../../../variables/base/box_shadows_variables';
+@import '../../../variables/base/colors_variables';
+@import '../../../variables/base/fonts_variables';
+@import '../../../variables/base/medias_variables';
+
+.accessContainer {
+    display: $access-container-display;
+    flex-direction: $access-container-flex-direction;
+    padding: $access-container-padding;
+    height: $access-container-height;
+    width: $access-container-width;
+    background: $secondary-green-bg-color;
+    margin-bottom: $access-container-margin-bottom;
+}
+.accessHeader {
+    font-family: $font-family-inter-sans-serif;
+    font-weight: $access-header-font-weight;
+    color: $dark-text-color;
+    font-size: $access-header-font-size;
+    max-width: $access-header-max-width;
+    margin-bottom: $access-header-margin-bottom;
+}
+.accessDescription {
+    margin-top: $access-description-margin-top;
+    max-width: $access-description-max-width;
+    color: $secondary-text-color;
+    text-align: $access-description-text-align;
+    padding: $access-description-padding;
+    font-size: $access-description-font-size;
+}
+.accessCardContainer {
+    position: $access-card-container-position;
+    top: $access-card-container-top;
+}
+.accessCard {
+    min-width: $access-card-width;
+    max-width: $access-card-width;
+    min-height: $access-card-min-height;
+    display: $access-card-display;
+    flex-direction: $access-card-flex-direction;
+    align-items: $access-card-align-items;
+    justify-content: $access-card-justify-content;
+    cursor: $access-card-cursor;
+}
+.accessCardImage {
+    margin: $access-card-image-margin;
+    max-height: $access-card-image-height;
+    height: $access-card-image-height;
+}
+.accessCardHeader {
+    font-family: $font-family-inter-sans-serif;
+}
+
+.flip-card {
+    background: $flip-card-bg-color;
+    width: $flip-card-width;
+    min-width: $flip-card-width;
+    max-width: $flip-card-width;
+    min-height: $flip-card-height;
+    perspective: $flip-card-perspective;
+}
+.flip-card-inner {
+    position: $flip-card-inner-position;
+    border-radius: $medium-border-radius;
+    width: $flip-card-inner-width;
+    height: $flip-card-inner-height;
+    min-width: $flip-card-width;
+    max-width: $flip-card-width;
+    text-align: $flip-card-inner-text-align;
+    transition: $flip-card-inner-transition;
+    transform-style: $flip-card-inner-transform-style;
+}
+.flip-card:hover .flip-card-inner {
+    transform: $flip-card-hover-transform;
+    box-shadow: $secondary-card-box-shadow;
+}
+.flip-card-front,
+.flip-card-back {
+    border: $flip-card-border;
+    border-radius: $medium-border-radius;
+    position: $flip-card-sides-position;
+    width: $flip-card-sides-dimensions;
+    height: $flip-card-sides-dimensions;
+    min-width: $flip-card-width;
+    max-width: $flip-card-width;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+.flip-card-front {
+    background: $content-bg;
+    color: $flip-card-front-color;
+    padding-top: $flip-card-front-padding-top;
+}
+.flip-card-back {
+    padding: $flip-card-back-padding;
+    background: $content-bg;
+    transform: $flip-card-back-transform;
+}
+
+// Min width 547px
+@media (min-width: $minWidthSm2) {
+    .accessHeader {
+        max-width: $access-header-max-width-min-width-547px;
+    }
+    .accessDescription {
+        font-size: $access-description-font-size-min-width-547px;
+    }
+}
+
+// Min width 560px
+@media (min-width: $minWidthSm4) {
+    .accessContainer {
+        height: $access-container-height-min-width-560px;
+    }
+}
+
+// Min width 759
+@media (min-width: $minWidthMd0) {
+    .accessContainer {
+        height: $access-container-height-min-width-759px;
+    }
+}
+
+// Min width 768px
+@media (min-width: $minWidthMd) {
+    .accessHeader {
+        font-size: $access-header-font-size-min-width-768px;
+    }
+}
+
+// Min width 1129px
+@media (min-width: $minWidthLg3) {
+    .accessContainer {
+        height: $access-container-height-min-width-1129px;
+    }
+    .accessHeader {
+        font-size: $font-size-xl;
+    }
+}

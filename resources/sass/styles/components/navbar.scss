@@ -1,0 +1,75 @@
+@import '../../variables/components/navbar_variables';
+
+@import '../../variables/base/medias_variables';
+@import '../../variables/base/disabled_items_variables';
+
+.p-menuitem a {
+    text-decoration: $menu-item-a-text-decoration;
+}
+.p-menubar .p-avatar {
+    position: $avatar-position;
+    right: $avatar-right;
+}
+.p-menu,
+.p-menu-list {
+    padding: $menu-menu-list-padding;
+    margin: $menu-menu-list-margin;
+    gap: $menu-menu-list-gap;
+    min-width: $menu-menu-list-min-width;
+}
+.p-menu,
+.p-menu-list,
+.p-menuitem-content {
+    border-radius: $menu-menu-list-menu-item-content-border-radius;
+}
+.p-submenu-header {
+    display: $submenu-header-display;
+}
+.p-menuitem-icon {
+    margin-right: $menu-item-icon-margin-right;
+}
+.p-menubar {
+    width: $menubar-width;
+    position: $menubar-position;
+    z-index: $menubar-z-index;
+    padding: $menubar-padding;
+    margin: $menubar-margin;
+    justify-content: $menubar-justify-content;
+    box-shadow: $menubar-box-shadow;
+}
+.p-menubar-button {
+    position: $menubar-button-position;
+    left: $menubar-button-left;
+    color: $menubar-button-color;
+}
+.p-menubar-button .p-icon {
+    width: $menubar-button-icon-width;
+    height: $menubar-button-icon-height;
+}
+.p-menubar-root-list {
+    padding: $menubar-root-list-padding;
+    margin: $menubar-root-list-margin;
+}
+.myNavbar {
+    position: $my-navbar-position;
+}
+
+// Min width 992px
+@media (min-width: $minWidthLg2) {
+    .myNavbar {
+        display: $my-navbar-display-min-width-992px;
+    }
+}
+
+// Menuitems disabled for now
+.myNavbar .p-menuitem:nth-child(5) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(3) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(4) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(5) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(6) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(7) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(9) .p-menuitem-link,
+.myNavbar .p-menuitem:nth-child(10) .p-menuitem-link {
+    opacity: $disabled-item-opacity;
+    cursor: $disabled-item-cursor;
+}
