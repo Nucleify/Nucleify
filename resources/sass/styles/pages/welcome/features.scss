@@ -67,11 +67,10 @@
     border-radius: $medium-border-radius;
     width: $flip-card-inner-width;
     height: $flip-card-inner-height;
-    min-width: $flip-card-width;
-    max-width: $flip-card-width;
     text-align: $flip-card-inner-text-align;
     transition: $flip-card-inner-transition;
     transform-style: $flip-card-inner-transform-style;
+    border: $flip-card-border;
 }
 .flip-card:hover .flip-card-inner {
     transform: $flip-card-hover-transform;
@@ -79,12 +78,10 @@
 }
 .flip-card-front,
 .flip-card-back {
-    border: $flip-card-border;
     border-radius: $medium-border-radius;
     position: $flip-card-sides-position;
     width: $flip-card-sides-dimensions;
     height: $flip-card-sides-dimensions;
-    min-width: $flip-card-width;
     max-width: $flip-card-width;
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
@@ -98,6 +95,7 @@
     padding: $flip-card-back-padding;
     background: $content-bg;
     transform: $flip-card-back-transform;
+    font-size: $font-size-base1;
 }
 
 // Min width 547px

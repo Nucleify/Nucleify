@@ -1,5 +1,5 @@
 <template>
-    <Card class="myCard contactDashboard w-full lg:ml-2 lg:mr-5 mt-1">
+    <Card class="myCard w-full lg:ml-2 lg:mr-5 mt-1">
         <template #title>
             <div class="flex justify-content-between">
                 <h3>Manage Contacts</h3>

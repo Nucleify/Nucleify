@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 use App\Http\Requests\PostContactRequest;
 use App\Http\Requests\PutContactRequest;
@@ -19,10 +21,20 @@ class ContactController extends Controller
         $this->service = $service;
     }
 
-    public function index(): JsonResponse
+    /**
+     * Show the application dashboard.
+     *
+     * @return Renderable
+     */
+    public function render(): Renderable
+    {
+        return view('contacts');
+    }
+
+    public function index(Request $request): JsonResponse
     {
         try {
-            $result = $this->service->getAll();
+            $result = $this->service->getAll($request);
 
             return response()->json($result);
         } catch (Exception $e) {

@@ -45,6 +45,7 @@ app.component('Avatar', Avatar)
 import {
     ActivityLog,
     AdminPanel,
+    ContactDashboard,
     Home,
     Login,
     LoginButton,
@@ -57,6 +58,7 @@ import {
 
 app.component('activity-log', ActivityLog)
     .component('admin-panel', AdminPanel)
+    .component('contact-dashboard', ContactDashboard)
     .component('home', Home)
     .component('login', Login)
     .component('login-button', LoginButton)

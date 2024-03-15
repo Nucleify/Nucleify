@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActivityLogController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,12 @@ Route::middleware(['web', 'auth'])->group(function () {
      *  Home
      */
     Route::get('/home', [HomeController::class, 'render'])->name('home');
+
+    /**
+     *  Contacts
+     */
+    Route::get('/contacts', [ContactController::class, 'render'])->name('contacts');
+
 
     /**
      *  Activity log

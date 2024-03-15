@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Request;
+
 use App\Models\Contact;
 use App\Models\User;
 use App\Transformers\ContactTransformer;
@@ -10,13 +12,41 @@ class ContactService
 {
     public function __construct(private readonly Contact $model){}
 
-    public function getAll(): array
+    public function getAll(Request $request): array
     {
         $causer = auth()->user();
-        $contacts = [];
+
+        // Get the URL from which the request was sent
+        $referer = $request->header('referer');
 
         switch (true) {
-            case $causer->isUser():
+            // If the URL not contains '/contacts', fetch contacts based on user role
+            case $referer && !str_contains($referer, '/contacts'):
+                switch (true) {
+                    case $causer->isUser():
+                        $contacts = $causer
+                            ->contacts()
+                            ->where('user_id', $causer->id)
+                            ->get();
+
+                        activity()
+                            ->log(
+                                '"' . $causer->name . '" has fetched all his contacts'
+                            );
+                        break;
+
+                    default:
+                        $contacts = $this->model->all();
+                        activity()
+                            ->log(
+                                '"' . $causer->name . '" has fetched all contacts for all users'
+                            );
+                        break;
+                }
+                break;
+
+            // Default behavior if the URL contains '/contacts'
+            default:
                 $contacts = $causer
                     ->contacts()
                     ->where('user_id', $causer->id)
@@ -24,15 +54,7 @@ class ContactService
 
                 activity()
                     ->log(
-                        '"'. $causer->name. '" has fetched all his contacts'
-                    );
-                break;
-
-            case !$causer->isUser():
-                $contacts = $this->model->all();
-                activity()
-                    ->log(
-                        '"'. $causer->name. '" has fetched all contacts for all users'
+                        '"' . $causer->name . '" has fetched all his contacts'
                     );
                 break;
         }

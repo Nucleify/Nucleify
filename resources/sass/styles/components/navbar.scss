@@ -53,7 +53,9 @@
 .myNavbar {
     position: $my-navbar-position;
 }
-
+.nav-link {
+    padding-left: $nav-link-padding-left;
+}
 // Min width 992px
 @media (min-width: $minWidthLg2) {
     .myNavbar {
@@ -62,14 +64,12 @@
 }
 
 // Menuitems disabled for now
-.myNavbar .p-menuitem:nth-child(5) .p-menuitem-link,
 .myNavbar .p-menuitem:nth-child(3) .p-menuitem-link,
 .myNavbar .p-menuitem:nth-child(4) .p-menuitem-link,
 .myNavbar .p-menuitem:nth-child(5) .p-menuitem-link,
 .myNavbar .p-menuitem:nth-child(6) .p-menuitem-link,
 .myNavbar .p-menuitem:nth-child(7) .p-menuitem-link,
-.myNavbar .p-menuitem:nth-child(9) .p-menuitem-link,
-.myNavbar .p-menuitem:nth-child(10) .p-menuitem-link {
+.myNavbar .p-menuitem:nth-child(9) .p-menuitem-link {
     opacity: $disabled-item-opacity;
     cursor: $disabled-item-cursor;
 }

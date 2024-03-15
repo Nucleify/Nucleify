@@ -33,6 +33,7 @@ const items = ref([
     {
         label: 'Contacts',
         icon: 'pi pi-user',
+        url: '/contacts'
     },
     {
         label: 'Posts',
@@ -96,7 +97,7 @@ onMounted(async () => {
                         userRole === 'super_admin'
                     ) {
                         isAdmin.value = true
-                        items.value.splice(1, 0, {
+                        items.value.splice(9, 0, {
                             label: 'Admin Panel',
                             icon: 'pi pi-users',
                             url: '/admin',
@@ -113,7 +114,7 @@ onMounted(async () => {
                 userRole === 'super_admin'
             ) {
                 isAdmin.value = true
-                items.value.splice(1, 0, {
+                items.value.splice(9, 0, {
                     label: 'Admin Panel',
                     icon: 'pi pi-users',
                     url: '/admin',

@@ -25,9 +25,9 @@
                 <i class="pi pi-users text-xl"></i>
             </a>
             <a
-                href="#"
+                href="/contacts"
                 :class="{ active: isCurrentUrl('/contacts') }"
-                class="sidebarItem text-center opacity-25 cursor-auto"
+                class="sidebarItem text-center"
                 v-tooltip.right="'Contacts'"
             >
                 <i class="pi pi-user text-lg"></i>

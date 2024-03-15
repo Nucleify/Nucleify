@@ -15,6 +15,11 @@ export { default as Login } from './Auth/Login.vue'
 export { default as Register } from './Auth/Register.vue'
 
 /**
+ *  Contacts
+ */
+export { default as ContactDashboard } from './Contacts/ContactDashboard.vue'
+
+/**
  *  Home
  */
 export { default as Home } from './Home/Home.vue'

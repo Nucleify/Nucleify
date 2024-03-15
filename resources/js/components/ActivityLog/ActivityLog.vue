@@ -1,5 +1,5 @@
 <template>
-    <Card class="myCard w-full mt-7 lg:mt-1 lg:ml-2 lg:mr-5">
+    <Card class="myCard activityLogDashboard w-full mt-7 lg:mt-1 lg:ml-2 lg:mr-5">
         <template #title>
             <div class="flex justify-content-between">
                 <h3>Activity Log</h3>
