@@ -1,14 +1,20 @@
 import { useToast } from 'primevue/usetoast'
 import { ToastServiceMethods } from 'primevue/toastservice'
 
-import { MessageOrMessagesType, ToastSeverityType, UseFlashToastInterface } from '../../interfaces'
+import {
+    MessageOrMessagesType,
+    ToastSeverityType,
+    UseFlashToastInterface,
+} from '../../interfaces'
 import { closeToast } from '../index'
-
 
 export default function useFlashToast(): UseFlashToastInterface {
     const toast: ToastServiceMethods = useToast()
 
-    function flashToast(messageOrMessages: MessageOrMessagesType, severity: ToastSeverityType): void {
+    function flashToast(
+        messageOrMessages: MessageOrMessagesType,
+        severity: ToastSeverityType
+    ): void {
         closeToast()
 
         let message: string = ''
@@ -23,7 +29,12 @@ export default function useFlashToast(): UseFlashToastInterface {
                 }
 
                 for (const value in messageOrMessages) {
-                    if (Object.prototype.hasOwnProperty.call(messageOrMessages, value as string)) {
+                    if (
+                        Object.prototype.hasOwnProperty.call(
+                            messageOrMessages,
+                            value as string
+                        )
+                    ) {
                         message += `\n- ${messageOrMessages[value].join(', ')}`
                     }
                 }
@@ -33,7 +44,7 @@ export default function useFlashToast(): UseFlashToastInterface {
         toast.add({
             severity: severity,
             summary: message,
-            life: 5000
+            life: 5000,
         })
     }
 

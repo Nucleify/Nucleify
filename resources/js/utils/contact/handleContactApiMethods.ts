@@ -1,13 +1,13 @@
 import axios from 'axios'
-import { ref, Ref } from "vue"
+import { ref, Ref } from 'vue'
 
 import { useApiErrors } from '../../utils'
 import {
     ContactApiMethodsInterface,
     GetAllContactsFunctionType,
     GetAllContactsAxiosFunctionType,
-    ContactInterface
-} from "../../interfaces"
+    ContactInterface,
+} from '../../interfaces'
 
 export default function contactApiMethods(): ContactApiMethodsInterface {
     const { apiErrors } = useApiErrors()
@@ -17,7 +17,7 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
         return axios
             .get('/api/contacts')
             .then((response: GetAllContactsAxiosFunctionType) => {
-                return results.value = response.data
+                return (results.value = response.data)
             })
             .catch((error) => {
                 apiErrors(error)

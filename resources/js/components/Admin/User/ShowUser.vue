@@ -7,33 +7,32 @@
     >
         <template #header>
             <h2 class="m-0">
-                Show:
-                {{ user.data.name }}
+                {{ user.name }}
             </h2>
         </template>
         <div v-if="user" class="flex flex-column gap-3">
             <div>
                 <h5 class="mb-0">Name</h5>
                 <div>
-                    {{ user.data.name }}
+                    {{ user.name }}
                 </div>
             </div>
             <div>
                 <h5 class="mb-0">Email</h5>
-                <div>{{ user.data.email }}</div>
+                <div>{{ user.email }}</div>
             </div>
             <div>
                 <h5 class="mb-0">Role</h5>
-                <div>{{ user.data.role }}</div>
+                <div>{{ user.role }}</div>
             </div>
             <div class="flex">
                 <div class="col-6 p-0">
                     <h5 class="mb-0">Created At</h5>
-                    <div>{{ user.data.created_at }}</div>
+                    <div>{{ user.created_at }}</div>
                 </div>
                 <div class="col-6 p-0">
                     <h5 class="mb-0">Updated At</h5>
-                    <div>{{ user.data.updated_at }}</div>
+                    <div>{{ user.updated_at }}</div>
                 </div>
             </div>
         </div>
@@ -52,10 +51,11 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue'
+import { UserInterface } from '../../../interfaces'
 
 const props = defineProps<{
     visible: boolean
-    user: any
+    user: UserInterface
     close: (action: string) => void
 }>()
 

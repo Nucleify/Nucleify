@@ -3,5 +3,6 @@
 @import '../../variables/base/box_shadows_variables';
 
 .myCard {
+    width: $card-width;
     box-shadow: $my-card-box-shadow;
 }

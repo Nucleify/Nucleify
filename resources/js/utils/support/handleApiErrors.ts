@@ -1,6 +1,8 @@
 import { useFlashToast } from '../'
-import { ApiErrorsInterface, UseApiErrorsServiceInterface } from '../../interfaces'
-
+import {
+    ApiErrorsInterface,
+    UseApiErrorsServiceInterface,
+} from '../../interfaces'
 
 export default function useApiErrors(): UseApiErrorsServiceInterface {
     const { flashToast } = useFlashToast()
@@ -9,7 +11,8 @@ export default function useApiErrors(): UseApiErrorsServiceInterface {
         switch (error.response.status) {
             case 500:
                 flashToast(
-                    error.response.data.error || 'HTTP 500: Internal Server Error',
+                    error.response.data.error ||
+                        'HTTP 500: Internal Server Error',
                     'error'
                 )
                 break

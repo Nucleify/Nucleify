@@ -25,9 +25,21 @@ export type AxiosFunction = Promise<undefined> & {
     finally: Promise<undefined>['finally']
 }
 
+export interface Chart {
+    labels: string[]
+    datasets: {
+        label: string
+        backgroundColor: string
+        borderColor: string
+        data: number[]
+    }[]
+}
+
 export interface Contact {
+    id: number
     first_name: string
     last_name: string
+    full_name?: string
     email: string
     personal_phone: string
     work_phone: string

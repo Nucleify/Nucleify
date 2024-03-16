@@ -1,0 +1,20 @@
+@import '../../variables/components/panel_containers_variables';
+
+@import '../../variables/base/medias_variables';
+
+.panelContainer {
+    position: $panel-container-position;
+    top: $panel-container-top;
+    padding-bottom: $panel-container-padding-bottom;
+    display: $panel-container-display;
+    flex-direction: $panel-container-flex-direction;
+    gap: $panel-container-gap;
+}
+
+// Min width 992px
+@media (min-width: $minWidthLg2) {
+    .panelContainer {
+        top: $panel-container-top-min-width-992px;
+        padding-bottom: $panel-container-padding-bottom-min-width-992px;
+    }
+}

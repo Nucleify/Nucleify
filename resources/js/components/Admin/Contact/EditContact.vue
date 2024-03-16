@@ -1,7 +1,7 @@
 <template>
     <Dialog v-model:visible="visible" modal class="w-30rem">
         <template #header>
-            <h2 class="m-0">Edit: {{ contact.data.full_name }}</h2>
+            <h2 class="m-0">Edit: {{ contact.full_name }}</h2>
         </template>
 
         <form action="#" class="text-sm">
@@ -98,13 +98,14 @@
 import { ref, toRefs, watch } from 'vue'
 import axios from 'axios'
 import { useApiErrors, useFlashToast } from '../../../utils'
+import { ContactInterface } from '../../../interfaces'
 
 const { flashToast } = useFlashToast()
 const { apiErrors } = useApiErrors()
 
 const props = defineProps<{
-    contact: any
-    getAllContacts: () => void
+    contact: ContactInterface
+    getData: () => void
     visible: boolean
     options: string[]
     close: (action: string) => void
@@ -131,7 +132,7 @@ const { visible, contact, options } = toRefs(props)
  * Check modal open with watch visible variable, then pass props to data
  */
 watch(visible, () => {
-    Object.assign(data.value, contact.value.data)
+    Object.assign(data.value, contact.value)
 })
 
 async function editContact() {
@@ -149,7 +150,7 @@ async function editContact() {
         })
         .then((response) => {
             props.close('edit')
-            props.getAllContacts()
+            props.getData()
 
             flashToast(
                 'Successfully edited: ' + response.data.full_name,

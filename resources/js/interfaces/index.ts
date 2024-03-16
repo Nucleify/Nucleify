@@ -4,6 +4,7 @@
 
 export { ActivityLog as ActivityLogInterface } from './handleInterfaces'
 export { ApiErrors as ApiErrorsInterface } from './handleInterfaces'
+export { Chart as ChartInterface } from './handleInterfaces'
 export { Contact as ContactInterface } from './handleInterfaces'
 export { ContactApiMethods as ContactApiMethodsInterface } from './handleInterfaces'
 export { UserApiMethods as UserApiMethodsInterface } from './handleInterfaces'

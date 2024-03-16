@@ -72,7 +72,7 @@ const { flashToast } = useFlashToast()
 const { apiErrors } = useApiErrors()
 
 const props = defineProps<{
-    getAllUsers: () => void
+    getData: () => void
     visible: boolean
     options: string[]
     close: (action: string) => void
@@ -99,7 +99,7 @@ async function storeUser() {
         })
         .then((response) => {
             props.close('create')
-            props.getAllUsers()
+            props.getData()
 
             flashToast('Successfully created: ' + response.data.name, 'success')
         })

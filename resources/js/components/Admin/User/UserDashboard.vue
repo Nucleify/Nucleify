@@ -1,5 +1,5 @@
 <template>
-    <Card class="myCard w-full mt-7 lg:mt-1 lg:ml-2 lg:mr-5">
+    <Card class="myCard lg:ml-2 lg:mr-5">
         <template #title>
             <div class="flex justify-content-between">
                 <h3>Manage Users</h3>
@@ -11,16 +11,16 @@
                 />
             </div>
         </template>
-        <template #content="rowData">
+        <template #content="row">
             <DataTable
-                v-bind:value="results"
+                v-bind:value="data"
                 v-bind:size="'small'"
                 v-bind:rows="10"
                 v-bind:row-hover="true"
-                v-if="results"
+                v-if="data"
                 paginator
                 stripedRows
-                @row-click="openModal('show', $event)"
+                @row-click="openModal('show', $event.data)"
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
@@ -61,27 +61,27 @@
                     class="updatedAtColumn"
                 />
                 <Column class="actionColumn">
-                    <template #body="rowData">
+                    <template #body="row">
                         <div class="flex gap-1 justify-content-around">
                             <Button
                                 class="desktopButton myButton"
                                 icon="pi pi-eye"
-                                @click="openModal('show', rowData)"
+                                @click="openModal('show', row.data)"
                             />
                             <Button
                                 class="desktopButton myButton"
                                 icon="pi pi-pencil"
-                                @click="openModal('edit', rowData)"
+                                @click="openModal('edit', row.data)"
                             />
                             <Button
                                 class="desktopButton myButton"
                                 icon="pi pi-trash"
-                                @click="openModal('delete', rowData)"
+                                @click="openModal('delete', row.data)"
                             />
                             <Button
                                 class="mobileButton myButton"
                                 icon="pi pi-bars"
-                                @click="openMenu($event, rowData)"
+                                @click="openMenu($event, row.data)"
                             />
                             <Menu
                                 ref="menu"
@@ -103,14 +103,14 @@
     />
     <CreateUser
         v-bind:visible="visibleCreate"
-        v-bind:getAllUsers="getAllUsers"
+        v-bind:getData="getData"
         v-bind:options="roleOptions"
         v-bind:close="closeModal"
     />
     <EditUser
         v-bind:visible="visibleEdit"
         v-bind:user="selectedObject"
-        v-bind:getAllUsers="getAllUsers"
+        v-bind:getData="getData"
         v-bind:options="roleOptions"
         v-bind:close="closeModal"
     />
@@ -132,7 +132,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 
 import { UserInterface } from '../../../interfaces'
@@ -141,14 +141,8 @@ import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
 import EditUser from './EditUser.vue'
 
-import {
-    userApiMethods,
-    useApiErrors,
-    useFlashToast,
-    useModal,
-} from '../../../utils'
+import { useApiErrors, useFlashToast, useModal } from '../../../utils'
 
-const { results, getAllUsers } = userApiMethods()
 const { apiErrors } = useApiErrors()
 const { flashToast } = useFlashToast()
 const {
@@ -162,7 +156,9 @@ const {
     closeModal,
 } = useModal()
 
-defineProps<{
+const props = defineProps<{
+    data: UserInterface[]
+    getData: () => void
     roleOptions: string[]
 }>()
 
@@ -209,19 +205,14 @@ function openMenu(event: MouseEvent, user: UserInterface): void {
     menu.value.toggle(event)
 }
 
-/**
- * Fetch users after component mounts
- */
-onMounted(getAllUsers)
-
-function deleteUser(user: any): void {
+function deleteUser(user: UserInterface): void {
     axios
-        .delete(`/api/users/${user.data.id}`)
-        .then(async () => {
+        .delete(`/api/users/${user.id}`)
+        .then(() => {
             closeModal('delete')
-            await getAllUsers()
+            props.getData()
 
-            flashToast('Successfully deleted: ' + user.data.name, 'success')
+            flashToast('Successfully deleted: ' + user.name, 'success')
         })
         .catch((error) => {
             closeModal('delete')

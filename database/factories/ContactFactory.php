@@ -22,7 +22,8 @@ class ContactFactory extends Factory
             'work_phone' => $this->faker->regexify('/^\d{9}$/'),
             'address' => $this->faker->address,
             'birthday' => $this->faker->date(),
-            'role' => $this->faker->randomElement(['', 'user', 'tech', 'test_admin', 'admin', 'super_admin'])
+            'role' => $this->faker->randomElement(['', 'user', 'tech', 'test_admin', 'admin', 'super_admin']),
+            'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d')
         ];
 
         $validator = Validator::make($data, [

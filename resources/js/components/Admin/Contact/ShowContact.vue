@@ -8,61 +8,61 @@
         <template #header>
             <h2 class="m-0">
                 Show:
-                {{ contact.data.full_name }}
+                {{ contact.full_name }}
             </h2>
         </template>
         <div v-if="contact" class="flex flex-column gap-3">
             <div>
                 <h5 class="mb-0">Full Name</h5>
                 <div>
-                    {{ contact.data.full_name }}
+                    {{ contact.full_name }}
                 </div>
             </div>
             <div>
                 <h5 class="mb-0">Email</h5>
                 <div>
-                    {{ contact.data.email }}
+                    {{ contact.email }}
                 </div>
             </div>
             <div class="flex">
                 <div class="col-6 p-0">
                     <h5 class="mb-0">Personal Phone</h5>
-                    <div>{{ contact.data.personal_phone }}</div>
+                    <div>{{ contact.personal_phone }}</div>
                 </div>
                 <div class="col-6 p-0">
                     <h5 class="mb-0">Work Phone</h5>
-                    <div>{{ contact.data.work_phone }}</div>
+                    <div>{{ contact.work_phone }}</div>
                 </div>
             </div>
             <div>
                 <h5 class="mb-0">Address</h5>
-                <div>{{ contact.data.address }}</div>
+                <div>{{ contact.address }}</div>
             </div>
             <div>
                 <h5 class="mb-0">Birthday</h5>
-                <div>{{ contact.data.birthday }}</div>
+                <div>{{ contact.birthday }}</div>
             </div>
             <div>
                 <h5 class="mb-0">Contact Groups</h5>
                 <div>
-                    {{ contact.data.contact_groups }}
-                    <p v-if="!contact.data.contact_groups">
+                    {{ contact.contact_groups }}
+                    <p v-if="!contact.contact_groups">
                         This contact have no contact groups.
                     </p>
                 </div>
             </div>
             <div class="-mt-3">
                 <h5 class="mb-0">Role</h5>
-                <div>{{ contact.data.role }}</div>
+                <div>{{ contact.role }}</div>
             </div>
             <div class="flex">
                 <div class="col-6 p-0">
                     <h5 class="mb-0">Created At</h5>
-                    <div>{{ contact.data.created_at }}</div>
+                    <div>{{ contact.created_at }}</div>
                 </div>
                 <div class="col-6 p-0">
                     <h5 class="mb-0">Updated At</h5>
-                    <div>{{ contact.data.updated_at }}</div>
+                    <div>{{ contact.updated_at }}</div>
                 </div>
             </div>
         </div>
@@ -81,10 +81,11 @@
 
 <script setup lang="ts">
 import { toRefs } from 'vue'
+import { ContactInterface } from '../../../interfaces'
 
 const props = defineProps<{
     visible: boolean
-    contact: any
+    contact: ContactInterface
     close: (action: string) => void
 }>()
 

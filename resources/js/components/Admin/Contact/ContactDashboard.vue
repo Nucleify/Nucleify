@@ -1,5 +1,5 @@
 <template>
-    <Card class="myCard w-full lg:ml-2 lg:mr-5 mt-1">
+    <Card class="myCard lg:ml-2 lg:mr-5">
         <template #title>
             <div class="flex justify-content-between">
                 <h3>Manage Contacts</h3>
@@ -11,16 +11,16 @@
                 />
             </div>
         </template>
-        <template #content="rowData">
+        <template #content="row">
             <DataTable
-                v-bind:value="results"
+                v-bind:value="data"
                 v-bind:rows="10"
                 v-bind:row-hover="true"
                 v-bind:size="'small'"
-                v-if="results"
+                v-if="data"
                 paginator
                 stripedRows
-                @row-click="openModal('show', $event)"
+                @row-click="openModal('show', $event.data)"
                 paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                 currentPageReportTemplate="{first} to {last} of {totalRecords}"
             >
@@ -61,27 +61,27 @@
                     class="updatedAtColumn"
                 />
                 <Column class="actionColumn">
-                    <template #body="rowData">
+                    <template #body="row">
                         <div class="flex gap-1 justify-content-around">
                             <Button
                                 class="desktopButton myButton"
                                 icon="pi pi-eye"
-                                @click="openModal('show', rowData)"
+                                @click="openModal('show', row.data)"
                             />
                             <Button
                                 class="desktopButton myButton"
                                 icon="pi pi-pencil"
-                                @click="openModal('edit', rowData)"
+                                @click="openModal('edit', row.data)"
                             />
                             <Button
                                 class="desktopButton myButton"
                                 icon="pi pi-trash"
-                                @click="openModal('delete', rowData)"
+                                @click="openModal('delete', row.data)"
                             />
                             <Button
                                 class="mobileButton myButton"
                                 icon="pi pi-bars"
-                                @click="openMenu($event, rowData)"
+                                @click="openMenu($event, row.data)"
                             />
                             <Menu ref="menu" :model="items" :popup="true" />
                         </div>
@@ -98,14 +98,14 @@
         v-bind:close="closeModal"
     />
     <CreateContact
-        v-bind:getAllContacts="getAllContacts"
+        v-bind:getData="getData"
         v-bind:visible="visibleCreate"
         v-bind:options="roleOptions"
         v-bind:close="closeModal"
     />
     <EditContact
         v-bind:contact="selectedObject"
-        v-bind:getAllContacts="getAllContacts"
+        v-bind:getData="getData"
         v-bind:visible="visibleEdit"
         v-bind:options="roleOptions"
         v-bind:close="closeModal"
@@ -132,19 +132,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 
 import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
 
-import {
-    contactApiMethods,
-    useApiErrors,
-    useFlashToast,
-    useModal,
-} from '../../../utils'
+import { useApiErrors, useFlashToast, useModal } from '../../../utils'
 import { ContactInterface } from '../../../interfaces'
 
 const { flashToast } = useFlashToast()
@@ -159,9 +154,10 @@ const {
     openModal,
     closeModal,
 } = useModal()
-const { results, getAllContacts } = contactApiMethods()
 
-defineProps<{
+const props = defineProps<{
+    data: ContactInterface[]
+    getData: () => void
     roleOptions: string[]
 }>()
 
@@ -209,24 +205,16 @@ function openMenu(event: MouseEvent, contact: ContactInterface): void {
 }
 
 /**
- * Fetch contacts after component mounts
- */
-onMounted(getAllContacts)
-
-/**
  * HTTP requests functions
  */
-function deleteContact(contact: any): void {
+function deleteContact(contact: ContactInterface): void {
     axios
-        .delete(`/api/contacts/${contact.data.id}`)
-        .then(async () => {
+        .delete(`/api/contacts/${contact.id}`)
+        .then(() => {
             closeModal('delete')
-            await getAllContacts()
+            props.getData()
 
-            flashToast(
-                'Successfully deleted: ' + contact.data.full_name,
-                'success'
-            )
+            flashToast('Successfully deleted: ' + contact.full_name, 'success')
         })
         .catch((error) => {
             closeModal('delete')

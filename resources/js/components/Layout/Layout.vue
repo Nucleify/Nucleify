@@ -33,7 +33,7 @@ const items = ref([
     {
         label: 'Contacts',
         icon: 'pi pi-user',
-        url: '/contacts'
+        url: '/contacts',
     },
     {
         label: 'Posts',

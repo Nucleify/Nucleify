@@ -20,7 +20,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
-            'role' => $this->faker->randomElement(['user', 'test_admin'])
+            'role' => $this->faker->randomElement(['user', 'test_admin']),
+            'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d')
         ];
 
         $validator = Validator::make($data, [

@@ -10,8 +10,9 @@ export const app = createApp({})
  *  PrimeVue components
  */
 import Avatar from 'primevue/avatar'
-import Card from 'primevue/card'
 import Button from 'primevue/button'
+import Card from 'primevue/card'
+import Chart from 'primevue/chart'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
 import Dialog from 'primevue/dialog'
@@ -25,8 +26,9 @@ import Sidebar from 'primevue/sidebar'
 import Toast from 'primevue/toast'
 
 app.component('Avatar', Avatar)
-    .component('Card', Card)
     .component('Button', Button)
+    .component('Card', Card)
+    .component('Chart', Chart)
     .component('Column', Column)
     .component('DataTable', DataTable)
     .component('Dialog', Dialog)

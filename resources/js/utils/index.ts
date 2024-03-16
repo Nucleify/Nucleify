@@ -14,6 +14,7 @@ export { default as openMenu } from './support/handleOpenMenu'
 export { default as navigateTo } from './support/handleNavigateTo'
 export { default as useFlashToast } from './support/handleFlashToast'
 export { default as useApiErrors } from './support/handleApiErrors'
+export { default as useChart } from './support/handleUseChart'
 export { default as useModal } from './support/handleUseModal'
 
 /**

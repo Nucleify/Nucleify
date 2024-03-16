@@ -1,11 +1,11 @@
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
 import { ObjectType } from '../../interfaces'
 
 export default function useModal() {
-    const visibleShow = ref(false)
-    const visibleCreate = ref(false)
-    const visibleEdit = ref(false)
-    const visibleDelete = ref(false)
+    const visibleShow: Ref<boolean> = ref(false)
+    const visibleCreate: Ref<boolean> = ref(false)
+    const visibleEdit: Ref<boolean> = ref(false)
+    const visibleDelete: Ref<boolean> = ref(false)
     const selectedObject = ref<ObjectType>(undefined)
 
     function openModal(action: string, object?: ObjectType): void {
@@ -64,6 +64,6 @@ export default function useModal() {
         selectedObject,
         openModal,
         closeModal,
-        setSelectedObject
+        setSelectedObject,
     }
 }
