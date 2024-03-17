@@ -16,8 +16,10 @@
 @import 'styles/components/card.scss';
 @import 'styles/components/datatable.scss';
 @import 'styles/components/dialog.scss';
+@import 'styles/components/disabled_item.scss';
 @import 'styles/components/dropdown.scss';
-@import 'styles/components/inputtext.scss';
+@import 'styles/components/grid_item.scss';
+@import 'styles/components/input_text.scss';
 @import 'styles/components/navbar.scss';
 @import 'styles/components/paginator.scss';
 @import 'styles/components/panel_container.scss';
@@ -27,8 +29,9 @@
 
 // Pages styles
 @import 'styles/pages/activity/activity_log.scss';
-@import 'styles/pages/admin/admin_panel.scss';
+@import 'styles/pages/admin/admin_bricks.scss';
 @import 'styles/pages/auth/auth.scss';
+@import 'styles/pages/home/home_bricks.scss';
 @import 'styles/pages/welcome/welcome.scss';
 
 * {

@@ -27,6 +27,8 @@ export { GetUserFunctionType as GetUserFunctionType } from './handleFunctionsTyp
 /**
  *  Variables types
  */
+export { ChartMethodType as ChartMethodType } from './handleVariablesTypes'
+export { ChartType as ChartType } from './handleVariablesTypes'
 export { IsAdminType as IsAdminType } from './handleVariablesTypes'
 export { MessageOrMessagesType as MessageOrMessagesType } from './handleVariablesTypes'
 export { ObjectType as ObjectType } from './handleVariablesTypes'

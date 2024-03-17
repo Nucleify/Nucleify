@@ -32,7 +32,7 @@ export { default as MyLayout } from './Layout/Layout.vue'
 /**
  *  Support
  */
-export { default as ChartBox } from './Support/ChartBox.vue'
+export { default as MyChart } from './Support/MyChart.vue'
 export { default as LoginButton } from './Support/LoginButton.vue'
 export { default as TestLoginButton } from './Support/TestLoginButton.vue'
 

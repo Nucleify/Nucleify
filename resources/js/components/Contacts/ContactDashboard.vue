@@ -1,6 +1,15 @@
 <template>
     <div class="panelContainer">
-        <chart-box :contact-data="results" />
+        <Card class="myCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4">
+            <template #content>
+                <my-chart
+                    :chart-method-type="'annual'"
+                    :type="'bar'"
+                    :contact-data="results"
+                    :chart-class="'h-30rem'"
+                />
+            </template>
+        </Card>
         <Card class="myCard contactDashboard w-full lg:ml-2 lg:mr-5">
             <template #title>
                 <div class="flex justify-content-between">
@@ -137,7 +146,7 @@
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-import { ChartBox } from '../'
+import { MyChart } from '../'
 import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'

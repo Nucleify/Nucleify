@@ -1,0 +1,15 @@
+@import '../../../variables/pages/home/home_bricks_variables';
+
+@import '../../../variables/base/borders_variables';
+@import '../../../variables/base/colors_variables';
+@import '../../../variables/base/fonts_variables';
+
+.homeBricksGrid {
+    max-width: $home-bricks-grid-max-width;
+}
+.homeBricksGrid .grid-item {
+    min-width: $home-bricks-grid-grid-item-min-width;
+    height: $home-bricks-grid-grid-item-height;
+    color: $secondary-text-color;
+    gap: $home-bricks-grid-grid-item-gap;
+}

@@ -1,10 +1,11 @@
 $panel-container-position: relative;
-$panel-container-top: 57px;
+$panel-container-top: 60px;
 $panel-container-padding-bottom: 8px;
 $panel-container-display: flex;
 $panel-container-flex-direction: column;
 $panel-container-gap: 8px;
 
 // Min width 992px
-$panel-container-top-min-width-992px: 0;
-$panel-container-padding-bottom-min-width-992px: 4px;
+$panel-container-top-min-width-992px: 4px;
+$panel-container-padding-min-width-992px: 16px 16px 20px 16px;
+$panel-container-gap-min-width-992px: 20px;

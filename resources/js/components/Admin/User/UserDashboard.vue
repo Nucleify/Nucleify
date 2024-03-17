@@ -1,101 +1,103 @@
 <template>
-    <Card class="myCard lg:ml-2 lg:mr-5">
-        <template #title>
-            <div class="flex justify-content-between">
-                <h3>Manage Users</h3>
+    <section id="users">
+        <Card class="myCard lg:ml-2 lg:mr-5">
+            <template #title>
+                <div class="flex justify-content-between">
+                    <h3>Manage Users</h3>
 
-                <Button
-                    label="New User"
-                    @click="openModal('create')"
-                    class="text-sm smallHeightButton"
-                />
-            </div>
-        </template>
-        <template #content="row">
-            <DataTable
-                v-bind:value="data"
-                v-bind:size="'small'"
-                v-bind:rows="10"
-                v-bind:row-hover="true"
-                v-if="data"
-                paginator
-                stripedRows
-                @row-click="openModal('show', $event.data)"
-                paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                currentPageReportTemplate="{first} to {last} of {totalRecords}"
-            >
-                <Column
-                    field="id"
-                    :sortable="true"
-                    header="ID"
-                    class="idColumn"
-                />
-                <Column
-                    field="name"
-                    :sortable="true"
-                    header="Name"
-                    class="nameColumn"
-                />
-                <Column
-                    field="email"
-                    :sortable="true"
-                    header="Email"
-                    class="emailColumn"
-                />
-                <Column
-                    field="role"
-                    :sortable="true"
-                    header="Role"
-                    class="roleColumn"
-                />
-                <Column
-                    field="created_at"
-                    :sortable="true"
-                    header="Created At"
-                    class="createdAtColumn"
-                />
-                <Column
-                    field="updated_at"
-                    :sortable="true"
-                    header="Updated At"
-                    class="updatedAtColumn"
-                />
-                <Column class="actionColumn">
-                    <template #body="row">
-                        <div class="flex gap-1 justify-content-around">
-                            <Button
-                                class="desktopButton myButton"
-                                icon="pi pi-eye"
-                                @click="openModal('show', row.data)"
-                            />
-                            <Button
-                                class="desktopButton myButton"
-                                icon="pi pi-pencil"
-                                @click="openModal('edit', row.data)"
-                            />
-                            <Button
-                                class="desktopButton myButton"
-                                icon="pi pi-trash"
-                                @click="openModal('delete', row.data)"
-                            />
-                            <Button
-                                class="mobileButton myButton"
-                                icon="pi pi-bars"
-                                @click="openMenu($event, row.data)"
-                            />
-                            <Menu
-                                ref="menu"
-                                :model="items"
-                                :popup="true"
-                                class="w-10rem"
-                            />
-                        </div>
-                    </template>
-                </Column>
-            </DataTable>
-            <div v-else>Loading data or no data available...</div>
-        </template>
-    </Card>
+                    <Button
+                        label="New User"
+                        @click="openModal('create')"
+                        class="text-sm smallHeightButton"
+                    />
+                </div>
+            </template>
+            <template #content="row">
+                <DataTable
+                    v-bind:value="data"
+                    v-bind:size="'small'"
+                    v-bind:rows="10"
+                    v-bind:row-hover="true"
+                    v-if="data"
+                    paginator
+                    stripedRows
+                    @row-click="openModal('show', $event.data)"
+                    paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                    currentPageReportTemplate="{first} to {last} of {totalRecords}"
+                >
+                    <Column
+                        field="id"
+                        :sortable="true"
+                        header="ID"
+                        class="idColumn"
+                    />
+                    <Column
+                        field="name"
+                        :sortable="true"
+                        header="Name"
+                        class="nameColumn"
+                    />
+                    <Column
+                        field="email"
+                        :sortable="true"
+                        header="Email"
+                        class="emailColumn"
+                    />
+                    <Column
+                        field="role"
+                        :sortable="true"
+                        header="Role"
+                        class="roleColumn"
+                    />
+                    <Column
+                        field="created_at"
+                        :sortable="true"
+                        header="Created At"
+                        class="createdAtColumn"
+                    />
+                    <Column
+                        field="updated_at"
+                        :sortable="true"
+                        header="Updated At"
+                        class="updatedAtColumn"
+                    />
+                    <Column class="actionColumn">
+                        <template #body="row">
+                            <div class="flex gap-1 justify-content-around">
+                                <Button
+                                    class="desktopButton myButton"
+                                    icon="pi pi-eye"
+                                    @click="openModal('show', row.data)"
+                                />
+                                <Button
+                                    class="desktopButton myButton"
+                                    icon="pi pi-pencil"
+                                    @click="openModal('edit', row.data)"
+                                />
+                                <Button
+                                    class="desktopButton myButton"
+                                    icon="pi pi-trash"
+                                    @click="openModal('delete', row.data)"
+                                />
+                                <Button
+                                    class="mobileButton myButton"
+                                    icon="pi pi-bars"
+                                    @click="openMenu($event, row.data)"
+                                />
+                                <Menu
+                                    ref="menu"
+                                    :model="items"
+                                    :popup="true"
+                                    class="w-10rem"
+                                />
+                            </div>
+                        </template>
+                    </Column>
+                </DataTable>
+                <div v-else>Loading data or no data available...</div>
+            </template>
+        </Card>
+    </section>
     <ShowUser
         v-bind:visible="visibleShow"
         v-bind:user="selectedObject"

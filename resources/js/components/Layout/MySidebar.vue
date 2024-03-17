@@ -35,7 +35,7 @@
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/posts') }"
-                class="sidebarItem text-center opacity-25 cursor-auto"
+                class="sidebarItem text-center disabledItem"
                 v-tooltip.right="'Posts'"
             >
                 <i class="pi pi-comment text-xl"></i>
@@ -43,7 +43,7 @@
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/messages') }"
-                class="sidebarItem text-center opacity-25 cursor-auto"
+                class="sidebarItem text-center disabledItem"
                 v-tooltip.right="'Messages'"
             >
                 <i class="pi pi-envelope text-xl"></i>
@@ -51,16 +51,24 @@
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/tasks') }"
-                class="sidebarItem text-center opacity-25 cursor-auto"
+                class="sidebarItem text-center disabledItem"
                 v-tooltip.right="'Tasks'"
             >
                 <i class="pi pi-check-square text-xl"></i>
             </a>
             <a
                 href="#"
+                :class="{ active: isCurrentUrl('/calendar') }"
+                class="sidebarItem text-center disabledItem"
+                v-tooltip.right="'Calendar'"
+            >
+                <i class="pi pi pi-calendar text-xl"></i>
+            </a>
+            <a
+                href="#"
                 :class="{ active: isCurrentUrl('/money-manager') }"
-                class="sidebarItem text-center opacity-25 cursor-auto"
-                v-tooltip.right="'Money manager'"
+                class="sidebarItem text-center disabledItem"
+                v-tooltip.right="'Money'"
             >
                 <i class="pi pi pi-dollar text-xl"></i>
             </a>
@@ -78,7 +86,7 @@
                 <a
                     href="#"
                     :class="{ active: isCurrentUrl('/help') }"
-                    class="sidebarItem text-center opacity-25 cursor-auto"
+                    class="sidebarItem text-center disabledItem"
                     v-tooltip.right="'Help'"
                 >
                     <i class="pi pi-info-circle text-xl"></i>
@@ -86,7 +94,7 @@
                 <a
                     href="#"
                     :class="{ active: isCurrentUrl('/settings') }"
-                    class="sidebarItem text-center opacity-25 cursor-auto"
+                    class="sidebarItem text-center disabledItem"
                     v-tooltip.right="'Settings'"
                 >
                     <i class="pi pi-cog text-xl"></i>

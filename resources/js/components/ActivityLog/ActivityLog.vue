@@ -1,6 +1,15 @@
 <template>
     <div class="panelContainer">
-        <chart-box :activity-log-data="activityLogs" />
+        <Card class="myCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4">
+            <template #content>
+                <my-chart
+                    :chart-method-type="'annual'"
+                    :type="'bar'"
+                    :activity-log-data="activityLogs"
+                    :chart-class="'h-30rem'"
+                />
+            </template>
+        </Card>
         <Card class="myCard lg:ml-2 lg:mr-5">
             <template #title>
                 <div class="flex justify-content-between">
@@ -77,7 +86,7 @@ import axios from 'axios'
 
 import { ActivityLogInterface } from '../../interfaces'
 import { useApiErrors, useFlashToast } from '../../utils'
-import { ChartBox } from '../'
+import { MyChart } from '../'
 
 const { flashToast } = useFlashToast()
 const { apiErrors } = useApiErrors()

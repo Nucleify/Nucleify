@@ -1,4 +1,5 @@
 @import '../../variables/components/sidebar_variables';
+@import '../../variables/components/disabled_items_variables';
 
 @import '../../variables/base/borders_variables';
 @import '../../variables/base/colors_variables';
@@ -62,7 +63,9 @@
     background: $content-bg;
     box-shadow: $my-sidebar-box-shadow;
 }
-
+.mySidebar .disabledItem {
+    opacity: $disabled-item-opacity;
+}
 // Max width  550px
 @media (max-width: $maxWidthSm1) {
     .p-sidebar,

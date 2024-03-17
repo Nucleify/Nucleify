@@ -1,8 +1,10 @@
 @import '../../variables/components/card_variables';
 
 @import '../../variables/base/box_shadows_variables';
+@import '../../variables/base/colors_variables';
 
 .myCard {
     width: $card-width;
     box-shadow: $my-card-box-shadow;
+    border: $my-card-border;
 }

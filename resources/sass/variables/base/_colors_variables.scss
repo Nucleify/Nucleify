@@ -1,9 +1,12 @@
 $body-bg: #f8fafc;
 $content-bg: #ffffff;
+$primary-color: #1bbd79;
+$secondary-color: #6b7280;
 $dark-text-color: #333941;
 $primary-text-color: #4b5563;
 $secondary-text-color: #5e5e5e;
 $secondary-gray-color: #989898;
+$secondary-gray-bg: #f8f8f8;
 $secondary-whitesmoke-color: #e8e8e8;
 $secondary-gray-bg-color: #f5f4f4;
 $secondary-green-bg-color: #e9fff8;
@@ -12,4 +15,5 @@ $primary-hover-bg-color: #f6f6f8;
 $secondary-hover-bg-color: #e3fff4;
 $transition-colors-300ms:
     color 300ms,
-    background-color 300ms;
+    background-color 300ms,
+    box-shadow 300ms;

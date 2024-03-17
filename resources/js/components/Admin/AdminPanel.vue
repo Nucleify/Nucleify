@@ -1,14 +1,72 @@
 <template>
     <div class="panelContainer">
-        <chart-box :userData="users" :contactData="contacts" />
-        <user-dashboard
-            :data="users"
-            :getData="getAllUsers"
-            :roleOptions="roleOptions"
-        />
+        <div
+            class="adminBricks grid mx-auto col-12 justify-content-center flex my-4 lg:-my-2"
+        >
+            <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
+                <a href="#contacts" class="grid-item h-16rem">
+                    <div class="adminBricksCircle contactsBricksCircle">
+                        <div>
+                            <p class="adminBricksCircleNumber">
+                                {{ contacts.length }}
+                            </p>
+                            <i class="pi pi-users adminBricksIcon" />
+                        </div>
+                    </div>
+                    <p class="contactsBricksText">
+                      Contacts
+                    </p>
+                </a>
+            </div>
+            <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
+                <a href="#users" class="grid-item h-16rem">
+                    <div class="adminBricksCircle usersBricksCircle">
+                        <div>
+                            <p class="adminBricksCircleNumber">
+                                {{ users.length }}
+                            </p>
+                            <i class="pi pi-users adminBricksIcon" />
+                        </div>
+                    </div>
+                    <p class="usersBricksText">
+                        Users
+                    </p>
+                </a>
+            </div>
+            <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
+                <a href="#" class="grid-item h-16rem p-5">
+                    <my-chart
+                        :chart-method-type="'count'"
+                        :type="'pie'"
+                        :activity-log-data="undefined"
+                        :userData="users"
+                        :contactData="contacts"
+                        :chart-class="'h-16 w-16 -mt-4'"
+                    />
+                </a>
+            </div>
+        </div>
+
+        <Card class="myCard lg:ml-2 lg:mr-5 lg:px-3 xl:px-4 xl:pb-4 xl:pt-2">
+            <template #content>
+                <my-chart
+                    :chart-method-type="'annual'"
+                    :type="'bar'"
+                    :userData="users"
+                    :contactData="contacts"
+                    :chart-class="'h-30rem'"
+                />
+            </template>
+        </Card>
+
         <contact-dashboard
             :data="contacts"
             :getData="getAllContacts"
+            :roleOptions="roleOptions"
+        />
+        <user-dashboard
+            :data="users"
+            :getData="getAllUsers"
             :roleOptions="roleOptions"
         />
     </div>
@@ -17,7 +75,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { ChartBox } from '../'
+import { MyChart } from '../'
 import ContactDashboard from './Contact/ContactDashboard.vue'
 import UserDashboard from './User/UserDashboard.vue'
 
@@ -33,3 +91,9 @@ onMounted(() => {
 
 const roleOptions = ['user', 'tech', 'test_admin', 'admin', 'super_admin']
 </script>
+
+<style scoped>
+.myCard .p-card-content {
+    padding: 0;
+}
+</style>

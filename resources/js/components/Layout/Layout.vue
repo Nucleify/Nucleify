@@ -48,7 +48,11 @@ const items = ref([
         icon: 'pi pi-check-square',
     },
     {
-        label: 'Money manager',
+        label: 'Calendar',
+        icon: 'pi pi-calendar',
+    },
+    {
+        label: 'Money',
         icon: 'pi pi-dollar',
     },
     {
@@ -97,7 +101,7 @@ onMounted(async () => {
                         userRole === 'super_admin'
                     ) {
                         isAdmin.value = true
-                        items.value.splice(9, 0, {
+                        items.value.splice(10, 0, {
                             label: 'Admin Panel',
                             icon: 'pi pi-users',
                             url: '/admin',
@@ -114,7 +118,7 @@ onMounted(async () => {
                 userRole === 'super_admin'
             ) {
                 isAdmin.value = true
-                items.value.splice(9, 0, {
+                items.value.splice(10, 0, {
                     label: 'Admin Panel',
                     icon: 'pi pi-users',
                     url: '/admin',

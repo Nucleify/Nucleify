@@ -1,6 +1,6 @@
 import { MessageOrMessagesType } from './handleVariablesTypes'
-import {ApiErrorsInterface, ContactInterface, ToastSeverityType, UserInterface} from './index'
-import {Ref} from "vue";
+import { ApiErrorsInterface, ContactInterface, ToastSeverityType, UserInterface } from './index'
+import { Ref }  from "vue"
 
 export interface ActivityLog {
     id: number
