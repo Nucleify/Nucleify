@@ -183,9 +183,9 @@ npm run write
 <details><summary> 🖼️ Preview Images </summary>
 <br>
 
-![desktop-preview](https://github.com/SzymCode/ContactBook/assets/107359025/ccf11c16-3553-437b-9321-e5819db3085b)
+![desktop-preview](https://github.com/SzymCode/DataManager/assets/107359025/ddc78456-c5fd-4ec1-af24-80270c805b56)
 
-![tablet-preview](https://github.com/SzymCode/ContactBook/assets/107359025/b6fc2123-b9ac-4d64-ad43-14affc5b930d)
+![tablet-preview](https://github.com/SzymCode/DataManager/assets/107359025/fdc075ff-b7f4-44a2-9b72-c262809e18d7)
 
-![phone-preview](https://github.com/SzymCode/ContactBook/assets/107359025/082a2a84-d875-467d-9957-75d83c4d3a28)
+![phone-preview](https://github.com/SzymCode/DataManager/assets/107359025/405e7a85-b4e8-42b7-84ec-b24db5a7a1ba)
 </details>
