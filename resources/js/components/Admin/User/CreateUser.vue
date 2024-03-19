@@ -1,5 +1,5 @@
 <template>
-    <Dialog v-model:visible="visible" modal header="Header" class="w-30rem">
+    <Dialog :visible="visible" modal header="Header" class="w-30rem">
         <template #header>
             <h2 class="m-0">Create new user</h2>
         </template>
@@ -54,7 +54,7 @@
                 />
                 <Button
                     label="Confirm"
-                    @click="storeUser"
+                    @click="storeUser(data, getData, close)"
                     class="smallHeightButton"
                 />
             </div>
@@ -63,13 +63,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs } from 'vue'
-import axios from 'axios'
-
-import { useApiErrors, useFlashToast } from '../../../utils'
-
-const { flashToast } = useFlashToast()
-const { apiErrors } = useApiErrors()
+import { ref } from 'vue'
+import { userApiMethods } from '../../../utils'
+import { UserInterface } from '../../../interfaces'
 
 const props = defineProps<{
     getData: () => void
@@ -78,7 +74,7 @@ const props = defineProps<{
     close: (action: string) => void
 }>()
 
-const data = ref({
+const data = ref<UserInterface>({
     name: '',
     email: '',
     role: '',
@@ -86,25 +82,5 @@ const data = ref({
     confirm_password: '',
 })
 
-const { visible, options } = toRefs(props)
-
-async function storeUser() {
-    await axios
-        .post('/api/users', {
-            name: data.value.name,
-            email: data.value.email,
-            role: data.value.role,
-            password: data.value.password,
-            confirm_password: data.value.confirm_password,
-        })
-        .then((response) => {
-            props.close('create')
-            props.getData()
-
-            flashToast('Successfully created: ' + response.data.name, 'success')
-        })
-        .catch((error) => {
-            apiErrors(error)
-        })
-}
+const { storeUser } = userApiMethods()
 </script>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
@@ -59,7 +60,10 @@ class ContactController extends Controller
             $input = $request->validated();
             $result = $this->service->create($input);
 
-            return response()->json($result);
+            return response()->json([
+                $result,
+                'message' => 'Successfully created: ' . $result['first_name'] . ' ' . $result['last_name']
+            ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -71,7 +75,10 @@ class ContactController extends Controller
             $input = $request->validated();
             $result = $this->service->update($id, $input);
 
-            return response()->json($result);
+            return response()->json([
+                $result,
+                'message' => 'Successfully updated: ' . $result['first_name'] . ' ' . $result['last_name']
+            ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -79,11 +86,13 @@ class ContactController extends Controller
 
     public function destroy($id): JsonResponse
     {
+        $model = Contact::findOrFail($id);
+
         try {
             $this->service->delete($id);
             return response()->json([
                 'deleted' => true,
-                'message' => 'Contact deleted successfully'
+                'message' => 'Successfully deleted: '. $model->first_name . ' '. $model->last_name
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

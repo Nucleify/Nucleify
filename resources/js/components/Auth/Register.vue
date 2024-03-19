@@ -9,7 +9,7 @@
                 </div>
             </template>
             <template #content>
-                <form @submit.prevent="submitForm">
+                <form @submit.prevent="submitAuthForm(data)">
                     <div class="row mb-3">
                         <label
                             for="name"
@@ -20,7 +20,7 @@
 
                         <div class="col-md-6">
                             <InputText
-                                v-model="formData.name"
+                                v-model="data.name"
                                 type="text"
                                 id="name"
                                 required
@@ -40,7 +40,7 @@
 
                         <div class="col-md-6">
                             <InputText
-                                v-model="formData.email"
+                                v-model="data.email"
                                 type="email"
                                 id="email"
                                 required
@@ -59,7 +59,7 @@
 
                         <div class="col-md-6">
                             <InputText
-                                v-model="formData.password"
+                                v-model="data.password"
                                 type="password"
                                 id="password"
                                 required
@@ -78,7 +78,7 @@
 
                         <div class="col-md-6">
                             <InputText
-                                v-model="formData.password_confirmation"
+                                v-model="data.password_confirmation"
                                 type="password"
                                 id="password-confirm"
                                 required
@@ -107,43 +107,18 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
 
 import Links from './Links.vue'
-import { useApiErrors, useFlashToast } from '../../utils'
+import { useSubmitAuthForm } from '../../utils'
+import { RegisterFormInterface } from '../../interfaces'
 
-const { flashToast } = useFlashToast()
-const { apiErrors } = useApiErrors()
-
-interface FormData {
-    name: string
-    email: string
-    password: string
-    password_confirmation: string
-}
-
-const formData = ref<FormData>({
+const data = ref<RegisterFormInterface>({
     name: '',
     email: '',
+    role: '',
     password: '',
     password_confirmation: '',
 })
 
-async function submitForm() {
-    await axios
-        .post('/register', {
-            name: formData.value.name,
-            email: formData.value.email,
-            password: formData.value.password,
-            password_confirmation: formData.value.password_confirmation,
-            role: 'user',
-        })
-        .then((response) => {
-            window.location.href = '/home'
-            flashToast('Successfully created: ' + response.data.name, 'success')
-        })
-        .catch((error) => {
-            apiErrors(error)
-        })
-}
+const { submitAuthForm } = useSubmitAuthForm()
 </script>

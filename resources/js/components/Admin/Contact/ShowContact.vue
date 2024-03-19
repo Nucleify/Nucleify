@@ -1,23 +1,11 @@
 <template>
-    <Dialog
-        v-model:visible="visible"
-        modal
-        header="Show contact"
-        class="w-30rem"
-    >
+    <Dialog :visible="visible" modal header="Show contact" class="w-30rem">
         <template #header>
             <h2 class="m-0">
-                Show:
                 {{ contact.full_name }}
             </h2>
         </template>
         <div v-if="contact" class="flex flex-column gap-3">
-            <div>
-                <h5 class="mb-0">Full Name</h5>
-                <div>
-                    {{ contact.full_name }}
-                </div>
-            </div>
             <div>
                 <h5 class="mb-0">Email</h5>
                 <div>
@@ -80,7 +68,6 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs } from 'vue'
 import { ContactInterface } from '../../../interfaces'
 
 const props = defineProps<{
@@ -88,6 +75,4 @@ const props = defineProps<{
     contact: ContactInterface
     close: (action: string) => void
 }>()
-
-const { visible, contact } = toRefs(props)
 </script>

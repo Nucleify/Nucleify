@@ -5,6 +5,7 @@ import {
     ContactInterface,
     UserInterface,
 } from '../../interfaces'
+import { ChartOptions } from 'chart.js'
 
 export default function useChart() {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(
@@ -21,7 +22,10 @@ export default function useChart() {
             const labels: string[] = []
             const backgroundColors: string[] = []
             const hoverBackgroundColors: string[] = []
-            const labelsAndColors = [
+            const labelsAndColors: {
+                label: string
+                color: string
+            }[] = [
                 { label: 'Users', color: '--gray-500' },
                 { label: 'Contacts', color: '--primary-color' },
             ]
@@ -59,23 +63,33 @@ export default function useChart() {
                             }
                         )
 
-                        contactData?.forEach((contact: ContactInterface) => {
-                            const monthIndex: number = new Date(
-                                contact.created_at
-                            ).getMonth()
-                            contactDataByMonth[monthIndex]++
-                        })
+                        contactData?.forEach(
+                            (contact: ContactInterface): void => {
+                                if (contact.created_at) {
+                                    const monthIndex: number = new Date(
+                                        contact.created_at
+                                    ).getMonth()
+                                    contactDataByMonth[monthIndex]++
+                                }
+                            }
+                        )
 
-                        userData?.forEach((user: UserInterface) => {
-                            const monthIndex: number = new Date(
-                                user.created_at
-                            ).getMonth()
-                            userDataByMonth[monthIndex]++
+                        userData?.forEach((user: UserInterface): void => {
+                            if (user.created_at) {
+                                const monthIndex: number = new Date(
+                                    user.created_at
+                                ).getMonth()
+                                userDataByMonth[monthIndex]++
+                            }
                         })
 
                         const datasets = []
 
-                        if (activityLogDataByMonth.some((count) => count > 0)) {
+                        if (
+                            activityLogDataByMonth.some(
+                                (count): boolean => count > 0
+                            )
+                        ) {
                             datasets.push({
                                 label: 'Activities',
                                 backgroundColor:
@@ -90,7 +104,11 @@ export default function useChart() {
                             })
                         }
 
-                        if (contactDataByMonth.some((count) => count > 0)) {
+                        if (
+                            contactDataByMonth.some(
+                                (count): boolean => count > 0
+                            )
+                        ) {
                             datasets.push({
                                 label: 'Contacts',
                                 backgroundColor:
@@ -105,7 +123,9 @@ export default function useChart() {
                             })
                         }
 
-                        if (userDataByMonth.some((count) => count > 0)) {
+                        if (
+                            userDataByMonth.some((count): boolean => count > 0)
+                        ) {
                             datasets.push({
                                 label: 'Users',
                                 backgroundColor:
@@ -129,26 +149,34 @@ export default function useChart() {
                         return null
                     }
                 case 'count':
-                    labelsAndColors.forEach(({ label, color }) => {
-                        if (
-                            (label === 'Contacts' && contactData) ||
-                            (label === 'Users' && userData)
-                        ) {
-                            labels.push(label)
-                            backgroundColors.push(
-                                documentStyle.getPropertyValue(color)
-                            )
-                            hoverBackgroundColors.push(
-                                documentStyle.getPropertyValue(color)
-                            )
+                    labelsAndColors.forEach(
+                        ({
+                            label,
+                            color,
+                        }: {
+                            label: string
+                            color: string
+                        }): void => {
+                            if (
+                                (label === 'Contacts' && contactData) ||
+                                (label === 'Users' && userData)
+                            ) {
+                                labels.push(label)
+                                backgroundColors.push(
+                                    documentStyle.getPropertyValue(color)
+                                )
+                                hoverBackgroundColors.push(
+                                    documentStyle.getPropertyValue(color)
+                                )
+                            }
                         }
-                    })
+                    )
 
                     return {
                         labels: labels,
                         datasets: [
                             {
-                                data: [ userData?.length, contactData?.length],
+                                data: [userData?.length, contactData?.length],
                                 backgroundColor: backgroundColors,
                                 hoverBackgroundColor: hoverBackgroundColors,
                             },
@@ -169,7 +197,7 @@ export default function useChart() {
         const surfaceBorder: string =
             documentStyle.getPropertyValue('--surface-border')
 
-        const options: any = {
+        const options: ChartOptions = {
             maintainAspectRatio: false,
             aspectRatio: 0.8,
             plugins: {
@@ -196,7 +224,6 @@ export default function useChart() {
                         },
                         grid: {
                             display: false,
-                            drawBorder: false,
                         },
                     },
                     y: {
@@ -205,7 +232,6 @@ export default function useChart() {
                         },
                         grid: {
                             color: surfaceBorder,
-                            drawBorder: false,
                         },
                     },
                 }

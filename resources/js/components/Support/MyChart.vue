@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, defineProps } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import {
     ActivityLogInterface,
     ChartInterface,
@@ -24,9 +24,9 @@ import { useChart } from '../../utils'
 const props = defineProps<{
     type: ChartType
     chartMethodType: ChartMethodType
-    activityLogData?: ActivityLogInterface[]
-    contactData?: ContactInterface[]
-    userData?: UserInterface[]
+    activityLogData?: ActivityLogInterface[] | undefined
+    contactData?: ContactInterface[] | undefined
+    userData?: UserInterface[] | undefined
     chartClass: string | undefined
 }>()
 

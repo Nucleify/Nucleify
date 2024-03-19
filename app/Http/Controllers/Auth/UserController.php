@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
@@ -46,10 +47,12 @@ class UserController extends Controller
     {
         try {
             $input = $request->validated();
-
             $result = $this->service->create($input);
 
-            return response()->json($result);
+            return response()->json([
+                $result,
+                'message' => 'Successfully created: '. $result['name']
+            ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -59,10 +62,12 @@ class UserController extends Controller
     {
         try {
             $input = $request->validated();
-
             $result = $this->service->update($id, $input);
 
-            return response()->json($result);
+            return response()->json([
+                $result,
+                'message' => 'Successfully updated: '. $result['name']
+            ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -71,10 +76,12 @@ class UserController extends Controller
     public function destroy($id): JsonResponse
     {
         try {
+            $model = User::findOrFail($id);
             $this->service->delete($id);
+
             return response()->json([
                 'deleted' => true,
-                'message' => 'User deleted successfully'
+                'message' => 'Successfully deleted: '. $model->name
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

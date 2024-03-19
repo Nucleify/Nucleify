@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { MenuItem } from 'primevue/menuitem'
 
 import MyNavbar from './MyNavbar.vue'
 import MySidebar from './MySidebar.vue'
@@ -24,7 +25,7 @@ const { getUser } = userApiMethods()
 
 const isAdmin: IsAdminType = ref(null)
 
-const items = ref([
+const items = ref<MenuItem>([
     {
         label: 'Home',
         icon: 'pi pi-home',
@@ -70,7 +71,7 @@ const items = ref([
     },
 ])
 
-const userMenuItems = ref([
+const userMenuItems = ref<MenuItem>([
     {
         items: [
             {

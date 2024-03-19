@@ -9,7 +9,7 @@
                 </div>
             </template>
             <template #content>
-                <form @submit.prevent="submitForm">
+                <form @submit.prevent="submitAuthForm(data)">
                     <div class="row mb-3">
                         <label
                             for="email"
@@ -20,7 +20,7 @@
 
                         <div class="col-md-6">
                             <InputText
-                                v-model="formData.email"
+                                v-model="data.email"
                                 type="email"
                                 id="email"
                                 required
@@ -37,7 +37,7 @@
 
                         <div class="col-md-6">
                             <InputText
-                                v-model="formData.password"
+                                v-model="data.password"
                                 type="password"
                                 id="password"
                                 required
@@ -67,41 +67,16 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
-import { useApiErrors, useFlashToast } from '../../utils'
-import { TestLoginButton } from '../'
+
 import Links from './Links.vue'
-const { flashToast } = useFlashToast()
-const { apiErrors } = useApiErrors()
+import { TestLoginButton } from '../'
+import { useSubmitAuthForm } from '../../utils'
+import { LoginFormInterface } from '../../interfaces'
 
-interface FormData {
-    name: string
-    email: string
-    password: string
-    password_confirmation: string
-}
-
-const formData = ref<FormData>({
-    name: '',
+const data = ref<LoginFormInterface>({
     email: '',
     password: '',
-    password_confirmation: '',
 })
 
-async function submitForm() {
-    await axios
-        .post('/login', {
-            name: formData.value.name,
-            email: formData.value.email,
-            password: formData.value.password,
-        })
-        .then((response) => {
-            console.log(response)
-            window.location.href = '/home'
-            flashToast('Successfully created: ' + response.data.name, 'success')
-        })
-        .catch((error) => {
-            apiErrors(error)
-        })
-}
+const { submitAuthForm } = useSubmitAuthForm()
 </script>

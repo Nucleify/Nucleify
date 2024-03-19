@@ -50,7 +50,6 @@ import {
     ContactDashboard,
     Home,
     Login,
-    LoginButton,
     MyLayout,
     Register,
     TestLoginButton,
@@ -63,7 +62,6 @@ app.component('activity-log', ActivityLog)
     .component('contact-dashboard', ContactDashboard)
     .component('home', Home)
     .component('login', Login)
-    .component('login-button', LoginButton)
     .component('my-layout', MyLayout)
     .component('register', Register)
     .component('test-login-button', TestLoginButton)

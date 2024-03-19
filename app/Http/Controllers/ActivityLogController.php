@@ -54,6 +54,7 @@ class ActivityLogController extends Controller
     {
         try {
             $this->service->delete($id);
+
             return response()->json([
                 'deleted' => true,
                 'message' => 'Activity log deleted successfully'

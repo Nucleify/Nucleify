@@ -1,12 +1,13 @@
 import { ref, Ref } from 'vue'
 import { ObjectType } from '../../interfaces'
+import Menu from 'primevue/menu'
 
-export default function useModal() {
+export default function useMenuAndModal() {
     const visibleShow: Ref<boolean> = ref(false)
     const visibleCreate: Ref<boolean> = ref(false)
     const visibleEdit: Ref<boolean> = ref(false)
     const visibleDelete: Ref<boolean> = ref(false)
-    const selectedObject = ref<ObjectType>(undefined)
+    const selectedObject: Ref<ObjectType> = ref<ObjectType>()
 
     function openModal(action: string, object?: ObjectType): void {
         if (object) {
@@ -56,6 +57,11 @@ export default function useModal() {
         selectedObject.value = object
     }
 
+    function openMenu(menu: Menu, event: MouseEvent, object: ObjectType): void {
+        setSelectedObject(object)
+        menu.toggle(event)
+    }
+
     return {
         visibleShow,
         visibleCreate,
@@ -64,6 +70,7 @@ export default function useModal() {
         selectedObject,
         openModal,
         closeModal,
+        openMenu,
         setSelectedObject,
     }
 }

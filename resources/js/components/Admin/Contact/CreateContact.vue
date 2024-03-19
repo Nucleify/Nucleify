@@ -1,5 +1,5 @@
 <template>
-    <Dialog v-model:visible="visible" modal class="w-30rem">
+    <Dialog :visible="visible" modal class="w-30rem">
         <template #header>
             <h2 class="m-0">Create new contact</h2>
         </template>
@@ -85,7 +85,7 @@
                 />
                 <Button
                     label="Create"
-                    @click="storeContact"
+                    @click="storeContact(data, getData, close)"
                     class="smallHeightButton"
                 />
             </div>
@@ -94,12 +94,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs } from 'vue'
-import axios from 'axios'
-import { useApiErrors, useFlashToast } from '../../../utils'
-
-const { flashToast } = useFlashToast()
-const { apiErrors } = useApiErrors()
+import { ref } from 'vue'
+import { contactApiMethods } from '../../../utils'
+import { ContactInterface } from '../../../interfaces'
 
 const props = defineProps<{
     getData: () => void
@@ -108,7 +105,7 @@ const props = defineProps<{
     close: (action: string) => void
 }>()
 
-const data = ref({
+const data = ref<ContactInterface>({
     first_name: '',
     last_name: '',
     full_name: '',
@@ -119,39 +116,7 @@ const data = ref({
     birthday: '',
     contact_groups: '',
     role: '',
-    password: '',
-    confirm_password: '',
 })
 
-const { visible, options } = toRefs(props)
-
-async function storeContact(): Promise<void> {
-    const user_id = window.sessionStorage.getItem('user_id')
-
-    await axios
-        .post('/api/contacts', {
-            user_id: user_id,
-            first_name: data.value.first_name,
-            last_name: data.value.last_name,
-            email: data.value.email,
-            personal_phone: data.value.personal_phone,
-            work_phone: data.value.work_phone,
-            address: data.value.address,
-            birthday: data.value.birthday,
-            contact_groups: data.value.contact_groups,
-            role: data.value.role,
-        })
-        .then((response) => {
-            props.close('create')
-            props.getData()
-
-            flashToast(
-                'Successfully created: ' + response.data.full_name,
-                'success'
-            )
-        })
-        .catch((error) => {
-            apiErrors(error)
-        })
-}
+const { storeContact } = contactApiMethods()
 </script>

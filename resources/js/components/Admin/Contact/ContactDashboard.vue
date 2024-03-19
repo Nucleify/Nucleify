@@ -12,12 +12,12 @@
                     />
                 </div>
             </template>
-            <template #content="row">
+            <template #content>
                 <DataTable
-                    v-bind:value="data"
-                    v-bind:rows="10"
-                    v-bind:row-hover="true"
-                    v-bind:size="'small'"
+                    :value="data"
+                    :rows="10"
+                    :row-hover="true"
+                    :size="'small'"
                     v-if="data"
                     paginator
                     stripedRows
@@ -82,7 +82,7 @@
                                 <Button
                                     class="mobileButton myButton"
                                     icon="pi pi-bars"
-                                    @click="openMenu($event, row.data)"
+                                    @click="openMenu(menu, $event, row.data)"
                                 />
                                 <Menu ref="menu" :model="items" :popup="true" />
                             </div>
@@ -94,28 +94,24 @@
         </Card>
     </section>
     <ShowContact
-        v-bind:visible="visibleShow"
-        v-bind:contact="selectedObject"
-        v-bind:close="closeModal"
+        :visible="visibleShow"
+        :contact="selectedObject"
+        :close="closeModal"
     />
     <CreateContact
-        v-bind:getData="getData"
-        v-bind:visible="visibleCreate"
-        v-bind:options="roleOptions"
-        v-bind:close="closeModal"
+        :getData="getData"
+        :visible="visibleCreate"
+        :options="roleOptions"
+        :close="closeModal"
     />
     <EditContact
-        v-bind:contact="selectedObject"
-        v-bind:getData="getData"
-        v-bind:visible="visibleEdit"
-        v-bind:options="roleOptions"
-        v-bind:close="closeModal"
+        :contact="selectedObject"
+        :getData="getData"
+        :visible="visibleEdit"
+        :options="roleOptions"
+        :close="closeModal"
     />
-    <Dialog
-        v-model:visible="visibleDelete"
-        modal
-        header="Confirm delete contact"
-    >
+    <Dialog :visible="visibleDelete" modal header="Confirm delete contact">
         <div class="flex justify-content-between">
             <Button
                 severity="secondary"
@@ -125,7 +121,7 @@
             />
             <Button
                 label="Confirm"
-                @click="deleteContact(selectedObject)"
+                @click="deleteContact(selectedObject.id, getData, closeModal)"
                 class="smallHeightButton"
             />
         </div>
@@ -134,38 +130,20 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
 
 import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
 
-import { useApiErrors, useFlashToast, useModal } from '../../../utils'
+import { contactApiMethods, useMenuAndModal } from '../../../utils'
 import { ContactInterface } from '../../../interfaces'
 
-const { flashToast } = useFlashToast()
-const { apiErrors } = useApiErrors()
-const {
-    visibleShow,
-    visibleCreate,
-    visibleEdit,
-    visibleDelete,
-    selectedObject,
-    setSelectedObject,
-    openModal,
-    closeModal,
-} = useModal()
-
-const props = defineProps<{
-    data: ContactInterface[]
+defineProps<{
+    data: ContactInterface[] | undefined
     getData: () => void
     roleOptions: string[]
 }>()
 
-/**
- * Menu variables and function
- */
-const menu = ref()
 const items = ref([
     {
         items: [
@@ -198,28 +176,17 @@ const items = ref([
     },
 ])
 
-function openMenu(event: MouseEvent, contact: ContactInterface): void {
-    if (contact) {
-        setSelectedObject(contact)
-    }
-    menu.value.toggle(event)
-}
+const menu = ref()
+const {
+    visibleShow,
+    visibleCreate,
+    visibleEdit,
+    visibleDelete,
+    selectedObject,
+    openMenu,
+    openModal,
+    closeModal,
+} = useMenuAndModal()
 
-/**
- * HTTP requests functions
- */
-function deleteContact(contact: ContactInterface): void {
-    axios
-        .delete(`/api/contacts/${contact.id}`)
-        .then(() => {
-            closeModal('delete')
-            props.getData()
-
-            flashToast('Successfully deleted: ' + contact.full_name, 'success')
-        })
-        .catch((error) => {
-            closeModal('delete')
-            apiErrors(error)
-        })
-}
+const { deleteContact } = contactApiMethods()
 </script>

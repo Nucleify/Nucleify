@@ -1,5 +1,5 @@
 <template>
-    <Dialog v-model:visible="visible" modal class="w-30rem">
+    <Dialog :visible="visible" modal class="w-30rem">
         <template #header>
             <h2 class="m-0">Edit: {{ contact.full_name }}</h2>
         </template>
@@ -86,7 +86,7 @@
                 />
                 <Button
                     label="Confirm"
-                    @click.prevent="editContact"
+                    @click.prevent="editContact(data, getData, close)"
                     class="smallHeightButton"
                 />
             </div>
@@ -96,23 +96,18 @@
 
 <script setup lang="ts">
 import { ref, toRefs, watch } from 'vue'
-import axios from 'axios'
-import { useApiErrors, useFlashToast } from '../../utils'
+import { contactApiMethods } from '../../utils'
 import { ContactInterface } from '../../interfaces'
-
-const { flashToast } = useFlashToast()
-const { apiErrors } = useApiErrors()
 
 const props = defineProps<{
     contact: ContactInterface
-    getAllContacts: () => void
+    getData: () => void
     visible: boolean
     options: string[]
     close: (action: string) => void
 }>()
 
-const data = ref({
-    id: '',
+const data = ref<ContactInterface>({
     first_name: '',
     last_name: '',
     email: '',
@@ -122,11 +117,10 @@ const data = ref({
     birthday: '',
     contact_groups: '',
     role: '',
-    password: '',
-    confirm_password: '',
 })
 
-const { visible, contact, options } = toRefs(props)
+const { visible, contact } = toRefs(props)
+const { editContact } = contactApiMethods()
 
 /**
  * Check modal open with watch visible variable, then pass props to data
@@ -134,31 +128,4 @@ const { visible, contact, options } = toRefs(props)
 watch(visible, () => {
     Object.assign(data.value, contact.value)
 })
-
-async function editContact() {
-    await axios
-        .put('/api/contacts/' + data.value.id, {
-            first_name: data.value.first_name,
-            last_name: data.value.last_name,
-            email: data.value.email,
-            personal_phone: data.value.personal_phone,
-            work_phone: data.value.work_phone,
-            address: data.value.address,
-            birthday: data.value.birthday,
-            contact_groups: data.value.contact_groups,
-            role: data.value.role,
-        })
-        .then((response) => {
-            props.close('edit')
-            props.getAllContacts()
-
-            flashToast(
-                'Successfully edited: ' + response.data.full_name,
-                'success'
-            )
-        })
-        .catch((error) => {
-            apiErrors(error)
-        })
-}
 </script>

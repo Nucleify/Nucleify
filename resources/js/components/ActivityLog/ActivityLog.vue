@@ -5,7 +5,7 @@
                 <my-chart
                     :chart-method-type="'annual'"
                     :type="'bar'"
-                    :activity-log-data="activityLogs"
+                    :activity-log-data="activities"
                     :chart-class="'h-30rem'"
                 />
             </template>
@@ -18,11 +18,11 @@
             </template>
             <template #content>
                 <DataTable
-                    v-bind:value="activityLogs"
-                    v-bind:size="'small'"
-                    v-bind:rows="10"
-                    v-bind:row-hover="true"
-                    v-if="activityLogs"
+                    :value="activities"
+                    :size="'small'"
+                    :rows="10"
+                    :row-hover="true"
+                    v-if="activities"
                     paginator
                     stripedRows
                     @row-click="openModal('show', $event.data)"
@@ -73,7 +73,13 @@
             />
             <Button
                 label="Confirm"
-                @click="deleteActivityLog(selectedLog)"
+                @click="
+                    deleteActivity(
+                        selectedObject.id,
+                        getAllActivities,
+                        closeModal
+                    )
+                "
                 class="smallHeightButton"
             />
         </div>
@@ -81,62 +87,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import { onMounted } from 'vue'
 
-import { ActivityLogInterface } from '../../interfaces'
-import { useApiErrors, useFlashToast } from '../../utils'
 import { MyChart } from '../'
+import { activityApiMethods, useMenuAndModal } from '../../utils'
 
-const { flashToast } = useFlashToast()
-const { apiErrors } = useApiErrors()
+const { visibleDelete, selectedObject, openModal, closeModal } =
+    useMenuAndModal()
 
-const activityLogs = ref<ActivityLogInterface[]>([])
-const selectedLog = ref<ActivityLogInterface | null>(null)
-const visibleDelete = ref(false)
+const {
+    results: activities,
+    getAllActivities,
+    deleteActivity,
+} = activityApiMethods()
 
-onMounted(getActivityLogs)
-
-function getActivityLogs(): void {
-    axios
-        .get('/api/activity-log')
-        .then((response) => {
-            activityLogs.value = response.data
-        })
-        .catch((error) => {
-            apiErrors(error)
-        })
-}
-
-function openModal(action: string, log: ActivityLogInterface): void {
-    selectedLog.value = log
-    visibleDelete.value = true
-}
-
-function closeModal(action: string): void {
-    switch (action) {
-        case 'delete':
-            visibleDelete.value = false
-            break
-        default:
-            console.error('Invalid action:', action)
-            break
-    }
-}
-
-function deleteActivityLog(log: ActivityLogInterface): void {
-    axios
-        .delete(`/api/activity-log/${log.id}`)
-        .then((response) => {
-            closeModal('delete')
-            getActivityLogs()
-
-            console.log(response.data)
-            flashToast(response.data.message, 'success')
-        })
-        .catch((error) => {
-            closeModal('delete')
-            apiErrors(error)
-        })
-}
+onMounted(getAllActivities)
 </script>

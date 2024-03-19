@@ -5,7 +5,7 @@
                 icon="pi pi-user"
                 shape="circle"
                 class="w-3rem h-3rem cursor-pointer"
-                @click="openMenu($refs.menu, $event)"
+                @click="openMenu(menu, $event)"
             />
             <Menu ref="menu" :model="userMenuItems" :popup="true" />
         </template>
@@ -14,11 +14,13 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { MenuItem } from 'primevue/menuitem'
+
 import { openMenu } from '../../utils'
 
 defineProps<{
-    items: any[]
-    userMenuItems: any[]
+    items: MenuItem[]
+    userMenuItems: MenuItem[]
 }>()
 
 const menu = ref()

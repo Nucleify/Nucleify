@@ -1,3 +1,4 @@
+<!--suppress HtmlUnknownAnchorTarget -->
 <template>
     <nav
         class="welcomeNavbar navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 fixed w-full z-100"
@@ -17,8 +18,8 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Right Side Of Navbar -->
-                <div class="navbar-nav ms-auto md:gap-7">
-                    <div class="navbar-nav flex md:gap-3">
+                <div class="navbar-nav ms-auto lg:gap-7">
+                    <div class="navbar-nav flex lg:gap-3">
                         <a class="nav-link welcomeNavLink" href="#start">
                             Start
                         </a>
@@ -39,5 +40,3 @@
         </div>
     </nav>
 </template>
-
-<script setup lang="ts"></script>

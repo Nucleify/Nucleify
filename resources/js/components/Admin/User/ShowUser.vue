@@ -1,22 +1,11 @@
 <template>
-    <Dialog
-        v-model:visible="visible"
-        modal
-        header="Show contact"
-        class="w-30rem"
-    >
+    <Dialog :visible="visible" modal header="Show contact" class="w-30rem">
         <template #header>
             <h2 class="m-0">
                 {{ user.name }}
             </h2>
         </template>
         <div v-if="user" class="flex flex-column gap-3">
-            <div>
-                <h5 class="mb-0">Name</h5>
-                <div>
-                    {{ user.name }}
-                </div>
-            </div>
             <div>
                 <h5 class="mb-0">Email</h5>
                 <div>{{ user.email }}</div>
@@ -50,7 +39,6 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs } from 'vue'
 import { UserInterface } from '../../../interfaces'
 
 const props = defineProps<{
@@ -58,6 +46,4 @@ const props = defineProps<{
     user: UserInterface
     close: (action: string) => void
 }>()
-
-const { visible, user } = toRefs(props)
 </script>

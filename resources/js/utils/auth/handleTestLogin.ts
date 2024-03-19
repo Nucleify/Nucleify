@@ -23,10 +23,10 @@ export default function testLogin(role: string): void {
 
     axios
         .post('/login', credentials)
-        .then(() => {
+        .then((): void => {
             location.href = '/home'
         })
-        .catch((error) => {
+        .catch((error): void => {
             console.error('Error during login:', error)
         })
 }

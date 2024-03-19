@@ -13,9 +13,7 @@
                             <i class="pi pi-users adminBricksIcon" />
                         </div>
                     </div>
-                    <p class="contactsBricksText">
-                      Contacts
-                    </p>
+                    <p class="contactsBricksText">Contacts</p>
                 </a>
             </div>
             <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
@@ -28,9 +26,7 @@
                             <i class="pi pi-users adminBricksIcon" />
                         </div>
                     </div>
-                    <p class="usersBricksText">
-                        Users
-                    </p>
+                    <p class="usersBricksText">Users</p>
                 </a>
             </div>
             <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
@@ -81,6 +77,8 @@ import UserDashboard from './User/UserDashboard.vue'
 
 import { contactApiMethods, userApiMethods } from '../../utils'
 
+const roleOptions = ['user', 'tech', 'test_admin', 'admin', 'super_admin']
+
 const { results: users, getAllUsers } = userApiMethods()
 const { results: contacts, getAllContacts } = contactApiMethods()
 
@@ -88,12 +86,4 @@ onMounted(() => {
     getAllUsers()
     getAllContacts()
 })
-
-const roleOptions = ['user', 'tech', 'test_admin', 'admin', 'super_admin']
 </script>
-
-<style scoped>
-.myCard .p-card-content {
-    padding: 0;
-}
-</style>

@@ -22,12 +22,12 @@
                     />
                 </div>
             </template>
-            <template #content="row">
+            <template #content>
                 <DataTable
-                    v-bind:value="results"
-                    v-bind:rows="10"
-                    v-bind:row-hover="true"
-                    v-bind:size="'small'"
+                    :value="results"
+                    :rows="10"
+                    :row-hover="true"
+                    :size="'small'"
                     v-if="results"
                     paginator
                     stripedRows
@@ -92,7 +92,7 @@
                                 <Button
                                     class="mobileButton myButton"
                                     icon="pi pi-bars"
-                                    @click="openMenu($event, row.data)"
+                                    @click="openMenu(menu, $event, row.data)"
                                 />
                                 <Menu ref="menu" :model="items" :popup="true" />
                             </div>
@@ -104,28 +104,24 @@
         </Card>
     </div>
     <ShowContact
-        v-bind:visible="visibleShow"
-        v-bind:contact="selectedObject"
-        v-bind:close="closeModal"
+        :visible="visibleShow"
+        :contact="selectedObject"
+        :close="closeModal"
     />
     <CreateContact
-        v-bind:getAllContacts="getAllContacts"
-        v-bind:visible="visibleCreate"
-        v-bind:options="roleOptions"
-        v-bind:close="closeModal"
+        :get-data="getAllContacts"
+        :visible="visibleCreate"
+        :options="roleOptions"
+        :close="closeModal"
     />
     <EditContact
-        v-bind:contact="selectedObject"
-        v-bind:getAllContacts="getAllContacts"
-        v-bind:visible="visibleEdit"
-        v-bind:options="roleOptions"
-        v-bind:close="closeModal"
+        :contact="selectedObject"
+        :get-data="getAllContacts"
+        :visible="visibleEdit"
+        :options="roleOptions"
+        :close="closeModal"
     />
-    <Dialog
-        v-model:visible="visibleDelete"
-        modal
-        header="Confirm delete contact"
-    >
+    <Dialog :visible="visibleDelete" modal header="Confirm delete contact">
         <div class="flex justify-content-between">
             <Button
                 severity="secondary"
@@ -135,7 +131,9 @@
             />
             <Button
                 label="Confirm"
-                @click="deleteContact(selectedObject)"
+                @click="
+                    deleteContact(selectedObject.id, getAllContacts, closeModal)
+                "
                 class="smallHeightButton"
             />
         </div>
@@ -144,40 +142,29 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
 
 import { MyChart } from '../'
 import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
 
-import {
-    contactApiMethods,
-    useApiErrors,
-    useFlashToast,
-    useModal,
-} from '../../utils'
-import { ContactInterface } from '../../interfaces'
+import { contactApiMethods, useMenuAndModal } from '../../utils'
 
-const { flashToast } = useFlashToast()
-const { apiErrors } = useApiErrors()
+const roleOptions = ['user', 'tech', 'test_admin', 'admin', 'super_admin']
+
 const {
     visibleShow,
     visibleCreate,
     visibleEdit,
     visibleDelete,
     selectedObject,
-    setSelectedObject,
+    openMenu,
     openModal,
     closeModal,
-} = useModal()
-const { results, getAllContacts } = contactApiMethods()
+} = useMenuAndModal()
 
-const roleOptions = ['user', 'tech', 'test_admin', 'admin', 'super_admin']
+const { results, getAllContacts, deleteContact } = contactApiMethods()
 
-/**
- * Menu variables and function
- */
 const menu = ref()
 const items = ref([
     {
@@ -211,33 +198,5 @@ const items = ref([
     },
 ])
 
-function openMenu(event: MouseEvent, contact: ContactInterface): void {
-    if (contact) {
-        setSelectedObject(contact)
-    }
-    menu.value.toggle(event)
-}
-
-/**
- * Fetch contacts after component mounts
- */
 onMounted(getAllContacts)
-
-/**
- * HTTP requests functions
- */
-function deleteContact(contact: ContactInterface): void {
-    axios
-        .delete(`/api/contacts/${contact.id}`)
-        .then(async () => {
-            closeModal('delete')
-            await getAllContacts()
-
-            flashToast('Successfully deleted: ' + contact.full_name, 'success')
-        })
-        .catch((error) => {
-            closeModal('delete')
-            apiErrors(error)
-        })
-}
 </script>

@@ -1,5 +1,5 @@
 <template>
-    <Dialog v-model:visible="visible" modal header="Header" class="w-30rem">
+    <Dialog :visible="visible" modal header="Header" class="w-30rem">
         <template #header>
             <h2 class="m-0">Edit: {{ user.name }}</h2>
         </template>
@@ -36,7 +36,7 @@
                 />
                 <Button
                     label="Confirm"
-                    @click.prevent="editUser"
+                    @click.prevent="editUser(data, getData, close)"
                     class="smallHeightButton"
                 />
             </div>
@@ -46,13 +46,9 @@
 
 <script setup lang="ts">
 import { ref, toRefs, watch } from 'vue'
-import axios from 'axios'
 
-import { useApiErrors, useFlashToast } from '../../../utils'
 import { UserInterface } from '../../../interfaces'
-
-const { flashToast } = useFlashToast()
-const { apiErrors } = useApiErrors()
+import { userApiMethods } from '../../../utils'
 
 const props = defineProps<{
     user: UserInterface
@@ -62,14 +58,14 @@ const props = defineProps<{
     close: (action: string) => void
 }>()
 
-const data = ref({
-    id: '',
+const data = ref<UserInterface>({
     name: '',
     email: '',
     role: '',
 })
 
-const { visible, user, options } = toRefs(props)
+const { visible, user } = toRefs(props)
+const { editUser } = userApiMethods()
 
 /**
  * Check modal open with watch visible variable, then pass props to data
@@ -77,22 +73,4 @@ const { visible, user, options } = toRefs(props)
 watch(visible, () => {
     Object.assign(data.value, user.value)
 })
-
-async function editUser() {
-    await axios
-        .put('/api/users/' + data.value.id, {
-            name: data.value.name,
-            email: data.value.email,
-            role: data.value.role,
-        })
-        .then((response) => {
-            props.close('edit')
-            props.getData()
-
-            flashToast('Successfully edited: ' + response.data.name, 'success')
-        })
-        .catch((error) => {
-            apiErrors(error)
-        })
-}
 </script>

@@ -12,12 +12,12 @@
                     />
                 </div>
             </template>
-            <template #content="row">
+            <template #content>
                 <DataTable
-                    v-bind:value="data"
-                    v-bind:size="'small'"
-                    v-bind:rows="10"
-                    v-bind:row-hover="true"
+                    :value="data"
+                    :size="'small'"
+                    :rows="10"
+                    :row-hover="true"
                     v-if="data"
                     paginator
                     stripedRows
@@ -82,7 +82,7 @@
                                 <Button
                                     class="mobileButton myButton"
                                     icon="pi pi-bars"
-                                    @click="openMenu($event, row.data)"
+                                    @click="openMenu(menu, $event, row.data)"
                                 />
                                 <Menu
                                     ref="menu"
@@ -99,24 +99,24 @@
         </Card>
     </section>
     <ShowUser
-        v-bind:visible="visibleShow"
-        v-bind:user="selectedObject"
-        v-bind:close="closeModal"
+        :visible="visibleShow"
+        :user="selectedObject"
+        :close="closeModal"
     />
     <CreateUser
-        v-bind:visible="visibleCreate"
-        v-bind:getData="getData"
-        v-bind:options="roleOptions"
-        v-bind:close="closeModal"
+        :visible="visibleCreate"
+        :getData="getData"
+        :options="roleOptions"
+        :close="closeModal"
     />
     <EditUser
-        v-bind:visible="visibleEdit"
-        v-bind:user="selectedObject"
-        v-bind:getData="getData"
-        v-bind:options="roleOptions"
-        v-bind:close="closeModal"
+        :visible="visibleEdit"
+        :user="selectedObject"
+        :getData="getData"
+        :options="roleOptions"
+        :close="closeModal"
     />
-    <Dialog v-bind:visible="visibleDelete" modal header="Confirm delete user">
+    <Dialog :visible="visibleDelete" modal header="Confirm delete user">
         <div class="flex justify-content-between">
             <Button
                 severity="secondary"
@@ -126,7 +126,7 @@
             />
             <Button
                 label="Confirm"
-                @click="deleteUser(selectedObject)"
+                @click="deleteUser(selectedObject.id, getData, closeModal)"
                 class="smallHeightButton"
             />
         </div>
@@ -135,39 +135,20 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
-
-import { UserInterface } from '../../../interfaces'
 
 import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
 import EditUser from './EditUser.vue'
 
-import { useApiErrors, useFlashToast, useModal } from '../../../utils'
+import { UserInterface } from '../../../interfaces'
+import { useMenuAndModal, userApiMethods } from '../../../utils'
 
-const { apiErrors } = useApiErrors()
-const { flashToast } = useFlashToast()
-const {
-    visibleShow,
-    visibleCreate,
-    visibleEdit,
-    visibleDelete,
-    selectedObject,
-    setSelectedObject,
-    openModal,
-    closeModal,
-} = useModal()
-
-const props = defineProps<{
-    data: UserInterface[]
+defineProps<{
+    data: UserInterface[] | undefined
     getData: () => void
     roleOptions: string[]
 }>()
 
-/**
- * Menu variables and function
- */
-const menu = ref()
 const items = ref([
     {
         items: [
@@ -200,25 +181,17 @@ const items = ref([
     },
 ])
 
-function openMenu(event: MouseEvent, user: UserInterface): void {
-    if (user) {
-        setSelectedObject(user)
-    }
-    menu.value.toggle(event)
-}
+const menu = ref()
+const {
+    visibleShow,
+    visibleCreate,
+    visibleEdit,
+    visibleDelete,
+    selectedObject,
+    openMenu,
+    openModal,
+    closeModal,
+} = useMenuAndModal()
 
-function deleteUser(user: UserInterface): void {
-    axios
-        .delete(`/api/users/${user.id}`)
-        .then(() => {
-            closeModal('delete')
-            props.getData()
-
-            flashToast('Successfully deleted: ' + user.name, 'success')
-        })
-        .catch((error) => {
-            closeModal('delete')
-            apiErrors(error)
-        })
-}
+const { deleteUser } = userApiMethods()
 </script>

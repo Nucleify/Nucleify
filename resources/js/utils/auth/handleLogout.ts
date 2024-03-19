@@ -1,14 +1,19 @@
+import {
+    CSRFTokenType,
+    CSRFTokenInputType,
+    LogoutFormType,
+} from '../../interfaces'
 import { removeUserFromSessionStorage } from '../../utils'
 
 export default function logout(): void {
-    const csrf = document
+    const csrf: CSRFTokenType = document
         .querySelector('meta[name="csrf-token"]')
         ?.getAttribute('content')
-    const form = document.getElementById(
+    const form: LogoutFormType = document.getElementById(
         'logout-form'
-    ) as HTMLFormElement | null
+    ) as LogoutFormType
 
-    let csrfInput: HTMLInputElement | null | undefined
+    let csrfInput: CSRFTokenInputType
 
     switch (true) {
         case csrf === null:

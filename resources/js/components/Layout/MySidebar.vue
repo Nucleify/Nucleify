@@ -120,13 +120,14 @@
 import { ref, Ref } from 'vue'
 
 import { isCurrentUrl, openMenu } from '../../utils'
+import { MenuItem } from 'primevue/menuitem'
 
 const menu = ref()
 
 defineProps<{
     isAdmin: Ref | null
-    items: any[]
-    userMenuItems: any[]
+    items: MenuItem[]
+    userMenuItems: MenuItem[]
 }>()
 </script>
 

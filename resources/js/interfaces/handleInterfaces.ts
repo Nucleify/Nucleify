@@ -1,15 +1,26 @@
 import { MessageOrMessagesType } from './handleVariablesTypes'
-import { ApiErrorsInterface, ContactInterface, ToastSeverityType, UserInterface } from './index'
-import { Ref }  from "vue"
+import { ToastSeverityType } from './index'
+import { Ref } from 'vue'
 
-export interface ActivityLog {
+/**
+ *  Activity Log
+ */
+export interface ActivityLogInterface {
     id: number
     description: string
     created_at: string
     causer_id: number
 }
+export interface ActivityLogApiMethodsInterface {
+    results: Ref<ActivityLogInterface[] | undefined>
+    getAllActivities: () => Promise<ActivityLogInterface[]> | void
+    deleteActivity: (id: number, getData: () => void, close: (method: string) => void) => Promise<void>
+}
 
-export interface ApiErrors {
+/**
+ *  Api errors
+ */
+export interface ApiErrorsInterface {
     response: {
         status: number
         data: {
@@ -19,24 +30,30 @@ export interface ApiErrors {
     }
 }
 
-export type AxiosFunction = Promise<undefined> & {
-    then: Promise<undefined>['then']
-    catch: Promise<undefined>['catch']
-    finally: Promise<undefined>['finally']
-}
-
-export interface Chart {
+/**
+ *  Chart
+ */
+export interface ChartInterface {
     labels: string[]
-    datasets: {
-        label: string
-        backgroundColor: string
-        borderColor: string
-        data: number[]
-    }[]
+    datasets:
+        | {
+              label: string
+              backgroundColor: string
+              borderColor: string
+              data: (number | undefined)[]
+          }[]
+        | {
+              data: (number | undefined)[]
+              backgroundColor: string[]
+              hoverBackgroundColor: string[]
+          }[]
 }
 
-export interface Contact {
-    id: number
+/**
+ *  Contact
+ */
+export interface ContactInterface {
+    id?: number
     first_name: string
     last_name: string
     full_name?: string
@@ -47,36 +64,62 @@ export interface Contact {
     birthday: string
     contact_groups: string
     role: string
-    created_at: string
-    updated_at: string
+    created_at?: string
+    updated_at?: string
 }
-
-export interface ContactApiMethods {
-    results: Ref,
+export interface ContactApiMethodsInterface {
+    results: Ref<ContactInterface[] | undefined>
     getAllContacts: () => Promise<ContactInterface[]>
+    storeContact: (data: ContactInterface, getData: () => void, close: (method: string) => void) => Promise<void>
+    editContact: (data: ContactInterface, getData: () => void, close: (method: string) => void) => Promise<void>
+    deleteContact: (id: number, getData: () => void, close: (method: string) => void) => Promise<void>
 }
 
-export interface User {
-    id: number
+/**
+ *  Form data
+ */
+export interface LoginFormInterface {
+    email: string
+    password: string
+}
+export interface RegisterFormInterface {
+    name: string
+    email: string
+    password: string
+    password_confirmation: string
+    role: string
+}
+
+/**
+ *  User
+ */
+export interface UserInterface {
+    id?: number
     name: string
     email: string
     role: string
-    created_at: string
-    updated_at: string
-    email_verified_at: string
+    password?: string
+    confirm_password?: string
+    created_at?: string
+    updated_at?: string
+    email_verified_at?: string
+}
+export interface UserApiMethodsInterface {
+    results: Ref<UserInterface[] | undefined>
+    getAllUsers: () => Promise<void | UserInterface[]>
+    getUser: () => Promise<void | UserInterface>
+    storeUser: (data: UserInterface, getData: () => void, close: (method: string) => void) => Promise<void>
+    editUser: (data: UserInterface, getData: () => void, close: (method: string) => void) => Promise<void>
+    deleteUser: (id: number, getData: () => void, close: (method: string) => void) => Promise<void>
 }
 
-export interface UseApiErrorsService {
+/**
+ *  Use functions
+ */
+export interface UseApiErrorsServiceInterface {
     apiErrors: (error: ApiErrorsInterface) => void
 }
-
-export interface UserApiMethods {
-    results: Ref,
-    getAllUsers: () => Promise<UserInterface[]>
-    getUser: () => Promise<UserInterface>
-}
-
-export interface UseFlashToast {
+export interface UseFlashToastInterface {
     flashToast: (
         messageOrMessages: MessageOrMessagesType,
         severity: ToastSeverityType
