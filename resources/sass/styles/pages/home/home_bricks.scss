@@ -13,3 +13,13 @@
     color: $secondary-text-color;
     gap: $home-bricks-grid-grid-item-gap;
 }
+.homeBricksGrid .grid-item .pi {
+    font-size: $home-bricks-grid-item-pi-font-size;
+}
+
+#ContactsGridItem:hover .grid-item {
+    color: $contacts-grid-item-color;
+}
+#ActivitiesGridItem:hover .grid-item {
+    color: $activities-grid-item-color;
+}

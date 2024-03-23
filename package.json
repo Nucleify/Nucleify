@@ -2,7 +2,7 @@
   "private": true,
   "engines": {
     "node": "20.x",
-    "npm": "9.x"
+    "npm": "10.x"
   },
   "scripts": {
     "build": "vite build",
@@ -13,24 +13,24 @@
     "open": "cypress open"
   },
   "dependencies": {
+    "@shopify/draggable": "^1.1.3",
     "chart.js": "^4.4.2",
     "primeflex": "3.3.1",
     "primeicons": "6.0.1",
-    "primevue": "3.43.0",
-    "vue-class-component": "7.2.6"
+    "primevue": "3.43.0"
   },
   "devDependencies": {
     "@popperjs/core": "2.11.6",
     "@types/jest": "29.5.11",
     "@types/mocha": "10.0.6",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-vue": "4.0.0",
     "@vue/cli-plugin-typescript": "5.0.0",
     "@vue/cli-service": "5.0.8",
     "axios": "1.6.1",
     "bootstrap": "5.2.3",
-    "eslint": "8.55.0",
+    "eslint": "^8.57.0",
     "eslint-plugin-vue": "9.19.2",
     "husky": "8.0.3",
     "laravel-vite-plugin": "0.8.0",
