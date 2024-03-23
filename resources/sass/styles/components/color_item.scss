@@ -1,0 +1,32 @@
+.activityColorItem,
+.contactColorItem,
+.userColorItem {
+    box-shadow: none;
+}
+
+.activityColorItem {
+    background: var(--activity-item-color);
+    border: var(--activity-item-color);
+}
+.activityColorItem:hover {
+    background: var(--activity-item-hover-color);
+    border: var(--activity-item-hover-color);
+}
+
+.contactColorItem {
+    background: var(--contact-item-color);
+    border: var(--contact-item-color);
+}
+.contactColorItem:hover {
+    background: var(--contact-item-hover-color);
+    border: var(--contact-item-hover-color);
+}
+
+.userColorItem {
+    background: var(--user-item-color);
+    border: var(--user-item-color);
+}
+.userColorItem:hover {
+    background: var(--user-item-hover-color);
+    border: var(--user-item-hover-color);
+}

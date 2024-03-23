@@ -50,12 +50,12 @@
                     severity="secondary"
                     label="Cancel"
                     @click="props.close('create')"
-                    class="smallHeightButton"
+                    class="smallHeightButton userColorItem"
                 />
                 <Button
                     label="Confirm"
                     @click="storeUser(data, getData, close)"
-                    class="smallHeightButton"
+                    class="smallHeightButton userColorItem"
                 />
             </div>
         </template>

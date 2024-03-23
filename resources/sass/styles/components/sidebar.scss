@@ -22,6 +22,9 @@
     text-decoration: $panel-menu-header-action-text-decoration;
     color: $panel-menu-header-action-color;
 }
+.sidebarItem i {
+    font-size: $font-size-medium1;
+}
 .sidebarItem:hover {
     color: $primary-hover-color;
     background: $primary-hover-bg-color;
@@ -31,6 +34,7 @@
 .sidebarItem {
     border-color: $panel-menu-header-content-border;
     border-radius: $small-border-radius;
+    text-align: $sidebar-item-text-align;
 }
 
 .p-sidebar {

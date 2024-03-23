@@ -2,16 +2,27 @@ import {
     ActivityLogInterface,
     ChartMethodType,
     ChartType,
+    ColorItemType,
     ContactInterface,
+    LabelItemType,
     UserInterface,
 } from '../../interfaces'
 import { ChartOptions } from 'chart.js'
+import useColors from './handleUseColors'
 
 export default function useChart() {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(
         document.documentElement
     )
-
+    const {
+        activityItemColor,
+        contactItemColor,
+        userItemColor,
+    }: {
+        activityItemColor: ColorItemType
+        contactItemColor: ColorItemType
+        userItemColor: ColorItemType
+    } = useColors()
     function setChartData(
         chartMethodType: ChartMethodType,
         activityLogData?: ActivityLogInterface[],
@@ -20,21 +31,13 @@ export default function useChart() {
     ) {
         try {
             const labels: string[] = []
-            const backgroundColors: string[] = []
-            const hoverBackgroundColors: string[] = []
-            const labelsAndColors: {
-                label: string
-                color: string
-            }[] = [
-                { label: 'Users', color: '--gray-500' },
-                { label: 'Contacts', color: '--primary-color' },
-            ]
+            const chartLabels: {
+                label: LabelItemType
+            }[] = [{ label: 'Users' }, { label: 'Contacts' }]
 
             switch (chartMethodType) {
                 case 'annual':
                     try {
-                        const documentStyle: CSSStyleDeclaration =
-                            getComputedStyle(document.documentElement)
                         const months: string[] = [
                             'January',
                             'February',
@@ -92,14 +95,8 @@ export default function useChart() {
                         ) {
                             datasets.push({
                                 label: 'Activities',
-                                backgroundColor:
-                                    documentStyle.getPropertyValue(
-                                        '--primary-color'
-                                    ),
-                                borderColor:
-                                    documentStyle.getPropertyValue(
-                                        '--primary-color'
-                                    ),
+                                backgroundColor: activityItemColor,
+                                borderColor: activityItemColor,
                                 data: activityLogDataByMonth,
                             })
                         }
@@ -111,14 +108,8 @@ export default function useChart() {
                         ) {
                             datasets.push({
                                 label: 'Contacts',
-                                backgroundColor:
-                                    documentStyle.getPropertyValue(
-                                        '--primary-color'
-                                    ),
-                                borderColor:
-                                    documentStyle.getPropertyValue(
-                                        '--primary-color'
-                                    ),
+                                backgroundColor: contactItemColor,
+                                borderColor: contactItemColor,
                                 data: contactDataByMonth,
                             })
                         }
@@ -128,14 +119,8 @@ export default function useChart() {
                         ) {
                             datasets.push({
                                 label: 'Users',
-                                backgroundColor:
-                                    documentStyle.getPropertyValue(
-                                        '--gray-500'
-                                    ),
-                                borderColor:
-                                    documentStyle.getPropertyValue(
-                                        '--gray-500'
-                                    ),
+                                backgroundColor: userItemColor,
+                                borderColor: userItemColor,
                                 data: userDataByMonth,
                             })
                         }
@@ -149,25 +134,13 @@ export default function useChart() {
                         return null
                     }
                 case 'count':
-                    labelsAndColors.forEach(
-                        ({
-                            label,
-                            color,
-                        }: {
-                            label: string
-                            color: string
-                        }): void => {
+                    chartLabels.forEach(
+                        ({ label }: { label: LabelItemType }): void => {
                             if (
                                 (label === 'Contacts' && contactData) ||
                                 (label === 'Users' && userData)
                             ) {
                                 labels.push(label)
-                                backgroundColors.push(
-                                    documentStyle.getPropertyValue(color)
-                                )
-                                hoverBackgroundColors.push(
-                                    documentStyle.getPropertyValue(color)
-                                )
                             }
                         }
                     )
@@ -177,8 +150,14 @@ export default function useChart() {
                         datasets: [
                             {
                                 data: [userData?.length, contactData?.length],
-                                backgroundColor: backgroundColors,
-                                hoverBackgroundColor: hoverBackgroundColors,
+                                backgroundColor: [
+                                    userItemColor,
+                                    contactItemColor,
+                                ],
+                                hoverBackgroundColor: [
+                                    userItemColor,
+                                    contactItemColor,
+                                ],
                             },
                         ],
                     }

@@ -32,12 +32,12 @@
                     severity="secondary"
                     label="Cancel"
                     @click="props.close('edit')"
-                    class="smallHeightButton"
+                    class="smallHeightButton userColorItem"
                 />
                 <Button
                     label="Confirm"
                     @click.prevent="editUser(data, getData, close)"
-                    class="smallHeightButton"
+                    class="smallHeightButton userColorItem"
                 />
             </div>
         </template>

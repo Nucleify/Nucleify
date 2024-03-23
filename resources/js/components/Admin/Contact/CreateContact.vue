@@ -86,7 +86,7 @@
                 <Button
                     label="Create"
                     @click="storeContact(data, getData, close)"
-                    class="smallHeightButton"
+                    class="smallHeightButton contactColorItem"
                 />
             </div>
         </template>

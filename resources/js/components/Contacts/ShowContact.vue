@@ -60,7 +60,7 @@
                     severity="secondary"
                     label="Close"
                     @click="props.close('show')"
-                    class="smallHeightButton"
+                    class="smallHeightButton contactColorItem"
                 />
             </div>
         </template>

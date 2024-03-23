@@ -8,7 +8,7 @@
                     <Button
                         label="New Contact"
                         @click="openModal('create')"
-                        class="text-sm smallHeightButton"
+                        class="text-sm smallHeightButton contactColorItem"
                     />
                 </div>
             </template>
@@ -65,22 +65,22 @@
                         <template #body="row">
                             <div class="flex gap-1 justify-content-around">
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton myButton contactColorItem"
                                     icon="pi pi-eye"
                                     @click="openModal('show', row.data)"
                                 />
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton myButton contactColorItem"
                                     icon="pi pi-pencil"
                                     @click="openModal('edit', row.data)"
                                 />
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton myButton contactColorItem"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
                                 />
                                 <Button
-                                    class="mobileButton myButton"
+                                    class="mobileButton myButton contactColorItem"
                                     icon="pi pi-bars"
                                     @click="openMenu(menu, $event, row.data)"
                                 />
@@ -122,7 +122,7 @@
             <Button
                 label="Confirm"
                 @click="deleteContact(selectedObject.id, getData, closeModal)"
-                class="smallHeightButton"
+                class="smallHeightButton contactColorItem"
             />
         </div>
     </Dialog>

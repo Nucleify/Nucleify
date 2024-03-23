@@ -30,9 +30,11 @@ export { GetUserFunctionType as GetUserFunctionType } from './handleFunctionsTyp
  */
 export { ChartMethodType as ChartMethodType } from './handleVariablesTypes'
 export { ChartType as ChartType } from './handleVariablesTypes'
+export { ColorItemType as ColorItemType } from './handleVariablesTypes'
 export { CSRFTokenType as CSRFTokenType } from './handleVariablesTypes'
 export { CSRFTokenInputType as CSRFTokenInputType } from './handleVariablesTypes'
 export { IsAdminType as IsAdminType } from './handleVariablesTypes'
+export { LabelItemType as LabelItemType } from './handleVariablesTypes'
 export { LogoutFormType as LogoutFormType } from './handleVariablesTypes'
 export { MessageOrMessagesType as MessageOrMessagesType } from './handleVariablesTypes'
 export { ObjectType as ObjectType } from './handleVariablesTypes'

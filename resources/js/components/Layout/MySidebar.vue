@@ -10,75 +10,77 @@
             <a
                 href="/home"
                 :class="{ active: isCurrentUrl('/home') }"
-                class="sidebarItem text-center"
+                class="sidebarItem"
                 v-tooltip.right="'Home'"
             >
-                <i class="pi pi-home text-xl"></i>
+                <i class="pi pi-home" />
             </a>
             <a
                 href="/admin"
                 :class="{ active: isCurrentUrl('/admin') && isAdmin }"
-                class="sidebarItem text-center"
+                class="sidebarItem"
                 v-if="isAdmin"
                 v-tooltip.right="'Admin Panel'"
             >
-                <i class="pi pi-users text-xl"></i>
+                <i class="pi pi-users" />
             </a>
             <a
                 href="/contacts"
                 :class="{ active: isCurrentUrl('/contacts') }"
-                class="sidebarItem text-center"
+                class="sidebarItem"
                 v-tooltip.right="'Contacts'"
             >
-                <i class="pi pi-user text-lg"></i>
+                <i class="pi pi-user text-lg" />
             </a>
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/posts') }"
-                class="sidebarItem text-center disabledItem"
+                class="sidebarItem disabledItem"
                 v-tooltip.right="'Posts'"
             >
-                <i class="pi pi-comment text-xl"></i>
+                <i class="pi pi-comment" />
             </a>
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/messages') }"
-                class="sidebarItem text-center disabledItem"
+                class="sidebarItem disabledItem"
                 v-tooltip.right="'Messages'"
             >
-                <i class="pi pi-envelope text-xl"></i>
+                <i class="pi pi-envelope" />
             </a>
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/tasks') }"
-                class="sidebarItem text-center disabledItem"
+                class="sidebarItem disabledItem"
                 v-tooltip.right="'Tasks'"
             >
-                <i class="pi pi-check-square text-xl"></i>
+                <i class="pi pi-check-square" />
             </a>
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/calendar') }"
-                class="sidebarItem text-center disabledItem"
+                class="sidebarItem disabledItem"
                 v-tooltip.right="'Calendar'"
             >
-                <i class="pi pi pi-calendar text-xl"></i>
+                <i class="pi pi pi-calendar" />
             </a>
             <a
                 href="#"
                 :class="{ active: isCurrentUrl('/money-manager') }"
-                class="sidebarItem text-center disabledItem"
+                class="sidebarItem disabledItem"
                 v-tooltip.right="'Money'"
             >
-                <i class="pi pi pi-dollar text-xl"></i>
+                <i class="pi pi pi-dollar" />
             </a>
             <a
                 href="/activity-log"
-                :class="{ active: isCurrentUrl('/activity-log') }"
-                class="sidebarItem text-center"
+                :class="{
+                    activeActivitySidebarItem: isCurrentUrl('/activity-log'),
+                }"
+                class="sidebarItem activitySidebarItem"
                 v-tooltip.right="'Activity Log'"
             >
-                <i class="pi pi-clock text-xl"></i>
+                <i class="pi pi-clock" />
             </a>
         </div>
         <div class="flex flex-column mt-auto justify-content-center">
@@ -86,18 +88,18 @@
                 <a
                     href="#"
                     :class="{ active: isCurrentUrl('/help') }"
-                    class="sidebarItem text-center disabledItem"
+                    class="sidebarItem disabledItem"
                     v-tooltip.right="'Help'"
                 >
-                    <i class="pi pi-info-circle text-xl"></i>
+                    <i class="pi pi-info-circle" />
                 </a>
                 <a
                     href="#"
                     :class="{ active: isCurrentUrl('/settings') }"
-                    class="sidebarItem text-center disabledItem"
+                    class="sidebarItem disabledItem"
                     v-tooltip.right="'Settings'"
                 >
-                    <i class="pi pi-cog text-xl"></i>
+                    <i class="pi pi-cog" />
                 </a>
             </div>
             <hr class="border-top-1" />
@@ -138,5 +140,14 @@ defineProps<{
 }
 .sidebarItem:hover {
     background: hsl(156, 100%, 94.5%);
+}
+
+.activeActivitySidebarItem {
+    color: var(--activity-item-color);
+    background: hsl(50, 100%, 97%);
+}
+.activitySidebarItem:hover {
+    color: var(--activity-item-color);
+    background: hsl(50, 100%, 94.5%);
 }
 </style>

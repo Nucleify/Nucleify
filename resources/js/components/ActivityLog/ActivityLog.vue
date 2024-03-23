@@ -51,7 +51,7 @@
                         <template #body="row">
                             <div class="flex gap-1 justify-content-around">
                                 <Button
-                                    class="myButton activityMyButton"
+                                    class="myButton activityColorItem"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
                                 />
@@ -63,7 +63,7 @@
             </template>
         </Card>
     </div>
-    <Dialog :visible="visibleDelete" modal header="Confirm delete activity log">
+    <Dialog :visible="visibleDelete" modal header="Confirm delete activity">
         <div class="flex justify-content-between">
             <Button
                 severity="secondary"
@@ -80,7 +80,7 @@
                         closeModal
                     )
                 "
-                class="smallHeightButton"
+                class="smallHeightButton activityColorItem"
             />
         </div>
     </Dialog>

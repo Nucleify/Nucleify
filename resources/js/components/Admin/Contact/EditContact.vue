@@ -87,7 +87,7 @@
                 <Button
                     label="Confirm"
                     @click.prevent="editContact(data, getData, close)"
-                    class="smallHeightButton"
+                    class="smallHeightButton contactColorItem"
                 />
             </div>
         </template>

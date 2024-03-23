@@ -16,7 +16,11 @@
                 }"
                 class="grid-item"
                 @mousedown="startDragging(item)"
-                v-tooltip.top="'Hold click & move'"
+                v-tooltip.top="
+                    item.draggableClass
+                        ? 'Hold click & move'
+                        : 'This item is not movable'
+                "
             >
                 <i :class="item.iconClass"></i>
                 {{ item.label }}
@@ -34,7 +38,7 @@ const items = ref([
         id: 1,
         label: 'Contacts',
         href: '/contacts',
-        iconClass: 'pi pi-users',
+        iconClass: 'pi pi-user',
         disabled: false,
         draggableClass: true,
     },

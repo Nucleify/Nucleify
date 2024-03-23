@@ -8,7 +8,7 @@
                     <Button
                         label="New User"
                         @click="openModal('create')"
-                        class="text-sm smallHeightButton"
+                        class="text-sm smallHeightButton userColorItem"
                     />
                 </div>
             </template>
@@ -65,22 +65,22 @@
                         <template #body="row">
                             <div class="flex gap-1 justify-content-around">
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton myButton userColorItem"
                                     icon="pi pi-eye"
                                     @click="openModal('show', row.data)"
                                 />
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton myButton userColorItem"
                                     icon="pi pi-pencil"
                                     @click="openModal('edit', row.data)"
                                 />
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton myButton userColorItem"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
                                 />
                                 <Button
-                                    class="mobileButton myButton"
+                                    class="mobileButton myButton userColorItem"
                                     icon="pi pi-bars"
                                     @click="openMenu(menu, $event, row.data)"
                                 />
@@ -122,12 +122,12 @@
                 severity="secondary"
                 label="Cancel"
                 @click="closeModal('delete')"
-                class="smallHeightButton"
+                class="smallHeightButton userColorItem"
             />
             <Button
                 label="Confirm"
                 @click="deleteUser(selectedObject.id, getData, closeModal)"
-                class="smallHeightButton"
+                class="smallHeightButton userColorItem"
             />
         </div>
     </Dialog>
