@@ -1,5 +1,5 @@
 <template>
-    <div class="homeBricksGrid grid mt-4 lg:mt-8 mx-auto">
+    <div class="homeBricksGrid grid mt-8 mx-auto mb-4">
         <div
             class="p-3 grid-item-container BlockLayout"
             ref="draggableContainer"
@@ -153,13 +153,35 @@ const startDragging = (item) => {
 
 .grid-item-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+    margin: 0 auto;
     gap: 1rem;
 }
-
+@media (min-width: 600px) {
+  .grid-item-container {
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 10%;
+  }
+}
+@media (min-width: 700px) {
+  .grid-item-container {
+    margin-left: 15%;
+  }
+}
+@media (min-width: 800px) {
+  .grid-item-container {
+    margin-left: 20%;
+  }
+}
+@media (min-width: 900px) {
+  .grid-item-container {
+    margin-left: 23%;
+  }
+}
 @media (min-width: 992px) {
-    .homeBricksGrid {
-        padding-left: 120px;
+    .grid-item-container {
+      margin-left: 100px;
+      grid-template-columns: repeat(3, 1fr);
     }
 }
 
