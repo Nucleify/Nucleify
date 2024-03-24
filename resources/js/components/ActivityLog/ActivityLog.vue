@@ -51,7 +51,7 @@
                         <template #body="row">
                             <div class="flex gap-1 justify-content-around">
                                 <Button
-                                    class="myButton"
+                                    class="myButton activityMyButton"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
                                     :style="style"

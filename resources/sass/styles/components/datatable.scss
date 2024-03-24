@@ -37,9 +37,13 @@ td {
 .nameColumn {
     overflow: $description-name-columns-overflow;
     white-space: $description-name-columns-whitespace;
-    max-width: $description-name-columns-max-width;
 }
-
+.descriptionColumn {
+    max-width: $description-column-max-width;
+}
+.nameColumn {
+    max-width: $name-column-max-width;
+}
 // Min width 530px
 @media (min-width: $minWidthSm) {
     .roleColumn,

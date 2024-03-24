@@ -18,6 +18,17 @@
     max-width: $min-max-width-height-small;
     min-width: $min-max-width-height-small;
 }
+.p-button-secondary {
+    background: var(--user-item-color);
+    border: var(--user-item-color);
+}
+Button {
+    transition: $Button-transition;
+}
+Button:hover {
+    filter: $Button-hover-filter;
+}
+
 .myBigButton {
     position: $my-big-button-position;
     left: $my-big-button-left;

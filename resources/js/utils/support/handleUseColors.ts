@@ -7,43 +7,47 @@ export default function useColors() {
     const activityItemColors: ColorItemColorsInterface = {
         primary: window.localStorage.getItem('activity-item-color'),
         hover: window.localStorage.getItem('activity-item-hover-color'),
+        sidebarSelected: window.localStorage.getItem(
+            'activity-sidebar-item-selected-color'
+        ),
     }
     const contactItemColors: ColorItemColorsInterface = {
         primary: window.localStorage.getItem('contact-item-color'),
         hover: window.localStorage.getItem('contact-item-hover-color'),
+        sidebarSelected: window.localStorage.getItem(
+            'contact-sidebar-item-selected-color'
+        ),
     }
     const userItemColors: ColorItemColorsInterface = {
         primary: window.localStorage.getItem('user-item-color'),
         hover: window.localStorage.getItem('user-item-hover-color'),
     }
 
-    function setDefaultColors() {
-        if (!window.localStorage.getItem('activity-item-color')) {
-            window.localStorage.setItem(
-                'activity-item-color',
-                documentStyle.getPropertyValue('--activity-item-color')
-            )
-            window.localStorage.setItem(
-                'activity-item-hover-color',
-                documentStyle.getPropertyValue('--activity-item-hover-color')
-            )
-            window.localStorage.setItem(
-                'contact-item-color',
-                documentStyle.getPropertyValue('--contact-item-color')
-            )
-            window.localStorage.setItem(
-                'contact-item-hover-color',
-                documentStyle.getPropertyValue('--contact-item-hover-color')
-            )
-            window.localStorage.setItem(
-                'user-item-color',
-                documentStyle.getPropertyValue('--user-item-color')
-            )
-            window.localStorage.setItem(
-                'user-item-hover-color',
-                documentStyle.getPropertyValue('--user-item-hover-color')
-            )
-        }
+    function setDefaultColors(): void {
+        const properties: string[] = [
+            // Activity properties
+            'activity-item-color',
+            'activity-item-hover-color',
+            'activity-sidebar-item-selected-color',
+
+            // Contact properties
+            'contact-item-color',
+            'contact-item-hover-color',
+            'contact-sidebar-item-selected-color',
+
+            // User properties
+            'user-item-color',
+            'user-item-hover-color',
+        ]
+
+        properties.forEach((property: string) => {
+            if (!window.localStorage.getItem(property)) {
+                window.localStorage.setItem(
+                    property,
+                    documentStyle.getPropertyValue(`--${property}`)
+                )
+            }
+        })
     }
 
     return {

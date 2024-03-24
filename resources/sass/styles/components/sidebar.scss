@@ -26,9 +26,7 @@
     font-size: $font-size-medium1;
 }
 .sidebarItem:hover {
-    color: $primary-hover-color;
-    background: $primary-hover-bg-color;
-    transition: $transition-colors-300ms;
+    color: $panel-menu-header-action-color;
     border-radius: $small-border-radius;
 }
 .sidebarItem {
@@ -53,9 +51,6 @@
 .sidebarUser:hover {
     background: $primary-hover-bg-color;
     transition: $transition-colors-300ms;
-}
-.sidebarUser {
-    color: $primary-hover-color;
 }
 .sidebarIcon,
 .sidebarUser {

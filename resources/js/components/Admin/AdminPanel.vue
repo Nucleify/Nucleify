@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 
 import { MyChart } from '../'
 import ContactDashboard from './Contact/ContactDashboard.vue'

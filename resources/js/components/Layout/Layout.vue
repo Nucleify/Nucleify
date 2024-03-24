@@ -18,16 +18,10 @@ import { MenuItem } from 'primevue/menuitem'
 import MyNavbar from './MyNavbar.vue'
 import MySidebar from './MySidebar.vue'
 
-import {
-    useColors,
-    userApiMethods,
-    logout,
-    setUserToSessionStorage,
-} from '../../utils'
+import { userApiMethods, logout, setUserToSessionStorage } from '../../utils'
 import { IsAdminType } from '../../interfaces'
 
 const { getUser } = userApiMethods()
-const { setDefaultColors } = useColors()
 
 const isAdmin: IsAdminType = ref(null)
 
@@ -94,7 +88,6 @@ const userMenuItems = ref<MenuItem>([
 ])
 
 onMounted(async () => {
-    setDefaultColors()
     const user_id = window.sessionStorage.getItem('user_id')
     let userRole = ''
 

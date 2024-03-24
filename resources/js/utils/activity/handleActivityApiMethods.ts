@@ -10,7 +10,7 @@ import {
 export default function activityApiMethods(): ActivityLogApiMethodsInterface {
     const { apiErrors } = useApiErrors()
     const { flashToast } = useFlashToast()
-    const results: Ref<ActivityLogInterface[]> = ref([])
+    const results: Ref<ActivityLogInterface[] | undefined> = ref([])
 
     function getAllActivities(): GetAllActivitiesAxiosFunctionType {
         axios

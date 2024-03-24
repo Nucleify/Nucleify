@@ -97,6 +97,7 @@ export default function useChart() {
                                 label: 'Activities',
                                 backgroundColor: activityItemColors.primary,
                                 borderColor: activityItemColors.primary,
+                                hoverBackgroundColor: activityItemColors.hover,
                                 data: activityLogDataByMonth,
                             })
                         }
@@ -110,6 +111,7 @@ export default function useChart() {
                                 label: 'Contacts',
                                 backgroundColor: contactItemColors.primary,
                                 borderColor: contactItemColors.primary,
+                                hoverBackgroundColor: contactItemColors.hover,
                                 data: contactDataByMonth,
                             })
                         }
@@ -121,6 +123,7 @@ export default function useChart() {
                                 label: 'Users',
                                 backgroundColor: userItemColors.primary,
                                 borderColor: userItemColors.primary,
+                                hoverBackgroundColor: userItemColors.hover,
                                 data: userDataByMonth,
                             })
                         }

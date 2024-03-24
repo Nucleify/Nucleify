@@ -5,7 +5,8 @@ $tablet-desktop-columns-display-phone: none;
 $action-column-width: 1%;
 $description-name-columns-overflow: hidden;
 $description-name-columns-whitespace: nowrap;
-$description-name-columns-max-width: 280px;
+$name-column-max-width: 280px;
+$description-column-max-width: 260px;
 
 // Min width 530px
 $role-birthday-id-activity-columns-display-min-width-530px: table-cell;

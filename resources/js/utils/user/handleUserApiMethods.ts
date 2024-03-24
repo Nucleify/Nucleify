@@ -14,7 +14,7 @@ import {
 export default function userApiMethods(): UserApiMethodsInterface {
     const { apiErrors } = useApiErrors()
     const { flashToast } = useFlashToast()
-    const results: Ref<UserInterface[]> = ref([])
+    const results: Ref<UserInterface[] | undefined> = ref([])
 
     function getAllUsers(): GetAllUsersFunctionType {
         return axios

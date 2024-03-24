@@ -9,32 +9,31 @@
         <div class="flex flex-column justify-content-center w-3rem m-0 gap-3">
             <a
                 href="/home"
-                :class="{ active: isCurrentUrl('/home') }"
                 class="sidebarItem"
                 v-tooltip.right="'Home'"
+                :style="isCurrentUrl('/home') ? contactStyle : ''"
             >
                 <i class="pi pi-home" />
             </a>
             <a
                 href="/admin"
-                :class="{ active: isCurrentUrl('/admin') && isAdmin }"
                 class="sidebarItem"
                 v-if="isAdmin"
                 v-tooltip.right="'Admin Panel'"
+                :style="isCurrentUrl('/admin') ? contactStyle : ''"
             >
                 <i class="pi pi-users" />
             </a>
             <a
                 href="/contacts"
-                :class="{ active: isCurrentUrl('/contacts') }"
                 class="sidebarItem"
                 v-tooltip.right="'Contacts'"
+                :style="isCurrentUrl('/contacts') ? contactStyle : ''"
             >
                 <i class="pi pi-user text-lg" />
             </a>
             <a
                 href="#"
-                :class="{ active: isCurrentUrl('/posts') }"
                 class="sidebarItem disabledItem"
                 v-tooltip.right="'Posts'"
             >
@@ -42,7 +41,6 @@
             </a>
             <a
                 href="#"
-                :class="{ active: isCurrentUrl('/messages') }"
                 class="sidebarItem disabledItem"
                 v-tooltip.right="'Messages'"
             >
@@ -50,7 +48,6 @@
             </a>
             <a
                 href="#"
-                :class="{ active: isCurrentUrl('/tasks') }"
                 class="sidebarItem disabledItem"
                 v-tooltip.right="'Tasks'"
             >
@@ -58,7 +55,6 @@
             </a>
             <a
                 href="#"
-                :class="{ active: isCurrentUrl('/calendar') }"
                 class="sidebarItem disabledItem"
                 v-tooltip.right="'Calendar'"
             >
@@ -66,7 +62,6 @@
             </a>
             <a
                 href="#"
-                :class="{ active: isCurrentUrl('/money-manager') }"
                 class="sidebarItem disabledItem"
                 v-tooltip.right="'Money'"
             >
@@ -74,11 +69,9 @@
             </a>
             <a
                 href="/activity-log"
-                :class="{
-                    activeActivitySidebarItem: isCurrentUrl('/activity-log'),
-                }"
                 class="sidebarItem activitySidebarItem"
                 v-tooltip.right="'Activity Log'"
+                :style="isCurrentUrl('/activity-log') ? activityStyle : ''"
             >
                 <i class="pi pi-clock" />
             </a>
@@ -87,7 +80,6 @@
             <div class="flex flex-column gap-3">
                 <a
                     href="#"
-                    :class="{ active: isCurrentUrl('/help') }"
                     class="sidebarItem disabledItem"
                     v-tooltip.right="'Help'"
                 >
@@ -95,7 +87,6 @@
                 </a>
                 <a
                     href="#"
-                    :class="{ active: isCurrentUrl('/settings') }"
                     class="sidebarItem disabledItem"
                     v-tooltip.right="'Settings'"
                 >
@@ -118,10 +109,11 @@
         </div>
     </div>
 </template>
+
 <script setup lang="ts">
 import { ref, Ref } from 'vue'
 
-import { isCurrentUrl, openMenu } from '../../utils'
+import { isCurrentUrl, openMenu, useColors } from '../../utils'
 import { MenuItem } from 'primevue/menuitem'
 
 const menu = ref()
@@ -131,23 +123,15 @@ defineProps<{
     items: MenuItem[]
     userMenuItems: MenuItem[]
 }>()
+
+const { activityItemColors, contactItemColors } = useColors()
+
+const activityStyle = {
+    color: activityItemColors.primary,
+    backgroundColor: activityItemColors.sidebarSelected,
+}
+const contactStyle = {
+    color: contactItemColors.primary,
+    backgroundColor: contactItemColors.sidebarSelected,
+}
 </script>
-
-<style scoped>
-.active {
-    color: #1bbd79;
-    background: hsl(156, 100%, 97%);
-}
-.sidebarItem:hover {
-    background: hsl(156, 100%, 94.5%);
-}
-
-.activeActivitySidebarItem {
-    color: var(--activity-item-color);
-    background: hsl(50, 100%, 97%);
-}
-.activitySidebarItem:hover {
-    color: var(--activity-item-color);
-    background: hsl(50, 100%, 94.5%);
-}
-</style>

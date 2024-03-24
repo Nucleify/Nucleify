@@ -32,6 +32,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { Swappable } from '@shopify/draggable'
+import { useColors } from '../../utils'
 
 const items = ref([
     {
@@ -130,15 +131,17 @@ onUnmounted(() => {
     }
 })
 
+const { activityItemColors, contactItemColors } = useColors()
+
 const startDragging = (item) => {
     let color
 
     switch (item.label) {
-        case 'Contacts':
-            color = '#1bbd79'
-            break
         case 'Activities':
-            color = '#ffb600'
+            color = activityItemColors.primary
+            break
+        case 'Contacts':
+            color = contactItemColors.primary
             break
     }
 

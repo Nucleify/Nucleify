@@ -10,7 +10,7 @@ import {
 } from '../../interfaces'
 
 export default function contactApiMethods(): ContactApiMethodsInterface {
-    const results: Ref<ContactInterface[]> = ref([])
+    const results: Ref<ContactInterface[] | undefined> = ref([])
 
     const { apiErrors } = useApiErrors()
     const { flashToast } = useFlashToast()
