@@ -2,7 +2,7 @@ import {
     ActivityLogInterface,
     ChartMethodType,
     ChartType,
-    ColorItemType,
+    ColorItemColorsInterface,
     ContactInterface,
     LabelItemType,
     UserInterface,
@@ -15,13 +15,13 @@ export default function useChart() {
         document.documentElement
     )
     const {
-        activityItemColor,
-        contactItemColor,
-        userItemColor,
+        activityItemColors,
+        contactItemColors,
+        userItemColors,
     }: {
-        activityItemColor: ColorItemType
-        contactItemColor: ColorItemType
-        userItemColor: ColorItemType
+        activityItemColors: ColorItemColorsInterface
+        contactItemColors: ColorItemColorsInterface
+        userItemColors: ColorItemColorsInterface
     } = useColors()
     function setChartData(
         chartMethodType: ChartMethodType,
@@ -95,8 +95,8 @@ export default function useChart() {
                         ) {
                             datasets.push({
                                 label: 'Activities',
-                                backgroundColor: activityItemColor,
-                                borderColor: activityItemColor,
+                                backgroundColor: activityItemColors.primary,
+                                borderColor: activityItemColors.primary,
                                 data: activityLogDataByMonth,
                             })
                         }
@@ -108,8 +108,8 @@ export default function useChart() {
                         ) {
                             datasets.push({
                                 label: 'Contacts',
-                                backgroundColor: contactItemColor,
-                                borderColor: contactItemColor,
+                                backgroundColor: contactItemColors.primary,
+                                borderColor: contactItemColors.primary,
                                 data: contactDataByMonth,
                             })
                         }
@@ -119,8 +119,8 @@ export default function useChart() {
                         ) {
                             datasets.push({
                                 label: 'Users',
-                                backgroundColor: userItemColor,
-                                borderColor: userItemColor,
+                                backgroundColor: userItemColors.primary,
+                                borderColor: userItemColors.primary,
                                 data: userDataByMonth,
                             })
                         }
@@ -151,12 +151,12 @@ export default function useChart() {
                             {
                                 data: [userData?.length, contactData?.length],
                                 backgroundColor: [
-                                    userItemColor,
-                                    contactItemColor,
+                                    userItemColors.primary,
+                                    contactItemColors.primary,
                                 ],
                                 hoverBackgroundColor: [
-                                    userItemColor,
-                                    contactItemColor,
+                                    userItemColors.hover,
+                                    contactItemColors.hover,
                                 ],
                             },
                         ],

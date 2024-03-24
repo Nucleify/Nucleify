@@ -87,7 +87,8 @@
                 <Button
                     label="Confirm"
                     @click.prevent="editContact(data, getData, close)"
-                    class="smallHeightButton contactColorItem"
+                    class="smallHeightButton"
+                    :style="style"
                 />
             </div>
         </template>
@@ -97,7 +98,7 @@
 <script setup lang="ts">
 import { ref, toRefs, watch } from 'vue'
 import { contactApiMethods } from '../../utils'
-import { ContactInterface } from '../../interfaces'
+import { ColorItemStyleInterface, ContactInterface } from '../../interfaces'
 
 const props = defineProps<{
     contact: ContactInterface
@@ -105,6 +106,7 @@ const props = defineProps<{
     visible: boolean
     options: string[]
     close: (action: string) => void
+    style: ColorItemStyleInterface
 }>()
 
 const data = ref<ContactInterface>({

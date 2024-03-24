@@ -5,7 +5,7 @@
         >
             <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
                 <a href="#contacts" class="grid-item h-16rem">
-                    <div class="adminBricksCircle contactsBricksCircle">
+                    <div class="adminBricksCircle" :style="contactCircleStyle">
                         <div>
                             <p class="adminBricksCircleNumber">
                                 {{ contacts.length }}
@@ -13,12 +13,17 @@
                             <i class="pi pi-users adminBricksIcon" />
                         </div>
                     </div>
-                    <p class="contactsBricksText">Contacts</p>
+                    <p
+                        class="contactsBricksText"
+                        :style="contactBricksTextStyle"
+                    >
+                        Contacts
+                    </p>
                 </a>
             </div>
             <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
                 <a href="#users" class="grid-item h-16rem">
-                    <div class="adminBricksCircle usersBricksCircle">
+                    <div class="adminBricksCircle" :style="userCircleStyle">
                         <div>
                             <p class="adminBricksCircleNumber">
                                 {{ users.length }}
@@ -26,7 +31,9 @@
                             <i class="pi pi-users adminBricksIcon" />
                         </div>
                     </div>
-                    <p class="usersBricksText">Users</p>
+                    <p class="usersBricksText" :style="userBricksTextStyle">
+                        Users
+                    </p>
                 </a>
             </div>
             <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
@@ -69,13 +76,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import { MyChart } from '../'
 import ContactDashboard from './Contact/ContactDashboard.vue'
 import UserDashboard from './User/UserDashboard.vue'
 
-import { contactApiMethods, userApiMethods } from '../../utils'
+import { contactApiMethods, useColors, userApiMethods } from '../../utils'
 
 const roleOptions = ['user', 'tech', 'test_admin', 'admin', 'super_admin']
 
@@ -86,4 +93,19 @@ onMounted(() => {
     getAllUsers()
     getAllContacts()
 })
+
+const { contactItemColors, userItemColors } = useColors()
+
+const contactCircleStyle = {
+    background: contactItemColors.primary,
+}
+const contactBricksTextStyle = {
+    color: contactItemColors.primary,
+}
+const userCircleStyle = {
+    background: userItemColors.primary,
+}
+const userBricksTextStyle = {
+    color: userItemColors.primary,
+}
 </script>

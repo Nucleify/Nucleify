@@ -51,9 +51,10 @@
                         <template #body="row">
                             <div class="flex gap-1 justify-content-around">
                                 <Button
-                                    class="myButton activityColorItem"
+                                    class="myButton"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
+                                    :style="style"
                                 />
                             </div>
                         </template>
@@ -80,7 +81,8 @@
                         closeModal
                     )
                 "
-                class="smallHeightButton activityColorItem"
+                class="smallHeightButton"
+                :style="style"
             />
         </div>
     </Dialog>
@@ -90,7 +92,8 @@
 import { onMounted } from 'vue'
 
 import { MyChart } from '../'
-import { activityApiMethods, useMenuAndModal } from '../../utils'
+import { activityApiMethods, useColors, useMenuAndModal } from '../../utils'
+import { ColorItemStyleInterface } from '../../interfaces'
 
 const { visibleDelete, selectedObject, openModal, closeModal } =
     useMenuAndModal()
@@ -102,4 +105,12 @@ const {
 } = activityApiMethods()
 
 onMounted(getAllActivities)
+
+const { activityItemColors } = useColors()
+
+const style: ColorItemStyleInterface = {
+    backgroundColor: activityItemColors.primary,
+    borderColor: activityItemColors.primary,
+    boxShadow: 'none',
+}
 </script>

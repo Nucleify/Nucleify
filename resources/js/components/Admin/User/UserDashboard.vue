@@ -8,7 +8,8 @@
                     <Button
                         label="New User"
                         @click="openModal('create')"
-                        class="text-sm smallHeightButton userColorItem"
+                        class="text-sm smallHeightButton"
+                        :style="style"
                     />
                 </div>
             </template>
@@ -65,24 +66,28 @@
                         <template #body="row">
                             <div class="flex gap-1 justify-content-around">
                                 <Button
-                                    class="desktopButton myButton userColorItem"
+                                    class="desktopButton myButton"
                                     icon="pi pi-eye"
                                     @click="openModal('show', row.data)"
+                                    :style="style"
                                 />
                                 <Button
-                                    class="desktopButton myButton userColorItem"
+                                    class="desktopButton myButton"
                                     icon="pi pi-pencil"
                                     @click="openModal('edit', row.data)"
+                                    :style="style"
                                 />
                                 <Button
-                                    class="desktopButton myButton userColorItem"
+                                    class="desktopButton myButton"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
+                                    :style="style"
                                 />
                                 <Button
-                                    class="mobileButton myButton userColorItem"
+                                    class="mobileButton myButton"
                                     icon="pi pi-bars"
                                     @click="openMenu(menu, $event, row.data)"
+                                    :style="style"
                                 />
                                 <Menu
                                     ref="menu"
@@ -108,6 +113,7 @@
         :getData="getData"
         :options="roleOptions"
         :close="closeModal"
+        :style="style"
     />
     <EditUser
         :visible="visibleEdit"
@@ -115,6 +121,7 @@
         :getData="getData"
         :options="roleOptions"
         :close="closeModal"
+        :style="style"
     />
     <Dialog :visible="visibleDelete" modal header="Confirm delete user">
         <div class="flex justify-content-between">
@@ -122,12 +129,13 @@
                 severity="secondary"
                 label="Cancel"
                 @click="closeModal('delete')"
-                class="smallHeightButton userColorItem"
+                class="smallHeightButton"
             />
             <Button
                 label="Confirm"
                 @click="deleteUser(selectedObject.id, getData, closeModal)"
-                class="smallHeightButton userColorItem"
+                class="smallHeightButton"
+                :style="style"
             />
         </div>
     </Dialog>
@@ -140,8 +148,8 @@ import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
 import EditUser from './EditUser.vue'
 
-import { UserInterface } from '../../../interfaces'
-import { useMenuAndModal, userApiMethods } from '../../../utils'
+import { ColorItemStyleInterface, UserInterface } from '../../../interfaces'
+import { useColors, useMenuAndModal, userApiMethods } from '../../../utils'
 
 defineProps<{
     data: UserInterface[] | undefined
@@ -194,4 +202,11 @@ const {
 } = useMenuAndModal()
 
 const { deleteUser } = userApiMethods()
+const { userItemColors } = useColors()
+
+const style: ColorItemStyleInterface = {
+    backgroundColor: userItemColors.primary,
+    borderColor: userItemColors.primary,
+    boxShadow: 'none',
+}
 </script>

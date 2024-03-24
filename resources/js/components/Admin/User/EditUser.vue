@@ -32,12 +32,13 @@
                     severity="secondary"
                     label="Cancel"
                     @click="props.close('edit')"
-                    class="smallHeightButton userColorItem"
+                    class="smallHeightButton"
                 />
                 <Button
                     label="Confirm"
                     @click.prevent="editUser(data, getData, close)"
-                    class="smallHeightButton userColorItem"
+                    class="smallHeightButton"
+                    :style="style"
                 />
             </div>
         </template>
@@ -47,7 +48,7 @@
 <script setup lang="ts">
 import { ref, toRefs, watch } from 'vue'
 
-import { UserInterface } from '../../../interfaces'
+import { ColorItemStyleInterface, UserInterface } from '../../../interfaces'
 import { userApiMethods } from '../../../utils'
 
 const props = defineProps<{
@@ -56,6 +57,7 @@ const props = defineProps<{
     visible: boolean
     options: string[]
     close: (action: string) => void
+    style: ColorItemStyleInterface
 }>()
 
 const data = ref<UserInterface>({

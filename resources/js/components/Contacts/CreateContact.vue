@@ -86,7 +86,8 @@
                 <Button
                     label="Create"
                     @click="storeContact(data, getData, close)"
-                    class="smallHeightButton contactColorItem"
+                    class="smallHeightButton"
+                    :style="style"
                 />
             </div>
         </template>
@@ -95,7 +96,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ContactInterface } from '../../interfaces'
+import { ColorItemStyleInterface, ContactInterface } from '../../interfaces'
 import { contactApiMethods } from '../../utils'
 
 const props = defineProps<{
@@ -103,6 +104,7 @@ const props = defineProps<{
     visible: boolean
     options: string[]
     close: (action: string) => void
+    style: ColorItemStyleInterface
 }>()
 
 const data = ref<ContactInterface>({

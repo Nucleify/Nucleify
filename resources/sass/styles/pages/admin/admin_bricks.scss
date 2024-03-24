@@ -17,19 +17,6 @@
     border-radius: $admin-bricks-circle-border-radius;
 }
 
-.contactsBricksCircle {
-    background: $primary-color;
-}
-.contactsBricksText {
-    color: $primary-color;
-}
-.usersBricksCircle {
-    background: $secondary-color;
-}
-.usersBricksText {
-    color: $secondary-color;
-}
-
 .contactsBricksText,
 .usersBricksText {
     margin: $admin-bricks-text-margin;

@@ -76,6 +76,20 @@ export interface ContactApiMethodsInterface {
 }
 
 /**
+ *  Color items
+ */
+export interface ColorItemStyleInterface {
+    backgroundColor: string | null
+    borderColor: string | null
+    boxShadow: string | null
+}
+export interface ColorItemColorsInterface {
+    primary: string | null
+    hover: string | null
+}
+
+
+/**
  *  Form data
  */
 export interface LoginFormInterface {

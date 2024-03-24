@@ -18,7 +18,8 @@
                     <Button
                         label="New Contact"
                         @click="openModal('create')"
-                        class="text-sm smallHeightButton contactColorItem"
+                        class="text-sm smallHeightButton"
+                        :style="style"
                     />
                 </div>
             </template>
@@ -75,24 +76,28 @@
                         <template #body="row">
                             <div class="flex gap-1 justify-content-around">
                                 <Button
-                                    class="desktopButton myButton contactColorItem"
+                                    class="desktopButton myButton"
                                     icon="pi pi-eye"
                                     @click="openModal('show', row.data)"
+                                    :style="style"
                                 />
                                 <Button
-                                    class="desktopButton myButton contactColorItem"
+                                    class="desktopButton myButton"
                                     icon="pi pi-pencil"
                                     @click="openModal('edit', row.data)"
+                                    :style="style"
                                 />
                                 <Button
-                                    class="desktopButton myButton contactColorItem"
+                                    class="desktopButton myButton"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
+                                    :style="style"
                                 />
                                 <Button
-                                    class="mobileButton myButton contactColorItem"
+                                    class="mobileButton myButton"
                                     icon="pi pi-bars"
                                     @click="openMenu(menu, $event, row.data)"
+                                    :style="style"
                                 />
                                 <Menu ref="menu" :model="items" :popup="true" />
                             </div>
@@ -113,6 +118,7 @@
         :visible="visibleCreate"
         :options="roleOptions"
         :close="closeModal"
+        :style="style"
     />
     <EditContact
         :contact="selectedObject"
@@ -120,6 +126,7 @@
         :visible="visibleEdit"
         :options="roleOptions"
         :close="closeModal"
+        :style="style"
     />
     <Dialog :visible="visibleDelete" modal header="Confirm delete contact">
         <div class="flex justify-content-between">
@@ -134,7 +141,8 @@
                 @click="
                     deleteContact(selectedObject.id, getAllContacts, closeModal)
                 "
-                class="smallHeightButton contactColorItem"
+                class="smallHeightButton"
+                :style="style"
             />
         </div>
     </Dialog>
@@ -148,7 +156,8 @@ import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
 
-import { contactApiMethods, useMenuAndModal } from '../../utils'
+import { contactApiMethods, useColors, useMenuAndModal } from '../../utils'
+import { ColorItemStyleInterface } from '../../interfaces'
 
 const roleOptions = ['user', 'tech', 'test_admin', 'admin', 'super_admin']
 
@@ -199,4 +208,12 @@ const items = ref([
 ])
 
 onMounted(getAllContacts)
+
+const { contactItemColors } = useColors()
+
+const style: ColorItemStyleInterface = {
+    backgroundColor: contactItemColors.primary,
+    borderColor: contactItemColors.primary,
+    boxShadow: 'none',
+}
 </script>

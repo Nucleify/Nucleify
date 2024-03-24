@@ -158,30 +158,30 @@ const startDragging = (item) => {
     gap: 1rem;
 }
 @media (min-width: 600px) {
-  .grid-item-container {
-    grid-template-columns: repeat(2, 1fr);
-    margin-left: 10%;
-  }
+    .grid-item-container {
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: 10%;
+    }
 }
 @media (min-width: 700px) {
-  .grid-item-container {
-    margin-left: 15%;
-  }
+    .grid-item-container {
+        margin-left: 15%;
+    }
 }
 @media (min-width: 800px) {
-  .grid-item-container {
-    margin-left: 20%;
-  }
+    .grid-item-container {
+        margin-left: 20%;
+    }
 }
 @media (min-width: 900px) {
-  .grid-item-container {
-    margin-left: 23%;
-  }
+    .grid-item-container {
+        margin-left: 23%;
+    }
 }
 @media (min-width: 992px) {
     .grid-item-container {
-      margin-left: 100px;
-      grid-template-columns: repeat(3, 1fr);
+        margin-left: 100px;
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

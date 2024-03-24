@@ -50,12 +50,13 @@
                     severity="secondary"
                     label="Cancel"
                     @click="props.close('create')"
-                    class="smallHeightButton userColorItem"
+                    class="smallHeightButton"
                 />
                 <Button
                     label="Confirm"
                     @click="storeUser(data, getData, close)"
-                    class="smallHeightButton userColorItem"
+                    class="smallHeightButton"
+                    :style="style"
                 />
             </div>
         </template>
@@ -65,13 +66,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { userApiMethods } from '../../../utils'
-import { UserInterface } from '../../../interfaces'
+import { ColorItemStyleInterface, UserInterface } from '../../../interfaces'
 
 const props = defineProps<{
     getData: () => void
     visible: boolean
     options: string[]
     close: (action: string) => void
+    style: ColorItemStyleInterface
 }>()
 
 const data = ref<UserInterface>({
