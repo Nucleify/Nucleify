@@ -12,10 +12,11 @@
 }
 
 // Min width 992px
-@media (min-width: $minWidthLg2) {
+@media (min-width: $min-width-lg2) {
     .panelContainer {
-        top: $panel-container-top-min-width-992px;
-        padding: $panel-container-padding-min-width-992px;
-        gap: $panel-container-gap-min-width-992px;
+        margin-left: $panel-container-margin-left-lg2;
+        top: $panel-container-top-lg2;
+        padding: $panel-container-padding-lg2;
+        gap: $panel-container-gap-lg2;
     }
 }

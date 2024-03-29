@@ -7,8 +7,8 @@
 }
 
 // Min width 1400px
-@media (min-width: $minWidthXl) {
+@media (min-width: $min-width-xl) {
     .createdAtActivityColumn {
-        width: $created-at-activity-column-width-min-width-1400px;
+        width: $created-at-activity-column-width-xl;
     }
 }

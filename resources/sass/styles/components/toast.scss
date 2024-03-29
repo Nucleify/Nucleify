@@ -19,15 +19,15 @@
 }
 
 // Min width 530px
-@media (min-width: $minWidthSm) {
+@media (min-width: $min-width-sm) {
     .p-toast-message {
-        width: $toast-message-media-width-min-width-530px;
-        max-width: $toast-message-media-max-width-min-width-530px;
+        width: $toast-message-media-width-sm;
+        max-width: $toast-message-media-max-width-sm;
     }
 }
 
 // Max width  550px
-@media (max-width: $maxWidthSm1) {
+@media (max-width: $max-width-sm1) {
     .p-toast-message-success {
         background: $success-toast-bg;
     }

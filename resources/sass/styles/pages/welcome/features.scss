@@ -99,40 +99,40 @@
 }
 
 // Min width 547px
-@media (min-width: $minWidthSm2) {
+@media (min-width: $min-width-sm2) {
     .accessHeader {
-        max-width: $access-header-max-width-min-width-547px;
+        max-width: $access-header-max-width-sm2;
     }
     .accessDescription {
-        font-size: $access-description-font-size-min-width-547px;
+        font-size: $access-description-font-size-sm2;
     }
 }
 
 // Min width 560px
-@media (min-width: $minWidthSm4) {
+@media (min-width: $min-width-sm4) {
     .accessContainer {
-        height: $access-container-height-min-width-560px;
+        height: $access-container-height-sm4;
     }
 }
 
 // Min width 759
-@media (min-width: $minWidthMd0) {
+@media (min-width: $min-width-md0) {
     .accessContainer {
-        height: $access-container-height-min-width-759px;
+        height: $access-container-height-md0;
     }
 }
 
 // Min width 768px
-@media (min-width: $minWidthMd) {
+@media (min-width: $min-width-md) {
     .accessHeader {
-        font-size: $access-header-font-size-min-width-768px;
+        font-size: $access-header-font-size-md;
     }
 }
 
 // Min width 1129px
-@media (min-width: $minWidthLg3) {
+@media (min-width: $min-width-lg3) {
     .accessContainer {
-        height: $access-container-height-min-width-1129px;
+        height: $access-container-height-lg3;
     }
     .accessHeader {
         font-size: $font-size-xl;

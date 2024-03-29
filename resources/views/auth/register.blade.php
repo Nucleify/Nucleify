@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-<register>
-
-</register>
+    <register></register>
 @endsection

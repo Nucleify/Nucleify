@@ -75,6 +75,11 @@ const userMenuItems = ref<MenuItem>([
     {
         items: [
             {
+                label: 'Welcome',
+                icon: 'pi pi-home',
+                url: '/welcome',
+            },
+            {
                 label: 'Profile',
                 icon: 'pi pi-user',
             },

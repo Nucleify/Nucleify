@@ -59,7 +59,7 @@ import {
 
 app.component('activity-log', ActivityLog)
     .component('admin-panel', AdminPanel)
-    .component('contact-dashboard', ContactDashboard)
+    .component('contacts-dashboard', ContactDashboard)
     .component('home', Home)
     .component('login', Login)
     .component('my-layout', MyLayout)

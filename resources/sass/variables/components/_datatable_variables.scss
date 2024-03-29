@@ -9,45 +9,43 @@ $name-column-max-width: 280px;
 $description-column-max-width: 260px;
 
 // Min width 530px
-$role-birthday-id-activity-columns-display-min-width-530px: table-cell;
-$id-column-width-min-width-530px: 15%;
-$name-full-name-columns-width-min-width-530px: 45%;
+$role-birthday-id-activity-columns-display-sm: table-cell;
+$id-column-width-sm: 15%;
+$name-full-name-columns-width-sm: 45%;
 
 // Min width 768px
-$tablet-column-display-min-width-768px: table-cell;
-$id-column-width-min-width-768px: 10%;
-$name-full-name-columns-width-min-width-768px: 25%;
-$role-birthday-columns-width-min-width-768px: 18%;
+$tablet-column-display-md: table-cell;
+$id-column-width-md: 10%;
+$name-full-name-columns-width-md: 25%;
+$role-birthday-columns-width-md: 18%;
 $created-at-activity-column: 28%;
-$email-column-width-min-width-768px: 30%;
+$email-column-width-md: 30%;
 
 // Min width 961px
-$id-column-min-width-961px-width: 10%;
+$id-column-width-lg: 10%;
 
 // Min width 992px
-$desktop-column-display-min-width-992px: table-cell;
-$desktop-button-display-min-width-992px: flex;
-$mobile-button-display-min-width-992px: none;
-$my-button-padding-min-width-992px: 9px 8.5px 10px 8px;
+$desktop-column-display-lg2: table-cell;
+$desktop-button-display-lg2: flex;
+$mobile-button-display-lg2: none;
+$my-button-padding-lg2: 9px 8.5px 10px 8px;
+$email-column-width-lg2: 32%;
+$role-birthday-column-lg2: 15%;
 
-// Media min width 992px
-$email-column-width-min-width-992px: 32%;
-$role-birthday-column-width-min-width-992px: 15%;
+// Min width 1200px
+$id-column-width-xl: 8%;
+$name-full-name-columns-width-xl: 20%;
+$email-column-width-xl: 28%;
+$created-at-column-display-xl: table-cell;
+$created-at-column-width-xl: 20%;
 
-// Media min width 1200px
-$id-column-width-min-width-1200px: 8%;
-$name-full-name-columns-width-min-width-1200px: 20%;
-$email-column-width-min-width-1200px: 28%;
-$created-at-column-display-min-width-1200px: table-cell;
-$created-at-column-width-min-width-1200px: 20%;
+// Min width 1400px
+$id-column-width-2xl: 6%;
+$name-full-name-columns-width-2xl: 12%;
+$email-column-width-2xl: 16%;
+$role-birthday-columns-width-2xl: 10%;
+$created-at-updated-at-columns-display-2xl: table-cell;
+$created-at-updated-at-columns-width-2xl: 14%;
 
-// Media min width 1400px
-$id-column-width-min-width-1400px: 6%;
-$name-full-name-columns-width-min-width-1400px: 12%;
-$email-column-width-min-width-1400px: 16%;
-$role-birthday-columns-width-min-width-1400px: 10%;
-$created-at-updated-at-columns-display-min-width-1400px: table-cell;
-$created-at-updated-at-columns-width-min-width-1400px: 14%;
-
-// Media min width 1500px
-$created-at-updated-at-columns-width-min-width-1500px: 12%;
+// Min width 1500px
+$created-at-updated-at-columns-width-3xl: 12%;

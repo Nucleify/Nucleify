@@ -56,16 +56,16 @@
 }
 
 // Min width 768px
-@media (min-width: $minWidthMd) {
+@media (min-width: $min-width-md) {
     .loginCard,
     .registerCard {
-        padding-bottom: $auth-card-padding-bottom;
-        top: $auth-card-position-top-min-width-768px;
+        padding-bottom: $auth-card-padding-bottom-md;
+        top: $auth-card-position-top-md;
     }
     .loginCard .p-card-content,
     .registerCard .p-card-content,
     .loginCard .p-card-body,
     .registerCard .p-card-body {
-        padding: $auth-card-body-content-padding-min-width-768px;
+        padding: $auth-card-body-content-padding-md;
     }
 }

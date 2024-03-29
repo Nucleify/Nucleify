@@ -1,5 +1,8 @@
 <template>
-    <div class="fixed flex-column h-screen p-3 mySidebar z-100">
+    <div
+        class="fixed flex-column h-screen p-3 mySidebar z-100"
+        v-if="shouldShowSidebar"
+    >
         <!--        <a href="/" class="mt-2 mb-4 mx-auto">-->
         <!--            <Avatar-->
         <!--                class="w-2rem h-2rem"-->
@@ -111,12 +114,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref } from 'vue'
-
-import { isCurrentUrl, openMenu, useColors } from '../../utils'
+import { onMounted, ref, Ref } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
-const menu = ref()
+import { isCurrentUrl, openMenu, useColors } from '../../utils'
 
 defineProps<{
     isAdmin: Ref | null
@@ -125,6 +126,20 @@ defineProps<{
 }>()
 
 const { activityItemColors, contactItemColors } = useColors()
+
+const menu = ref()
+const shouldShowSidebar = ref(true)
+const excludedPaths = [
+    '/login',
+    '/register',
+    '/welcome'
+]
+
+onMounted(() => {
+    if (excludedPaths.some((path) => isCurrentUrl(path))) {
+        shouldShowSidebar.value = false
+    }
+})
 
 const activityStyle = {
     color: activityItemColors.primary,

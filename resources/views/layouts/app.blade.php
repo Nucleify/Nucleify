@@ -19,10 +19,9 @@
 <body>
     <div id="app" class="flex flex-column">
         @auth
-            <my-layout>
+            <my-layout></my-layout>
 
-            </my-layout>
-            <main class="p-2 lg:p-1 lg:pl-8 lg:pr-3">
+            <main class="p-2 lg:p-1">
                 @yield('content')
             </main>
         @endauth

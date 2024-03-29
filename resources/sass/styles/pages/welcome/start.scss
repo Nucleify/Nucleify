@@ -106,106 +106,106 @@
 }
 
 // Min width 411px
-@media (min-width: $minWidthXs) {
+@media (min-width: $min-width-xs) {
     .activitiesItem {
-        top: $activities-item-top-min-width-411px;
-        left: $activities-item-left-min-width-411px;
+        top: $activities-item-top-xs;
+        left: $activities-item-left-xs;
     }
     .contactsItem {
-        top: $contacts-item-top-min-width-411px;
-        left: $contacts-item-left-min-width-411px;
+        top: $contacts-item-top-xs;
+        left: $contacts-item-left-xs;
     }
     .moneyItem {
-        bottom: $money-item-bottom-min-width-411px;
-        left: $money-item-left-min-width-411px;
+        bottom: $money-item-bottom-xs;
+        left: $money-item-left-xs;
     }
     .postsItem {
-        bottom: $posts-item-bottom-min-width-411px;
-        left: $posts-item-left-min-width-411px;
+        bottom: $posts-item-bottom-xs;
+        left: $posts-item-left-xs;
     }
     .tasksItem {
-        bottom: $tasks-item-bottom-min-width-411px;
-        left: $tasks-item-left-min-width-411px;
+        bottom: $tasks-item-bottom-xs;
+        left: $tasks-item-left-xs;
     }
     .usersItem {
-        top: $users-item-top-min-width-411px;
-        left: $users-item-left-min-width-411px;
+        top: $users-item-top-xs;
+        left: $users-item-left-xs;
     }
 }
 
 // Min width 454px
-@media (min-width: $minWidthXs2) {
+@media (min-width: $min-width-xs2) {
     .moneyItem {
-        bottom: $money-item-bottom-min-width-456px;
-        left: $money-item-left-min-width-456px;
+        bottom: $money-item-bottom-xs2;
+        left: $money-item-left-xs2;
     }
     .tasksItem {
-        bottom: $tasks-item-bottom-min-width-456px;
-        left: $tasks-item-left-min-width-456px;
+        bottom: $tasks-item-bottom-xs2;
+        left: $tasks-item-left-xs2;
     }
     .contactsItem {
-        top: $contacts-item-top-min-width-456px;
-        left: $contacts-item-left-min-width-456px;
+        top: $contacts-item-top-xs2;
+        left: $contacts-item-left-xs2;
     }
 }
 
 // Min width 547px
-@media (min-width: $minWidthSm2) {
+@media (min-width: $min-width-sm2) {
     .activitiesItem {
-        top: $activities-item-top-min-width-547px;
-        left: $activities-item-left-min-width-547px;
+        top: $activities-item-top-sm2;
+        left: $activities-item-left-sm2;
     }
     .contactsItem {
-        top: $contacts-item-top-min-width-547px;
-        left: $contacts-item-left-min-width-547px;
+        top: $contacts-item-top-sm2;
+        left: $contacts-item-left-sm2;
     }
     .moneyItem {
-        bottom: $money-item-bottom-min-width-547px;
-        left: $money-item-left-min-width-547px;
+        bottom: $money-item-bottom-sm2;
+        left: $money-item-left-sm2;
     }
     .postsItem {
-        bottom: $posts-item-bottom-min-width-547px;
-        left: $posts-item-left-min-width-547px;
+        bottom: $posts-item-bottom-sm2;
+        left: $posts-item-left-sm2;
     }
     .tasksItem {
-        bottom: $tasks-item-bottom-min-width-547px;
-        left: $tasks-item-left-min-width-547px;
+        bottom: $tasks-item-bottom-sm2;
+        left: $tasks-item-left-sm2;
     }
     .usersItem {
-        top: $users-item-top-min-width-547px;
-        left: $users-item-left-min-width-547px;
+        top: $users-item-top-sm2;
+        left: $users-item-left-sm2;
     }
 }
 
 // Min width 560px
-@media (min-width: $minWidthSm4) {
+@media (min-width: $min-width-sm4) {
     .startHeader {
-        margin-top: $start-header-margin-top-min-width-560px;
+        margin-top: $start-header-margin-top-sm4;
     }
     .startContainer {
-        padding: $start-container-padding-min-width-560px;
+        padding: $start-container-padding-sm4;
     }
     .moneyItem {
-        bottom: $money-item-bottom-min-width-560px;
-        left: $money-item-left-min-width-560px;
+        bottom: $money-item-bottom-sm4;
+        left: $money-item-left-sm4;
     }
     .postsItem {
-        bottom: $posts-item-bottom-min-width-560px;
-        left: $posts-item-left-min-width-560px;
+        bottom: $posts-item-bottom-sm4;
+        left: $posts-item-left-sm4;
     }
 }
 
 // Min width 768px
-@media (min-width: $minWidthMd) {
+@media (min-width: $min-width-md) {
     .startHeader {
-        margin-top: $start-header-margin-top-min-width-768px;
-        font-size: $start-header-font-size-min-width-768px;
+        margin-top: $start-header-margin-top-md;
+        font-size: $start-header-font-size-md;
     }
     .startDescription {
-        margin-top: $start-description-margin-top-min-width-768px;
+        margin-top: $start-description-margin-md;
     }
     .startButton {
-        margin-top: $start-button-margin-top-min-width-768px;
+        margin-top: $start-button-margin-top-md;
     }
     .startItem {
         border-radius: $small-border-radius;
@@ -221,148 +221,147 @@
     .postsIcon,
     .tasksIcon,
     .usersIcon {
-        font-size: $start-icons-font-size-min-width-768px;
+        font-size: $start-icons-font-size-md;
         top: $start-icons-big-top;
     }
 
     .activitiesItem {
-        top: $activities-item-top-min-width-768px;
-        left: $activities-item-left-min-width-768px;
+        top: $activities-item-top-md;
+        left: $activities-item-left-md;
     }
     .contactsItem {
-        top: $contacts-item-top-min-width-768px;
-        left: $contacts-item-left-min-width-768px;
+        top: $contacts-item-top-md;
+        left: $contacts-item-left-md;
     }
     .moneyItem {
-        bottom: $money-item-bottom-min-width-768px;
-        left: $money-item-left-min-width-768px;
+        bottom: $money-item-bottom-md;
+        left: $money-item-left-md;
     }
     .postsItem {
-        bottom: $posts-item-bottom-min-width-768px;
-        left: $posts-item-left-min-width-768px;
+        bottom: $posts-item-bottom-md;
+        left: $posts-item-left-md;
     }
     .tasksItem {
-        top: $tasks-item-top-min-width-768px;
-        left: $tasks-item-left-min-width-768px;
+        top: $tasks-item-top-md;
+        left: $tasks-item-left-md;
     }
     .usersItem {
-        left: $users-item-left-min-width-768px;
+        left: $users-item-left-md;
     }
 }
 
 // Min width 992px
-@media (min-width: $minWidthLg2) {
+@media (min-width: $min-width-lg2) {
     .startHeader {
-        margin-top: $start-header-margin-top-min-width-992px;
-        font-size: $start-header-font-size-min-width-992px;
+        margin-top: $start-header-margin-top-lg2;
+        font-size: $start-header-font-size-lg2;
     }
     .startDescription {
-        max-width: $start-description-max-width-min-width-992px;
+        max-width: $start-description-max-width-lg2;
     }
-
     .activitiesItem {
-        top: $activities-item-top-min-width-992px;
-        left: $activities-item-left-min-width-992px;
+        top: $activities-item-top-lg2;
+        left: $activities-item-left-lg2;
     }
     .contactsItem {
-        top: $contacts-item-top-min-width-992px;
-        left: $contacts-item-left-min-width-992px;
+        top: $contacts-item-top-lg2;
+        left: $contacts-item-left-lg2;
     }
     .moneyItem {
-        bottom: $money-item-bottom-min-width-992px;
-        left: $money-item-left-min-width-992px;
+        bottom: $money-item-bottom-lg2;
+        left: $money-item-left-lg2;
     }
     .postsItem {
-        bottom: $posts-item-bottom-min-width-992px;
-        left: $posts-item-left-min-width-992px;
+        bottom: $posts-item-bottom-lg2;
+        left: $posts-item-left-lg2;
     }
     .tasksItem {
-        top: $tasks-item-top-min-width-992px;
-        left: $tasks-item-left-min-width-992px;
+        top: $tasks-item-top-lg2;
+        left: $tasks-item-left-lg2;
     }
     .usersItem {
-        bottom: $users-item-bottom-min-width-992px;
-        left: $users-item-left-min-width-992px;
+        bottom: $users-item-bottom-lg2;
+        left: $users-item-left-lg2;
     }
 }
 
 // Min width 1200px
-@media (min-width: $minWidthXl) {
+@media (min-width: $min-width-xl) {
     .startHeader {
-        margin-top: $start-header-margin-top-min-width-1200px;
+        margin-top: $start-header-margin-top-xl;
     }
     .startHeader,
     .startDescription,
     .startButton {
-        margin-left: $start-header-description-button-margin-left-min-width-1200px;
+        margin-left: $start-header-description-button-margin-left-xl;
     }
     .startButton {
-        margin-top: $start-button-margin-top-min-width-1200px;
+        margin-top: $start-button-margin-top-xl;
     }
 
     .activitiesItem {
-        top: $activities-item-top-min-width-1200px;
-        left: $activities-item-left-min-width-1200px;
+        top: $activities-item-top-xl;
+        left: $activities-item-left-xl;
     }
     .contactsItem {
-        top: $contacts-item-top-min-width-1200px;
-        left: $contacts-item-left-min-width-1200px;
+        top: $contacts-item-top-xl;
+        left: $contacts-item-left-xl;
     }
     .moneyItem {
-        bottom: $money-item-bottom-min-width-1200px;
-        left: $money-item-left-min-width-1200px;
+        bottom: $money-item-bottom-xl;
+        left: $money-item-left-xl;
     }
     .postsItem {
-        bottom: $posts-item-bottom-min-width-1200px;
-        left: $posts-item-left-min-width-1200px;
+        bottom: $posts-item-bottom-xl;
+        left: $posts-item-left-xl;
     }
     .tasksItem {
-        top: $tasks-item-top-min-width-1200px;
-        left: $tasks-item-left-min-width-1200px;
+        top: $tasks-item-top-xl;
+        left: $tasks-item-left-xl;
     }
     .usersItem {
-        top: $users-item-top-min-width-1200px;
-        left: $users-item-left-min-width-1200px;
+        top: $users-item-top-xl;
+        left: $users-item-left-xl;
     }
 }
 
 // Min width 1400px
-@media (min-width: $minWidth2Xl) {
+@media (min-width: $min-width-2xl) {
     .startHeader {
-        margin-top: $start-header-margin-top-min-width-1400px;
+        margin-top: $start-header-margin-top-2xl;
         font-size: $font-size-xxl;
     }
     .startHeader,
     .startDescription,
     .startButton {
-        margin-left: $start-header-description-button-margin-left-min-width-1400px;
+        margin-left: $start-header-description-button-margin-left-2xl;
     }
     .startDescription {
         font-size: $font-size-big;
     }
 
     .activitiesItem {
-        top: $activities-item-top-min-width-1400px;
-        left: $activities-item-left-min-width-1400px;
+        top: $activities-item-top-2xl;
+        left: $activities-item-left-2xl;
     }
     .contactsItem {
-        top: $contacts-item-top-min-width-1400px;
-        left: $contacts-item-left-min-width-1400px;
+        top: $contacts-item-top-2xl;
+        left: $contacts-item-left-2xl;
     }
     .moneyItem {
-        bottom: $money-item-bottom-min-width-1400px;
-        left: $money-item-left-min-width-1400px;
+        bottom: $money-item-bottom-2xl;
+        left: $money-item-left-2xl;
     }
     .postsItem {
-        bottom: $posts-item-bottom-min-width-1400px;
-        left: $posts-item-left-min-width-1400px;
+        bottom: $posts-item-bottom-2xl;
+        left: $posts-item-left-2xl;
     }
     .tasksItem {
-        top: $tasks-item-top-min-width-1400px;
-        left: $tasks-item-left-min-width-1400px;
+        top: $tasks-item-top-2xl;
+        left: $tasks-item-left-2xl;
     }
     .usersItem {
-        bottom: $users-item-bottom-min-width-1400px;
-        left: $users-item-left-min-width-1400px;
+        bottom: $users-item-bottom-2xl;
+        left: $users-item-left-2xl;
     }
 }

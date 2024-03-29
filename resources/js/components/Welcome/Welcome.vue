@@ -1,6 +1,6 @@
 <template>
     <welcome-navbar></welcome-navbar>
-    <div class="mt-8">
+    <div class="welcomeContainer">
         <start></start>
         <features></features>
     </div>

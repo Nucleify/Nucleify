@@ -17,13 +17,11 @@ $sidebar-item-margin-left: -1px;
 $sidebar-item-dimensions: 50px;
 $sidebar-item-padding: 14px 13px 13px 13px;
 $sidebar-item-text-align: center;
-
-// Max width 550px
-$sidebar-sidebar-mask-display-max-width-550px: none;
+$sidebar-sidebar-mask-display: none;
 
 // Min width 550px
-$sidebar-sidebar-mask-display-min-width-550px: flex;
+$sidebar-sidebar-mask-display-sm3: flex;
 
 // Min width 992px
-$my-sidebar-display-min-width-992px: flex;
-$my-sidebar-menuitem-text-display-min-width-992px: none;
+$my-sidebar-display-lg2: flex;
+$my-sidebar-menuitem-text-display-lg2: none;

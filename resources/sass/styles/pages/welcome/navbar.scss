@@ -5,6 +5,8 @@
 
 .welcomeNavbar {
     z-index: $welcome-navbar-z-index;
+    position: $welcome-navbar-position;
+    top: $welcome-navbar-top;
 }
 
 .welcomeNavLink {
@@ -26,8 +28,8 @@
 }
 
 // Min width 992px
-@media (min-width: $minWidthLg2) {
+@media (min-width: $min-width-lg2) {
     .applicationHeader {
-        font-size: $application-header-font-size-min-width-992px;
+        font-size: $application-header-font-size-lg2;
     }
 }

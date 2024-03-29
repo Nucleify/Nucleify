@@ -57,9 +57,9 @@
     padding-left: $nav-link-padding-left;
 }
 // Min width 992px
-@media (min-width: $minWidthLg2) {
+@media (min-width: $min-width-lg2) {
     .myNavbar {
-        display: $my-navbar-display-min-width-992px;
+        display: $my-navbar-display-lg2;
     }
 }
 

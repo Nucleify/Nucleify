@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return redirect('/welcome');
+});
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
@@ -34,7 +37,6 @@ Route::middleware(['web', 'auth'])->group(function () {
      *  Contacts
      */
     Route::get('/contacts', [ContactController::class, 'render'])->name('contacts');
-
 
     /**
      *  Activity log

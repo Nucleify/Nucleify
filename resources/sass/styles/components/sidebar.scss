@@ -65,28 +65,26 @@
 .mySidebar .disabledItem {
     opacity: $disabled-item-opacity;
 }
-// Max width  550px
-@media (max-width: $maxWidthSm1) {
-    .p-sidebar,
-    .p-sidebar-mask {
-        display: $sidebar-sidebar-mask-display-max-width-550px;
-    }
+
+.p-sidebar,
+.p-sidebar-mask {
+    display: $sidebar-sidebar-mask-display;
 }
 
 // Min width 550px
-@media (min-width: $minWidthSm3) {
+@media (min-width: $min-width-sm3) {
     .p-sidebar,
     .p-sidebar-mask {
-        display: $sidebar-sidebar-mask-display-min-width-550px;
+        display: $sidebar-sidebar-mask-display-sm3;
     }
 }
 
 // Min width 992px
-@media (min-width: $minWidthLg2) {
+@media (min-width: $min-width-lg2) {
     .mySidebar {
-        display: $my-sidebar-display-min-width-992px;
+        display: $my-sidebar-display-lg2;
     }
     .mySidebar .p-menuitem-text {
-        display: $my-sidebar-menuitem-text-display-min-width-992px;
+        display: $my-sidebar-menuitem-text-display-lg2;
     }
 }

@@ -3,9 +3,10 @@ $panel-container-top: 60px;
 $panel-container-padding-bottom: 8px;
 $panel-container-display: flex;
 $panel-container-flex-direction: column;
-$panel-container-gap: 8px;
+$panel-container-gap: 9px;
 
 // Min width 992px
-$panel-container-top-min-width-992px: 2px;
-$panel-container-padding-min-width-992px: 16px 16px 20px 16px;
-$panel-container-gap-min-width-992px: 20px;
+$panel-container-margin-left-lg2: 65px;
+$panel-container-top-lg2: 0;
+$panel-container-padding-lg2: 6px 16px 7px 16px;
+$panel-container-gap-lg2: 12px;

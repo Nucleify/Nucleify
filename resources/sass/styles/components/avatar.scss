@@ -3,8 +3,8 @@
 @import '../../variables/base/medias_variables';
 
 // Min width 530px
-@media (min-width: $minWidthSm) {
+@media (min-width: $min-width-sm) {
     .p-avatar {
-        right: $avatar-right-min-width-530px;
+        right: $avatar-right-sm;
     }
 }

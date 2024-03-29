@@ -14,8 +14,8 @@
 }
 
 // Min width 768px
-@media (min-width: $minWidthMd) {
+@media (min-width: $min-width-md) {
     #features {
-        top: $features-section-top-min-width-768px;
+        top: $features-section-top-md;
     }
 }
