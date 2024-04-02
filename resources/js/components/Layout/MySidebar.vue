@@ -118,15 +118,14 @@
 import { onMounted, ref, Ref } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
-import { isCurrentUrl, openMenu, useColors } from '../../utils'
+import { handleStyles } from '@/constants'
+import { isCurrentUrl, openMenu } from '@/utils'
 
 defineProps<{
     isAdmin: Ref | null
     items: MenuItem[]
     userMenuItems: MenuItem[]
 }>()
-
-const { mainItemColors, activityItemColors, contactItemColors } = useColors()
 
 const menu = ref()
 const shouldShowSidebar = ref(true)
@@ -138,16 +137,5 @@ onMounted(() => {
     }
 })
 
-const mainStyle = {
-    color: mainItemColors.primary,
-    backgroundColor: mainItemColors.sidebarSelected,
-}
-const activityStyle = {
-    color: activityItemColors.primary,
-    backgroundColor: activityItemColors.sidebarSelected,
-}
-const contactStyle = {
-    color: contactItemColors.primary,
-    backgroundColor: contactItemColors.sidebarSelected,
-}
+const { mainStyle, activityStyle, contactStyle } = handleStyles()
 </script>

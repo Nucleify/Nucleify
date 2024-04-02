@@ -10,6 +10,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
+
 import {
     ActivityLogInterface,
     ChartInterface,
@@ -17,9 +18,8 @@ import {
     ChartType,
     ContactInterface,
     UserInterface,
-} from '../../interfaces'
-
-import { useChart } from '../../utils'
+} from '@/types'
+import { useChart } from '@/utils'
 
 const props = defineProps<{
     type: ChartType

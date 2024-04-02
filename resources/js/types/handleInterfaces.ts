@@ -1,6 +1,6 @@
-import { MessageOrMessagesType } from './handleVariablesTypes'
-import { ToastSeverityType } from './index'
 import { Ref } from 'vue'
+
+import { MessageOrMessagesType, ToastSeverityType } from './'
 
 /**
  *  Activity Log
@@ -14,7 +14,11 @@ export interface ActivityLogInterface {
 export interface ActivityLogApiMethodsInterface {
     results: Ref<ActivityLogInterface[] | undefined>
     getAllActivities: () => Promise<ActivityLogInterface[]> | void
-    deleteActivity: (id: number, getData: () => void, close: (method: string) => void) => Promise<void>
+    deleteActivity: (
+        id: number,
+        getData: () => void,
+        close: (method: string) => void
+    ) => Promise<void>
 }
 
 /**
@@ -70,18 +74,31 @@ export interface ContactInterface {
 export interface ContactApiMethodsInterface {
     results: Ref<ContactInterface[] | undefined>
     getAllContacts: () => Promise<ContactInterface[]>
-    storeContact: (data: ContactInterface, getData: () => void, close: (method: string) => void) => Promise<void>
-    editContact: (data: ContactInterface, getData: () => void, close: (method: string) => void) => Promise<void>
-    deleteContact: (id: number, getData: () => void, close: (method: string) => void) => Promise<void>
+    storeContact: (
+        data: ContactInterface,
+        getData: () => void,
+        close: (method: string) => void
+    ) => Promise<void>
+    editContact: (
+        data: ContactInterface,
+        getData: () => void,
+        close: (method: string) => void
+    ) => Promise<void>
+    deleteContact: (
+        id: number,
+        getData: () => void,
+        close: (method: string) => void
+    ) => Promise<void>
 }
 
 /**
  *  Color items
  */
 export interface ColorItemStyleInterface {
-    backgroundColor: string | null
-    borderColor: string | null
-    boxShadow: string | null
+    color?: string | null
+    backgroundColor?: string | null
+    borderColor?: string | null
+    boxShadow?: string | null
 }
 export interface ColorItemColorsInterface {
     primary: string | null
@@ -89,6 +106,26 @@ export interface ColorItemColorsInterface {
     sidebarSelected?: string | null
 }
 
+/**
+ *  Dropdown
+ */
+export interface DropdownItemInterface {
+    label: string
+    icon: string
+    command?: () => void
+}
+
+/**
+ *  Home
+ */
+export interface HomeItemsInterface {
+    id: number
+    label: string
+    href: string
+    iconClass: string
+    disabled: boolean
+    draggableClass: boolean
+}
 
 /**
  *  Form data
@@ -123,9 +160,35 @@ export interface UserApiMethodsInterface {
     results: Ref<UserInterface[] | undefined>
     getAllUsers: () => Promise<void | UserInterface[]>
     getUser: () => Promise<void | UserInterface>
-    storeUser: (data: UserInterface, getData: () => void, close: (method: string) => void) => Promise<void>
-    editUser: (data: UserInterface, getData: () => void, close: (method: string) => void) => Promise<void>
-    deleteUser: (id: number, getData: () => void, close: (method: string) => void) => Promise<void>
+    storeUser: (
+        data: UserInterface,
+        getData: () => void,
+        close: (method: string) => void
+    ) => Promise<void>
+    editUser: (
+        data: UserInterface,
+        getData: () => void,
+        close: (method: string) => void
+    ) => Promise<void>
+    deleteUser: (
+        id: number,
+        getData: () => void,
+        close: (method: string) => void
+    ) => Promise<void>
+}
+
+/**
+ *  Constants
+ */
+export interface HandleDataInterface {
+    contactData: Ref<ContactInterface>
+    userData: Ref<UserInterface>
+}
+export interface HandleStylesInterface {
+    mainStyle: ColorItemStyleInterface
+    activityStyle: ColorItemStyleInterface
+    contactStyle: ColorItemStyleInterface
+    userStyle: ColorItemStyleInterface
 }
 
 /**
@@ -133,6 +196,9 @@ export interface UserApiMethodsInterface {
  */
 export interface UseApiErrorsServiceInterface {
     apiErrors: (error: ApiErrorsInterface) => void
+}
+export interface UseDragItemsInterface {
+    startDragging: (item: HomeItemsInterface) => void
 }
 export interface UseFlashToastInterface {
     flashToast: (

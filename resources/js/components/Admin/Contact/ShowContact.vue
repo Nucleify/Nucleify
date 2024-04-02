@@ -68,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { ContactInterface } from '../../../interfaces'
+import { ContactInterface } from '@/types'
 
 const props = defineProps<{
     visible: boolean

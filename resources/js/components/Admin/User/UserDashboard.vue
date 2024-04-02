@@ -9,7 +9,7 @@
                         label="New User"
                         @click="openModal('create')"
                         class="text-sm smallHeightButton"
-                        :style="style"
+                        :style="userStyle"
                     />
                 </div>
             </template>
@@ -69,29 +69,29 @@
                                     class="desktopButton myButton"
                                     icon="pi pi-eye"
                                     @click="openModal('show', row.data)"
-                                    :style="style"
+                                    :style="userStyle"
                                 />
                                 <Button
                                     class="desktopButton myButton"
                                     icon="pi pi-pencil"
                                     @click="openModal('edit', row.data)"
-                                    :style="style"
+                                    :style="userStyle"
                                 />
                                 <Button
                                     class="desktopButton myButton"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
-                                    :style="style"
+                                    :style="userStyle"
                                 />
                                 <Button
                                     class="mobileButton myButton"
                                     icon="pi pi-bars"
                                     @click="openMenu(menu, $event, row.data)"
-                                    :style="style"
+                                    :style="userStyle"
                                 />
                                 <Menu
                                     ref="menu"
-                                    :model="items"
+                                    :model="dropdownItems"
                                     :popup="true"
                                     class="w-10rem"
                                 />
@@ -113,7 +113,7 @@
         :getData="getData"
         :options="roleOptions"
         :close="closeModal"
-        :style="style"
+        :style="userStyle"
     />
     <EditUser
         :visible="visibleEdit"
@@ -121,7 +121,7 @@
         :getData="getData"
         :options="roleOptions"
         :close="closeModal"
-        :style="style"
+        :style="userStyle"
     />
     <Dialog :visible="visibleDelete" modal header="Confirm delete user">
         <div class="flex justify-content-between">
@@ -135,7 +135,7 @@
                 label="Confirm"
                 @click="deleteUser(selectedObject.id, getData, closeModal)"
                 class="smallHeightButton"
-                :style="style"
+                :style="userStyle"
             />
         </div>
     </Dialog>
@@ -148,48 +148,17 @@ import CreateUser from './CreateUser.vue'
 import ShowUser from './ShowUser.vue'
 import EditUser from './EditUser.vue'
 
-import { ColorItemStyleInterface, UserInterface } from '../../../interfaces'
-import { useColors, useMenuAndModal, userApiMethods } from '../../../utils'
+import { UserInterface } from '@/types'
+import { handleDropdownItems, handleStyles, roleOptions } from '@/constants'
+import { useMenuAndModal, userApiMethods } from '@/utils'
 
 defineProps<{
     data: UserInterface[] | undefined
     getData: () => void
-    roleOptions: string[]
 }>()
 
-const items = ref([
-    {
-        items: [
-            {
-                label: 'Show',
-                icon: 'pi pi-eye',
-                command: () => {
-                    openModal('show', selectedObject.value)
-                },
-            },
-            {
-                label: 'Edit',
-                icon: 'pi pi-pencil',
-                command: () => {
-                    openModal('edit', selectedObject.value)
-                },
-            },
-            {
-                label: 'Delete',
-                icon: 'pi pi-trash',
-                command: () => {
-                    openModal('delete', selectedObject.value)
-                },
-            },
-            {
-                label: 'Share',
-                icon: 'pi pi-share-alt',
-            },
-        ],
-    },
-])
-
 const menu = ref()
+
 const {
     visibleShow,
     visibleCreate,
@@ -202,11 +171,8 @@ const {
 } = useMenuAndModal()
 
 const { deleteUser } = userApiMethods()
-const { userItemColors } = useColors()
 
-const style: ColorItemStyleInterface = {
-    backgroundColor: userItemColors.primary,
-    borderColor: userItemColors.primary,
-    boxShadow: 'none',
-}
+const { userStyle } = handleStyles()
+
+const { dropdownItems } = handleDropdownItems(selectedObject, openModal)
 </script>

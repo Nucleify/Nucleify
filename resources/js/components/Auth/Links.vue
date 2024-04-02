@@ -9,5 +9,5 @@
 </template>
 
 <script setup lang="ts">
-import { isCurrentUrl } from '../../utils'
+import { isCurrentUrl } from '@/utils'
 </script>

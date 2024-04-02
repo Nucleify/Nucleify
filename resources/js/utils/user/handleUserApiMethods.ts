@@ -1,7 +1,6 @@
 import { Ref, ref } from 'vue'
 import axios from 'axios'
 
-import { useApiErrors, useFlashToast } from '../../utils'
 import {
     GetAllUsersAxiosFunctionType,
     GetAllUsersFunctionType,
@@ -9,7 +8,8 @@ import {
     GetUserAxiosFunctionType,
     UserApiMethodsInterface,
     UserInterface,
-} from '../../interfaces'
+} from '@/types'
+import { useApiErrors, useFlashToast } from '@/utils'
 
 export default function userApiMethods(): UserApiMethodsInterface {
     const { apiErrors } = useApiErrors()

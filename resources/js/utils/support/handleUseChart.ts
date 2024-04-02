@@ -1,3 +1,5 @@
+import { ChartOptions } from 'chart.js'
+
 import {
     ActivityLogInterface,
     ChartMethodType,
@@ -6,9 +8,8 @@ import {
     ContactInterface,
     LabelItemType,
     UserInterface,
-} from '../../interfaces'
-import { ChartOptions } from 'chart.js'
-import useColors from './handleUseColors'
+} from '@/types'
+import { useColors } from '@/utils'
 
 export default function useChart() {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(

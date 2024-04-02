@@ -5,7 +5,7 @@
             ref="draggableContainer"
         >
             <a
-                v-for="item in items"
+                v-for="item in homeItems"
                 :key="item.label"
                 :id="item.label + 'GridItem'"
                 :data-id="item.id"
@@ -30,84 +30,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 import { Swappable } from '@shopify/draggable'
-import { useColors } from '../../utils'
 
-const items = ref([
-    {
-        id: 1,
-        label: 'Contacts',
-        href: '/contacts',
-        iconClass: 'pi pi-user',
-        disabled: false,
-        draggableClass: true,
-    },
-    {
-        id: 2,
-        label: 'Posts',
-        href: '#',
-        iconClass: 'pi pi-comment',
-        disabled: true,
-        draggableClass: true,
-    },
-    {
-        id: 3,
-        label: 'Messages',
-        href: '#',
-        iconClass: 'pi pi-envelope',
-        disabled: true,
-        draggableClass: true,
-    },
-    {
-        id: 4,
-        label: 'Tasks',
-        href: '#',
-        iconClass: 'pi pi-check-square',
-        disabled: true,
-        draggableClass: true,
-    },
-    {
-        id: 5,
-        label: 'Calendar',
-        href: '#',
-        iconClass: 'pi pi-calendar',
-        disabled: true,
-        draggableClass: true,
-    },
-    {
-        id: 6,
-        label: 'Money',
-        href: '#',
-        iconClass: 'pi pi-dollar',
-        disabled: true,
-        draggableClass: true,
-    },
-    {
-        id: 7,
-        label: 'Activities',
-        href: '/activity-log',
-        iconClass: 'pi pi-clock',
-        disabled: false,
-        draggableClass: true,
-    },
-    {
-        id: 8,
-        label: 'Help',
-        href: '#',
-        iconClass: 'pi pi-info-circle',
-        disabled: true,
-        draggableClass: false,
-    },
-    {
-        id: 9,
-        label: 'Settings',
-        href: '#',
-        iconClass: 'pi pi-cog',
-        disabled: true,
-        draggableClass: false,
-    },
-])
+import { homeItems } from '@/constants'
+import { useDragItems } from '@/utils'
 
 let sortable
 
@@ -131,22 +58,7 @@ onUnmounted(() => {
     }
 })
 
-const { activityItemColors, contactItemColors } = useColors()
-
-const startDragging = (item) => {
-    let color
-
-    switch (item.label) {
-        case 'Activities':
-            color = activityItemColors.primary
-            break
-        case 'Contacts':
-            color = contactItemColors.primary
-            break
-    }
-
-    document.getElementById(item.label + 'GridItem').style.color = color
-}
+const { startDragging } = useDragItems()
 </script>
 
 <style scoped>

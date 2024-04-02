@@ -54,7 +54,7 @@
                                     class="myButton activityMyButton"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
-                                    :style="style"
+                                    :style="activityStyle"
                                 />
                             </div>
                         </template>
@@ -82,7 +82,7 @@
                     )
                 "
                 class="smallHeightButton"
-                :style="style"
+                :style="activityStyle"
             />
         </div>
     </Dialog>
@@ -91,9 +91,10 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { MyChart } from '../'
-import { activityApiMethods, useColors, useMenuAndModal } from '../../utils'
-import { ColorItemStyleInterface } from '../../interfaces'
+import { MyChart } from '@/components'
+
+import { handleStyles } from '@/constants'
+import { activityApiMethods, useMenuAndModal } from '@/utils'
 
 const { visibleDelete, selectedObject, openModal, closeModal } =
     useMenuAndModal()
@@ -104,13 +105,7 @@ const {
     deleteActivity,
 } = activityApiMethods()
 
+const { activityStyle } = handleStyles()
+
 onMounted(getAllActivities)
-
-const { activityItemColors } = useColors()
-
-const style: ColorItemStyleInterface = {
-    backgroundColor: activityItemColors.primary,
-    borderColor: activityItemColors.primary,
-    boxShadow: 'none',
-}
 </script>

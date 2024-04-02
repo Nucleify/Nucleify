@@ -109,8 +109,9 @@
 import { ref } from 'vue'
 
 import Links from './Links.vue'
-import { useSubmitAuthForm } from '../../utils'
-import { RegisterFormInterface } from '../../interfaces'
+
+import { RegisterFormInterface } from '@/types'
+import { useSubmitAuthForm } from '@/utils'
 
 const data = ref<RegisterFormInterface>({
     name: '',

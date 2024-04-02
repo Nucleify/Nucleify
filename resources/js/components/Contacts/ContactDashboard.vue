@@ -19,7 +19,7 @@
                         label="New Contact"
                         @click="openModal('create')"
                         class="text-sm smallHeightButton"
-                        :style="style"
+                        :style="contactStyle"
                     />
                 </div>
             </template>
@@ -79,27 +79,31 @@
                                     class="desktopButton myButton"
                                     icon="pi pi-eye"
                                     @click="openModal('show', row.data)"
-                                    :style="style"
+                                    :style="contactStyle"
                                 />
                                 <Button
                                     class="desktopButton myButton"
                                     icon="pi pi-pencil"
                                     @click="openModal('edit', row.data)"
-                                    :style="style"
+                                    :style="contactStyle"
                                 />
                                 <Button
                                     class="desktopButton myButton"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
-                                    :style="style"
+                                    :style="contactStyle"
                                 />
                                 <Button
                                     class="mobileButton myButton"
                                     icon="pi pi-bars"
                                     @click="openMenu(menu, $event, row.data)"
-                                    :style="style"
+                                    :style="contactStyle"
                                 />
-                                <Menu ref="menu" :model="items" :popup="true" />
+                                <Menu
+                                    ref="menu"
+                                    :model="dropdownItems"
+                                    :popup="true"
+                                />
                             </div>
                         </template>
                     </Column>
@@ -118,7 +122,7 @@
         :visible="visibleCreate"
         :options="roleOptions"
         :close="closeModal"
-        :style="style"
+        :style="contactStyle"
     />
     <EditContact
         :contact="selectedObject"
@@ -126,7 +130,7 @@
         :visible="visibleEdit"
         :options="roleOptions"
         :close="closeModal"
-        :style="style"
+        :style="contactStyle"
     />
     <Dialog :visible="visibleDelete" modal header="Confirm delete contact">
         <div class="flex justify-content-between">
@@ -142,7 +146,7 @@
                     deleteContact(selectedObject.id, getAllContacts, closeModal)
                 "
                 class="smallHeightButton"
-                :style="style"
+                :style="contactStyle"
             />
         </div>
     </Dialog>
@@ -151,15 +155,16 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-import { MyChart } from '../'
+import { MyChart } from '@/components'
+
 import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
 
-import { contactApiMethods, useColors, useMenuAndModal } from '../../utils'
-import { ColorItemStyleInterface } from '../../interfaces'
+import { handleDropdownItems, handleStyles, roleOptions } from '@/constants'
+import { contactApiMethods, useMenuAndModal } from '@/utils'
 
-const roleOptions = ['user', 'tech', 'test_admin', 'admin', 'super_admin']
+const menu = ref()
 
 const {
     visibleShow,
@@ -174,46 +179,9 @@ const {
 
 const { results, getAllContacts, deleteContact } = contactApiMethods()
 
-const menu = ref()
-const items = ref([
-    {
-        items: [
-            {
-                label: 'Show',
-                icon: 'pi pi-eye',
-                command: () => {
-                    openModal('show', selectedObject.value)
-                },
-            },
-            {
-                label: 'Edit',
-                icon: 'pi pi-pencil',
-                command: () => {
-                    openModal('edit', selectedObject.value)
-                },
-            },
-            {
-                label: 'Delete',
-                icon: 'pi pi-trash',
-                command: () => {
-                    openModal('delete', selectedObject.value)
-                },
-            },
-            {
-                label: 'Share',
-                icon: 'pi pi-share-alt',
-            },
-        ],
-    },
-])
+const { contactStyle } = handleStyles()
+
+const { dropdownItems } = handleDropdownItems(selectedObject, openModal)
 
 onMounted(getAllContacts)
-
-const { contactItemColors } = useColors()
-
-const style: ColorItemStyleInterface = {
-    backgroundColor: contactItemColors.primary,
-    borderColor: contactItemColors.primary,
-    boxShadow: 'none',
-}
 </script>

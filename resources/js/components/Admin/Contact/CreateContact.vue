@@ -95,9 +95,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { contactApiMethods } from '../../../utils'
-import { ColorItemStyleInterface, ContactInterface } from '../../../interfaces'
+import { ColorItemStyleInterface } from '@/types'
+import { handleData } from '@/constants'
+import { contactApiMethods } from '@/utils'
 
 const props = defineProps<{
     getData: () => void
@@ -107,18 +107,7 @@ const props = defineProps<{
     style: ColorItemStyleInterface
 }>()
 
-const data = ref<ContactInterface>({
-    first_name: '',
-    last_name: '',
-    full_name: '',
-    email: '',
-    personal_phone: '',
-    work_phone: '',
-    address: '',
-    birthday: '',
-    contact_groups: '',
-    role: '',
-})
+const { contactData: data } = handleData()
 
 const { storeContact } = contactApiMethods()
 </script>

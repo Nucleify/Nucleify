@@ -1,6 +1,7 @@
 import { ref, Ref } from 'vue'
-import { ObjectType } from '../../interfaces'
 import Menu from 'primevue/menu'
+
+import { ObjectType } from '@/types'
 
 export default function useMenuAndModal() {
     const visibleShow: Ref<boolean> = ref(false)
@@ -71,6 +72,5 @@ export default function useMenuAndModal() {
         openModal,
         closeModal,
         openMenu,
-        setSelectedObject,
     }
 }

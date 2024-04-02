@@ -1,7 +1,10 @@
 import { AxiosResponse } from 'axios'
+
 import { ActivityLogInterface, ContactInterface, UserInterface } from './'
 
-export type GetAllActivitiesAxiosFunctionType = Promise<ActivityLogInterface[]> | void
+export type GetAllActivitiesAxiosFunctionType = Promise<
+    ActivityLogInterface[]
+> | void
 
 export type GetAllContactsAxiosFunctionType = AxiosResponse<ContactInterface[]>
 export type GetAllContactsFunctionType = Promise<ContactInterface[]>

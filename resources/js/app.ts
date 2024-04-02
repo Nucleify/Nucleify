@@ -56,7 +56,7 @@ import {
     TestLoginButton,
     Welcome,
     WelcomeNavbar,
-} from './components'
+} from '@/components'
 
 app.component('activity-log', ActivityLog)
     .component('admin-panel', AdminPanel)

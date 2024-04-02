@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { UserInterface } from '../../../interfaces'
+import { UserInterface } from '@/types'
 
 const props = defineProps<{
     visible: boolean

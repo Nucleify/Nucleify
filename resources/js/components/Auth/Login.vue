@@ -69,9 +69,10 @@
 import { ref } from 'vue'
 
 import Links from './Links.vue'
-import { TestLoginButton } from '../'
-import { useSubmitAuthForm } from '../../utils'
-import { LoginFormInterface } from '../../interfaces'
+
+import { TestLoginButton } from '@/components'
+import { LoginFormInterface } from '@/types'
+import { useSubmitAuthForm } from '@/utils'
 
 const data = ref<LoginFormInterface>({
     email: '',

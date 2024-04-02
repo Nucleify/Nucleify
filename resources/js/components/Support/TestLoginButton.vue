@@ -11,5 +11,5 @@
 </template>
 
 <script setup lang="ts">
-import { testLogin } from '../../utils'
+import { testLogin } from '@/utils'
 </script>

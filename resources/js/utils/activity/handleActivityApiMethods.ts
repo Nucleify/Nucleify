@@ -1,12 +1,13 @@
 import { Ref, ref } from 'vue'
 import axios, { AxiosResponse } from 'axios'
 
-import { useApiErrors, useFlashToast } from '../../utils'
 import {
     GetAllActivitiesAxiosFunctionType,
     ActivityLogApiMethodsInterface,
     ActivityLogInterface,
-} from '../../interfaces'
+} from '@/types'
+import { useApiErrors, useFlashToast } from '@/utils'
+
 export default function activityApiMethods(): ActivityLogApiMethodsInterface {
     const { apiErrors } = useApiErrors()
     const { flashToast } = useFlashToast()

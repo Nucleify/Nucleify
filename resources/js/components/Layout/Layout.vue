@@ -18,8 +18,8 @@ import { MenuItem } from 'primevue/menuitem'
 import MyNavbar from './MyNavbar.vue'
 import MySidebar from './MySidebar.vue'
 
-import { userApiMethods, logout, setUserToSessionStorage } from '../../utils'
-import { IsAdminType } from '../../interfaces'
+import { IsAdminType } from '@/types'
+import { userApiMethods, logout, setUserToSessionStorage } from '@/utils'
 
 const { getUser } = userApiMethods()
 

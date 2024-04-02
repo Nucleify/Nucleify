@@ -64,9 +64,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { userApiMethods } from '../../../utils'
-import { ColorItemStyleInterface, UserInterface } from '../../../interfaces'
+import { ColorItemStyleInterface } from '@/types'
+import { handleData } from '@/constants'
+import { userApiMethods } from '@/utils'
 
 const props = defineProps<{
     getData: () => void
@@ -76,13 +76,7 @@ const props = defineProps<{
     style: ColorItemStyleInterface
 }>()
 
-const data = ref<UserInterface>({
-    name: '',
-    email: '',
-    role: '',
-    password: '',
-    confirm_password: '',
-})
+const { userData: data } = handleData()
 
 const { storeUser } = userApiMethods()
 </script>

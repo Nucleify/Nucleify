@@ -1,4 +1,4 @@
-import { UserInterface } from '../../interfaces'
+import { UserInterface } from '@/types'
 
 // TODO: Use it in login function when we replace Blade Auth::routes() views to Vue components
 export default function setUserToSessionStorage(user: UserInterface): void {

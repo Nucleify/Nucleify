@@ -1,8 +1,5 @@
-import { useFlashToast } from '../'
-import {
-    ApiErrorsInterface,
-    UseApiErrorsServiceInterface,
-} from '../../interfaces'
+import { ApiErrorsInterface, UseApiErrorsServiceInterface } from '@/types'
+import { useFlashToast } from '@/utils'
 
 export default function useApiErrors(): UseApiErrorsServiceInterface {
     const { flashToast } = useFlashToast()

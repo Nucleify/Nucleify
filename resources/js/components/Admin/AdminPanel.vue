@@ -1,3 +1,4 @@
+<!--suppress HtmlUnknownAnchorTarget -->
 <template>
     <div class="panelContainer">
         <div
@@ -8,7 +9,7 @@
                     <div class="adminBricksCircle" :style="contactCircleStyle">
                         <div>
                             <p class="adminBricksCircleNumber">
-                                {{ contacts.length }}
+                                {{ contacts?.length }}
                             </p>
                             <i class="pi pi-users adminBricksIcon" />
                         </div>
@@ -26,7 +27,7 @@
                     <div class="adminBricksCircle" :style="userCircleStyle">
                         <div>
                             <p class="adminBricksCircleNumber">
-                                {{ users.length }}
+                                {{ users?.length }}
                             </p>
                             <i class="pi pi-users adminBricksIcon" />
                         </div>
@@ -41,7 +42,6 @@
                     <my-chart
                         :chart-method-type="'count'"
                         :type="'pie'"
-                        :activity-log-data="undefined"
                         :userData="users"
                         :contactData="contacts"
                         :chart-class="'h-16 w-16 -mt-4'"
@@ -62,29 +62,19 @@
             </template>
         </Card>
 
-        <contact-dashboard
-            :data="contacts"
-            :getData="getAllContacts"
-            :roleOptions="roleOptions"
-        />
-        <user-dashboard
-            :data="users"
-            :getData="getAllUsers"
-            :roleOptions="roleOptions"
-        />
+        <contact-dashboard :data="contacts" :getData="getAllContacts" />
+        <user-dashboard :data="users" :getData="getAllUsers" />
     </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { MyChart } from '../'
+import { MyChart } from '@/components'
 import ContactDashboard from './Contact/ContactDashboard.vue'
 import UserDashboard from './User/UserDashboard.vue'
 
-import { contactApiMethods, useColors, userApiMethods } from '../../utils'
-
-const roleOptions = ['user', 'tech', 'test_admin', 'admin', 'super_admin']
+import { contactApiMethods, useColors, userApiMethods } from '@/utils'
 
 const { results: users, getAllUsers } = userApiMethods()
 const { results: contacts, getAllContacts } = contactApiMethods()

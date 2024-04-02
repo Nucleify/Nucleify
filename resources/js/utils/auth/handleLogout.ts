@@ -1,9 +1,5 @@
-import {
-    CSRFTokenType,
-    CSRFTokenInputType,
-    LogoutFormType,
-} from '../../interfaces'
-import { removeUserFromSessionStorage } from '../../utils'
+import { CSRFTokenType, CSRFTokenInputType, LogoutFormType } from '@/types'
+import { removeUserFromSessionStorage } from '@/utils'
 
 export default function logout(): void {
     const csrf: CSRFTokenType = document

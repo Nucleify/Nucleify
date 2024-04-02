@@ -1,6 +1,7 @@
 import axios from 'axios'
-import { LoginFormInterface, RegisterFormInterface } from '../../interfaces'
-import { useApiErrors } from '../index'
+
+import { LoginFormInterface, RegisterFormInterface } from '@/types'
+import { useApiErrors } from '@/utils'
 
 export default function useSubmitAuthForm(): {
     submitAuthForm: (

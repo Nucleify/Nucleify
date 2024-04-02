@@ -46,10 +46,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs, watch } from 'vue'
+import { toRefs, watch } from 'vue'
 
-import { ColorItemStyleInterface, UserInterface } from '../../../interfaces'
-import { userApiMethods } from '../../../utils'
+import { ColorItemStyleInterface, UserInterface } from '@/types'
+import { handleData } from '@/constants'
+import { userApiMethods } from '@/utils'
 
 const props = defineProps<{
     user: UserInterface
@@ -60,13 +61,10 @@ const props = defineProps<{
     style: ColorItemStyleInterface
 }>()
 
-const data = ref<UserInterface>({
-    name: '',
-    email: '',
-    role: '',
-})
-
 const { visible, user } = toRefs(props)
+
+const { userData: data } = handleData()
+
 const { editUser } = userApiMethods()
 
 /**

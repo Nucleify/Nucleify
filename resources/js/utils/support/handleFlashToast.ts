@@ -5,8 +5,8 @@ import {
     MessageOrMessagesType,
     ToastSeverityType,
     UseFlashToastInterface,
-} from '../../interfaces'
-import { closeToast } from '../index'
+} from '@/types'
+import { closeToast } from '@/utils'
 
 export default function useFlashToast(): UseFlashToastInterface {
     const toast: ToastServiceMethods = useToast()

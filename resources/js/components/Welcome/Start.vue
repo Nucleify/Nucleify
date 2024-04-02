@@ -42,5 +42,5 @@
 </template>
 
 <script setup lang="ts">
-import { navigateTo } from '../../utils'
+import { navigateTo } from '@/utils'
 </script>

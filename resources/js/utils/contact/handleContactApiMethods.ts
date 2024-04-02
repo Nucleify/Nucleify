@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { ref, Ref } from 'vue'
 
-import { useApiErrors, useFlashToast } from '../../utils'
 import {
     ContactApiMethodsInterface,
     GetAllContactsAxiosFunctionType,
     GetAllContactsFunctionType,
     ContactInterface,
-} from '../../interfaces'
+} from '@/types'
+import { useApiErrors, useFlashToast } from '@/utils'
 
 export default function contactApiMethods(): ContactApiMethodsInterface {
     const results: Ref<ContactInterface[] | undefined> = ref([])

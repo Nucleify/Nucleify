@@ -1,4 +1,4 @@
-import { ColorItemColorsInterface } from '../../interfaces'
+import { ColorItemColorsInterface } from '@/types'
 
 export default function useColors() {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(
@@ -53,7 +53,7 @@ export default function useColors() {
             'user-item-hover-color',
         ]
 
-        properties.forEach((property: string) => {
+        properties.forEach((property: string): void => {
             if (!window.localStorage.getItem(property)) {
                 window.localStorage.setItem(
                     property,
