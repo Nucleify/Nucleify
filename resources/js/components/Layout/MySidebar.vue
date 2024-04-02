@@ -14,7 +14,7 @@
                 href="/home"
                 class="sidebarItem"
                 v-tooltip.right="'Home'"
-                :style="isCurrentUrl('/home') ? contactStyle : ''"
+                :style="isCurrentUrl('/home') ? mainStyle : ''"
             >
                 <i class="pi pi-home" />
             </a>
@@ -23,7 +23,7 @@
                 class="sidebarItem"
                 v-if="isAdmin"
                 v-tooltip.right="'Admin Panel'"
-                :style="isCurrentUrl('/admin') ? contactStyle : ''"
+                :style="isCurrentUrl('/admin') ? mainStyle : ''"
             >
                 <i class="pi pi-users" />
             </a>
@@ -89,9 +89,10 @@
                     <i class="pi pi-info-circle" />
                 </a>
                 <a
-                    href="#"
-                    class="sidebarItem disabledItem"
+                    href="/settings"
+                    class="sidebarItem"
                     v-tooltip.right="'Settings'"
+                    :style="isCurrentUrl('/settings') ? mainStyle : ''"
                 >
                     <i class="pi pi-cog" />
                 </a>
@@ -125,15 +126,11 @@ defineProps<{
     userMenuItems: MenuItem[]
 }>()
 
-const { activityItemColors, contactItemColors } = useColors()
+const { mainItemColors, activityItemColors, contactItemColors } = useColors()
 
 const menu = ref()
 const shouldShowSidebar = ref(true)
-const excludedPaths = [
-    '/login',
-    '/register',
-    '/welcome'
-]
+const excludedPaths = ['/login', '/register', '/welcome']
 
 onMounted(() => {
     if (excludedPaths.some((path) => isCurrentUrl(path))) {
@@ -141,6 +138,10 @@ onMounted(() => {
     }
 })
 
+const mainStyle = {
+    color: mainItemColors.primary,
+    backgroundColor: mainItemColors.sidebarSelected,
+}
 const activityStyle = {
     color: activityItemColors.primary,
     backgroundColor: activityItemColors.sidebarSelected,

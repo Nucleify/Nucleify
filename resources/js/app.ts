@@ -51,6 +51,7 @@ import {
     Home,
     Login,
     MyLayout,
+    Settings,
     Register,
     TestLoginButton,
     Welcome,
@@ -63,6 +64,7 @@ app.component('activity-log', ActivityLog)
     .component('home', Home)
     .component('login', Login)
     .component('my-layout', MyLayout)
+    .component('settings', Settings)
     .component('register', Register)
     .component('test-login-button', TestLoginButton)
     .component('welcome', Welcome)

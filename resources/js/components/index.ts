@@ -30,6 +30,11 @@ export { default as Home } from './Home/Home.vue'
 export { default as MyLayout } from './Layout/Layout.vue'
 
 /**
+ *  Settings
+ */
+export { default as Settings } from './Settings/Settings.vue'
+
+/**
  *  Support
  */
 export { default as MyChart } from './Support/MyChart.vue'

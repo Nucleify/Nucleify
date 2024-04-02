@@ -4,6 +4,14 @@ export default function useColors() {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(
         document.documentElement
     )
+
+    const mainItemColors: ColorItemColorsInterface = {
+        primary: window.localStorage.getItem('main-item-color'),
+        hover: window.localStorage.getItem('main-item-hover-color'),
+        sidebarSelected: window.localStorage.getItem(
+            'main-sidebar-item-selected-color'
+        ),
+    }
     const activityItemColors: ColorItemColorsInterface = {
         primary: window.localStorage.getItem('activity-item-color'),
         hover: window.localStorage.getItem('activity-item-hover-color'),
@@ -25,6 +33,11 @@ export default function useColors() {
 
     function setDefaultColors(): void {
         const properties: string[] = [
+            // Main properties
+            'main-item-color',
+            'main-item-hover-color',
+            'main-sidebar-item-selected-color',
+
             // Activity properties
             'activity-item-color',
             'activity-item-hover-color',
@@ -51,6 +64,7 @@ export default function useColors() {
     }
 
     return {
+        mainItemColors,
         activityItemColors,
         contactItemColors,
         userItemColors,
