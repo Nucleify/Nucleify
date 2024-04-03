@@ -4,7 +4,7 @@
 
 This website helps to storage various data types and share it with others. My target is to create fully responsive, functional and scalable website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) and [FDD](https://en.wikipedia.org/wiki/Feature-driven_development) principles.
 
-[Preview!](https://datamanager-sc-9f0092230dcb.herokuapp.com)
+[Preview!](http://datamanager.szymco.de)
 
 
 <br>
