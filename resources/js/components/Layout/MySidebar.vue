@@ -14,7 +14,7 @@
                 href="/home"
                 class="sidebarItem"
                 v-tooltip.right="'Home'"
-                :style="isCurrentUrl('/home') ? mainStyle : ''"
+                :style="isCurrentUrl('/home') ? mainSidebarItemStyle : ''"
             >
                 <i class="pi pi-home" />
             </a>
@@ -23,7 +23,7 @@
                 class="sidebarItem"
                 v-if="isAdmin"
                 v-tooltip.right="'Admin Panel'"
-                :style="isCurrentUrl('/admin') ? mainStyle : ''"
+                :style="isCurrentUrl('/admin') ? mainSidebarItemStyle : ''"
             >
                 <i class="pi pi-users" />
             </a>
@@ -31,7 +31,9 @@
                 href="/contacts"
                 class="sidebarItem"
                 v-tooltip.right="'Contacts'"
-                :style="isCurrentUrl('/contacts') ? contactStyle : ''"
+                :style="
+                    isCurrentUrl('/contacts') ? contactSidebarItemStyle : ''
+                "
             >
                 <i class="pi pi-user text-lg" />
             </a>
@@ -74,7 +76,11 @@
                 href="/activity-log"
                 class="sidebarItem activitySidebarItem"
                 v-tooltip.right="'Activity Log'"
-                :style="isCurrentUrl('/activity-log') ? activityStyle : ''"
+                :style="
+                    isCurrentUrl('/activity-log')
+                        ? activitySidebarItemStyle
+                        : ''
+                "
             >
                 <i class="pi pi-clock" />
             </a>
@@ -92,7 +98,7 @@
                     href="/settings"
                     class="sidebarItem"
                     v-tooltip.right="'Settings'"
-                    :style="isCurrentUrl('/settings') ? mainStyle : ''"
+                    :style="isCurrentUrl('/settings') ? mainSidebarItemStyle : ''"
                 >
                     <i class="pi pi-cog" />
                 </a>
@@ -137,5 +143,6 @@ onMounted(() => {
     }
 })
 
-const { mainStyle, activityStyle, contactStyle } = handleStyles()
+const { mainSidebarItemStyle, activitySidebarItemStyle, contactSidebarItemStyle } =
+    handleStyles()
 </script>

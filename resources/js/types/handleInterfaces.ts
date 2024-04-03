@@ -185,9 +185,13 @@ export interface HandleDataInterface {
     userData: Ref<UserInterface>
 }
 export interface HandleStylesInterface {
+    mainSidebarItemStyle: ColorItemStyleInterface
     mainStyle: ColorItemStyleInterface
+    activitySidebarItemStyle: ColorItemStyleInterface
     activityStyle: ColorItemStyleInterface
+    contactSidebarItemStyle: ColorItemStyleInterface
     contactStyle: ColorItemStyleInterface
+    userSidebarItemStyle: ColorItemStyleInterface
     userStyle: ColorItemStyleInterface
 }
 
