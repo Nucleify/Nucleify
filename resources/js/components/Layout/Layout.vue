@@ -68,6 +68,7 @@ const items = ref<MenuItem>([
     {
         label: 'Settings',
         icon: 'pi pi-cog',
+        url: '/settings',
     },
 ])
 
