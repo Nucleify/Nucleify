@@ -13,6 +13,7 @@ import Avatar from 'primevue/avatar'
 import Button from 'primevue/button'
 import Card from 'primevue/card'
 import Chart from 'primevue/chart'
+import ColorPicker from 'primevue/colorpicker'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
 import Dialog from 'primevue/dialog'
@@ -29,6 +30,7 @@ app.component('Avatar', Avatar)
     .component('Button', Button)
     .component('Card', Card)
     .component('Chart', Chart)
+    .component('ColorPicker', ColorPicker)
     .component('Column', Column)
     .component('DataTable', DataTable)
     .component('Dialog', Dialog)
@@ -50,6 +52,7 @@ import {
     ContactDashboard,
     Home,
     Login,
+    MyColorPicker,
     MyLayout,
     Settings,
     Register,
@@ -63,6 +66,7 @@ app.component('activity-log', ActivityLog)
     .component('contacts-dashboard', ContactDashboard)
     .component('home', Home)
     .component('login', Login)
+    .component('my-color-picker', MyColorPicker)
     .component('my-layout', MyLayout)
     .component('settings', Settings)
     .component('register', Register)

@@ -14,9 +14,12 @@ export { default as testLogin } from './auth/handleTestLogin'
  *  Support
  */
 export { default as closeToast } from './support/handleCloseToast'
+export { default as darkenColor } from './support/handleDarkenColor'
 export { default as isCurrentUrl } from './support/handleIsCurrentUrl'
 export { default as openMenu } from './support/handleOpenMenu'
 export { default as navigateTo } from './support/handleNavigateTo'
+export { default as setOpacity } from './support/handleSetOpacity'
+export { default as useColorPicker } from './support/handleUseColorPicker'
 export { default as useColors } from './support/handleUseColors'
 export { default as useDragItems } from './support/handleUseDragItems'
 export { default as useFlashToast } from './support/handleFlashToast'

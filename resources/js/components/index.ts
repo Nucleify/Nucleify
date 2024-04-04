@@ -38,6 +38,7 @@ export { default as Settings } from './Settings/Settings.vue'
  *  Support
  */
 export { default as MyChart } from './Support/MyChart.vue'
+export { default as MyColorPicker } from './Support/MyColorPicker.vue'
 export { default as TestLoginButton } from './Support/TestLoginButton.vue'
 
 /**
