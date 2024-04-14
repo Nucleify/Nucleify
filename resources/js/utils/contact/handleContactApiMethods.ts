@@ -17,7 +17,7 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
     const { flashToast } = useFlashToast()
 
     async function getAllContacts(): GetAllContactsFunctionType {
-        await axios
+        return await axios
             .get('/api/contacts')
             .then((response: GetAllContactsAxiosFunctionType) => {
                 return (results.value = response.data)
@@ -35,7 +35,7 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
     ): Promise<void> {
         const user_id = window.sessionStorage.getItem('user_id')
 
-        await axios
+        return await axios
             .post('/api/contacts', {
                 user_id: user_id,
                 first_name: data.first_name,
@@ -64,7 +64,7 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
         getData: () => void,
         close: (method: string) => void
     ): Promise<void> {
-        await axios
+        return await axios
             .put('/api/contacts/' + data.id, {
                 first_name: data.first_name,
                 last_name: data.last_name,
@@ -92,7 +92,7 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
         getData: () => void,
         close: (method: string) => void
     ): Promise<void> {
-        await axios
+        return await axios
             .delete(`/api/contacts/${id}`)
             .then((response) => {
                 getData()

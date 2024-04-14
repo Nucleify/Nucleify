@@ -15,7 +15,7 @@ export default function activityApiMethods(): ActivityLogApiMethodsInterface {
     const results: ActivityResultsType = ref([])
 
     async function getAllActivities(): GetAllActivitiesAxiosFunctionType {
-        await axios
+        return await axios
             .get('/api/activity-log')
             .then((response: AxiosResponse<ActivityLogInterface[]>) => {
                 return (results.value = response.data)
@@ -31,7 +31,7 @@ export default function activityApiMethods(): ActivityLogApiMethodsInterface {
         getData: () => void,
         close: (method: string) => void
     ): Promise<void> {
-        await axios
+        return await axios
             .delete(`/api/activity-log/${id}`)
             .then((response) => {
                 getData()

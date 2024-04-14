@@ -18,7 +18,7 @@ export default function userApiMethods(): UserApiMethodsInterface {
     const results: UserResultsType = ref([])
 
     async function getAllUsers(): GetAllUsersFunctionType {
-        await axios
+        return await axios
             .get('/api/users')
             .then((response: GetAllUsersAxiosFunctionType) => {
                 return (results.value = response.data)
@@ -29,7 +29,7 @@ export default function userApiMethods(): UserApiMethodsInterface {
     }
 
     async function getUser(): GetUserFunctionType {
-        await axios
+        return await axios
             .get('/api/user')
             .then((response: GetUserAxiosFunctionType) => {
                 return response.data
@@ -44,7 +44,7 @@ export default function userApiMethods(): UserApiMethodsInterface {
         getData: () => void,
         close: (method: string) => void
     ): Promise<void> {
-        await axios
+        return await axios
             .post('/api/users', {
                 name: data.name,
                 email: data.email,
@@ -68,7 +68,7 @@ export default function userApiMethods(): UserApiMethodsInterface {
         getData: () => void,
         close: (method: string) => void
     ) {
-        await axios
+        return await axios
             .put('/api/users/' + data.id, {
                 name: data.name,
                 email: data.email,
@@ -90,7 +90,7 @@ export default function userApiMethods(): UserApiMethodsInterface {
         getData: () => void,
         close: (method: string) => void
     ): Promise<void> {
-        await axios
+        return await axios
             .delete(`/api/users/${id}`)
             .then((response) => {
                 getAllUsers().catch((error) => {
