@@ -14,9 +14,20 @@ export { default as handleDropdownItems } from './dropdown'
 export { homeItems as homeItems } from './home'
 
 /**
+ * Layout Items
+ */
+export { layoutItems as layoutItems } from './layout'
+export { userMenuItems as userMenuItems } from './layout'
+
+/**
  *  Options
  */
 export { roleOptions as roleOptions } from './options'
+
+/**
+ *  Paths
+ */
+export { excludedPaths as excludedPaths } from './paths'
 
 /**
  *  Styles

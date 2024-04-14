@@ -1,6 +1,30 @@
 import { Ref } from 'vue'
 
-import { MessageOrMessagesType, ToastSeverityType } from './'
+import {
+    ActivityResultsType,
+    ApiErrorsFunctionType,
+    CloseModalFunctionType,
+    ContactResultsType,
+    DeleteEntityFunctionType,
+    EditContactFunctionType,
+    EditUserFunctionType,
+    FlashToastFunctionType,
+    GetAllActivitiesAxiosFunctionType,
+    GetAllContactsFunctionType,
+    GetAllUsersFunctionType,
+    GetSidebarItemStyleFunctionType,
+    GetUserFunctionType,
+    MessageOrMessagesType,
+    OpenMenuFunctionType,
+    OpenModalFunctionType,
+    SelectedObjectType,
+    ShouldRenderSidebarItemFunctionType,
+    StartDraggingFunctionType,
+    StoreContactFunctionType,
+    StoreUserFunctionType,
+    UserResultsType,
+    VisibleType,
+} from '@/types'
 
 /**
  *  Activity Log
@@ -12,13 +36,9 @@ export interface ActivityLogInterface {
     causer_id: number
 }
 export interface ActivityLogApiMethodsInterface {
-    results: Ref<ActivityLogInterface[] | undefined>
-    getAllActivities: () => Promise<ActivityLogInterface[]> | void
-    deleteActivity: (
-        id: number,
-        getData: () => void,
-        close: (method: string) => void
-    ) => Promise<void>
+    results: ActivityResultsType
+    getAllActivities: () => GetAllActivitiesAxiosFunctionType
+    deleteActivity: DeleteEntityFunctionType
 }
 
 /**
@@ -72,23 +92,11 @@ export interface ContactInterface {
     updated_at?: string
 }
 export interface ContactApiMethodsInterface {
-    results: Ref<ContactInterface[] | undefined>
-    getAllContacts: () => Promise<ContactInterface[]>
-    storeContact: (
-        data: ContactInterface,
-        getData: () => void,
-        close: (method: string) => void
-    ) => Promise<void>
-    editContact: (
-        data: ContactInterface,
-        getData: () => void,
-        close: (method: string) => void
-    ) => Promise<void>
-    deleteContact: (
-        id: number,
-        getData: () => void,
-        close: (method: string) => void
-    ) => Promise<void>
+    results: ContactResultsType
+    getAllContacts: () => GetAllContactsFunctionType
+    storeContact: StoreContactFunctionType
+    editContact: EditContactFunctionType
+    deleteContact: DeleteEntityFunctionType
 }
 
 /**
@@ -157,24 +165,12 @@ export interface UserInterface {
     email_verified_at?: string
 }
 export interface UserApiMethodsInterface {
-    results: Ref<UserInterface[] | undefined>
-    getAllUsers: () => Promise<void | UserInterface[]>
-    getUser: () => Promise<void | UserInterface>
-    storeUser: (
-        data: UserInterface,
-        getData: () => void,
-        close: (method: string) => void
-    ) => Promise<void>
-    editUser: (
-        data: UserInterface,
-        getData: () => void,
-        close: (method: string) => void
-    ) => Promise<void>
-    deleteUser: (
-        id: number,
-        getData: () => void,
-        close: (method: string) => void
-    ) => Promise<void>
+    results: UserResultsType
+    getAllUsers: () => GetAllUsersFunctionType
+    getUser: () => GetUserFunctionType
+    storeUser: StoreUserFunctionType
+    editUser: EditUserFunctionType
+    deleteUser: DeleteEntityFunctionType
 }
 
 /**
@@ -199,14 +195,30 @@ export interface HandleStylesInterface {
  *  Use functions
  */
 export interface UseApiErrorsServiceInterface {
-    apiErrors: (error: ApiErrorsInterface) => void
+    apiErrors: ApiErrorsFunctionType
 }
 export interface UseDragItemsInterface {
-    startDragging: (item: HomeItemsInterface) => void
+    startDragging: StartDraggingFunctionType
 }
 export interface UseFlashToastInterface {
-    flashToast: (
-        messageOrMessages: MessageOrMessagesType,
-        severity: ToastSeverityType
-    ) => void
+    flashToast: FlashToastFunctionType
+}
+export interface UseMenuAndModalInterface {
+    visibleShow: VisibleType
+    visibleCreate: VisibleType
+    visibleEdit: VisibleType
+    visibleDelete: VisibleType
+    selectedObject: SelectedObjectType
+    openModal: OpenModalFunctionType
+    closeModal: CloseModalFunctionType
+    openMenu: OpenMenuFunctionType
+}
+export interface UseSubmitAuthFormInterface {
+    submitAuthForm: (
+        data: LoginFormInterface | RegisterFormInterface
+    ) => Promise<void>
+}
+export interface UseSidebarInterface {
+    shouldRenderSidebarItem: ShouldRenderSidebarItemFunctionType
+    getSidebarItemStyle: GetSidebarItemStyleFunctionType
 }

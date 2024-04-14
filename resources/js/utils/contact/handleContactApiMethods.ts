@@ -1,22 +1,23 @@
 import axios from 'axios'
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
 
 import {
     ContactApiMethodsInterface,
     GetAllContactsAxiosFunctionType,
     GetAllContactsFunctionType,
     ContactInterface,
+    ContactResultsType,
 } from '@/types'
 import { useApiErrors, useFlashToast } from '@/utils'
 
 export default function contactApiMethods(): ContactApiMethodsInterface {
-    const results: Ref<ContactInterface[] | undefined> = ref([])
+    const results: ContactResultsType = ref([])
 
     const { apiErrors } = useApiErrors()
     const { flashToast } = useFlashToast()
 
-    function getAllContacts(): GetAllContactsFunctionType {
-        return axios
+    async function getAllContacts(): GetAllContactsFunctionType {
+        await axios
             .get('/api/contacts')
             .then((response: GetAllContactsAxiosFunctionType) => {
                 return (results.value = response.data)

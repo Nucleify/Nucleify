@@ -21,7 +21,7 @@
         @auth
             <my-layout></my-layout>
 
-            <main class="p-2 lg:p-1">
+            <main>
                 @yield('content')
             </main>
         @endauth

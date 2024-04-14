@@ -22,10 +22,12 @@ export { default as setOpacity } from './support/handleSetOpacity'
 export { default as useColorPicker } from './support/handleUseColorPicker'
 export { default as useColors } from './support/handleUseColors'
 export { default as useDragItems } from './support/handleUseDragItems'
+export { default as useIsAdmin } from './support/handleUseIsAdmin'
 export { default as useFlashToast } from './support/handleFlashToast'
 export { default as useApiErrors } from './support/handleApiErrors'
 export { default as useChart } from './support/handleUseChart'
 export { default as useMenuAndModal } from './support/handleUseMenuAndModal'
+export { default as useSidebar } from './support/handleUseSidebar'
 
 /**
  *  User

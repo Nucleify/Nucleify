@@ -5,7 +5,7 @@
 .panelContainer {
     position: $panel-container-position;
     top: $panel-container-top;
-    padding-bottom: $panel-container-padding-bottom;
+    padding: $panel-container-padding;
     display: $panel-container-display;
     flex-direction: $panel-container-flex-direction;
     gap: $panel-container-gap;

@@ -1,20 +1,21 @@
-import { Ref, ref } from 'vue'
+import { ref } from 'vue'
 import axios, { AxiosResponse } from 'axios'
 
 import {
     GetAllActivitiesAxiosFunctionType,
     ActivityLogApiMethodsInterface,
     ActivityLogInterface,
+    ActivityResultsType,
 } from '@/types'
 import { useApiErrors, useFlashToast } from '@/utils'
 
 export default function activityApiMethods(): ActivityLogApiMethodsInterface {
     const { apiErrors } = useApiErrors()
     const { flashToast } = useFlashToast()
-    const results: Ref<ActivityLogInterface[] | undefined> = ref([])
+    const results: ActivityResultsType = ref([])
 
-    function getAllActivities(): GetAllActivitiesAxiosFunctionType {
-        axios
+    async function getAllActivities(): GetAllActivitiesAxiosFunctionType {
+        await axios
             .get('/api/activity-log')
             .then((response: AxiosResponse<ActivityLogInterface[]>) => {
                 return (results.value = response.data)

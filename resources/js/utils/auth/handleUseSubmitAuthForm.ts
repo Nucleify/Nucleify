@@ -1,18 +1,18 @@
 import axios from 'axios'
 
-import { LoginFormInterface, RegisterFormInterface } from '@/types'
+import {
+    LoginFormInterface,
+    RegisterFormInterface,
+    UseSubmitAuthFormInterface,
+} from '@/types'
 import { useApiErrors } from '@/utils'
 
-export default function useSubmitAuthForm(): {
-    submitAuthForm: (
-        data: LoginFormInterface | RegisterFormInterface
-    ) => Promise<void>
-} {
+export default function useSubmitAuthForm(): UseSubmitAuthFormInterface {
     let url
 
     const { apiErrors } = useApiErrors()
 
-    function submitAuthForm(
+    async function submitAuthForm(
         data: LoginFormInterface | RegisterFormInterface
     ): Promise<void> {
         switch (true) {
@@ -26,7 +26,7 @@ export default function useSubmitAuthForm(): {
                 throw Error
         }
 
-        return axios
+        await axios
             .post(url, data)
             .then((): void => {
                 window.location.href = '/home'

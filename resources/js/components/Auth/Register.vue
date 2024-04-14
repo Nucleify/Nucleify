@@ -1,7 +1,7 @@
 <template>
     <Toast />
     <Links />
-    <div class="p-2">
+    <div class="p-4">
         <Card class="registerCard">
             <template #header>
                 <div class="flex justify-content-center">

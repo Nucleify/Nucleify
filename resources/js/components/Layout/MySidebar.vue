@@ -3,40 +3,20 @@
         class="fixed flex-column h-screen p-3 mySidebar z-100"
         v-if="shouldShowSidebar"
     >
-        <!--        <a href="/" class="mt-2 mb-4 mx-auto">-->
-        <!--            <Avatar-->
-        <!--                class="w-2rem h-2rem"-->
-        <!--            />-->
-        <!--        </a>-->
-
         <div class="flex flex-column justify-content-center w-3rem m-0 gap-3">
-            <a
-                href="/home"
-                class="sidebarItem"
-                v-tooltip.right="'Home'"
-                :style="isCurrentUrl('/home') ? mainSidebarItemStyle : ''"
-            >
-                <i class="pi pi-home" />
-            </a>
-            <a
-                href="/admin"
-                class="sidebarItem"
-                v-if="isAdmin"
-                v-tooltip.right="'Admin Panel'"
-                :style="isCurrentUrl('/admin') ? mainSidebarItemStyle : ''"
-            >
-                <i class="pi pi-users" />
-            </a>
-            <a
-                href="/contacts"
-                class="sidebarItem"
-                v-tooltip.right="'Contacts'"
-                :style="
-                    isCurrentUrl('/contacts') ? contactSidebarItemStyle : ''
-                "
-            >
-                <i class="pi pi-user text-lg" />
-            </a>
+            <template v-for="(item, index) in items">
+                <a
+                    v-if="shouldRenderSidebarItem(item.url)"
+                    :key="index"
+                    :href="item.url"
+                    class="sidebarItem"
+                    v-tooltip.right="item.label"
+                    :style="getSidebarItemStyle(item.url)"
+                >
+                    <i :class="item.icon" />
+                </a>
+            </template>
+            <!-- Disabled sidebar items -->
             <a
                 href="#"
                 class="sidebarItem disabledItem"
@@ -72,19 +52,9 @@
             >
                 <i class="pi pi pi-dollar" />
             </a>
-            <a
-                href="/activity-log"
-                class="sidebarItem activitySidebarItem"
-                v-tooltip.right="'Activity Log'"
-                :style="
-                    isCurrentUrl('/activity-log')
-                        ? activitySidebarItemStyle
-                        : ''
-                "
-            >
-                <i class="pi pi-clock" />
-            </a>
         </div>
+
+        <!-- User menu -->
         <div class="flex flex-column mt-auto justify-content-center">
             <div class="flex flex-column gap-3">
                 <a
@@ -98,7 +68,9 @@
                     href="/settings"
                     class="sidebarItem"
                     v-tooltip.right="'Settings'"
-                    :style="isCurrentUrl('/settings') ? mainSidebarItemStyle : ''"
+                    :style="
+                        isCurrentUrl('/settings') ? mainSidebarItemStyle : ''
+                    "
                 >
                     <i class="pi pi-cog" />
                 </a>
@@ -121,21 +93,19 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, Ref } from 'vue'
+import { ref, onMounted, Ref, UnwrapRef } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
-import { handleStyles } from '@/constants'
-import { isCurrentUrl, openMenu } from '@/utils'
+import { excludedPaths, handleStyles } from '@/constants'
+import { isCurrentUrl, openMenu, useSidebar } from '@/utils'
 
 defineProps<{
-    isAdmin: Ref | null
-    items: MenuItem[]
+    items: Ref<UnwrapRef<MenuItem>>
     userMenuItems: MenuItem[]
 }>()
 
-const menu = ref()
 const shouldShowSidebar = ref(true)
-const excludedPaths = ['/login', '/register', '/welcome']
+const { shouldRenderSidebarItem, getSidebarItemStyle } = useSidebar()
 
 onMounted(() => {
     if (excludedPaths.some((path) => isCurrentUrl(path))) {
@@ -143,6 +113,5 @@ onMounted(() => {
     }
 })
 
-const { mainSidebarItemStyle, activitySidebarItemStyle, contactSidebarItemStyle } =
-    handleStyles()
+const { mainSidebarItemStyle } = handleStyles()
 </script>

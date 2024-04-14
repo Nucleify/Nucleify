@@ -6,6 +6,8 @@
 
 .homeBricksGrid {
     max-width: $home-bricks-grid-max-width;
+    position: $home-bricks-grid-position;
+    top: $home-bricks-grid-top;
 }
 .homeBricksGrid .grid-item {
     min-width: $home-bricks-grid-grid-item-min-width;

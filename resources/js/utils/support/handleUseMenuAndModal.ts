@@ -1,9 +1,9 @@
 import { ref, Ref } from 'vue'
 import Menu from 'primevue/menu'
 
-import { ObjectType } from '@/types'
+import { ObjectType, UseMenuAndModalInterface } from '@/types'
 
-export default function useMenuAndModal() {
+export default function useMenuAndModal(): UseMenuAndModalInterface {
     const visibleShow: Ref<boolean> = ref(false)
     const visibleCreate: Ref<boolean> = ref(false)
     const visibleEdit: Ref<boolean> = ref(false)

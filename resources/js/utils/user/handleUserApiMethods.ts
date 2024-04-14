@@ -8,16 +8,17 @@ import {
     GetUserAxiosFunctionType,
     UserApiMethodsInterface,
     UserInterface,
+    UserResultsType,
 } from '@/types'
 import { useApiErrors, useFlashToast } from '@/utils'
 
 export default function userApiMethods(): UserApiMethodsInterface {
     const { apiErrors } = useApiErrors()
     const { flashToast } = useFlashToast()
-    const results: Ref<UserInterface[] | undefined> = ref([])
+    const results: UserResultsType = ref([])
 
-    function getAllUsers(): GetAllUsersFunctionType {
-        return axios
+    async function getAllUsers(): GetAllUsersFunctionType {
+        await axios
             .get('/api/users')
             .then((response: GetAllUsersAxiosFunctionType) => {
                 return (results.value = response.data)
@@ -27,8 +28,8 @@ export default function userApiMethods(): UserApiMethodsInterface {
             })
     }
 
-    function getUser(): GetUserFunctionType {
-        return axios
+    async function getUser(): GetUserFunctionType {
+        await axios
             .get('/api/user')
             .then((response: GetUserAxiosFunctionType) => {
                 return response.data
