@@ -1,6 +1,7 @@
-import { ColorItemColorsInterface } from '@/types'
+import { ColorItemColorsInterface, UseColorsInterface } from '@/types'
+import { isCurrentUrl } from '@/utils'
 
-export default function useColors() {
+export default function useColors(): UseColorsInterface {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(
         document.documentElement
     )
@@ -54,12 +55,11 @@ export default function useColors() {
         ]
 
         properties.forEach((property: string): void => {
-            if (!window.localStorage.getItem(property)) {
-                window.localStorage.setItem(
-                    property,
-                    documentStyle.getPropertyValue(`--${property}`)
-                )
-            }
+            window.localStorage.setItem(
+                property,
+                documentStyle.getPropertyValue(`--${property}`)
+            )
+            isCurrentUrl('/settings') ? window.location.reload() : ''
         })
     }
 

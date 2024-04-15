@@ -30,6 +30,12 @@ export { roleOptions as roleOptions } from './options'
 export { excludedPaths as excludedPaths } from './paths'
 
 /**
+ *  Settings
+ */
+export { colorList as colorList } from './settings'
+export { displayGraphList as displayGraphList } from './settings'
+
+/**
  *  Styles
  */
 export { default as handleStyles } from './styles'

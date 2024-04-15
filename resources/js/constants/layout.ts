@@ -1,4 +1,4 @@
-import {Ref, ref, UnwrapRef} from 'vue'
+import { Ref, ref, UnwrapRef } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
 import { logout } from '@/utils'

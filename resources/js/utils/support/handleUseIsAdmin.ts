@@ -1,9 +1,14 @@
 import { ref } from 'vue'
 
-import { IsAdminType, UserIdType, UserInterface } from '@/types'
+import {
+    IsAdminType,
+    UseIsAdminFunctionType,
+    UserIdType,
+    UserInterface,
+} from '@/types'
 import { setUserToSessionStorage, userApiMethods } from '@/utils'
 
-export default async function useIsAdmin() {
+export default async function useIsAdmin(): UseIsAdminFunctionType {
     const isAdmin: IsAdminType = ref(null)
     const user_id: UserIdType = window.sessionStorage.getItem('user_id')
 

@@ -1,6 +1,9 @@
 <template>
     <div class="panelContainer">
-        <Card class="myCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4">
+        <Card
+            v-if="display.Activity"
+            class="myCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4"
+        >
             <template #content>
                 <my-chart
                     :chart-method-type="'annual'"
@@ -92,10 +95,10 @@
 import { onMounted } from 'vue'
 
 import { MyChart } from '@/components'
-
 import { handleStyles } from '@/constants'
-import { activityApiMethods, useMenuAndModal } from '@/utils'
+import { activityApiMethods, useDisplayGraphs, useMenuAndModal } from '@/utils'
 
+const { display } = useDisplayGraphs()
 const { visibleDelete, selectedObject, openModal, closeModal } =
     useMenuAndModal()
 

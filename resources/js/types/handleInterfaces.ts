@@ -115,6 +115,16 @@ export interface ColorItemColorsInterface {
 }
 
 /**
+ *  Display graphs
+ */
+export interface DisplayGraphsInterface {
+    [key: string]: boolean
+    Activity: boolean
+    Admin: boolean
+    Contact: boolean
+}
+
+/**
  *  Dropdown
  */
 export interface DropdownItemInterface {
@@ -196,6 +206,19 @@ export interface HandleStylesInterface {
  */
 export interface UseApiErrorsServiceInterface {
     apiErrors: ApiErrorsFunctionType
+}
+export interface UseColorsInterface {
+    mainItemColors: ColorItemColorsInterface
+    activityItemColors: ColorItemColorsInterface
+    contactItemColors: ColorItemColorsInterface
+    userItemColors: ColorItemColorsInterface
+    setDefaultColors: () => void
+}
+export interface UseDisplayGraphsInterface {
+    display: DisplayGraphsInterface
+    displayGraphsToggle: (action: string) => void
+    setDefaultGraphsDisplay: () => void
+    allGraphsDisplayToggle: () => void
 }
 export interface UseDragItemsInterface {
     startDragging: StartDraggingFunctionType

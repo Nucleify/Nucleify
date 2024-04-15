@@ -50,6 +50,7 @@ import {
     ActivityLog,
     AdminPanel,
     ContactDashboard,
+    ColorSettings,
     Home,
     Login,
     MyColorPicker,
@@ -64,6 +65,7 @@ import {
 app.component('activity-log', ActivityLog)
     .component('admin-panel', AdminPanel)
     .component('contacts-dashboard', ContactDashboard)
+    .component('color-settings', ColorSettings)
     .component('home', Home)
     .component('login', Login)
     .component('my-color-picker', MyColorPicker)

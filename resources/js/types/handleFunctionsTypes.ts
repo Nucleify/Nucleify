@@ -12,6 +12,7 @@ import {
     UserInterface,
 } from '@/types'
 import Menu from 'primevue/menu'
+import { Ref } from 'vue'
 
 /**
  *  Api
@@ -58,6 +59,11 @@ export type EditUserFunctionType = (
  *  Drag items
  */
 export type StartDraggingFunctionType = (item: HomeItemsInterface) => void
+
+/**
+ *  IsAdmin
+ */
+export type UseIsAdminFunctionType = Promise<{ isAdmin: Ref<boolean> }>
 
 /**
  *  Menu & modal

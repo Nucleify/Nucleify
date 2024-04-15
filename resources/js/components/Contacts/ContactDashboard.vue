@@ -1,6 +1,9 @@
 <template>
     <div class="panelContainer">
-        <Card class="myCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4">
+        <Card
+            v-if="display.Contact"
+            class="myCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4"
+        >
             <template #content>
                 <my-chart
                     :chart-method-type="'annual'"
@@ -162,10 +165,11 @@ import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
 
 import { handleDropdownItems, handleStyles, roleOptions } from '@/constants'
-import { contactApiMethods, useMenuAndModal } from '@/utils'
+import { contactApiMethods, useDisplayGraphs, useMenuAndModal } from '@/utils'
 
 const menu = ref()
 
+const { display } = useDisplayGraphs()
 const {
     visibleShow,
     visibleCreate,

@@ -33,6 +33,8 @@ export { default as MyLayout } from './Layout/Layout.vue'
  *  Settings
  */
 export { default as Settings } from './Settings/Settings.vue'
+export { default as ColorSettings } from './Settings/Components/ColorSettings.vue'
+export { default as DisplayGraphs } from './Settings/Components/DisplayGraphs.vue'
 
 /**
  *  Support
