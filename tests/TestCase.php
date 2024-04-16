@@ -19,7 +19,7 @@ abstract class TestCase extends BaseTestCase
             'name' => fake()->firstName(),
             'email' => fake()->email(),
             'password' => Hash::make('password'),
-            'role' => 'admin'
+            'role' => 'super_admin'
         ]);
         $this->user = User::create([
             'id' => fake()->numberBetween(999, 9999),

@@ -2,6 +2,9 @@
 
 use App\Models\Contact;
 
+beforeEach(function () {
+    $this->createUsers();
+});
 
 it('creates record successfully', function () {
     $contact = Contact::factory()->create();

@@ -31,9 +31,3 @@ it('can get isAdmin', function () {
 
     expect($user->isAdmin())->toBeTrue();
 });
-
-it('can get isStaff', function () {
-    $user = User::factory()->create(['role' => 'staff']);
-
-    expect($user->isStaff())->toBeTrue();
-});

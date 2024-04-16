@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\PostContactRequest;
-use App\Http\Requests\PutContactRequest;
+use App\Models\Contact;
+use App\Http\Requests\Contact\PostRequest;
+use App\Http\Requests\Contact\PutRequest;
 use App\Services\ContactService;
 
 
@@ -54,7 +54,7 @@ class ContactController extends Controller
         }
     }
 
-    public function store(PostContactRequest $request): JsonResponse
+    public function store(PostRequest $request): JsonResponse
     {
         try {
             $input = $request->validated();
@@ -69,7 +69,7 @@ class ContactController extends Controller
         }
     }
 
-    public function update(PutContactRequest $request, $id): JsonResponse
+    public function update(PutRequest $request, $id): JsonResponse
     {
         try {
             $input = $request->validated();

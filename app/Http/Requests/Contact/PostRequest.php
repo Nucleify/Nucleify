@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Contact;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class PutContactRequest extends FormRequest
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class PutContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'integer',
+            'user_id' => 'required|integer',
             'first_name' => 'required|string|min:3|max:30',
             'last_name' => 'nullable|string|min:3|max:30',
             'email' => 'nullable|email|min:3|max:70',

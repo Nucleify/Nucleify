@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
-use App\Http\Requests\PostUserRequest;
-use App\Http\Requests\PutUserRequest;
+use App\Models\User;
 use App\Services\UserService;
+use App\Http\Requests\User\PostRequest;
+use App\Http\Requests\User\PutRequest;
 
 
 class UserController extends Controller
@@ -43,7 +43,7 @@ class UserController extends Controller
         }
     }
 
-    public function store(PostUserRequest $request): JsonResponse
+    public function store(PostRequest $request): JsonResponse
     {
         try {
             $input = $request->validated();
@@ -58,7 +58,7 @@ class UserController extends Controller
         }
     }
 
-    public function update(PutUserRequest $request, $id): JsonResponse
+    public function update(PutRequest $request, $id): JsonResponse
     {
         try {
             $input = $request->validated();
