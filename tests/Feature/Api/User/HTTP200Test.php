@@ -14,8 +14,6 @@ describe('200', function () {
     });
 
     test('authorized index api', function () {
-        User::factory(3)->create();
-
         $this->getJson(route('users.index'))
             ->assertOk();
     });

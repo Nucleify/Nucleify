@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\ArticleShouldReceiveFields;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string getCreatedAt
  * @property string getUpdatedAt
  */
-class Article extends Model
+class Article extends Model implements ArticleShouldReceiveFields
 {
     use HasFactory;
 

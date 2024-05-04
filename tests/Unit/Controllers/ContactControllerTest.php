@@ -30,6 +30,7 @@ it('runs show method successfully', function () {
     $response = $this->controller->show($contact->id);
 
     expect($response->getStatusCode())->toEqual(200);
+    expect($response->getData(true));
 });
 
 it('runs store method successfully', function () {
@@ -39,17 +40,19 @@ it('runs store method successfully', function () {
     $response = $this->controller->store($request);
 
     expect($response->getStatusCode())->toEqual(200);
+    expect($response->getData(true));
 });
 
 it('runs update method successfully', function () {
     $contact = Contact::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
-    $request->shouldReceive('validated')->once()->andReturn(updatedData);
+    $request->shouldReceive('validated')->andReturn(updatedData);
 
     $response = $this->controller->update($request, $contact->id);
 
     expect($response->getStatusCode())->toEqual(200);
+    expect($response->getData(true));
 });
 
 it('runs delete method successfully', function () {

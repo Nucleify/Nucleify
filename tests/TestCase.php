@@ -15,14 +15,14 @@ abstract class TestCase extends BaseTestCase
     protected function createUsers(): void
     {
         $this->admin = User::create([
-            'id' => fake()->numberBetween(999, 9999),
+            'id' => 1,
             'name' => fake()->firstName(),
             'email' => fake()->email(),
             'password' => Hash::make('password'),
             'role' => 'super_admin'
         ]);
         $this->user = User::create([
-            'id' => fake()->numberBetween(999, 9999),
+            'id' => 2,
             'name' => fake()->firstName(),
             'email' => fake()->email(),
             'password' => Hash::make('password'),

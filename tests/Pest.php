@@ -1,12 +1,16 @@
 <?php
 
 // USE THIS IF YOU RUN TESTS ON LINUX
+$articleData = require_once 'tests/TestConstants.php';
+$updatedArticleData = require_once 'tests/TestConstants.php';
 $data = require_once 'tests/TestConstants.php';
 $updatedData = require_once 'tests/TestConstants.php';
 $userData = require_once 'tests/TestConstants.php';
 $updatedUserData = require_once 'tests/TestConstants.php';
 
 // USE THIS IF YOU RUN TESTS ON WINDOWS
+// $articleData = require_once 'tests\TestConstants.php';
+// $updatedArticleData = require_once 'tests\TestConstants.php';
 // $data = require_once 'tests\TestConstants.php';
 // $updatedData = require_once 'tests\TestConstants.php';
 // $userData = require_once 'tests\TestConstants.php';
@@ -64,6 +68,14 @@ function apiTest($method, $route, $status, $data = null, $expectedJsonStructure 
 }
 
 // TESTS GROUPS
+
+uses()
+    ->group('api')
+    ->in('Feature/Api');
+
+uses()
+    ->group('article-api')
+    ->in('Feature/Api/Article');
 
 uses()
     ->group('user-api')

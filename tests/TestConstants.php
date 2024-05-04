@@ -1,5 +1,27 @@
 <?php
 
+/**
+ *  Article
+ */
+const articleData = [
+    'id' => 1,
+    'user_id' => 1,
+    'title' => 'Magnam qui sed explicabo eos quisquam beatae.',
+    'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi. Similique reprehenderit ipsum nisi omnis aliquid. Itaque a ad dolor quis illo ea magni.',
+    'category' => 'omnis, voluptatum, omnis'
+];
+
+const updatedArticleData = [
+    'id' => 1,
+    'user_id' => 1,
+    'title' => 'Magnam qui sed explicabo eos quisquam beatae.',
+    'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi. Similique reprehenderit ipsum nisi omnis aliquid. Itaque a ad dolor quis illo ea magni.',
+    'category' => 'omnis, voluptatum, suspicit'
+];
+
+/**
+ *  Contact
+ */
 const data = [
     'id' => 1,
     'user_id' => 1,
@@ -28,6 +50,10 @@ const updatedData = [
     'role' => 'admin'
 ];
 
+
+/**
+ *  User
+ */
 const userData = [
     'name' => 'User',
     'email' => 'user@example.com',

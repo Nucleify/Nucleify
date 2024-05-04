@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ActivityLogController;
@@ -28,6 +29,22 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('activity-log.show');
         Route::delete('/{id}', 'destroy')
             ->name('activity-log.destroy');
+    });
+
+    /**
+     *  Articles
+     */
+    Route::prefix('articles')->controller(ArticleController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('articles.index');
+        Route::get('/{id}', 'show')
+            ->name('articles.show');
+        Route::post('/', 'store')
+            ->name('articles.store');
+        Route::put('/{id}', 'update')
+            ->name('articles.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('articles.destroy');
     });
 
     /**
