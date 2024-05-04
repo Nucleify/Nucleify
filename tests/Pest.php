@@ -16,11 +16,41 @@ $updatedUserData = require_once 'tests/TestConstants.php';
 // $userData = require_once 'tests\TestConstants.php';
 // $updatedUserData = require_once 'tests\TestConstants.php';
 
-uses(Tests\TestCase::class)
-    ->beforeEach(function () {
-        $this->artisan('migrate:fresh');
-    })
-    ->in('Feature', 'Unit', 'Global');
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(
+    Tests\TestCase::class,
+)
+    ->in('Feature', 'Unit');
+
+uses(
+    RefreshDatabase::class
+)
+    ->in(
+        'Feature/Api/Article/HTTP302Test.php',
+        'Feature/Api/Contact/HTTP302Test.php',
+        'Feature/Api/User/HTTP302Test.php',
+        'Feature/Api/Contact/HTTP422PostTest.php',
+        'Feature/Api/Contact/HTTP422PutTest.php',
+        'Feature/Database/Factories',
+        'Unit/Models'
+    );
+
+uses(
+    DatabaseMigrations::class
+)
+    ->in(
+        'Feature/Api/Article/HTTP200Test.php',
+        'Feature/Api/Contact/HTTP200Test.php',
+        'Feature/Api/User/HTTP200Test.php',
+        'Feature/Api/Article/HTTP422PostTest.php',
+        'Feature/Api/Article/HTTP422PutTest.php',
+        'Feature/Api/User/HTTP422PostTest.php',
+        'Feature/Api/User/HTTP422PutTest.php',
+        'Feature/Database/Migrations',
+        'Unit/Controllers'
+    );
 
 /*
 |--------------------------------------------------------------------------
