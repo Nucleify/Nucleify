@@ -133,9 +133,12 @@ Possible problem:
 php artisan tinker
 
 # if you wish, you can specify count in factory() or attributes in create()
-Article::factory(100)->create(); 
-Contact::factory(100)->create(); 
-User::factory(100)->create();       
+Article::factory(100)->create();
+Contact::factory(100)->create();
+User::factory(100)->create();
+
+# for Spatie Activity model
+Database\Factories\ActivityFactory::new()->count(100)->create();
 ```
 
 <br/>
