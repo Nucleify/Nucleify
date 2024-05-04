@@ -3,8 +3,8 @@
 namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use App\Contracts\ContactShouldReceiveFields;
 
+use App\Contracts\ContactShouldReceiveFields;
 
 class ContactTransformer extends TransformerAbstract
 {

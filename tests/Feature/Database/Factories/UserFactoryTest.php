@@ -2,7 +2,6 @@
 
 use App\Models\User;
 
-
 it('creates record successfully', function () {
     $user = User::factory()->create();
 

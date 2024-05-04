@@ -2,8 +2,9 @@
 
 namespace App\Transformers;
 
-use App\Contracts\UserShouldReceiveFields;
 use League\Fractal\TransformerAbstract;
+
+use App\Contracts\UserShouldReceiveFields;
 
 class UserTransformer extends TransformerAbstract
 {

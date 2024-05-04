@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Validator;
+
 use App\Models\User;
 
 class ContactFactory extends Factory

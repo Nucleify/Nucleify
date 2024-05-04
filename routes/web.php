@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Entities\ActivityController;
+use App\Http\Controllers\Entities\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------

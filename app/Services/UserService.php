@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
+use Exception;
+
 use App\Models\User;
 use App\Transformers\UserTransformer;
-use Exception;
 
 class UserService
 {

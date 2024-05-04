@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Auth\UserController;
+use App\Http\Controllers\Entities\UserController;
 use App\Http\Requests\User\PostRequest;
 use App\Http\Requests\User\PutRequest;
 use App\Models\User;

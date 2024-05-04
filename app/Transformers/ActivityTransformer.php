@@ -3,6 +3,7 @@
 namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
+
 use Spatie\Activitylog\Contracts\Activity;
 
 class ActivityTransformer extends TransformerAbstract

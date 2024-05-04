@@ -1,6 +1,5 @@
 <?php
 
-
 it('does not contain dd and dump in app')
     ->expect('app')
     ->not->toUse(['dd', 'dump']);

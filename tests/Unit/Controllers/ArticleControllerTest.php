@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Requests\Article\PostRequest;
 use App\Http\Requests\Article\PutRequest;
 use App\Models\Article;

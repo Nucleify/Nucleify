@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\ContactController;
+use Illuminate\Http\Request;
+
+use App\Http\Controllers\Entities\ContactController;
 use App\Http\Requests\Contact\PostRequest;
 use App\Http\Requests\Contact\PutRequest;
 use App\Models\Contact;
 use App\Services\ContactService;
-use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();

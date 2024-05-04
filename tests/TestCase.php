@@ -2,9 +2,10 @@
 
 namespace Tests;
 
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+
+use App\Models\User;
 
 abstract class TestCase extends BaseTestCase
 {

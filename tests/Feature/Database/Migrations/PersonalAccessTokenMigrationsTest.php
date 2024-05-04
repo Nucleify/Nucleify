@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Schema;
 
-
 it('can create table', function () {
     expect(Schema::hasTable('personal_access_tokens'))->toBeTrue();
 

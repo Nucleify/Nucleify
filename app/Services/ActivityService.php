@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use App\Transformers\ActivityTransformer;
 use Exception;
+
+use App\Transformers\ActivityTransformer;
 use Spatie\Activitylog\Models\Activity;
 
 class ActivityService

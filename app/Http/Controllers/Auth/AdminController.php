@@ -23,7 +23,7 @@ class AdminController extends Controller
      *
      * @return Renderable
      */
-    public function index(): Renderable
+    public function render(): Renderable
     {
         return view('admin');
     }

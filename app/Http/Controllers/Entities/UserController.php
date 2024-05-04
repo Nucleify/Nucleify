@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Entities;
 
 use App\Http\Controllers\Controller;
 use Exception;

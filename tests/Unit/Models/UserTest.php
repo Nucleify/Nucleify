@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+use App\Models\User;
 
 it('can be created', function () {
     $user = User::factory()->create();

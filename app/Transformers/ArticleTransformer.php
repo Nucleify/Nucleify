@@ -2,8 +2,9 @@
 
 namespace App\Transformers;
 
-use App\Contracts\ArticleShouldReceiveFields;
 use League\Fractal\TransformerAbstract;
+
+use App\Contracts\ArticleShouldReceiveFields;
 
 class ArticleTransformer extends TransformerAbstract
 {
