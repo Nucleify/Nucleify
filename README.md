@@ -138,13 +138,15 @@ Backend tests:
 ./vendor/bin/pest
 
 # or specify group
-./vendor/bin/pest --group=user-api
+./vendor/bin/pest --group=api
 
 # defined tests groups:
-user-api, contact-api, feature, global, unit, controllers, database, factories, migrations, models
+api, article-api, contact-api, user-api, feature, global, unit, controllers, database, factories, migrations, models
 ```
 
-![Tests](https://github.com/SzymCode/ContactBook/assets/107359025/ea49e771-9963-4cb8-b103-7e2a0c91c6b7)
+![Tests](https://github.com/SzymCode/DataManager/assets/107359025/a661bbde-cd4c-485e-8197-60c055a11cdc)
+
+
 
 <br>
 
