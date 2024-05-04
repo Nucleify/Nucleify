@@ -12,27 +12,24 @@ export default function useDisplayGraphs(): UseDisplayGraphsInterface {
     })
 
     function displayGraphsToggle(action: string): void {
+        let key: string = '';
         switch (action) {
             case 'Activity':
-                window.localStorage.setItem(
-                    'display-activity-graphs',
-                    String(!display.Activity)
-                )
-                break
+                key = 'display-activity-graphs';
+                break;
             case 'Admin':
-                window.localStorage.setItem(
-                    'display-admin-graphs',
-                    String(!display.Admin)
-                )
-                break
+                key = 'display-admin-graphs';
+                break;
             case 'Contact':
-                window.localStorage.setItem(
-                    'display-contact-graphs',
-                    String(!display.Contact)
-                )
-                break
+                key = 'display-contact-graphs';
+                break;
             default:
-                break
+                break;
+        }
+        if (key) {
+            const value: string = String(!display[action]);
+            window.localStorage.setItem(key, value);
+            display[action] = !display[action];
         }
     }
 
@@ -48,7 +45,7 @@ export default function useDisplayGraphs(): UseDisplayGraphsInterface {
         }
     }
 
-    function setDefaultGraphsDisplay(): void {
+    function setDefaultGraphsDisplay(reload?: boolean): void {
         const properties: string[] = [
             'display-admin-graphs',
             'display-activity-graphs',
@@ -58,6 +55,10 @@ export default function useDisplayGraphs(): UseDisplayGraphsInterface {
         properties.forEach((property: string): void => {
             window.localStorage.setItem(property, 'true')
         })
+
+        if (reload) {
+            window.location.reload()
+        }
     }
 
     return {

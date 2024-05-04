@@ -217,7 +217,7 @@ export interface UseColorsInterface {
 export interface UseDisplayGraphsInterface {
     display: DisplayGraphsInterface
     displayGraphsToggle: (action: string) => void
-    setDefaultGraphsDisplay: () => void
+    setDefaultGraphsDisplay: (reload?: boolean) => void
     allGraphsDisplayToggle: () => void
 }
 export interface UseDragItemsInterface {

@@ -7,7 +7,7 @@
                 <Button
                     class="myButton activityMyButton"
                     icon="pi pi-refresh"
-                    @click="setDefaultGraphsDisplay"
+                    @click="setDefaultGraphsDisplay(true)"
                     :style="mainStyle"
                 />
             </div>
@@ -23,7 +23,7 @@
                     <h3>{{ item }}</h3>
                     <Button
                         class="myButton activityMyButton"
-                        icon="pi pi-eye"
+                        :icon="display[item] ? 'pi pi-eye' : 'pi pi-eye-slash'"
                         :style="mainStyle"
                         @click="displayGraphsToggle(item)"
                     />
@@ -38,7 +38,7 @@ import { displayGraphList, handleStyles } from '@/constants'
 import { useDisplayGraphs } from '@/utils'
 
 const { mainStyle } = handleStyles()
-const { setDefaultGraphsDisplay, displayGraphsToggle } = useDisplayGraphs()
+const { display, setDefaultGraphsDisplay, displayGraphsToggle } = useDisplayGraphs()
 </script>
 
 <style scoped>
