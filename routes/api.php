@@ -3,7 +3,7 @@
 use App\Http\Controllers\ArticleController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\ActivityLogController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Auth\UserController;
 
@@ -22,7 +22,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Activity log
      */
-    Route::prefix('activity-log')->controller(ActivityLogController::class)->group(function () {
+    Route::prefix('activity-log')->controller(ActivityController::class)->group(function () {
         Route::get('/', 'index')
             ->name('activity-log.index');
         Route::get('/{id}', 'show')

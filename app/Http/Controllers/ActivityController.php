@@ -6,14 +6,14 @@ use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 
-use App\Services\ActivityLogService;
+use App\Services\ActivityService;
 
 
-class ActivityLogController extends Controller
+class ActivityController extends Controller
 {
-    private ActivityLogService $service;
+    private ActivityService $service;
 
-    public function __construct(ActivityLogService $service)
+    public function __construct(ActivityService $service)
     {
         $this->service = $service;
     }

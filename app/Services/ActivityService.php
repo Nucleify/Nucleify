@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Services;
-use App\Models\User;
-use App\Transformers\ActivityLogTransformer;
+
+use App\Transformers\ActivityTransformer;
 use Exception;
 use Spatie\Activitylog\Models\Activity;
 
-class ActivityLogService
+class ActivityService
 {
     public function __construct(private readonly Activity $model){}
 
@@ -38,7 +38,7 @@ class ActivityLogService
 
         return fractal()
             ->collection($model)
-            ->transformWith(new ActivityLogTransformer())
+            ->transformWith(new ActivityTransformer())
             ->toArray()['data'];
     }
 
@@ -69,7 +69,7 @@ class ActivityLogService
 
                 return fractal()
                     ->item($model)
-                    ->transformWith(new ActivityLogTransformer())
+                    ->transformWith(new ActivityTransformer())
                     ->toArray()['data'];
         }
     }
@@ -91,10 +91,10 @@ class ActivityLogService
         }
         $model->delete();
 
-        if (strpos($model->description, '"'. $causer->name. '" has deleted his activity log with ID: "') === false) {
-            activity()->log(
-                '"'. $causer->name. '" has deleted his activity log with ID: "'. $id .'" and description: "'. $model->description
-            );
-        }
+//        if (strpos($model->description, '"'. $causer->name. '" has deleted his activity log with ID: "') === false) {
+//            activity()->log(
+//                '"'. $causer->name. '" has deleted his activity log with ID: "'. $id .'" and description: "'. $model->description
+//            );
+//        }
     }
 }

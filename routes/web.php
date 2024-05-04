@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ActivityLogController;
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingsController;
@@ -47,5 +47,5 @@ Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Activity log
      */
-    Route::get('/activity-log', [ActivityLogController::class, 'render'])->name('activity-log');
+    Route::get('/activity-log', [ActivityController::class, 'render'])->name('activity-log');
 });
