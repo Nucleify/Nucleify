@@ -96,13 +96,14 @@ php artisan serve
 - root directory:
 
 ```bash
-./vendor/bin/sail up -d    # run containers in background
+sail up -d    # run containers in background
 
-docker compose exec laravel.test bash    # this command open sail container's bash, then run command bellow
+sail exec laravel.test bash    # this command open sail container's bash, then run command bellow
 npm run dev
 ```
 
-Possible problem: [Sail: no such file or directory found](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
+Possible problem: 
+- Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
 </details>
 
 <hr>
@@ -120,6 +121,7 @@ Possible problem: [Sail: no such file or directory found](https://stackoverflow.
 php artisan tinker
 
 # if you wish, you can specify count in factory() or attributes in create()
+Article::factory(100)->create(); 
 Contact::factory(100)->create(); 
 User::factory(100)->create();        
 ```
