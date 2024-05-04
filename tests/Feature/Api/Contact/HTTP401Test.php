@@ -23,7 +23,7 @@ describe('401', function() {
         'POST',
         'contacts.store',
         401,
-        data,
+        contactData,
         ['message'],
         ['message' => 'Unauthenticated.']
     ));
@@ -41,7 +41,7 @@ describe('401', function() {
         'PUT',
         'users.update',
         401,
-        data,
+        updatedContactData,
         ['message'],
         ['message' => 'Unauthenticated.']
     ));

@@ -3,8 +3,8 @@
 // USE THIS IF YOU RUN TESTS ON LINUX
 $articleData = require_once 'tests/TestConstants.php';
 $updatedArticleData = require_once 'tests/TestConstants.php';
-$data = require_once 'tests/TestConstants.php';
-$updatedData = require_once 'tests/TestConstants.php';
+$contactData = require_once 'tests/TestConstants.php';
+$updatedContactData = require_once 'tests/TestConstants.php';
 $userData = require_once 'tests/TestConstants.php';
 $updatedUserData = require_once 'tests/TestConstants.php';
 

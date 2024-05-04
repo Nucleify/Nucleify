@@ -35,7 +35,7 @@ it('runs show method successfully', function () {
 
 it('runs store method successfully', function () {
     $request = Mockery::mock(PostRequest::class);
-    $request->shouldReceive('validated')->once()->andReturn(data);
+    $request->shouldReceive('validated')->once()->andReturn(contactData);
 
     $response = $this->controller->store($request);
 
@@ -47,7 +47,7 @@ it('runs update method successfully', function () {
     $contact = Contact::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
-    $request->shouldReceive('validated')->andReturn(updatedData);
+    $request->shouldReceive('validated')->andReturn(updatedContactData);
 
     $response = $this->controller->update($request, $contact->id);
 

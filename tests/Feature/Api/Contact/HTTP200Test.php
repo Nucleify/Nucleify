@@ -9,7 +9,7 @@ beforeEach(function () {
 
 describe('200', function () {
     test('authorized store api', function () {
-        $this->postJson(route('contacts.store'), data)
+        $this->postJson(route('contacts.store'), contactData)
             ->assertOk();
     });
 
@@ -30,7 +30,7 @@ describe('200', function () {
     test('authorized update api', function () {
         $contact = Contact::factory()->create();
 
-        $this->putJson(route('contacts.update', $contact->id), updatedData)
+        $this->putJson(route('contacts.update', $contact->id), updatedContactData)
             ->assertOk();
     });
 
