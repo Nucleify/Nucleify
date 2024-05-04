@@ -14,7 +14,13 @@ This website helps to storage various data types and share it with others. My ta
 
 <details><summary> &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=20/> &nbsp;Standard </summary> 
 
-- First make sure u have installed latest versions of [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
+- First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
+
+- I recommend use [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) for install latest supported versions of [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com), 
+
+```
+nvm use --lts
+```
 
 - Clone this repository
 
@@ -48,7 +54,13 @@ php artisan migrate:fresh --seed
 
 <details><summary> &nbsp;<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=20/> &nbsp;Docker </summary> 
 
-- First make sure u have installed latest versions of [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), and [Composer](https://getcomposer.org/)
+- First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [Composer](https://getcomposer.org/) and [Docker](https://www.docker.com)
+
+- I recommend use [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) for install latest supported versions of [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com), 
+
+```
+nvm use --lts
+```
 
 - Clone this repository
 
@@ -123,7 +135,7 @@ php artisan tinker
 # if you wish, you can specify count in factory() or attributes in create()
 Article::factory(100)->create(); 
 Contact::factory(100)->create(); 
-User::factory(100)->create();        
+User::factory(100)->create();       
 ```
 
 <br/>
