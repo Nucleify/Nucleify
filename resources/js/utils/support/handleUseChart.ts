@@ -2,8 +2,10 @@ import { ChartOptions } from 'chart.js'
 
 import {
     ActivityLogInterface,
+    ArticleInterface,
     ChartMethodType,
     ChartType,
+    ChartDataInterface,
     ColorItemColorsInterface,
     ContactInterface,
     LabelItemType,
@@ -17,16 +19,20 @@ export default function useChart() {
     )
     const {
         activityItemColors,
+        articleItemColors,
         contactItemColors,
         userItemColors,
     }: {
         activityItemColors: ColorItemColorsInterface
+        articleItemColors: ColorItemColorsInterface
         contactItemColors: ColorItemColorsInterface
         userItemColors: ColorItemColorsInterface
     } = useColors()
+
     function setChartData(
         chartMethodType: ChartMethodType,
         activityLogData?: ActivityLogInterface[],
+        articleData?: ArticleInterface[],
         contactData?: ContactInterface[],
         userData?: UserInterface[]
     ) {
@@ -34,7 +40,11 @@ export default function useChart() {
             const labels: string[] = []
             const chartLabels: {
                 label: LabelItemType
-            }[] = [{ label: 'Users' }, { label: 'Contacts' }]
+            }[] = [
+                { label: 'Articles' },
+                { label: 'Contacts' },
+                { label: 'Users' },
+            ]
 
             switch (chartMethodType) {
                 case 'annual':
@@ -54,16 +64,32 @@ export default function useChart() {
                             'December',
                         ]
 
-                        const activityLogDataByMonth = new Array(12).fill(0)
-                        const contactDataByMonth = new Array(12).fill(0)
-                        const userDataByMonth = new Array(12).fill(0)
+                        const activityLogDataByMonth: number[] = new Array(
+                            12
+                        ).fill(0)
+                        const articleDataByMonth: number[] = new Array(12).fill(
+                            0
+                        )
+                        const contactDataByMonth: number[] = new Array(12).fill(
+                            0
+                        )
+                        const userDataByMonth: number[] = new Array(12).fill(0)
 
                         activityLogData?.forEach(
-                            (activityLog: ActivityLogInterface) => {
+                            (activityLog: ActivityLogInterface): void => {
                                 const monthIndex: number = new Date(
                                     activityLog.created_at
                                 ).getMonth()
                                 activityLogDataByMonth[monthIndex]++
+                            }
+                        )
+
+                        articleData?.forEach(
+                            (article: ArticleInterface): void => {
+                                const monthIndex: number = new Date(
+                                    article.created_at
+                                ).getMonth()
+                                articleDataByMonth[monthIndex]++
                             }
                         )
 
@@ -87,46 +113,45 @@ export default function useChart() {
                             }
                         })
 
-                        const datasets = []
-
-                        if (
-                            activityLogDataByMonth.some(
-                                (count): boolean => count > 0
-                            )
-                        ) {
-                            datasets.push({
+                        const dataTypes: ChartDataInterface = [
+                            {
                                 label: 'Activities',
-                                backgroundColor: activityItemColors.primary,
-                                borderColor: activityItemColors.primary,
-                                hoverBackgroundColor: activityItemColors.hover,
                                 data: activityLogDataByMonth,
-                            })
-                        }
-
-                        if (
-                            contactDataByMonth.some(
-                                (count): boolean => count > 0
-                            )
-                        ) {
-                            datasets.push({
+                                colors: activityItemColors,
+                            },
+                            {
+                                label: 'Articles',
+                                data: articleDataByMonth,
+                                colors: articleItemColors,
+                            },
+                            {
                                 label: 'Contacts',
-                                backgroundColor: contactItemColors.primary,
-                                borderColor: contactItemColors.primary,
-                                hoverBackgroundColor: contactItemColors.hover,
                                 data: contactDataByMonth,
-                            })
-                        }
-
-                        if (
-                            userDataByMonth.some((count): boolean => count > 0)
-                        ) {
-                            datasets.push({
+                                colors: contactItemColors,
+                            },
+                            {
                                 label: 'Users',
-                                backgroundColor: userItemColors.primary,
-                                borderColor: userItemColors.primary,
-                                hoverBackgroundColor: userItemColors.hover,
                                 data: userDataByMonth,
-                            })
+                                colors: userItemColors,
+                            },
+                        ]
+
+                        const datasets: any[] = []
+
+                        for (const dataType of dataTypes) {
+                            if (
+                                dataType.data.some(
+                                    (count): boolean => count > 0
+                                )
+                            ) {
+                                datasets.push({
+                                    label: dataType.label,
+                                    backgroundColor: dataType.colors.primary,
+                                    borderColor: dataType.colors.primary,
+                                    hoverBackgroundColor: dataType.colors.hover,
+                                    data: dataType.data,
+                                })
+                            }
                         }
 
                         return {
@@ -141,6 +166,7 @@ export default function useChart() {
                     chartLabels.forEach(
                         ({ label }: { label: LabelItemType }): void => {
                             if (
+                                (label === 'Articles' && articleData) ||
                                 (label === 'Contacts' && contactData) ||
                                 (label === 'Users' && userData)
                             ) {
@@ -153,14 +179,20 @@ export default function useChart() {
                         labels: labels,
                         datasets: [
                             {
-                                data: [userData?.length, contactData?.length],
+                                data: [
+                                    articleData?.length,
+                                    contactData?.length,
+                                    userData?.length,
+                                ],
                                 backgroundColor: [
-                                    userItemColors.primary,
+                                    articleItemColors.primary,
                                     contactItemColors.primary,
+                                    userItemColors.primary,
                                 ],
                                 hoverBackgroundColor: [
-                                    userItemColors.hover,
+                                    articleItemColors.hover,
                                     contactItemColors.hover,
+                                    userItemColors.hover,
                                 ],
                             },
                         ],
@@ -180,16 +212,30 @@ export default function useChart() {
         const surfaceBorder: string =
             documentStyle.getPropertyValue('--surface-border')
 
-        const options: ChartOptions = {
-            maintainAspectRatio: false,
-            aspectRatio: 0.8,
-            plugins: {
-                legend: {
-                    labels: {
-                        color: textColor,
+        let options: ChartOptions
+
+        if (chartType === 'pie') {
+            options = {
+                maintainAspectRatio: false,
+                aspectRatio: 0.8,
+                plugins: {
+                    legend: {
+                        display: false,
                     },
                 },
-            },
+            }
+        } else {
+            options = {
+                maintainAspectRatio: false,
+                aspectRatio: 0.8,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: textColor,
+                        },
+                    },
+                },
+            }
         }
 
         switch (chartType) {

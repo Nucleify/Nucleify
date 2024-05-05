@@ -13,6 +13,7 @@ import { ref, onMounted, watch } from 'vue'
 
 import {
     ActivityLogInterface,
+    ArticleInterface,
     ChartInterface,
     ChartMethodType,
     ChartType,
@@ -25,6 +26,7 @@ const props = defineProps<{
     type: ChartType
     chartMethodType: ChartMethodType
     activityLogData?: ActivityLogInterface[] | undefined
+    articleData?: ArticleInterface[] | undefined
     contactData?: ContactInterface[] | undefined
     userData?: UserInterface[] | undefined
     chartClass: string | undefined
@@ -39,6 +41,7 @@ onMounted(() => {
     chartData.value = setChartData(
         props.chartMethodType,
         props?.activityLogData,
+        props?.articleData,
         props?.contactData,
         props?.userData
     )
@@ -48,6 +51,7 @@ watch(
     () => [
         props.chartMethodType,
         props?.activityLogData,
+        props?.articleData,
         props?.contactData,
         props?.userData,
     ],
@@ -55,6 +59,7 @@ watch(
         chartData.value = setChartData(
             props.chartMethodType,
             props?.activityLogData,
+            props?.articleData,
             props?.contactData,
             props?.userData
         )

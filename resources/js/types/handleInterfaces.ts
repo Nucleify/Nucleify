@@ -3,13 +3,16 @@ import { Ref } from 'vue'
 import {
     ActivityResultsType,
     ApiErrorsFunctionType,
+    ArticleResultsType,
     CloseModalFunctionType,
     ContactResultsType,
     DeleteEntityFunctionType,
+    EditArticleFunctionType,
     EditContactFunctionType,
     EditUserFunctionType,
     FlashToastFunctionType,
     GetAllActivitiesAxiosFunctionType,
+    GetAllArticlesFunctionType,
     GetAllContactsFunctionType,
     GetAllUsersFunctionType,
     GetSidebarItemStyleFunctionType,
@@ -20,6 +23,7 @@ import {
     SelectedObjectType,
     ShouldRenderSidebarItemFunctionType,
     StartDraggingFunctionType,
+    StoreArticleFunctionType,
     StoreContactFunctionType,
     StoreUserFunctionType,
     UserResultsType,
@@ -55,6 +59,25 @@ export interface ApiErrorsInterface {
 }
 
 /**
+ *  Article
+ */
+export interface ArticleInterface {
+    id?: number
+    title: string
+    description: string
+    created_at: string
+    updated_at?: string
+    category: string
+}
+export interface ArticleApiMethodsInterface {
+    results: ArticleResultsType
+    getAllArticles: () => GetAllArticlesFunctionType
+    storeArticle: StoreArticleFunctionType
+    editArticle: EditArticleFunctionType
+    deleteArticle: DeleteEntityFunctionType
+}
+
+/**
  *  Chart
  */
 export interface ChartInterface {
@@ -72,6 +95,11 @@ export interface ChartInterface {
               hoverBackgroundColor: string[]
           }[]
 }
+export type ChartDataInterface = {
+    label: string
+    data: any[]
+    colors: ColorItemColorsInterface
+}[]
 
 /**
  *  Contact
@@ -121,6 +149,7 @@ export interface DisplayGraphsInterface {
     [key: string]: boolean
     Activity: boolean
     Admin: boolean
+    Article: boolean
     Contact: boolean
 }
 
@@ -187,6 +216,7 @@ export interface UserApiMethodsInterface {
  *  Constants
  */
 export interface HandleDataInterface {
+    articleData: Ref<ArticleInterface>
     contactData: Ref<ContactInterface>
     userData: Ref<UserInterface>
 }
@@ -195,6 +225,8 @@ export interface HandleStylesInterface {
     mainStyle: ColorItemStyleInterface
     activitySidebarItemStyle: ColorItemStyleInterface
     activityStyle: ColorItemStyleInterface
+    articleSidebarItemStyle: ColorItemStyleInterface
+    articleStyle: ColorItemStyleInterface
     contactSidebarItemStyle: ColorItemStyleInterface
     contactStyle: ColorItemStyleInterface
     userSidebarItemStyle: ColorItemStyleInterface
@@ -210,9 +242,10 @@ export interface UseApiErrorsServiceInterface {
 export interface UseColorsInterface {
     mainItemColors: ColorItemColorsInterface
     activityItemColors: ColorItemColorsInterface
+    articleItemColors: ColorItemColorsInterface
     contactItemColors: ColorItemColorsInterface
     userItemColors: ColorItemColorsInterface
-    setDefaultColors: () => void
+    setDefaultColors: (initial: boolean) => void
 }
 export interface UseDisplayGraphsInterface {
     display: DisplayGraphsInterface

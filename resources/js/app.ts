@@ -24,6 +24,7 @@ import Menu from 'primevue/menu'
 import Menubar from 'primevue/menubar'
 import PanelMenu from 'primevue/panelmenu'
 import Sidebar from 'primevue/sidebar'
+import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
 
 app.component('Avatar', Avatar)
@@ -41,6 +42,7 @@ app.component('Avatar', Avatar)
     .component('Menubar', Menubar)
     .component('PanelMenu', PanelMenu)
     .component('Sidebar', Sidebar)
+    .component('Textarea', Textarea)
     .component('Toast', Toast)
 
 /**
@@ -49,6 +51,7 @@ app.component('Avatar', Avatar)
 import {
     ActivityLog,
     AdminPanel,
+    ArticleDashboard,
     ContactDashboard,
     ColorSettings,
     Home,
@@ -64,7 +67,8 @@ import {
 
 app.component('activity-log', ActivityLog)
     .component('admin-panel', AdminPanel)
-    .component('contacts-dashboard', ContactDashboard)
+    .component('article-dashboard', ArticleDashboard)
+    .component('contact-dashboard', ContactDashboard)
     .component('color-settings', ColorSettings)
     .component('home', Home)
     .component('login', Login)

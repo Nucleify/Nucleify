@@ -6,7 +6,7 @@
                 <Button
                     class="myButton activityMyButton"
                     icon="pi pi-refresh"
-                    @click="setDefaultColors"
+                    @click="setDefaultColors(false)"
                     :style="mainStyle"
                 />
             </div>

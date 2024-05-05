@@ -7,29 +7,34 @@ export default function useDisplayGraphs(): UseDisplayGraphsInterface {
         Activity:
             window.localStorage.getItem('display-activity-graphs') !== 'false',
         Admin: window.localStorage.getItem('display-admin-graphs') !== 'false',
+        Article:
+            window.localStorage.getItem('display-article-graphs') !== 'false',
         Contact:
             window.localStorage.getItem('display-contact-graphs') !== 'false',
     })
 
     function displayGraphsToggle(action: string): void {
-        let key: string = '';
+        let key: string = ''
         switch (action) {
             case 'Activity':
-                key = 'display-activity-graphs';
-                break;
+                key = 'display-activity-graphs'
+                break
             case 'Admin':
-                key = 'display-admin-graphs';
-                break;
+                key = 'display-admin-graphs'
+                break
+            case 'Article':
+                key = 'display-article-graphs'
+                break
             case 'Contact':
-                key = 'display-contact-graphs';
-                break;
+                key = 'display-contact-graphs'
+                break
             default:
-                break;
+                break
         }
         if (key) {
-            const value: string = String(!display[action]);
-            window.localStorage.setItem(key, value);
-            display[action] = !display[action];
+            const value: string = String(!display[action])
+            window.localStorage.setItem(key, value)
+            display[action] = !display[action]
         }
     }
 
@@ -47,8 +52,9 @@ export default function useDisplayGraphs(): UseDisplayGraphsInterface {
 
     function setDefaultGraphsDisplay(reload?: boolean): void {
         const properties: string[] = [
-            'display-admin-graphs',
             'display-activity-graphs',
+            'display-admin-graphs',
+            'display-article-graphs',
             'display-contact-graphs',
         ]
 

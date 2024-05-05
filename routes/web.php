@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Entities\ArticleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,21 @@ Auth::routes();
 
 Route::middleware(['web', 'auth'])->group(function () {
     /**
+     *  Activity log
+     */
+    Route::get('/activity-log', [ActivityController::class, 'render'])->name('activity-log');
+
+    /**
+     *  Articles
+     */
+    Route::get('/articles', [ArticleController::class, 'render'])->name('articles');
+
+    /**
+     *  Contacts
+     */
+    Route::get('/contacts', [ContactController::class, 'render'])->name('contacts');
+
+    /**
      *  Home
      */
     Route::get('/home', [HomeController::class, 'render'])->name('home');
@@ -39,14 +55,4 @@ Route::middleware(['web', 'auth'])->group(function () {
      *  Settings
      */
     Route::get('/settings', [SettingsController::class, 'render'])->name('settings');
-
-    /**
-     *  Contacts
-     */
-    Route::get('/contacts', [ContactController::class, 'render'])->name('contacts');
-
-    /**
-     *  Activity log
-     */
-    Route::get('/activity-log', [ActivityController::class, 'render'])->name('activity-log');
 });

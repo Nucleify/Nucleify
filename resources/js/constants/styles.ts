@@ -1,12 +1,23 @@
-import { ColorItemStyleInterface, HandleStylesInterface } from '@/types'
+import {
+    ColorItemColorsInterface,
+    ColorItemStyleInterface,
+    HandleStylesInterface,
+} from '@/types'
 import { useColors } from '@/utils'
 
 export default function handleStyles(): HandleStylesInterface {
     const {
         mainItemColors,
         activityItemColors,
+        articleItemColors,
         contactItemColors,
         userItemColors,
+    }: {
+        mainItemColors: ColorItemColorsInterface
+        activityItemColors: ColorItemColorsInterface
+        articleItemColors: ColorItemColorsInterface
+        contactItemColors: ColorItemColorsInterface
+        userItemColors: ColorItemColorsInterface
     } = useColors()
 
     /**
@@ -34,6 +45,20 @@ export default function handleStyles(): HandleStylesInterface {
     const activityStyle: ColorItemStyleInterface = {
         backgroundColor: activityItemColors.primary,
         borderColor: activityItemColors.primary,
+        boxShadow: 'none',
+    }
+
+    /**
+     *  Article
+     */
+    const articleSidebarItemStyle: ColorItemStyleInterface = {
+        color: articleItemColors.primary,
+        backgroundColor: articleItemColors.sidebarSelected,
+        boxShadow: 'none',
+    }
+    const articleStyle: ColorItemStyleInterface = {
+        backgroundColor: articleItemColors.primary,
+        borderColor: articleItemColors.primary,
         boxShadow: 'none',
     }
 
@@ -70,6 +95,8 @@ export default function handleStyles(): HandleStylesInterface {
         mainStyle,
         activitySidebarItemStyle,
         activityStyle,
+        articleSidebarItemStyle,
+        articleStyle,
         contactSidebarItemStyle,
         contactStyle,
         userSidebarItemStyle,

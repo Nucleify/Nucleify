@@ -33,6 +33,7 @@ td {
 .createdAtActivityColumn {
     display: $tablet-desktop-columns-display-phone;
 }
+.titleColumn,
 .descriptionColumn,
 .nameColumn {
     overflow: $description-name-columns-overflow;

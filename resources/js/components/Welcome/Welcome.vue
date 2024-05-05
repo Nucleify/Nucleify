@@ -18,7 +18,7 @@ const { setDefaultColors } = useColors()
 const { setDefaultGraphsDisplay } = useDisplayGraphs()
 
 onMounted(() => {
-    setDefaultColors()
+    setDefaultColors(true)
     setDefaultGraphsDisplay()
 })
 </script>

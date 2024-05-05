@@ -20,13 +20,6 @@
             <a
                 href="#"
                 class="sidebarItem disabledItem"
-                v-tooltip.right="'Posts'"
-            >
-                <i class="pi pi-comment" />
-            </a>
-            <a
-                href="#"
-                class="sidebarItem disabledItem"
                 v-tooltip.right="'Messages'"
             >
                 <i class="pi pi-envelope" />

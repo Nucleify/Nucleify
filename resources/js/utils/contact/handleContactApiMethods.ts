@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { ref } from 'vue'
 
 import {
@@ -7,14 +7,18 @@ import {
     GetAllContactsFunctionType,
     ContactInterface,
     ContactResultsType,
+    UserIdType,
+    ApiErrorsFunctionType,
+    FlashToastFunctionType,
 } from '@/types'
 import { useApiErrors, useFlashToast } from '@/utils'
 
 export default function contactApiMethods(): ContactApiMethodsInterface {
     const results: ContactResultsType = ref([])
 
-    const { apiErrors } = useApiErrors()
-    const { flashToast } = useFlashToast()
+    const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
+    const { flashToast }: { flashToast: FlashToastFunctionType } =
+        useFlashToast()
 
     async function getAllContacts(): GetAllContactsFunctionType {
         return await axios
@@ -22,7 +26,7 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
             .then((response: GetAllContactsAxiosFunctionType) => {
                 return (results.value = response.data)
             })
-            .catch((error) => {
+            .catch((error): void => {
                 apiErrors(error)
                 throw error
             })
@@ -33,7 +37,7 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
         getData: () => void,
         close: (method: string) => void
     ): Promise<void> {
-        const user_id = window.sessionStorage.getItem('user_id')
+        const user_id: UserIdType = window.sessionStorage.getItem('user_id')
 
         return await axios
             .post('/api/contacts', {
@@ -48,13 +52,13 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
                 contact_groups: data.contact_groups,
                 role: data.role,
             })
-            .then((response) => {
+            .then((response: AxiosResponse): void => {
                 getData()
                 close('create')
 
                 flashToast(response.data.message, 'success')
             })
-            .catch((error) => {
+            .catch((error): void => {
                 apiErrors(error)
             })
     }
@@ -76,13 +80,13 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
                 contact_groups: data.contact_groups,
                 role: data.role,
             })
-            .then((response) => {
+            .then((response: AxiosResponse): void => {
                 getData()
                 close('edit')
 
                 flashToast(response.data.message, 'success')
             })
-            .catch((error) => {
+            .catch((error): void => {
                 apiErrors(error)
             })
     }
@@ -94,7 +98,7 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
     ): Promise<void> {
         return await axios
             .delete(`/api/contacts/${id}`)
-            .then((response) => {
+            .then((response: AxiosResponse): void => {
                 getData()
                 close('delete')
 

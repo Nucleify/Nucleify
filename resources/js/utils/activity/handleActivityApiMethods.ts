@@ -1,17 +1,20 @@
-import { ref } from 'vue'
 import axios, { AxiosResponse } from 'axios'
+import { ref } from 'vue'
 
 import {
     GetAllActivitiesAxiosFunctionType,
     ActivityLogApiMethodsInterface,
     ActivityLogInterface,
     ActivityResultsType,
+    ApiErrorsFunctionType,
+    FlashToastFunctionType,
 } from '@/types'
 import { useApiErrors, useFlashToast } from '@/utils'
 
 export default function activityApiMethods(): ActivityLogApiMethodsInterface {
-    const { apiErrors } = useApiErrors()
-    const { flashToast } = useFlashToast()
+    const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
+    const { flashToast }: { flashToast: FlashToastFunctionType } =
+        useFlashToast()
     const results: ActivityResultsType = ref([])
 
     async function getAllActivities(): GetAllActivitiesAxiosFunctionType {
@@ -20,7 +23,7 @@ export default function activityApiMethods(): ActivityLogApiMethodsInterface {
             .then((response: AxiosResponse<ActivityLogInterface[]>) => {
                 return (results.value = response.data)
             })
-            .catch((error) => {
+            .catch((error): void => {
                 apiErrors(error)
                 throw error
             })
@@ -33,7 +36,7 @@ export default function activityApiMethods(): ActivityLogApiMethodsInterface {
     ): Promise<void> {
         return await axios
             .delete(`/api/activity-log/${id}`)
-            .then((response) => {
+            .then((response: AxiosResponse): void => {
                 getData()
                 close('delete')
 

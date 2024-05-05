@@ -15,8 +15,9 @@ export const layoutItems: Ref<UnwrapRef<MenuItem>> = ref<MenuItem>([
         url: '/contacts',
     },
     {
-        label: 'Posts',
+        label: 'Articles',
         icon: 'pi pi-comment',
+        url: '/articles',
     },
     {
         label: 'Messages',

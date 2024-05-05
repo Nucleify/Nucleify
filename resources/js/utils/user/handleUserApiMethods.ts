@@ -1,5 +1,5 @@
-import { Ref, ref } from 'vue'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
+import { ref } from 'vue'
 
 import {
     GetAllUsersAxiosFunctionType,
@@ -9,12 +9,15 @@ import {
     UserApiMethodsInterface,
     UserInterface,
     UserResultsType,
+    ApiErrorsFunctionType,
+    FlashToastFunctionType,
 } from '@/types'
 import { useApiErrors, useFlashToast } from '@/utils'
 
 export default function userApiMethods(): UserApiMethodsInterface {
-    const { apiErrors } = useApiErrors()
-    const { flashToast } = useFlashToast()
+    const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
+    const { flashToast }: { flashToast: FlashToastFunctionType } =
+        useFlashToast()
     const results: UserResultsType = ref([])
 
     async function getAllUsers(): GetAllUsersFunctionType {
@@ -23,7 +26,7 @@ export default function userApiMethods(): UserApiMethodsInterface {
             .then((response: GetAllUsersAxiosFunctionType) => {
                 return (results.value = response.data)
             })
-            .catch((error) => {
+            .catch((error): void => {
                 apiErrors(error)
             })
     }
@@ -34,7 +37,7 @@ export default function userApiMethods(): UserApiMethodsInterface {
             .then((response: GetUserAxiosFunctionType) => {
                 return response.data
             })
-            .catch((error) => {
+            .catch((error): void => {
                 apiErrors(error)
             })
     }
@@ -52,13 +55,13 @@ export default function userApiMethods(): UserApiMethodsInterface {
                 password: data.password,
                 confirm_password: data.confirm_password,
             })
-            .then((response) => {
+            .then((response: AxiosResponse): void => {
                 getData()
                 close('create')
 
                 flashToast(response.data.message, 'success')
             })
-            .catch((error) => {
+            .catch((error): void => {
                 apiErrors(error)
             })
     }
@@ -67,20 +70,20 @@ export default function userApiMethods(): UserApiMethodsInterface {
         data: UserInterface,
         getData: () => void,
         close: (method: string) => void
-    ) {
+    ): Promise<void> {
         return await axios
             .put('/api/users/' + data.id, {
                 name: data.name,
                 email: data.email,
                 role: data.role,
             })
-            .then((response) => {
+            .then((response: AxiosResponse): void => {
                 getData()
                 close('edit')
 
                 flashToast(response.data.message, 'success')
             })
-            .catch((error) => {
+            .catch((error): void => {
                 apiErrors(error)
             })
     }
@@ -92,8 +95,8 @@ export default function userApiMethods(): UserApiMethodsInterface {
     ): Promise<void> {
         return await axios
             .delete(`/api/users/${id}`)
-            .then((response) => {
-                getAllUsers().catch((error) => {
+            .then((response: AxiosResponse): void => {
+                getAllUsers().catch((error): void => {
                     apiErrors(error)
                 })
 
@@ -102,7 +105,7 @@ export default function userApiMethods(): UserApiMethodsInterface {
 
                 flashToast(response.data.message, 'success')
             })
-            .catch((error) => {
+            .catch((error): void => {
                 apiErrors(error)
             })
     }

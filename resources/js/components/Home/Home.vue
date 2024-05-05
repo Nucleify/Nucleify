@@ -1,5 +1,5 @@
 <template>
-    <div class="homeBricksGrid grid mx-auto mb-4">
+    <div class="homeBricksGrid grid mx-auto pb-6">
         <div
             class="p-3 grid-item-container BlockLayout"
             ref="draggableContainer"
@@ -70,7 +70,7 @@ const { startDragging } = useDragItems()
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     margin: 0 auto;
-    gap: 1rem;
+    gap: 1.5rem;
 }
 @media (min-width: 600px) {
     .grid-item-container {

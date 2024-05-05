@@ -1,8 +1,20 @@
 import { Ref, ref } from 'vue'
 
-import { ContactInterface, UserInterface, HandleDataInterface } from '@/types'
+import {
+    ArticleInterface,
+    ContactInterface,
+    UserInterface,
+    HandleDataInterface,
+} from '@/types'
 
 export default function handleData(): HandleDataInterface {
+    const articleData: Ref<ArticleInterface> = ref<ArticleInterface>({
+        title: '',
+        description: '',
+        category: '',
+        created_at: '',
+    })
+
     const contactData: Ref<ContactInterface> = ref<ContactInterface>({
         first_name: '',
         last_name: '',
@@ -21,5 +33,5 @@ export default function handleData(): HandleDataInterface {
         role: '',
     })
 
-    return { contactData, userData }
+    return { articleData, contactData, userData }
 }

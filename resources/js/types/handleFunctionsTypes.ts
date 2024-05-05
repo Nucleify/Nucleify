@@ -1,8 +1,11 @@
 import { AxiosResponse } from 'axios'
+import Menu from 'primevue/menu'
+import { Ref } from 'vue'
 
 import {
     ActivityLogInterface,
     ApiErrorsInterface,
+    ArticleInterface,
     ColorItemStyleInterface,
     ContactInterface,
     HomeItemsInterface,
@@ -11,8 +14,6 @@ import {
     ToastSeverityType,
     UserInterface,
 } from '@/types'
-import Menu from 'primevue/menu'
-import { Ref } from 'vue'
 
 /**
  *  Api
@@ -21,6 +22,8 @@ export type ApiErrorsFunctionType = (error: ApiErrorsInterface) => void
 export type GetAllActivitiesAxiosFunctionType = Promise<
     void | ActivityLogInterface[]
 >
+export type GetAllArticlesAxiosFunctionType = AxiosResponse<ArticleInterface[]>
+export type GetAllArticlesFunctionType = Promise<void | ArticleInterface[]>
 export type GetAllContactsAxiosFunctionType = AxiosResponse<ContactInterface[]>
 export type GetAllContactsFunctionType = Promise<void | ContactInterface[]>
 export type GetAllUsersAxiosFunctionType = AxiosResponse<UserInterface[]>
@@ -33,6 +36,18 @@ export type DeleteEntityFunctionType = (
     getData: () => void,
     close: (method: string) => void
 ) => Promise<void>
+
+export type StoreArticleFunctionType = (
+    data: ArticleInterface,
+    getData: () => void,
+    close: (method: string) => void
+) => Promise<void>
+export type EditArticleFunctionType = (
+    data: ArticleInterface,
+    getData: () => void,
+    close: (method: string) => void
+) => Promise<void>
+
 export type StoreContactFunctionType = (
     data: ContactInterface,
     getData: () => void,

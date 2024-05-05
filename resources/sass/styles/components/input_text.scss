@@ -1,5 +1,12 @@
+@import '../../variables/components/input_text_variables';
+
 @import '../../variables/base/dimensions_variables';
 
 .p-inputtext {
     max-height: $min-max-width-height-big;
+}
+.p-inputtextarea {
+    padding: $input-text-area-padding;
+    min-height: $input-text-area-min-height;
+    max-height: $input-text-area-max-height;
 }

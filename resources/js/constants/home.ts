@@ -13,10 +13,10 @@ export const homeItems: Ref<HomeItemsInterface[]> = ref([
     },
     {
         id: 2,
-        label: 'Posts',
-        href: '#',
+        label: 'Articles',
+        href: '/articles',
         iconClass: 'pi pi-comment',
-        disabled: true,
+        disabled: false,
         draggableClass: true,
     },
     {
@@ -70,9 +70,9 @@ export const homeItems: Ref<HomeItemsInterface[]> = ref([
     {
         id: 9,
         label: 'Settings',
-        href: '#',
+        href: '/settings',
         iconClass: 'pi pi-cog',
-        disabled: true,
+        disabled: false,
         draggableClass: false,
     },
 ])

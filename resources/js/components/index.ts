@@ -4,6 +4,11 @@
 export { default as ActivityLog } from './ActivityLog/ActivityLog.vue'
 
 /**
+ *  Article
+ */
+export { default as ArticleDashboard } from './Article/ArticleDashboard.vue'
+
+/**
  *  Admin
  */
 export { default as AdminPanel } from './Admin/AdminPanel.vue'
@@ -17,7 +22,7 @@ export { default as Register } from './Auth/Register.vue'
 /**
  *  Contacts
  */
-export { default as ContactDashboard } from './Contacts/ContactDashboard.vue'
+export { default as ContactDashboard } from './Contact/ContactDashboard.vue'
 
 /**
  *  Home

@@ -38,7 +38,8 @@ import { displayGraphList, handleStyles } from '@/constants'
 import { useDisplayGraphs } from '@/utils'
 
 const { mainStyle } = handleStyles()
-const { display, setDefaultGraphsDisplay, displayGraphsToggle } = useDisplayGraphs()
+const { display, setDefaultGraphsDisplay, displayGraphsToggle } =
+    useDisplayGraphs()
 </script>
 
 <style scoped>

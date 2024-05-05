@@ -4,11 +4,21 @@
 export { default as activityApiMethods } from './activity/handleActivityApiMethods'
 
 /**
+ *  Article
+ */
+export { default as articleApiMethods } from './article/handleArticleApiMethods'
+
+/**
  *  Auth
  */
 export { default as logout } from './auth/handleLogout'
 export { default as useSubmitAuthForm } from './auth/handleUseSubmitAuthForm'
 export { default as testLogin } from './auth/handleTestLogin'
+
+/**
+ *  Contact
+ */
+export { default as contactApiMethods } from './contact/handleContactApiMethods'
 
 /**
  *  Support
@@ -36,6 +46,4 @@ export { default as useSidebar } from './support/handleUseSidebar'
  */
 export { default as removeUserFromSessionStorage } from './user/handleRemoveUserFromSessionStorage'
 export { default as setUserToSessionStorage } from './user/handleSetUserToSessionStorage'
-
-export { default as contactApiMethods } from './contact/handleContactApiMethods'
 export { default as userApiMethods } from './user/handleUserApiMethods'

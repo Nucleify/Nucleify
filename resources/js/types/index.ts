@@ -3,8 +3,11 @@
  */
 export { ActivityLogInterface as ActivityLogInterface } from './handleInterfaces'
 export { ActivityLogApiMethodsInterface as ActivityLogApiMethodsInterface } from './handleInterfaces'
+export { ArticleApiMethodsInterface as ArticleApiMethodsInterface } from './handleInterfaces'
 export { ApiErrorsInterface as ApiErrorsInterface } from './handleInterfaces'
+export { ArticleInterface as ArticleInterface } from './handleInterfaces'
 export { ChartInterface as ChartInterface } from './handleInterfaces'
+export { ChartDataInterface as ChartDataInterface } from './handleInterfaces'
 export { ContactInterface as ContactInterface } from './handleInterfaces'
 export { ContactApiMethodsInterface as ContactApiMethodsInterface } from './handleInterfaces'
 export { ColorItemStyleInterface as ColorItemStyleInterface } from './handleInterfaces'
@@ -35,6 +38,8 @@ export { OpenMenuFunctionType as OpenMenuFunctionType } from './handleFunctionsT
 export { OpenModalFunctionType as OpenModalFunctionType } from './handleFunctionsTypes'
 export { ApiErrorsFunctionType as ApiErrorsFunctionType } from './handleFunctionsTypes'
 export { GetAllActivitiesAxiosFunctionType as GetAllActivitiesAxiosFunctionType } from './handleFunctionsTypes'
+export { GetAllArticlesAxiosFunctionType as GetAllArticlesAxiosFunctionType } from './handleFunctionsTypes'
+export { GetAllArticlesFunctionType as GetAllArticlesFunctionType } from './handleFunctionsTypes'
 export { GetAllContactsAxiosFunctionType as GetAllContactsAxiosFunctionType } from './handleFunctionsTypes'
 export { GetAllContactsFunctionType as GetAllContactsFunctionType } from './handleFunctionsTypes'
 export { GetAllUsersAxiosFunctionType as GetAllUsersAxiosFunctionType } from './handleFunctionsTypes'
@@ -44,6 +49,8 @@ export { GetUserFunctionType as GetUserFunctionType } from './handleFunctionsTyp
 
 export { DeleteEntityFunctionType as DeleteEntityFunctionType } from './handleFunctionsTypes'
 
+export { StoreArticleFunctionType as StoreArticleFunctionType } from './handleFunctionsTypes'
+export { EditArticleFunctionType as EditArticleFunctionType } from './handleFunctionsTypes'
 export { StoreContactFunctionType as StoreContactFunctionType } from './handleFunctionsTypes'
 export { EditContactFunctionType as EditContactFunctionType } from './handleFunctionsTypes'
 export { StoreUserFunctionType as StoreUserFunctionType } from './handleFunctionsTypes'
@@ -74,5 +81,6 @@ export { UserRoleType as UserRoleType } from './handleVariablesTypes'
 export { VisibleType as VisibleType } from './handleVariablesTypes'
 
 export { ActivityResultsType as ActivityResultsType } from './handleVariablesTypes'
+export { ArticleResultsType as ArticleResultsType } from './handleVariablesTypes'
 export { ContactResultsType as ContactResultsType } from './handleVariablesTypes'
 export { UserResultsType as UserResultsType } from './handleVariablesTypes'
