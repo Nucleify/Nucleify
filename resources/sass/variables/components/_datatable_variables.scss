@@ -5,6 +5,7 @@ $tablet-desktop-columns-display-phone: none;
 $action-column-width: 2%;
 $description-name-columns-overflow: hidden;
 $description-name-columns-whitespace: nowrap;
+$title-column-max-width: 200px;
 $name-column-max-width: 280px;
 $description-column-max-width: 260px;
 
@@ -31,6 +32,7 @@ $mobile-button-display-lg2: none;
 $my-button-padding-lg2: 9px 8.5px 10px 8px;
 $email-column-width-lg2: 32%;
 $role-birthday-column-lg2: 15%;
+$category-column-lg2: 25%;
 
 // Min width 1200px
 $id-column-width-xl: 8%;
@@ -38,6 +40,8 @@ $name-full-name-columns-width-xl: 20%;
 $email-column-width-xl: 28%;
 $created-at-column-display-xl: table-cell;
 $created-at-column-width-xl: 20%;
+$title-column-lg2: 38%;
+$category-column-lg2: 20%;
 
 // Min width 1400px
 $id-column-width-2xl: 6%;
@@ -46,6 +50,10 @@ $email-column-width-2xl: 16%;
 $role-birthday-columns-width-2xl: 10%;
 $created-at-updated-at-columns-display-2xl: table-cell;
 $created-at-updated-at-columns-width-2xl: 14%;
+$title-column-width-2xl: 30%;
+$category-column-width-2xl: 18%;
 
 // Min width 1500px
 $created-at-updated-at-columns-width-3xl: 12%;
+$title-column-width-3xl: 23%;
+$category-column-width-3xl: 15%;

@@ -12,6 +12,7 @@ td {
 .idColumn {
     width: $id-column-width-phone;
 }
+.titleColumn,
 .nameColumn,
 .fullNameColumn {
     width: $name-full-name-columns-width-phone;
@@ -34,11 +35,16 @@ td {
     display: $tablet-desktop-columns-display-phone;
 }
 .titleColumn,
+.categoryColumn,
 .descriptionColumn,
 .nameColumn {
     overflow: $description-name-columns-overflow;
     white-space: $description-name-columns-whitespace;
 }
+.titleColumn {
+    max-width: $title-column-max-width;
+}
+
 .descriptionColumn {
     max-width: $description-column-max-width;
 }
@@ -114,6 +120,12 @@ td {
     .birthdayColumn {
         width: $role-birthday-column-lg2;
     }
+    .titleColumn {
+        width: $title-column-lg2;
+    }
+    .categoryColumn {
+        width: $category-column-lg2;
+    }
 }
 
 // Min width 1200px
@@ -131,6 +143,9 @@ td {
     .createdAtColumn {
         display: $created-at-column-display-xl;
         width: $created-at-column-width-xl;
+    }
+    .categoryColumn {
+        width: $category-column-lg2;
     }
 }
 
@@ -155,6 +170,12 @@ td {
         display: $created-at-updated-at-columns-display-2xl;
         width: $created-at-updated-at-columns-width-2xl;
     }
+    .titleColumn {
+        width: $title-column-width-2xl;
+    }
+    .categoryColumn {
+        width: $category-column-width-2xl;
+    }
 }
 
 // Min width 1500px
@@ -162,5 +183,11 @@ td {
     .createdAtColumn,
     .updatedAtColumn {
         width: $created-at-updated-at-columns-width-3xl;
+    }
+    .titleColumn {
+        width: $title-column-width-3xl;
+    }
+    .categoryColumn {
+        width: $category-column-width-3xl;
     }
 }
