@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Requests\Article\PostRequest;
 use App\Http\Requests\Article\PutRequest;
@@ -13,7 +15,11 @@ beforeEach(function () {
 });
 
 it('runs index method successfully', function () {
-    $response = $this->controller->index();
+    Article::factory()->count(3)->create();
+
+    $request = new Request();
+
+    $response = $this->controller->index($request);
 
     expect($response->getStatusCode())->toEqual(200);
     expect($response->getData(true));

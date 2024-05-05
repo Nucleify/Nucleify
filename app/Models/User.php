@@ -106,7 +106,17 @@ class User extends Authenticatable implements UserShouldReceiveFields
         return $this->role === 'super_admin';
     }
 
-    // CONTACT METHODS
+    /**
+     *  ARTICLES METHODS
+     */
+    public function articles(): HasMany
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    /**
+     *  CONTACT METHODS
+     */
     public function contacts(): HasMany
     {
         return $this->hasMany(Contact::class);

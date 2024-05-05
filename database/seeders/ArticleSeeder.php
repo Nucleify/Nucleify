@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
 use Illuminate\Database\Seeder;
 
-use App\Models\Article;
 
 class ArticleSeeder extends Seeder
 {
@@ -13,6 +13,12 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        Article::factory(50)->create();
+        if (env('APP_ENV') === 'production' || 'dev') {
+            for ($i = 1; $i <= 6; $i++) {
+                Article::factory(41)->create([
+                    'user_id' => $i,
+                ]);
+            }
+        }
     }
 }

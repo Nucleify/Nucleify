@@ -53,7 +53,7 @@ class ActivityService
 
         switch (true) {
             case $causer->isUser():
-                if ($causer->id !== $model->id) {
+                if ($causer->id !== $model->causer_id) {
                     activity()
                         ->log(
                             '"' . $causer->name . '" tried to fetch other user activity log, but he doesn\'t have permissions'

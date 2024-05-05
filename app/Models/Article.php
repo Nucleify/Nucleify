@@ -6,6 +6,7 @@ use App\Contracts\ArticleShouldReceiveFields;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int id
@@ -55,5 +56,10 @@ class Article extends Model implements ArticleShouldReceiveFields
     public function getUpdatedAt(): string
     {
         return $this->updated_at;
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

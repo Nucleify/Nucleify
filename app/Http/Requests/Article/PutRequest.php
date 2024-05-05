@@ -25,7 +25,7 @@ class PutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|integer|exists:users,id',
+            'user_id' => 'integer|exists:users,id',
             'title' => 'required|string|min:3|max:255',
             'description' => 'required|string|min:10',
             'category' => 'string|max:255',

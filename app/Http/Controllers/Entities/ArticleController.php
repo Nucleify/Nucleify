@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 use App\Models\Article;
 use App\Services\ArticleService;
@@ -28,13 +29,13 @@ class ArticleController extends Controller
      */
     public function render(): Renderable
     {
-        return view('posts');
+        return view('articles');
     }
 
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
         try {
-            $result = $this->service->getAll();
+            $result = $this->service->getAll($request);
 
             return response()->json($result);
         } catch (Exception $e) {
