@@ -31,6 +31,7 @@ uses(
         'Feature/Api/Article/HTTP302Test.php',
         'Feature/Api/Contact/HTTP302Test.php',
         'Feature/Api/User/HTTP302Test.php',
+        'Feature/Api/Activity/HTTP401Test.php',
         'Feature/Api/Contact/HTTP422PostTest.php',
         'Feature/Api/Contact/HTTP422PutTest.php',
         'Feature/Database/Factories',
@@ -41,6 +42,7 @@ uses(
     DatabaseMigrations::class
 )
     ->in(
+        'Feature/Api/Activity/HTTP200Test.php',
         'Feature/Api/Article/HTTP200Test.php',
         'Feature/Api/Contact/HTTP200Test.php',
         'Feature/Api/User/HTTP200Test.php',
@@ -102,6 +104,10 @@ function apiTest($method, $route, $status, $data = null, $expectedJsonStructure 
 uses()
     ->group('api')
     ->in('Feature/Api');
+
+uses()
+    ->group('activity-api')
+    ->in('Feature/Api/Activity');
 
 uses()
     ->group('article-api')
