@@ -12,13 +12,13 @@ import { onMounted } from 'vue'
 import Start from './Start.vue'
 import Features from './Features.vue'
 
-import { useColors, useDisplayGraphs } from '@/utils'
+import { useColors, useDisplayCharts } from '@/utils'
 
 const { setDefaultColors } = useColors()
-const { setDefaultGraphsDisplay } = useDisplayGraphs()
+const { setDefaultChartsDisplay } = useDisplayCharts()
 
 onMounted(() => {
     setDefaultColors(true)
-    setDefaultGraphsDisplay()
+  setDefaultChartsDisplay()
 })
 </script>

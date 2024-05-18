@@ -1,9 +1,9 @@
 import { reactive } from 'vue'
 
-import { DisplayGraphsInterface, UseDisplayGraphsInterface } from '@/types'
+import { DisplayChartsInterface, UseDisplayChartsInterface } from '@/types'
 
-export default function useDisplayGraphs(): UseDisplayGraphsInterface {
-    const display: DisplayGraphsInterface = reactive({
+export default function useDisplayCharts(): UseDisplayChartsInterface {
+    const display: DisplayChartsInterface = reactive({
         Activity:
             window.localStorage.getItem('display-activity-graphs') !== 'false',
         Admin: window.localStorage.getItem('display-admin-graphs') !== 'false',
@@ -13,7 +13,7 @@ export default function useDisplayGraphs(): UseDisplayGraphsInterface {
             window.localStorage.getItem('display-contact-graphs') !== 'false',
     })
 
-    function displayGraphsToggle(action: string): void {
+    function displayChartsToggle(action: string): void {
         let key: string = ''
         switch (action) {
             case 'Activity':
@@ -38,7 +38,7 @@ export default function useDisplayGraphs(): UseDisplayGraphsInterface {
         }
     }
 
-    function allGraphsDisplayToggle(): void {
+    function allChartsDisplayToggle(): void {
         for (const key in display) {
             if (Object.prototype.hasOwnProperty.call(display, key)) {
                 const currentValue: boolean = display[key]
@@ -50,7 +50,7 @@ export default function useDisplayGraphs(): UseDisplayGraphsInterface {
         }
     }
 
-    function setDefaultGraphsDisplay(reload?: boolean): void {
+    function setDefaultChartsDisplay(reload?: boolean): void {
         const properties: string[] = [
             'display-activity-graphs',
             'display-admin-graphs',
@@ -69,8 +69,8 @@ export default function useDisplayGraphs(): UseDisplayGraphsInterface {
 
     return {
         display,
-        displayGraphsToggle,
-        setDefaultGraphsDisplay,
-        allGraphsDisplayToggle,
+        displayChartsToggle,
+        setDefaultChartsDisplay,
+        allChartsDisplayToggle
     }
 }

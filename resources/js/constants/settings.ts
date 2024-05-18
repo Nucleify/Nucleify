@@ -5,7 +5,7 @@ export const colorList: string[] = [
     'Contact',
     'User',
 ]
-export const displayGraphList: string[] = [
+export const displayChartList: string[] = [
     'Activity',
     'Admin',
     'Article',

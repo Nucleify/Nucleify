@@ -2,12 +2,12 @@
     <Card class="myCard lg:ml-2 p-3 xl:px-4 md:col-6 xl:col-4 md:max-w-30rem">
         <template #header>
             <div class="flex justify-content-between">
-                <h2>Display Graphs</h2>
+                <h2>Display Charts</h2>
 
                 <Button
                     class="myButton activityMyButton"
                     icon="pi pi-refresh"
-                    @click="setDefaultGraphsDisplay(true)"
+                    @click="setDefaultChartsDisplay(true)"
                     :style="mainStyle"
                 />
             </div>
@@ -16,7 +16,7 @@
         <template #content>
             <ul
                 class="px-3 flex flex-column gap-3"
-                v-for="item in displayGraphList"
+                v-for="item in displayChartList"
                 :key="item"
             >
                 <li class="flex justify-content-between">
@@ -25,7 +25,7 @@
                         class="myButton activityMyButton"
                         :icon="display[item] ? 'pi pi-eye' : 'pi pi-eye-slash'"
                         :style="mainStyle"
-                        @click="displayGraphsToggle(item)"
+                        @click="displayChartsToggle(item)"
                     />
                 </li>
             </ul>
@@ -34,12 +34,12 @@
 </template>
 
 <script setup lang="ts">
-import { displayGraphList, handleStyles } from '@/constants'
-import { useDisplayGraphs } from '@/utils'
+import { displayChartList, handleStyles } from '@/constants'
+import { useDisplayCharts } from '@/utils'
 
 const { mainStyle } = handleStyles()
-const { display, setDefaultGraphsDisplay, displayGraphsToggle } =
-    useDisplayGraphs()
+const { display, setDefaultChartsDisplay, displayChartsToggle } =
+    useDisplayCharts()
 </script>
 
 <style scoped>

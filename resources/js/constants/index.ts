@@ -33,7 +33,7 @@ export { excludedPaths as excludedPaths } from './paths'
  *  Settings
  */
 export { colorList as colorList } from './settings'
-export { displayGraphList as displayGraphList } from './settings'
+export { displayChartList as displayChartList } from './settings'
 
 /**
  *  Styles

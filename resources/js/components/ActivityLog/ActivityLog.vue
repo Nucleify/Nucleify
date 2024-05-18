@@ -96,9 +96,9 @@ import { onMounted } from 'vue'
 
 import { MyChart } from '@/components'
 import { handleStyles } from '@/constants'
-import { activityApiMethods, useDisplayGraphs, useMenuAndModal } from '@/utils'
+import { activityApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
 
-const { display } = useDisplayGraphs()
+const { display } = useDisplayCharts()
 const { visibleDelete, selectedObject, openModal, closeModal } =
     useMenuAndModal()
 

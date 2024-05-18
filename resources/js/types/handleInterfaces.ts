@@ -143,9 +143,9 @@ export interface ColorItemColorsInterface {
 }
 
 /**
- *  Display graphs
+ *  Display charts
  */
-export interface DisplayGraphsInterface {
+export interface DisplayChartsInterface {
     [key: string]: boolean
     Activity: boolean
     Admin: boolean
@@ -247,11 +247,11 @@ export interface UseColorsInterface {
     userItemColors: ColorItemColorsInterface
     setDefaultColors: (initial: boolean) => void
 }
-export interface UseDisplayGraphsInterface {
-    display: DisplayGraphsInterface
-    displayGraphsToggle: (action: string) => void
-    setDefaultGraphsDisplay: (reload?: boolean) => void
-    allGraphsDisplayToggle: () => void
+export interface UseDisplayChartsInterface {
+    display: DisplayChartsInterface
+    displayChartsToggle: (action: string) => void
+    setDefaultChartsDisplay: (reload?: boolean) => void
+    allChartsDisplayToggle: () => void
 }
 export interface UseDragItemsInterface {
     startDragging: StartDraggingFunctionType

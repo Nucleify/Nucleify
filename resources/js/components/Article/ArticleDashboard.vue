@@ -159,11 +159,11 @@ import ShowArticle from './ShowArticle.vue'
 import EditArticle from './EditArticle.vue'
 
 import { handleDropdownItems, handleStyles, roleOptions } from '@/constants'
-import { articleApiMethods, useDisplayGraphs, useMenuAndModal } from '@/utils'
+import { articleApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
 
 const menu = ref()
 
-const { display } = useDisplayGraphs()
+const { display } = useDisplayCharts()
 const {
     visibleShow,
     visibleCreate,

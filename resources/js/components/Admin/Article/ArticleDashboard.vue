@@ -145,7 +145,7 @@ import EditArticle from './EditArticle.vue'
 
 import { ArticleInterface } from '@/types'
 import { handleDropdownItems, handleStyles, roleOptions } from '@/constants'
-import { articleApiMethods, useDisplayGraphs, useMenuAndModal } from '@/utils'
+import { articleApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
 
 defineProps<{
     data: ArticleInterface[] | undefined
@@ -154,7 +154,7 @@ defineProps<{
 
 const menu = ref()
 
-const { display } = useDisplayGraphs()
+const { display } = useDisplayCharts()
 const {
     visibleShow,
     visibleCreate,

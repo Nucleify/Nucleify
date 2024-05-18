@@ -56,12 +56,12 @@
 
 .activitiesIcon,
 .activitiesItem,
+.articlesIcon,
+.articlesItem,
 .contactsIcon,
 .contactsItem,
 .moneyIcon,
 .moneyItem,
-.postsIcon,
-.postsItem,
 .tasksIcon,
 .tasksItem,
 .usersIcon,
@@ -71,9 +71,9 @@
 }
 
 .activitiesIcon,
+.articlesIcon,
 .contactsIcon,
 .moneyIcon,
-.postsIcon,
 .tasksIcon,
 .usersIcon {
     font-size: $font-size-base1;
@@ -84,6 +84,10 @@
     top: $activities-item-top;
     left: $activities-item-left;
 }
+.articlesItem {
+    bottom: $articles-item-bottom;
+    left: $articles-item-left;
+}
 .contactsItem {
     top: $contacts-item-top;
     left: $contacts-item-left;
@@ -91,10 +95,6 @@
 .moneyItem {
     bottom: $money-item-bottom;
     left: $money-item-left;
-}
-.postsItem {
-    bottom: $posts-item-bottom;
-    left: $posts-item-left;
 }
 .tasksItem {
     bottom: $tasks-item-bottom;
@@ -111,6 +111,10 @@
         top: $activities-item-top-xs;
         left: $activities-item-left-xs;
     }
+    .articlesItem {
+        bottom: $articles-item-bottom-xs;
+        left: $articles-item-left-xs;
+    }
     .contactsItem {
         top: $contacts-item-top-xs;
         left: $contacts-item-left-xs;
@@ -118,10 +122,6 @@
     .moneyItem {
         bottom: $money-item-bottom-xs;
         left: $money-item-left-xs;
-    }
-    .postsItem {
-        bottom: $posts-item-bottom-xs;
-        left: $posts-item-left-xs;
     }
     .tasksItem {
         bottom: $tasks-item-bottom-xs;
@@ -155,6 +155,10 @@
         top: $activities-item-top-sm2;
         left: $activities-item-left-sm2;
     }
+    .articlesItem {
+        bottom: $articles-item-bottom-sm2;
+        left: $articles-item-left-sm2;
+    }
     .contactsItem {
         top: $contacts-item-top-sm2;
         left: $contacts-item-left-sm2;
@@ -162,10 +166,6 @@
     .moneyItem {
         bottom: $money-item-bottom-sm2;
         left: $money-item-left-sm2;
-    }
-    .postsItem {
-        bottom: $posts-item-bottom-sm2;
-        left: $posts-item-left-sm2;
     }
     .tasksItem {
         bottom: $tasks-item-bottom-sm2;
@@ -185,13 +185,14 @@
     .startContainer {
         padding: $start-container-padding-sm4;
     }
+
+    .articlesItem {
+        bottom: $articles-item-bottom-sm4;
+        left: $articles-item-left-sm4;
+    }
     .moneyItem {
         bottom: $money-item-bottom-sm4;
         left: $money-item-left-sm4;
-    }
-    .postsItem {
-        bottom: $posts-item-bottom-sm4;
-        left: $posts-item-left-sm4;
     }
 }
 
@@ -216,9 +217,9 @@
         padding: $start-item-text-large-padding;
     }
     .activitiesIcon,
+    .articlesIcon,
     .contactsIcon,
     .moneyIcon,
-    .postsIcon,
     .tasksIcon,
     .usersIcon {
         font-size: $start-icons-font-size-md;
@@ -229,6 +230,10 @@
         top: $activities-item-top-md;
         left: $activities-item-left-md;
     }
+    .articlesItem {
+        bottom: $articles-item-bottom-md;
+        left: $articles-item-left-md;
+    }
     .contactsItem {
         top: $contacts-item-top-md;
         left: $contacts-item-left-md;
@@ -236,10 +241,6 @@
     .moneyItem {
         bottom: $money-item-bottom-md;
         left: $money-item-left-md;
-    }
-    .postsItem {
-        bottom: $posts-item-bottom-md;
-        left: $posts-item-left-md;
     }
     .tasksItem {
         top: $tasks-item-top-md;
@@ -259,9 +260,14 @@
     .startDescription {
         max-width: $start-description-max-width-lg2;
     }
+
     .activitiesItem {
         top: $activities-item-top-lg2;
         left: $activities-item-left-lg2;
+    }
+    .articlesItem {
+        bottom: $articles-item-bottom-lg2;
+        left: $articles-item-left-lg2;
     }
     .contactsItem {
         top: $contacts-item-top-lg2;
@@ -270,10 +276,6 @@
     .moneyItem {
         bottom: $money-item-bottom-lg2;
         left: $money-item-left-lg2;
-    }
-    .postsItem {
-        bottom: $posts-item-bottom-lg2;
-        left: $posts-item-left-lg2;
     }
     .tasksItem {
         top: $tasks-item-top-lg2;
@@ -303,6 +305,10 @@
         top: $activities-item-top-xl;
         left: $activities-item-left-xl;
     }
+    .articlesItem {
+        bottom: $articles-item-bottom-xl;
+        left: $articles-item-left-xl;
+    }
     .contactsItem {
         top: $contacts-item-top-xl;
         left: $contacts-item-left-xl;
@@ -310,10 +316,6 @@
     .moneyItem {
         bottom: $money-item-bottom-xl;
         left: $money-item-left-xl;
-    }
-    .postsItem {
-        bottom: $posts-item-bottom-xl;
-        left: $posts-item-left-xl;
     }
     .tasksItem {
         top: $tasks-item-top-xl;
@@ -344,6 +346,10 @@
         top: $activities-item-top-2xl;
         left: $activities-item-left-2xl;
     }
+    .articlesItem {
+        bottom: $articles-item-bottom-2xl;
+        left: $articles-item-left-2xl;
+    }
     .contactsItem {
         top: $contacts-item-top-2xl;
         left: $contacts-item-left-2xl;
@@ -351,10 +357,6 @@
     .moneyItem {
         bottom: $money-item-bottom-2xl;
         left: $money-item-left-2xl;
-    }
-    .postsItem {
-        bottom: $posts-item-bottom-2xl;
-        left: $posts-item-left-2xl;
     }
     .tasksItem {
         top: $tasks-item-top-2xl;

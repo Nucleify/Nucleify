@@ -165,11 +165,11 @@ import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
 
 import { handleDropdownItems, handleStyles, roleOptions } from '@/constants'
-import { contactApiMethods, useDisplayGraphs, useMenuAndModal } from '@/utils'
+import { contactApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
 
 const menu = ref()
 
-const { display } = useDisplayGraphs()
+const { display } = useDisplayCharts()
 const {
     visibleShow,
     visibleCreate,

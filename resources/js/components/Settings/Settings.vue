@@ -1,10 +1,10 @@
 <template>
     <div class="panelContainer">
         <color-settings></color-settings>
-        <display-graphs></display-graphs>
+        <display-charts></display-charts>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ColorSettings, DisplayGraphs } from '@/components'
+import { ColorSettings, DisplayCharts } from '@/components'
 </script>

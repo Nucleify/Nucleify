@@ -21,8 +21,8 @@
                 <a class="startItem tasksItem" v-tooltip.right="'Tasks'">
                     <i class="pi pi-check-square tasksIcon"></i>
                 </a>
-                <a class="startItem postsItem" v-tooltip.right="'Posts'">
-                    <i class="pi pi-comment postsIcon"></i>
+                <a class="startItem articlesItem" v-tooltip.right="'Articles'">
+                    <i class="pi pi-comment articlesIcon"></i>
                 </a>
                 <a
                     class="startItem moneyItem"

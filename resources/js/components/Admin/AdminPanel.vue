@@ -106,11 +106,11 @@ import {
     articleApiMethods,
     contactApiMethods,
     useColors,
-    useDisplayGraphs,
+    useDisplayCharts,
     userApiMethods,
 } from '@/utils'
 
-const { display } = useDisplayGraphs()
+const { display } = useDisplayCharts()
 
 const { results: articles, getAllArticles } = articleApiMethods()
 const { results: contacts, getAllContacts } = contactApiMethods()
