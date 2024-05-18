@@ -71,6 +71,6 @@ export default function useDisplayCharts(): UseDisplayChartsInterface {
         display,
         displayChartsToggle,
         setDefaultChartsDisplay,
-        allChartsDisplayToggle
+        allChartsDisplayToggle,
     }
 }

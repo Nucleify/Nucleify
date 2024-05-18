@@ -1,11 +1,11 @@
 <template>
-    <Dialog :visible="visible" modal class="w-30rem">
+    <Dialog :visible="visible" modal class="myDialog">
         <template #header>
-            <h2 class="m-0">Edit: {{ contact.full_name }}</h2>
+            <h2 class="myDialogHeader">Edit: {{ contact.full_name }}</h2>
         </template>
 
-        <form action="#" class="text-sm">
-            <div class="flex flex-column gap-1 mb-3">
+        <form action="#" class="formContainer">
+            <div class="formDiv">
                 <label for="first_name">First Name</label>
                 <InputText
                     id="first_name"
@@ -14,7 +14,7 @@
                 />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="last_name">Last Name</label>
                 <InputText
                     id="last_name"
@@ -23,12 +23,12 @@
                 />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="email">Email</label>
                 <InputText id="email" type="email" v-model="data.email" />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="personal_phone">Personal Phone</label>
                 <InputText
                     id="personal_phone"
@@ -37,7 +37,7 @@
                 />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="work_phone">Work Phone</label>
                 <InputText
                     id="work_phone"
@@ -46,17 +46,17 @@
                 />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="address">Address</label>
                 <InputText id="address" type="text" v-model="data.address" />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="birthday">Birthday</label>
                 <InputText id="birthday" type="date" v-model="data.birthday" />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="contact_groups">Contact Groups</label>
                 <InputText
                     id="contact_groups"
@@ -65,7 +65,7 @@
                 />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="role">Role</label>
                 <Dropdown
                     id="role"
@@ -77,7 +77,7 @@
         </form>
 
         <template #footer>
-            <div class="flex gap-2 justify-content-end mt-1">
+            <div class="dialogButtonsContainer">
                 <Button
                     severity="secondary"
                     label="Cancel"

@@ -19,6 +19,6 @@ const { setDefaultChartsDisplay } = useDisplayCharts()
 
 onMounted(() => {
     setDefaultColors(true)
-  setDefaultChartsDisplay()
+    setDefaultChartsDisplay()
 })
 </script>

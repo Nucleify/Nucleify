@@ -1,32 +1,32 @@
 <template>
-    <Dialog :visible="visible" modal header="Show contact" class="w-30rem">
+    <Dialog :visible="visible" modal header="Show contact" class="myDialog">
         <template #header>
-            <h2 class="m-0">
+            <h2 class="myDialogHeader">
                 {{ user.name }}
             </h2>
         </template>
-        <div v-if="user" class="flex flex-column gap-3">
+        <div v-if="user" class="showDataContainer">
             <div>
-                <h5 class="mb-0">Email</h5>
+                <h5 class="showDataHeader">Email</h5>
                 <div>{{ user.email }}</div>
             </div>
             <div>
-                <h5 class="mb-0">Role</h5>
+                <h5 class="showDataHeader">Role</h5>
                 <div>{{ user.role }}</div>
             </div>
-            <div class="flex">
-                <div class="col-6 p-0">
-                    <h5 class="mb-0">Created At</h5>
+            <div class="showDataDatesContainer">
+                <div class="showDataDate col-6">
+                    <h5 class="showDataHeader">Created At</h5>
                     <div>{{ user.created_at }}</div>
                 </div>
-                <div class="col-6 p-0">
-                    <h5 class="mb-0">Updated At</h5>
+                <div class="showDataDate col-6">
+                    <h5 class="showDataHeader">Updated At</h5>
                     <div>{{ user.updated_at }}</div>
                 </div>
             </div>
         </div>
         <template #footer>
-            <div class="flex gap-2 justify-content-end">
+            <div class="dialogButtonsContainer">
                 <Button
                     severity="secondary"
                     label="Close"

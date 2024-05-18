@@ -1,0 +1,25 @@
+@import '../../variables/components/show_variables';
+
+.showDataContainer {
+    display: $show-data-container-display;
+    flex-direction: $show-data-container-flex-direction;
+    gap: $show-data-container-gap;
+}
+
+.showDataHeader {
+    margin-bottom: $show-data-header-margin-bottom;
+}
+
+.showDataDatesContainer,
+.showDataPhoneNumbersContainer {
+    display: $show-data-dates-container-display;
+}
+
+.showDataDate,
+.showDataPhoneNumber {
+    padding: $show-data-date-padding;
+}
+
+.showDataRole {
+    margin-top: $show-data-role;
+}

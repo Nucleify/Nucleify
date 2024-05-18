@@ -1,6 +1,16 @@
+$my-dialog-width: 30rem;
+$my-dialog-max-height: 620px;
+
+$my-dialog-header-margin: 0;
+
 $dialog-mask-padding: 0 10px;
 $dialog-header-padding-top: 18px;
 $dialog-header-padding-bottom: 0;
 $dialog-content-padding: 20px;
 $dialog-header-icon-display: none;
 $dialog-footer-padding: 20px;
+
+// Dialog buttons container
+$dialog-buttons-display: flex;
+$dialog-buttons-justify-content: end;
+$dialog-buttons-gap: 0.5rem;

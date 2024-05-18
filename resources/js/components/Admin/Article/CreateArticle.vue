@@ -1,16 +1,16 @@
 <template>
-    <Dialog :visible="visible" modal class="w-30rem">
+    <Dialog :visible="visible" modal class="myDialog">
         <template #header>
-            <h2 class="m-0">Create new article</h2>
+            <h2 class="myDialogHeader">Create new article</h2>
         </template>
 
-        <form action="#" class="text-sm">
-            <div class="flex flex-column gap-1 mb-3">
+        <form action="#" class="formContainer">
+            <div class="formDiv">
                 <label for="title">Title</label>
                 <InputText id="title" type="text" v-model="data.title" />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="description">Description</label>
                 <Textarea
                     id="description"
@@ -19,14 +19,14 @@
                 />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="category">Category</label>
                 <InputText id="category" type="text" v-model="data.category" />
             </div>
         </form>
 
         <template #footer>
-            <div class="flex gap-2 justify-content-end">
+            <div class="dialogButtonsContainer">
                 <Button
                     severity="secondary"
                     label="Cancel"

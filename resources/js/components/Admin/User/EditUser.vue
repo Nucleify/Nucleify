@@ -1,21 +1,21 @@
 <template>
-    <Dialog :visible="visible" modal header="Header" class="w-30rem">
+    <Dialog :visible="visible" modal header="Header" class="myDialog">
         <template #header>
-            <h2 class="m-0">Edit: {{ user.name }}</h2>
+            <h2 class="myDialogHeader">Edit: {{ user.name }}</h2>
         </template>
 
-        <form action="#" class="text-sm">
-            <div class="flex flex-column gap-1 mb-3">
+        <form action="#" class="formContainer">
+            <div class="formDiv">
                 <label for="name">Name</label>
                 <InputText id="name" type="text" v-model="data.name" />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="email">Email</label>
                 <InputText id="email" type="text" v-model="data.email" />
             </div>
 
-            <div class="flex flex-column gap-1 mb-3">
+            <div class="formDiv">
                 <label for="role">Role</label>
                 <Dropdown
                     v-model="data.role"
@@ -27,7 +27,7 @@
         </form>
 
         <template #footer>
-            <div class="flex gap-2 justify-content-end">
+            <div class="dialogButtonsContainer">
                 <Button
                     severity="secondary"
                     label="Cancel"

@@ -1,5 +1,14 @@
 @import '../../variables/components/dialog_variables';
 
+.myDialog {
+    width: $my-dialog-width;
+    max-height: $my-dialog-max-height;
+}
+
+.myDialogHeader {
+    margin: $my-dialog-header-margin;
+}
+
 .p-dialog-mask {
     padding: $dialog-mask-padding;
 }
@@ -15,4 +24,10 @@
 }
 .p-dialog-footer {
     padding: $dialog-footer-padding;
+}
+
+.dialogButtonsContainer {
+    display: $dialog-buttons-display;
+    justify-content: $dialog-buttons-justify-content;
+    gap: $dialog-buttons-gap;
 }
