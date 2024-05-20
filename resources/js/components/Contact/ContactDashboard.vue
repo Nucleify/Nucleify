@@ -8,6 +8,7 @@
                 <my-chart
                     :chart-method-type="'annual'"
                     :type="'bar'"
+                    :direction="'vertical'"
                     :contact-data="results"
                     :chart-class="'h-30rem'"
                 />

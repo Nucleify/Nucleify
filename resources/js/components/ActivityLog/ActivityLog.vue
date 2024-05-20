@@ -8,6 +8,7 @@
                 <my-chart
                     :chart-method-type="'annual'"
                     :type="'bar'"
+                    :direction="'vertical'"
                     :activity-log-data="activities"
                     :chart-class="'h-30rem'"
                 />

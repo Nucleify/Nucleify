@@ -1,7 +1,7 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
     <nav
-        class="welcomeNavbar navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 fixed w-full z-100"
+        class="welcomeNavbar navbar navbar-expand-lg navbar-light bg-white py-3 fixed w-full z-100"
     >
         <div class="container">
             <a class="applicationHeader" href="/"> DataManager </a>

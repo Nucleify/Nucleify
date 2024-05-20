@@ -6,6 +6,13 @@
 @import '../../../variables/base/fonts_variables';
 @import '../../../variables/base/medias_variables';
 
+#features {
+    overflow-x: hidden;
+}
+
+/**
+    Access
+ */
 .accessContainer {
     display: $access-container-display;
     flex-direction: $access-container-flex-direction;
@@ -14,6 +21,7 @@
     width: $access-container-width;
     background: $secondary-green-bg-color;
     margin-bottom: $access-container-margin-bottom;
+    overflow-x: $access-container-overflow-x;
 }
 .accessHeader {
     font-family: $font-family-inter-sans-serif;
@@ -21,10 +29,10 @@
     color: $dark-text-color;
     font-size: $access-header-font-size;
     max-width: $access-header-max-width;
-    margin-bottom: $access-header-margin-bottom;
+    margin: $access-header-margin;
 }
 .accessDescription {
-    margin-top: $access-description-margin-top;
+    margin: $access-description-margin;
     max-width: $access-description-max-width;
     color: $secondary-text-color;
     text-align: $access-description-text-align;
@@ -32,8 +40,11 @@
     font-size: $access-description-font-size;
 }
 .accessCardContainer {
-    position: $access-card-container-position;
-    top: $access-card-container-top;
+    margin: $access-card-container-margin;
+    display: $access-card-container-display;
+    flex-wrap: $access-card-container-flex-wrap;
+    flex-direction: $access-card-container-flex-direction;
+    justify-content: $access-card-container-justify-content;
 }
 .accessCard {
     min-width: $access-card-width;
@@ -70,7 +81,7 @@
     text-align: $flip-card-inner-text-align;
     transition: $flip-card-inner-transition;
     transform-style: $flip-card-inner-transform-style;
-    border: $flip-card-border;
+    box-shadow: $my-card-box-shadow;
 }
 .flip-card:hover .flip-card-inner {
     transform: $flip-card-hover-transform;
@@ -108,20 +119,6 @@
     }
 }
 
-// Min width 560px
-@media (min-width: $min-width-sm4) {
-    .accessContainer {
-        height: $access-container-height-sm4;
-    }
-}
-
-// Min width 759
-@media (min-width: $min-width-md0) {
-    .accessContainer {
-        height: $access-container-height-md0;
-    }
-}
-
 // Min width 768px
 @media (min-width: $min-width-md) {
     .accessHeader {
@@ -131,10 +128,67 @@
 
 // Min width 1129px
 @media (min-width: $min-width-lg3) {
-    .accessContainer {
-        height: $access-container-height-lg3;
-    }
     .accessHeader {
         font-size: $font-size-xl;
+    }
+}
+
+/*
+    Charts
+ */
+.welcomeChartsContainer {
+    width: $welcome-charts-container-width;
+    margin: $welcome-charts-container-margin;
+    padding: $welcome-charts-container-padding;
+    display: $welcome-charts-container-display;
+    flex-direction: $welcome-charts-container-flex-direction;
+    justify-content: $welcome-charts-container-justify-content;
+    align-items: $welcome-charts-container-align-items;
+    background: $welcome-charts-container-background;
+}
+
+.welcomePieChart {
+    z-index: $welcome-pie-chart-z-index;
+    position: $welcome-pie-chart-position;
+    bottom: $welcome-pie-chart-bottom;
+    left: $welcome-pie-chart-left;
+    width: $welcome-pie-chart-width;
+    height: $welcome-pie-chart-height;
+    margin-right: $welcome-pie-chart-margin-right;
+}
+
+.welcomeChartCard {
+    display: $welcome-chart-card-display;
+    justify-content: $welcome-chart-card-justify-content;
+    height: $welcome-chart-card-height;
+    width: $welcome-chart-card-width;
+    max-height: $welcome-chart-card-max-height;
+    max-width: $welcome-chart-card-max-width;
+    padding: $welcome-chart-card-padding;
+}
+
+.welcomeHorizontalChart {
+    height: $welcome-horizontal-chart-height;
+}
+
+.welcomeChartsHeader {
+    font-family: $font-family-inter-sans-serif;
+    font-weight: $welcome-charts-header-font-weight;
+    color: $dark-text-color;
+    font-size: $font-size-big1;
+    padding: $welcome-charts-header-padding;
+    text-align: $welcome-charts-header-text-align;
+    margin-bottom: $welcome-charts-header-margin-bottom;
+}
+
+// Min width 992px
+@media (min-width: $min-width-lg2) {
+    .welcomeChartsContainer {
+        flex-direction: $welcome-charts-container-flex-direction-lg2;
+    }
+    .welcomeChartsHeader {
+        max-width: $welcome-charts-header-max-width-lg2;
+        text-align: $welcome-charts-header-text-align-lg-2;
+        padding: $welcome-charts-header-padding-lg-2;
     }
 }

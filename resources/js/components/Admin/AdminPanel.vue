@@ -80,6 +80,7 @@
                 <my-chart
                     :chart-method-type="'annual'"
                     :type="'bar'"
+                    :direction="'vertical'"
                     :article-data="articles"
                     :contactData="contacts"
                     :userData="users"

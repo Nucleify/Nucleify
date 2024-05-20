@@ -10,7 +10,7 @@
 import { onMounted } from 'vue'
 
 import Start from './Start.vue'
-import Features from './Features.vue'
+import Features from './Features/Features.vue'
 
 import { useColors, useDisplayCharts } from '@/utils'
 

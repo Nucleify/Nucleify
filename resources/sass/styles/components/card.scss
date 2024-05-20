@@ -6,4 +6,6 @@
 .myCard {
     width: $card-width;
     box-shadow: $my-card-box-shadow;
+    border: $my-card-border;
+    background: $my-card-background;
 }

@@ -2,11 +2,13 @@
 
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/medias_variables';
+@import '../../../variables/base/box_shadows_variables';
 
 .welcomeNavbar {
     z-index: $welcome-navbar-z-index;
     position: $welcome-navbar-position;
     top: $welcome-navbar-top;
+    box-shadow: $my-card-box-shadow;
 }
 
 .welcomeNavLink {
