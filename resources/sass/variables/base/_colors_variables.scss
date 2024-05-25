@@ -1,18 +1,24 @@
-$body-bg: #f8fafc;
-$content-bg: #ffffff;
-$primary-color: #1bbd79;
-$secondary-color: #6b7280;
+// Text colors
 $dark-text-color: #333941;
-$primary-text-color: #4b5563;
-$secondary-text-color: #5e5e5e;
+$primary-text-color: #4B5563;
+$secondary-text-color: #5E5E5E;
+
+// Core colors
+$body-bg: #F8FAFC;
+$content-bg: #FFFFFF;
+$primary-color: #1BBD79;
+$primary-hover-color: #1BBD79;
+$primary-hover-bg-color: #F6F6F8;
+
+$secondary-color: #6B7280;
 $secondary-gray-color: #989898;
-$secondary-gray-bg: #f8f8f8;
-$secondary-whitesmoke-color: #e8e8e8;
-$secondary-gray-bg-color: #f5f4f4;
-$secondary-green-bg-color: #e9fff8;
-$primary-hover-color: #1bbd79;
-$primary-hover-bg-color: #f6f6f8;
-$secondary-hover-bg-color: #e3fff4;
+$secondary-gray-bg: #F8F8F8;
+$secondary-whitesmoke-color: #E8E8E8;
+$secondary-gray-bg-color: #F5F4F4;
+$secondary-green-bg-color: #E9FFF8;
+$secondary-hover-bg-color: #E3FFF4;
+
+// Transitions
 $transition-colors-300ms:
     color 300ms,
     background-color 300ms,
