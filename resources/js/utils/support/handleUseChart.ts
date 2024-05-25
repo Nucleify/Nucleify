@@ -26,6 +26,13 @@ export default function useChart() {
         userItemColors: ColorItemColorsInterface
     } = useColors()
 
+    const exampleColors = {
+        activityItemColors: { primary: '#FFB600', hover: '#E7A60B' },
+        articleItemColors: { primary: '#1187C7', hover: '#0F79B2' },
+        contactItemColors: { primary: '#10B981', hover: '#10A674' },
+        userItemColors: { primary: '#64748B', hover: '#566479' }
+    }
+
     const months: string[] = [
         'January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'
@@ -52,46 +59,47 @@ export default function useChart() {
             const contactDataByMonth: number[] = new Array(12).fill(0)
             const userDataByMonth: number[] = new Array(12).fill(0)
 
+            const colors = example ? exampleColors : { activityItemColors, articleItemColors, contactItemColors, userItemColors }
+
+            if (example) {
+                for (let i = 0; i < 12; i++) {
+                    articleDataByMonth[i] = Math.floor(Math.random() * 100)
+                    contactDataByMonth[i] = Math.floor(Math.random() * 100)
+                    userDataByMonth[i] = Math.floor(Math.random() * 100)
+                }
+            } else {
+                activityLogData?.forEach((activityLog: ActivityLogInterface): void => {
+                    const monthIndex: number = new Date(activityLog.created_at).getMonth()
+                    activityLogDataByMonth[monthIndex]++
+                })
+
+                articleData?.forEach((article: ArticleInterface): void => {
+                    const monthIndex: number = new Date(article.created_at).getMonth()
+                    articleDataByMonth[monthIndex]++
+                })
+
+                contactData?.forEach((contact: ContactInterface): void => {
+                    if (contact.created_at) {
+                        const monthIndex: number = new Date(contact.created_at).getMonth()
+                        contactDataByMonth[monthIndex]++
+                    }
+                })
+
+                userData?.forEach((user: UserInterface): void => {
+                    if (user.created_at) {
+                        const monthIndex: number = new Date(user.created_at).getMonth()
+                        userDataByMonth[monthIndex]++
+                    }
+                })
+            }
+
             switch (chartMethodType) {
                 case 'annual':
-                    if (!example) {
-                        activityLogData?.forEach((activityLog: ActivityLogInterface): void => {
-                            const monthIndex: number = new Date(activityLog.created_at).getMonth()
-                            activityLogDataByMonth[monthIndex]++
-                        })
-
-                        articleData?.forEach((article: ArticleInterface): void => {
-                            const monthIndex: number = new Date(article.created_at).getMonth()
-                            articleDataByMonth[monthIndex]++
-                        })
-
-                        contactData?.forEach((contact: ContactInterface): void => {
-                            if (contact.created_at) {
-                                const monthIndex: number = new Date(contact.created_at).getMonth()
-                                contactDataByMonth[monthIndex]++
-                            }
-                        })
-
-                        userData?.forEach((user: UserInterface): void => {
-                            if (user.created_at) {
-                                const monthIndex: number = new Date(user.created_at).getMonth()
-                                userDataByMonth[monthIndex]++
-                            }
-                        })
-                    } else {
-                        for (let i = 0; i < 12; i++) {
-                            articleDataByMonth[i] = Math.floor(Math.random() * 100)
-                            contactDataByMonth[i] = Math.floor(Math.random() * 100)
-                            userDataByMonth[i] = Math.floor(Math.random() * 100)
-                        }
-                    }
-
-
                     const dataTypes = [
-                        { label: 'Activities', data: activityLogDataByMonth, colors: activityItemColors },
-                        { label: 'Articles', data: articleDataByMonth, colors: articleItemColors },
-                        { label: 'Contacts', data: contactDataByMonth, colors: contactItemColors },
-                        { label: 'Users', data: userDataByMonth, colors: userItemColors },
+                        { label: 'Activities', data: activityLogDataByMonth, colors: colors.activityItemColors },
+                        { label: 'Articles', data: articleDataByMonth, colors: colors.articleItemColors },
+                        { label: 'Contacts', data: contactDataByMonth, colors: colors.contactItemColors },
+                        { label: 'Users', data: userDataByMonth, colors: colors.userItemColors },
                     ]
 
                     const datasets = dataTypes
@@ -117,30 +125,24 @@ export default function useChart() {
                         }
                     })
 
-                    if (example) {
-                        articleData = new Array(Math.floor(Math.random() * 100))
-                        contactData = new Array(Math.floor(Math.random() * 100))
-                        userData = new Array(Math.floor(Math.random() * 100))
-                    }
+                    const totalArticles: number = articleDataByMonth.reduce((sum: number, value: number) => sum + value, 0)
+                    const totalContacts: number = contactDataByMonth.reduce((sum: number, value: number) => sum + value, 0)
+                    const totalUsers: number = userDataByMonth.reduce((sum: number, value: number) => sum + value, 0)
 
                     return {
                         labels,
                         datasets: [
                             {
-                                data: [
-                                    articleData?.length ?? 0,
-                                    contactData?.length ?? 0,
-                                    userData?.length ?? 0,
-                                ],
+                                data: [totalArticles, totalContacts, totalUsers],
                                 backgroundColor: [
-                                    articleItemColors.primary,
-                                    contactItemColors.primary,
-                                    userItemColors.primary,
+                                    colors.articleItemColors.primary,
+                                    colors.contactItemColors.primary,
+                                    colors.userItemColors.primary,
                                 ],
                                 hoverBackgroundColor: [
-                                    articleItemColors.hover,
-                                    contactItemColors.hover,
-                                    userItemColors.hover,
+                                    colors.articleItemColors.hover,
+                                    colors.contactItemColors.hover,
+                                    colors.userItemColors.hover,
                                 ],
                             },
                         ],
@@ -154,6 +156,7 @@ export default function useChart() {
             return null
         }
     }
+
 
     function setChartOptions(chartType: ChartType, direction?: string): ChartOptions {
         const textColor: string = documentStyle.getPropertyValue('--text-color')
