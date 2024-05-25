@@ -108,14 +108,16 @@ php artisan serve
 - root directory:
 
 ```bash
-sail up -d    # run containers in background
+# run Docker containers in the background
+sail start
 
-sail exec laravel.test bash    # this command open sail container's bash, then run command bellow
-npm run dev
+# run command inside laravel.test container bash
+sail npm run dev
 ```
 
-Possible problem: 
+Possible problems: 
 - Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
+- Error starting userland proxy: listen tcp4 0.0.0.0:3306: bind: address already in use: ```sudo service mysql stop```
 </details>
 
 <hr>
@@ -130,7 +132,7 @@ Possible problem:
 <br>
 
 ```bash
-php artisan tinker
+sail tinker
 
 # if you wish, you can specify count in factory() or attributes in create()
 Article::factory(100)->create();
@@ -150,10 +152,10 @@ Database\Factories\ActivityFactory::new()->count(100)->create();
 Backend tests:
 ```bash
 # run all tests
-./vendor/bin/pest
+sail pest
 
 # or specify group
-./vendor/bin/pest --group=api
+sail pest --group=api
 
 # defined tests groups:
 api, article-api, contact-api, user-api, feature, global, unit, controllers, database, factories, migrations, models
