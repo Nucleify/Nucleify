@@ -23,6 +23,7 @@ import InputText from 'primevue/inputtext'
 import Menu from 'primevue/menu'
 import Menubar from 'primevue/menubar'
 import PanelMenu from 'primevue/panelmenu'
+import ProgressSpinner from 'primevue/progressspinner'
 import Sidebar from 'primevue/sidebar'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
@@ -41,6 +42,7 @@ app.component('Avatar', Avatar)
     .component('Menu', Menu)
     .component('Menubar', Menubar)
     .component('PanelMenu', PanelMenu)
+    .component('ProgressSpinner', ProgressSpinner)
     .component('Sidebar', Sidebar)
     .component('Textarea', Textarea)
     .component('Toast', Toast)

@@ -9,23 +9,46 @@ import {
     ApiErrorsFunctionType,
     FlashToastFunctionType,
 } from '@/types'
-import { useApiErrors, useFlashToast } from '@/utils'
+import { useApiErrors, useFlashToast, useLoading } from '@/utils'
 
 export default function activityApiMethods(): ActivityLogApiMethodsInterface {
+    const results: ActivityResultsType = ref([])
+    const { loading, setLoading } = useLoading()
+
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } =
         useFlashToast()
-    const results: ActivityResultsType = ref([])
 
-    async function getAllActivities(): GetAllActivitiesAxiosFunctionType {
+    async function getAllActivities(
+        timeout?: number
+    ): GetAllActivitiesAxiosFunctionType {
+        if (timeout) {
+            setLoading(true)
+        }
         return await axios
             .get('/api/activity-log')
             .then((response: AxiosResponse<ActivityLogInterface[]>) => {
-                return (results.value = response.data)
+                if (timeout) {
+                    setTimeout((): void => {
+                        results.value = response.data
+                    }, timeout)
+                } else {
+                    results.value = response.data
+                }
             })
             .catch((error): void => {
-                apiErrors(error)
-                throw error
+                if (timeout) {
+                    setTimeout((): void => {
+                        apiErrors(error)
+                    }, timeout)
+                } else {
+                    apiErrors(error)
+                }
+            })
+            .finally((): void => {
+                if (timeout) {
+                    setLoading(false, timeout)
+                }
             })
     }
 
@@ -47,5 +70,5 @@ export default function activityApiMethods(): ActivityLogApiMethodsInterface {
             })
     }
 
-    return { results, getAllActivities, deleteActivity }
+    return { results, loading, getAllActivities, deleteActivity }
 }

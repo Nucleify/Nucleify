@@ -1,10 +1,10 @@
 <template>
     <div class="welcomeChartsContainer">
-        <h5 class="welcomeChartsHeader">Choose from bar charts, line graphs, pie charts and more to best represent your data.</h5>
-        <Card
-            unstyled
-            class="myCard welcomeChartCard lg:px-2 xl:px-4"
-        >
+        <h5 class="welcomeChartsHeader">
+            Choose from bar charts, line graphs, pie charts and more to best
+            represent your data.
+        </h5>
+        <Card unstyled class="myCard welcomeChartCard lg:px-2 xl:px-4">
             <template #content>
                 <my-chart
                     :chart-method-type="'annual'"

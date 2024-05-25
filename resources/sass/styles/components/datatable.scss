@@ -3,9 +3,23 @@
 @import '../../variables/base/fonts_variables';
 @import '../../variables/base/medias_variables';
 
+.p-datatable {
+    min-height: $datatable-min-height;
+}
+
+.p-datatable .p-component-overlay {
+    background: $datatable-component-overlay-background;
+}
+
+.p-datatable:has(.p-datatable-loading-overlay) .p-datatable-wrapper,
+.p-datatable:has(.p-datatable-loading-overlay) .p-paginator-bottom {
+    display: $datatable-has-loading-overlay-display;
+}
+
 td {
     cursor: $td-cursor;
 }
+
 .p-column-title {
     font-size: $font-size-base;
 }
@@ -51,6 +65,7 @@ td {
 .nameColumn {
     max-width: $name-column-max-width;
 }
+
 // Min width 530px
 @media (min-width: $min-width-sm) {
     .roleColumn,

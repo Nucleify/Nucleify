@@ -11,24 +11,47 @@ import {
     ApiErrorsFunctionType,
     FlashToastFunctionType,
 } from '@/types'
-import { useApiErrors, useFlashToast } from '@/utils'
+import { useApiErrors, useFlashToast, useLoading } from '@/utils'
 
 export default function contactApiMethods(): ContactApiMethodsInterface {
     const results: ContactResultsType = ref([])
+    const { loading, setLoading } = useLoading()
 
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } =
         useFlashToast()
 
-    async function getAllContacts(): GetAllContactsFunctionType {
+    async function getAllContacts(
+        timeout?: number
+    ): GetAllContactsFunctionType {
+        if (timeout) {
+            setLoading(true)
+        }
         return await axios
             .get('/api/contacts')
             .then((response: GetAllContactsAxiosFunctionType) => {
-                return (results.value = response.data)
+                if (timeout) {
+                    setTimeout((): void => {
+                        results.value = response.data
+                    }, timeout)
+                } else {
+                    results.value = response.data
+                }
+                return response.data
             })
             .catch((error): void => {
-                apiErrors(error)
-                throw error
+                if (timeout) {
+                    setTimeout((): void => {
+                        apiErrors(error)
+                    }, timeout)
+                } else {
+                    apiErrors(error)
+                }
+            })
+            .finally((): void => {
+                if (timeout) {
+                    setLoading(false, timeout)
+                }
             })
     }
 
@@ -109,5 +132,12 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
             })
     }
 
-    return { results, getAllContacts, storeContact, editContact, deleteContact }
+    return {
+        results,
+        loading,
+        getAllContacts,
+        storeContact,
+        editContact,
+        deleteContact,
+    }
 }

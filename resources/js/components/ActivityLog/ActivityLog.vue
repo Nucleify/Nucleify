@@ -2,7 +2,7 @@
     <div class="panelContainer">
         <Card
             v-if="display.Activity"
-            class="myCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4"
+            class="myCard chartCard annualChartCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4"
         >
             <template #content>
                 <my-chart
@@ -12,6 +12,7 @@
                     :activity-log-data="activities"
                     :chart-class="'h-30rem'"
                 />
+                <ProgressSpinner v-if="loading" />
             </template>
         </Card>
         <Card class="myCard lg:ml-2 lg:mr-5">
@@ -23,6 +24,7 @@
             <template #content>
                 <DataTable
                     :value="activities"
+                    :loading="loading"
                     :size="'small'"
                     :rows="10"
                     :row-hover="true"
@@ -33,6 +35,7 @@
                     paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}"
                 >
+                    <template #loading><ProgressSpinner /></template>
                     <Column
                         field="id"
                         :sortable="true"
@@ -105,11 +108,14 @@ const { visibleDelete, selectedObject, openModal, closeModal } =
 
 const {
     results: activities,
+    loading,
     getAllActivities,
     deleteActivity,
 } = activityApiMethods()
 
 const { activityStyle } = handleStyles()
 
-onMounted(getAllActivities)
+onMounted(() => {
+    getAllActivities(500)
+})
 </script>

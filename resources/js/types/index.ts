@@ -1,6 +1,8 @@
 /**
  *  Interfaces
  */
+import { LoadingType } from '@/types/handleVariablesTypes'
+
 export { ActivityLogInterface as ActivityLogInterface } from './handleInterfaces'
 export { ActivityLogApiMethodsInterface as ActivityLogApiMethodsInterface } from './handleInterfaces'
 export { ArticleApiMethodsInterface as ArticleApiMethodsInterface } from './handleInterfaces'
@@ -72,9 +74,11 @@ export { CSRFTokenInputType as CSRFTokenInputType } from './handleVariablesTypes
 export { IsAdminType as IsAdminType } from './handleVariablesTypes'
 export { LabelItemType as LabelItemType } from './handleVariablesTypes'
 export { LogoutFormType as LogoutFormType } from './handleVariablesTypes'
+export { LoadingType as LoadingType } from './handleVariablesTypes'
 export { MessageOrMessagesType as MessageOrMessagesType } from './handleVariablesTypes'
 export { ObjectType as ObjectType } from './handleVariablesTypes'
 export { SelectedObjectType as SelectedObjectType } from './handleVariablesTypes'
+export { TimeoutType as TimeoutType } from './handleVariablesTypes'
 export { ToastSeverityType as ToastSeverityType } from './handleVariablesTypes'
 export { UserIdType as UserIdType } from './handleVariablesTypes'
 export { UserRoleType as UserRoleType } from './handleVariablesTypes'

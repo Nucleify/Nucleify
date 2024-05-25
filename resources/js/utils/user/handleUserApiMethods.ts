@@ -12,22 +12,44 @@ import {
     ApiErrorsFunctionType,
     FlashToastFunctionType,
 } from '@/types'
-import { useApiErrors, useFlashToast } from '@/utils'
+import { useApiErrors, useFlashToast, useLoading } from '@/utils'
 
 export default function userApiMethods(): UserApiMethodsInterface {
+    const results: UserResultsType = ref([])
+    const { loading, setLoading } = useLoading()
+
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } =
         useFlashToast()
-    const results: UserResultsType = ref([])
 
-    async function getAllUsers(): GetAllUsersFunctionType {
+    async function getAllUsers(timeout?: number): GetAllUsersFunctionType {
+        if (timeout) {
+            setLoading(true)
+        }
         return await axios
             .get('/api/users')
             .then((response: GetAllUsersAxiosFunctionType) => {
-                return (results.value = response.data)
+                if (timeout) {
+                    setTimeout((): void => {
+                        results.value = response.data
+                    }, timeout)
+                } else {
+                    results.value = response.data
+                }
             })
             .catch((error): void => {
-                apiErrors(error)
+                if (timeout) {
+                    setTimeout((): void => {
+                        apiErrors(error)
+                    }, timeout)
+                } else {
+                    apiErrors(error)
+                }
+            })
+            .finally((): void => {
+                if (timeout) {
+                    setLoading(false, timeout)
+                }
             })
     }
 
@@ -110,5 +132,13 @@ export default function userApiMethods(): UserApiMethodsInterface {
             })
     }
 
-    return { results, getAllUsers, getUser, storeUser, editUser, deleteUser }
+    return {
+        results,
+        loading,
+        getAllUsers,
+        getUser,
+        storeUser,
+        editUser,
+        deleteUser,
+    }
 }

@@ -17,6 +17,7 @@ import {
     GetAllUsersFunctionType,
     GetSidebarItemStyleFunctionType,
     GetUserFunctionType,
+    LoadingType,
     MessageOrMessagesType,
     OpenMenuFunctionType,
     OpenModalFunctionType,
@@ -26,6 +27,7 @@ import {
     StoreArticleFunctionType,
     StoreContactFunctionType,
     StoreUserFunctionType,
+    TimeoutType,
     UserResultsType,
     VisibleType,
 } from '@/types'
@@ -41,7 +43,10 @@ export interface ActivityLogInterface {
 }
 export interface ActivityLogApiMethodsInterface {
     results: ActivityResultsType
-    getAllActivities: () => GetAllActivitiesAxiosFunctionType
+    loading: LoadingType
+    getAllActivities: (
+        timeout?: TimeoutType
+    ) => GetAllActivitiesAxiosFunctionType
     deleteActivity: DeleteEntityFunctionType
 }
 
@@ -71,7 +76,8 @@ export interface ArticleInterface {
 }
 export interface ArticleApiMethodsInterface {
     results: ArticleResultsType
-    getAllArticles: () => GetAllArticlesFunctionType
+    loading: LoadingType
+    getAllArticles: (timeout?: TimeoutType) => GetAllArticlesFunctionType
     storeArticle: StoreArticleFunctionType
     editArticle: EditArticleFunctionType
     deleteArticle: DeleteEntityFunctionType
@@ -121,7 +127,8 @@ export interface ContactInterface {
 }
 export interface ContactApiMethodsInterface {
     results: ContactResultsType
-    getAllContacts: () => GetAllContactsFunctionType
+    loading: LoadingType
+    getAllContacts: (timeout?: TimeoutType) => GetAllContactsFunctionType
     storeContact: StoreContactFunctionType
     editContact: EditContactFunctionType
     deleteContact: DeleteEntityFunctionType
@@ -205,7 +212,8 @@ export interface UserInterface {
 }
 export interface UserApiMethodsInterface {
     results: UserResultsType
-    getAllUsers: () => GetAllUsersFunctionType
+    loading: LoadingType
+    getAllUsers: (timeout?: TimeoutType) => GetAllUsersFunctionType
     getUser: () => GetUserFunctionType
     storeUser: StoreUserFunctionType
     editUser: EditUserFunctionType

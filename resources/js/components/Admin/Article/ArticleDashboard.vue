@@ -10,22 +10,25 @@
                         @click="openModal('create')"
                         class="text-sm smallHeightButton"
                         :style="articleStyle"
+                        :class="{ loading: loading }"
                     />
                 </div>
             </template>
             <template #content>
                 <DataTable
-                    :value="results"
+                    :value="data"
+                    :loading="loading"
                     :rows="10"
                     :row-hover="true"
                     :size="'small'"
-                    v-if="results"
+                    v-if="data"
                     paginator
                     stripedRows
                     @row-click="openModal('show', $event.data)"
                     paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}"
                 >
+                    <template #loading><ProgressSpinner /></template>
                     <Column
                         field="id"
                         :sortable="true"
@@ -102,7 +105,7 @@
         :close="closeModal"
     />
     <CreateArticle
-        :get-data="getAllArticles"
+        :get-data="getData"
         :visible="visibleCreate"
         :options="roleOptions"
         :close="closeModal"
@@ -110,7 +113,7 @@
     />
     <EditArticle
         :article="selectedObject"
-        :get-data="getAllArticles"
+        :get-data="getData"
         :visible="visibleEdit"
         :options="roleOptions"
         :close="closeModal"
@@ -126,9 +129,7 @@
             />
             <Button
                 label="Confirm"
-                @click="
-                    deleteArticle(selectedObject.id, getAllArticles, closeModal)
-                "
+                @click="deleteArticle(selectedObject.id, getData, closeModal)"
                 class="smallHeightButton"
                 :style="articleStyle"
             />
@@ -150,6 +151,7 @@ import { articleApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
 defineProps<{
     data: ArticleInterface[] | undefined
     getData: () => void
+    loading: boolean
 }>()
 
 const menu = ref()
@@ -166,11 +168,9 @@ const {
     closeModal,
 } = useMenuAndModal()
 
-const { results, getAllArticles, deleteArticle } = articleApiMethods()
+const { deleteArticle } = articleApiMethods()
 
 const { articleStyle } = handleStyles()
 
 const { dropdownItems } = handleDropdownItems(selectedObject, openModal)
-
-onMounted(getAllArticles)
 </script>

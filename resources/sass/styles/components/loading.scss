@@ -1,0 +1,6 @@
+@import '../../variables/components/loading_variables';
+
+.loading {
+    opacity: $loading-opacity;
+    pointer-events: $loading-pointer-events;
+}

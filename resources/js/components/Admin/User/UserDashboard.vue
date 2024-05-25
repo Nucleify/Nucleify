@@ -10,12 +10,14 @@
                         @click="openModal('create')"
                         class="text-sm smallHeightButton"
                         :style="userStyle"
+                        :class="{ loading: loading }"
                     />
                 </div>
             </template>
             <template #content>
                 <DataTable
                     :value="data"
+                    :loading="loading"
                     :size="'small'"
                     :rows="10"
                     :row-hover="true"
@@ -26,6 +28,7 @@
                     paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}"
                 >
+                    <template #loading><ProgressSpinner /></template>
                     <Column
                         field="id"
                         :sortable="true"
@@ -155,6 +158,7 @@ import { useMenuAndModal, userApiMethods } from '@/utils'
 defineProps<{
     data: UserInterface[] | undefined
     getData: () => void
+    loading: boolean
 }>()
 
 const menu = ref()

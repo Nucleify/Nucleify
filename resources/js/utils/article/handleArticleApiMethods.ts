@@ -11,24 +11,46 @@ import {
     ApiErrorsFunctionType,
     FlashToastFunctionType,
 } from '@/types'
-import { useApiErrors, useFlashToast } from '@/utils'
+import { useApiErrors, useFlashToast, useLoading } from '@/utils'
 
 export default function articleApiMethods(): ArticleApiMethodsInterface {
     const results: ArticleResultsType = ref([])
+    const { loading, setLoading } = useLoading()
 
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } =
         useFlashToast()
 
-    async function getAllArticles(): GetAllArticlesFunctionType {
+    async function getAllArticles(
+        timeout?: number
+    ): GetAllArticlesFunctionType {
+        if (timeout) {
+            setLoading(true)
+        }
         return await axios
             .get('/api/articles')
             .then((response: GetAllArticlesAxiosFunctionType) => {
-                return (results.value = response.data)
+                if (timeout) {
+                    setTimeout((): void => {
+                        results.value = response.data
+                    }, timeout)
+                } else {
+                    results.value = response.data
+                }
             })
             .catch((error): void => {
-                apiErrors(error)
-                throw error
+                if (timeout) {
+                    setTimeout((): void => {
+                        apiErrors(error)
+                    }, timeout)
+                } else {
+                    apiErrors(error)
+                }
+            })
+            .finally((): void => {
+                if (timeout) {
+                    setLoading(false, timeout)
+                }
             })
     }
 
@@ -97,5 +119,12 @@ export default function articleApiMethods(): ArticleApiMethodsInterface {
             })
     }
 
-    return { results, getAllArticles, storeArticle, editArticle, deleteArticle }
+    return {
+        results,
+        loading,
+        getAllArticles,
+        storeArticle,
+        editArticle,
+        deleteArticle,
+    }
 }

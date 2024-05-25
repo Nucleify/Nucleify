@@ -10,12 +10,14 @@
                         @click="openModal('create')"
                         class="text-sm smallHeightButton"
                         :style="contactStyle"
+                        :class="{ loading: loading }"
                     />
                 </div>
             </template>
             <template #content>
                 <DataTable
                     :value="data"
+                    :loading="loading"
                     :rows="10"
                     :row-hover="true"
                     :size="'small'"
@@ -26,6 +28,7 @@
                     paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}"
                 >
+                    <template #loading><ProgressSpinner /></template>
                     <Column
                         field="id"
                         :sortable="true"
@@ -154,6 +157,7 @@ import { contactApiMethods, useMenuAndModal } from '@/utils'
 defineProps<{
     data: ContactInterface[] | undefined
     getData: () => void
+    loading: boolean
 }>()
 
 const menu = ref()

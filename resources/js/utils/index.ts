@@ -38,6 +38,7 @@ export { default as useIsAdmin } from './support/handleUseIsAdmin'
 export { default as useFlashToast } from './support/handleFlashToast'
 export { default as useApiErrors } from './support/handleApiErrors'
 export { default as useChart } from './support/handleUseChart'
+export { default as useLoading } from './support/handleUseLoading'
 export { default as useMenuAndModal } from './support/handleUseMenuAndModal'
 export { default as useSidebar } from './support/handleUseSidebar'
 

@@ -31,7 +31,7 @@ const props = defineProps<{
     contactData?: ContactInterface[] | undefined
     userData?: UserInterface[] | undefined
     chartClass: string | undefined
-    example: boolean | undefined
+    example?: boolean | undefined
 }>()
 
 const { setChartData, setChartOptions } = useChart()

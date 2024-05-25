@@ -20,6 +20,7 @@ export type CSRFTokenInputType = LogoutFormType | undefined
 export type IsAdminType = Ref | null
 export type LabelItemType = string | null
 export type LogoutFormType = HTMLFormElement | null
+export type LoadingType = Ref<boolean>
 export type MessageOrMessagesType = string | Record<string, string[]>
 export type ObjectType =
     | ActivityLogInterface
@@ -36,6 +37,7 @@ export type ToastSeverityType =
     | undefined
 export type UserIdType = string | null
 export type UserRoleType = string
+export type TimeoutType = number
 export type VisibleType = Ref<boolean>
 
 /**

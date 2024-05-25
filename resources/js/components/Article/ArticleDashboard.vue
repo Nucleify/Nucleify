@@ -2,7 +2,7 @@
     <div class="panelContainer">
         <Card
             v-if="display.Article"
-            class="myCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4"
+            class="myCard chartCard annualChartCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4"
         >
             <template #content>
                 <my-chart
@@ -12,6 +12,7 @@
                     :article-data="results"
                     :chart-class="'h-30rem'"
                 />
+                <ProgressSpinner v-if="loading" />
             </template>
         </Card>
         <Card class="myCard articleDashboard w-full lg:ml-2 lg:mr-5">
@@ -24,12 +25,14 @@
                         @click="openModal('create')"
                         class="text-sm smallHeightButton"
                         :style="articleStyle"
+                        :class="{ loading: loading }"
                     />
                 </div>
             </template>
             <template #content>
                 <DataTable
                     :value="results"
+                    :loading="loading"
                     :rows="10"
                     :row-hover="true"
                     :size="'small'"
@@ -40,6 +43,7 @@
                     paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}"
                 >
+                    <template #loading><ProgressSpinner /></template>
                     <Column
                         field="id"
                         :sortable="true"
@@ -176,11 +180,13 @@ const {
     closeModal,
 } = useMenuAndModal()
 
-const { results, getAllArticles, deleteArticle } = articleApiMethods()
+const { results, loading, getAllArticles, deleteArticle } = articleApiMethods()
 
 const { articleStyle } = handleStyles()
 
 const { dropdownItems } = handleDropdownItems(selectedObject, openModal)
 
-onMounted(getAllArticles)
+onMounted(() => {
+    getAllArticles(500)
+})
 </script>

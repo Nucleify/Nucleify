@@ -55,11 +55,12 @@
                     </p>
                 </a>
             </div>
-            <div
+
+            <Card
                 v-if="display.Admin"
-                class="col-12 sm:col-6 lg:col-4 grid-item-container"
+                class="myCard chartCard countChartCard col-12 sm:col-6 lg:col-4 grid-item max-w-16rem h-full mt-2"
             >
-                <a href="#" class="grid-item h-16rem p-5">
+                <template #content>
                     <my-chart
                         :chart-method-type="'count'"
                         :type="'pie'"
@@ -68,13 +69,18 @@
                         :userData="users"
                         :chart-class="'h-16 w-16 -mt-2'"
                     />
-                </a>
-            </div>
+                    <ProgressSpinner
+                        v-if="
+                            articlesLoading && contactsLoading && usersLoading
+                        "
+                    />
+                </template>
+            </Card>
         </div>
 
         <Card
             v-if="display.Admin"
-            class="myCard lg:ml-2 lg:mr-5 lg:px-3 xl:px-4 xl:pb-4 xl:pt-2"
+            class="myCard chartCard annualChartCard lg:ml-2 lg:mr-5 lg:px-3 xl:px-4 xl:pb-4 xl:pt-2"
         >
             <template #content>
                 <my-chart
@@ -86,12 +92,27 @@
                     :userData="users"
                     :chart-class="'h-30rem'"
                 />
+                <ProgressSpinner
+                    v-if="articlesLoading && contactsLoading && usersLoading"
+                />
             </template>
         </Card>
 
-        <article-dashboard :data="articles" :getData="getAllArticles" />
-        <contact-dashboard :data="contacts" :getData="getAllContacts" />
-        <user-dashboard :data="users" :getData="getAllUsers" />
+        <article-dashboard
+            :data="articles"
+            :getData="getAllArticles"
+            :loading="articlesLoading"
+        />
+        <contact-dashboard
+            :data="contacts"
+            :getData="getAllContacts"
+            :loading="contactsLoading"
+        />
+        <user-dashboard
+            :data="users"
+            :getData="getAllUsers"
+            :loading="usersLoading"
+        />
     </div>
 </template>
 
@@ -113,14 +134,22 @@ import {
 
 const { display } = useDisplayCharts()
 
-const { results: articles, getAllArticles } = articleApiMethods()
-const { results: contacts, getAllContacts } = contactApiMethods()
-const { results: users, getAllUsers } = userApiMethods()
+const {
+    results: articles,
+    loading: articlesLoading,
+    getAllArticles,
+} = articleApiMethods()
+const {
+    results: contacts,
+    loading: contactsLoading,
+    getAllContacts,
+} = contactApiMethods()
+const { results: users, loading: usersLoading, getAllUsers } = userApiMethods()
 
 onMounted(() => {
-    getAllArticles()
-    getAllContacts()
-    getAllUsers()
+    getAllArticles(500)
+    getAllContacts(500)
+    getAllUsers(500)
 })
 
 const { articleItemColors, contactItemColors, userItemColors } = useColors()
