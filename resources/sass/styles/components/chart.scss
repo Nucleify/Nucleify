@@ -15,3 +15,12 @@
     min-height: $count-chart-card-dimensions;
     max-height: $count-chart-card-dimensions;
 }
+
+
+.chartLoading {
+    opacity: $chart-loading-opacity;
+}
+
+.chartLoaded {
+    opacity: $chart-loaded-opacity;
+}

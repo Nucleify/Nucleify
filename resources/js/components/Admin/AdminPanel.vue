@@ -68,11 +68,10 @@
                         :contactData="contacts"
                         :userData="users"
                         :chart-class="'h-16 w-16 -mt-2'"
+                        :class="!allLoaded ? 'chartLoading' : 'chartLoaded'"
                     />
                     <ProgressSpinner
-                        v-if="
-                            articlesLoading && contactsLoading && usersLoading
-                        "
+                        v-if="!allLoaded"
                     />
                 </template>
             </Card>
@@ -90,10 +89,11 @@
                     :article-data="articles"
                     :contactData="contacts"
                     :userData="users"
-                    :chart-class="'h-30rem'"
+                    :chart-class="'myChart h-30rem'"
+                    :class="!allLoaded ? 'chartLoading' : 'chartLoaded'"
                 />
                 <ProgressSpinner
-                    v-if="articlesLoading && contactsLoading && usersLoading"
+                    v-if="!allLoaded"
                 />
             </template>
         </Card>
@@ -117,7 +117,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import {onMounted, ref, Ref, watch} from 'vue'
 
 import { MyChart } from '@/components'
 import ArticleDashboard from './Article/ArticleDashboard.vue'
@@ -153,6 +153,19 @@ onMounted(() => {
 })
 
 const { articleItemColors, contactItemColors, userItemColors } = useColors()
+
+const allLoaded: Ref<boolean> = ref(false)
+
+watch(
+    [articlesLoading, contactsLoading, usersLoading],
+    ([articlesLoading, contactsLoading, usersLoading]) => {
+      if (articlesLoading && contactsLoading && usersLoading) {
+        setTimeout(() => {
+          allLoaded.value = true
+        }, 1000)
+      }
+    }
+)
 
 const articleCircleStyle = {
     background: articleItemColors.primary,
