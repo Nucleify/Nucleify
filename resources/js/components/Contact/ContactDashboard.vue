@@ -196,3 +196,10 @@ onMounted(() => {
     getAllContacts(500)
 })
 </script>
+
+<style scoped>
+:deep(.p-progress-spinner-circle) {
+    stroke: var(--contact-item-color);
+    animation: p-progress-spinner-dash 1.2s ease-in-out infinite;
+}
+</style>

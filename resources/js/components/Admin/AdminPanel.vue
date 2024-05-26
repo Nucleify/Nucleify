@@ -72,6 +72,7 @@
                     />
                     <ProgressSpinner
                         v-if="!allLoaded"
+                        :style="{color: 'blue'}"
                     />
                 </template>
             </Card>
@@ -158,8 +159,8 @@ const allLoaded: Ref<boolean> = ref(false)
 
 watch(
     [articlesLoading, contactsLoading, usersLoading],
-    ([articlesLoading, contactsLoading, usersLoading]) => {
-      if (articlesLoading && contactsLoading && usersLoading) {
+    ([newArticlesLoading, newContactsLoading, newUsersLoading]) => {
+      if (!newArticlesLoading && !newContactsLoading && !newUsersLoading) {
         setTimeout(() => {
           allLoaded.value = true
         }, 1000)
@@ -186,3 +187,22 @@ const userBricksTextStyle = {
     color: userItemColors.primary,
 }
 </script>
+
+<style scoped>
+:deep(.p-progress-spinner-circle) {
+    stroke: #1ea97c;
+    animation: p-progress-spinner-dash 1.2s ease-in-out infinite, p-progress-spinner-custom-color 6s ease-in-out infinite !important;
+}
+
+@keyframes p-progress-spinner-custom-color {
+    0%, 100% {
+        stroke: var(--contact-item-color);
+    }
+    40% {
+        stroke: var(--article-item-color);
+    }
+    80% {
+        stroke: var(--user-item-color);
+    }
+}
+</style>
