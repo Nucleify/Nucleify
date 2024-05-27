@@ -13,6 +13,7 @@
         "laravel/telescope": "^4.17",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
+        "multicaret/laravel-acquaintances": "^3.6",
         "spatie/laravel-activitylog": "^4.7",
         "spatie/laravel-fractal": "^6.0"
     },

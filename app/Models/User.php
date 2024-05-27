@@ -7,6 +7,7 @@ use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Multicaret\Acquaintances\Traits\Friendable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -35,7 +36,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements UserShouldReceiveFields
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Friendable, Notifiable;
 
     public function __construct(array $attributes = [])
     {
