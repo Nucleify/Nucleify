@@ -204,7 +204,7 @@ npm run write
 <details><summary> 🖼️ Preview Images </summary>
 <br>
 
-![desktop-preview](https://github.com/SzymCode/DataManager/assets/107359025/ddc78456-c5fd-4ec1-af24-80270c805b56)
+![desktop-preview](https://github.com/SzymCode/DataManager/assets/107359025/04160e0e-aca6-403d-80b1-b47e4d47b96d)
 
 ![tablet-preview](https://github.com/SzymCode/DataManager/assets/107359025/fdc075ff-b7f4-44a2-9b72-c262809e18d7)
 
