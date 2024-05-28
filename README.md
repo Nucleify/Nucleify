@@ -12,7 +12,7 @@ This website helps to storage various data types and share it with others. My ta
 
 <br>
 
-<details><summary> &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=20/> &nbsp;Standard </summary> 
+<details><summary> &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=20/> &nbsp;XAMPP </summary> 
 
 - First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
 
@@ -199,14 +199,4 @@ npm run write
 </details>
 
 <hr/>
-</details>
-
-<details><summary> 🖼️ Preview Images </summary>
-<br>
-
-![desktop-preview](https://github.com/SzymCode/DataManager/assets/107359025/04160e0e-aca6-403d-80b1-b47e4d47b96d)
-
-![tablet-preview](https://github.com/SzymCode/DataManager/assets/107359025/fdc075ff-b7f4-44a2-9b72-c262809e18d7)
-
-![phone-preview](https://github.com/SzymCode/DataManager/assets/107359025/405e7a85-b4e8-42b7-84ec-b24db5a7a1ba)
 </details>
