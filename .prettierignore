@@ -1,1 +1,4 @@
 resources/js/interfaces
+
+resources/sass/app.scss
+resources/sass/variables
