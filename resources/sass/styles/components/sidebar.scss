@@ -6,85 +6,78 @@
 @import '../../variables/base/fonts_variables';
 @import '../../variables/base/medias_variables';
 
-.p-panelmenu {
-    display: $panel-menu-display;
-    flex-direction: $panel-menu-flex-direction;
-    gap: $panel-menu-gap;
-    margin-top: $panel-menu-margin-top;
-}
-.sidebarItem {
-    margin-left: $sidebar-item-margin-left;
-    min-width: $sidebar-item-dimensions;
-    min-height: $sidebar-item-dimensions;
-    max-width: $sidebar-item-dimensions;
-    max-height: $sidebar-item-dimensions;
-    padding: $sidebar-item-padding;
-    text-decoration: $panel-menu-header-action-text-decoration;
-    color: $panel-menu-header-action-color;
-}
-.sidebarItem i {
-    font-size: $font-size-medium1;
-}
-.sidebarItem:hover {
-    color: $panel-menu-header-action-color;
-    border-radius: $small-border-radius;
-}
-.sidebarItem {
-    border-color: $panel-menu-header-content-border;
-    border-radius: $small-border-radius;
-    text-align: $sidebar-item-text-align;
-}
-
-.p-sidebar {
-    max-width: $sidebar-max-width;
-}
-.p-sidebar-header {
-    padding-left: $sidebar-header-padding-left;
-}
-.p-sidebar-header .p-sidebar-header-content {
-    font-size: $font-size-big;
-}
-.sidebarHr {
-    position: $sidebar-hr-position;
-    bottom: $sidebar-hr-bottom;
-}
-.sidebarUser:hover {
-    background: $primary-hover-bg-color;
-    transition: $transition-colors-300ms;
-}
-.sidebarIcon,
-.sidebarUser {
-    color: $secondary-text-color;
-}
-
 .mySidebar {
+    height: $my-sidebar-height;
+    position: $my-sidebar-position;
     display: $my-sidebar-display;
-    background: $content-bg;
+    flex-direction: $my-sidebar-flex-direction;
     box-shadow: $my-sidebar-box-shadow;
-}
-.mySidebar .disabledItem {
-    opacity: $disabled-item-opacity;
-}
+    background: $content-bg;
+    padding: $my-sidebar-padding;
+    z-index: $my-sidebar-z-index;
 
-.p-sidebar,
-.p-sidebar-mask {
-    display: $sidebar-sidebar-mask-display;
-}
-
-// Min width 550px
-@media (min-width: $min-width-sm3) {
-    .p-sidebar,
-    .p-sidebar-mask {
-        display: $sidebar-sidebar-mask-display-sm3;
+    .disabledItem {
+        opacity: $disabled-item-opacity;
     }
-}
 
-// Min width 992px
-@media (min-width: $min-width-lg2) {
-    .mySidebar {
+    .sidebarItem {
+        margin-left: $my-sidebar-item-margin-left;
+        min-width: $my-sidebar-item-dimensions;
+        min-height: $my-sidebar-item-dimensions;
+        max-width: $my-sidebar-item-dimensions;
+        max-height: $my-sidebar-item-dimensions;
+        padding: $my-sidebar-item-padding;
+        justify-content: $my-sidebar-item-justify-content;
+        text-align: $my-sidebar-item-text-align;
+        text-decoration: $my-sidebar-item-text-decoration;
+        color: $secondary-text-color;
+        border-color: $my-sidebar-item-border;
+        border-radius: $small-border-radius;
+        transition: $my-sidebar-item-transition;
+
+        i {
+            font-size: $font-size-medium1;
+        }
+    }
+
+    .userMenu {
+        display: $user-menu-display;
+        flex-direction: $user-menu-flex-direction;
+        justify-content: $user-menu-justify-content;
+        align-items: $user-menu-align-items;
+        margin-top: $user-menu-margin-top;
+
+        .userMenuItems {
+            transition: $user-menu-items-transition;
+
+            .userMenuItem {
+                opacity: $user-menu-item-opacity;
+                display: $user-menu-item-display;
+                transition: $user-menu-item-transition;
+            }
+        }
+
+        .sidebarUser {
+            width: $sidebar-user-dimensions;
+            height: $sidebar-user-dimensions;
+            padding: $sidebar-user-padding;
+            color: $secondary-text-color;
+            transition: $sidebar-user-transition;
+            cursor: $sidebar-user-cursor;
+
+            .pi-user {
+                font-size: $font-size-big;
+            }
+        }
+
+        .closeUserMenuItem {
+            position: $close-user-menu-item-position;
+            bottom: $close-user-menu-item-bottom;
+        }
+    }
+
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
         display: $my-sidebar-display-lg2;
-    }
-    .mySidebar .p-menuitem-text {
-        display: $my-sidebar-menuitem-text-display-lg2;
     }
 }

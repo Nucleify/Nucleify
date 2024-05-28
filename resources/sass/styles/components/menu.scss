@@ -1,0 +1,15 @@
+@import '../../variables/components/menu_variables';
+
+.p-menu,
+.p-menu-list,
+.p-menuitem-content {
+    border-radius: $menu-menu-list-menu-item-content-border-radius;
+}
+
+.p-menu,
+.p-menu-list {
+    padding: $menu-menu-list-padding;
+    margin: $menu-menu-list-margin;
+    gap: $menu-menu-list-gap;
+    min-width: $menu-menu-list-min-width;
+}

@@ -1,27 +1,40 @@
-$panel-menu-display: flex;
-$panel-menu-flex-direction: column;
-$panel-menu-gap: 10px;
-$panel-menu-margin-top: 10px;
-$panel-menu-header-action-padding: 13px;
-$panel-menu-header-action-text-decoration: none;
-$panel-menu-header-action-color: #5e5e5e;
-$panel-menu-header-content-border: transparent;
-$panel-menu-header-action-icon-font-size: 20px;
-$sidebar-max-width: 270px;
-$sidebar-header-padding-left: 30px;
-$sidebar-hr-position: relative;
-$sidebar-hr-bottom: 4px;
+$my-sidebar-height: 100vh;
+$my-sidebar-position: fixed;
 $my-sidebar-display: none;
+$my-sidebar-flex-direction: column;
 $my-sidebar-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-$sidebar-item-margin-left: -1px;
-$sidebar-item-dimensions: 50px;
-$sidebar-item-padding: 14px 13px 13px 13px;
-$sidebar-item-text-align: center;
-$sidebar-sidebar-mask-display: none;
+$my-sidebar-padding: 1rem;
+$my-sidebar-z-index: 100;
 
-// Min width 550px
-$sidebar-sidebar-mask-display-sm3: flex;
+$my-sidebar-item-margin-left: -1px;
+$my-sidebar-item-dimensions: 50px;
+$my-sidebar-item-padding: 14px 13px 13px 13px;
+$my-sidebar-item-justify-content: center;
+$my-sidebar-item-text-align: center;
+$my-sidebar-item-text-decoration: none;
+$my-sidebar-item-border: transparent;
+$my-sidebar-item-transition: all 300ms;
+
+// User menu
+$user-menu-display: flex;
+$user-menu-flex-direction: column;
+$user-menu-justify-content: center;
+$user-menu-align-items: center;
+$user-menu-margin-top: auto;
+
+$user-menu-items-transition: all 300ms;
+
+$user-menu-item-opacity: 0;
+$user-menu-item-display: none;
+$user-menu-item-transition: all 500ms;
+
+$sidebar-user-padding: 8px;
+$sidebar-user-dimensions: 3rem;
+$sidebar-user-transition: all 300ms;
+$sidebar-user-cursor: pointer;
+
+$close-user-menu-item-position: fixed;
+$close-user-menu-item-bottom: 15px;
 
 // Min width 992px
 $my-sidebar-display-lg2: flex;
-$my-sidebar-menuitem-text-display-lg2: none;

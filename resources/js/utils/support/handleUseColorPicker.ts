@@ -1,6 +1,6 @@
 import { Ref, ref } from 'vue'
 
-import { darkenColor, setOpacity, useColors } from '@/utils'
+import { darkenColor, setColorOpacity, useColors } from '@/utils'
 import { ColorItemColorsInterface } from '@/types'
 
 export default function useColorPicker(item: string) {
@@ -46,7 +46,7 @@ export default function useColorPicker(item: string) {
             : `#${itemColor.value}`
         if (colorValue) {
             const darkerColor: string = darkenColor(colorValue, 10)
-            const opacityColor: string = setOpacity(colorValue, 0.08)
+            const opacityColor: string = setColorOpacity(colorValue, 0.08)
 
             localStorage.setItem(`${item}-item-color`, colorValue)
             localStorage.setItem(`${item}-item-hover-color`, darkerColor)

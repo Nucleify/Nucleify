@@ -1,9 +1,9 @@
 <template>
-    <div
-        class="fixed flex-column h-screen p-3 mySidebar z-100"
-        v-if="shouldShowSidebar"
-    >
-        <div class="flex flex-column justify-content-center w-3rem m-0 gap-3">
+    <div class="mySidebar" v-if="shouldShowSidebar">
+        <div
+            class="sidebarItems flex flex-column justify-content-center w-3rem m-0 gap-3"
+        >
+            <!-- Sidebar items -->
             <template v-for="(item, index) in items">
                 <a
                     v-if="shouldRenderSidebarItem(item.url)"
@@ -16,6 +16,7 @@
                     <i :class="item.icon" />
                 </a>
             </template>
+
             <!-- Disabled sidebar items -->
             <a
                 href="#"
@@ -48,39 +49,46 @@
         </div>
 
         <!-- User menu -->
-        <div class="flex flex-column mt-auto justify-content-center">
-            <div class="flex flex-column gap-3">
+        <div class="userMenu">
+            <!-- User menu items -->
+            <div class="userMenuItems">
                 <a
                     href="#"
-                    class="sidebarItem disabledItem"
+                    class="sidebarItem userMenuItem"
+                    v-tooltip.right="'Profile'"
+                >
+                    <i class="pi pi-user" />
+                </a>
+                <a
+                    href="/settings"
+                    class="sidebarItem userMenuItem"
+                    v-tooltip.right="'Settings'"
+                >
+                    <i class="pi pi-cog" />
+                </a>
+                <a
+                    href="#"
+                    class="sidebarItem userMenuItem"
                     v-tooltip.right="'Help'"
                 >
                     <i class="pi pi-info-circle" />
                 </a>
+
                 <a
-                    href="/settings"
-                    class="sidebarItem"
-                    v-tooltip.right="'Settings'"
-                    :style="
-                        isCurrentUrl('/settings') ? mainSidebarItemStyle : ''
-                    "
+                    href="#"
+                    class="sidebarItem userMenuItem closeUserMenuItem"
+                    @click="closeUserMenu()"
                 >
-                    <i class="pi pi-cog" />
+                    <i class="pi pi-times" />
                 </a>
             </div>
-            <hr class="border-top-1" />
 
-            <div
-                class="sidebarUser flex align-items-center gap-3 cursor-pointer p-2 border-round-xl"
-                @click="openMenu($refs.menu, $event)"
-            >
-                <Avatar
-                    icon="pi pi-user"
-                    shape="circle"
-                    class="w-2rem h-2rem"
-                />
-            </div>
-            <Menu ref="menu" :model="userMenuItems" :popup="true" />
+            <Avatar
+                class="sidebarUser userAvatar"
+                icon="pi pi-user"
+                shape="circle"
+                @click="openUserMenu()"
+            />
         </div>
     </div>
 </template>
@@ -90,7 +98,7 @@ import { ref, onMounted, Ref, UnwrapRef } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
 import { excludedPaths, handleStyles } from '@/constants'
-import { isCurrentUrl, openMenu, useSidebar } from '@/utils'
+import { isCurrentUrl, useSidebar, useUserMenu } from '@/utils'
 
 defineProps<{
     items: Ref<UnwrapRef<MenuItem>>
@@ -99,6 +107,7 @@ defineProps<{
 
 const shouldShowSidebar = ref(true)
 const { shouldRenderSidebarItem, getSidebarItemStyle } = useSidebar()
+const { openUserMenu, closeUserMenu } = useUserMenu()
 
 onMounted(() => {
     if (excludedPaths.some((path) => isCurrentUrl(path))) {

@@ -72,7 +72,7 @@
                     />
                     <ProgressSpinner
                         v-if="!allLoaded"
-                        :style="{color: 'blue'}"
+                        :style="{ color: 'blue' }"
                     />
                 </template>
             </Card>
@@ -93,9 +93,7 @@
                     :chart-class="'myChart h-30rem'"
                     :class="!allLoaded ? 'chartLoading' : 'chartLoaded'"
                 />
-                <ProgressSpinner
-                    v-if="!allLoaded"
-                />
+                <ProgressSpinner v-if="!allLoaded" />
             </template>
         </Card>
 
@@ -118,7 +116,7 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, Ref, watch} from 'vue'
+import { onMounted, ref, Ref, watch } from 'vue'
 
 import { MyChart } from '@/components'
 import ArticleDashboard from './Article/ArticleDashboard.vue'
@@ -160,11 +158,11 @@ const allLoaded: Ref<boolean> = ref(false)
 watch(
     [articlesLoading, contactsLoading, usersLoading],
     ([newArticlesLoading, newContactsLoading, newUsersLoading]) => {
-      if (!newArticlesLoading && !newContactsLoading && !newUsersLoading) {
-        setTimeout(() => {
-          allLoaded.value = true
-        }, 1000)
-      }
+        if (!newArticlesLoading && !newContactsLoading && !newUsersLoading) {
+            setTimeout(() => {
+                allLoaded.value = true
+            }, 1000)
+        }
     }
 )
 
@@ -191,11 +189,14 @@ const userBricksTextStyle = {
 <style scoped>
 :deep(.p-progress-spinner-circle) {
     stroke: #1ea97c;
-    animation: p-progress-spinner-dash 1.2s ease-in-out infinite, p-progress-spinner-custom-color 6s ease-in-out infinite !important;
+    animation:
+        p-progress-spinner-dash 1.2s ease-in-out infinite,
+        p-progress-spinner-custom-color 6s ease-in-out infinite !important;
 }
 
 @keyframes p-progress-spinner-custom-color {
-    0%, 100% {
+    0%,
+    100% {
         stroke: var(--contact-item-color);
     }
     40% {
