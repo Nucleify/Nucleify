@@ -29,6 +29,7 @@
         text-align: $my-sidebar-item-text-align;
         text-decoration: $my-sidebar-item-text-decoration;
         color: $secondary-text-color;
+        background: $my-sidebar-item-background;
         border-color: $my-sidebar-item-border;
         border-radius: $small-border-radius;
         transition: $my-sidebar-item-transition;
@@ -51,6 +52,7 @@
         margin-top: $user-menu-margin-top;
 
         .userMenuItems {
+            margin-top: $user-menu-items-margin-top;
             transition: $user-menu-items-transition;
 
             .userMenuItem {

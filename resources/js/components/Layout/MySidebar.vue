@@ -74,13 +74,13 @@
                     <i class="pi pi-info-circle" />
                 </a>
 
-                <a
-                    href="#"
+                <Button
+                    unstyled
                     class="sidebarItem userMenuItem closeUserMenuItem"
                     @click="closeUserMenu()"
                 >
                     <i class="pi pi-times" />
-                </a>
+                </Button>
             </div>
 
             <Avatar

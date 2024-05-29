@@ -1,4 +1,7 @@
 $datatable-min-height: 595px;
+$datatable-display: flex;
+$datatable-flex-direction: column;
+$datatable-justify-content: space-between;
 
 $datatable-component-overlay-background: transparent;
 $datatable-has-loading-overlay-display: none !important;

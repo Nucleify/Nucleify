@@ -5,6 +5,9 @@
 
 .p-datatable {
     min-height: $datatable-min-height;
+    display: $datatable-display;
+    flex-direction: $datatable-flex-direction;
+    justify-content: $datatable-justify-content;
 }
 
 .p-datatable .p-component-overlay {
