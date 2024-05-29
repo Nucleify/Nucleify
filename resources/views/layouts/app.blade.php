@@ -20,20 +20,11 @@
     <div id="app" class="flex flex-column">
         @auth
             <my-layout></my-layout>
-
-            <main>
-                @yield('content')
-            </main>
         @endauth
 
-
-        @guest
+        <main>
             @yield('content')
-        @endguest
-
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none hidden">
-            @csrf
-        </form>
+        </main>
     </div>
 </body>
 </html>

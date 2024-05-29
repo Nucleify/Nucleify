@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Entities\ArticleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -55,4 +56,9 @@ Route::middleware(['web', 'auth'])->group(function () {
      *  Settings
      */
     Route::get('/settings', [SettingsController::class, 'render'])->name('settings');
+
+    /**
+     *  Logout
+     */
+    Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 });

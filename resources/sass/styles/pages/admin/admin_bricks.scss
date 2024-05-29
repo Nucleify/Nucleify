@@ -3,10 +3,6 @@
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/fonts_variables';
 
-.adminBricks {
-    gap: $admin-bricks-gap;
-}
-
 .adminBricksCircle {
     display: $admin-bricks-circle-display;
     justify-content: $admin-bricks-circle-justify-content;

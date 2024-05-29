@@ -56,11 +56,11 @@
                 </a>
             </div>
 
-            <Card
+            <div
                 v-if="display.Admin"
-                class="myCard chartCard countChartCard col-12 sm:col-6 lg:col-4 grid-item max-w-16rem h-full mt-2"
+                class="chartCard countChartCard col-12 sm:col-6 lg:col-4 grid-item-container"
             >
-                <template #content>
+                <div class="grid-item h-16rem">
                     <my-chart
                         :chart-method-type="'count'"
                         :type="'pie'"
@@ -74,8 +74,8 @@
                         v-if="!allLoaded"
                         :style="{ color: 'blue' }"
                     />
-                </template>
-            </Card>
+                </div>
+            </div>
         </div>
 
         <Card

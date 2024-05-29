@@ -46,7 +46,7 @@ export const layoutItems: Ref<UnwrapRef<MenuItem>> = ref<MenuItem>([
     },
 ])
 
-export const userMenuItems: MenuItem[] = [
+export const userMenuItems: Ref<UnwrapRef<MenuItem>> = ref<MenuItem>([
     {
         label: 'Welcome',
         icon: 'pi pi-home',
@@ -67,9 +67,4 @@ export const userMenuItems: MenuItem[] = [
         icon: 'pi pi-cog',
         url: '/settings',
     },
-    {
-        label: 'Log out',
-        icon: 'pi pi-sign-out',
-        command: logout,
-    },
-]
+])

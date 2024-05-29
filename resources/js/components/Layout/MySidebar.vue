@@ -31,7 +31,14 @@
                         <i :class="item.icon" />
                     </a>
                 </template>
-
+                <Button
+                    unstyled
+                    class="sidebarItem userMenuItem"
+                    v-tooltip.right="'Log out'"
+                    @click="logout()"
+                >
+                    <i class="pi pi-sign-out" />
+                </Button>
                 <Button
                     unstyled
                     class="sidebarItem userMenuItem closeUserMenuItem"
@@ -56,7 +63,7 @@ import { ref, onMounted, Ref, UnwrapRef } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
 import { excludedPaths, handleStyles } from '@/constants'
-import { isCurrentUrl, useSidebar, useUserMenu } from '@/utils'
+import { isCurrentUrl, logout, useSidebar, useUserMenu } from '@/utils'
 
 defineProps<{
     items: Ref<UnwrapRef<MenuItem>>
@@ -64,7 +71,7 @@ defineProps<{
 }>()
 
 const shouldShowSidebar = ref(true)
-const { shouldRenderSidebarItem, getSidebarItemStyle } = useSidebar()
+const { getSidebarItemStyle } = useSidebar()
 const { openUserMenu, closeUserMenu } = useUserMenu()
 
 onMounted(() => {
