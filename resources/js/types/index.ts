@@ -1,8 +1,6 @@
 /**
  *  Interfaces
  */
-import { LoadingType } from '@/types/handleVariablesTypes'
-
 export { ActivityLogInterface as ActivityLogInterface } from './handleInterfaces'
 export { ActivityLogApiMethodsInterface as ActivityLogApiMethodsInterface } from './handleInterfaces'
 export { ArticleApiMethodsInterface as ArticleApiMethodsInterface } from './handleInterfaces'
@@ -31,6 +29,7 @@ export { UseFlashToastInterface as UseFlashToastInterface } from './handleInterf
 export { UseMenuAndModalInterface as UseMenuAndModalInterface } from './handleInterfaces'
 export { UseSubmitAuthFormInterface as UseSubmitAuthFormInterface } from './handleInterfaces'
 export { UseSidebarInterface as UseSidebarInterface } from './handleInterfaces'
+export { UseUserMenuInterface as UseUserMenuInterface } from './handleInterfaces'
 
 /**
  *  Functions types

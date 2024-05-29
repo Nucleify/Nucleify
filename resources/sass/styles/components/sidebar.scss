@@ -8,17 +8,15 @@
 
 .mySidebar {
     height: $my-sidebar-height;
+    width: $my-sidebar-width;
     position: $my-sidebar-position;
     display: $my-sidebar-display;
     flex-direction: $my-sidebar-flex-direction;
+    align-items: $my-sidebar-align-items;
     box-shadow: $my-sidebar-box-shadow;
     background: $content-bg;
-    padding: $my-sidebar-padding;
     z-index: $my-sidebar-z-index;
-
-    .disabledItem {
-        opacity: $disabled-item-opacity;
-    }
+    padding: $my-sidebar-padding;
 
     .sidebarItem {
         margin-left: $my-sidebar-item-margin-left;
@@ -38,9 +36,14 @@
         i {
             font-size: $font-size-medium1;
         }
+
+        .disabledItem {
+            opacity: $disabled-item-opacity;
+        }
     }
 
     .userMenu {
+        height: $user-menu-height;
         display: $user-menu-display;
         flex-direction: $user-menu-flex-direction;
         justify-content: $user-menu-justify-content;
@@ -58,8 +61,10 @@
         }
 
         .sidebarUser {
-            width: $sidebar-user-dimensions;
-            height: $sidebar-user-dimensions;
+            min-width: $my-sidebar-item-dimensions;
+            min-height: $my-sidebar-item-dimensions;
+            max-width: $my-sidebar-item-dimensions;
+            max-height: $my-sidebar-item-dimensions;
             padding: $sidebar-user-padding;
             color: $secondary-text-color;
             transition: $sidebar-user-transition;
@@ -70,6 +75,7 @@
             }
         }
 
+        .sidebarUser,
         .closeUserMenuItem {
             position: $close-user-menu-item-position;
             bottom: $close-user-menu-item-bottom;

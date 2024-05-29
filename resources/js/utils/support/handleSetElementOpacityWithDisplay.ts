@@ -8,16 +8,16 @@ export default function setElementOpacityWithDisplay(
             selector
         ) as HTMLElement
         if (element) {
-            if (opacity === 1) {
-                element.style.display = 'flex'
-                setTimeout((): void => {
-                    element.style.opacity = opacity.toString()
-                }, 500)
-            } else {
+            if (opacity === 0) {
                 element.style.opacity = opacity.toString()
 
                 setTimeout((): void => {
                     element.style.display = 'none'
+                }, 500)
+            } else {
+                element.style.display = 'flex'
+                setTimeout((): void => {
+                    element.style.opacity = opacity.toString()
                 }, 500)
             }
         }

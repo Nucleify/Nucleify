@@ -286,3 +286,11 @@ export interface UseSidebarInterface {
     shouldRenderSidebarItem: ShouldRenderSidebarItemFunctionType
     getSidebarItemStyle: GetSidebarItemStyleFunctionType
 }
+
+/**
+ *  User Menu
+ */
+export interface UseUserMenuInterface {
+    openUserMenu: () => void
+    closeUserMenu: () => void
+}

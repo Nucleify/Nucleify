@@ -1,70 +1,62 @@
+import { UseUserMenuInterface } from '@/types'
 import { setElementOpacityWithDisplay } from '@/utils'
 
-export default function useUserMenu() {
-    const duration = 5
-    const delayBetweenItems = 50
+export default function useUserMenu(): UseUserMenuInterface {
+    const duration: number = 5
+    const delayBetweenItems: number = 50
 
-    function openUserMenu() {
-        const sidebarItems = document.querySelectorAll('.sidebarItems > *')
-        const userMenuItems = document.querySelectorAll('.userMenuItems > *')
+    function openUserMenu(): void {
+        const sidebarItems: NodeListOf<Element> =
+            document.querySelectorAll('.sidebarItems > *')
+        const userMenuItems: NodeListOf<Element> =
+            document.querySelectorAll('.userMenuItems > *')
 
-        const totalSidebarItems = sidebarItems.length
+        const totalSidebarItems: number = sidebarItems.length
 
-        sidebarItems.forEach((_, index) => {
-            const reverseIndex = totalSidebarItems - index - 1
-            const nthChildSelector = `.sidebarItems > :nth-child(${
+        sidebarItems.forEach((_: Element, index: number): void => {
+            const reverseIndex: number = totalSidebarItems - index - 1
+            const nthChildSelector: string = `.sidebarItems > :nth-child(${
                 reverseIndex + 1
             })`
 
-            setTimeout(() => {
+            setTimeout((): void => {
                 setElementOpacityWithDisplay(nthChildSelector, 0, duration)
             }, delayBetweenItems * index)
         })
 
-        userMenuItems.forEach((_, index) => {
-            const nthChildSelector = `.userMenuItems > :nth-child(${index + 1})`
+        userMenuItems.forEach((_: Element, index: number): void => {
+            const nthChildSelector: string = `.userMenuItems > :nth-child(${
+                index + 1
+            })`
 
             setElementOpacityWithDisplay(nthChildSelector, 1, duration)
         })
 
         setElementOpacityWithDisplay('.sidebarUser', 0)
-
-        setTimeout(() => {
-            const userMenuElement = document.querySelector(
-                '.userMenuItems'
-            ) as HTMLElement
-            if (userMenuElement) {
-                userMenuElement.style.position = 'relative'
-                userMenuElement.style.marginTop = '-1000px'
-            }
-        }, 500)
     }
 
-    function closeUserMenu() {
-        const sidebarItems = document.querySelectorAll('.sidebarItems > *')
-        const userMenuItems = document.querySelectorAll('.userMenuItems > *')
+    function closeUserMenu(): void {
+        const sidebarItems: NodeListOf<Element> =
+            document.querySelectorAll('.sidebarItems > *')
+        const userMenuItems: NodeListOf<Element> =
+            document.querySelectorAll('.userMenuItems > *')
 
-        sidebarItems.forEach((_, index) => {
-            const nthChildSelector = `.sidebarItems > :nth-child(${index + 1})`
-
-            setElementOpacityWithDisplay(nthChildSelector, 1)
-        })
-
-        userMenuItems.forEach((_, index) => {
-            const nthChildSelector = `.userMenuItems > :nth-child(${index + 1})`
+        userMenuItems.forEach((_: Element, index: number): void => {
+            const nthChildSelector: string = `.userMenuItems > :nth-child(${
+                index + 1
+            })`
 
             setElementOpacityWithDisplay(nthChildSelector, 0)
         })
+        sidebarItems.forEach((item: Element, index: number): void => {
+            const nthChildSelector: string = `.sidebarItems > :nth-child(${index + 1})`;
 
-        setTimeout(() => {
-            const userMenuElement = document.querySelector(
-                '.userMenuItems'
-            ) as HTMLElement
-            if (userMenuElement) {
-                userMenuElement.style.position = ''
-                userMenuElement.style.marginTop = ''
+            if (item.classList.contains('disabledItem')) {
+                setElementOpacityWithDisplay(nthChildSelector, 0.5, 500);
+            } else {
+                setElementOpacityWithDisplay(nthChildSelector, 1, 500);
             }
-        }, 500)
+        });
 
         setElementOpacityWithDisplay('.sidebarUser', 1, 500)
     }

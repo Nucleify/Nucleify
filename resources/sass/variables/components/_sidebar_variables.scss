@@ -1,14 +1,16 @@
 $my-sidebar-height: 100vh;
+$my-sidebar-width: 85px;
 $my-sidebar-position: fixed;
 $my-sidebar-display: none;
 $my-sidebar-flex-direction: column;
+$my-sidebar-align-items: center;
 $my-sidebar-box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-$my-sidebar-padding: 1rem;
 $my-sidebar-z-index: 100;
+$my-sidebar-padding: 20px 0;
 
 $my-sidebar-item-margin-left: -1px;
 $my-sidebar-item-dimensions: 50px;
-$my-sidebar-item-padding: 14px 13px 13px 13px;
+$my-sidebar-item-padding: 14px;
 $my-sidebar-item-justify-content: center;
 $my-sidebar-item-text-align: center;
 $my-sidebar-item-text-decoration: none;
@@ -16,13 +18,14 @@ $my-sidebar-item-border: transparent;
 $my-sidebar-item-transition: all 300ms;
 
 // User menu
+$user-menu-height: 100%;
 $user-menu-display: flex;
 $user-menu-flex-direction: column;
 $user-menu-justify-content: center;
 $user-menu-align-items: center;
 $user-menu-margin-top: auto;
 
-$user-menu-items-transition: all 300ms;
+$user-menu-items-transition: all 500ms ease;
 
 $user-menu-item-opacity: 0;
 $user-menu-item-display: none;
