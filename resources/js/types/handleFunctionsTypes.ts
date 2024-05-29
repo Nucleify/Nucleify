@@ -100,7 +100,6 @@ export type OpenModalFunctionType = (
 export type GetSidebarItemStyleFunctionType = (
     url: string
 ) => ColorItemStyleInterface | ''
-export type ShouldRenderSidebarItemFunctionType = (url: string) => boolean
 
 /**
  *  Toast

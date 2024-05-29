@@ -60,7 +60,6 @@ export { EditUserFunctionType as EditUserFunctionType } from './handleFunctionsT
 export { UseIsAdminFunctionType as UseIsAdminFunctionType } from './handleFunctionsTypes'
 export { StartDraggingFunctionType as StartDraggingFunctionType } from './handleFunctionsTypes'
 export { GetSidebarItemStyleFunctionType as GetSidebarItemStyleFunctionType } from './handleFunctionsTypes'
-export { ShouldRenderSidebarItemFunctionType as ShouldRenderSidebarItemFunctionType } from './handleFunctionsTypes'
 export { FlashToastFunctionType as FlashToastFunctionType } from './handleFunctionsTypes'
 
 /**

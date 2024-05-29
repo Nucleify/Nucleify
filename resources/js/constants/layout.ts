@@ -20,54 +20,56 @@ export const layoutItems: Ref<UnwrapRef<MenuItem>> = ref<MenuItem>([
         url: '/articles',
     },
     {
-        label: 'Messages',
-        icon: 'pi pi-envelope',
-    },
-    {
-        label: 'Tasks',
-        icon: 'pi pi-check-square',
-    },
-    {
-        label: 'Calendar',
-        icon: 'pi pi-calendar',
-    },
-    {
-        label: 'Money',
-        icon: 'pi pi-dollar',
-    },
-    {
         label: 'Activity Log',
         icon: 'pi pi-clock',
         url: '/activity-log',
     },
     {
+        label: 'Messages',
+        icon: 'pi pi-envelope',
+        class: 'disabledItem',
+    },
+    {
+        label: 'Tasks',
+        icon: 'pi pi-check-square',
+        class: 'disabledItem',
+    },
+    {
+        label: 'Calendar',
+        icon: 'pi pi-calendar',
+        class: 'disabledItem',
+    },
+    {
+        label: 'Money',
+        icon: 'pi pi-dollar',
+        class: 'disabledItem',
+    },
+])
+
+export const userMenuItems: MenuItem[] = [
+    {
+        label: 'Welcome',
+        icon: 'pi pi-home',
+        url: '/welcome',
+    },
+    {
+        label: 'Profile',
+        icon: 'pi pi-user',
+        class: 'disabledItem',
+    },
+    {
         label: 'Help',
         icon: 'pi pi-info-circle',
+        class: 'disabledItem',
     },
     {
         label: 'Settings',
         icon: 'pi pi-cog',
         url: '/settings',
     },
-])
-
-export const userMenuItems: MenuItem[] = [
     {
-        items: [
-            {
-                label: 'Welcome',
-                icon: 'pi pi-home',
-                url: '/welcome',
-            },
-            {
-                label: 'Profile',
-                icon: 'pi pi-user',
-            },
-            {
-                label: 'Log out',
-                icon: 'pi pi-sign-out',
-                command: logout,
-            },
-        ],
+        label: 'Log out',
+        icon: 'pi pi-sign-out',
+        command: logout,
     },
 ]

@@ -22,7 +22,6 @@ import {
     OpenMenuFunctionType,
     OpenModalFunctionType,
     SelectedObjectType,
-    ShouldRenderSidebarItemFunctionType,
     StartDraggingFunctionType,
     StoreArticleFunctionType,
     StoreContactFunctionType,
@@ -283,7 +282,6 @@ export interface UseSubmitAuthFormInterface {
     ) => Promise<void>
 }
 export interface UseSidebarInterface {
-    shouldRenderSidebarItem: ShouldRenderSidebarItemFunctionType
     getSidebarItemStyle: GetSidebarItemStyleFunctionType
 }
 

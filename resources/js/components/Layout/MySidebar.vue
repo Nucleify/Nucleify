@@ -4,75 +4,33 @@
             class="sidebarItems flex flex-column justify-content-center w-3rem m-0 gap-3"
         >
             <!-- Sidebar items -->
-            <template v-for="(item, index) in items">
+            <template v-for="item in items">
                 <a
-                    v-if="shouldRenderSidebarItem(item.url)"
-                    :key="index"
                     :href="item.url"
                     class="sidebarItem"
                     v-tooltip.right="item.label"
                     :style="getSidebarItemStyle(item.url)"
+                    :class="item.class"
                 >
                     <i :class="item.icon" />
                 </a>
             </template>
-
-            <!-- Disabled sidebar items -->
-            <a
-                href="#"
-                class="sidebarItem disabledItem"
-                v-tooltip.right="'Messages'"
-            >
-                <i class="pi pi-envelope" />
-            </a>
-            <a
-                href="#"
-                class="sidebarItem disabledItem"
-                v-tooltip.right="'Tasks'"
-            >
-                <i class="pi pi-check-square" />
-            </a>
-            <a
-                href="#"
-                class="sidebarItem disabledItem"
-                v-tooltip.right="'Calendar'"
-            >
-                <i class="pi pi pi-calendar" />
-            </a>
-            <a
-                href="#"
-                class="sidebarItem disabledItem"
-                v-tooltip.right="'Money'"
-            >
-                <i class="pi pi pi-dollar" />
-            </a>
         </div>
 
         <!-- User menu -->
         <div class="userMenu">
             <!-- User menu items -->
             <div class="userMenuItems">
-                <a
-                    href="#"
-                    class="sidebarItem userMenuItem"
-                    v-tooltip.right="'Profile'"
-                >
-                    <i class="pi pi-user" />
-                </a>
-                <a
-                    href="/settings"
-                    class="sidebarItem userMenuItem"
-                    v-tooltip.right="'Settings'"
-                >
-                    <i class="pi pi-cog" />
-                </a>
-                <a
-                    href="#"
-                    class="sidebarItem userMenuItem"
-                    v-tooltip.right="'Help'"
-                >
-                    <i class="pi pi-info-circle" />
-                </a>
+                <template v-for="item in userMenuItems">
+                    <a
+                        :href="item.url"
+                        class="sidebarItem userMenuItem"
+                        v-tooltip.right="item.label"
+                        :class="item.class"
+                    >
+                        <i :class="item.icon" />
+                    </a>
+                </template>
 
                 <Button
                     unstyled

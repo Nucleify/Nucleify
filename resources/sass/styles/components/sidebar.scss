@@ -33,6 +33,7 @@
         border-color: $my-sidebar-item-border;
         border-radius: $small-border-radius;
         transition: $my-sidebar-item-transition;
+        cursor: $my-sidebar-item-cursor;
 
         i {
             font-size: $font-size-medium1;
@@ -49,7 +50,6 @@
         flex-direction: $user-menu-flex-direction;
         justify-content: $user-menu-justify-content;
         align-items: $user-menu-align-items;
-        margin-top: $user-menu-margin-top;
 
         .userMenuItems {
             margin-top: $user-menu-items-margin-top;

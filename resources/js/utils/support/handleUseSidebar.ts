@@ -1,8 +1,4 @@
-import {
-    ColorItemStyleInterface,
-    ShouldRenderSidebarItemFunctionType,
-    UseSidebarInterface,
-} from '@/types'
+import { ColorItemStyleInterface, UseSidebarInterface } from '@/types'
 import { handleStyles } from '@/constants'
 import { isCurrentUrl } from '@/utils'
 
@@ -19,27 +15,17 @@ export default function useSidebar(): UseSidebarInterface {
         contactSidebarItemStyle: ColorItemStyleInterface
     } = handleStyles()
 
-    const shouldRenderSidebarItem: ShouldRenderSidebarItemFunctionType = (
-        url: string
-    ) =>
-        ['/home', '/admin', '/contacts', '/articles', '/activity-log'].includes(
-            url
-        )
-
     function getSidebarItemStyle(url: string): ColorItemStyleInterface | '' {
-        if (url === '/home') {
-            return isCurrentUrl(url) ? mainSidebarItemStyle : ''
-        } else if (url === '/admin') {
-            return isCurrentUrl(url) ? mainSidebarItemStyle : ''
-        } else if (url === '/contacts') {
+        if (url === '/contacts') {
             return isCurrentUrl(url) ? contactSidebarItemStyle : ''
         } else if (url === '/articles') {
             return isCurrentUrl(url) ? articleSidebarItemStyle : ''
         } else if (url === '/activity-log') {
             return isCurrentUrl(url) ? activitySidebarItemStyle : ''
+        } else {
+            return isCurrentUrl(url) ? mainSidebarItemStyle : ''
         }
-        return ''
     }
 
-    return { shouldRenderSidebarItem, getSidebarItemStyle }
+    return { getSidebarItemStyle }
 }

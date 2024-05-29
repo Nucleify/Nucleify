@@ -161,7 +161,7 @@ watch(
         if (!newArticlesLoading && !newContactsLoading && !newUsersLoading) {
             setTimeout(() => {
                 allLoaded.value = true
-            }, 1000)
+            }, 500)
         }
     }
 )
