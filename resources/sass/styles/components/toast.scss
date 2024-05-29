@@ -9,32 +9,31 @@
     top: $toast-top;
     right: $toast-right;
     width: $toast-width;
-}
-.p-toast-message-content {
-    display: $toast-message-content-display;
-    gap: $toast-message-content-gap;
-}
-.p-toast-icon-close {
-    margin-left: $toast-icon-close-margin-left;
-}
 
-// Min width 530px
-@media (min-width: $min-width-sm) {
-    .p-toast-message {
+    .p-toast-message-content {
+        display: $toast-message-content-display;
+        gap: $toast-message-content-gap;
+    }
+    .p-toast-icon-close {
+        margin-left: $toast-icon-close-margin-left;
+    }
+
+    // Min width 530px
+    @media (min-width: $min-width-sm) {
         width: $toast-message-media-width-sm;
         max-width: $toast-message-media-max-width-sm;
     }
-}
 
-// Max width  550px
-@media (max-width: $max-width-sm1) {
-    .p-toast-message-success {
-        background: $success-toast-bg;
-    }
-    .p-toast-message-warn {
-        background: $warn-toast-bg;
-    }
-    .p-toast-message-error {
-        background: $error-toast-bg;
+    // Max width  550px
+    @media (max-width: $max-width-sm1) {
+        &.p-toast-message-success {
+            background: $success-toast-bg;
+        }
+        &.p-toast-message-warn {
+            background: $warn-toast-bg;
+        }
+        &.p-toast-message-error {
+            background: $error-toast-bg;
+        }
     }
 }

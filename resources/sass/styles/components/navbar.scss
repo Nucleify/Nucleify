@@ -3,20 +3,16 @@
 
 @import '../../variables/base/medias_variables';
 
-.p-menuitem a {
-    text-decoration: $menu-item-a-text-decoration;
-}
-.p-menubar .p-avatar {
-    position: $avatar-position;
-    right: $avatar-right;
+.p-menuitem {
+    a {
+        text-decoration: $menu-item-a-text-decoration;
+    }
+
+    .p-menuitem-icon {
+        margin-right: $menu-item-icon-margin-right;
+    }
 }
 
-.p-submenu-header {
-    display: $submenu-header-display;
-}
-.p-menuitem-icon {
-    margin-right: $menu-item-icon-margin-right;
-}
 .p-menubar {
     width: $menubar-width;
     position: $menubar-position;
@@ -25,39 +21,42 @@
     margin: $menubar-margin;
     justify-content: $menubar-justify-content;
     box-shadow: $menubar-box-shadow;
-}
-.p-menubar-button {
-    position: $menubar-button-position;
-    left: $menubar-button-left;
-    color: $menubar-button-color;
-}
-.p-menubar-button .p-icon {
-    width: $menubar-button-icon-width;
-    height: $menubar-button-icon-height;
-}
-.p-menubar-root-list {
-    padding: $menubar-root-list-padding;
-    margin: $menubar-root-list-margin;
-}
-.myNavbar {
-    position: $my-navbar-position;
-}
-.nav-link {
-    padding-left: $nav-link-padding-left;
-}
-// Min width 992px
-@media (min-width: $min-width-lg2) {
-    .myNavbar {
-        display: $my-navbar-display-lg2;
-    }
-}
 
-// Menuitems disabled for now
-.myNavbar .p-menuitem:nth-child(5) .p-menuitem-link,
-.myNavbar .p-menuitem:nth-child(6) .p-menuitem-link,
-.myNavbar .p-menuitem:nth-child(7) .p-menuitem-link,
-.myNavbar .p-menuitem:nth-child(8) .p-menuitem-link,
-.myNavbar .p-menuitem:nth-child(10) .p-menuitem-link {
-    opacity: $disabled-item-opacity;
-    cursor: $disabled-item-cursor;
+    .p-submenu-header {
+        display: $submenu-header-display;
+    }
+
+    .p-avatar {
+        position: $avatar-position;
+        right: $avatar-right;
+    }
+
+    .p-menubar-button {
+        position: $menubar-button-position;
+        left: $menubar-button-left;
+        color: $menubar-button-color;
+
+        .p-icon {
+            width: $menubar-button-icon-width;
+            height: $menubar-button-icon-height;
+        }
+    }
+
+    .p-menubar-root-list {
+        padding: $menubar-root-list-padding;
+        margin: $menubar-root-list-margin;
+    }
+
+    &.myNavbar {
+        position: $my-navbar-position;
+
+        .nav-link {
+            padding-left: $nav-link-padding-left;
+        }
+
+        // Min width 992px
+        @media (min-width: $min-width-lg2) {
+            display: $my-navbar-display-lg2;
+        }
+    }
 }

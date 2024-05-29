@@ -8,6 +8,7 @@
 .startContainer {
     padding: $start-container-padding;
 }
+
 .startHeader {
     margin-top: $start-header-margin-top;
     font-size: $start-header-font-size;
@@ -15,12 +16,14 @@
     font-family: $font-family-inter-sans-serif;
     color: $dark-text-color;
 }
+
 .startDescription {
     margin-top: $start-description-margin-top;
     max-width: $start-description-max-width;
     font-size: $font-size-medium2;
     color: $secondary-text-color;
 }
+
 .startButton {
     margin-top: $start-button-margin-top;
     width: $start-button-width;
@@ -30,6 +33,7 @@
     font-size: $font-size-medium;
     transition: $start-button-transition;
 }
+
 .startButton:active {
     transform: $start-button-active-transform;
 }

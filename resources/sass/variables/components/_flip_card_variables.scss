@@ -1,0 +1,23 @@
+@import '../base/colors_variables';
+
+// Flip card
+$flip-card-bg-color: transparent;
+$flip-card-width: 370px;
+$flip-card-height: 210px;
+$flip-card-perspective: 1000px;
+$flip-card-border: 1px solid $secondary-whitesmoke-color;
+$flip-card-inner-position: relative;
+$flip-card-inner-width: 100%;
+$flip-card-inner-height: 100%;
+$flip-card-inner-text-align: center;
+$flip-card-inner-transition:
+        transform 0.8s,
+        box-shadow 500ms 300ms;
+$flip-card-inner-transform-style: preserve-3d;
+$flip-card-hover-transform: rotateY(180deg);
+$flip-card-sides-position: absolute;
+$flip-card-sides-dimensions: 100%;
+$flip-card-front-color: black;
+$flip-card-front-padding-top: 8px;
+$flip-card-back-padding: 50px 20px;
+$flip-card-back-transform: rotateY(180deg);

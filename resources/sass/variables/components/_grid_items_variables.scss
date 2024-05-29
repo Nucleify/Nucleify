@@ -11,6 +11,7 @@ $grid-item-container-max-width: 300px;
 
 $grid-item-a-text-decoration: none;
 $grid-item-hover-focus-z-index: 100;
-$grid-item-hover-focus-box-shadow:
+$grid-item-hover-focus-box-shadow: none;
+$grid-item-container-hover-focus-box-shadow:
     inset 0 0.5px 0 rgba(0, 0, 0, 0.15),
     0 5px 14px rgba(0, 0, 0, 0.15);

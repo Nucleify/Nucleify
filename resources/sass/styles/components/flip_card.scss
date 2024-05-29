@@ -1,0 +1,56 @@
+@import '../../variables/components/flip_card_variables';
+
+@import '../../variables/base/borders_variables';
+@import '../../variables/base/box_shadows_variables';
+@import '../../variables/base/colors_variables';
+@import '../../variables/base/fonts_variables';
+
+.flip-card {
+    background: $flip-card-bg-color;
+    width: $flip-card-width;
+    min-width: $flip-card-width;
+    max-width: $flip-card-width;
+    min-height: $flip-card-height;
+    perspective: $flip-card-perspective;
+
+    .flip-card-inner {
+        position: $flip-card-inner-position;
+        border-radius: $medium-border-radius;
+        width: $flip-card-inner-width;
+        height: $flip-card-inner-height;
+        text-align: $flip-card-inner-text-align;
+        transition: $flip-card-inner-transition;
+        transform-style: $flip-card-inner-transform-style;
+        box-shadow: $my-card-box-shadow;
+    }
+
+    &:hover {
+        .flip-card-inner {
+            transform: $flip-card-hover-transform;
+            box-shadow: $secondary-card-box-shadow;
+        }
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+        border-radius: $medium-border-radius;
+        position: $flip-card-sides-position;
+        width: $flip-card-sides-dimensions;
+        height: $flip-card-sides-dimensions;
+        max-width: $flip-card-width;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+    }
+
+    .flip-card-front {
+        background: $content-bg;
+        color: $flip-card-front-color;
+        padding-top: $flip-card-front-padding-top;
+    }
+    .flip-card-back {
+        padding: $flip-card-back-padding;
+        background: $content-bg;
+        transform: $flip-card-back-transform;
+        font-size: $font-size-base1;
+    }
+}

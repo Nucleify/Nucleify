@@ -1,9 +1,14 @@
 $button-padding: 10px;
-$mobile-button-display: inline;
-$my-button-padding: 4px 7px 10px 7px;
+$desktop-button-display: none;
+$mobile-button-display: flex;
 $my-big-button-position: fixed;
 $my-big-button-left: -22px;
 $my-big-button-top: 8px;
 $my-big-button-padding-left: 28px;
-$Button-transition: filter 0.3s;
+$button-transition: all 0.5s;
 $Button-hover-filter: brightness(1.08);
+$Button-not-hover-filter: brightness(1);
+
+// Min width 992px
+$desktop-button-display-lg2: flex;
+$mobile-button-display-lg2: none;

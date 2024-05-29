@@ -1,33 +1,39 @@
 @import '../../variables/components/dialog_variables';
 
-.myDialog {
-    width: $my-dialog-width;
-    max-height: $my-dialog-max-height;
-}
-
-.myDialogHeader {
-    margin: $my-dialog-header-margin;
-}
-
 .p-dialog-mask {
     padding: $dialog-mask-padding;
-}
-.p-dialog-header {
-    padding-top: $dialog-header-padding-top;
-    padding-bottom: $dialog-header-padding-bottom;
-}
-.p-dialog-content {
-    padding: $dialog-content-padding;
-}
-.p-dialog-header-icon {
-    display: $dialog-header-icon-display;
-}
-.p-dialog-footer {
-    padding: $dialog-footer-padding;
-}
 
-.dialogButtonsContainer {
-    display: $dialog-buttons-display;
-    justify-content: $dialog-buttons-justify-content;
-    gap: $dialog-buttons-gap;
+    .p-dialog {
+        &.myDialog {
+            width: $my-dialog-width;
+            max-height: $my-dialog-max-height;
+
+            .myDialogHeader {
+                margin: $my-dialog-header-margin;
+            }
+        }
+
+        .p-dialog-header {
+            padding-top: $dialog-header-padding-top;
+            padding-bottom: $dialog-header-padding-bottom;
+        }
+
+        .p-dialog-content {
+            padding: $dialog-content-padding;
+        }
+
+        .p-dialog-header-icon {
+            display: $dialog-header-icon-display;
+        }
+
+        .p-dialog-footer {
+            padding: $dialog-footer-padding;
+        }
+
+        .dialogButtonsContainer {
+            display: $dialog-buttons-display;
+            justify-content: $dialog-buttons-justify-content;
+            gap: $dialog-buttons-gap;
+        }
+    }
 }

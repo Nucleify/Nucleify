@@ -11,33 +11,35 @@
 @import 'variables/base/box_sizing_variables';
 
 // Component styles
-@import 'styles/components/button.scss';
-@import 'styles/components/card.scss';
-@import 'styles/components/chart.scss';
-@import 'styles/components/datatable.scss';
-@import 'styles/components/dialog.scss';
-@import 'styles/components/disabled_item.scss';
-@import 'styles/components/dropdown.scss';
-@import 'styles/components/form.scss';
-@import 'styles/components/grid_item.scss';
-@import 'styles/components/input_text.scss';
-@import 'styles/components/loading.scss';
-@import 'styles/components/menu.scss';
-@import 'styles/components/navbar.scss';
-@import 'styles/components/paginator.scss';
-@import 'styles/components/panel_container.scss';
-@import 'styles/components/progress_spinner.scss';
-@import 'styles/components/show.scss';
-@import 'styles/components/sidebar.scss';
-@import 'styles/components/toast.scss';
-@import 'styles/components/tooltip.scss';
+@import 'styles/components/button';
+@import 'styles/components/canvas';
+@import 'styles/components/card';
+@import 'styles/components/chart';
+@import 'styles/components/datatable';
+@import 'styles/components/dialog';
+@import 'styles/components/disabled_item';
+@import 'styles/components/dropdown';
+@import 'styles/components/flip_card';
+@import 'styles/components/form';
+@import 'styles/components/grid_item';
+@import 'styles/components/input_text';
+@import 'styles/components/loading';
+@import 'styles/components/menu';
+@import 'styles/components/navbar';
+@import 'styles/components/paginator';
+@import 'styles/components/panel_container';
+@import 'styles/components/progress_spinner';
+@import 'styles/components/show';
+@import 'styles/components/sidebar';
+@import 'styles/components/toast';
+@import 'styles/components/tooltip';
 
 // Pages styles
-@import 'styles/pages/activity/activity_log.scss';
-@import 'styles/pages/admin/admin_bricks.scss';
-@import 'styles/pages/auth/auth.scss';
-@import 'styles/pages/home/home_bricks.scss';
-@import 'styles/pages/welcome/welcome.scss';
+@import 'styles/pages/activity/activity_log';
+@import 'styles/pages/admin/admin_bricks';
+@import 'styles/pages/auth/auth';
+@import 'styles/pages/home/home_bricks';
+@import 'styles/pages/welcome/welcome';
 
 * {
     box-sizing: $box-sizing-all;

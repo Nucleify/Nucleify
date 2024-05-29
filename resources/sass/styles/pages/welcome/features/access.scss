@@ -1,0 +1,87 @@
+@import '../../../../variables/pages/welcome/features/access_variables';
+
+@import '../../../../variables/base/colors_variables';
+@import '../../../../variables/base/fonts_variables';
+@import '../../../../variables/base/medias_variables';
+
+.accessContainer {
+    display: $access-container-display;
+    flex-direction: $access-container-flex-direction;
+    padding: $access-container-padding;
+    height: $access-container-height;
+    width: $access-container-width;
+    background: $secondary-green-bg-color;
+    margin-bottom: $access-container-margin-bottom;
+    overflow-x: $access-container-overflow-x;
+
+    .accessCardContainer {
+        margin: $access-card-container-margin;
+        display: $access-card-container-display;
+        flex-wrap: $access-card-container-flex-wrap;
+        flex-direction: $access-card-container-flex-direction;
+        justify-content: $access-card-container-justify-content;
+
+        .accessCard {
+            min-width: $access-card-width;
+            max-width: $access-card-width;
+            min-height: $access-card-min-height;
+            display: $access-card-display;
+            flex-direction: $access-card-flex-direction;
+            align-items: $access-card-align-items;
+            justify-content: $access-card-justify-content;
+            cursor: $access-card-cursor;
+        }
+
+        .accessCardImage {
+            margin: $access-card-image-margin;
+            max-height: $access-card-image-height;
+            height: $access-card-image-height;
+        }
+
+        .accessCardHeader {
+            font-family: $font-family-inter-sans-serif;
+        }
+    }
+}
+
+.accessHeader {
+    font-family: $font-family-inter-sans-serif;
+    font-weight: $access-header-font-weight;
+    color: $dark-text-color;
+    font-size: $access-header-font-size;
+    max-width: $access-header-max-width;
+    margin: $access-header-margin;
+}
+
+.accessDescription {
+    margin: $access-description-margin;
+    max-width: $access-description-max-width;
+    color: $secondary-text-color;
+    text-align: $access-description-text-align;
+    padding: $access-description-padding;
+    font-size: $access-description-font-size;
+}
+
+// Min width 547px
+@media (min-width: $min-width-sm2) {
+    .accessHeader {
+        max-width: $access-header-max-width-sm2;
+    }
+    .accessDescription {
+        font-size: $access-description-font-size-sm2;
+    }
+}
+
+// Min width 768px
+@media (min-width: $min-width-md) {
+    .accessHeader {
+        font-size: $access-header-font-size-md;
+    }
+}
+
+// Min width 1129px
+@media (min-width: $min-width-lg3) {
+    .accessHeader {
+        font-size: $font-size-xl;
+    }
+}

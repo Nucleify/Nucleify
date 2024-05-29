@@ -7,9 +7,10 @@
     font-size: $font-size-base;
     padding-top: $paginator-padding-top;
     margin-bottom: $paginator-margin-bottom;
-}
-.p-paginator-element {
-    max-height: $min-max-width-height-small;
-    max-width: $min-max-width-height-small;
-    min-width: $min-max-width-height-small;
+
+    .p-paginator-element {
+        max-height: $min-max-width-height-small;
+        max-width: $min-max-width-height-small;
+        min-width: $min-max-width-height-small;
+    }
 }

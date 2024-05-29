@@ -9,14 +9,14 @@
     position: $welcome-navbar-position;
     top: $welcome-navbar-top;
     box-shadow: $my-card-box-shadow;
-}
 
-.welcomeNavLink {
-    font-size: $welcome-nav-link-font-size;
-}
-.welcomeNavLink:hover,
-.welcomeNavLink:focus {
-    color: $primary-hover-color;
+    .welcomeNavLink {
+        font-size: $welcome-nav-link-font-size;
+
+        &:hover {
+            color: $primary-hover-color;
+        }
+    }
 }
 
 .applicationHeader {
@@ -24,14 +24,13 @@
     text-decoration: $application-header-text-decoration;
     color: $primary-text-color;
     font-size: $application-header-font-size;
-}
-.applicationHeader:hover {
-    color: $primary-text-color;
-}
 
-// Min width 992px
-@media (min-width: $min-width-lg2) {
-    .applicationHeader {
+    &:hover {
+        color: $primary-text-color;
+    }
+
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
         font-size: $application-header-font-size-lg2;
     }
 }

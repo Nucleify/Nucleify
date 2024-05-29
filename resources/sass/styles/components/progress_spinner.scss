@@ -4,21 +4,27 @@
     height: $progress-spinner-dimensions;
     width: $progress-spinner-dimensions;
     position: $progress-spinner-position;
+
+    &::before {
+        display: $progress-spinner-before-display;
+    }
 }
 
-.annualChartCard .p-card-body .p-progress-spinner {
-    top: $annual-chart-card-progress-spinner-top;
-    margin-bottom: $annual-chart-card-progress-spinner-margin-bottom;
+.annualChartCard {
+    .p-progress-spinner {
+        top: $annual-chart-card-progress-spinner-top;
+        margin-bottom: $annual-chart-card-progress-spinner-margin-bottom;
+    }
 }
 
-.countChartCard .p-card-body .p-progress-spinner {
-    top: $count-chart-card-progress-spinner-top;
+.countChartCard {
+    .p-progress-spinner {
+        top: $count-chart-card-progress-spinner-top;
+    }
 }
 
-.p-datatable .p-progress-spinner {
-    top: $datatable-progress-spinner-top;
-}
-
-.p-progress-spinner::before {
-    display: $progress-spinner-before-display;
+.p-datatable {
+    .p-progress-spinner {
+        top: $datatable-progress-spinner-top;
+    }
 }

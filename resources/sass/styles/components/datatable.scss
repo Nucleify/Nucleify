@@ -8,204 +8,199 @@
     display: $datatable-display;
     flex-direction: $datatable-flex-direction;
     justify-content: $datatable-justify-content;
-}
 
-.p-datatable .p-component-overlay {
-    background: $datatable-component-overlay-background;
-}
+    td {
+        cursor: $td-cursor;
+    }
 
-.p-datatable:has(.p-datatable-loading-overlay) .p-datatable-wrapper,
-.p-datatable:has(.p-datatable-loading-overlay) .p-paginator-bottom {
-    display: $datatable-has-loading-overlay-display;
-}
+    .p-component-overlay {
+        background: $datatable-component-overlay-background;
+    }
 
-td {
-    cursor: $td-cursor;
-}
+    :has(.p-datatable-loading-overlay) {
+        .p-datatable-wrapper,
+        .p-paginator-bottom {
+            display: $datatable-has-loading-overlay-display;
+        }
+    }
 
-.p-column-title {
-    font-size: $font-size-base;
-}
-.idColumn {
-    width: $id-column-width-phone;
-}
-.titleColumn,
-.nameColumn,
-.fullNameColumn {
-    width: $name-full-name-columns-width-phone;
-}
-.tabletColumn,
-.desktopButton,
-.desktopColumn {
-    display: $tablet-desktop-columns-display-phone;
-}
-.actionColumn {
-    width: $action-column-width;
-}
-.emailColumn,
-.roleColumn,
-.createdAtColumn,
-.updatedAtColumn,
-.idActivityColumn,
-.causerIdColumn,
-.createdAtActivityColumn {
-    display: $tablet-desktop-columns-display-phone;
-}
-.titleColumn,
-.categoryColumn,
-.descriptionColumn,
-.nameColumn {
-    overflow: $description-name-columns-overflow;
-    white-space: $description-name-columns-whitespace;
-}
-.titleColumn {
-    max-width: $title-column-max-width;
-}
+    .p-column-title {
+        font-size: $font-size-base;
+    }
 
-.descriptionColumn {
-    max-width: $description-column-max-width;
-}
-.nameColumn {
-    max-width: $name-column-max-width;
-}
+    .p-datatable-table {
+        .idColumn {
+            width: $id-column-width-phone;
+        }
+        .titleColumn,
+        .nameColumn,
+        .fullNameColumn {
+            width: $name-full-name-columns-width-phone;
+        }
+        .tabletColumn,
+        .desktopColumn {
+            display: $tablet-desktop-columns-display-phone;
+        }
+        .actionColumn {
+            width: $action-column-width;
+        }
+        .emailColumn,
+        .roleColumn,
+        .createdAtColumn,
+        .updatedAtColumn,
+        .idActivityColumn,
+        .causerIdColumn,
+        .createdAtActivityColumn {
+            display: $tablet-desktop-columns-display-phone;
+        }
+        .titleColumn,
+        .categoryColumn,
+        .descriptionColumn,
+        .nameColumn {
+            overflow: $description-name-columns-overflow;
+            white-space: $description-name-columns-whitespace;
+        }
+        .titleColumn {
+            max-width: $title-column-max-width;
+        }
 
-// Min width 530px
-@media (min-width: $min-width-sm) {
-    .roleColumn,
-    .birthdayColumn,
-    .idActivityColumn {
-        display: $role-birthday-id-activity-columns-display-sm;
-    }
-    .idColumn {
-        width: $id-column-width-sm;
-    }
-    .nameColumn,
-    .fullNameColumn {
-        width: $name-full-name-columns-width-sm;
-    }
-}
+        .descriptionColumn {
+            max-width: $description-column-max-width;
+        }
+        .nameColumn {
+            max-width: $name-column-max-width;
+        }
 
-// Min width 768px
-@media (min-width: $min-width-md) {
-    .idColumn {
-        width: $id-column-width-md;
-    }
-    .nameColumn,
-    .fullNameColumn {
-        width: $name-full-name-columns-width-md;
-    }
-    .roleColumn,
-    .birthdayColumn {
-        width: $role-birthday-columns-width-md;
-    }
-    .emailColumn,
-    .createdAtActivityColumn {
-        display: $tablet-column-display-md;
-    }
-    .emailColumn {
-        width: $email-column-width-md;
-    }
-    .createdAtActivityColumn {
-        width: $created-at-activity-column;
-    }
-}
+        // Min width 530px
+        @media (min-width: $min-width-sm) {
+            .roleColumn,
+            .birthdayColumn,
+            .idActivityColumn {
+                display: $role-birthday-id-activity-columns-display-sm;
+            }
+            .idColumn {
+                width: $id-column-width-sm;
+            }
+            .nameColumn,
+            .fullNameColumn {
+                width: $name-full-name-columns-width-sm;
+            }
+        }
 
-// Min width 961px
-@media (min-width: $min-width-lg) {
-    .idColumn {
-        width: $id-column-width-lg;
-    }
-}
+        // Min width 768px
+        @media (min-width: $min-width-md) {
+            .idColumn {
+                width: $id-column-width-md;
+            }
+            .nameColumn,
+            .fullNameColumn {
+                width: $name-full-name-columns-width-md;
+            }
+            .roleColumn,
+            .birthdayColumn {
+                width: $role-birthday-columns-width-md;
+            }
+            .emailColumn,
+            .createdAtActivityColumn {
+                display: $tablet-column-display-md;
+            }
+            .emailColumn {
+                width: $email-column-width-md;
+            }
+            .createdAtActivityColumn {
+                width: $created-at-activity-column;
+            }
+        }
 
-// Min width 992px
-@media (min-width: $min-width-lg2) {
-    .desktopColumn {
-        display: $desktop-column-display-lg2;
-    }
-    .desktopButton {
-        display: $desktop-button-display-lg2;
-    }
-    .mobileButton {
-        display: $mobile-button-display-lg2;
-    }
-    .myButton {
-        padding: $my-button-padding-lg2;
-    }
-    .emailColumn {
-        width: $email-column-width-lg2;
-    }
-    .roleColumn,
-    .birthdayColumn {
-        width: $role-birthday-column-lg2;
-    }
-    .titleColumn {
-        width: $title-column-lg2;
-    }
-    .categoryColumn {
-        width: $category-column-lg2;
-    }
-}
+        // Min width 961px
+        @media (min-width: $min-width-lg) {
+            .idColumn {
+                width: $id-column-width-lg;
+            }
+        }
 
-// Min width 1200px
-@media (min-width: $min-width-xl) {
-    .idColumn {
-        width: $id-column-width-xl;
-    }
-    .nameColumn,
-    .fullNameColumn {
-        width: $name-full-name-columns-width-xl;
-    }
-    .emailColumn {
-        width: $email-column-width-xl;
-    }
-    .createdAtColumn {
-        display: $created-at-column-display-xl;
-        width: $created-at-column-width-xl;
-    }
-    .categoryColumn {
-        width: $category-column-lg2;
-    }
-}
+        // Min width 992px
+        @media (min-width: $min-width-lg2) {
+            .desktopColumn {
+                display: $desktop-column-display-lg2;
+            }
+            .emailColumn {
+                width: $email-column-width-lg2;
+            }
+            .roleColumn,
+            .birthdayColumn {
+                width: $role-birthday-column-lg2;
+            }
+            .titleColumn {
+                width: $title-column-lg2;
+            }
+            .categoryColumn {
+                width: $category-column-lg2;
+            }
+        }
 
-// Min width 1400px
-@media (min-width: $min-width-2xl) {
-    .idColumn {
-        width: $id-column-width-2xl;
-    }
-    .nameColumn,
-    .fullNameColumn {
-        width: $name-full-name-columns-width-2xl;
-    }
-    .emailColumn {
-        width: $email-column-width-2xl;
-    }
-    .roleColumn,
-    .birthdayColumn {
-        width: $role-birthday-columns-width-2xl;
-    }
-    .createdAtColumn,
-    .updatedAtColumn {
-        display: $created-at-updated-at-columns-display-2xl;
-        width: $created-at-updated-at-columns-width-2xl;
-    }
-    .titleColumn {
-        width: $title-column-width-2xl;
-    }
-    .categoryColumn {
-        width: $category-column-width-2xl;
-    }
-}
+        // Min width 1200px
+        @media (min-width: $min-width-xl) {
+            .idColumn {
+                width: $id-column-width-xl;
+            }
+            .nameColumn,
+            .fullNameColumn {
+                width: $name-full-name-columns-width-xl;
+            }
+            .emailColumn {
+                width: $email-column-width-xl;
+            }
+            .createdAtColumn {
+                display: $created-at-column-display-xl;
+                width: $created-at-column-width-xl;
+            }
+            .categoryColumn {
+                width: $category-column-lg2;
+            }
+        }
 
-// Min width 1500px
-@media (min-width: $min-width-3xl) {
-    .createdAtColumn,
-    .updatedAtColumn {
-        width: $created-at-updated-at-columns-width-3xl;
-    }
-    .titleColumn {
-        width: $title-column-width-3xl;
-    }
-    .categoryColumn {
-        width: $category-column-width-3xl;
+        // Min width 1400px
+        @media (min-width: $min-width-2xl) {
+            .idColumn {
+                width: $id-column-width-2xl;
+            }
+            .nameColumn,
+            .fullNameColumn {
+                width: $name-full-name-columns-width-2xl;
+            }
+            .emailColumn {
+                width: $email-column-width-2xl;
+            }
+            .roleColumn,
+            .birthdayColumn {
+                width: $role-birthday-columns-width-2xl;
+            }
+            .createdAtColumn,
+            .updatedAtColumn {
+                display: $created-at-updated-at-columns-display-2xl;
+                width: $created-at-updated-at-columns-width-2xl;
+            }
+            .titleColumn {
+                width: $title-column-width-2xl;
+            }
+            .categoryColumn {
+                width: $category-column-width-2xl;
+            }
+        }
+
+        // Min width 1500px
+        @media (min-width: $min-width-3xl) {
+            .createdAtColumn,
+            .updatedAtColumn {
+                width: $created-at-updated-at-columns-width-3xl;
+            }
+            .titleColumn {
+                width: $title-column-width-3xl;
+            }
+            .categoryColumn {
+                width: $category-column-width-3xl;
+            }
+        }
     }
 }

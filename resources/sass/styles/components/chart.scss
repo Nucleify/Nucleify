@@ -1,25 +1,28 @@
 @import '../../variables/components/chart_variables';
 
-.chartCard .p-card-content {
-    display: $chart-card-content-display;
-    flex-direction: $chart-card-content-flex-direction;
-    align-items: $chart-card-content-align-items;
-    width: $chart-card-content-width;
-}
+.chartCard {
+    &.countChartCard {
+        min-height: $count-chart-card-dimensions;
+        max-height: $count-chart-card-dimensions;
+    }
 
-.chartCard .p-card-body .p-chart {
-    width: $chart-card-body-chart;
-}
+    .p-card-content {
+        display: $chart-card-content-display;
+        flex-direction: $chart-card-content-flex-direction;
+        align-items: $chart-card-content-align-items;
+        width: $chart-card-content-width;
+    }
 
-.countChartCard {
-    min-height: $count-chart-card-dimensions;
-    max-height: $count-chart-card-dimensions;
-}
+    .p-card-body {
+        .p-chart {
+            width: $chart-card-body-chart;
+        }
+    }
 
-.chartLoading {
-    opacity: $chart-loading-opacity;
-}
-
-.chartLoaded {
-    opacity: $chart-loaded-opacity;
+    .chartLoading {
+        opacity: $chart-loading-opacity;
+    }
+    .chartLoaded {
+        opacity: $chart-loaded-opacity;
+    }
 }

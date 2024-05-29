@@ -4,43 +4,45 @@
 @import '../../variables/base/colors_variables';
 @import '../../variables/base/fonts_variables';
 
-.grid-item {
-    background: $content-bg;
-    border-radius: $large-border-radius;
-    box-shadow: $grid-item-box-shadow;
-    transition: $transition-colors-300ms;
-    display: $grid-item-display;
-    flex-direction: $grid-item-flex-direction;
-    justify-content: $grid-item-justify-content;
-    align-items: $grid-item-align-items;
-    font-weight: $grid-item-font-weight;
-    font-size: $font-size-big;
-}
-
 .grid-item-container {
     max-width: $grid-item-container-max-width;
-}
 
-.grid a {
-    text-decoration: $grid-item-a-text-decoration;
-}
+    .grid-item {
+        background: $content-bg;
+        border-radius: $large-border-radius;
+        box-shadow: $grid-item-box-shadow;
+        transition: $transition-colors-300ms;
+        display: $grid-item-display;
+        flex-direction: $grid-item-flex-direction;
+        justify-content: $grid-item-justify-content;
+        align-items: $grid-item-align-items;
+        font-weight: $grid-item-font-weight;
 
-.grid-item .pi {
-    font-size: $font-size-l;
-}
+        .pi {
+            font-size: $font-size-l;
+        }
 
-.grid-item:hover,
-.grid-item:focus {
-    z-index: $grid-item-hover-focus-z-index;
-    box-shadow: $grid-item-hover-focus-box-shadow;
-    color: $primary-hover-color;
-}
+        :hover,
+        :focus {
+            box-shadow: $grid-item-hover-focus-box-shadow;
+        }
+    }
 
-.contactsBricksCircle {
-    background: $primary-color;
-    color: $primary-color;
-}
-.usersBricksCircle {
-    background: $secondary-color;
-    color: $secondary-color;
+    a {
+        text-decoration: $grid-item-a-text-decoration;
+    }
+
+    .contactsBricksCircle {
+        background: $primary-color;
+        color: $primary-color;
+    }
+    .usersBricksCircle {
+        background: $secondary-color;
+        color: $secondary-color;
+    }
+
+    :hover,
+    :focus {
+        box-shadow: $grid-item-container-hover-focus-box-shadow;
+    }
 }

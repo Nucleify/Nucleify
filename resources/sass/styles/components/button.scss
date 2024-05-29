@@ -6,40 +6,60 @@
 
 .p-button {
     border-radius: $small-border-radius;
+    transition: $button-transition;
     padding: $button-padding;
-}
-.mobileButton {
-    display: $mobile-button-display;
-}
-.myButton {
-    padding: $my-button-padding;
-    max-height: $min-max-width-height-small;
-    min-height: $min-max-width-height-small;
-    max-width: $min-max-width-height-small;
-    min-width: $min-max-width-height-small;
-}
-.p-button-secondary {
-    background: var(--user-item-color);
-    border: var(--user-item-color);
-}
-Button {
-    transition: $Button-transition;
-}
-Button:hover {
-    filter: $Button-hover-filter;
-}
 
-.myBigButton {
-    position: $my-big-button-position;
-    left: $my-big-button-left;
-    top: $my-big-button-top;
-    padding-left: $my-big-button-padding-left;
-    max-height: $min-max-width-height-big;
-    min-height: $min-max-width-height-big;
-    max-width: $min-max-width-height-big;
-    min-width: $min-max-width-height-big;
-}
-.smallHeightButton {
-    max-height: $min-max-width-height-small;
-    min-height: $min-max-width-height-small;
+    &.p-button-secondary {
+        background: var(--user-item-color);
+        border: var(--user-item-color);
+    }
+
+    &.mobileButton {
+        display: $mobile-button-display;
+    }
+
+    &.desktopButton {
+        display: $desktop-button-display;
+    }
+
+    &.myButton {
+        max-height: $min-max-width-height-small;
+        min-height: $min-max-width-height-small;
+        max-width: $min-max-width-height-small;
+        min-width: $min-max-width-height-small;
+    }
+
+    &.myBigButton {
+        position: $my-big-button-position;
+        left: $my-big-button-left;
+        top: $my-big-button-top;
+        padding-left: $my-big-button-padding-left;
+        max-height: $min-max-width-height-big;
+        min-height: $min-max-width-height-big;
+        max-width: $min-max-width-height-big;
+        min-width: $min-max-width-height-big;
+    }
+
+    &.smallHeightButton {
+        max-height: $min-max-width-height-small;
+        min-height: $min-max-width-height-small;
+    }
+
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
+        &.mobileButton {
+            display: $mobile-button-display-lg2;
+        }
+        &.desktopButton {
+            display: $desktop-button-display-lg2;
+        }
+    }
+
+    &:hover {
+        filter: $Button-hover-filter;
+    }
+
+    :not(:hover) {
+        filter: $Button-not-hover-filter;
+    }
 }

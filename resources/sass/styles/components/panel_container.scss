@@ -9,11 +9,9 @@
     display: $panel-container-display;
     flex-direction: $panel-container-flex-direction;
     gap: $panel-container-gap;
-}
 
-// Min width 992px
-@media (min-width: $min-width-lg2) {
-    .panelContainer {
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
         margin-left: $panel-container-margin-left-lg2;
         top: $panel-container-top-lg2;
         padding: $panel-container-padding-lg2;
