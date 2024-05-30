@@ -29,12 +29,16 @@
     }
 }
 
+.adminBricks {
+    .grid-item-container {
+        margin: $grid-item-container-margin !important;
+    }
+}
 .grid-item-container {
     max-width: $grid-item-container-max-width;
     display: $grid-item-container-display;
     grid-template-columns: $grid-item-container-grid-template-columns;
     gap: $grid-item-container-gap;
-    margin: $grid-item-container-margin !important;
 
     // Min width 600px
     @media (min-width: $min-width-sm6) {

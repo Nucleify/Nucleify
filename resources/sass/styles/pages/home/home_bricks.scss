@@ -3,13 +3,13 @@
 @import '../../../variables/base/borders_variables';
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/fonts_variables';
+@import '../../../variables/base/medias_variables';
 
 .homeBricksGrid {
     max-width: $home-bricks-grid-max-width;
     position: $home-bricks-grid-position;
     top: $home-bricks-grid-top;
     font-size: $home-bricks-font-size;
-    margin: $home-bricks-grid-margin !important;
     padding-left: $home-brick-grid-padding-left;
     padding-bottom: $home-bricks-grid-padding-bottom;
 
