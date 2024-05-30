@@ -1,11 +1,14 @@
 <template>
-    <div class="flex gap-2">
-        <Button @click="testLogin('user')" class="smallHeightButton min-w-max">
-            Test User Login
+    <div class="testButtonsContainer">
+        <Button @click="testLogin('admin')" class="smallHeightButton">
+            Test Admin Login
         </Button>
 
-        <Button @click="testLogin('admin')" class="smallHeightButton min-w-max">
-            Test Admin Login
+        <Button
+            @click="testLogin('user')"
+            class="smallHeightButton p-button-secondary"
+        >
+            Test User Login
         </Button>
     </div>
 </template>

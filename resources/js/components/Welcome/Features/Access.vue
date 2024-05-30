@@ -13,7 +13,7 @@
                         <img
                             src="https://github.com/SzymCode/SzymCode/assets/107359025/d23d0500-c04b-439c-a2a6-2f2889bfd212"
                             alt=""
-                            class="accessCardImage max-w-min"
+                            class="accessCardImage"
                         />
                         <h3 class="accessCardHeader">Desktop</h3>
                     </div>
@@ -32,7 +32,7 @@
                         <img
                             src="https://github.com/SzymCode/SzymCode/assets/107359025/4b7371a4-2203-4315-8e91-f21ccbf3a2a7"
                             alt=""
-                            class="accessCardImage max-w-min"
+                            class="accessCardImage"
                         />
                         <h3 class="accessCardHeader">Tablet</h3>
                     </div>
@@ -51,7 +51,7 @@
                         <img
                             src="https://github.com/SzymCode/SzymCode/assets/107359025/9384548f-773a-4d4d-b92d-3bd6b32b0f56"
                             alt=""
-                            class="accessCardImage max-w-min"
+                            class="accessCardImage"
                         />
                         <h3 class="accessCardHeader">Phone</h3>
                     </div>

@@ -10,6 +10,10 @@
 // Variables
 @import 'variables/base/box_sizing_variables';
 
+
+// Layout
+@import 'styles/components/layout/layout';
+
 // Component styles
 @import 'styles/components/button';
 @import 'styles/components/canvas';
@@ -25,12 +29,11 @@
 @import 'styles/components/input_text';
 @import 'styles/components/loading';
 @import 'styles/components/menu';
-@import 'styles/components/navbar';
 @import 'styles/components/paginator';
 @import 'styles/components/panel_container';
 @import 'styles/components/progress_spinner';
 @import 'styles/components/show';
-@import 'styles/components/sidebar';
+@import 'styles/components/test_buttons';
 @import 'styles/components/toast';
 @import 'styles/components/tooltip';
 
@@ -40,6 +43,8 @@
 @import 'styles/pages/auth/auth';
 @import 'styles/pages/home/home_bricks';
 @import 'styles/pages/welcome/welcome';
+@import 'styles/pages/settings/settings';
+
 
 * {
     box-sizing: $box-sizing-all;

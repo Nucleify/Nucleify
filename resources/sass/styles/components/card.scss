@@ -2,10 +2,22 @@
 
 @import '../../variables/base/box_shadows_variables';
 @import '../../variables/base/colors_variables';
+@import '../../variables/base/medias_variables';
 
 .myCard {
     width: $card-width;
     box-shadow: $my-card-box-shadow;
     border: $my-card-border;
     background: $my-card-background;
+
+    .myCardHeaderContainer {
+        display: $my-card-header-container-display;
+        justify-content: $my-card-header-container-justify-content;
+    }
+
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
+        margin-left: $my-card-margin-left-lg2;
+        margin-right: $my-card-margin-right-lg2;
+    }
 }

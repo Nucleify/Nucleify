@@ -1,7 +1,7 @@
-@import '../../variables/components/disabled_items_variables';
-@import '../../variables/components/navbar_variables';
+@import '../../../variables/components/layout/navbar_variables';
+@import '../../../variables/components/disabled_items_variables';
 
-@import '../../variables/base/medias_variables';
+@import '../../../variables/base/medias_variables';
 
 .p-menuitem {
     a {

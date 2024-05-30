@@ -37,34 +37,43 @@
         height: $admin-bricks-grid-item-height;
         min-width: $admin-bricks-grid-item-min-width;
         font-size: $font-size-l;
-    }
 
-    .grid-item .pi {
-        margin-top: $admin-bricks-grid-item-pi-margin-top;
-        font-size: $font-size-xxl;
-    }
+        .pi {
+            margin-top: $admin-bricks-grid-item-pi-margin-top;
+            font-size: $font-size-xxl;
+        }
 
-    .adminBricksIcon,
-    .adminBricksCircleNumber {
-        transition: $transition-colors-300ms;
-    }
+        .adminBricksIcon,
+        .adminBricksCircleNumber {
+            transition: $transition-colors-300ms;
+        }
+        .adminBricksIcon {
+            color: $admin-bricks-icon-color;
+        }
+        .adminBricksCircleNumber {
+            color: $admin-bricks-circle-number-color;
+            position: $admin-bricks-circle-number-position;
+            top: $admin-bricks-circle-number-top;
+        }
 
-    .adminBricksIcon {
-        color: $admin-bricks-icon-color;
-    }
+        &:hover {
+            .adminBricksIcon {
+                color: $admin-bricks-grid-item-hover-admin-bricks-icon-color;
+            }
+            .adminBricksCircleNumber {
+                display: $admin-bricks-grid-item-hover-admin-bricks-circle-number-display;
+                color: $admin-bricks-grid-item-hover-admin-bricks-circle-number-color;
+            }
+        }
 
-    .adminBricksCircleNumber {
-        color: $admin-bricks-circle-number-color;
-        position: $admin-bricks-circle-number-position;
-        top: $admin-bricks-circle-number-top;
-    }
+        .contactsBricksCircle {
+            background: $primary-color;
+            color: $primary-color;
+        }
 
-    .grid-item:hover .adminBricksIcon {
-        color: $admin-bricks-grid-item-hover-admin-bricks-icon-color;
-    }
-
-    .grid-item:hover .adminBricksCircleNumber {
-        display: $admin-bricks-grid-item-hover-admin-bricks-circle-number-display;
-        color: $admin-bricks-grid-item-hover-admin-bricks-circle-number-color;
+        .usersBricksCircle {
+            background: $secondary-color;
+            color: $secondary-color;
+        }
     }
 }

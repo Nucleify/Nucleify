@@ -1,7 +1,9 @@
 <template>
-    <Card class="myCard lg:ml-2 p-3 xl:px-4 md:col-6 xl:col-4 md:max-w-30rem">
+    <Card
+        class="myCard settingsCard settingsSmallCard col-12 sm:col-6 xl:col-4"
+    >
         <template #header>
-            <div class="flex justify-content-between">
+            <div class="myCardHeaderContainer">
                 <h2>Item Colors</h2>
                 <Button
                     class="myButton activityMyButton"
@@ -13,11 +15,11 @@
             <hr />
         </template>
         <template #content>
-            <ul class="px-3 flex flex-column gap-3">
+            <ul class="settingsCardItemList">
                 <li
                     v-for="item in colorList"
                     :key="item"
-                    class="flex justify-content-between"
+                    class="settingsCardItem"
                 >
                     <h3>{{ item }}</h3>
                     <my-color-picker :item="getLowerCase(item)" />

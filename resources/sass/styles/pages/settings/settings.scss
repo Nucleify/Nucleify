@@ -1,0 +1,37 @@
+@import '../../../variables/pages/settings/settings_variables';
+
+@import '../../../variables/base/medias_variables';
+
+.settingsPanelContainer {
+    display: $settings-panel-container-display;
+
+    .settingsCard {
+        margin: $settings-card-margin;
+        padding: $settings-card-padding;
+
+        .settingsCardItemList {
+            display: $settings-card-item-list-display;
+            flex-direction: $settings-card-item-list-flex-direction;
+            padding-left: $settings-card-item-list-padding-left;
+            gap: $settings-card-item-list-gap;
+
+            .settingsCardItem {
+                display: $settings-card-item-display;
+                justify-content: $settings-card-item-justify-content;
+            }
+        }
+    }
+
+    // Min width 576px
+    @media (min-width: $min-width-sm5) {
+        flex-direction: $settings-panel-container-flex-direction-sm5;
+    }
+
+    // Min width 992px;
+    @media (min-width: $min-width-lg2) {
+        .settingsSmallCard {
+            max-width: $settings-small-card-max-width-lg2;
+            max-height: $settings-small-card-max-height-lg2;
+        }
+    }
+}

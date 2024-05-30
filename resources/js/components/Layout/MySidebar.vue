@@ -67,7 +67,7 @@ import { isCurrentUrl, logout, useSidebar, useUserMenu } from '@/utils'
 
 defineProps<{
     items: Ref<UnwrapRef<MenuItem>>
-    userMenuItems: MenuItem[]
+    userMenuItems: Ref<UnwrapRef<MenuItem>>
 }>()
 
 const shouldShowSidebar = ref(true)

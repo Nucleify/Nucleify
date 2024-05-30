@@ -1,7 +1,9 @@
 <template>
-    <Card class="myCard lg:ml-2 p-3 xl:px-4 md:col-6 xl:col-4 md:max-w-30rem">
+    <Card
+        class="myCard settingsCard settingsSmallCard col-12 sm:col-6 xl:col-4"
+    >
         <template #header>
-            <div class="flex justify-content-between">
+            <div class="myCardHeaderContainer">
                 <h2>Display Charts</h2>
 
                 <Button
@@ -15,11 +17,11 @@
         </template>
         <template #content>
             <ul
-                class="px-3 flex flex-column gap-3"
+                class="settingsCardItemList"
                 v-for="item in displayChartList"
                 :key="item"
             >
-                <li class="flex justify-content-between">
+                <li class="settingsCardItem">
                     <h3>{{ item }}</h3>
                     <Button
                         class="myButton activityMyButton"

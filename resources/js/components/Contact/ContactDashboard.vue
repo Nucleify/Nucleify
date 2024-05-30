@@ -1,9 +1,6 @@
 <template>
     <div class="panelContainer">
-        <Card
-            v-if="display.Contact"
-            class="myCard chartCard annualChartCard lg:ml-2 lg:mr-5 lg:px-2 xl:px-4"
-        >
+        <Card v-if="display.Contact" class="myCard chartCard annualChartCard">
             <template #content>
                 <my-chart
                     :chart-method-type="'annual'"
@@ -15,9 +12,9 @@
                 <ProgressSpinner v-if="loading" />
             </template>
         </Card>
-        <Card class="myCard contactDashboard w-full lg:ml-2 lg:mr-5">
+        <Card class="myCard contactDashboard">
             <template #title>
-                <div class="flex justify-content-between">
+                <div class="myCardHeaderContainer">
                     <h3>Manage Contacts</h3>
 
                     <Button
@@ -82,7 +79,7 @@
                     />
                     <Column class="actionColumn">
                         <template #body="row">
-                            <div class="flex gap-1 justify-content-around">
+                            <div class="actionColumnContent">
                                 <Button
                                     class="desktopButton myButton"
                                     icon="pi pi-eye"

@@ -20,7 +20,7 @@ import { openMenu } from '@/utils'
 
 defineProps<{
     items: Ref<UnwrapRef<MenuItem>>
-    userMenuItems: MenuItem[]
+    userMenuItems: Ref<UnwrapRef<MenuItem>>
 }>()
 
 const menu = ref()

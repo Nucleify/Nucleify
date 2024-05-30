@@ -32,10 +32,10 @@
     font-weight: $start-button-font-weight;
     font-size: $font-size-medium;
     transition: $start-button-transition;
-}
 
-.startButton:active {
-    transform: $start-button-active-transform;
+    &:active {
+        transform: $start-button-active-transform;
+    }
 }
 
 .startItem {

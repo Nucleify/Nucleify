@@ -1,11 +1,11 @@
 <template>
     <Toast />
     <Links />
-    <div class="p-4">
+    <div class="authCardContainer">
         <Card class="loginCard">
             <template #header>
-                <div class="flex justify-content-center">
-                    <h2 class="-mb-2 mt-5 md:mt-6">Log In</h2>
+                <div class="authCardHeaderContainer">
+                    <h2 class="authCardHeader">Log In</h2>
                 </div>
             </template>
             <template #content>
@@ -61,8 +61,9 @@
                 </form>
             </template>
         </Card>
-        <TestLoginButton class="absolute bottom-0 mb-2" />
     </div>
+
+    <TestLoginButton />
 </template>
 
 <script setup lang="ts">

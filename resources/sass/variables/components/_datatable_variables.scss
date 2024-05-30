@@ -1,3 +1,4 @@
+// Datatable
 $datatable-min-height: 595px;
 $datatable-display: flex;
 $datatable-flex-direction: column;
@@ -6,8 +7,10 @@ $datatable-justify-content: space-between;
 $datatable-component-overlay-background: transparent;
 $datatable-has-loading-overlay-display: none !important;
 
+// td
 $td-cursor: pointer;
 
+// Columns
 $id-column-width-phone: 8%;
 $name-full-name-columns-width-phone: 60%;
 $tablet-desktop-columns-display-phone: none;
@@ -17,6 +20,10 @@ $description-name-columns-whitespace: nowrap;
 $title-column-max-width: 200px;
 $name-column-max-width: 280px;
 $description-column-max-width: 260px;
+
+$action-column-content-display: flex;
+$action-column-content-justify-content: space-around;
+$action-column-content-gap: 0.25rem;
 
 // Min width 530px
 $role-birthday-id-activity-columns-display-sm: table-cell;
@@ -40,6 +47,7 @@ $my-button-padding-lg2: 9px 8.5px 10px 8px;
 $email-column-width-lg2: 32%;
 $role-birthday-column-lg2: 15%;
 $category-column-lg2: 25%;
+$action-column-min-width-lg2: 120px;
 
 // Min width 1200px
 $id-column-width-xl: 8%;

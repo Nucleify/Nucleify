@@ -4,7 +4,7 @@
         <div
             class="adminBricks grid mx-auto col-12 justify-content-center flex my-4 lg:-my-2"
         >
-            <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
+            <div class="grid-item-container col-12 sm:col-6 lg:col-4">
                 <a href="#articles" class="grid-item h-16rem">
                     <div class="adminBricksCircle" :style="articleCircleStyle">
                         <div>
@@ -22,7 +22,7 @@
                     </p>
                 </a>
             </div>
-            <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
+            <div class="grid-item-container col-12 sm:col-6 lg:col-4">
                 <a href="#contacts" class="grid-item h-16rem">
                     <div class="adminBricksCircle" :style="contactCircleStyle">
                         <div>
@@ -40,7 +40,7 @@
                     </p>
                 </a>
             </div>
-            <div class="col-12 sm:col-6 lg:col-4 grid-item-container">
+            <div class="grid-item-container col-12 sm:col-6 lg:col-4">
                 <a href="#users" class="grid-item h-16rem">
                     <div class="adminBricksCircle" :style="userCircleStyle">
                         <div>
@@ -58,7 +58,7 @@
 
             <div
                 v-if="display.Admin"
-                class="chartCard countChartCard col-12 sm:col-6 lg:col-4 grid-item-container"
+                class="grid-item-container chartCard countChartCard col-12 sm:col-6 lg:col-4"
             >
                 <div class="grid-item h-16rem">
                     <my-chart
@@ -80,7 +80,7 @@
 
         <Card
             v-if="display.Admin"
-            class="myCard chartCard annualChartCard lg:ml-2 lg:mr-5 lg:px-3 xl:px-4 xl:pb-4 xl:pt-2"
+            class="myCard chartCard annualChartCard lg:ml-2 lg:mr-5 lg:px-3 xl:px-4 xl:pb-4"
         >
             <template #content>
                 <my-chart

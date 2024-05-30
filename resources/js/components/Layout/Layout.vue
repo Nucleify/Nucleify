@@ -1,6 +1,6 @@
 <template>
     <Toast position="top-right" />
-    <div class="flex">
+    <div class="layoutContainer">
         <my-navbar :items="layoutItems" :user-menu-items="userMenuItems" />
 
         <my-sidebar :items="layoutItems" :user-menu-items="userMenuItems" />

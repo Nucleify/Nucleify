@@ -1,7 +1,7 @@
 <template>
-    <div class="panelContainer">
-        <color-settings></color-settings>
-        <display-charts></display-charts>
+    <div class="panelContainer settingsPanelContainer">
+        <color-settings />
+        <display-charts />
     </div>
 </template>
 

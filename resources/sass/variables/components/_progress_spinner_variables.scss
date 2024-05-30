@@ -1,11 +1,14 @@
+// Progress spinner
 $progress-spinner-dimensions: 150px;
 $progress-spinner-position: relative;
+$progress-spinner-before-display: none;
 
+// Annual chart card  progress spinner
 $annual-chart-card-progress-spinner-top: -350px;
 $annual-chart-card-progress-spinner-margin-bottom: -150px;
 
+// Count chart card progress spinner
 $count-chart-card-progress-spinner-top: -75px;
 
+// Datatable progress spinner
 $datatable-progress-spinner-top: -50px;
-
-$progress-spinner-before-display: none;

@@ -43,6 +43,12 @@
         }
         .actionColumn {
             width: $action-column-width;
+
+            .actionColumnContent {
+                display: $action-column-content-display;
+                justify-content: $action-column-content-justify-content;
+                gap: $action-column-content-gap;
+            }
         }
         .emailColumn,
         .roleColumn,
@@ -136,6 +142,9 @@
             }
             .categoryColumn {
                 width: $category-column-lg2;
+            }
+            .actionColumn {
+                min-width: $action-column-min-width-lg2;
             }
         }
 

@@ -1,8 +1,6 @@
 import { Ref, ref, UnwrapRef } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
-import { logout } from '@/utils'
-
 export const layoutItems: Ref<UnwrapRef<MenuItem>> = ref<MenuItem>([
     {
         label: 'Home',

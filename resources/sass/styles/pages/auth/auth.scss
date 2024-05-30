@@ -1,44 +1,70 @@
 @import '../../../variables/pages/auth/auth_variables';
 
+@import '../../../variables/base/box_shadows_variables';
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/fonts_variables';
 @import '../../../variables/base/medias_variables';
 
-.loginCard,
-.registerCard {
-    margin: $auth-card-margin;
-    position: $auth-card-position;
-    top: $auth-card-position-top;
-    box-shadow: $login-card-box-shadow;
+.authCardContainer {
+    height: $auth-card-container-height;
+    padding: $auth-card-container-padding;
+    display: $auth-card-container-display;
+    flex-direction: $auth-card-container-flex-direction;
+    justify-content: $auth-card-container-justify-content;
+    align-items: $auth-card-container-align-items;
 
-    .p-card-body {
-        padding: $auth-card-body-padding;
-    }
+    .loginCard,
+    .registerCard {
+        position: $auth-card-position;
+        box-shadow: $primary-box-shadow;
 
-    .p-card-content {
-        padding: $auth-card-content-padding;
-    }
+        .authCardHeaderContainer {
+            display: $auth-card-header-container-display;
+            justify-content: $auth-card-header-container-justify-content;
 
-    // Min width 768px
-    @media (min-width: $min-width-md) {
-        padding-bottom: $auth-card-padding-bottom-md;
-        top: $auth-card-position-top-md;
+            .authCardHeader {
+                margin-bottom: $auth-card-header-margin-bottom;
+                margin-top: $auth-card-header-margin-top;
+            }
+        }
 
-        .p-card-content,
-        .p-card-content,
-        .p-card-body,
         .p-card-body {
-            padding: $auth-card-body-content-padding-md;
+            padding: $auth-card-body-padding;
+
+            .p-card-content {
+                padding: $auth-card-content-padding;
+            }
+        }
+
+        // Min width 768px
+        @media (min-width: $min-width-md) {
+            padding-bottom: $auth-card-padding-bottom-md;
+
+            .p-card-content,
+            .p-card-content,
+            .p-card-body,
+            .p-card-body {
+                padding: $auth-card-body-content-padding-md;
+            }
+        }
+
+        .authInputText {
+            height: $auth-input-text-height;
+            width: $auth-input-text-width;
+            max-width: $auth-input-text-max-width;
+            font-size: $auth-input-text-font-size;
         }
     }
-}
 
-.loginCard {
-    max-width: $login-card-position-max-width;
-}
+    .loginCard {
+        width: $auth-card-width;
+        max-width: $login-card-position-max-width;
+    }
 
-.registerCard {
-    max-width: $register-card-position-max-width;
+    .registerCard {
+        width: $auth-card-width;
+        max-width: $register-card-position-max-width;
+    }
 }
 
 .backLink,
@@ -66,10 +92,4 @@
 .registerLink {
     top: $auth-links-top;
     right: $auth-links-right;
-}
-
-.authInputText {
-    height: $auth-input-text-height;
-    width: $auth-input-text-width;
-    max-width: $auth-input-text-max-width;
 }

@@ -1,11 +1,11 @@
 <template>
     <Toast />
     <Links />
-    <div class="p-4">
+    <div class="authCardContainer">
         <Card class="registerCard">
             <template #header>
-                <div class="flex justify-content-center">
-                    <h2 class="-mb-2 mt-5 md:mt-6">Register</h2>
+                <div class="authCardHeaderContainer">
+                    <h2 class="authCardHeader">Register</h2>
                 </div>
             </template>
             <template #content>
