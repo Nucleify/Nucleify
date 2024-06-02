@@ -151,10 +151,12 @@
         .grid-item-container {
             height: $admin-bricks-grid-item-height-lg2;
             width: $admin-bricks-grid-item-width-lg2;
+            max-height: $admin-bricks-grid-item-max-height-lg2;
 
             .grid-item {
                 min-height: $admin-bricks-grid-item-height-lg2;
                 width: $admin-bricks-grid-item-width-lg2;
+                max-height:  $admin-bricks-grid-item-max-height-lg2;
             }
         }
     }
