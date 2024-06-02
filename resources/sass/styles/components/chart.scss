@@ -1,11 +1,6 @@
 @import '../../variables/components/chart_variables';
 
 .chartCard {
-    &.countChartCard {
-        min-height: $count-chart-card-dimensions;
-        max-height: $count-chart-card-dimensions;
-    }
-
     .p-card-content {
         display: $chart-card-content-display;
         flex-direction: $chart-card-content-flex-direction;

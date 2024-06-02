@@ -7,7 +7,6 @@
 
 .grid-item {
     background: $content-bg;
-    border-radius: $large-border-radius;
     box-shadow: $grid-item-box-shadow;
     transition: $transition-colors-300ms;
     display: $grid-item-display;
@@ -35,10 +34,7 @@
     }
 }
 .grid-item-container {
-    max-width: $grid-item-container-max-width;
-    display: $grid-item-container-display;
     grid-template-columns: $grid-item-container-grid-template-columns;
-    gap: $grid-item-container-gap;
 
     // Min width 600px
     @media (min-width: $min-width-sm6) {
@@ -69,9 +65,6 @@
 }
 
 .grid {
-    .grid-item-container {
-        max-width: $grid-item-container-max-width;
-    }
     a {
         text-decoration: $grid-item-a-text-decoration;
     }

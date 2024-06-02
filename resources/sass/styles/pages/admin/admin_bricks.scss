@@ -2,18 +2,38 @@
 
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/fonts_variables';
+@import '../../../variables/base/medias_variables';
 
 .adminBricks {
+    display: $admin-bricks-display;
+    justify-content: $admin-bricks-justify-content;
+    grid-template-columns: $admin-bricks-grid-template-columns;
     gap: $admin-bricks-gap;
+    padding: $admin-bricks-padding;
+    margin: $admin-bricks-margin;
 
     .adminBricksCircle {
+        height: $admin-bricks-circle-dimensions;
+        width: $admin-bricks-circle-dimensions;
+        max-height: $admin-bricks-circle-max-dimensions;
+        max-width: $admin-bricks-circle-max-dimensions;
+        aspect-ratio: $admin-bricks-circle-aspect-ratio;
         display: $admin-bricks-circle-display;
         justify-content: $admin-bricks-circle-justify-content;
         align-items: $admin-bricks-circle-align-items;
-        width: $admin-bricks-circle-width;
-        height: $admin-bricks-circle-height;
         padding: $admin-bricks-circle-padding;
         border-radius: $admin-bricks-circle-border-radius;
+
+        div {
+            display: $admin-bricks-circle-div-display;
+            flex-direction: $admin-bricks-circle-div-flex-direction;
+            align-items: $admin-bricks-circle-div-align-items;
+            justify-content: $admin-bricks-circle-div-justify-content;
+
+            .adminBricksCircleNumber {
+                font-size: $font-size-big1;
+            }
+        }
     }
 
     .articlesBricksText,
@@ -22,58 +42,120 @@
         margin: $admin-bricks-text-margin;
     }
 
-    .adminBricksCircle div {
-        display: $admin-bricks-circle-div-display;
-        flex-direction: $admin-bricks-circle-div-flex-direction;
-        align-items: $admin-bricks-circle-div-align-items;
-        justify-content: $admin-bricks-circle-div-justify-content;
-    }
 
-    .adminBricksCircleNumber {
-        font-size: $font-size-big1;
-    }
+    .grid-item-container {
+        height: $admin-bricks-grid-item-container-dimensions;
+        width: $admin-bricks-grid-item-container-dimensions;
+        max-height: $admin-bricks-grid-item-container-max-height;
+        aspect-ratio: $admin-bricks-grid-item-container-aspect-ratio;
+        padding: $admin-bricks-grid-item-container-padding;
 
-    .grid-item {
-        height: $admin-bricks-grid-item-height;
-        min-width: $admin-bricks-grid-item-min-width;
-        font-size: $font-size-l;
 
-        .pi {
-            margin-top: $admin-bricks-grid-item-pi-margin-top;
-            font-size: $font-size-xxl;
-        }
+        .grid-item {
+            height: $admin-bricks-grid-item-dimensions;
+            width: $admin-bricks-grid-item-dimensions;
+            max-height: $admin-bricks-grid-item-max-height;
+            aspect-ratio: $admin-bricks-grid-item-aspect-ratio;
 
-        .adminBricksIcon,
-        .adminBricksCircleNumber {
-            transition: $transition-colors-300ms;
-        }
-        .adminBricksIcon {
-            color: $admin-bricks-icon-color;
-        }
-        .adminBricksCircleNumber {
-            color: $admin-bricks-circle-number-color;
-            position: $admin-bricks-circle-number-position;
-            top: $admin-bricks-circle-number-top;
-        }
+            font-size: $font-size-big;
 
-        &:hover {
-            .adminBricksIcon {
-                color: $admin-bricks-grid-item-hover-admin-bricks-icon-color;
+            .pi {
+                margin-top: $admin-bricks-grid-item-pi-margin-top;
+                font-size: $font-size-l;
             }
+
+            .adminBricksIcon,
             .adminBricksCircleNumber {
-                display: $admin-bricks-grid-item-hover-admin-bricks-circle-number-display;
-                color: $admin-bricks-grid-item-hover-admin-bricks-circle-number-color;
+                transition: $transition-colors-300ms;
+            }
+
+            .adminBricksIcon {
+                color: $admin-bricks-icon-color;
+            }
+
+            .adminBricksCircleNumber {
+                color: $admin-bricks-circle-number-color;
+                position: $admin-bricks-circle-number-position;
+                top: $admin-bricks-circle-number-top;
+            }
+
+            &:hover {
+                .adminBricksIcon {
+                    color: $admin-bricks-grid-item-hover-admin-bricks-icon-color;
+                }
+
+                .adminBricksCircleNumber {
+                    display: $admin-bricks-grid-item-hover-admin-bricks-circle-number-display;
+                    color: $admin-bricks-grid-item-hover-admin-bricks-circle-number-color;
+                }
+            }
+
+            .contactsBricksCircle {
+                background: $primary-color;
+                color: $primary-color;
+            }
+
+            .usersBricksCircle {
+                background: $secondary-color;
+                color: $secondary-color;
             }
         }
+    }
 
-        .contactsBricksCircle {
-            background: $primary-color;
-            color: $primary-color;
+
+    // Min width 411px
+    @media (min-width: $min-width-xs) {
+        .grid-item-container {
+            .grid-item {
+                font-size: $font-size-big2;
+            }
+        }
+    }
+
+    // Min width 456px
+    @media (min-width: $min-width-xs2) {
+        gap: $admin-bricks-gap-xs2;
+        padding: $admin-bricks-padding-xs2;
+    }
+
+    // Min width 510px
+    @media (min-width: $min-width-sm0) {
+        display: $admin-bricks-display-sm0;
+        gap: $admin-bricks-gap-sm0;
+        padding: $admin-bricks-padding-sm0;
+
+        .adminBricksCircle {
+            max-width: $admin-bricks-circle-width-sm0;
+            max-height: $admin-bricks-circle-height-sm0;
         }
 
-        .usersBricksCircle {
-            background: $secondary-color;
-            color: $secondary-color;
+        .grid-item-container {
+            width: $admin-bricks-grid-item-container-width-sm0;
+            height: $admin-bricks-grid-item-container-height-sm0;
+
+            .grid-item {
+                width: $admin-bricks-grid-item-width-sm0;
+                height: $admin-bricks-grid-item-height-sm0;
+                font-size: $font-size-l;
+
+                .pi {
+                    font-size: $font-size-xxl;
+                }
+            }
+        }
+    }
+
+
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
+        .grid-item-container {
+            height: $admin-bricks-grid-item-height-lg2;
+            width: $admin-bricks-grid-item-width-lg2;
+
+            .grid-item {
+                min-height: $admin-bricks-grid-item-height-lg2;
+                width: $admin-bricks-grid-item-width-lg2;
+            }
         }
     }
 }

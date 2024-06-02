@@ -2,10 +2,10 @@
 <template>
     <div class="panelContainer">
         <div
-            class="adminBricks grid mx-auto col-12 justify-content-center flex my-4 lg:-my-2"
+            class="adminBricks grid col-12"
         >
-            <div class="grid-item-container col-12 sm:col-6 lg:col-4">
-                <a href="#articles" class="grid-item h-16rem">
+            <div class="grid-item-container col-6 lg:col-4">
+                <a href="#articles" class="grid-item">
                     <div class="adminBricksCircle" :style="articleCircleStyle">
                         <div>
                             <p class="adminBricksCircleNumber">
@@ -22,8 +22,8 @@
                     </p>
                 </a>
             </div>
-            <div class="grid-item-container col-12 sm:col-6 lg:col-4">
-                <a href="#contacts" class="grid-item h-16rem">
+            <div class="grid-item-container col-6 lg:col-4">
+                <a href="#contacts" class="grid-item">
                     <div class="adminBricksCircle" :style="contactCircleStyle">
                         <div>
                             <p class="adminBricksCircleNumber">
@@ -40,8 +40,8 @@
                     </p>
                 </a>
             </div>
-            <div class="grid-item-container col-12 sm:col-6 lg:col-4">
-                <a href="#users" class="grid-item h-16rem">
+            <div class="grid-item-container col-6 lg:col-4">
+                <a href="#users" class="grid-item">
                     <div class="adminBricksCircle" :style="userCircleStyle">
                         <div>
                             <p class="adminBricksCircleNumber">
@@ -58,16 +58,16 @@
 
             <div
                 v-if="display.Admin"
-                class="grid-item-container chartCard countChartCard col-12 sm:col-6 lg:col-4"
+                class="grid-item-container chartCard countChartCard col-6 lg:col-4"
             >
-                <div class="grid-item h-16rem">
+                <div class="grid-item">
                     <my-chart
                         :chart-method-type="'count'"
                         :type="'pie'"
                         :article-data="articles"
                         :contactData="contacts"
                         :userData="users"
-                        :chart-class="'h-16 w-16 -mt-2'"
+                        :chart-class="'h-8 w-8 -mt-2'"
                         :class="!allLoaded ? 'chartLoading' : 'chartLoaded'"
                     />
                     <ProgressSpinner
@@ -80,7 +80,7 @@
 
         <Card
             v-if="display.Admin"
-            class="myCard chartCard annualChartCard lg:ml-2 lg:mr-5 lg:px-3 xl:px-4 xl:pb-4"
+            class="myCard chartCard annualChartCard"
         >
             <template #content>
                 <my-chart

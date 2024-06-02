@@ -1,14 +1,15 @@
 @import '../../variables/components/card_variables';
 
+@import '../../variables/base/borders_variables';
 @import '../../variables/base/box_shadows_variables';
 @import '../../variables/base/colors_variables';
 @import '../../variables/base/medias_variables';
 
 .myCard {
     width: $card-width;
-    box-shadow: $my-card-box-shadow;
-    border: $my-card-border;
+    box-shadow: $primary-box-shadow;
     background: $my-card-background;
+    border-radius: $border-radius-none;
 
     .myCardHeaderContainer {
         display: $my-card-header-container-display;
@@ -17,7 +18,6 @@
 
     // Min width 992px
     @media (min-width: $min-width-lg2) {
-        margin-left: $my-card-margin-left-lg2;
         margin-right: $my-card-margin-right-lg2;
     }
 }
