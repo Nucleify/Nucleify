@@ -2,7 +2,7 @@
 $admin-bricks-gap: 8px;
 $admin-bricks-display: grid !important;
 $admin-bricks-justify-content: center;
-$admin-bricks-grid-template-columns: repeat(2, 1fr);
+$admin-bricks-grid-template-columns: repeat(2, minmax(150px, 1fr));
 $admin-bricks-padding: 0 !important;
 $admin-bricks-margin: 0 auto !important;
 
@@ -57,7 +57,7 @@ $admin-bricks-circle-number-top: 3px;
 $admin-bricks-gap-xs2: 12px;
 $admin-bricks-padding-xs2: 4px !important;
 
-// Min width 510px
+// Min width 519px
 $admin-bricks-display-sm0: flex !important;
 $admin-bricks-gap-sm0: 16px;
 $admin-bricks-padding-sm0: 8px !important;
