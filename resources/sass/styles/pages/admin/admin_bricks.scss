@@ -56,7 +56,6 @@
             max-width: $admin-bricks-grid-item-max-width;
             max-height: $admin-bricks-grid-item-max-height;
             aspect-ratio: $admin-bricks-grid-item-aspect-ratio;
-
             font-size: $font-size-big;
 
             .pi {
@@ -121,7 +120,9 @@
             max-width: $admin-bricks-circle-width-sm0;
             max-height: $admin-bricks-circle-height-sm0;
         }
-
+        .adminBricksCircleNumber {
+            top: $admin-bricks-circle-number-top-sm0;
+        }
         .grid-item-container {
             width: $admin-bricks-grid-item-width-sm0;
             height: $admin-bricks-grid-item-height-sm0;

@@ -1,8 +1,10 @@
 @import '../../variables/components/progress_spinner_variables';
 
 .p-progress-spinner {
-    height: $progress-spinner-dimensions;
+    min-width: $progress-spinner-min-dimensions;
+    min-height: $progress-spinner-min-dimensions;
     width: $progress-spinner-dimensions;
+    height: $progress-spinner-dimensions;
     position: $progress-spinner-position;
 
     &::before {

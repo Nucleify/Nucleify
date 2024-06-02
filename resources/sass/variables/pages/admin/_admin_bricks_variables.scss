@@ -49,8 +49,7 @@ $admin-bricks-icon-color: white;
 // Admin bricks circle number
 $admin-bricks-circle-number-color: transparent;
 $admin-bricks-circle-number-position: relative;
-$admin-bricks-circle-number-top: 3px;
-
+$admin-bricks-circle-number-top: -6px;
 
 // Min width 456px
 $admin-bricks-gap-xs2: 12px;
@@ -62,6 +61,7 @@ $admin-bricks-gap-sm0: 16px;
 $admin-bricks-padding-sm0: 0 0 8px 0 !important;
 $admin-bricks-circle-width-sm0: 100px;
 $admin-bricks-circle-height-sm0: 100px;
+$admin-bricks-circle-number-top-sm0: 3px !important;
 $admin-bricks-grid-item-width-sm0: 230px;
 $admin-bricks-grid-item-height-sm0: 210px;
 
