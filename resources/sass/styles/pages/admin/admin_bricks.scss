@@ -7,8 +7,6 @@
 .adminBricks {
     display: $admin-bricks-display;
     justify-content: $admin-bricks-justify-content;
-    grid-template-columns: $admin-bricks-grid-template-columns;
-    gap: $admin-bricks-gap;
     padding: $admin-bricks-padding;
     margin: $admin-bricks-margin;
 
@@ -44,16 +42,14 @@
 
 
     .grid-item-container {
-        height: $admin-bricks-grid-item-container-dimensions;
-        width: $admin-bricks-grid-item-container-dimensions;
-        max-height: $admin-bricks-grid-item-container-max-height;
+        max-width: $admin-bricks-grid-item-max-width;
+        max-height: $admin-bricks-grid-item-max-height;
         aspect-ratio: $admin-bricks-grid-item-container-aspect-ratio;
         padding: $admin-bricks-grid-item-container-padding;
 
 
         .grid-item {
-            height: $admin-bricks-grid-item-dimensions;
-            width: $admin-bricks-grid-item-dimensions;
+            max-width: $admin-bricks-grid-item-max-width;
             max-height: $admin-bricks-grid-item-max-height;
             aspect-ratio: $admin-bricks-grid-item-aspect-ratio;
 
@@ -112,15 +108,8 @@
         }
     }
 
-    // Min width 456px
-    @media (min-width: $min-width-xs2) {
-        gap: $admin-bricks-gap-xs2;
-        padding: $admin-bricks-padding-xs2;
-    }
-
     // Min width 519px
     @media (min-width: $min-width-sm0) {
-        display: $admin-bricks-display-sm0;
         gap: $admin-bricks-gap-sm0;
         padding: $admin-bricks-padding-sm0;
 
@@ -130,8 +119,8 @@
         }
 
         .grid-item-container {
-            width: $admin-bricks-grid-item-container-width-sm0;
-            height: $admin-bricks-grid-item-container-height-sm0;
+            width: $admin-bricks-grid-item-width-sm0;
+            height: $admin-bricks-grid-item-height-sm0;
 
             .grid-item {
                 width: $admin-bricks-grid-item-width-sm0;
@@ -149,14 +138,12 @@
     // Min width 992px
     @media (min-width: $min-width-lg2) {
         .grid-item-container {
-            height: $admin-bricks-grid-item-height-lg2;
-            width: $admin-bricks-grid-item-width-lg2;
+            max-width: $admin-bricks-grid-item-max-width-lg2;
             max-height: $admin-bricks-grid-item-max-height-lg2;
 
             .grid-item {
-                min-height: $admin-bricks-grid-item-height-lg2;
-                width: $admin-bricks-grid-item-width-lg2;
-                max-height:  $admin-bricks-grid-item-max-height-lg2;
+                max-width: $admin-bricks-grid-item-max-width-lg2;
+                max-height: $admin-bricks-grid-item-max-height-lg2;
             }
         }
     }

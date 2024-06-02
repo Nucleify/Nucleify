@@ -1,10 +1,9 @@
 // Admin bricks
-$admin-bricks-gap: 8px;
-$admin-bricks-display: grid !important;
+$admin-bricks-display: flex !important;
 $admin-bricks-justify-content: center;
 $admin-bricks-grid-template-columns: repeat(2, minmax(150px, 1fr));
 $admin-bricks-padding: 0 !important;
-$admin-bricks-margin: 0 auto !important;
+$admin-bricks-margin: 0 !important;
 
 // Admin bricks circle
 $admin-bricks-circle-dimensions: 100%;
@@ -26,13 +25,11 @@ $admin-bricks-circle-div-align-items: center;
 $admin-bricks-circle-div-justify-content: center;
 
 // Admin bricks grid item container
-$admin-bricks-grid-item-container-dimensions: 100%;
-$admin-bricks-grid-item-container-max-height: 200px;
 $admin-bricks-grid-item-container-aspect-ratio: 1;
-$admin-bricks-grid-item-container-padding: 0;
+$admin-bricks-grid-item-container-padding: 4px;
 
 // Admin bricks grid item
-$admin-bricks-grid-item-dimensions: 100%;
+$admin-bricks-grid-item-max-width: 210px;
 $admin-bricks-grid-item-max-height: 200px;
 $admin-bricks-grid-item-aspect-ratio: 1;
 
@@ -60,17 +57,14 @@ $admin-bricks-padding-xs2: 4px !important;
 // Min width 519px
 $admin-bricks-display-sm0: flex !important;
 $admin-bricks-gap-sm0: 16px;
-$admin-bricks-padding-sm0: 8px !important;
+$admin-bricks-padding-sm0: 0 0 8px 0 !important;
 $admin-bricks-circle-width-sm0: 100px;
 $admin-bricks-circle-height-sm0: 100px;
-$admin-bricks-grid-item-container-width-sm0: 230px;
-$admin-bricks-grid-item-container-height-sm0: 210px;
 $admin-bricks-grid-item-width-sm0: 230px;
 $admin-bricks-grid-item-height-sm0: 210px;
 
 // Min width 992px
-$admin-bricks-grid-item-height-lg2: 250px;
-$admin-bricks-grid-item-width-lg2: 284px;
 $admin-bricks-grid-item-max-height-lg2: 250px;
+$admin-bricks-grid-item-max-width-lg2: 284px;
 
 
