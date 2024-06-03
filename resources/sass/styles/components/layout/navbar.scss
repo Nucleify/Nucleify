@@ -15,15 +15,17 @@
     }
 }
 
-.p-menubar {
-    width: $menubar-width;
-    position: $menubar-position;
-    z-index: $menubar-z-index;
-    padding: $menubar-padding;
-    margin: $menubar-margin;
-    justify-content: $menubar-justify-content;
-    box-shadow: $secondary-card-box-shadow;
-    border: $primary-border;
+.myNavbar {
+    height: $my-navbar-height;
+    width: $my-navbar-width;
+    position: $my-navbar-position;
+    z-index: $my-navbar-z-index;
+    padding: $my-navbar-padding;
+    margin: $my-navbar-margin;
+    justify-content: $my-navbar-justify-content;
+    background: $primary-bg;
+    box-shadow: $box-shadow-none;
+    border: $border-none;
     border-radius: $border-radius-none;
 
     .p-submenu-header {
@@ -43,6 +45,10 @@
         .p-icon {
             width: $menubar-button-icon-width;
             height: $menubar-button-icon-height;
+            color: $white-text-color;
+        }
+        &:hover {
+            background: $primary-bg;
         }
     }
 
@@ -51,16 +57,12 @@
         margin: $menubar-root-list-margin;
     }
 
-    &.myNavbar {
-        position: $my-navbar-position;
+    .nav-link {
+        padding-left: $nav-link-padding-left;
+    }
 
-        .nav-link {
-            padding-left: $nav-link-padding-left;
-        }
-
-        // Min width 992px
-        @media (min-width: $min-width-lg2) {
-            display: $my-navbar-display-lg2;
-        }
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
+        display: $my-navbar-display-lg2;
     }
 }

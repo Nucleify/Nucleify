@@ -2,6 +2,7 @@
 @import '../../../variables/components/disabled_items_variables';
 
 @import '../../../variables/base/borders_variables';
+@import '../../../variables/base/box_shadows_variables';
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/fonts_variables';
 @import '../../../variables/base/medias_variables';
@@ -13,10 +14,12 @@
     display: $my-sidebar-display;
     flex-direction: $my-sidebar-flex-direction;
     align-items: $my-sidebar-align-items;
-    box-shadow: $my-sidebar-box-shadow;
-    background: $content-bg;
+    background: $primary-bg;
     z-index: $my-sidebar-z-index;
     padding: $my-sidebar-padding;
+    box-shadow: $box-shadow-none;
+    border: $border-none;
+    border-radius: $border-radius-none;
 
     .sidebarItem {
         margin-left: $my-sidebar-item-margin-left;
@@ -28,7 +31,7 @@
         justify-content: $my-sidebar-item-justify-content;
         text-align: $my-sidebar-item-text-align;
         text-decoration: $my-sidebar-item-text-decoration;
-        color: $secondary-text-color;
+        color: $white-text-color;
         background: $my-sidebar-item-background;
         border-color: $my-sidebar-item-border;
         border-radius: $small-border-radius;
@@ -36,7 +39,7 @@
         cursor: $my-sidebar-item-cursor;
 
         i {
-            font-size: $font-size-medium1;
+            font-size: $font-size-medium;
         }
 
         .disabledItem {

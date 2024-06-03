@@ -7,9 +7,9 @@
 
 .myCard {
     width: $card-width;
-    box-shadow: $primary-box-shadow;
-    background: $my-card-background;
-    border: $secondary-border;
+    background: $content-bg;
+    box-shadow: $box-shadow-none;
+    border: $border-none;
     border-radius: $border-radius-none;
 
     .myCardHeaderContainer {

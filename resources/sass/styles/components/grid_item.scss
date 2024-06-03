@@ -8,7 +8,6 @@
 
 .grid-item {
     background: $content-bg;
-    box-shadow: $primary-box-shadow;
     transition: $transition-colors-300ms;
     display: $grid-item-display;
     flex-direction: $grid-item-flex-direction;
@@ -16,8 +15,9 @@
     align-items: $grid-item-align-items;
     font-weight: $grid-item-font-weight;
     font-size: $font-size-big;
-    border: $secondary-border;
-
+    box-shadow: $box-shadow-none;
+    border: $border-none;
+    border-radius: $border-radius-none;
 
     .pi {
         font-size: $font-size-l;

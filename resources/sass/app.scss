@@ -50,6 +50,11 @@
     box-sizing: $box-sizing-all;
 }
 
+main {
+    background: $body-bg;
+    min-height: $main-min-height;
+}
+
 :root {
     --main-item-color: #10B981;
     --main-item-hover-color: #10A674;

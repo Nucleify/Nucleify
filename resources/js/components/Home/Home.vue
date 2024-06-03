@@ -1,5 +1,5 @@
 <template>
-    <div class="homeBricksGrid grid mx-auto pb-6">
+    <div class="homeBricksGrid grid mx-auto">
         <div
             class="p-3 grid-item-container BlockLayout"
             ref="draggableContainer"

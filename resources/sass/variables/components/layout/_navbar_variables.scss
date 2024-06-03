@@ -1,14 +1,18 @@
+// myNavbar
+$my-navbar-height: 58px;
+$my-navbar-width: 100vw;
+$my-navbar-position: fixed;
+$my-navbar-z-index: 999;
+$my-navbar-padding: 5px;
+$my-navbar-margin: 0;
+$my-navbar-justify-content: space-between;
+
+
 $menu-item-a-text-decoration: none;
 $avatar-position: relative;
 $avatar-right: 15px;
 $submenu-header-display: none;
 $menu-item-icon-margin-right: 20px;
-$menubar-width: 100vw;
-$menubar-position: fixed;
-$menubar-z-index: 999;
-$menubar-padding: 5px;
-$menubar-margin: 0;
-$menubar-justify-content: space-between;
 $menubar-button-position: relative;
 $menubar-button-left: 10px;
 $menubar-button-color: black;
@@ -16,7 +20,6 @@ $menubar-button-icon-width: 20px;
 $menubar-button-icon-height: 20px;
 $menubar-root-list-padding: 0;
 $menubar-root-list-margin: 0;
-$my-navbar-position: fixed;
 $navbar-padding: 0 20px;
 $nav-link-padding-left: 15px;
 

@@ -1,9 +1,7 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
     <div class="panelContainer">
-        <div
-            class="adminBricks grid col-12"
-        >
+        <div class="adminBricks grid col-12">
             <div class="grid-item-container col-6 lg:col-4">
                 <a href="#articles" class="grid-item">
                     <div class="adminBricksCircle" :style="articleCircleStyle">
@@ -78,10 +76,7 @@
             </div>
         </div>
 
-        <Card
-            v-if="display.Admin"
-            class="myCard chartCard annualChartCard"
-        >
+        <Card v-if="display.Admin" class="myCard chartCard annualChartCard">
             <template #content>
                 <my-chart
                     :chart-method-type="'annual'"

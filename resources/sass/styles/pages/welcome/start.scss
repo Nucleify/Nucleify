@@ -10,7 +10,6 @@
 }
 
 .startHeader {
-    margin-top: $start-header-margin-top;
     font-size: $start-header-font-size;
     font-weight: $start-header-font-weight;
     font-family: $font-family-inter-sans-serif;
@@ -183,9 +182,6 @@
 
 // Min width 560px
 @media (min-width: $min-width-sm4) {
-    .startHeader {
-        margin-top: $start-header-margin-top-sm4;
-    }
     .startContainer {
         padding: $start-container-padding-sm4;
     }
@@ -203,7 +199,6 @@
 // Min width 768px
 @media (min-width: $min-width-md) {
     .startHeader {
-        margin-top: $start-header-margin-top-md;
         font-size: $start-header-font-size-md;
     }
     .startDescription {
@@ -258,7 +253,6 @@
 // Min width 992px
 @media (min-width: $min-width-lg2) {
     .startHeader {
-        margin-top: $start-header-margin-top-lg2;
         font-size: $start-header-font-size-lg2;
     }
     .startDescription {
@@ -293,9 +287,6 @@
 
 // Min width 1200px
 @media (min-width: $min-width-xl) {
-    .startHeader {
-        margin-top: $start-header-margin-top-xl;
-    }
     .startHeader,
     .startDescription,
     .startButton {
@@ -334,7 +325,6 @@
 // Min width 1400px
 @media (min-width: $min-width-2xl) {
     .startHeader {
-        margin-top: $start-header-margin-top-2xl;
         font-size: $font-size-xxl;
     }
     .startHeader,

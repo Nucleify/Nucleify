@@ -1,5 +1,6 @@
 @import '../../../variables/pages/welcome/navbar_variables';
 
+@import '../../../variables/base/borders_variables';
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/medias_variables';
 @import '../../../variables/base/box_shadows_variables';
@@ -8,9 +9,14 @@
     z-index: $welcome-navbar-z-index;
     position: $welcome-navbar-position;
     top: $welcome-navbar-top;
-    box-shadow: $my-card-box-shadow;
+    background: $primary-bg;
+    box-shadow: $box-shadow-none;
+    border: $border-none;
+    border-radius: $border-radius-none;
 
     .welcomeNavLink {
+        margin-top: $welcome-nav-link-margin-top;
+        color: $white-text-color;
         font-size: $welcome-nav-link-font-size;
 
         &:hover {
@@ -20,13 +26,14 @@
 }
 
 .applicationHeader {
+    margin-top: $application-header-margin-top;
     margin-left: $application-header-margin-left;
     text-decoration: $application-header-text-decoration;
-    color: $primary-text-color;
+    color: $white-text-color;
     font-size: $application-header-font-size;
 
     &:hover {
-        color: $primary-text-color;
+        color: $white-text-color;
     }
 
     // Min width 992px

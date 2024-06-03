@@ -4,7 +4,7 @@
             <Avatar
                 icon="pi pi-user"
                 shape="circle"
-                class="w-3rem h-3rem cursor-pointer"
+                class="w-2rem h-2rem cursor-pointer m-1"
                 @click="openMenu(menu, $event)"
             />
             <Menu ref="menu" :model="userMenuItems" :popup="true" />

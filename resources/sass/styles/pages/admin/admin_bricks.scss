@@ -40,7 +40,6 @@
         margin: $admin-bricks-text-margin;
     }
 
-
     .grid-item-container {
         min-width: $admin-bricks-grid-item-min-width;
         min-height: $admin-bricks-grid-item-min-height;
@@ -48,7 +47,6 @@
         max-height: $admin-bricks-grid-item-max-height;
         aspect-ratio: $admin-bricks-grid-item-container-aspect-ratio;
         padding: $admin-bricks-grid-item-container-padding;
-
 
         .grid-item {
             min-width: $admin-bricks-grid-item-min-width;
@@ -101,7 +99,6 @@
         }
     }
 
-
     // Min width 411px
     @media (min-width: $min-width-xs) {
         .grid-item-container {
@@ -138,7 +135,6 @@
             }
         }
     }
-
 
     // Min width 992px
     @media (min-width: $min-width-lg2) {
