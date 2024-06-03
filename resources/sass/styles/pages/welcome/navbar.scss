@@ -14,13 +14,25 @@
     border: $border-none;
     border-radius: $border-radius-none;
 
+    .pi {
+        color: $white-text-color !important;
+    }
+
     .welcomeNavLink {
         margin-top: $welcome-nav-link-margin-top;
+        padding: $welcome-nav-link-padding;
         color: $white-text-color;
         font-size: $welcome-nav-link-font-size;
+        text-align: $welcome-nav-link-text-align;
 
         &:hover {
             color: $primary-hover-color;
+        }
+
+        // Min width 992px
+        @media (min-width: $min-width-lg2) {
+            margin-top: $welcome-nav-link-margin-top-lg2;
+            padding: $welcome-nav-link-padding-lg2;
         }
     }
 }

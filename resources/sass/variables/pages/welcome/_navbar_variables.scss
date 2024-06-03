@@ -4,8 +4,10 @@ $welcome-navbar-position: fixed;
 $welcome-navbar-top: 0;
 
 // welcomeNavLink
-$welcome-nav-link-margin-top: -3px;
+$welcome-nav-link-margin-top: 10px;
+$welcome-nav-link-padding: 15px;
 $welcome-nav-link-font-size: 18px;
+$welcome-nav-link-text-align: end;
 
 // Application header
 $application-header-margin-top: -5px;
@@ -15,3 +17,5 @@ $application-header-font-size: 20px;
 
 // Min width 992px
 $application-header-font-size-lg2: 25px;
+$welcome-nav-link-margin-top-lg2: -3px;
+$welcome-nav-link-padding-lg2: 8px;
