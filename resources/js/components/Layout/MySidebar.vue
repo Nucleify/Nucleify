@@ -59,15 +59,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, Ref, UnwrapRef } from 'vue'
+import { ref, onMounted, Ref } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
 import { excludedPaths, handleStyles } from '@/constants'
 import { isCurrentUrl, logout, useSidebar, useUserMenu } from '@/utils'
 
 defineProps<{
-    items: Ref<UnwrapRef<MenuItem>>
-    userMenuItems: Ref<UnwrapRef<MenuItem>>
+    items: Ref<MenuItem[]>
+    userMenuItems: Ref<MenuItem[]>
 }>()
 
 const shouldShowSidebar = ref(true)

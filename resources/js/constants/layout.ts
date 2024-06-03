@@ -1,7 +1,7 @@
-import { Ref, ref, UnwrapRef } from 'vue'
+import { Ref, ref } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
-export const layoutItems: Ref<UnwrapRef<MenuItem>> = ref<MenuItem>([
+export const layoutItems: Ref<MenuItem[]> = ref<MenuItem[]>([
     {
         label: 'Home',
         icon: 'pi pi-home',
@@ -44,7 +44,7 @@ export const layoutItems: Ref<UnwrapRef<MenuItem>> = ref<MenuItem>([
     },
 ])
 
-export const userMenuItems: Ref<UnwrapRef<MenuItem>> = ref<MenuItem>([
+export const userMenuItems: Ref<MenuItem[]> = ref<MenuItem[]>([
     {
         label: 'Welcome',
         icon: 'pi pi-home',

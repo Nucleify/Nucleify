@@ -13,14 +13,14 @@
 </template>
 
 <script setup lang="ts">
-import { Ref, ref, UnwrapRef } from 'vue'
+import { Ref, ref } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
 import { openMenu } from '@/utils'
 
 defineProps<{
-    items: Ref<UnwrapRef<MenuItem>>
-    userMenuItems: Ref<UnwrapRef<MenuItem>>
+    items: Ref<MenuItem[]>
+    userMenuItems: Ref<MenuItem[]>
 }>()
 
 const menu = ref()
