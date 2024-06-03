@@ -1,4 +1,11 @@
-$border-radius-none: none;
+@import 'colors_variables';
+
+// Borders
+$primary-border: 1px solid $primary-border-color;
+$secondary-border: 0.5px solid $primary-border-color;
+
+// Border radius
+$border-radius-none: 0;
 $small-border-radius: 12px;
 $medium-border-radius: 18px;
 $large-border-radius: 25px;

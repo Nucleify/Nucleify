@@ -1,13 +1,14 @@
 @import '../../variables/components/grid_items_variables';
 
 @import '../../variables/base/borders_variables';
+@import '../../variables/base/box_shadows_variables';
 @import '../../variables/base/colors_variables';
 @import '../../variables/base/fonts_variables';
 @import '../../variables/base/medias_variables';
 
 .grid-item {
     background: $content-bg;
-    box-shadow: $grid-item-box-shadow;
+    box-shadow: $primary-box-shadow;
     transition: $transition-colors-300ms;
     display: $grid-item-display;
     flex-direction: $grid-item-flex-direction;
@@ -15,6 +16,8 @@
     align-items: $grid-item-align-items;
     font-weight: $grid-item-font-weight;
     font-size: $font-size-big;
+    border: $secondary-border;
+
 
     .pi {
         font-size: $font-size-l;

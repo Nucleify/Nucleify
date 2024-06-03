@@ -59,6 +59,7 @@
     .loginCard {
         width: $auth-card-width;
         max-width: $login-card-position-max-width;
+        margin-top: $login-card-position-margin-top;
     }
 
     .registerCard {

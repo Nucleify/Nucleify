@@ -1,6 +1,8 @@
 @import '../../../variables/components/layout/navbar_variables';
 @import '../../../variables/components/disabled_items_variables';
 
+@import '../../../variables/base/box_shadows_variables';
+@import '../../../variables/base/borders_variables';
 @import '../../../variables/base/medias_variables';
 
 .p-menuitem {
@@ -20,7 +22,9 @@
     padding: $menubar-padding;
     margin: $menubar-margin;
     justify-content: $menubar-justify-content;
-    box-shadow: $menubar-box-shadow;
+    box-shadow: $secondary-card-box-shadow;
+    border: $primary-border;
+    border-radius: $border-radius-none;
 
     .p-submenu-header {
         display: $submenu-header-display;
