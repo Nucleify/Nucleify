@@ -50,9 +50,12 @@
     box-sizing: $box-sizing-all;
 }
 
-main {
+body {
     background: $body-bg;
-    min-height: $main-min-height;
+}
+
+body:has(#welcome) {
+    background: $white-body-bg;
 }
 
 :root {
