@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <activity-log></activity-log>
+    <div id="activity-log">
+        <activity-log></activity-log>
+    </div>
 @endsection

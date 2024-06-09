@@ -54,7 +54,11 @@ body {
     background: $body-bg;
 }
 
-body:has(#welcome) {
+body:has(
+    #welcome,
+    #login,
+    #register
+) {
     background: $white-body-bg;
 }
 
