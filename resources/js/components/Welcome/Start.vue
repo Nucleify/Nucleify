@@ -7,7 +7,10 @@
                     Manage various data types from a single place and access
                     them everywhere together with your team.
                 </h2>
-                <Button class="startButton" @click="navigateTo('/login')">
+                <Button
+                    class="primaryButton startButton"
+                    @click="navigateTo('/login')"
+                >
                     Try it out!
                 </Button>
             </div>

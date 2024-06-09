@@ -2,7 +2,10 @@
 <template>
     <nav class="welcomeNavbar navbar navbar-expand-lg py-3 fixed w-full z-100">
         <div class="container">
-            <a class="applicationHeader" href="/"> DataManager </a>
+            <a href="/welcome">
+                <Image src="logo.png" width="70" />
+            </a>
+
             <button
                 class="navbar-toggler invisible"
                 type="button"
@@ -32,9 +35,15 @@
                         </a>
                     </div>
 
-                    <a class="nav-link welcomeNavLink" href="/login">Log In</a>
+                    <Button class="primaryButton" @click="navigateTo('/login')"
+                        >Log In</Button
+                    >
                 </div>
             </div>
         </div>
     </nav>
 </template>
+
+<script setup lang="ts">
+import { navigateTo } from '@/utils'
+</script>

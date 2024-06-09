@@ -20,7 +20,7 @@
                     <Button
                         label="New Article"
                         @click="openModal('create')"
-                        class="text-sm smallHeightButton"
+                        class="text-sm smallHeightButton primaryButton"
                         :style="articleStyle"
                         :class="{ loading: loading }"
                     />
@@ -75,25 +75,25 @@
                         <template #body="row">
                             <div class="actionColumnContent">
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton dataTableButton"
                                     icon="pi pi-eye"
                                     @click="openModal('show', row.data)"
                                     :style="articleStyle"
                                 />
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton dataTableButton"
                                     icon="pi pi-pencil"
                                     @click="openModal('edit', row.data)"
                                     :style="articleStyle"
                                 />
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton dataTableButton"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
                                     :style="articleStyle"
                                 />
                                 <Button
-                                    class="mobileButton myButton"
+                                    class="mobileButton dataTableButton"
                                     icon="pi pi-bars"
                                     @click="openMenu(menu, $event, row.data)"
                                     :style="articleStyle"

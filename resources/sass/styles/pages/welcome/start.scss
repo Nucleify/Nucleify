@@ -1,5 +1,6 @@
 @import '../../../variables/pages/welcome/start_variables';
 
+@import '../../../variables/components/button_variables';
 @import '../../../variables/base/borders_variables';
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/fonts_variables';
@@ -25,12 +26,12 @@
 
 .startButton {
     margin-top: $start-button-margin-top;
-    width: $start-button-width;
     justify-content: $start-button-justify-content;
     border-radius: $start-button-border-radius !important;
     font-weight: $start-button-font-weight;
     font-size: $font-size-medium;
     transition: $start-button-transition;
+    padding: $primary-button-big-padding !important;
 
     &:active {
         transform: $start-button-active-transform;

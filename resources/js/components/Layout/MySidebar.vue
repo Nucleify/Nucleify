@@ -1,5 +1,9 @@
 <template>
     <div class="mySidebar" v-if="shouldShowSidebar">
+        <a href="/welcome">
+            <Image src="logo.png" width="50" />
+        </a>
+
         <div
             class="sidebarItems flex flex-column justify-content-center w-3rem m-0 gap-3"
         >

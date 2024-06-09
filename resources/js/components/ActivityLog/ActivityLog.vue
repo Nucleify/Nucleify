@@ -55,7 +55,7 @@
                         <template #body="row">
                             <div class="actionColumnContent">
                                 <Button
-                                    class="myButton activityMyButton"
+                                    class="dataTableButton"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
                                     :style="activityStyle"

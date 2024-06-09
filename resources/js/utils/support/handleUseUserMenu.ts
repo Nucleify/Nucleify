@@ -39,7 +39,7 @@ export default function useUserMenu(): UseUserMenuInterface {
             const userMenuItemsElement: HTMLElement = document.querySelector(
                 '.userMenuItems'
             ) as HTMLElement
-            userMenuItemsElement.style.marginTop = '-75px'
+            userMenuItemsElement.style.marginTop = '-100px'
         }, 500)
 
         setElementOpacityWithDisplay('.sidebarUser', 0)

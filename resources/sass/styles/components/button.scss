@@ -40,9 +40,34 @@
         min-width: $min-max-width-height-big;
     }
 
+    &.primaryButton {
+        padding: $primary-button-padding;
+        border-radius: $primary-button-border-radius;
+        transition: $primary-button-transition;
+
+        &:active {
+            transform: $primary-button-active-transform;
+        }
+        &:active,
+        &:focus {
+            box-shadow: $primary-button-box-shadow;
+        }
+    }
+
+    &.dataTableButton {
+        border-radius: $datatable-button-border-radius;
+        padding: $datatable-button-padding;
+        height: $datatable-button-dimensions;
+        width: $datatable-button-dimensions;
+    }
+
     &.smallHeightButton {
         max-height: $min-max-width-height-small;
         min-height: $min-max-width-height-small;
+
+        &.primaryButton {
+            padding: $primary-button-small-padding;
+        }
     }
 
     // Min width 992px

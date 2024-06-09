@@ -1,7 +1,6 @@
 // Admin bricks
 $admin-bricks-display: flex !important;
 $admin-bricks-justify-content: center;
-$admin-bricks-grid-template-columns: repeat(2, minmax(150px, 1fr));
 $admin-bricks-padding: 0 !important;
 $admin-bricks-margin: 0 !important;
 
@@ -26,13 +25,13 @@ $admin-bricks-circle-div-justify-content: center;
 
 // Admin bricks grid item container
 $admin-bricks-grid-item-container-aspect-ratio: 1;
-$admin-bricks-grid-item-container-padding: 4px;
+$admin-bricks-grid-item-container-padding: 6px;
 
 // Admin bricks grid item
 $admin-bricks-grid-item-min-width: 105px;
 $admin-bricks-grid-item-min-height: 100px;
 $admin-bricks-grid-item-max-width: 210px;
-$admin-bricks-grid-item-max-height: 200px;
+$admin-bricks-grid-item-max-height: 210px;
 $admin-bricks-grid-item-aspect-ratio: 1;
 
 // Admin bricks grid item hover
@@ -57,7 +56,7 @@ $admin-bricks-padding-xs2: 4px !important;
 
 // Min width 519px
 $admin-bricks-display-sm0: flex !important;
-$admin-bricks-gap-sm0: 16px;
+$admin-bricks-gap-sm0: 12px;
 $admin-bricks-padding-sm0: 0 0 8px 0 !important;
 $admin-bricks-circle-width-sm0: 100px;
 $admin-bricks-circle-height-sm0: 100px;

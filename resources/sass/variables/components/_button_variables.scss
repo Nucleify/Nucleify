@@ -1,8 +1,16 @@
+// Primary Button
+$primary-button-small-padding: 5px 15px;
+$primary-button-padding: 5px 25px;
+$primary-button-big-padding: 10px 30px;
+$primary-button-border-radius: 25px;
+$primary-button-transition: transform 150ms ease-out;
+$primary-button-active-transform: scale(0.95);
+$primary-button-box-shadow: none;
+
+// p-button
 $button-padding: 10px;
 
-$desktop-button-display: none;
-$mobile-button-display: flex;
-
+// myBigbutton
 $my-big-button-position: fixed;
 $my-big-button-left: -22px;
 $my-big-button-top: 8px;
@@ -11,6 +19,15 @@ $my-big-button-padding-left: 28px;
 $button-transition: all 0.5s;
 $Button-hover-filter: brightness(1.08);
 $Button-not-hover-filter: brightness(1);
+
+// dataTableButton
+$datatable-button-border-radius: 50%;
+$datatable-button-padding: 0;
+$datatable-button-dimensions: 33px;
+
+// Media Buttons
+$desktop-button-display: none;
+$mobile-button-display: flex;
 
 // Min width 992px
 $desktop-button-display-lg2: flex;

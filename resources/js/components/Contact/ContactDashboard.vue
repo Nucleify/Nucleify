@@ -20,7 +20,7 @@
                     <Button
                         label="New Contact"
                         @click="openModal('create')"
-                        class="text-sm smallHeightButton"
+                        class="text-sm smallHeightButton primaryButton"
                         :style="contactStyle"
                         :class="{ loading: loading }"
                     />
@@ -81,25 +81,25 @@
                         <template #body="row">
                             <div class="actionColumnContent">
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton dataTableButton"
                                     icon="pi pi-eye"
                                     @click="openModal('show', row.data)"
                                     :style="contactStyle"
                                 />
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton dataTableButton"
                                     icon="pi pi-pencil"
                                     @click="openModal('edit', row.data)"
                                     :style="contactStyle"
                                 />
                                 <Button
-                                    class="desktopButton myButton"
+                                    class="desktopButton dataTableButton"
                                     icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
                                     :style="contactStyle"
                                 />
                                 <Button
-                                    class="mobileButton myButton"
+                                    class="mobileButton dataTableButton"
                                     icon="pi pi-bars"
                                     @click="openMenu(menu, $event, row.data)"
                                     :style="contactStyle"

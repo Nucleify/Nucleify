@@ -18,6 +18,7 @@ import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
 import Dialog from 'primevue/dialog'
 import Dropdown from 'primevue/dropdown'
+import Image from 'primevue/image'
 import InlineMessage from 'primevue/inlinemessage'
 import InputText from 'primevue/inputtext'
 import Menu from 'primevue/menu'
@@ -37,6 +38,7 @@ app.component('Avatar', Avatar)
     .component('DataTable', DataTable)
     .component('Dialog', Dialog)
     .component('Dropdown', Dropdown)
+    .component('Image', Image)
     .component('InlineMessage', InlineMessage)
     .component('InputText', InputText)
     .component('Menu', Menu)

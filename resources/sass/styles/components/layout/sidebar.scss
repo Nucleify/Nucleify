@@ -20,6 +20,7 @@
     box-shadow: $box-shadow-none;
     border: $border-none;
     border-radius: $border-radius-none;
+    gap: $my-sidebar-gap;
 
     .sidebarItem {
         margin-left: $my-sidebar-item-margin-left;
