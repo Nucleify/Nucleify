@@ -35,7 +35,7 @@
                         </a>
                     </div>
 
-                    <Button class="primaryButton" @click="navigateTo('/login')"
+                    <Button class="primaryButton max-w-6 ml-auto my-3 lg:my-0" @click="navigateTo('/login')"
                         >Log In</Button
                     >
                 </div>

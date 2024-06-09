@@ -44,6 +44,8 @@
         padding: $primary-button-padding;
         border-radius: $primary-button-border-radius;
         transition: $primary-button-transition;
+        display: $primary-button-display;
+        justify-content: $primary-button-justify-content;
 
         &:active {
             transform: $primary-button-active-transform;
