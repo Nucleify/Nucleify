@@ -2,15 +2,16 @@
 
 namespace App\Services;
 
-use App\Models\User;
 use Illuminate\Http\Request;
+
+use App\Facades\ActivityLogger;
 
 use App\Models\Article;
 use App\Transformers\ArticleTransformer;
 
 class ArticleService
 {
-    public function __construct(private readonly Article $model){}
+    public function __construct(private readonly Article $model, protected string $entity = 'Article'){}
 
     public function getAll(Request $request)
     {
@@ -29,18 +30,16 @@ class ArticleService
                             ->where('user_id', $causer->id)
                             ->get();
 
-                        activity()
-                            ->log(
-                                '"' . $causer->name . '" has fetched all his articles'
-                            );
+                        ActivityLogger::logMessage(
+                            $causer->name . ' has fetched all his articles'
+                        );
                         break;
 
                     default:
                         $articles = $this->model->all();
-                        activity()
-                            ->log(
-                                '"' . $causer->name . '" has fetched all articles for all users'
-                            );
+                        ActivityLogger::logMessage(
+                            $causer->name . ' has fetched all articles for all users'
+                        );
                         break;
                 }
                 break;
@@ -52,10 +51,9 @@ class ArticleService
                     ->where('user_id', $causer->id)
                     ->get();
 
-                activity()
-                    ->log(
-                        '"' . $causer->name . '" has fetched all his articles'
-                    );
+                ActivityLogger::logMessage(
+                    $causer->name . ' has fetched all his articles'
+                );
                 break;
         }
 
@@ -72,13 +70,6 @@ class ArticleService
         switch (true) {
             case !$causer->isUser():
                 $model = $this->model::findOrFail($id);
-                $targetUser = User::findOrFail($model->user_id);
-
-                $logMessage = $causer->id === $targetUser->id ?
-                    '"'. $causer->name. '" has fetched his article: "'. $model->title .'"' :
-                    '"' . $causer->name . '" has fetched article: "' . $model->title . ' of: ' . '"' . $targetUser->name . '"' . ' user';
-
-                activity()->log($logMessage);
                 break;
 
             default:
@@ -86,13 +77,10 @@ class ArticleService
                     ->articles()
                     ->where('user_id', $causer->id)
                     ->findOrFail($id);
-
-                activity()
-                    ->log(
-                        '"'. $causer->name. '" has fetched his article: "'. $model->title .'"'
-                    );
                 break;
         }
+
+        ActivityLogger::log($causer, $model, $this->entity, 'showed');
 
         return fractal()
             ->item($model)
@@ -102,13 +90,10 @@ class ArticleService
 
     public function create(array $data): array
     {
-        $model = $this->model::create($data);
         $causer = auth()->user();
 
-        activity()
-            ->log(
-                '"'. $causer->name. '" has created article: "'. $model->title .'"'
-            );
+        $model = $this->model::create($data);
+        ActivityLogger::log($causer, $model, $this->entity, 'created');
 
         return fractal()
             ->item($model)
@@ -123,14 +108,6 @@ class ArticleService
         switch (true) {
             case !$causer->isUser():
                 $model = $this->model::findOrFail($id);
-                $model->update($data);
-                $targetUser = User::findOrFail($model->user_id);
-
-                $logMessage = $causer->id === $targetUser->id ?
-                    '"'. $causer->name. '" has updated his article: "'. $model->title .'"' :
-                    '"'. $causer->name . '" has updated article: "' . $model->title . ' of: ' . '"' . $targetUser->name . '"' . ' user';
-
-                activity()->log($logMessage);
                 break;
 
             default:
@@ -138,16 +115,11 @@ class ArticleService
                     ->articles()
                     ->where('user_id', $causer->id)
                     ->findOrFail($id);
-                $model->update($data);
-
-                activity()
-                    ->log(
-                        '"'. $causer->name. '" has updated his article: "'. $model->title .'"'
-                    );
                 break;
         }
 
         $model->update($data);
+        ActivityLogger::log($causer, $model, $this->entity, 'updated');
 
         return fractal()
             ->item($model->fresh())
@@ -162,14 +134,6 @@ class ArticleService
         switch (true) {
             case !$causer->isUser():
                 $model = $this->model::findOrFail($id);
-                $targetUser = User::findOrFail($model->user_id);
-
-                $logMessage = $causer->id === $targetUser->id ?
-                    '"'. $causer->name. '" has deleted his article: "'. $model->title .'"' :
-                    '"' . $causer->name . '" has deleted article: "' . $model->title . ' of: ' . '"' . $targetUser->name . '"' . ' user';
-
-                $model->delete();
-                activity()->log($logMessage);
                 break;
 
             default:
@@ -177,14 +141,10 @@ class ArticleService
                     ->articles()
                     ->where('user_id', $causer->id)
                     ->findOrFail($id);
-
-                $model->delete();
-
-                activity()
-                    ->log(
-                        '"'. $causer->name. '" has deleted his article: "'. $model->title .'"'
-                    );
                 break;
         }
+
+        $model->delete();
+        ActivityLogger::log($causer, $model, $this->entity, 'deleted');
     }
 }

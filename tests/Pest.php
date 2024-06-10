@@ -16,6 +16,9 @@ $updatedUserData = require_once 'tests/TestConstants.php';
 // $userData = require_once 'tests\TestConstants.php';
 // $updatedUserData = require_once 'tests\TestConstants.php';
 
+use App\Models\Article;
+use App\Models\Contact;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -51,7 +54,8 @@ uses(
         'Feature/Api/User/HTTP422PostTest.php',
         'Feature/Api/User/HTTP422PutTest.php',
         'Feature/Database/Migrations',
-        'Unit/Controllers'
+        'Unit/Controllers',
+        'Unit/Services'
     );
 
 /*
@@ -99,6 +103,33 @@ function apiTest($method, $route, $status, $data = null, $expectedJsonStructure 
     };
 }
 
+function expectLogMessage($log, $model, $method, $causer, $entity): void
+{
+    switch ($entity) {
+        case 'Article':
+            expect($log)->toContain('Article')->toContain($model->title)->toContain($method)->toContain($causer->name);
+            break;
+        case 'Contact':
+            expect($log)->toContain('Contact')->toContain($model->first_name)->toContain($model->last_name)->toContain($method)->toContain($causer->name);
+            break;
+        case 'User':
+            expect($log)->toContain('User')->toContain($model->name)->toContain($method)->toContain($causer->name);
+            break;
+        default:
+            break;
+    }
+}
+
+function getModelByEntity(string $entity): Contact|Article|User|null
+{
+    return match ($entity) {
+        'Article' => new Article(['title' => 'Test Article']),
+        'Contact' => new Contact(['first_name' => 'Test', 'last_name' => 'Name']),
+        'User' => new User(['name' => 'Test Name']),
+        default => null,
+    };
+}
+
 // TESTS GROUPS
 
 uses()
@@ -136,6 +167,10 @@ uses()
 uses()
     ->group('controllers')
     ->in('Unit/Controllers');
+
+uses()
+    ->group('services')
+    ->in('Unit/Services');
 
 uses()
     ->group('database')

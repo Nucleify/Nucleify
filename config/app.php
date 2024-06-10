@@ -182,7 +182,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
+        'ActivityLogger' => App\Facades\ActivityLogger::class,
     ])->toArray(),
 
 ];

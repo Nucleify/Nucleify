@@ -4,13 +4,14 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 
+use App\Facades\ActivityLogger;
+
 use App\Models\Contact;
-use App\Models\User;
 use App\Transformers\ContactTransformer;
 
 class ContactService
 {
-    public function __construct(private readonly Contact $model){}
+    public function __construct(private readonly Contact $model, protected string $entity = 'Contact'){}
 
     public function getAll(Request $request): array
     {
@@ -29,18 +30,16 @@ class ContactService
                             ->where('user_id', $causer->id)
                             ->get();
 
-                        activity()
-                            ->log(
-                                '"' . $causer->name . '" has fetched all his contacts'
-                            );
+                        ActivityLogger::logMessage(
+                            $causer->name . ' has fetched all his contacts'
+                        );
                         break;
 
                     default:
                         $contacts = $this->model->all();
-                        activity()
-                            ->log(
-                                '"' . $causer->name . '" has fetched all contacts for all users'
-                            );
+                        ActivityLogger::logMessage(
+                            $causer->name . ' has fetched all contacts for all users'
+                        );
                         break;
                 }
                 break;
@@ -52,10 +51,9 @@ class ContactService
                     ->where('user_id', $causer->id)
                     ->get();
 
-                activity()
-                    ->log(
-                        '"' . $causer->name . '" has fetched all his contacts'
-                    );
+                ActivityLogger::logMessage(
+                    $causer->name . ' has fetched all his contacts'
+                );
                 break;
         }
 
@@ -73,13 +71,7 @@ class ContactService
         switch (true) {
             case !$causer->isUser():
                 $model = $this->model::findOrFail($id);
-                $targetUser = User::findOrFail($model->user_id);
 
-                $logMessage = $causer->id === $targetUser->id ?
-                    '"'. $causer->name. '" has fetched his contact: "'. $model->first_name .' '. $model->last_name .'"' :
-                    '"' . $causer->name . '" has fetched contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
-
-                activity()->log($logMessage);
                 break;
 
             default:
@@ -87,13 +79,11 @@ class ContactService
                     ->contacts()
                     ->where('user_id', $causer->id)
                     ->findOrFail($id);
-
-                activity()
-                    ->log(
-                        '"'. $causer->name. '" has fetched his contact: "'. $model->first_name .' '. $model->last_name .'"'
-                    );
                 break;
         }
+
+        ActivityLogger::log($causer, $model, $this->entity, 'showed');
+
 
         return fractal()
             ->item($model)
@@ -103,13 +93,10 @@ class ContactService
 
     public function create(array $data): array
     {
-        $model = $this->model::create($data);
         $causer = auth()->user();
 
-        activity()
-            ->log(
-                '"'. $causer->name. '" has created contact: "'. $model->first_name .' '. $model->last_name .'"'
-            );
+        $model = $this->model::create($data);
+        ActivityLogger::log($causer, $model, $this->entity, 'created');
 
         return fractal()
             ->item($model)
@@ -124,14 +111,6 @@ class ContactService
         switch (true) {
             case !$causer->isUser():
                 $model = $this->model::findOrFail($id);
-                $model->update($data);
-                $targetUser = User::findOrFail($model->user_id);
-
-                $logMessage = $causer->id === $targetUser->id ?
-                    '"'. $causer->name. '" has updated his contact: "'. $model->first_name .' '. $model->last_name .'"' :
-                    '"'. $causer->name . '" has updated contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
-
-                activity()->log($logMessage);
                 break;
 
             default:
@@ -139,14 +118,11 @@ class ContactService
                     ->contacts()
                     ->where('user_id', $causer->id)
                     ->findOrFail($id);
-                $model->update($data);
-
-                activity()
-                    ->log(
-                        '"'. $causer->name. '" has updated his contact: "'. $model->first_name .' '. $model->last_name .'"'
-                    );
                 break;
         }
+
+        $model->update($data);
+        ActivityLogger::log($causer, $model, $this->entity, 'updated');
 
         return fractal()
             ->item($model->fresh())
@@ -162,14 +138,6 @@ class ContactService
         switch (true) {
             case !$causer->isUser():
                 $model = $this->model::findOrFail($id);
-                $targetUser = User::findOrFail($model->user_id);
-
-                $logMessage = $causer->id === $targetUser->id ?
-                    '"'. $causer->name. '" has deleted his contact: "'. $model->first_name .' '. $model->last_name .'"' :
-                    '"' . $causer->name . '" has deleted contact: "' . $model->first_name . ' ' . $model->last_name . ' of: ' . '"' . $targetUser->name . '"' . ' user';
-
-                $model->delete();
-                activity()->log($logMessage);
                 break;
 
             default:
@@ -177,14 +145,10 @@ class ContactService
                     ->contacts()
                     ->where('user_id', $causer->id)
                     ->findOrFail($id);
-
-                $model->delete();
-
-                activity()
-                    ->log(
-                        '"'. $causer->name. '" has deleted his contact: "'. $model->first_name .' '. $model->last_name .'"'
-                    );
                 break;
         }
+
+        $model->delete();
+        ActivityLogger::log($causer, $model, $this->entity, 'deleted');
     }
 }

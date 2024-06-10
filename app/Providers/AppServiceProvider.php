@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Config;
+use App\Services\ActivityLoggerService;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
         }
 
         closedir($dirHandle);
+
+        $this->app->singleton('activityLoggerService', function () {
+            return new ActivityLoggerService();
+        });
     }
     /**
      * Bootstrap any application services.
