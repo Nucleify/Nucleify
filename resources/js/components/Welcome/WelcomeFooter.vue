@@ -65,7 +65,7 @@ function generateRowPattern(rowIndex: number) {
     const pattern = []
     const totalImages = imagesPerRow.value
 
-    const onesCount = Math.ceil(((rowIndex + 1) * totalImages) / 8.5)
+    const onesCount = Math.ceil(((rowIndex + 1) * totalImages) / 10)
 
     for (let i = 0; i < totalImages; i++) {
         pattern.push(0)
@@ -99,5 +99,5 @@ function clearAndRegenerate() {
 
 clearAndRegenerate()
 
-setInterval(clearAndRegenerate, 200)
+setInterval(clearAndRegenerate, 300)
 </script>
