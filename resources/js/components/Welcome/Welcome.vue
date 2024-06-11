@@ -1,8 +1,9 @@
 <template>
     <welcome-navbar></welcome-navbar>
     <div class="welcomeContainer">
-        <start></start>
-        <features></features>
+        <start />
+        <features />
+        <welcome-footer />
     </div>
 </template>
 
@@ -11,6 +12,7 @@ import { onMounted } from 'vue'
 
 import Start from './Start.vue'
 import Features from './Features/Features.vue'
+import WelcomeFooter from './WelcomeFooter.vue'
 
 import { useColors, useDisplayCharts } from '@/utils'
 

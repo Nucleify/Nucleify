@@ -36,6 +36,11 @@
         color: $white-text-color;
         font-size: $welcome-nav-link-font-size;
         text-align: $welcome-nav-link-text-align;
+        transition: $welcome-nav-link-transition;
+
+        .welcomeNavLinkIcon {
+            transition: $welcome-nav-link-transition;
+        }
 
         &:hover {
             color: $primary-hover-color;

@@ -3,10 +3,11 @@
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/medias_variables';
 
-@import 'features/features.scss';
-@import 'navbar.scss';
-@import 'sections.scss';
-@import 'start.scss';
+@import 'footer';
+@import 'features/features';
+@import 'navbar';
+@import 'sections';
+@import 'start';
 
 .welcomeContainer {
     background: $white-body-bg !important;

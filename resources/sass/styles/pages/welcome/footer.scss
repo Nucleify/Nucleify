@@ -1,0 +1,30 @@
+@import '../../../variables/pages/welcome/footer_variables';
+
+@import '../../../variables/base/colors_variables';
+
+#footer {
+    .hexagonRowsContainer {
+        background: $primary-bg;
+        overflow: $hexagon-rows-container-overflow;
+
+        .hexagonRowContainer {
+            position: $hexagon-row-container-position;
+            top: $hexagon-row-container-top;
+            margin-top: $hexagon-row-container-margin-top;
+
+            .hexagonContainer {
+                display: $hexagon-container-display;
+                gap: $hexagon-container-gap;
+
+                img {
+                    transition: $hexagon-container-img;
+                }
+
+                &.n2 {
+                    margin-top: $hexagon-container-n2-margin-top;
+                    margin-left: $hexagon-container-n2-margin-left;
+                }
+            }
+        }
+    }
+}
