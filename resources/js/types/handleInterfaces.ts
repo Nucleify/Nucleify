@@ -276,6 +276,11 @@ export interface UseMenuAndModalInterface {
     closeModal: CloseModalFunctionType
     openMenu: OpenMenuFunctionType
 }
+export interface UseNavbarInterface {
+    navbarExpanded: Ref<boolean>
+    toggleNavbar: () => void
+    throttleHideNavbar: () => void
+}
 export interface UseSubmitAuthFormInterface {
     submitAuthForm: (
         data: LoginFormInterface | RegisterFormInterface
@@ -283,6 +288,10 @@ export interface UseSubmitAuthFormInterface {
 }
 export interface UseSidebarInterface {
     getSidebarItemStyle: GetSidebarItemStyleFunctionType
+}
+export interface UseThrottleInterface {
+    isThrottled: Ref<boolean>
+    throttle: (callback: () => void, delay: number) => void
 }
 
 /**

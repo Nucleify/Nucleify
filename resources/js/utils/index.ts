@@ -41,7 +41,9 @@ export { default as useApiErrors } from './support/handleUseApiErrors'
 export { default as useChart } from './support/handleUseChart'
 export { default as useLoading } from './support/handleUseLoading'
 export { default as useMenuAndModal } from './support/handleUseMenuAndModal'
+export { default as useNavbar } from './support/handleUseNavbar'
 export { default as useSidebar } from './support/handleUseSidebar'
+export { default as useThrottle } from './support/handleUseThrottle'
 export { default as useUserMenu } from './support/handleUseUserMenu'
 
 /**

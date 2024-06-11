@@ -27,8 +27,10 @@ export { UseDisplayChartsInterface as UseDisplayChartsInterface } from './handle
 export { UseDragItemsInterface as UseDragItemsInterface } from './handleInterfaces'
 export { UseFlashToastInterface as UseFlashToastInterface } from './handleInterfaces'
 export { UseMenuAndModalInterface as UseMenuAndModalInterface } from './handleInterfaces'
+export { UseNavbarInterface as UseNavbarInterface } from './handleInterfaces'
 export { UseSubmitAuthFormInterface as UseSubmitAuthFormInterface } from './handleInterfaces'
 export { UseSidebarInterface as UseSidebarInterface } from './handleInterfaces'
+export { UseThrottleInterface as UseThrottleInterface } from './handleInterfaces'
 export { UseUserMenuInterface as UseUserMenuInterface } from './handleInterfaces'
 
 /**

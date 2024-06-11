@@ -1,43 +1,72 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
-    <nav class="welcomeNavbar navbar navbar-expand-lg py-3 fixed w-full z-100">
+    <nav class="welcomeNavbar navbar navbar-expand-md">
         <div class="container">
             <a href="/welcome">
                 <Image src="logo.png" width="70" />
             </a>
 
             <button
-                class="navbar-toggler invisible"
+                class="navbar-toggler"
                 type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
+                @click="toggleNavbar"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
+                aria-label="Toggle navigation"
             >
-                <i class="pi pi-align-justify text-2xl visible"></i>
+                <i
+                    :class="
+                        navbarExpanded
+                            ? 'pi pi-times text-2xl'
+                            : 'pi pi-align-justify text-2xl'
+                    "
+                ></i>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Right Side Of Navbar -->
-                <div class="navbar-nav ms-auto lg:gap-7">
-                    <div class="navbar-nav flex lg:gap-3">
-                        <a class="nav-link welcomeNavLink" href="#start">
+                <div class="navbar-nav ms-auto md:gap-5 lg:gap-7">
+                    <div class="navbar-nav flex md:gap-3 lg:gap-5">
+                        <a
+                            class="nav-link welcomeNavLink"
+                            href="#start"
+                            @click="throttleHideNavbar"
+                        >
                             Start
+                            <i class="pi pi-bolt welcomeNavLinkIcon"></i>
                         </a>
-                        <a class="nav-link welcomeNavLink" href="#features">
+                        <a
+                            class="nav-link welcomeNavLink"
+                            href="#features"
+                            @click="throttleHideNavbar"
+                        >
                             Features
+                            <i class="pi pi-star welcomeNavLinkIcon"></i>
                         </a>
-                        <a class="nav-link welcomeNavLink" href="#why-us">
-                            Why Us?
+                        <a
+                            class="nav-link welcomeNavLink"
+                            href="#why-us"
+                            @click="throttleHideNavbar"
+                        >
+                            Why Us
+                            <i class="pi pi-question welcomeNavLinkIcon"></i>
                         </a>
-                        <a class="nav-link welcomeNavLink" href="#contact">
+                        <a
+                            class="nav-link welcomeNavLink"
+                            href="#contact"
+                            @click="throttleHideNavbar"
+                        >
                             Contact
+                            <i class="pi pi-envelope welcomeNavLinkIcon"></i>
                         </a>
                     </div>
 
-                    <Button class="primaryButton max-w-6 ml-auto my-3 lg:my-0" @click="navigateTo('/login')"
-                        >Log In</Button
+                    <Button
+                        class="primaryButton max-w-6 ml-auto my-5 md:my-0"
+                        @click="navigateTo('/login')"
                     >
+                        Log In
+                    </Button>
                 </div>
             </div>
         </div>
@@ -45,5 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import { navigateTo } from '@/utils'
+import { navigateTo, useNavbar } from '@/utils'
+
+const { navbarExpanded, toggleNavbar, throttleHideNavbar } = useNavbar()
 </script>
