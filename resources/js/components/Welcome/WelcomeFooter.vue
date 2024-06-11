@@ -23,7 +23,6 @@
                         src="hexagon.png"
                         width="40"
                         :style="{ opacity: opacity }"
-
                     />
                 </div>
             </div>
@@ -32,14 +31,39 @@
 </template>
 
 <script setup lang="ts">
-import {Ref, ref} from 'vue'
+import { Ref, ref } from 'vue'
 
 const totalRows = 6
-const imagesPerRow = 100
+const imagesPerRow = ref(0)
+
+function updateImagesPerRow(screenWidth: number) {
+    switch (true) {
+        case screenWidth < 400:
+            imagesPerRow.value = 25
+            break
+        case screenWidth < 768:
+            imagesPerRow.value = 35
+            break
+        case screenWidth >= 768 && screenWidth < 1024:
+            imagesPerRow.value = 50
+            break
+        case screenWidth >= 1024:
+            imagesPerRow.value = 90
+            break
+        default:
+            imagesPerRow.value = 15
+    }
+}
+
+updateImagesPerRow(window.innerWidth)
+
+window.addEventListener('resize', () => {
+    updateImagesPerRow(window.innerWidth)
+})
 
 function generateRowPattern(rowIndex: number) {
     const pattern = []
-    const totalImages = imagesPerRow
+    const totalImages = imagesPerRow.value
 
     const onesCount = Math.ceil(((rowIndex + 1) * totalImages) / 8.5)
 
@@ -64,7 +88,7 @@ function generateRowPattern(rowIndex: number) {
     return [container1Pattern, container2Pattern]
 }
 
-const hexagonRows: Ref = ref([]);
+const hexagonRows: Ref = ref([])
 
 function clearAndRegenerate() {
     hexagonRows.value = []
