@@ -4,15 +4,15 @@ $hexagon-rows-container-overflow: hidden;
 // Hexagon row container
 $hexagon-row-container-position: relative;
 $hexagon-row-container-top: 25px;
-$hexagon-row-container-margin-top: -10px;
+$hexagon-row-container-margin-top: -9px;
 
 // Hexagon container
 $hexagon-container-display: flex;
-$hexagon-container-gap: 0.15rem;
+$hexagon-container-gap: 2px;
 
 // Hexagon container img
-$hexagon-container-img: all 500ms ease-in;
+$hexagon-container-img: all 400ms ease-in;
 
 // Hexagon container n2
-$hexagon-container-n2-margin-top: -10px;
+$hexagon-container-n2-margin-top: -9px;
 $hexagon-container-n2-margin-left: -21px;
