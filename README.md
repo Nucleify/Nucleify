@@ -93,7 +93,7 @@ Backend tests:
 ./vendor/bin/pest --group=api
 
 # defined tests groups:
-api, article-api, contact-api, user-api, feature, global, unit, controllers, services, database, factories, migrations, models
+api, article-api, contact-api, user-api, feature, global, unit, commands, controllers, services, database, factories, migrations, models
 ```
 
 ![Tests](https://github.com/SzymCode/DataManager/assets/107359025/a661bbde-cd4c-485e-8197-60c055a11cdc)
@@ -113,6 +113,15 @@ npm run open  # after this command cypress window will open automatically
 6. Run prettier - ```npm run write```
 7. Husky install - ```npm run prepare```
 
+<br></details>
+
+<details><summary> Sitemaps </summary><br>
+
+Generate XML sitemap
+
+```bash
+php artisan sitemap:generate
+```
 
 </details></details><hr><br></details></details>
 
@@ -209,7 +218,7 @@ sail pest
 sail pest --group=api
 
 # defined tests groups:
-api, article-api, contact-api, user-api, feature, global, unit, controllers, database, factories, migrations, models
+api, article-api, contact-api, user-api, feature, global, unit, commands, controllers, database, factories, migrations, models
 ```
 
 ![Tests](https://github.com/SzymCode/DataManager/assets/107359025/a661bbde-cd4c-485e-8197-60c055a11cdc)
@@ -228,6 +237,16 @@ sail npm run open  # after this command cypress window will open automatically
 5. Eslint fix - ```sail npm run lint```
 6. Run prettier - ```sail npm run write```
 7. Husky install - ```sail npm run prepare```
+
+<br></details>
+
+<details><summary> Sitemaps </summary><br>
+
+Generate XML sitemap
+
+```bash
+sail artisan sitemap:generate
+```
 
 </details></details><hr><br></details></details>
 
