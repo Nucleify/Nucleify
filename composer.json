@@ -15,7 +15,8 @@
         "laravel/ui": "^4.2",
         "multicaret/laravel-acquaintances": "^3.6",
         "spatie/laravel-activitylog": "^4.7",
-        "spatie/laravel-fractal": "^6.0"
+        "spatie/laravel-fractal": "^6.0",
+        "spatie/laravel-sitemap": "^7.2"
     },
     "require-dev": {
         "laravel/pint": "^1.0",

@@ -21,6 +21,7 @@ use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\File;
 
 uses(
     Tests\TestCase::class,
@@ -130,6 +131,12 @@ function getModelByEntity(string $entity): Contact|Article|User|null
     };
 }
 
+function removeSitemap() {
+    if (File::exists(public_path('sitemap.xml'))) {
+        File::delete(public_path('sitemap.xml'));
+    }
+}
+
 // TESTS GROUPS
 
 uses()
@@ -163,6 +170,10 @@ uses()
 uses()
     ->group('unit')
     ->in('Unit');
+
+uses()
+    ->group('commands')
+    ->in('Feature/Commands');
 
 uses()
     ->group('controllers')

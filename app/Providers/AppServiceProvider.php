@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
-use App\Services\ActivityLoggerService;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+
+use App\Services\ActivityLoggerService;
+use App\Services\SitemapService;
 
 class AppServiceProvider extends ServiceProvider
 {

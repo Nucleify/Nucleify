@@ -1,25 +1,15 @@
 <?php
 
-use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Entities\ArticleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Entities\ActivityController;
+use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\Auth\LogoutController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return redirect('/welcome');
@@ -32,6 +22,7 @@ Auth::routes();
 
 
 Route::middleware(['web', 'auth'])->group(function () {
+
     /**
      *  Activity log
      */

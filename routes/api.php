@@ -6,6 +6,7 @@ use App\Http\Controllers\Entities\ActivityController;
 use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\Entities\UserController;
+use App\Http\Controllers\SitemapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,5 +82,13 @@ Route::middleware(['web', 'auth'])->group(function () {
 
     Route::get('/user', function () {
         return auth()->user();
+    });
+
+    /**
+     *  Sitemap
+     */
+    Route::prefix('sitemap')->controller(SitemapController::class)->group(function () {
+        Route::get('/generate', 'generate')
+            ->name('sitemap.generate');
     });
 });
