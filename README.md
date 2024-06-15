@@ -93,10 +93,11 @@ Backend tests:
 ./vendor/bin/pest --group=api
 
 # defined tests groups:
-api, article-api, contact-api, user-api, feature, global, unit, commands, controllers, services, database, factories, migrations, models
+api, article-api, contact-api, sitemap-api, user-api,
+database, feature, global, unit,
+commands, controllers, services, factories, migrations, models
 ```
-
-![Tests](https://github.com/SzymCode/DataManager/assets/107359025/a661bbde-cd4c-485e-8197-60c055a11cdc)
+![Tests](https://github.com/SzymCode/DataManager/assets/107359025/160b61df-0ef8-4bb7-a84a-38ad1941e9f7)
 
 Frontend tests:
 ```bash
@@ -145,6 +146,8 @@ nvm use --lts
 git clone https://github.com/SzymCode/DataManager.git
 ```
 
+- Change .env.example file to .env in root directory
+
 - Install modules in root directory
 
 ```bash
@@ -153,8 +156,6 @@ php artisan sail:install
 ```
 
 ### **Make sure u have installed all modules!**
-
-- Change .env.example file to .env in root directory
 
 <br></details>
 
@@ -218,10 +219,12 @@ sail pest
 sail pest --group=api
 
 # defined tests groups:
-api, article-api, contact-api, user-api, feature, global, unit, commands, controllers, database, factories, migrations, models
+api, article-api, contact-api, sitemap-api, user-api,
+database, feature, global, unit,
+commands, controllers, services, factories, migrations, models
 ```
 
-![Tests](https://github.com/SzymCode/DataManager/assets/107359025/a661bbde-cd4c-485e-8197-60c055a11cdc)
+![Tests](https://github.com/SzymCode/DataManager/assets/107359025/160b61df-0ef8-4bb7-a84a-38ad1941e9f7)
 
 Frontend tests:
 ```bash
