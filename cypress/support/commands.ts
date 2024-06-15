@@ -11,19 +11,23 @@
 //
 //
 
+import { UserRoleType } from '../types'
 
+Cypress.Commands.add('login', (role: UserRoleType): void => {
+    const fixtureName: string =
+        role === 'super_admin' || role === 'admin' ? 'secret_users' : 'users'
 
-Cypress.Commands.add('login', (email, password) => {
-    cy.visit('/login')
+    cy.fixture(fixtureName).then((userCredentials): void => {
+        const { email, password } = userCredentials[role]
 
-    cy.get('input[name=email]').type(email)
+        cy.visit('/login')
 
-    cy.get('input[name=password]').type(`${password}{enter}`)
+        cy.get('input[id=email]').type(email)
+        cy.get('input[id=password]').type(`${password}{enter}`)
 
-    cy.url().should('include', '/home')
+        cy.url().should('include', '/home')
+    })
 })
-
-
 
 //
 //
@@ -38,11 +42,12 @@ Cypress.Commands.add('login', (email, password) => {
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
+
 export {}
 declare global {
-  namespace Cypress {
-    interface Chainable {
-      login(email: string, password: string): Chainable<void>
+    namespace Cypress {
+        interface Chainable {
+            login(role: UserRoleType): Chainable<void>
+        }
     }
-  }
 }

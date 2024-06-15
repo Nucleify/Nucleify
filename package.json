@@ -10,6 +10,7 @@
     "dev": "vite",
     "prepare": "husky install",
     "write": "prettier --write resources",
+    "write:cypress": "prettier --write cypress",
     "open": "cypress open"
   },
   "dependencies": {
