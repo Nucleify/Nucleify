@@ -228,7 +228,7 @@ commands, controllers, services, factories, migrations, models
 
 Frontend tests:
 ```bash
-sail npm run open  # after this command cypress window will open automatically 
+npm run open  # For now I've not configured Cypress with Docker
 ```
 
 <br></details>
