@@ -13,7 +13,6 @@ const articleData = [
 
 const updatedArticleData = [
     'id' => 1,
-    'user_id' => 1,
     'title' => 'Magnam qui sed explicabo eos quisquam beatae.',
     'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi. Similique reprehenderit ipsum nisi omnis aliquid. Itaque a ad dolor quis illo ea magni.',
     'category' => 'omnis, voluptatum, suspicit'
@@ -55,12 +54,14 @@ const updatedContactData = [
  *  User
  */
 const userData = [
+    'id' => 1,
     'name' => 'User',
     'email' => 'user@example.com',
     'password' => 'password',
     'role' => 'user'
 ];
 const updatedUserData = [
+    'id' => 1,
     'name' => 'Updated User',
     'password' => 'password',
     'email' => 'updateduser@example.com',

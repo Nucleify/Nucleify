@@ -12,7 +12,7 @@ it('can create table', function () {
     ]))->toBeTrue();
 });
 
-it('groups can be rolled back', function () {
+it('can be rolled back', function () {
     $this->artisan('migrate:rollback');
 
     expect(Schema::hasTable('friendship_groups'))->toBeFalse();

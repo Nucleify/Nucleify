@@ -6,7 +6,7 @@ beforeEach(function () {
     $this->actingAs($this->admin);
 });
 
-describe('422 > POST', function($updatedArticleData = updatedArticleData) {
+describe('422 > PUT', function($updatedArticleData = updatedArticleData) {
     /**
      * TITLE TESTS
      */
