@@ -58,6 +58,19 @@ services:
             - sail
         ports:
             - 8050:80
+    storybook:
+        build:
+            context: .
+            dockerfile: storybook/Dockerfile
+        ports:
+            - '6006:6006'
+        volumes:
+            - '.:/app'
+            - /app/node_modules
+        environment:
+            - CHOKIDAR_USEPOLLING=true
+        networks:
+            - sail
 networks:
     sail:
         driver: bridge
