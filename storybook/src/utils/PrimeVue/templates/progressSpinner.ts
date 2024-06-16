@@ -4,7 +4,7 @@ import { ProgressSpinnerInterface } from '@/types'
 
 const ProgressSpinnerTemplate = (args: ProgressSpinnerInterface) => ({
   components: { ProgressSpinner },
-  setup() {
+  setup(): { args: ProgressSpinnerInterface } {
     return { args }
   },
   template: `

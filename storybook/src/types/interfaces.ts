@@ -15,7 +15,7 @@ export interface ProgressSpinnerInterface {
   class: string
   width: string
   height: string
-  strokeWidth: number
+  strokeWidth: string
   fill: string
   animationDuration: string
 }

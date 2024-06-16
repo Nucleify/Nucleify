@@ -6,13 +6,16 @@
 
 .p-button {
     display: $p-button-display;
-    border-radius: $large-border-radius;
     transition: $p-button-transition;
     padding: $p-button-padding;
 
     .p-button-label {
         font-family: $p-button-label-font-family;
         font-weight: $p-button-label-font-weight;
+    }
+
+    &.p-button-rounded {
+        border-radius: $large-border-radius !important;
     }
 
     &.p-button-secondary {

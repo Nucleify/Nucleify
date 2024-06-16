@@ -1,14 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 import { ProgressSpinnerInterface } from '@/types'
-import { ProgressSpinnerTemplate } from '@/utils/PrimeVue'
+import { ProgressSpinnerTemplate } from '@/utils'
 
 const meta: Meta<ProgressSpinnerInterface> = {
-  title: 'PrimeVue/ProgressSpinner',
-
-  argTypes: {
-    class: { control: 'text' }
-  }
+  title: 'PrimeVue/ProgressSpinner'
 }
 
 export default meta
@@ -21,7 +17,7 @@ ProgressSpinner.args = {
   class: '',
   width: '50px',
   height: '50px',
-  strokeWidth: 5,
+  strokeWidth: '5',
   fill: 'transparent',
   animationDuration: '1s'
 }

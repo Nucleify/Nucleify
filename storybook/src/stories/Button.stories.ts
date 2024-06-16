@@ -1,25 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 import { ButtonInterface } from '@/types'
-import { ButtonTemplate } from '@/utils/PrimeVue'
+import { ButtonTemplate } from '@/utils'
 
 const meta: Meta<ButtonInterface> = {
   title: 'PrimeVue/Button',
 
   argTypes: {
-    class: { control: 'text' },
     severity: {
       options: ['primary', 'secondary', 'success', 'info', 'warning', 'help', 'danger'],
       control: { type: 'radio' }
-    },
-    label: { control: 'text' },
-    disabled: { control: 'boolean' },
-    raised: { control: 'boolean' },
-    rounded: { control: 'boolean' },
-    text: { control: 'boolean' },
-    outlined: { control: 'boolean' },
-    gap: { control: 'text' },
-    padding: { control: 'text' }
+    }
   }
 }
 

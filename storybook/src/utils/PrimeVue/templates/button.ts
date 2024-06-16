@@ -4,7 +4,7 @@ import { ButtonInterface } from '@/types'
 
 const ButtonTemplate = (args: ButtonInterface) => ({
   components: { Button },
-  setup() {
+  setup(): { args: ButtonInterface } {
     return { args }
   },
   template: `
