@@ -244,11 +244,7 @@ sail pest --coverage
 npm run open  # For now I've not configured Cypress with Docker
 ```
 
-<img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook:
-```bash
-cd storybook
-yarn storybook
-```
+<img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail start```
 
 <br></details>
 
@@ -285,7 +281,7 @@ sail artisan sitemap:generate
   <img src="https://skillicons.dev/icons?i=heroku" height="35" />
   <img src="https://skillicons.dev/icons?i=vite" height="35" />
   <img src="https://skillicons.dev/icons?i=mysql" height="35" />
-  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="35" />
+  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="33" />
   <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="35" />
   <img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="35" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" height="35" />
