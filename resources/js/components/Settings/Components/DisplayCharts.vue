@@ -5,9 +5,8 @@
         <template #header>
             <div class="myCardHeaderContainer">
                 <h2>Display Charts</h2>
-
                 <Button
-                    class="myButton activityMyButton"
+                    class="myButton"
                     icon="pi pi-refresh"
                     @click="setDefaultChartsDisplay(true)"
                     :style="mainStyle"
@@ -24,7 +23,7 @@
                 <li class="settingsCardItem">
                     <h3>{{ item }}</h3>
                     <Button
-                        class="myButton activityMyButton"
+                        class="myButton"
                         :icon="display[item] ? 'pi pi-eye' : 'pi pi-eye-slash'"
                         :style="mainStyle"
                         @click="displayChartsToggle(item)"
