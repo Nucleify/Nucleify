@@ -24,6 +24,7 @@
     "init-msw": "msw init public/"
   },
   "dependencies": {
+    "primeicons": "^7.0.0",
     "vue": "^3.4.21"
   },
   "devDependencies": {
