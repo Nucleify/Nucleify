@@ -1,14 +1,13 @@
-
-
-# <div align="center"> <img src="https://github.com/SzymCode/DataManager/assets/107359025/7a309f2a-fb1d-408a-8985-5bac01796411" width="100" height="100" > <br> DataManager <br> </div> <br> <div align="center"> ![PHP](https://img.shields.io/badge/PHP-%234F5B93.svg?style=for-the-badge&logo=php&logoColor=white&style=plastic) ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white&style=plastic) ![Laravel](https://img.shields.io/badge/Laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white&style=plastic) ![Vue.js](https://img.shields.io/badge/Vue.js-%234FC08D.svg?style=for-the-badge&logo=vue.js&logoColor=white&style=plastic) [![Cypress](https://img.shields.io/badge/Cypress-17202C?logo=cypress&logoColor=white)](https://www.cypress.io/) [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/) </div>
+# <div align="center"> <img src="https://github.com/SzymCode/DataManager/assets/107359025/7a309f2a-fb1d-408a-8985-5bac01796411" width="100" height="100" > <br> DataManager <br> </div>
+<br>
 
 This website helps to storage various data types and share it with others. My target is to create fully responsive, functional and scalable [ERP](https://en.wikipedia.org/wiki/Enterprise_resource_planning)-like website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) and [FDD](https://en.wikipedia.org/wiki/Feature-driven_development) principles. Serves as my coding sandbox, where I can experiment with different coding techniques, implement new features, and refine my skills. 
 
 <b>Join my project and become part of building something incredible!</b>
 
-<br><a href="https://data-manager.szymco.de"><img src="https://github.com/SzymCode/DataManager/assets/107359025/37ef47ba-f205-4ac0-8912-a3409930d9ac"> Live preview</a><br><br>
+<br><a href="https://data-manager.szymco.de">Live preview</a><br><br>
 
-<details><summary> <h2> &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=25/> &nbsp;XAMPP </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=25/> &nbsp;XAMPP </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary>
 
 - First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
@@ -84,7 +83,7 @@ Database\Factories\ActivityFactory::new()->count(100)->create();
 
 <details><summary> Tests </summary><br>
 
-Backend tests:
+<img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="15" /> &nbsp;Backend tests:
 ```bash
 # run all tests
 ./vendor/bin/pest
@@ -96,12 +95,21 @@ Backend tests:
 api, article-api, contact-api, sitemap-api, user-api,
 database, feature, global, unit,
 commands, controllers, services, factories, migrations, models
-```
-![Tests](https://github.com/SzymCode/DataManager/assets/107359025/160b61df-0ef8-4bb7-a84a-38ad1941e9f7)
 
-Frontend tests:
+# run all tests and check code coverage
+./vendor/bin/pest --coverage
+```
+![Tests](https://github.com/SzymCode/DataManager/assets/107359025/160b61df-0ef8-4bb7-a84a-38ad1941e9f7)![Coverage](https://github.com/SzymCode/DataManager/assets/107359025/dec55c40-669b-4483-ae59-4ec21594e147)
+
+<img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="15" /> &nbsp;Frontend tests:
 ```bash
-npm run open  # after this command cypress window will open automatically 
+npm run open
+```
+
+<img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook:
+```bash
+cd storybook
+yarn storybook
 ```
 
 <br></details>
@@ -129,7 +137,7 @@ php artisan sitemap:generate
 
 
 
-<details><summary> <h2> &nbsp;<img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=25/> &nbsp;Docker </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=25/> &nbsp;Docker </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary>
 
 - First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [Composer](https://getcomposer.org/) and [Docker](https://www.docker.com)
@@ -210,7 +218,7 @@ Database\Factories\ActivityFactory::new()->count(100)->create();
 
 <details><summary> Tests </summary><br>
 
-Backend tests:
+<img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="15" /> &nbsp;Backend tests:
 ```bash
 # run all tests
 sail pest
@@ -222,13 +230,24 @@ sail pest --group=api
 api, article-api, contact-api, sitemap-api, user-api,
 database, feature, global, unit,
 commands, controllers, services, factories, migrations, models
+
+# run all tests and check code coverage
+sail pest --coverage
 ```
 
-![Tests](https://github.com/SzymCode/DataManager/assets/107359025/160b61df-0ef8-4bb7-a84a-38ad1941e9f7)
+![Tests](https://github.com/SzymCode/DataManager/assets/107359025/160b61df-0ef8-4bb7-a84a-38ad1941e9f7)![Coverage](https://github.com/SzymCode/DataManager/assets/107359025/dec55c40-669b-4483-ae59-4ec21594e147)
 
-Frontend tests:
+
+
+<img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="15" /> &nbsp;Frontend tests:
 ```bash
 npm run open  # For now I've not configured Cypress with Docker
+```
+
+<img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook:
+```bash
+cd storybook
+yarn storybook
 ```
 
 <br></details>
@@ -253,10 +272,32 @@ sail artisan sitemap:generate
 
 </details></details><hr><br></details></details>
 
+<details><summary> <h2> &nbsp;🛠️&nbsp; Tech Stack </h2> </summary> <br>
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=php" height="35" />
+  <img src="https://skillicons.dev/icons?i=ts" height="35" />
+  <img src="https://skillicons.dev/icons?i=laravel" height="35" />
+  <img src="https://skillicons.dev/icons?i=vue" height="35" />
+  <img src="https://www.primefaces.org/wp-content/uploads/2019/12/primevue-logo.png" height="35" />
+  <img src="https://skillicons.dev/icons?i=html" height="35" />
+  <img src="https://skillicons.dev/icons?i=sass" height="35" />
+  <img src="https://skillicons.dev/icons?i=docker" height="35" />
+  <img src="https://skillicons.dev/icons?i=heroku" height="35" />
+  <img src="https://skillicons.dev/icons?i=vite" height="35" />
+  <img src="https://skillicons.dev/icons?i=mysql" height="35" />
+  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="35" />
+  <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="35" />
+  <img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="35" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" height="35" />
+  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/a983a634-3e81-4a11-9281-0ef0bacfd187" height="35" />
+  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/712ed3a9-e9fa-4782-acff-140a4970ba88" height="35" />
+</div>
+<hr><br></details>
 
 <details><summary> <h2> &nbsp; <img src="https://static-00.iconduck.com/assets.00/github-icon-2048x2048-823jqxdr.png" width="20"> &nbsp; Contribute </h2> </summary> <br>
 
 Feel free to check open [issues](https://github.com/SzymCode/DataManager/issues) or create new ones. <br>
 Your skills and expertise will directly contribute to the success of our project, helping us achieve our goals and create an attractive portfolio.
 
-</details>
+<br></details>
+
