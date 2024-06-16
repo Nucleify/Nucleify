@@ -9,6 +9,7 @@ const ButtonTemplate = (args: ButtonInterface) => ({
   },
   template: `
     <Button
+        :class="args.class"
         :severity="args.severity"
         :disabled="args.disabled"
         :raised="args.raised"
@@ -17,7 +18,7 @@ const ButtonTemplate = (args: ButtonInterface) => ({
         :outlined="args.outlined"
         :style="{ gap: args.gap, padding: args.padding }"
     >
-      <i :class="args.class"></i>
+      <i :class="args.iconClass"></i>
       <span class="p-button-label">{{ args.label }}</span>
     </Button>
   `

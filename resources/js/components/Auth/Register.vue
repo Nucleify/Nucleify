@@ -93,7 +93,7 @@
                         >
                             <Button
                                 type="submit"
-                                class="smallHeightButton text-sm"
+                                class="smallHeightButton p-button-rounded text-sm"
                             >
                                 Register
                             </Button>

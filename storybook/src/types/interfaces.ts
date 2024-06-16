@@ -1,5 +1,6 @@
 export interface ButtonInterface {
   class: string
+  iconClass: string
   severity: 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'help' | 'danger'
   label: string
   disabled: boolean

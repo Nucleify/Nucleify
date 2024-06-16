@@ -52,7 +52,7 @@
                         >
                             <Button
                                 type="submit"
-                                class="smallHeightButton text-sm px-3"
+                                class="smallHeightButton p-button-rounded text-sm px-3"
                             >
                                 Log In
                             </Button>

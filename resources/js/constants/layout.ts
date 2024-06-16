@@ -65,4 +65,9 @@ export const userMenuItems: Ref<MenuItem[]> = ref<MenuItem[]>([
         icon: 'pi pi-cog',
         url: '/settings',
     },
+    {
+        label: 'Logout',
+        icon: 'pi pi-sign-out',
+        url: '/logout',
+    },
 ])

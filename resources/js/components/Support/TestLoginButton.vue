@@ -1,12 +1,12 @@
 <template>
     <div class="testButtonsContainer">
-        <Button @click="testLogin('admin')" class="smallHeightButton">
+        <Button @click="testLogin('admin')" class="smallHeightButton p-button-rounded">
             Test Admin Login
         </Button>
 
         <Button
             @click="testLogin('user')"
-            class="smallHeightButton p-button-secondary"
+            class="smallHeightButton p-button-rounded p-button-secondary"
         >
             Test User Login
         </Button>

@@ -21,7 +21,8 @@ type Story = StoryObj<ButtonInterface>
 export const Button: Story = ButtonTemplate.bind({})
 
 Button.args = {
-  class: 'pi pi-star',
+  class: 'primaryButton',
+  iconClass: 'pi pi-star',
   severity: 'primary',
   label: 'Button',
   disabled: false,
