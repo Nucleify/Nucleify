@@ -10,3 +10,12 @@ export interface ButtonInterface {
   gap: string
   padding: string
 }
+
+export interface ProgressSpinnerInterface {
+  class: string
+  width: string
+  height: string
+  strokeWidth: number
+  fill: string
+  animationDuration: string
+}
