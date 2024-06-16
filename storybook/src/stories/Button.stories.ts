@@ -7,6 +7,7 @@ const meta: Meta<ButtonInterface> = {
   title: 'PrimeVue/Button',
 
   argTypes: {
+    class: { control: 'text' },
     severity: {
       options: ['primary', 'secondary', 'success', 'info', 'warning', 'help', 'danger'],
       control: { type: 'radio' }
@@ -16,7 +17,9 @@ const meta: Meta<ButtonInterface> = {
     raised: { control: 'boolean' },
     rounded: { control: 'boolean' },
     text: { control: 'boolean' },
-    outlined: { control: 'boolean' }
+    outlined: { control: 'boolean' },
+    gap: { control: 'text' },
+    padding: { control: 'text' }
   }
 }
 
@@ -27,11 +30,14 @@ type Story = StoryObj<ButtonInterface>
 export const Button: Story = ButtonTemplate.bind({})
 
 Button.args = {
+  class: 'pi pi-star',
   severity: 'primary',
   label: 'Button',
   disabled: false,
   raised: true,
   rounded: true,
   text: false,
-  outlined: false
+  outlined: false,
+  gap: '8px',
+  padding: '5px 12px'
 }

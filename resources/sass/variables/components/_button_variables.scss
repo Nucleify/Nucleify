@@ -10,7 +10,13 @@ $primary-button-active-transform: scale(0.95);
 $primary-button-box-shadow: none;
 
 // p-button
-$button-padding: 10px;
+$p-button-padding: 5px 12px;
+$p-button-display: flex;
+$p-button-transition: all 0.5s;
+
+// p-button-label
+$p-button-label-font-family: 'Nunito', 'sans-serif';
+$p-button-label-font-weight: 600;
 
 // myBigbutton
 $my-big-button-position: fixed;
@@ -18,7 +24,6 @@ $my-big-button-left: -22px;
 $my-big-button-top: 8px;
 $my-big-button-padding-left: 28px;
 
-$button-transition: all 0.5s;
 $Button-hover-filter: brightness(1.08);
 $Button-not-hover-filter: brightness(1);
 

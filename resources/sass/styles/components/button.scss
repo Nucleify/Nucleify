@@ -5,9 +5,15 @@
 @import '../../variables/base/medias_variables';
 
 .p-button {
-    border-radius: $small-border-radius;
-    transition: $button-transition;
-    padding: $button-padding;
+    display: $p-button-display;
+    border-radius: $large-border-radius;
+    transition: $p-button-transition;
+    padding: $p-button-padding;
+
+    .p-button-label {
+        font-family: $p-button-label-font-family;
+        font-weight: $p-button-label-font-weight;
+    }
 
     &.p-button-secondary {
         background: var(--user-item-color);
