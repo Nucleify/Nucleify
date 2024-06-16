@@ -20,3 +20,12 @@ export interface ProgressSpinnerInterface {
   fill: string
   animationDuration: string
 }
+
+export interface TextAreaInterface {
+  rows: number
+  cols: number
+  class: string
+  disabled: boolean
+  autoResize: boolean
+  invalid: boolean
+}
