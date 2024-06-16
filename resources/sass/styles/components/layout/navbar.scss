@@ -3,6 +3,7 @@
 
 @import '../../../variables/base/box_shadows_variables';
 @import '../../../variables/base/borders_variables';
+@import '../../../variables/base/fonts_variables';
 @import '../../../variables/base/medias_variables';
 
 .p-menuitem {
@@ -39,6 +40,7 @@
 
     .p-menubar-button {
         position: $menubar-button-position;
+        top: $menubar-button-top;
         left: $menubar-button-left;
         color: $menubar-button-color;
 
@@ -59,6 +61,23 @@
 
     .nav-link {
         padding-left: $nav-link-padding-left;
+    }
+
+
+    .navbarUser {
+        min-width: $navbar-user-dimensions;
+        min-height: $navbar-user-dimensions;
+        max-width: $navbar-user-dimensions;
+        max-height: $navbar-user-dimensions;
+        padding: $navbar-user-padding;
+        color: $white-text-color;
+        background: $secondary-bg;
+        transition: $navbar-user-transition;
+        cursor: $navbar-user-cursor;
+
+        .pi-user {
+            font-size: $font-size-big;
+        }
     }
 
     // Min width 992px

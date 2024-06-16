@@ -37,14 +37,6 @@
                 </template>
                 <Button
                     unstyled
-                    class="sidebarItem userMenuItem"
-                    v-tooltip.right="'Log out'"
-                    @click="logout()"
-                >
-                    <i class="pi pi-sign-out" />
-                </Button>
-                <Button
-                    unstyled
                     class="sidebarItem userMenuItem closeUserMenuItem"
                     @click="closeUserMenu()"
                 >
@@ -53,7 +45,7 @@
             </div>
 
             <Avatar
-                class="sidebarUser userAvatar"
+                class="sidebarUser"
                 icon="pi pi-user"
                 shape="circle"
                 @click="openUserMenu()"

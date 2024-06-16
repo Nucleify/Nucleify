@@ -6,7 +6,7 @@
             <div class="myCardHeaderContainer">
                 <h2>Item Colors</h2>
                 <Button
-                    class="myButton"
+                    class="myButton p-button-rounded"
                     icon="pi pi-refresh"
                     @click="setDefaultColors(false)"
                     :style="mainStyle"
