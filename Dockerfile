@@ -1,11 +1,10 @@
-FROM php:8.0-apache
+FROM php:8.2-apache
 
 WORKDIR /var/www/html
 
 RUN apt-get update && \
-    apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip unzip
-
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip unzip libcap2-bin wget curl && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install gd pdo pdo_mysql
 
 RUN setcap "cap_net_bind_service=+ep" /usr/local/bin/php
@@ -28,13 +27,19 @@ RUN groupadd --force -g $(id -g $WWWGROUP) sail && \
 
 COPY . /var/www/html/
 
-RUN composer install && \
-    npm install && \
-    npm run prod
-
 RUN chown -R www-data:www-data /var/www/html/storage && \
     chmod -R 775 /var/www/html/storage
+
+RUN mkdir -p /var/www/html/public/build && \
+    chown -R www-data:www-data /var/www/html/public/build && \
+    chmod -R 775 /var/www/html/public/build
+
+RUN composer install && \
+    npm install && \
+    npm run build
 
 RUN a2enmod rewrite
 
 EXPOSE 8000
+
+CMD ["apache2-foreground"]
