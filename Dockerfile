@@ -41,5 +41,3 @@ RUN composer install && \
 RUN a2enmod rewrite
 
 EXPOSE 8000
-
-CMD ["apache2-foreground"]
