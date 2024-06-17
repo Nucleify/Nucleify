@@ -30,7 +30,7 @@ uses(
 
 if (env('APP_ENV') === 'production') {
     uses(
-        RefreshDatabase::class
+        DatabaseMigrations::class
     )
         ->in('Feature', 'Global', 'Unit');
 } else {
