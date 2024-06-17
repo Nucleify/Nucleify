@@ -30,7 +30,6 @@ jobs:
         touch database/database.sqlite
     - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
       env:
-        APP_ENV: production
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
         DB_FOREIGN_KEYS: false
