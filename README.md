@@ -138,7 +138,24 @@ php artisan sitemap:generate
 
 
 <details><summary> <h2> &nbsp; <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=25/> &nbsp;Docker </h2> </summary> <br>
-<details><summary> 🛠️ Installation </summary>
+<details><summary> 🛠️ Installation </summary> <br>
+
+<details><summary>DockerHub</summary> <br>
+    
+Pull image from [DockerHub](https://hub.docker.com/r/szymcode/data_manager)
+
+```
+docker pull szymcode/data_manager
+```
+
+Run image 
+```
+docker run szymcode/data_manager
+```
+
+<br><br></details>
+
+<details><summary>Sail</summary>
 
 - First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [Composer](https://getcomposer.org/) and [Docker](https://www.docker.com)
 
@@ -165,7 +182,7 @@ php artisan sail:install
 
 ### **Make sure u have installed all modules!**
 
-<br></details>
+</details><br></details>
 
 <details><summary> 🚀 Run </summary> <br>
 
