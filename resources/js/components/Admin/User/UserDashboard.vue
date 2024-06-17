@@ -132,12 +132,12 @@
                 severity="secondary"
                 label="Cancel"
                 @click="closeModal('delete')"
-                class="smallHeightButton"
+                class="p-button-rounded"
             />
             <Button
                 label="Confirm"
                 @click="deleteUser(selectedObject.id, getData, closeModal)"
-                class="smallHeightButton"
+                class="p-button-rounded"
                 :style="userStyle"
             />
         </div>

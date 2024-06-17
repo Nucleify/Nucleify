@@ -33,7 +33,7 @@
                     severity="secondary"
                     label="Close"
                     @click="props.close('show')"
-                    class="smallHeightButton"
+                    class="p-button-rounded"
                 />
             </div>
         </template>

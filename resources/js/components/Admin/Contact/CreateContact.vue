@@ -81,12 +81,12 @@
                     severity="secondary"
                     label="Cancel"
                     @click="props.close('create')"
-                    class="smallHeightButton"
+                    class="p-button-rounded"
                 />
                 <Button
                     label="Create"
                     @click="storeContact(data, getData, close)"
-                    class="smallHeightButton"
+                    class="p-button-rounded"
                     :style="style"
                 />
             </div>
