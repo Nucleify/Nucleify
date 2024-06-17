@@ -26,6 +26,7 @@ it('creates wrong record unsuccessfully', function () {
     try {
         ActivityFactory::new()->create(['causer_id' => 'causer_id']);
     } catch (Exception $e) {
+        dump($e);
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
         return;
     }
