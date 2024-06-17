@@ -28,60 +28,67 @@ uses(
 )
     ->in('Feature', 'Unit');
 
-uses(
-    RefreshDatabase::class
-)
-    ->in(
+if (env('APP_ENV') === 'production') {
+    uses(
+        RefreshDatabase::class
+    )
+        ->in('Feature', 'Global', 'Unit');
+} else {
+    uses(
+        RefreshDatabase::class
+    )
+        ->in(
         // Activity API
-        'Feature/Api/Activity/HTTP401Test.php',
+            'Feature/Api/Activity/HTTP401Test.php',
 
-        // Article API
-        'Feature/Api/Article/HTTP302Test.php',
-        'Feature/Api/Article/HTTP422PutTest.php',
+            // Article API
+            'Feature/Api/Article/HTTP302Test.php',
+            'Feature/Api/Article/HTTP422PutTest.php',
 
-        // Contact API
-        'Feature/Api/Contact/HTTP302Test.php',
-        'Feature/Api/Contact/HTTP422PostTest.php',
-        'Feature/Api/Contact/HTTP422PutTest.php',
+            // Contact API
+            'Feature/Api/Contact/HTTP302Test.php',
+            'Feature/Api/Contact/HTTP422PostTest.php',
+            'Feature/Api/Contact/HTTP422PutTest.php',
 
-        // User API
-        'Feature/Api/User/HTTP302Test.php',
-        'Feature/Api/User/HTTP422PostTest.php',
-        'Feature/Api/User/HTTP422PutTest.php',
+            // User API
+            'Feature/Api/User/HTTP302Test.php',
+            'Feature/Api/User/HTTP422PostTest.php',
+            'Feature/Api/User/HTTP422PutTest.php',
 
-        // Sitemap API
-        'Feature/Api/Sitemap',
+            // Sitemap API
+            'Feature/Api/Sitemap',
 
 
-        'Feature/Database/Factories',
-        'Unit/Models'
-    );
+            'Feature/Database/Factories',
+            'Unit/Models'
+        );
 
-uses(
-    DatabaseMigrations::class
-)
-    ->in(
+    uses(
+        DatabaseMigrations::class
+    )
+        ->in(
         // Activity API
-        'Feature/Api/Activity/HTTP200Test.php',
+            'Feature/Api/Activity/HTTP200Test.php',
 
-        // Article API
-        'Feature/Api/Article/HTTP200Test.php',
-        'Feature/Api/Article/HTTP422PostTest.php',
-        'Feature/Api/Article/HTTP500Test.php',
+            // Article API
+            'Feature/Api/Article/HTTP200Test.php',
+            'Feature/Api/Article/HTTP422PostTest.php',
+            'Feature/Api/Article/HTTP500Test.php',
 
-        // Contact API
-        'Feature/Api/Contact/HTTP200Test.php',
-        'Feature/Api/Contact/HTTP500Test.php',
+            // Contact API
+            'Feature/Api/Contact/HTTP200Test.php',
+            'Feature/Api/Contact/HTTP500Test.php',
 
-        // User API
-        'Feature/Api/User/HTTP200Test.php',
-        'Feature/Api/User/HTTP500Test.php',
+            // User API
+            'Feature/Api/User/HTTP200Test.php',
+            'Feature/Api/User/HTTP500Test.php',
 
 
-        'Feature/Database/Migrations',
-        'Unit/Controllers',
-        'Unit/Services'
-    );
+            'Feature/Database/Migrations',
+            'Unit/Controllers',
+            'Unit/Services'
+        );
+}
 
 /*
 |--------------------------------------------------------------------------
