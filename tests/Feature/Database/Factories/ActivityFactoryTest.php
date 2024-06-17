@@ -26,13 +26,12 @@ it('creates wrong record unsuccessfully', function () {
     try {
         ActivityFactory::new()->create(['causer_id' => 'causer_id']);
     } catch (Exception $e) {
-        dump($e);
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
         return;
     }
 
     $this->fail('Expected exception not thrown.');
-});
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
 
 it('creates multiple wrong records unsuccessfully', function () {
     try {
@@ -43,4 +42,4 @@ it('creates multiple wrong records unsuccessfully', function () {
     }
 
     $this->fail('Expected exception not thrown.');
-});
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
