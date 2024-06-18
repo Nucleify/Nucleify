@@ -32,3 +32,18 @@ jobs:
         DB_DATABASE: database/database.sqlite
         DB_FOREIGN_KEYS: false
       run: php artisan test
+
+  node-build:
+    runs-on: ubuntu-latest
+    needs: laravel-tests
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      - name: Install Node.js Dependencies
+        run: npm install
+      - name: Build Assets
+        run: npm run build
