@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.ts'])
+    @vite(['resources/sass/app.scss', 'resources/ts/app.ts'])
 </head>
 <body>
     <div id="app" class="flex flex-column">
