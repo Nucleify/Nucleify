@@ -1,4 +1,4 @@
-import TestLoginButton from '../../resources/js/components/Support/TestLoginButton.vue'
+import TestLoginButton from '../../resources/ts/components/Support/TestLoginButton.vue'
 
 describe('TestLoginButton.cy.tsx', (): void => {
     it('renders successfully', function (): void {

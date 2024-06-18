@@ -22,7 +22,7 @@
     ],
     "paths": {
       "@/*": [
-        "resources/js/*"
+        "resources/ts/*"
       ]
     },
     "lib": [

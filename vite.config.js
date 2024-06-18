@@ -13,7 +13,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/sass/app.scss',
-                'resources/js/app.ts',
+                'resources/ts/app.ts',
             ],
             refresh: true,
         }),
@@ -29,6 +29,7 @@ export default defineConfig({
     resolve: {
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
+            '@': '/resources/ts'
         },
     },
     build: {
