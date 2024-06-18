@@ -1,8 +1,9 @@
 import './bootstrap'
 import { createApp } from 'vue'
 
-import 'primeflex/primeflex.css'
 import 'primevue/resources/themes/lara-light-green/theme.css'
+import 'primeicons/primeicons.css';
+import 'primeflex/primeflex.css'
 
 export const app = createApp({})
 

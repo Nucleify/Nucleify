@@ -15,6 +15,14 @@ import PrimeVue from 'primevue/config';
 
 app.use(PrimeVue);
 
+/**
+ *  Load Primevue components
+ */
+import { globalComponentsRegistry } from '@/utils/globalComponentsRegistry';
+import { PrimeVueComponents } from '@/utils';
+
+globalComponentsRegistry(PrimeVueComponents, app)
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
