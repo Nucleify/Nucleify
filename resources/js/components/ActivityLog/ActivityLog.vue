@@ -74,7 +74,7 @@
                 severity="secondary"
                 label="Cancel"
                 @click="closeModal('delete')"
-                class="smallHeightButton"
+                class="p-button-rounded"
             />
             <Button
                 label="Confirm"
@@ -85,7 +85,7 @@
                         closeModal
                     )
                 "
-                class="smallHeightButton"
+                class="p-button-rounded"
                 :style="activityStyle"
             />
         </div>

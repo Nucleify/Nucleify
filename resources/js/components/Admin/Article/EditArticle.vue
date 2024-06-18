@@ -31,12 +31,12 @@
                     severity="secondary"
                     label="Cancel"
                     @click="props.close('edit')"
-                    class="smallHeightButton"
+                    class="p-button-rounded"
                 />
                 <Button
                     label="Confirm"
                     @click.prevent="editArticle(data, getData, close)"
-                    class="smallHeightButton"
+                    class="p-button-rounded"
                     :style="style"
                 />
             </div>
