@@ -12,6 +12,19 @@ export interface ButtonInterface {
   padding: string
 }
 
+export interface InputTextInterface {
+  class: string
+  type: 'text' | 'number'
+  unstyled: boolean
+  size: 'small' | 'large'
+  variant: 'filled' | 'outlined'
+  invalid: boolean
+  width: string
+  value: string
+  height: string
+  padding: string
+}
+
 export interface ProgressSpinnerInterface {
   class: string
   width: string
