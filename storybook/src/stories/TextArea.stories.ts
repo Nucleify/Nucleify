@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 import { TextAreaInterface } from '@/types'
-import { TextAreaTemplate } from '@/utils'
+import { TextAreaTemplate } from '@/templates'
 
 const meta: Meta<TextAreaInterface> = {
   title: 'PrimeVue/TextArea'

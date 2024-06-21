@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 import { InputTextInterface } from '@/types'
-import { InputTextTemplate } from '@/utils'
+import { InputTextTemplate } from '@/templates'
 
 const meta: Meta<InputTextInterface> = {
   title: 'PrimeVue/InputText',

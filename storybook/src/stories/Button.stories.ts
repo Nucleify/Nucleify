@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 import { ButtonInterface } from '@/types'
-import { ButtonTemplate } from '@/utils'
+import { ButtonTemplate } from '@/templates'
 
 const meta: Meta<ButtonInterface> = {
   title: 'PrimeVue/Button',

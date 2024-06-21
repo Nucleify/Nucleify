@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
 import { ProgressSpinnerInterface } from '@/types'
-import { ProgressSpinnerTemplate } from '@/utils'
+import { ProgressSpinnerTemplate } from '@/templates'
 
 const meta: Meta<ProgressSpinnerInterface> = {
   title: 'PrimeVue/ProgressSpinner'

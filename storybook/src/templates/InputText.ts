@@ -2,7 +2,7 @@ import InputText from 'primevue/inputtext'
 
 import { InputTextInterface } from '@/types'
 
-const TextAreaTemplate = (args: InputTextInterface) => ({
+const InputTextTemplate = (args: InputTextInterface) => ({
   components: { InputText },
   setup(): { args: InputTextInterface } {
     return { args }
@@ -21,4 +21,4 @@ const TextAreaTemplate = (args: InputTextInterface) => ({
   `
 })
 
-export default TextAreaTemplate
+export default InputTextTemplate
