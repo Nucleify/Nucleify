@@ -18,8 +18,7 @@ app.use(PrimeVue);
 /**
  *  Load Primevue components
  */
-import { globalComponentsRegistry } from '@/utils/globalComponentsRegistry';
-import { PrimeVueComponents } from '@/utils';
+import { globalComponentsRegistry, PrimeVueComponents } from '@/utils';
 
 globalComponentsRegistry(PrimeVueComponents, app)
 
