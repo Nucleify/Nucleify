@@ -1,8 +1,9 @@
 /**
  *  Button
  */
-export interface ButtonArgsInterface {
-    class?: string
+export interface ButtonInterface {
+    onclick?: () => {}
+    buttonClass?: string
     severity?:
         | string
         | 'primary'
@@ -17,14 +18,9 @@ export interface ButtonArgsInterface {
     rounded?: boolean
     text?: boolean
     outlined?: boolean
-}
-
-export interface ButtonInterface {
-    args: ButtonArgsInterface
-    onclick?: () => {}
     iconClass?: string
-    spanClass?: string
     label?: string
+    labelClass?: string
     gap?: string
     padding?: string
 }
