@@ -6,8 +6,8 @@
   },
   "scripts": {
     "build": "vite build",
-    "lint": "eslint \"resources/**/*.{js,vue}\"",
-    "lint fix": "eslint \"resources/**/*.{js,vue}\" --fix",
+    "lint": "eslint \"resources/**/*.{js,ts,vue}\"",
+    "lint fix": "eslint \"resources/**/*.{js,ts,vue}\" --fix",
     "dev": "vite",
     "prepare": "husky install",
     "write": "prettier --write resources",

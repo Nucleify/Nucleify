@@ -1,4 +1,5 @@
 import 'bootstrap'
+import { AxiosInstance } from 'axios'
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -8,7 +9,7 @@ import 'bootstrap'
 declare const window: Window & typeof globalThis
 declare global {
     interface Window {
-        axios: any
+        axios: AxiosInstance
     }
 }
 
