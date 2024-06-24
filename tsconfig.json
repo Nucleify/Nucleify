@@ -42,9 +42,9 @@
     "resources/**/*.ts",
     "resources/**/*.tsx",
     "resources/**/*.vue",
-    "storybook/**/**/**/*.ts",
-    "storybook/**/**/**/*.tsx",
-    "storybook/**/**/**/*.vue",
+    "storybook/**/*.ts",
+    "storybook/**/*.tsx",
+    "storybook/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],

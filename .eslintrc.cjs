@@ -30,7 +30,8 @@ module.exports = {
     },
     "plugins": [
         "vue",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "eslint-plugin-storybook"
     ],
     "rules": {
         'vue/multi-word-component-names': 'off'

@@ -15,14 +15,14 @@ export default async function useIsAdmin(): UseIsAdminFunctionType {
     const { getUser } = userApiMethods()
 
     if (!user_id) {
-        await getUser().then((user: void | UserInterface) => {
+        await getUser().then((user: void | UserInterface): void => {
             if (user) {
                 setUserToSessionStorage(user)
             }
         })
     }
 
-    let userRole = window.sessionStorage.getItem('user_role') ?? ''
+    const userRole: string = window.sessionStorage.getItem('user_role') ?? ''
     isAdmin.value =
         userRole === 'admin' ||
         userRole === 'test_admin' ||

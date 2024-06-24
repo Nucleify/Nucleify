@@ -1,5 +1,5 @@
 export interface ButtonInterface {
-    onclick?: () => {}
+    onclick?: (event: MouseEvent) => void
     buttonClass?: string
     severity?:
         | string

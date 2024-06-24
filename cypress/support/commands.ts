@@ -45,6 +45,7 @@ Cypress.Commands.add('login', (role: UserRoleType): void => {
 
 export {}
 declare global {
+    // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace Cypress {
         interface Chainable {
             login(role: UserRoleType): Chainable<void>
