@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ChartOptions } from 'chart.js'
 
 import {

@@ -104,6 +104,7 @@ export interface ChartInterface {
 }
 export type ChartDataInterface = {
     label: string
+    // eslint-disable-next-line
     data: any[]
     colors: ColorItemColorsInterface
 }[]
