@@ -8,7 +8,7 @@
             class="sidebarItems flex flex-column justify-content-center w-3rem m-0 gap-3"
         >
             <!-- Sidebar items -->
-            <template v-for="item in items">
+            <template v-for="item in items" :key="item.url">
                 <a
                     :href="item.url"
                     class="sidebarItem"
@@ -25,7 +25,7 @@
         <div class="userMenu">
             <!-- User menu items -->
             <div class="userMenuItems">
-                <template v-for="item in userMenuItems">
+                <template v-for="item in userMenuItems" :key="item.url">
                     <a
                         v-if="item.label !== 'Logout'"
                         :href="item.url"

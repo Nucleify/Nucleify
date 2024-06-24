@@ -20,9 +20,11 @@ let isAdmin = ref(false)
 
 onMounted(async () => {
     const { isAdmin: isAdminStatus } = await useIsAdmin()
+
+    // eslint-disable-next-line
     isAdmin = isAdminStatus
 
-    if (isAdmin.value == true) {
+    if (isAdmin.value) {
         layoutItems.value.splice(1, 0, {
             label: 'Admin Panel',
             icon: 'pi pi-users',
