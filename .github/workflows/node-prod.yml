@@ -5,7 +5,7 @@ on:
       branches: [ "prod" ]
 
 jobs:
-  install-lint-build:
+  install-lint-check-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +16,13 @@ jobs:
           node-version: '20'
       - name: Install Node.js Dependencies
         run: npm install
-      - name: Lint with ESLint
+      - name: Lint Resources with ESLint
         run: npm run lint
+      - name: Lint Cypress with ESLint
+        run: npm run lint:cypress
+      - name: Prettier check Resources
+        run: npm run check
+      - name: Prettier check Cypress
+        run: npm run check:cypress
       - name: Build Assets
         run: npm run build
