@@ -1,3 +1,3 @@
-export { default as AtomAvatar } from './AtomAvatar.vue'
-export { default as AtomButton } from './AtomButton.vue'
-export { default as AtomImage } from './AtomImage.vue'
+export { default as AvatarAtom } from './AvatarAtom.vue'
+export { default as ButtonAtom } from './ButtonAtom.vue'
+export { default as ImageAtom } from './ImageAtom.vue'
