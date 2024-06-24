@@ -71,7 +71,6 @@ import { MenuItem } from 'primevue/menuitem'
 import { excludedPaths } from '@/constants'
 import { isCurrentUrl, logout, useSidebar, useUserMenu } from '@/utils'
 
-
 defineProps<{
     items: MenuItem[]
     userMenuItems: MenuItem[]

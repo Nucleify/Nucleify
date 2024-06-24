@@ -1,6 +1,9 @@
 <template>
     <div class="testButtonsContainer">
-        <Button @click="testLogin('admin')" class="primaryButton p-button-rounded">
+        <Button
+            @click="testLogin('admin')"
+            class="primaryButton p-button-rounded"
+        >
             Test Admin Login
         </Button>
 

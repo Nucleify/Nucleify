@@ -7,10 +7,14 @@
   "scripts": {
     "build": "vite build",
     "lint": "eslint \"resources/**/*.{js,ts,vue}\"",
-    "lint fix": "eslint \"resources/**/*.{js,ts,vue}\" --fix",
+    "lint --fix": "eslint \"resources/**/*.{js,ts,vue}\"",
+    "lint:cypress": "eslint \"cypress/**/*.{ts,tsx}\"",
+    "lint:cypress --fix": "eslint \"cypress/**/*.{ts,tsx}\" --fix",
     "dev": "vite",
     "prepare": "husky install",
+    "check": "prettier --check resources",
     "write": "prettier --write resources",
+    "check:cypress": "prettier --check cypress",
     "write:cypress": "prettier --write cypress",
     "open": "cypress open"
   },
