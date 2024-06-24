@@ -129,7 +129,7 @@
             />
             <Button
                 label="Confirm"
-                @click="deleteArticle(selectedObject.id, getData, closeModal)"
+                @click="deleteArticle(selectedObject!.id!, getData, closeModal)"
                 class="p-button-rounded"
                 :style="articleStyle"
             />
@@ -138,15 +138,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 import CreateArticle from './CreateArticle.vue'
 import ShowArticle from './ShowArticle.vue'
 import EditArticle from './EditArticle.vue'
 
 import { ArticleInterface } from '@/types'
-import { handleDropdownItems, handleStyles, roleOptions } from '@/constants'
-import { articleApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
+import { handleDropdownItems, roleOptions } from '@/constants'
+import { articleApiMethods, useMenuAndModal } from '@/utils'
+
+import { handleStyles } from 'atomic/bosons/constants'
 
 defineProps<{
     data: ArticleInterface[] | undefined
@@ -156,7 +158,6 @@ defineProps<{
 
 const menu = ref()
 
-const { display } = useDisplayCharts()
 const {
     visibleShow,
     visibleCreate,

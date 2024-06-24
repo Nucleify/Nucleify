@@ -23,6 +23,9 @@
     "paths": {
       "@/*": [
         "resources/ts/*"
+      ],
+      "atomic/*": [
+        "resources/ts/atomic-design/*"
       ]
     },
     "lib": [

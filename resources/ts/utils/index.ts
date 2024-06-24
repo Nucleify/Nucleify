@@ -1,54 +1,50 @@
 /**
  *  Activity log
  */
-export { default as activityApiMethods } from './activity/handleActivityApiMethods'
+export { default as activityApiMethods } from './activity/activityApiMethods'
 
 /**
  *  Article
  */
-export { default as articleApiMethods } from './article/handleArticleApiMethods'
+export { default as articleApiMethods } from './article/articleApiMethods'
 
 /**
  *  Auth
  */
-export { default as logout } from './auth/handleLogout'
-export { default as useSubmitAuthForm } from './auth/handleUseSubmitAuthForm'
-export { default as testLogin } from './auth/handleTestLogin'
+export { default as logout } from './auth/logout'
+export { default as useSubmitAuthForm } from './auth/useSubmitAuthForm'
+export { default as testLogin } from './auth/testLogin'
 
 /**
  *  Contact
  */
-export { default as contactApiMethods } from './contact/handleContactApiMethods'
+export { default as contactApiMethods } from './contact/contactApiMethods'
 
 /**
  *  Support
  */
+export { default as closeToast } from './support/closeToast'
 export { default as getLowerCase } from './support/getLowerCase'
-export { default as closeToast } from './support/handleCloseToast'
-export { default as darkenColor } from './support/handleDarkenColor'
-export { default as isCurrentUrl } from './support/handleIsCurrentUrl'
-export { default as openMenu } from './support/handleOpenMenu'
-export { default as navigateTo } from './support/handleNavigateTo'
-export { default as setColorOpacity } from './support/handleSetColorOpacity'
-export { default as setElementOpacityWithDisplay } from './support/handleSetElementOpacityWithDisplay'
-export { default as useColorPicker } from './support/handleUseColorPicker'
-export { default as useColors } from './support/handleUseColors'
-export { default as useDisplayCharts } from './support/handleUseDisplayCharts'
-export { default as useDragItems } from './support/handleUseDragItems'
-export { default as useIsAdmin } from './support/handleUseIsAdmin'
-export { default as useFlashToast } from './support/handleUseFlashToast'
-export { default as useApiErrors } from './support/handleUseApiErrors'
-export { default as useChart } from './support/handleUseChart'
-export { default as useLoading } from './support/handleUseLoading'
-export { default as useMenuAndModal } from './support/handleUseMenuAndModal'
-export { default as useNavbar } from './support/handleUseNavbar'
-export { default as useSidebar } from './support/handleUseSidebar'
-export { default as useThrottle } from './support/handleUseThrottle'
-export { default as useUserMenu } from './support/handleUseUserMenu'
+export { default as isCurrentUrl } from './support/isCurrentUrl'
+export { default as openMenu } from './support/openMenu'
+export { default as navigateTo } from './support/navigateTo'
+export { default as setElementOpacityWithDisplay } from './support/setElementOpacityWithDisplay'
+export { default as useDisplayCharts } from './support/useDisplayCharts'
+export { default as useDragItems } from './support/useDragItems'
+export { default as useIsAdmin } from './support/useIsAdmin'
+export { default as useFlashToast } from './support/useFlashToast'
+export { default as useApiErrors } from './support/useApiErrors'
+export { default as useChart } from './support/useChart'
+export { default as useLoading } from './support/useLoading'
+export { default as useMenuAndModal } from './support/useMenuAndModal'
+export { default as useNavbar } from './support/useNavbar'
+export { default as useSidebar } from './support/useSidebar'
+export { default as useThrottle } from './support/useThrottle'
+export { default as useUserMenu } from './support/useUserMenu'
 
 /**
  *  User
  */
-export { default as removeUserFromSessionStorage } from './user/handleRemoveUserFromSessionStorage'
-export { default as setUserToSessionStorage } from './user/handleSetUserToSessionStorage'
-export { default as userApiMethods } from './user/handleUserApiMethods'
+export { default as removeUserFromSessionStorage } from './user/removeUserFromSessionStorage'
+export { default as setUserToSessionStorage } from './user/setUserToSessionStorage'
+export { default as userApiMethods } from './user/userApiMethods'

@@ -142,7 +142,11 @@
             <Button
                 label="Confirm"
                 @click="
-                    deleteArticle(selectedObject.id, getAllArticles, closeModal)
+                    deleteArticle(
+                        selectedObject!.id!,
+                        getAllArticles,
+                        closeModal
+                    )
                 "
                 class="p-button-rounded"
                 :style="articleStyle"
@@ -160,8 +164,10 @@ import CreateArticle from './CreateArticle.vue'
 import ShowArticle from './ShowArticle.vue'
 import EditArticle from './EditArticle.vue'
 
-import { handleDropdownItems, handleStyles, roleOptions } from '@/constants'
+import { handleDropdownItems, roleOptions } from '@/constants'
 import { articleApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
+
+import { handleStyles } from 'atomic/bosons/constants'
 
 const menu = ref()
 

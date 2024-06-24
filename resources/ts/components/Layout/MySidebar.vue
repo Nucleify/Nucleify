@@ -13,7 +13,7 @@
                     :href="item.url"
                     class="sidebarItem"
                     v-tooltip.right="item.label"
-                    :style="getSidebarItemStyle(item.url)"
+                    :style="getSidebarItemStyle(item.url!)"
                     :class="item.class"
                 >
                     <i :class="item.icon" />
@@ -27,10 +27,20 @@
             <div class="userMenuItems">
                 <template v-for="item in userMenuItems">
                     <a
+                        v-if="item.label !== 'Logout'"
                         :href="item.url"
                         class="sidebarItem userMenuItem"
                         v-tooltip.right="item.label"
                         :class="item.class"
+                    >
+                        <i :class="item.icon" />
+                    </a>
+                    <a
+                        v-if="item.label === 'Logout'"
+                        class="sidebarItem userMenuItem"
+                        :class="item.class"
+                        v-tooltip.right="item.label"
+                        @click="logout"
                     >
                         <i :class="item.icon" />
                     </a>
@@ -55,15 +65,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, Ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
-import { excludedPaths, handleStyles } from '@/constants'
+import { excludedPaths } from '@/constants'
 import { isCurrentUrl, logout, useSidebar, useUserMenu } from '@/utils'
 
+
 defineProps<{
-    items: Ref<MenuItem[]>
-    userMenuItems: Ref<MenuItem[]>
+    items: MenuItem[]
+    userMenuItems: MenuItem[]
 }>()
 
 const shouldShowSidebar = ref(true)
@@ -75,6 +86,4 @@ onMounted(() => {
         shouldShowSidebar.value = false
     }
 })
-
-const { mainSidebarItemStyle } = handleStyles()
 </script>

@@ -1,9 +1,9 @@
 import {
-    ColorItemColorsInterface,
     ColorItemStyleInterface,
+    UseColorsReturnInterface,
     HandleStylesInterface,
-} from '@/types'
-import { useColors } from '@/utils'
+} from 'atomic/bosons/types'
+import { useColors } from 'atomic/bosons/utils'
 
 export default function handleStyles(): HandleStylesInterface {
     const {
@@ -12,13 +12,7 @@ export default function handleStyles(): HandleStylesInterface {
         articleItemColors,
         contactItemColors,
         userItemColors,
-    }: {
-        mainItemColors: ColorItemColorsInterface
-        activityItemColors: ColorItemColorsInterface
-        articleItemColors: ColorItemColorsInterface
-        contactItemColors: ColorItemColorsInterface
-        userItemColors: ColorItemColorsInterface
-    } = useColors()
+    }: UseColorsReturnInterface = useColors()
 
     /**
      *  Main
@@ -91,15 +85,15 @@ export default function handleStyles(): HandleStylesInterface {
     }
 
     return {
-        mainSidebarItemStyle,
         mainStyle,
-        activitySidebarItemStyle,
         activityStyle,
-        articleSidebarItemStyle,
         articleStyle,
-        contactSidebarItemStyle,
         contactStyle,
-        userSidebarItemStyle,
         userStyle,
+        mainSidebarItemStyle,
+        activitySidebarItemStyle,
+        articleSidebarItemStyle,
+        contactSidebarItemStyle,
+        userSidebarItemStyle,
     }
 }

@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import hexagon from '../../../../public/hexagon.svg'
+import hexagon from '/public/hexagon.svg'
 import { Ref, ref, onMounted, onBeforeUnmount } from 'vue'
 
 const totalRows = 5

@@ -14,7 +14,9 @@ import Start from './Start.vue'
 import Features from './Features/Features.vue'
 import WelcomeFooter from './WelcomeFooter.vue'
 
-import { useColors, useDisplayCharts } from '@/utils'
+import { useDisplayCharts } from '@/utils'
+
+import { useColors } from 'atomic/bosons/utils'
 
 const { setDefaultColors } = useColors()
 const { setDefaultChartsDisplay } = useDisplayCharts()

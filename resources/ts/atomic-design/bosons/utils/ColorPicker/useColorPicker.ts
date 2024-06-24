@@ -1,22 +1,19 @@
 import { Ref, ref } from 'vue'
 
-import { darkenColor, setColorOpacity, useColors } from '@/utils'
-import { ColorItemColorsInterface } from '@/types'
+import {
+    UseColorsReturnInterface,
+    UseColorPickerInterface,
+} from 'atomic/bosons/types'
+import { darkenColor, setColorOpacity, useColors } from 'atomic/bosons/utils'
 
-export default function useColorPicker(item: string) {
+export default function useColorPicker(item: string): UseColorPickerInterface {
     const {
         mainItemColors,
         activityItemColors,
         articleItemColors,
         contactItemColors,
         userItemColors,
-    }: {
-        mainItemColors: ColorItemColorsInterface
-        activityItemColors: ColorItemColorsInterface
-        articleItemColors: ColorItemColorsInterface
-        contactItemColors: ColorItemColorsInterface
-        userItemColors: ColorItemColorsInterface
-    } = useColors()
+    }: UseColorsReturnInterface = useColors()
 
     const itemColor: Ref<string | undefined> = ref<string>()
 

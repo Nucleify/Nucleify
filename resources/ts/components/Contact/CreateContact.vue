@@ -95,9 +95,10 @@
 </template>
 
 <script setup lang="ts">
-import { ColorItemStyleInterface } from '@/types'
 import { handleData } from '@/constants'
 import { contactApiMethods } from '@/utils'
+
+import { ColorItemStyleInterface } from 'atomic/bosons/types'
 
 const props = defineProps<{
     getData: () => void

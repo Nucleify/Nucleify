@@ -136,7 +136,7 @@
             />
             <Button
                 label="Confirm"
-                @click="deleteUser(selectedObject.id, getData, closeModal)"
+                @click="deleteUser(selectedObject!.id!, getData, closeModal)"
                 class="p-button-rounded"
                 :style="userStyle"
             />
@@ -152,8 +152,10 @@ import ShowUser from './ShowUser.vue'
 import EditUser from './EditUser.vue'
 
 import { UserInterface } from '@/types'
-import { handleDropdownItems, handleStyles, roleOptions } from '@/constants'
+import { handleDropdownItems, roleOptions } from '@/constants'
 import { useMenuAndModal, userApiMethods } from '@/utils'
+
+import { handleStyles } from 'atomic/bosons/constants'
 
 defineProps<{
     data: UserInterface[] | undefined
