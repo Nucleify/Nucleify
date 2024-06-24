@@ -45,7 +45,6 @@ export { default as DisplayCharts } from './Settings/Components/DisplayCharts.vu
  *  Support
  */
 export { default as MyChart } from './Support/MyChart.vue'
-export { default as MyColorPicker } from './Support/MyColorPicker.vue'
 export { default as TestLoginButton } from './Support/TestLoginButton.vue'
 
 /**

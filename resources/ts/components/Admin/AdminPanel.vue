@@ -121,10 +121,12 @@ import UserDashboard from './User/UserDashboard.vue'
 import {
     articleApiMethods,
     contactApiMethods,
-    useColors,
     useDisplayCharts,
     userApiMethods,
 } from '@/utils'
+
+import { useColors } from 'atomic/bosons/utils'
+import { UseColorsReturnInterface } from 'atomic/bosons/types'
 
 const { display } = useDisplayCharts()
 
@@ -146,7 +148,11 @@ onMounted(() => {
     getAllUsers(500)
 })
 
-const { articleItemColors, contactItemColors, userItemColors } = useColors()
+const {
+    articleItemColors,
+    contactItemColors,
+    userItemColors,
+}: UseColorsReturnInterface = useColors()
 
 const allLoaded: Ref<boolean> = ref(false)
 
@@ -162,22 +168,22 @@ watch(
 )
 
 const articleCircleStyle = {
-    background: articleItemColors.primary,
+    background: articleItemColors.primary || undefined,
 }
 const articleBricksTextStyle = {
-    color: articleItemColors.primary,
+    color: articleItemColors.primary || undefined,
 }
 const contactCircleStyle = {
-    background: contactItemColors.primary,
+    background: contactItemColors.primary || undefined,
 }
 const contactBricksTextStyle = {
-    color: contactItemColors.primary,
+    color: contactItemColors.primary || undefined,
 }
 const userCircleStyle = {
-    background: userItemColors.primary,
+    background: userItemColors.primary || undefined,
 }
 const userBricksTextStyle = {
-    color: userItemColors.primary,
+    color: userItemColors.primary || undefined,
 }
 </script>
 

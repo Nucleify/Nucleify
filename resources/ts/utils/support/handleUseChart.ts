@@ -1,16 +1,18 @@
 import { ChartOptions } from 'chart.js'
+
 import {
     ActivityLogInterface,
     ArticleInterface,
     ChartMethodType,
     ChartType,
     ChartDataInterface,
-    ColorItemColorsInterface,
     ContactInterface,
     LabelItemType,
     UserInterface,
 } from '@/types'
-import { useColors } from '@/utils'
+
+import { UseColorsReturnInterface } from 'atomic/bosons/types'
+import { useColors } from 'atomic/bosons/utils'
 
 export default function useChart() {
     const documentStyle: CSSStyleDeclaration = getComputedStyle(
@@ -21,12 +23,7 @@ export default function useChart() {
         articleItemColors,
         contactItemColors,
         userItemColors,
-    }: {
-        activityItemColors: ColorItemColorsInterface
-        articleItemColors: ColorItemColorsInterface
-        contactItemColors: ColorItemColorsInterface
-        userItemColors: ColorItemColorsInterface
-    } = useColors()
+    }: UseColorsReturnInterface = useColors()
 
     const exampleColors = {
         activityItemColors: { primary: '#FFB600', hover: '#E7A60B' },

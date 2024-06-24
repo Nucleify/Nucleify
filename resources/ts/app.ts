@@ -2,7 +2,7 @@ import './bootstrap'
 import { createApp } from 'vue'
 
 import 'primevue/resources/themes/lara-light-green/theme.css'
-import 'primeicons/primeicons.css';
+import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
 
 export const app = createApp({})
@@ -61,7 +61,6 @@ import {
     ColorSettings,
     Home,
     Login,
-    MyColorPicker,
     MyLayout,
     Settings,
     Register,
@@ -77,7 +76,6 @@ app.component('activity-log', ActivityLog)
     .component('color-settings', ColorSettings)
     .component('home', Home)
     .component('login', Login)
-    .component('my-color-picker', MyColorPicker)
     .component('my-layout', MyLayout)
     .component('settings', Settings)
     .component('register', Register)

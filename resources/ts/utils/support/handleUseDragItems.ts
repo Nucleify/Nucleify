@@ -1,34 +1,35 @@
-import {
-    ColorItemColorsInterface,
-    HomeItemsInterface,
-    UseDragItemsInterface,
-} from '@/types'
-import { useColors } from '@/utils'
+import { HomeItemsInterface, UseDragItemsInterface } from '@/types'
+
+import { UseColorsReturnInterface } from 'atomic/bosons/types'
+import { useColors } from 'atomic/bosons/utils'
 
 export default function useDragItems(): UseDragItemsInterface {
     const {
+        mainItemColors,
         activityItemColors,
         articleItemColors,
         contactItemColors,
-    }: {
-        activityItemColors: ColorItemColorsInterface
-        articleItemColors: ColorItemColorsInterface
-        contactItemColors: ColorItemColorsInterface
-    } = useColors()
+        userItemColors,
+    }: UseColorsReturnInterface = useColors()
 
     function startDragging(item: HomeItemsInterface): void {
-        let color: string = ''
+        let color: string
 
         switch (item.label) {
             case 'Activities':
-                color = activityItemColors.primary || ''
+                color = activityItemColors!.primary || ''
                 break
             case 'Articles':
-                color = articleItemColors.primary || ''
+                color = articleItemColors!.primary || ''
                 break
             case 'Contacts':
-                color = contactItemColors.primary || ''
+                color = contactItemColors!.primary || ''
                 break
+            case 'Users':
+                color = userItemColors!.primary || ''
+                break
+            default:
+                color = mainItemColors!.primary || ''
         }
 
         const gridItem: HTMLElement = document.getElementById(

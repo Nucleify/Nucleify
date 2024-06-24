@@ -1,6 +1,11 @@
-import { ColorItemStyleInterface, UseSidebarInterface } from '@/types'
-import { handleStyles } from '@/constants'
+import { UseSidebarInterface } from '@/types'
 import { isCurrentUrl } from '@/utils'
+
+import {
+    ColorItemStyleInterface,
+    HandleStylesInterface,
+} from 'atomic/bosons/types'
+import { handleStyles } from 'atomic/bosons/constants'
 
 export default function useSidebar(): UseSidebarInterface {
     const {
@@ -8,12 +13,7 @@ export default function useSidebar(): UseSidebarInterface {
         activitySidebarItemStyle,
         articleSidebarItemStyle,
         contactSidebarItemStyle,
-    }: {
-        mainSidebarItemStyle: ColorItemStyleInterface
-        activitySidebarItemStyle: ColorItemStyleInterface
-        articleSidebarItemStyle: ColorItemStyleInterface
-        contactSidebarItemStyle: ColorItemStyleInterface
-    } = handleStyles()
+    }: HandleStylesInterface = handleStyles()
 
     function getSidebarItemStyle(url: string): ColorItemStyleInterface | '' {
         if (url === '/contacts') {

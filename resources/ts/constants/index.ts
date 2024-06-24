@@ -34,8 +34,3 @@ export { excludedPaths as excludedPaths } from './paths'
  */
 export { colorList as colorList } from './settings'
 export { displayChartList as displayChartList } from './settings'
-
-/**
- *  Styles
- */
-export { default as handleStyles } from './styles'

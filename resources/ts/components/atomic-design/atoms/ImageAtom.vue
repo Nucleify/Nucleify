@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ImageInterface } from '../bosons/types'
+import { ImageInterface } from 'atomic/bosons/types'
 
 defineProps<ImageInterface>()
 </script>

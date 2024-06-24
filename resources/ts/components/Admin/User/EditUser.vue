@@ -48,12 +48,14 @@
 <script setup lang="ts">
 import { toRefs, watch } from 'vue'
 
-import { ColorItemStyleInterface, UserInterface } from '@/types'
+import { UserInterface } from '@/types'
 import { handleData } from '@/constants'
 import { userApiMethods } from '@/utils'
 
+import { ColorItemStyleInterface } from 'atomic/bosons/types'
+
 const props = defineProps<{
-    user: UserInterface
+    user: UserInterface | undefined
     getData: () => void
     visible: boolean
     options: string[]

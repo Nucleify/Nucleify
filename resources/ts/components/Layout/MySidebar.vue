@@ -13,7 +13,7 @@
                     :href="item.url"
                     class="sidebarItem"
                     v-tooltip.right="item.label"
-                    :style="getSidebarItemStyle(item.url)"
+                    :style="getSidebarItemStyle(item.url!)"
                     :class="item.class"
                 >
                     <i :class="item.icon" />
@@ -55,15 +55,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, Ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
-import { excludedPaths, handleStyles } from '@/constants'
-import { isCurrentUrl, logout, useSidebar, useUserMenu } from '@/utils'
+import { excludedPaths } from '@/constants'
+import { isCurrentUrl, useSidebar, useUserMenu } from '@/utils'
 
 defineProps<{
-    items: Ref<MenuItem[]>
-    userMenuItems: Ref<MenuItem[]>
+    items: MenuItem[]
+    userMenuItems: MenuItem[]
 }>()
 
 const shouldShowSidebar = ref(true)
@@ -75,6 +75,4 @@ onMounted(() => {
         shouldShowSidebar.value = false
     }
 })
-
-const { mainSidebarItemStyle } = handleStyles()
 </script>

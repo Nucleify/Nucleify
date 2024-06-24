@@ -31,6 +31,8 @@ import {
     VisibleType,
 } from '@/types'
 
+import { ColorItemColorsInterface } from 'atomic/bosons/types'
+
 /**
  *  Activity Log
  */
@@ -134,21 +136,6 @@ export interface ContactApiMethodsInterface {
 }
 
 /**
- *  Color items
- */
-export interface ColorItemStyleInterface {
-    color?: string | null
-    backgroundColor?: string | null
-    borderColor?: string | null
-    boxShadow?: string | null
-}
-export interface ColorItemColorsInterface {
-    primary: string | null
-    hover: string | null
-    sidebarSelected?: string | null
-}
-
-/**
  *  Display charts
  */
 export interface DisplayChartsInterface {
@@ -227,32 +214,12 @@ export interface HandleDataInterface {
     contactData: Ref<ContactInterface>
     userData: Ref<UserInterface>
 }
-export interface HandleStylesInterface {
-    mainSidebarItemStyle: ColorItemStyleInterface
-    mainStyle: ColorItemStyleInterface
-    activitySidebarItemStyle: ColorItemStyleInterface
-    activityStyle: ColorItemStyleInterface
-    articleSidebarItemStyle: ColorItemStyleInterface
-    articleStyle: ColorItemStyleInterface
-    contactSidebarItemStyle: ColorItemStyleInterface
-    contactStyle: ColorItemStyleInterface
-    userSidebarItemStyle: ColorItemStyleInterface
-    userStyle: ColorItemStyleInterface
-}
 
 /**
  *  Use functions
  */
 export interface UseApiErrorsServiceInterface {
     apiErrors: ApiErrorsFunctionType
-}
-export interface UseColorsInterface {
-    mainItemColors: ColorItemColorsInterface
-    activityItemColors: ColorItemColorsInterface
-    articleItemColors: ColorItemColorsInterface
-    contactItemColors: ColorItemColorsInterface
-    userItemColors: ColorItemColorsInterface
-    setDefaultColors: (initial: boolean) => void
 }
 export interface UseDisplayChartsInterface {
     display: DisplayChartsInterface

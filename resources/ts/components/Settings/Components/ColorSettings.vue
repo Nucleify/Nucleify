@@ -22,7 +22,7 @@
                     class="settingsCardItem"
                 >
                     <h3>{{ item }}</h3>
-                    <my-color-picker :item="getLowerCase(item)" />
+                    <ColorPickerAtom :item="getLowerCase(item)" />
                 </li>
             </ul>
         </template>
@@ -30,15 +30,13 @@
 </template>
 
 <script setup lang="ts">
-import { colorList, handleStyles } from '@/constants'
-import { getLowerCase, useColors } from '@/utils'
+import { colorList } from '@/constants'
+import { getLowerCase } from '@/utils'
+
+import { ColorPickerAtom } from 'atomic/atoms'
+import { handleStyles } from 'atomic/bosons/constants'
+import { useColors } from 'atomic/bosons/utils'
 
 const { mainStyle } = handleStyles()
 const { setDefaultColors } = useColors()
 </script>
-
-<style scoped>
-:deep(.p-card-body) {
-    padding: 0;
-}
-</style>

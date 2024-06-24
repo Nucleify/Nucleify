@@ -98,12 +98,14 @@
 <script setup lang="ts">
 import { toRefs, watch } from 'vue'
 
-import { ColorItemStyleInterface, ContactInterface } from '@/types'
+import { ContactInterface } from '@/types'
 import { handleData } from '@/constants'
 import { contactApiMethods } from '@/utils'
 
+import { ColorItemStyleInterface } from 'atomic/bosons/types'
+
 const props = defineProps<{
-    contact: ContactInterface
+    contact: ContactInterface | undefined
     getData: () => void
     visible: boolean
     options: string[]

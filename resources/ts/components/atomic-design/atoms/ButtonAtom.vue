@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ButtonInterface } from '../bosons/types'
+import { ButtonInterface } from 'atomic/bosons/types'
 
 defineProps<ButtonInterface>()
 </script>

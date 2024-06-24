@@ -45,7 +45,7 @@ import { ArticleInterface } from '@/types'
 
 const props = defineProps<{
     visible: boolean
-    article: ArticleInterface
+    article: ArticleInterface | undefined
     close: (action: string) => void
 }>()
 </script>

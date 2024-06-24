@@ -72,7 +72,7 @@ import { ContactInterface } from '@/types'
 
 const props = defineProps<{
     visible: boolean
-    contact: ContactInterface
+    contact: ContactInterface | undefined
     close: (action: string) => void
 }>()
 </script>
