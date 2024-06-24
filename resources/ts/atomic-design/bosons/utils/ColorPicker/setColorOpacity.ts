@@ -1,4 +1,7 @@
-export default function setOpacity(color: string, opacity: number): string {
+export default function setColorOpacity(
+    color: string,
+    opacity: number
+): string {
     const hex: string = color.replace('#', '')
     const r: number = parseInt(hex.substring(0, 2), 16)
     const g: number = parseInt(hex.substring(2, 4), 16)

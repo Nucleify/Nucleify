@@ -80,7 +80,7 @@
                 label="Confirm"
                 @click="
                     deleteActivity(
-                        selectedObject.id,
+                        selectedObject!.id!,
                         getAllActivities,
                         closeModal
                     )
@@ -96,8 +96,9 @@
 import { onMounted } from 'vue'
 
 import { MyChart } from '@/components'
-import { handleStyles } from '@/constants'
 import { activityApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
+
+import { handleStyles } from 'atomic/bosons/constants'
 
 const { display } = useDisplayCharts()
 const { visibleDelete, selectedObject, openModal, closeModal } =

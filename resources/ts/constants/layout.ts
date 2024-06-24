@@ -1,6 +1,8 @@
 import { Ref, ref } from 'vue'
 import { MenuItem } from 'primevue/menuitem'
 
+import { logout } from '@/utils'
+
 export const layoutItems: Ref<MenuItem[]> = ref<MenuItem[]>([
     {
         label: 'Home',
@@ -69,5 +71,6 @@ export const userMenuItems: Ref<MenuItem[]> = ref<MenuItem[]>([
         label: 'Logout',
         icon: 'pi pi-sign-out',
         url: '/logout',
+        command: () => logout,
     },
 ])

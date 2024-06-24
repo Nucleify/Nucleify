@@ -35,16 +35,12 @@
 </template>
 
 <script setup lang="ts">
-import { displayChartList, handleStyles } from '@/constants'
+import { displayChartList } from '@/constants'
 import { useDisplayCharts } from '@/utils'
+
+import { handleStyles } from 'atomic/bosons/constants'
 
 const { mainStyle } = handleStyles()
 const { display, setDefaultChartsDisplay, displayChartsToggle } =
     useDisplayCharts()
 </script>
-
-<style scoped>
-:deep(.p-card-body) {
-    padding: 0;
-}
-</style>

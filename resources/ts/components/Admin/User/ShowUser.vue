@@ -43,7 +43,7 @@ import { UserInterface } from '@/types'
 
 const props = defineProps<{
     visible: boolean
-    user: UserInterface
+    user: UserInterface | undefined
     close: (action: string) => void
 }>()
 </script>

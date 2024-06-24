@@ -148,7 +148,11 @@
             <Button
                 label="Confirm"
                 @click="
-                    deleteContact(selectedObject.id, getAllContacts, closeModal)
+                    deleteContact(
+                        selectedObject!.id!,
+                        getAllContacts,
+                        closeModal
+                    )
                 "
                 class="p-button-rounded"
                 :style="contactStyle"
@@ -166,8 +170,10 @@ import CreateContact from './CreateContact.vue'
 import ShowContact from './ShowContact.vue'
 import EditContact from './EditContact.vue'
 
-import { handleDropdownItems, handleStyles, roleOptions } from '@/constants'
+import { handleDropdownItems, roleOptions } from '@/constants'
 import { contactApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
+
+import { handleStyles } from 'atomic/bosons/constants'
 
 const menu = ref()
 
