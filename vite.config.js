@@ -33,7 +33,7 @@ export default defineConfig({
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
             '@': '/resources/ts',
-            'atomic': '/resources/ts/components/atomic-design'
+            'atomic': '/resources/ts/atomic-design'
         },
     },
     build: {

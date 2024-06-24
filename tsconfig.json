@@ -25,7 +25,7 @@
         "resources/ts/*"
       ],
       "atomic/*": [
-        "resources/ts/components/atomic-design/*"
+        "resources/ts/atomic-design/*"
       ]
     },
     "lib": [
