@@ -5,7 +5,7 @@ on:
       branches: [ "prod" ]
 
 jobs:
-  node-build:
+  install-lint-build:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,5 +16,7 @@ jobs:
           node-version: '20'
       - name: Install Node.js Dependencies
         run: npm install
+      - name: Lint with ESLint
+        run: npm run lint
       - name: Build Assets
         run: npm run build
