@@ -9,7 +9,7 @@
                     :article-data="results"
                     :chart-class="'h-30rem'"
                 />
-                <ProgressSpinner v-if="loading" />
+                <progress-spinner-atom v-if="loading" />
             </template>
         </Card>
         <Card class="myCard articleDashboard">
@@ -40,7 +40,7 @@
                     paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}"
                 >
-                    <template #loading><ProgressSpinner /></template>
+                    <template #loading><progress-spinner-atom /></template>
                     <Column
                         field="id"
                         :sortable="true"

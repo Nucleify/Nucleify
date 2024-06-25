@@ -68,7 +68,7 @@
                         :chart-class="'h-8 w-8 -mt-2'"
                         :class="!allLoaded ? 'chartLoading' : 'chartLoaded'"
                     />
-                    <ProgressSpinner
+                    <progress-spinner-atom
                         v-if="!allLoaded"
                         :style="{ color: 'blue' }"
                     />
@@ -88,7 +88,7 @@
                     :chart-class="'myChart h-30rem'"
                     :class="!allLoaded ? 'chartLoading' : 'chartLoaded'"
                 />
-                <ProgressSpinner v-if="!allLoaded" />
+                <progress-spinner-atom v-if="!allLoaded" />
             </template>
         </Card>
 

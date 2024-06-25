@@ -28,7 +28,7 @@
                     paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}"
                 >
-                    <template #loading><ProgressSpinner /></template>
+                    <template #loading><progress-spinner-atom /></template>
                     <Column
                         field="id"
                         :sortable="true"

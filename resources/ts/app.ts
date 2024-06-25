@@ -58,11 +58,13 @@ import {
     ButtonAtom,
     ColorPickerAtom,
     ImageAtom,
+    ProgressSpinnerAtom
 } from 'atomic/atoms'
 app.component('avatar-atom', AvatarAtom)
     .component('button-atom', ButtonAtom)
     .component('image-atom', ImageAtom)
     .component('color-picker-atom', ColorPickerAtom)
+    .component('progress-spinner-atom', ProgressSpinnerAtom)
 
 /**
  *  Components

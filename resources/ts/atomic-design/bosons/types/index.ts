@@ -23,3 +23,8 @@ export { HandleStylesInterface as HandleStylesInterface } from './interfaces/Col
  *  Image
  */
 export { ImageInterface as ImageInterface } from './interfaces/Image'
+
+/**
+ *  ProgressSpinner
+ */
+export { ProgressSpinnerInterface as ProgressSpinnerInterface } from './interfaces/ProgressSpinner'
