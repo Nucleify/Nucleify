@@ -1,0 +1,33 @@
+// Grid item container
+$grid-item-container-max-width: 300px;
+$grid-item-container-grid-template-columns: repeat(1, 1fr);
+$grid-item-container-margin: 0;
+$grid-item-container-gap: 1.5rem;
+
+// Grid item
+$grid-item-display: flex;
+$grid-item-flex-direction: column;
+$grid-item-justify-content: center;
+$grid-item-align-items: center;
+$grid-item-font-weight: bold;
+
+$grid-item-a-text-decoration: none;
+$grid-item-hover-focus-z-index: 100;
+$grid-item-container-hover-focus-box-shadow: 0 5px 14px rgba(0, 0, 0, 0.15);
+
+// Min width 600px
+$grid-item-container-grid-template-columns-sm6: repeat(2, 1fr);
+$grid-item-container-margin-left-sm6: 13%;
+
+// Min width 700px
+$grid-item-container-margin-left-sm7: 15%;
+
+// Min width 800px
+$grid-item-container-margin-left-md1: 20%;
+
+// Min width 900px
+$grid-item-container-margin-left-lg0: 25%;
+
+// Min width 992px
+$grid-item-container-grid-template-columns-lg2: repeat(3, 1fr);
+$grid-item-container-margin-left-lg2: 120px;

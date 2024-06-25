@@ -1,4 +1,4 @@
-resources/js/interfaces
+atomic/_old_structure
 
-resources/sass/app.scss
-resources/sass/variables
+atomic/bosons/styles/index.scss
+atomic/bosons/styles/variables

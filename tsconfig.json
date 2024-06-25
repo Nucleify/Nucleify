@@ -22,11 +22,8 @@
     ],
     "paths": {
       "@/*": [
-        "resources/ts/*"
+        "atomic/_old_structure/ts/*"
       ],
-      "atomic/*": [
-        "resources/ts/atomic-design/*"
-      ]
     },
     "lib": [
       "es2015",
@@ -37,11 +34,11 @@
     ]
   },
   "include": [
+    "atomic/**/*.ts",
+    "atomic/**/*.tsx",
+    "atomic/**/*.vue",
     "cypress/**/*.ts",
     "cypress/**/*.tsx",
-    "resources/**/*.ts",
-    "resources/**/*.tsx",
-    "resources/**/*.vue",
     "storybook/**/*.ts",
     "storybook/**/*.tsx",
     "storybook/**/*.vue",
