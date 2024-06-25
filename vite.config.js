@@ -14,8 +14,8 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/sass/app.scss',
-                'resources/ts/app.ts',
+                'atomic/bosons/styles/index.scss',
+                'atomic/app.ts',
             ],
             refresh: true,
         }),
@@ -32,8 +32,8 @@ export default defineConfig({
     resolve: {
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
-            '@': '/resources/ts',
-            'atomic': '/resources/ts/atomic-design'
+            '@': '/atomic/_old_structure/ts',
+            'atomic': '/atomic'
         },
     },
     build: {

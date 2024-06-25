@@ -1,0 +1,79 @@
+@import '../../../variables/pages/welcome/navbar_variables';
+
+@import '../../../variables/base/borders_variables';
+@import '../../../variables/base/colors_variables';
+@import '../../../variables/base/medias_variables';
+@import '../../../variables/base/box_shadows_variables';
+
+.welcomeNavbar {
+    width: $welcome-navbar-width;
+    z-index: $welcome-navbar-z-index;
+    position: $welcome-navbar-position;
+    top: $welcome-navbar-top;
+    background: $primary-bg;
+    box-shadow: $box-shadow-none;
+    border: $border-none;
+    border-radius: $border-radius-none;
+    padding: $welcome-navbar-padding;
+
+    .pi {
+        color: $white-text-color !important;
+    }
+
+    .navbar-toggler {
+        height: $navbar-toggler-dimensions;
+        width: $navbar-toggler-dimensions;
+        padding: $navbar-toggler-padding;
+    }
+
+    .welcomeNavLink {
+        display: $welcome-nav-link-display;
+        justify-content: $welcome-nav-link-justify-content;
+        align-items: $welcome-nav-link-align-items;
+        gap: $welcome-nav-link-gap;
+        margin-top: $welcome-nav-link-margin-top;
+        padding: $welcome-nav-link-padding;
+        color: $white-text-color;
+        font-size: $welcome-nav-link-font-size;
+        text-align: $welcome-nav-link-text-align;
+        transition: $welcome-nav-link-transition;
+
+        .welcomeNavLinkIcon {
+            transition: $welcome-nav-link-transition;
+        }
+
+        &:hover {
+            color: $primary-hover-color;
+
+            .welcomeNavLinkIcon {
+                color: $primary-hover-color !important;
+            }
+        }
+
+        // Min width 768px
+        @media (min-width: $min-width-md) {
+            gap: $welcome-nav-link-gap-md;
+            margin-top: $welcome-nav-link-margin-top-md;
+            padding: $welcome-nav-link-padding-md;
+        }
+    }
+    @media (min-width: $min-width-md) {
+        max-height: $welcome-navbar-max-height-md;
+    }
+}
+.applicationHeader {
+    margin-top: $application-header-margin-top;
+    margin-left: $application-header-margin-left;
+    text-decoration: $application-header-text-decoration;
+    color: $white-text-color;
+    font-size: $application-header-font-size;
+
+    &:hover {
+        color: $white-text-color;
+    }
+
+    // Min width 768px
+    @media (min-width: $min-width-md) {
+        font-size: $application-header-font-size-md;
+    }
+}

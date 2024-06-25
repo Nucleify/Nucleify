@@ -1,0 +1,69 @@
+// Component styles
+@import 'styles/components/layout/layout';
+@import 'styles/components/button';
+@import 'styles/components/canvas';
+@import 'styles/components/card';
+@import 'styles/components/chart';
+@import 'styles/components/datatable';
+@import 'styles/components/dialog';
+@import 'styles/components/disabled_item';
+@import 'styles/components/dropdown';
+@import 'styles/components/flip_card';
+@import 'styles/components/form';
+@import 'styles/components/grid_item';
+@import 'styles/components/input_text';
+@import 'styles/components/loading';
+@import 'styles/components/menu';
+@import 'styles/components/paginator';
+@import 'styles/components/panel_container';
+@import 'styles/components/progress_spinner';
+@import 'styles/components/show';
+@import 'styles/components/test_buttons';
+@import 'styles/components/toast';
+@import 'styles/components/tooltip';
+
+// Pages styles
+@import 'styles/pages/activity/activity_log';
+@import 'styles/pages/admin/admin_bricks';
+@import 'styles/pages/auth/auth';
+@import 'styles/pages/home/home_bricks';
+@import 'styles/pages/welcome/welcome';
+@import 'styles/pages/settings/settings';
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: $body-bg;
+}
+
+body:has(
+    #welcome,
+    #login,
+    #register
+) {
+    background: $white-body-bg;
+}
+
+:root {
+    --main-item-color: #10B981;
+    --main-item-hover-color: #10A674;
+    --main-sidebar-item-selected-color: #10B98121;
+
+    --article-item-color: #1187C7;
+    --article-item-hover-color: #0F79B2;
+    --article-sidebar-item-selected-color: #1187C721;
+
+    --activity-item-color: #FFB600;
+    --activity-item-hover-color: #E7A60B;
+    --activity-sidebar-item-selected-color: #FFB60021;
+
+    --contact-item-color: #10B981;
+    --contact-item-hover-color: #10A674;
+    --contact-sidebar-item-selected-color: #10B98121;
+
+    --user-item-color: #64748B;
+    --user-item-hover-color: #566479;
+}
