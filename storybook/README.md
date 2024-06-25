@@ -58,7 +58,7 @@ A quick look at the top-level files and directories included with this template.
     ├── LICENSE
     ├── yarn.lock
     ├── package.json
-    ├── vite.config.js
+    ├── vite.config.ts
     └── README.md
 
 1.  **`.storybook`**: This directory contains Storybook's [configuration](https://storybook.js.org/docs/react/configure/overview) files.
@@ -85,7 +85,7 @@ A quick look at the top-level files and directories included with this template.
 
 12. **`package.json`**: Standard manifest file for Node.js projects, which typically includes project specific metadata (such as the project's name, the author among other information). It's based on this file that npm will know which packages are necessary to the project.
 
-13. **`vite.config.js`**: This is the configuration file for [Vite](https://vitejs.dev/), a build tool that aims to provide a faster and leaner development experience for modern web projects.
+13. **`vite.config.ts`**: This is the configuration file for [Vite](https://vitejs.dev/), a build tool that aims to provide a faster and leaner development experience for modern web projects.
 
 14. **`README.md`**: A text file containing useful reference information about the project.
 
