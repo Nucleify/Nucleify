@@ -5,18 +5,32 @@
     "npm": "10.x"
   },
   "scripts": {
-    "build": "vite build",
-    "lint": "eslint \"atomic/**/*.{js,ts,vue}\"",
-    "lint --fix": "eslint \"atomic/**/*.{js,ts,vue}\"",
-    "lint:cypress": "eslint \"cypress/**/*.{ts,tsx}\"",
-    "lint:cypress --fix": "eslint \"cypress/**/*.{ts,tsx}\" --fix",
     "dev": "vite",
+    "open": "cypress open",
     "prepare": "husky install",
-    "check": "prettier --check atomic",
-    "write": "prettier --write atomic",
+
+    "build": "vite build & vite build storybook",
+    "build:storybook": "vite build storybook",
+
+    "lint": "npm run lint:atomic && npm run lint:cypress && npm run lint:storybook",
+    "lint:atomic": "eslint \"atomic/**/*.{js,ts,vue}\"",
+    "lint:cypress": "eslint \"cypress/**/*.{ts,tsx}\"",
+    "lint:storybook": "eslint \"storybook/**/*.{ts,tsx}\"",
+
+    "lint --fix": "npm run lint:atomic --fix && npm run lint:cypress --fix && npm run lint:storybook --fix",
+    "lint:atomic --fix": "eslint \"atomic/**/*.{js,ts,vue}\" --fix",
+    "lint:cypress --fix": "eslint \"cypress/**/*.{ts,tsx}\" --fix",
+    "lint:storybook --fix": "eslint \"storybook/**/*.{ts,tsx}\" --fix",
+
+    "check": "prettier --check atomic && prettier --check cypress && prettier --check storybook",
+    "check:atomic": "prettier --check atomic",
     "check:cypress": "prettier --check cypress",
+    "check:storybook": "prettier --check storybook/src",
+
+    "write": "prettier --write atomic && prettier --write cypress && prettier --write storybook",
+    "write:atomic": "prettier --write atomic",
     "write:cypress": "prettier --write cypress",
-    "open": "cypress open"
+    "write:storybook": "prettier --write storybook/src"
   },
   "dependencies": {
     "@shopify/draggable": "^1.1.3",
