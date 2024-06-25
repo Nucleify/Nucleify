@@ -51,6 +51,20 @@ app.component('Avatar', Avatar)
     .component('Toast', Toast)
 
 /**
+ *  New Atomic Design components
+ */
+import {
+    AvatarAtom,
+    ButtonAtom,
+    ColorPickerAtom,
+    ImageAtom,
+} from 'atomic/atoms'
+app.component('avatar-atom', AvatarAtom)
+    .component('button-atom', ButtonAtom)
+    .component('image-atom', ImageAtom)
+    .component('color-picker-atom', ColorPickerAtom)
+
+/**
  *  Components
  */
 import {

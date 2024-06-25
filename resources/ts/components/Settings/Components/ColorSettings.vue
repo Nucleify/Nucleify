@@ -22,7 +22,7 @@
                     class="settingsCardItem"
                 >
                     <h3>{{ item }}</h3>
-                    <ColorPickerAtom :item="getLowerCase(item)" />
+                    <color-picker-atom :item="getLowerCase(item)" />
                 </li>
             </ul>
         </template>
@@ -33,7 +33,6 @@
 import { colorList } from '@/constants'
 import { getLowerCase } from '@/utils'
 
-import { ColorPickerAtom } from 'atomic/atoms'
 import { handleStyles } from 'atomic/bosons/constants'
 import { useColors } from 'atomic/bosons/utils'
 
