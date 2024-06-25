@@ -8,22 +8,22 @@ export const app = createApp({})
  *  PrimeVue
  */
 import 'primevue/resources/themes/lara-light-green/theme.css'
-import 'primevue/resources/primevue.min.css';
-import 'primeicons/primeicons.css';
+import 'primevue/resources/primevue.min.css'
+import 'primeicons/primeicons.css'
 
-import PrimeVue from 'primevue/config';
+import PrimeVue from 'primevue/config'
 
-app.use(PrimeVue);
+app.use(PrimeVue)
 
 /**
  *  Load Primevue components
  */
-import { globalComponentsRegistry, PrimeVueComponents } from '@/utils';
+import { globalComponentsRegistry, PrimeVueComponents } from '@/utils'
 
 globalComponentsRegistry(PrimeVueComponents, app)
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -35,4 +35,4 @@ export const parameters = {
 /**
  *  Use DataManager's Sass styles
  */
-import '../../resources/sass/app.scss'
+import '../../atomic/bosons/styles/index.scss'
