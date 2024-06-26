@@ -24,6 +24,14 @@ nvm use --lts
 git clone https://github.com/SzymCode/DataManager.git
 ```
 
+- Change *.env.example* file to *.env* in root directory
+
+- Generate APP_KEY
+
+```
+php artisan key:generate
+```
+
 - Install modules in root directory
 
 ```bash
@@ -33,7 +41,7 @@ composer update
 
 ### **Make sure u have installed all modules!**
 
-- Change *.env.example* file to *.env* in root directory, run XAMPP mysql server and create database
+- run XAMPP mysql server and create database
 ```bash
 mysql -u root -p
 create database datamanager
@@ -140,23 +148,6 @@ php artisan sitemap:generate
 <details><summary> <h2> &nbsp; <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=25/> &nbsp;Docker </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary> <br>
 
-<details><summary>DockerHub</summary> <br>
-    
-Pull image from [DockerHub](https://hub.docker.com/r/szymcode/data_manager)
-
-```
-docker pull szymcode/data_manager
-```
-
-Run image 
-```
-docker run szymcode/data_manager
-```
-
-<br><br></details>
-
-<details><summary>Sail</summary>
-
 - First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [Composer](https://getcomposer.org/) and [Docker](https://www.docker.com)
 
 - I recommend use [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) for install latest supported versions of [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com), 
@@ -173,16 +164,28 @@ git clone https://github.com/SzymCode/DataManager.git
 
 - Change .env.example file to .env in root directory
 
+- Generate APP_KEY
+
+```
+php artisan key:generate
+```
+
 - Install modules in root directory
 
 ```bash
 composer update
 php artisan sail:install
+sail npm install
 ```
 
 ### **Make sure u have installed all modules!**
 
-</details><br></details>
+<br>
+
+Possible problems:
+- Error: EACCES: permission denied, mkdir '/var/www/html/node_modules': ```sudo chmod 777 -R DataManager``` or [Solution](https://stackoverflow.com/questions/49679808/error-eacces-permission-denied-mkdir-usr-local-lib-node-modules-node-sass-b)
+
+<br></details>
 
 <details><summary> 🚀 Run </summary> <br>
 
@@ -201,7 +204,7 @@ sail npm run dev
 Possible problems: 
 - Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
 - Error starting userland proxy: listen tcp4 0.0.0.0:3306: bind: address already in use: ```sudo service mysql stop```
-
+  
 <br></details> 
 
 <details><summary> ❓ Usage </summary><br>
@@ -309,7 +312,7 @@ sail artisan sitemap:generate
 
 <details><summary> <h2> &nbsp; <img src="https://static-00.iconduck.com/assets.00/github-icon-2048x2048-823jqxdr.png" width="20"> &nbsp; Contribute </h2> </summary> <br>
 
-Feel free to check open [issues](https://github.com/SzymCode/DataManager/issues) or create new ones. <br>
+Feel free to check [Project](https://github.com/users/SzymCode/projects/2) and [Issues](https://github.com/SzymCode/DataManager/issues) sections. <br>
 Your skills and expertise will directly contribute to the success of our project, helping us achieve our goals and create an attractive portfolio.
 
 <br></details>
