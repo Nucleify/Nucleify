@@ -15,30 +15,36 @@
                 />
             </div>
             <div>
-                <a class="startItem usersItem" v-tooltip.right="'Users'">
-                    <i class="pi pi-user usersIcon"></i>
-                </a>
-                <a class="startItem contactsItem" v-tooltip.right="'Contacts'">
-                    <i class="pi pi-users contactsIcon"></i>
-                </a>
-                <a class="startItem tasksItem" v-tooltip.right="'Tasks'">
-                    <i class="pi pi-check-square tasksIcon"></i>
-                </a>
-                <a class="startItem articlesItem" v-tooltip.right="'Articles'">
-                    <i class="pi pi-comment articlesIcon"></i>
-                </a>
-                <a
+                <anchor-tag-atom
+                    class="startItem usersItem"
+                    v-tooltip.right="'Users'"
+                    icon="pi pi-user usersIcon"
+                />
+                <anchor-tag-atom
+                    class="startItem contactsItem"
+                    v-tooltip.right="'Contacts'"
+                    icon="pi pi-users contactsIcon"
+                />
+                <anchor-tag-atom
+                    class="startItem tasksItem"
+                    v-tooltip.right="'Tasks'"
+                    icon="pi pi-check-square tasksIcon"
+                />
+                <anchor-tag-atom
+                    class="startItem articlesItem"
+                    v-tooltip.right="'Articles'"
+                    icon="pi pi-comment articlesIcon"
+                />
+                <anchor-tag-atom
                     class="startItem moneyItem"
                     v-tooltip.right="'Revenues & Expenses'"
-                >
-                    <i class="pi pi-dollar moneyIcon"></i>
-                </a>
-                <a
+                    icon="pi pi-dollar moneyIcon"
+                />
+                <anchor-tag-atom
                     class="startItem activitiesItem"
                     v-tooltip.right="'Activities'"
-                >
-                    <i class="pi pi-clock activitiesIcon"></i>
-                </a>
+                    icon="pi pi-clock activitiesIcon"
+                />
             </div>
         </div>
     </section>

@@ -2,9 +2,9 @@
 <template>
     <nav class="welcomeNavbar navbar navbar-expand-md">
         <div class="container">
-            <a href="/welcome">
+            <anchor-tag-atom href="/welcome">
                 <image-atom src="logo.png" width="70" />
-            </a>
+            </anchor-tag-atom>
 
             <button-atom
                 class="navbar-toggler"
@@ -24,38 +24,34 @@
                 <!-- Right Side Of Navbar -->
                 <div class="navbar-nav ms-auto md:gap-5 lg:gap-7">
                     <div class="navbar-nav flex md:gap-3 lg:gap-5">
-                        <a
+                        <anchor-tag-atom
                             class="nav-link welcomeNavLink"
                             href="#start"
                             @click="throttleHideNavbar"
-                        >
-                            Start
-                            <i class="pi pi-bolt welcomeNavLinkIcon"></i>
-                        </a>
-                        <a
+                            icon="pi pi-bolt welcomeNavLinkIcon"
+                            label="Start"
+                        />
+                        <anchor-tag-atom
                             class="nav-link welcomeNavLink"
                             href="#features"
                             @click="throttleHideNavbar"
-                        >
-                            Features
-                            <i class="pi pi-star welcomeNavLinkIcon"></i>
-                        </a>
-                        <a
+                            icon="pi pi-star welcomeNavLinkIcon"
+                            label="Features"
+                        />
+                        <anchor-tag-atom
                             class="nav-link welcomeNavLink"
                             href="#why-us"
                             @click="throttleHideNavbar"
-                        >
-                            Why Us
-                            <i class="pi pi-question welcomeNavLinkIcon"></i>
-                        </a>
-                        <a
+                            icon="pi pi-question welcomeNavLinkIcon"
+                            label="Why Us"
+                        />
+                        <anchor-tag-atom
                             class="nav-link welcomeNavLink"
                             href="#contact"
                             @click="throttleHideNavbar"
-                        >
-                            Contact
-                            <i class="pi pi-envelope welcomeNavLinkIcon"></i>
-                        </a>
+                            icon="pi pi-envelope welcomeNavLinkIcon"
+                            label="Contact"
+                        />
                     </div>
 
                     <button-atom
