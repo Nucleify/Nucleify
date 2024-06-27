@@ -25,6 +25,11 @@ export { HandleStylesInterface as HandleStylesInterface } from './interfaces/Col
 export { ImageInterface as ImageInterface } from './interfaces/Image'
 
 /**
+ *  InputText
+ */
+export { InputTextInterface as InputTextInterface } from './interfaces/InputText'
+
+/**
  *  ProgressSpinner
  */
 export { ProgressSpinnerInterface as ProgressSpinnerInterface } from './interfaces/ProgressSpinner'
