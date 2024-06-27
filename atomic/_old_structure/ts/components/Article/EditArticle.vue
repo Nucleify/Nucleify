@@ -7,7 +7,7 @@
         <form action="#" class="formContainer">
             <div class="formDiv">
                 <label for="title">Title</label>
-                <InputText id="title" type="text" v-model="data.title" />
+                <input-text-atom id="title" type="text" v-model="data.title" />
             </div>
 
             <div class="formDiv">
@@ -21,22 +21,26 @@
 
             <div class="formDiv">
                 <label for="category">Category</label>
-                <InputText id="category" type="text" v-model="data.category" />
+                <input-text-atom
+                    id="category"
+                    type="text"
+                    v-model="data.category"
+                />
             </div>
         </form>
 
         <template #footer>
             <div class="dialogButtonsContainer">
-                <Button
-                    severity="secondary"
+                <button-atom
                     label="Cancel"
+                    severity="secondary"
                     @click="props.close('edit')"
-                    class="p-button-rounded"
+                    :rounded="true"
                 />
-                <Button
+                <button-atom
                     label="Confirm"
                     @click.prevent="editArticle(data, getData, close)"
-                    class="p-button-rounded"
+                    :rounded="true"
                     :style="style"
                 />
             </div>

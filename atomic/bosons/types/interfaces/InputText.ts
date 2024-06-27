@@ -7,5 +7,5 @@ export interface InputTextInterface {
     invalid?: boolean
     disabled?: boolean
     unstyled?: boolean
-    size?: "small" | "large"
+    size?: 'small' | 'large'
 }

@@ -1,7 +1,6 @@
 <template>
     <Button
         @click="onclick"
-        :class="buttonClass"
         :severity="severity"
         :disabled="disabled"
         :raised="raised"
@@ -14,7 +13,9 @@
         }"
     >
         <i :class="iconClass"></i>
-        <span :class="labelClass" class="p-button-label">{{ label }}</span>
+        <span v-if="label" :class="labelClass" class="p-button-label">{{
+            label
+        }}</span>
     </Button>
 </template>
 

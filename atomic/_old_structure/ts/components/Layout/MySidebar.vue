@@ -45,16 +45,15 @@
                         <i :class="item.icon" />
                     </a>
                 </template>
-                <Button
+                <button-atom
                     unstyled
+                    icon-class="pi pi-times"
                     class="sidebarItem userMenuItem closeUserMenuItem"
                     @click="closeUserMenu()"
-                >
-                    <i class="pi pi-times" />
-                </Button>
+                />
             </div>
 
-            <Avatar
+            <avatar-atom
                 class="sidebarUser"
                 icon="pi pi-user"
                 shape="circle"

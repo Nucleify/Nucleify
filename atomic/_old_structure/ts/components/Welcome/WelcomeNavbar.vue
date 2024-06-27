@@ -3,25 +3,22 @@
     <nav class="welcomeNavbar navbar navbar-expand-md">
         <div class="container">
             <a href="/welcome">
-                <Image src="logo.png" width="70" />
+                <image-atom src="logo.png" width="70" />
             </a>
 
-            <button
+            <button-atom
                 class="navbar-toggler"
+                :icon-class="
+                    navbarExpanded
+                        ? 'pi pi-times text-2xl'
+                        : 'pi pi-align-justify text-2xl'
+                "
                 type="button"
                 @click="toggleNavbar"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
-            >
-                <i
-                    :class="
-                        navbarExpanded
-                            ? 'pi pi-times text-2xl'
-                            : 'pi pi-align-justify text-2xl'
-                    "
-                ></i>
-            </button>
+            />
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Right Side Of Navbar -->
@@ -61,12 +58,12 @@
                         </a>
                     </div>
 
-                    <Button
+                    <button-atom
+                        label="Log In"
                         class="primaryButton max-w-6 ml-auto my-5 md:my-0"
                         @click="navigateTo('/login')"
-                    >
-                        Log In
-                    </Button>
+                        :rounded="true"
+                    />
                 </div>
             </div>
         </div>

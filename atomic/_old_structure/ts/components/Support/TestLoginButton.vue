@@ -1,18 +1,18 @@
 <template>
     <div class="testButtonsContainer">
-        <Button
+        <button-atom
+            label="Test Admin Login"
             @click="testLogin('admin')"
-            class="primaryButton p-button-rounded"
-        >
-            Test Admin Login
-        </Button>
-
-        <Button
+            class="primaryButton"
+            :rounded="true"
+        />
+        <button-atom
+            label="Test User Login"
+            severity="secondary"
             @click="testLogin('user')"
-            class="primaryButton p-button-rounded p-button-secondary"
-        >
-            Test User Login
-        </Button>
+            class="primaryButton"
+            :rounded="true"
+        />
     </div>
 </template>
 

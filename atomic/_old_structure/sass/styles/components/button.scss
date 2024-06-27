@@ -6,6 +6,7 @@
 
 .p-button {
     display: $p-button-display;
+    justify-content: $p-button-justify-content;
     transition: $p-button-transition;
     padding: $p-button-padding;
 
@@ -51,7 +52,6 @@
 
     &.primaryButton {
         padding: $primary-button-padding;
-        border-radius: $primary-button-border-radius;
         transition: $primary-button-transition;
         display: $primary-button-display;
         justify-content: $primary-button-justify-content;
@@ -66,7 +66,6 @@
     }
 
     &.dataTableButton {
-        border-radius: $datatable-button-border-radius;
         padding: $datatable-button-padding;
         height: $datatable-button-dimensions;
         width: $datatable-button-dimensions;

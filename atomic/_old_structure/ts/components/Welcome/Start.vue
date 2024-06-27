@@ -7,12 +7,12 @@
                     Manage various data types from a single place and access
                     them everywhere together with your team.
                 </h2>
-                <Button
-                    class="primaryButton startButton"
+                <button-atom
+                    label="Try it out!"
+                    class="startButton"
+                    :rounded="true"
                     @click="navigateTo('/login')"
-                >
-                    Try it out!
-                </Button>
+                />
             </div>
             <div>
                 <a class="startItem usersItem" v-tooltip.right="'Users'">

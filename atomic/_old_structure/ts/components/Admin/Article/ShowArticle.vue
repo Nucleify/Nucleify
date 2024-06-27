@@ -29,11 +29,11 @@
         </div>
         <template #footer>
             <div class="dialogButtonsContainer">
-                <Button
-                    severity="secondary"
+                <button-atom
                     label="Close"
+                    severity="secondary"
                     @click="props.close('show')"
-                    class="p-button-rounded"
+                    :rounded="true"
                 />
             </div>
         </template>

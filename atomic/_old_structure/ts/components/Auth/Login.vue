@@ -19,12 +19,10 @@
                         </label>
 
                         <div class="col-md-6">
-                            <InputText
+                            <input-text-atom
                                 v-model="data.email"
                                 type="email"
                                 id="email"
-                                required
-                                autofocus
                                 class="authInputText"
                             />
                         </div>
@@ -36,11 +34,10 @@
                         </label>
 
                         <div class="col-md-6">
-                            <InputText
+                            <input-text-atom
                                 v-model="data.password"
                                 type="password"
                                 id="password"
-                                required
                                 class="authInputText"
                             />
                         </div>
@@ -50,12 +47,12 @@
                         <div
                             class="col-md-6 offset-md-4 text-center md:text-left"
                         >
-                            <Button
+                            <button-atom
+                                label="Log In"
                                 type="submit"
-                                class="primaryButton p-button-rounded text-sm"
-                            >
-                                Log In
-                            </Button>
+                                class="primaryButton text-sm"
+                                :rounded="true"
+                            />
                         </div>
                     </div>
                 </form>
