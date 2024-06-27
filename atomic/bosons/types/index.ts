@@ -1,4 +1,9 @@
 /**
+ *  Anchor
+ */
+export { AnchorTagInterface as AnchorTagInterface } from './interfaces/AnchorTag'
+
+/**
  *  Avatar
  */
 export { AvatarInterface as AvatarInterface } from './interfaces/Avatar'

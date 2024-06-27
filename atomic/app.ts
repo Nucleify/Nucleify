@@ -61,6 +61,7 @@ app.component('Avatar', Avatar)
  *  New Atomic Design components
  */
 import {
+    AnchorTagAtom,
     AvatarAtom,
     ButtonAtom,
     ColorPickerAtom,
@@ -68,7 +69,9 @@ import {
     InputTextAtom,
     ProgressSpinnerAtom,
 } from './atoms'
-app.component('avatar-atom', AvatarAtom)
+
+app.component('anchor-tag-atom', AnchorTagAtom)
+    .component('avatar-atom', AvatarAtom)
     .component('button-atom', ButtonAtom)
     .component('image-atom', ImageAtom)
     .component('input-text-atom', InputTextAtom)
