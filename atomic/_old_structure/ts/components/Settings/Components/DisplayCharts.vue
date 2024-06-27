@@ -5,9 +5,9 @@
         <template #header>
             <div class="myCardHeaderContainer">
                 <h2>Display Charts</h2>
-                <Button
+                <button-atom
                     class="myButton p-button-rounded"
-                    icon="pi pi-refresh"
+                    icon-class="pi pi-refresh"
                     @click="setDefaultChartsDisplay(true)"
                     :style="mainStyle"
                 />
@@ -22,11 +22,14 @@
             >
                 <li class="settingsCardItem">
                     <h3>{{ item }}</h3>
-                    <Button
-                        class="myButton p-button-rounded"
-                        :icon="display[item] ? 'pi pi-eye' : 'pi pi-eye-slash'"
-                        :style="mainStyle"
+                    <button-atom
+                        class="myButton"
                         @click="displayChartsToggle(item)"
+                        :icon-class="
+                            display[item] ? 'pi pi-eye' : 'pi pi-eye-slash'
+                        "
+                        :rounded="true"
+                        :style="mainStyle"
                     />
                 </li>
             </ul>

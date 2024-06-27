@@ -163,7 +163,7 @@ export interface HomeItemsInterface {
     id: number
     label: string
     href: string
-    iconClass: string
+    icon: string
     disabled: boolean
     draggableClass: boolean
 }

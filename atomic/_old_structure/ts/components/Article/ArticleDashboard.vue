@@ -17,10 +17,11 @@
                 <div class="myCardHeaderContainer">
                     <h3>Manage Articles</h3>
 
-                    <Button
+                    <button-atom
                         label="New Article"
                         @click="openModal('create')"
                         class="text-sm smallHeightButton primaryButton"
+                        :rounded="true"
                         :style="articleStyle"
                         :class="{ loading: loading }"
                     />
@@ -74,28 +75,32 @@
                     <Column class="actionColumn">
                         <template #body="row">
                             <div class="actionColumnContent">
-                                <Button
+                                <button-atom
                                     class="desktopButton dataTableButton"
-                                    icon="pi pi-eye"
+                                    icon-class="pi pi-eye"
                                     @click="openModal('show', row.data)"
+                                    :rounded="true"
                                     :style="articleStyle"
                                 />
-                                <Button
+                                <button-atom
                                     class="desktopButton dataTableButton"
-                                    icon="pi pi-pencil"
+                                    icon-class="pi pi-pencil"
                                     @click="openModal('edit', row.data)"
+                                    :rounded="true"
                                     :style="articleStyle"
                                 />
-                                <Button
+                                <button-atom
                                     class="desktopButton dataTableButton"
-                                    icon="pi pi-trash"
+                                    icon-class="pi pi-trash"
                                     @click="openModal('delete', row.data)"
+                                    :rounded="true"
                                     :style="articleStyle"
                                 />
-                                <Button
+                                <button-atom
                                     class="mobileButton dataTableButton"
-                                    icon="pi pi-bars"
+                                    icon-class="pi pi-bars"
                                     @click="openMenu(menu, $event, row.data)"
+                                    :rounded="true"
                                     :style="articleStyle"
                                 />
                                 <Menu
@@ -133,13 +138,13 @@
     />
     <Dialog :visible="visibleDelete" modal header="Confirm delete article">
         <div class="flex justify-content-between">
-            <Button
-                severity="secondary"
+            <button-atom
                 label="Cancel"
+                severity="secondary"
                 @click="closeModal('delete')"
-                class="p-button-rounded"
+                :rounded="true"
             />
-            <Button
+            <button-atom
                 label="Confirm"
                 @click="
                     deleteArticle(
@@ -148,7 +153,7 @@
                         closeModal
                     )
                 "
-                class="p-button-rounded"
+                :rounded="true"
                 :style="articleStyle"
             />
         </div>

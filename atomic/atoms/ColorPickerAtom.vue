@@ -15,8 +15,8 @@
 <script setup lang="ts">
 import { watchEffect } from 'vue'
 
-import { ColorPickerInterface } from '../bosons/types'
-import { useColorPicker } from '../bosons/utils'
+import { ColorPickerInterface } from 'atomic/bosons/types'
+import { useColorPicker } from 'atomic/bosons/utils'
 
 const props = defineProps<ColorPickerInterface>()
 

@@ -1,11 +1,21 @@
 <template>
-    <a href="/" class="backLink">
-        <i class="pi pi-chevron-left"></i>
-    </a>
-    <a v-if="isCurrentUrl('/register')" href="/login" class="loginLink">
-        Log In
-    </a>
-    <a v-else href="/register" class="registerLink"> Register </a>
+    <anchor-tag-atom
+        href="/"
+        class="backLink"
+        icon="pi pi-chevron-left"
+    />
+    <anchor-tag-atom
+        v-if="isCurrentUrl('/register')"
+        href="/login"
+        class="loginLink"
+        label="Log In"
+    />
+    <anchor-tag-atom
+        v-else
+        href="/register"
+        class="registerLink"
+        label="Register"
+    />
 </template>
 
 <script setup lang="ts">

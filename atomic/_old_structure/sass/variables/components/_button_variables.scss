@@ -2,7 +2,6 @@
 $primary-button-small-padding: 5px 15px;
 $primary-button-padding: 5px 25px;
 $primary-button-big-padding: 10px 30px;
-$primary-button-border-radius: 25px;
 $primary-button-transition: transform 150ms ease-out;
 $primary-button-display: flex;
 $primary-button-justify-content: center;
@@ -12,6 +11,7 @@ $primary-button-box-shadow: none;
 // p-button
 $p-button-padding: 5px 15px;
 $p-button-display: flex;
+$p-button-justify-content: center;
 $p-button-transition: all 0.5s;
 
 // p-button-label
@@ -28,7 +28,6 @@ $Button-hover-filter: brightness(1.08);
 $Button-not-hover-filter: brightness(1);
 
 // dataTableButton
-$datatable-button-border-radius: 50%;
 $datatable-button-padding: 0;
 $datatable-button-dimensions: 33px;
 

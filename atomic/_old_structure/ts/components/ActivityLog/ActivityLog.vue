@@ -54,10 +54,11 @@
                     <Column class="actionColumn">
                         <template #body="row">
                             <div class="actionColumnContent">
-                                <Button
+                                <button-atom
                                     class="dataTableButton"
-                                    icon="pi pi-trash"
+                                    icon-class="pi pi-trash"
                                     @click="openModal('delete', row.data)"
+                                    :rounded="true"
                                     :style="activityStyle"
                                 />
                             </div>
@@ -70,13 +71,13 @@
     </div>
     <Dialog :visible="visibleDelete" modal header="Confirm delete activity">
         <div class="flex justify-content-between">
-            <Button
-                severity="secondary"
+            <button-atom
                 label="Cancel"
+                severity="secondary"
                 @click="closeModal('delete')"
-                class="p-button-rounded"
+                :rounded="true"
             />
-            <Button
+            <button-atom
                 label="Confirm"
                 @click="
                     deleteActivity(
@@ -85,7 +86,7 @@
                         closeModal
                     )
                 "
-                class="p-button-rounded"
+                :rounded="true"
                 :style="activityStyle"
             />
         </div>

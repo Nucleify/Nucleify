@@ -1,4 +1,9 @@
 /**
+ *  Anchor
+ */
+export { AnchorTagInterface as AnchorTagInterface } from './interfaces/AnchorTag'
+
+/**
  *  Avatar
  */
 export { AvatarInterface as AvatarInterface } from './interfaces/Avatar'
@@ -23,6 +28,11 @@ export { HandleStylesInterface as HandleStylesInterface } from './interfaces/Col
  *  Image
  */
 export { ImageInterface as ImageInterface } from './interfaces/Image'
+
+/**
+ *  InputText
+ */
+export { InputTextInterface as InputTextInterface } from './interfaces/InputText'
 
 /**
  *  ProgressSpinner

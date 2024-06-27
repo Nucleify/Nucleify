@@ -7,7 +7,7 @@
         <form action="#" class="formContainer">
             <div class="formDiv">
                 <label for="first_name">First Name</label>
-                <InputText
+                <input-text-atom
                     id="first_name"
                     type="text"
                     v-model="data.first_name"
@@ -16,7 +16,7 @@
 
             <div class="formDiv">
                 <label for="last_name">Last Name</label>
-                <InputText
+                <input-text-atom
                     id="last_name"
                     type="text"
                     v-model="data.last_name"
@@ -25,12 +25,12 @@
 
             <div class="formDiv">
                 <label for="email">Email</label>
-                <InputText id="email" type="email" v-model="data.email" />
+                <input-text-atom id="email" type="email" v-model="data.email" />
             </div>
 
             <div class="formDiv">
                 <label for="personal_phone">Personal Phone</label>
-                <InputText
+                <input-text-atom
                     id="personal_phone"
                     type="tel"
                     v-model="data.personal_phone"
@@ -39,7 +39,7 @@
 
             <div class="formDiv">
                 <label for="work_phone">Work Phone</label>
-                <InputText
+                <input-text-atom
                     id="work_phone"
                     type="tel"
                     v-model="data.work_phone"
@@ -48,17 +48,25 @@
 
             <div class="formDiv">
                 <label for="address">Address</label>
-                <InputText id="address" type="text" v-model="data.address" />
+                <input-text-atom
+                    id="address"
+                    type="text"
+                    v-model="data.address"
+                />
             </div>
 
             <div class="formDiv">
                 <label for="birthday">Birthday</label>
-                <InputText id="birthday" type="date" v-model="data.birthday" />
+                <input-text-atom
+                    id="birthday"
+                    type="date"
+                    v-model="data.birthday"
+                />
             </div>
 
             <div class="formDiv">
                 <label for="contact_groups">Contact Groups</label>
-                <InputText
+                <input-text-atom
                     id="contact_groups"
                     type="text"
                     v-model="data.contact_groups"
@@ -78,17 +86,16 @@
 
         <template #footer>
             <div class="dialogButtonsContainer">
-                <Button
-                    severity="secondary"
+                <button-atom
                     label="Cancel"
+                    severity="secondary"
                     @click="props.close('edit')"
-                    class="p-button-rounded"
+                    :rounded="true"
                 />
-                <Button
+                <button-atom
                     label="Confirm"
                     @click.prevent="editContact(data, getData, close)"
-                    class="p-button-rounded"
-                    :style="style"
+                    :rounded="true"
                 />
             </div>
         </template>

@@ -5,10 +5,11 @@
         <template #header>
             <div class="myCardHeaderContainer">
                 <h2>Item Colors</h2>
-                <Button
-                    class="myButton p-button-rounded"
-                    icon="pi pi-refresh"
+                <button-atom
+                    class="myButton"
                     @click="setDefaultColors(false)"
+                    icon-class="pi pi-refresh"
+                    :rounded="true"
                     :style="mainStyle"
                 />
             </div>
