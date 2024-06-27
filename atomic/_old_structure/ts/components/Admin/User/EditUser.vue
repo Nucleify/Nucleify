@@ -7,12 +7,12 @@
         <form action="#" class="formContainer">
             <div class="formDiv">
                 <label for="name">Name</label>
-                <InputText id="name" type="text" v-model="data.name" />
+                <input-text-atom id="name" type="text" v-model="data.name" />
             </div>
 
             <div class="formDiv">
                 <label for="email">Email</label>
-                <InputText id="email" type="text" v-model="data.email" />
+                <input-text-atom id="email" type="text" v-model="data.email" />
             </div>
 
             <div class="formDiv">
@@ -28,16 +28,16 @@
 
         <template #footer>
             <div class="dialogButtonsContainer">
-                <Button
-                    severity="secondary"
+                <button-atom
                     label="Cancel"
+                    severity="secondary"
                     @click="props.close('edit')"
-                    class="p-button-rounded"
+                    :rounded="true"
                 />
-                <Button
+                <button-atom
                     label="Confirm"
                     @click.prevent="editUser(data, getData, close)"
-                    class="p-button-rounded"
+                    :rounded="true"
                     :style="style"
                 />
             </div>

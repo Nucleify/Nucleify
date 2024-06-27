@@ -4,7 +4,7 @@
             class="p-3 grid-item-container BlockLayout"
             ref="draggableContainer"
         >
-            <a
+            <anchor-tag-atom
                 v-for="item in homeItems"
                 :key="item.label"
                 :id="item.label + 'GridItem'"
@@ -15,16 +15,15 @@
                     'Block--is-draggable': item.draggableClass,
                 }"
                 class="grid-item"
+                :icon="item.icon"
+                :label="item.label"
                 @mousedown="startDragging(item)"
                 v-tooltip.top="
                     item.draggableClass
                         ? 'Hold click & move'
                         : 'This item is not movable'
                 "
-            >
-                <i :class="item.iconClass"></i>
-                {{ item.label }}
-            </a>
+            />
         </div>
     </div>
 </template>

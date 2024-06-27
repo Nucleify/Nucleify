@@ -1,7 +1,7 @@
 <template>
     <Menubar :model="items" class="myNavbar" breakpoint="992px">
         <template #end>
-            <Avatar
+            <avatar-atom
                 icon="pi pi-user"
                 shape="circle"
                 class="navbarUser"
