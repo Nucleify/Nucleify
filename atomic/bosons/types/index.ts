@@ -25,6 +25,11 @@ export { UseColorsInterface as UseColorsInterface } from './interfaces/ColorPick
 export { HandleStylesInterface as HandleStylesInterface } from './interfaces/ColorPicker'
 
 /**
+ *  FloatLabel
+ */
+export { FloatLabelInterface as FloatLabelInterface } from './interfaces/FloatLabel'
+
+/**
  *  Image
  */
 export { ImageInterface as ImageInterface } from './interfaces/Image'
