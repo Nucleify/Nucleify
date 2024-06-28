@@ -9,21 +9,21 @@ import { handleStyles } from 'atomic/bosons/constants'
 
 export default function useSidebar(): UseSidebarInterface {
     const {
-        mainSidebarItemStyle,
-        activitySidebarItemStyle,
-        articleSidebarItemStyle,
-        contactSidebarItemStyle,
+        mainItemStyle,
+        activityItemStyle,
+        articleItemStyle,
+        contactItemStyle,
     }: HandleStylesInterface = handleStyles()
 
     function getSidebarItemStyle(url: string): ColorItemStyleInterface | '' {
         if (url === '/contacts') {
-            return isCurrentUrl(url) ? contactSidebarItemStyle : ''
+            return isCurrentUrl(url) ? contactItemStyle : ''
         } else if (url === '/articles') {
-            return isCurrentUrl(url) ? articleSidebarItemStyle : ''
+            return isCurrentUrl(url) ? articleItemStyle : ''
         } else if (url === '/activity-log') {
-            return isCurrentUrl(url) ? activitySidebarItemStyle : ''
+            return isCurrentUrl(url) ? activityItemStyle : ''
         } else {
-            return isCurrentUrl(url) ? mainSidebarItemStyle : ''
+            return isCurrentUrl(url) ? mainItemStyle : ''
         }
     }
 

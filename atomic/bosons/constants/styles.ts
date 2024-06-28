@@ -17,7 +17,7 @@ export default function handleStyles(): HandleStylesInterface {
     /**
      *  Main
      */
-    const mainSidebarItemStyle: ColorItemStyleInterface = {
+    const mainItemStyle: ColorItemStyleInterface = {
         color: mainItemColors.primary,
         backgroundColor: mainItemColors.sidebarSelected,
         boxShadow: 'none',
@@ -31,7 +31,7 @@ export default function handleStyles(): HandleStylesInterface {
     /**
      *  Activity
      */
-    const activitySidebarItemStyle: ColorItemStyleInterface = {
+    const activityItemStyle: ColorItemStyleInterface = {
         color: activityItemColors.primary,
         backgroundColor: activityItemColors.sidebarSelected,
         boxShadow: 'none',
@@ -45,7 +45,7 @@ export default function handleStyles(): HandleStylesInterface {
     /**
      *  Article
      */
-    const articleSidebarItemStyle: ColorItemStyleInterface = {
+    const articleItemStyle: ColorItemStyleInterface = {
         color: articleItemColors.primary,
         backgroundColor: articleItemColors.sidebarSelected,
         boxShadow: 'none',
@@ -59,7 +59,7 @@ export default function handleStyles(): HandleStylesInterface {
     /**
      *  Contact
      */
-    const contactSidebarItemStyle: ColorItemStyleInterface = {
+    const contactItemStyle: ColorItemStyleInterface = {
         color: contactItemColors.primary,
         backgroundColor: contactItemColors.sidebarSelected,
         boxShadow: 'none',
@@ -73,7 +73,7 @@ export default function handleStyles(): HandleStylesInterface {
     /**
      *  User
      */
-    const userSidebarItemStyle: ColorItemStyleInterface = {
+    const userItemStyle: ColorItemStyleInterface = {
         color: userItemColors.primary,
         backgroundColor: userItemColors.sidebarSelected,
         boxShadow: 'none',
@@ -90,10 +90,10 @@ export default function handleStyles(): HandleStylesInterface {
         articleStyle,
         contactStyle,
         userStyle,
-        mainSidebarItemStyle,
-        activitySidebarItemStyle,
-        articleSidebarItemStyle,
-        contactSidebarItemStyle,
-        userSidebarItemStyle,
+        mainItemStyle,
+        activityItemStyle,
+        articleItemStyle,
+        contactItemStyle,
+        userItemStyle,
     }
 }
