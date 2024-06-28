@@ -67,15 +67,17 @@ import {
     ColorPickerAtom,
     ImageAtom,
     InputTextAtom,
+    LabelTagAtom,
     ProgressSpinnerAtom,
 } from './atoms'
 
 app.component('anchor-tag-atom', AnchorTagAtom)
     .component('avatar-atom', AvatarAtom)
     .component('button-atom', ButtonAtom)
+    .component('color-picker-atom', ColorPickerAtom)
     .component('image-atom', ImageAtom)
     .component('input-text-atom', InputTextAtom)
-    .component('color-picker-atom', ColorPickerAtom)
+    .component('label-tag-atom', LabelTagAtom)
     .component('progress-spinner-atom', ProgressSpinnerAtom)
 
 /**

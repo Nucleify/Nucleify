@@ -35,6 +35,11 @@ export { ImageInterface as ImageInterface } from './interfaces/Image'
 export { InputTextInterface as InputTextInterface } from './interfaces/InputText'
 
 /**
+ *  Label
+ */
+export { LabelTagInterface as LabelTagInterface } from './interfaces/LabelTag'
+
+/**
  *  ProgressSpinner
  */
 export { ProgressSpinnerInterface as ProgressSpinnerInterface } from './interfaces/ProgressSpinner'
