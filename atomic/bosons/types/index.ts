@@ -47,6 +47,7 @@ export { ProgressSpinnerInterface as ProgressSpinnerInterface } from './interfac
  *  Anchor
  */
 export { AnchorTagInterface as AnchorTagInterface } from './interfaces/molecules/AnchorTag'
+export { HandleStartAnchorTagsInterface  as HandleStartAnchorTagsInterface } from './interfaces/molecules/AnchorTag'
 
 /**
  *  FloatLabel

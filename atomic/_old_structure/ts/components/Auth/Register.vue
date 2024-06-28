@@ -22,6 +22,7 @@
                             type="text"
                             id="name"
                             class="authInputText"
+                            autofocus
                         />
                         <label-tag-atom for="name" label="Name" />
                     </float-label-molecule>

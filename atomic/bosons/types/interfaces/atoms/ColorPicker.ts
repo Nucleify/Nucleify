@@ -5,6 +5,7 @@ export interface ColorItemStyleInterface {
     backgroundColor?: string | null
     borderColor?: string | null
     boxShadow?: string | null
+    opacity?: number | null
 }
 
 export interface ColorItemColorsInterface {

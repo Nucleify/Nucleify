@@ -1,9 +1,9 @@
+import { useColors } from 'atomic/bosons/utils'
 import {
     ColorItemStyleInterface,
     UseColorsReturnInterface,
     HandleStylesInterface,
 } from 'atomic/bosons/types'
-import { useColors } from 'atomic/bosons/utils'
 
 export default function handleStyles(): HandleStylesInterface {
     const {

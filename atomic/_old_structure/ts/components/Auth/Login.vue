@@ -24,6 +24,7 @@
                             type="email"
                             id="email"
                             class="authInputText"
+                            autofocus
                         />
                         <label-tag-atom for="email" label="Email Address" />
                     </float-label-molecule>
