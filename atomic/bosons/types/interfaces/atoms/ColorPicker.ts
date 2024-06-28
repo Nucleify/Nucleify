@@ -5,6 +5,7 @@ export interface ColorItemStyleInterface {
     backgroundColor?: string | null
     borderColor?: string | null
     boxShadow?: string | null
+    opacity?: number | null
 }
 
 export interface ColorItemColorsInterface {
@@ -54,9 +55,9 @@ export interface HandleStylesInterface {
     articleStyle: ColorItemStyleInterface
     contactStyle: ColorItemStyleInterface
     userStyle: ColorItemStyleInterface
-    mainSidebarItemStyle: ColorItemStyleInterface
-    activitySidebarItemStyle: ColorItemStyleInterface
-    articleSidebarItemStyle: ColorItemStyleInterface
-    contactSidebarItemStyle: ColorItemStyleInterface
-    userSidebarItemStyle: ColorItemStyleInterface
+    mainItemStyle: ColorItemStyleInterface
+    activityItemStyle: ColorItemStyleInterface
+    articleItemStyle: ColorItemStyleInterface
+    contactItemStyle: ColorItemStyleInterface
+    userItemStyle: ColorItemStyleInterface
 }

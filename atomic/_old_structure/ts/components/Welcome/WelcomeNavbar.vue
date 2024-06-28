@@ -2,13 +2,13 @@
 <template>
     <nav class="welcomeNavbar navbar navbar-expand-md">
         <div class="container">
-            <anchor-tag-atom href="/welcome">
-                <image-atom src="logo.png" width="70" />
-            </anchor-tag-atom>
+            <anchor-tag-molecule href="/welcome">
+                <image-atom src="logo.png" width="60" />
+            </anchor-tag-molecule>
 
             <button-atom
                 class="navbar-toggler"
-                :icon-class="
+                :icon="
                     navbarExpanded
                         ? 'pi pi-times text-2xl'
                         : 'pi pi-align-justify text-2xl'
@@ -24,28 +24,28 @@
                 <!-- Right Side Of Navbar -->
                 <div class="navbar-nav ms-auto md:gap-5 lg:gap-7">
                     <div class="navbar-nav flex md:gap-3 lg:gap-5">
-                        <anchor-tag-atom
+                        <anchor-tag-molecule
                             class="nav-link welcomeNavLink"
                             href="#start"
                             @click="throttleHideNavbar"
                             icon="pi pi-bolt welcomeNavLinkIcon"
                             label="Start"
                         />
-                        <anchor-tag-atom
+                        <anchor-tag-molecule
                             class="nav-link welcomeNavLink"
                             href="#features"
                             @click="throttleHideNavbar"
                             icon="pi pi-star welcomeNavLinkIcon"
                             label="Features"
                         />
-                        <anchor-tag-atom
+                        <anchor-tag-molecule
                             class="nav-link welcomeNavLink"
                             href="#why-us"
                             @click="throttleHideNavbar"
                             icon="pi pi-question welcomeNavLinkIcon"
                             label="Why Us"
                         />
-                        <anchor-tag-atom
+                        <anchor-tag-molecule
                             class="nav-link welcomeNavLink"
                             href="#contact"
                             @click="throttleHideNavbar"

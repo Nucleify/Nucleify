@@ -11,12 +11,9 @@
             gap: gap,
             padding: padding,
         }"
-    >
-        <i :class="iconClass"></i>
-        <span v-if="label" :class="labelClass" class="p-button-label">{{
-            label
-        }}</span>
-    </Button>
+        :icon="icon"
+        :label="label"
+    />
 </template>
 
 <script setup lang="ts">

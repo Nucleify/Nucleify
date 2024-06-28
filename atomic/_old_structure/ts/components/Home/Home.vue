@@ -4,7 +4,7 @@
             class="p-3 grid-item-container BlockLayout"
             ref="draggableContainer"
         >
-            <anchor-tag-atom
+            <anchor-tag-molecule
                 v-for="item in homeItems"
                 :key="item.label"
                 :id="item.label + 'GridItem'"

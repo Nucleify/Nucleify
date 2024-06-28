@@ -11,45 +11,26 @@
                     label="Try it out!"
                     class="startButton"
                     :rounded="true"
-                    @click="navigateTo('/login')"
+                    @click="navigateTo('/register')"
                 />
             </div>
-            <div>
-                <anchor-tag-atom
-                    class="startItem usersItem"
-                    v-tooltip.right="'Users'"
-                    icon="pi pi-user usersIcon"
-                />
-                <anchor-tag-atom
-                    class="startItem contactsItem"
-                    v-tooltip.right="'Contacts'"
-                    icon="pi pi-users contactsIcon"
-                />
-                <anchor-tag-atom
-                    class="startItem tasksItem"
-                    v-tooltip.right="'Tasks'"
-                    icon="pi pi-check-square tasksIcon"
-                />
-                <anchor-tag-atom
-                    class="startItem articlesItem"
-                    v-tooltip.right="'Articles'"
-                    icon="pi pi-comment articlesIcon"
-                />
-                <anchor-tag-atom
-                    class="startItem moneyItem"
-                    v-tooltip.right="'Revenues & Expenses'"
-                    icon="pi pi-dollar moneyIcon"
-                />
-                <anchor-tag-atom
-                    class="startItem activitiesItem"
-                    v-tooltip.right="'Activities'"
-                    icon="pi pi-clock activitiesIcon"
-                />
-            </div>
+            <anchor-tag-molecule
+                v-for="(a, index) in anchorTags"
+                :key="index"
+                :href="a.href"
+                :class="a.anchorClass"
+                v-tooltip.right="a.tooltip"
+                :icon="a.icon"
+                :style="a.style"
+            />
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
 import { navigateTo } from '@/utils'
+
+import { handleStartAnchorTags } from 'atomic/bosons/constants'
+
+const { anchorTags } = handleStartAnchorTags()
 </script>

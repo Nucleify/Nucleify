@@ -3,7 +3,6 @@ export interface InputTextInterface {
     placeholder?: string
     type?: string
     value?: string
-    inputTextClass?: string
     invalid?: boolean
     disabled?: boolean
     unstyled?: boolean

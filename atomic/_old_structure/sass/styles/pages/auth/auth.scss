@@ -23,8 +23,23 @@
             justify-content: $auth-card-header-container-justify-content;
 
             .authCardHeader {
-                margin-bottom: $auth-card-header-margin-bottom;
+                display: $auth-card-header-display;
+                flex-direction: $auth-card-header-flex-direction;
+                align-items: $auth-card-header-align-items;
+                gap: $auth-card-header-gap;
                 margin-top: $auth-card-header-margin-top;
+
+                h1 {
+                    font-size: $font-size-big1;
+                }
+                p {
+                    font-size: $font-size-base1;
+
+                    a {
+                        text-decoration: $auth-card-header-a-text-decoration;
+                        color: $primary-color !important;
+                    }
+                }
             }
         }
 
@@ -33,6 +48,12 @@
 
             .p-card-content {
                 padding: $auth-card-content-padding;
+
+                form {
+                    display: $auth-card-form-display;
+                    flex-direction: $auth-card-form-flex-direction;
+                    gap: $auth-card-form-gap;
+                }
             }
         }
 
@@ -58,19 +79,20 @@
 
     .loginCard {
         width: $auth-card-width;
-        max-width: $login-card-position-max-width;
-        margin-top: $login-card-position-margin-top;
+        max-width: $auth-card-max-width;
+        margin-top: $login-card-margin-top;
     }
 
     .registerCard {
         width: $auth-card-width;
-        max-width: $register-card-position-max-width;
+        max-width: $auth-card-max-width;
+        margin-top: $register-card-margin-top;
     }
 }
 
-.backLink,
-.loginLink,
-.registerLink {
+.backLink {
+    top: $back-link-top;
+    left: $back-link-left;
     position: $links-position;
     font-size: $font-size-medium;
     text-decoration: $links-text-decoration;
@@ -78,19 +100,6 @@
     transition: $transition-colors-300ms;
 }
 
-.backLink:hover,
-.loginLink:hover,
-.registerLink:hover {
+.backLink:hover {
     color: $primary-hover-color;
-}
-
-.backLink {
-    top: $back-link-top;
-    left: $back-link-left;
-}
-
-.loginLink,
-.registerLink {
-    top: $auth-links-top;
-    right: $auth-links-right;
 }

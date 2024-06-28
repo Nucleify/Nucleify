@@ -1,6 +1,5 @@
 export interface AvatarInterface {
     label?: string
-    avatarClass?: string
     icon?: string
     image?: string
     size?: 'normal' | 'large' | 'xlarge'

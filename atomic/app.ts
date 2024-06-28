@@ -26,6 +26,7 @@ import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
 import Dialog from 'primevue/dialog'
 import Dropdown from 'primevue/dropdown'
+import FloatLabel from 'primevue/floatlabel'
 import Image from 'primevue/image'
 import InlineMessage from 'primevue/inlinemessage'
 import InputText from 'primevue/inputtext'
@@ -46,6 +47,7 @@ app.component('Avatar', Avatar)
     .component('DataTable', DataTable)
     .component('Dialog', Dialog)
     .component('Dropdown', Dropdown)
+    .component('FloatLabel', FloatLabel)
     .component('Image', Image)
     .component('InlineMessage', InlineMessage)
     .component('InputText', InputText)
@@ -60,23 +62,36 @@ app.component('Avatar', Avatar)
 /**
  *  New Atomic Design components
  */
+
+// Atoms
 import {
-    AnchorTagAtom,
     AvatarAtom,
     ButtonAtom,
     ColorPickerAtom,
     ImageAtom,
     InputTextAtom,
+    LabelTagAtom,
     ProgressSpinnerAtom,
 } from './atoms'
 
-app.component('anchor-tag-atom', AnchorTagAtom)
+app
     .component('avatar-atom', AvatarAtom)
     .component('button-atom', ButtonAtom)
+    .component('color-picker-atom', ColorPickerAtom)
     .component('image-atom', ImageAtom)
     .component('input-text-atom', InputTextAtom)
-    .component('color-picker-atom', ColorPickerAtom)
+    .component('label-tag-atom', LabelTagAtom)
     .component('progress-spinner-atom', ProgressSpinnerAtom)
+
+// Molecules
+import {
+    AnchorTagMolecule,
+    FloatLabelMolecule
+} from './molecules'
+
+app.component('anchor-tag-molecule', AnchorTagMolecule)
+    .component('float-label-molecule', FloatLabelMolecule)
+
 
 /**
  *  Components
@@ -124,4 +139,4 @@ app.directive('tooltip', Tooltip)
 import ToastService from 'primevue/toastservice'
 import PrimeVue from 'primevue/config'
 
-app.use(PrimeVue).use(ToastService).mount('#app')
+app.use(PrimeVue, { ripple: true }).use(ToastService).mount('#app')

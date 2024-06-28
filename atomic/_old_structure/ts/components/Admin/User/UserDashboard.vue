@@ -71,28 +71,28 @@
                             <div class="actionColumnContent">
                                 <button-atom
                                     class="desktopButton dataTableButton"
-                                    icon-class="pi pi-eye"
+                                    icon="pi pi-eye"
                                     @click="openModal('show', row.data)"
                                     :rounded="true"
                                     :style="userStyle"
                                 />
                                 <button-atom
                                     class="desktopButton dataTableButton"
-                                    icon-class="pi pi-pencil"
+                                    icon="pi pi-pencil"
                                     @click="openModal('edit', row.data)"
                                     :rounded="true"
                                     :style="userStyle"
                                 />
                                 <button-atom
                                     class="desktopButton dataTableButton"
-                                    icon-class="pi pi-trash"
+                                    icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
                                     :rounded="true"
                                     :style="userStyle"
                                 />
                                 <button-atom
                                     class="mobileButton dataTableButton"
-                                    icon-class="pi pi-bars"
+                                    icon="pi pi-bars"
                                     @click="openMenu(menu, $event, row.data)"
                                     :rounded="true"
                                     :style="userStyle"

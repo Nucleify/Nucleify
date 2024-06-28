@@ -3,7 +3,7 @@
     <div class="panelContainer">
         <div class="adminBricks grid col-12">
             <div class="grid-item-container col-6 lg:col-4">
-                <anchor-tag-atom href="#articles" class="grid-item">
+                <anchor-tag-molecule href="#articles" class="grid-item">
                     <div class="adminBricksCircle" :style="articleCircleStyle">
                         <div>
                             <p class="adminBricksCircleNumber">
@@ -18,10 +18,10 @@
                     >
                         Articles
                     </p>
-                </anchor-tag-atom>
+                </anchor-tag-molecule>
             </div>
             <div class="grid-item-container col-6 lg:col-4">
-                <anchor-tag-atom href="#contacts" class="grid-item">
+                <anchor-tag-molecule href="#contacts" class="grid-item">
                     <div class="adminBricksCircle" :style="contactCircleStyle">
                         <div>
                             <p class="adminBricksCircleNumber">
@@ -36,10 +36,10 @@
                     >
                         Contacts
                     </p>
-                </anchor-tag-atom>
+                </anchor-tag-molecule>
             </div>
             <div class="grid-item-container col-6 lg:col-4">
-                <anchor-tag-atom href="#users" class="grid-item">
+                <anchor-tag-molecule href="#users" class="grid-item">
                     <div class="adminBricksCircle" :style="userCircleStyle">
                         <div>
                             <p class="adminBricksCircleNumber">
@@ -51,7 +51,7 @@
                     <p class="usersBricksText" :style="userBricksTextStyle">
                         Users
                     </p>
-                </anchor-tag-atom>
+                </anchor-tag-molecule>
             </div>
 
             <div
