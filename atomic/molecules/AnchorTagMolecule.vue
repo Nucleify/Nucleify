@@ -1,8 +1,12 @@
 <template>
-    <a :href="href" :rel="rel" :target="target">
+    <a :href="href" :rel="rel" :target="target" :style="style">
         <slot>
             <i v-if="icon" :class="icon"></i>
-            {{ label }}
+            <label-tag-atom
+                v-if="label"
+                :label="label"
+                :style="{ cursor: 'pointer' }"
+            />
         </slot>
     </a>
 </template>

@@ -1,4 +1,4 @@
-# <div align="center"> <img src="https://github.com/SzymCode/DataManager/assets/107359025/7a309f2a-fb1d-408a-8985-5bac01796411" width="100" height="100" > <br> DataManager <br> </div>
+# <div align="center"> <img src="https://github.com/SzymCode/DataManager/assets/107359025/652cd065-7449-4e9a-9564-3916fa3baedc" width="70"> <br> DataManager <br> </div>
 <br>
 
 This website helps to storage various data types and share it with others. My target is to create fully responsive, functional and scalable [ERP](https://en.wikipedia.org/wiki/Enterprise_resource_planning)-like website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) and [FDD](https://en.wikipedia.org/wiki/Feature-driven_development) principles. Serves as my coding sandbox, where I can experiment with different coding techniques, implement new features, and refine my skills. 

@@ -1,6 +1,6 @@
 <template>
     <InputText
-        :class="[inputTextClass, { 'p-invalid': invalid }]"
+        :class="[{ 'p-invalid': invalid }]"
         :v-model="value"
         :id="id"
         :type="type"

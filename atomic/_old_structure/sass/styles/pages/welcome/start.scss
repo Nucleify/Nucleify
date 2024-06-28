@@ -51,10 +51,7 @@
 }
 
 .startItem:hover {
-    color: $primary-hover-color;
-    background: $secondary-hover-bg-color;
-    transition: $transition-colors-300ms;
-    border-radius: $small-border-radius;
+    color: $secondary-gray-color;
 }
 
 .activitiesIcon,

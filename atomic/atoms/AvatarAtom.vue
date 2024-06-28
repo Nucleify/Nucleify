@@ -1,7 +1,6 @@
 <template>
     <Avatar
         :label="label"
-        :class="avatarClass"
         :icon="icon"
         :image="image"
         :size="size"
