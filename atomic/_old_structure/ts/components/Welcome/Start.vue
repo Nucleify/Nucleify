@@ -11,7 +11,7 @@
                     label="Try it out!"
                     class="startButton"
                     :rounded="true"
-                    @click="navigateTo('/login')"
+                    @click="navigateTo('/register')"
                 />
             </div>
             <div>

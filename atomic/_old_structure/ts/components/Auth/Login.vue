@@ -1,60 +1,49 @@
 <template>
     <Toast />
-    <Links />
+    <BackLink />
     <div class="authCardContainer">
         <Card class="loginCard">
             <template #header>
                 <div class="authCardHeaderContainer">
-                    <h2 class="authCardHeader">Log In</h2>
+                    <div class="authCardHeader">
+                        <image-atom src="logo.png" width="50" />
+
+                        <h1>Welcome Back</h1>
+                        <p class="mb-2">
+                            Don't have an account?
+                            <anchor-tag-molecule href="/register" :label="'Create today!'" />
+                        </p>
+                    </div>
                 </div>
             </template>
             <template #content>
                 <form @submit.prevent="submitAuthForm(data)">
-                    <div class="row mb-3">
-                        <label
-                            for="email"
-                            class="col-md-4 col-form-label text-md-end"
-                        >
-                            Email Address
-                        </label>
+                    <float-label-molecule>
+                        <input-text-atom
+                            v-model="data.email"
+                            type="email"
+                            id="email"
+                            class="authInputText"
+                        />
+                        <label-tag-atom for="email" label="Email Address" />
+                    </float-label-molecule>
 
-                        <div class="col-md-6">
-                            <input-text-atom
-                                v-model="data.email"
-                                type="email"
-                                id="email"
-                                class="authInputText"
-                            />
-                        </div>
-                    </div>
+                    <float-label-molecule>
+                        <input-text-atom
+                            v-model="data.password"
+                            type="password"
+                            id="password"
+                            class="authInputText"
+                        />
+                        <label-tag-atom for="password" label="Password" />
+                    </float-label-molecule>
 
-                    <div class="row mb-4 md:mb-3">
-                        <label for="password" class="col-md-4 text-md-end">
-                            Password
-                        </label>
-
-                        <div class="col-md-6">
-                            <input-text-atom
-                                v-model="data.password"
-                                type="password"
-                                id="password"
-                                class="authInputText"
-                            />
-                        </div>
-                    </div>
-
-                    <div class="row mb-0">
-                        <div
-                            class="col-md-6 offset-md-4 text-center md:text-left"
-                        >
-                            <button-atom
-                                label="Log In"
-                                type="submit"
-                                class="primaryButton text-sm"
-                                :rounded="true"
-                            />
-                        </div>
-                    </div>
+                    <button-atom
+                        label="Log In"
+                        type="submit"
+                        class="-mb-1 mt-2"
+                        padding="10px 10px"
+                    />
                 </form>
             </template>
         </Card>
@@ -66,9 +55,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import Links from './Links.vue'
-
-import { TestLoginButton } from '@/components'
+import { BackLink, TestLoginButton } from '@/components'
 import { LoginFormInterface } from '@/types'
 import { useSubmitAuthForm } from '@/utils'
 

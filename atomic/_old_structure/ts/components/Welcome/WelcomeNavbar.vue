@@ -3,7 +3,7 @@
     <nav class="welcomeNavbar navbar navbar-expand-md">
         <div class="container">
             <anchor-tag-molecule href="/welcome">
-                <image-atom src="logo.png" width="70" />
+                <image-atom src="logo.png" width="60" />
             </anchor-tag-molecule>
 
             <button-atom

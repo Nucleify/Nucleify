@@ -1,6 +1,6 @@
 // Auth card container
 $auth-card-container-height: 100vh;
-$auth-card-container-padding: 1.5rem;
+$auth-card-container-padding: 1rem;
 $auth-card-container-display: flex;
 $auth-card-container-flex-direction: column;
 $auth-card-container-justify-content: center;
@@ -9,26 +9,40 @@ $auth-card-container-align-items: center;
 // Auth card
 $auth-card-position: relative;
 $auth-card-width: 100%;
-$login-card-position-max-width: 500px;
-$login-card-position-margin-top: -140px;
-$register-card-position-max-width: 640px;
+$auth-card-max-width: 500px;
+$login-card-margin-top: -120px;
+$register-card-margin-top: -50px;
 
 // Auth card header container
 $auth-card-header-container-display: flex;
 $auth-card-header-container-justify-content: center;
 
 // Auth card header
-$auth-card-header-margin-bottom: -0.5rem;
+$auth-card-header-display: flex;
+$auth-card-header-flex-direction: column;
+$auth-card-header-align-items: center;
+$auth-card-header-gap: 1rem;
 $auth-card-header-margin-top: 2rem;
 
+// Auth card header p
+$auth-card-header-p: 2rem;
+
+// Auth card header a
+$auth-card-header-a-text-decoration: none;
+
 // Auth card body
-$auth-card-body-padding: 10px;
+$auth-card-body-padding: 10px 10px 15px 10px;
 
 // Auth card content
 $auth-card-content-padding: 20px;
 
+// Auth card form
+$auth-card-form-display: flex;
+$auth-card-form-flex-direction: column;
+$auth-card-form-gap: 2.2rem;
+
 // Auth inputs
-$auth-input-text-height: 35px;
+$auth-input-text-height: 40px;
 $auth-input-text-width: 100%;
 $auth-input-text-max-width: 100%;
 $auth-input-text-font-size: 12px;
@@ -42,6 +56,6 @@ $auth-links-top: 12px;
 $auth-links-right: 20px;
 
 // Min width 768px
-$auth-card-padding-bottom-md: 20px;
+$auth-card-padding-bottom-md: 0px;
 $auth-card-position-top-md: 150px;
 $auth-card-body-content-padding-md: 20px;
