@@ -1,50 +1,54 @@
-/**
- *  Anchor
- */
-export { AnchorTagInterface as AnchorTagInterface } from './interfaces/AnchorTag'
-
+// Atoms
 /**
  *  Avatar
  */
-export { AvatarInterface as AvatarInterface } from './interfaces/Avatar'
+export { AvatarInterface as AvatarInterface } from './interfaces/atoms/Avatar'
 
 /**
  *  Button
  */
-export { ButtonInterface as ButtonInterface } from './interfaces/Button'
+export { ButtonInterface as ButtonInterface } from './interfaces/atoms/Button'
 
 /**
  *  ColorPicker
  */
-export { ColorItemStyleInterface as ColorItemStyleInterface } from './interfaces/ColorPicker'
-export { ColorItemColorsInterface as ColorItemColorsInterface } from './interfaces/ColorPicker'
-export { ColorPickerInterface as ColorPickerInterface } from './interfaces/ColorPicker'
-export { UseColorsReturnInterface as UseColorsReturnInterface } from './interfaces/ColorPicker'
-export { UseColorPickerInterface as UseColorPickerInterface } from './interfaces/ColorPicker'
-export { UseColorsInterface as UseColorsInterface } from './interfaces/ColorPicker'
-export { HandleStylesInterface as HandleStylesInterface } from './interfaces/ColorPicker'
-
-/**
- *  FloatLabel
- */
-export { FloatLabelInterface as FloatLabelInterface } from './interfaces/FloatLabel'
+export { ColorItemStyleInterface as ColorItemStyleInterface } from './interfaces/atoms/ColorPicker'
+export { ColorItemColorsInterface as ColorItemColorsInterface } from './interfaces/atoms/ColorPicker'
+export { ColorPickerInterface as ColorPickerInterface } from './interfaces/atoms/ColorPicker'
+export { UseColorsReturnInterface as UseColorsReturnInterface } from './interfaces/atoms/ColorPicker'
+export { UseColorPickerInterface as UseColorPickerInterface } from './interfaces/atoms/ColorPicker'
+export { UseColorsInterface as UseColorsInterface } from './interfaces/atoms/ColorPicker'
+export { HandleStylesInterface as HandleStylesInterface } from './interfaces/atoms/ColorPicker'
 
 /**
  *  Image
  */
-export { ImageInterface as ImageInterface } from './interfaces/Image'
+export { ImageInterface as ImageInterface } from './interfaces/atoms/Image'
 
 /**
  *  InputText
  */
-export { InputTextInterface as InputTextInterface } from './interfaces/InputText'
+export { InputTextInterface as InputTextInterface } from './interfaces/atoms/InputText'
 
 /**
  *  Label
  */
-export { LabelTagInterface as LabelTagInterface } from './interfaces/LabelTag'
+export { LabelTagInterface as LabelTagInterface } from './interfaces/atoms/LabelTag'
 
 /**
  *  ProgressSpinner
  */
-export { ProgressSpinnerInterface as ProgressSpinnerInterface } from './interfaces/ProgressSpinner'
+export { ProgressSpinnerInterface as ProgressSpinnerInterface } from './interfaces/atoms/ProgressSpinner'
+
+
+
+// Molecules
+/**
+ *  Anchor
+ */
+export { AnchorTagInterface as AnchorTagInterface } from './interfaces/molecules/AnchorTag'
+
+/**
+ *  FloatLabel
+ */
+export { FloatLabelInterface as FloatLabelInterface } from './interfaces/molecules/FloatLabel'

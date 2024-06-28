@@ -7,7 +7,7 @@
                 <h2>Display Charts</h2>
                 <button-atom
                     class="myButton p-button-rounded"
-                    icon-class="pi pi-refresh"
+                    icon="pi pi-refresh"
                     @click="setDefaultChartsDisplay(true)"
                     :style="mainStyle"
                 />
@@ -25,7 +25,7 @@
                     <button-atom
                         class="myButton"
                         @click="displayChartsToggle(item)"
-                        :icon-class="
+                        :icon="
                             display[item] ? 'pi pi-eye' : 'pi pi-eye-slash'
                         "
                         :rounded="true"

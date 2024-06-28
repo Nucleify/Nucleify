@@ -1,15 +1,15 @@
 <template>
     <div class="mySidebar" v-if="shouldShowSidebar">
-        <anchor-tag-atom href="/welcome">
+        <anchor-tag-molecule href="/welcome">
             <Image src="logo.png" width="50" />
-        </anchor-tag-atom>
+        </anchor-tag-molecule>
 
         <div
             class="sidebarItems flex flex-column justify-content-center w-3rem m-0 gap-3"
         >
             <!-- Sidebar items -->
             <template v-for="item in items" :key="item.url">
-                <anchor-tag-atom
+                <anchor-tag-molecule
                     :href="item.url"
                     class="sidebarItem"
                     v-tooltip.right="item.label"
@@ -25,7 +25,7 @@
             <!-- User menu items -->
             <div class="userMenuItems">
                 <template v-for="item in userMenuItems" :key="item.url">
-                    <anchor-tag-atom
+                    <anchor-tag-molecule
                         v-if="item.label !== 'Logout'"
                         :href="item.url"
                         class="sidebarItem userMenuItem"
@@ -33,7 +33,7 @@
                         :class="item.class"
                         :icon="item.icon"
                     />
-                    <anchor-tag-atom
+                    <anchor-tag-molecule
                         v-if="item.label === 'Logout'"
                         @click="logout"
                         class="sidebarItem userMenuItem"
@@ -44,7 +44,7 @@
                 </template>
                 <button-atom
                     unstyled
-                    icon-class="pi pi-times"
+                    icon="pi pi-times"
                     class="sidebarItem userMenuItem closeUserMenuItem"
                     @click="closeUserMenu()"
                 />

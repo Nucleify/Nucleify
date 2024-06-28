@@ -14,9 +14,8 @@ export interface ButtonInterface {
     rounded?: boolean
     text?: boolean
     outlined?: boolean
-    iconClass?: string
+    icon?: string
     label?: string
-    labelClass?: string
     gap?: string
     padding?: string
 }

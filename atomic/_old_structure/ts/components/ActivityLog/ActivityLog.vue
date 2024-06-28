@@ -56,7 +56,7 @@
                             <div class="actionColumnContent">
                                 <button-atom
                                     class="dataTableButton"
-                                    icon-class="pi pi-trash"
+                                    icon="pi pi-trash"
                                     @click="openModal('delete', row.data)"
                                     :rounded="true"
                                     :style="activityStyle"

@@ -8,7 +8,7 @@
                 <button-atom
                     class="myButton"
                     @click="setDefaultColors(false)"
-                    icon-class="pi pi-refresh"
+                    icon="pi pi-refresh"
                     :rounded="true"
                     :style="mainStyle"
                 />

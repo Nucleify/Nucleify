@@ -15,32 +15,32 @@
                 />
             </div>
             <div>
-                <anchor-tag-atom
+                <anchor-tag-molecule
                     class="startItem usersItem"
                     v-tooltip.right="'Users'"
                     icon="pi pi-user usersIcon"
                 />
-                <anchor-tag-atom
+                <anchor-tag-molecule
                     class="startItem contactsItem"
                     v-tooltip.right="'Contacts'"
                     icon="pi pi-users contactsIcon"
                 />
-                <anchor-tag-atom
+                <anchor-tag-molecule
                     class="startItem tasksItem"
                     v-tooltip.right="'Tasks'"
                     icon="pi pi-check-square tasksIcon"
                 />
-                <anchor-tag-atom
+                <anchor-tag-molecule
                     class="startItem articlesItem"
                     v-tooltip.right="'Articles'"
                     icon="pi pi-comment articlesIcon"
                 />
-                <anchor-tag-atom
+                <anchor-tag-molecule
                     class="startItem moneyItem"
                     v-tooltip.right="'Revenues & Expenses'"
                     icon="pi pi-dollar moneyIcon"
                 />
-                <anchor-tag-atom
+                <anchor-tag-molecule
                     class="startItem activitiesItem"
                     v-tooltip.right="'Activities'"
                     icon="pi pi-clock activitiesIcon"
