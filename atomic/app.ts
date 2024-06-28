@@ -139,4 +139,4 @@ app.directive('tooltip', Tooltip)
 import ToastService from 'primevue/toastservice'
 import PrimeVue from 'primevue/config'
 
-app.use(PrimeVue).use(ToastService).mount('#app')
+app.use(PrimeVue, { ripple: true }).use(ToastService).mount('#app')
