@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "szymcode/data-manager",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "This website helps to storage various data types and share it with others.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {

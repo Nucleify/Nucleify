@@ -1,4 +1,6 @@
 {
+  "name": "data-manager",
+  "description": "This website helps to storage various data types and share it with others.",
   "private": true,
   "engines": {
     "node": "20.x",
