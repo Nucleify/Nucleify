@@ -1054,7 +1054,7 @@
   dependencies:
     statuses "^2.0.1"
 
-"@chromatic-com/storybook@^1.6.0":
+"@chromatic-com/storybook@1.6.0":
   version "1.6.0"
   resolved "https://registry.npmjs.org/@chromatic-com/storybook/-/storybook-1.6.0.tgz"
   integrity sha512-6sHj0l194KMBIZ0D5SeJ+Ys+zslehKHcC2d6Hd/YEn4cCl7p9mLuxrZjvf8xharGKy8vf9Q1tKrU2YdldzUBoQ==
@@ -1432,7 +1432,7 @@
     lodash "^4.17.21"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-docs@^8.1.11", "@storybook/addon-docs@8.1.11":
+"@storybook/addon-docs@8.1.11":
   version "8.1.11"
   resolved "https://registry.npmjs.org/@storybook/addon-docs/-/addon-docs-8.1.11.tgz"
   integrity sha512-69dv+CE4R5wFU7xnJmhuyEbLN2PEVDV3N/BbgJqeucIYPmm6zDV83Q66teCHKYtRln3BFUqPH5mxsjiHobxfJQ==
@@ -1458,7 +1458,7 @@
     rehype-slug "^6.0.0"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-essentials@^8.1.11":
+"@storybook/addon-essentials@8.1.11":
   version "8.1.11"
   resolved "https://registry.npmjs.org/@storybook/addon-essentials/-/addon-essentials-8.1.11.tgz"
   integrity sha512-uRTpcIZQnflML8H+2onicUNIIssKfuviW8Lyrs/KFwSZ1rMcYzhwzCNbGlIbAv04tgHe5NqEyNhb+DVQcZQBzg==
@@ -1485,7 +1485,7 @@
   dependencies:
     "@storybook/global" "^5.0.0"
 
-"@storybook/addon-interactions@^8.1.11":
+"@storybook/addon-interactions@8.1.11":
   version "8.1.11"
   resolved "https://registry.npmjs.org/@storybook/addon-interactions/-/addon-interactions-8.1.11.tgz"
   integrity sha512-nkc01z61mYM1kxf0ncBQLlFnnwW4RAVPfRSxK9BdbFN3AAvFiHCwVZdn71mi+C3L8oTqYR6o32e0RlXk+AjhHA==
@@ -1497,7 +1497,7 @@
     polished "^4.2.2"
     ts-dedent "^2.2.0"
 
-"@storybook/addon-links@^8.1.11":
+"@storybook/addon-links@8.1.11":
   version "8.1.11"
   resolved "https://registry.npmjs.org/@storybook/addon-links/-/addon-links-8.1.11.tgz"
   integrity sha512-HlV2RQSrZyi+55W1B1a9eWNuJdNpWx0g3j7s2arNlNmbd6/kfWAp84axBstI1tL0nW4svut7bWlCsMSOIden+A==
@@ -1506,7 +1506,7 @@
     "@storybook/global" "^5.0.0"
     ts-dedent "^2.0.0"
 
-"@storybook/addon-mdx-gfm@^8.1.11":
+"@storybook/addon-mdx-gfm@8.1.11":
   version "8.1.11"
   resolved "https://registry.npmjs.org/@storybook/addon-mdx-gfm/-/addon-mdx-gfm-8.1.11.tgz"
   integrity sha512-0/4Xaisvmoi26iK1ezTOB9dN2b0JbgWKzO2PO6att2Jh7lplLCf1QeoE8Y4SgCh0brage+mA8mKI8NrT7d18pg==
@@ -1543,7 +1543,7 @@
   dependencies:
     memoizerific "^1.11.3"
 
-"@storybook/blocks@^8.1.11", "@storybook/blocks@8.1.11":
+"@storybook/blocks@8.1.11":
   version "8.1.11"
   resolved "https://registry.npmjs.org/@storybook/blocks/-/blocks-8.1.11.tgz"
   integrity sha512-eMed7PpL/hAVM6tBS7h70bEAyzbiSU9I/kye4jZ7DkCbAsrX6OKmC7pcHSDn712WTcf3vVqxy5jOKUmOXpc0eg==
@@ -1963,7 +1963,7 @@
     fs-extra "^11.1.0"
     read-pkg-up "^7.0.1"
 
-"@storybook/test@^8.1.11", "@storybook/test@8.1.11":
+"@storybook/test@8.1.11":
   version "8.1.11"
   resolved "https://registry.npmjs.org/@storybook/test/-/test-8.1.11.tgz"
   integrity sha512-k+V3HemF2/I8fkRxRqM8uH8ULrpBSAAdBOtWSHWLvHguVcb2YA4g4kKo6tXBB9256QfyDW4ZiaAj0/9TMxmJPQ==
@@ -1998,7 +1998,7 @@
     "@types/express" "^4.7.0"
     file-system-cache "2.3.0"
 
-"@storybook/vue3-vite@^8.1.11":
+"@storybook/vue3-vite@8.1.11":
   version "8.1.11"
   resolved "https://registry.npmjs.org/@storybook/vue3-vite/-/vue3-vite-8.1.11.tgz"
   integrity sha512-q0bqh8XEEunaTmp4YiDqM2+YZLwEIevTb5PnNe7G7f2qOiSCE1ncBDnBK717UlCd+iYr34NTztgV2/jIhz1i5w==
@@ -2013,7 +2013,7 @@
     vue-component-meta "^2.0.0"
     vue-docgen-api "^4.75.1"
 
-"@storybook/vue3@^8.1.11", "@storybook/vue3@8.1.11":
+"@storybook/vue3@8.1.11":
   version "8.1.11"
   resolved "https://registry.npmjs.org/@storybook/vue3/-/vue3-8.1.11.tgz"
   integrity sha512-xJtvfLiCOY3UqwDMd0hZdsadPm1q8dwjfM1UN2Q2ssRWNfXzww1oi+Msj902wz9zFZMYVZypfTfgrdRgWmfEjA==
@@ -2295,7 +2295,7 @@
   resolved "https://registry.npmjs.org/@ungap/structured-clone/-/structured-clone-1.2.0.tgz"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
 
-"@vitejs/plugin-vue@^5.0.4":
+"@vitejs/plugin-vue@5.0.4":
   version "5.0.4"
   resolved "https://registry.npmjs.org/@vitejs/plugin-vue/-/plugin-vue-5.0.4.tgz"
   integrity sha512-WS3hevEszI6CEVEx28F8RjTX97k3KsrcY6kvTg7+Whm5y3oYvcqzVeGCU3hxSAn4uY2CLCkeokkGKpoctccilQ==
@@ -2700,7 +2700,7 @@ body-parser@1.20.2:
     type-is "~1.6.18"
     unpipe "1.0.0"
 
-bootstrap@^5.3.3:
+bootstrap@5.3.3:
   version "5.3.3"
   resolved "https://registry.npmjs.org/bootstrap/-/bootstrap-5.3.3.tgz"
   integrity sha512-8HLCdWgyoMguSO9o+aH+iuZ+aht+mzW0u3HIMzVu7Srrpv7EBBxTnrFlSCskwdY1+EOFQSm7uMJhNQHkdPcmjg==
@@ -4994,17 +4994,17 @@ ms@2.1.3:
   resolved "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-msw-storybook-addon@^2.0.2:
+msw-storybook-addon@2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/msw-storybook-addon/-/msw-storybook-addon-2.0.2.tgz"
   integrity sha512-sdw++X+AoUbaG2ku493ViVqCA/LfqnybXsKXyPUrF3ZS/x8BqGBnkBLmT/0SHCC5zIO3Vfm5zlclAxnhqOOikQ==
   dependencies:
     is-node-process "^1.0.1"
 
-msw@^2.0.0, msw@^2.3.0:
-  version "2.3.1"
-  resolved "https://registry.npmjs.org/msw/-/msw-2.3.1.tgz"
-  integrity sha512-ocgvBCLn/5l3jpl1lssIb3cniuACJLoOfZu01e3n5dbJrpA5PeeWn28jCLgQDNt6d7QT8tF2fYRzm9JoEHtiig==
+msw@^2.0.0, msw@2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/msw/-/msw-2.3.0.tgz"
+  integrity sha512-cDr1q/QTMzaWhY8n9lpGhceY209k29UZtdTgJ3P8Bzne3TSMchX2EM/ldvn4ATLOktpCefCU2gcEgzHc31GTPw==
   dependencies:
     "@bundled-es-modules/cookie" "^2.0.0"
     "@bundled-es-modules/statuses" "^1.0.1"
@@ -5460,15 +5460,15 @@ pretty-hrtime@^1.0.3:
   resolved "https://registry.npmjs.org/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz"
   integrity sha512-66hKPCr+72mlfiSjlEB1+45IjXSqvVAIy6mocupoww4tBFE9R9IhwwUGoI4G++Tc9Aq+2rxOt0RFU6gPcrte0A==
 
-primeicons@^7.0.0:
+primeicons@7.0.0:
   version "7.0.0"
   resolved "https://registry.npmjs.org/primeicons/-/primeicons-7.0.0.tgz"
   integrity sha512-jK3Et9UzwzTsd6tzl2RmwrVY/b8raJ3QZLzoDACj+oTJ0oX7L9Hy+XnVwgo4QVKlKpnP/Ur13SXV/pVh4LzaDw==
 
-primevue@^3.52.0:
-  version "3.52.0"
-  resolved "https://registry.npmjs.org/primevue/-/primevue-3.52.0.tgz"
-  integrity sha512-HLOVP5YI0ArFKUhIyfZsWmTNMaBYNCBWC/3DYvdd/Po4LY5/WXf7yIYvArE2q/3OuwSXJXvjlR8UNQeJYRSQog==
+primevue@3.53.0:
+  version "3.53.0"
+  resolved "https://registry.npmjs.org/primevue/-/primevue-3.53.0.tgz"
+  integrity sha512-mRqTPGGZX+3AQokaCCjxLVSNEjGEA7LaPdBT4qSpGEdMstK6vhUBCxgLH7IPjHudbaSi4Xo3CIO62pXQxbz8dQ==
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
@@ -6003,7 +6003,7 @@ safe-buffer@5.2.1:
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sass@*, sass@^1.77.6:
+sass@*, sass@1.77.6:
   version "1.77.6"
   resolved "https://registry.npmjs.org/sass/-/sass-1.77.6.tgz"
   integrity sha512-ByXE1oLD79GVq9Ht1PeHWCPMPB8XHpBuz1r85oByKHjZY6qV6rWnQovQzXJXuQ/XyE1Oj3iPk3lo28uzaRA2/Q==
@@ -6198,7 +6198,7 @@ store2@^2.14.2:
   resolved "https://registry.npmjs.org/store2/-/store2-2.14.3.tgz"
   integrity sha512-4QcZ+yx7nzEFiV4BMLnr/pRa5HYzNITX2ri0Zh6sT9EyQHbBHacC6YigllUPU9X3D0f/22QCgfokpKs52YRrUg==
 
-storybook@^8.1.11:
+storybook@8.1.11:
   version "8.1.11"
   resolved "https://registry.npmjs.org/storybook/-/storybook-8.1.11.tgz"
   integrity sha512-3KjIhF8lczXhKKHyHbOqV30dvuRYJSxc0d1as/C8kybuwE7cLaydhWGma7VBv5bTSPv0rDzucx7KcO+achArPg==
@@ -6527,10 +6527,10 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typescript@*, typescript@^5.0.0, typescript@^5.4.5, "typescript@>= 4.3.x", "typescript@>= 4.7.x":
-  version "5.5.2"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-5.5.2.tgz"
-  integrity sha512-NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==
+typescript@*, typescript@^5.0.0, "typescript@>= 4.3.x", "typescript@>= 4.7.x", typescript@5.4.5:
+  version "5.4.5"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-5.4.5.tgz"
+  integrity sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==
 
 ufo@^1.5.3:
   version "1.5.3"
@@ -6802,7 +6802,7 @@ vue-template-compiler@^2.7.14:
     de-indent "^1.0.2"
     he "^1.2.0"
 
-vue@^3.0.0, vue@^3.2.25, vue@^3.4.21, vue@>=2, vue@3.4.30:
+vue@^3.0.0, vue@^3.2.25, vue@>=2, vue@3.4.30:
   version "3.4.30"
   resolved "https://registry.npmjs.org/vue/-/vue-3.4.30.tgz"
   integrity sha512-NcxtKCwkdf1zPsr7Y8+QlDBCGqxvjLXF2EX+yi76rV5rrz90Y6gK1cq0olIhdWGgrlhs9ElHuhi9t3+W5sG5Xw==
