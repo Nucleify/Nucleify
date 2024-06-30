@@ -1,9 +1,10 @@
 <template>
     <div class="welcomeChartsContainer">
-        <h5 class="welcomeChartsHeader">
-            Choose from bar charts, line graphs, pie charts and more to best
-            represent your data.
-        </h5>
+        <heading-atom
+            :tag="5"
+            class="welcomeChartsHeader"
+            text="Choose from bar charts, line graphs, pie charts and more to best represent your data."
+        />
         <Card unstyled class="myCard welcomeChartCard">
             <template #content>
                 <my-chart

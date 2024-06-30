@@ -6,10 +6,14 @@
             <template #header>
                 <div class="authCardHeaderContainer">
                     <div class="authCardHeader">
-                        <h1>Register</h1>
+                        <heading-atom :tag="1" text="Register" />
+
                         <p class="mb-2">
                             Already have an account?
-                            <anchor-tag-molecule href="/login" :label="'Log in!'" />
+                            <anchor-tag-molecule
+                                href="/login"
+                                :label="'Log in!'"
+                            />
                         </p>
                     </div>
                 </div>
@@ -54,7 +58,10 @@
                             id="password-confirm"
                             class="authInputText"
                         />
-                        <label-tag-atom for="password-confirm" label="Confirm Password" />
+                        <label-tag-atom
+                            for="password-confirm"
+                            label="Confirm Password"
+                        />
                     </float-label-molecule>
 
                     <button-atom

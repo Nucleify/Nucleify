@@ -1,7 +1,7 @@
 <template>
     <Dialog :visible="visible" modal class="myDialog">
         <template #header>
-            <h2 class="myDialogHeader">Edit: {{ article.title }}</h2>
+            <heading-atom :tag="4" :text="'Edit: ' + article!.title" />
         </template>
 
         <form action="#" class="formContainer">

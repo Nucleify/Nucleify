@@ -15,7 +15,7 @@
         <Card class="myCard">
             <template #title>
                 <div class="myCardHeaderContainer">
-                    <h3>Activity Log</h3>
+                    <heading-atom :tag="3" text="Activity Log" class="-mb-2" />
                 </div>
             </template>
             <template #content>

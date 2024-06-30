@@ -2,11 +2,16 @@
     <section id="start">
         <div class="container">
             <div class="container startContainer">
-                <h1 class="startHeader">One place for all your data</h1>
-                <h2 class="startDescription">
-                    Manage various data types from a single place and access
-                    them everywhere together with your team.
-                </h2>
+                <heading-atom
+                    :tag="1"
+                    text="One place for all your data"
+                    class="startHeader"
+                />
+                <heading-atom
+                    :tag="2"
+                    text="Manage various data types from a single place and access them everywhere together with your team."
+                    class="startDescription"
+                />
                 <button-atom
                     label="Try it out!"
                     class="startButton"

@@ -1,9 +1,7 @@
 <template>
     <Dialog :visible="visible" modal header="Show contact" class="myDialog">
         <template #header>
-            <h2 class="myDialogHeader">
-                {{ user.name }}
-            </h2>
+            <heading-atom :tag="3" :text="user!.name" />
         </template>
         <div v-if="user" class="showDataContainer">
             <div>
