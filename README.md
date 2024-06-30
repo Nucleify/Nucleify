@@ -1,18 +1,18 @@
 # <div align="center"> <img src="https://github.com/SzymCode/DataManager/assets/107359025/652cd065-7449-4e9a-9564-3916fa3baedc" width="70"> <br> DataManager <br> </div>
 <br>
 
-This website helps to storage various data types and share it with others. My target is to create fully responsive, functional and scalable [ERP](https://en.wikipedia.org/wiki/Enterprise_resource_planning)-like website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) and [FDD](https://en.wikipedia.org/wiki/Feature-driven_development) principles. Serves as my coding sandbox, where I can experiment with different coding techniques, implement new features, and refine my skills. 
+This website helps to storage various data types and share it with others. My target is to create fully responsive, functional and scalable [ERP](https://en.wikipedia.org/wiki/Enterprise_resource_planning)-like website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) and [FDD](https://en.wikipedia.org/wiki/Feature-driven_development) principles. Serves as my coding sandbox, where I can experiment with different coding techniques, implement new features, and refine my skills.
 
 <b>Join my project and become part of building something incredible!</b>
 
 <br><a href="https://data-manager.szymco.de">Live preview</a><br><br>
 
-<details><summary> <h2> &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=25/> &nbsp;XAMPP </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=25/> &nbsp; XAMPP </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary>
 
 - First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
 
-- I recommend use [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) for install latest supported versions of [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com), 
+- I recommend use [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) for install latest supported versions of [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com),
 
 ```
 nvm use --lts
@@ -37,6 +37,10 @@ php artisan key:generate
 ```bash
 npm install
 composer update
+
+# if you want use storybook
+cd storybook
+npm install
 ```
 
 ### **Make sure u have installed all modules!**
@@ -145,12 +149,12 @@ php artisan sitemap:generate
 
 
 
-<details><summary> <h2> &nbsp; <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=25/> &nbsp;Docker </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=25/> &nbsp; Docker </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary> <br>
 
 - First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [Composer](https://getcomposer.org/) and [Docker](https://www.docker.com)
 
-- I recommend use [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) for install latest supported versions of [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com), 
+- I recommend use [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) for install latest supported versions of [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com),
 
 ```
 nvm use --lts
@@ -176,6 +180,10 @@ php artisan key:generate
 composer update
 php artisan sail:install
 sail npm install
+
+# if you want use storybook
+cd storybook
+npm install
 ```
 
 ### **Make sure u have installed all modules!**
@@ -201,11 +209,11 @@ sail npm run dev
 
 **Remember to shutdown all XAMPP processes!**
 
-Possible problems: 
+Possible problems:
 - Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
 - Error starting userland proxy: listen tcp4 0.0.0.0:3306: bind: address already in use: ```sudo service mysql stop```
-  
-<br></details> 
+
+<br></details>
 
 <details><summary> ❓ Usage </summary><br>
 
@@ -288,7 +296,7 @@ sail artisan sitemap:generate
 
 </details></details><hr><br></details></details>
 
-<details><summary> <h2> &nbsp;🛠️&nbsp; Tech Stack </h2> </summary> <br>
+<details><summary> <h2> &nbsp; 🛠️ &nbsp; Tech Stack </h2> </summary> <br>
 <div align="center">
   <img src="https://skillicons.dev/icons?i=php" height="35" />
   <img src="https://skillicons.dev/icons?i=ts" height="35" />
@@ -310,7 +318,7 @@ sail artisan sitemap:generate
 </div>
 <hr><br></details>
 
-<details><summary> <h2> &nbsp; <img src="https://static-00.iconduck.com/assets.00/github-icon-2048x2048-823jqxdr.png" width="20"> &nbsp; Contribute </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="https://static-00.iconduck.com/assets.00/github-icon-2048x2048-823jqxdr.png" width="25"> &nbsp; Contribute </h2> </summary> <br>
 
 Feel free to check [Project](https://github.com/users/SzymCode/projects/2) and [Issues](https://github.com/SzymCode/DataManager/issues) sections. <br>
 Your skills and expertise will directly contribute to the success of our project, helping us achieve our goals and create an attractive portfolio.
