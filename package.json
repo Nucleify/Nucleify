@@ -11,7 +11,7 @@
     "open": "cypress open",
     "prepare": "husky install",
 
-    "build": "vite build & vite build storybook",
+    "build": "vite build storybook & vite build",
     "build:storybook": "vite build storybook",
 
     "lint": "npm run lint:atomic && npm run lint:cypress && npm run lint:storybook",
