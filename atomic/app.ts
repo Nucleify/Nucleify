@@ -68,6 +68,7 @@ import {
     AvatarAtom,
     ButtonAtom,
     ColorPickerAtom,
+    HeadingAtom,
     ImageAtom,
     InputTextAtom,
     LabelTagAtom,
@@ -77,6 +78,7 @@ import {
 app.component('avatar-atom', AvatarAtom)
     .component('button-atom', ButtonAtom)
     .component('color-picker-atom', ColorPickerAtom)
+    .component('heading-atom', HeadingAtom)
     .component('image-atom', ImageAtom)
     .component('input-text-atom', InputTextAtom)
     .component('label-tag-atom', LabelTagAtom)

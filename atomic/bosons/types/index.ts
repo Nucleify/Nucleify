@@ -21,6 +21,11 @@ export { UseColorsInterface as UseColorsInterface } from './interfaces/atoms/Col
 export { HandleStylesInterface as HandleStylesInterface } from './interfaces/atoms/ColorPicker'
 
 /**
+ *  Heading
+ */
+export { HeadingInterface as HeadingInterface } from './interfaces/atoms/Heading'
+
+/**
  *  Image
  */
 export { ImageInterface as ImageInterface } from './interfaces/atoms/Image'
