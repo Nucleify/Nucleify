@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-./vendor/bin/pest
+npm run check
+npm run lint
 npm run build
+
+# ./vendor/bin/pest - I'm testing before commit manually
