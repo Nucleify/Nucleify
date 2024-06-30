@@ -1,11 +1,11 @@
-name: 🛠️ Develop - Laravel
+name: 🛠️ Develop
 
 on:
   pull_request:
       branches: [ "dev" ]
 
 jobs:
-  pest-tests:
+  laravel:
     runs-on: ubuntu-latest
 
     steps:

@@ -1,11 +1,11 @@
-name: 🚀 Production - Laravel
+name: 🚀 Production
 
 on:
   push:
       branches: [ "prod" ]
 
 jobs:
-  pest-tests:
+  laravel:
     runs-on: ubuntu-latest
 
     steps:
