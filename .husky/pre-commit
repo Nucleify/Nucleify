@@ -1,10 +1,16 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# ./vendor/bin/pest - I'm testing before commit manually & in this console messages are colorless
-npm run write
+npm run check
+npm run lint
+npm run build
 
-if [ -n "$(git status --porcelain)" ]; then
-  # Commit all modified files
-  git add .
-fi
+
+# ./vendor/bin/pest - I'm testing before commit manually
+
+#npm run write
+#
+#if [ -n "$(git status --porcelain)" ]; then
+#  # Commit all modified files
+#  git add .
+#fi

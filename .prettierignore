@@ -1,6 +1,9 @@
+app.ts
+bootstrap.ts
 main.ts
 preview.ts
 index.html
+README.md
 
 package*.json
 tsconfig.json

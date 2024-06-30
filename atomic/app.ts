@@ -74,8 +74,7 @@ import {
     ProgressSpinnerAtom,
 } from './atoms'
 
-app
-    .component('avatar-atom', AvatarAtom)
+app.component('avatar-atom', AvatarAtom)
     .component('button-atom', ButtonAtom)
     .component('color-picker-atom', ColorPickerAtom)
     .component('image-atom', ImageAtom)
@@ -84,14 +83,10 @@ app
     .component('progress-spinner-atom', ProgressSpinnerAtom)
 
 // Molecules
-import {
-    AnchorTagMolecule,
-    FloatLabelMolecule
-} from './molecules'
+import { AnchorTagMolecule, FloatLabelMolecule } from './molecules'
 
 app.component('anchor-tag-molecule', AnchorTagMolecule)
     .component('float-label-molecule', FloatLabelMolecule)
-
 
 /**
  *  Components
