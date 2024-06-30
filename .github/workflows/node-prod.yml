@@ -1,11 +1,11 @@
-name: 🚀 Production - Node
+name: 🚀 Production
 
 on:
   push:
       branches: [ "prod" ]
 
 jobs:
-  install-lint-check-build:
+  node:
     runs-on: ubuntu-latest
 
     steps:

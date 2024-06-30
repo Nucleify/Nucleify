@@ -1,11 +1,11 @@
-name: 🛠️ Develop - Node
+name: 🛠️ Develop
 
 on:
   pull_request:
       branches: [ "dev" ]
 
 jobs:
-  install-lint-check-build:
+  node:
     runs-on: ubuntu-latest
 
     steps:

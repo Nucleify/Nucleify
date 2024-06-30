@@ -23,7 +23,6 @@ import { globalComponentsRegistry, PrimeVueComponents } from '@/utils'
 globalComponentsRegistry(PrimeVueComponents, app)
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -36,3 +35,4 @@ export const parameters = {
  *  Use DataManager's Sass styles
  */
 import '../../atomic/bosons/styles/index.scss'
+export const tags = ['autodocs'];

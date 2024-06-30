@@ -1,7 +1,5 @@
 <template>
-    <label
-        :for="forInput"
-    >
+    <label :for="forInput">
         {{ label }}
     </label>
 </template>
