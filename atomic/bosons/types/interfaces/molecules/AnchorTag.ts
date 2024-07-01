@@ -1,4 +1,4 @@
-import { ColorItemStyleInterface } from 'atomic/bosons/types'
+import { StyleValue } from 'vue'
 
 export interface AnchorTagInterface {
     href?: string
@@ -21,7 +21,7 @@ export interface AnchorTagInterface {
     target?: '_blank' | '_parent' | '_self' | '_top'
     tooltip?: string
     anchorClass?: string
-    style?: ColorItemStyleInterface
+    style?: StyleValue
 }
 
 export interface HandleStartAnchorTagsInterface {
