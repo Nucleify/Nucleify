@@ -1,0 +1,31 @@
+// Text colors
+$dark-text-color: #333941;
+$primary-text-color: #4B5563;
+$secondary-text-color: #5E5E5E;
+$white-text-color: #F5F4F4;
+
+// Core colors
+$white-body-bg: white;
+$body-bg: #EBEBEB;
+$primary-bg: #0A0A0A;
+$secondary-bg: #333941;
+$content-bg: #FFFFFF;
+$primary-color: #1BBD79;
+$primary-hover-color: #1BBD79;
+$primary-hover-bg-color: #F6F6F8;
+
+$secondary-color: #6B7280;
+$secondary-gray-color: #989898;
+$secondary-gray-bg: #F8F8F8;
+$secondary-whitesmoke-color: #E8E8E8;
+$secondary-gray-bg-color: #F5F4F4;
+$secondary-green-bg-color: #E9FFF8;
+$secondary-hover-bg-color: #E3FFF4;
+
+$primary-border-color: #F5F5F5;
+
+// Transitions
+$transition-colors-300ms:
+    color 300ms,
+    background-color 300ms,
+    box-shadow 300ms;
