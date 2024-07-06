@@ -4,7 +4,7 @@
 import 'primevue/resources/themes/lara-light-green/theme.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
-import 'atomic/bosons/styles/index.scss'
+import 'sass/index.scss'
 
 /**
  *  App

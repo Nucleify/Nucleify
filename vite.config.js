@@ -33,7 +33,8 @@ export default defineConfig({
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
             '@': '/atomic/_old_structure/ts',
-            'atomic': '/atomic'
+            'atomic': '/atomic',
+            'sass': '/atomic/bosons/styles'
         },
     },
     build: {
