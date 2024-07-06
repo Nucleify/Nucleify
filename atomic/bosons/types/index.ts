@@ -45,6 +45,11 @@ export { LabelTagInterface as LabelTagInterface } from './interfaces/atoms/Label
  */
 export { ProgressSpinnerInterface as ProgressSpinnerInterface } from './interfaces/atoms/ProgressSpinner'
 
+/**
+ *  RadioButton
+ */
+export { RadioButtonInterface as RadioButtonInterface } from './interfaces/atoms/RadioButton'
+
 // Molecules
 /**
  *  Anchor

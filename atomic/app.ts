@@ -34,6 +34,7 @@ import Menu from 'primevue/menu'
 import Menubar from 'primevue/menubar'
 import PanelMenu from 'primevue/panelmenu'
 import ProgressSpinner from 'primevue/progressspinner'
+import RadioButton from 'primevue/radiobutton'
 import Sidebar from 'primevue/sidebar'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
@@ -55,6 +56,7 @@ app.component('Avatar', Avatar)
     .component('Menubar', Menubar)
     .component('PanelMenu', PanelMenu)
     .component('ProgressSpinner', ProgressSpinner)
+    .component('RadioButton', RadioButton)
     .component('Sidebar', Sidebar)
     .component('Textarea', Textarea)
     .component('Toast', Toast)
@@ -73,6 +75,7 @@ import {
     InputTextAtom,
     LabelTagAtom,
     ProgressSpinnerAtom,
+    RadioButtonAtom
 } from './atoms'
 
 app.component('avatar-atom', AvatarAtom)
@@ -83,6 +86,7 @@ app.component('avatar-atom', AvatarAtom)
     .component('input-text-atom', InputTextAtom)
     .component('label-tag-atom', LabelTagAtom)
     .component('progress-spinner-atom', ProgressSpinnerAtom)
+    .component('radio-button-atom', RadioButtonAtom)
 
 // Molecules
 import { AnchorTagMolecule, FloatLabelMolecule } from './molecules'
