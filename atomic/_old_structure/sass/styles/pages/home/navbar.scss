@@ -1,20 +1,20 @@
-@import '../../../variables/pages/welcome/navbar_variables';
+@import '../../../variables/pages/home/navbar_variables';
 
 @import '../../../variables/base/borders_variables';
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/medias_variables';
 @import '../../../variables/base/box_shadows_variables';
 
-.welcomeNavbar {
-    width: $welcome-navbar-width;
-    z-index: $welcome-navbar-z-index;
-    position: $welcome-navbar-position;
-    top: $welcome-navbar-top;
+.homeNavbar {
+    width: $home-navbar-width;
+    z-index: $home-navbar-z-index;
+    position: $home-navbar-position;
+    top: $home-navbar-top;
     background: $primary-bg;
     box-shadow: $box-shadow-none;
     border: $border-none;
     border-radius: $border-radius-none;
-    padding: $welcome-navbar-padding;
+    padding: $home-navbar-padding;
 
     .pi {
         color: $white-text-color !important;
@@ -26,39 +26,39 @@
         padding: $navbar-toggler-padding;
     }
 
-    .welcomeNavLink {
-        display: $welcome-nav-link-display;
-        justify-content: $welcome-nav-link-justify-content;
-        align-items: $welcome-nav-link-align-items;
-        gap: $welcome-nav-link-gap;
-        margin-top: $welcome-nav-link-margin-top;
-        padding: $welcome-nav-link-padding;
+    .homeNavLink {
+        display: $home-nav-link-display;
+        justify-content: $home-nav-link-justify-content;
+        align-items: $home-nav-link-align-items;
+        gap: $home-nav-link-gap;
+        margin-top: $home-nav-link-margin-top;
+        padding: $home-nav-link-padding;
         color: $white-text-color;
-        font-size: $welcome-nav-link-font-size;
-        text-align: $welcome-nav-link-text-align;
-        transition: $welcome-nav-link-transition;
+        font-size: $home-nav-link-font-size;
+        text-align: $home-nav-link-text-align;
+        transition: $home-nav-link-transition;
 
-        .welcomeNavLinkIcon {
-            transition: $welcome-nav-link-transition;
+        .homeNavLinkIcon {
+            transition: $home-nav-link-transition;
         }
 
         &:hover {
             color: $primary-hover-color;
 
-            .welcomeNavLinkIcon {
+            .homeNavLinkIcon {
                 color: $primary-hover-color !important;
             }
         }
 
         // Min width 768px
         @media (min-width: $min-width-md) {
-            gap: $welcome-nav-link-gap-md;
-            margin-top: $welcome-nav-link-margin-top-md;
-            padding: $welcome-nav-link-padding-md;
+            gap: $home-nav-link-gap-md;
+            margin-top: $home-nav-link-margin-top-md;
+            padding: $home-nav-link-padding-md;
         }
     }
     @media (min-width: $min-width-md) {
-        max-height: $welcome-navbar-max-height-md;
+        max-height: $home-navbar-max-height-md;
     }
 }
 .applicationHeader {

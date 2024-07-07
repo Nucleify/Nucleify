@@ -104,13 +104,12 @@ import {
     ContactDashboard,
     ColorSettings,
     Dashboard,
+    Home,
     Login,
     MyLayout,
     Settings,
     Register,
     TestLoginButton,
-    Welcome,
-    WelcomeNavbar,
 } from '@/components'
 
 app.component('activity-log', ActivityLog)
@@ -119,13 +118,12 @@ app.component('activity-log', ActivityLog)
     .component('contact-dashboard', ContactDashboard)
     .component('color-settings', ColorSettings)
     .component('dashboard', Dashboard)
+    .component('home', Home)
     .component('login', Login)
     .component('my-layout', MyLayout)
     .component('settings', Settings)
     .component('register', Register)
     .component('test-login-button', TestLoginButton)
-    .component('welcome', Welcome)
-    .component('welcome-navbar', WelcomeNavbar)
 
 /**
  *  Directives

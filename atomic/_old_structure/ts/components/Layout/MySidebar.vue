@@ -1,6 +1,6 @@
 <template>
     <div class="mySidebar" v-if="shouldShowSidebar">
-        <anchor-tag-molecule href="/welcome">
+        <anchor-tag-molecule href="/home">
             <Image src="logo.png" width="50" />
         </anchor-tag-molecule>
 

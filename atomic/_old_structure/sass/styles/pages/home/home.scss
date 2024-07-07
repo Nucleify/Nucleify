@@ -1,4 +1,4 @@
-@import '../../../variables/pages/welcome/welcome_variables';
+@import '../../../variables/pages/home/home_variables';
 
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/medias_variables';
@@ -9,32 +9,32 @@
 @import 'sections';
 @import 'start';
 
-.welcomeContainer {
+.homeContainer {
     background: $white-body-bg !important;
-    padding-top: $welcome-container-padding-top;
+    padding-top: $home-container-padding-top;
 
     // Min width 560px
     @media (min-width: $min-width-sm4) {
-        padding-top: $welcome-container-padding-top-sm4;
+        padding-top: $home-container-padding-top-sm4;
     }
 
     // Min width 768px
     @media (min-width: $min-width-md) {
-        padding-top: $welcome-container-padding-top-md;
+        padding-top: $home-container-padding-top-md;
     }
 
     // Min width 992px
     @media (min-width: $min-width-lg2) {
-        padding-top: $welcome-container-padding-top-lg2;
+        padding-top: $home-container-padding-top-lg2;
     }
 
     // Min width 1200px
     @media (min-width: $min-width-xl) {
-        padding-top: $welcome-container-padding-top-xl;
+        padding-top: $home-container-padding-top-xl;
     }
 
     // Min width 1400px
     @media (min-width: $min-width-2xl) {
-        padding-top: $welcome-container-padding-top-2xl;
+        padding-top: $home-container-padding-top-2xl;
     }
 }

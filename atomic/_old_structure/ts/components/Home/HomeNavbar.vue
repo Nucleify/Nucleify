@@ -1,8 +1,8 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
-    <nav class="welcomeNavbar navbar navbar-expand-md">
+    <nav class="homeNavbar navbar navbar-expand-md">
         <div class="container">
-            <anchor-tag-molecule href="/welcome">
+            <anchor-tag-molecule href="/home">
                 <image-atom src="logo.png" width="60" />
             </anchor-tag-molecule>
 
@@ -25,31 +25,31 @@
                 <div class="navbar-nav ms-auto md:gap-5 lg:gap-7">
                     <div class="navbar-nav flex md:gap-3 lg:gap-5">
                         <anchor-tag-molecule
-                            class="nav-link welcomeNavLink"
+                            class="nav-link homeNavLink"
                             href="#start"
                             @click="throttleHideNavbar"
-                            icon="pi pi-bolt welcomeNavLinkIcon"
+                            icon="pi pi-bolt homeNavLinkIcon"
                             label="Start"
                         />
                         <anchor-tag-molecule
-                            class="nav-link welcomeNavLink"
+                            class="nav-link homeNavLink"
                             href="#features"
                             @click="throttleHideNavbar"
-                            icon="pi pi-star welcomeNavLinkIcon"
+                            icon="pi pi-star homeNavLinkIcon"
                             label="Features"
                         />
                         <anchor-tag-molecule
-                            class="nav-link welcomeNavLink"
+                            class="nav-link homeNavLink"
                             href="#why-us"
                             @click="throttleHideNavbar"
-                            icon="pi pi-question welcomeNavLinkIcon"
+                            icon="pi pi-question homeNavLinkIcon"
                             label="Why Us"
                         />
                         <anchor-tag-molecule
-                            class="nav-link welcomeNavLink"
+                            class="nav-link homeNavLink"
                             href="#contact"
                             @click="throttleHideNavbar"
-                            icon="pi pi-envelope welcomeNavLinkIcon"
+                            icon="pi pi-envelope homeNavLinkIcon"
                             label="Contact"
                         />
                     </div>

@@ -1,0 +1,62 @@
+@import '../../../../variables/pages/home/features/charts_variables';
+
+@import '../../../../variables/base/colors_variables';
+@import '../../../../variables/base/fonts_variables';
+@import '../../../../variables/base/medias_variables';
+
+.homeChartsContainer {
+    width: $home-charts-container-width;
+    margin: $home-charts-container-margin;
+    padding: $home-charts-container-padding;
+    display: $home-charts-container-display;
+    flex-direction: $home-charts-container-flex-direction;
+    justify-content: $home-charts-container-justify-content;
+    align-items: $home-charts-container-align-items;
+    background: $home-charts-container-background;
+
+    .homeChartCard {
+        display: $home-chart-card-display;
+        justify-content: $home-chart-card-justify-content;
+        height: $home-chart-card-height;
+        width: $home-chart-card-width;
+        max-height: $home-chart-card-max-height;
+        max-width: $home-chart-card-max-width;
+        padding: $home-chart-card-padding;
+
+        .homePieChart {
+            z-index: $home-pie-chart-z-index;
+            position: $home-pie-chart-position;
+            bottom: $home-pie-chart-bottom;
+            left: $home-pie-chart-left;
+            width: $home-pie-chart-width;
+            height: $home-pie-chart-height;
+            margin-right: $home-pie-chart-margin-right;
+        }
+
+        .homeHorizontalChart {
+            height: $home-horizontal-chart-height;
+        }
+    }
+
+    .homeChartsHeader {
+        font-family: $font-family-inter-sans-serif;
+        font-weight: $home-charts-header-font-weight;
+        color: $dark-text-color;
+        font-size: $font-size-big1;
+        padding: $home-charts-header-padding;
+        text-align: $home-charts-header-text-align;
+        margin-bottom: $home-charts-header-margin-bottom;
+
+        // Min width 992px
+        @media (min-width: $min-width-lg2) {
+            max-width: $home-charts-header-max-width-lg2;
+            text-align: $home-charts-header-text-align-lg-2;
+            padding: $home-charts-header-padding-lg-2;
+        }
+    }
+
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
+        flex-direction: $home-charts-container-flex-direction-lg2;
+    }
+}

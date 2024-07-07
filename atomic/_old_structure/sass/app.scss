@@ -26,7 +26,7 @@
 @import 'styles/pages/activity/activity_log';
 @import 'styles/pages/admin/admin_bricks';
 @import 'styles/pages/auth/auth';
-@import 'styles/pages/welcome/welcome';
+@import 'styles/pages/home/home';
 @import 'styles/pages/settings/settings';
 
 
@@ -39,7 +39,7 @@ body {
 }
 
 body:has(
-    #welcome,
+    #home,
     #login,
     #register
 ) {
