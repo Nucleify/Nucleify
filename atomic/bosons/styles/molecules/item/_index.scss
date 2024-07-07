@@ -6,8 +6,8 @@
     font-size: $font-size-medium;
     padding: 10px;
 
-    &.slimyItem {
-        @include slimy-item;
+    &.plasmaItem {
+        @include plasma-item;
         border-radius: 38px 30px 20px 15px;
     }
 

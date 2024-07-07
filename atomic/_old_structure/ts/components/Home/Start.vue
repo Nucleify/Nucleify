@@ -29,7 +29,7 @@
                 <item-molecule
                     v-if="a.icon"
                     :icon="a.icon"
-                    class="item slimyItem"
+                    class="item plasmaItem"
                     :class="a.itemClass"
                 />
             </anchor-molecule>

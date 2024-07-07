@@ -4,10 +4,10 @@
     color: #5e5e5eff !important;
 }
 
-@mixin slimy-item {
-    animation: slimy 8s infinite ease-out alternate;
+@mixin plasma-item {
+    animation: plasma 8s infinite ease-out alternate;
 
-    @keyframes slimy {
+    @keyframes plasma {
         0% {
             border-radius: 15px 15px 35px 25px;
         }

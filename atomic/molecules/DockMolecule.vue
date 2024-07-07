@@ -11,7 +11,7 @@
             <item-molecule
                 v-if="item.icon"
                 :icon="item.icon"
-                class="item slimyItem"
+                class="item plasmaItem"
                 @click="item.click"
                 :url="item.url"
                 :style="getItemStyles(item.url, true)"
