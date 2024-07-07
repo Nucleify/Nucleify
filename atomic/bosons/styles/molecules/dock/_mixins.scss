@@ -1,0 +1,13 @@
+@import '../../mixins/dimensions';
+@import '../../mixins/placement';
+
+@mixin my-animation {
+    transform: none !important;
+    transform-origin: unset !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    i {
+        transition: color 300ms;
+    }
+}

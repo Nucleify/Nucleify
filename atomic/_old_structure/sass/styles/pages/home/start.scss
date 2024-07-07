@@ -38,15 +38,12 @@
 }
 
 .startItem {
-    color: $secondary-gray-color;
-    background: $secondary-gray-bg-color;
     transition: $transition-colors-300ms;
     border-radius: $small-border-radius;
     min-width: $start-item-small-dimensions;
     min-height: $start-item-small-dimensions;
     max-width: $start-item-small-dimensions;
     max-height: $start-item-small-dimensions;
-    padding: $start-item-small-padding;
     text-decoration: $start-item-text-decoration;
 }
 
@@ -83,14 +80,29 @@
 .activitiesItem {
     top: $activities-item-top;
     left: $activities-item-left;
+
+    .item {
+        color: var(--activity-item-color);
+        background: var(--activity-sidebar-item-selected-color);
+    }
 }
 .articlesItem {
     bottom: $articles-item-bottom;
     left: $articles-item-left;
+
+    .item {
+        color: var(--article-item-color);
+        background: var(--article-sidebar-item-selected-color);
+    }
 }
 .contactsItem {
     top: $contacts-item-top;
     left: $contacts-item-left;
+
+    .item {
+        color: var(--contact-item-color);
+        background: var(--contact-sidebar-item-selected-color);
+    }
 }
 .moneyItem {
     bottom: $money-item-bottom;
@@ -103,6 +115,11 @@
 .usersItem {
     top: $users-item-top;
     left: $users-item-left;
+
+    .item {
+        color: var(--user-item-color);
+        background: var(--user-sidebar-item-selected-color);
+    }
 }
 
 // Min width 411px
@@ -210,7 +227,6 @@
         min-height: $start-item-large-dimensions;
         max-width: $start-item-large-dimensions;
         max-height: $start-item-large-dimensions;
-        padding: $start-item-text-large-padding;
     }
     .activitiesIcon,
     .articlesIcon,

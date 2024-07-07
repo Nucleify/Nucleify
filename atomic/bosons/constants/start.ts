@@ -1,35 +1,25 @@
-import { handleStyles } from 'atomic/bosons/constants'
 import {
-    AnchorTagInterface,
-    HandleStylesInterface,
+    AnchorInterface,
     HandleStartAnchorTagsInterface,
 } from 'atomic/bosons/types'
 
 export default function handleStartAnchorTags(): HandleStartAnchorTagsInterface {
-    const {
-        activityItemStyle,
-        articleItemStyle,
-        contactItemStyle,
-        userItemStyle,
-    }: HandleStylesInterface = handleStyles()
-
-    const anchorTags: AnchorTagInterface[] = [
+    const anchorTags: AnchorInterface[] = [
         {
             href: '/admin',
             anchorClass: 'startItem usersItem',
             tooltip: 'Users',
             icon: 'pi pi-user usersIcon',
-            style: userItemStyle,
         },
         {
             href: '/contacts',
             anchorClass: 'startItem contactsItem',
             tooltip: 'Contacts',
             icon: 'pi pi-users contactsIcon',
-            style: contactItemStyle,
         },
         {
             anchorClass: 'startItem tasksItem',
+            itemClass: 'disabledItem',
             tooltip: 'Tasks',
             icon: 'pi pi-check-square tasksIcon',
             style: { opacity: 0.4 },
@@ -39,10 +29,10 @@ export default function handleStartAnchorTags(): HandleStartAnchorTagsInterface 
             anchorClass: 'startItem articlesItem',
             tooltip: 'Articles',
             icon: 'pi pi-comment articlesIcon',
-            style: articleItemStyle,
         },
         {
             anchorClass: 'startItem moneyItem',
+            itemClass: 'disabledItem',
             tooltip: 'Revenues & Expenses',
             icon: 'pi pi-dollar moneyIcon',
             style: { opacity: 0.4 },
@@ -52,7 +42,6 @@ export default function handleStartAnchorTags(): HandleStartAnchorTagsInterface 
             anchorClass: 'startItem activitiesItem',
             tooltip: 'Activities',
             icon: 'pi pi-clock activitiesIcon',
-            style: activityItemStyle,
         },
     ]
 

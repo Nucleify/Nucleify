@@ -11,7 +11,7 @@
 
                         <p class="mb-2">
                             Don't have an account?
-                            <anchor-tag-molecule
+                            <anchor-molecule
                                 href="/register"
                                 :label="'Create today!'"
                             />
@@ -29,7 +29,7 @@
                             class="authInputText"
                             autofocus
                         />
-                        <label-tag-atom for="email" label="Email Address" />
+                        <label-atom for="email" label="Email Address" />
                     </float-label-molecule>
 
                     <float-label-molecule>
@@ -39,7 +39,7 @@
                             id="password"
                             class="authInputText"
                         />
-                        <label-tag-atom for="password" label="Password" />
+                        <label-atom for="password" label="Password" />
                     </float-label-molecule>
 
                     <button-atom

@@ -21,6 +21,7 @@ export interface AnchorInterface {
     target?: '_blank' | '_parent' | '_self' | '_top'
     tooltip?: string
     anchorClass?: string
+    itemClass?: string
     style?: StyleValue
 }
 

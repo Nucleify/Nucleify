@@ -4,7 +4,6 @@
 
 .panelContainer {
     position: $panel-container-position;
-    top: $panel-container-top;
     padding: $panel-container-padding;
     display: $panel-container-display;
     flex-direction: $panel-container-flex-direction;
@@ -12,8 +11,15 @@
 
     // Min width 992px
     @media (min-width: $min-width-lg2) {
-        margin-left: $panel-container-margin-left-lg2;
         top: $panel-container-top-lg2;
-        padding: $panel-container-padding-lg2;
+    }
+}
+
+body:has(.p-dock.p-dock-top) .panelContainer {
+    top: $panel-container-top;
+
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
+        top: $panel-container-top-lg2;
     }
 }

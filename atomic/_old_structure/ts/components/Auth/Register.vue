@@ -10,7 +10,7 @@
 
                         <p class="mb-2">
                             Already have an account?
-                            <anchor-tag-molecule
+                            <anchor-molecule
                                 href="/login"
                                 :label="'Log in!'"
                             />
@@ -28,7 +28,7 @@
                             class="authInputText"
                             autofocus
                         />
-                        <label-tag-atom for="name" label="Name" />
+                        <label-atom for="name" label="Name" />
                     </float-label-molecule>
 
                     <float-label-molecule>
@@ -38,7 +38,7 @@
                             id="name"
                             class="authInputText"
                         />
-                        <label-tag-atom for="name" label="Email" />
+                        <label-atom for="name" label="Email" />
                     </float-label-molecule>
 
                     <float-label-molecule>
@@ -48,7 +48,7 @@
                             id="password"
                             class="authInputText"
                         />
-                        <label-tag-atom for="password" label="Password" />
+                        <label-atom for="password" label="Password" />
                     </float-label-molecule>
 
                     <float-label-molecule>
@@ -58,7 +58,7 @@
                             id="password-confirm"
                             class="authInputText"
                         />
-                        <label-tag-atom
+                        <label-atom
                             for="password-confirm"
                             label="Confirm Password"
                         />

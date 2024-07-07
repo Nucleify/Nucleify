@@ -1,0 +1,39 @@
+// Home charts
+$home-charts-container-width: 100%;
+$home-charts-container-margin: 55px auto 0 auto;
+$home-charts-container-padding: 70px 0 100px 0;
+$home-charts-container-display: flex;
+$home-charts-container-flex-direction: column;
+$home-charts-container-justify-content: center;
+$home-charts-container-align-items: center;
+$home-charts-container-background: var(--main-item-color);
+
+$home-pie-chart-z-index: 100;
+$home-pie-chart-position: relative;
+$home-pie-chart-bottom: 115px;
+$home-pie-chart-left: 190px;
+$home-pie-chart-width: 8.5rem;
+$home-pie-chart-height: 8.5rem;
+$home-pie-chart-margin-right: 30px;
+
+$home-chart-card-display: flex;
+$home-chart-card-justify-content: center;
+$home-chart-card-height: 100%;
+$home-chart-card-width: 100%;
+$home-chart-card-max-height: 375px;
+$home-chart-card-max-width: 400px;
+$home-chart-card-padding: 35px;
+
+$home-horizontal-chart-height: 300px;
+
+$home-charts-header-font-weight: 800;
+$home-charts-header-padding: 0 35px 0 35px;
+$home-charts-header-text-align: center;
+$home-charts-header-margin-bottom: 60px;
+
+// Min width 992px
+$home-charts-container-flex-direction-lg2: row;
+
+$home-charts-header-max-width-lg2: 430px;
+$home-charts-header-text-align-lg-2: left;
+$home-charts-header-padding-lg-2: 0 55px 0 35px;

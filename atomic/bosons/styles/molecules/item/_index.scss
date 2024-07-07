@@ -1,0 +1,25 @@
+@import 'mixins';
+@import 'variables';
+
+.item {
+    color: $secondary-text-color;
+    font-size: $font-size-medium;
+    padding: 10px;
+
+    &.slimyItem {
+        @include slimy-item;
+        border-radius: 38px 30px 20px 15px;
+    }
+
+    &.disabledItem {
+        @include disabled-item;
+    }
+}
+
+.startItem {
+    .item {
+        color: $secondary-gray-color;
+        background: $secondary-gray-bg-color;
+        padding: 12px;
+    }
+}

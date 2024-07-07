@@ -25,6 +25,7 @@ import ColorPicker from 'primevue/colorpicker'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
 import Dialog from 'primevue/dialog'
+import Dock from 'primevue/dock'
 import Dropdown from 'primevue/dropdown'
 import FloatLabel from 'primevue/floatlabel'
 import Image from 'primevue/image'
@@ -47,6 +48,7 @@ app.component('Avatar', Avatar)
     .component('Column', Column)
     .component('DataTable', DataTable)
     .component('Dialog', Dialog)
+    .component('Dock', Dock)
     .component('Dropdown', Dropdown)
     .component('FloatLabel', FloatLabel)
     .component('Image', Image)
@@ -91,11 +93,15 @@ app.component('avatar-atom', AvatarAtom)
 // Molecules
 import {
     AnchorMolecule,
-    FloatLabelMolecule
+    DockMolecule,
+    FloatLabelMolecule,
+    ItemMolecule
 } from './molecules'
 
 app.component('anchor-molecule', AnchorMolecule)
+    .component('dock-molecule', DockMolecule)
     .component('float-label-molecule', FloatLabelMolecule)
+    .component('item-molecule', ItemMolecule)
 
 /**
  *  Components
@@ -109,7 +115,6 @@ import {
     Dashboard,
     Home,
     Login,
-    MyLayout,
     Settings,
     Register,
     TestLoginButton,
@@ -123,10 +128,10 @@ app.component('activity-log', ActivityLog)
     .component('dashboard', Dashboard)
     .component('home', Home)
     .component('login', Login)
-    .component('my-layout', MyLayout)
     .component('settings', Settings)
     .component('register', Register)
     .component('test-login-button', TestLoginButton)
+    .component('toast', Toast)
 
 /**
  *  Directives

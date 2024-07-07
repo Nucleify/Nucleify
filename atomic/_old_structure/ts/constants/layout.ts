@@ -5,9 +5,9 @@ import { logout } from '@/utils'
 
 export const layoutItems: Ref<MenuItem[]> = ref<MenuItem[]>([
     {
-        label: 'Home',
-        icon: 'pi pi-home',
-        url: '/home',
+        label: 'Dashboard',
+        icon: 'pi pi-chart-line',
+        url: '/dashboard',
     },
     {
         label: 'Contacts',
@@ -48,9 +48,9 @@ export const layoutItems: Ref<MenuItem[]> = ref<MenuItem[]>([
 
 export const userMenuItems: Ref<MenuItem[]> = ref<MenuItem[]>([
     {
-        label: 'Welcome',
+        label: 'Home',
         icon: 'pi pi-home',
-        url: '/welcome',
+        url: '/home',
     },
     {
         label: 'Profile',

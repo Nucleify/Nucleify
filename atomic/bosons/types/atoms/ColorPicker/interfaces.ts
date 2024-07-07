@@ -1,18 +1,6 @@
-import { Ref } from 'vue'
+import { Ref, StyleValue } from 'vue'
 
-export interface ColorItemStyleInterface {
-    color?: string | null
-    backgroundColor?: string | null
-    borderColor?: string | null
-    boxShadow?: string | null
-    opacity?: number | null
-}
-
-export interface ColorItemColorsInterface {
-    primary: string | null
-    hover: string | null
-    sidebarSelected?: string | null
-}
+import { ColorItemColorsInterface } from 'atomic/bosons/types'
 
 export interface ColorPickerInterface {
     item: string
@@ -50,14 +38,14 @@ export interface UseColorsInterface {
 }
 
 export interface HandleStylesInterface {
-    mainStyle: ColorItemStyleInterface
-    activityStyle: ColorItemStyleInterface
-    articleStyle: ColorItemStyleInterface
-    contactStyle: ColorItemStyleInterface
-    userStyle: ColorItemStyleInterface
-    mainItemStyle: ColorItemStyleInterface
-    activityItemStyle: ColorItemStyleInterface
-    articleItemStyle: ColorItemStyleInterface
-    contactItemStyle: ColorItemStyleInterface
-    userItemStyle: ColorItemStyleInterface
+    mainStyle: StyleValue
+    activityStyle: StyleValue
+    articleStyle: StyleValue
+    contactStyle: StyleValue
+    userStyle: StyleValue
+    mainItemStyle: StyleValue
+    activityItemStyle: StyleValue
+    articleItemStyle: StyleValue
+    contactItemStyle: StyleValue
+    userItemStyle: StyleValue
 }

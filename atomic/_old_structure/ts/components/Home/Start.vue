@@ -25,9 +25,14 @@
                 :href="a.href"
                 :class="a.anchorClass"
                 v-tooltip.right="a.tooltip"
-                :icon="a.icon"
-                :style="a.style"
-            />
+            >
+                <item-molecule
+                    v-if="a.icon"
+                    :icon="a.icon"
+                    class="item slimyItem"
+                    :class="a.itemClass"
+                />
+            </anchor-molecule>
         </div>
     </section>
 </template>

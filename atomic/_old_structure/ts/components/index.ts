@@ -30,11 +30,6 @@ export { default as ContactDashboard } from './Contact/ContactDashboard.vue'
 export { default as Dashboard } from './Dashboard/Dashboard.vue'
 
 /**
- *  Layout
- */
-export { default as MyLayout } from './Layout/Layout.vue'
-
-/**
  *  Settings
  */
 export { default as Settings } from './Settings/Settings.vue'

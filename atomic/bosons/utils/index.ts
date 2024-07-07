@@ -10,3 +10,8 @@ export { default as useColors } from './ColorPicker/useColors'
  *  Header
  */
 export { default as chooseHeading } from './Heading/chooseHeading'
+
+/**
+ *  Item
+ */
+export { default as useItemStyles } from './Item/useItemStyles'
