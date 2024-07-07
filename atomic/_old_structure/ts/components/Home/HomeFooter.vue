@@ -1,5 +1,5 @@
 <template>
-    <section id="footer">
+    <section id="footer" v-if="isFooterVisible">
         <div class="hexagonRowsContainer">
             <div
                 v-for="(row, rowIndex) in hexagonRows"
@@ -84,11 +84,26 @@ onMounted(() => {
     updateImagesPerRow(window.innerWidth)
     updateHexagonPatterns()
     window.addEventListener('resize', handleResize)
+    window.addEventListener('scroll', handleScroll)
 })
 
 onBeforeUnmount(() => {
     window.removeEventListener('resize', handleResize)
+    window.removeEventListener('scroll', handleScroll)
 })
 
 setInterval(updateHexagonPatterns, 350)
+
+const isFooterVisible = ref(true)
+
+
+function handleScroll() {
+    const scrollPosition = window.scrollY;
+
+    if (window.innerWidth <= 992) {
+        isFooterVisible.value = scrollPosition >= 2000;
+    } else {
+        isFooterVisible.value = scrollPosition >= 1500
+    }
+}
 </script>
