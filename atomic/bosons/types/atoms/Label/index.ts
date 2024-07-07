@@ -1,1 +1,1 @@
-export { LabelInterface as LabelInterface } from './interfaces'
+export * from './interfaces'

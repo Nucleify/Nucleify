@@ -1,1 +1,1 @@
-export { ButtonInterface as ButtonInterface } from './interfaces'
+export * from './interfaces'

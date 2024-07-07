@@ -1,1 +1,1 @@
-export { RadioButtonInterface as RadioButtonInterface } from './interfaces'
+export * from './interfaces'

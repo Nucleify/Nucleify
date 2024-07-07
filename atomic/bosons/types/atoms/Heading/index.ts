@@ -1,1 +1,1 @@
-export { HeadingInterface as HeadingInterface } from './interfaces'
+export * from './interfaces'

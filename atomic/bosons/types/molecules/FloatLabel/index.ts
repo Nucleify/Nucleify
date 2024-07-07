@@ -1,1 +1,1 @@
-export { FloatLabelInterface as FloatLabelInterface } from './interfaces'
+export * from './interfaces'

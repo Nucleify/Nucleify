@@ -1,1 +1,1 @@
-export { AvatarInterface as AvatarInterface } from './interfaces'
+export * from './interfaces'

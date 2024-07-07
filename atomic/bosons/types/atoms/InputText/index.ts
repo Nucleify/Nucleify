@@ -1,1 +1,1 @@
-export { InputTextInterface as InputTextInterface } from './interfaces'
+export * from './interfaces'

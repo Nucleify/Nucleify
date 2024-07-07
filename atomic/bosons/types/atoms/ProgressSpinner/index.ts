@@ -1,1 +1,1 @@
-export { ProgressSpinnerInterface as ProgressSpinnerInterface } from './interfaces'
+export * from './interfaces'
