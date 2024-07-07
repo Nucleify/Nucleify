@@ -2,7 +2,7 @@
     <a :href="href" :rel="rel" :target="target" :style="style">
         <slot>
             <i v-if="icon" :class="icon"></i>
-            <label-tag-atom
+            <label-atom
                 v-if="label"
                 :label="label"
                 :style="{ cursor: 'pointer' }"
@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { AnchorTagInterface } from 'atomic/bosons/types'
+import { AnchorInterface } from 'atomic/bosons/types'
 
-defineProps<AnchorTagInterface>()
+defineProps<AnchorInterface>()
 </script>

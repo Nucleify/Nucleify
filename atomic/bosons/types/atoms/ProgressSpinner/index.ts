@@ -1,0 +1,1 @@
+export { ProgressSpinnerInterface as ProgressSpinnerInterface } from './interfaces'

@@ -1,0 +1,1 @@
+export { AvatarInterface as AvatarInterface } from './interfaces'

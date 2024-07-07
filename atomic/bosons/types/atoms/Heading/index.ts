@@ -1,0 +1,1 @@
+export { HeadingInterface as HeadingInterface } from './interfaces'

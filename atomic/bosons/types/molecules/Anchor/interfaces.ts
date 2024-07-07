@@ -1,6 +1,6 @@
 import { StyleValue } from 'vue'
 
-export interface AnchorTagInterface {
+export interface AnchorInterface {
     href?: string
     icon?: string
     label?: string
@@ -25,5 +25,5 @@ export interface AnchorTagInterface {
 }
 
 export interface HandleStartAnchorTagsInterface {
-    anchorTags: AnchorTagInterface[]
+    anchorTags: AnchorInterface[]
 }

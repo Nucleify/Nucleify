@@ -1,5 +1,5 @@
 <template>
-    <RadioButton :value="value" :inputId="inputId" />
+    <RadioButton :value="value" :input-id="inputId" />
 </template>
 
 <script setup lang="ts">

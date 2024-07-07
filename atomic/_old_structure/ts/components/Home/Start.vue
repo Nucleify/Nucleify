@@ -19,7 +19,7 @@
                     @click="navigateTo('/register')"
                 />
             </div>
-            <anchor-tag-molecule
+            <anchor-molecule
                 v-for="(a, index) in anchorTags"
                 :key="index"
                 :href="a.href"

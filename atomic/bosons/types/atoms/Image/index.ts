@@ -1,0 +1,1 @@
+export { ImageInterface as ImageInterface } from './interfaces'

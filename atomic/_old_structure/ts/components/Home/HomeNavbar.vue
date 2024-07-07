@@ -2,9 +2,9 @@
 <template>
     <nav class="homeNavbar navbar navbar-expand-md">
         <div class="container">
-            <anchor-tag-molecule href="/home">
+            <anchor-molecule href="/home">
                 <image-atom src="logo.png" width="60" />
-            </anchor-tag-molecule>
+            </anchor-molecule>
 
             <button-atom
                 class="navbar-toggler"
@@ -24,28 +24,28 @@
                 <!-- Right Side Of Navbar -->
                 <div class="navbar-nav ms-auto md:gap-5 lg:gap-7">
                     <div class="navbar-nav flex md:gap-3 lg:gap-5">
-                        <anchor-tag-molecule
+                        <anchor-molecule
                             class="nav-link homeNavLink"
                             href="#start"
                             @click="throttleHideNavbar"
                             icon="pi pi-bolt homeNavLinkIcon"
                             label="Start"
                         />
-                        <anchor-tag-molecule
+                        <anchor-molecule
                             class="nav-link homeNavLink"
                             href="#features"
                             @click="throttleHideNavbar"
                             icon="pi pi-star homeNavLinkIcon"
                             label="Features"
                         />
-                        <anchor-tag-molecule
+                        <anchor-molecule
                             class="nav-link homeNavLink"
                             href="#why-us"
                             @click="throttleHideNavbar"
                             icon="pi pi-question homeNavLinkIcon"
                             label="Why Us"
                         />
-                        <anchor-tag-molecule
+                        <anchor-molecule
                             class="nav-link homeNavLink"
                             href="#contact"
                             @click="throttleHideNavbar"

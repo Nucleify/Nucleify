@@ -1,0 +1,1 @@
+export { LabelInterface as LabelInterface } from './interfaces'

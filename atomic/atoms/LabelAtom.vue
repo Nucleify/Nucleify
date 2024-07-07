@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { LabelTagInterface } from 'atomic/bosons/types'
+import { LabelInterface } from 'atomic/bosons/types'
 
-defineProps<LabelTagInterface>()
+defineProps<LabelInterface>()
 </script>

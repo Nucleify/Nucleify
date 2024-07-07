@@ -73,7 +73,7 @@ import {
     HeadingAtom,
     ImageAtom,
     InputTextAtom,
-    LabelTagAtom,
+    LabelAtom,
     ProgressSpinnerAtom,
     RadioButtonAtom
 } from './atoms'
@@ -84,14 +84,17 @@ app.component('avatar-atom', AvatarAtom)
     .component('heading-atom', HeadingAtom)
     .component('image-atom', ImageAtom)
     .component('input-text-atom', InputTextAtom)
-    .component('label-tag-atom', LabelTagAtom)
+    .component('label-atom', LabelAtom)
     .component('progress-spinner-atom', ProgressSpinnerAtom)
     .component('radio-button-atom', RadioButtonAtom)
 
 // Molecules
-import { AnchorTagMolecule, FloatLabelMolecule } from './molecules'
+import {
+    AnchorMolecule,
+    FloatLabelMolecule
+} from './molecules'
 
-app.component('anchor-tag-molecule', AnchorTagMolecule)
+app.component('anchor-molecule', AnchorMolecule)
     .component('float-label-molecule', FloatLabelMolecule)
 
 /**
