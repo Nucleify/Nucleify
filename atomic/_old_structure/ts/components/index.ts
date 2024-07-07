@@ -25,9 +25,9 @@ export { default as Register } from './Auth/Register.vue'
 export { default as ContactDashboard } from './Contact/ContactDashboard.vue'
 
 /**
- *  Home
+ *  Dashboard
  */
-export { default as Home } from './Home/Home.vue'
+export { default as Dashboard } from './Dashboard/Dashboard.vue'
 
 /**
  *  Layout

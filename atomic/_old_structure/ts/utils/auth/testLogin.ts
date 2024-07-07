@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { navigateTo } from '@/utils'
+
 export default function testLogin(role: string): void {
     let credentials: { email: string; password: string }
 
@@ -24,7 +26,7 @@ export default function testLogin(role: string): void {
     axios
         .post('/login', credentials)
         .then((): void => {
-            location.href = '/home'
+            navigateTo('/dashboard')
         })
         .catch((error): void => {
             console.error('Error during login:', error)

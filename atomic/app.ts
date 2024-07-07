@@ -103,7 +103,7 @@ import {
     ArticleDashboard,
     ContactDashboard,
     ColorSettings,
-    Home,
+    Dashboard,
     Login,
     MyLayout,
     Settings,
@@ -118,7 +118,7 @@ app.component('activity-log', ActivityLog)
     .component('article-dashboard', ArticleDashboard)
     .component('contact-dashboard', ContactDashboard)
     .component('color-settings', ColorSettings)
-    .component('home', Home)
+    .component('dashboard', Dashboard)
     .component('login', Login)
     .component('my-layout', MyLayout)
     .component('settings', Settings)

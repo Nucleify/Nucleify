@@ -17,6 +17,6 @@ class AdminPanel
             return $next($request);
         }
 
-        return redirect('/home')->with('error', 'You do not have permission to access this page.');
+        return redirect('/dashboard')->with('error', 'You do not have permission to access this page.');
     }
 }
