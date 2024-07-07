@@ -8,6 +8,7 @@
     .p-dock-list-container {
         padding: 0;
         border: 0;
+        box-shadow: $primary-box-shadow;
 
         ul {
             @include center-content;
@@ -15,7 +16,6 @@
             padding: 0;
             margin: 0;
             border-radius: 8px;
-            box-shadow: $primary-box-shadow;
 
             .p-dock-item {
                 @include center-content;

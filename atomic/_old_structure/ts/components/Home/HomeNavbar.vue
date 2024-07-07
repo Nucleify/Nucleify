@@ -1,6 +1,9 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
-    <nav class="homeNavbar navbar navbar-expand-md">
+    <nav
+        class="homeNavbar navbar navbar-expand-md"
+        :class="navbarExpanded ? 'expanded' : 'not-expanded'"
+    >
         <div class="container">
             <anchor-molecule href="/home">
                 <image-atom src="logo.png" width="60" />
@@ -25,7 +28,7 @@
                 <div class="navbar-nav ms-auto md:gap-5 lg:gap-7">
                     <div class="navbar-nav flex md:gap-3 lg:gap-5">
                         <anchor-molecule
-                            class="nav-link homeNavLink"
+                            class="nav-link homeNavLink -mt-1 md:mt-0"
                             href="#start"
                             @click="throttleHideNavbar"
                             icon="pi pi-bolt homeNavLinkIcon"
@@ -56,7 +59,7 @@
 
                     <button-atom
                         label="Log In"
-                        class="primaryButton max-w-6 ml-auto my-5 md:my-0"
+                        class="primaryButton loginButton max-w-6 ml-auto my-4 md:my-0"
                         @click="navigateTo('/login')"
                         :rounded="true"
                     />

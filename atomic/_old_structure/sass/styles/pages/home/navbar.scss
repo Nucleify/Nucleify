@@ -38,9 +38,6 @@
         text-align: $home-nav-link-text-align;
         transition: $home-nav-link-transition;
 
-        .homeNavLinkIcon {
-            transition: $home-nav-link-transition;
-        }
 
         &:hover {
             color: $primary-hover-color;
@@ -57,10 +54,54 @@
             padding: $home-nav-link-padding-md;
         }
     }
+
     @media (min-width: $min-width-md) {
         max-height: $home-navbar-max-height-md;
     }
+
+    @media (max-width: $max-width-lg) {
+        &.expanded {
+            .homeNavLink {
+                position: relative;
+                left: 0 !important;
+                opacity: 1 !important;
+
+                &:nth-child(0) {
+                    transition-delay: 0.05s;
+                }
+                &:nth-child(1) {
+                    transition-delay: 0.1s;
+                }
+                &:nth-child(2) {
+                    transition-delay: 0.15s;
+                }
+                &:nth-child(3) {
+                    transition-delay: 0.2s;
+                }
+                &:nth-child(4) {
+                    transition-delay: 0.25s;
+                }
+            }
+            .loginButton {
+                transition-delay: 0.35s !important;
+                opacity: 1 !important;
+            }
+        }
+        &.not-expanded {
+            .homeNavLink {
+                left: -70px !important;
+                opacity: 0;
+            }
+        }
+        .loginButton {
+            transition: $login-button-transition !important;
+            transition-delay: 0.4s;
+            opacity: 0 !important;
+            margin-right: 13px;
+        }
+    }
 }
+
 .applicationHeader {
     margin-top: $application-header-margin-top;
     margin-left: $application-header-margin-left;
