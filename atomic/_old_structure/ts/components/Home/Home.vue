@@ -1,14 +1,14 @@
 <template>
-    <home-navbar></home-navbar>
+    <home-navbar />
     <div class="homeContainer">
         <start />
         <features />
-        <home-footer />
     </div>
+    <home-footer v-if="isFooterVisible" />
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
 import Features from './Features/Features.vue'
 import Start from './Start.vue'
@@ -21,5 +21,18 @@ const { setDefaultColors } = useColors()
 
 onMounted(() => {
     setDefaultColors(true)
+    window.addEventListener('scroll', handleScroll)
 })
+
+const isFooterVisible = ref(true)
+
+function handleScroll() {
+    const scrollPosition = window.scrollY;
+
+    if (window.innerWidth <= 992) {
+        isFooterVisible.value = scrollPosition >= 2000;
+    } else {
+        isFooterVisible.value = scrollPosition >= 1500
+    }
+}
 </script>

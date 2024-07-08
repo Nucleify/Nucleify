@@ -38,6 +38,9 @@
         text-align: $home-nav-link-text-align;
         transition: $home-nav-link-transition;
 
+        .homeNavLinkIcon {
+            transition: $home-nav-link-transition;
+        }
 
         &:hover {
             color: $primary-hover-color;
@@ -55,11 +58,13 @@
         }
     }
 
+    // Min width 768px
     @media (min-width: $min-width-md) {
         max-height: $home-navbar-max-height-md;
     }
 
-    @media (max-width: $max-width-lg) {
+    // Max width 768px
+    @media (max-width: $max-width-md) {
         &.expanded {
             .homeNavLink {
                 position: relative;
@@ -89,7 +94,7 @@
         }
         &.not-expanded {
             .homeNavLink {
-                left: -70px !important;
+                left: -30px !important;
                 opacity: 0;
             }
         }
