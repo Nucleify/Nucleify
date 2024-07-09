@@ -41,7 +41,7 @@ export default function handleStartAnchorTags(): HandleStartAnchorTagsInterface 
             href: '/activity-log',
             anchorClass: 'startItem activitiesItem',
             tooltip: 'Activities',
-            icon: 'pi pi-clock activitiesIcon',
+            icon: 'pi pi-history activitiesIcon',
         },
     ]
 

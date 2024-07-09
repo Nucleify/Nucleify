@@ -12,7 +12,7 @@ export { default as handleDropdownItems } from './dropdown'
  *  Home
  */
 export { homeItems as homeItems } from './home'
-
+export { whyUsData as whyUsData } from './home'
 /**
  * Layout Items
  */

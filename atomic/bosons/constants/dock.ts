@@ -24,7 +24,7 @@ export const dockItems = ref([
         url: '/articles',
     },
     {
-        icon: 'pi pi-clock',
+        icon: 'pi pi-history',
         label: 'Activities',
         url: '/activity-log',
     },

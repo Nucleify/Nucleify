@@ -3,6 +3,7 @@
     <div class="homeContainer">
         <start />
         <features />
+        <why-us />
     </div>
     <home-footer v-if="isFooterVisible" />
 </template>
@@ -10,10 +11,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 
-import Features from './Features/Features.vue'
-import Start from './Start.vue'
 import HomeFooter from './HomeFooter.vue'
 import HomeNavbar from './HomeNavbar.vue'
+import Features from './Features/Features.vue'
+import Start from './Start.vue'
+import WhyUs from './WhyUs.vue'
 
 import { useColors } from 'atomic/bosons/utils'
 
@@ -22,6 +24,11 @@ const { setDefaultColors } = useColors()
 onMounted(() => {
     setDefaultColors(true)
     window.addEventListener('scroll', handleScroll)
+
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+        window.location.href = '#start'
+    }, 300)
 })
 
 const isFooterVisible = ref(true)

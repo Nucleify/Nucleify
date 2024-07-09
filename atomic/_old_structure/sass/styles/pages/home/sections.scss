@@ -6,12 +6,6 @@
     scroll-margin-top: $start-section-scroll-margin-top;
 }
 
-#footer {
-    overflow-x: $features-section-overflow-x;
-    position: $features-section-position;
-    top: $features-section-top;
-}
-
 #features {
     overflow-x: $features-section-overflow-x;
     scroll-margin-top: $features-section-scroll-margin-top;
@@ -23,4 +17,11 @@
     @media (min-width: $min-width-md) {
         top: $features-section-top-md;
     }
+}
+
+#why-us {
+    position: relative;
+    top: -150px;
+    padding-top: 150px;
+    margin-bottom: -150px;
 }

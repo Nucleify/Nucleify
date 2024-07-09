@@ -1,5 +1,5 @@
 <template>
-    <i v-if="icon" :class="icon" class="dockIcon" />
+    <i v-if="icon" :class="icon" />
 </template>
 
 <script setup lang="ts">

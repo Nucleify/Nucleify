@@ -26,7 +26,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Right Side Of Navbar -->
                 <div class="navbar-nav ms-auto md:gap-5 lg:gap-7">
-                    <div class="navbar-nav flex md:gap-3 lg:gap-5">
+                    <div class="navbar-nav flex md:gap-3 lg:gap-6">
                         <anchor-molecule
                             class="nav-link homeNavLink -mt-1 md:mt-0"
                             href="#start"

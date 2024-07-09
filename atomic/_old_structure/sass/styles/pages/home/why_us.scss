@@ -1,0 +1,159 @@
+@import '../../../variables/base/colors_variables';
+
+
+@keyframes rotateContainer {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateItems {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes setOpacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.whyUsContainer {
+    height: 450px;
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+
+    .whyUsHeader {
+        padding-top: 50px;
+    }
+
+    .whyUsItemsContainer {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .whyUs0 {
+        width: 320px;
+        animation: rotateContainer 24s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems 24s linear infinite, setOpacity 1s forwards;
+        }
+    }
+    .whyUs1 {
+        width: 320px;
+        animation: rotateContainer 24s 4s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems 24s 4s linear infinite, setOpacity 1s 4s forwards;
+        }
+    }
+    .whyUs2 {
+        width: 320px;
+        animation: rotateContainer 24s 8s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems 24s 8s linear infinite, setOpacity 1s 8s forwards;
+        }
+    }
+
+    .whyUs3 {
+        width: 290px;
+        animation: rotateContainer 24s 2s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems 24s 2s linear infinite, setOpacity 1s 2s forwards;
+        }
+    }
+    .whyUs4 {
+        width: 290px;
+        animation: rotateContainer 24s 6s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems 24s 6s linear infinite, setOpacity 1s 6s forwards;
+        }
+    }
+    .whyUs5 {
+        width: 290px;
+        animation: rotateContainer 24s 10s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems 24s 10s linear infinite, setOpacity 1s 10s forwards;
+        }
+    }
+
+    @media (min-width: 600px) {
+        margin-top: 100px;
+        height: 540px;
+
+        .whyUs0,
+        .whyUs1,
+        .whyUs2 {
+            width: 450px;
+        }
+
+        .whyUs3,
+        .whyUs4,
+        .whyUs5 {
+            width: 400px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        height: 650px;
+
+        .whyUs0,
+        .whyUs1,
+        .whyUs2 {
+            width: 500px;
+        }
+
+        .whyUs3,
+        .whyUs4,
+        .whyUs5 {
+            width: 450px;
+        }
+    }
+
+
+    .whyUsItem {
+        padding: 10px;
+        background: white;
+        font-size: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03),
+            0 0 2px rgba(0, 0, 0, 0.06),
+            0 2px 6px rgba(0, 0, 0, 0.12) !important;
+        border-radius: 8px;
+        color: $primary-text-color;
+        transition: all 300ms;
+        cursor: pointer;
+        opacity: 0;
+
+        &:hover {
+            color: $primary-color;
+        }
+
+        @media (min-width: 992px) {
+            padding: 15px;
+            background: white;
+            font-size: 25px;
+        }
+    }
+}
+
+
+
+
+
