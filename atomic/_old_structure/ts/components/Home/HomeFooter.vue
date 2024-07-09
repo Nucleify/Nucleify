@@ -90,6 +90,10 @@ onBeforeUnmount(() => {
     window.removeEventListener('resize', handleResize)
 })
 
-setInterval(updateHexagonPatterns, 350)
+if (window.innerWidth < 992) {
+    setInterval(updateHexagonPatterns, 700)
+} else {
+    setInterval(updateHexagonPatterns, 350)
+}
 
 </script>

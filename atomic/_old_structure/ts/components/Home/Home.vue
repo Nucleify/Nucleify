@@ -28,7 +28,7 @@ onMounted(() => {
     setTimeout(() => {
         window.scrollTo(0, 0);
         window.location.href = '#start'
-    }, 300)
+    }, 100)
 })
 
 const isFooterVisible = ref(true)
