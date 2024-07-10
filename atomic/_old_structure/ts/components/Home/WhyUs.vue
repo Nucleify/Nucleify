@@ -18,7 +18,7 @@
             </div>
         </div>
     </section>
-    <Dialog v-model:visible="dialogVisible" :data="dialogData" @close="dialogVisible = false" modal class="m-4">
+    <Dialog v-model:visible="dialogVisible" :data="dialogData" @close="dialogVisible = false" modal class="whyUsDialog m-4">
         <template #header>
             <div class="flex w-full justify-content-between align-items-center">
                 <div class="flex align-items-center gap-4">
