@@ -12,6 +12,7 @@
     max-width: $flip-card-width;
     min-height: $flip-card-height;
     perspective: $flip-card-perspective;
+    z-index: $flip-card-z-index;
 
     .flip-card-inner {
         position: $flip-card-inner-position;
