@@ -3,7 +3,11 @@
         <Card class="myCard">
             <template #title>
                 <div class="myCardHeaderContainer">
-                    <h3>Manage Contacts</h3>
+                    <heading-atom
+                        :tag="3"
+                        text="Manage Contacts"
+                        class="-mb-2"
+                    />
 
                     <button-atom
                         label="New Contact"

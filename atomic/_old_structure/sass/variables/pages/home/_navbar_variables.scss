@@ -1,0 +1,37 @@
+// welcomeNavbar
+$home-navbar-width: 100%;
+$home-navbar-z-index: 9999;
+$home-navbar-position: fixed;
+$home-navbar-top: -3px;
+$home-navbar-padding: 1rem;
+
+// navbar-toggler
+$navbar-toggler-dimensions: 44px;
+$navbar-toggler-padding: 0;
+
+// welcomeNavLink
+$home-nav-link-display: flex;
+$home-nav-link-justify-content: end;
+$home-nav-link-align-items: center;
+$home-nav-link-margin-top: 10px;
+$home-nav-link-padding: 15px;
+$home-nav-link-font-size: 18px;
+$home-nav-link-text-align: end;
+$home-nav-link-gap: 20px;
+$home-nav-link-transition: all 300ms;
+
+// loginButton
+$login-button-transition: all 400ms;
+
+// Application header
+$application-header-margin-top: -5px;
+$application-header-margin-left: 11px;
+$application-header-text-decoration: none;
+$application-header-font-size: 20px;
+
+// Min width 768px
+$home-navbar-max-height-md: 100px;
+$home-nav-link-gap-md: 10px;
+$application-header-font-size-md: 25px;
+$home-nav-link-margin-top-md: -3px;
+$home-nav-link-padding-md: 8px;

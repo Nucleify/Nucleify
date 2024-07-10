@@ -4,7 +4,8 @@
     >
         <template #header>
             <div class="myCardHeaderContainer">
-                <h2>Item Colors</h2>
+                <heading-atom :tag="2" text="Entity Colors" />
+
                 <button-atom
                     class="myButton"
                     @click="setDefaultColors(false)"
@@ -22,7 +23,7 @@
                     :key="item"
                     class="settingsCardItem"
                 >
-                    <h3>{{ item }}</h3>
+                    <heading-atom :tag="3" :text="item" />
                     <color-picker-atom :item="getLowerCase(item)" />
                 </li>
             </ul>

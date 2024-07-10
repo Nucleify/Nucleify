@@ -1,0 +1,269 @@
+@import '../../../variables/base/colors_variables';
+
+
+.whyUsContainer {
+    height: 450px;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+
+    .whyUsHeader {
+        padding-top: 50px;
+        opacity: 0;
+        animation: setOpacity 1s forwards;
+    }
+
+    .whyUs0,
+    .whyUs2,
+    .whyUs4 {
+        width: 310px;
+    }
+    .whyUs1,
+    .whyUs3,
+    .whyUs5 {
+        width: 280px;
+    }
+
+    .whyUs0 {
+        animation: rotateContainer0 60s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems0 60s linear infinite, setOpacity 1s forwards;
+        }
+    }
+
+    .whyUs1 {
+        animation: rotateContainer1 60s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems1 60s linear infinite, setOpacity 1s 0.2s forwards;
+        }
+    }
+
+    .whyUs2 {
+        animation: rotateContainer2 60s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems2 60s linear infinite, setOpacity 1s 0.4s forwards;
+        }
+    }
+
+    .whyUs3 {
+        animation: rotateContainer3 60s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems3 60s linear infinite, setOpacity 1s 0.1s forwards;
+        }
+    }
+
+    .whyUs4 {
+        animation: rotateContainer4 60s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems4 60s linear infinite, setOpacity 1s 0.3s forwards;
+        }
+    }
+
+    .whyUs5 {
+        animation: rotateContainer5 60s linear infinite;
+
+        .whyUsItem {
+            animation: rotateItems5 60s linear infinite, setOpacity 1s 0.5s forwards;
+        }
+    }
+
+    @media (min-width: 768px) {
+        height: 540px;
+        margin: 100px auto 0 auto;
+
+        .whyUs0,
+        .whyUs2,
+        .whyUs4 {
+            width: 450px;
+        }
+        .whyUs1,
+        .whyUs3,
+        .whyUs5 {
+            width: 400px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        height: 650px;
+
+        .whyUs0,
+        .whyUs2,
+        .whyUs4 {
+            width: 500px;
+        }
+        .whyUs1,
+        .whyUs3,
+        .whyUs5 {
+            width: 450px;
+        }
+    }
+
+
+    .whyUsItem {
+        height: min-content;
+        width: min-content;
+        padding: 10px;
+        background: white;
+        font-size: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03),
+        0 0 2px rgba(0, 0, 0, 0.06),
+        0 2px 6px rgba(0, 0, 0, 0.12) !important;
+        border-radius: 8px;
+        color: $primary-text-color;
+        transition: all 300ms;
+        cursor: pointer;
+        opacity: 0;
+
+        &:hover {
+            color: $primary-color;
+            font-size: 20px;
+        }
+
+        @media (min-width: 768px) {
+            padding: 12px;
+            background: white;
+            font-size: 20px;
+
+            &:hover {
+                font-size: 25px;
+            }
+        }
+
+        @media (min-width: 992px) {
+            padding: 15px;
+            background: white;
+            font-size: 25px;
+
+            &:hover {
+                font-size: 30px;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+@keyframes rotateContainer0 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateContainer1 {
+    from {
+        transform: rotate(30deg);
+    }
+    to {
+        transform: rotate(390deg);
+    }
+}
+
+@keyframes rotateContainer2 {
+    from {
+        transform: rotate(60deg);
+    }
+    to {
+        transform: rotate(420deg);
+    }
+}
+
+@keyframes rotateContainer3 {
+    from {
+        transform: rotate(90deg);
+    }
+    to {
+        transform: rotate(450deg);
+    }
+}
+
+@keyframes rotateContainer4 {
+    from {
+        transform: rotate(120deg);
+    }
+    to {
+        transform: rotate(480deg);
+    }
+}
+
+@keyframes rotateContainer5 {
+    from {
+        transform: rotate(150deg);
+    }
+    to {
+        transform: rotate(510deg);
+    }
+}
+
+@keyframes rotateItems0 {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes rotateItems1 {
+    from {
+        transform: rotate(-30deg);
+    }
+    to {
+        transform: rotate(-390deg);
+    }
+}
+
+@keyframes rotateItems2 {
+    from {
+        transform: rotate(-60deg);
+    }
+    to {
+        transform: rotate(-420deg);
+    }
+}
+
+@keyframes rotateItems3 {
+    from {
+        transform: rotate(-90deg);
+    }
+    to {
+        transform: rotate(-450deg);
+    }
+}
+
+@keyframes rotateItems4 {
+    from {
+        transform: rotate(-120deg);
+    }
+    to {
+        transform: rotate(-480deg);
+    }
+}
+
+@keyframes rotateItems5 {
+    from {
+        transform: rotate(-150deg);
+    }
+    to {
+        transform: rotate(-510deg);
+    }
+}
+
+@keyframes setOpacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

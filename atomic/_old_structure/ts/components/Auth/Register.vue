@@ -6,10 +6,14 @@
             <template #header>
                 <div class="authCardHeaderContainer">
                     <div class="authCardHeader">
-                        <h1>Register</h1>
+                        <heading-atom :tag="1" text="Register" />
+
                         <p class="mb-2">
                             Already have an account?
-                            <anchor-tag-molecule href="/login" :label="'Log in!'" />
+                            <anchor-molecule
+                                href="/login"
+                                :label="'Log in!'"
+                            />
                         </p>
                     </div>
                 </div>
@@ -24,7 +28,7 @@
                             class="authInputText"
                             autofocus
                         />
-                        <label-tag-atom for="name" label="Name" />
+                        <label-atom for="name" label="Name" />
                     </float-label-molecule>
 
                     <float-label-molecule>
@@ -34,7 +38,7 @@
                             id="name"
                             class="authInputText"
                         />
-                        <label-tag-atom for="name" label="Email" />
+                        <label-atom for="name" label="Email" />
                     </float-label-molecule>
 
                     <float-label-molecule>
@@ -44,7 +48,7 @@
                             id="password"
                             class="authInputText"
                         />
-                        <label-tag-atom for="password" label="Password" />
+                        <label-atom for="password" label="Password" />
                     </float-label-molecule>
 
                     <float-label-molecule>
@@ -54,7 +58,10 @@
                             id="password-confirm"
                             class="authInputText"
                         />
-                        <label-tag-atom for="password-confirm" label="Confirm Password" />
+                        <label-atom
+                            for="password-confirm"
+                            label="Confirm Password"
+                        />
                     </float-label-molecule>
 
                     <button-atom

@@ -4,7 +4,8 @@
     >
         <template #header>
             <div class="myCardHeaderContainer">
-                <h2>Display Charts</h2>
+                <heading-atom :tag="2" text="Display Charts" />
+
                 <button-atom
                     class="myButton p-button-rounded"
                     icon="pi pi-refresh"
@@ -21,13 +22,11 @@
                 :key="item"
             >
                 <li class="settingsCardItem">
-                    <h3>{{ item }}</h3>
+                    <heading-atom :tag="3" :text="item" />
                     <button-atom
                         class="myButton"
                         @click="displayChartsToggle(item)"
-                        :icon="
-                            display[item] ? 'pi pi-eye' : 'pi pi-eye-slash'
-                        "
+                        :icon="display[item] ? 'pi pi-eye' : 'pi pi-eye-slash'"
                         :rounded="true"
                         :style="mainStyle"
                     />

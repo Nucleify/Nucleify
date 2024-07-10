@@ -18,14 +18,13 @@
     @vite(['atomic/app.ts'])
 </head>
 <body>
-    <div id="app" class="flex flex-column">
+    <main id="app">
         @auth
-            <my-layout></my-layout>
+            <toast></toast>
+            <dock-molecule></dock-molecule>
         @endauth
 
-        <main>
-            @yield('content')
-        </main>
-    </div>
+        @yield('content')
+    </main>
 </body>
 </html>

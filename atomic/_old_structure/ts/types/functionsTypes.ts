@@ -6,7 +6,6 @@ import {
     ActivityLogInterface,
     ApiErrorsInterface,
     ArticleInterface,
-    ColorItemStyleInterface,
     ContactInterface,
     HomeItemsInterface,
     MessageOrMessagesType,
@@ -14,6 +13,8 @@ import {
     ToastSeverityType,
     UserInterface,
 } from '@/types'
+
+import { ColorItemStyleInterface } from 'atomic/bosons/types'
 
 /**
  *  Api

@@ -7,11 +7,14 @@
                 <div class="authCardHeaderContainer">
                     <div class="authCardHeader">
                         <image-atom src="logo.png" width="50" />
+                        <heading-atom :tag="1" text="Welcome Back" />
 
-                        <h1>Welcome Back</h1>
                         <p class="mb-2">
                             Don't have an account?
-                            <anchor-tag-molecule href="/register" :label="'Create today!'" />
+                            <anchor-molecule
+                                href="/register"
+                                :label="'Create today!'"
+                            />
                         </p>
                     </div>
                 </div>
@@ -26,7 +29,7 @@
                             class="authInputText"
                             autofocus
                         />
-                        <label-tag-atom for="email" label="Email Address" />
+                        <label-atom for="email" label="Email Address" />
                     </float-label-molecule>
 
                     <float-label-molecule>
@@ -36,7 +39,7 @@
                             id="password"
                             class="authInputText"
                         />
-                        <label-tag-atom for="password" label="Password" />
+                        <label-atom for="password" label="Password" />
                     </float-label-molecule>
 
                     <button-atom

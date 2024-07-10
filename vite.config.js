@@ -33,10 +33,14 @@ export default defineConfig({
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
             '@': '/atomic/_old_structure/ts',
-            'atomic': '/atomic'
+            'atomic': '/atomic',
+            'sass': '/atomic/bosons/styles'
         },
     },
     build: {
         chunkSizeWarningLimit: 1600
+    },
+    define: {
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
     }
 });

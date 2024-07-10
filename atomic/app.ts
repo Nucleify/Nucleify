@@ -4,7 +4,7 @@
 import 'primevue/resources/themes/lara-light-green/theme.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
-import 'atomic/bosons/styles/index.scss'
+import 'sass/index.scss'
 
 /**
  *  App
@@ -25,6 +25,7 @@ import ColorPicker from 'primevue/colorpicker'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
 import Dialog from 'primevue/dialog'
+import Dock from 'primevue/dock'
 import Dropdown from 'primevue/dropdown'
 import FloatLabel from 'primevue/floatlabel'
 import Image from 'primevue/image'
@@ -34,6 +35,7 @@ import Menu from 'primevue/menu'
 import Menubar from 'primevue/menubar'
 import PanelMenu from 'primevue/panelmenu'
 import ProgressSpinner from 'primevue/progressspinner'
+import RadioButton from 'primevue/radiobutton'
 import Sidebar from 'primevue/sidebar'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
@@ -46,6 +48,7 @@ app.component('Avatar', Avatar)
     .component('Column', Column)
     .component('DataTable', DataTable)
     .component('Dialog', Dialog)
+    .component('Dock', Dock)
     .component('Dropdown', Dropdown)
     .component('FloatLabel', FloatLabel)
     .component('Image', Image)
@@ -55,6 +58,7 @@ app.component('Avatar', Avatar)
     .component('Menubar', Menubar)
     .component('PanelMenu', PanelMenu)
     .component('ProgressSpinner', ProgressSpinner)
+    .component('RadioButton', RadioButton)
     .component('Sidebar', Sidebar)
     .component('Textarea', Textarea)
     .component('Toast', Toast)
@@ -68,25 +72,36 @@ import {
     AvatarAtom,
     ButtonAtom,
     ColorPickerAtom,
+    HeadingAtom,
     ImageAtom,
     InputTextAtom,
-    LabelTagAtom,
+    LabelAtom,
     ProgressSpinnerAtom,
+    RadioButtonAtom
 } from './atoms'
 
 app.component('avatar-atom', AvatarAtom)
     .component('button-atom', ButtonAtom)
     .component('color-picker-atom', ColorPickerAtom)
+    .component('heading-atom', HeadingAtom)
     .component('image-atom', ImageAtom)
     .component('input-text-atom', InputTextAtom)
-    .component('label-tag-atom', LabelTagAtom)
+    .component('label-atom', LabelAtom)
     .component('progress-spinner-atom', ProgressSpinnerAtom)
+    .component('radio-button-atom', RadioButtonAtom)
 
 // Molecules
-import { AnchorTagMolecule, FloatLabelMolecule } from './molecules'
+import {
+    AnchorMolecule,
+    DockMolecule,
+    FloatLabelMolecule,
+    ItemMolecule
+} from './molecules'
 
-app.component('anchor-tag-molecule', AnchorTagMolecule)
+app.component('anchor-molecule', AnchorMolecule)
+    .component('dock-molecule', DockMolecule)
     .component('float-label-molecule', FloatLabelMolecule)
+    .component('item-molecule', ItemMolecule)
 
 /**
  *  Components
@@ -97,14 +112,12 @@ import {
     ArticleDashboard,
     ContactDashboard,
     ColorSettings,
+    Dashboard,
     Home,
     Login,
-    MyLayout,
     Settings,
     Register,
     TestLoginButton,
-    Welcome,
-    WelcomeNavbar,
 } from '@/components'
 
 app.component('activity-log', ActivityLog)
@@ -112,14 +125,13 @@ app.component('activity-log', ActivityLog)
     .component('article-dashboard', ArticleDashboard)
     .component('contact-dashboard', ContactDashboard)
     .component('color-settings', ColorSettings)
+    .component('dashboard', Dashboard)
     .component('home', Home)
     .component('login', Login)
-    .component('my-layout', MyLayout)
     .component('settings', Settings)
     .component('register', Register)
     .component('test-login-button', TestLoginButton)
-    .component('welcome', Welcome)
-    .component('welcome-navbar', WelcomeNavbar)
+    .component('toast', Toast)
 
 /**
  *  Directives
