@@ -18,6 +18,7 @@
     .whyUs4 {
         width: 310px;
     }
+
     .whyUs1,
     .whyUs3,
     .whyUs5 {
@@ -121,32 +122,21 @@
 
         &:hover {
             color: $primary-color;
-            font-size: 20px;
         }
 
         @media (min-width: 768px) {
             padding: 12px;
             background: white;
             font-size: 20px;
-
-            &:hover {
-                font-size: 25px;
-            }
         }
 
         @media (min-width: 992px) {
             padding: 15px;
             background: white;
             font-size: 25px;
-
-            &:hover {
-                font-size: 30px;
-            }
         }
     }
 }
-
-
 
 
 
