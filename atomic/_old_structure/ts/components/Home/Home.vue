@@ -24,11 +24,6 @@ const { setDefaultColors } = useColors()
 onMounted(() => {
     setDefaultColors(true)
     window.addEventListener('scroll', handleScroll)
-
-    setTimeout(() => {
-        window.scrollTo(0, 0);
-        window.location.href = '#start'
-    }, 100)
 })
 
 const isFooterVisible = ref(true)

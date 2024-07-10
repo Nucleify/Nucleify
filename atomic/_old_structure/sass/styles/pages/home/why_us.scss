@@ -1,111 +1,88 @@
 @import '../../../variables/base/colors_variables';
 
 
-@keyframes rotateContainer {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes rotateItems {
-    from {
-        transform: rotate(360deg);
-    }
-    to {
-        transform: rotate(0deg);
-    }
-}
-
-@keyframes setOpacity {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 .whyUsContainer {
     height: 450px;
     display: flex;
     align-items: center;
-    margin-top: 0;
+    margin: 0 auto;
 
     .whyUsHeader {
         padding-top: 50px;
+        opacity: 0;
+        animation: setOpacity 1s forwards;
     }
 
-    .whyUsItemsContainer {
-        position: relative;
-        width: 100%;
-        height: 100%;
+    .whyUs0,
+    .whyUs2,
+    .whyUs4 {
+        width: 310px;
+    }
+    .whyUs1,
+    .whyUs3,
+    .whyUs5 {
+        width: 280px;
     }
 
     .whyUs0 {
-        width: 320px;
-        animation: rotateContainer 24s linear infinite;
+        animation: rotateContainer0 60s linear infinite;
 
         .whyUsItem {
-            animation: rotateItems 24s linear infinite, setOpacity 1s forwards;
+            animation: rotateItems0 60s linear infinite, setOpacity 1s forwards;
         }
     }
+
     .whyUs1 {
-        width: 320px;
-        animation: rotateContainer 24s 4s linear infinite;
+        animation: rotateContainer1 60s linear infinite;
 
         .whyUsItem {
-            animation: rotateItems 24s 4s linear infinite, setOpacity 1s 4s forwards;
+            animation: rotateItems1 60s linear infinite, setOpacity 1s 0.2s forwards;
         }
     }
+
     .whyUs2 {
-        width: 320px;
-        animation: rotateContainer 24s 8s linear infinite;
+        animation: rotateContainer2 60s linear infinite;
 
         .whyUsItem {
-            animation: rotateItems 24s 8s linear infinite, setOpacity 1s 8s forwards;
+            animation: rotateItems2 60s linear infinite, setOpacity 1s 0.4s forwards;
         }
     }
 
     .whyUs3 {
-        width: 290px;
-        animation: rotateContainer 24s 2s linear infinite;
+        animation: rotateContainer3 60s linear infinite;
 
         .whyUsItem {
-            animation: rotateItems 24s 2s linear infinite, setOpacity 1s 2s forwards;
+            animation: rotateItems3 60s linear infinite, setOpacity 1s 0.1s forwards;
         }
     }
+
     .whyUs4 {
-        width: 290px;
-        animation: rotateContainer 24s 6s linear infinite;
+        animation: rotateContainer4 60s linear infinite;
 
         .whyUsItem {
-            animation: rotateItems 24s 6s linear infinite, setOpacity 1s 6s forwards;
+            animation: rotateItems4 60s linear infinite, setOpacity 1s 0.3s forwards;
         }
     }
+
     .whyUs5 {
-        width: 290px;
-        animation: rotateContainer 24s 10s linear infinite;
+        animation: rotateContainer5 60s linear infinite;
 
         .whyUsItem {
-            animation: rotateItems 24s 10s linear infinite, setOpacity 1s 10s forwards;
+            animation: rotateItems5 60s linear infinite, setOpacity 1s 0.5s forwards;
         }
     }
 
-    @media (min-width: 600px) {
-        margin-top: 100px;
+    @media (min-width: 768px) {
         height: 540px;
+        margin: 100px auto 0 auto;
 
         .whyUs0,
-        .whyUs1,
-        .whyUs2 {
+        .whyUs2,
+        .whyUs4 {
             width: 450px;
         }
-
+        .whyUs1,
         .whyUs3,
-        .whyUs4,
         .whyUs5 {
             width: 400px;
         }
@@ -115,13 +92,12 @@
         height: 650px;
 
         .whyUs0,
-        .whyUs1,
-        .whyUs2 {
+        .whyUs2,
+        .whyUs4 {
             width: 500px;
         }
-
+        .whyUs1,
         .whyUs3,
-        .whyUs4,
         .whyUs5 {
             width: 450px;
         }
@@ -143,6 +119,13 @@
 
         &:hover {
             color: $primary-color;
+            font-size: 30px;
+        }
+
+        @media (min-width: 768px) {
+            padding: 12px;
+            background: white;
+            font-size: 20px;
         }
 
         @media (min-width: 992px) {
@@ -157,3 +140,120 @@
 
 
 
+
+@keyframes rotateContainer0 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateContainer1 {
+    from {
+        transform: rotate(30deg);
+    }
+    to {
+        transform: rotate(390deg);
+    }
+}
+
+@keyframes rotateContainer2 {
+    from {
+        transform: rotate(60deg);
+    }
+    to {
+        transform: rotate(420deg);
+    }
+}
+
+@keyframes rotateContainer3 {
+    from {
+        transform: rotate(90deg);
+    }
+    to {
+        transform: rotate(450deg);
+    }
+}
+
+@keyframes rotateContainer4 {
+    from {
+        transform: rotate(120deg);
+    }
+    to {
+        transform: rotate(480deg);
+    }
+}
+
+@keyframes rotateContainer5 {
+    from {
+        transform: rotate(150deg);
+    }
+    to {
+        transform: rotate(510deg);
+    }
+}
+
+@keyframes rotateItems0 {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes rotateItems1 {
+    from {
+        transform: rotate(-30deg);
+    }
+    to {
+        transform: rotate(-390deg);
+    }
+}
+
+@keyframes rotateItems2 {
+    from {
+        transform: rotate(-60deg);
+    }
+    to {
+        transform: rotate(-420deg);
+    }
+}
+
+@keyframes rotateItems3 {
+    from {
+        transform: rotate(-90deg);
+    }
+    to {
+        transform: rotate(-450deg);
+    }
+}
+
+@keyframes rotateItems4 {
+    from {
+        transform: rotate(-120deg);
+    }
+    to {
+        transform: rotate(-480deg);
+    }
+}
+
+@keyframes rotateItems5 {
+    from {
+        transform: rotate(-150deg);
+    }
+    to {
+        transform: rotate(-510deg);
+    }
+}
+
+@keyframes setOpacity {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

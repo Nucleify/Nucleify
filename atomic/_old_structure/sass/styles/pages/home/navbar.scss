@@ -88,13 +88,12 @@
                 }
             }
             .loginButton {
-                transition-delay: 0.35s !important;
+                transition-delay: 0.3s !important;
                 opacity: 1 !important;
             }
         }
         &.not-expanded {
             .homeNavLink {
-                left: -30px !important;
                 opacity: 0;
             }
         }
