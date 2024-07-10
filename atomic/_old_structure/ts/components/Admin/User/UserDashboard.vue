@@ -3,7 +3,7 @@
         <Card class="myCard">
             <template #title>
                 <div class="myCardHeaderContainer">
-                    <h3>Manage Users</h3>
+                    <heading-atom :tag="3" text="Manage Users" class="-mb-2" />
 
                     <button-atom
                         label="New User"

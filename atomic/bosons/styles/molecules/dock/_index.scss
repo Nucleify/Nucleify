@@ -1,0 +1,92 @@
+@import 'mixins';
+@import 'variables';
+
+.dock {
+    position: fixed;
+    z-index: 999;
+
+    .p-dock-list-container {
+        padding: 0;
+        border: 0;
+        box-shadow: $primary-box-shadow;
+
+        ul {
+            @include center-content;
+            background: $white-body-bg;
+            padding: 0;
+            margin: 0;
+            border-radius: 8px;
+
+            .p-dock-item {
+                @include center-content;
+                @include my-animation;
+                padding: 12px !important;
+                min-width: 58px;
+                min-height: 58px;
+
+                &:first-child {
+                    width: 70px !important;
+                    height: 70px !important;
+                }
+
+                &.p-focus {
+                    box-shadow: none !important;
+                }
+
+                a {
+                    @include center-content;
+                    @include min-content;
+                    overflow: visible;
+                    text-decoration: none;
+                    cursor: pointer;
+                    transition: all 300ms;
+
+                    &:hover {
+                        transform: scale(1.15);
+                    }
+
+                    &:has(.dockPositionButtons) {
+                        padding: 0;
+                        width: 3rem;
+                        height: 3rem;
+                    }
+
+                    .dockPositionButtons {
+                        @include center-content;
+                        flex-wrap: wrap;
+                        gap: 0.25rem;
+                        max-width: 40px;
+                        max-height: 40px;
+                        transform: rotate(45deg);
+
+                        .left,
+                        .right {
+                            pointer-events: none;
+                            opacity: 0;
+
+                            // 992px
+                            @media (min-width: $min-width-lg) {
+                                pointer-events: inherit;
+                                opacity: 1;
+                            }
+                        }
+
+                        input[type='radio'] {
+                            box-sizing: border-box;
+                            appearance: none;
+                            background: rgba(69, 69, 69, 0.1);
+                            width: 11px;
+                            height: 11px;
+                            cursor: pointer;
+                            transition: all 800ms ease;
+
+                            &:checked {
+                                background: #1bbd7999;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,41 @@
+@import '../../../variables/pages/home/home_variables';
+
+@import '../../../variables/base/colors_variables';
+@import '../../../variables/base/medias_variables';
+
+@import 'footer';
+@import 'features/features';
+@import 'navbar';
+@import 'sections';
+@import 'start';
+@import 'why_us';
+
+.homeContainer {
+    background: $white-body-bg !important;
+    padding-top: $home-container-padding-top;
+
+    // Min width 560px
+    @media (min-width: $min-width-sm4) {
+        padding-top: $home-container-padding-top-sm4;
+    }
+
+    // Min width 768px
+    @media (min-width: $min-width-md) {
+        padding-top: $home-container-padding-top-md;
+    }
+
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
+        padding-top: $home-container-padding-top-lg2;
+    }
+
+    // Min width 1200px
+    @media (min-width: $min-width-xl) {
+        padding-top: $home-container-padding-top-xl;
+    }
+
+    // Min width 1400px
+    @media (min-width: $min-width-2xl) {
+        padding-top: $home-container-padding-top-2xl;
+    }
+}

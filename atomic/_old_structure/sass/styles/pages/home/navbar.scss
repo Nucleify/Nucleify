@@ -1,0 +1,124 @@
+@import '../../../variables/pages/home/navbar_variables';
+
+@import '../../../variables/base/borders_variables';
+@import '../../../variables/base/colors_variables';
+@import '../../../variables/base/medias_variables';
+@import '../../../variables/base/box_shadows_variables';
+
+.homeNavbar {
+    width: $home-navbar-width;
+    z-index: $home-navbar-z-index;
+    position: $home-navbar-position;
+    top: $home-navbar-top;
+    background: $primary-bg;
+    box-shadow: $box-shadow-none;
+    border: $border-none;
+    border-radius: $border-radius-none;
+    padding: $home-navbar-padding;
+
+    .pi {
+        color: $white-text-color !important;
+    }
+
+    .navbar-toggler {
+        height: $navbar-toggler-dimensions;
+        width: $navbar-toggler-dimensions;
+        padding: $navbar-toggler-padding;
+    }
+
+    .homeNavLink {
+        display: $home-nav-link-display;
+        justify-content: $home-nav-link-justify-content;
+        align-items: $home-nav-link-align-items;
+        gap: $home-nav-link-gap;
+        margin-top: $home-nav-link-margin-top;
+        padding: $home-nav-link-padding;
+        color: $white-text-color;
+        font-size: $home-nav-link-font-size;
+        text-align: $home-nav-link-text-align;
+        transition: $home-nav-link-transition;
+
+        .homeNavLinkIcon {
+            transition: $home-nav-link-transition;
+        }
+
+        &:hover {
+            color: $primary-hover-color;
+
+            .homeNavLinkIcon {
+                color: $primary-hover-color !important;
+            }
+        }
+
+        // Min width 768px
+        @media (min-width: $min-width-md) {
+            gap: $home-nav-link-gap-md;
+            margin-top: $home-nav-link-margin-top-md;
+            padding: $home-nav-link-padding-md;
+        }
+    }
+
+    // Min width 768px
+    @media (min-width: $min-width-md) {
+        max-height: $home-navbar-max-height-md;
+    }
+
+    // Max width 768px
+    @media (max-width: $max-width-md) {
+        &.expanded {
+            .homeNavLink {
+                position: relative;
+                left: 0 !important;
+                opacity: 1 !important;
+
+                &:nth-child(0) {
+                    transition-delay: 0.05s;
+                }
+                &:nth-child(1) {
+                    transition-delay: 0.1s;
+                }
+                &:nth-child(2) {
+                    transition-delay: 0.15s;
+                }
+                &:nth-child(3) {
+                    transition-delay: 0.2s;
+                }
+                &:nth-child(4) {
+                    transition-delay: 0.25s;
+                }
+            }
+            .loginButton {
+                transition-delay: 0.3s !important;
+                opacity: 1 !important;
+            }
+        }
+        &.not-expanded {
+            .homeNavLink {
+                opacity: 0;
+            }
+        }
+        .loginButton {
+            transition: $login-button-transition !important;
+            transition-delay: 0.4s;
+            opacity: 0 !important;
+            margin-right: 13px;
+        }
+    }
+}
+
+.applicationHeader {
+    margin-top: $application-header-margin-top;
+    margin-left: $application-header-margin-left;
+    text-decoration: $application-header-text-decoration;
+    color: $white-text-color;
+    font-size: $application-header-font-size;
+
+    &:hover {
+        color: $white-text-color;
+    }
+
+    // Min width 768px
+    @media (min-width: $min-width-md) {
+        font-size: $application-header-font-size-md;
+    }
+}

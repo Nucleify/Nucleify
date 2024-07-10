@@ -1,16 +1,11 @@
-// Fonts
-@import url('https://fonts.bunny.net/css?family=Nunito');
-
 // Bootstrap
-@import 'bootstrap/scss/bootstrap';
+@use 'bootstrap/scss/bootstrap';
 
 //  Styles
-@import 'atoms/atoms';
-@import 'molecules/molecules';
-@import 'organisms/organisms';
-@import 'templates/templates';
+@use 'atoms';
+@use 'molecules';
+@use 'organisms';
+@use 'templates';
 
-@import '../../_old_structure/sass/app';
-
-// Variables
-@import 'variables/variables';
+// Old structure
+@use '../../_old_structure/sass/app';

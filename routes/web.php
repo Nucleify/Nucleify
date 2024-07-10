@@ -6,20 +6,23 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Entities\ActivityController;
 use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Auth\LogoutController;
 
-
+/**
+ *  Home
+ */
 Route::get('/', function () {
-    return redirect('/welcome');
+    return redirect('/home');
 });
-Route::get('/welcome', function () {
-    return view('welcome');
-});
+Route::get('/home', [HomeController::class, 'render'])->name('home');
 
+/**
+ *  Auth routes
+ */
 Auth::routes();
-
 
 Route::middleware(['web', 'auth'])->group(function () {
 
@@ -39,9 +42,9 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/contacts', [ContactController::class, 'render'])->name('contacts');
 
     /**
-     *  Home
+     *  Dashboard
      */
-    Route::get('/home', [HomeController::class, 'render'])->name('home');
+    Route::get('/dashboard', [DashboardController::class, 'render'])->name('dashboard');
 
     /**
      *  Settings

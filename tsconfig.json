@@ -24,6 +24,9 @@
       "@/*": [
         "atomic/_old_structure/ts/*"
       ],
+      "sass/*": [
+        "atomic/bosons/styles/*"
+      ]
     },
     "lib": [
       "es2015",

@@ -5,7 +5,7 @@ import {
     RegisterFormInterface,
     UseSubmitAuthFormInterface,
 } from '@/types'
-import { useApiErrors } from '@/utils'
+import { navigateTo, useApiErrors } from '@/utils'
 
 export default function useSubmitAuthForm(): UseSubmitAuthFormInterface {
     let url
@@ -29,7 +29,7 @@ export default function useSubmitAuthForm(): UseSubmitAuthFormInterface {
         await axios
             .post(url, data)
             .then((): void => {
-                window.location.href = '/home'
+                navigateTo('/dashboard')
             })
             .catch((error): void => {
                 apiErrors(error)

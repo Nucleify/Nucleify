@@ -1,7 +1,7 @@
 <template>
     <Dialog :visible="visible" modal class="myDialog">
         <template #header>
-            <h2 class="myDialogHeader">Create new contact</h2>
+            <heading-atom :tag="2" text="Create new contact" />
         </template>
 
         <form action="#" class="formContainer">

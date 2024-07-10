@@ -1,1 +1,1 @@
-export const excludedPaths = ['/login', '/register', '/welcome']
+export const excludedPaths: string[] = ['/login', '/register', '/home']

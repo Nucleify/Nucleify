@@ -15,15 +15,15 @@ export default function useSidebar(): UseSidebarInterface {
         contactItemStyle,
     }: HandleStylesInterface = handleStyles()
 
-    function getSidebarItemStyle(url: string): ColorItemStyleInterface | '' {
+    function getSidebarItemStyle(url: string): ColorItemStyleInterface | null {
         if (url === '/contacts') {
-            return isCurrentUrl(url) ? contactItemStyle : ''
+            return isCurrentUrl(url) ? contactItemStyle : null
         } else if (url === '/articles') {
-            return isCurrentUrl(url) ? articleItemStyle : ''
+            return isCurrentUrl(url) ? articleItemStyle : null
         } else if (url === '/activity-log') {
-            return isCurrentUrl(url) ? activityItemStyle : ''
+            return isCurrentUrl(url) ? activityItemStyle : null
         } else {
-            return isCurrentUrl(url) ? mainItemStyle : ''
+            return isCurrentUrl(url) ? mainItemStyle : null
         }
     }
 

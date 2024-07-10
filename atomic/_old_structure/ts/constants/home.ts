@@ -76,3 +76,43 @@ export const homeItems: Ref<HomeItemsInterface[]> = ref([
         draggableClass: false,
     },
 ])
+
+
+export const whyUsData = [
+    {
+        items: [
+            { icon: 'pi pi-cloud' },
+            { icon: 'pi pi-github' }
+        ]
+    },
+    {
+        items: [
+            { icon: 'pi pi-building' },
+            { icon: 'pi pi-sitemap' }
+        ]
+    },
+    {
+        items: [
+            { icon: 'pi pi-chart-line' },
+            { icon: 'pi pi-palette' }
+        ]
+    },
+    {
+        items: [
+            { icon: 'pi pi-file-pdf' },
+            { icon: 'pi pi-database' }
+        ]
+    },
+    {
+        items: [
+            { icon: 'pi pi-history' },
+            { icon: 'pi pi-sync' }
+        ]
+    },
+    {
+        items: [
+            { icon: 'pi pi-key' },
+            { icon: 'pi pi-bell' }
+        ]
+    }
+];

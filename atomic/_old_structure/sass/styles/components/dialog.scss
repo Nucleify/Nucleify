@@ -7,10 +7,6 @@
         &.myDialog {
             width: $my-dialog-width;
             max-height: $my-dialog-max-height;
-
-            .myDialogHeader {
-                margin: $my-dialog-header-margin;
-            }
         }
 
         .p-dialog-header {
