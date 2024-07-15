@@ -38,7 +38,13 @@ export default defineConfig({
         },
     },
     build: {
-        chunkSizeWarningLimit: 1600
+        chunkSizeWarningLimit: 1600,
+        sourcemap: true,
+        rollupOptions: {
+            output: {
+                sourcemapExcludeSources: true
+            },
+        },
     },
     define: {
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
