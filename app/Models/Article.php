@@ -45,7 +45,7 @@ class Article extends Model implements ArticleShouldReceiveFields
     {
         return $this->description;
     }
-    public function getCategory(): string
+    public function getCategory(): string|null
     {
         return $this->category;
     }
