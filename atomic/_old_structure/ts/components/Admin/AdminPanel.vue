@@ -114,9 +114,9 @@
 import { onMounted, ref, Ref, watch } from 'vue'
 
 import { MyChart } from '@/components'
-import ArticleDashboard from './Article/ArticleDashboard.vue'
-import ContactDashboard from './Contact/ContactDashboard.vue'
-import UserDashboard from './User/UserDashboard.vue'
+import ArticleDashboard from './ArticleDashboard.vue'
+import ContactDashboard from './ContactDashboard.vue'
+import UserDashboard from './UserDashboard.vue'
 
 import {
     articleApiMethods,

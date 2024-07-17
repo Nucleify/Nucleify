@@ -35,7 +35,7 @@ export type GetUserFunctionType = Promise<void | UserInterface>
 export type DeleteEntityFunctionType = (
     id: number,
     getData: () => void,
-    close: (method: string) => void
+    close: () => void
 ) => Promise<void>
 
 export type StoreArticleFunctionType = (

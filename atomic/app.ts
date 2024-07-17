@@ -19,6 +19,7 @@ export const app = createApp({})
  */
 import Avatar from 'primevue/avatar'
 import Button from 'primevue/button'
+import Calendar from 'primevue/calendar'
 import Card from 'primevue/card'
 import Chart from 'primevue/chart'
 import ColorPicker from 'primevue/colorpicker'
@@ -42,6 +43,7 @@ import Toast from 'primevue/toast'
 
 app.component('Avatar', Avatar)
     .component('Button', Button)
+    .component('Calendar', Calendar)
     .component('Card', Card)
     .component('Chart', Chart)
     .component('ColorPicker', ColorPicker)
@@ -75,6 +77,7 @@ import {
     HeadingAtom,
     ImageAtom,
     InputTextAtom,
+    ItemAtom,
     LabelAtom,
     ProgressSpinnerAtom,
     RadioButtonAtom
@@ -86,6 +89,7 @@ app.component('avatar-atom', AvatarAtom)
     .component('heading-atom', HeadingAtom)
     .component('image-atom', ImageAtom)
     .component('input-text-atom', InputTextAtom)
+    .component('item-atom', ItemAtom)
     .component('label-atom', LabelAtom)
     .component('progress-spinner-atom', ProgressSpinnerAtom)
     .component('radio-button-atom', RadioButtonAtom)
@@ -93,21 +97,26 @@ app.component('avatar-atom', AvatarAtom)
 // Molecules
 import {
     AnchorMolecule,
-    DockMolecule,
-    FloatLabelMolecule,
-    ItemMolecule
+    FloatLabelMolecule
 } from './molecules'
 
 app.component('anchor-molecule', AnchorMolecule)
-    .component('dock-molecule', DockMolecule)
     .component('float-label-molecule', FloatLabelMolecule)
-    .component('item-molecule', ItemMolecule)
+
+// Organisms
+import {
+    DialogOrganism,
+    DockOrganism
+} from './organisms'
+
+app.component('dialog-organism', DialogOrganism)
+    .component('dock-organism', DockOrganism)
 
 /**
  *  Components
  */
 import {
-    ActivityLog,
+    ActivityDashboard,
     AdminPanel,
     ArticleDashboard,
     ContactDashboard,
@@ -120,7 +129,7 @@ import {
     TestLoginButton,
 } from '@/components'
 
-app.component('activity-log', ActivityLog)
+app.component('activity-dashboard', ActivityDashboard)
     .component('admin-panel', AdminPanel)
     .component('article-dashboard', ArticleDashboard)
     .component('contact-dashboard', ContactDashboard)

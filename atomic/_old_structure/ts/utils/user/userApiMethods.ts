@@ -118,10 +118,6 @@ export default function userApiMethods(): UserApiMethodsInterface {
         return await axios
             .delete(`/api/users/${id}`)
             .then((response: AxiosResponse): void => {
-                getAllUsers().catch((error): void => {
-                    apiErrors(error)
-                })
-
                 getData()
                 close('delete')
 

@@ -29,10 +29,10 @@ onMounted(() => {
 const isFooterVisible = ref(true)
 
 function handleScroll() {
-    const scrollPosition = window.scrollY;
+    const scrollPosition = window.scrollY
 
     if (window.innerWidth <= 992) {
-        isFooterVisible.value = scrollPosition >= 2000;
+        isFooterVisible.value = scrollPosition >= 2000
     } else {
         isFooterVisible.value = scrollPosition >= 1500
     }

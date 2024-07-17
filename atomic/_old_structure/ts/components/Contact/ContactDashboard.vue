@@ -23,7 +23,7 @@
 
                     <button-atom
                         label="New Contact"
-                        @click="openModal('create')"
+                        @click="openDialog('create')"
                         class="text-sm smallHeightButton"
                         :rounded="true"
                         :style="contactStyle"
@@ -41,7 +41,7 @@
                     v-if="results"
                     paginator
                     stripedRows
-                    @row-click="openModal('show', $event.data)"
+                    @row-click="openDialog('show', $event.data)"
                     paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}"
                 >
@@ -86,23 +86,11 @@
                         <template #body="row">
                             <div class="actionColumnContent">
                                 <button-atom
+                                    v-for="action in actions"
+                                    :key="action.icon"
                                     class="desktopButton dataTableButton"
-                                    icon="pi pi-eye"
-                                    @click="openModal('show', row.data)"
-                                    :rounded="true"
-                                    :style="contactStyle"
-                                />
-                                <button-atom
-                                    class="desktopButton dataTableButton"
-                                    icon="pi pi-pencil"
-                                    @click="openModal('edit', row.data)"
-                                    :rounded="true"
-                                    :style="contactStyle"
-                                />
-                                <button-atom
-                                    class="desktopButton dataTableButton"
-                                    icon="pi pi-trash"
-                                    @click="openModal('delete', row.data)"
+                                    :icon="action.icon"
+                                    @click="action.click(row.data)"
                                     :rounded="true"
                                     :style="contactStyle"
                                 />
@@ -113,11 +101,6 @@
                                     :rounded="true"
                                     :style="contactStyle"
                                 />
-                                <Menu
-                                    ref="menu"
-                                    :model="dropdownItems"
-                                    :popup="true"
-                                />
                             </div>
                         </template>
                     </Column>
@@ -126,87 +109,114 @@
             </template>
         </Card>
     </div>
-    <ShowContact
-        :visible="visibleShow"
-        :contact="selectedObject"
-        :close="closeModal"
-    />
-    <CreateContact
-        :get-data="getAllContacts"
-        :visible="visibleCreate"
-        :options="roleOptions"
-        :close="closeModal"
+
+    <Menu ref="menu" :model="dropdownItems" :popup="true" />
+    <dialog-organism
+        v-for="dialog in dialogs"
+        :key="dialog.action"
+        :entity="dialog.entity"
+        :action="dialog.action"
+        :visible="dialog.visible"
+        :selected-object="selectedObject"
+        :title="dialog.title"
+        :fields="dialog.fields"
+        :confirm-button-label="dialog.confirmButtonLabel"
+        :cancel-button-label="dialog.cancelButtonLabel"
+        :confirm="dialog.confirm"
+        :get-data="dialog.getData"
+        :close="closeDialog"
         :style="contactStyle"
     />
-    <EditContact
-        :contact="selectedObject"
-        :get-data="getAllContacts"
-        :visible="visibleEdit"
-        :options="roleOptions"
-        :close="closeModal"
-        :style="contactStyle"
-    />
-    <Dialog :visible="visibleDelete" modal header="Confirm delete contact">
-        <div class="flex justify-content-between">
-            <button-atom
-                label="Cancel"
-                severity="secondary"
-                @click="closeModal('delete')"
-                :rounded="true"
-            />
-            <button-atom
-                label="Confirm"
-                @click="
-                    deleteContact(
-                        selectedObject!.id!,
-                        getAllContacts,
-                        closeModal
-                    )
-                "
-                :rounded="true"
-                :style="contactStyle"
-            />
-        </div>
-    </Dialog>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 import { MyChart } from '@/components'
-
-import CreateContact from './CreateContact.vue'
-import ShowContact from './ShowContact.vue'
-import EditContact from './EditContact.vue'
-
-import { handleDropdownItems, roleOptions } from '@/constants'
+import { handleDropdownItems } from '@/constants'
 import { contactApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
 
-import { handleStyles } from 'atomic/bosons/constants'
+import {
+    handleActions,
+    handleStyles,
+    useContactFields,
+} from 'atomic/bosons/constants'
+import { useDialog } from 'atomic/bosons/utils'
 
-const menu = ref()
-
-const { display } = useDisplayCharts()
 const {
     visibleShow,
     visibleCreate,
     visibleEdit,
     visibleDelete,
     selectedObject,
-    openMenu,
-    openModal,
-    closeModal,
-} = useMenuAndModal()
+    openDialog,
+    closeDialog,
+} = useDialog()
+const menu = ref()
+const actions = handleActions(openDialog)
+const { dropdownItems } = handleDropdownItems(selectedObject, openDialog)
+const { display } = useDisplayCharts()
+const { openMenu } = useMenuAndModal()
 
-const { loading, results, getAllContacts, deleteContact } = contactApiMethods()
-
+const { createAndEditFields, showFields } = useContactFields()
+const {
+    loading,
+    results,
+    getAllContacts,
+    storeContact,
+    editContact,
+    deleteContact,
+} = contactApiMethods()
 const { contactStyle } = handleStyles()
-
-const { dropdownItems } = handleDropdownItems(selectedObject, openModal)
 
 onMounted(() => {
     getAllContacts(500)
 })
+
+const dialogs = computed(() => [
+    {
+        entity: 'contact',
+        action: 'show',
+        visible: visibleShow.value,
+        data: selectedObject.value,
+        cancelButtonLabel: 'Close',
+        fields: showFields,
+    },
+    {
+        entity: 'contact',
+        action: 'delete',
+        visible: visibleDelete.value,
+        selectedObject: selectedObject.value,
+        title: 'Delete contact?',
+        confirmButtonLabel: 'Confirm',
+        cancelButtonLabel: 'Cancel',
+        confirm: deleteContact,
+        getData: getAllContacts,
+    },
+    {
+        entity: 'contact',
+        action: 'create',
+        visible: visibleCreate.value,
+        title: 'Create new contact',
+        confirmButtonLabel: 'Confirm',
+        cancelButtonLabel: 'Cancel',
+        confirm: storeContact,
+        getData: getAllContacts,
+        fields: createAndEditFields,
+    },
+    {
+        entity: 'contact',
+        action: 'edit',
+        visible: visibleEdit.value,
+        data: selectedObject.value,
+        title: 'Edit contact',
+        confirmButtonLabel: 'Update',
+        cancelButtonLabel: 'Cancel',
+        confirm: editContact,
+        getData: getAllContacts,
+        fields: createAndEditFields,
+    },
+])
 </script>
 
 <style scoped>

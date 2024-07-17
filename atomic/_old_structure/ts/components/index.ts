@@ -1,7 +1,7 @@
 /**
  *  Activity log
  */
-export { default as ActivityLog } from './ActivityLog/ActivityLog.vue'
+export { default as ActivityDashboard } from './Activity/ActivityDashboard.vue'
 
 /**
  *  Article
