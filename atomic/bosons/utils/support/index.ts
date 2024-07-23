@@ -1,2 +1,1 @@
-export * from './getComponent'
-export * from './getTitle'
+export * from './get'
