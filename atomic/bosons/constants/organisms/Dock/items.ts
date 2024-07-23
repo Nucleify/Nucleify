@@ -1,8 +1,6 @@
-import { Ref, ref } from 'vue'
+import { ref } from 'vue'
 
 import { logout } from '@/utils'
-
-import { PositionType } from 'atomic/bosons/types'
 
 export const dockItems = ref([
     {
@@ -59,20 +57,5 @@ export const dockItems = ref([
     },
     {
         id: 'position',
-    },
-])
-
-export const positions: Ref<{ value: PositionType }[]> = ref([
-    {
-        value: 'top',
-    },
-    {
-        value: 'right',
-    },
-    {
-        value: 'left',
-    },
-    {
-        value: 'bottom',
     },
 ])

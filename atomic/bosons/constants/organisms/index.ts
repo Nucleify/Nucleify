@@ -1,1 +1,1 @@
-export * from './dock'
+export * from './Dock'

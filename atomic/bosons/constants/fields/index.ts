@@ -1,4 +1,2 @@
-export * from './article'
-export * from './contact'
+export * from './entities'
 export * from './roles'
-export * from './user'
