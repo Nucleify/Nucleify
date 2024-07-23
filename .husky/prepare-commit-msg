@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+COMMIT_MSG_FILE="$1"
+ORIGINAL_MSG=$(cat "$COMMIT_MSG_FILE")
+
+CURRENT_BRANCH=$(git symbolic-ref --short HEAD)
+
+
+case "$CURRENT_BRANCH" in
+    atomic-design)
+        FINAL_MSG="Atomic Design: $ORIGINAL_MSG"
+        ;;
+    docker)
+        FINAL_MSG="Docker: $ORIGINAL_MSG"
+        ;;
+    packages)
+        FINAL_MSG="Packages: $ORIGINAL_MSG"
+        ;;
+    storybook)
+        FINAL_MSG="Storybook: $ORIGINAL_MSG"
+        ;;
+    workflow)
+        FINAL_MSG="Workflow: $ORIGINAL_MSG"
+        ;;
+esac
+
+echo "$FINAL_MSG" > "$COMMIT_MSG_FILE"
