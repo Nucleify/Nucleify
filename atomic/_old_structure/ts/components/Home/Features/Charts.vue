@@ -7,14 +7,14 @@
         />
         <Card unstyled class="myCard homeChartCard">
             <template #content>
-                <my-chart
+                <chart-organism
                     :chart-method-type="'annual'"
                     :type="'bar'"
                     :chart-class="'homeHorizontalChart'"
                     :direction="'horizontal'"
                     :example="true"
                 />
-                <my-chart
+                <chart-organism
                     :chart-method-type="'count'"
                     :type="'pie'"
                     :chart-class="'homePieChart'"
@@ -26,5 +26,4 @@
 </template>
 
 <script setup lang="ts">
-import { MyChart } from '@/components'
 </script>

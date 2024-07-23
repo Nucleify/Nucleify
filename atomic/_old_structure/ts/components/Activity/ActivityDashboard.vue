@@ -2,7 +2,7 @@
     <div class="panelContainer">
         <Card v-if="display.Activity" class="myCard chartCard annualChartCard">
             <template #content>
-                <my-chart
+                <chart-organism
                     :chart-method-type="'annual'"
                     :type="'bar'"
                     :direction="'vertical'"
@@ -89,11 +89,10 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 
-import { MyChart } from '@/components'
-import { activityApiMethods, useDisplayCharts } from '@/utils'
+import { activityApiMethods } from '@/utils'
 
 import { handleStyles } from 'atomic/bosons/constants'
-import { useDialog } from 'atomic/bosons/utils'
+import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
 
 const { visibleDelete, selectedObject, openDialog, closeDialog } = useDialog()
 const { display } = useDisplayCharts()

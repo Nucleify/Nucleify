@@ -1,24 +1,26 @@
 /* eslint-disable */
+import { ref } from 'vue'
 import { ChartOptions } from 'chart.js'
 
 import {
     ActivityLogInterface,
     ArticleInterface,
-    ChartMethodType,
-    ChartType,
     ChartDataInterface,
     ContactInterface,
     LabelItemType,
     UserInterface,
 } from '@/types'
 
-import { UseColorsReturnInterface } from 'atomic/bosons/types'
+import { documentStyle, months } from 'atomic/bosons/constants'
+import {
+    UseColorsReturnInterface,
+    ChartMethodType,
+    ChartType,
+    ChartInterface,
+} from 'atomic/bosons/types'
 import { useColors } from 'atomic/bosons/utils'
 
-export default function useChart() {
-    const documentStyle: CSSStyleDeclaration = getComputedStyle(
-        document.documentElement
-    )
+export function useChart() {
     const {
         activityItemColors,
         articleItemColors,
@@ -26,27 +28,14 @@ export default function useChart() {
         userItemColors,
     }: UseColorsReturnInterface = useColors()
 
+    const chartData = ref<ChartInterface>()
+
     const exampleColors = {
         activityItemColors: { primary: '#FFB600', hover: '#E7A60B' },
         articleItemColors: { primary: '#1187C7', hover: '#0F79B2' },
         contactItemColors: { primary: '#10B981', hover: '#10A674' },
         userItemColors: { primary: '#64748B', hover: '#566479' },
     }
-
-    const months: string[] = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'August',
-        'September',
-        'October',
-        'November',
-        'December',
-    ]
 
     const chartLabels: { label: LabelItemType }[] = [
         { label: 'Articles' },
@@ -271,5 +260,5 @@ export default function useChart() {
         return options
     }
 
-    return { setChartData, setChartOptions }
+    return { chartData, setChartData, setChartOptions }
 }

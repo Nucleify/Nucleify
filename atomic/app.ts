@@ -105,11 +105,13 @@ app.component('anchor-molecule', AnchorMolecule)
 
 // Organisms
 import {
+    ChartOrganism,
     DialogOrganism,
     DockOrganism
 } from './organisms'
 
-app.component('dialog-organism', DialogOrganism)
+app.component('chart-organism', ChartOrganism)
+    .component('dialog-organism', DialogOrganism)
     .component('dock-organism', DockOrganism)
 
 /**

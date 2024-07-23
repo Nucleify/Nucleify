@@ -59,7 +59,7 @@
                 class="grid-item-container chartCard countChartCard col-6 lg:col-4"
             >
                 <div class="grid-item">
-                    <my-chart
+                    <chart-organism
                         :chart-method-type="'count'"
                         :type="'pie'"
                         :article-data="articles"
@@ -78,7 +78,7 @@
 
         <Card v-if="display.Admin" class="myCard chartCard annualChartCard">
             <template #content>
-                <my-chart
+                <chart-organism
                     :chart-method-type="'annual'"
                     :type="'bar'"
                     :direction="'vertical'"
@@ -113,7 +113,6 @@
 <script setup lang="ts">
 import { onMounted, ref, Ref, watch } from 'vue'
 
-import { MyChart } from '@/components'
 import ArticleDashboard from './ArticleDashboard.vue'
 import ContactDashboard from './ContactDashboard.vue'
 import UserDashboard from './UserDashboard.vue'
@@ -121,12 +120,11 @@ import UserDashboard from './UserDashboard.vue'
 import {
     articleApiMethods,
     contactApiMethods,
-    useDisplayCharts,
     userApiMethods,
 } from '@/utils'
 
-import { useColors } from 'atomic/bosons/utils'
 import { UseColorsReturnInterface } from 'atomic/bosons/types'
+import { useColors, useDisplayCharts } from 'atomic/bosons/utils'
 
 const { display } = useDisplayCharts()
 

@@ -31,7 +31,6 @@ import {
     VisibleType,
 } from '@/types'
 
-import { ColorItemColorsInterface } from 'atomic/bosons/types'
 
 /**
  *  Activity Log
@@ -84,30 +83,6 @@ export interface ArticleApiMethodsInterface {
     deleteArticle: DeleteEntityFunctionType
 }
 
-/**
- *  Chart
- */
-export interface ChartInterface {
-    labels: string[]
-    datasets:
-        | {
-              label: string
-              backgroundColor: string
-              borderColor: string
-              data: (number | undefined)[]
-          }[]
-        | {
-              data: (number | undefined)[]
-              backgroundColor: string[]
-              hoverBackgroundColor: string[]
-          }[]
-}
-export type ChartDataInterface = {
-    label: string
-    // eslint-disable-next-line
-    data: any[]
-    colors: ColorItemColorsInterface
-}[]
 
 /**
  *  Contact
@@ -134,17 +109,6 @@ export interface ContactApiMethodsInterface {
     storeContact: StoreContactFunctionType
     editContact: EditContactFunctionType
     deleteContact: DeleteEntityFunctionType
-}
-
-/**
- *  Display charts
- */
-export interface DisplayChartsInterface {
-    [key: string]: boolean
-    Activity: boolean
-    Admin: boolean
-    Article: boolean
-    Contact: boolean
 }
 
 /**
@@ -221,12 +185,6 @@ export interface HandleDataInterface {
  */
 export interface UseApiErrorsServiceInterface {
     apiErrors: ApiErrorsFunctionType
-}
-export interface UseDisplayChartsInterface {
-    display: DisplayChartsInterface
-    displayChartsToggle: (action: string) => void
-    setDefaultChartsDisplay: (reload?: boolean) => void
-    allChartsDisplayToggle: () => void
 }
 export interface UseDragItemsInterface {
     startDragging: StartDraggingFunctionType

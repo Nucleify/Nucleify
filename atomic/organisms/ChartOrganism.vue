@@ -11,33 +11,13 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
 
-import {
-    ActivityLogInterface,
-    ArticleInterface,
-    ChartInterface,
-    ChartMethodType,
-    ChartType,
-    ContactInterface,
-    UserInterface,
-} from '@/types'
-import { useChart } from '@/utils'
+import { ChartInterface } from 'atomic/bosons/types'
+import { useChart } from 'atomic/bosons/utils'
 
-const props = defineProps<{
-    type: ChartType
-    direction?: string | undefined
-    chartMethodType: ChartMethodType
-    activityLogData?: ActivityLogInterface[] | undefined
-    articleData?: ArticleInterface[] | undefined
-    contactData?: ContactInterface[] | undefined
-    userData?: UserInterface[] | undefined
-    chartClass: string | undefined
-    example?: boolean | undefined
-}>()
+const props = defineProps<ChartInterface>()
 
-const { setChartData, setChartOptions } = useChart()
-const chartData = ref<ChartInterface | null>(null)
+const { chartData, setChartData, setChartOptions } = useChart()
 const chartOptions = ref(setChartOptions(props.type, props.direction))
-const chartClass = props.chartClass
 
 onMounted(() => {
     chartData.value = setChartData(

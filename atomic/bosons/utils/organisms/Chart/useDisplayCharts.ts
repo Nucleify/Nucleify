@@ -1,8 +1,11 @@
 import { reactive } from 'vue'
 
-import { DisplayChartsInterface, UseDisplayChartsInterface } from '@/types'
+import {
+    DisplayChartsInterface,
+    UseDisplayChartsInterface,
+} from 'atomic/bosons/types'
 
-export default function useDisplayCharts(): UseDisplayChartsInterface {
+export function useDisplayCharts(): UseDisplayChartsInterface {
     const display: DisplayChartsInterface = reactive({
         Activity:
             window.localStorage.getItem('display-activity-graphs') !== 'false',
