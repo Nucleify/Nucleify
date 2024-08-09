@@ -25,6 +25,6 @@ export interface AnchorInterface {
     style?: StyleValue
 }
 
-export interface HandleStartAnchorTagsInterface {
+export interface HandleAnchorTagsInterface {
     anchorTags: AnchorInterface[]
 }

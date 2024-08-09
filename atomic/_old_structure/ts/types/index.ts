@@ -6,11 +6,8 @@ export { ActivityLogApiMethodsInterface as ActivityLogApiMethodsInterface } from
 export { ArticleApiMethodsInterface as ArticleApiMethodsInterface } from './interfaces'
 export { ApiErrorsInterface as ApiErrorsInterface } from './interfaces'
 export { ArticleInterface as ArticleInterface } from './interfaces'
-export { ChartInterface as ChartInterface } from './interfaces'
-export { ChartDataInterface as ChartDataInterface } from './interfaces'
 export { ContactInterface as ContactInterface } from './interfaces'
 export { ContactApiMethodsInterface as ContactApiMethodsInterface } from './interfaces'
-export { DisplayChartsInterface as DisplayChartsInterface } from './interfaces'
 export { DropdownItemInterface as DropdownItemInterface } from './interfaces'
 export { HomeItemsInterface as HomeItemsInterface } from './interfaces'
 export { LoginFormInterface as LoginFormInterface } from './interfaces'
@@ -19,7 +16,6 @@ export { UserApiMethodsInterface as UserApiMethodsInterface } from './interfaces
 export { UserInterface as UserInterface } from './interfaces'
 export { HandleDataInterface as HandleDataInterface } from './interfaces'
 export { UseApiErrorsServiceInterface as UseApiErrorsServiceInterface } from './interfaces'
-export { UseDisplayChartsInterface as UseDisplayChartsInterface } from './interfaces'
 export { UseDragItemsInterface as UseDragItemsInterface } from './interfaces'
 export { UseFlashToastInterface as UseFlashToastInterface } from './interfaces'
 export { UseMenuAndModalInterface as UseMenuAndModalInterface } from './interfaces'
@@ -63,8 +59,6 @@ export { FlashToastFunctionType as FlashToastFunctionType } from './functionsTyp
 /**
  *  Variables types
  */
-export { ChartMethodType as ChartMethodType } from './variablesTypes'
-export { ChartType as ChartType } from './variablesTypes'
 export { CSRFTokenType as CSRFTokenType } from './variablesTypes'
 export { CSRFTokenInputType as CSRFTokenInputType } from './variablesTypes'
 export { IsAdminType as IsAdminType } from './variablesTypes'

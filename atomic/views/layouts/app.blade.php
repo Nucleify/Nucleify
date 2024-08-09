@@ -21,7 +21,7 @@
     <main id="app">
         @auth
             <toast></toast>
-            <dock-molecule></dock-molecule>
+            <dock-organism></dock-organism>
         @endauth
 
         @yield('content')

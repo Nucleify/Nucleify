@@ -31,6 +31,8 @@ export default function handleData(): HandleDataInterface {
         name: '',
         email: '',
         role: '',
+        password: '',
+        confirm_password: '',
     })
 
     return { articleData, contactData, userData }

@@ -2,7 +2,7 @@
     <div class="panelContainer">
         <Card v-if="display.Article" class="myCard chartCard annualChartCard">
             <template #content>
-                <my-chart
+                <chart-organism
                     :chart-method-type="'annual'"
                     :type="'bar'"
                     :direction="'vertical'"
@@ -22,7 +22,7 @@
                     />
                     <button-atom
                         label="New Article"
-                        @click="openModal('create')"
+                        @click="openDialog('create')"
                         class="text-sm smallHeightButton primaryButton"
                         :rounded="true"
                         :style="articleStyle"
@@ -40,7 +40,7 @@
                     v-if="results"
                     paginator
                     stripedRows
-                    @row-click="openModal('show', $event.data)"
+                    @row-click="openDialog('show', $event.data)"
                     paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
                     currentPageReportTemplate="{first} to {last} of {totalRecords}"
                 >
@@ -79,23 +79,11 @@
                         <template #body="row">
                             <div class="actionColumnContent">
                                 <button-atom
+                                    v-for="action in actions"
+                                    :key="action.icon"
                                     class="desktopButton dataTableButton"
-                                    icon="pi pi-eye"
-                                    @click="openModal('show', row.data)"
-                                    :rounded="true"
-                                    :style="articleStyle"
-                                />
-                                <button-atom
-                                    class="desktopButton dataTableButton"
-                                    icon="pi pi-pencil"
-                                    @click="openModal('edit', row.data)"
-                                    :rounded="true"
-                                    :style="articleStyle"
-                                />
-                                <button-atom
-                                    class="desktopButton dataTableButton"
-                                    icon="pi pi-trash"
-                                    @click="openModal('delete', row.data)"
+                                    :icon="action.icon"
+                                    @click="action.click(row.data)"
                                     :rounded="true"
                                     :style="articleStyle"
                                 />
@@ -106,11 +94,6 @@
                                     :rounded="true"
                                     :style="articleStyle"
                                 />
-                                <Menu
-                                    ref="menu"
-                                    :model="dropdownItems"
-                                    :popup="true"
-                                />
                             </div>
                         </template>
                     </Column>
@@ -119,87 +102,113 @@
             </template>
         </Card>
     </div>
-    <ShowArticle
-        :visible="visibleShow"
-        :article="selectedObject"
-        :close="closeModal"
-    />
-    <CreateArticle
-        :get-data="getAllArticles"
-        :visible="visibleCreate"
-        :options="roleOptions"
-        :close="closeModal"
+
+    <Menu ref="menu" :model="dropdownItems" :popup="true" />
+    <dialog-organism
+        v-for="dialog in dialogs"
+        :key="dialog.action"
+        :entity="dialog.entity"
+        :action="dialog.action"
+        :visible="dialog.visible"
+        :selected-object="selectedObject"
+        :title="dialog.title"
+        :fields="dialog.fields"
+        :confirm-button-label="dialog.confirmButtonLabel"
+        :cancel-button-label="dialog.cancelButtonLabel"
+        :confirm="dialog.confirm"
+        :get-data="dialog.getData"
+        :close="closeDialog"
         :style="articleStyle"
     />
-    <EditArticle
-        :article="selectedObject"
-        :get-data="getAllArticles"
-        :visible="visibleEdit"
-        :options="roleOptions"
-        :close="closeModal"
-        :style="articleStyle"
-    />
-    <Dialog :visible="visibleDelete" modal header="Confirm delete article">
-        <div class="flex justify-content-between">
-            <button-atom
-                label="Cancel"
-                severity="secondary"
-                @click="closeModal('delete')"
-                :rounded="true"
-            />
-            <button-atom
-                label="Confirm"
-                @click="
-                    deleteArticle(
-                        selectedObject!.id!,
-                        getAllArticles,
-                        closeModal
-                    )
-                "
-                :rounded="true"
-                :style="articleStyle"
-            />
-        </div>
-    </Dialog>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
-import { MyChart } from '@/components'
+import { handleDropdownItems } from '@/constants'
+import { articleApiMethods, useMenuAndModal } from '@/utils'
 
-import CreateArticle from './CreateArticle.vue'
-import ShowArticle from './ShowArticle.vue'
-import EditArticle from './EditArticle.vue'
+import {
+    handleActions,
+    handleStyles,
+    useArticleFields,
+} from 'atomic/bosons/constants'
+import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
 
-import { handleDropdownItems, roleOptions } from '@/constants'
-import { articleApiMethods, useDisplayCharts, useMenuAndModal } from '@/utils'
-
-import { handleStyles } from 'atomic/bosons/constants'
-
-const menu = ref()
-
-const { display } = useDisplayCharts()
 const {
     visibleShow,
     visibleCreate,
     visibleEdit,
     visibleDelete,
     selectedObject,
-    openMenu,
-    openModal,
-    closeModal,
-} = useMenuAndModal()
+    openDialog,
+    closeDialog,
+} = useDialog()
+const menu = ref()
+const actions = handleActions(openDialog)
+const { dropdownItems } = handleDropdownItems(selectedObject, openDialog)
+const { display } = useDisplayCharts()
+const { openMenu } = useMenuAndModal()
 
-const { results, loading, getAllArticles, deleteArticle } = articleApiMethods()
-
+const { createAndEditFields, showFields } = useArticleFields()
+const {
+    results,
+    loading,
+    getAllArticles,
+    storeArticle,
+    editArticle,
+    deleteArticle,
+} = articleApiMethods()
 const { articleStyle } = handleStyles()
-
-const { dropdownItems } = handleDropdownItems(selectedObject, openModal)
 
 onMounted(() => {
     getAllArticles(500)
 })
+
+const dialogs = computed(() => [
+    {
+        entity: 'article',
+        action: 'show',
+        visible: visibleShow.value,
+        data: selectedObject.value,
+        cancelButtonLabel: 'Close',
+        fields: showFields,
+    },
+    {
+        entity: 'article',
+        action: 'delete',
+        visible: visibleDelete.value,
+        selectedObject: selectedObject.value,
+        title: 'Delete article?',
+        confirmButtonLabel: 'Confirm',
+        cancelButtonLabel: 'Cancel',
+        confirm: deleteArticle,
+        getData: getAllArticles,
+    },
+    {
+        entity: 'article',
+        action: 'create',
+        visible: visibleCreate.value,
+        title: 'Create new article',
+        confirmButtonLabel: 'Confirm',
+        cancelButtonLabel: 'Cancel',
+        confirm: storeArticle,
+        getData: getAllArticles,
+        fields: createAndEditFields,
+    },
+    {
+        entity: 'article',
+        action: 'edit',
+        visible: visibleEdit.value,
+        data: selectedObject.value,
+        title: 'Edit article',
+        confirmButtonLabel: 'Update',
+        cancelButtonLabel: 'Cancel',
+        confirm: editArticle,
+        getData: getAllArticles,
+        fields: createAndEditFields,
+    },
+])
 </script>
 
 <style scoped>
