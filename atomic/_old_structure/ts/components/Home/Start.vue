@@ -26,11 +26,10 @@
                 :class="a.anchorClass"
                 v-tooltip.right="a.tooltip"
             >
-                <item-molecule
-                    v-if="a.icon"
+                <item-atom
                     :icon="a.icon"
-                    class="item plasmaItem"
                     :class="a.itemClass"
+                    class="item plasmaItem"
                 />
             </anchor-molecule>
         </div>
@@ -40,7 +39,7 @@
 <script setup lang="ts">
 import { navigateTo } from '@/utils'
 
-import { handleStartAnchorTags } from 'atomic/bosons/constants'
+import { handleAnchorTags } from 'atomic/bosons/constants'
 
-const { anchorTags } = handleStartAnchorTags()
+const { anchorTags } = handleAnchorTags()
 </script>

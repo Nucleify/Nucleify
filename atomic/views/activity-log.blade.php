@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="activity-log">
-        <activity-log></activity-log>
+        <activity-dashboard></activity-dashboard>
     </div>
 @endsection

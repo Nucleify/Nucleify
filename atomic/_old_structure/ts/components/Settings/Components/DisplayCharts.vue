@@ -38,9 +38,9 @@
 
 <script setup lang="ts">
 import { displayChartList } from '@/constants'
-import { useDisplayCharts } from '@/utils'
 
 import { handleStyles } from 'atomic/bosons/constants'
+import { useDisplayCharts } from 'atomic/bosons/utils'
 
 const { mainStyle } = handleStyles()
 const { display, setDefaultChartsDisplay, displayChartsToggle } =

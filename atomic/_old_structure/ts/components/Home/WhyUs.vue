@@ -1,13 +1,19 @@
 <template>
     <section id="why-us">
-        <div class="whyUsContainer px-4 py-8 md:px-6 lg:px-8 text-center flex justify-content-center align-items-center">
+        <div
+            class="whyUsContainer px-4 py-8 md:px-6 lg:px-8 text-center flex justify-content-center align-items-center"
+        >
             <div class="mb-3 font-bold text-3xl -mt-5 absolute whyUsHeader">
                 <span>Why </span>
                 <span class="text-green-600">Us?</span>
             </div>
 
-            <div v-for="(group, groupIndex) in whyUsData" :key="groupIndex" :class="`whyUs${groupIndex} flex justify-content-between absolute`">
-                <item-molecule
+            <div
+                v-for="(group, groupIndex) in whyUsData"
+                :key="groupIndex"
+                :class="`whyUs${groupIndex} flex justify-content-between absolute`"
+            >
+                <item-atom
                     v-for="(item, itemIndex) in group.items"
                     :key="itemIndex"
                     :icon="item.icon"
@@ -18,13 +24,17 @@
             </div>
         </div>
     </section>
-    <Dialog v-model:visible="dialogVisible" :data="dialogData" @close="dialogVisible = false" modal class="whyUsDialog m-4">
+    <Dialog
+        v-model:visible="dialogVisible"
+        :data="dialogData"
+        @close="dialogVisible = false"
+        modal
+        class="whyUsDialog m-4"
+    >
         <template #header>
-            <div class="flex w-full justify-content-between align-items-center">
-                <div class="flex align-items-center gap-4">
-                    <i class="text-xl" :class="dialogData.icon"></i>
-                    <h4 class="m-0">{{ dialogData.title }}</h4>
-                </div>
+            <div class="flex align-items-center gap-4">
+                <item-atom :icon="dialogData.icon" class="text-xl" />
+                <heading-atom :tag="4" class="m-0" :text="dialogData.title" />
             </div>
         </template>
         <template #default>
@@ -45,7 +55,7 @@ const openDialog = (item) => {
     dialogData.value = {
         title: item.title,
         description: item.description,
-        icon: item.icon
+        icon: item.icon,
     }
     dialogVisible.value = true
 }

@@ -1,4 +1,4 @@
-import { Ref, StyleValue } from 'vue'
+import { Ref } from 'vue'
 
 import { ColorItemColorsInterface } from 'atomic/bosons/types'
 
@@ -35,17 +35,4 @@ export interface UseColorsInterface {
     contactItemColors: ColorItemColorsInterface
     userItemColors: ColorItemColorsInterface
     setDefaultColors: (initial: boolean) => void
-}
-
-export interface HandleStylesInterface {
-    mainStyle: StyleValue
-    activityStyle: StyleValue
-    articleStyle: StyleValue
-    contactStyle: StyleValue
-    userStyle: StyleValue
-    mainItemStyle: StyleValue
-    activityItemStyle: StyleValue
-    articleItemStyle: StyleValue
-    contactItemStyle: StyleValue
-    userItemStyle: StyleValue
 }

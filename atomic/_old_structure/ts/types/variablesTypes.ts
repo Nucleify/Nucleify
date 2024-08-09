@@ -7,14 +7,6 @@ import {
     UserInterface,
 } from '@/types'
 
-export type ChartMethodType = 'annual' | 'count'
-export type ChartType =
-    | 'bar'
-    | 'pie'
-    | 'doughnut'
-    | 'line'
-    | 'polarArea'
-    | 'radar'
 export type CSRFTokenType = string | null | undefined
 export type CSRFTokenInputType = LogoutFormType | undefined
 export type IsAdminType = Ref | null

@@ -1,0 +1,18 @@
+.p-dialog {
+    &.delete {
+        max-width: 300px;
+
+        .p-dialog-header {
+            display: flex;
+            justify-content: center;
+        }
+        .p-dialog-footer .dialogButtonsContainer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .p-dialog-content {
+            display: none;
+        }
+    }
+}
