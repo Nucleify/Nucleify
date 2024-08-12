@@ -13,119 +13,16 @@
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
     >
         <template #loading><progress-spinner-atom /></template>
-        <template v-if="type === 'activity'">
-            <Column
-                field="id"
-                :sortable="true"
-                header="ID"
-                class="idActivityColumn"
-            />
-            <Column
-                field="description"
-                :sortable="true"
-                header="Description"
-                class="descriptionColumn"
-            />
-            <Column
-                field="created_at"
-                :sortable="true"
-                header="Created At"
-                class="createdAtActivityColumn"
-            />
-        </template>
-        <template v-if="type === 'article'">
-            <Column field="id" :sortable="true" header="ID" class="idColumn" />
-            <Column
-                field="title"
-                :sortable="true"
-                header="Title"
-                class="titleColumn"
-            />
-            <Column
-                field="category"
-                :sortable="true"
-                header="Category"
-                class="categoryColumn desktopColumn"
-            />
-            <Column
-                field="created_at"
-                :sortable="true"
-                header="Created At"
-                class="createdAtColumn"
-            />
-            <Column
-                field="updated_at"
-                :sortable="true"
-                header="Updated At"
-                class="updatedAtColumn"
-            />
-        </template>
-        <template v-if="type === 'contact'">
-            <Column field="id" :sortable="true" header="ID" class="idColumn" />
-            <Column
-                field="full_name"
-                :sortable="true"
-                header="Full name"
-                class="fullNameColumn"
-            />
-            <Column
-                field="email"
-                :sortable="true"
-                header="Email"
-                class="emailColumn tabletColumn"
-            />
-            <Column
-                field="birthday"
-                :sortable="true"
-                header="Birthday"
-                class="birthdayColumn desktopColumn"
-            />
-            <Column
-                field="created_at"
-                :sortable="true"
-                header="Created At"
-                class="createdAtColumn"
-            />
-            <Column
-                field="updated_at"
-                :sortable="true"
-                header="Updated At"
-                class="updatedAtColumn"
-            />
-        </template>
-        <template v-if="type === 'user'">
-            <Column field="id" :sortable="true" header="ID" class="idColumn" />
-            <Column
-                field="name"
-                :sortable="true"
-                header="Name"
-                class="nameColumn"
-            />
-            <Column
-                field="email"
-                :sortable="true"
-                header="Email"
-                class="emailColumn"
-            />
-            <Column
-                field="role"
-                :sortable="true"
-                header="Role"
-                class="roleColumn"
-            />
-            <Column
-                field="created_at"
-                :sortable="true"
-                header="Created At"
-                class="createdAtColumn"
-            />
-            <Column
-                field="updated_at"
-                :sortable="true"
-                header="Updated At"
-                class="updatedAtColumn"
-            />
-        </template>
+
+        <Column
+            v-for="col in specificColumns"
+            :key="col.field"
+            :type="type"
+            :field="col.field"
+            :header="col.header"
+            :class="col.class"
+        />
+
         <Column class="actionColumn">
             <template #body="row">
                 <div class="actionColumnContent">
@@ -165,7 +62,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { handleActions } from 'atomic/bosons/constants'
+import { columns, handleActions } from 'atomic/bosons/constants'
 import { DataTableInterface } from 'atomic/bosons/types'
 
 import { handleDropdownItems } from '@/constants'
@@ -178,4 +75,6 @@ const actions = handleActions(props.openDialog)
 
 const { openMenu, selectedObject } = useMenuAndModal()
 const { dropdownItems } = handleDropdownItems(selectedObject, props.openDialog)
+
+const specificColumns = columns[props.type]
 </script>

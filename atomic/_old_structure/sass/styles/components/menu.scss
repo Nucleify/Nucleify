@@ -7,9 +7,20 @@
 }
 
 .p-menu,
+.p-menu-list,
+.p-menuitem {
+    min-width: 130px !important;
+    max-width: 130px;
+}
+.p-menu,
 .p-menu-list {
     padding: $menu-menu-list-padding;
     margin: $menu-menu-list-margin;
     gap: $menu-menu-list-gap;
     min-width: $menu-menu-list-min-width;
+}
+
+.p-menuitem-link {
+    text-decoration: none !important;
+    gap: 10px;
 }

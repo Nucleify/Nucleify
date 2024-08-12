@@ -11,3 +11,5 @@ export type ObjectType =
     | ContactInterface
     | UserInterface
     | undefined
+
+export type ObjectNameType = 'activity' | 'article' | 'contact' | 'user'
