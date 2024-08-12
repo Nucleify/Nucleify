@@ -1,4 +1,3 @@
-
 export const columns = {
     activity: [
         { field: 'id', header: 'ID', class: 'idActivityColumn' },
