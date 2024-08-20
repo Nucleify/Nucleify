@@ -117,11 +117,7 @@ import ArticleDashboard from './ArticleDashboard.vue'
 import ContactDashboard from './ContactDashboard.vue'
 import UserDashboard from './UserDashboard.vue'
 
-import {
-    articleApiMethods,
-    contactApiMethods,
-    userApiMethods,
-} from '@/utils'
+import { articleApiMethods, contactApiMethods, userApiMethods } from '@/utils'
 
 import { UseColorsReturnInterface } from 'atomic/bosons/types'
 import { useColors, useDisplayCharts } from 'atomic/bosons/utils'

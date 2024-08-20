@@ -20,78 +20,18 @@
                 </div>
             </template>
             <template #content>
-                <DataTable
-                    :value="data"
-                    :loading="loading"
-                    :rows="10"
-                    :row-hover="true"
-                    :size="'small'"
+                <data-table-organism
                     v-if="data"
-                    paginator
-                    stripedRows
-                    @row-click="openDialog('show', $event.data)"
-                    paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                    currentPageReportTemplate="{first} to {last} of {totalRecords}"
-                >
-                    <template #loading><progress-spinner-atom /></template>
-                    <Column
-                        field="id"
-                        :sortable="true"
-                        header="ID"
-                        class="idColumn"
-                    />
-                    <Column
-                        field="title"
-                        :sortable="true"
-                        header="Title"
-                        class="titleColumn"
-                    />
-                    <Column
-                        field="category"
-                        :sortable="true"
-                        header="Category"
-                        class="categoryColumn desktopColumn"
-                    />
-                    <Column
-                        field="created_at"
-                        :sortable="true"
-                        header="Created At"
-                        class="createdAtColumn"
-                    />
-                    <Column
-                        field="updated_at"
-                        :sortable="true"
-                        header="Updated At"
-                        class="updatedAtColumn"
-                    />
-                    <Column class="actionColumn">
-                        <template #body="row">
-                            <div class="actionColumnContent">
-                                <button-atom
-                                    v-for="action in actions"
-                                    :key="action.icon"
-                                    class="desktopButton dataTableButton"
-                                    :icon="action.icon"
-                                    @click="action.click(row.data)"
-                                    :rounded="true"
-                                    :style="articleStyle"
-                                />
-                                <button-atom
-                                    class="mobileButton dataTableButton"
-                                    icon="pi pi-bars"
-                                    @click="openMenu(menu, $event, row.data)"
-                                    :rounded="true"
-                                    :style="articleStyle"
-                                />
-                            </div>
-                        </template>
-                    </Column>
-                </DataTable>
+                    :data="data"
+                    :open-dialog="openDialog"
+                    :styles="articleStyle"
+                    type="article"
+                    :loading="loading"
+                />
                 <div v-else>Loading data or no data available...</div>
             </template>
         </Card>
 
-        <Menu ref="menu" :model="dropdownItems" :popup="true" />
         <dialog-organism
             v-for="dialog in dialogs"
             :key="dialog.action"
@@ -112,13 +52,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 
-import { handleDropdownItems } from '@/constants'
-import { articleApiMethods, useMenuAndModal } from '@/utils'
+import { articleApiMethods } from '@/utils'
 
 import {
-    handleActions,
     handleStyles,
     useArticleFields,
 } from 'atomic/bosons/constants'
@@ -136,10 +74,6 @@ const {
     openDialog,
     closeDialog,
 } = useDialog()
-const menu = ref()
-const actions = handleActions(openDialog)
-const { dropdownItems } = handleDropdownItems(selectedObject, openDialog)
-const { openMenu } = useMenuAndModal()
 
 const { createAndEditFields, showFields } = useArticleFields()
 const { deleteArticle, storeArticle, editArticle } = articleApiMethods()

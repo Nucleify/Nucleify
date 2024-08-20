@@ -1,4 +1,6 @@
 export * from './actions'
+export * from './loading'
+export * from './object'
 export * from './position'
 export * from './visible'
 export * from './styles'
