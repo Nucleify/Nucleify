@@ -4,14 +4,22 @@
 
 #start {
     scroll-margin-top: $start-section-scroll-margin-top;
+    padding-bottom: 100px;
+
+    // Min width 768px
+    @media (min-width: $min-width-md) {
+        padding-bottom: 150px;
+    }
+
+    // Min width 992px
+    @media (min-width: $min-width-lg2) {
+        padding-bottom: 230px;
+    }
 }
 
 #features {
     overflow-x: $features-section-overflow-x;
     scroll-margin-top: $features-section-scroll-margin-top;
-    position: $features-section-position;
-    top: $features-section-top;
-    padding-bottom: $features-section-padding-bottom;
 
     // Min width 768px
     @media (min-width: $min-width-md) {
@@ -20,8 +28,5 @@
 }
 
 #why-us {
-    position: relative;
-    top: -100px;
-    padding-top: 100px;
-    margin-bottom: -100px;
+    scroll-margin-top: 150px;
 }

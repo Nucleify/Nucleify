@@ -19,52 +19,15 @@
                 </div>
             </template>
             <template #content>
-                <DataTable
-                    :value="activities"
-                    :loading="loading"
-                    :size="'small'"
-                    :rows="10"
-                    :row-hover="true"
+                <data-table-organism
                     v-if="activities"
-                    paginator
-                    stripedRows
-                    @row-click="openDialog('show', $event.data)"
-                    paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-                    currentPageReportTemplate="{first} to {last} of {totalRecords}"
-                >
-                    <template #loading><progress-spinner-atom /></template>
-                    <Column
-                        field="id"
-                        :sortable="true"
-                        header="ID"
-                        class="idActivityColumn"
-                    />
-                    <Column
-                        field="description"
-                        :sortable="true"
-                        header="Description"
-                        class="descriptionColumn"
-                    />
-                    <Column
-                        field="created_at"
-                        :sortable="true"
-                        header="Created At"
-                        class="createdAtActivityColumn"
-                    />
-                    <Column class="actionColumn">
-                        <template #body="row">
-                            <div class="actionColumnContent">
-                                <button-atom
-                                    class="dataTableButton"
-                                    icon="pi pi-trash"
-                                    @click="openDialog('delete', row.data)"
-                                    :rounded="true"
-                                    :style="activityStyle"
-                                />
-                            </div>
-                        </template>
-                    </Column>
-                </DataTable>
+                    :data="activities"
+                    :open-menu="openMenu"
+                    :open-dialog="openDialog"
+                    :styles="activityStyle"
+                    type="activity"
+                    :loading="loading"
+                />
                 <div v-else>Loading data or no data available...</div>
             </template>
         </Card>
@@ -89,7 +52,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 
-import { activityApiMethods } from '@/utils'
+import { activityApiMethods, openMenu } from '@/utils'
 
 import { handleStyles } from 'atomic/bosons/constants'
 import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
