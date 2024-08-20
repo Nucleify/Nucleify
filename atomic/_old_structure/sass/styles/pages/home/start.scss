@@ -41,11 +41,21 @@
 
 .chartsImage {
     position: relative;
-    top: 40px;
+    top: 50px;
 
     img {
         width: 100%;
         max-width: 500px;
+        animation: levitate 3s ease-in-out infinite;
+    }
+}
+
+@keyframes levitate {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
     }
 }
 
