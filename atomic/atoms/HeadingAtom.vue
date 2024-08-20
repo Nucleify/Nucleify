@@ -1,6 +1,7 @@
 <template>
     <component :is="chooseHeading(props.tag)">
         {{ text }}
+        <slot />
     </component>
 </template>
 
