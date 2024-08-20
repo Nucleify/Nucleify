@@ -19,6 +19,7 @@ import Image from 'primevue/image'
 import InlineMessage from 'primevue/inlinemessage'
 import InputText from 'primevue/inputtext'
 import Menu from 'primevue/menu'
+import ProgressBar from 'primevue/progressbar'
 import ProgressSpinner from 'primevue/progressspinner'
 import RadioButton from 'primevue/radiobutton'
 import Textarea from 'primevue/textarea'
@@ -56,6 +57,7 @@ export default function registerPrimeVue(app: App<Element>): void {
         .component('InlineMessage', InlineMessage)
         .component('InputText', InputText)
         .component('Menu', Menu)
+        .component('ProgressBar', ProgressBar)
         .component('ProgressSpinner', ProgressSpinner)
         .component('RadioButton', RadioButton)
         .component('Textarea', Textarea)
