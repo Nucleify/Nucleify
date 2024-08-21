@@ -6,7 +6,7 @@
             <template #header>
                 <div class="authCardHeaderContainer">
                     <div class="authCardHeader">
-                        <image-atom src="logo.png" width="50" />
+                        <image-atom src="logo.svg" width="50" />
                         <heading-atom :tag="1" text="Welcome Back" />
 
                         <p class="mb-2">

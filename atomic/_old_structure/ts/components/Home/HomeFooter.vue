@@ -13,7 +13,7 @@
                     ]"
                     :key="containerIndex"
                     :class="containerClass"
-                    :style="{ opacity: 0.05 + 0.01 * rowIndex }"
+                    :style="{ opacity: 0.08 + 0.02 * rowIndex }"
                 >
                     <img
                         v-for="(opacity, imgIndex) in row[containerIndex]"
