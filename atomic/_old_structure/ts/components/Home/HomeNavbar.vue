@@ -6,7 +6,7 @@
     >
         <div class="container">
             <anchor-molecule href="/home">
-                <image-atom src="logo.png" width="60" />
+                <image-atom src="logo.svg" width="60" />
             </anchor-molecule>
 
             <button-atom

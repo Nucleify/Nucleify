@@ -4,7 +4,7 @@ import { logout } from '@/utils'
 
 export const dockItems = ref([
     {
-        img: 'logo.png',
+        img: 'logo.svg',
         class: 'logo',
         alt: 'DataManager logo',
         url: '/home',
