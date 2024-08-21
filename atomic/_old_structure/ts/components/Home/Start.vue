@@ -26,7 +26,7 @@
                     />
                 </div>
                 <div class="rightSide">
-                    <image-atom src="charts.png" class="chartsImage" />
+                    <image-atom src="charts.svg" class="chartsImage" />
                 </div>
             </div>
         </div>
