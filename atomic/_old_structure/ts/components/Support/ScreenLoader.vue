@@ -1,7 +1,7 @@
 <template>
     <div class="loadContainer">
         <div class="loadContent">
-            <image-atom src="logo.png" width="150px"/>
+            <image-atom src="logo.svg" width="150px"/>
             <progress-bar-atom width="100px" height="10px" />
         </div>
     </div>
