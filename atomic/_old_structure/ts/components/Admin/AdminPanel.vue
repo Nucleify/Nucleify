@@ -54,43 +54,32 @@
                 </anchor-molecule>
             </div>
 
-            <div
-                v-if="display.Admin"
-                class="grid-item-container chartCard countChartCard col-6 lg:col-4"
-            >
-                <div class="grid-item">
-                    <chart-organism
-                        :chart-method-type="'count'"
-                        :type="'pie'"
-                        :article-data="articles"
-                        :contactData="contacts"
-                        :userData="users"
-                        :chart-class="'h-8 w-8 -mt-2'"
-                        :class="!allLoaded ? 'chartLoading' : 'chartLoaded'"
-                    />
-                    <progress-spinner-atom
-                        v-if="!allLoaded"
-                        :style="{ color: 'blue' }"
-                    />
-                </div>
+            <div class="grid-item-container col-6 lg:col-4">
+                <card-chart
+                    v-if="display.Admin"
+                    class="grid-item countChartCard"
+                    :chart-method-type="'count'"
+                    :type="'pie'"
+                    :article-data="articles"
+                    :contact-data="contacts"
+                    :user-data="users"
+                    :loading="!allLoaded"
+                />
             </div>
         </div>
 
-        <Card v-if="display.Admin" class="myCard chartCard annualChartCard">
-            <template #content>
-                <chart-organism
-                    :chart-method-type="'annual'"
-                    :type="'bar'"
-                    :direction="'vertical'"
-                    :article-data="articles"
-                    :contactData="contacts"
-                    :userData="users"
-                    :chart-class="'myChart h-30rem'"
-                    :class="!allLoaded ? 'chartLoading' : 'chartLoaded'"
-                />
-                <progress-spinner-atom v-if="!allLoaded" />
-            </template>
-        </Card>
+        <card-chart
+            v-if="display.Admin"
+            class="annualChartCard"
+            :chart-method-type="'annual'"
+            :type="'bar'"
+            :direction="'vertical'"
+            :article-data="articles"
+            :contact-data="contacts"
+            :user-data="users"
+            :chart-class="'myChart h-30rem'"
+            :loading="!allLoaded"
+        />
 
         <article-dashboard
             :data="articles"

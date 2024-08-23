@@ -1,17 +1,15 @@
 <template>
     <div class="panelContainer">
-        <Card v-if="display.Article" class="myCard chartCard annualChartCard">
-            <template #content>
-                <chart-organism
-                    :chart-method-type="'annual'"
-                    :type="'bar'"
-                    :direction="'vertical'"
-                    :article-data="results"
-                    :chart-class="'h-30rem'"
-                />
-                <progress-spinner-atom v-if="loading" />
-            </template>
-        </Card>
+        <card-chart
+            v-if="display.Article"
+            class="annualChartCard"
+            :chart-method-type="'annual'"
+            :type="'bar'"
+            :direction="'vertical'"
+            :article-data="results"
+            :chart-class="'h-30rem'"
+            :loading="loading"
+        />
         <card-data-table
             :data="results"
             :loading="loading"
