@@ -18,11 +18,13 @@ import registerPrimeVue from './primevue'
 import { registerAtoms } from './atoms'
 import { registerMolecules } from './molecules'
 import { registerOrganisms } from './organisms'
+import { registerTemplates } from './templates'
 
 registerOldStructure(app)
 registerPrimeVue(app)
 registerAtoms(app)
 registerMolecules(app)
 registerOrganisms(app)
+registerTemplates(app)
 
 app.mount('#app')

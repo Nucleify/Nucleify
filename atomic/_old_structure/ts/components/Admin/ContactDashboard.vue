@@ -1,36 +1,15 @@
 <template>
     <section id="contacts">
-        <Card class="myCard">
-            <template #title>
-                <div class="myCardHeaderContainer">
-                    <heading-atom
-                        :tag="3"
-                        text="Manage Contacts"
-                        class="-mb-2"
-                    />
-
-                    <button-atom
-                        label="New Contact"
-                        @click="openDialog('create')"
-                        class="text-sm smallHeightButton primaryButton"
-                        :rounded="true"
-                        :style="contactStyle"
-                        :class="{ loading: loading }"
-                    />
-                </div>
-            </template>
-            <template #content>
-                <data-table-organism
-                    v-if="data"
-                    :data="data"
-                    :open-dialog="openDialog"
-                    :styles="contactStyle"
-                    type="contact"
-                    :loading="loading"
-                />
-                <div v-else>Loading data or no data available...</div>
-            </template>
-        </Card>
+        <card-data-table
+            :data="data"
+            :loading="loading"
+            :open-dialog="openDialog"
+            :styles="contactStyle"
+            :tag="3"
+            type="contact"
+            headerText="Manage Contacts"
+            buttonText="New Contact"
+        />
 
         <dialog-organism
             v-for="dialog in dialogs"

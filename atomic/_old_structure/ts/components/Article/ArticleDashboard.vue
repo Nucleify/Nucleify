@@ -12,37 +12,16 @@
                 <progress-spinner-atom v-if="loading" />
             </template>
         </Card>
-        <Card class="myCard articleDashboard">
-            <template #title>
-                <div class="myCardHeaderContainer">
-                    <heading-atom
-                        :tag="3"
-                        text="Manage Articles"
-                        class="-mb-2"
-                    />
-                    <button-atom
-                        label="New Article"
-                        @click="openDialog('create')"
-                        class="text-sm smallHeightButton primaryButton"
-                        :rounded="true"
-                        :style="articleStyle"
-                        :class="{ loading: loading }"
-                    />
-                </div>
-            </template>
-            <template #content>
-                <data-table-organism
-                    v-if="results"
-                    :data="results"
-                    :open-dialog="openDialog"
-                    :styles="articleStyle"
-                    type="article"
-                    :loading="loading"
-                    :selected-object="selectedObject"
-                />
-                <div v-else>Loading data or no data available...</div>
-            </template>
-        </Card>
+        <card-data-table
+            :data="results"
+            :loading="loading"
+            :open-dialog="openDialog"
+            :styles="articleStyle"
+            :tag="3"
+            type="article"
+            headerText="Manage Articles"
+            buttonText="New Article"
+        />
     </div>
 
     <dialog-organism
