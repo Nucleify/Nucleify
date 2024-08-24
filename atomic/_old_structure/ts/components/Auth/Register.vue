@@ -1,6 +1,5 @@
 <template>
-    <Toast />
-    <BackLink />
+    <back-link />
     <div class="authCardContainer">
         <Card class="registerCard">
             <template #header>
@@ -10,58 +9,25 @@
 
                         <p class="mb-2">
                             Already have an account?
-                            <anchor-molecule
-                                href="/login"
-                                :label="'Log in!'"
-                            />
+                            <anchor-molecule href="/login" :label="'Log in!'" />
                         </p>
                     </div>
                 </div>
             </template>
             <template #content>
-                <form @submit.prevent="submitAuthForm(data)">
-                    <float-label-molecule>
+                <form @submit.prevent="submitForm(registerFields)">
+                    <float-label-molecule
+                        v-for="(field, index) in registerInputs"
+                        :key="index"
+                    >
                         <input-text-atom
-                            v-model="data.name"
-                            type="text"
-                            id="name"
+                            v-model="registerFields[field.model]"
+                            :type="field.type"
+                            :id="field.id"
                             class="authInputText"
-                            autofocus
+                            :autofocus="field.autofocus"
                         />
-                        <label-atom for="name" label="Name" />
-                    </float-label-molecule>
-
-                    <float-label-molecule>
-                        <input-text-atom
-                            v-model="data.email"
-                            type="text"
-                            id="name"
-                            class="authInputText"
-                        />
-                        <label-atom for="name" label="Email" />
-                    </float-label-molecule>
-
-                    <float-label-molecule>
-                        <input-text-atom
-                            v-model="data.password"
-                            type="password"
-                            id="password"
-                            class="authInputText"
-                        />
-                        <label-atom for="password" label="Password" />
-                    </float-label-molecule>
-
-                    <float-label-molecule>
-                        <input-text-atom
-                            v-model="data.password_confirmation"
-                            type="password"
-                            id="password-confirm"
-                            class="authInputText"
-                        />
-                        <label-atom
-                            for="password-confirm"
-                            label="Confirm Password"
-                        />
+                        <label-atom :for="field.id" :label="field.label" />
                     </float-label-molecule>
 
                     <button-atom
@@ -77,19 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useAuthForm } from 'atomic/bosons/utils'
 
-import { BackLink } from '@/components'
-import { RegisterFormInterface } from '@/types'
-import { useSubmitAuthForm } from '@/utils'
-
-const data = ref<RegisterFormInterface>({
-    name: '',
-    email: '',
-    role: '',
-    password: '',
-    password_confirmation: '',
-})
-
-const { submitAuthForm } = useSubmitAuthForm()
+const { submitForm, registerFields, registerInputs } = useAuthForm()
 </script>

@@ -12,7 +12,6 @@ export { default as articleApiMethods } from './article/articleApiMethods'
  *  Auth
  */
 export { default as logout } from './auth/logout'
-export { default as useSubmitAuthForm } from './auth/useSubmitAuthForm'
 export { default as testLogin } from './auth/testLogin'
 
 /**

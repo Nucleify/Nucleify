@@ -12,7 +12,6 @@ import {
     Settings,
     Register,
     ScreenLoader,
-    TestLoginButton,
 } from '@/components'
 
 export default function registerOldStructure(app: App<Element>): void {
@@ -27,5 +26,4 @@ export default function registerOldStructure(app: App<Element>): void {
         .component('settings', Settings)
         .component('register', Register)
         .component('screen-loader', ScreenLoader)
-        .component('test-login-button', TestLoginButton)
 }

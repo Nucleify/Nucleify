@@ -132,20 +132,6 @@ export interface HomeItemsInterface {
     draggableClass: boolean
 }
 
-/**
- *  Form data
- */
-export interface LoginFormInterface {
-    email: string
-    password: string
-}
-export interface RegisterFormInterface {
-    name: string
-    email: string
-    password: string
-    password_confirmation: string
-    role: string
-}
 
 /**
  *  User
@@ -206,11 +192,6 @@ export interface UseNavbarInterface {
     navbarExpanded: Ref<boolean>
     toggleNavbar: () => void
     throttleHideNavbar: () => void
-}
-export interface UseSubmitAuthFormInterface {
-    submitAuthForm: (
-        data: LoginFormInterface | RegisterFormInterface
-    ) => Promise<void>
 }
 export interface UseSidebarInterface {
     getSidebarItemStyle: GetSidebarItemStyleFunctionType
