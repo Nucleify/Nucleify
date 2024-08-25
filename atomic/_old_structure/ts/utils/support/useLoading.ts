@@ -1,7 +1,8 @@
-import { ref, Ref } from 'vue'
+import { ref } from 'vue'
+import { LoadingRefType } from 'atomic/bosons/types'
 
 export default function useLoading() {
-    const loading: Ref<boolean> = ref(false)
+    const loading: LoadingRefType = ref(false)
 
     function setLoading(state: boolean, timeout?: number): void {
         if (timeout) {

@@ -19,8 +19,8 @@
 </head>
 <body>
     <main id="app">
+        <toast-atom></toast-atom>
         @auth
-            <toast></toast>
             <dock-organism></dock-organism>
         @endauth
 

@@ -1,6 +1,6 @@
 export { default as registerOrganisms } from './organisms'
 
-export { default as ChartOrganism } from './ChartOrganism.vue'
-export { default as DataTableOrganism } from './DataTableOrganism.vue'
-export { default as DialogOrganism } from './DialogOrganism.vue'
-export { default as DockOrganism } from './DockOrganism.vue'
+export { default as Chart } from './Chart.vue'
+export { default as DataTable } from './DataTable.vue'
+export { default as Dialog } from './Dialog.vue'
+export { default as Dock } from './Dock.vue'

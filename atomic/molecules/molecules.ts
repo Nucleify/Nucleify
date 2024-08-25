@@ -1,10 +1,10 @@
 import { App } from 'vue'
 
-import { AnchorMolecule, FloatLabelMolecule } from './'
+import { Anchor, FloatLabel } from './'
 
 export default function registerMolecules(app: App<Element>): void {
-    app.component('anchor-molecule', AnchorMolecule).component(
+    app.component('anchor-molecule', Anchor).component(
         'float-label-molecule',
-        FloatLabelMolecule
+        FloatLabel
     )
 }

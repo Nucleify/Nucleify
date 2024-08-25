@@ -39,9 +39,7 @@ export { default as DisplayCharts } from './Settings/Components/DisplayCharts.vu
 /**
  *  Support
  */
-export { default as BackLink } from './Support/BackLink.vue'
 export { default as ScreenLoader } from './Support/ScreenLoader.vue'
-export { default as TestLoginButton } from './Support/TestLoginButton.vue'
 
 /**
  *  Welcome

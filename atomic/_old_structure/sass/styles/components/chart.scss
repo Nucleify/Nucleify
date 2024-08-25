@@ -18,4 +18,8 @@
     .chartLoaded {
         opacity: $chart-loaded-opacity;
     }
+
+    .annualChart {
+        min-height: 480px;
+    }
 }

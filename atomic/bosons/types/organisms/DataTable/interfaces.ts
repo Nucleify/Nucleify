@@ -6,7 +6,7 @@ import {
     OpenDialogFunctionType,
 } from 'atomic/bosons/types'
 
-import { OpenMenuFunctionType, SelectedObjectType } from '@/types'
+import { SelectedObjectType } from '@/types'
 
 export interface DataTableInterface {
     data: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -14,7 +14,6 @@ export interface DataTableInterface {
     loading: LoadingType
     actions?: ActionInterface
     styles: ColorItemStyleInterface
-    openMenu: OpenMenuFunctionType
     openDialog: OpenDialogFunctionType
     selectedObject?: SelectedObjectType
 }

@@ -1,37 +1,26 @@
 <template>
     <div class="panelContainer">
-        <Card v-if="display.Activity" class="myCard chartCard annualChartCard">
-            <template #content>
-                <chart-organism
-                    :chart-method-type="'annual'"
-                    :type="'bar'"
-                    :direction="'vertical'"
-                    :activity-log-data="activities"
-                    :chart-class="'h-30rem'"
-                />
-                <progress-spinner-atom v-if="loading" />
-            </template>
-        </Card>
-        <Card class="myCard">
-            <template #title>
-                <div class="myCardHeaderContainer">
-                    <heading-atom :tag="3" text="Activity Log" class="-mb-2" />
-                </div>
-            </template>
-            <template #content>
-                <data-table-organism
-                    v-if="activities"
-                    :data="activities"
-                    :open-menu="openMenu"
-                    :open-dialog="openDialog"
-                    :styles="activityStyle"
-                    type="activity"
-                    :loading="loading"
-                />
-                <div v-else>Loading data or no data available...</div>
-            </template>
-        </Card>
+        <card-chart
+            v-if="display.Activity"
+            class="annualChartCard"
+            :chart-method-type="'annual'"
+            :type="'bar'"
+            :direction="'vertical'"
+            :activity-log-data="results"
+            :chart-class="'h-30rem'"
+            :loading="loading"
+        />
+        <card-data-table
+            :data="results"
+            :loading="loading"
+            :open-dialog="openDialog"
+            :styles="activityStyle"
+            :tag="3"
+            type="activity"
+            headerText="Manage Activities"
+        />
     </div>
+
     <dialog-organism
         v-for="dialog in dialogs"
         :key="dialog.action"
@@ -52,7 +41,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 
-import { activityApiMethods, openMenu } from '@/utils'
+import { activityApiMethods } from '@/utils'
 
 import { handleStyles } from 'atomic/bosons/constants'
 import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
@@ -60,12 +49,8 @@ import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
 const { visibleDelete, selectedObject, openDialog, closeDialog } = useDialog()
 const { display } = useDisplayCharts()
 
-const {
-    results: activities,
-    loading,
-    getAllActivities,
-    deleteActivity,
-} = activityApiMethods()
+const { results, loading, getAllActivities, deleteActivity } =
+    activityApiMethods()
 const { activityStyle } = handleStyles()
 
 onMounted(() => {

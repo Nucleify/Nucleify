@@ -1,4 +1,4 @@
 export { default as registerMolecules } from './molecules'
 
-export { default as AnchorMolecule } from './AnchorMolecule.vue'
-export { default as FloatLabelMolecule } from './FloatLabelMolecule.vue'
+export { default as Anchor } from './Anchor.vue'
+export { default as FloatLabel } from './FloatLabel.vue'
