@@ -7,11 +7,8 @@ import {
     UserInterface,
 } from '@/types'
 
-export type CSRFTokenType = string | null | undefined
-export type CSRFTokenInputType = LogoutFormType | undefined
 export type IsAdminType = Ref | null
 export type LabelItemType = string | null
-export type LogoutFormType = HTMLFormElement | null
 export type LoadingType = Ref<boolean>
 export type MessageOrMessagesType = string | Record<string, string[]>
 export type ObjectType =
@@ -23,7 +20,6 @@ export type ObjectType =
 export type SelectedObjectType = Ref<ObjectType>
 
 export type UserIdType = string | null
-export type UserRoleType = string
 export type TimeoutType = number
 export type VisibleType = Ref<boolean>
 

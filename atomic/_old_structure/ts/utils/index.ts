@@ -26,16 +26,12 @@ export { default as getLowerCase } from './support/getLowerCase'
 export { default as isCurrentUrl } from './support/isCurrentUrl'
 export { default as openMenu } from './support/openMenu'
 export { default as navigateTo } from './support/navigateTo'
-export { default as setElementOpacityWithDisplay } from './support/setElementOpacityWithDisplay'
-export { default as useDragItems } from './support/useDragItems'
 export { default as useIsAdmin } from './support/useIsAdmin'
 export { default as useApiErrors } from './support/useApiErrors'
 export { default as useLoading } from './support/useLoading'
 export { default as useMenuAndModal } from './support/useMenuAndModal'
 export { default as useNavbar } from './support/useNavbar'
-export { default as useSidebar } from './support/useSidebar'
 export { default as useThrottle } from './support/useThrottle'
-export { default as useUserMenu } from './support/useUserMenu'
 
 /**
  *  User
