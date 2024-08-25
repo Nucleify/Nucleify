@@ -16,8 +16,6 @@
     "baseUrl": ".",
     "types": [
       "webpack-env",
-      "jest",
-      "mocha",
       "cypress"
     ],
     "paths": {
