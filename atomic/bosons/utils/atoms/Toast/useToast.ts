@@ -1,19 +1,27 @@
-import { useToast } from 'primevue/usetoast'
+import { useToast as usePrimeVueToast } from 'primevue/usetoast'
 import { ToastServiceMethods } from 'primevue/toastservice'
 
 import {
     MessageOrMessagesType,
     ToastSeverityType,
-    UseFlashToastInterface,
-} from '@/types'
-import { closeToast } from '@/utils'
+    UseToastInterface,
+} from 'atomic/bosons/types'
 
-export default function useFlashToast(): UseFlashToastInterface {
-    const toast: ToastServiceMethods = useToast()
+export function useToast(): UseToastInterface {
+    const toast: ToastServiceMethods = usePrimeVueToast()
+
+    function closeToast(): void {
+        document
+            .querySelectorAll('.p-toast-message')
+            .forEach((element: Element): void => {
+                element.remove()
+            })
+    }
 
     function flashToast(
         messageOrMessages: MessageOrMessagesType,
-        severity: ToastSeverityType
+        severity: ToastSeverityType,
+        life: number
     ): void {
         closeToast()
 
@@ -44,9 +52,9 @@ export default function useFlashToast(): UseFlashToastInterface {
         toast.add({
             severity: severity,
             summary: message,
-            life: 5000,
+            life: life ? life : 5000,
         })
     }
 
-    return { flashToast }
+    return { closeToast, flashToast }
 }

@@ -15,7 +15,6 @@ export { UserInterface as UserInterface } from './interfaces'
 export { HandleDataInterface as HandleDataInterface } from './interfaces'
 export { UseApiErrorsServiceInterface as UseApiErrorsServiceInterface } from './interfaces'
 export { UseDragItemsInterface as UseDragItemsInterface } from './interfaces'
-export { UseFlashToastInterface as UseFlashToastInterface } from './interfaces'
 export { UseMenuAndModalInterface as UseMenuAndModalInterface } from './interfaces'
 export { UseNavbarInterface as UseNavbarInterface } from './interfaces'
 export { UseSidebarInterface as UseSidebarInterface } from './interfaces'
@@ -51,7 +50,6 @@ export { EditUserFunctionType as EditUserFunctionType } from './functionsTypes'
 export { UseIsAdminFunctionType as UseIsAdminFunctionType } from './functionsTypes'
 export { StartDraggingFunctionType as StartDraggingFunctionType } from './functionsTypes'
 export { GetSidebarItemStyleFunctionType as GetSidebarItemStyleFunctionType } from './functionsTypes'
-export { FlashToastFunctionType as FlashToastFunctionType } from './functionsTypes'
 
 /**
  *  Variables types
@@ -66,7 +64,6 @@ export { MessageOrMessagesType as MessageOrMessagesType } from './variablesTypes
 export { ObjectType as ObjectType } from './variablesTypes'
 export { SelectedObjectType as SelectedObjectType } from './variablesTypes'
 export { TimeoutType as TimeoutType } from './variablesTypes'
-export { ToastSeverityType as ToastSeverityType } from './variablesTypes'
 export { UserIdType as UserIdType } from './variablesTypes'
 export { UserRoleType as UserRoleType } from './variablesTypes'
 export { VisibleType as VisibleType } from './variablesTypes'

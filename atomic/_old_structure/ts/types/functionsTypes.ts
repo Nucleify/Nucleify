@@ -8,9 +8,7 @@ import {
     ArticleInterface,
     ContactInterface,
     HomeItemsInterface,
-    MessageOrMessagesType,
     ObjectType,
-    ToastSeverityType,
     UserInterface,
 } from '@/types'
 
@@ -101,11 +99,3 @@ export type OpenModalFunctionType = (
 export type GetSidebarItemStyleFunctionType = (
     url: string
 ) => ColorItemStyleInterface | ''
-
-/**
- *  Toast
- */
-export type FlashToastFunctionType = (
-    messageOrMessages: MessageOrMessagesType,
-    severity: ToastSeverityType
-) => void

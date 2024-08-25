@@ -21,12 +21,7 @@ export type ObjectType =
     | UserInterface
     | undefined
 export type SelectedObjectType = Ref<ObjectType>
-export type ToastSeverityType =
-    | 'success'
-    | 'info'
-    | 'warn'
-    | 'error'
-    | undefined
+
 export type UserIdType = string | null
 export type UserRoleType = string
 export type TimeoutType = number

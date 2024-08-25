@@ -7,9 +7,11 @@ import {
     ActivityLogInterface,
     ActivityResultsType,
     ApiErrorsFunctionType,
-    FlashToastFunctionType,
 } from '@/types'
-import { useApiErrors, useFlashToast, useLoading } from '@/utils'
+import { useApiErrors, useLoading } from '@/utils'
+
+import { FlashToastFunctionType } from 'atomic/bosons/types'
+import { useToast } from 'atomic/bosons/utils'
 
 export default function activityApiMethods(): ActivityLogApiMethodsInterface {
     const results: ActivityResultsType = ref([])
@@ -17,7 +19,7 @@ export default function activityApiMethods(): ActivityLogApiMethodsInterface {
 
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } =
-        useFlashToast()
+        useToast()
 
     async function getAllActivities(
         timeout?: number

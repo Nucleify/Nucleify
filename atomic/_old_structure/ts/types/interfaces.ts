@@ -10,7 +10,6 @@ import {
     EditArticleFunctionType,
     EditContactFunctionType,
     EditUserFunctionType,
-    FlashToastFunctionType,
     GetAllActivitiesAxiosFunctionType,
     GetAllArticlesFunctionType,
     GetAllContactsFunctionType,
@@ -174,9 +173,6 @@ export interface UseApiErrorsServiceInterface {
 }
 export interface UseDragItemsInterface {
     startDragging: StartDraggingFunctionType
-}
-export interface UseFlashToastInterface {
-    flashToast: FlashToastFunctionType
 }
 export interface UseMenuAndModalInterface {
     visibleShow: VisibleType
