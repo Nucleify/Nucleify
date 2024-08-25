@@ -9,9 +9,11 @@ import {
     ContactResultsType,
     UserIdType,
     ApiErrorsFunctionType,
-    FlashToastFunctionType,
 } from '@/types'
-import { useApiErrors, useFlashToast, useLoading } from '@/utils'
+import { useApiErrors, useLoading } from '@/utils'
+
+import { FlashToastFunctionType } from 'atomic/bosons/types'
+import { useToast } from 'atomic/bosons/utils'
 
 export default function contactApiMethods(): ContactApiMethodsInterface {
     const results: ContactResultsType = ref([])
@@ -19,7 +21,7 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
 
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } =
-        useFlashToast()
+        useToast()
 
     async function getAllContacts(
         timeout?: number

@@ -9,9 +9,11 @@ import {
     ArticleInterface,
     UserIdType,
     ApiErrorsFunctionType,
-    FlashToastFunctionType,
 } from '@/types'
-import { useApiErrors, useFlashToast, useLoading } from '@/utils'
+import { useApiErrors, useLoading } from '@/utils'
+
+import { FlashToastFunctionType } from 'atomic/bosons/types'
+import { useToast } from 'atomic/bosons/utils'
 
 export default function articleApiMethods(): ArticleApiMethodsInterface {
     const results: ArticleResultsType = ref([])
@@ -19,7 +21,7 @@ export default function articleApiMethods(): ArticleApiMethodsInterface {
 
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } =
-        useFlashToast()
+        useToast()
 
     async function getAllArticles(
         timeout?: number

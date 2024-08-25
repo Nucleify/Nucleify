@@ -9,18 +9,13 @@ export { ArticleInterface as ArticleInterface } from './interfaces'
 export { ContactInterface as ContactInterface } from './interfaces'
 export { ContactApiMethodsInterface as ContactApiMethodsInterface } from './interfaces'
 export { DropdownItemInterface as DropdownItemInterface } from './interfaces'
-export { HomeItemsInterface as HomeItemsInterface } from './interfaces'
 export { UserApiMethodsInterface as UserApiMethodsInterface } from './interfaces'
 export { UserInterface as UserInterface } from './interfaces'
 export { HandleDataInterface as HandleDataInterface } from './interfaces'
 export { UseApiErrorsServiceInterface as UseApiErrorsServiceInterface } from './interfaces'
-export { UseDragItemsInterface as UseDragItemsInterface } from './interfaces'
-export { UseFlashToastInterface as UseFlashToastInterface } from './interfaces'
 export { UseMenuAndModalInterface as UseMenuAndModalInterface } from './interfaces'
 export { UseNavbarInterface as UseNavbarInterface } from './interfaces'
-export { UseSidebarInterface as UseSidebarInterface } from './interfaces'
 export { UseThrottleInterface as UseThrottleInterface } from './interfaces'
-export { UseUserMenuInterface as UseUserMenuInterface } from './interfaces'
 
 /**
  *  Functions types
@@ -49,26 +44,18 @@ export { StoreUserFunctionType as StoreUserFunctionType } from './functionsTypes
 export { EditUserFunctionType as EditUserFunctionType } from './functionsTypes'
 
 export { UseIsAdminFunctionType as UseIsAdminFunctionType } from './functionsTypes'
-export { StartDraggingFunctionType as StartDraggingFunctionType } from './functionsTypes'
-export { GetSidebarItemStyleFunctionType as GetSidebarItemStyleFunctionType } from './functionsTypes'
-export { FlashToastFunctionType as FlashToastFunctionType } from './functionsTypes'
 
 /**
  *  Variables types
  */
-export { CSRFTokenType as CSRFTokenType } from './variablesTypes'
-export { CSRFTokenInputType as CSRFTokenInputType } from './variablesTypes'
 export { IsAdminType as IsAdminType } from './variablesTypes'
 export { LabelItemType as LabelItemType } from './variablesTypes'
-export { LogoutFormType as LogoutFormType } from './variablesTypes'
 export { LoadingType as LoadingType } from './variablesTypes'
 export { MessageOrMessagesType as MessageOrMessagesType } from './variablesTypes'
 export { ObjectType as ObjectType } from './variablesTypes'
 export { SelectedObjectType as SelectedObjectType } from './variablesTypes'
 export { TimeoutType as TimeoutType } from './variablesTypes'
-export { ToastSeverityType as ToastSeverityType } from './variablesTypes'
 export { UserIdType as UserIdType } from './variablesTypes'
-export { UserRoleType as UserRoleType } from './variablesTypes'
 export { VisibleType as VisibleType } from './variablesTypes'
 
 export { ActivityResultsType as ActivityResultsType } from './variablesTypes'

@@ -10,9 +10,11 @@ import {
     UserInterface,
     UserResultsType,
     ApiErrorsFunctionType,
-    FlashToastFunctionType,
 } from '@/types'
-import { useApiErrors, useFlashToast, useLoading } from '@/utils'
+import { useApiErrors, useLoading } from '@/utils'
+
+import { FlashToastFunctionType } from 'atomic/bosons/types'
+import { useToast } from 'atomic/bosons/utils'
 
 export default function userApiMethods(): UserApiMethodsInterface {
     const results: UserResultsType = ref([])
@@ -20,7 +22,7 @@ export default function userApiMethods(): UserApiMethodsInterface {
 
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } =
-        useFlashToast()
+        useToast()
 
     async function getAllUsers(timeout?: number): GetAllUsersFunctionType {
         if (timeout) {

@@ -10,19 +10,16 @@ import {
     EditArticleFunctionType,
     EditContactFunctionType,
     EditUserFunctionType,
-    FlashToastFunctionType,
     GetAllActivitiesAxiosFunctionType,
     GetAllArticlesFunctionType,
     GetAllContactsFunctionType,
     GetAllUsersFunctionType,
-    GetSidebarItemStyleFunctionType,
     GetUserFunctionType,
     LoadingType,
     MessageOrMessagesType,
     OpenMenuFunctionType,
     OpenModalFunctionType,
     SelectedObjectType,
-    StartDraggingFunctionType,
     StoreArticleFunctionType,
     StoreContactFunctionType,
     StoreUserFunctionType,
@@ -120,18 +117,6 @@ export interface DropdownItemInterface {
     command?: () => void
 }
 
-/**
- *  Home
- */
-export interface HomeItemsInterface {
-    id: number
-    label: string
-    href: string
-    icon: string
-    disabled: boolean
-    draggableClass: boolean
-}
-
 
 /**
  *  User
@@ -172,12 +157,6 @@ export interface HandleDataInterface {
 export interface UseApiErrorsServiceInterface {
     apiErrors: ApiErrorsFunctionType
 }
-export interface UseDragItemsInterface {
-    startDragging: StartDraggingFunctionType
-}
-export interface UseFlashToastInterface {
-    flashToast: FlashToastFunctionType
-}
 export interface UseMenuAndModalInterface {
     visibleShow: VisibleType
     visibleCreate: VisibleType
@@ -193,18 +172,7 @@ export interface UseNavbarInterface {
     toggleNavbar: () => void
     throttleHideNavbar: () => void
 }
-export interface UseSidebarInterface {
-    getSidebarItemStyle: GetSidebarItemStyleFunctionType
-}
 export interface UseThrottleInterface {
     isThrottled: Ref<boolean>
     throttle: (callback: () => void, delay: number) => void
-}
-
-/**
- *  User Menu
- */
-export interface UseUserMenuInterface {
-    openUserMenu: () => void
-    closeUserMenu: () => void
 }

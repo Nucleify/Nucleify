@@ -7,14 +7,9 @@ import {
     ApiErrorsInterface,
     ArticleInterface,
     ContactInterface,
-    HomeItemsInterface,
-    MessageOrMessagesType,
     ObjectType,
-    ToastSeverityType,
     UserInterface,
 } from '@/types'
-
-import { ColorItemStyleInterface } from 'atomic/bosons/types'
 
 /**
  *  Api
@@ -71,10 +66,6 @@ export type EditUserFunctionType = (
     close: (method: string) => void
 ) => Promise<void>
 
-/**
- *  Drag items
- */
-export type StartDraggingFunctionType = (item: HomeItemsInterface) => void
 
 /**
  *  IsAdmin
@@ -93,19 +84,4 @@ export type OpenMenuFunctionType = (
 export type OpenModalFunctionType = (
     action: string,
     object?: ObjectType
-) => void
-
-/**
- *  Sidebar
- */
-export type GetSidebarItemStyleFunctionType = (
-    url: string
-) => ColorItemStyleInterface | ''
-
-/**
- *  Toast
- */
-export type FlashToastFunctionType = (
-    messageOrMessages: MessageOrMessagesType,
-    severity: ToastSeverityType
 ) => void
