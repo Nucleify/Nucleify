@@ -96,6 +96,10 @@
                 background: $secondary-color;
                 color: $secondary-color;
             }
+
+            .countChart {
+                max-width: 130px;
+            }
         }
     }
 
@@ -131,6 +135,10 @@
 
                 .pi {
                     font-size: $font-size-xxl;
+                }
+
+                .countChart {
+                    max-width: 100% !important;
                 }
             }
         }

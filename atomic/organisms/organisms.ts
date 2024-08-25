@@ -1,15 +1,10 @@
 import { App } from 'vue'
 
-import {
-    ChartOrganism,
-    DataTableOrganism,
-    DialogOrganism,
-    DockOrganism,
-} from './'
+import { Chart, DataTable, Dialog, Dock } from './'
 
 export default function registerOrganisms(app: App<Element>): void {
-    app.component('chart-organism', ChartOrganism)
-        .component('data-table-organism', DataTableOrganism)
-        .component('dialog-organism', DialogOrganism)
-        .component('dock-organism', DockOrganism)
+    app.component('chart-organism', Chart)
+        .component('data-table-organism', DataTable)
+        .component('dialog-organism', Dialog)
+        .component('dock-organism', Dock)
 }

@@ -1,6 +1,5 @@
 <template>
-    <Toast />
-    <BackLink />
+    <back-link />
     <div class="authCardContainer">
         <Card class="loginCard">
             <template #header>
@@ -20,26 +19,16 @@
                 </div>
             </template>
             <template #content>
-                <form @submit.prevent="submitAuthForm(data)">
-                    <float-label-molecule>
+                <form @submit.prevent="submitForm(loginFields)">
+                    <float-label-molecule v-for="(field, index) in loginInputs" :key="index">
                         <input-text-atom
-                            v-model="data.email"
-                            type="email"
-                            id="email"
+                            v-model="loginFields[field.model]"
+                            :type="field.type"
+                            :id="field.id"
                             class="authInputText"
-                            autofocus
+                            :autofocus="field.autofocus"
                         />
-                        <label-atom for="email" label="Email Address" />
-                    </float-label-molecule>
-
-                    <float-label-molecule>
-                        <input-text-atom
-                            v-model="data.password"
-                            type="password"
-                            id="password"
-                            class="authInputText"
-                        />
-                        <label-atom for="password" label="Password" />
+                        <label-atom :for="field.id" :label="field.label" />
                     </float-label-molecule>
 
                     <button-atom
@@ -53,20 +42,11 @@
         </Card>
     </div>
 
-    <TestLoginButton />
+    <test-login-buttons />
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { useAuthForm } from 'atomic/bosons/utils'
 
-import { BackLink, TestLoginButton } from '@/components'
-import { LoginFormInterface } from '@/types'
-import { useSubmitAuthForm } from '@/utils'
-
-const data = ref<LoginFormInterface>({
-    email: '',
-    password: '',
-})
-
-const { submitAuthForm } = useSubmitAuthForm()
+const { submitForm, loginFields, loginInputs } = useAuthForm()
 </script>

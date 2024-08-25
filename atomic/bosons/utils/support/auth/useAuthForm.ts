@@ -1,19 +1,25 @@
 import axios from 'axios'
 
 import {
-    LoginFormInterface,
-    RegisterFormInterface,
-    UseSubmitAuthFormInterface,
-} from '@/types'
+    LoginFieldsInterface,
+    RegisterFieldsInterface,
+    UseAuthFormInterface,
+} from 'atomic/bosons/types'
+import {
+    loginFields,
+    loginInputs,
+    registerFields,
+    registerInputs,
+} from 'atomic/bosons/constants'
+
 import { navigateTo, useApiErrors } from '@/utils'
 
-export default function useSubmitAuthForm(): UseSubmitAuthFormInterface {
+export function useAuthForm(): UseAuthFormInterface {
+    const { apiErrors } = useApiErrors()
     let url
 
-    const { apiErrors } = useApiErrors()
-
-    async function submitAuthForm(
-        data: LoginFormInterface | RegisterFormInterface
+    async function submitForm(
+        data: LoginFieldsInterface | RegisterFieldsInterface
     ): Promise<void> {
         switch (true) {
             case !('password_confirmation' in data):
@@ -37,6 +43,10 @@ export default function useSubmitAuthForm(): UseSubmitAuthFormInterface {
             })
     }
     return {
-        submitAuthForm,
+        submitForm,
+        loginFields,
+        loginInputs,
+        registerFields,
+        registerInputs,
     }
 }
