@@ -9,6 +9,7 @@ import {
     InputText,
     Item,
     Label,
+    Paragraph,
     ProgressBar,
     ProgressSpinner,
     RadioButton,
@@ -24,6 +25,7 @@ export default function registerAtoms(app: App<Element>): void {
         .component('input-text-atom', InputText)
         .component('item-atom', Item)
         .component('label-atom', Label)
+        .component('paragraph-atom', Paragraph)
         .component('progress-bar-atom', ProgressBar)
         .component('progress-spinner-atom', ProgressSpinner)
         .component('radio-button-atom', RadioButton)

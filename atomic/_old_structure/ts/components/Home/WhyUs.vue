@@ -38,7 +38,10 @@
             </div>
         </template>
         <template #default>
-            <p class="m-0 text-sm">{{ dialogData.description }}</p>
+            <paragraph-atom
+                class="m-0 text-sm"
+                :text="dialogData.description"
+            />
         </template>
     </Dialog>
 </template>

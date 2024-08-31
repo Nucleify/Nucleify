@@ -8,13 +8,12 @@
                         <image-atom src="logo.svg" width="50" />
                         <heading-atom :tag="1" text="Welcome Back" />
 
-                        <p class="mb-2">
-                            Don't have an account?
+                        <paragraph-atom class="mb-2" text="Don't have an account?">
                             <anchor-molecule
                                 href="/register"
                                 :label="'Create today!'"
                             />
-                        </p>
+                        </paragraph-atom>
                     </div>
                 </div>
             </template>
