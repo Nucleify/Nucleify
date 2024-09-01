@@ -8,32 +8,36 @@
     display: $panel-container-display;
     flex-direction: $panel-container-flex-direction;
     gap: $panel-container-gap;
+}
 
-    // Min width 992px
-    @media (min-width: $min-width-lg2) {
-        top: $panel-container-top-lg2;
+body:has(.p-dock.p-dock-top) {
+    .panelContainer {
+        padding-top: $panel-container-top;
     }
 }
 
-body:has(.p-dock.p-dock-top),
-body:has(.p-dock.p-dock-left),
 body:has(.p-dock.p-dock-right) {
     .panelContainer {
-        padding-top: $panel-container-top;
+        padding-top: 8px;
+        padding-right: 80px;
+    }
+}
+
+body:has(.p-dock.p-dock-left) {
+     .panelContainer {
+         padding-top: 8px;
+         padding-left: 80px;
+     }
+ }
+
+body:has(.p-dock.p-dock-bottom) {
+    .panelContainer {
+        padding-bottom: $panel-container-top;
 
         // Min width 992px
         @media (min-width: $min-width-lg2) {
-            padding-top: 4px;
+            padding-top: 8px;
+            padding-bottom: 81px;
         }
-    }
-}
-
-body:has(.p-dock.p-dock-bottom) .panelContainer {
-    padding-bottom: $panel-container-top;
-
-    // Min width 992px
-    @media (min-width: $min-width-lg2) {
-        padding-top: 4px;
-        padding-bottom: 8px;
     }
 }
