@@ -26,9 +26,8 @@ export default function articleApiMethods(): ArticleApiMethodsInterface {
     async function getAllArticles(
         timeout?: number
     ): GetAllArticlesFunctionType {
-        if (timeout) {
-            setLoading(true)
-        }
+        setLoading(true)
+
         return await axios
             .get('/api/articles')
             .then((response: GetAllArticlesAxiosFunctionType) => {
@@ -52,6 +51,8 @@ export default function articleApiMethods(): ArticleApiMethodsInterface {
             .finally((): void => {
                 if (timeout) {
                     setLoading(false, timeout)
+                } else {
+                    setLoading(false)
                 }
             })
     }

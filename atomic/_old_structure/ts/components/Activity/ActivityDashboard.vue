@@ -54,7 +54,7 @@ const { results, loading, getAllActivities, deleteActivity } =
 const { activityStyle } = handleStyles()
 
 onMounted(() => {
-    getAllActivities(500)
+    getAllActivities()
 })
 
 const dialogs = computed(() => [

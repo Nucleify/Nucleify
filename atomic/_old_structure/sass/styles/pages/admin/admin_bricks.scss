@@ -1,5 +1,6 @@
 @import '../../../variables/pages/admin/admin_bricks_variables';
 
+@import '../../../variables/base/box_shadows_variables';
 @import '../../../variables/base/colors_variables';
 @import '../../../variables/base/fonts_variables';
 @import '../../../variables/base/medias_variables';
@@ -55,6 +56,7 @@
             max-height: $admin-bricks-grid-item-max-height;
             aspect-ratio: $admin-bricks-grid-item-aspect-ratio;
             font-size: $font-size-big;
+            box-shadow: $my-card-box-shadow;
 
             .pi {
                 margin-top: $admin-bricks-grid-item-pi-margin-top;

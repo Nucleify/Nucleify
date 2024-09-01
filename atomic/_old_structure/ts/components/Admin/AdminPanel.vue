@@ -130,9 +130,9 @@ const {
 const { results: users, loading: usersLoading, getAllUsers } = userApiMethods()
 
 onMounted(() => {
-    getAllArticles(500)
-    getAllContacts(500)
-    getAllUsers(500)
+    getAllArticles()
+    getAllContacts()
+    getAllUsers()
 })
 
 const {

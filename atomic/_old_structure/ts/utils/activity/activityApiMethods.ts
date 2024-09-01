@@ -24,9 +24,8 @@ export default function activityApiMethods(): ActivityLogApiMethodsInterface {
     async function getAllActivities(
         timeout?: number
     ): GetAllActivitiesAxiosFunctionType {
-        if (timeout) {
-            setLoading(true)
-        }
+        setLoading(true)
+
         return await axios
             .get('/api/activity-log')
             .then((response: AxiosResponse<ActivityLogInterface[]>) => {
@@ -50,6 +49,8 @@ export default function activityApiMethods(): ActivityLogApiMethodsInterface {
             .finally((): void => {
                 if (timeout) {
                     setLoading(false, timeout)
+                } else {
+                    setLoading(false)
                 }
             })
     }

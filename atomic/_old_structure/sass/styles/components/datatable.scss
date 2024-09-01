@@ -43,6 +43,7 @@
         }
         .actionColumn {
             width: $action-column-width;
+            min-width: 49px;
 
             .actionColumnContent {
                 display: $action-column-content-display;
