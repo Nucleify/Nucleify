@@ -1,4 +1,6 @@
-export const columns = {
+import { ColumnsInterface } from 'atomic/bosons/types'
+
+export const columns: ColumnsInterface = {
     activity: [
         { field: 'id', header: 'ID', class: 'idActivityColumn' },
         {

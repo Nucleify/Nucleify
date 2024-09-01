@@ -22,6 +22,7 @@ import Menu from 'primevue/menu'
 import ProgressBar from 'primevue/progressbar'
 import ProgressSpinner from 'primevue/progressspinner'
 import RadioButton from 'primevue/radiobutton'
+import Skeleton from 'primevue/skeleton'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
 
@@ -60,6 +61,7 @@ export default function registerPrimeVue(app: App<Element>): void {
         .component('ProgressBar', ProgressBar)
         .component('ProgressSpinner', ProgressSpinner)
         .component('RadioButton', RadioButton)
+        .component('Skeleton', Skeleton)
         .component('Textarea', Textarea)
         .component('Toast', Toast)
 

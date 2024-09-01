@@ -88,17 +88,17 @@
         <article-dashboard
             :data="articles"
             :getData="getAllArticles"
-            :loading="articlesLoading"
+            :loading="!allLoaded"
         />
         <contact-dashboard
             :data="contacts"
             :getData="getAllContacts"
-            :loading="contactsLoading"
+            :loading="!allLoaded"
         />
         <user-dashboard
             :data="users"
             :getData="getAllUsers"
-            :loading="usersLoading"
+            :loading="!allLoaded"
         />
     </div>
 </template>

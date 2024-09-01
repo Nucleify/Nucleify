@@ -1,7 +1,7 @@
 <template>
     <section id="contacts">
         <card-data-table
-            :data="data"
+            :value="data"
             :loading="loading"
             :open-dialog="openDialog"
             :styles="contactStyle"

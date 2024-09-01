@@ -1,19 +1,17 @@
 <template>
     <DataTable
-        :value="data"
+        v-if="value && !loading"
+        :value="value"
         :loading="loading"
+        :rows="rows"
         :size="'small'"
-        :rows="10"
         :row-hover="true"
-        v-if="data"
         paginator
         stripedRows
         @row-click="openDialog('show', $event.data)"
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
     >
-        <template #loading><progress-spinner-atom /></template>
-
         <Column
             v-for="col in specificColumns"
             :key="col.field"
@@ -57,6 +55,11 @@
             </template>
         </Column>
     </DataTable>
+    <data-table-skeleton
+        :rows="skeleton"
+        :loading="loading"
+        :specific-columns="specificColumns"
+    />
 </template>
 
 <script setup lang="ts">
@@ -77,4 +80,5 @@ const { openMenu, selectedObject } = useMenuAndModal()
 const { dropdownItems } = handleDropdownItems(selectedObject, props.openDialog)
 
 const specificColumns = columns[props.type]
+const skeleton = ref(new Array(props.rows))
 </script>
