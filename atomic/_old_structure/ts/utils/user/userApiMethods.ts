@@ -25,9 +25,8 @@ export default function userApiMethods(): UserApiMethodsInterface {
         useToast()
 
     async function getAllUsers(timeout?: number): GetAllUsersFunctionType {
-        if (timeout) {
-            setLoading(true)
-        }
+        setLoading(true)
+
         return await axios
             .get('/api/users')
             .then((response: GetAllUsersAxiosFunctionType) => {
@@ -51,6 +50,8 @@ export default function userApiMethods(): UserApiMethodsInterface {
             .finally((): void => {
                 if (timeout) {
                     setLoading(false, timeout)
+                } else {
+                    setLoading(false)
                 }
             })
     }

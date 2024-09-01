@@ -21,7 +21,7 @@ export function useToast(): UseToastInterface {
     function flashToast(
         messageOrMessages: MessageOrMessagesType,
         severity: ToastSeverityType,
-        life: number
+        life?: number
     ): void {
         closeToast()
 

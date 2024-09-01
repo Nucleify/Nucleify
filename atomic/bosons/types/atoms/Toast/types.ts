@@ -19,5 +19,5 @@ export type ToastPositionType =
 export type FlashToastFunctionType = (
     messageOrMessages: MessageOrMessagesType,
     severity: ToastSeverityType,
-    life: number
+    life?: number
 ) => void
