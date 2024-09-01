@@ -38,6 +38,10 @@ body {
     background: $body-bg;
 }
 
+main {
+    overflow-x: hidden;
+}
+
 body:has(
     #home,
     #login,
