@@ -13,6 +13,7 @@ import {
     ProgressBar,
     ProgressSpinner,
     RadioButton,
+    Skeleton,
     Toast,
 } from './'
 
@@ -29,5 +30,6 @@ export default function registerAtoms(app: App<Element>): void {
         .component('progress-bar-atom', ProgressBar)
         .component('progress-spinner-atom', ProgressSpinner)
         .component('radio-button-atom', RadioButton)
+        .component('skeleton-atom', Skeleton)
         .component('toast-atom', Toast)
 }
