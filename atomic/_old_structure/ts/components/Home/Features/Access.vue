@@ -28,11 +28,12 @@
                         />
                     </div>
                     <div class="flip-card-back">
-                        <p class="mt-2">
-                            Responsive web design was coined in 2010 by Ethan
+                        <paragraph-atom
+                            class="mt-2"
+                            text="Responsive web design was coined in 2010 by Ethan
                             Marcotte, optimizing layouts for desktops with
-                            flexible grids and layouts.
-                        </p>
+                            flexible grids and layouts."
+                        />
                     </div>
                 </div>
             </div>
@@ -51,11 +52,11 @@
                         />
                     </div>
                     <div class="flip-card-back">
-                        <p>
-                            Over 53% of internet users worldwide access the web
+                        <paragraph-atom
+                            text="Over 53% of internet users worldwide access the web
                             through mobile devices, highlighting the significant
-                            shift towards mobile browsing in recent years.
-                        </p>
+                            shift towards mobile browsing in recent years."
+                        />
                     </div>
                 </div>
             </div>
@@ -74,12 +75,12 @@
                         />
                     </div>
                     <div class="flip-card-back">
-                        <p class="flip-card-back-text">
-                            Google's implementation of mobile-first indexing in
-                            2018 underscored the importance of mobile-responsive
-                            design, prioritizing mobile versions for indexing
-                            and ranking.
-                        </p>
+                        <paragraph-atom
+                            class="flip-card-back-text"
+                            text="Google's implementation of mobile-first indexing in
+                            2018 underscored the importance of mobile-responsive design,
+                            prioritizing mobile versions for indexing and ranking."
+                        />
                     </div>
                 </div>
             </div>

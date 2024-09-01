@@ -6,51 +6,55 @@
                 <anchor-molecule href="#articles" class="grid-item">
                     <div class="adminBricksCircle" :style="articleCircleStyle">
                         <div>
-                            <p class="adminBricksCircleNumber">
-                                {{ articles?.length }}
-                            </p>
+                            <paragraph-atom
+                                class="adminBricksCircleNumber"
+                                :text="articles?.length"
+                            />
                             <i class="pi pi-comment adminBricksIcon" />
                         </div>
                     </div>
-                    <p
+                    <paragraph-atom
                         class="articlesBricksText"
                         :style="articleBricksTextStyle"
-                    >
-                        Articles
-                    </p>
+                        text="Articles"
+                    />
                 </anchor-molecule>
             </div>
             <div class="grid-item-container col-6 lg:col-4">
                 <anchor-molecule href="#contacts" class="grid-item">
                     <div class="adminBricksCircle" :style="contactCircleStyle">
                         <div>
-                            <p class="adminBricksCircleNumber">
-                                {{ contacts?.length }}
-                            </p>
+                            <paragraph-atom
+                                class="adminBricksCircleNumber"
+                                :text="contacts?.length"
+                            />
                             <i class="pi pi-users adminBricksIcon" />
                         </div>
                     </div>
-                    <p
+                    <paragraph-atom
                         class="contactsBricksText"
                         :style="contactBricksTextStyle"
-                    >
-                        Contacts
-                    </p>
+                        text="Contacts"
+                    />
                 </anchor-molecule>
             </div>
             <div class="grid-item-container col-6 lg:col-4">
                 <anchor-molecule href="#users" class="grid-item">
                     <div class="adminBricksCircle" :style="userCircleStyle">
                         <div>
-                            <p class="adminBricksCircleNumber">
-                                {{ users?.length }}
-                            </p>
+                            <paragraph-atom
+                                class="adminBricksCircleNumber"
+                                :text="users?.length"
+                            />
+
                             <i class="pi pi-users adminBricksIcon" />
                         </div>
                     </div>
-                    <p class="usersBricksText" :style="userBricksTextStyle">
-                        Users
-                    </p>
+                    <paragraph-atom
+                        class="usersBricksText"
+                        :style="userBricksTextStyle"
+                        text="Users"
+                    />
                 </anchor-molecule>
             </div>
 
@@ -84,17 +88,17 @@
         <article-dashboard
             :data="articles"
             :getData="getAllArticles"
-            :loading="articlesLoading"
+            :loading="!allLoaded"
         />
         <contact-dashboard
             :data="contacts"
             :getData="getAllContacts"
-            :loading="contactsLoading"
+            :loading="!allLoaded"
         />
         <user-dashboard
             :data="users"
             :getData="getAllUsers"
-            :loading="usersLoading"
+            :loading="!allLoaded"
         />
     </div>
 </template>

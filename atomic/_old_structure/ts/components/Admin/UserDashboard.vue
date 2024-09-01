@@ -1,7 +1,7 @@
 <template>
     <section id="users">
         <card-data-table
-            :data="data"
+            :value="data"
             :loading="loading"
             :open-dialog="openDialog"
             :styles="userStyle"

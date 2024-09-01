@@ -7,10 +7,9 @@
                     <div class="authCardHeader">
                         <heading-atom :tag="1" text="Register" />
 
-                        <p class="mb-2">
-                            Already have an account?
+                        <paragraph-atom class="mb-2" text="Already have an account?">
                             <anchor-molecule href="/login" :label="'Log in!'" />
-                        </p>
+                        </paragraph-atom>
                     </div>
                 </div>
             </template>
