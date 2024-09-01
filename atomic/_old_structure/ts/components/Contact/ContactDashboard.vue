@@ -75,7 +75,7 @@ const {
 const { contactStyle } = handleStyles()
 
 onMounted(() => {
-    getAllContacts(500)
+    getAllContacts()
 })
 
 const dialogs = computed(() => [

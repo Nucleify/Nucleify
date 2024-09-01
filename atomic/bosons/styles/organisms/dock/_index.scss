@@ -5,6 +5,34 @@
     position: fixed;
     z-index: 999;
 
+    @media (min-width: 992px) {
+        &.p-dock-top,
+        &.p-dock-bottom {
+            width: 100%;
+
+            .p-dock-list-container {
+                width: 100%;
+
+                ul {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &.p-dock-left,
+    &.p-dock-right {
+        height: 100%;
+
+        .p-dock-list-container {
+            height: 100%;
+
+            ul {
+                height: 100%;
+            }
+        }
+    }
+
     .p-dock-list-container {
         padding: 0;
         border: 0;
@@ -15,7 +43,7 @@
             background: $white-body-bg;
             padding: 0;
             margin: 0;
-            border-radius: 8px;
+            border-radius: 0;
 
             .p-dock-item {
                 @include center-content;
@@ -86,6 +114,10 @@
                         }
                     }
                 }
+            }
+
+            @media (min-width: $min-width-lg) {
+                gap: 4px;
             }
         }
     }

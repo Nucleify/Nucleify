@@ -26,9 +26,8 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
     async function getAllContacts(
         timeout?: number
     ): GetAllContactsFunctionType {
-        if (timeout) {
-            setLoading(true)
-        }
+        setLoading(true)
+
         return await axios
             .get('/api/contacts')
             .then((response: GetAllContactsAxiosFunctionType) => {
@@ -53,6 +52,8 @@ export default function contactApiMethods(): ContactApiMethodsInterface {
             .finally((): void => {
                 if (timeout) {
                     setLoading(false, timeout)
+                } else {
+                    setLoading(false)
                 }
             })
     }

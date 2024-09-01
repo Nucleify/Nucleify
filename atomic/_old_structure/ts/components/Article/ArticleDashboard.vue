@@ -74,7 +74,7 @@ const {
 const { articleStyle } = handleStyles()
 
 onMounted(() => {
-    getAllArticles(500)
+    getAllArticles()
 })
 
 const dialogs = computed(() => [
