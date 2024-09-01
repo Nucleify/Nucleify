@@ -46,15 +46,13 @@ const LOCAL_STORAGE_KEY = 'dockPosition'
 const position = ref<PositionType>('bottom')
 let isAdmin: Ref<boolean> = ref(false)
 
-const setDockPositionForScreenSize = () => {
-    if (window.innerWidth < 992) {
+function setDockPositionForScreenSize() {
+    if (window.innerWidth == 992) {
         position.value = 'bottom'
     }
 }
 
 onMounted(async () => {
-    setDockPositionForScreenSize()
-
     const savedPosition = localStorage.getItem(LOCAL_STORAGE_KEY)
     if (savedPosition) {
         position.value = savedPosition as PositionType
