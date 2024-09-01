@@ -22,14 +22,14 @@
         </template>
         <template #content>
             <data-table-organism
-                v-if="data"
-                :data="data"
+                v-if="value"
+                :value="value"
+                :rows="10"
                 :open-dialog="openDialog"
                 :styles="styles"
                 :type="type"
                 :loading="loading"
             />
-            <div v-else>Loading data or no data available...</div>
         </template>
     </Card>
 </template>

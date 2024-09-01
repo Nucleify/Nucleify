@@ -11,7 +11,7 @@
             :loading="loading"
         />
         <card-data-table
-            :data="results"
+            :value="results"
             :loading="loading"
             :open-dialog="openDialog"
             :styles="articleStyle"
