@@ -32,20 +32,34 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, Ref, ref } from 'vue'
+import { onMounted, Ref, ref, watch } from 'vue'
 
 import { useIsAdmin } from '@/utils'
-
 import { dockItems, positions } from 'atomic/bosons/constants'
 import { PositionType } from 'atomic/bosons/types'
 import { useItemStyles } from 'atomic/bosons/utils'
 
 const { getItemStyles } = useItemStyles()
 
-const position: Ref<PositionType> = ref('bottom')
+const LOCAL_STORAGE_KEY = 'dockPosition'
+
+const position = ref<PositionType>('bottom')
 let isAdmin: Ref<boolean> = ref(false)
 
+const setDockPositionForScreenSize = () => {
+    if (window.innerWidth < 992) {
+        position.value = 'bottom'
+    }
+}
+
 onMounted(async () => {
+    setDockPositionForScreenSize()
+
+    const savedPosition = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (savedPosition) {
+        position.value = savedPosition as PositionType
+    }
+
     const { isAdmin: isAdminStatus } = await useIsAdmin()
 
     // eslint-disable-next-line
@@ -58,5 +72,11 @@ onMounted(async () => {
             url: '/admin',
         })
     }
+
+    window.addEventListener('resize', setDockPositionForScreenSize)
+})
+
+watch(position, (newPosition) => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, newPosition)
 })
 </script>

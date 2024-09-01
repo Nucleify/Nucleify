@@ -15,11 +15,25 @@
     }
 }
 
-body:has(.p-dock.p-dock-top) .panelContainer {
-    top: $panel-container-top;
+body:has(.p-dock.p-dock-top),
+body:has(.p-dock.p-dock-left),
+body:has(.p-dock.p-dock-right) {
+    .panelContainer {
+        padding-top: $panel-container-top;
+
+        // Min width 992px
+        @media (min-width: $min-width-lg2) {
+            padding-top: 4px;
+        }
+    }
+}
+
+body:has(.p-dock.p-dock-bottom) .panelContainer {
+    padding-bottom: $panel-container-top;
 
     // Min width 992px
     @media (min-width: $min-width-lg2) {
-        top: $panel-container-top-lg2;
+        padding-top: 4px;
+        padding-bottom: 7px;
     }
 }
