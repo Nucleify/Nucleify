@@ -15,10 +15,10 @@
         <Column
             v-for="col in specificColumns"
             :key="col.field"
-            :type="type"
             :field="col.field"
             :header="col.header"
             :class="col.class"
+            :sortable="col.sortable"
         />
 
         <Column class="actionColumn">

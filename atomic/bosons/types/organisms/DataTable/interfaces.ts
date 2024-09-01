@@ -29,6 +29,7 @@ export interface ColumnInterface {
     field?: string
     header?: string
     class?: string
+    sortable?: boolean
 }
 
 export interface ColumnsInterface {
