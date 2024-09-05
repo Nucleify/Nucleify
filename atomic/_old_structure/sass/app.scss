@@ -57,21 +57,31 @@ body:has(
 :root {
     --main-item-color: #10B981;
     --main-item-hover-color: #10A674;
-    --main-sidebar-item-selected-color: #10B98126;
+    --main-item-selected-color: #10B98126;
+    --main-item-focus-color: #10B98180;
+    --main-item-highlight-color: #10B98115;
 
     --article-item-color: #1187C7;
     --article-item-hover-color: #0F79B2;
-    --article-sidebar-item-selected-color: #1187C726;
+    --article-item-selected-color: #1187C726;
+    --article-item-focus-color: #1187C780;
+    --article-item-highlight-color: #1187C715;
 
     --activity-item-color: #FFB600;
     --activity-item-hover-color: #E7A60B;
-    --activity-sidebar-item-selected-color: #FFB60026;
+    --activity-item-selected-color: #FFB60026;
+    --activity-item-focus-color: #FFB60080;
+    --activity-item-highlight-color: #FFB60015;
 
     --contact-item-color: #10B981;
     --contact-item-hover-color: #10A674;
-    --contact-sidebar-item-selected-color: #10B98126;
+    --contact-item-selected-color: #10B98126;
+    --contact-item-focus-color: #10B98180;
+    --contact-item-highlight-color: #10B98115;
 
     --user-item-color: #64748B;
     --user-item-hover-color: #566479;
-    --user-sidebar-item-selected-color: #64748B26;
+    --user-item-selected-color: #64748B26;
+    --user-item-focus-color: #64748B80;
+    --user-item-highlight-color: #64748B15;
 }

@@ -19,7 +19,7 @@ export function handleStyles(): HandleStylesInterface {
      */
     const mainItemStyle: ColorItemStyleInterface = {
         color: mainItemColors.primary,
-        backgroundColor: mainItemColors.sidebarSelected,
+        backgroundColor: mainItemColors.selected,
         boxShadow: 'none',
     }
     const mainStyle: ColorItemStyleInterface = {
@@ -33,7 +33,7 @@ export function handleStyles(): HandleStylesInterface {
      */
     const activityItemStyle: ColorItemStyleInterface = {
         color: activityItemColors.primary,
-        backgroundColor: activityItemColors.sidebarSelected,
+        backgroundColor: activityItemColors.selected,
         boxShadow: 'none',
     }
     const activityStyle: ColorItemStyleInterface = {
@@ -47,7 +47,7 @@ export function handleStyles(): HandleStylesInterface {
      */
     const articleItemStyle: ColorItemStyleInterface = {
         color: articleItemColors.primary,
-        backgroundColor: articleItemColors.sidebarSelected,
+        backgroundColor: articleItemColors.selected,
         boxShadow: 'none',
     }
     const articleStyle: ColorItemStyleInterface = {
@@ -61,7 +61,7 @@ export function handleStyles(): HandleStylesInterface {
      */
     const contactItemStyle: ColorItemStyleInterface = {
         color: contactItemColors.primary,
-        backgroundColor: contactItemColors.sidebarSelected,
+        backgroundColor: contactItemColors.selected,
         boxShadow: 'none',
     }
     const contactStyle: ColorItemStyleInterface = {
@@ -75,7 +75,7 @@ export function handleStyles(): HandleStylesInterface {
      */
     const userItemStyle: ColorItemStyleInterface = {
         color: userItemColors.primary,
-        backgroundColor: userItemColors.sidebarSelected,
+        backgroundColor: userItemColors.selected,
         boxShadow: 'none',
     }
     const userStyle: ColorItemStyleInterface = {

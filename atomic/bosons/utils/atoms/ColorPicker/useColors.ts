@@ -13,30 +13,22 @@ export function useColors(): UseColorsInterface {
     const mainItemColors: ColorItemColorsInterface = {
         primary: window.localStorage.getItem('main-item-color'),
         hover: window.localStorage.getItem('main-item-hover-color'),
-        sidebarSelected: window.localStorage.getItem(
-            'main-sidebar-item-selected-color'
-        ),
+        selected: window.localStorage.getItem('main-item-highlight-color'),
     }
     const activityItemColors: ColorItemColorsInterface = {
         primary: window.localStorage.getItem('activity-item-color'),
         hover: window.localStorage.getItem('activity-item-hover-color'),
-        sidebarSelected: window.localStorage.getItem(
-            'activity-sidebar-item-selected-color'
-        ),
+        selected: window.localStorage.getItem('activity-item-highlight-color'),
     }
     const articleItemColors: ColorItemColorsInterface = {
         primary: window.localStorage.getItem('article-item-color'),
         hover: window.localStorage.getItem('article-item-hover-color'),
-        sidebarSelected: window.localStorage.getItem(
-            'article-sidebar-item-selected-color'
-        ),
+        selected: window.localStorage.getItem('article-item-highlight-color'),
     }
     const contactItemColors: ColorItemColorsInterface = {
         primary: window.localStorage.getItem('contact-item-color'),
         hover: window.localStorage.getItem('contact-item-hover-color'),
-        sidebarSelected: window.localStorage.getItem(
-            'contact-sidebar-item-selected-color'
-        ),
+        selected: window.localStorage.getItem('contact-item-highlight-color'),
     }
     const userItemColors: ColorItemColorsInterface = {
         primary: window.localStorage.getItem('user-item-color'),
@@ -48,26 +40,27 @@ export function useColors(): UseColorsInterface {
             // Main properties
             'main-item-color',
             'main-item-hover-color',
-            'main-sidebar-item-selected-color',
+            'main-item-highlight-color',
 
             // Activity properties
             'activity-item-color',
             'activity-item-hover-color',
-            'activity-sidebar-item-selected-color',
+            'activity-item-highlight-color',
 
             // Article properties
             'article-item-color',
             'article-item-hover-color',
-            'article-sidebar-item-selected-color',
+            'article-item-highlight-color',
 
             // Contact properties
             'contact-item-color',
             'contact-item-hover-color',
-            'contact-sidebar-item-selected-color',
+            'contact-item-highlight-color',
 
             // User properties
             'user-item-color',
             'user-item-hover-color',
+            'user-item-highlight-color',
         ]
 
         if (initial) {

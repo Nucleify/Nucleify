@@ -9,3 +9,18 @@
 
 // Old structure
 @use '../../_old_structure/sass/app';
+
+
+@import 'variables/medias';
+
+@media (min-width: $breakpoint-lg) {
+  .mobile {
+    display: none !important;
+  }
+}
+
+@media (max-width: $breakpoint-lg) {
+  .desktop {
+    display: none !important;
+  }
+}

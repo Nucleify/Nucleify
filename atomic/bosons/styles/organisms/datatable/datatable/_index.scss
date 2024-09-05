@@ -1,0 +1,39 @@
+@use 'mixins' as *;
+
+.p-datatable {
+    .p-sortable-column {
+        .p-column-header-content {
+            display: flex;
+            justify-content: space-between;
+            padding-right: 1em;
+        }
+    }
+
+    &.p-datatable-activity {
+        @include entity-datatable-styles(
+            var(--activity-item-color),
+            var(--activity-item-highlight-color)
+        );
+    }
+
+    &.p-datatable-article {
+        @include entity-datatable-styles(
+            var(--article-item-color),
+            var(--article-item-highlight-color)
+        );
+    }
+
+    &.p-datatable-contact {
+        @include entity-datatable-styles(
+            var(--contact-item-color),
+            var(--contact-item-highlight-color)
+        );
+    }
+
+    &.p-datatable-user {
+        @include entity-datatable-styles(
+            var(--user-item-color),
+            var(--user-item-highlight-color)
+        );
+    }
+}

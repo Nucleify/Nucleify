@@ -9,6 +9,7 @@
     justify-content: $p-button-justify-content;
     transition: $p-button-transition;
     padding: $p-button-padding;
+    font-size: 1.2rem;
 
     .p-button-label {
         font-family: $p-button-label-font-family;
@@ -17,11 +18,6 @@
 
     &.p-button-rounded {
         border-radius: $large-border-radius !important;
-    }
-
-    &.p-button-secondary {
-        background: var(--user-item-color);
-        border: var(--user-item-color);
     }
 
     &.mobileButton {
@@ -66,7 +62,6 @@
     }
 
     &.dataTableButton {
-        padding: $datatable-button-padding;
         height: $datatable-button-dimensions;
         width: $datatable-button-dimensions;
     }

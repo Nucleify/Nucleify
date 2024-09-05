@@ -1,23 +1,55 @@
 @import '../../../variables/pages/settings/settings_variables';
 
+@import '../../../variables/base/box_shadows_variables';
 @import '../../../variables/base/medias_variables';
 
 .settingsPanelContainer {
     display: $settings-panel-container-display;
+    flex-direction: row;
 
     .settingsCard {
+        width: 100%;
+        max-width: 220px;
         margin: $settings-card-margin;
         padding: $settings-card-padding;
+        box-shadow: $my-card-box-shadow;
+        border-radius: 0;
+
+
+        .refreshButton {
+            width: 32px;
+            height: 32px;
+
+            span {
+                margin-top: -2px;
+                font-size: 19px;
+            }
+        }
+
+        .p-card-content {
+            padding: 0;
+        }
+
+        .p-colorpicker-preview {
+            max-width: 26px;
+            max-height: 26px;
+        }
+        .settingsCardHeaderContainer {
+            display: flex;
+            justify-content: space-between;
+        }
 
         .settingsCardItemList {
             display: $settings-card-item-list-display;
             flex-direction: $settings-card-item-list-flex-direction;
             padding-left: $settings-card-item-list-padding-left;
             gap: $settings-card-item-list-gap;
+            margin: 0;
 
             .settingsCardItem {
                 display: $settings-card-item-display;
                 justify-content: $settings-card-item-justify-content;
+                padding-right: 3px;
             }
         }
     }
@@ -26,12 +58,11 @@
     @media (min-width: $min-width-sm5) {
         flex-direction: $settings-panel-container-flex-direction-sm5;
     }
+}
 
-    // Min width 992px;
-    @media (min-width: $min-width-lg2) {
-        .settingsSmallCard {
-            max-width: $settings-small-card-max-width-lg2;
-            max-height: $settings-small-card-max-height-lg2;
-        }
-    }
+.p-colorpicker-panel,
+.p-colorpicker-content {
+    background: white;
+    border: 1px whitesmoke;
+    box-shadow: $my-card-box-shadow;
 }

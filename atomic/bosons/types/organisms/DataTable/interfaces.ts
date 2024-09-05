@@ -9,7 +9,7 @@ import {
 import { SelectedObjectType } from '@/types'
 
 export interface DataTableInterface {
-    value: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+    value: any[]
     rows?: number
     type?: ObjectNameType
     loading: LoadingType

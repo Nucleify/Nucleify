@@ -4,7 +4,6 @@
             :value="data"
             :loading="loading"
             :open-dialog="openDialog"
-            :styles="userStyle"
             :tag="3"
             type="user"
             headerText="Manage Users"
@@ -25,7 +24,6 @@
             :confirm="dialog.confirm"
             :get-data="dialog.getData"
             :close="closeDialog"
-            :style="userStyle"
         />
     </section>
 </template>
@@ -36,7 +34,6 @@ import { computed } from 'vue'
 import { userApiMethods } from '@/utils'
 
 import {
-    handleStyles,
     useUserFields,
 } from 'atomic/bosons/constants'
 import { DashboardInterface } from 'atomic/bosons/types'
@@ -56,7 +53,6 @@ const {
 
 const { createFields, editFields, showFields } = useUserFields()
 const { deleteUser, storeUser, editUser } = userApiMethods()
-const { userStyle } = handleStyles()
 
 const dialogs = computed(() => [
     {

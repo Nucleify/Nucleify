@@ -1,16 +1,17 @@
 <template>
     <Card
-        class="myCard settingsCard settingsSmallCard col-12 sm:col-6 xl:col-4"
+        class="settingsCard settingsSmallCard"
     >
         <template #header>
-            <div class="myCardHeaderContainer">
-                <heading-atom :tag="2" text="Display Charts" />
+            <div class="settingsCardHeaderContainer">
+                <heading-atom :tag="4" text="Charts" />
 
                 <button-atom
-                    class="myButton p-button-rounded"
                     icon="pi pi-refresh"
+                    class="refreshButton"
                     @click="setDefaultChartsDisplay(true)"
-                    :style="mainStyle"
+                    rounded
+                    text
                 />
             </div>
             <hr />
@@ -18,17 +19,20 @@
         <template #content>
             <ul
                 class="settingsCardItemList"
-                v-for="item in displayChartList"
-                :key="item"
             >
-                <li class="settingsCardItem">
-                    <heading-atom :tag="3" :text="item" />
-                    <button-atom
-                        class="myButton"
+                <li
+                    class="settingsCardItem"
+                    v-for="item in displayChartList"
+                    :key="item"
+                >
+                    <label-atom :label="item" :for="item" />
+
+                    <radio-button-atom
+                        v-model="display[item]"
+                        :input-id="item"
+                        :value="item"
                         @click="displayChartsToggle(item)"
-                        :icon="display[item] ? 'pi pi-eye' : 'pi pi-eye-slash'"
-                        :rounded="true"
-                        :style="mainStyle"
+                        :class="display[item] ? 'p-highlight' : ''"
                     />
                 </li>
             </ul>
@@ -38,11 +42,10 @@
 
 <script setup lang="ts">
 import { displayChartList } from '@/constants'
-
 import { handleStyles } from 'atomic/bosons/constants'
 import { useDisplayCharts } from 'atomic/bosons/utils'
 
-const { mainStyle } = handleStyles()
+const { mainItemStyle } = handleStyles()
 const { display, setDefaultChartsDisplay, displayChartsToggle } =
     useDisplayCharts()
 </script>

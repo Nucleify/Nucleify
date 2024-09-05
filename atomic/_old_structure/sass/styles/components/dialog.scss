@@ -1,5 +1,7 @@
 @import '../../variables/components/dialog_variables';
 
+@import '../../variables/base/box_shadows_variables';
+
 .p-dialog-mask {
     padding: $dialog-mask-padding;
 
@@ -24,12 +26,13 @@
 
         .p-dialog-footer {
             padding: $dialog-footer-padding;
+            box-shadow: $my-card-box-shadow;
         }
 
         .dialogButtonsContainer {
+            width: $dialog-buttons-width;
             display: $dialog-buttons-display;
             justify-content: $dialog-buttons-justify-content;
-            gap: $dialog-buttons-gap;
         }
     }
 }

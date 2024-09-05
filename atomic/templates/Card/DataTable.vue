@@ -2,22 +2,34 @@
     <Card class="myCard">
         <template #title>
             <div class="myCardHeaderContainer">
-                <heading-atom
-                    :tag="tag"
-                    :type="type"
-                    :text="headerText"
-                    class="-mb-2"
-                />
+                <template v-if="loading">
+                    <skeleton-atom
+                        :loading="loading"
+                        width="180px"
+                        height="30px"
+                        border-radius="10px"
+                        class="headingSkeleton"
+                    />
+                    <skeleton-atom
+                        :loading="loading"
+                        width="30px"
+                        height="30px"
+                        shape="circle"
+                    />
+                </template>
+                <template v-else>
+                    <heading-atom :tag="tag" :type="type" :text="headerText" />
 
-                <button-atom
-                    v-if="type !== 'activity'"
-                    :label="buttonText"
-                    @click="openDialog('create')"
-                    class="text-sm smallHeightButton primaryButton"
-                    :rounded="true"
-                    :style="styles"
-                    :class="{ loading: loading }"
-                />
+                    <button-atom
+                        v-if="type !== 'activity'"
+                        :type="type"
+                        icon="pi pi-plus"
+                        @click="openDialog('create')"
+                        class=""
+                        rounded
+                        text
+                    />
+                </template>
             </div>
         </template>
         <template #content>

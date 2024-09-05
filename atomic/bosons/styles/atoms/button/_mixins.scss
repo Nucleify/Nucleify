@@ -1,0 +1,14 @@
+@mixin entity-button-styles($item-color, $focus-color, $selected-color) {
+    color: $item-color;
+
+    &:focus {
+        box-shadow:
+            0 0 0 2px #ffffff,
+            0 0 0 4px $focus-color;
+    }
+
+    &:active {
+        background-color: $selected-color;
+        color: $item-color;
+    }
+}

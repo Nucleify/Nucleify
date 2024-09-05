@@ -1,17 +1,17 @@
 <template>
     <Card
-        class="myCard settingsCard settingsSmallCard col-12 sm:col-6 xl:col-4"
+        class="settingsCard settingsSmallCard"
     >
         <template #header>
-            <div class="myCardHeaderContainer">
-                <heading-atom :tag="2" text="Entity Colors" />
+            <div class="settingsCardHeaderContainer">
+                <heading-atom :tag="4" text="Colors" />
 
                 <button-atom
-                    class="myButton"
-                    @click="setDefaultColors(false)"
                     icon="pi pi-refresh"
-                    :rounded="true"
-                    :style="mainStyle"
+                    class="refreshButton"
+                    @click="setDefaultColors(false)"
+                    rounded
+                    text
                 />
             </div>
             <hr />
@@ -23,7 +23,7 @@
                     :key="item"
                     class="settingsCardItem"
                 >
-                    <heading-atom :tag="3" :text="item" />
+                    <label-atom :label="item" :for="item" />
                     <color-picker-atom :item="getLowerCase(item)" />
                 </li>
             </ul>
@@ -38,6 +38,6 @@ import { getLowerCase } from '@/utils'
 import { handleStyles } from 'atomic/bosons/constants'
 import { useColors } from 'atomic/bosons/utils'
 
-const { mainStyle } = handleStyles()
+const { mainItemStyle    } = handleStyles()
 const { setDefaultColors } = useColors()
 </script>

@@ -4,7 +4,6 @@
             :value="data"
             :loading="loading"
             :open-dialog="openDialog"
-            :styles="articleStyle"
             :tag="3"
             type="article"
             headerText="Manage Articles"
@@ -25,7 +24,6 @@
             :confirm="dialog.confirm"
             :get-data="dialog.getData"
             :close="closeDialog"
-            :style="articleStyle"
         />
     </section>
 </template>
@@ -36,7 +34,6 @@ import { computed } from 'vue'
 import { articleApiMethods } from '@/utils'
 
 import {
-    handleStyles,
     useArticleFields,
 } from 'atomic/bosons/constants'
 import { DashboardInterface } from 'atomic/bosons/types'
@@ -56,7 +53,6 @@ const {
 
 const { createAndEditFields, showFields } = useArticleFields()
 const { deleteArticle, storeArticle, editArticle } = articleApiMethods()
-const { articleStyle } = handleStyles()
 
 const dialogs = computed(() => [
     {

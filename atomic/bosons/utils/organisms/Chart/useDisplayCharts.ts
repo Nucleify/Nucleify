@@ -1,5 +1,4 @@
 import { reactive } from 'vue'
-
 import {
     DisplayChartsInterface,
     UseDisplayChartsInterface,
@@ -8,47 +7,31 @@ import {
 export function useDisplayCharts(): UseDisplayChartsInterface {
     const display: DisplayChartsInterface = reactive({
         Activity:
-            window.localStorage.getItem('display-activity-graphs') !== 'false',
-        Admin: window.localStorage.getItem('display-admin-graphs') !== 'false',
+            window.localStorage.getItem('display-activity-graphs') === 'true',
+        Admin: window.localStorage.getItem('display-admin-graphs') === 'true',
         Article:
-            window.localStorage.getItem('display-article-graphs') !== 'false',
+            window.localStorage.getItem('display-article-graphs') === 'true',
         Contact:
-            window.localStorage.getItem('display-contact-graphs') !== 'false',
+            window.localStorage.getItem('display-contact-graphs') === 'true',
     })
 
     function displayChartsToggle(action: string): void {
-        let key: string = ''
-        switch (action) {
-            case 'Activity':
-                key = 'display-activity-graphs'
-                break
-            case 'Admin':
-                key = 'display-admin-graphs'
-                break
-            case 'Article':
-                key = 'display-article-graphs'
-                break
-            case 'Contact':
-                key = 'display-contact-graphs'
-                break
-            default:
-                break
-        }
-        if (key) {
-            const value: string = String(!display[action])
-            window.localStorage.setItem(key, value)
-            display[action] = !display[action]
-        }
+        const key = `display-${action.toLowerCase()}-graphs`
+        const value: string = String(!display[action])
+        window.localStorage.setItem(key, value)
+        display[action] = !display[action]
     }
 
     function allChartsDisplayToggle(): void {
         for (const key in display) {
             if (Object.prototype.hasOwnProperty.call(display, key)) {
-                const currentValue: boolean = display[key]
+                const newValue = !display[key]
                 window.localStorage.setItem(
                     `display-${key.toLowerCase()}-graphs`,
-                    String(!currentValue)
+                    String(newValue)
                 )
+                display[key] = newValue
+                console.log(`Toggled ${key}: ${newValue}`) // Debugging line
             }
         }
     }
@@ -63,6 +46,13 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
 
         properties.forEach((property: string): void => {
             window.localStorage.setItem(property, 'true')
+        })
+
+        properties.forEach((property) => {
+            const key = property.split('-')[1]
+            if (display.hasOwnProperty(key)) {
+                display[key as keyof DisplayChartsInterface] = true
+            }
         })
 
         if (reload) {
