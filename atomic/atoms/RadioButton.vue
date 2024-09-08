@@ -1,5 +1,9 @@
 <template>
-    <RadioButton :value="value" :input-id="inputId" />
+    <RadioButton
+        :value="value"
+        :input-id="inputId"
+        :class="'p-radiobutton-' + type"
+    />
 </template>
 
 <script setup lang="ts">

@@ -31,5 +31,4 @@ export interface UseDisplayChartsInterface {
     display: DisplayChartsInterface
     displayChartsToggle: (action: string) => void
     setDefaultChartsDisplay: (reload?: boolean) => void
-    allChartsDisplayToggle: () => void
 }

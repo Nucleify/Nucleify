@@ -1,0 +1,7 @@
+@use 'mixins' as *;
+
+@each $type in main, activity, article, contact, user {
+    .p-radiobutton-#{$type} {
+        @include entity-radiobutton-styles(var(--#{$type}-item-color-new));
+    }
+}

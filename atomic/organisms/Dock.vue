@@ -37,7 +37,7 @@ import { onMounted, Ref, ref, watch } from 'vue'
 import { useIsAdmin } from '@/utils'
 import { dockItems, positions } from 'atomic/bosons/constants'
 import { PositionType } from 'atomic/bosons/types'
-import { useItemStyles } from 'atomic/bosons/utils'
+import { setColorsVariables, useItemStyles } from 'atomic/bosons/utils'
 
 const { getItemStyles } = useItemStyles()
 
@@ -53,6 +53,8 @@ function setDockPositionForScreenSize() {
 }
 
 onMounted(async () => {
+    setColorsVariables()
+
     const savedPosition = localStorage.getItem(LOCAL_STORAGE_KEY)
     if (savedPosition) {
         position.value = savedPosition as PositionType

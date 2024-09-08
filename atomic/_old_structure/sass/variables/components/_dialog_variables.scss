@@ -11,6 +11,6 @@ $dialog-header-icon-display: none;
 $dialog-footer-padding: 20px;
 
 // Dialog buttons container
+$dialog-buttons-width: 100%;
 $dialog-buttons-display: flex;
-$dialog-buttons-justify-content: end;
-$dialog-buttons-gap: 0.5rem;
+$dialog-buttons-justify-content: space-between;

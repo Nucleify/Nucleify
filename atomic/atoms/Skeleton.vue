@@ -1,5 +1,6 @@
 <template>
     <Skeleton
+        v-if="loading"
         :shape="shape"
         :size="size"
         :width="width"

@@ -11,6 +11,7 @@
         @row-click="openDialog('show', $event.data)"
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
+        :class="'p-datatable-' + type"
     >
         <Column
             v-for="col in specificColumns"
@@ -26,28 +27,34 @@
                 <div class="actionColumnContent">
                     <button-atom
                         v-if="type === 'activity'"
+                        :type="type"
                         class="dataTableButton"
                         icon="pi pi-trash"
                         @click="openDialog('delete', row.data)"
-                        :rounded="true"
-                        :style="styles"
+                        rounded
+                        text
+                        :loading="loading"
                     />
                     <template v-else>
                         <button-atom
                             v-for="action in actions"
+                            :type="type"
                             :key="action.icon"
                             class="desktopButton dataTableButton"
                             :icon="action.icon"
                             @click="action.click(row.data)"
-                            :rounded="true"
-                            :style="styles"
+                            rounded
+                            text
+                            :loading="loading"
                         />
                         <button-atom
+                            :type="type"
                             class="mobileButton dataTableButton"
                             icon="pi pi-bars"
                             @click="openMenu(menu, $event, row.data)"
-                            :rounded="true"
-                            :style="styles"
+                            rounded
+                            text
+                            :loading="loading"
                         />
                         <Menu ref="menu" :model="dropdownItems" :popup="true" />
                     </template>
@@ -72,7 +79,6 @@ import { handleDropdownItems } from '@/constants'
 import { useMenuAndModal } from '@/utils'
 
 const props = defineProps<DataTableInterface>()
-
 const menu = ref()
 const actions = handleActions(props.openDialog)
 
