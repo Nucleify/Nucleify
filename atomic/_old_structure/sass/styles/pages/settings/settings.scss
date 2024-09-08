@@ -26,13 +26,22 @@
             }
         }
 
+        h4 {
+            margin: 0;
+        }
+
+        hr {
+            margin: 1em 0;
+        }
+
         .p-card-content {
-            padding: 0;
+            padding: 0 1px 0 0;
         }
 
         .p-colorpicker-preview {
-            max-width: 26px;
-            max-height: 26px;
+            max-width: 22px;
+            max-height: 22px;
+            padding: 0;
         }
         .settingsCardHeaderContainer {
             display: flex;

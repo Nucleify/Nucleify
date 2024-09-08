@@ -58,9 +58,8 @@
                 </anchor-molecule>
             </div>
 
-            <div class="grid-item-container col-6 lg:col-4">
+            <div class="grid-item-container col-6 lg:col-4" v-if="display.Admin">
                 <card-chart
-                    v-if="display.Admin"
                     class="grid-item countChartCard"
                     :chart-method-type="'count'"
                     :type="'pie'"

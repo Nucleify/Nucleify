@@ -1,33 +1,11 @@
 @use 'mixins' as *;
 
-.p-button-activity {
-    @include entity-button-styles(
-        var(--activity-item-color),
-        var(--activity-item-focus-color),
-        var(--activity-item-selected-color)
-    );
-}
-
-.p-button-article {
-    @include entity-button-styles(
-        var(--article-item-color),
-        var(--article-item-focus-color),
-        var(--article-item-selected-color)
-    );
-}
-
-.p-button-contact {
-    @include entity-button-styles(
-        var(--contact-item-color),
-        var(--contact-item-focus-color),
-        var(--contact-item-selected-color)
-    );
-}
-
-.p-button-user {
-    @include entity-button-styles(
-        var(--user-item-color),
-        var(--user-item-focus-color),
-        var(--user-item-selected-color)
-    );
+@each $type in main, activity, article, contact, user {
+    .p-button-#{$type} {
+        @include entity-button-styles(
+            var(--#{$type}-item-color-new),
+            var(--#{$type}-item-focus-color-new),
+            var(--#{$type}-item-selected-color-new)
+        );
+    }
 }

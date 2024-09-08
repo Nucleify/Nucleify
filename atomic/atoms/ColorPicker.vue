@@ -9,6 +9,7 @@
         :unstyled="unstyled"
         :tabindex="tabindex"
         :autoZIndex="autoZIndex"
+        :class="'p-colorpicker-' + item"
     />
 </template>
 
@@ -16,11 +17,14 @@
 import { watchEffect } from 'vue'
 
 import { ColorPickerInterface } from 'atomic/bosons/types'
-import { useColorPicker } from 'atomic/bosons/utils'
+import { setColorsVariables, useColorPicker } from 'atomic/bosons/utils'
 
 const props = defineProps<ColorPickerInterface>()
 
 const { itemColor, setColorValues } = useColorPicker(props.item)
 
-watchEffect(setColorValues)
+watchEffect(() => {
+    setColorValues()
+    setColorsVariables()
+})
 </script>

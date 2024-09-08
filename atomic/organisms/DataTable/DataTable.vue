@@ -77,10 +77,8 @@ import { DataTableInterface } from 'atomic/bosons/types'
 
 import { handleDropdownItems } from '@/constants'
 import { useMenuAndModal } from '@/utils'
-import Button from '../../atoms/Button.vue'
 
 const props = defineProps<DataTableInterface>()
-
 const menu = ref()
 const actions = handleActions(props.openDialog)
 

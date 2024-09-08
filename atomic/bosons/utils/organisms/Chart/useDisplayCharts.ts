@@ -17,22 +17,14 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
 
     function displayChartsToggle(action: string): void {
         const key = `display-${action.toLowerCase()}-graphs`
-        const value: string = String(!display[action])
-        window.localStorage.setItem(key, value)
         display[action] = !display[action]
-    }
 
-    function allChartsDisplayToggle(): void {
-        for (const key in display) {
-            if (Object.prototype.hasOwnProperty.call(display, key)) {
-                const newValue = !display[key]
-                window.localStorage.setItem(
-                    `display-${key.toLowerCase()}-graphs`,
-                    String(newValue)
-                )
-                display[key] = newValue
-                console.log(`Toggled ${key}: ${newValue}`) // Debugging line
-            }
+        window.localStorage.setItem(key, String(display[action]))
+
+        const radioButton = document.querySelector(`#${action} .p-radiobutton`)
+
+        if (!display[action] && radioButton) {
+            radioButton.classList.remove('p-highlight')
         }
     }
 
@@ -50,7 +42,7 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
 
         properties.forEach((property) => {
             const key = property.split('-')[1]
-            if (display.hasOwnProperty(key)) {
+            if (Object.prototype.hasOwnProperty.call(display, key)) {
                 display[key as keyof DisplayChartsInterface] = true
             }
         })
@@ -64,6 +56,5 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
         display,
         displayChartsToggle,
         setDefaultChartsDisplay,
-        allChartsDisplayToggle,
     }
 }

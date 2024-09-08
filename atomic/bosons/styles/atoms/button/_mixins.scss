@@ -1,5 +1,9 @@
 @mixin entity-button-styles($item-color, $focus-color, $selected-color) {
     color: $item-color;
+    transition:
+        background-color 0.5s,
+        box-shadow 0.5s,
+        color 0.2s !important;
 
     &:focus {
         box-shadow:

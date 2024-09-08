@@ -8,6 +8,7 @@
 
                 <button-atom
                     icon="pi pi-refresh"
+                    type="main"
                     class="refreshButton"
                     @click="setDefaultChartsDisplay(true)"
                     rounded
@@ -28,11 +29,11 @@
                     <label-atom :label="item" :for="item" />
 
                     <radio-button-atom
-                        v-model="display[item]"
                         :input-id="item"
                         :value="item"
                         @click="displayChartsToggle(item)"
                         :class="display[item] ? 'p-highlight' : ''"
+                        class="p-radiobutton-main"
                     />
                 </li>
             </ul>
@@ -42,10 +43,8 @@
 
 <script setup lang="ts">
 import { displayChartList } from '@/constants'
-import { handleStyles } from 'atomic/bosons/constants'
 import { useDisplayCharts } from 'atomic/bosons/utils'
 
-const { mainItemStyle } = handleStyles()
 const { display, setDefaultChartsDisplay, displayChartsToggle } =
     useDisplayCharts()
 </script>

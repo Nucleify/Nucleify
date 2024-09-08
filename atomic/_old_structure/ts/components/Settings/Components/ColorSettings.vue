@@ -8,6 +8,7 @@
 
                 <button-atom
                     icon="pi pi-refresh"
+                    type="main"
                     class="refreshButton"
                     @click="setDefaultColors(false)"
                     rounded
@@ -35,9 +36,7 @@
 import { colorList } from '@/constants'
 import { getLowerCase } from '@/utils'
 
-import { handleStyles } from 'atomic/bosons/constants'
 import { useColors } from 'atomic/bosons/utils'
 
-const { mainItemStyle    } = handleStyles()
 const { setDefaultColors } = useColors()
 </script>

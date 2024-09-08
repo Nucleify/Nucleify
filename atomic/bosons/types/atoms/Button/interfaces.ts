@@ -1,8 +1,4 @@
-import {
-    LoadingType,
-    ObjectNameType,
-    SkeletonInterface,
-} from 'atomic/bosons/types'
+import { LoadingType, ObjectNameType } from 'atomic/bosons/types'
 
 export interface ButtonInterface {
     onclick?: (event: MouseEvent) => void
