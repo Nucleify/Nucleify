@@ -14,7 +14,6 @@
             :value="results"
             :loading="loading"
             :open-dialog="openDialog"
-            :styles="contactStyle"
             :tag="3"
             type="contact"
             headerText="Manage Contacts"
@@ -36,7 +35,6 @@
         :confirm="dialog.confirm"
         :get-data="dialog.getData"
         :close="closeDialog"
-        :style="contactStyle"
     />
 </template>
 
@@ -46,7 +44,6 @@ import { onMounted, computed } from 'vue'
 import { contactApiMethods } from '@/utils'
 
 import {
-    handleStyles,
     useContactFields,
 } from 'atomic/bosons/constants'
 import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
@@ -72,7 +69,6 @@ const {
     editContact,
     deleteContact,
 } = contactApiMethods()
-const { contactStyle } = handleStyles()
 
 onMounted(() => {
     getAllContacts()

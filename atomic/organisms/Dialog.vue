@@ -43,23 +43,29 @@
             <div class="dialogButtonsContainer">
                 <button-atom
                     :label="cancelButtonLabel"
+                    icon="pi pi-times"
                     severity="secondary"
                     @click="close(action)"
-                    :rounded="true"
+                    rounded
+                    text
                 />
                 <button-atom
                     v-if="fields && confirm"
+                    :type="entity"
                     :label="confirmButtonLabel"
+                    icon="pi pi-check"
                     @click="confirm(formData, getData, close)"
-                    :rounded="true"
-                    :style="style"
+                    rounded
+                    text
                 />
                 <button-atom
                     v-if="action === 'delete' && confirm && selectedObject"
+                    :type="entity"
                     :label="confirmButtonLabel"
+                    icon="pi pi-check"
                     @click="confirm(selectedObject.id, getData, close)"
-                    :rounded="true"
-                    :style="style"
+                    rounded
+                    text
                 />
             </div>
         </template>

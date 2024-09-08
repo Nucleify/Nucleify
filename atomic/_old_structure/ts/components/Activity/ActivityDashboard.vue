@@ -14,7 +14,6 @@
             :value="results"
             :loading="loading"
             :open-dialog="openDialog"
-            :styles="activityStyle"
             :tag="3"
             type="activity"
             headerText="Manage Activities"
@@ -34,7 +33,6 @@
         :confirm="dialog.confirm"
         :get-data="dialog.getData"
         :close="closeDialog"
-        :style="activityStyle"
     />
 </template>
 
@@ -43,7 +41,6 @@ import { computed, onMounted } from 'vue'
 
 import { activityApiMethods } from '@/utils'
 
-import { handleStyles } from 'atomic/bosons/constants'
 import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
 
 const { visibleDelete, selectedObject, openDialog, closeDialog } = useDialog()
@@ -51,7 +48,6 @@ const { display } = useDisplayCharts()
 
 const { results, loading, getAllActivities, deleteActivity } =
     activityApiMethods()
-const { activityStyle } = handleStyles()
 
 onMounted(() => {
     getAllActivities()
@@ -59,7 +55,7 @@ onMounted(() => {
 
 const dialogs = computed(() => [
     {
-        entity: 'user',
+        entity: 'activity',
         action: 'delete',
         visible: visibleDelete.value,
         selectedObject: selectedObject.value,

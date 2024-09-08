@@ -3,7 +3,7 @@ import { Ref } from 'vue'
 import { ColorItemColorsInterface } from 'atomic/bosons/types'
 
 export interface ColorPickerInterface {
-    item: string
+    item?: string
     modelValue?: string
     panelClass?: string
     format?: 'rgb' | 'hex' | 'hsb'

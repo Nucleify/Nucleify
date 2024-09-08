@@ -4,7 +4,6 @@
             :value="data"
             :loading="loading"
             :open-dialog="openDialog"
-            :styles="contactStyle"
             :tag="3"
             type="contact"
             headerText="Manage Contacts"
@@ -25,7 +24,6 @@
             :confirm="dialog.confirm"
             :get-data="dialog.getData"
             :close="closeDialog"
-            :style="contactStyle"
         />
     </section>
 </template>
@@ -36,7 +34,6 @@ import { computed } from 'vue'
 import { contactApiMethods } from '@/utils'
 
 import {
-    handleStyles,
     useContactFields,
 } from 'atomic/bosons/constants'
 import { DashboardInterface } from 'atomic/bosons/types'
@@ -56,7 +53,6 @@ const {
 
 const { createAndEditFields, showFields } = useContactFields()
 const { deleteContact, storeContact, editContact } = contactApiMethods()
-const { contactStyle } = handleStyles()
 
 const dialogs = computed(() => [
     {

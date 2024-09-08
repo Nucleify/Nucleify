@@ -42,14 +42,22 @@ export function useColorPicker(item: string): UseColorPickerInterface {
             ? itemColor.value
             : `#${itemColor.value}`
         if (colorValue) {
-            const darkerColor: string = darkenColor(colorValue, 10)
-            const opacityColor: string = setColorOpacity(colorValue, 0.08)
-
             localStorage.setItem(`${item}-item-color`, colorValue)
-            localStorage.setItem(`${item}-item-hover-color`, darkerColor)
             localStorage.setItem(
-                `${item}-sidebar-item-selected-color`,
-                opacityColor
+                `${item}-item-hover-color`,
+                darkenColor(colorValue, 10)
+            )
+            localStorage.setItem(
+                `${item}-item-selected-color`,
+                setColorOpacity(colorValue, 0.08)
+            )
+            localStorage.setItem(
+                `${item}-item-focus-color`,
+                setColorOpacity(colorValue, 0.35)
+            )
+            localStorage.setItem(
+                `${item}-item-highlight-color`,
+                setColorOpacity(colorValue, 0.15)
             )
         }
     }

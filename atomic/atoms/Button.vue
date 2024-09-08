@@ -8,11 +8,13 @@
         :text="text"
         :outlined="outlined"
         :style="{
+            width: width,
             gap: gap,
             padding: padding,
         }"
         :icon="icon"
         :label="label"
+        :class="'p-button-' + type"
     />
 </template>
 

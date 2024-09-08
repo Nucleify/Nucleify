@@ -1,0 +1,20 @@
+@use 'mixins' as *;
+
+.p-datatable {
+    .p-sortable-column {
+        .p-column-header-content {
+            display: flex;
+            justify-content: space-between;
+            padding-right: 1em;
+        }
+    }
+
+    @each $type in activity, article, contact, user {
+        &.p-datatable-#{$type} {
+            @include entity-datatable-styles(
+                var(--#{$type}-item-color-new),
+                var(--#{$type}-item-highlight-color-new)
+            );
+        }
+    }
+}

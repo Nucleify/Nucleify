@@ -1,3 +1,5 @@
+import { LoadingType, ObjectNameType } from 'atomic/bosons/types'
+
 export interface ButtonInterface {
     onclick?: (event: MouseEvent) => void
     severity?:
@@ -13,9 +15,13 @@ export interface ButtonInterface {
     raised?: boolean
     rounded?: boolean
     text?: boolean
+    type?: ObjectNameType
     outlined?: boolean
     icon?: string
     label?: string
+    loading?: LoadingType
+    width?: string
+    height?: string
     gap?: string
     padding?: string
 }

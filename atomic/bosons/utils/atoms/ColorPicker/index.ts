@@ -1,4 +1,5 @@
 export * from './darkenColor'
 export * from './useColorPicker'
 export * from './setColorOpacity'
+export * from './setColorsVariables'
 export * from './useColors'

@@ -1,0 +1,11 @@
+@mixin entity-datatable-styles($item-color, $selected-color) {
+    .p-highlight,
+    .p-paginator-element:hover {
+        color: $item-color;
+        background: $selected-color;
+
+        svg {
+            color: $item-color;
+        }
+    }
+}

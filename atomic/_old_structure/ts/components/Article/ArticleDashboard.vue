@@ -14,11 +14,9 @@
             :value="results"
             :loading="loading"
             :open-dialog="openDialog"
-            :styles="articleStyle"
             :tag="3"
             type="article"
             headerText="Manage Articles"
-            buttonText="New Article"
         />
     </div>
 
@@ -36,7 +34,6 @@
         :confirm="dialog.confirm"
         :get-data="dialog.getData"
         :close="closeDialog"
-        :style="articleStyle"
     />
 </template>
 
@@ -46,7 +43,6 @@ import { onMounted, computed } from 'vue'
 import { articleApiMethods } from '@/utils'
 
 import {
-    handleStyles,
     useArticleFields
 } from 'atomic/bosons/constants'
 import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
@@ -71,7 +67,6 @@ const {
     editArticle,
     deleteArticle,
 } = articleApiMethods()
-const { articleStyle } = handleStyles()
 
 onMounted(() => {
     getAllArticles()

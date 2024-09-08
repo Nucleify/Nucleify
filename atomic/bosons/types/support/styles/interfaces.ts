@@ -8,7 +8,7 @@ export interface ColorItemStyleInterface {
 export interface ColorItemColorsInterface {
     primary: string | null
     hover: string | null
-    sidebarSelected?: string | null
+    selected?: string | null
 }
 
 export interface HandleStylesInterface {

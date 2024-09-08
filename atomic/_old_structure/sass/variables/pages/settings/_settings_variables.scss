@@ -9,7 +9,7 @@ $settings-card-padding: 20px;
 $settings-card-item-list-display: flex;
 $settings-card-item-list-flex-direction: column;
 $settings-card-item-list-padding-left: 0;
-$settings-card-item-list-gap: 1rem;
+$settings-card-item-list-gap: .65rem;
 
 // Settings cart item
 $settings-card-item-display: flex;
@@ -19,5 +19,5 @@ $settings-card-item-justify-content: space-between;
 $settings-panel-container-flex-direction-sm5: row;
 
 // Min width 992px
-$settings-small-card-max-width-lg2: 500px;
-$settings-small-card-max-height-lg2: 405px;
+$settings-small-card-max-width-lg2: 200px;
+$settings-small-card-max-height-lg2: 200px;
