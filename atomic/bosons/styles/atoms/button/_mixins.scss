@@ -5,13 +5,15 @@
         box-shadow 0.5s,
         color 0.2s !important;
 
-    &:focus {
+    &:focus,
+    &:focus-visible {
         box-shadow:
             0 0 0 2px #ffffff,
             0 0 0 4px $focus-color;
     }
 
-    &:active {
+    &:active,
+    &:focus-visible {
         background-color: $selected-color;
         color: $item-color;
     }
