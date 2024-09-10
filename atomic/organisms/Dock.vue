@@ -13,8 +13,8 @@
                 :icon="item.icon"
                 class="item plasmaItem"
                 @click="item.click"
-                :url="item.url"
-                :class="'p-icon-' + type"
+                :url="'/' + item.url"
+                :class="'p-icon-' + item.url"
             />
             <div class="dockPositionButtons" v-if="item.id === 'position'">
                 <radio-button-atom
@@ -67,7 +67,7 @@ onMounted(async () => {
         dockItems.value.splice(1, 0, {
             label: 'Admin Panel',
             icon: 'pi pi-user-edit',
-            url: '/admin',
+            url: 'admin',
         })
     }
 

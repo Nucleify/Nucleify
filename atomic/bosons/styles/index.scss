@@ -10,8 +10,8 @@
 // Old structure
 @use '../../_old_structure/sass/app';
 
-
-@import 'variables/medias';
+// Variables
+@import 'variables';
 
 @media (min-width: $breakpoint-lg) {
   .mobile {
@@ -23,4 +23,16 @@
   .desktop {
     display: none !important;
   }
+}
+
+body:has(
+    #home,
+    #login,
+    #register
+) {
+    background: $white-body-bg;
+
+    .dock {
+        display: none !important;
+    }
 }
