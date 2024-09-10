@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { ItemInterface } from 'atomic/bosons/types'
+import { IconInterface } from 'atomic/bosons/types'
 
-defineProps<ItemInterface>()
+defineProps<IconInterface>()
 </script>

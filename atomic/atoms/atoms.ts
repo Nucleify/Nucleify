@@ -5,9 +5,9 @@ import {
     Button,
     ColorPicker,
     Heading,
+    Icon,
     Image,
     InputText,
-    Item,
     Label,
     Paragraph,
     ProgressBar,
@@ -22,9 +22,9 @@ export default function registerAtoms(app: App<Element>): void {
         .component('button-atom', Button)
         .component('color-picker-atom', ColorPicker)
         .component('heading-atom', Heading)
+        .component('icon-atom', Icon)
         .component('image-atom', Image)
         .component('input-text-atom', InputText)
-        .component('item-atom', Item)
         .component('label-atom', Label)
         .component('paragraph-atom', Paragraph)
         .component('progress-bar-atom', ProgressBar)
