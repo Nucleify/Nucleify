@@ -14,7 +14,7 @@
                 class="item plasmaItem"
                 @click="item.click"
                 :url="'/' + item.url"
-                :class="'p-icon-' + item.url"
+                :type="item.url"
             />
             <div class="dockPositionButtons" v-if="item.id === 'position'">
                 <radio-button-atom

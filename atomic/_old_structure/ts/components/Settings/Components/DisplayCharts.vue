@@ -31,6 +31,7 @@
                     <radio-button-atom
                         :input-id="item"
                         :value="item"
+                        type="main"
                         @click="displayChartsToggle(item)"
                         :class="display[item] ? 'p-highlight' : ''"
                         class="p-radiobutton-main"

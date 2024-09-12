@@ -11,7 +11,7 @@
         @row-click="openDialog('show', $event.data)"
         paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         currentPageReportTemplate="{first} to {last} of {totalRecords}"
-        :class="'p-datatable-' + type"
+        :v-type="type"
     >
         <Column
             v-for="col in specificColumns"

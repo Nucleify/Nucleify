@@ -27,7 +27,7 @@ $items: (
 
 @each $item, $props in $items {
     #app:has(> ##{$item}) {
-        .dock .p-icon-#{$item} {
+        .dock .pi[v-type='#{$item}'] {
             color: var(map-get($props, color));
             background: var(map-get($props, background));
             transition: all 0s;
