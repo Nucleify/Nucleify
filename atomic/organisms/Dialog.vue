@@ -21,6 +21,10 @@
                     v-model="formData[field.name]"
                     v-bind="field.props"
                     :id="field.name"
+                    :v-type="entity"
+                    v-bind:panelClass="
+                        field.type === 'dropdown' || 'calendar' ? entity : null
+                    "
                 />
             </div>
         </form>
