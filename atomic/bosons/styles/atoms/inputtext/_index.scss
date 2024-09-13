@@ -1,5 +1,9 @@
 @use 'mixins' as *;
 
+.p-inputtext {
+    font-size: 1em;
+}
+
 @each $type in main, activity, article, contact, user {
     .p-inputtext[v-type='#{$type}'] {
         @include entity-inputtext-styles(
