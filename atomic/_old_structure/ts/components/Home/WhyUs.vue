@@ -13,7 +13,7 @@
                 :key="groupIndex"
                 :class="`whyUs${groupIndex} flex justify-content-between absolute`"
             >
-                <item-atom
+                <icon-atom
                     v-for="(item, itemIndex) in group.items"
                     :key="itemIndex"
                     :icon="item.icon"
@@ -33,7 +33,7 @@
     >
         <template #header>
             <div class="flex align-items-center gap-4">
-                <item-atom :icon="dialogData.icon" class="text-xl" />
+                <icon-atom :icon="dialogData.icon" class="text-xl" />
                 <heading-atom :tag="4" class="m-0" :text="dialogData.title" />
             </div>
         </template>

@@ -8,13 +8,13 @@
                 :alt="item.alt"
                 width="35"
             />
-            <item-atom
+            <icon-atom
                 v-if="item.icon || item.url"
                 :icon="item.icon"
                 class="item plasmaItem"
                 @click="item.click"
-                :url="item.url"
-                :style="getItemStyles(item.url!, true)"
+                :url="'/' + item.url"
+                :type="item.url"
             />
             <div class="dockPositionButtons" v-if="item.id === 'position'">
                 <radio-button-atom
@@ -37,9 +37,7 @@ import { onMounted, Ref, ref, watch } from 'vue'
 import { useIsAdmin } from '@/utils'
 import { dockItems, positions } from 'atomic/bosons/constants'
 import { PositionType } from 'atomic/bosons/types'
-import { setColorsVariables, useItemStyles } from 'atomic/bosons/utils'
-
-const { getItemStyles } = useItemStyles()
+import { setColorsVariables } from 'atomic/bosons/utils'
 
 const LOCAL_STORAGE_KEY = 'dockPosition'
 
@@ -69,7 +67,7 @@ onMounted(async () => {
         dockItems.value.splice(1, 0, {
             label: 'Admin Panel',
             icon: 'pi pi-user-edit',
-            url: '/admin',
+            url: 'admin',
         })
     }
 

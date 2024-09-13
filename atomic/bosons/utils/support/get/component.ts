@@ -4,8 +4,8 @@ export function getComponent(type: string) {
             return 'Textarea'
         case 'input-text':
             return 'input-text-atom'
-        case 'input-date':
-            return 'Calendar'
+        case 'calendar':
+            return 'calendar-molecule'
         case 'dropdown':
             return 'Dropdown'
         default:

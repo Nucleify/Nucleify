@@ -14,7 +14,8 @@
         }"
         :icon="icon"
         :label="label"
-        :class="'p-button-' + type"
+        :type="type"
+        :v-type="type"
     />
 </template>
 

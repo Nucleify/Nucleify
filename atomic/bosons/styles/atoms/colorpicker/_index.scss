@@ -1,7 +1,7 @@
 @use 'mixins' as *;
 
 @each $type in main, activity, article, contact, user {
-    .p-colorpicker-#{$type} {
+    .p-colorpicker[v-type='#{$type}'] {
         @include entity-colorpicker-styles(
             var(--#{$type}-item-color-new),
             var(--#{$type}-item-focus-color-new)

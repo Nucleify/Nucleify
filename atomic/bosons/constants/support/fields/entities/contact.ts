@@ -13,7 +13,7 @@ export function useContactFields() {
         { name: 'personal_phone', label: 'Personal Phone', type: 'input-text' },
         { name: 'work_phone', label: 'Work Phone', type: 'input-text' },
         { name: 'address', label: 'Address', type: 'textarea' },
-        { name: 'birthday', label: 'Birthday', type: 'input-date' },
+        { name: 'birthday', label: 'Birthday', type: 'calendar' },
         { name: 'contact_groups', label: 'Contact Groups', type: 'input-text' },
         {
             name: 'role',
