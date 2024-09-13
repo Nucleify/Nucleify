@@ -59,7 +59,7 @@
 
                     <button-atom
                         label="Log In"
-                        class="primaryButton loginButton max-w-6 ml-auto my-4 md:my-0"
+                        class="primaryButton loginButton max-w-6 ml-auto my-4 md:my-0 text-sm"
                         @click="navigateTo('/login')"
                         :rounded="true"
                     />

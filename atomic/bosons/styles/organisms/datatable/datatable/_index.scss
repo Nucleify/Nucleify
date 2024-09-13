@@ -10,9 +10,10 @@
     }
 
     @each $type in activity, article, contact, user {
-        &.p-datatable-#{$type} {
+        &.p-datatable[v-type='#{$type}'] {
             @include entity-datatable-styles(
                 var(--#{$type}-item-color-new),
+                var(--#{$type}-item-selected-color-new),
                 var(--#{$type}-item-highlight-color-new)
             );
         }

@@ -9,7 +9,7 @@
         :unstyled="unstyled"
         :tabindex="tabindex"
         :autoZIndex="autoZIndex"
-        :class="'p-colorpicker-' + item"
+        :v-type="item"
     />
 </template>
 

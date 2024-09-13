@@ -7,27 +7,27 @@ export const dockItems = ref([
         img: 'logo.svg',
         class: 'logo',
         alt: 'DataManager logo',
-        url: '/home',
+        url: 'home',
     },
     {
         icon: 'pi pi-chart-line',
         label: 'Dashboard',
-        url: '/dashboard',
+        url: 'dashboard',
     },
     {
         icon: 'pi pi-phone',
         label: 'Contacts',
-        url: '/contacts',
+        url: 'contacts',
     },
     {
         icon: 'pi pi-comment',
         label: 'Articles',
-        url: '/articles',
+        url: 'articles',
     },
     {
         icon: 'pi pi-history',
         label: 'Activities',
-        url: '/activity-log',
+        url: 'activity-log',
     },
     {
         icon: 'pi pi-envelope disabledItem',
@@ -48,7 +48,7 @@ export const dockItems = ref([
     {
         icon: 'pi pi-cog',
         label: 'Settings',
-        url: '/settings',
+        url: 'settings',
     },
     {
         icon: 'pi pi-sign-out',

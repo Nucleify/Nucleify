@@ -21,6 +21,13 @@
                     v-model="formData[field.name]"
                     v-bind="field.props"
                     :id="field.name"
+                    :v-type="entity"
+                    v-bind:panel-class="
+                        field.type === 'dropdown' || 'calendar' ? entity : null
+                    "
+                    v-bind:date-format="
+                        field.type === 'calendar' ? 'yy-mm-dd' : null
+                    "
                 />
             </div>
         </form>
