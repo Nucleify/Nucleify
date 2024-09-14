@@ -17,7 +17,7 @@
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <image-atom
-                            src="https://github.com/SzymCode/SzymCode/assets/107359025/d23d0500-c04b-439c-a2a6-2f2889bfd212"
+                            src="desktop.png"
                             alt=""
                             image-class="accessCardImage"
                         />
@@ -41,7 +41,7 @@
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <image-atom
-                            src="https://github.com/SzymCode/SzymCode/assets/107359025/4b7371a4-2203-4315-8e91-f21ccbf3a2a7"
+                            src="tablet.png"
                             alt=""
                             image-class="accessCardImage"
                         />
@@ -64,7 +64,7 @@
                 <div class="flip-card-inner">
                     <div class="flip-card-front">
                         <image-atom
-                            src="https://github.com/SzymCode/SzymCode/assets/107359025/9384548f-773a-4d4d-b92d-3bd6b32b0f56"
+                            src="phone.png"
                             alt=""
                             image-class="accessCardImage"
                         />
