@@ -1,0 +1,10 @@
+export type DialogPositionType =
+    | 'center'
+    | 'left'
+    | 'top'
+    | 'bottom'
+    | 'right'
+    | 'topleft'
+    | 'topright'
+    | 'bottomleft'
+    | 'bottomright'

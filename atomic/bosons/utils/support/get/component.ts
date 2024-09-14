@@ -1,7 +1,7 @@
 export function getComponent(type: string) {
     switch (type) {
         case 'textarea':
-            return 'Textarea'
+            return 'textarea-atom'
         case 'input-text':
             return 'input-text-atom'
         case 'calendar':

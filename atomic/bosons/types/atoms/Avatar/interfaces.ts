@@ -1,3 +1,7 @@
+import { PassThrough } from 'primevue/ts-helpers'
+import { AvatarPassThroughOptions } from 'primevue/avatar'
+import { PassThroughOptions } from 'primevue/passthrough'
+
 export interface AvatarInterface {
     label?: string
     icon?: string
@@ -6,5 +10,7 @@ export interface AvatarInterface {
     shape?: 'square' | 'circle'
     ariaLabel?: string
     ariaLabelledby?: string
+    pt?: PassThrough<AvatarPassThroughOptions>
+    ptOptions?: PassThroughOptions
     unstyled?: boolean
 }

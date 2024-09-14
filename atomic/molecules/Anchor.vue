@@ -1,10 +1,15 @@
 <template>
-    <a :href="href" :rel="rel" :target="target" :style="style">
+    <a
+        :href="props.href"
+        :rel="props.rel"
+        :target="props.target"
+        :style="props.style"
+    >
         <slot>
-            <icon-atom :icon="icon" />
+            <icon-atom :icon="props.icon" />
             <label-atom
-                v-if="label"
-                :label="label"
+                v-if="props.label"
+                :label="props.label"
                 :style="{ cursor: 'pointer' }"
             />
         </slot>
@@ -14,5 +19,5 @@
 <script setup lang="ts">
 import { AnchorInterface } from 'atomic/bosons/types'
 
-defineProps<AnchorInterface>()
+const props = defineProps<AnchorInterface>()
 </script>

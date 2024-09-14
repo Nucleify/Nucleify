@@ -1,17 +1,21 @@
 <template>
     <InputText
-        :class="[{ 'p-invalid': invalid }]"
-        :v-model="value"
-        :id="id"
-        :type="type"
-        :disabled="disabled"
-        :unstyled="unstyled"
-        :size="size"
+        :v-model="props.value"
+        :size="props.size"
+        :invalid="props.invalid"
+        :variant="props.variant"
+        :disabled="props.disabled"
+        :unstyled="props.unstyled"
+        :pt="props.pt"
+        :pt-options="props.ptOptions"
+        :class="[{ 'p-invalid': props.invalid }]"
+        :id="props.id"
+        :type="props.type"
     />
 </template>
 
 <script setup lang="ts">
 import { InputTextInterface } from 'atomic/bosons/types'
 
-defineProps<InputTextInterface>()
+const props = defineProps<InputTextInterface>()
 </script>

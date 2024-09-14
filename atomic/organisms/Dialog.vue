@@ -1,29 +1,62 @@
 <template>
-    <Dialog :visible="visible" modal class="myDialog" :class="action">
+    <Dialog
+        :header="props.header"
+        :footer="props.footer"
+        :visible="props.visible"
+        :modal="props.modal || 'modal'"
+        :content-style="props.contentStyle"
+        :content-class="props.contentClass"
+        :content-props="props.contentProps"
+        :rtl="props.rtl || true"
+        :closable="props.closable"
+        :dismissable-mask="props.dismissableMask"
+        :close-on-escape="props.closeOnEscape"
+        :show-header="props.showHeader || true"
+        :block-scroll="props.blockScroll"
+        :base-z-index="props.baseZIndex"
+        :auto-z-index="props.autoZIndex"
+        :position="props.position"
+        :maximizable="props.maximizable"
+        :breakpoints="props.breakpoints"
+        :draggable="props.draggable"
+        :min-x="props.minX"
+        :min-y="props.minY"
+        :append-to="props.appendTo"
+        :pt="props.pt"
+        :pt-options="props.ptOptions"
+        class="myDialog"
+        :class="props.action"
+    >
         <template #header>
             <heading-atom
                 :tag="2"
-                :text="getTitle(selectedObject)"
-                v-if="action === 'show' && selectedObject"
+                :text="getTitle(props.selectedObject)"
+                v-if="props.action === 'show' && props.selectedObject"
             />
-            <heading-atom :tag="2" :text="title" v-else />
+            <heading-atom :tag="2" :text="props.title" v-else />
         </template>
 
         <form
-            v-if="fields && action !== 'show'"
+            v-if="props.fields && props.action !== 'show'"
             class="formContainer"
             action="#"
         >
-            <div v-for="(field, index) in fields" :key="index" class="formDiv">
+            <div
+                v-for="(field, index) in props.fields"
+                :key="index"
+                class="formDiv"
+            >
                 <label :for="field.name">{{ field.label }}</label>
                 <component
                     :is="getComponent(field.type)"
                     v-model="formData[field.name]"
                     v-bind="field.props"
                     :id="field.name"
-                    :v-type="entity"
+                    :v-type="props.entity"
                     v-bind:panel-class="
-                        field.type === 'dropdown' || 'calendar' ? entity : null
+                        field.type === 'dropdown' || 'calendar'
+                            ? props.entity
+                            : null
                     "
                     v-bind:date-format="
                         field.type === 'calendar' ? 'yy-mm-dd' : null
@@ -33,44 +66,56 @@
         </form>
 
         <div
-            v-else-if="fields && action === 'show' && selectedObject"
+            v-else-if="
+                props.fields && props.action === 'show' && props.selectedObject
+            "
             class="showDataContainer"
         >
-            <div v-for="(item, key) in fields" :key="key">
+            <div v-for="(item, key) in props.fields" :key="key">
                 <heading-atom
                     :tag="5"
                     class="showDataHeader"
                     :text="item.label"
                 />
-                <div>{{ (selectedObject as any)[item.key] }}</div>
+                <div>{{ (props.selectedObject as any)[item.key] }}</div>
             </div>
         </div>
 
         <template #footer>
             <div class="dialogButtonsContainer">
                 <button-atom
-                    :label="cancelButtonLabel"
+                    :label="props.cancelButtonLabel"
                     icon="pi pi-times"
                     severity="secondary"
-                    @click="close(action)"
+                    @click="close(props.action)"
                     rounded
                     text
                 />
                 <button-atom
-                    v-if="fields && confirm"
-                    :type="entity"
-                    :label="confirmButtonLabel"
+                    v-if="props.fields && props.confirm"
+                    :type="props.entity"
+                    :label="props.confirmButtonLabel"
                     icon="pi pi-check"
-                    @click="confirm(formData, getData, close)"
+                    @click="confirm(formData, props.getData, props.close)"
                     rounded
                     text
                 />
                 <button-atom
-                    v-if="action === 'delete' && confirm && selectedObject"
-                    :type="entity"
-                    :label="confirmButtonLabel"
+                    v-if="
+                        props.action === 'delete' &&
+                        props.confirm &&
+                        props.selectedObject
+                    "
+                    :type="props.entity"
+                    :label="props.confirmButtonLabel"
                     icon="pi pi-check"
-                    @click="confirm(selectedObject.id, getData, close)"
+                    @click="
+                        confirm(
+                            props.selectedObject.id,
+                            props.getData,
+                            props.close
+                        )
+                    "
                     rounded
                     text
                 />
