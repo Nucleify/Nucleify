@@ -1,5 +1,9 @@
 <template>
-    <FloatLabel :unstyled="unstyled">
+    <FloatLabel
+        :unstyled="props.unstyled"
+        :pt="props.pt"
+        :pt-options="props.ptOptions"
+    >
         <slot>
             <!-- Example use
                 <input-text-atom :id="" v-model="" />
@@ -12,5 +16,5 @@
 <script setup lang="ts">
 import { FloatLabelInterface } from 'atomic/bosons/types'
 
-defineProps<FloatLabelInterface>()
+const props = defineProps<FloatLabelInterface>()
 </script>

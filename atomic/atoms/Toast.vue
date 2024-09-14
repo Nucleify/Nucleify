@@ -1,13 +1,15 @@
 <template>
     <Toast
-        :group="group"
-        :position="position"
-        :autoZIndex="autoZIndex"
-        :baseZIndex="baseZIndex"
-        :breakpoints="breakpoints"
-        :icon="icon"
-        :message="message"
-        :unstyled="unstyled"
+        :group="props.group"
+        :position="props.position"
+        :auto-z-index="props.autoZIndex"
+        :base-z-index="props.baseZIndex"
+        :breakpoints="props.breakpoints"
+        :icon="props.icon"
+        :message="props.message"
+        :unstyled="props.unstyled"
+        :pt="props.pt"
+        :pt-options="props.ptOptions"
     >
         <slot />
     </Toast>
@@ -16,5 +18,5 @@
 <script setup lang="ts">
 import { ToastInterface } from 'atomic/bosons/types'
 
-defineProps<ToastInterface>()
+const props = defineProps<ToastInterface>()
 </script>

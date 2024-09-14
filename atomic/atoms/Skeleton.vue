@@ -1,18 +1,20 @@
 <template>
     <Skeleton
-        v-if="loading"
-        :shape="shape"
-        :size="size"
-        :width="width"
-        :height="height"
-        :border-radius="borderRadius"
-        :animation="animation"
-        :unstyled="unstyled"
+        v-if="props.loading"
+        :shape="props.shape"
+        :size="props.size"
+        :width="props.width"
+        :height="props.height"
+        :border-radius="props.borderRadius"
+        :animation="props.animation"
+        :unstyled="props.unstyled"
+        :pt="props.pt"
+        :pt-options="props.ptOptions"
     />
 </template>
 
 <script setup lang="ts">
 import { SkeletonInterface } from 'atomic/bosons/types'
 
-defineProps<SkeletonInterface>()
+const props = defineProps<SkeletonInterface>()
 </script>

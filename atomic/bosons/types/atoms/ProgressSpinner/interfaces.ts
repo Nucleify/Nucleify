@@ -1,8 +1,13 @@
+import { ProgressBarPassThroughOptions } from 'primevue/progressbar'
+import { PassThroughOptions } from 'primevue/passthrough'
+
 export interface ProgressSpinnerInterface {
-    width?: string
-    height?: string
     strokeWidth?: string
     fill?: string
     animationDuration?: string
+    pt?: PassThroughOptions<ProgressBarPassThroughOptions>
+    ptOption?: PassThroughOptions
     unstyled?: boolean
+    width?: string
+    height?: string
 }
