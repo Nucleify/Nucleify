@@ -51,7 +51,7 @@ export interface DataTableInterface {
     compareSelectionBy?: 'equals' | 'deepEquals'
     metaKeySelection?: boolean
     contextMenu?: boolean
-    contextMenuSelection?: boolean
+    contextMenuSelection?: any // eslint-disable-line @typescript-eslint/no-explicit-any
     selectAll?: Nullable<boolean>
     rowHover?: boolean
     csvSeparator?: string
