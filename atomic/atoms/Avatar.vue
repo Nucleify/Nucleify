@@ -1,18 +1,20 @@
 <template>
     <Avatar
-        :label="label"
-        :icon="icon"
-        :image="image"
-        :size="size"
-        :shape="shape"
-        :aria-label="ariaLabel"
-        :aria-labelledby="ariaLabelledby"
-        :unstyled="unstyled"
+        :label="props.label"
+        :icon="props.icon"
+        :image="props.image"
+        :size="props.size"
+        :shape="props.shape"
+        :aria-label="props.ariaLabel"
+        :aria-labelledby="props.ariaLabelledby"
+        :unstyled="props.unstyled"
+        :pt="props.pt"
+        :pt-options="props.ptOptions"
     />
 </template>
 
 <script setup lang="ts">
 import { AvatarInterface } from 'atomic/bosons/types'
 
-defineProps<AvatarInterface>()
+const props = defineProps<AvatarInterface>()
 </script>

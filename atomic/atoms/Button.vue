@@ -1,26 +1,36 @@
 <template>
     <Button
-        @click="onclick"
-        :severity="severity"
-        :disabled="disabled"
-        :raised="raised"
-        :rounded="rounded"
-        :text="text"
-        :outlined="outlined"
+        :label="props.label"
+        :icon="props.icon"
+        :icon-pos="props.iconPos"
+        :icon-class="props.iconClass"
+        :badge="props.badge"
+        :badge-class="props.badgeClass"
+        :badge-severity="props.badgeSeverity"
+        :loading="props.loading"
+        :loading-icon="props.loadingIcon"
+        :link="props.link"
+        :severity="props.severity"
+        :raised="props.raised"
+        :rounded="props.rounded"
+        :text="props.text"
+        :outlined="props.outlined"
+        :disabled="props.disabled"
+        :pt="props.pt"
+        :pt-options="props.ptOptions"
+        :type="props.type"
+        @click="props.onclick"
         :style="{
-            width: width,
-            gap: gap,
-            padding: padding,
+            width: props.width,
+            gap: props.gap,
+            padding: props.padding,
         }"
-        :icon="icon"
-        :label="label"
-        :type="type"
-        :v-type="type"
+        :v-type="props.type"
     />
 </template>
 
 <script setup lang="ts">
 import { ButtonInterface } from 'atomic/bosons/types'
 
-defineProps<ButtonInterface>()
+const props = defineProps<ButtonInterface>()
 </script>

@@ -1,18 +1,24 @@
 import { Ref } from 'vue'
+import { HintedString, PassThrough } from 'primevue/ts-helpers'
 
 import { ColorItemColorsInterface } from 'atomic/bosons/types'
+import { ColorPickerPassThroughOptions } from 'primevue/colorpicker'
+import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface ColorPickerInterface {
     item?: string
     modelValue?: string
-    panelClass?: string
-    format?: 'rgb' | 'hex' | 'hsb'
     defaultColor?: string
     inline?: boolean
+    format?: 'rgb' | 'hex' | 'hsb'
     disabled?: boolean
-    unstyled?: boolean
     tabindex?: string
     autoZIndex?: boolean
+    panelClass?: string
+    appendTo?: HTMLElement | HintedString<'body' | 'self'>
+    pt?: PassThrough<ColorPickerPassThroughOptions>
+    ptOptions?: PassThroughOptions
+    unstyled?: boolean
 }
 
 export interface UseColorsReturnInterface {

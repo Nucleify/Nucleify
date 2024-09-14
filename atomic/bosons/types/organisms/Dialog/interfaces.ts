@@ -1,4 +1,6 @@
-import { StyleValue } from 'vue'
+import { HTMLAttributes, StyleValue } from 'vue'
+import { DialogBreakpoints, DialogPassThroughAttributes } from 'primevue/dialog'
+import { HintedString, PassThrough } from 'primevue/ts-helpers'
 
 import { ObjectType, SelectedObjectType } from '@/types'
 
@@ -6,22 +8,47 @@ import {
     ActionType,
     CloseDialogFunctionType,
     ConfirmDialogFunctionType,
+    DialogPositionType,
     OpenDialogFunctionType,
     VisibleType,
 } from 'atomic/bosons/types'
+import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface DialogInterface {
-    entity: 'user' | 'contact' | 'article'
-    action: ActionType
+    header?: string
+    footer?: string
     visible: boolean
+    modal?: boolean
+    contentStyle?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+    contentClass?: string
+    contentProps?: HTMLAttributes
+    rtl?: boolean
+    closable?: boolean
+    dismissableMask?: boolean
+    closeOnEscape?: boolean
+    showHeader?: boolean
+    blockScroll?: boolean
+    baseZIndex?: number
+    autoZIndex?: boolean
+    position?: DialogPositionType
+    maximizable?: boolean
+    breakpoints?: DialogBreakpoints
+    draggable?: boolean
+    keepInViewPort?: boolean
+    minX?: number
+    minY?: number
+    appendTo?: HTMLElement | HintedString<'body' | 'self'>
+    pt?: PassThrough<DialogPassThroughAttributes>
+    ptOptions?: PassThroughOptions
+    entity: ObjectType
+    action: ActionType
     title?: string
     fields?: Array<{
         name: string
         label: string
         type: string
         key: string
-        // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-        props?: Record<string, any>
+        props?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
     }>
     selectedObject?: ObjectType
     data?: ObjectType[]

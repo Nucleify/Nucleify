@@ -1,15 +1,17 @@
 <template>
     <ProgressSpinner
-        :stroke-width="strokeWidth"
-        :fill="fill"
-        :animation-duration="animationDuration"
-        :style="{ width: width, height: height }"
-        :unstyled="unstyled"
+        :stroke-width="props.strokeWidth"
+        :fill="props.fill"
+        :animation-duration="props.animationDuration"
+        :pt="props.pt"
+        :pt-option="props.ptOption"
+        :unstyled="props.unstyled"
+        :style="{ width: props.width, height: props.height }"
     />
 </template>
 
 <script setup lang="ts">
 import { ProgressSpinnerInterface } from 'atomic/bosons/types'
 
-defineProps<ProgressSpinnerInterface>()
+const props = defineProps<ProgressSpinnerInterface>()
 </script>

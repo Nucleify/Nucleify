@@ -1,11 +1,11 @@
 <template>
-    <label :for="forInput">
-        {{ label }}
+    <label :for="props.forInput">
+        {{ props.label }}
     </label>
 </template>
 
 <script setup lang="ts">
 import { LabelInterface } from 'atomic/bosons/types'
 
-defineProps<LabelInterface>()
+const props = defineProps<LabelInterface>()
 </script>

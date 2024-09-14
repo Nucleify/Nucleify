@@ -1,10 +1,16 @@
 <template>
     <Chart
         v-if="chartData"
-        :type="type"
+        :type="props.type"
         :data="chartData"
         :options="chartOptions"
-        :class="chartClass"
+        :plugins="props.plugins"
+        :width="props.width"
+        :height="props.height"
+        :canvas-props="props.canvasProps"
+        :pt="props.pt"
+        :pt-options="props.ptOptions"
+        :class="props.chartClass"
     />
 </template>
 
