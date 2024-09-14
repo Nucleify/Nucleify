@@ -1,14 +1,14 @@
 <template>
     <ColorPicker
         v-model="itemColor"
-        :panelClass="panelClass"
+        :panel-class="panelClass"
         :format="format"
-        :defaultColor="defaultColor"
+        :default-color="defaultColor"
         :inline="inline"
         :disabled="disabled"
         :unstyled="unstyled"
         :tabindex="tabindex"
-        :autoZIndex="autoZIndex"
+        :auto-z-index="autoZIndex"
         :v-type="item"
     />
 </template>

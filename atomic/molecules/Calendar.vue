@@ -1,7 +1,7 @@
 <template>
     <Calendar
-        :modelValue="modelValue"
-        @update:modelValue="onUpdateModelValue"
+        :mode-Value="modelValue"
+        @update:model-value="onUpdateModelValue"
         :selection-mode="selectionMode"
         :date-format="dateFormat"
         :inline="inline"

@@ -2,8 +2,8 @@
     <Toast
         :group="group"
         :position="position"
-        :autoZIndex="autoZIndex"
-        :baseZIndex="baseZIndex"
+        :auto-z-index="autoZIndex"
+        :base-z-index="baseZIndex"
         :breakpoints="breakpoints"
         :icon="icon"
         :message="message"

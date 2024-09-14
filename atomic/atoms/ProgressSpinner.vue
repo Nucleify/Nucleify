@@ -1,8 +1,8 @@
 <template>
     <ProgressSpinner
-        :strokeWidth="strokeWidth"
+        :stroke-width="strokeWidth"
         :fill="fill"
-        :animationDuration="animationDuration"
+        :animation-duration="animationDuration"
         :style="{ width: width, height: height }"
         :unstyled="unstyled"
     />

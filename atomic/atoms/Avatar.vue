@@ -5,8 +5,8 @@
         :image="image"
         :size="size"
         :shape="shape"
-        :ariaLabel="ariaLabel"
-        :ariaLabelledby="ariaLabelledby"
+        :aria-label="ariaLabel"
+        :aria-labelledby="ariaLabelledby"
         :unstyled="unstyled"
     />
 </template>

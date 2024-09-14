@@ -4,11 +4,11 @@
         :alt="alt"
         :width="width"
         :height="height"
-        :imageClass="imageClass"
+        :image-class="imageClass"
         :preview="preview"
         :unstyled="unstyled"
-        :zoomInDisabled="zoomInDisabled"
-        :zoomOutDisabled="zoomOutDisabled"
+        :zoom-in-disabled="zoomInDisabled"
+        :zoom-out-disabled="zoomOutDisabled"
     />
 </template>
 

@@ -1,11 +1,11 @@
 <template>
     <Textarea
         :model-value="modelValue"
-        :autoResize="autoResize"
+        :auto-resize="autoResize"
         :invalid="invalid"
         :variant="variant"
         :pt="pt"
-        :ptOptions="ptOptions"
+        :pt-options="ptOptions"
         :unstyled="unstyled"
         :type="type"
     />
