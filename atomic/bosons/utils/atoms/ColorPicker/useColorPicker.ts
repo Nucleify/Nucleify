@@ -44,6 +44,14 @@ export function useColorPicker(item: string): UseColorPickerInterface {
         if (colorValue) {
             localStorage.setItem(`${item}-item-color`, colorValue)
             localStorage.setItem(
+                `${item}-item-dark-color`,
+                darkenColor(colorValue, 60)
+            )
+            localStorage.setItem(
+                `${item}-item-light-color`,
+                setColorOpacity(colorValue, 0.5)
+            )
+            localStorage.setItem(
                 `${item}-item-hover-color`,
                 darkenColor(colorValue, 10)
             )

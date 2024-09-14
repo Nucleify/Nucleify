@@ -1,7 +1,6 @@
 <template>
     <RadioButton
         :value="props.value"
-        :v-model="props.modelValue"
         :name="props.name"
         :binary="props.binary"
         :invalid="props.invalid"
