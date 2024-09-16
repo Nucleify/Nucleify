@@ -2,7 +2,7 @@
     <div class="loadContainer">
         <div class="loadContent">
             <image-atom src="logo.svg" width="150px"/>
-            <progress-bar-atom width="100px" height="10px" />
+            <progress-bar-atom mode="indeterminate" width="100px" height="10px" />
         </div>
     </div>
 </template>

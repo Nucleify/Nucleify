@@ -20,12 +20,25 @@
                         :key="index"
                     >
                         <input-text-atom
+                            v-if="field.type !== 'password'"
                             v-model="registerFields[field.model]"
                             :type="field.type"
                             :id="field.id"
                             class="authInputText"
                             :autofocus="field.autofocus"
                         />
+
+                        <password-organism
+                            v-else
+                            v-model="registerFields[field.model]"
+                            :id="field.id"
+                            class="authInputText"
+                            :autofocus="field.autofocus"
+                            :passwords-match="checkPasswordsMatch(registerFields['password'], registerFields['password_confirmation']) && field.model === 'password_confirmation'"
+                            :empty-password="checkIsEmpty(registerFields['password']) && field.model === 'password_confirmation'"
+                            :empty-confirm-password="checkIsEmpty(registerFields['password_confirmation']) && field.model === 'password_confirmation'"
+                        />
+
                         <label-atom :for="field.id" :label="field.label" />
                     </float-label-molecule>
 
@@ -42,7 +55,9 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthForm } from 'atomic/bosons/utils'
+import { checkIsEmpty, checkPasswordsMatch, useAuthForm } from 'atomic/bosons/utils'
 
 const { submitForm, registerFields, registerInputs } = useAuthForm()
+
+checkPasswordsMatch(registerFields.value.password, registerFields.value.password_confirmation)
 </script>
