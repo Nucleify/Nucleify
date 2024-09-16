@@ -5,7 +5,6 @@ import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface RadioButtonInterface {
     value?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-    modelValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
     name?: string
     binary?: boolean
     invalid?: boolean

@@ -1,6 +1,6 @@
 import { App } from 'vue'
 
-import { Chart, DataTable, DataTableSkeleton, Dialog, Dock } from './'
+import { Chart, DataTable, DataTableSkeleton, Dialog, Dock, Password } from './'
 
 export default function registerOrganisms(app: App<Element>): void {
     app
@@ -24,4 +24,9 @@ export default function registerOrganisms(app: App<Element>): void {
          *  Dock
          */
         .component('dock-organism', Dock)
+
+        /**
+         *  Password
+         */
+        .component('password-organism', Password)
 }

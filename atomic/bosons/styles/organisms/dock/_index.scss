@@ -1,4 +1,5 @@
 @import 'icons';
+@import 'logo';
 @import 'mixins';
 @import 'variables';
 
@@ -107,11 +108,6 @@
                             width: 11px;
                             height: 11px;
                             cursor: pointer;
-                            transition: all 800ms ease;
-
-                            &:checked {
-                                background: #1bbd7999;
-                            }
                         }
                     }
                 }

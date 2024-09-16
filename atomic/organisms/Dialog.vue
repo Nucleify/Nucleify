@@ -61,6 +61,25 @@
                     v-bind:date-format="
                         field.type === 'calendar' ? 'yy-mm-dd' : null
                     "
+                    v-bind:toggle-mask="field.type === 'password' ? true : null"
+                    v-bind:passwords-match="
+                        field.name === 'password_confirmation'
+                            ? checkPasswordsMatch(
+                                  formData['password'],
+                                  formData['password_confirmation']
+                              )
+                            : false
+                    "
+                    v-bind:empty-password="
+                        field.name === 'password_confirmation'
+                            ? checkIsEmpty(formData['password'])
+                            : false
+                    "
+                    v-bind:empty-confirm-password="
+                        field.name === 'password_confirmation'
+                            ? checkIsEmpty(formData['password_confirmation'])
+                            : false
+                    "
                 />
             </div>
         </form>
@@ -128,7 +147,12 @@
 import { ref, watch } from 'vue'
 
 import { DialogInterface } from 'atomic/bosons/types'
-import { getComponent, getTitle } from 'atomic/bosons/utils'
+import {
+    checkIsEmpty,
+    checkPasswordsMatch,
+    getComponent,
+    getTitle,
+} from 'atomic/bosons/utils'
 
 const props = defineProps<DialogInterface>()
 

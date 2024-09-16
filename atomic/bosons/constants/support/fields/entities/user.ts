@@ -13,13 +13,13 @@ export function useUserFields() {
         {
             name: 'password',
             label: 'Password',
-            type: 'input-text',
+            type: 'password',
             props: { type: 'password' },
         },
         {
-            name: 'confirm_password',
+            name: 'password_confirmation',
             label: 'Confirm Password',
-            type: 'input-text',
+            type: 'password',
             props: { type: 'password' },
         },
     ]

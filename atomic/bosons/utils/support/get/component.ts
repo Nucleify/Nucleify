@@ -8,6 +8,8 @@ export function getComponent(type: string) {
             return 'calendar-molecule'
         case 'dropdown':
             return 'Dropdown'
+        case 'password':
+            return 'password-organism'
         default:
             return 'input-text-atom'
     }

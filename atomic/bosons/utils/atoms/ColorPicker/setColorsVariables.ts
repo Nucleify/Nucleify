@@ -3,6 +3,8 @@ export function setColorsVariables(): void {
 
     const states: string[] = [
         'color',
+        'dark-color',
+        'light-color',
         'highlight-color',
         'focus-color',
         'selected-color',
