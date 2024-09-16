@@ -12,6 +12,7 @@ import ColorPicker from 'primevue/colorpicker'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
 import Dialog from 'primevue/dialog'
+import Divider from 'primevue/divider'
 import Dock from 'primevue/dock'
 import Dropdown from 'primevue/dropdown'
 import FloatLabel from 'primevue/floatlabel'
@@ -19,6 +20,7 @@ import Image from 'primevue/image'
 import InlineMessage from 'primevue/inlinemessage'
 import InputText from 'primevue/inputtext'
 import Menu from 'primevue/menu'
+import Password from 'primevue/password'
 import ProgressBar from 'primevue/progressbar'
 import ProgressSpinner from 'primevue/progressspinner'
 import RadioButton from 'primevue/radiobutton'
@@ -51,6 +53,7 @@ export default function registerPrimeVue(app: App<Element>): void {
         .component('Column', Column)
         .component('DataTable', DataTable)
         .component('Dialog', Dialog)
+        .component('Divider', Divider)
         .component('Dock', Dock)
         .component('Dropdown', Dropdown)
         .component('FloatLabel', FloatLabel)
@@ -58,6 +61,7 @@ export default function registerPrimeVue(app: App<Element>): void {
         .component('InlineMessage', InlineMessage)
         .component('InputText', InputText)
         .component('Menu', Menu)
+        .component('Password', Password)
         .component('ProgressBar', ProgressBar)
         .component('ProgressSpinner', ProgressSpinner)
         .component('RadioButton', RadioButton)
