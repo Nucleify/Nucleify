@@ -40,12 +40,16 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         RefreshDatabase::class
     )
         ->in(
-        // Activity API
+            // Activity API
             'Feature/Api/Activity/HTTP401Test.php',
 
             // Article API
             'Feature/Api/Article/HTTP302Test.php',
             'Feature/Api/Article/HTTP422PutTest.php',
+
+            // Artisan API
+            'Feature/Api/Artisan/HTTP405AuthTest.php',
+            'Feature/Api/Artisan/HTTP405UnAuthTest.php',
 
             // Contact API
             'Feature/Api/Contact/HTTP302Test.php',
@@ -60,8 +64,6 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             // Sitemap API
             'Feature/Api/Sitemap',
 
-
-            'Feature/Database/Factories',
             'Unit/Models'
         );
 
@@ -69,13 +71,17 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         DatabaseMigrations::class
     )
         ->in(
-        // Activity API
+            // Activity API
             'Feature/Api/Activity/HTTP200Test.php',
 
             // Article API
             'Feature/Api/Article/HTTP200Test.php',
             'Feature/Api/Article/HTTP422PostTest.php',
             'Feature/Api/Article/HTTP500Test.php',
+
+            // Artisan API
+            'Feature/Api/Artisan/HTTP200Test.php',
+            'Feature/Api/Artisan/HTTP500Test.php',
 
             // Contact API
             'Feature/Api/Contact/HTTP200Test.php',
@@ -85,7 +91,7 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/User/HTTP200Test.php',
             'Feature/Api/User/HTTP500Test.php',
 
-
+            'Feature/Database/Factories',
             'Feature/Database/Migrations',
             'Unit/Controllers',
             'Unit/Services'
@@ -183,6 +189,10 @@ uses()
 uses()
     ->group('article-api')
     ->in('Feature/Api/Article');
+
+uses()
+    ->group('artisan-api')
+    ->in('Feature/Api/Artisan');
 
 uses()
     ->group('user-api')
