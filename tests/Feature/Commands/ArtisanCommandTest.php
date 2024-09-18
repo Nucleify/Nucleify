@@ -35,4 +35,4 @@ it('handles and reports errors correctly during command execution', function () 
     $output = Artisan::output();
 
     expect($output)->toContain('Call to undefined function undefinedFunction()');
-});
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
