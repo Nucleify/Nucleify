@@ -14,12 +14,19 @@
     }
 
     .p-overlaypanel-close {
-        height: 12px;
-        width: 12px;
+        position: fixed;
+        height: 16px;
+        width: 16px;
         top: 8px;
         right: 8px;
         background: transparent !important;
         color: black;
+
+        @media (min-width: 768px) {
+            height: 12px;
+            width: 12px;
+            position: absolute;
+        }
     }
 
     @media (min-width: 992px) {
