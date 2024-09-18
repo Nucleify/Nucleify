@@ -5,7 +5,9 @@
         show-close-icon
         button-class="overlayPanelToggle"
         :button-style="{ height: 18, width: 18 }"
-    />
+    >
+        <terminal-organism prompt="artisan >" />
+    </overlay-panel-organism>
 
     <Dock :model="dockItems" :position="position" class="dock">
         <template #icon="{ item }">

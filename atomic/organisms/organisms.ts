@@ -8,6 +8,7 @@ import {
     Dock,
     OverlayPanel,
     Password,
+    Terminal,
 } from './'
 
 export default function registerOrganisms(app: App<Element>): void {
@@ -42,4 +43,9 @@ export default function registerOrganisms(app: App<Element>): void {
          *  Password
          */
         .component('password-organism', Password)
+
+        /**
+         *
+         */
+        .component('terminal-organism', Terminal)
 }
