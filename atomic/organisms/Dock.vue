@@ -1,4 +1,12 @@
 <template>
+    <overlay-panel-organism
+        src="terminal.svg"
+        dismissable
+        show-close-icon
+        button-class="overlayPanelToggle"
+        :button-style="{ height: 18, width: 18 }"
+    />
+
     <Dock :model="dockItems" :position="position" class="dock">
         <template #icon="{ item }">
             <div v-if="item.logo">

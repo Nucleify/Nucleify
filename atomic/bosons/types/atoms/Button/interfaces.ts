@@ -41,4 +41,5 @@ export interface ButtonInterface {
     height?: string
     gap?: string
     padding?: string
+    src?: string
 }

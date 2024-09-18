@@ -26,7 +26,10 @@
             padding: props.padding,
         }"
         :v-type="props.type"
-    />
+    >
+        <image-atom v-if="props.src" :src="props.src" />
+        <slot />
+    </Button>
 </template>
 
 <script setup lang="ts">

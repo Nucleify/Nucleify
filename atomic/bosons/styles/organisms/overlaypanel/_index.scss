@@ -1,0 +1,50 @@
+.p-overlaypanel {
+    position: fixed !important;
+    top: unset !important;
+    bottom: 65px !important;
+    z-index: 9999 !important;
+    width: 100%;
+    max-width: 450px;
+    height: 300px;
+    border-radius: 0;
+
+    &::before,
+    &::after {
+        display: none !important;
+    }
+
+    .p-overlaypanel-close {
+        height: 12px;
+        width: 12px;
+        top: 8px;
+        right: 8px;
+        background: transparent !important;
+        color: black;
+    }
+
+    @media (min-width: 992px) {
+        bottom: 71px !important;
+        margin-left: 4px;
+    }
+}
+
+.overlayPanelToggle {
+    position: fixed;
+    right: 12px;
+    z-index: 999;
+    bottom: 85px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    img {
+        width: 20px;
+    }
+}
