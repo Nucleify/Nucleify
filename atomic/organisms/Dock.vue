@@ -1,12 +1,15 @@
 <template>
     <overlay-panel-organism
-        src="terminal.svg"
         dismissable
         show-close-icon
-        button-class="overlayPanelToggle"
+        :button-class="['overlayPanelToggle', positionClass]"
         :button-style="{ height: 18, width: 18 }"
+        :overlay-panel-class="positionClass"
     >
-        <terminal-organism prompt="artisan >" />
+        <terminal-organism
+            prompt="artisan >"
+            welcome-message="The ''help'' command displays help"
+        />
     </overlay-panel-organism>
 
     <Dock :model="dockItems" :position="position" class="dock">
@@ -62,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, Ref, ref, watch } from 'vue'
+import { onMounted, Ref, ref, watch, computed } from 'vue'
 
 import { useIsAdmin } from '@/utils'
 import { dockItems, positions } from 'atomic/bosons/constants'
@@ -73,6 +76,21 @@ const LOCAL_STORAGE_KEY = 'dockPosition'
 
 const position = ref<PositionType>('bottom')
 let isAdmin: Ref<boolean> = ref(false)
+
+const positionClass = computed(() => {
+    switch (position.value) {
+        case 'top':
+            return 'top'
+        case 'right':
+            return 'right'
+        case 'bottom':
+            return 'bottom'
+        case 'left':
+            return 'left'
+        default:
+            return ''
+    }
+})
 
 function setDockPositionForScreenSize() {
     if (window.innerWidth == 992) {
