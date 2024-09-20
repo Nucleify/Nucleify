@@ -41,6 +41,7 @@ export function useColors(): UseColorsInterface {
             'main-item-color',
             'main-item-hover-color',
             'main-item-focus-color',
+            'main-item-light-color',
             'main-item-selected-color',
             'main-item-highlight-color',
 
@@ -48,6 +49,7 @@ export function useColors(): UseColorsInterface {
             'activity-item-color',
             'activity-item-hover-color',
             'activity-item-focus-color',
+            'activity-item-light-color',
             'activity-item-selected-color',
             'activity-item-highlight-color',
 
@@ -55,6 +57,7 @@ export function useColors(): UseColorsInterface {
             'article-item-color',
             'article-item-hover-color',
             'article-item-focus-color',
+            'article-item-light-color',
             'article-item-selected-color',
             'article-item-highlight-color',
 
@@ -62,6 +65,7 @@ export function useColors(): UseColorsInterface {
             'contact-item-color',
             'contact-item-hover-color',
             'contact-item-focus-color',
+            'contact-item-light-color',
             'contact-item-selected-color',
             'contact-item-highlight-color',
 
@@ -69,6 +73,7 @@ export function useColors(): UseColorsInterface {
             'user-item-color',
             'user-item-hover-color',
             'user-item-focus-color',
+            'user-item-light-color',
             'user-item-selected-color',
             'user-item-highlight-color',
         ]
