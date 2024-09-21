@@ -30,12 +30,12 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         ->beforeEach(function () {
             $this->artisan('migrate:fresh');
         })
-        ->in('Feature', 'Unit', 'Global');
+        ->in('Feature', 'Database', 'Global');
 } else {
     uses(
         Tests\TestCase::class,
     )
-        ->in('Feature', 'Unit');
+        ->in('Feature', 'Database');
     uses(
         RefreshDatabase::class
     )
@@ -64,7 +64,7 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             // Sitemap API
             'Feature/Api/Sitemap',
 
-            'Unit/Models'
+            'Database/Models'
         );
 
     uses(
@@ -91,10 +91,12 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/User/HTTP200Test.php',
             'Feature/Api/User/HTTP500Test.php',
 
-            'Feature/Database/Factories',
-            'Feature/Database/Migrations',
-            'Unit/Controllers',
-            'Unit/Services'
+
+            'Database/Factories',
+            'Database/Migrations',
+
+            'Feature/Controllers',
+            'Feature/Services'
         );
 }
 
