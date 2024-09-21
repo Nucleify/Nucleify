@@ -1,3 +1,6 @@
 export * from './Chart'
 export * from './DataTable'
 export * from './Dialog'
+export * from './OverlayPanel'
+export * from './Password'
+export * from './Terminal'

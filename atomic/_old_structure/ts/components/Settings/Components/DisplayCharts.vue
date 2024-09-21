@@ -10,7 +10,7 @@
                     icon="pi pi-refresh"
                     type="main"
                     class="refreshButton"
-                    @click="setDefaultChartsDisplay(true)"
+                    @click="setDefaultChartsDisplay(false, true)"
                     rounded
                     text
                 />

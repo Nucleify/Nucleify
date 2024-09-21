@@ -1,36 +1,30 @@
+@use 'mixins' as *;
+
 $items: (
     admin: (
         color: --main-item-color-new,
-        background: --main-item-highlight-color-new,
     ),
     activity-log: (
         color: --activity-item-color-new,
-        background: --activity-item-highlight-color-new,
     ),
     articles: (
         color: --article-item-color-new,
-        background: --article-item-highlight-color-new,
     ),
     contacts: (
         color: --contact-item-color-new,
-        background: --contact-item-highlight-color-new,
     ),
     dashboard: (
         color: --main-item-color-new,
-        background: --main-item-highlight-color-new,
     ),
     settings: (
         color: --main-item-color-new,
-        background: --main-item-highlight-color-new,
     ),
 );
 
 @each $item, $props in $items {
     #app:has(> ##{$item}) {
         .dock .pi[v-type='#{$item}'] {
-            color: var(map-get($props, color));
-            background: var(map-get($props, background));
-            transition: all 0s;
+            @include entity-dock-item-styles(var(map-get($props, color)));
         }
     }
 }

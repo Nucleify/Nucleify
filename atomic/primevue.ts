@@ -20,11 +20,13 @@ import Image from 'primevue/image'
 import InlineMessage from 'primevue/inlinemessage'
 import InputText from 'primevue/inputtext'
 import Menu from 'primevue/menu'
+import OverlayPanel from 'primevue/overlaypanel'
 import Password from 'primevue/password'
 import ProgressBar from 'primevue/progressbar'
 import ProgressSpinner from 'primevue/progressspinner'
 import RadioButton from 'primevue/radiobutton'
 import Skeleton from 'primevue/skeleton'
+import Terminal from 'primevue/terminal'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
 
@@ -61,11 +63,13 @@ export default function registerPrimeVue(app: App<Element>): void {
         .component('InlineMessage', InlineMessage)
         .component('InputText', InputText)
         .component('Menu', Menu)
+        .component('OverlayPanel', OverlayPanel)
         .component('Password', Password)
         .component('ProgressBar', ProgressBar)
         .component('ProgressSpinner', ProgressSpinner)
         .component('RadioButton', RadioButton)
         .component('Skeleton', Skeleton)
+        .component('Terminal', Terminal)
         .component('Textarea', Textarea)
         .component('Toast', Toast)
 
