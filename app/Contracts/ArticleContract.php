@@ -3,7 +3,7 @@
 namespace App\Contracts;
 
 
-interface ArticleShouldReceiveFields
+interface ArticleContract
 {
     public function getId(): int;
     public function getTitle(): string;

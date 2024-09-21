@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Contracts\ContactShouldReceiveFields;
+use App\Contracts\ContactContract;
 use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -52,7 +52,7 @@ use Illuminate\Notifications\Notifiable;
  * @property Builder scopeGetByUpdatedAt
  */
 
-class Contact extends Model implements ContactShouldReceiveFields
+class Contact extends Model implements ContactContract
 {
     use HasFactory, Notifiable;
 

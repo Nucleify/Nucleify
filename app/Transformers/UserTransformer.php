@@ -4,11 +4,11 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 
-use App\Contracts\UserShouldReceiveFields;
+use App\Contracts\UserContract;
 
 class UserTransformer extends TransformerAbstract
 {
-    public function transform(UserShouldReceiveFields $model): array
+    public function transform(UserContract $model): array
     {
         return [
             'id' => $model->getId(),
