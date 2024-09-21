@@ -43,7 +43,7 @@
             <icon-atom
                 v-if="item.icon || item.url"
                 :icon="item.icon"
-                class="item plasmaItem"
+                class="item"
                 @click="item.click"
                 :url="'/' + item.url"
                 :type="item.url"

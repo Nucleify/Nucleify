@@ -1,0 +1,8 @@
+@mixin entity-dock-item-styles($item-color) {
+    color: $item-color;
+    transition: all 0s;
+
+    &:hover {
+        color: $item-color;
+    }
+}
