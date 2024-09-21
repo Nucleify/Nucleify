@@ -2,14 +2,14 @@
 
 use App\Models\User;
 
-it('creates record successfully', function () {
+it('can create record', function () {
     $user = User::factory()->create();
 
     $this->assertDatabaseCount('users', 1);
     $this->assertDatabaseHas('users', ['id' => $user->id]);
 });
 
-it('creates multiple records successfully', function () {
+it('can create multiple records', function () {
     $users = User::factory()->count(3)->create();
 
     $this->assertDatabaseCount('users', 3);

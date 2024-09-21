@@ -1,48 +1,68 @@
 <?php
 
-
-describe('405 > UnAuth', function () {
-    /**
-     * UNAUTHORIZED TESTS
-     */
-    test('unauthorized invalid method put on index api', function () {
+describe('405 > Method Not Allowed > Unauthorized', function () {
+    test('invalid method put with parameter > index api', function () {
         $this->put(route('contacts.index', 1))
             ->assertStatus(405);
     });
-    test('unauthorized invalid method put json on index api', function () {
+    test('invalid method put json with parameter > index api', function () {
         $this->putJson(route('contacts.index', 1))
             ->assertStatus(405);
     });
-    test('unauthorized invalid method delete on index api', function () {
+    test('invalid method delete with parameter > index api', function () {
         $this->delete(route('contacts.index', 1))
             ->assertStatus(405);
     });
-    test('unauthorized invalid method delete json on index api', function () {
+    test('invalid method delete json with parameter > index api', function () {
         $this->deleteJson(route('contacts.index', 1))
             ->assertStatus(405);
     });
-    test('unauthorized invalid method post json on show api', function () {
+    test('invalid method post json with parameter > show api', function () {
         $this->postJson(route('contacts.show', 1))
             ->assertStatus(405);
     });
-    test('unauthorized invalid method put json on post api', function () {
+    test('invalid method put json with parameter > post api', function () {
         $this->putJson(route('contacts.store', 1))
             ->assertStatus(405);
     });
-    test('unauthorized invalid method delete json on post api', function () {
+    test('invalid method delete json with parameter > post api', function () {
         $this->deleteJson(route('contacts.store', 1))
             ->assertStatus(405);
     });
-    test('unauthorized invalid method post json on update api', function () {
+    test('invalid method post json with parameter > update api', function () {
         $this->postJson(route('contacts.update', 1))
             ->assertStatus(405);
     });
-    test('unauthorized invalid method post on delete api', function () {
+    test('invalid method post with parameter > delete api', function () {
         $this->post(route('contacts.destroy', 1))
             ->assertStatus(405);
     });
-    test('unauthorized invalid method post json on delete api', function () {
+    test('invalid method post json with parameter > delete api', function () {
         $this->postJson(route('contacts.destroy', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method put without parameter > index api', function () {
+        $this->put(route('contacts.index'))
+            ->assertStatus(405);
+    });
+    test('invalid method put json without parameter > index api', function () {
+        $this->putJson(route('contacts.index'))
+            ->assertStatus(405);
+    });
+    test('invalid method delete without parameter > index api', function () {
+        $this->delete(route('contacts.index'))
+            ->assertStatus(405);
+    });
+    test('invalid method delete json without parameter > index api', function () {
+        $this->deleteJson(route('contacts.index'))
+            ->assertStatus(405);
+    });
+    test('invalid method put json without parameter > post api', function () {
+        $this->putJson(route('contacts.store'))
+            ->assertStatus(405);
+    });
+    test('invalid method delete json without parameter > post api', function () {
+        $this->deleteJson(route('contacts.store'))
             ->assertStatus(405);
     });
 });

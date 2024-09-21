@@ -10,26 +10,26 @@ afterAll(function () {
     artisan('migrate:fresh');
 });
 
-it('successfully runs an artisan migrate command', function () {
+it('can run artisan migrate command', function () {
     Artisan::call(ArtisanCommand::class, ['code' => 'Artisan::call("migrate")']);
 
     expect(Schema::hasTable('users'))->toBeTrue();
 });
 
-it('successfully runs an artisan migrate:fresh command', function () {
+it('can run artisan migrate:fresh command', function () {
     Artisan::call(ArtisanCommand::class, ['code' => 'Artisan::call("migrate:fresh")']);
 
     expect(Schema::hasTable('users'))->toBeTrue();
 });
 
-it('successfully runs an artisan migrate:fresh --seed command', function () {
+it('can run artisan migrate:fresh --seed command', function () {
     Artisan::call(ArtisanCommand::class, ['code' => 'Artisan::call("migrate:fresh --seed")']);
 
     expect(Schema::hasTable('migrations'))->toBeTrue()
         ->and(DB::table('users')->count())->toBeGreaterThan(0);
 });
 
-it('handles and reports errors correctly during command execution', function () {
+it('can handle and report errors during command execution', function () {
     Artisan::call(ArtisanCommand::class, ['code' => 'undefinedFunction()']);
 
     $output = Artisan::output();

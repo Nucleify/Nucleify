@@ -16,28 +16,28 @@ it('can be created', function () {
 });
 
 describe('Instance', function () {
-    test('can get the id', function () {
+    test('can get id', function () {
         $article = Article::factory()->create();
 
         expect($article->getId())->toBeInt()
             ->and($article->getId())->toBe($article->id);
     });
 
-    test('can get the title', function () {
+    test('can get title', function () {
         $article = Article::factory()->create(['title' => $this->title]);
 
         expect($article->getTitle())->toBeString()
             ->and($article->getTitle())->toBe($this->title);
     });
 
-    test('can get the description', function () {
+    test('can get description', function () {
         $article = Article::factory()->create(['description' => $this->description]);
 
         expect($article->getDescription())->toBeString()
             ->and($article->getDescription())->toBe($this->description);
     });
 
-    test('can get the category', function () {
+    test('can get category', function () {
         $article = Article::factory()->create(['category' => $this->category]);
 
         expect($article->getCategory())->toBeString()
@@ -50,14 +50,14 @@ describe('Instance', function () {
         expect($article->getCategory())->toBeNull();
     });
 
-    test('can get the created_at date', function () {
+    test('can get created_at date', function () {
         $article = Article::factory()->create();
 
         expect($article->getCreatedAt())->toBeString()
             ->and($article->getCreatedAt())->toBe($article->created_at->toDateTimeString());
     });
 
-    test('can get the updated_at date', function () {
+    test('can get updated_at date', function () {
         $article = Article::factory()->create();
 
         expect($article->getUpdatedAt())->toBeString()

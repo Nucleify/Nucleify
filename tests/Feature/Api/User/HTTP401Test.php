@@ -1,8 +1,8 @@
 <?php
 
 
-describe('401', function () {
-    test('unauthorized index api', apiTest(
+describe('401 > Unauthorized', function () {
+    test('index api', apiTest(
         'GET',
         'users.index',
         401,
@@ -11,7 +11,7 @@ describe('401', function () {
         ['message' => 'Unauthenticated.']
     ));
 
-    test('unauthorized show api', apiTest(
+    test('show api', apiTest(
         'SHOW',
         'users.show',
         401,
@@ -20,7 +20,7 @@ describe('401', function () {
         ['message' => 'Unauthenticated.']
     ));
 
-    test('unauthorized store api with data', apiTest(
+    test('store api with data', apiTest(
         'POST',
         'users.store',
         401,
@@ -29,7 +29,7 @@ describe('401', function () {
         ['message' => 'Unauthenticated.']
     ));
 
-    test('unauthorized store api empty json', apiTest(
+    test('store api empty json', apiTest(
         'POST',
         'users.store',
         401,
@@ -38,7 +38,7 @@ describe('401', function () {
         ['message' => 'Unauthenticated.']
     ));
 
-    test('unauthorized update api with data', apiTest(
+    test('update api with data', apiTest(
         'PUT',
         'users.update',
         401,
@@ -47,7 +47,7 @@ describe('401', function () {
         ['message' => 'Unauthenticated.']
     ));
 
-    test('unauthorized update api empty json', apiTest(
+    test('update api empty json', apiTest(
         'PUT',
         'users.update',
         401,
@@ -56,7 +56,7 @@ describe('401', function () {
         ['message' => 'Unauthenticated.']
     ));
 
-    test('unauthorized destroy api', apiTest(
+    test('destroy api', apiTest(
         'DELETE',
         'users.destroy',
         401,
