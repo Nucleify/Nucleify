@@ -4,6 +4,9 @@ use App\Models\Article;
 
 beforeEach(function () {
     $this->createUsers();
+    $this->title = 'Title';
+    $this->description = 'Description';
+    $this->category = 'Category';
 });
 
 it('can be created', function () {
@@ -21,24 +24,24 @@ describe('Instance', function () {
     });
 
     test('can get the title', function () {
-        $article = Article::factory()->create(['title' => 'Title']);
+        $article = Article::factory()->create(['title' => $this->title]);
 
         expect($article->getTitle())->toBeString()
-            ->and($article->getTitle())->toBe('Title');
+            ->and($article->getTitle())->toBe($this->title);
     });
 
     test('can get the description', function () {
-        $article = Article::factory()->create(['description' => 'Description']);
+        $article = Article::factory()->create(['description' => $this->description]);
 
         expect($article->getDescription())->toBeString()
-            ->and($article->getDescription())->toBe('Description');
+            ->and($article->getDescription())->toBe($this->description);
     });
 
     test('can get the category', function () {
-        $article = Article::factory()->create(['category' => 'Category']);
+        $article = Article::factory()->create(['category' => $this->category]);
 
         expect($article->getCategory())->toBeString()
-            ->and($article->getCategory())->toBe('Category');
+            ->and($article->getCategory())->toBe($this->category);
     });
 
     test('can get null for category if not set', function () {
@@ -73,33 +76,30 @@ describe('Scope', function () {
     });
 
     test('can filter by title using scopeGetTitle', function () {
-        $title = 'Title';
-        Article::factory()->create(['title' => $title]);
+        Article::factory()->create(['title' => $this->title]);
 
-        $foundArticle = Article::getByTitle($title)->first();
+        $foundArticle = Article::getByTitle($this->title)->first();
 
         expect($foundArticle)->not->toBeNull()
-            ->and($foundArticle->title)->toBe($title);
+            ->and($foundArticle->title)->toBe($this->title);
     });
 
     test('can filter by description using scopeGetDescription', function () {
-        $description = 'Description';
-        Article::factory()->create(['description' => $description]);
+        Article::factory()->create(['description' => $this->description]);
 
-        $foundArticle = Article::getByDescription($description)->first();
+        $foundArticle = Article::getByDescription($this->description)->first();
 
         expect($foundArticle)->not->toBeNull()
-            ->and($foundArticle->description)->toBe($description);
+            ->and($foundArticle->description)->toBe($this->description);
     });
 
     test('can filter by category using scopeGetCategory', function () {
-        $category = 'Technology';
-        Article::factory()->create(['category' => $category]);
+        Article::factory()->create(['category' => $this->category]);
 
-        $foundArticle = Article::getByCategory($category)->first();
+        $foundArticle = Article::getByCategory($this->category)->first();
 
         expect($foundArticle)->not->toBeNull()
-            ->and($foundArticle->category)->toBe($category);
+            ->and($foundArticle->category)->toBe($this->category);
     });
 
     test('can filter by created_at using scopeGetCreatedAt', function () {
