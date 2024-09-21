@@ -2,7 +2,7 @@
     <overlay-panel-organism
         dismissable
         show-close-icon
-        :button-class="['overlayPanelToggle', positionClass]"
+        :button-class="'overlayPanelToggle ' + positionClass"
         :button-style="{ height: 18, width: 18 }"
         :overlay-panel-class="positionClass"
     >
@@ -65,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, Ref, ref, watch, computed } from 'vue'
+import { onMounted, ref, watch, computed } from 'vue'
 
 import { useIsAdmin } from '@/utils'
 import { dockItems, positions } from 'atomic/bosons/constants'
@@ -75,7 +75,7 @@ import { setColorsVariables } from 'atomic/bosons/utils'
 const LOCAL_STORAGE_KEY = 'dockPosition'
 
 const position = ref<PositionType>('bottom')
-let isAdmin: Ref<boolean> = ref(false)
+let isAdmin = false
 
 const positionClass = computed(() => {
     switch (position.value) {
@@ -108,10 +108,9 @@ onMounted(async () => {
 
     const { isAdmin: isAdminStatus } = await useIsAdmin()
 
-    // eslint-disable-next-line
     isAdmin = isAdminStatus
 
-    if (isAdmin.value) {
+    if (isAdmin) {
         dockItems.value.splice(1, 0, {
             label: 'Admin Panel',
             icon: 'pi pi-user-edit',

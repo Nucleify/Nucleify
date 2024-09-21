@@ -6,7 +6,6 @@ import {
 import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface OverlayPanelInterface {
-    ref?: string
     dismissable?: boolean
     showCloseIcon?: boolean
     appendTo?: HTMLElement | HintedString<'body' | 'self'>
