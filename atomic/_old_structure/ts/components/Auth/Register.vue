@@ -55,9 +55,15 @@
 </template>
 
 <script setup lang="ts">
-import { checkIsEmpty, checkPasswordsMatch, useAuthForm } from 'atomic/bosons/utils'
+import { onMounted } from 'vue'
+
+import { checkIsEmpty, checkPasswordsMatch, useAuthForm, useColors } from 'atomic/bosons/utils'
 
 const { submitForm, registerFields, registerInputs } = useAuthForm()
+const { setDefaultColors } = useColors()
 
-checkPasswordsMatch(registerFields.value.password, registerFields.value.password_confirmation)
+onMounted(() => {
+    setDefaultColors(true)
+    checkPasswordsMatch(registerFields.value.password, registerFields.value.password_confirmation)
+})
 </script>

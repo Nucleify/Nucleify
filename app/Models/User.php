@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Contracts\UserShouldReceiveFields;
 use DateTime;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -30,6 +31,17 @@ use Laravel\Sanctum\HasApiTokens;
  * @property bool isTestAdmin
  * @property bool isAdmin
  * @property bool isSuperAdmin
+ * @property Builder scopeGetById
+ * @property Builder scopeGetByName
+ * @property Builder scopeGetByEmail
+ * @property Builder scopeGetByRole
+ * @property Builder scopeGetByCreatedAt
+ * @property Builder scopeGetByUpdatedAt
+ * @property Builder scopeGetByUserRole
+ * @property Builder scopeGetByTechRole
+ * @property Builder scopeGetByTestAdminRole
+ * @property Builder scopeGetByAdminRole
+ * @property Builder scopeGetBySuperAdminRole
  * @property HasMany contacts
  * @property void createContactFromUserDetails
  */
@@ -60,6 +72,9 @@ class User extends Authenticatable implements UserShouldReceiveFields
         'password' => 'hashed',
     ];
 
+    /**
+     *  Instance methods
+     */
     public function getId(): int
     {
         return $this->id;
@@ -84,8 +99,6 @@ class User extends Authenticatable implements UserShouldReceiveFields
     {
         return $this->updated_at;
     }
-
-    // AUTH METHODS
     public function isUser(): bool
     {
         return $this->role === 'user';
@@ -105,6 +118,54 @@ class User extends Authenticatable implements UserShouldReceiveFields
     public function isSuperAdmin(): bool
     {
         return $this->role === 'super_admin';
+    }
+
+    /**
+     *  Scope methods
+     */
+    public function scopeGetById(Builder $query, int $id): Builder
+    {
+        return $query->where('id', $id);
+    }
+    public function scopeGetByName(Builder $query, string $name): Builder
+    {
+        return $query->where('name', $name);
+    }
+    public function scopeGetByEmail(Builder $query, string $email): Builder
+    {
+        return $query->where('email', $email);
+    }
+    public function scopeGetByRole(Builder $query, string $role): Builder
+    {
+        return $query->where('role', $role);
+    }
+    public function scopeGetByCreatedAt(Builder $query, string $createdAt): Builder
+    {
+        return $query->whereDate('created_at', $createdAt);
+    }
+    public function scopeGetByUpdatedAt(Builder $query, string $updatedAt): Builder
+    {
+        return $query->whereDate('updated_at', $updatedAt);
+    }
+    public function scopeGetByUserRole(Builder $query): Builder
+    {
+        return $query->where('role', 'user');
+    }
+    public function scopeGetByTechRole(Builder $query): Builder
+    {
+        return $query->where('role', 'tech');
+    }
+    public function scopeGetByTestAdminRole(Builder $query): Builder
+    {
+        return $query->where('role', 'test_admin');
+    }
+    public function scopeGetByAdminRole(Builder $query): Builder
+    {
+        return $query->where('role', 'admin');
+    }
+    public function scopeGetBySuperAdminRole(Builder $query): Builder
+    {
+        return $query->where('role', 'super_admin');
     }
 
     /**

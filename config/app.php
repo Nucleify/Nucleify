@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'ContactBook'),
+    'name' => env('APP_NAME', 'DataManager'),
 
     /*
     |--------------------------------------------------------------------------

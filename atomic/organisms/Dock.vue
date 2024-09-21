@@ -1,4 +1,17 @@
 <template>
+    <overlay-panel-organism
+        dismissable
+        show-close-icon
+        :button-class="'overlayPanelToggle ' + positionClass"
+        :button-style="{ height: 18, width: 18 }"
+        :overlay-panel-class="positionClass"
+    >
+        <terminal-organism
+            prompt="artisan >"
+            welcome-message="The ''help'' command displays help"
+        />
+    </overlay-panel-organism>
+
     <Dock :model="dockItems" :position="position" class="dock">
         <template #icon="{ item }">
             <div v-if="item.logo">
@@ -30,7 +43,7 @@
             <icon-atom
                 v-if="item.icon || item.url"
                 :icon="item.icon"
-                class="item plasmaItem"
+                class="item"
                 @click="item.click"
                 :url="'/' + item.url"
                 :type="item.url"
@@ -52,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, Ref, ref, watch } from 'vue'
+import { onMounted, ref, watch, computed } from 'vue'
 
 import { useIsAdmin } from '@/utils'
 import { dockItems, positions } from 'atomic/bosons/constants'
@@ -62,7 +75,22 @@ import { setColorsVariables } from 'atomic/bosons/utils'
 const LOCAL_STORAGE_KEY = 'dockPosition'
 
 const position = ref<PositionType>('bottom')
-let isAdmin: Ref<boolean> = ref(false)
+let isAdmin = false
+
+const positionClass = computed(() => {
+    switch (position.value) {
+        case 'top':
+            return 'top'
+        case 'right':
+            return 'right'
+        case 'bottom':
+            return 'bottom'
+        case 'left':
+            return 'left'
+        default:
+            return ''
+    }
+})
 
 function setDockPositionForScreenSize() {
     if (window.innerWidth == 992) {
@@ -80,10 +108,9 @@ onMounted(async () => {
 
     const { isAdmin: isAdminStatus } = await useIsAdmin()
 
-    // eslint-disable-next-line
     isAdmin = isAdminStatus
 
-    if (isAdmin.value) {
+    if (isAdmin) {
         dockItems.value.splice(1, 0, {
             label: 'Admin Panel',
             icon: 'pi pi-user-edit',

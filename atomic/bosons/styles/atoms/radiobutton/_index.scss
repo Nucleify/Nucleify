@@ -13,6 +13,6 @@
         .dockPositionButtons
         div[v-type='#{$type}']
         input[type='radio']:checked {
-        @include dock-radiobutton-styles(var(--#{$type}-item-light-color-new));
+        @include dock-radiobutton-styles(var(--#{$type}-item-color-new));
     }
 }

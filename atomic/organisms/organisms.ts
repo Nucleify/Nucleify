@@ -1,6 +1,15 @@
 import { App } from 'vue'
 
-import { Chart, DataTable, DataTableSkeleton, Dialog, Dock, Password } from './'
+import {
+    Chart,
+    DataTable,
+    DataTableSkeleton,
+    Dialog,
+    Dock,
+    OverlayPanel,
+    Password,
+    Terminal,
+} from './'
 
 export default function registerOrganisms(app: App<Element>): void {
     app
@@ -26,7 +35,17 @@ export default function registerOrganisms(app: App<Element>): void {
         .component('dock-organism', Dock)
 
         /**
+         *  OverlayPanel
+         */
+        .component('overlay-panel-organism', OverlayPanel)
+
+        /**
          *  Password
          */
         .component('password-organism', Password)
+
+        /**
+         *
+         */
+        .component('terminal-organism', Terminal)
 }
