@@ -14,6 +14,9 @@ case "$CURRENT_BRANCH" in
     docker)
         FINAL_MSG="Docker: $ORIGINAL_MSG"
         ;;
+    home)
+        FINAL_MSG="Home: $ORIGINAL_MSG"
+        ;;
     packages)
         FINAL_MSG="Packages: $ORIGINAL_MSG"
         ;;

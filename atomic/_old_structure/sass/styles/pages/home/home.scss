@@ -39,3 +39,9 @@
         padding-top: $home-container-padding-top-2xl;
     }
 }
+
+div[data-pc-name='deferredcontent'] {
+    margin-top: -200px;
+    padding-top: 200px;
+    z-index: -1
+}

@@ -15,26 +15,28 @@
     background: $home-charts-container-background;
 
     .homeChartCard {
+        position: relative;
         display: $home-chart-card-display;
         justify-content: $home-chart-card-justify-content;
-        height: $home-chart-card-height;
-        width: $home-chart-card-width;
-        max-height: $home-chart-card-max-height;
-        max-width: $home-chart-card-max-width;
-        padding: $home-chart-card-padding;
+        height: 100%;
+        max-height: 360px;
+        width: 100%;
+        max-width: 600px;
+        padding: 35px 15px;
+        margin-bottom: -30px;
 
         .homePieChart {
+            position: absolute;
+            bottom: 135px;
+            right: 10px;
             z-index: $home-pie-chart-z-index;
-            position: $home-pie-chart-position;
-            bottom: $home-pie-chart-bottom;
-            left: $home-pie-chart-left;
             width: $home-pie-chart-width;
             height: $home-pie-chart-height;
-            margin-right: $home-pie-chart-margin-right;
         }
 
-        .homeHorizontalChart {
-            height: $home-horizontal-chart-height;
+        .homeVerticalChart>canvas {
+            height: 300px !important;
+            width: 100% !important;
         }
     }
 
@@ -58,5 +60,9 @@
     // Min width 992px
     @media (min-width: $min-width-lg2) {
         flex-direction: $home-charts-container-flex-direction-lg2;
+
+        .homeChartCard {
+            padding: 35px;
+        }
     }
 }
