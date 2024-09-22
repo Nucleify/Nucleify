@@ -42,7 +42,7 @@ describe('Instance', function () {
             ->and($contact->role)->toBe($user->getRole());
     });
 
-    test('can get ID', function () {
+    test('can get id', function () {
         $user = User::factory()->create();
 
         expect($user->getId())->toBeInt()

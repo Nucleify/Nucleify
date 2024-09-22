@@ -12,4 +12,3 @@ it('can be created', function () {
 
     expect($activity)->toBeInstanceOf(Activity::class);
 });
-

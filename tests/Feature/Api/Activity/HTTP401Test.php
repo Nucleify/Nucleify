@@ -1,8 +1,7 @@
 <?php
 
-
-describe('401', function () {
-    test('unauthorized index api', apiTest(
+describe('401 > Unauthorized', function () {
+    test('index api', apiTest(
         'GET',
         'activity-log.index',
         401,
@@ -11,7 +10,7 @@ describe('401', function () {
         ['message' => 'Unauthenticated.']
     ));
 
-    test('unauthorized show api', apiTest(
+    test('show api', apiTest(
         'SHOW',
         'activity-log.show',
         401,
@@ -20,7 +19,7 @@ describe('401', function () {
         ['message' => 'Unauthenticated.']
     ));
 
-    test('unauthorized destroy api', apiTest(
+    test('destroy api', apiTest(
         'DELETE',
         'activity-log.destroy',
         401,

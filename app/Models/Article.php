@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Contracts\ArticleShouldReceiveFields;
+use App\Contracts\ArticleContract;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Builder scopeGetByCreatedAt
  * @property Builder scopeGetByUpdatedAt
  */
-class Article extends Model implements ArticleShouldReceiveFields
+class Article extends Model implements ArticleContract
 {
     use HasFactory;
 

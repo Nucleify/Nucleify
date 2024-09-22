@@ -21,14 +21,14 @@ it('can be created', function () {
 });
 
 describe('Instance', function () {
-    test('can get the id', function () {
+    test('can get id', function () {
         $contact = Contact::factory()->create();
 
         expect($contact->getId())->toBeInt()
             ->and($contact->getId())->toBe($contact->id);
     });
 
-    test('can get the user id', function () {
+    test('can get user id', function () {
         $userId = 1;
         $contact = Contact::factory()->create(['user_id' => $userId]);
 
@@ -36,14 +36,14 @@ describe('Instance', function () {
             ->and($contact->getUserId())->toBe($userId);
     });
 
-    test('can get the first name', function () {
+    test('can get first name', function () {
         $contact = Contact::factory()->create(['first_name' => $this->firstName]);
 
         expect($contact->getFirstName())->toBeString()
             ->and($contact->getFirstName())->toBe($this->firstName);
     });
 
-    test('can get the last name', function () {
+    test('can get last name', function () {
         $contact = Contact::factory()->create(['last_name' => $this->lastName]);
 
         expect($contact->getLastName())->toBeString()
@@ -57,42 +57,42 @@ describe('Instance', function () {
             ->and($contact->getFullName())->toBe($this->firstName . ' ' . $this->lastName);
     });
 
-    test('can get the email', function () {
+    test('can get email', function () {
         $contact = Contact::factory()->create(['email' => $this->email]);
 
         expect($contact->getEmail())->toBeString()
             ->and($contact->getEmail())->toBe($this->email);
     });
 
-    test('can get the personal phone', function () {
+    test('can get personal phone', function () {
         $contact = Contact::factory()->create(['personal_phone' => $this->personalPhone]);
 
         expect($contact->getPersonalPhone())->toBeString()
             ->and($contact->getPersonalPhone())->toBe($this->personalPhone);
     });
 
-    test('can get the work phone', function () {
+    test('can get work phone', function () {
         $contact = Contact::factory()->create(['work_phone' => $this->workPhone]);
 
         expect($contact->getWorkPhone())->toBeString()
             ->and($contact->getWorkPhone())->toBe($this->workPhone);
     });
 
-    test('can get the address', function () {
+    test('can get address', function () {
         $contact = Contact::factory()->create(['address' => $this->address]);
 
         expect($contact->getAddress())->toBeString()
             ->and($contact->getAddress())->toBe($this->address);
     });
 
-    test('can get the birthday', function () {
+    test('can get birthday', function () {
         $contact = Contact::factory()->create(['birthday' => $this->birthday]);
 
         expect($contact->getBirthday())->toBeString()
             ->and($contact->getBirthday())->toBe($this->birthday);
     });
 
-    test('can get the role', function () {
+    test('can get role', function () {
         $contact = Contact::factory()->create(['role' => $this->role]);
 
         expect($contact->getRole())->toBeString()

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Contracts\UserShouldReceiveFields;
+use App\Contracts\UserContract;
 use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,7 +46,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property void createContactFromUserDetails
  */
 
-class User extends Authenticatable implements UserShouldReceiveFields
+class User extends Authenticatable implements UserContract
 {
     use HasApiTokens, HasFactory, Friendable, Notifiable;
 

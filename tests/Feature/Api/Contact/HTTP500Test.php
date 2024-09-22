@@ -11,8 +11,8 @@ beforeEach(function () {
     $this->service = mock(ContactService::class);
 });
 
-describe('500', function() {
-    it('index api', function () {
+describe('500 > Internal Server Error', function($contactData = contactData)  {
+    test('index api', function () {
         $this->service
             ->shouldReceive('getAll')
             ->once()
@@ -24,7 +24,7 @@ describe('500', function() {
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
-    it('show api', function () {
+    test('show api', function () {
         $this->service
             ->shouldReceive('getById')
             ->with(1)
@@ -37,7 +37,7 @@ describe('500', function() {
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
-    it('store api', function () {
+    test('store api', function () {
         $this->service
             ->shouldReceive('create')
             ->once()
@@ -49,7 +49,7 @@ describe('500', function() {
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
-    it('update api', function () {
+    test('update api', function () {
         $this->service
             ->shouldReceive('update')
             ->with(1, Mockery::any())
@@ -62,7 +62,7 @@ describe('500', function() {
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
-    it('destroy api', function () {
+    test('destroy api', function () {
         $contact = Contact::factory()->create();
 
         $this->service
@@ -76,4 +76,32 @@ describe('500', function() {
         $response->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
+
+
+    /**
+     *  CONTACT GROUPS TESTS
+     */
+    $contactData['contact_groups'] = 1;
+    test('invalid contact_groups positive > integer', apiTest(
+        'POST',
+        'contacts.store',
+        500,
+        $contactData
+    ));
+
+    $contactData['contact_groups'] = -1;
+    test('invalid contact_groups negative > integer', apiTest(
+        'POST',
+        'contacts.store',
+        500,
+        $contactData
+    ));
+
+    $contactData['contact_groups'] = true;
+    test('invalid contact_groups > true', apiTest(
+        'POST',
+        'contacts.store',
+        500,
+        $contactData
+    ));
 });

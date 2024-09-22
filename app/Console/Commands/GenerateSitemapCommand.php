@@ -8,7 +8,7 @@ use Spatie\Sitemap\Tags\Url;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
 
-class GenerateSitemap extends Command
+class GenerateSitemapCommand extends Command
 {
     /**
      * The name and signature of the console command.

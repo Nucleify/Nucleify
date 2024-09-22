@@ -7,7 +7,7 @@ beforeEach(function () {
     removeSitemap();
 });
 
-it('generates the sitemap successfully', function () {
+it('can run sitemap:generate successfully', function () {
     $this->assertFalse(File::exists(public_path('sitemap.xml')));
 
     Artisan::call('sitemap:generate');

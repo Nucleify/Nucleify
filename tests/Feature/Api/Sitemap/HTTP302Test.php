@@ -1,7 +1,7 @@
 <?php
 
-describe('302', function () {
-    test('authorized generates a sitemap via API', function () {
+describe('30 > Redirect > Unauthorized', function () {
+    test('sitemap generate api', function () {
         $response = $this->get(route('sitemap.generate'));
 
         $response->assertStatus(302);

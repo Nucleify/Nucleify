@@ -30,12 +30,12 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         ->beforeEach(function () {
             $this->artisan('migrate:fresh');
         })
-        ->in('Feature', 'Unit', 'Global');
+        ->in('Feature', 'Database', 'Global');
 } else {
     uses(
         Tests\TestCase::class,
     )
-        ->in('Feature', 'Unit');
+        ->in('Feature', 'Database');
     uses(
         RefreshDatabase::class
     )
@@ -64,7 +64,7 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             // Sitemap API
             'Feature/Api/Sitemap',
 
-            'Unit/Models'
+            'Database/Models'
         );
 
     uses(
@@ -91,10 +91,12 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/User/HTTP200Test.php',
             'Feature/Api/User/HTTP500Test.php',
 
-            'Feature/Database/Factories',
-            'Feature/Database/Migrations',
-            'Unit/Controllers',
-            'Unit/Services'
+
+            'Database/Factories',
+            'Database/Migrations',
+
+            'Feature/Controllers',
+            'Feature/Services'
         );
 }
 
@@ -176,8 +178,9 @@ function removeSitemap() {
     }
 }
 
-// TESTS GROUPS
-
+/**
+ *  Feature groups
+ */
 uses()
     ->group('api')
     ->in('Feature/Api');
@@ -215,33 +218,32 @@ uses()
     ->in('Global');
 
 uses()
-    ->group('unit')
-    ->in('Unit');
-
-uses()
     ->group('commands')
     ->in('Feature/Commands');
 
 uses()
     ->group('controllers')
-    ->in('Unit/Controllers');
+    ->in('Feature/Controllers');
 
 uses()
     ->group('services')
-    ->in('Unit/Services');
+    ->in('Feature/Services');
 
+/**
+ *  Database groups
+ */
 uses()
     ->group('database')
-    ->in('Feature/Database');
-
-uses()
-    ->group('factories')
-    ->in('Feature/Database/Factories');
-
-uses()
-    ->group('migrations')
-    ->in('Feature/Database/Migrations');
+    ->in('Database');
 
 uses()
     ->group('models')
-    ->in('Unit/Models');
+    ->in('Database/Models');
+
+uses()
+    ->group('migrations')
+    ->in('Database/Migrations');
+
+uses()
+    ->group('factories')
+    ->in('Database/Factories');
