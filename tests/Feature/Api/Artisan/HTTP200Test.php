@@ -10,8 +10,8 @@ beforeEach(function () {
     $this->actingAs($this->admin);
 });
 
-describe('200', function () {
-    it('runs tinker command activity log factory successfully', function () {
+describe('200 > Authorized', function () {
+    it('can run tinker command activity log factory', function () {
         $response = $this->postJson(route('artisan.run'), ['command' => 'tinker --execute ActivityFactory::new()->count(100)->create()']);
 
         $response->assertStatus(200)
@@ -22,7 +22,7 @@ describe('200', function () {
         $this->assertGreaterThanOrEqual(100, Activity::count());
     });
 
-    it('runs tinker command articles factory successfully', function () {
+    it('can run tinker command articles factory', function () {
         $response = $this->postJson(route('artisan.run'), ['command' => 'tinker --execute Article::factory(100)->create()']);
 
         $response->assertStatus(200)
@@ -33,7 +33,7 @@ describe('200', function () {
         $this->assertGreaterThanOrEqual(100, Article::count());
     });
 
-    it('runs tinker command contacts factory successfully', function () {
+    it('can run tinker command contacts factory', function () {
         $response = $this->postJson(route('artisan.run'), ['command' => 'tinker --execute Contact::factory(100)->create()']);
 
         $response->assertStatus(200)
@@ -44,7 +44,7 @@ describe('200', function () {
         $this->assertGreaterThanOrEqual(100, Contact::count());
     });
 
-    it('runs tinker command users factory successfully', function () {
+    it('can run tinker command users factory', function () {
         $response = $this->postJson(route('artisan.run'), ['command' => 'tinker --execute User::factory(100)->create()']);
 
         $response->assertStatus(200)
@@ -56,7 +56,7 @@ describe('200', function () {
     });
 
 
-    it('runs migrate:rollback command successfully', function () {
+    it('can run migrate:rollback command', function () {
         $response = $this->postJson(route('artisan.run'), ['command' => 'migrate:rollback']);
 
         $response->assertStatus(200)
@@ -65,7 +65,7 @@ describe('200', function () {
             ]);
     });
 
-    it('runs migrate command successfully', function () {
+    it('can run migrate command', function () {
         $response = $this->postJson(route('artisan.run'), ['command' => 'migrate']);
 
         $response->assertStatus(200)
@@ -74,7 +74,7 @@ describe('200', function () {
             ]);
     });
 
-    it('runs migrate:fresh command successfully', function () {
+    it('can run migrate:fresh command', function () {
         $response = $this->postJson(route('artisan.run'), ['command' => 'migrate:fresh']);
 
         $response->assertStatus(200)
@@ -83,7 +83,7 @@ describe('200', function () {
             ]);
     });
 
-    it('runs migrate:fresh --seed command successfully', function () {
+    it('can run migrate:fresh --seed command', function () {
         $response = $this->postJson(route('artisan.run'), ['command' => 'migrate:fresh --seed']);
 
         $response->assertStatus(200)

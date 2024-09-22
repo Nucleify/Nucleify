@@ -3,7 +3,7 @@
 namespace App\Contracts;
 
 
-interface UserShouldReceiveFields
+interface UserContract
 {
     public function getId(): int;
     public function getName(): string;

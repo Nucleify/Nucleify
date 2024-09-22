@@ -11,7 +11,7 @@ beforeEach(function () {
     $this->service = mock(UserService::class);
 });
 
-describe('500', function() {
+describe('500 > Internal Server Error', function() {
     it('index api', function () {
         $this->service
             ->shouldReceive('getAll')

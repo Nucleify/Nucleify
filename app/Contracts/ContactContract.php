@@ -3,7 +3,7 @@
 namespace App\Contracts;
 
 
-interface ContactShouldReceiveFields
+interface ContactContract
 {
     public function getId(): int;
     public function getUserId(): int;
