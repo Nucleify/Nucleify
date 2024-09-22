@@ -10,8 +10,8 @@
                 <chart-organism
                     :chart-method-type="'annual'"
                     :type="'bar'"
-                    :chart-class="'homeHorizontalChart'"
-                    :direction="'horizontal'"
+                    :chart-class="'homeVerticalChart'"
+                    :direction="'vertical'"
                     :example="true"
                 />
                 <chart-organism
