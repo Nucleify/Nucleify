@@ -31,28 +31,24 @@
                             class="nav-link homeNavLink -mt-1 md:mt-0"
                             href="#start"
                             @click="throttleHideNavbar"
-                            icon="pi pi-bolt homeNavLinkIcon"
                             label="Start"
                         />
                         <anchor-molecule
                             class="nav-link homeNavLink"
                             href="#features"
                             @click="throttleHideNavbar"
-                            icon="pi pi-star homeNavLinkIcon"
                             label="Features"
                         />
                         <anchor-molecule
                             class="nav-link homeNavLink"
                             href="#why-us"
                             @click="throttleHideNavbar"
-                            icon="pi pi-question homeNavLinkIcon"
                             label="Why Us"
                         />
                         <anchor-molecule
                             class="nav-link homeNavLink"
                             href="#contact"
                             @click="throttleHideNavbar"
-                            icon="pi pi-envelope homeNavLinkIcon"
                             label="Contact"
                         />
                     </div>
