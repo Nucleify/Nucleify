@@ -7,19 +7,21 @@
         />
         <Card unstyled class="myCard homeChartCard">
             <template #content>
-                <chart-organism
-                    :chart-method-type="'annual'"
-                    :type="'bar'"
-                    :chart-class="'homeVerticalChart'"
-                    :direction="'vertical'"
-                    :example="true"
-                />
-                <chart-organism
-                    :chart-method-type="'count'"
-                    :type="'pie'"
-                    :chart-class="'homePieChart'"
-                    :example="true"
-                />
+                <DeferredContent>
+                    <chart-organism
+                        :chart-method-type="'annual'"
+                        :type="'bar'"
+                        :chart-class="'homeVerticalChart'"
+                        :direction="'vertical'"
+                        :example="true"
+                    />
+                    <chart-organism
+                        :chart-method-type="'count'"
+                        :type="'pie'"
+                        :chart-class="'homePieChart'"
+                        :example="true"
+                    />
+                </DeferredContent>
             </template>
         </Card>
     </div>

@@ -5,14 +5,13 @@
         :target="props.target"
         :style="props.style"
     >
-        <slot>
-            <icon-atom :icon="props.icon" />
-            <label-atom
-                v-if="props.label"
-                :label="props.label"
-                :style="{ cursor: 'pointer' }"
-            />
-        </slot>
+        <slot />
+        <icon-atom :icon="props.icon" />
+        <label-atom
+            v-if="props.label"
+            :label="props.label"
+            :style="{ cursor: 'pointer' }"
+        />
     </a>
 </template>
 

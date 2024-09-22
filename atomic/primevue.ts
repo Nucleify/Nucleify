@@ -11,6 +11,7 @@ import Chart from 'primevue/chart'
 import ColorPicker from 'primevue/colorpicker'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
+import DeferredContent from 'primevue/deferredcontent'
 import Dialog from 'primevue/dialog'
 import Divider from 'primevue/divider'
 import Dock from 'primevue/dock'
@@ -54,6 +55,7 @@ export default function registerPrimeVue(app: App<Element>): void {
         .component('ColorPicker', ColorPicker)
         .component('Column', Column)
         .component('DataTable', DataTable)
+        .component('DeferredContent', DeferredContent)
         .component('Dialog', Dialog)
         .component('Divider', Divider)
         .component('Dock', Dock)
