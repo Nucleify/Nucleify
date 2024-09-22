@@ -30,22 +30,26 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         ->beforeEach(function () {
             $this->artisan('migrate:fresh');
         })
-        ->in('Feature', 'Unit', 'Global');
+        ->in('Feature', 'Database', 'Global');
 } else {
     uses(
         Tests\TestCase::class,
     )
-        ->in('Feature', 'Unit');
+        ->in('Feature', 'Database');
     uses(
         RefreshDatabase::class
     )
         ->in(
-        // Activity API
+            // Activity API
             'Feature/Api/Activity/HTTP401Test.php',
 
             // Article API
             'Feature/Api/Article/HTTP302Test.php',
             'Feature/Api/Article/HTTP422PutTest.php',
+
+            // Artisan API
+            'Feature/Api/Artisan/HTTP405AuthTest.php',
+            'Feature/Api/Artisan/HTTP405UnAuthTest.php',
 
             // Contact API
             'Feature/Api/Contact/HTTP302Test.php',
@@ -60,22 +64,24 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             // Sitemap API
             'Feature/Api/Sitemap',
 
-
-            'Feature/Database/Factories',
-            'Unit/Models'
+            'Database/Models'
         );
 
     uses(
         DatabaseMigrations::class
     )
         ->in(
-        // Activity API
+            // Activity API
             'Feature/Api/Activity/HTTP200Test.php',
 
             // Article API
             'Feature/Api/Article/HTTP200Test.php',
             'Feature/Api/Article/HTTP422PostTest.php',
             'Feature/Api/Article/HTTP500Test.php',
+
+            // Artisan API
+            'Feature/Api/Artisan/HTTP200Test.php',
+            'Feature/Api/Artisan/HTTP500Test.php',
 
             // Contact API
             'Feature/Api/Contact/HTTP200Test.php',
@@ -86,9 +92,11 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/User/HTTP500Test.php',
 
 
-            'Feature/Database/Migrations',
-            'Unit/Controllers',
-            'Unit/Services'
+            'Database/Factories',
+            'Database/Migrations',
+
+            'Feature/Controllers',
+            'Feature/Services'
         );
 }
 
@@ -170,8 +178,9 @@ function removeSitemap() {
     }
 }
 
-// TESTS GROUPS
-
+/**
+ *  Feature groups
+ */
 uses()
     ->group('api')
     ->in('Feature/Api');
@@ -183,6 +192,10 @@ uses()
 uses()
     ->group('article-api')
     ->in('Feature/Api/Article');
+
+uses()
+    ->group('artisan-api')
+    ->in('Feature/Api/Artisan');
 
 uses()
     ->group('user-api')
@@ -205,33 +218,32 @@ uses()
     ->in('Global');
 
 uses()
-    ->group('unit')
-    ->in('Unit');
-
-uses()
     ->group('commands')
     ->in('Feature/Commands');
 
 uses()
     ->group('controllers')
-    ->in('Unit/Controllers');
+    ->in('Feature/Controllers');
 
 uses()
     ->group('services')
-    ->in('Unit/Services');
+    ->in('Feature/Services');
 
+/**
+ *  Database groups
+ */
 uses()
     ->group('database')
-    ->in('Feature/Database');
-
-uses()
-    ->group('factories')
-    ->in('Feature/Database/Factories');
-
-uses()
-    ->group('migrations')
-    ->in('Feature/Database/Migrations');
+    ->in('Database');
 
 uses()
     ->group('models')
-    ->in('Unit/Models');
+    ->in('Database/Models');
+
+uses()
+    ->group('migrations')
+    ->in('Database/Migrations');
+
+uses()
+    ->group('factories')
+    ->in('Database/Factories');

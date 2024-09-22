@@ -5,15 +5,14 @@
          colors="true"
 >
     <testsuites>
-        <!-- Alphabetically -->
-        <testsuite name="Feature">
-            <directory>tests/Feature</directory>
-        </testsuite>
         <testsuite name="Global">
             <directory>tests/Global</directory>
         </testsuite>
-        <testsuite name="Unit">
-            <directory>tests/Unit</directory>
+        <testsuite name="Database">
+            <directory>tests/Database</directory>
+        </testsuite>
+        <testsuite name="Feature">
+            <directory>tests/Feature</directory>
         </testsuite>
     </testsuites>
     <source>

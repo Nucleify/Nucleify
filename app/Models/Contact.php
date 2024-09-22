@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Contracts\ContactShouldReceiveFields;
+use App\Contracts\ContactContract;
 use DateTime;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,6 +25,7 @@ use Illuminate\Notifications\Notifiable;
  * @property DateTime created_at
  * @property DateTime updated_at
  * @property int getId
+ * @property int getUserId
  * @property string getFirstName
  * @property string|null getLastName
  * @property string|null getFullName
@@ -37,9 +39,20 @@ use Illuminate\Notifications\Notifiable;
  * @property string getCreatedAt
  * @property string getUpdatedAt
  * @property BelongsTo user
+ * @property Builder scopeGetByUserId
+ * @property Builder scopeGetByFirstName
+ * @property Builder scopeGetByLastName
+ * @property Builder scopeGetByEmail
+ * @property Builder scopeGetByPersonalPhone
+ * @property Builder scopeGetByWorkPhone
+ * @property Builder scopeGetByAddress
+ * @property Builder scopeGetByBirthday
+ * @property Builder scopeGetByRole
+ * @property Builder scopeGetByCreatedAt
+ * @property Builder scopeGetByUpdatedAt
  */
 
-class Contact extends Model implements ContactShouldReceiveFields
+class Contact extends Model implements ContactContract
 {
     use HasFactory, Notifiable;
 
@@ -66,6 +79,9 @@ class Contact extends Model implements ContactShouldReceiveFields
         'password' => 'hashed',
     ];
 
+    /**
+     *  Instance methods
+     */
     public function getId(): int
     {
         return $this->id;
@@ -121,6 +137,55 @@ class Contact extends Model implements ContactShouldReceiveFields
     public function getUpdatedAt(): string
     {
         return $this->updated_at;
+    }
+
+
+    /**
+     *  Scope methods
+     */
+    public function scopeGetByUserId(Builder $query, int $userId): Builder
+    {
+        return $query->where('user_id', $userId);
+    }
+    public function scopeGetByFirstName(Builder $query, string $firstName): Builder
+    {
+        return $query->where('first_name', $firstName);
+    }
+    public function scopeGetByLastName(Builder $query, ?string $lastName): Builder
+    {
+        return $query->where('last_name', $lastName);
+    }
+    public function scopeGetByEmail(Builder $query, ?string $email): Builder
+    {
+        return $query->where('email', $email);
+    }
+    public function scopeGetByPersonalPhone(Builder $query, ?string $personalPhone): Builder
+    {
+        return $query->where('personal_phone', $personalPhone);
+    }
+    public function scopeGetByWorkPhone(Builder $query, ?string $workPhone): Builder
+    {
+        return $query->where('work_phone', $workPhone);
+    }
+    public function scopeGetByAddress(Builder $query, ?string $address): Builder
+    {
+        return $query->where('address', $address);
+    }
+    public function scopeGetByBirthday(Builder $query, ?string $birthday): Builder
+    {
+        return $query->where('birthday', $birthday);
+    }
+    public function scopeGetByRole(Builder $query, ?string $role): Builder
+    {
+        return $query->where('role', $role);
+    }
+    public function scopeGetByCreatedAt(Builder $query, string $createdAt): Builder
+    {
+        return $query->whereDate('created_at', $createdAt);
+    }
+    public function scopeGetByUpdatedAt(Builder $query, string $updatedAt): Builder
+    {
+        return $query->whereDate('updated_at', $updatedAt);
     }
 
     public function user(): BelongsTo

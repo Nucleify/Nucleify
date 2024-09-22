@@ -7,8 +7,8 @@ beforeEach(function () {
     removeSitemap();
 });
 
-describe('200', function () {
-    test('authorized generates a sitemap via API', function () {
+describe('200 > Authorized', function () {
+    test('sitemap generate api', function () {
         $response = $this->get(route('sitemap.generate'));
 
         $response->assertStatus(200);

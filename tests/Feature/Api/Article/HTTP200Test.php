@@ -7,34 +7,34 @@ beforeEach(function () {
     $this->actingAs($this->admin);
 });
 
-describe('200', function () {
-    test('authorized store api', function () {
+describe('200 > Authorized', function () {
+    test('store api', function () {
         $this->postJson(route('articles.store'), articleData)
             ->assertOk();
     });
 
-    test('authorized index api', function () {
+    test('index api', function () {
         Article::factory(3)->create();
 
         $this->getJson(route('articles.index'))
             ->assertOk();
     });
 
-    test('authorized show api', function () {
+    test('show api', function () {
         $article = Article::factory()->create();
 
         $this->getJson(route('articles.show', $article->id))
             ->assertOk();
     });
 
-    test('authorized update api', function () {
+    test('update api', function () {
         $article = Article::factory()->create();
 
         $this->putJson(route('articles.update', $article->id), updatedArticleData)
             ->assertOk();
     });
 
-    test('authorized destroy api', function () {
+    test('destroy api', function () {
         $article = Article::factory()->create();
 
         $this->deleteJson(route('articles.destroy', $article->id))

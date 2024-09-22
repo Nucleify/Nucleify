@@ -7,23 +7,22 @@ beforeEach(function () {
     $this->actingAs($this->admin);
 });
 
-describe('200', function () {
-    test('authorized index api', function () {
+describe('200 > Authorized', function () {
+    test('index api', function () {
         ActivityFactory::new()->count(10)->create();
 
         $this->getJson(route('activity-log.index'))
             ->assertOk();
     });
 
-    test('authorized show api', function () {
+    test('show api', function () {
         $activity = ActivityFactory::new()->create();
 
         $this->getJson(route('activity-log.show', $activity->id))
             ->assertOk();
     });
 
-
-    test('authorized destroy api', function () {
+    test('destroy api', function () {
         $activity = ActivityFactory::new()->create();
 
         $this->deleteJson(route('activity-log.destroy', $activity->id))

@@ -40,3 +40,15 @@ it('should have seeder suffix')
 it('should have component suffix')
     ->expect('Resources\js\Components')
     ->toHaveSuffix('Component');
+
+it('should have command suffix')
+    ->expect('App\Console\Commands')
+    ->toHaveSuffix('Command');
+
+it('should have contract suffix')
+    ->expect('App\Contracts')
+    ->toHaveSuffix('Contract');
+
+it('should have not model suffix')
+    ->expect('App\Models')
+    ->not->toHaveSuffix('Model');

@@ -28,7 +28,10 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
         }
     }
 
-    function setDefaultChartsDisplay(reload?: boolean): void {
+    function setDefaultChartsDisplay(
+        initial?: boolean,
+        reload?: boolean
+    ): void {
         const properties: string[] = [
             'display-activity-graphs',
             'display-admin-graphs',
@@ -36,17 +39,27 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
             'display-contact-graphs',
         ]
 
-        properties.forEach((property: string): void => {
-            window.localStorage.setItem(property, 'true')
-        })
+        if (initial) {
+            properties.forEach((property: string): void => {
+                if (!window.localStorage.getItem(property)) {
+                    window.localStorage.setItem(property, 'true')
 
-        properties.forEach((property) => {
-            const key = property.split('-')[1]
-            if (Object.prototype.hasOwnProperty.call(display, key)) {
-                display[key as keyof DisplayChartsInterface] = true
-            }
-        })
+                    const key = property.split('-')[1]
+                    if (Object.prototype.hasOwnProperty.call(display, key)) {
+                        display[key as keyof DisplayChartsInterface] = true
+                    }
+                }
+            })
+        } else {
+            properties.forEach((property: string): void => {
+                window.localStorage.setItem(property, 'true')
 
+                const key = property.split('-')[1]
+                if (Object.prototype.hasOwnProperty.call(display, key)) {
+                    display[key as keyof DisplayChartsInterface] = true
+                }
+            })
+        }
         if (reload) {
             window.location.reload()
         }
