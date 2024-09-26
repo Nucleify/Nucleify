@@ -312,6 +312,7 @@ sail artisan sitemap:generate
   <img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="33" />
   <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="35" />
   <img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="35" />
+  <img src="https://github.com/user-attachments/assets/06bebfc4-9927-45d6-ac7b-75ced6e85501" height="35" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" height="35" />
   <img src="https://github.com/SzymCode/SzymCode/assets/107359025/a983a634-3e81-4a11-9281-0ef0bacfd187" height="35" />
   <img src="https://github.com/SzymCode/SzymCode/assets/107359025/712ed3a9-e9fa-4782-acff-140a4970ba88" height="35" />
