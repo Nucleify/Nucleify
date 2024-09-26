@@ -1,0 +1,35 @@
+@import 'keyframes';
+@import '../../../keyframes/fade_in';
+
+#error-404 {
+    .error404Container {
+        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+
+        svg {
+            width: 100%;
+            max-width: 500px;
+            animation: fade-in 0.3s ease-out forwards;
+        }
+
+        label {
+            position: relative;
+            opacity: 0;
+            font-size: 2em;
+            font-weight: 800;
+            color: #333941;
+            transition: color 300ms;
+            animation:
+                fade-in 0.7s 0.3s ease-out forwards,
+                bounce-right 0.3s 0.3s ease-out forwards;
+
+            &:hover {
+                color: #10b981;
+            }
+        }
+    }
+}
