@@ -50,3 +50,11 @@ div[data-pc-name='deferredcontent'] {
         padding-top: 400px;
     }
 }
+
+
+@media (max-width: 768px) {
+    div[data-pc-name='deferredcontent'] {
+        margin-top: -100px;
+        padding-top: 100px;
+    }
+}
