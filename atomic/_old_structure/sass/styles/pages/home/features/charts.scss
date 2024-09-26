@@ -4,65 +4,69 @@
 @import '../../../../variables/base/fonts_variables';
 @import '../../../../variables/base/medias_variables';
 
-.homeChartsContainer {
+#charts {
     width: $home-charts-container-width;
-    margin: $home-charts-container-margin;
-    padding: $home-charts-container-padding;
-    display: $home-charts-container-display;
-    flex-direction: $home-charts-container-flex-direction;
-    justify-content: $home-charts-container-justify-content;
-    align-items: $home-charts-container-align-items;
     background: $home-charts-container-background;
 
-    .homeChartCard {
-        position: relative;
-        display: $home-chart-card-display;
-        justify-content: $home-chart-card-justify-content;
-        height: 100%;
-        max-height: 360px;
-        width: 100%;
-        max-width: 600px;
-        padding: 35px 15px;
-        margin-bottom: -30px;
+    .homeChartsContainer {
+        margin: $home-charts-container-margin;
+        padding: $home-charts-container-padding;
+        display: $home-charts-container-display;
+        flex-direction: $home-charts-container-flex-direction;
+        justify-content: $home-charts-container-justify-content;
+        align-items: $home-charts-container-align-items;
 
-        .homePieChart {
-            position: absolute;
-            bottom: 135px;
-            right: 10px;
-            z-index: $home-pie-chart-z-index;
-            width: $home-pie-chart-width;
-            height: $home-pie-chart-height;
+
+        .homeChartCard {
+            position: relative;
+            display: $home-chart-card-display;
+            justify-content: $home-chart-card-justify-content;
+            height: 100%;
+            max-height: 360px;
+            width: 100%;
+            max-width: 600px;
+            padding: 35px 15px;
+            margin-bottom: -30px;
+
+            .homePieChart {
+                position: absolute;
+                bottom: 135px;
+                right: 10px;
+                z-index: $home-pie-chart-z-index;
+                width: $home-pie-chart-width;
+                height: $home-pie-chart-height;
+            }
+
+            .homeVerticalChart>canvas {
+                height: 300px !important;
+                width: 100% !important;
+            }
         }
 
-        .homeVerticalChart>canvas {
-            height: 300px !important;
-            width: 100% !important;
-        }
-    }
+        .homeChartsHeader {
+            font-family: $font-family-inter-sans-serif;
+            font-weight: $home-charts-header-font-weight;
+            color: $dark-text-color;
+            font-size: $font-size-big1;
+            padding: $home-charts-header-padding;
+            text-align: $home-charts-header-text-align;
+            margin-bottom: $home-charts-header-margin-bottom;
 
-    .homeChartsHeader {
-        font-family: $font-family-inter-sans-serif;
-        font-weight: $home-charts-header-font-weight;
-        color: $dark-text-color;
-        font-size: $font-size-big1;
-        padding: $home-charts-header-padding;
-        text-align: $home-charts-header-text-align;
-        margin-bottom: $home-charts-header-margin-bottom;
+            // Min width 992px
+            @media (min-width: $min-width-lg2) {
+                max-width: $home-charts-header-max-width-lg2;
+                text-align: $home-charts-header-text-align-lg-2;
+                padding: $home-charts-header-padding-lg-2;
+            }
+        }
 
         // Min width 992px
         @media (min-width: $min-width-lg2) {
-            max-width: $home-charts-header-max-width-lg2;
-            text-align: $home-charts-header-text-align-lg-2;
-            padding: $home-charts-header-padding-lg-2;
-        }
-    }
+            flex-direction: $home-charts-container-flex-direction-lg2;
 
-    // Min width 992px
-    @media (min-width: $min-width-lg2) {
-        flex-direction: $home-charts-container-flex-direction-lg2;
-
-        .homeChartCard {
-            padding: 35px;
+            .homeChartCard {
+                padding: 35px;
+            }
         }
     }
 }

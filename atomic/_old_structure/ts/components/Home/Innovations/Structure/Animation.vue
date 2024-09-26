@@ -2623,9 +2623,6 @@
 </template>
 
 <style scoped>
-svg#freepik_stories-innovation {
-
-}
 svg#freepik_stories-innovation:not(.animated) .animable {
     opacity: 0;
 }
