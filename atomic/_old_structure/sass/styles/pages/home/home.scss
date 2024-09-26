@@ -41,7 +41,12 @@
 }
 
 div[data-pc-name='deferredcontent'] {
-    margin-top: -200px;
-    padding-top: 200px;
     z-index: -1
+}
+
+#footer {
+    div[data-pc-name='deferredcontent'] {
+        margin-top: -400px;
+        padding-top: 400px;
+    }
 }

@@ -29,33 +29,29 @@
                     <div class="navbar-nav flex md:gap-3 lg:gap-6">
                         <anchor-molecule
                             class="nav-link homeNavLink -mt-1 md:mt-0"
-                            href="#start"
-                            @click="throttleHideNavbar"
-                            label="Start"
+                            href="/home"
+                            label="Home"
                         />
                         <anchor-molecule
                             class="nav-link homeNavLink"
-                            href="#features"
-                            @click="throttleHideNavbar"
-                            label="Features"
+                            href="/services"
+                            label="Services"
                         />
                         <anchor-molecule
                             class="nav-link homeNavLink"
-                            href="#why-us"
-                            @click="throttleHideNavbar"
-                            label="Why Us"
+                            href="/about"
+                            label="About"
                         />
                         <anchor-molecule
                             class="nav-link homeNavLink"
-                            href="#contact"
-                            @click="throttleHideNavbar"
-                            label="Contact"
+                            href="/blog"
+                            label="Blog"
                         />
                     </div>
 
                     <button-atom
                         label="Log In"
-                        class="primaryButton loginButton max-w-6 ml-auto my-4 md:my-0 text-sm"
+                        class="primaryButton loginButton max-w-6 ml-auto my-4 md:my-0 text-sm px-3"
                         @click="navigateTo('/login')"
                         :rounded="true"
                     />
@@ -68,5 +64,5 @@
 <script setup lang="ts">
 import { navigateTo, useNavbar } from '@/utils'
 
-const { navbarExpanded, toggleNavbar, throttleHideNavbar } = useNavbar()
+const { navbarExpanded, toggleNavbar } = useNavbar()
 </script>

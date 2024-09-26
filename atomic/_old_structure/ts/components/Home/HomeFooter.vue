@@ -1,6 +1,6 @@
 <template>
     <section id="footer">
-        <div class="footerContentContainer">
+        <div class="footerContentContainer" v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }">
             <div class="top">
                 <anchor-molecule href="#start" class="brandHeader">
                     <image-atom src="logo.svg" class="logo" />

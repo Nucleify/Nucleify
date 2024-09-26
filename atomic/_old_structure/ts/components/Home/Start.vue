@@ -15,7 +15,7 @@
 
                     <heading-atom
                         :tag="2"
-                        text="Manage various data types from a single place and access them everywhere together with your team."
+                        text="Manage various data types from a single place and access them everywhere with this development template."
                         class="startDescription"
                     />
                     <button-atom
