@@ -66,22 +66,47 @@
     color: $secondary-text-color;
 }
 
-.startButton {
-    margin-top: $start-button-margin-top;
-    justify-content: $start-button-justify-content;
-    font-weight: $start-button-font-weight;
-    font-size: $font-size-medium;
-    transition: $start-button-transition;
-    padding: $primary-button-big-padding !important;
+.cta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: max-content;
+    margin-top: 1.5em;
+    gap: 2em;
 
-    &:active {
-        transform: $start-button-active-transform;
+    .github {
+        svg {
+            path {
+                transition: all 300ms;
+            }
+
+            &:hover path {
+                fill: $primary-color;
+            }
+        }
+    }
+
+    .startButton {
+        justify-content: $start-button-justify-content;
+        font-weight: $start-button-font-weight;
+        font-size: $font-size-medium;
+        padding: $primary-button-big-padding !important;
+        width: max-content;
+        transition: all 300ms;
+
+        &:active {
+            transform: $start-button-active-transform;
+        }
     }
 }
 
 @media (min-width: 370px) {
     .startHeader {
         font-size: 40px;
+    }
+
+    .cta {
+        gap: 3em;
     }
 }
 
@@ -108,8 +133,8 @@
     .startDescription {
         margin-top: $start-description-margin-md;
     }
-    .startButton {
-        margin-top: $start-button-margin-top-md;
+    .cta {
+        margin-top: 2em;
     }
 
     .rightSide {
@@ -150,8 +175,8 @@
     .startButton {
         margin-left: $start-header-description-button-margin-left-xl;
     }
-    .startButton {
-        margin-top: $start-button-margin-top-xl;
+    .cta {
+        margin-top: 2.5em;
     }
 
     .chartsImage {
