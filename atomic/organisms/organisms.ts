@@ -1,4 +1,4 @@
-import { App } from 'vue'
+import { AppType } from 'vite'
 
 import {
     Chart,
@@ -11,7 +11,7 @@ import {
     Terminal,
 } from './'
 
-export default function registerOrganisms(app: App<Element>): void {
+export default function registerOrganisms(app: AppType): void {
     app
         /**
          *  Chart

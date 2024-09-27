@@ -1,4 +1,4 @@
-import { App } from 'vue'
+import { AppType } from 'vite'
 
 import {
     Avatar,
@@ -18,7 +18,7 @@ import {
     Toast,
 } from './'
 
-export default function registerAtoms(app: App<Element>): void {
+export default function registerAtoms(app: AppType): void {
     app.component('avatar-atom', Avatar)
         .component('button-atom', Button)
         .component('color-picker-atom', ColorPicker)

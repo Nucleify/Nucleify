@@ -3,7 +3,7 @@
         <div class="structure-container">
             <div
                 class="content"
-                v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }"
+                v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout', rootMargin: isMobile() ? '200px' : '' }"
             >
                 <div class="animation-container">
                     <DeferredContent>

@@ -1,6 +1,6 @@
 <template>
     <section id="charts">
-        <div class="homeChartsContainer" v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }">
+        <div class="homeChartsContainer" v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout', rootMargin: isMobile() ? '200px' : '' }">
             <heading-atom
                 :tag="5"
                 class="homeChartsHeader"
