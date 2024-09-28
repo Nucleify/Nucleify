@@ -10,25 +10,20 @@
     "dev": "vite",
     "open": "cypress open",
     "prepare": "husky install",
-
     "build": "vite build storybook & vite build",
     "build:storybook": "vite build storybook",
-
     "lint": "npm run lint:atomic && npm run lint:cypress && npm run lint:storybook",
     "lint:atomic": "eslint \"atomic/**/*.{js,ts,vue}\"",
     "lint:cypress": "eslint \"cypress/**/*.{ts,tsx}\"",
     "lint:storybook": "eslint \"storybook/**/*.{ts,tsx}\"",
-
     "lint --fix": "npm run lint:atomic --fix && npm run lint:cypress --fix && npm run lint:storybook --fix",
     "lint:atomic --fix": "eslint \"atomic/**/*.{js,ts,vue}\" --fix",
     "lint:cypress --fix": "eslint \"cypress/**/*.{ts,tsx}\" --fix",
     "lint:storybook --fix": "eslint \"storybook/**/*.{ts,tsx}\" --fix",
-
     "check": "prettier --check atomic && prettier --check cypress && prettier --check storybook",
     "check:atomic": "prettier --check atomic",
     "check:cypress": "prettier --check cypress",
     "check:storybook": "prettier --check storybook/src",
-
     "write": "prettier --write atomic && prettier --write cypress && prettier --write storybook",
     "write:atomic": "prettier --write atomic",
     "write:cypress": "prettier --write cypress",
@@ -38,7 +33,8 @@
     "chart.js": "4.4.3",
     "primeflex": "3.3.1",
     "primeicons": "7.0.0",
-    "primevue": "3.53.0"
+    "primevue": "3.53.0",
+    "swiper": "^11.1.14"
   },
   "devDependencies": {
     "@types/bootstrap": "5.2.10",
