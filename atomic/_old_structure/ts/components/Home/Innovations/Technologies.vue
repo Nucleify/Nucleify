@@ -11,7 +11,7 @@
                 class="mySwiper"
                 :slides-per-view="9"
                 :loop="true"
-                v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout', rootMargin: isMobile() ? '200px' : '-200px' }"
+                v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout', rootMargin: isMobile() ? '200px' : '' }"
             >
                 <swiper-slide v-for="(image, index) in images" :key="index">
                     <image-atom :src="`/technologies/${image}`" width="40" height="40" />

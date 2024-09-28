@@ -6,7 +6,10 @@
 @import '../../variables/base/medias_variables';
 
 .myCard {
-    width: $card-width;
+    &:not(.tile) {
+        width: $card-width;
+    }
+
     background: $content-bg;
     box-shadow: $my-card-box-shadow;
     border: $border-none;
@@ -36,7 +39,9 @@
 
     // Min width 992px
     @media (min-width: $min-width-lg2) {
-        margin-right: $my-card-margin-right-lg2;
+        &:not(.tile) {
+            margin-right: $my-card-margin-right-lg2;
+        }
 
         .myCardHeaderContainer {
             padding: 2px 12px 0 6px;

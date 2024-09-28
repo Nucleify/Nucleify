@@ -2,73 +2,33 @@
 <template>
     <div class="panelContainer">
         <div class="adminBricks grid col-12">
-            <div class="grid-item-container col-6 lg:col-4">
-                <anchor-molecule href="#articles" class="grid-item">
-                    <div class="adminBricksCircle" :style="articleCircleStyle">
-                        <div>
-                            <paragraph-atom
-                                class="adminBricksCircleNumber"
-                                :text="articles?.length"
-                            />
-                            <i class="pi pi-comment adminBricksIcon" />
-                        </div>
-                    </div>
-                    <paragraph-atom
-                        class="articlesBricksText"
-                        :style="articleBricksTextStyle"
-                        text="Articles"
-                    />
-                </anchor-molecule>
-            </div>
-            <div class="grid-item-container col-6 lg:col-4">
-                <anchor-molecule href="#contacts" class="grid-item">
-                    <div class="adminBricksCircle" :style="contactCircleStyle">
-                        <div>
-                            <paragraph-atom
-                                class="adminBricksCircleNumber"
-                                :text="contacts?.length"
-                            />
-                            <i class="pi pi-users adminBricksIcon" />
-                        </div>
-                    </div>
-                    <paragraph-atom
-                        class="contactsBricksText"
-                        :style="contactBricksTextStyle"
-                        text="Contacts"
-                    />
-                </anchor-molecule>
-            </div>
-            <div class="grid-item-container col-6 lg:col-4">
-                <anchor-molecule href="#users" class="grid-item">
-                    <div class="adminBricksCircle" :style="userCircleStyle">
-                        <div>
-                            <paragraph-atom
-                                class="adminBricksCircleNumber"
-                                :text="users?.length"
-                            />
-
-                            <i class="pi pi-users adminBricksIcon" />
-                        </div>
-                    </div>
-                    <paragraph-atom
-                        class="usersBricksText"
-                        :style="userBricksTextStyle"
-                        text="Users"
-                    />
-                </anchor-molecule>
-            </div>
-
-            <div class="grid-item-container col-6 lg:col-4" v-if="display.Admin">
-                <card-chart
-                    class="grid-item countChartCard"
-                    :chart-method-type="'count'"
-                    :type="'pie'"
-                    :article-data="articles"
-                    :contact-data="contacts"
-                    :user-data="users"
-                    :loading="!allLoaded"
-                />
-            </div>
+            <tile-organism
+                href="#articles"
+                header="Articles"
+                :count="articles.length"
+                icon="pi pi-comment"
+                count-secondary="20 new"
+                text-secondary="this week"
+                type="article"
+            />
+            <tile-organism
+                href="#contacts"
+                header="Contacts"
+                :count="contacts.length"
+                icon="pi pi-user"
+                count-secondary="20 new"
+                text-secondary="this week"
+                type="contact"
+            />
+            <tile-organism
+                href="#users"
+                header="Users"
+                :count="users.length"
+                icon="pi pi-user"
+                count-secondary="20 new"
+                text-secondary="this week"
+                type="user"
+            />
         </div>
 
         <card-chart
@@ -111,8 +71,7 @@ import UserDashboard from './UserDashboard.vue'
 
 import { articleApiMethods, contactApiMethods, userApiMethods } from '@/utils'
 
-import { UseColorsReturnInterface } from 'atomic/bosons/types'
-import { useColors, useDisplayCharts } from 'atomic/bosons/utils'
+import { useDisplayCharts } from 'atomic/bosons/utils'
 
 const { display } = useDisplayCharts()
 
@@ -134,12 +93,6 @@ onMounted(() => {
     getAllUsers()
 })
 
-const {
-    articleItemColors,
-    contactItemColors,
-    userItemColors,
-}: UseColorsReturnInterface = useColors()
-
 const allLoaded: Ref<boolean> = ref(false)
 
 watch(
@@ -152,25 +105,6 @@ watch(
         }
     }
 )
-
-const articleCircleStyle = {
-    background: articleItemColors.primary || undefined,
-}
-const articleBricksTextStyle = {
-    color: articleItemColors.primary || undefined,
-}
-const contactCircleStyle = {
-    background: contactItemColors.primary || undefined,
-}
-const contactBricksTextStyle = {
-    color: contactItemColors.primary || undefined,
-}
-const userCircleStyle = {
-    background: userItemColors.primary || undefined,
-}
-const userBricksTextStyle = {
-    color: userItemColors.primary || undefined,
-}
 </script>
 
 <style scoped>

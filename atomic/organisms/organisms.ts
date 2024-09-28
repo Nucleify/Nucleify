@@ -9,6 +9,7 @@ import {
     OverlayPanel,
     Password,
     Terminal,
+    Tile,
 } from './'
 
 export default function registerOrganisms(app: AppType): void {
@@ -45,7 +46,12 @@ export default function registerOrganisms(app: AppType): void {
         .component('password-organism', Password)
 
         /**
-         *
+         *  Terminal
          */
         .component('terminal-organism', Terminal)
+
+        /**
+         *  Tile
+         */
+        .component('tile-organism', Tile)
 }

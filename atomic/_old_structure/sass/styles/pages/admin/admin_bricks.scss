@@ -6,156 +6,46 @@
 @import '../../../variables/base/medias_variables';
 
 .adminBricks {
-    display: $admin-bricks-display;
-    justify-content: $admin-bricks-justify-content;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     padding: $admin-bricks-padding;
     margin: $admin-bricks-margin;
+    gap: 0.5em;
 
-    .adminBricksCircle {
-        height: $admin-bricks-circle-dimensions;
-        width: $admin-bricks-circle-dimensions;
-        max-height: $admin-bricks-circle-max-dimensions;
-        max-width: $admin-bricks-circle-max-dimensions;
-        aspect-ratio: $admin-bricks-circle-aspect-ratio;
-        display: $admin-bricks-circle-display;
-        justify-content: $admin-bricks-circle-justify-content;
-        align-items: $admin-bricks-circle-align-items;
-        padding: $admin-bricks-circle-padding;
-        border-radius: $admin-bricks-circle-border-radius;
+    .tile {
+        height: 8em;
+        width: 100%;
+        flex: 1 1 calc(50% - 0.3em);
+        max-width: calc(50% - 0.3em);
 
-        div {
-            display: $admin-bricks-circle-div-display;
-            flex-direction: $admin-bricks-circle-div-flex-direction;
-            align-items: $admin-bricks-circle-div-align-items;
-            justify-content: $admin-bricks-circle-div-justify-content;
 
-            .adminBricksCircleNumber {
-                font-size: $font-size-big1;
+        .secondary {
+            p {
+                font-size: 0.7em;
             }
         }
-    }
 
-    .articlesBricksText,
-    .contactsBricksText,
-    .usersBricksText {
-        margin: $admin-bricks-text-margin;
-    }
-
-    .grid-item-container {
-        min-width: $admin-bricks-grid-item-min-width;
-        min-height: $admin-bricks-grid-item-min-height;
-        max-width: $admin-bricks-grid-item-max-width;
-        max-height: $admin-bricks-grid-item-max-height;
-        aspect-ratio: $admin-bricks-grid-item-container-aspect-ratio;
-        padding: $admin-bricks-grid-item-container-padding;
-
-        .grid-item {
-            min-width: $admin-bricks-grid-item-min-width;
-            min-height: $admin-bricks-grid-item-min-height;
-            max-width: $admin-bricks-grid-item-max-width;
-            max-height: $admin-bricks-grid-item-max-height;
-            aspect-ratio: $admin-bricks-grid-item-aspect-ratio;
-            font-size: $font-size-big;
-            box-shadow: $my-card-box-shadow;
-
-            .pi {
-                margin-top: $admin-bricks-grid-item-pi-margin-top;
-                font-size: $font-size-l;
-            }
-
-            .adminBricksIcon,
-            .adminBricksCircleNumber {
-                transition: $transition-colors-300ms;
-            }
-
-            .adminBricksIcon {
-                color: $admin-bricks-icon-color;
-            }
-
-            .adminBricksCircleNumber {
-                color: $admin-bricks-circle-number-color;
-                position: $admin-bricks-circle-number-position;
-                top: $admin-bricks-circle-number-top;
-            }
-
-            &:hover {
-                .adminBricksIcon {
-                    color: $admin-bricks-grid-item-hover-admin-bricks-icon-color;
-                }
-
-                .adminBricksCircleNumber {
-                    display: $admin-bricks-grid-item-hover-admin-bricks-circle-number-display;
-                    color: $admin-bricks-grid-item-hover-admin-bricks-circle-number-color;
-                }
-            }
-
-            .contactsBricksCircle {
-                background: $primary-color;
-                color: $primary-color;
-            }
-
-            .usersBricksCircle {
-                background: $secondary-color;
-                color: $secondary-color;
-            }
-
-            .countChart {
-                max-width: 130px;
-            }
-        }
-    }
-
-    // Min width 411px
-    @media (min-width: $min-width-xs) {
-        .grid-item-container {
-            .grid-item {
-                font-size: $font-size-big2;
-            }
-        }
-    }
-
-    // Min width 519px
-    @media (min-width: $min-width-sm0) {
-        gap: $admin-bricks-gap-sm0;
-        padding: $admin-bricks-padding-sm0;
-
-        .adminBricksCircle {
-            max-width: $admin-bricks-circle-width-sm0;
-            max-height: $admin-bricks-circle-height-sm0;
-        }
-        .adminBricksCircleNumber {
-            top: $admin-bricks-circle-number-top-sm0;
-        }
-        .grid-item-container {
-            width: $admin-bricks-grid-item-width-sm0;
-            height: $admin-bricks-grid-item-height-sm0;
-
-            .grid-item {
-                width: $admin-bricks-grid-item-width-sm0;
-                height: $admin-bricks-grid-item-height-sm0;
-                font-size: $font-size-l;
-
-                .pi {
-                    font-size: $font-size-xxl;
-                }
-
-                .countChart {
-                    max-width: 100% !important;
+        @media (min-width: 360px) {
+            .secondary {
+                p {
+                    font-size: 0.9em;
                 }
             }
         }
-    }
 
-    // Min width 992px
-    @media (min-width: $min-width-lg2) {
-        .grid-item-container {
-            max-width: $admin-bricks-grid-item-max-width-lg2;
-            max-height: $admin-bricks-grid-item-max-height-lg2;
+        @media (min-width: 500px) {
+            max-width: 250px;
+        }
 
-            .grid-item {
-                max-width: $admin-bricks-grid-item-max-width-lg2;
-                max-height: $admin-bricks-grid-item-max-height-lg2;
-            }
+        @media (min-width: 768px) {
+            height: 8.5em;
+            flex: 1 1 calc(33.33% - 0.35em);
+        }
+
+        @media (min-width: 1200px) {
+            height: 9em;
+            flex: 1 1 calc(25% - 0.35em);
         }
     }
 }
