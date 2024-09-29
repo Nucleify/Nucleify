@@ -108,7 +108,7 @@ onMounted(async () => {
 
     const { isAdmin: isAdminStatus } = await useIsAdmin()
 
-    isAdmin = isAdminStatus
+    isAdmin = isAdminStatus.value
 
     if (isAdmin) {
         dockItems.value.splice(1, 0, {
