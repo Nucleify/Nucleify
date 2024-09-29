@@ -1,10 +1,10 @@
 <template>
     <back-link />
-    <div class="authCardContainer">
-        <Card class="registerCard">
+    <div class="auth-card-container">
+        <Card class="register-card">
             <template #header>
-                <div class="authCardHeaderContainer">
-                    <div class="authCardHeader">
+                <div class="auth-card-header-container">
+                    <div class="auth-card-header">
                         <heading-atom :tag="1" text="Register" />
 
                         <paragraph-atom class="mb-2" text="Already have an account?">
@@ -24,7 +24,7 @@
                             v-model="registerFields[field.model]"
                             :type="field.type"
                             :id="field.id"
-                            class="authInputText"
+                            class="auth-input-text"
                             :autofocus="field.autofocus"
                         />
 
@@ -32,7 +32,7 @@
                             v-else
                             v-model="registerFields[field.model]"
                             :id="field.id"
-                            class="authInputText"
+                            class="auth-input-text"
                             :autofocus="field.autofocus"
                             :passwords-match="checkPasswordsMatch(registerFields['password'], registerFields['password_confirmation']) && field.model === 'password_confirmation'"
                             :empty-password="checkIsEmpty(registerFields['password']) && field.model === 'password_confirmation'"
@@ -45,7 +45,7 @@
                     <button-atom
                         label="Register"
                         type="submit"
-                        class="primaryButton -mb-1 mt-2"
+                        class="primary-button -mb-1 mt-2"
                         padding="10px 10px"
                     />
                 </form>

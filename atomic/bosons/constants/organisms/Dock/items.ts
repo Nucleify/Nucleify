@@ -30,19 +30,19 @@ export const dockItems = ref([
         url: 'activity-log',
     },
     {
-        icon: 'pi pi-envelope disabledItem',
+        icon: 'pi pi-envelope disabled-item',
         label: 'Messages',
     },
     {
-        icon: 'pi pi-check-square disabledItem',
+        icon: 'pi pi-check-square disabled-item',
         label: 'Tasks',
     },
     {
-        icon: 'pi pi-calendar disabledItem',
+        icon: 'pi pi-calendar disabled-item',
         label: 'Calendar',
     },
     {
-        icon: 'pi pi-dollar disabledItem',
+        icon: 'pi pi-dollar disabled-item',
         label: 'Money',
     },
     {

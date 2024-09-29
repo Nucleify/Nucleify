@@ -1,30 +1,30 @@
 <template>
     <section id="access">
-        <div class="accessContainer" v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout', rootMargin: isMobile() ? '370px' : '' }">
+        <div class="access-container" v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout', rootMargin: isMobile() ? '370px' : '' }">
             <heading-atom
                 :tag="1"
-                class="accessHeader"
+                class="access-header"
                 text="Access your data everywhere"
             />
             <heading-atom
                 :tag="2"
-                class="accessDescription"
+                class="access-description"
                 text="Use DataManager application on your phone, tablet and desktop. You
                 can now manage all data in one place and take a step ahead in your
                 management process"
             />
-            <div class="accessCardContainer">
-                <div class="accessCard flip-card col-12 md:col-6 xl:col-4">
+            <div class="access-card-container">
+                <div class="access-card flip-card col-12 md:col-6 xl:col-4">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <image-atom
                                 src="desktop.png"
                                 alt=""
-                                image-class="accessCardImage"
+                                image-class="image"
                             />
                             <heading-atom
                                 :tag="3"
-                                class="accessCardHeader"
+                                class="access-card-header"
                                 text="Desktop"
                             />
                         </div>
@@ -38,17 +38,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="accessCard flip-card col-12 md:col-6 xl:col-4">
+                <div class="access-card flip-card col-12 md:col-6 xl:col-4">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <image-atom
                                 src="tablet.png"
                                 alt=""
-                                image-class="accessCardImage"
+                                image-class="access-card-image"
                             />
                             <heading-atom
                                 :tag="3"
-                                class="accessCardHeader"
+                                class="access-card-header"
                                 text="Tablet"
                             />
                         </div>
@@ -61,17 +61,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="accessCard flip-card col-12 md:col-6 xl:col-4">
+                <div class="access-card flip-card col-12 md:col-6 xl:col-4">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <image-atom
                                 src="phone.png"
                                 alt=""
-                                image-class="accessCardImage"
+                                image-class="access-card-image"
                             />
                             <heading-atom
                                 :tag="3"
-                                class="accessCardHeader"
+                                class="access-card-header"
                                 text="Phone"
                             />
                         </div>

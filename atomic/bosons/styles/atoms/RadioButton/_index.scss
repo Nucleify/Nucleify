@@ -10,7 +10,7 @@
         ul
         .p-dock-item
         a
-        .dockPositionButtons
+        .dock-position-buttons
         div[v-type='#{$type}']
         input[type='radio']:checked {
         @include dock-radiobutton-styles(var(--#{$type}-item-color-new));

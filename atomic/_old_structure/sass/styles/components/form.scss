@@ -1,13 +1,13 @@
 @import '../../variables/components/form_variables';
 
-.formContainer {
+.form-container {
     display: $form-container-display;
     flex-direction: $form-container-flex-direction;
     gap: $form-container-gap;
     font-size: $form-container-font-size;
 }
 
-.formDiv {
+.form-div {
     display: $form-div-display;
     flex-direction: $form-div-flex-direction;
     gap: $form-div-gap;

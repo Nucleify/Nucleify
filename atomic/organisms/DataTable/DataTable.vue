@@ -79,13 +79,13 @@
             :sortable="col.sortable"
         />
 
-        <Column class="actionColumn">
+        <Column class="action-column">
             <template #body="row">
-                <div class="actionColumnContent">
+                <div class="action-column-content">
                     <button-atom
                         v-if="props.type === 'activity'"
                         :type="props.type"
-                        class="dataTableButton"
+                        class="data-table-button"
                         icon="pi pi-trash"
                         @click="openDialog('delete', row.data)"
                         rounded
@@ -97,7 +97,7 @@
                             v-for="action in actions"
                             :type="props.type"
                             :key="action.icon"
-                            class="desktopButton dataTableButton"
+                            class="desktop-button data-table-button"
                             :icon="action.icon"
                             @click="action.click(row.data)"
                             rounded
@@ -106,7 +106,7 @@
                         />
                         <button-atom
                             :type="props.type"
-                            class="mobileButton dataTableButton"
+                            class="mobile-button data-table-button"
                             icon="pi pi-bars"
                             @click="openMenu(menu, $event, row.data)"
                             rounded

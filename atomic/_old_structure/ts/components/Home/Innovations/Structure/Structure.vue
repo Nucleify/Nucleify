@@ -15,7 +15,7 @@
                         :tag="5"
                         class="title"
                     >
-                        <div class="shinyText">
+                        <div class="shiny-text">
                             Atomic Design&nbsp;
                         </div>
                         <span>

@@ -24,7 +24,7 @@
         :append-to="props.appendTo"
         :pt="props.pt"
         :pt-options="props.ptOptions"
-        class="myDialog"
+        class="my-dialog"
         :class="props.action"
     >
         <template #header>
@@ -38,13 +38,13 @@
 
         <form
             v-if="props.fields && props.action !== 'show'"
-            class="formContainer"
+            class="form-container"
             action="#"
         >
             <div
                 v-for="(field, index) in props.fields"
                 :key="index"
-                class="formDiv"
+                class="form-div"
             >
                 <label :for="field.name">{{ field.label }}</label>
                 <component
@@ -88,12 +88,12 @@
             v-else-if="
                 props.fields && props.action === 'show' && props.selectedObject
             "
-            class="showDataContainer"
+            class="show-data-container"
         >
             <div v-for="(item, key) in props.fields" :key="key">
                 <heading-atom
                     :tag="5"
-                    class="showDataHeader"
+                    class="show-data-header"
                     :text="item.label"
                 />
                 <div>{{ (props.selectedObject as any)[item.key] }}</div>
@@ -101,7 +101,7 @@
         </div>
 
         <template #footer>
-            <div class="dialogButtonsContainer">
+            <div class="dialog-buttons-container">
                 <button-atom
                     :label="props.cancelButtonLabel"
                     icon="pi pi-times"

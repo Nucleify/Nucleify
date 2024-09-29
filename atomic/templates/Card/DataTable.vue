@@ -1,14 +1,14 @@
 <template>
-    <Card class="myCard">
+    <Card class="my-card">
         <template #title>
-            <div class="myCardHeaderContainer">
+            <div class="my-card-header-container">
                 <template v-if="loading">
                     <skeleton-atom
                         :loading="loading"
                         width="180px"
                         height="30px"
                         border-radius="10px"
-                        class="headingSkeleton"
+                        class="heading-skeleton"
                     />
                     <skeleton-atom
                         :loading="loading"

@@ -20,22 +20,22 @@
         border-radius: $large-border-radius !important;
     }
 
-    &.mobileButton {
+    &.mobile-button {
         display: $mobile-button-display;
     }
 
-    &.desktopButton {
+    &.desktop-button {
         display: $desktop-button-display;
     }
 
-    &.myButton {
+    &.my-button {
         max-height: $min-max-width-height-small;
         min-height: $min-max-width-height-small;
         max-width: $min-max-width-height-small;
         min-width: $min-max-width-height-small;
     }
 
-    &.myBigButton {
+    &.my-big-button {
         position: $my-big-button-position;
         left: $my-big-button-left;
         top: $my-big-button-top;
@@ -46,7 +46,7 @@
         min-width: $min-max-width-height-big;
     }
 
-    &.primaryButton {
+    &.primary-button {
         padding: $primary-button-padding;
         transition: $primary-button-transition;
         display: $primary-button-display;
@@ -61,26 +61,26 @@
         }
     }
 
-    &.dataTableButton {
+    &.data-table-button {
         height: $datatable-button-dimensions;
         width: $datatable-button-dimensions;
     }
 
-    &.smallHeightButton {
+    &.small-height-button {
         max-height: $min-max-width-height-small;
         min-height: $min-max-width-height-small;
 
-        &.primaryButton {
+        &.primary-button {
             padding: $primary-button-small-padding;
         }
     }
 
     // Min width 992px
     @media (min-width: $min-width-lg2) {
-        &.mobileButton {
+        &.mobile-button {
             display: $mobile-button-display-lg2;
         }
-        &.desktopButton {
+        &.desktop-button {
             display: $desktop-button-display-lg2;
         }
     }

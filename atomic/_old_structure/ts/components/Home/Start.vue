@@ -1,28 +1,25 @@
 <template>
     <section id="start">
         <div class="container">
-            <div class="container startContainer">
-                <div class="leftSide">
-                    <heading-atom :tag="1" class="startHeader">
+            <div class="container start-container">
+                <div class="left-side">
+                    <heading-atom :tag="1" class="header">
                         One
-                        <span class="shinyText firstText">place</span>
-                    </heading-atom>
-
-                    <heading-atom :tag="1" class="startHeader">
+                        <span class="shiny-text first-text">place</span> <br>
                         for all
-                        <span class="shinyText">your data</span>
+                        <span class="shiny-text">your data</span>
                     </heading-atom>
 
                     <heading-atom
                         :tag="2"
                         text="Manage various data types from a single place and access them everywhere with this development template."
-                        class="startDescription"
+                        class="start-description"
                     />
 
                     <div class="cta">
                         <button-atom
                             label="Try it out!"
-                            class="startButton"
+                            class="start-button"
                             :rounded="true"
                             @click="navigateTo('/register')"
                         />
@@ -37,8 +34,8 @@
                     </div>
 
                 </div>
-                <div class="rightSide">
-                    <image-atom src="charts.svg" class="chartsImage" />
+                <div class="right-side">
+                    <image-atom src="charts.svg" class="charts-image" />
                 </div>
             </div>
         </div>

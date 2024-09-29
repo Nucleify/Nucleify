@@ -1,10 +1,10 @@
 <template>
     <section id="footer">
-        <div class="footerContentContainer" v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout', rootMargin: isMobile() ? '250px' : '100px' }">
+        <div class="footer-content-container" v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout', rootMargin: isMobile() ? '250px' : '100px' }">
             <div class="top">
-                <anchor-molecule href="#start" class="brandHeader">
+                <anchor-molecule href="#start" class="header">
                     <image-atom src="logo.svg" class="logo" />
-                    <heading-atom :tag="1" text="DataManager" class="brandName" />
+                    <heading-atom :tag="1" text="DataManager" class="name" />
                 </anchor-molecule>
                 <div class="content">
                     <div class="entities">
@@ -56,16 +56,16 @@
             </div>
         </div>
         <DeferredContent>
-            <div class="hexagonRowsContainer">
+            <div class="hexagon-rows-container">
                 <div
                     v-for="(row, rowIndex) in hexagonRows"
                     :key="rowIndex"
-                    class="hexagonRowContainer"
+                    class="hexagon-row-container"
                 >
                     <div
                         v-for="(containerClass, containerIndex) in [
-                            'hexagonContainer n1',
-                            'hexagonContainer n2',
+                            'hexagon-container n1',
+                            'hexagon-container n2',
                         ]"
                         :key="containerIndex"
                         :class="containerClass"

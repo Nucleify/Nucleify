@@ -1,9 +1,9 @@
 <template>
     <Card
-        class="settingsCard settingsSmallCard"
+        class="settings-card settings-small-card"
     >
         <template #header>
-            <div class="settingsCardHeaderContainer">
+            <div class="settings-card-header-container">
                 <heading-atom :tag="4" text="Colors" />
 
                 <button-atom
@@ -18,11 +18,11 @@
             <hr />
         </template>
         <template #content>
-            <ul class="settingsCardItemList">
+            <ul class="settings-card-item-list">
                 <li
                     v-for="item in colorList"
                     :key="item"
-                    class="settingsCardItem"
+                    class="settings-card-item"
                 >
                     <label-atom :label="item" :for="item" />
                     <color-picker-atom :item="getLowerCase(item)" />

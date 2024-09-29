@@ -5,7 +5,7 @@
 @import '../../variables/base/colors_variables';
 @import '../../variables/base/medias_variables';
 
-.myCard {
+.my-card {
     &:not(.tile) {
         width: $card-width;
     }
@@ -15,7 +15,7 @@
     border: $border-none;
     border-radius: $border-radius-none;
 
-    .myCardHeaderContainer {
+    .my-card-header-container {
         display: $my-card-header-container-display;
         justify-content: $my-card-header-container-justify-content;
         align-items: center;
@@ -43,11 +43,11 @@
             margin-right: $my-card-margin-right-lg2;
         }
 
-        .myCardHeaderContainer {
+        .my-card-header-container {
             padding: 2px 12px 0 6px;
             margin-bottom: 0;
 
-            .headingSkeleton {
+            .heading-skeleton {
                 height: 38px !important;
             }
         }

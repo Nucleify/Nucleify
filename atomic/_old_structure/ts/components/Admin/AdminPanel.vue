@@ -1,7 +1,7 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
-    <div class="panelContainer">
-        <div class="adminBricks grid col-12">
+    <div class="panel-container">
+        <div class="admin-bricks grid col-12">
             <tile-organism
                 href="#articles"
                 header="Articles"
@@ -33,7 +33,7 @@
 
         <card-chart
             v-if="display.Admin"
-            class="annualChartCard"
+            class="annual-chart-card"
             :chart-method-type="'annual'"
             :type="'bar'"
             :direction="'vertical'"

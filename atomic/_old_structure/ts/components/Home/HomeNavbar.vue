@@ -1,7 +1,7 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
     <nav
-        class="homeNavbar navbar navbar-expand-md"
+        class="home-navbar navbar navbar-expand-md"
         :class="navbarExpanded ? 'expanded' : 'not-expanded'"
     >
         <div class="container">
@@ -18,32 +18,32 @@
                 "
                 type="button"
                 @click="toggleNavbar"
-                aria-controls="navbarSupportedContent"
+                aria-controls="navbar-supported-content"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
             />
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbar-supported-content">
                 <!-- Right Side Of Navbar -->
                 <div class="navbar-nav ms-auto md:gap-5 lg:gap-7">
                     <div class="navbar-nav flex md:gap-3 lg:gap-6">
                         <anchor-molecule
-                            class="nav-link homeNavLink -mt-1 md:mt-0"
+                            class="nav-link home-nav-link -mt-1 md:mt-0"
                             href="/home"
                             label="Home"
                         />
                         <anchor-molecule
-                            class="nav-link homeNavLink"
+                            class="nav-link home-nav-link"
                             href="/services"
                             label="Services"
                         />
                         <anchor-molecule
-                            class="nav-link homeNavLink"
+                            class="nav-link home-nav-link"
                             href="/about"
                             label="About"
                         />
                         <anchor-molecule
-                            class="nav-link homeNavLink"
+                            class="nav-link home-nav-link"
                             href="/blog"
                             label="Blog"
                         />
@@ -51,7 +51,7 @@
 
                     <button-atom
                         label="Log In"
-                        class="primaryButton loginButton max-w-6 ml-auto my-4 md:my-0 text-sm px-3"
+                        class="primary-button login-button max-w-6 ml-auto my-4 md:my-0 text-sm px-3"
                         @click="navigateTo('/login')"
                         :rounded="true"
                     />

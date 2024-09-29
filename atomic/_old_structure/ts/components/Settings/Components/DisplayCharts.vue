@@ -1,9 +1,9 @@
 <template>
     <Card
-        class="settingsCard settingsSmallCard"
+        class="settings-card settings-small-card"
     >
         <template #header>
-            <div class="settingsCardHeaderContainer">
+            <div class="settings-card-header-container">
                 <heading-atom :tag="4" text="Charts" />
 
                 <button-atom
@@ -19,10 +19,10 @@
         </template>
         <template #content>
             <ul
-                class="settingsCardItemList"
+                class="settings-card-item-list"
             >
                 <li
-                    class="settingsCardItem"
+                    class="settings-card-item"
                     v-for="item in displayChartList"
                     :key="item"
                 >

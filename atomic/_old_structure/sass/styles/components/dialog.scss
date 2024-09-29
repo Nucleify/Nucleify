@@ -6,7 +6,7 @@
     padding: $dialog-mask-padding;
 
     .p-dialog {
-        &.myDialog {
+        &.my-dialog {
             width: $my-dialog-width;
             max-height: $my-dialog-max-height;
         }
@@ -29,7 +29,7 @@
             box-shadow: $my-card-box-shadow;
         }
 
-        .dialogButtonsContainer {
+        .dialog-buttons-container {
             width: $dialog-buttons-width;
             display: $dialog-buttons-display;
             justify-content: $dialog-buttons-justify-content;

@@ -74,17 +74,17 @@
                     cursor: pointer;
                     transition: all 300ms;
 
-                    &:hover:not(:has(.dockPositionButtons)) {
+                    &:hover:not(:has(.dock-position-buttons)) {
                         transform: scale(1.15);
                     }
 
-                    &:has(.dockPositionButtons) {
+                    &:has(.dock-position-buttons) {
                         padding: 0;
                         width: 3rem;
                         height: 3rem;
                     }
 
-                    .dockPositionButtons {
+                    .dock-position-buttons {
                         @include center-content;
                         flex-wrap: wrap;
                         gap: 0.25rem;

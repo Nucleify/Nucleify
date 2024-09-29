@@ -1,3 +1,3 @@
 <template>
-    <anchor-molecule href="/" class="backLink" icon="pi pi-chevron-left" />
+    <anchor-molecule href="/" class="back-link" icon="pi pi-chevron-left" />
 </template>

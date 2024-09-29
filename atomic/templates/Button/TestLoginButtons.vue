@@ -1,16 +1,16 @@
 <template>
-    <div class="testButtonsContainer">
+    <div class="test-buttons-container">
         <button-atom
             label="Test Admin Login"
             @click="testLogin('admin')"
-            class="primaryButton text-sm"
+            class="primary-button text-sm"
             :rounded="true"
         />
         <button-atom
             label="Test User Login"
             severity="secondary"
             @click="testLogin('user')"
-            class="primaryButton text-sm"
+            class="primary-button text-sm"
             :rounded="true"
         />
     </div>

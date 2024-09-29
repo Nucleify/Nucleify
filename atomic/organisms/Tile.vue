@@ -1,6 +1,6 @@
 <template>
     <anchor-molecule
-        class="tile myCard"
+        class="tile my-card"
         :href="props.href"
         :v-type="props.type"
     >

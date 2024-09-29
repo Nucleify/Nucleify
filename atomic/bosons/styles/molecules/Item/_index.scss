@@ -11,15 +11,7 @@
         border-radius: 38px 30px 20px 15px;
     }
 
-    &.disabledItem {
+    &.disabled-item {
         @include disabled-item;
-    }
-}
-
-.startItem {
-    .item {
-        color: $secondary-gray-color;
-        background: $secondary-gray-bg-color;
-        padding: 12px;
     }
 }

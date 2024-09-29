@@ -2,7 +2,7 @@
 
 @import '../../variables/base/medias_variables';
 
-.panelContainer {
+.panel-container {
     position: $panel-container-position;
     padding: $panel-container-padding;
     display: $panel-container-display;
@@ -11,27 +11,27 @@
 }
 
 body:has(.p-dock.p-dock-top) {
-    .panelContainer {
+    .panel-container {
         padding-top: $panel-container-top;
     }
 }
 
 body:has(.p-dock.p-dock-right) {
-    .panelContainer {
+    .panel-container {
         padding-top: 8px;
         padding-right: 80px;
     }
 }
 
 body:has(.p-dock.p-dock-left) {
-     .panelContainer {
+     .panel-container {
          padding-top: 8px;
          padding-left: 80px;
      }
  }
 
 body:has(.p-dock.p-dock-bottom) {
-    .panelContainer {
+    .panel-container {
         padding-bottom: $panel-container-top;
 
         // Min width 992px

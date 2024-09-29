@@ -1,8 +1,8 @@
 <template>
-    <div class="panelContainer">
+    <div class="panel-container">
         <card-chart
             v-if="display.Contact"
-            class="annualChartCard"
+            class="annual-chart-card"
             :chart-method-type="'annual'"
             :type="'bar'"
             :direction="'vertical'"

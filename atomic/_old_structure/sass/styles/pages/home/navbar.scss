@@ -5,7 +5,7 @@
 @import '../../../variables/base/medias_variables';
 @import '../../../variables/base/box_shadows_variables';
 
-.homeNavbar {
+.home-navbar {
     width: $home-navbar-width;
     z-index: $home-navbar-z-index;
     position: $home-navbar-position;
@@ -26,7 +26,7 @@
         padding: $navbar-toggler-padding;
     }
 
-    .homeNavLink {
+    .home-nav-link {
         display: $home-nav-link-display;
         justify-content: $home-nav-link-justify-content;
         align-items: $home-nav-link-align-items;
@@ -66,7 +66,7 @@
     // Max width 768px
     @media (max-width: $max-width-md) {
         &.expanded {
-            .homeNavLink {
+            .home-nav-link {
                 position: relative;
                 left: 0 !important;
                 opacity: 1 !important;
@@ -93,7 +93,7 @@
             }
         }
         &.not-expanded {
-            .homeNavLink {
+            .home-nav-link {
                 opacity: 0;
             }
         }

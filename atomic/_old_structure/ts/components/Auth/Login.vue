@@ -1,10 +1,10 @@
 <template>
     <back-link />
-    <div class="authCardContainer">
-        <Card class="loginCard">
+    <div class="auth-card-container">
+        <Card class="login-card">
             <template #header>
-                <div class="authCardHeaderContainer">
-                    <div class="authCardHeader">
+                <div class="auth-card-header-container">
+                    <div class="auth-card-header">
                         <image-atom src="logo.svg" width="50" />
                         <heading-atom :tag="1" text="Welcome Back" />
 
@@ -24,7 +24,7 @@
                             v-model="loginFields[field.model]"
                             :type="field.type"
                             :id="field.id"
-                            class="authInputText"
+                            class="auth-input-text"
                             :autofocus="field.autofocus"
                         />
                         <label-atom :for="field.id" :label="field.label" />

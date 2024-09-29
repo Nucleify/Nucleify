@@ -1,5 +1,5 @@
 <template>
-    <div class="error404Container">
+    <div class="error-404-container">
         <svg
             class="animated"
             id="freepik_stories-oops-404-error-with-a-broken-robot"

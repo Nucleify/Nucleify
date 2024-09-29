@@ -10,7 +10,7 @@
 @import 'start';
 @import 'why_us';
 
-.homeContainer {
+.home-container {
     background: $white-body-bg !important;
     padding-top: $home-container-padding-top;
 
@@ -54,7 +54,7 @@ div[data-pc-name='deferredcontent'] {
 
 @media (max-width: 768px) {
     div[data-pc-name='deferredcontent'] {
-        margin-top: -100px;
-        padding-top: 100px;
+        margin-top: -150px;
+        padding-top: 150px;
     }
 }
