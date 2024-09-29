@@ -7,6 +7,7 @@
     >
         <slot />
         <icon-atom :icon="props.icon" />
+        <image-atom :src="props.src" />
         <label-atom
             v-if="props.label"
             :label="props.label"

@@ -20,7 +20,7 @@
                             <image-atom
                                 src="desktop.png"
                                 alt=""
-                                image-class="image"
+                                image-class="access-card-image"
                             />
                             <heading-atom
                                 :tag="3"

@@ -13,8 +13,8 @@
                 :loop="true"
                 v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout', rootMargin: isMobile() ? '200px' : '' }"
             >
-                <swiper-slide v-for="(image, index) in images" :key="index">
-                    <image-atom :src="`/technologies/${image}`" width="40" height="40" />
+                <swiper-slide v-for="(tech, index) in technologies" :key="index">
+                    <anchor-molecule :href="tech.url" :src="`/technologies/${tech.image}`" />
                 </swiper-slide>
             </swiper>
         </div>
@@ -22,34 +22,15 @@
 </template>
 
 <script setup lang="ts">
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 
-const modules = [Autoplay, Pagination, Navigation];
+import { technologies } from 'atomic/bosons/constants'
 
-const images = [
-    'php.svg',
-    'laravel.svg',
-    'typescript.svg',
-    'vue.svg',
-    'primevue.png',
-    'html5.png',
-    'scss.svg',
-    'docker.svg',
-    'heroku.svg',
-    'vite.svg',
-    'mysql.svg',
-    'pest.png',
-    'storybook.png',
-    'cypress.png',
-    'sonarcloud.svg',
-    'eslint.svg',
-    'husky.svg',
-    'prettier.svg'
-]
+const modules = [Autoplay, Pagination, Navigation]
 </script>
 
