@@ -15,7 +15,7 @@
     }
 
     &.bottom {
-        bottom: 71px;
+        bottom: 68px;
     }
 
     &::before,
@@ -49,8 +49,8 @@
 
     @media (min-width: 992px) {
         height: 300px;
-        bottom: 71px;
-        margin-left: 4px;
+        margin-bottom: 11px;
+        margin-left: 2px;
     }
 }
 
@@ -90,7 +90,7 @@
     }
 
     &.bottom {
-        bottom: 85px;
+        bottom: 83px;
     }
 
     svg g {

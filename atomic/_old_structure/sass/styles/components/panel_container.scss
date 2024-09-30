@@ -32,12 +32,12 @@ body:has(.p-dock.p-dock-left) {
 
 body:has(.p-dock.p-dock-bottom) {
     .panel-container {
-        padding-bottom: $panel-container-top;
+        padding-bottom: 79px;
 
         // Min width 992px
         @media (min-width: $min-width-lg2) {
             padding-top: 8px;
-            padding-bottom: 81px;
+            padding-bottom: 79px;
         }
     }
 }
