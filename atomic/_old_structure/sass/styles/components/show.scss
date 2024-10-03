@@ -1,25 +1,25 @@
 @import '../../variables/components/show_variables';
 
-.showDataContainer {
+.show-data-container {
     display: $show-data-container-display;
     flex-direction: $show-data-container-flex-direction;
     gap: $show-data-container-gap;
 
-    .showDataHeader {
+    .show-data-header {
         margin-bottom: $show-data-header-margin-bottom;
     }
 
-    .showDataDatesContainer,
-    .showDataPhoneNumbersContainer {
+    .show-data-dates-container,
+    .show-data-phone-numbers-container {
         display: $show-data-dates-container-display;
     }
 
-    .showDataDate,
-    .showDataPhoneNumber {
+    .show-data-date,
+    .show-data-phone-number {
         padding: $show-data-date-padding;
     }
 
-    .showDataRole {
+    .show-data-role {
         margin-top: $show-data-role;
     }
 }

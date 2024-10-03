@@ -1,21 +1,21 @@
 <template>
-    <div class="testButtonsContainer">
-        <button-atom
+    <div class="test-buttons-container">
+        <ad-button
             label="Test Admin Login"
             @click="testLogin('admin')"
-            class="primaryButton text-sm"
+            class="primary-button text-sm"
             :rounded="true"
         />
-        <button-atom
+        <ad-button
             label="Test User Login"
             severity="secondary"
             @click="testLogin('user')"
-            class="primaryButton text-sm"
+            class="primary-button text-sm"
             :rounded="true"
         />
     </div>
 </template>
 
 <script setup lang="ts">
-import { testLogin } from '@/utils'
+import { testLogin } from 'atomic/bosons/utils'
 </script>

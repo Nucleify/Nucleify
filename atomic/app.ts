@@ -9,9 +9,10 @@ import 'sass/index.scss'
 /**
  *  App
  */
-import { App, createApp } from 'vue'
+import { AppType } from 'vite'
+import { createApp } from 'vue'
 
-export const app: App<Element> = createApp({})
+export const app: AppType = createApp({})
 
 import registerOldStructure from './old'
 import registerPrimeVue from './primevue'
@@ -19,6 +20,7 @@ import { registerAtoms } from './atoms'
 import { registerMolecules } from './molecules'
 import { registerOrganisms } from './organisms'
 import { registerTemplates } from './templates'
+import { registerGlobalUtils } from './bosons/utils'
 
 registerOldStructure(app)
 registerPrimeVue(app)
@@ -26,5 +28,6 @@ registerAtoms(app)
 registerMolecules(app)
 registerOrganisms(app)
 registerTemplates(app)
+registerGlobalUtils(app)
 
 app.mount('#app')

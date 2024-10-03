@@ -1,5 +1,5 @@
 <template>
-    <div class="panelContainer settingsPanelContainer">
+    <div class="panel-container settings-panel-container">
         <color-settings />
         <display-charts />
     </div>

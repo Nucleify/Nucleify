@@ -1,8 +1,8 @@
 <template>
-    <div class="loadContainer">
-        <div class="loadContent">
-            <image-atom src="logo.svg" width="150px"/>
-            <progress-bar-atom mode="indeterminate" width="100px" height="10px" />
+    <div class="load-container">
+        <div class="load-content">
+            <ad-image src="logo.svg" width="150px" />
+            <ad-progress-bar mode="indeterminate" width="100px" height="10px" />
         </div>
     </div>
 </template>
@@ -11,7 +11,9 @@
 import { onMounted } from 'vue'
 
 onMounted(() => {
-    const loadContainer = document.querySelector('.loadContainer') as HTMLElement | null
+    const loadContainer = document.querySelector(
+        '.load-container'
+    ) as HTMLElement | null
 
     if (loadContainer) {
         setTimeout(() => {
@@ -20,4 +22,3 @@ onMounted(() => {
     }
 })
 </script>
-

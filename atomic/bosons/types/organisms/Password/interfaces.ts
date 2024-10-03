@@ -1,9 +1,9 @@
 import { HTMLAttributes, InputHTMLAttributes } from 'vue'
 import { HintedString, PassThrough } from 'primevue/ts-helpers'
 import { PasswordPassThroughOptions } from 'primevue/password'
+import { PassThroughOptions } from 'primevue/passthrough'
 
 import { ObjectNameType } from 'atomic/bosons/support'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface PasswordInterface {
     value?: string

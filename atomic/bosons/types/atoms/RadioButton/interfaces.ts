@@ -1,7 +1,8 @@
-import { ObjectNameType } from 'atomic/bosons/types'
 import { RadioButtonPassThroughOptions } from 'primevue/radiobutton'
 import { PassThrough } from 'primevue/ts-helpers'
 import { PassThroughOptions } from 'primevue/passthrough'
+
+import { ObjectNameType } from 'atomic/bosons/types'
 
 export interface RadioButtonInterface {
     value?: any // eslint-disable-line @typescript-eslint/no-explicit-any

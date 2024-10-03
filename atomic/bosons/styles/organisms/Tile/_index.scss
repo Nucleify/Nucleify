@@ -1,0 +1,71 @@
+@use 'mixins' as *;
+@import '../../variables';
+
+.tile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 0.35em !important;
+    min-width: 150px;
+    padding: 1em;
+    text-decoration: none;
+    color: $primary-text-color;
+
+    &:hover {
+        color: $primary-text-color;
+    }
+
+    .general {
+        display: flex;
+        justify-content: space-between;
+        gap: 1.65em;
+
+        .info {
+            display: flex;
+            flex-direction: column;
+
+            .header {
+                color: $secondary-text-color;
+                font-size: 0.9em;
+            }
+            .count {
+                font-size: 1.1em;
+                font-weight: 500;
+            }
+        }
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 2.2em;
+            height: 2.2em;
+            border-radius: 0.25em;
+            padding: 0.5em;
+        }
+    }
+
+    .secondary {
+        display: flex;
+        gap: 0.25em;
+
+        p {
+            margin: 0;
+        }
+
+        .count {
+            color: $primary-color;
+        }
+    }
+}
+
+.tile {
+    @each $type in main, activity, article, contact, user {
+        &[v-type='#{$type}'] {
+            @include entity-tile-styles(
+                var(--#{$type}-item-color-new),
+                var(--#{$type}-item-highlight-color-new)
+            );
+        }
+    }
+}

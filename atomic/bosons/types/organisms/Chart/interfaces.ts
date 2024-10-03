@@ -1,15 +1,16 @@
-import {
-    ActivityLogInterface,
-    ArticleInterface,
-    ContactInterface,
-    UserInterface,
-} from '@/types'
-
-import { ChartType, ChartMethodType } from 'atomic/bosons/types'
 import { CanvasHTMLAttributes } from 'vue'
 import { ChartPassThroughOptions } from 'primevue/chart'
 import { PassThrough } from 'primevue/ts-helpers'
 import { PassThroughOptions } from 'primevue/passthrough'
+
+import {
+    ActivityLogInterface,
+    ArticleInterface,
+    ContactInterface,
+    ChartType,
+    ChartMethodType,
+    UserInterface,
+} from 'atomic/bosons/types'
 
 export interface ChartInterface {
     type: ChartType

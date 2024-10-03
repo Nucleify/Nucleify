@@ -1,8 +1,8 @@
 <template>
-    <div class="panelContainer">
-        <card-chart
+    <div class="panel-container">
+        <ad-card-chart
             v-if="display.Article"
-            class="annualChartCard"
+            class="annual-chart-card"
             :chart-method-type="'annual'"
             :type="'bar'"
             :direction="'vertical'"
@@ -10,7 +10,7 @@
             :chart-class="'h-30rem'"
             :loading="loading"
         />
-        <card-data-table
+        <ad-card-data-table
             :value="results"
             :loading="loading"
             :open-dialog="openDialog"
@@ -20,7 +20,7 @@
         />
     </div>
 
-    <dialog-organism
+    <ad-dialog
         v-for="dialog in dialogs"
         :key="dialog.action"
         :entity="dialog.entity"
@@ -40,12 +40,12 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
 
-import { articleApiMethods } from '@/utils'
-
+import { useArticleFields } from 'atomic/bosons/constants'
 import {
-    useArticleFields
-} from 'atomic/bosons/constants'
-import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
+    articleRequests,
+    useDialog,
+    useDisplayCharts,
+} from 'atomic/bosons/utils'
 
 const {
     visibleShow,
@@ -66,7 +66,7 @@ const {
     storeArticle,
     editArticle,
     deleteArticle,
-} = articleApiMethods()
+} = articleRequests()
 
 onMounted(() => {
     getAllArticles()

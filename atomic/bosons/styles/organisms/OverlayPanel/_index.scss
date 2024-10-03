@@ -1,0 +1,99 @@
+.p-overlaypanel {
+    display: block !important;
+    position: fixed !important;
+    top: unset !important;
+    z-index: 9999 !important;
+    width: 100%;
+    height: 100vh;
+    max-width: 450px;
+    border-radius: 0;
+
+    &.top,
+    &.right,
+    &.left {
+        bottom: -2px;
+    }
+
+    &.bottom {
+        bottom: 68px;
+    }
+
+    &::before,
+    &::after {
+        display: none !important;
+    }
+
+    .p-overlaypanel-close {
+        position: fixed;
+        height: 1.5em;
+        width: 1.5em;
+        top: 1em;
+        right: 1em;
+        background: white;
+        color: black;
+        white-space: wrap;
+
+        .p-icon {
+            width: 1.25em;
+            height: 1.25em;
+        }
+
+        @media (min-width: 768px) {
+            top: 0.5em;
+            right: 0.5em;
+            height: 12px;
+            width: 12px;
+            position: absolute;
+        }
+    }
+
+    @media (min-width: 992px) {
+        height: 300px;
+        margin-bottom: 11px;
+        margin-left: 2px;
+    }
+}
+
+.overlay-panel-toggle {
+    position: fixed;
+    right: 12px;
+    z-index: 999;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 300ms !important;
+    padding: 8px !important;
+
+    &:active {
+        transform: scale(0.9);
+
+        svg g {
+            fill: var(--main-item-color-new);
+        }
+    }
+
+    &.right {
+        right: 83px;
+    }
+
+    &.top,
+    &.right,
+    &.left {
+        bottom: 12px;
+    }
+
+    &.bottom {
+        bottom: 83px;
+    }
+
+    svg g {
+        transition: all 300ms;
+    }
+}

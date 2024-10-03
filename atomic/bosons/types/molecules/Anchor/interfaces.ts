@@ -2,6 +2,7 @@ import { StyleValue } from 'vue'
 
 export interface AnchorInterface {
     href?: string
+    src?: string
     icon?: string
     label?: string
     rel?:

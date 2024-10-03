@@ -1,6 +1,6 @@
 <template>
     <section id="articles">
-        <card-data-table
+        <ad-card-data-table
             :value="data"
             :loading="loading"
             :open-dialog="openDialog"
@@ -10,7 +10,7 @@
             buttonText="New Article"
         />
 
-        <dialog-organism
+        <ad-dialog
             v-for="dialog in dialogs"
             :key="dialog.action"
             :entity="dialog.entity"
@@ -31,13 +31,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { articleApiMethods } from '@/utils'
-
-import {
-    useArticleFields,
-} from 'atomic/bosons/constants'
+import { useArticleFields } from 'atomic/bosons/constants'
 import { DashboardInterface } from 'atomic/bosons/types'
-import { useDialog } from 'atomic/bosons/utils'
+import { articleRequests, useDialog } from 'atomic/bosons/utils'
 
 const props = defineProps<DashboardInterface>()
 
@@ -52,7 +48,7 @@ const {
 } = useDialog()
 
 const { createAndEditFields, showFields } = useArticleFields()
-const { deleteArticle, storeArticle, editArticle } = articleApiMethods()
+const { deleteArticle, storeArticle, editArticle } = articleRequests()
 
 const dialogs = computed(() => [
     {

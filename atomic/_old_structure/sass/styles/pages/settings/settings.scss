@@ -3,18 +3,17 @@
 @import '../../../variables/base/box_shadows_variables';
 @import '../../../variables/base/medias_variables';
 
-.settingsPanelContainer {
+.settings-panel-container {
     display: $settings-panel-container-display;
     flex-direction: row;
 
-    .settingsCard {
+    .settings-card {
         width: 100%;
         max-width: 220px;
         margin: $settings-card-margin;
         padding: $settings-card-padding;
         box-shadow: $my-card-box-shadow;
         border-radius: 0;
-
 
         .refreshButton {
             width: 32px;
@@ -43,19 +42,20 @@
             max-height: 22px;
             padding: 0;
         }
-        .settingsCardHeaderContainer {
+
+        .settings-card-header-container {
             display: flex;
             justify-content: space-between;
         }
 
-        .settingsCardItemList {
+        .settings-card-item-list {
             display: $settings-card-item-list-display;
             flex-direction: $settings-card-item-list-flex-direction;
             padding-left: $settings-card-item-list-padding-left;
             gap: $settings-card-item-list-gap;
             margin: 0;
 
-            .settingsCardItem {
+            .settings-card-item {
                 display: $settings-card-item-display;
                 justify-content: $settings-card-item-justify-content;
                 padding-right: 3px;

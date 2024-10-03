@@ -1,12 +1,10 @@
 <template>
-    <Card
-        class="settingsCard settingsSmallCard"
-    >
+    <Card class="settings-card settings-small-card">
         <template #header>
-            <div class="settingsCardHeaderContainer">
-                <heading-atom :tag="4" text="Colors" />
+            <div class="settings-card-header-container">
+                <ad-header :tag="4" text="Colors" />
 
-                <button-atom
+                <ad-button
                     icon="pi pi-refresh"
                     type="main"
                     class="refreshButton"
@@ -18,14 +16,14 @@
             <hr />
         </template>
         <template #content>
-            <ul class="settingsCardItemList">
+            <ul class="settings-card-item-list">
                 <li
                     v-for="item in colorList"
                     :key="item"
-                    class="settingsCardItem"
+                    class="settings-card-item"
                 >
-                    <label-atom :label="item" :for="item" />
-                    <color-picker-atom :item="getLowerCase(item)" />
+                    <ad-label :label="item" :for="item" />
+                    <ad-color-picker :item="item.toLowerCase()" />
                 </li>
             </ul>
         </template>
@@ -33,9 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { colorList } from '@/constants'
-import { getLowerCase } from '@/utils'
-
+import { colorList } from 'atomic/bosons/constants'
 import { useColors } from 'atomic/bosons/utils'
 
 const { setDefaultColors } = useColors()

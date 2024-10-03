@@ -8,17 +8,16 @@ import {
 } from 'primevue/datatable'
 import { HintedString, Nullable, PassThrough } from 'primevue/ts-helpers'
 import { VirtualScrollerProps } from 'primevue/virtualscroller'
+import { PassThroughOptions } from 'primevue/passthrough'
 
 import {
     ActionInterface,
     ColorItemStyleInterface,
     LoadingType,
     ObjectNameType,
+    SelectedObjectType,
     OpenDialogFunctionType,
 } from 'atomic/bosons/types'
-
-import { SelectedObjectType } from '@/types'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface DataTableInterface {
     value: any[] // eslint-disable-line @typescript-eslint/no-explicit-any

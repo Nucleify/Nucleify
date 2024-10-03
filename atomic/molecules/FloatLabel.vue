@@ -6,8 +6,8 @@
     >
         <slot>
             <!-- Example use
-                <input-text-atom :id="" v-model="" />
-                <label-tag-atom label="" for="" />
+                <ad-input-text :id="" v-model="" />
+                <ad-label label="" for="" />
             -->
         </slot>
     </FloatLabel>

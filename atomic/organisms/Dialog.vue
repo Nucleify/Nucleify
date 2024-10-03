@@ -24,27 +24,27 @@
         :append-to="props.appendTo"
         :pt="props.pt"
         :pt-options="props.ptOptions"
-        class="myDialog"
+        class="my-dialog"
         :class="props.action"
     >
         <template #header>
-            <heading-atom
+            <ad-header
                 :tag="2"
                 :text="getTitle(props.selectedObject)"
                 v-if="props.action === 'show' && props.selectedObject"
             />
-            <heading-atom :tag="2" :text="props.title" v-else />
+            <ad-header :tag="2" :text="props.title" v-else />
         </template>
 
         <form
             v-if="props.fields && props.action !== 'show'"
-            class="formContainer"
+            class="form-container"
             action="#"
         >
             <div
                 v-for="(field, index) in props.fields"
                 :key="index"
-                class="formDiv"
+                class="form-div"
             >
                 <label :for="field.name">{{ field.label }}</label>
                 <component
@@ -88,12 +88,12 @@
             v-else-if="
                 props.fields && props.action === 'show' && props.selectedObject
             "
-            class="showDataContainer"
+            class="show-data-container"
         >
             <div v-for="(item, key) in props.fields" :key="key">
-                <heading-atom
+                <ad-header
                     :tag="5"
-                    class="showDataHeader"
+                    class="show-data-header"
                     :text="item.label"
                 />
                 <div>{{ (props.selectedObject as any)[item.key] }}</div>
@@ -101,8 +101,8 @@
         </div>
 
         <template #footer>
-            <div class="dialogButtonsContainer">
-                <button-atom
+            <div class="dialog-buttons-container">
+                <ad-button
                     :label="props.cancelButtonLabel"
                     icon="pi pi-times"
                     severity="secondary"
@@ -110,7 +110,7 @@
                     rounded
                     text
                 />
-                <button-atom
+                <ad-button
                     v-if="props.fields && props.confirm"
                     :type="props.entity"
                     :label="props.confirmButtonLabel"
@@ -119,7 +119,7 @@
                     rounded
                     text
                 />
-                <button-atom
+                <ad-button
                     v-if="
                         props.action === 'delete' &&
                         props.confirm &&

@@ -1,6 +1,8 @@
 <template>
     <section id="innovations">
-        <structure></structure>
+        <technologies />
+        <structure />
+
         <!--
             TODO: More innovations
          -->
@@ -9,4 +11,5 @@
 
 <script setup lang="ts">
 import Structure from './Structure/Structure.vue'
+import Technologies from './Technologies.vue'
 </script>

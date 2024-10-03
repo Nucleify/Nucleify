@@ -1,8 +1,8 @@
 <template>
-    <div class="panelContainer">
-        <card-chart
+    <div class="panel-container">
+        <ad-card-chart
             v-if="display.Activity"
-            class="annualChartCard"
+            class="annual-chart-card"
             :chart-method-type="'annual'"
             :type="'bar'"
             :direction="'vertical'"
@@ -10,7 +10,7 @@
             :chart-class="'h-30rem'"
             :loading="loading"
         />
-        <card-data-table
+        <ad-card-data-table
             :value="results"
             :loading="loading"
             :open-dialog="openDialog"
@@ -20,7 +20,7 @@
         />
     </div>
 
-    <dialog-organism
+    <ad-dialog
         v-for="dialog in dialogs"
         :key="dialog.action"
         :entity="dialog.entity"
@@ -39,15 +39,17 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 
-import { activityApiMethods } from '@/utils'
-
-import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
+import {
+    activityRequests,
+    useDialog,
+    useDisplayCharts,
+} from 'atomic/bosons/utils'
 
 const { visibleDelete, selectedObject, openDialog, closeDialog } = useDialog()
 const { display } = useDisplayCharts()
 
 const { results, loading, getAllActivities, deleteActivity } =
-    activityApiMethods()
+    activityRequests()
 
 onMounted(() => {
     getAllActivities()
