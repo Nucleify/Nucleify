@@ -1,36 +1,42 @@
 <template>
-    <back-link />
+    <ad-back-link />
     <div class="auth-card-container">
         <Card class="login-card">
             <template #header>
                 <div class="auth-card-header-container">
                     <div class="auth-card-header">
-                        <image-atom src="logo.svg" width="50" />
-                        <heading-atom :tag="1" text="Welcome Back" />
+                        <ad-image src="logo.svg" width="50" />
+                        <ad-header :tag="1" text="Welcome Back" />
 
-                        <paragraph-atom class="mb-2" text="Don't have an account?">
-                            <anchor-molecule
+                        <ad-paragraph
+                            class="mb-2"
+                            text="Don't have an account?"
+                        >
+                            <ad-anchor
                                 href="/register"
                                 :label="'Create today!'"
                             />
-                        </paragraph-atom>
+                        </ad-paragraph>
                     </div>
                 </div>
             </template>
             <template #content>
                 <form @submit.prevent="submitForm(loginFields)">
-                    <float-label-molecule v-for="(field, index) in loginInputs" :key="index">
-                        <input-text-atom
+                    <ad-float-label
+                        v-for="(field, index) in loginInputs"
+                        :key="index"
+                    >
+                        <ad-input-text
                             v-model="loginFields[field.model]"
                             :type="field.type"
                             :id="field.id"
                             class="auth-input-text"
                             :autofocus="field.autofocus"
                         />
-                        <label-atom :for="field.id" :label="field.label" />
-                    </float-label-molecule>
+                        <ad-label :for="field.id" :label="field.label" />
+                    </ad-float-label>
 
-                    <button-atom
+                    <ad-button
                         label="Log In"
                         type="submit"
                         class="-mb-1 mt-2"
@@ -41,7 +47,7 @@
         </Card>
     </div>
 
-    <test-login-buttons />
+    <ad-test-login-buttons />
 </template>
 
 <script setup lang="ts">

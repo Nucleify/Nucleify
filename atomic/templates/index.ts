@@ -1,4 +1,4 @@
-export { default as registerTemplates } from './templates'
+export { default as registerTemplates } from './register'
 
 export * from './Anchor'
 export * from './Button'

@@ -28,12 +28,12 @@
         :class="props.action"
     >
         <template #header>
-            <heading-atom
+            <ad-header
                 :tag="2"
                 :text="getTitle(props.selectedObject)"
                 v-if="props.action === 'show' && props.selectedObject"
             />
-            <heading-atom :tag="2" :text="props.title" v-else />
+            <ad-header :tag="2" :text="props.title" v-else />
         </template>
 
         <form
@@ -91,7 +91,7 @@
             class="show-data-container"
         >
             <div v-for="(item, key) in props.fields" :key="key">
-                <heading-atom
+                <ad-header
                     :tag="5"
                     class="show-data-header"
                     :text="item.label"
@@ -102,7 +102,7 @@
 
         <template #footer>
             <div class="dialog-buttons-container">
-                <button-atom
+                <ad-button
                     :label="props.cancelButtonLabel"
                     icon="pi pi-times"
                     severity="secondary"
@@ -110,7 +110,7 @@
                     rounded
                     text
                 />
-                <button-atom
+                <ad-button
                     v-if="props.fields && props.confirm"
                     :type="props.entity"
                     :label="props.confirmButtonLabel"
@@ -119,7 +119,7 @@
                     rounded
                     text
                 />
-                <button-atom
+                <ad-button
                     v-if="
                         props.action === 'delete' &&
                         props.confirm &&

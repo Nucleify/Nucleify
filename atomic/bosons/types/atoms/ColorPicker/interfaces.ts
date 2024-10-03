@@ -1,9 +1,9 @@
 import { Ref } from 'vue'
 import { HintedString, PassThrough } from 'primevue/ts-helpers'
-
-import { ColorItemColorsInterface } from 'atomic/bosons/types'
 import { ColorPickerPassThroughOptions } from 'primevue/colorpicker'
 import { PassThroughOptions } from 'primevue/passthrough'
+
+import { ColorItemColorsInterface } from 'atomic/bosons/types'
 
 export interface ColorPickerInterface {
     item?: string

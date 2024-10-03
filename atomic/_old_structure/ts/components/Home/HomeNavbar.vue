@@ -5,11 +5,11 @@
         :class="navbarExpanded ? 'expanded' : 'not-expanded'"
     >
         <div class="container">
-            <anchor-molecule href="/home">
-                <image-atom src="logo.svg" width="60" />
-            </anchor-molecule>
+            <ad-anchor href="/home">
+                <ad-image src="logo.svg" width="60" />
+            </ad-anchor>
 
-            <button-atom
+            <ad-button
                 class="navbar-toggler"
                 :icon="
                     navbarExpanded
@@ -18,38 +18,38 @@
                 "
                 type="button"
                 @click="toggleNavbar"
-                aria-controls="navbar-supported-content"
+                aria-controls="navbarSupportedContent"
                 aria-expanded="false"
                 aria-label="Toggle navigation"
             />
 
-            <div class="collapse navbar-collapse" id="navbar-supported-content">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Right Side Of Navbar -->
                 <div class="navbar-nav ms-auto md:gap-5 lg:gap-7">
                     <div class="navbar-nav flex md:gap-3 lg:gap-6">
-                        <anchor-molecule
+                        <ad-anchor
                             class="nav-link home-nav-link -mt-1 md:mt-0"
                             href="/home"
                             label="Home"
                         />
-                        <anchor-molecule
+                        <ad-anchor
                             class="nav-link home-nav-link"
                             href="/services"
                             label="Services"
                         />
-                        <anchor-molecule
+                        <ad-anchor
                             class="nav-link home-nav-link"
                             href="/about"
                             label="About"
                         />
-                        <anchor-molecule
+                        <ad-anchor
                             class="nav-link home-nav-link"
                             href="/blog"
                             label="Blog"
                         />
                     </div>
 
-                    <button-atom
+                    <ad-button
                         label="Log In"
                         class="primary-button login-button max-w-6 ml-auto my-4 md:my-0 text-sm px-3"
                         @click="navigateTo('/login')"
@@ -62,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import { navigateTo, useNavbar } from '@/utils'
+import { navigateTo, useNavbar } from 'atomic/bosons/utils'
 
 const { navbarExpanded, toggleNavbar } = useNavbar()
 </script>

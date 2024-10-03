@@ -1,12 +1,10 @@
 <template>
-    <Card
-        class="settings-card settings-small-card"
-    >
+    <Card class="settings-card settings-small-card">
         <template #header>
             <div class="settings-card-header-container">
-                <heading-atom :tag="4" text="Charts" />
+                <ad-header :tag="4" text="Charts" />
 
-                <button-atom
+                <ad-button
                     icon="pi pi-refresh"
                     type="main"
                     class="refreshButton"
@@ -18,17 +16,15 @@
             <hr />
         </template>
         <template #content>
-            <ul
-                class="settings-card-item-list"
-            >
+            <ul class="settings-card-item-list">
                 <li
                     class="settings-card-item"
                     v-for="item in displayChartList"
                     :key="item"
                 >
-                    <label-atom :label="item" :for="item" />
+                    <ad-label :label="item" :for="item" />
 
-                    <radio-button-atom
+                    <ad-radio-button
                         :input-id="item"
                         :value="item"
                         type="main"
@@ -43,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { displayChartList } from '@/constants'
+import { displayChartList } from 'atomic/bosons/constants'
 import { useDisplayCharts } from 'atomic/bosons/utils'
 
 const { display, setDefaultChartsDisplay, displayChartsToggle } =

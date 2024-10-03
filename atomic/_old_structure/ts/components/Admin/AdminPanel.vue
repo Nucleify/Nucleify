@@ -2,7 +2,7 @@
 <template>
     <div class="panel-container">
         <div class="admin-bricks grid col-12">
-            <tile-organism
+            <ad-tile
                 href="#articles"
                 header="Articles"
                 :count="articles.length"
@@ -11,7 +11,7 @@
                 text-secondary="this week"
                 type="article"
             />
-            <tile-organism
+            <ad-tile
                 href="#contacts"
                 header="Contacts"
                 :count="contacts.length"
@@ -20,7 +20,7 @@
                 text-secondary="this week"
                 type="contact"
             />
-            <tile-organism
+            <ad-tile
                 href="#users"
                 header="Users"
                 :count="users.length"
@@ -31,7 +31,7 @@
             />
         </div>
 
-        <card-chart
+        <ad-card-chart
             v-if="display.Admin"
             class="annual-chart-card"
             :chart-method-type="'annual'"
@@ -65,13 +65,14 @@
 <script setup lang="ts">
 import { onMounted, ref, Ref, watch } from 'vue'
 
-import ArticleDashboard from './ArticleDashboard.vue'
-import ContactDashboard from './ContactDashboard.vue'
-import UserDashboard from './UserDashboard.vue'
+import { ArticleDashboard, ContactDashboard, UserDashboard } from './'
 
-import { articleApiMethods, contactApiMethods, userApiMethods } from '@/utils'
-
-import { useDisplayCharts } from 'atomic/bosons/utils'
+import {
+    articleRequests,
+    contactRequests,
+    userRequests,
+    useDisplayCharts,
+} from 'atomic/bosons/utils'
 
 const { display } = useDisplayCharts()
 
@@ -79,13 +80,13 @@ const {
     results: articles,
     loading: articlesLoading,
     getAllArticles,
-} = articleApiMethods()
+} = articleRequests()
 const {
     results: contacts,
     loading: contactsLoading,
     getAllContacts,
-} = contactApiMethods()
-const { results: users, loading: usersLoading, getAllUsers } = userApiMethods()
+} = contactRequests()
+const { results: users, loading: usersLoading, getAllUsers } = userRequests()
 
 onMounted(() => {
     getAllArticles()

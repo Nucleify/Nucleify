@@ -999,7 +999,7 @@
             </defs>
         </svg>
 
-        <anchor-molecule href="/" label="Got lost?" />
+        <ad-anchor href="/" label="Got lost?" />
     </div>
 </template>
 

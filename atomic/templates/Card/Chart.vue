@@ -1,7 +1,7 @@
 <template>
     <Card class="my-card chart-card">
         <template #content>
-            <chart-organism
+            <ad-chart
                 :chart-method-type="chartMethodType"
                 :type="type"
                 :direction="direction"
@@ -12,7 +12,7 @@
                 :chart-class="chartClass"
                 :class="loading ? 'chart-loading' : 'chart-loaded'"
             />
-            <progress-spinner-atom v-if="loading" />
+            <ad-progress-spinner v-if="loading" />
         </template>
     </Card>
 </template>

@@ -1,1 +1,1 @@
-export { UserRoleType as UserRoleType } from './variablesTypes'
+export { UserRoleType as UserRoleType } from './variables'

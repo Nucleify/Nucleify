@@ -1,21 +1,17 @@
 <template>
-    <anchor-molecule
-        class="tile my-card"
-        :href="props.href"
-        :v-type="props.type"
-    >
+    <ad-anchor class="tile my-card" :href="props.href" :v-type="props.type">
         <div class="general">
             <div class="info">
-                <paragraph-atom class="header" :text="props.header" />
-                <paragraph-atom class="count" :text="props.count" />
+                <ad-paragraph class="header" :text="props.header" />
+                <ad-paragraph class="count" :text="props.count" />
             </div>
-            <icon-atom class="icon" :icon="props.icon" :v-type="props.type" />
+            <ad-icon class="icon" :icon="props.icon" :v-type="props.type" />
         </div>
         <div class="secondary">
-            <paragraph-atom class="count" :text="props.countSecondary" />
-            <paragraph-atom class="text" :text="props.textSecondary" />
+            <ad-paragraph class="count" :text="props.countSecondary" />
+            <ad-paragraph class="text" :text="props.textSecondary" />
         </div>
-    </anchor-molecule>
+    </ad-anchor>
 </template>
 
 <script setup lang="ts">

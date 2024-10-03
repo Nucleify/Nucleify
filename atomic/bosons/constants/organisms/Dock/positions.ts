@@ -1,18 +1,16 @@
-import { Ref, ref } from 'vue'
+import { ref } from 'vue'
 
-import { PositionType } from 'atomic/bosons/types'
+import { PositionType, PositionsRefType } from 'atomic/bosons/types'
 
-export const positions: Ref<{ value: PositionType }[]> = ref([
-    {
-        value: 'top',
-    },
-    {
-        value: 'right',
-    },
-    {
-        value: 'left',
-    },
-    {
-        value: 'bottom',
-    },
-])
+export const positions = (): PositionsRefType => {
+    const positionValues: readonly PositionType[] = [
+        'top',
+        'right',
+        'left',
+        'bottom',
+    ] as const
+
+    return ref(
+        positionValues.map((value): PositionsRefType => ({ value }))
+    ) as const
+}

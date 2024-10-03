@@ -2,7 +2,11 @@
     <section id="why-us">
         <div
             class="why-us-container px-4 py-8 md:px-6 lg:px-8 text-center flex justify-content-center align-items-center"
-            v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout', rootMargin: isMobile() ? '100px' : ''  }"
+            v-animateonscroll="{
+                enterClass: 'fadein',
+                leaveClass: 'fadeout',
+                rootMargin: isMobile() ? '100px' : '',
+            }"
         >
             <div class="mb-3 font-bold text-3xl -mt-5 absolute why-us-header">
                 <span>Why </span>
@@ -14,7 +18,7 @@
                 :key="groupIndex"
                 :class="`why-us-${groupIndex} flex justify-content-between absolute`"
             >
-                <icon-atom
+                <ad-icon
                     v-for="(item, itemIndex) in group.items"
                     :key="itemIndex"
                     :icon="item.icon"
@@ -34,15 +38,12 @@
     >
         <template #header>
             <div class="flex align-items-center gap-4">
-                <icon-atom :icon="dialogData.icon" class="text-xl" />
-                <heading-atom :tag="4" class="m-0" :text="dialogData.title" />
+                <ad-icon :icon="dialogData.icon" class="text-xl" />
+                <ad-header :tag="4" class="m-0" :text="dialogData.title" />
             </div>
         </template>
         <template #default>
-            <paragraph-atom
-                class="m-0 text-sm"
-                :text="dialogData.description"
-            />
+            <ad-paragraph class="m-0 text-sm" :text="dialogData.description" />
         </template>
     </Dialog>
 </template>
@@ -50,7 +51,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-import { whyUsData } from '@/constants'
+import { whyUsData } from 'atomic/bosons/constants'
 
 const dialogVisible = ref(false)
 const dialogData = ref()

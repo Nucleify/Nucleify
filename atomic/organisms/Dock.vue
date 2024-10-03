@@ -1,16 +1,16 @@
 <template>
-    <overlay-panel-organism
+    <ad-overlay-panel
         dismissable
         show-close-icon
         :button-class="'overlay-panel-toggle ' + positionClass"
         :button-style="{ height: 18, width: 18 }"
         :overlay-panel-class="positionClass"
     >
-        <terminal-organism
+        <ad-terminal
             prompt="artisan >"
             welcome-message="The ''help'' command displays help"
         />
-    </overlay-panel-organism>
+    </ad-overlay-panel>
 
     <Dock :model="dockItems" :position="position" class="dock">
         <template #icon="{ item }">
@@ -40,7 +40,7 @@
                     />
                 </svg>
             </div>
-            <icon-atom
+            <ad-icon
                 v-if="item.icon || item.url"
                 :icon="item.icon"
                 class="item"
@@ -49,7 +49,7 @@
                 :type="item.url"
             />
             <div class="dock-position-buttons" v-if="item.id === 'position'">
-                <radio-button-atom
+                <ad-radio-button
                     v-for="pos of positions"
                     v-model="position"
                     :key="pos.value"
@@ -67,10 +67,9 @@
 <script setup lang="ts">
 import { onMounted, ref, watch, computed } from 'vue'
 
-import { useIsAdmin } from '@/utils'
 import { dockItems, positions } from 'atomic/bosons/constants'
 import { PositionType } from 'atomic/bosons/types'
-import { setColorsVariables } from 'atomic/bosons/utils'
+import { isAdmin as useIsAdmin, setColorsVariables } from 'atomic/bosons/utils'
 
 const LOCAL_STORAGE_KEY = 'dock-position'
 

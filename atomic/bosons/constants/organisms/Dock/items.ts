@@ -1,61 +1,50 @@
 import { ref } from 'vue'
 
-import { logout } from '@/utils'
+import { DockItemInterface } from 'atomic/bosons/types'
+import { logout } from 'atomic/bosons/utils'
 
-export const dockItems = ref([
-    {
-        logo: true,
-        class: 'logo',
-        alt: 'DataManager logo',
-        url: 'home',
-    },
-    {
-        icon: 'pi pi-chart-line',
-        label: 'Dashboard',
-        url: 'dashboard',
-    },
-    {
-        icon: 'pi pi-phone',
-        label: 'Contacts',
-        url: 'contacts',
-    },
-    {
-        icon: 'pi pi-comment',
-        label: 'Articles',
-        url: 'articles',
-    },
-    {
-        icon: 'pi pi-history',
-        label: 'Activities',
-        url: 'activity-log',
-    },
-    {
-        icon: 'pi pi-envelope disabled-item',
-        label: 'Messages',
-    },
-    {
-        icon: 'pi pi-check-square disabled-item',
-        label: 'Tasks',
-    },
-    {
-        icon: 'pi pi-calendar disabled-item',
-        label: 'Calendar',
-    },
-    {
-        icon: 'pi pi-dollar disabled-item',
-        label: 'Money',
-    },
-    {
-        icon: 'pi pi-cog',
-        label: 'Settings',
-        url: 'settings',
-    },
-    {
-        icon: 'pi pi-sign-out',
-        label: 'Logout',
-        click: logout,
-    },
-    {
-        id: 'position',
-    },
-])
+const createDockItem = (
+    icon?: string,
+    label?: string,
+    url?: string,
+    className?: string,
+    click?: () => void,
+    logo?: boolean
+): DockItemInterface =>
+    ({
+        icon,
+        label,
+        url,
+        class: className,
+        click,
+        logo,
+    }) as const
+
+const dockData: readonly DockItemInterface[] = [
+    [undefined, undefined, 'home', 'logo', undefined, true],
+    ['pi pi-chart-line', 'Dashboard', 'dashboard'],
+    ['pi pi-phone', 'Contacts', 'contacts'],
+    ['pi pi-comment', 'Articles', 'articles'],
+    ['pi pi-history', 'Activities', 'activity-log'],
+    ['pi pi-envelope disabled-item', 'Messages'],
+    ['pi pi-check-square disabled-item', 'Tasks'],
+    ['pi pi-calendar disabled-item', 'Calendar'],
+    ['pi pi-dollar disabled-item', 'Money'],
+    ['pi pi-cog', 'Settings', 'settings'],
+    ['pi pi-sign-out', 'Logout', undefined, undefined, logout],
+    [undefined, undefined, undefined, 'position'],
+] as const
+
+export const dockItems: readonly DockItemInterface[] = ref(
+    dockData.map(
+        ([
+            icon,
+            label,
+            url,
+            className,
+            click,
+            logo,
+        ]): readonly DockItemInterface[] =>
+            createDockItem(icon, label, url, className, click, logo)
+    )
+) as const

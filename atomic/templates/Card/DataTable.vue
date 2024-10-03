@@ -3,14 +3,14 @@
         <template #title>
             <div class="my-card-header-container">
                 <template v-if="loading">
-                    <skeleton-atom
+                    <ad-skeleton
                         :loading="loading"
                         width="180px"
                         height="30px"
                         border-radius="10px"
                         class="heading-skeleton"
                     />
-                    <skeleton-atom
+                    <ad-skeleton
                         :loading="loading"
                         width="30px"
                         height="30px"
@@ -18,9 +18,9 @@
                     />
                 </template>
                 <template v-else>
-                    <heading-atom :tag="tag" :type="type" :text="headerText" />
+                    <ad-header :tag="tag" :type="type" :text="headerText" />
 
-                    <button-atom
+                    <ad-button
                         v-if="type !== 'activity'"
                         :type="type"
                         icon="pi pi-plus"
@@ -33,7 +33,7 @@
             </div>
         </template>
         <template #content>
-            <data-table-organism
+            <ad-data-table
                 v-if="value"
                 :value="value"
                 :rows="10"

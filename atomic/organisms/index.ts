@@ -1,4 +1,4 @@
-export { default as registerOrganisms } from './organisms'
+export { default as registerOrganisms } from './register'
 
 export * from './DataTable'
 

@@ -1,74 +1,29 @@
-export const technologies = [
-    {
-        image: 'php.svg',
-        url: 'https://www.php.net/'
-    },
-    {
-        image: 'laravel.svg',
-        url: 'https://laravel.com/'
-    },
-    {
-        image: 'typescript.svg',
-        url: 'https://www.typescriptlang.org/'
-    },
-    {
-        image: 'vue.svg',
-        url: 'https://vuejs.org/'
-    },
-    {
-        image: 'primevue.png',
-        url: 'https://v3.primevue.org/'
-    },
-    {
-        image: 'html5.png',
-        url: 'https://html.spec.whatwg.org/multipage/'
-    },
-    {
-        image: 'scss.svg',
-        url: 'https://sass-lang.com/'
-    },
-    {
-        image: 'docker.svg',
-        url: 'https://www.docker.com/'
-    },
-    {
-        image: 'heroku.svg',
-        url: 'https://www.heroku.com/'
-    },
-    {
-        image: 'vite.svg',
-        url: 'https://vitejs.dev/'
-    },
-    {
-        image: 'mysql.svg',
-        url: 'https://www.mysql.com/'
-    },
-    {
-        image: 'pest.png',
-        url: 'https://pestphp.com/'
-    },
-    {
-        image: 'storybook.png',
-        url: 'https://storybook.js.org/'
-    },
-    {
-        image: 'cypress.png',
-        url: 'https://www.cypress.io/'
-    },
-    {
-        image: 'sonarcloud.svg',
-        url: 'https://www.sonarsource.com/products/sonarcloud/'
-    },
-    {
-        image: 'eslint.svg',
-        url: 'https://eslint.org/'
-    },
-    {
-        image: 'husky.svg',
-        url: 'https://typicode.github.io/husky/'
-    },
-    {
-        image: 'prettier.svg',
-        url: 'https://prettier.io/'
-    },
-]
+import { TechnologyInterface } from 'atomic/bosons/types'
+
+const techData: readonly TechnologyInterface[] = [
+    ['php.svg', 'https://www.php.net/'],
+    ['laravel.svg', 'https://laravel.com/'],
+    ['typescript.svg', 'https://www.typescriptlang.org/'],
+    ['vue.svg', 'https://vuejs.org/'],
+    ['primevue.png', 'https://v3.primevue.org/'],
+    ['html5.png', 'https://html.spec.whatwg.org/multipage/'],
+    ['scss.svg', 'https://sass-lang.com/'],
+    ['docker.svg', 'https://www.docker.com/'],
+    ['heroku.svg', 'https://www.heroku.com/'],
+    ['vite.svg', 'https://vitejs.dev/'],
+    ['mysql.svg', 'https://www.mysql.com/'],
+    ['pest.png', 'https://pestphp.com/'],
+    ['storybook.png', 'https://storybook.js.org/'],
+    ['cypress.png', 'https://www.cypress.io/'],
+    ['sonarcloud.svg', 'https://www.sonarsource.com/products/sonarcloud/'],
+    ['eslint.svg', 'https://eslint.org/'],
+    ['husky.svg', 'https://typicode.github.io/husky/'],
+    ['prettier.svg', 'https://prettier.io/'],
+] as const
+
+export const technologies: readonly TechnologyInterface[] = techData.map(
+    ([image, url]): readonly TechnologyInterface[] => ({
+        image,
+        url,
+    })
+) as const

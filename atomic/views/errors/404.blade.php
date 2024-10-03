@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="error-404">
-        <error404></error404>
+        <ad-error-404></ad-error-404>
     </div>
 @endsection

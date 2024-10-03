@@ -27,7 +27,7 @@
         }"
         :v-type="props.type"
     >
-        <image-atom v-if="props.src" :src="props.src" />
+        <ad-image v-if="props.src" :src="props.src" />
         <slot />
     </Button>
 </template>

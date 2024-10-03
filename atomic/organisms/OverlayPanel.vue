@@ -1,5 +1,5 @@
 <template>
-    <button-atom
+    <ad-button
         @click="toggle"
         :src="props.src"
         :class="buttonClass"
@@ -27,7 +27,7 @@
                 />
             </g>
         </svg>
-    </button-atom>
+    </ad-button>
 
     <OverlayPanel
         ref="op"

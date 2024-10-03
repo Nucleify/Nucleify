@@ -1,18 +1,18 @@
 import { HTMLAttributes, StyleValue } from 'vue'
 import { DialogBreakpoints, DialogPassThroughAttributes } from 'primevue/dialog'
 import { HintedString, PassThrough } from 'primevue/ts-helpers'
-
-import { ObjectType, SelectedObjectType } from '@/types'
+import { PassThroughOptions } from 'primevue/passthrough'
 
 import {
     ActionType,
     CloseDialogFunctionType,
     ConfirmDialogFunctionType,
     DialogPositionType,
+    ObjectType,
     OpenDialogFunctionType,
+    SelectedObjectType,
     VisibleType,
 } from 'atomic/bosons/types'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface DialogInterface {
     header?: string
