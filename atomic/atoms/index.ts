@@ -1,9 +1,9 @@
-export { default as registerAtoms } from './atoms'
+export * from './register'
 
 export { default as Avatar } from './Avatar.vue'
 export { default as Button } from './Button.vue'
 export { default as ColorPicker } from './ColorPicker.vue'
-export { default as Heading } from './Heading.vue'
+export { default as Header } from './Header.vue'
 export { default as Icon } from './Icon.vue'
 export { default as Image } from './Image.vue'
 export { default as InputText } from './InputText.vue'

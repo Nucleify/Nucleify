@@ -19,9 +19,9 @@
 </head>
 <body>
     <main id="app">
-        <toast-atom></toast-atom>
+        <ad-toast></ad-toast>
         @auth
-            <dock-organism></dock-organism>
+            <ad-dock></ad-dock>
         @endauth
 
         @yield('content')

@@ -8,7 +8,7 @@
     width: $home-charts-container-width;
     background: $home-charts-container-background;
 
-    .homeChartsContainer {
+    .home-charts-container {
         margin: $home-charts-container-margin;
         padding: $home-charts-container-padding;
         display: $home-charts-container-display;
@@ -17,7 +17,7 @@
         align-items: $home-charts-container-align-items;
 
 
-        .homeChartCard {
+        .home-chart-card {
             position: relative;
             display: $home-chart-card-display;
             justify-content: $home-chart-card-justify-content;
@@ -28,7 +28,7 @@
             padding: 35px 15px;
             margin-bottom: -30px;
 
-            .homePieChart {
+            .home-pie-chart {
                 position: absolute;
                 bottom: 135px;
                 right: 10px;
@@ -37,13 +37,13 @@
                 height: $home-pie-chart-height;
             }
 
-            .homeVerticalChart>canvas {
+            .home-vertical-chart>canvas {
                 height: 300px !important;
                 width: 100% !important;
             }
         }
 
-        .homeChartsHeader {
+        .home-charts-header {
             font-family: $font-family-inter-sans-serif;
             font-weight: $home-charts-header-font-weight;
             color: $dark-text-color;
@@ -64,7 +64,7 @@
         @media (min-width: $min-width-lg2) {
             flex-direction: $home-charts-container-flex-direction-lg2;
 
-            .homeChartCard {
+            .home-chart-card {
                 padding: 35px;
             }
         }

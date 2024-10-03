@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
 
-    .footerContentContainer {
+    .footer-content-container {
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -27,7 +27,7 @@
             gap: 3.5em;
             width: 100%;
 
-            .brandHeader {
+            .header {
                 display: flex;
                 align-items: center;
                 gap: 1em;
@@ -35,7 +35,7 @@
                 text-decoration: none;
                 max-width: max-content;
 
-                .brandName {
+                .name {
                     font-size: 1.6em;
                     font-weight: bold;
                     margin: 0;
@@ -128,16 +128,16 @@
             }
         }
     }
-    .hexagonRowsContainer {
+    .hexagon-rows-container {
         background: $primary-bg;
         overflow: $hexagon-rows-container-overflow;
 
-        .hexagonRowContainer {
+        .hexagon-row-container {
             position: $hexagon-row-container-position;
             top: $hexagon-row-container-top;
             margin-top: $hexagon-row-container-margin-top;
 
-            .hexagonContainer {
+            .hexagon-container {
                 display: $hexagon-container-display;
                 gap: $hexagon-container-gap;
 
@@ -154,7 +154,7 @@
     }
 
     @media (min-width: 768px) {
-        .footerContentContainer {
+        .footer-content-container {
             position: absolute;
             width: 100%;
             max-width: 1300px;
@@ -169,12 +169,12 @@
                 .about {
                     max-width: 200px !important;
                 }
-                .brandHeader {
+                .header {
                     display: flex;
                     align-items: center;
                     gap: 1.5em;
 
-                    .brandName {
+                    .name {
                         color: white;
                         font-size: 2em;
                         font-weight: bold;

@@ -1,6 +1,6 @@
 <template>
     <DataTable
-        class="skeletonDataTable"
+        class="skeleton-data-table"
         :value="rows"
         v-if="loading"
         :size="'small'"
@@ -11,31 +11,31 @@
             :class="col.class"
         >
             <template #header>
-                <skeleton-atom
+                <ad-skeleton
                     :loading="loading"
-                    class="dataTableHeaderSkeleton"
+                    class="data-table-header-skeleton"
                     height="22px"
                 />
             </template>
             <template #body>
-                <skeleton-atom :loading="loading" />
+                <ad-skeleton :loading="loading" />
             </template>
         </Column>
-        <Column class="actionColumn">
+        <Column class="action-column">
             <template #body>
-                <div class="actionColumnContent">
-                    <skeleton-atom
+                <div class="action-column-content">
+                    <ad-skeleton
                         v-for="index in 3"
                         :key="index"
                         :loading="loading"
-                        class="dataTableButtonSkeleton desktop"
+                        class="data-table-button-skeleton desktop"
                         shape="circle"
                         width="30px"
                         height="30px"
                     />
-                    <skeleton-atom
+                    <ad-skeleton
                         :loading="loading"
-                        class="dataTableButtonSkeleton mobile"
+                        class="data-table-button-skeleton mobile"
                         shape="circle"
                         width="30px"
                         height="30px"

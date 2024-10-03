@@ -1,0 +1,18 @@
+@use 'mixins' as *;
+
+@each $type in main, activity, article, contact, user {
+    .p-radiobutton[v-type='#{$type}'] {
+        @include entity-radiobutton-styles(var(--#{$type}-item-color-new));
+    }
+
+    .dock
+        .p-dock-list-container
+        ul
+        .p-dock-item
+        a
+        .dock-position-buttons
+        div[v-type='#{$type}']
+        input[type='radio']:checked {
+        @include dock-radiobutton-styles(var(--#{$type}-item-color-new));
+    }
+}

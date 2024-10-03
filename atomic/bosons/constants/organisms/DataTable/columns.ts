@@ -1,104 +1,52 @@
-import { ColumnsInterface } from 'atomic/bosons/types'
+import { ColumnInterface, ColumnsInterface } from 'atomic/bosons/types'
 
-export const columns: ColumnsInterface = {
+const createColumn = (
+    field: string,
+    header: string,
+    className: string,
+    sortable: boolean = true
+): ColumnInterface => ({
+    field,
+    header,
+    class: className,
+    sortable,
+})
+
+const columnsData: readonly ColumnsInterface[] = {
     activity: [
-        {
-            field: 'id',
-            header: 'ID',
-            class: 'idActivityColumn',
-            sortable: true,
-        },
-        {
-            field: 'description',
-            header: 'Description',
-            class: 'descriptionColumn',
-            sortable: true,
-        },
-        {
-            field: 'created_at',
-            header: 'Created At',
-            class: 'createdAtActivityColumn',
-            sortable: true,
-        },
+        ['id', 'ID', 'id-activity-column'],
+        ['description', 'Description', 'description-column'],
+        ['created_at', 'Created At', 'created-at-activity-column'],
     ],
     article: [
-        {
-            field: 'title',
-            header: 'Title',
-            class: 'titleColumn',
-            sortable: true,
-        },
-        {
-            field: 'category',
-            header: 'Category',
-            class: 'categoryColumn desktopColumn',
-            sortable: true,
-        },
-        {
-            field: 'created_at',
-            header: 'Created At',
-            class: 'createdAtColumn',
-            sortable: true,
-        },
-        {
-            field: 'updated_at',
-            header: 'Updated At',
-            class: 'updatedAtColumn',
-            sortable: true,
-        },
+        ['title', 'Title', 'title-column'],
+        ['category', 'Category', 'category-column desktop-column'],
+        ['created_at', 'Created At', 'created-at-column'],
+        ['updated_at', 'Updated At', 'updated-at-column'],
     ],
     contact: [
-        {
-            field: 'full_name',
-            header: 'Full name',
-            class: 'fullNameColumn',
-            sortable: true,
-        },
-        {
-            field: 'email',
-            header: 'Email',
-            class: 'emailColumn tabletColumn',
-            sortable: true,
-        },
-        {
-            field: 'birthday',
-            header: 'Birthday',
-            class: 'birthdayColumn desktopColumn',
-            sortable: true,
-        },
-        {
-            field: 'created_at',
-            header: 'Created At',
-            class: 'createdAtColumn',
-            sortable: true,
-        },
-        {
-            field: 'updated_at',
-            header: 'Updated At',
-            class: 'updatedAtColumn',
-            sortable: true,
-        },
+        ['full_name', 'Full Name', 'full-name-column'],
+        ['email', 'Email', 'email-column tablet-column'],
+        ['birthday', 'Birthday', 'birthday-column desktop-column'],
+        ['created_at', 'Created At', 'created-at-column'],
+        ['updated_at', 'Updated At', 'updated-at-column'],
     ],
     user: [
-        { field: 'name', header: 'Name', class: 'nameColumn', sortable: true },
-        {
-            field: 'email',
-            header: 'Email',
-            class: 'emailColumn',
-            sortable: true,
-        },
-        { field: 'role', header: 'Role', class: 'roleColumn', sortable: true },
-        {
-            field: 'created_at',
-            header: 'Created At',
-            class: 'createdAtColumn',
-            sortable: true,
-        },
-        {
-            field: 'updated_at',
-            header: 'Updated At',
-            class: 'updatedAtColumn',
-            sortable: true,
-        },
+        ['name', 'Name', 'name-column'],
+        ['email', 'Email', 'email-column'],
+        ['role', 'Role', 'role-column'],
+        ['created_at', 'Created At', 'created-at-column'],
+        ['updated_at', 'Updated At', 'updated-at-column'],
     ],
-}
+} as const
+
+export const columns: readonly ColumnsInterface[] = Object.fromEntries(
+    Object.entries(columnsData).map(
+        ([key, data]): readonly ColumnsInterface[] => [
+            key,
+            data.map(([field, header, className]) =>
+                createColumn(field, header, className)
+            ),
+        ]
+    )
+) as const

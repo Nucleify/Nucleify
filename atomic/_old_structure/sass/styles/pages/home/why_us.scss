@@ -1,74 +1,74 @@
 @import '../../../variables/base/colors_variables';
 
 
-.whyUsContainer {
+.why-us-container {
     height: 450px;
     display: flex;
     align-items: center;
     margin: 0 auto;
 
-    .whyUsHeader {
+    .why-us-header {
         padding-top: 50px;
         opacity: 0;
         animation: setOpacity 1s forwards;
     }
 
-    .whyUs0,
-    .whyUs2,
-    .whyUs4 {
+    .why-us-0,
+    .why-us-2,
+    .why-us-4 {
         width: 310px;
     }
 
-    .whyUs1,
-    .whyUs3,
-    .whyUs5 {
+    .why-us-1,
+    .why-us-3,
+    .why-us-5 {
         width: 280px;
     }
 
-    .whyUs0 {
+    .why-us-0 {
         animation: rotateContainer0 60s linear infinite;
 
-        .whyUsItem {
+        .why-us-item {
             animation: rotateItems0 60s linear infinite, setOpacity 1s forwards;
         }
     }
 
-    .whyUs1 {
+    .why-us-1 {
         animation: rotateContainer1 60s linear infinite;
 
-        .whyUsItem {
+        .why-us-item {
             animation: rotateItems1 60s linear infinite, setOpacity 1s 0.2s forwards;
         }
     }
 
-    .whyUs2 {
+    .why-us-2 {
         animation: rotateContainer2 60s linear infinite;
 
-        .whyUsItem {
+        .why-us-item {
             animation: rotateItems2 60s linear infinite, setOpacity 1s 0.4s forwards;
         }
     }
 
-    .whyUs3 {
+    .why-us-3 {
         animation: rotateContainer3 60s linear infinite;
 
-        .whyUsItem {
+        .why-us-item {
             animation: rotateItems3 60s linear infinite, setOpacity 1s 0.1s forwards;
         }
     }
 
-    .whyUs4 {
+    .why-us-4 {
         animation: rotateContainer4 60s linear infinite;
 
-        .whyUsItem {
+        .why-us-item {
             animation: rotateItems4 60s linear infinite, setOpacity 1s 0.3s forwards;
         }
     }
 
-    .whyUs5 {
+    .why-us-5 {
         animation: rotateContainer5 60s linear infinite;
 
-        .whyUsItem {
+        .why-us-item {
             animation: rotateItems5 60s linear infinite, setOpacity 1s 0.5s forwards;
         }
     }
@@ -77,14 +77,14 @@
         height: 540px;
         margin: 0 auto;
 
-        .whyUs0,
-        .whyUs2,
-        .whyUs4 {
+        .why-us-0,
+        .why-us-2,
+        .why-us-4 {
             width: 450px;
         }
-        .whyUs1,
-        .whyUs3,
-        .whyUs5 {
+        .why-us-1,
+        .why-us-3,
+        .why-us-5 {
             width: 400px;
         }
     }
@@ -92,20 +92,20 @@
     @media (min-width: 992px) {
         height: 650px;
 
-        .whyUs0,
-        .whyUs2,
-        .whyUs4 {
+        .why-us-0,
+        .why-us-2,
+        .why-us-4 {
             width: 500px;
         }
-        .whyUs1,
-        .whyUs3,
-        .whyUs5 {
+        .why-us-1,
+        .why-us-3,
+        .why-us-5 {
             width: 450px;
         }
     }
 
 
-    .whyUsItem {
+    .why-us-item {
         height: min-content;
         width: min-content;
         padding: 10px;
@@ -138,7 +138,7 @@
     }
 }
 
-.whyUsDialog {
+.why-us-dialog {
     .p-dialog-content {
         position: relative;
         top: -1px;

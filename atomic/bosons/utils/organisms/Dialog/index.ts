@@ -1,1 +1,1 @@
-export * from './useDialog'
+export * from './use_dialog'

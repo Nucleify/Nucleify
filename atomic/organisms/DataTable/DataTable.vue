@@ -79,13 +79,13 @@
             :sortable="col.sortable"
         />
 
-        <Column class="actionColumn">
+        <Column class="action-column">
             <template #body="row">
-                <div class="actionColumnContent">
-                    <button-atom
+                <div class="action-column-content">
+                    <ad-button
                         v-if="props.type === 'activity'"
                         :type="props.type"
-                        class="dataTableButton"
+                        class="data-table-button"
                         icon="pi pi-trash"
                         @click="openDialog('delete', row.data)"
                         rounded
@@ -93,20 +93,20 @@
                         :loading="props.loading"
                     />
                     <template v-else>
-                        <button-atom
+                        <ad-button
                             v-for="action in actions"
                             :type="props.type"
                             :key="action.icon"
-                            class="desktopButton dataTableButton"
+                            class="desktop-button data-table-button"
                             :icon="action.icon"
                             @click="action.click(row.data)"
                             rounded
                             text
                             :loading="props.loading"
                         />
-                        <button-atom
+                        <ad-button
                             :type="props.type"
-                            class="mobileButton dataTableButton"
+                            class="mobile-button data-table-button"
                             icon="pi pi-bars"
                             @click="openMenu(menu, $event, row.data)"
                             rounded
@@ -119,7 +119,7 @@
             </template>
         </Column>
     </DataTable>
-    <data-table-skeleton
+    <ad-data-table-skeleton
         :rows="skeleton"
         :loading="props.loading"
         :specific-columns="specificColumns"
@@ -129,18 +129,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { columns, handleActions } from 'atomic/bosons/constants'
+import { columns, actions as actionsList } from 'atomic/bosons/constants'
 import { DataTableInterface } from 'atomic/bosons/types'
-
-import { handleDropdownItems } from '@/constants'
-import { useMenuAndModal } from '@/utils'
+import { useDropdown, useMenu } from 'atomic/bosons/utils'
 
 const props = defineProps<DataTableInterface>()
 const menu = ref()
-const actions = handleActions(props.openDialog)
+const actions = actionsList(props.openDialog)
 
-const { openMenu, selectedObject } = useMenuAndModal()
-const { dropdownItems } = handleDropdownItems(selectedObject, props.openDialog)
+const { openMenu, selectedObject } = useMenu()
+const { dropdownItems } = useDropdown(selectedObject, props.openDialog)
 
 const specificColumns = columns[props.type]
 const skeleton = ref(new Array(props.rows))

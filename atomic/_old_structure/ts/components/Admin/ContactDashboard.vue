@@ -1,6 +1,6 @@
 <template>
     <section id="contacts">
-        <card-data-table
+        <ad-card-data-table
             :value="data"
             :loading="loading"
             :open-dialog="openDialog"
@@ -10,7 +10,7 @@
             buttonText="New Contact"
         />
 
-        <dialog-organism
+        <ad-dialog
             v-for="dialog in dialogs"
             :key="dialog.action"
             :entity="dialog.entity"
@@ -31,13 +31,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { contactApiMethods } from '@/utils'
-
-import {
-    useContactFields,
-} from 'atomic/bosons/constants'
+import { useContactFields } from 'atomic/bosons/constants'
 import { DashboardInterface } from 'atomic/bosons/types'
-import { useDialog } from 'atomic/bosons/utils'
+import { contactRequests, useDialog } from 'atomic/bosons/utils'
 
 const props = defineProps<DashboardInterface>()
 
@@ -52,7 +48,7 @@ const {
 } = useDialog()
 
 const { createAndEditFields, showFields } = useContactFields()
-const { deleteContact, storeContact, editContact } = contactApiMethods()
+const { deleteContact, storeContact, editContact } = contactRequests()
 
 const dialogs = computed(() => [
     {

@@ -3,9 +3,10 @@ import {
     ToastMessageOptions,
     ToastPassThroughOptions,
 } from 'primevue/toast'
-import { FlashToastFunctionType, ToastPositionType } from 'atomic/bosons/types'
 import { PassThrough } from 'primevue/ts-helpers'
 import { PassThroughOptions } from 'primevue/passthrough'
+
+import { FlashToastFunctionType, ToastPositionType } from 'atomic/bosons/types'
 
 export interface ToastInterface {
     group?: string

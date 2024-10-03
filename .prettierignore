@@ -11,6 +11,6 @@ yarn.lock
 vite.config.ts
 dist/
 
-atomic/_old_structure
+atomic/_old_structure/sass
 atomic/bosons/styles/index.scss
 atomic/bosons/styles/variables

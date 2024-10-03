@@ -9,20 +9,20 @@
     width: $access-container-width;
     background: $secondary-green-bg-color;
 
-    .accessContainer {
+    .access-container {
         display: $access-container-display;
         flex-direction: $access-container-flex-direction;
         padding: $access-container-padding;
         overflow-x: $access-container-overflow-x;
 
-        .accessCardContainer {
+        .access-card-container {
             margin: $access-card-container-margin;
             display: $access-card-container-display;
             flex-wrap: $access-card-container-flex-wrap;
             flex-direction: $access-card-container-flex-direction;
             justify-content: $access-card-container-justify-content;
 
-            .accessCard {
+            .access-card {
                 min-width: $access-card-width;
                 max-width: $access-card-width;
                 min-height: $access-card-min-height;
@@ -33,19 +33,19 @@
                 cursor: $access-card-cursor;
             }
 
-            .accessCardImage {
+            .access-card-image {
                 margin: $access-card-image-margin;
                 max-height: $access-card-image-height;
                 height: $access-card-image-height;
             }
 
-            .accessCardHeader {
+            .access-card-header {
                 font-family: $font-family-inter-sans-serif;
             }
         }
     }
 
-    .accessHeader {
+    .access-header {
         font-family: $font-family-inter-sans-serif;
         font-weight: $access-header-font-weight;
         color: $dark-text-color;
@@ -55,7 +55,7 @@
         text-align: $access-header-text-align;
     }
 
-    .accessDescription {
+    .access-description {
         margin: $access-description-margin;
         max-width: $access-description-max-width;
         color: $secondary-text-color;
@@ -66,24 +66,24 @@
 
     // Min width 547px
     @media (min-width: $min-width-sm2) {
-        .accessHeader {
+        .access-header {
             max-width: $access-header-max-width-sm2;
         }
-        .accessDescription {
+        .access-description {
             font-size: $access-description-font-size-sm2;
         }
     }
 
     // Min width 768px
     @media (min-width: $min-width-md) {
-        .accessHeader {
+        .access-header {
             font-size: $access-header-font-size-md;
         }
     }
 
     // Min width 1129px
     @media (min-width: $min-width-lg3) {
-        .accessHeader {
+        .access-header {
             font-size: $font-size-xl;
         }
     }

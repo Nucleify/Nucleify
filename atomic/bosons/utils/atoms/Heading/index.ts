@@ -1,1 +1,1 @@
-export * from './chooseHeading'
+export * from './choose_heading'

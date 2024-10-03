@@ -1,6 +1,6 @@
 @import '../../variables/components/chart_variables';
 
-.chartCard {
+.chart-card {
     .p-card-content {
         display: $chart-card-content-display;
         flex-direction: $chart-card-content-flex-direction;
@@ -12,14 +12,15 @@
         }
     }
 
-    .chartLoading {
+    .chart-loading {
         opacity: $chart-loading-opacity;
     }
-    .chartLoaded {
+
+    .chart-loaded {
         opacity: $chart-loaded-opacity;
     }
 
-    .annualChart {
+    .annual-chart {
         min-height: 480px;
     }
 }

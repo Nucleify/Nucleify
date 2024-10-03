@@ -1,35 +1,42 @@
 <template>
     <section id="access">
-        <div class="accessContainer" v-animateonscroll="{ enterClass: 'fadein', leaveClass: 'fadeout' }">
-            <heading-atom
+        <div
+            class="access-container"
+            v-animateonscroll="{
+                enterClass: 'fadein',
+                leaveClass: 'fadeout',
+                rootMargin: isMobile() ? '370px' : '',
+            }"
+        >
+            <ad-header
                 :tag="1"
-                class="accessHeader"
+                class="access-header"
                 text="Access your data everywhere"
             />
-            <heading-atom
+            <ad-header
                 :tag="2"
-                class="accessDescription"
+                class="access-description"
                 text="Use DataManager application on your phone, tablet and desktop. You
                 can now manage all data in one place and take a step ahead in your
                 management process"
             />
-            <div class="accessCardContainer">
-                <div class="accessCard flip-card col-12 md:col-6 xl:col-4">
+            <div class="access-card-container">
+                <div class="access-card flip-card col-12 md:col-6 xl:col-4">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <image-atom
+                            <ad-image
                                 src="desktop.png"
                                 alt=""
-                                image-class="accessCardImage"
+                                image-class="access-card-image"
                             />
-                            <heading-atom
+                            <ad-header
                                 :tag="3"
-                                class="accessCardHeader"
+                                class="access-card-header"
                                 text="Desktop"
                             />
                         </div>
                         <div class="flip-card-back">
-                            <paragraph-atom
+                            <ad-paragraph
                                 class="mt-2"
                                 text="Responsive web design was coined in 2010 by Ethan
                                 Marcotte, optimizing layouts for desktops with
@@ -38,22 +45,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="accessCard flip-card col-12 md:col-6 xl:col-4">
+                <div class="access-card flip-card col-12 md:col-6 xl:col-4">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <image-atom
+                            <ad-image
                                 src="tablet.png"
                                 alt=""
-                                image-class="accessCardImage"
+                                image-class="access-card-image"
                             />
-                            <heading-atom
+                            <ad-header
                                 :tag="3"
-                                class="accessCardHeader"
+                                class="access-card-header"
                                 text="Tablet"
                             />
                         </div>
                         <div class="flip-card-back">
-                            <paragraph-atom
+                            <ad-paragraph
                                 text="Over 53% of internet users worldwide access the web
                                 through mobile devices, highlighting the significant
                                 shift towards mobile browsing in recent years."
@@ -61,22 +68,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="accessCard flip-card col-12 md:col-6 xl:col-4">
+                <div class="access-card flip-card col-12 md:col-6 xl:col-4">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
-                            <image-atom
+                            <ad-image
                                 src="phone.png"
                                 alt=""
-                                image-class="accessCardImage"
+                                image-class="access-card-image"
                             />
-                            <heading-atom
+                            <ad-header
                                 :tag="3"
-                                class="accessCardHeader"
+                                class="access-card-header"
                                 text="Phone"
                             />
                         </div>
                         <div class="flip-card-back">
-                            <paragraph-atom
+                            <ad-paragraph
                                 class="flip-card-back-text"
                                 text="Google's implementation of mobile-first indexing in
                                 2018 underscored the importance of mobile-responsive design,
@@ -89,5 +96,5 @@
         </div>
     </section>
 </template>
-<script setup lang="ts">
-</script>
+
+<script setup lang="ts"></script>

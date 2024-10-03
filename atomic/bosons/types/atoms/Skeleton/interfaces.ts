@@ -1,6 +1,7 @@
-import { LoadingType } from 'atomic/bosons/types'
 import { SkeletonPassThroughOptions } from 'primevue/skeleton'
 import { PassThroughOptions } from 'primevue/passthrough'
+
+import { LoadingType } from 'atomic/bosons/types'
 
 export interface SkeletonInterface {
     shape?: 'circle' | 'rectangle'

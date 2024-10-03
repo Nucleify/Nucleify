@@ -1,6 +1,6 @@
 <template>
     <home-navbar />
-    <div class="homeContainer">
+    <div class="home-container">
         <start />
         <features />
         <innovations />

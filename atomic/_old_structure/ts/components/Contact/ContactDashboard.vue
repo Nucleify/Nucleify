@@ -1,8 +1,8 @@
 <template>
-    <div class="panelContainer">
-        <card-chart
+    <div class="panel-container">
+        <ad-card-chart
             v-if="display.Contact"
-            class="annualChartCard"
+            class="annual-chart-card"
             :chart-method-type="'annual'"
             :type="'bar'"
             :direction="'vertical'"
@@ -10,7 +10,7 @@
             :chart-class="'h-30rem'"
             :loading="loading"
         />
-        <card-data-table
+        <ad-card-data-table
             :value="results"
             :loading="loading"
             :open-dialog="openDialog"
@@ -21,7 +21,7 @@
         />
     </div>
 
-    <dialog-organism
+    <ad-dialog
         v-for="dialog in dialogs"
         :key="dialog.action"
         :entity="dialog.entity"
@@ -41,12 +41,12 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
 
-import { contactApiMethods } from '@/utils'
-
+import { useContactFields } from 'atomic/bosons/constants'
 import {
-    useContactFields,
-} from 'atomic/bosons/constants'
-import { useDialog, useDisplayCharts } from 'atomic/bosons/utils'
+    contactRequests,
+    useDialog,
+    useDisplayCharts,
+} from 'atomic/bosons/utils'
 
 const {
     visibleShow,
@@ -68,7 +68,7 @@ const {
     storeContact,
     editContact,
     deleteContact,
-} = contactApiMethods()
+} = contactRequests()
 
 onMounted(() => {
     getAllContacts()

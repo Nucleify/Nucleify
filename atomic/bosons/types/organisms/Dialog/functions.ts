@@ -1,5 +1,4 @@
-import { ObjectType } from '@/types'
-import { ActionType } from 'atomic/bosons/types'
+import { ActionType, ObjectType } from 'atomic/bosons/types'
 
 export type OpenDialogFunctionType = (
     action: ActionType,
