@@ -1,2 +1,2 @@
-export * from './component'
-export * from './title'
+export * from './get_component'
+export * from './get_title'
