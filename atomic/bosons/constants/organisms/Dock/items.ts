@@ -32,7 +32,7 @@ const dockData: readonly DockItemInterface[] = [
     ['pi pi-dollar disabled-item', 'Money'],
     ['pi pi-cog', 'Settings', 'settings'],
     ['pi pi-sign-out', 'Logout', undefined, undefined, logout],
-    [undefined, undefined, undefined, 'position'],
+    [undefined, 'position', undefined, 'position'],
 ] as const
 
 export const dockItems: readonly DockItemInterface[] = ref(
