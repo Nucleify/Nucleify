@@ -20,4 +20,5 @@ export interface OverlayPanelInterface {
     buttonClass?: string
     buttonStyle?: string | object
     overlayPanelClass?: string
+    icon?: string
 }

@@ -1,16 +1,17 @@
 import { WhyUsDataInterface } from 'atomic/bosons/types'
 
 const createItem = (
-    icon?: string,
-    title?: string,
-    description?: string
-): WhyUsDataInterface => ({
-    icon,
-    title,
-    description,
-})
+    icon: string,
+    title: string,
+    description: string
+): WhyUsDataInterface =>
+    ({
+        icon,
+        title,
+        description,
+    }) as const
 
-const whyUsDataArray: WhyUsDataInterface[] = [
+const itemsData: WhyUsDataInterface[] = [
     [
         'pi pi-cloud',
         'Your Own Cloud',
@@ -71,8 +72,19 @@ const whyUsDataArray: WhyUsDataInterface[] = [
         'Notifications',
         'Real-time notifications to keep you informed of critical events',
     ],
-]
+] as const
 
-export const whyUsData: WhyUsDataInterface[] = whyUsDataArray.map(
-    ([icon, title, description]) => createItem(icon, title, description)
+export const whyUsData: { items: WhyUsDataInterface[] }[] = itemsData.reduce(
+    (result, item, index): { items: WhyUsDataInterface[] }[] => {
+        if (index % 2 === 0) {
+            result.push({
+                items: [
+                    createItem(...item),
+                    createItem(...itemsData[index + 1]),
+                ],
+            })
+        }
+        return result
+    },
+    [] as { items: WhyUsDataInterface[] }[]
 )
