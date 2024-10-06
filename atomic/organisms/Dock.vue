@@ -4,7 +4,7 @@
         show-close-icon
         :button-class="'overlay-panel-toggle ' + positionClass"
         :button-style="{ height: 18, width: 18 }"
-        :overlay-panel-class="positionClass"
+        :overlay-panel-class="'terminal ' + positionClass"
     >
         <ad-terminal
             prompt="artisan >"
@@ -48,7 +48,7 @@
                 :url="'/' + item.url"
                 :type="item.url"
             />
-            <div class="dock-position-buttons" v-if="item.id === 'position'">
+            <div class="dock-position-buttons" v-if="item.label === 'position'">
                 <ad-radio-button
                     v-for="pos of positions"
                     v-model="position"
