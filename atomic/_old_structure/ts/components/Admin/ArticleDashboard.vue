@@ -48,7 +48,8 @@ const {
 } = useDialog()
 
 const { createAndEditFields, showFields } = useArticleFields()
-const { deleteArticle, storeArticle, editArticle } = articleRequests()
+const { deleteArticle, storeArticle, editArticle } =
+    articleRequests(closeDialog)
 
 const dialogs = computed(() => [
     {

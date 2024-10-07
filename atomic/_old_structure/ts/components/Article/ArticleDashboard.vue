@@ -66,7 +66,7 @@ const {
     storeArticle,
     editArticle,
     deleteArticle,
-} = articleRequests()
+} = articleRequests(closeDialog)
 
 onMounted(() => {
     getAllArticles()

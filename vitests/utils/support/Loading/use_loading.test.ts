@@ -23,10 +23,10 @@ it('should set loading state to false', (): void => {
 })
 
 it('should set loading state to true after a timeout', async (): Promise<void> => {
-    loadingInstance.setLoading(true, 100)
+    loadingInstance.setLoading(true, 10)
     expect(loadingInstance.loading.value).toBe(false)
 
-    await new Promise((resolve) => setTimeout(resolve, 150))
+    await new Promise((resolve) => setTimeout(resolve, 10))
     expect(loadingInstance.loading.value).toBe(true)
 })
 
@@ -34,9 +34,9 @@ it('should set loading state to false after a timeout', async (): Promise<void> 
     loadingInstance.setLoading(true)
     expect(loadingInstance.loading.value).toBe(true)
 
-    loadingInstance.setLoading(false, 100)
+    loadingInstance.setLoading(false, 10)
     expect(loadingInstance.loading.value).toBe(true)
 
-    await new Promise((resolve) => setTimeout(resolve, 150))
+    await new Promise((resolve) => setTimeout(resolve, 10))
     expect(loadingInstance.loading.value).toBe(false)
 })

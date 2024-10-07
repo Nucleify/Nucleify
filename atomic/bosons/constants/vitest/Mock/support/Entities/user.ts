@@ -1,7 +1,7 @@
 import { UserInterface } from 'atomic/bosons/types'
 
 export const mockUser: UserInterface = {
-    id: '123',
+    id: '999999',
     name: 'Example',
     email: 'example@data-manager.com',
     role: 'admin',

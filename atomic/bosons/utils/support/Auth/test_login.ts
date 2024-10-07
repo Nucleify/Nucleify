@@ -1,34 +1,28 @@
 import axios from 'axios'
 
+import { UserInterface } from 'atomic/bosons/types'
 import { navigateTo } from 'atomic/bosons/utils'
 
-export function testLogin(role: string): void {
-    let credentials: { email: string; password: string }
-
-    switch (role) {
-        case 'user':
-            credentials = {
-                email: 'test_user@datamanager.com',
-                password: 'test_user123',
-            }
-            break
-        case 'admin':
-            credentials = {
-                email: 'test_admin@datamanager.com',
-                password: 'test_admin123',
-            }
-            break
-        default:
-            console.error('Invalid role:', role)
-            return
+export async function testLogin(role: string): Promise<void> {
+    const credentials: UserInterface = {
+        user: { email: 'test_user@datamanager.com', password: 'test_user123' },
+        admin: {
+            email: 'test_admin@datamanager.com',
+            password: 'test_admin123',
+        },
     }
 
-    axios
-        .post('/login', credentials)
-        .then((): void => {
-            navigateTo('/dashboard')
-        })
-        .catch((error): void => {
-            console.error('Error during login:', error)
-        })
+    const userCredentials = credentials[role]
+
+    if (!userCredentials) {
+        console.error('Invalid role:', role)
+        return
+    }
+
+    try {
+        await axios.post('/login', userCredentials)
+        navigateTo('/dashboard')
+    } catch (error) {
+        console.error('Error during login:', error)
+    }
 }

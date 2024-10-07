@@ -49,7 +49,7 @@ const { visibleDelete, selectedObject, openDialog, closeDialog } = useDialog()
 const { display } = useDisplayCharts()
 
 const { results, loading, getAllActivities, deleteActivity } =
-    activityRequests()
+    activityRequests(closeDialog)
 
 onMounted(() => {
     getAllActivities()

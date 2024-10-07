@@ -1,5 +1,6 @@
 import {
     ArticleResultsType,
+    CloseDialogFunctionType,
     DeleteEntityRequestFunctionType,
     EditArticleRequestFunctionType,
     GetAllArticlesAxiosRequestType,
@@ -11,6 +12,7 @@ import {
 export interface ArticleRequestsInterface {
     results: ArticleResultsType
     loading: LoadingType
+    close: CloseDialogFunctionType
     getAllArticles: (timeout?: TimeoutType) => GetAllArticlesAxiosRequestType
     storeArticle: StoreArticleRequestFunctionType
     editArticle: EditArticleRequestFunctionType
