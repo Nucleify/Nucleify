@@ -12,7 +12,7 @@ import { useDialog, userRequests } from 'atomic/bosons/utils'
 
 vi.mock('axios')
 vi.mock('primevue/usetoast', (): { useToast: () => MockUseToastInterface } => ({
-    useToast: () => mockUseToast,
+    useToast: () => mockUseToast(vi.fn()),
 }))
 
 describe('userRequests', (): void => {
