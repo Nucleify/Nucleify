@@ -48,7 +48,7 @@ const {
 } = useDialog()
 
 const { createFields, editFields, showFields } = useUserFields()
-const { deleteUser, storeUser, editUser } = userRequests()
+const { deleteUser, storeUser, editUser } = userRequests(closeDialog)
 
 const dialogs = computed(() => [
     {

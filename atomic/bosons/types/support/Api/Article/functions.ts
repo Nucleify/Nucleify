@@ -8,12 +8,8 @@ export type GetAllArticlesRequestResponseType = AxiosResponse<
 >
 
 export type StoreArticleRequestFunctionType = (
-    data: ArticleInterface,
-    getData: () => void,
-    close: (method: string) => void
+    data: ArticleInterface
 ) => Promise<void>
 export type EditArticleRequestFunctionType = (
-    data: ArticleInterface,
-    getData: () => void,
-    close: (method: string) => void
+    data: ArticleInterface
 ) => Promise<void>

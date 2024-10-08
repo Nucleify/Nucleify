@@ -12,114 +12,103 @@ import {
     GetAllArticlesFunctionType,
     GetAllArticlesRequestResponseType,
     StoreArticleRequestFunctionType,
-    UserIdType,
+    CloseDialogFunctionType,
 } from 'atomic/bosons/types'
-import { useApiErrors, useLoading, useToast } from 'atomic/bosons/utils'
+import {
+    apiSuccess,
+    useApiErrors,
+    useLoading,
+    useToast,
+} from 'atomic/bosons/utils'
 
-export function articleRequests(): ArticleRequestsInterface {
+export function articleRequests(
+    close: CloseDialogFunctionType
+): ArticleRequestsInterface {
     const results: ArticleResultsType = ref([])
-    const { loading, setLoading } = useLoading()
 
+    const { loading } = useLoading()
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } = useToast()
 
     async function getAllArticles(
         timeout?: number
     ): GetAllArticlesFunctionType {
-        setLoading(true)
+        try {
+            const response: GetAllArticlesRequestResponseType =
+                await axios.get('/api/articles')
 
-        return await axios
-            .get('/api/articles')
-            .then((response: GetAllArticlesRequestResponseType) => {
-                if (timeout) {
-                    setTimeout((): void => {
-                        results.value = response.data
-                    }, timeout)
-                } else {
-                    results.value = response.data
-                }
-            })
-            .catch((error): void => {
-                if (timeout) {
-                    setTimeout((): void => {
-                        apiErrors(error)
-                    }, timeout)
-                } else {
-                    apiErrors(error)
-                }
-            })
-            .finally((): void => {
-                if (timeout) {
-                    setLoading(false, timeout)
-                } else {
-                    setLoading(false)
-                }
-            })
+            timeout
+                ? setTimeout((results.value = response.data), timeout)
+                : (results.value = response.data)
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
     async function storeArticle(
-        data: ArticleInterface,
-        getData: () => void,
-        close: (method: string) => void
+        data: ArticleInterface
     ): StoreArticleRequestFunctionType {
-        const user_id: UserIdType = window.sessionStorage.getItem('user_id')
-
-        return await axios
-            .post('/api/articles', {
-                user_id: user_id,
+        try {
+            const response: AxiosResponse = await axios.post('/api/articles', {
+                user_id: window.sessionStorage.getItem('user_id'),
                 title: data.title,
                 description: data.description,
                 category: data.category,
             })
-            .then((response: AxiosResponse): void => {
-                getData()
-                close('create')
 
-                flashToast(response.data.message, 'success')
-            })
-            .catch((error): void => {
-                apiErrors(error)
-            })
+            await apiSuccess(
+                response,
+                getAllArticles,
+                flashToast,
+                close,
+                'create'
+            )
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
     async function editArticle(
-        data: ArticleInterface,
-        getData: () => void,
-        close: (method: string) => void
+        article: ArticleInterface
     ): EditArticleRequestFunctionType {
-        return await axios
-            .put('/api/articles/' + data.id, {
-                title: data.title,
-                description: data.description,
-                category: data.category,
-            })
-            .then((response: AxiosResponse): void => {
-                getData()
-                close('edit')
+        try {
+            const response: AxiosResponse = await axios.put(
+                `/api/articles/${article.id}`,
+                {
+                    title: article.title,
+                    description: article.description,
+                    category: article.category,
+                }
+            )
 
-                flashToast(response.data.message, 'success')
-            })
-            .catch((error): void => {
-                apiErrors(error)
-            })
+            await apiSuccess(
+                response,
+                getAllArticles,
+                flashToast,
+                close,
+                'edit'
+            )
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
-    async function deleteArticle(
-        id: number,
-        getData: () => void,
-        close: (method: string) => void
-    ): DeleteEntityRequestFunctionType {
-        return await axios
-            .delete(`/api/articles/${id}`)
-            .then((response: AxiosResponse): void => {
-                getData()
-                close('delete')
+    async function deleteArticle(id: number): DeleteEntityRequestFunctionType {
+        try {
+            const response: AxiosResponse = await axios.delete(
+                `/api/articles/${id}`
+            )
 
-                flashToast(response.data.message, 'success')
-            })
-            .catch((error): void => {
-                apiErrors(error)
-            })
+            await apiSuccess(
+                response,
+                getAllArticles,
+                flashToast,
+                close,
+                'delete'
+            )
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
     return {

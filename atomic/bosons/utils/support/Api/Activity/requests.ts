@@ -2,74 +2,68 @@ import { ref } from 'vue'
 import axios, { AxiosResponse } from 'axios'
 
 import {
-    ActivityLogApiRequestsInterface,
+    ActivityLogRequestsInterface,
     ActivityResultsType,
     ApiErrorsFunctionType,
+    CloseDialogFunctionType,
     DeleteEntityRequestFunctionType,
     FlashToastFunctionType,
     GetAllActivitiesRequestFunctionType,
     GetAllActivitiesRequestResponseType,
 } from 'atomic/bosons/types'
-import { useApiErrors, useLoading, useToast } from 'atomic/bosons/utils'
+import {
+    apiSuccess,
+    useApiErrors,
+    useLoading,
+    useToast,
+} from 'atomic/bosons/utils'
 
-export function activityRequests(): ActivityLogApiRequestsInterface {
+export function activityRequests(
+    close: CloseDialogFunctionType
+): ActivityLogRequestsInterface {
     const results: ActivityResultsType = ref([])
-    const { loading, setLoading } = useLoading()
 
+    const { loading } = useLoading()
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } = useToast()
 
     async function getAllActivities(
         timeout?: number
     ): GetAllActivitiesRequestFunctionType {
-        setLoading(true)
+        try {
+            const response: GetAllActivitiesRequestResponseType =
+                await axios.get('/api/activity-log')
 
-        return await axios
-            .get('/api/activity-log')
-            .then((response: GetAllActivitiesRequestResponseType) => {
-                if (timeout) {
-                    setTimeout((): void => {
-                        results.value = response.data
-                    }, timeout)
-                } else {
-                    results.value = response.data
-                }
-            })
-            .catch((error): void => {
-                if (timeout) {
-                    setTimeout((): void => {
-                        apiErrors(error)
-                    }, timeout)
-                } else {
-                    apiErrors(error)
-                }
-            })
-            .finally((): void => {
-                if (timeout) {
-                    setLoading(false, timeout)
-                } else {
-                    setLoading(false)
-                }
-            })
+            timeout
+                ? setTimeout((results.value = response.data), timeout)
+                : (results.value = response.data)
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
-    async function deleteActivity(
-        id: number,
-        getData: () => void,
-        close: (method: string) => void
-    ): DeleteEntityRequestFunctionType {
-        return await axios
-            .delete(`/api/activity-log/${id}`)
-            .then((response: AxiosResponse): void => {
-                getData()
-                close('delete')
+    async function deleteActivity(id: number): DeleteEntityRequestFunctionType {
+        try {
+            const response: AxiosResponse = await axios.delete(
+                `/api/activity-log/${id}`
+            )
 
-                flashToast(response.data.message, 'success')
-            })
-            .catch((error): void => {
-                apiErrors(error)
-            })
+            await apiSuccess(
+                response,
+                getAllActivities,
+                flashToast,
+                close,
+                'delete'
+            )
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
-    return { results, loading, getAllActivities, deleteActivity }
+    return {
+        results,
+        loading,
+        getAllActivities,
+        deleteActivity,
+    }
 }

@@ -4,5 +4,6 @@
 npm run check
 npm run lint
 npm run build
+npm run test
 
 # ./vendor/bin/pest - I'm testing before commit manually
