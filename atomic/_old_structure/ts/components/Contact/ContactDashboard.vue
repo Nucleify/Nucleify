@@ -68,7 +68,7 @@ const {
     storeContact,
     editContact,
     deleteContact,
-} = contactRequests()
+} = contactRequests(closeDialog)
 
 onMounted(() => {
     getAllContacts()

@@ -22,3 +22,5 @@ jobs:
         run: npm run check
       - name: Build Assets
         run: npm run build
+      - name: Execute tests via Vitest
+        run: npm run test

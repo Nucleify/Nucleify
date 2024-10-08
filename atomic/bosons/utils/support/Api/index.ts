@@ -1,5 +1,6 @@
 export * from './Activity'
 export * from './Article'
+export * from './Common'
 export * from './Contact'
 export * from './Errors'
 export * from './User'

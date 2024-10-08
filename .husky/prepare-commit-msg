@@ -26,6 +26,9 @@ case "$CURRENT_BRANCH" in
     workflow)
         FINAL_MSG="Workflow: $ORIGINAL_MSG"
         ;;
+    vitest)
+        FINAL_MSG="Vitest: $ORIGINAL_MSG"
+        ;;
 esac
 
 echo "$FINAL_MSG" > "$COMMIT_MSG_FILE"

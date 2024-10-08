@@ -3,6 +3,7 @@ import axios, { AxiosResponse } from 'axios'
 
 import {
     ApiErrorsFunctionType,
+    CloseDialogFunctionType,
     DeleteEntityRequestFunctionType,
     EditUserRequestFunctionType,
     FlashToastFunctionType,
@@ -15,11 +16,18 @@ import {
     UserRequestsInterface,
     UserResultsType,
 } from 'atomic/bosons/types'
-import { useApiErrors, useLoading, useToast } from 'atomic/bosons/utils'
+import {
+    apiSuccess,
+    useApiErrors,
+    useLoading,
+    useToast,
+} from 'atomic/bosons/utils'
 
-export function userRequests(): UserRequestsInterface {
+export function userRequests(
+    close: CloseDialogFunctionType
+): UserRequestsInterface {
     const results: UserResultsType = ref([])
-    const { loading, setLoading } = useLoading()
+    const { loading } = useLoading()
 
     const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
     const { flashToast }: { flashToast: FlashToastFunctionType } = useToast()
@@ -27,110 +35,74 @@ export function userRequests(): UserRequestsInterface {
     async function getAllUsers(
         timeout?: number
     ): GetAllUsersRequestFunctionType {
-        setLoading(true)
+        try {
+            const response: GetAllUsersRequestResponseType =
+                await axios.get('/api/users')
 
-        return await axios
-            .get('/api/users')
-            .then((response: GetAllUsersRequestResponseType) => {
-                if (timeout) {
-                    setTimeout((): void => {
-                        results.value = response.data
-                    }, timeout)
-                } else {
-                    results.value = response.data
-                }
-            })
-            .catch((error): void => {
-                if (timeout) {
-                    setTimeout((): void => {
-                        apiErrors(error)
-                    }, timeout)
-                } else {
-                    apiErrors(error)
-                }
-            })
-            .finally((): void => {
-                if (timeout) {
-                    setLoading(false, timeout)
-                } else {
-                    setLoading(false)
-                }
-            })
+            timeout
+                ? setTimeout((results.value = response.data), timeout)
+                : (results.value = response.data)
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
     async function getUser(): GetUserRequestFunctionType {
-        return await axios
-            .get('/api/user')
-            .then((response: GetUserRequestResponseType) => {
-                return response.data
-            })
-            .catch((error): void => {
-                apiErrors(error)
-            })
+        try {
+            const response: GetUserRequestResponseType =
+                await axios.get('/api/user')
+
+            results.value = response.data
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
     async function storeUser(
-        data: UserInterface,
-        getData: () => void,
-        close: (method: string) => void
+        data: UserInterface
     ): StoreUserRequestFunctionType {
-        return await axios
-            .post('/api/users', {
+        try {
+            const response: AxiosResponse = await axios.post('/api/users', {
                 name: data.name,
                 email: data.email,
                 role: data.role,
                 password: data.password,
                 confirm_password: data.confirm_password,
             })
-            .then((response: AxiosResponse): void => {
-                getData()
-                close('create')
 
-                flashToast(response.data.message, 'success')
-            })
-            .catch((error): void => {
-                apiErrors(error)
-            })
+            await apiSuccess(response, getAllUsers, flashToast, close, 'create')
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
-    async function editUser(
-        data: UserInterface,
-        getData: () => void,
-        close: (method: string) => void
-    ): EditUserRequestFunctionType {
-        return await axios
-            .put('/api/users/' + data.id, {
-                name: data.name,
-                email: data.email,
-                role: data.role,
-            })
-            .then((response: AxiosResponse): void => {
-                getData()
-                close('edit')
+    async function editUser(data: UserInterface): EditUserRequestFunctionType {
+        try {
+            const response: AxiosResponse = await axios.put(
+                '/api/users/' + data.id,
+                {
+                    name: data.name,
+                    email: data.email,
+                    role: data.role,
+                }
+            )
 
-                flashToast(response.data.message, 'success')
-            })
-            .catch((error): void => {
-                apiErrors(error)
-            })
+            await apiSuccess(response, getAllUsers, flashToast, close, 'edit')
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
-    async function deleteUser(
-        id: number,
-        getData: () => void,
-        close: (method: string) => void
-    ): DeleteEntityRequestFunctionType {
-        return await axios
-            .delete(`/api/users/${id}`)
-            .then((response: AxiosResponse): void => {
-                getData()
-                close('delete')
+    async function deleteUser(id: number): DeleteEntityRequestFunctionType {
+        try {
+            const response: AxiosResponse = await axios.delete(
+                `/api/users/${id}`
+            )
 
-                flashToast(response.data.message, 'success')
-            })
-            .catch((error): void => {
-                apiErrors(error)
-            })
+            await apiSuccess(response, getAllUsers, flashToast, close, 'delete')
+        } catch (error) {
+            apiErrors(error)
+        }
     }
 
     return {

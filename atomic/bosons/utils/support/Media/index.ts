@@ -1,2 +1,2 @@
-export * from './desktop'
-export * from './mobile'
+export * from './is_desktop'
+export * from './is_mobile'

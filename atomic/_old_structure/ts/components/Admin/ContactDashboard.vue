@@ -48,7 +48,8 @@ const {
 } = useDialog()
 
 const { createAndEditFields, showFields } = useContactFields()
-const { deleteContact, storeContact, editContact } = contactRequests()
+const { deleteContact, storeContact, editContact } =
+    contactRequests(closeDialog)
 
 const dialogs = computed(() => [
     {

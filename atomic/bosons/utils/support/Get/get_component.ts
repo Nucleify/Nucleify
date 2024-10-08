@@ -1,4 +1,4 @@
-export function getComponent(type: string) {
+export function getComponent(type: string): string {
     switch (type) {
         case 'textarea':
             return 'ad-textarea'
