@@ -95,7 +95,7 @@ Database\Factories\ActivityFactory::new()->count(100)->create();
 
 <details><summary> Tests </summary><br>
 
-<img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="15" /> &nbsp;Backend tests:
+<img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="15" /> &nbsp;Pest tests:
 ```bash
 # run all tests
 ./vendor/bin/pest
@@ -104,18 +104,22 @@ Database\Factories\ActivityFactory::new()->count(100)->create();
 ./vendor/bin/pest --group=api
 
 # defined tests groups:
-api, article-api, contact-api, sitemap-api, user-api,
-database, feature, global, unit,
-commands, controllers, services, factories, migrations, models
+api, activity-api, article-api, artisan-api, contact-api, sitemap-api, user-api,
+database, feature, global, unit, commands, controllers, services, factories, migrations, models
 
 # run all tests and check code coverage
 ./vendor/bin/pest --coverage
 ```
-![Tests](https://github.com/SzymCode/DataManager/assets/107359025/160b61df-0ef8-4bb7-a84a-38ad1941e9f7)![Coverage](https://github.com/SzymCode/DataManager/assets/107359025/dec55c40-669b-4483-ae59-4ec21594e147)
+![Tests](https://github.com/user-attachments/assets/560df303-07c7-42f0-a178-07ef5e05a8a8)![Coverage](https://github.com/user-attachments/assets/0b6cc696-8fdb-469f-a78c-e6faaadbe437)
 
-<img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="15" /> &nbsp;Frontend tests:
+<img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="15" /> &nbsp;Cypress tests:
 ```bash
 npm run open
+```
+
+<img src="https://vitest.dev/logo-shadow.svg" height="15" /> &nbsp;Vitest tests:
+```bash
+npm run test
 ```
 
 <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook:
@@ -246,7 +250,7 @@ Database\Factories\ActivityFactory::new()->count(100)->create();
 
 <details><summary> Tests </summary><br>
 
-<img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="15" /> &nbsp;Backend tests:
+<img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="15" /> &nbsp;Pest tests:
 ```bash
 # run all tests
 sail pest
@@ -255,21 +259,25 @@ sail pest
 sail pest --group=api
 
 # defined tests groups:
-api, article-api, contact-api, sitemap-api, user-api,
-database, feature, global, unit,
-commands, controllers, services, factories, migrations, models
+api, activity-api, article-api, artisan-api, contact-api, sitemap-api, user-api,
+database, feature, global, unit, commands, controllers, services, factories, migrations, models
 
 # run all tests and check code coverage
 sail pest --coverage
 ```
 
-![Tests](https://github.com/SzymCode/DataManager/assets/107359025/160b61df-0ef8-4bb7-a84a-38ad1941e9f7)![Coverage](https://github.com/SzymCode/DataManager/assets/107359025/dec55c40-669b-4483-ae59-4ec21594e147)
+![Tests](https://github.com/user-attachments/assets/560df303-07c7-42f0-a178-07ef5e05a8a8)![Coverage](https://github.com/user-attachments/assets/0b6cc696-8fdb-469f-a78c-e6faaadbe437)
 
 
 
-<img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="15" /> &nbsp;Frontend tests:
+<img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="15" /> &nbsp;Cypress tests:
 ```bash
 npm run open  # For now I've not configured Cypress with Docker
+```
+
+<img src="https://vitest.dev/logo-shadow.svg" height="15" /> &nbsp;Vitest tests:
+```bash
+sail npm run test
 ```
 
 <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail start```
@@ -305,10 +313,11 @@ sail artisan sitemap:generate
   <img src="https://www.primefaces.org/wp-content/uploads/2019/12/primevue-logo.png" height="35" />
   <img src="https://skillicons.dev/icons?i=html" height="35" />
   <img src="https://skillicons.dev/icons?i=sass" height="35" />
+  <img src="https://skillicons.dev/icons?i=mysql" height="35" />
   <img src="https://skillicons.dev/icons?i=docker" height="35" />
   <img src="https://skillicons.dev/icons?i=heroku" height="35" />
   <img src="https://skillicons.dev/icons?i=vite" height="35" />
-  <img src="https://skillicons.dev/icons?i=mysql" height="35" />
+  <img src="https://skillicons.dev/icons?i=vitest" height="35" />
   <img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="33" />
   <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="35" />
   <img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="35" />
