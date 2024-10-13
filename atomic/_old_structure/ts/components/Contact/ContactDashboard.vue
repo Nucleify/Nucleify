@@ -71,7 +71,7 @@ const {
 } = contactRequests(closeDialog)
 
 onMounted(() => {
-    getAllContacts()
+    getAllContacts(true)
 })
 
 const dialogs = computed(() => [

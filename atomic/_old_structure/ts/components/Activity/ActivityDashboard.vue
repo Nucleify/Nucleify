@@ -52,7 +52,7 @@ const { results, loading, getAllActivities, deleteActivity } =
     activityRequests(closeDialog)
 
 onMounted(() => {
-    getAllActivities()
+    getAllActivities(true)
 })
 
 const dialogs = computed(() => [

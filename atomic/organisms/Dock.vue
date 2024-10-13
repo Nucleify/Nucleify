@@ -3,7 +3,6 @@
         dismissable
         show-close-icon
         :button-class="'overlay-panel-toggle ' + positionClass"
-        :button-style="{ height: 18, width: 18 }"
         :overlay-panel-class="'terminal ' + positionClass"
     >
         <ad-terminal
@@ -12,7 +11,12 @@
         />
     </ad-overlay-panel>
 
-    <Dock :model="dockItems" :position="position" class="dock">
+    <Dock
+        :model="dockItems"
+        :position="position"
+        class="dock"
+        :class="{ admin: isAdmin }"
+    >
         <template #icon="{ item }">
             <div v-if="item.logo">
                 <svg
@@ -74,22 +78,13 @@ import { isAdmin as useIsAdmin, setColorsVariables } from 'atomic/bosons/utils'
 const LOCAL_STORAGE_KEY = 'dock-position'
 
 const position = ref<PositionType>('bottom')
-let isAdmin = false
+const isAdmin = ref(false)
 
-const positionClass = computed(() => {
-    switch (position.value) {
-        case 'top':
-            return 'top'
-        case 'right':
-            return 'right'
-        case 'bottom':
-            return 'bottom'
-        case 'left':
-            return 'left'
-        default:
-            return ''
-    }
-})
+const positionClass = computed(() =>
+    ['top', 'right', 'bottom', 'left'].includes(position.value)
+        ? position.value
+        : ''
+)
 
 function setDockPositionForScreenSize() {
     if (window.innerWidth == 992) {
@@ -105,17 +100,7 @@ onMounted(async () => {
         position.value = savedPosition as PositionType
     }
 
-    const { isAdmin: isAdminStatus } = await useIsAdmin()
-
-    isAdmin = isAdminStatus.value
-
-    if (isAdmin) {
-        dockItems.value.splice(1, 0, {
-            label: 'Admin Panel',
-            icon: 'pi pi-user-edit',
-            url: 'admin',
-        })
-    }
+    isAdmin.value = await useIsAdmin()
 
     window.addEventListener('resize', setDockPositionForScreenSize)
 })

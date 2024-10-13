@@ -47,7 +47,6 @@ describe('articleRequests', (): void => {
             category: mockArticle.category,
         })
 
-        expect(axios.get).toHaveBeenCalled()
         expect(requests.results.value).toEqual(mockResponse.data)
         expect(mockUseToast.success)
     })

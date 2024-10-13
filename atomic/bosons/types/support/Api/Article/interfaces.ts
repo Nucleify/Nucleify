@@ -1,20 +1,20 @@
 import {
+    ArticleInterface,
     ArticleResultsType,
     CloseDialogFunctionType,
     DeleteEntityRequestFunctionType,
-    EditArticleRequestFunctionType,
-    GetAllArticlesAxiosRequestType,
+    EditEntityRequestFunctionType,
+    GetAllEntitiesRequestFunctionType,
     LoadingType,
-    StoreArticleRequestFunctionType,
-    TimeoutType,
+    StoreEntityRequestFunctionType,
 } from 'atomic/bosons/types'
 
 export interface ArticleRequestsInterface {
     results: ArticleResultsType
     loading: LoadingType
     close: CloseDialogFunctionType
-    getAllArticles: (timeout?: TimeoutType) => GetAllArticlesAxiosRequestType
-    storeArticle: StoreArticleRequestFunctionType
-    editArticle: EditArticleRequestFunctionType
+    getAllArticles: GetAllEntitiesRequestFunctionType<ArticleInterface>
+    storeArticle: StoreEntityRequestFunctionType<ArticleInterface>
+    editArticle: EditEntityRequestFunctionType<ArticleInterface>
     deleteArticle: DeleteEntityRequestFunctionType
 }

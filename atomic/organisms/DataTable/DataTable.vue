@@ -66,8 +66,6 @@
         :pt-options="props.ptOptions"
         :unstyled="props.unstyled"
         @row-click="openDialog('show', $event.data)"
-        paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-        currentPageReportTemplate="{first} to {last} of {totalRecords}"
         :v-type="props.type"
     >
         <Column

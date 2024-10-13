@@ -2,17 +2,18 @@ import { ref } from 'vue'
 import axios, { AxiosResponse, formToJSON } from 'axios'
 
 import {
-    ApiErrorsFunctionType,
     CloseDialogFunctionType,
     ContactInterface,
     ContactRequestsInterface,
     ContactResultsType,
     DeleteEntityRequestFunctionType,
-    EditContactRequestFunctionType,
-    FlashToastFunctionType,
-    GetAllContactsRequestFunctionType,
-    GetAllContactsRequestResponseType,
-    StoreContactRequestFunctionType,
+    EditEntityRequestFunctionType,
+    GetAllEntitiesRequestFunctionType,
+    GetAllEntitiesRequestResponseType,
+    StoreEntityRequestFunctionType,
+    UseApiErrorsServiceInterface,
+    UseLoadingInterface,
+    UseToastInterface,
 } from 'atomic/bosons/types'
 import {
     apiSuccess,
@@ -22,32 +23,39 @@ import {
 } from 'atomic/bosons/utils'
 
 export function contactRequests(
-    close: CloseDialogFunctionType
+    close?: CloseDialogFunctionType
 ): ContactRequestsInterface {
     const results: ContactResultsType = ref([])
 
-    const { loading } = useLoading()
-    const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
-    const { flashToast }: { flashToast: FlashToastFunctionType } = useToast()
+    const { loading, setLoading }: UseLoadingInterface = useLoading()
+    const { apiErrors }: UseApiErrorsServiceInterface = useApiErrors()
+    const { flashToast }: UseToastInterface = useToast()
 
     async function getAllContacts(
-        timeout?: number
-    ): GetAllContactsRequestFunctionType {
+        loading?: boolean
+    ): GetAllEntitiesRequestFunctionType<ContactInterface> {
         try {
-            const response: GetAllContactsRequestResponseType =
+            if (loading) {
+                setLoading(true)
+            }
+
+            const response: GetAllEntitiesRequestResponseType<ContactInterface> =
                 await axios.get('/api/contacts')
 
-            timeout
-                ? setTimeout((results.value = response.data), timeout)
-                : (results.value = response.data)
+            results.value = response.data
         } catch (error) {
             apiErrors(error)
+        } finally {
+            if (loading) {
+                setLoading(false)
+            }
         }
     }
 
     async function storeContact(
-        data: ContactInterface
-    ): StoreContactRequestFunctionType {
+        data: ContactInterface,
+        getData: () => void
+    ): StoreEntityRequestFunctionType<ContactInterface> {
         try {
             const response: AxiosResponse = await axios.post('/api/contacts', {
                 user_id: window.sessionStorage.getItem('user_id'),
@@ -62,21 +70,16 @@ export function contactRequests(
                 role: data.role,
             })
 
-            await apiSuccess(
-                response,
-                getAllContacts,
-                flashToast,
-                close,
-                'create'
-            )
+            await apiSuccess(response, getData, flashToast, close, 'create')
         } catch (error) {
             apiErrors(error)
         }
     }
 
     async function editContact(
-        data: ContactInterface
-    ): EditContactRequestFunctionType {
+        data: ContactInterface,
+        getData: () => void
+    ): EditEntityRequestFunctionType<ContactInterface> {
         try {
             const response: AxiosResponse = await axios.put(
                 '/api/contacts/' + data.id,
@@ -93,31 +96,22 @@ export function contactRequests(
                 }
             )
 
-            await apiSuccess(
-                response,
-                getAllContacts,
-                flashToast,
-                close,
-                'edit'
-            )
+            await apiSuccess(response, getData, flashToast, close, 'edit')
         } catch (error) {
             apiErrors(error)
         }
     }
 
-    async function deleteContact(id: number): DeleteEntityRequestFunctionType {
+    async function deleteContact(
+        id: number,
+        getData: () => void
+    ): DeleteEntityRequestFunctionType {
         try {
             const response: AxiosResponse = await axios.delete(
                 `/api/contacts/${id}`
             )
 
-            await apiSuccess(
-                response,
-                getAllContacts,
-                flashToast,
-                close,
-                'delete'
-            )
+            await apiSuccess(response, getData, flashToast, close, 'delete')
         } catch (error) {
             apiErrors(error)
         }

@@ -22,6 +22,7 @@ const createDockItem = (
 
 const dockData: readonly DockItemInterface[] = [
     [undefined, undefined, 'home', 'logo', undefined, true],
+    ['pi pi-user-edit', 'Admin Panel', 'admin'],
     ['pi pi-chart-line', 'Dashboard', 'dashboard'],
     ['pi pi-phone', 'Contacts', 'contacts'],
     ['pi pi-comment', 'Articles', 'articles'],
