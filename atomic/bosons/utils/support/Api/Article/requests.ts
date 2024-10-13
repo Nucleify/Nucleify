@@ -2,17 +2,18 @@ import { ref } from 'vue'
 import axios, { AxiosResponse } from 'axios'
 
 import {
-    ApiErrorsFunctionType,
     ArticleInterface,
     ArticleResultsType,
     ArticleRequestsInterface,
     DeleteEntityRequestFunctionType,
-    EditArticleRequestFunctionType,
-    FlashToastFunctionType,
-    GetAllArticlesFunctionType,
-    GetAllArticlesRequestResponseType,
-    StoreArticleRequestFunctionType,
     CloseDialogFunctionType,
+    UseLoadingInterface,
+    UseApiErrorsServiceInterface,
+    UseToastInterface,
+    GetAllEntitiesRequestFunctionType,
+    StoreEntityRequestFunctionType,
+    EditEntityRequestFunctionType,
+    GetAllEntitiesRequestResponseType,
 } from 'atomic/bosons/types'
 import {
     apiSuccess,
@@ -22,32 +23,39 @@ import {
 } from 'atomic/bosons/utils'
 
 export function articleRequests(
-    close: CloseDialogFunctionType
+    close?: CloseDialogFunctionType
 ): ArticleRequestsInterface {
     const results: ArticleResultsType = ref([])
 
-    const { loading } = useLoading()
-    const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
-    const { flashToast }: { flashToast: FlashToastFunctionType } = useToast()
+    const { loading, setLoading }: UseLoadingInterface = useLoading()
+    const { apiErrors }: UseApiErrorsServiceInterface = useApiErrors()
+    const { flashToast }: UseToastInterface = useToast()
 
     async function getAllArticles(
-        timeout?: number
-    ): GetAllArticlesFunctionType {
+        loading?: boolean
+    ): GetAllEntitiesRequestFunctionType<ArticleInterface> {
         try {
-            const response: GetAllArticlesRequestResponseType =
+            if (loading) {
+                setLoading(true)
+            }
+
+            const response: GetAllEntitiesRequestResponseType<ArticleInterface> =
                 await axios.get('/api/articles')
 
-            timeout
-                ? setTimeout((results.value = response.data), timeout)
-                : (results.value = response.data)
+            results.value = response.data
         } catch (error) {
             apiErrors(error)
+        } finally {
+            if (loading) {
+                setLoading(false)
+            }
         }
     }
 
     async function storeArticle(
-        data: ArticleInterface
-    ): StoreArticleRequestFunctionType {
+        data: ArticleInterface,
+        getData: () => void
+    ): StoreEntityRequestFunctionType<ArticleInterface> {
         try {
             const response: AxiosResponse = await axios.post('/api/articles', {
                 user_id: window.sessionStorage.getItem('user_id'),
@@ -56,21 +64,16 @@ export function articleRequests(
                 category: data.category,
             })
 
-            await apiSuccess(
-                response,
-                getAllArticles,
-                flashToast,
-                close,
-                'create'
-            )
+            await apiSuccess(response, getData, flashToast, close, 'create')
         } catch (error) {
             apiErrors(error)
         }
     }
 
     async function editArticle(
-        article: ArticleInterface
-    ): EditArticleRequestFunctionType {
+        article: ArticleInterface,
+        getData: () => void
+    ): EditEntityRequestFunctionType<ArticleInterface> {
         try {
             const response: AxiosResponse = await axios.put(
                 `/api/articles/${article.id}`,
@@ -81,31 +84,22 @@ export function articleRequests(
                 }
             )
 
-            await apiSuccess(
-                response,
-                getAllArticles,
-                flashToast,
-                close,
-                'edit'
-            )
+            await apiSuccess(response, getData, flashToast, close, 'edit')
         } catch (error) {
             apiErrors(error)
         }
     }
 
-    async function deleteArticle(id: number): DeleteEntityRequestFunctionType {
+    async function deleteArticle(
+        id: number,
+        getData: () => void
+    ): DeleteEntityRequestFunctionType {
         try {
             const response: AxiosResponse = await axios.delete(
                 `/api/articles/${id}`
             )
 
-            await apiSuccess(
-                response,
-                getAllArticles,
-                flashToast,
-                close,
-                'delete'
-            )
+            await apiSuccess(response, getData, flashToast, close, 'delete')
         } catch (error) {
             apiErrors(error)
         }

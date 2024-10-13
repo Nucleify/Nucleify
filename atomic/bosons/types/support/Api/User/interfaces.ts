@@ -1,20 +1,20 @@
 import {
     DeleteEntityRequestType,
-    EditUserRequestFunctionType,
-    GetAllUsersRequestFunctionType,
-    GetUserRequestFunctionType,
+    EditEntityRequestFunctionType,
+    GetAllEntitiesRequestFunctionType,
+    GetEntityRequestFunctionType,
     LoadingType,
-    StoreUserRequestFunctionType,
-    TimeoutType,
+    StoreEntityRequestFunctionType,
+    UserInterface,
     UserResultsType,
 } from 'atomic/bosons/types'
 
 export interface UserRequestsInterface {
     results: UserResultsType
     loading: LoadingType
-    getAllUsers: (timeout?: TimeoutType) => GetAllUsersRequestFunctionType
-    getUser: () => GetUserRequestFunctionType
-    storeUser: StoreUserRequestFunctionType
-    editUser: EditUserRequestFunctionType
+    getAllUsers: GetAllEntitiesRequestFunctionType<UserInterface>
+    getUser: GetEntityRequestFunctionType<UserInterface>
+    storeUser: StoreEntityRequestFunctionType<UserInterface>
+    editUser: EditEntityRequestFunctionType<UserInterface>
     deleteUser: DeleteEntityRequestType
 }

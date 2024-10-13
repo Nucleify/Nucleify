@@ -89,9 +89,9 @@ const {
 const { results: users, loading: usersLoading, getAllUsers } = userRequests()
 
 onMounted(() => {
-    getAllArticles()
-    getAllContacts()
-    getAllUsers()
+    getAllArticles(true)
+    getAllContacts(true)
+    getAllUsers(true)
 })
 
 const allLoaded: Ref<boolean> = ref(false)
@@ -102,7 +102,7 @@ watch(
         if (!newArticlesLoading && !newContactsLoading && !newUsersLoading) {
             setTimeout(() => {
                 allLoaded.value = true
-            }, 500)
+            }, 200)
         }
     }
 )

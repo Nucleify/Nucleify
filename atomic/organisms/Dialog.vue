@@ -115,7 +115,7 @@
                     :type="props.entity"
                     :label="props.confirmButtonLabel"
                     icon="pi pi-check"
-                    @click="confirm(formData, props.getData, props.close)"
+                    @click="confirm(formData, props.getData)"
                     rounded
                     text
                 />
@@ -128,13 +128,7 @@
                     :type="props.entity"
                     :label="props.confirmButtonLabel"
                     icon="pi pi-check"
-                    @click="
-                        confirm(
-                            props.selectedObject.id,
-                            props.getData,
-                            props.close
-                        )
-                    "
+                    @click="confirm(props.selectedObject.id, props.getData)"
                     rounded
                     text
                 />

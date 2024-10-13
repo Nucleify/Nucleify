@@ -41,6 +41,8 @@
                 :styles="styles"
                 :type="type"
                 :loading="loading"
+                paginator-template="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+                current-page-report-template="{first} to {last} of {totalRecords}"
             />
         </template>
     </Card>
