@@ -2,14 +2,16 @@ import { ref } from 'vue'
 import axios, { AxiosResponse } from 'axios'
 
 import {
+    ActivityLogInterface,
     ActivityLogRequestsInterface,
     ActivityResultsType,
-    ApiErrorsFunctionType,
     CloseDialogFunctionType,
     DeleteEntityRequestFunctionType,
-    FlashToastFunctionType,
-    GetAllActivitiesRequestFunctionType,
     GetAllActivitiesRequestResponseType,
+    GetAllEntitiesRequestFunctionType,
+    UseApiErrorsServiceInterface,
+    UseLoadingInterface,
+    UseToastInterface,
 } from 'atomic/bosons/types'
 import {
     apiSuccess,
@@ -23,38 +25,41 @@ export function activityRequests(
 ): ActivityLogRequestsInterface {
     const results: ActivityResultsType = ref([])
 
-    const { loading } = useLoading()
-    const { apiErrors }: { apiErrors: ApiErrorsFunctionType } = useApiErrors()
-    const { flashToast }: { flashToast: FlashToastFunctionType } = useToast()
+    const { loading, setLoading }: UseLoadingInterface = useLoading()
+    const { apiErrors }: UseApiErrorsServiceInterface = useApiErrors()
+    const { flashToast }: UseToastInterface = useToast()
 
     async function getAllActivities(
-        timeout?: number
-    ): GetAllActivitiesRequestFunctionType {
+        loading?: boolean
+    ): GetAllEntitiesRequestFunctionType<ActivityLogInterface> {
         try {
+            if (loading) {
+                setLoading(true)
+            }
+
             const response: GetAllActivitiesRequestResponseType =
                 await axios.get('/api/activity-log')
 
-            timeout
-                ? setTimeout((results.value = response.data), timeout)
-                : (results.value = response.data)
+            results.value = response.data
         } catch (error) {
             apiErrors(error)
+        } finally {
+            if (loading) {
+                setLoading(false)
+            }
         }
     }
 
-    async function deleteActivity(id: number): DeleteEntityRequestFunctionType {
+    async function deleteActivity(
+        id: number,
+        getData: () => void
+    ): DeleteEntityRequestFunctionType {
         try {
             const response: AxiosResponse = await axios.delete(
                 `/api/activity-log/${id}`
             )
 
-            await apiSuccess(
-                response,
-                getAllActivities,
-                flashToast,
-                close,
-                'delete'
-            )
+            await apiSuccess(response, getData, flashToast, close, 'delete')
         } catch (error) {
             apiErrors(error)
         }

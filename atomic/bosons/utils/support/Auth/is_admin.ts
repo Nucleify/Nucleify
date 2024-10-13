@@ -1,32 +1,21 @@
-import { ref } from 'vue'
-
 import {
     IsAdminFunctionType,
-    IsAdminType,
     UserIdType,
-    UserInterface,
+    UserRequestsInterface,
+    UserRoleType,
 } from 'atomic/bosons/types'
 import { userRequests, setUserToSessionStorage } from 'atomic/bosons/utils'
 
 export async function isAdmin(): IsAdminFunctionType {
-    const isAdmin: IsAdminType = ref(null)
-    const user_id: UserIdType = window.sessionStorage.getItem('user_id')
+    const { results, getUser }: UserRequestsInterface = userRequests()
+    const userId: UserIdType = window.sessionStorage.getItem('user_id')
 
-    const { getUser } = userRequests()
-
-    if (!user_id) {
-        await getUser().then((user: void | UserInterface): void => {
-            if (user) {
-                setUserToSessionStorage(user)
-            }
-        })
+    if (!userId) {
+        await getUser()
+        setUserToSessionStorage(results.value)
     }
 
-    const userRole: string = window.sessionStorage.getItem('user_role') ?? ''
-    isAdmin.value =
-        userRole === 'admin' ||
-        userRole === 'test_admin' ||
-        userRole === 'super_admin'
+    const userRole: UserRoleType = window.sessionStorage.getItem('user_role')
 
-    return { isAdmin }
+    return ['admin', 'test_admin', 'super_admin'].includes(userRole)
 }

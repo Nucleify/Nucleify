@@ -1,18 +1,16 @@
 import {
+    ActivityLogInterface,
     ActivityResultsType,
     CloseDialogFunctionType,
     DeleteEntityRequestFunctionType,
-    GetAllActivitiesRequestFunctionType,
+    GetAllEntitiesRequestFunctionType,
     LoadingType,
-    TimeoutType,
 } from 'atomic/bosons/types'
 
 export interface ActivityLogRequestsInterface {
     results: ActivityResultsType
     loading: LoadingType
     close: CloseDialogFunctionType
-    getAllActivities: (
-        timeout?: TimeoutType
-    ) => GetAllActivitiesRequestFunctionType
+    getAllActivities: GetAllEntitiesRequestFunctionType<ActivityLogInterface>
     deleteActivity: DeleteEntityRequestFunctionType
 }

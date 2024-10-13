@@ -125,4 +125,10 @@
             }
         }
     }
+
+    &:not(.admin) {
+        .p-dock-item[aria-label='Admin Panel'] {
+            display: none;
+        }
+    }
 }

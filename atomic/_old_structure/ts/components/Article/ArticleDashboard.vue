@@ -69,7 +69,7 @@ const {
 } = articleRequests(closeDialog)
 
 onMounted(() => {
-    getAllArticles()
+    getAllArticles(true)
 })
 
 const dialogs = computed(() => [
