@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import axios, { formToJSON } from 'axios'
+import axios from 'axios'
 
 import { mockContact, mockUseToast } from 'atomic/bosons/constants'
 import {
@@ -54,7 +54,7 @@ describe('contactRequests', (): void => {
             work_phone: mockContact.work_phone,
             address: mockContact.address,
             birthday: mockContact.birthday,
-            contact_groups: formToJSON(mockContact.contact_groups),
+            contact_groups: mockContact.contact_groups,
             role: mockContact.role,
         })
 
@@ -80,7 +80,7 @@ describe('contactRequests', (): void => {
                 work_phone: mockContact.work_phone,
                 address: mockContact.address,
                 birthday: mockContact.birthday,
-                contact_groups: formToJSON(mockContact.contact_groups),
+                contact_groups: mockContact.contact_groups,
                 role: mockContact.role,
             }
         )

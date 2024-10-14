@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import axios, { AxiosResponse, formToJSON } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 
 import {
     CloseDialogFunctionType,
@@ -66,7 +66,7 @@ export function contactRequests(
                 work_phone: data.work_phone,
                 address: data.address,
                 birthday: data.birthday,
-                contact_groups: formToJSON(data.contact_groups),
+                contact_groups: data.contact_groups,
                 role: data.role,
             })
 
@@ -91,7 +91,7 @@ export function contactRequests(
                     work_phone: data.work_phone,
                     address: data.address,
                     birthday: data.birthday,
-                    contact_groups: formToJSON(data.contact_groups),
+                    contact_groups: data.contact_groups,
                     role: data.role,
                 }
             )

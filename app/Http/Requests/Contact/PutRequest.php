@@ -33,7 +33,7 @@ class PutRequest extends FormRequest
             'work_phone' => 'nullable|string|min:9|max:9|regex:/^\d{9}/',
             'address' => 'nullable|string|min:15|max:100',
             'birthday' => 'nullable|date',
-            'contact_groups' => 'nullable|json',
+            'contact_groups' => 'nullable|string',
             'role' => 'nullable|string|in:user,tech,test_admin,admin,super_admin'
         ];
     }
