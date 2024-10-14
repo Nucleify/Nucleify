@@ -13,7 +13,7 @@
                 class="home-charts-header"
                 text="Choose from bar charts, line graphs, pie charts and more to best represent your data."
             />
-            <Card unstyled class="my-card home-chart-card">
+            <ad-card unstyled class="my-card home-chart-card">
                 <template #content>
                     <DeferredContent>
                         <ad-chart
@@ -31,7 +31,7 @@
                         />
                     </DeferredContent>
                 </template>
-            </Card>
+            </ad-card>
         </div>
     </section>
 </template>

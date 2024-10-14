@@ -1,6 +1,7 @@
 import { AppType } from 'vite'
 
 import {
+    Card,
     Chart,
     DataTable,
     DataTableSkeleton,
@@ -14,6 +15,11 @@ import {
 
 export default function registerOrganisms(app: AppType): void {
     app
+        /**
+         *  Card
+         */
+        .component('ad-card', Card)
+
         /**
          *  Chart
          */

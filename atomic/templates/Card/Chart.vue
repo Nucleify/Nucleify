@@ -1,5 +1,5 @@
 <template>
-    <Card class="my-card chart-card">
+    <ad-card class="my-card chart-card">
         <template #content>
             <ad-chart
                 :chart-method-type="chartMethodType"
@@ -14,7 +14,7 @@
             />
             <ad-progress-spinner v-if="loading" />
         </template>
-    </Card>
+    </ad-card>
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 <template>
-    <Card class="my-card">
+    <ad-card class="my-card">
         <template #title>
             <div class="my-card-header-container">
                 <template v-if="loading">
@@ -45,7 +45,7 @@
                 current-page-report-template="{first} to {last} of {totalRecords}"
             />
         </template>
-    </Card>
+    </ad-card>
 </template>
 
 <script setup lang="ts">

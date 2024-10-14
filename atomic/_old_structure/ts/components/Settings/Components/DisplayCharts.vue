@@ -1,5 +1,5 @@
 <template>
-    <Card class="settings-card settings-small-card">
+    <ad-card class="settings-card settings-small-card">
         <template #header>
             <div class="settings-card-header-container">
                 <ad-header :tag="4" text="Charts" />
@@ -35,7 +35,7 @@
                 </li>
             </ul>
         </template>
-    </Card>
+    </ad-card>
 </template>
 
 <script setup lang="ts">

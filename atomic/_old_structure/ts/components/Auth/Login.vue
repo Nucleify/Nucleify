@@ -1,7 +1,7 @@
 <template>
     <ad-back-link />
     <div class="auth-card-container">
-        <Card class="login-card">
+        <ad-card class="login-card">
             <template #header>
                 <div class="auth-card-header-container">
                     <div class="auth-card-header">
@@ -44,7 +44,7 @@
                     />
                 </form>
             </template>
-        </Card>
+        </ad-card>
     </div>
 
     <ad-test-login-buttons />
