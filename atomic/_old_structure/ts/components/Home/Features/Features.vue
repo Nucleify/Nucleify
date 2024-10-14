@@ -1,11 +1,11 @@
 <template>
-    <section id="features">
-        <charts></charts>
-        <access></access>
-        <!--
+  <section id="features">
+    <charts></charts>
+    <access></access>
+    <!--
             TODO: More features
          -->
-    </section>
+  </section>
 </template>
 
 <script setup lang="ts">

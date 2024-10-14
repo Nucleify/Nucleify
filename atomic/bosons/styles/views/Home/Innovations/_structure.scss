@@ -1,127 +1,127 @@
 #innovations > #structure > .structure-container {
+  display: flex;
+  justify-content: center;
+  padding: 2em 1em;
+  background: black;
+
+  .content {
+    width: 100%;
+    max-width: 1250px;
     display: flex;
-    justify-content: center;
-    padding: 2em 1em;
-    background: black;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1em;
+
+    .animation-container {
+      padding: 0 1em;
+
+      svg {
+        width: 100%;
+        max-width: 650px;
+        transform: scaleX(-1);
+
+        #freepik--character--inject-5 {
+          transform: scaleX(-1) !important;
+        }
+      }
+    }
+
+    .description-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1em;
+      color: white;
+
+      .title {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        font-weight: 800;
+        font-size: 2.2em;
+        line-height: 1.3em;
+
+        .shiny-text {
+          min-width: max-content;
+        }
+      }
+
+      .description {
+        font-weight: 300;
+      }
+
+      .title,
+      .description {
+        max-width: 600px;
+      }
+    }
+  }
+
+  @media (min-width: 360px) {
+    .content {
+      .description-container {
+        .title {
+          font-size: 2.6em;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 400px) {
+    .content {
+      .description-container {
+        .title {
+          font-size: 2.8em;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    padding: 3em 1em;
 
     .content {
-        width: 100%;
-        max-width: 1250px;
-        display: flex;
-        flex-direction: column-reverse;
-        align-items: center;
-        gap: 1em;
+      flex-direction: row;
+      padding: 0 2em;
 
-        .animation-container {
-            padding: 0 1em;
-
-            svg {
-                width: 100%;
-                max-width: 650px;
-                transform: scaleX(-1);
-
-                #freepik--character--inject-5 {
-                    transform: scaleX(-1) !important;
-                }
-            }
-        }
-
-        .description-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 1em;
-            color: white;
-
-            .title {
-                width: 100%;
-                display: flex;
-                flex-wrap: wrap;
-                font-weight: 800;
-                font-size: 2.2em;
-                line-height: 1.3em;
-
-                .shiny-text {
-                    min-width: max-content;
-                }
-            }
-
-            .description {
-                font-weight: 300;
-            }
-
-            .title,
-            .description {
-                max-width: 600px;
-            }
-        }
+      .animation-container,
+      .description-container {
+        width: 50%;
+      }
     }
+  }
 
-    @media (min-width: 360px) {
-        .content {
-            .description-container {
-                .title {
-                    font-size: 2.6em;
-                }
-            }
+  @media (min-width: 992px) {
+    .content {
+      .description-container {
+        gap: 1.5em;
+
+        .title {
+          font-size: 3.2em;
         }
-    }
 
-    @media (min-width: 400px) {
-        .content {
-            .description-container {
-                .title {
-                    font-size: 2.8em;
-                }
-            }
+        .description {
+          font-size: 1.1em;
         }
+      }
     }
+  }
 
-    @media (min-width: 768px) {
-        padding: 3em 1em;
+  @media (min-width: 1200px) {
+    .content {
+      padding: 0;
+      gap: 5em;
 
-        .content {
-            flex-direction: row;
-            padding: 0 2em;
-
-            .animation-container,
-            .description-container {
-                width: 50%;
-            }
+      .description-container {
+        .title {
+          font-size: 3.5em;
+          margin-top: -1em;
         }
-    }
 
-    @media (min-width: 992px) {
-        .content {
-            .description-container {
-                gap: 1.5em;
-
-                .title {
-                    font-size: 3.2em;
-                }
-
-                .description {
-                    font-size: 1.1em;
-                }
-            }
+        .description {
+          font-size: 1.15em;
         }
+      }
     }
-
-    @media (min-width: 1200px) {
-        .content {
-            padding: 0;
-            gap: 5em;
-
-            .description-container {
-                .title {
-                    font-size: 3.5em;
-                    margin-top: -1em;
-                }
-
-                .description {
-                    font-size: 1.15em;
-                }
-            }
-        }
-    }
+  }
 }

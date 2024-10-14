@@ -1,7 +1,7 @@
 <template>
-    <label :for="props.forInput">
-        {{ props.label }}
-    </label>
+  <label :for="props.forInput">
+    {{ props.label }}
+  </label>
 </template>
 
 <script setup lang="ts">

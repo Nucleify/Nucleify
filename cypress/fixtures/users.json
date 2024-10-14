@@ -1,18 +1,18 @@
 {
-    "test_admin": {
-        "email": "test_admin@datamanager.com",
-        "password": "test_admin123"
-    },
-    "test_admin_2": {
-        "email": "test_admin2@datamanager.com",
-        "password": "test_admin2123"
-    },
-    "test_tech": {
-        "email": "test_tech@datamanager.com",
-        "password": "test_tech123"
-    },
-    "test_user": {
-        "email": "test_user@datamanager.com",
-        "password": "test_user123"
-    }
+  "test_admin": {
+    "email": "test_admin@datamanager.com",
+    "password": "test_admin123"
+  },
+  "test_admin_2": {
+    "email": "test_admin2@datamanager.com",
+    "password": "test_admin2123"
+  },
+  "test_tech": {
+    "email": "test_tech@datamanager.com",
+    "password": "test_tech123"
+  },
+  "test_user": {
+    "email": "test_user@datamanager.com",
+    "password": "test_user123"
+  }
 }

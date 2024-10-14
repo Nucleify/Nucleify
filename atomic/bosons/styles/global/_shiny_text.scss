@@ -1,29 +1,29 @@
 .shiny-text {
-    background: linear-gradient(
-        to right,
-        #1bbd79 20%,
-        #117e50 40%,
-        #0a5a39 60%,
-        #117e50 80%,
-        #1bbd79 100%
-    );
-    background-size: 200% auto;
-    background-clip: text;
-    text-fill-color: transparent;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  background: linear-gradient(
+    to right,
+    #1bbd79 20%,
+    #117e50 40%,
+    #0a5a39 60%,
+    #117e50 80%,
+    #1bbd79 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 
-    &.first-text {
-        animation: shine 2.5s linear infinite;
-    }
+  &.first-text {
+    animation: shine 2.5s linear infinite;
+  }
 
-    &:not(.first-text) {
-        animation: shine 2s linear infinite;
-    }
+  &:not(.first-text) {
+    animation: shine 2s linear infinite;
+  }
 
-    @keyframes shine {
-        to {
-            background-position: 200% center;
-        }
+  @keyframes shine {
+    to {
+      background-position: 200% center;
     }
+  }
 }

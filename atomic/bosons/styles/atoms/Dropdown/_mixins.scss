@@ -1,34 +1,34 @@
 @mixin entity-dropdown-styles($item-color, $focus-color) {
-    &:hover {
-        border-color: $item-color;
-    }
+  &:hover {
+    border-color: $item-color;
+  }
 
-    &:not(.p-disabled).p-focus {
-        outline: 0 none;
-        outline-offset: 0;
-        box-shadow: 0 0 0 0.2rem $focus-color;
-        border-color: $item-color;
-    }
+  &:not(.p-disabled).p-focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.2rem $focus-color;
+    border-color: $item-color;
+  }
 }
 
 @mixin entity-dropdown-item-styles(
-    $item-color,
-    $selected-color,
-    $highlight-color
+  $item-color,
+  $selected-color,
+  $highlight-color
 ) {
-    .p-dropdown-item {
-        &:hover {
-            background: $highlight-color;
-        }
-
-        &.p-highlight {
-            color: $item-color;
-            background: $highlight-color;
-        }
-
-        &:not(.p-disabled, .p-highlight).p-focus {
-            color: $item-color;
-            background: $selected-color;
-        }
+  .p-dropdown-item {
+    &:hover {
+      background: $highlight-color;
     }
+
+    &.p-highlight {
+      color: $item-color;
+      background: $highlight-color;
+    }
+
+    &:not(.p-disabled, .p-highlight).p-focus {
+      color: $item-color;
+      background: $selected-color;
+    }
+  }
 }

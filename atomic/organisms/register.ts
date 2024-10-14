@@ -1,63 +1,63 @@
 import { AppType } from 'vite'
 
 import {
-    Card,
-    Chart,
-    DataTable,
-    DataTableSkeleton,
-    Dialog,
-    Dock,
-    OverlayPanel,
-    Password,
-    Terminal,
-    Tile,
+  Card,
+  Chart,
+  DataTable,
+  DataTableSkeleton,
+  Dialog,
+  Dock,
+  OverlayPanel,
+  Password,
+  Terminal,
+  Tile,
 } from './'
 
 export default function registerOrganisms(app: AppType): void {
-    app
-        /**
-         *  Card
-         */
-        .component('ad-card', Card)
+  app
+    /**
+     *  Card
+     */
+    .component('ad-card', Card)
 
-        /**
-         *  Chart
-         */
-        .component('ad-chart', Chart)
+    /**
+     *  Chart
+     */
+    .component('ad-chart', Chart)
 
-        /**
-         *  DataTable
-         */
-        .component('ad-data-table', DataTable)
-        .component('ad-data-table-skeleton', DataTableSkeleton)
+    /**
+     *  DataTable
+     */
+    .component('ad-data-table', DataTable)
+    .component('ad-data-table-skeleton', DataTableSkeleton)
 
-        /**
-         *  Dialog
-         */
-        .component('ad-dialog', Dialog)
+    /**
+     *  Dialog
+     */
+    .component('ad-dialog', Dialog)
 
-        /**
-         *  Dock
-         */
-        .component('ad-dock', Dock)
+    /**
+     *  Dock
+     */
+    .component('ad-dock', Dock)
 
-        /**
-         *  OverlayPanel
-         */
-        .component('ad-overlay-panel', OverlayPanel)
+    /**
+     *  OverlayPanel
+     */
+    .component('ad-overlay-panel', OverlayPanel)
 
-        /**
-         *  Password
-         */
-        .component('ad-password', Password)
+    /**
+     *  Password
+     */
+    .component('ad-password', Password)
 
-        /**
-         *  Terminal
-         */
-        .component('ad-terminal', Terminal)
+    /**
+     *  Terminal
+     */
+    .component('ad-terminal', Terminal)
 
-        /**
-         *  Tile
-         */
-        .component('ad-tile', Tile)
+    /**
+     *  Tile
+     */
+    .component('ad-tile', Tile)
 }

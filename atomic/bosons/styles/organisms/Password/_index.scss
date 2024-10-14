@@ -1,63 +1,63 @@
 @use 'mixins' as *;
 
 .p-password {
-    @each $type in main, activity, article, contact, user {
-        &[v-type='#{$type}'] {
-            .p-inputtext {
-                @include entity-password-styles(
-                    var(--#{$type}-item-color-new),
-                    var(--#{$type}-item-focus-color-new)
-                );
-            }
-        }
+  @each $type in main, activity, article, contact, user {
+    &[v-type='#{$type}'] {
+      .p-inputtext {
+        @include entity-password-styles(
+          var(--#{$type}-item-color-new),
+          var(--#{$type}-item-focus-color-new)
+        );
+      }
     }
+  }
 
-    .p-inputtext {
-        width: 100%;
-    }
+  .p-inputtext {
+    width: 100%;
+  }
 }
 
 .p-dialog {
-    .p-password {
-        .p-icon {
-            margin-right: 5.5px;
-        }
+  .p-password {
+    .p-icon {
+      margin-right: 5.5px;
     }
+  }
 }
 
 #password_panel,
 #password_confirmation_panel {
-    .password-criteria {
-        list-style-type: none;
-        padding-left: 0;
-        margin-bottom: 0;
+  .password-criteria {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 0;
 
-        li {
-            padding: 4px 0;
-            font-size: 14px;
+    li {
+      padding: 4px 0;
+      font-size: 14px;
 
-            &.valid {
-                color: #10b981;
-                font-weight: bold;
-            }
+      &.valid {
+        color: #10b981;
+        font-weight: bold;
+      }
 
-            &.invalid {
-                color: #ef4444;
-                font-weight: bold;
-            }
-        }
+      &.invalid {
+        color: #ef4444;
+        font-weight: bold;
+      }
     }
+  }
 }
 
 #password_panel {
-    .p-divider {
-        margin: 8px 0;
-    }
+  .p-divider {
+    margin: 8px 0;
+  }
 }
 
 #password_confirmation_panel {
-    .p-password-meter,
-    .p-password-info {
-        display: none !important;
-    }
+  .p-password-meter,
+  .p-password-info {
+    display: none !important;
+  }
 }

@@ -1,17 +1,17 @@
 <template>
-    <Chart
-        v-if="chartData"
-        :type="props.type"
-        :data="chartData"
-        :options="chartOptions"
-        :plugins="props.plugins"
-        :width="props.width"
-        :height="props.height"
-        :canvas-props="props.canvasProps"
-        :pt="props.pt"
-        :pt-options="props.ptOptions"
-        :class="props.chartClass"
-    />
+  <Chart
+    v-if="chartData"
+    :type="props.type"
+    :data="chartData"
+    :options="chartOptions"
+    :plugins="props.plugins"
+    :width="props.width"
+    :height="props.height"
+    :canvas-props="props.canvasProps"
+    :pt="props.pt"
+    :pt-options="props.ptOptions"
+    :class="props.chartClass"
+  />
 </template>
 
 <script setup lang="ts">
@@ -26,33 +26,33 @@ const { chartData, setChartData, setChartOptions } = useChart()
 const chartOptions = ref(setChartOptions(props.type, props.direction))
 
 onMounted(() => {
-    chartData.value = setChartData(
-        props.chartMethodType,
-        props?.activityLogData,
-        props?.articleData,
-        props?.contactData,
-        props?.userData,
-        props?.example
-    )
+  chartData.value = setChartData(
+    props.chartMethodType,
+    props?.activityLogData,
+    props?.articleData,
+    props?.contactData,
+    props?.userData,
+    props?.example
+  )
 })
 
 watch(
-    () => [
-        props.chartMethodType,
-        props?.activityLogData,
-        props?.articleData,
-        props?.contactData,
-        props?.userData,
-    ],
-    () => {
-        chartData.value = setChartData(
-            props.chartMethodType,
-            props?.activityLogData,
-            props?.articleData,
-            props?.contactData,
-            props?.userData,
-            props?.example
-        )
-    }
+  () => [
+    props.chartMethodType,
+    props?.activityLogData,
+    props?.articleData,
+    props?.contactData,
+    props?.userData,
+  ],
+  () => {
+    chartData.value = setChartData(
+      props.chartMethodType,
+      props?.activityLogData,
+      props?.articleData,
+      props?.contactData,
+      props?.userData,
+      props?.example
+    )
+  }
 )
 </script>

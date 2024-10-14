@@ -1,5 +1,5 @@
 export interface IconInterface {
-    icon?: string
-    url?: string
-    type?: string
+  icon?: string
+  url?: string
+  type?: string
 }

@@ -1,8 +1,8 @@
 <template>
-    <p>
-        {{ props.text }}
-        <slot />
-    </p>
+  <p>
+    {{ props.text }}
+    <slot />
+  </p>
 </template>
 
 <script setup lang="ts">

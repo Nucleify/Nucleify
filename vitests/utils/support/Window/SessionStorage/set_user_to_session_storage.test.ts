@@ -4,13 +4,13 @@ import { mockUser } from 'atomic/bosons/constants'
 import { setUserToSessionStorage } from 'atomic/bosons/utils'
 
 beforeEach((): void => {
-    window.sessionStorage.clear()
+  window.sessionStorage.clear()
 })
 
 it('should store user data in sessionStorage', (): void => {
-    setUserToSessionStorage(mockUser)
+  setUserToSessionStorage(mockUser)
 
-    Object.entries(mockUser).forEach(([key, value]): void => {
-        expect(window.sessionStorage.getItem(`user_${key}`)).toBe(value)
-    })
+  Object.entries(mockUser).forEach(([key, value]): void => {
+    expect(window.sessionStorage.getItem(`user_${key}`)).toBe(value)
+  })
 })
