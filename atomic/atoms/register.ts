@@ -7,6 +7,7 @@ import {
     Header,
     Icon,
     Image,
+    InputMask,
     InputText,
     Label,
     Paragraph,
@@ -25,6 +26,7 @@ export function registerAtoms(app: AppType): void {
         .component('ad-header', Header)
         .component('ad-icon', Icon)
         .component('ad-image', Image)
+        .component('ad-input-mask', InputMask)
         .component('ad-input-text', InputText)
         .component('ad-label', Label)
         .component('ad-paragraph', Paragraph)

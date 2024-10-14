@@ -53,33 +53,32 @@
                     v-bind="field.props"
                     :id="field.name"
                     :v-type="props.entity"
-                    v-bind:panel-class="
-                        field.type === 'dropdown' || 'calendar'
-                            ? props.entity
+                    :panel-class="
+                        isDropdownOrCalendar(field.type) ? props.entity : null
+                    "
+                    :date-format="field.type === 'calendar' ? 'yy-mm-dd' : null"
+                    :toggle-mask="field.type === 'password' ? true : null"
+                    :passwords-match="
+                        field.name === 'password_confirmation' &&
+                        isPasswordsMatch(formData)
+                            ? true
                             : null
                     "
-                    v-bind:date-format="
-                        field.type === 'calendar' ? 'yy-mm-dd' : null
+                    :empty-password="
+                        field.name === 'password_confirmation' &&
+                        isEmptyPassword(formData)
+                            ? true
+                            : null
                     "
-                    v-bind:toggle-mask="field.type === 'password' ? true : null"
-                    v-bind:passwords-match="
-                        field.name === 'password_confirmation'
-                            ? checkPasswordsMatch(
-                                  formData['password'],
-                                  formData['password_confirmation']
-                              )
-                            : false
+                    :empty-confirm-password="
+                        field.name === 'password_confirmation' &&
+                        isEmptyConfirmPassword(formData)
+                            ? true
+                            : null
                     "
-                    v-bind:empty-password="
-                        field.name === 'password_confirmation'
-                            ? checkIsEmpty(formData['password'])
-                            : false
-                    "
-                    v-bind:empty-confirm-password="
-                        field.name === 'password_confirmation'
-                            ? checkIsEmpty(formData['password_confirmation'])
-                            : false
-                    "
+                    :mask="isPhoneField(field.name) ? '999-999-999' : null"
+                    :placeholder="isPhoneField(field.name) ? '999-999-999' : ''"
+                    :unmask="isPhoneField(field.name) ? true : null"
                 />
             </div>
         </form>
@@ -142,16 +141,18 @@ import { ref, watch } from 'vue'
 
 import { DialogInterface } from 'atomic/bosons/types'
 import {
-    checkIsEmpty,
-    checkPasswordsMatch,
     getComponent,
     getTitle,
+    isDropdownOrCalendar,
+    isEmptyConfirmPassword,
+    isEmptyPassword,
+    isPasswordsMatch,
+    isPhoneField,
 } from 'atomic/bosons/utils'
 
 const props = defineProps<DialogInterface>()
 
-// eslint-disable-next-line  @typescript-eslint/no-explicit-any
-const formData = ref<{ [key: string]: any }>({ ...props.data })
+const formData = ref<{ [key: string]: string }>({ ...props.data })
 
 watch(
     () => (props.action === 'edit' ? props.selectedObject : props.data),

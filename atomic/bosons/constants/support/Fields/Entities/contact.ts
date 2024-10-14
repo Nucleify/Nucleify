@@ -25,7 +25,9 @@ export function useContactFields() {
                       ? 'calendar'
                       : name === 'role'
                         ? 'dropdown'
-                        : 'input-text',
+                        : name === 'personal_phone' || name === 'work_phone'
+                          ? 'input-mask'
+                          : 'input-text',
             ...(name === 'email' && { props: { type: 'email' } }),
             ...(name === 'role' && {
                 props: { options: roles, placeholder: 'Select a role' },

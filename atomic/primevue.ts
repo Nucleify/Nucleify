@@ -19,6 +19,7 @@ import Dropdown from 'primevue/dropdown'
 import FloatLabel from 'primevue/floatlabel'
 import Image from 'primevue/image'
 import InlineMessage from 'primevue/inlinemessage'
+import InputMask from 'primevue/inputmask'
 import InputText from 'primevue/inputtext'
 import Menu from 'primevue/menu'
 import OverlayPanel from 'primevue/overlaypanel'
@@ -64,6 +65,7 @@ export default function registerPrimeVue(app: App<Element>): void {
         .component('FloatLabel', FloatLabel)
         .component('Image', Image)
         .component('InlineMessage', InlineMessage)
+        .component('InputMask', InputMask)
         .component('InputText', InputText)
         .component('Menu', Menu)
         .component('OverlayPanel', OverlayPanel)
