@@ -1,6 +1,7 @@
 export * from './Api'
 export * from './Auth'
 export * from './Get'
+export * from './Fields'
 export * from './Loading'
 export * from './Media'
 export * from './Throttle'

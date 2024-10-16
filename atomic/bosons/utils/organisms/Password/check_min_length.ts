@@ -1,8 +1,8 @@
 export function checkMinLength(
-    password: string | undefined | null,
-    minLength: number = 8
+  password: string | undefined | null,
+  minLength: number = 8
 ): boolean {
-    if (password === undefined || null) return
+  if (password === undefined || null) return
 
-    return password.length >= minLength
+  return password.length >= minLength
 }

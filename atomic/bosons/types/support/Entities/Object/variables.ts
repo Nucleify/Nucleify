@@ -1,18 +1,18 @@
 import { Ref } from 'vue'
 
 import {
-    ActivityLogInterface,
-    ArticleInterface,
-    ContactInterface,
-    UserInterface,
+  ActivityLogInterface,
+  ArticleInterface,
+  ContactInterface,
+  UserInterface,
 } from 'atomic/bosons/types'
 
 export type ObjectType =
-    | ActivityLogInterface
-    | ArticleInterface
-    | ContactInterface
-    | UserInterface
-    | undefined
+  | ActivityLogInterface
+  | ArticleInterface
+  | ContactInterface
+  | UserInterface
+  | undefined
 
 export type ObjectNameType = 'activity' | 'article' | 'contact' | 'user'
 

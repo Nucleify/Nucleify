@@ -9,12 +9,12 @@ export type GetUserRequestFunctionType = Promise<void | UserInterface>
 export type GetUserRequestResponseType = AxiosResponse<UserInterface>
 
 export type StoreUserRequestFunctionType = (
-    data: UserInterface,
-    getData: () => void,
-    close: (method: string) => void
+  data: UserInterface,
+  getData: () => void,
+  close: (method: string) => void
 ) => Promise<void>
 export type EditUserRequestFunctionType = (
-    data: UserInterface,
-    getData: () => void,
-    close: (method: string) => void
+  data: UserInterface,
+  getData: () => void,
+  close: (method: string) => void
 ) => Promise<void>

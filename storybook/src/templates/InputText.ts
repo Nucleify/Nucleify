@@ -3,11 +3,11 @@ import InputText from 'primevue/inputtext'
 import { InputTextInterface } from '@/types'
 
 const InputTextTemplate = (args: InputTextInterface) => ({
-    components: { InputText },
-    setup(): { args: InputTextInterface } {
-        return { args }
-    },
-    template: `
+  components: { InputText },
+  setup(): { args: InputTextInterface } {
+    return { args }
+  },
+  template: `
     <InputText
         :v-model="args.value"
         :class="args.class"

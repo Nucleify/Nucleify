@@ -2344,21 +2344,10 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
-    $updatedContactData['contact_groups'] = 'contact_groups';
-    test('invalid contact_groups > string', apiTest(
-        'PUT',
-        'contacts.update',
-        422,
-        $updatedContactData,
-        ['errors' => ['contact_groups']],
-        ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
-        ]]
-    ));
 
     $updatedContactData['contact_groups'] = [];
     test('invalid contact_groups > empty array', apiTest(
@@ -2368,7 +2357,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2380,7 +2369,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2392,7 +2381,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2404,7 +2393,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2416,7 +2405,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2428,7 +2417,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2440,7 +2429,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2452,7 +2441,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2464,7 +2453,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2476,7 +2465,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2488,7 +2477,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2500,7 +2489,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2512,7 +2501,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2524,7 +2513,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 
@@ -2536,7 +2525,7 @@ describe('422 > PUT', function($updatedContactData = updatedContactData) {
         $updatedContactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a valid JSON string.']
+            'contact_groups' => ['The contact groups field must be a string.']
         ]]
     ));
 

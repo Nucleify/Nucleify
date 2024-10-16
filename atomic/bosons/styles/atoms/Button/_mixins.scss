@@ -1,28 +1,28 @@
 @mixin entity-button-styles($item-color, $focus-color, $selected-color) {
+  color: $item-color;
+  transition:
+    all 0.1s,
+    background-color 0.5s,
+    box-shadow 0.5s,
+    color 0.2s !important;
+
+  &:focus,
+  &:focus-visible {
+    box-shadow:
+      0 0 0 2px #ffffff,
+      0 0 0 4px $focus-color;
+  }
+
+  &:active,
+  &:focus-visible {
+    background-color: $selected-color;
     color: $item-color;
-    transition:
-        all 0.1s,
-        background-color 0.5s,
-        box-shadow 0.5s,
-        color 0.2s !important;
+  }
 
-    &:focus,
-    &:focus-visible {
-        box-shadow:
-            0 0 0 2px #ffffff,
-            0 0 0 4px $focus-color;
+  &:hover {
+    svg,
+    g {
+      fill: $item-color;
     }
-
-    &:active,
-    &:focus-visible {
-        background-color: $selected-color;
-        color: $item-color;
-    }
-
-    &:hover {
-        svg,
-        g {
-            fill: $item-color;
-        }
-    }
+  }
 }

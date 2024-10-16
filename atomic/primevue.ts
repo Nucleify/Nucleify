@@ -19,6 +19,7 @@ import Dropdown from 'primevue/dropdown'
 import FloatLabel from 'primevue/floatlabel'
 import Image from 'primevue/image'
 import InlineMessage from 'primevue/inlinemessage'
+import InputMask from 'primevue/inputmask'
 import InputText from 'primevue/inputtext'
 import Menu from 'primevue/menu'
 import OverlayPanel from 'primevue/overlaypanel'
@@ -44,46 +45,48 @@ import ToastService from 'primevue/toastservice'
 import PrimeVue from 'primevue/config'
 
 export default function registerPrimeVue(app: App<Element>): void {
-    app.use(PrimeVue, { ripple: true })
-        /**
-         *  Components
-         */
-        .component('Avatar', Avatar)
-        .component('Button', Button)
-        .component('Calendar', Calendar)
-        .component('Card', Card)
-        .component('Chart', Chart)
-        .component('ColorPicker', ColorPicker)
-        .component('Column', Column)
-        .component('DataTable', DataTable)
-        .component('DeferredContent', DeferredContent)
-        .component('Dialog', Dialog)
-        .component('Divider', Divider)
-        .component('Dock', Dock)
-        .component('Dropdown', Dropdown)
-        .component('FloatLabel', FloatLabel)
-        .component('Image', Image)
-        .component('InlineMessage', InlineMessage)
-        .component('InputText', InputText)
-        .component('Menu', Menu)
-        .component('OverlayPanel', OverlayPanel)
-        .component('Password', Password)
-        .component('ProgressBar', ProgressBar)
-        .component('ProgressSpinner', ProgressSpinner)
-        .component('RadioButton', RadioButton)
-        .component('Skeleton', Skeleton)
-        .component('Terminal', Terminal)
-        .component('Textarea', Textarea)
-        .component('Toast', Toast)
+  app
+    .use(PrimeVue, { ripple: true })
+    /**
+     *  Components
+     */
+    .component('Avatar', Avatar)
+    .component('Button', Button)
+    .component('Calendar', Calendar)
+    .component('Card', Card)
+    .component('Chart', Chart)
+    .component('ColorPicker', ColorPicker)
+    .component('Column', Column)
+    .component('DataTable', DataTable)
+    .component('DeferredContent', DeferredContent)
+    .component('Dialog', Dialog)
+    .component('Divider', Divider)
+    .component('Dock', Dock)
+    .component('Dropdown', Dropdown)
+    .component('FloatLabel', FloatLabel)
+    .component('Image', Image)
+    .component('InlineMessage', InlineMessage)
+    .component('InputMask', InputMask)
+    .component('InputText', InputText)
+    .component('Menu', Menu)
+    .component('OverlayPanel', OverlayPanel)
+    .component('Password', Password)
+    .component('ProgressBar', ProgressBar)
+    .component('ProgressSpinner', ProgressSpinner)
+    .component('RadioButton', RadioButton)
+    .component('Skeleton', Skeleton)
+    .component('Terminal', Terminal)
+    .component('Textarea', Textarea)
+    .component('Toast', Toast)
 
-        /**
-         *  Services
-         */
-        .use(ToastService)
+    /**
+     *  Services
+     */
+    .use(ToastService)
 
-        /**
-         *  Directives
-         */
-        .directive('animateonscroll', AnimateOnScroll)
-        .directive('tooltip', Tooltip)
+    /**
+     *  Directives
+     */
+    .directive('animateonscroll', AnimateOnScroll)
+    .directive('tooltip', Tooltip)
 }

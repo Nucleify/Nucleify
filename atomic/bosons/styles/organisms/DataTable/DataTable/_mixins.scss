@@ -1,27 +1,27 @@
 @mixin entity-datatable-styles($item-color, $selected-color, $highlight-color) {
-    .p-highlight,
-    .p-paginator-element:hover {
-        color: $item-color;
-        background: $highlight-color;
+  .p-highlight,
+  .p-paginator-element:hover {
+    color: $item-color;
+    background: $highlight-color;
 
-        svg {
-            color: $item-color;
-        }
+    svg {
+      color: $item-color;
     }
+  }
 
-    .p-datatable-thead {
-        th:not(.p-highlight) {
-            &:hover {
-                background: $selected-color;
-            }
-        }
+  .p-datatable-thead {
+    th:not(.p-highlight) {
+      &:hover {
+        background: $selected-color;
+      }
     }
+  }
 
-    .p-datatable-tbody {
-        tr {
-            &:hover {
-                background: $selected-color;
-            }
-        }
+  .p-datatable-tbody {
+    tr {
+      &:hover {
+        background: $selected-color;
+      }
     }
+  }
 }

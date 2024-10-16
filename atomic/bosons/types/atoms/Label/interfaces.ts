@@ -1,4 +1,4 @@
 export interface LabelInterface {
-    label?: string
-    forInput?: string
+  label?: string
+  forInput?: string
 }

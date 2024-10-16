@@ -1,21 +1,21 @@
 @use 'mixins' as *;
 
 .p-datatable {
-    .p-sortable-column {
-        .p-column-header-content {
-            display: flex;
-            justify-content: space-between;
-            padding-right: 1em;
-        }
+  .p-sortable-column {
+    .p-column-header-content {
+      display: flex;
+      justify-content: space-between;
+      padding-right: 1em;
     }
+  }
 
-    @each $type in activity, article, contact, user {
-        &.p-datatable[v-type='#{$type}'] {
-            @include entity-datatable-styles(
-                var(--#{$type}-item-color-new),
-                var(--#{$type}-item-selected-color-new),
-                var(--#{$type}-item-highlight-color-new)
-            );
-        }
+  @each $type in activity, article, contact, user {
+    &.p-datatable[v-type='#{$type}'] {
+      @include entity-datatable-styles(
+        var(--#{$type}-item-color-new),
+        var(--#{$type}-item-selected-color-new),
+        var(--#{$type}-item-highlight-color-new)
+      );
     }
+  }
 }

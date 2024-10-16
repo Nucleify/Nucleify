@@ -1,32 +1,32 @@
 #innovations > #technologies {
-    .swiper-container {
+  .swiper-container {
+    display: flex;
+    justify-content: center;
+    background: black;
+
+    .swiper {
+      max-width: 1000px;
+      padding: 3em 0;
+      box-shadow:
+        inset 30px 0 30px -15px rgba(0, 0, 0, 0.5),
+        inset -30px 0 30px -15px rgba(0, 0, 0, 0.5);
+
+      .swiper-slide {
+        padding: 0 1em;
         display: flex;
         justify-content: center;
-        background: black;
 
-        .swiper {
-            max-width: 1000px;
-            padding: 3em 0;
-            box-shadow:
-                inset 30px 0 30px -15px rgba(0, 0, 0, 0.5),
-                inset -30px 0 30px -15px rgba(0, 0, 0, 0.5);
+        a {
+          background: #242938;
+          padding: 0.25em;
+          border-radius: 12px;
 
-            .swiper-slide {
-                padding: 0 1em;
-                display: flex;
-                justify-content: center;
-
-                a {
-                    background: #242938;
-                    padding: 0.25em;
-                    border-radius: 12px;
-
-                    img {
-                        width: 40px;
-                        height: 40px;
-                    }
-                }
-            }
+          img {
+            width: 40px;
+            height: 40px;
+          }
         }
+      }
     }
+  }
 }

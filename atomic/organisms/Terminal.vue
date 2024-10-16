@@ -1,11 +1,11 @@
 <template>
-    <Terminal
-        :welcome-message="props.welcomeMessage"
-        :prompt="props.prompt"
-        :pt="pt"
-        :pt-options="ptOptions"
-        :unstyled="unstyled"
-    />
+  <Terminal
+    :welcome-message="props.welcomeMessage"
+    :prompt="props.prompt"
+    :pt="pt"
+    :pt-options="ptOptions"
+    :unstyled="unstyled"
+  />
 </template>
 
 <script setup lang="ts">
@@ -18,10 +18,10 @@ import { handleCommands } from 'atomic/bosons/utils'
 const props = defineProps<TerminalInterface>()
 
 onMounted(() => {
-    TerminalService.on('command', handleCommands)
+  TerminalService.on('command', handleCommands)
 })
 
 onBeforeUnmount(() => {
-    TerminalService.off('command', handleCommands)
+  TerminalService.off('command', handleCommands)
 })
 </script>

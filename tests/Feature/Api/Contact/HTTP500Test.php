@@ -76,32 +76,4 @@ describe('500 > Internal Server Error', function($contactData = contactData)  {
         $response->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
-
-
-    /**
-     *  CONTACT GROUPS TESTS
-     */
-    $contactData['contact_groups'] = 1;
-    test('invalid contact_groups positive > integer', apiTest(
-        'POST',
-        'contacts.store',
-        500,
-        $contactData
-    ));
-
-    $contactData['contact_groups'] = -1;
-    test('invalid contact_groups negative > integer', apiTest(
-        'POST',
-        'contacts.store',
-        500,
-        $contactData
-    ));
-
-    $contactData['contact_groups'] = true;
-    test('invalid contact_groups > true', apiTest(
-        'POST',
-        'contacts.store',
-        500,
-        $contactData
-    ));
 });

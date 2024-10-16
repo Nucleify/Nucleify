@@ -1,4 +1,4 @@
 export interface TechnologyInterface {
-    image?: string
-    url: string
+  image?: string
+  url: string
 }

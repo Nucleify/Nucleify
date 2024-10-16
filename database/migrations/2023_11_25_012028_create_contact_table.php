@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('work_phone')->nullable();
             $table->text('address')->nullable();
             $table->date('birthday')->nullable();
-            $table->json('contact_groups')->nullable();
+            $table->string('contact_groups')->nullable();
             $table->string('role')->nullable();
             $table->timestamps();
         });

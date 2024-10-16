@@ -2,16 +2,16 @@
 @import 'variables';
 
 .item {
-    color: $secondary-text-color;
-    font-size: $font-size-medium;
-    padding: 10px;
+  color: $secondary-text-color;
+  font-size: $font-size-medium;
+  padding: 10px;
 
-    &.plasmaItem {
-        @include plasma-item;
-        border-radius: 38px 30px 20px 15px;
-    }
+  &.plasmaItem {
+    @include plasma-item;
+    border-radius: 38px 30px 20px 15px;
+  }
 
-    &.disabled-item {
-        @include disabled-item;
-    }
+  &.disabled-item {
+    @include disabled-item;
+  }
 }

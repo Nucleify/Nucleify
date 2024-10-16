@@ -126,7 +126,7 @@ class Contact extends Model implements ContactContract
     {
         return $this->role;
     }
-    public function getContactGroups(): array|null
+    public function getContactGroups(): string|null
     {
         return $this->contact_groups;
     }
