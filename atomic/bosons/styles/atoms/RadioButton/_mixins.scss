@@ -1,18 +1,18 @@
 @mixin entity-radiobutton-styles($item-color) {
-    &.p-highlight .p-radiobutton-box,
-    &:checked {
-        border-color: $item-color;
-        background: $item-color;
-    }
+  &.p-highlight .p-radiobutton-box,
+  &:checked {
+    border-color: $item-color;
+    background: $item-color;
+  }
 
-    &:not(.p-disabled):has(.p-radiobutton-input:hover) .p-radiobutton-box {
-        border-color: $item-color;
-    }
+  &:not(.p-disabled):has(.p-radiobutton-input:hover) .p-radiobutton-box {
+    border-color: $item-color;
+  }
 }
 
 @mixin dock-radiobutton-styles($item-color) {
-    &:checked {
-        background: $item-color;
-        opacity: 0.7;
-    }
+  &:checked {
+    background: $item-color;
+    opacity: 0.7;
+  }
 }

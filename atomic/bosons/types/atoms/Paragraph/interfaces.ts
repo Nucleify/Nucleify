@@ -1,3 +1,3 @@
 export interface ParagraphInterface {
-    text?: string | number
+  text?: string | number
 }

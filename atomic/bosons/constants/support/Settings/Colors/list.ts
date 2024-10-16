@@ -1,7 +1,7 @@
 export const colorList: string[] = [
-    'Main',
-    'Activity',
-    'Article',
-    'Contact',
-    'User',
+  'Main',
+  'Activity',
+  'Article',
+  'Contact',
+  'User',
 ]

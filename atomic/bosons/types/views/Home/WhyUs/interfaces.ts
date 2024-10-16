@@ -1,5 +1,5 @@
 export interface WhyUsDataInterface {
-    icon?: string
-    title?: string
-    description?: string
+  icon?: string
+  title?: string
+  description?: string
 }

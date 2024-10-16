@@ -1,18 +1,18 @@
 @use 'mixins' as *;
 
 @each $type in main, activity, article, contact, user {
-    .p-dropdown[v-type='#{$type}'] {
-        @include entity-dropdown-styles(
-            var(--#{$type}-item-color-new),
-            var(--#{$type}-item-focus-color-new)
-        );
-    }
+  .p-dropdown[v-type='#{$type}'] {
+    @include entity-dropdown-styles(
+      var(--#{$type}-item-color-new),
+      var(--#{$type}-item-focus-color-new)
+    );
+  }
 
-    .p-dropdown-panel.#{$type} {
-        @include entity-dropdown-item-styles(
-            var(--#{$type}-item-color-new),
-            var(--#{$type}-item-selected-color-new),
-            var(--#{$type}-item-highlight-color-new)
-        );
-    }
+  .p-dropdown-panel.#{$type} {
+    @include entity-dropdown-item-styles(
+      var(--#{$type}-item-color-new),
+      var(--#{$type}-item-selected-color-new),
+      var(--#{$type}-item-highlight-color-new)
+    );
+  }
 }

@@ -1,6 +1,6 @@
 export const displayChartList: string[] = [
-    'Activity',
-    'Admin',
-    'Article',
-    'Contact',
+  'Activity',
+  'Admin',
+  'Article',
+  'Contact',
 ]

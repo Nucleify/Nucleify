@@ -1,65 +1,65 @@
 @mixin entity-calendar-styles($item-color, $focus-color) {
-    &:hover {
-        .p-inputtext {
-            border-color: $item-color;
-        }
+  &:hover {
+    .p-inputtext {
+      border-color: $item-color;
     }
+  }
 
-    &:not(.p-calendar-disabled).p-focus {
-        .p-inputtext {
-            outline: 0 none;
-            outline-offset: 0;
-            box-shadow: 0 0 0 0.2rem $focus-color;
-            border-color: $item-color;
-        }
+  &:not(.p-calendar-disabled).p-focus {
+    .p-inputtext {
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0 0.2rem $focus-color;
+      border-color: $item-color;
     }
+  }
 }
 
 @mixin entity-datepicker-styles(
-    $item-color,
-    $focus-color,
-    $selected-color,
-    $highlight-color
+  $item-color,
+  $focus-color,
+  $selected-color,
+  $highlight-color
 ) {
-    th span,
-    .p-datepicker-year,
-    .p-datepicker-month {
-        &:hover {
-            color: $item-color;
-            background: transparent;
-        }
+  th span,
+  .p-datepicker-year,
+  .p-datepicker-month {
+    &:hover {
+      color: $item-color;
+      background: transparent;
     }
-    span,
-    .p-datepicker-prev,
-    .p-datepicker-next {
-        &:hover {
-            color: $item-color;
-            background: $selected-color;
-        }
+  }
+  span,
+  .p-datepicker-prev,
+  .p-datepicker-next {
+    &:hover {
+      color: $item-color;
+      background: $selected-color;
+    }
+  }
+
+  span {
+    &.p-highlight {
+      color: $item-color;
+      background: $highlight-color;
     }
 
+    &:focus {
+      box-shadow:
+        0 0 0 2px #ffffff,
+        0 0 0 4px $focus-color;
+    }
+
+    &:not(.p-disabled, .p-highlight).p-focus {
+      color: $item-color;
+      background: $selected-color;
+    }
+  }
+
+  .p-datepicker-today {
     span {
-        &.p-highlight {
-            color: $item-color;
-            background: $highlight-color;
-        }
-
-        &:focus {
-            box-shadow:
-                0 0 0 2px #ffffff,
-                0 0 0 4px $focus-color;
-        }
-
-        &:not(.p-disabled, .p-highlight).p-focus {
-            color: $item-color;
-            background: $selected-color;
-        }
+      color: $item-color;
+      background: $highlight-color;
     }
-
-    .p-datepicker-today {
-        span {
-            color: $item-color;
-            background: $highlight-color;
-        }
-    }
+  }
 }

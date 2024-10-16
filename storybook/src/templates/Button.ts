@@ -3,11 +3,11 @@ import Button from 'primevue/button'
 import { ButtonInterface } from '@/types'
 
 const ButtonTemplate = (args: ButtonInterface) => ({
-    components: { Button },
-    setup(): { args: ButtonInterface } {
-        return { args }
-    },
-    template: `
+  components: { Button },
+  setup(): { args: ButtonInterface } {
+    return { args }
+  },
+  template: `
     <Button
         :class="args.class"
         :severity="args.severity"

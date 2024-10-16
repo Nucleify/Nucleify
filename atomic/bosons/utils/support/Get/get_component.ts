@@ -1,16 +1,20 @@
+import { ComponentType } from 'atomic/bosons/types'
+
 export function getComponent(type: string): string {
-    switch (type) {
-        case 'textarea':
-            return 'ad-textarea'
-        case 'input-text':
-            return 'ad-input-text'
-        case 'calendar':
-            return 'ad-calendar'
-        case 'dropdown':
-            return 'Dropdown'
-        case 'password':
-            return 'ad-password'
-        default:
-            return 'ad-input-text'
-    }
+  const componentMap: ComponentType[] = [
+    'textarea',
+    'input-text',
+    'calendar',
+    'password',
+    'input-mask',
+  ]
+
+  if (componentMap.includes(type)) {
+    return `ad-${type}`
+  } else if (type === 'dropdown') {
+    // TODO: delete condition after move dropdown component to atomic design
+    return 'Dropdown'
+  } else {
+    return 'ad-input-text'
+  }
 }

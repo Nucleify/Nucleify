@@ -3,7 +3,7 @@ import { PassThrough } from 'primevue/ts-helpers'
 import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface FloatLabelInterface {
-    unstyled?: boolean
-    pt?: PassThrough<FloatLabelPassThroughOptions>
-    ptOptions?: PassThroughOptions
+  unstyled?: boolean
+  pt?: PassThrough<FloatLabelPassThroughOptions>
+  ptOptions?: PassThroughOptions
 }

@@ -1,12 +1,12 @@
 <template>
-    <section id="innovations">
-        <technologies />
-        <structure />
+  <section id="innovations">
+    <technologies />
+    <structure />
 
-        <!--
+    <!--
             TODO: More innovations
          -->
-    </section>
+  </section>
 </template>
 
 <script setup lang="ts">

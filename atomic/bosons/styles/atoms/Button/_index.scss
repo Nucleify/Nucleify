@@ -1,11 +1,11 @@
 @use 'mixins' as *;
 
 @each $type in main, activity, article, contact, user {
-    .p-button[v-type='#{$type}'] {
-        @include entity-button-styles(
-            var(--#{$type}-item-color-new),
-            var(--#{$type}-item-focus-color-new),
-            var(--#{$type}-item-selected-color-new)
-        );
-    }
+  .p-button[v-type='#{$type}'] {
+    @include entity-button-styles(
+      var(--#{$type}-item-color-new),
+      var(--#{$type}-item-focus-color-new),
+      var(--#{$type}-item-selected-color-new)
+    );
+  }
 }

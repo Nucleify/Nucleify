@@ -16,7 +16,7 @@ interface ContactContract
     public function getAddress(): string|null;
     public function getBirthday(): string|null;
     public function getRole(): string|null;
-    public function getContactGroups(): array|null;
+    public function getContactGroups(): string|null;
     public function getCreatedAt(): string;
     public function getUpdatedAt(): string;
 }

@@ -1,12 +1,12 @@
 <template>
-    <home-navbar />
-    <div class="home-container">
-        <start />
-        <features />
-        <innovations />
-        <why-us />
-    </div>
-    <home-footer />
+  <home-navbar />
+  <div class="home-container">
+    <start />
+    <features />
+    <innovations />
+    <why-us />
+  </div>
+  <home-footer />
 </template>
 
 <script setup lang="ts">
@@ -25,6 +25,6 @@ const { setDefaultColors } = useColors()
 
 onBeforeMount(() => window.scrollTo(0, 0))
 onMounted(() => {
-    setDefaultColors(true)
+  setDefaultColors(true)
 })
 </script>

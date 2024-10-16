@@ -1,4 +1,4 @@
 export interface HeadingInterface {
-    tag: number
-    text?: string
+  tag: number
+  text?: string
 }

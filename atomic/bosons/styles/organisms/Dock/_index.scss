@@ -4,131 +4,131 @@
 @import 'variables';
 
 .dock {
-    position: fixed;
-    z-index: 999;
+  position: fixed;
+  z-index: 999;
 
-    @media (min-width: 992px) {
-        &.p-dock-top,
-        &.p-dock-bottom {
-            width: 100%;
+  @media (min-width: 992px) {
+    &.p-dock-top,
+    &.p-dock-bottom {
+      width: 100%;
 
-            .p-dock-list-container {
-                width: 100%;
-
-                ul {
-                    width: 100%;
-                }
-            }
-        }
-    }
-
-    &.p-dock-left,
-    &.p-dock-right {
-        height: 100%;
-
-        .p-dock-list-container {
-            height: 100%;
-
-            ul {
-                height: 100%;
-            }
-        }
-    }
-
-    .p-dock-list-container {
-        padding: 0;
-        border: 0;
-        box-shadow: $primary-box-shadow;
+      .p-dock-list-container {
+        width: 100%;
 
         ul {
-            @include center-content;
-            background: $white-body-bg;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  &.p-dock-left,
+  &.p-dock-right {
+    height: 100%;
+
+    .p-dock-list-container {
+      height: 100%;
+
+      ul {
+        height: 100%;
+      }
+    }
+  }
+
+  .p-dock-list-container {
+    padding: 0;
+    border: 0;
+    box-shadow: $primary-box-shadow;
+
+    ul {
+      @include center-content;
+      background: $white-body-bg;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+
+      .p-dock-item {
+        @include center-content;
+        @include my-animation;
+        padding: 12px !important;
+        min-width: 58px;
+        min-height: 58px;
+
+        &:first-child {
+          width: 70px !important;
+          height: 70px !important;
+        }
+
+        &.p-focus {
+          box-shadow: none !important;
+        }
+        i {
+          font-size: 1.25em;
+        }
+
+        a {
+          @include center-content;
+          @include min-content;
+          overflow: visible;
+          text-decoration: none;
+          cursor: pointer;
+          transition: all 300ms;
+
+          &:hover:not(:has(.dock-position-buttons)) {
+            transform: scale(1.15);
+          }
+
+          &:has(.dock-position-buttons) {
             padding: 0;
-            margin: 0;
-            border-radius: 0;
+            width: 3rem;
+            height: 3rem;
+          }
 
-            .p-dock-item {
-                @include center-content;
-                @include my-animation;
-                padding: 12px !important;
-                min-width: 58px;
-                min-height: 58px;
+          .dock-position-buttons {
+            @include center-content;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+            max-width: 36px;
+            max-height: 36px;
+            transform: rotate(45deg);
 
-                &:first-child {
-                    width: 70px !important;
-                    height: 70px !important;
-                }
-
-                &.p-focus {
-                    box-shadow: none !important;
-                }
-                i {
-                    font-size: 1.25em;
-                }
-
-                a {
-                    @include center-content;
-                    @include min-content;
-                    overflow: visible;
-                    text-decoration: none;
-                    cursor: pointer;
-                    transition: all 300ms;
-
-                    &:hover:not(:has(.dock-position-buttons)) {
-                        transform: scale(1.15);
-                    }
-
-                    &:has(.dock-position-buttons) {
-                        padding: 0;
-                        width: 3rem;
-                        height: 3rem;
-                    }
-
-                    .dock-position-buttons {
-                        @include center-content;
-                        flex-wrap: wrap;
-                        gap: 0.25rem;
-                        max-width: 36px;
-                        max-height: 36px;
-                        transform: rotate(45deg);
-
-                        &:hover {
-                            transform: rotate(45deg);
-                        }
-
-                        .left,
-                        .right {
-                            pointer-events: none;
-                            opacity: 0;
-
-                            // 992px
-                            @media (min-width: $min-width-lg) {
-                                pointer-events: inherit;
-                                opacity: 1;
-                            }
-                        }
-
-                        input[type='radio'] {
-                            box-sizing: border-box;
-                            appearance: none;
-                            background: rgba(69, 69, 69, 0.1);
-                            width: 10px;
-                            height: 10px;
-                            cursor: pointer;
-                        }
-                    }
-                }
+            &:hover {
+              transform: rotate(45deg);
             }
 
-            @media (min-width: $min-width-lg) {
-                gap: 4px;
-            }
-        }
-    }
+            .left,
+            .right {
+              pointer-events: none;
+              opacity: 0;
 
-    &:not(.admin) {
-        .p-dock-item[aria-label='Admin Panel'] {
-            display: none;
+              // 992px
+              @media (min-width: $min-width-lg) {
+                pointer-events: inherit;
+                opacity: 1;
+              }
+            }
+
+            input[type='radio'] {
+              box-sizing: border-box;
+              appearance: none;
+              background: rgba(69, 69, 69, 0.1);
+              width: 10px;
+              height: 10px;
+              cursor: pointer;
+            }
+          }
         }
+      }
+
+      @media (min-width: $min-width-lg) {
+        gap: 4px;
+      }
     }
+  }
+
+  &:not(.admin) {
+    .p-dock-item[aria-label='Admin Panel'] {
+      display: none;
+    }
+  }
 }

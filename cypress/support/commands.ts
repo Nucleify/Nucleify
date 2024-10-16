@@ -14,19 +14,19 @@
 import { UserRoleType } from 'atomic/bosons/types'
 
 Cypress.Commands.add('login', (role: UserRoleType): void => {
-    const fixtureName: string =
-        role === 'super_admin' || role === 'admin' ? 'secret_users' : 'users'
+  const fixtureName: string =
+    role === 'super_admin' || role === 'admin' ? 'secret_users' : 'users'
 
-    cy.fixture(fixtureName).then((userCredentials): void => {
-        const { email, password } = userCredentials[role]
+  cy.fixture(fixtureName).then((userCredentials): void => {
+    const { email, password } = userCredentials[role]
 
-        cy.visit('/login')
+    cy.visit('/login')
 
-        cy.get('input[id=email]').type(email)
-        cy.get('input[id=password]').type(`${password}{enter}`)
+    cy.get('input[id=email]').type(email)
+    cy.get('input[id=password]').type(`${password}{enter}`)
 
-        cy.url().should('include', '/home')
-    })
+    cy.url().should('include', '/home')
+  })
 })
 
 //
@@ -45,10 +45,10 @@ Cypress.Commands.add('login', (role: UserRoleType): void => {
 
 export {}
 declare global {
-    // eslint-disable-next-line @typescript-eslint/no-namespace
-    namespace Cypress {
-        interface Chainable {
-            login(role: UserRoleType): Chainable<void>
-        }
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace Cypress {
+    interface Chainable {
+      login(role: UserRoleType): Chainable<void>
     }
+  }
 }

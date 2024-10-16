@@ -2,6 +2,7 @@ export { default as registerOrganisms } from './register'
 
 export * from './DataTable'
 
+export { default as Card } from './Card.vue'
 export { default as Chart } from './Chart.vue'
 export { default as Dialog } from './Dialog.vue'
 export { default as Dock } from './Dock.vue'
