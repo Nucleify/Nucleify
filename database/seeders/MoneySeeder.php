@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use App\Models\Money;
 
@@ -12,7 +13,10 @@ class MoneySeeder extends Seeder
      */
     public function run(): void
     {
-        // Tworzymy 50 rekordów modelu Money za pomocą fabryki
-        Money::factory()->count(50)->create();
+        if (env('APP_ENV') === 'production' || 'dev') {
+            for ($i = 1; $i <= 6; $i++) {
+                Money::factory(20)->create();
+            }
+        }
     }
 }
