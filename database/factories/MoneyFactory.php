@@ -19,6 +19,8 @@ class MoneyFactory extends Factory
             'count' => $this->faker->numberBetween(1, 1000), // Generujemy losową ilość pieniędzy
             'sender_id' => $this->faker->randomElement($users),
             'receiver_id' => $this->faker->randomElement($users),
+            'sender' => $this->faker->name, // Losowe imię nadawcy
+            'receiver' => $this->faker->name, // Losowe imię odbiorcy
             'created_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
