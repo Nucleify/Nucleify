@@ -20,6 +20,9 @@ case "$CURRENT_BRANCH" in
     packages)
         FINAL_MSG="Packages: $ORIGINAL_MSG"
         ;;
+    performance)
+        FINAL_MSG="Performance: $ORIGINAL_MSG"
+        ;;
     storybook)
         FINAL_MSG="Storybook: $ORIGINAL_MSG"
         ;;
