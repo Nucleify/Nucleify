@@ -10,7 +10,7 @@
     >
       <div class="top">
         <ad-anchor href="#start" class="header">
-          <ad-image src="img/logo.svg" class="logo" />
+          <ad-image :src="imgUrl + 'logo.svg'" class="logo" />
           <ad-header :tag="1" text="DataManager" class="name" />
         </ad-anchor>
         <div class="content">

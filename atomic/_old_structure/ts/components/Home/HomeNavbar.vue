@@ -6,7 +6,7 @@
   >
     <div class="container">
       <ad-anchor href="/home">
-        <ad-image src="img/logo.svg" width="60" />
+        <ad-image :src="imgUrl + 'logo.svg'" width="60" />
       </ad-anchor>
 
       <ad-button
