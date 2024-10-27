@@ -12,7 +12,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ContactSeeder::class,
             ArticleSeeder::class,
-//            ActivitySeeder::class
+//            ActivitySeeder::class,
+            MoneySeeder::class
         ]);
     }
 }

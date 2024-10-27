@@ -25,7 +25,7 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <ad-image
-                src="desktop.png"
+                src="img/desktop.png"
                 alt=""
                 image-class="access-card-image"
               />
@@ -45,7 +45,7 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <ad-image
-                src="tablet.png"
+                src="img/tablet.png"
                 alt=""
                 image-class="access-card-image"
               />
@@ -64,7 +64,7 @@
           <div class="flip-card-inner">
             <div class="flip-card-front">
               <ad-image
-                src="phone.png"
+                src="img/phone.png"
                 alt=""
                 image-class="access-card-image"
               />

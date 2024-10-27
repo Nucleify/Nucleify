@@ -14,10 +14,10 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         $users = User::all();
-        $userIds = $users->pluck('id')->toArray();
+        $usersIds = $users->pluck('id')->toArray();
 
         $data = [
-            'user_id' => $this->faker->randomElement($userIds),
+            'user_id' => $this->faker->randomElement($usersIds),
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph,
             'category' => implode(', ', $this->faker->words()),

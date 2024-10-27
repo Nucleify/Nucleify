@@ -4,9 +4,6 @@ use App\Models\Article;
 
 beforeEach(function () {
     $this->createUsers();
-    $this->title = 'Title';
-    $this->description = 'Description';
-    $this->category = 'Category';
 });
 
 it('can be created', function () {
@@ -19,29 +16,33 @@ describe('Instance', function () {
     test('can get id', function () {
         $article = Article::factory()->create();
 
-        expect($article->getId())->toBeInt()
-            ->and($article->getId())->toBe($article->id);
+        expect($article->getId())
+            ->toBeInt()
+            ->toBe($article->id);
     });
 
     test('can get title', function () {
-        $article = Article::factory()->create(['title' => $this->title]);
+        $article = Article::factory()->create();
 
-        expect($article->getTitle())->toBeString()
-            ->and($article->getTitle())->toBe($this->title);
+        expect($article->getTitle())
+            ->toBeString()
+            ->toBe($article->title);
     });
 
     test('can get description', function () {
-        $article = Article::factory()->create(['description' => $this->description]);
+        $article = Article::factory()->create();
 
-        expect($article->getDescription())->toBeString()
-            ->and($article->getDescription())->toBe($this->description);
+        expect($article->getDescription())
+            ->toBeString()
+            ->toBe($article->description);
     });
 
     test('can get category', function () {
-        $article = Article::factory()->create(['category' => $this->category]);
+        $article = Article::factory()->create();
 
-        expect($article->getCategory())->toBeString()
-            ->and($article->getCategory())->toBe($this->category);
+        expect($article->getCategory())
+            ->toBeString()
+            ->toBe($article->category);
     });
 
     test('can get null for category if not set', function () {
@@ -53,15 +54,17 @@ describe('Instance', function () {
     test('can get created_at date', function () {
         $article = Article::factory()->create();
 
-        expect($article->getCreatedAt())->toBeString()
-            ->and($article->getCreatedAt())->toBe($article->created_at->toDateTimeString());
+        expect($article->getCreatedAt())
+            ->toBeString()
+            ->toBe($article->created_at->toDateTimeString());
     });
 
     test('can get updated_at date', function () {
         $article = Article::factory()->create();
 
-        expect($article->getUpdatedAt())->toBeString()
-            ->and($article->getUpdatedAt())->toBe($article->updated_at->toDateTimeString());
+        expect($article->getUpdatedAt())
+            ->toBeString()
+            ->toBe($article->updated_at->toDateTimeString());
     });
 });
 
@@ -71,35 +74,31 @@ describe('Scope', function () {
 
         $foundArticle = Article::getById($article->id)->first();
 
-        expect($foundArticle)->not->toBeNull()
-            ->and($foundArticle->id)->toBe($article->id);
+        expect($foundArticle->id)->toBe($article->id);
     });
 
     test('can filter by title using scopeGetTitle', function () {
-        Article::factory()->create(['title' => $this->title]);
+        $article = Article::factory()->create();
 
-        $foundArticle = Article::getByTitle($this->title)->first();
+        $foundArticle = Article::getByTitle($article->title)->first();
 
-        expect($foundArticle)->not->toBeNull()
-            ->and($foundArticle->title)->toBe($this->title);
+        expect($foundArticle->title)->toBe($article->title);
     });
 
     test('can filter by description using scopeGetDescription', function () {
-        Article::factory()->create(['description' => $this->description]);
+        $article = Article::factory()->create();
 
-        $foundArticle = Article::getByDescription($this->description)->first();
+        $foundArticle = Article::getByDescription($article->description)->first();
 
-        expect($foundArticle)->not->toBeNull()
-            ->and($foundArticle->description)->toBe($this->description);
+        expect($foundArticle->description)->toBe($article->description);
     });
 
     test('can filter by category using scopeGetCategory', function () {
-        Article::factory()->create(['category' => $this->category]);
+        $article = Article::factory()->create();
 
-        $foundArticle = Article::getByCategory($this->category)->first();
+        $foundArticle = Article::getByCategory($article->category)->first();
 
-        expect($foundArticle)->not->toBeNull()
-            ->and($foundArticle->category)->toBe($this->category);
+        expect($foundArticle->category)->toBe($article->category);
     });
 
     test('can filter by created_at using scopeGetCreatedAt', function () {
@@ -107,8 +106,7 @@ describe('Scope', function () {
 
         $foundArticle = Article::getByCreatedAt($article->created_at->toDateString())->first();
 
-        expect($foundArticle)->not->toBeNull()
-            ->and($foundArticle->created_at->toDateString())->toBe($article->created_at->toDateString());
+        expect($foundArticle->created_at->toDateString())->toBe($article->created_at->toDateString());
     });
 
     test('can filter by updated_at using scopeGetUpdatedAt', function () {
@@ -116,7 +114,6 @@ describe('Scope', function () {
 
         $foundArticle = Article::getByUpdatedAt($article->updated_at->toDateString())->first();
 
-        expect($foundArticle)->not->toBeNull()
-            ->and($foundArticle->updated_at->toDateString())->toBe($article->updated_at->toDateString());
+        expect($foundArticle->updated_at->toDateString())->toBe($article->updated_at->toDateString());
     });
 });
