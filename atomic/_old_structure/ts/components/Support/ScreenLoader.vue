@@ -1,7 +1,7 @@
 <template>
   <div class="load-container">
     <div class="load-content">
-      <ad-image src="logo.svg" width="150px" />
+      <ad-image src="img/logo.svg" width="150px" />
       <ad-progress-bar mode="indeterminate" width="100px" height="10px" />
     </div>
   </div>

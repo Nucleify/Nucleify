@@ -10,7 +10,7 @@
     >
       <div class="top">
         <ad-anchor href="#start" class="header">
-          <ad-image src="logo.svg" class="logo" />
+          <ad-image src="img/logo.svg" class="logo" />
           <ad-header :tag="1" text="DataManager" class="name" />
         </ad-anchor>
         <div class="content">
@@ -123,7 +123,7 @@
 <script setup lang="ts">
 import { Ref, ref, onMounted, onBeforeUnmount } from 'vue'
 
-import hexagon from '/public/hexagon.svg'
+import hexagon from '/public/img/hexagon.svg'
 
 const totalRows = ref(10)
 const imagesPerRow = ref(0)
