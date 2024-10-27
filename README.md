@@ -335,3 +335,14 @@ Your skills and expertise will directly contribute to the success of our project
 
 <br></details>
 
+<hr>
+
+<div align="center">
+
+<h3>Contributors</h3>
+
+<a href="https://github.com/karol199393" target="_blank">
+<img src="/public/img/contributors/karol199393.png" width="30" height="30" />
+</a>
+
+</div>
