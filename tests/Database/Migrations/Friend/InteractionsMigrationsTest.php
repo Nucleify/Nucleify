@@ -15,7 +15,7 @@ it('can create table', function () {
 it('can be rolled back', function () {
     Artisan::call('migrate');
 
-    Artisan::call('migrate:rollback', ['--step' => 1]);
+    Artisan::call('migrate:rollback');
 
     expect(Schema::hasTable('interactions'))->toBeFalse();
 });

@@ -16,6 +16,10 @@
     border-radius: $border-radius-none;
     padding: $home-navbar-padding;
 
+    .container {
+        max-width: 1230px;
+    }
+
     .pi {
         color: $white-text-color !important;
     }

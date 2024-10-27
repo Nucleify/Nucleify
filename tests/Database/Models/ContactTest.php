@@ -4,14 +4,6 @@ use App\Models\Contact;
 
 beforeEach(function () {
     $this->createUsers();
-    $this->firstName = 'FirstName';
-    $this->lastName = 'SecondName';
-    $this->email = 'example@example.com';
-    $this->personalPhone = '1234567890';
-    $this->workPhone = '1234567890';
-    $this->address = '123 Example St';
-    $this->birthday = '2022-04-10';
-    $this->role = 'user';
 });
 
 it('can be created', function () {
@@ -24,93 +16,105 @@ describe('Instance', function () {
     test('can get id', function () {
         $contact = Contact::factory()->create();
 
-        expect($contact->getId())->toBeInt()
-            ->and($contact->getId())->toBe($contact->id);
+        expect($contact->getId())
+            ->toBeInt()
+            ->toBe($contact->id);
     });
 
     test('can get user id', function () {
-        $userId = 1;
-        $contact = Contact::factory()->create(['user_id' => $userId]);
+        $contact = Contact::factory()->create();
 
-        expect($contact->getUserId())->toBeInt()
-            ->and($contact->getUserId())->toBe($userId);
+        expect($contact->getUserId())
+            ->toBeInt()
+            ->toBe($contact->user_id);
     });
 
     test('can get first name', function () {
-        $contact = Contact::factory()->create(['first_name' => $this->firstName]);
+        $contact = Contact::factory()->create();
 
-        expect($contact->getFirstName())->toBeString()
-            ->and($contact->getFirstName())->toBe($this->firstName);
+        expect($contact->getFirstName())
+            ->toBeString()
+            ->toBe($contact->first_name);
     });
 
     test('can get last name', function () {
-        $contact = Contact::factory()->create(['last_name' => $this->lastName]);
+        $contact = Contact::factory()->create();
 
-        expect($contact->getLastName())->toBeString()
-            ->and($contact->getLastName())->toBe($this->lastName);
+        expect($contact->getLastName())
+            ->toBeString()
+            ->toBe($contact->last_name);
     });
 
     test('can get full name', function () {
-        $contact = Contact::factory()->create(['first_name' => $this->firstName, 'last_name' => $this->lastName]);
+        $contact = Contact::factory()->create();
 
-        expect($contact->getFullName())->toBeString()
-            ->and($contact->getFullName())->toBe($this->firstName . ' ' . $this->lastName);
+        expect($contact->getFullName())
+            ->toBeString()
+            ->toBe($contact->first_name . ' ' . $contact->last_name);
     });
 
     test('can get email', function () {
-        $contact = Contact::factory()->create(['email' => $this->email]);
+        $contact = Contact::factory()->create();
 
-        expect($contact->getEmail())->toBeString()
-            ->and($contact->getEmail())->toBe($this->email);
+        expect($contact->getEmail())
+            ->toBeString()
+            ->toBe($contact->email);
     });
 
     test('can get personal phone', function () {
-        $contact = Contact::factory()->create(['personal_phone' => $this->personalPhone]);
+        $contact = Contact::factory()->create();
 
-        expect($contact->getPersonalPhone())->toBeString()
-            ->and($contact->getPersonalPhone())->toBe($this->personalPhone);
+        expect($contact->getPersonalPhone())
+            ->toBeString()
+            ->toBe($contact->personal_phone);
     });
 
     test('can get work phone', function () {
-        $contact = Contact::factory()->create(['work_phone' => $this->workPhone]);
+        $contact = Contact::factory()->create();
 
-        expect($contact->getWorkPhone())->toBeString()
-            ->and($contact->getWorkPhone())->toBe($this->workPhone);
+        expect($contact->getWorkPhone())
+            ->toBeString()
+            ->toBe($contact->work_phone);
     });
 
     test('can get address', function () {
-        $contact = Contact::factory()->create(['address' => $this->address]);
+        $contact = Contact::factory()->create();
 
-        expect($contact->getAddress())->toBeString()
-            ->and($contact->getAddress())->toBe($this->address);
+        expect($contact->getAddress())
+            ->toBeString()
+            ->toBe($contact->address);
     });
 
     test('can get birthday', function () {
-        $contact = Contact::factory()->create(['birthday' => $this->birthday]);
+        $contact = Contact::factory()->create();
 
-        expect($contact->getBirthday())->toBeString()
-            ->and($contact->getBirthday())->toBe($this->birthday);
+        expect($contact->getBirthday())
+            ->toBeString()
+            ->toBe($contact->birthday);
     });
 
     test('can get role', function () {
-        $contact = Contact::factory()->create(['role' => $this->role]);
+        $contact = Contact::factory()->create();
 
-        expect($contact->getRole())->toBeString()
-            ->and($contact->getRole())->toBe($this->role);
+        expect($contact->getRole())
+            ->toBeString()
+            ->toBe($contact->role);
     });
 
     test('can get created_at date', function () {
         $contact = Contact::factory()->create();
 
-        expect($contact->getCreatedAt())->toBeString()
-            ->and($contact->getCreatedAt())->toBe($contact->created_at->toDateTimeString());
+        expect($contact->getCreatedAt())
+            ->toBeString()
+            ->toBe($contact->created_at->toDateTimeString());
     });
 
     test('can get updated_at date', function () {
         $contact = Contact::factory()->create();
 
-        expect($contact->getUpdatedAt())->toBeString()
-            ->and($contact->getUpdatedAt())->toBe($contact->updated_at->toDateTimeString());
+        expect($contact->getUpdatedAt())
+            ->toBeString()
+            ->toBe($contact->updated_at->toDateTimeString());
     });
 });
 
@@ -120,80 +124,71 @@ describe('Scope', function () {
 
         $foundContact = Contact::getByUserId($contact->user_id)->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->user_id)->toBe($contact->user_id);
+        expect($foundContact->user_id)->toBe($contact->user_id);
     });
 
     test('can filter by first name using scopeGetByFirstName', function () {
-        Contact::factory()->create(['first_name' => $this->firstName]);
+        $contact = Contact::factory()->create();
 
-        $foundContact = Contact::getByFirstName($this->firstName)->first();
+        $foundContact = Contact::getByFirstName($contact->first_name)->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->first_name)->toBe($this->firstName);
+        expect($foundContact->first_name)->toBe($contact->first_name);
     });
 
     test('can filter by last name using scopeGetByLastName', function () {
-        Contact::factory()->create(['last_name' => $this->lastName]);
+        $contact = Contact::factory()->create();
 
-        $foundContact = Contact::getByLastName($this->lastName)->first();
+        $foundContact = Contact::getByLastName($contact->last_name)->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->last_name)->toBe($this->lastName);
+        expect($foundContact->last_name)->toBe($contact->last_name);
     });
 
     test('can filter by email using scopeGetByEmail', function () {
-        Contact::factory()->create(['email' => $this->email]);
+        $contact = Contact::factory()->create();
 
-        $foundContact = Contact::getByEmail($this->email)->first();
+        $foundContact = Contact::getByEmail($contact->email)->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->email)->toBe($this->email);
+        expect($foundContact->email)->toBe($contact->email);
     });
 
     test('can filter by personal phone using scopeGetByPersonalPhone', function () {
-        Contact::factory()->create(['personal_phone' => $this->personalPhone]);
+        $contact = Contact::factory()->create();
 
-        $foundContact = Contact::getByPersonalPhone($this->personalPhone)->first();
+        $foundContact = Contact::getByPersonalPhone($contact->personal_phone)->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->personal_phone)->toBe($this->personalPhone);
+        expect($foundContact->personal_phone)->toBe($contact->personal_phone);
     });
 
     test('can filter by work phone using scopeGetByWorkPhone', function () {
-        Contact::factory()->create(['work_phone' => $this->workPhone]);
+        $contact = Contact::factory()->create();
 
-        $foundContact = Contact::getByWorkPhone($this->workPhone)->first();
+        $foundContact = Contact::getByWorkPhone($contact->work_phone)->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->work_phone)->toBe($this->workPhone);
+        expect($foundContact->work_phone)->toBe($contact->work_phone);
     });
 
     test('can filter by address using scopeGetByAddress', function () {
-        Contact::factory()->create(['address' => $this->address]);
+        $contact = Contact::factory()->create();
 
-        $foundContact = Contact::getByAddress($this->address)->first();
+        $foundContact = Contact::getByAddress($contact->address)->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->address)->toBe($this->address);
+        expect($foundContact->address)->toBe($contact->address);
     });
 
     test('can filter by birthday using scopeGetByBirthday', function () {
-        Contact::factory()->create(['birthday' => $this->birthday]);
+        $contact = Contact::factory()->create();
 
-        $foundContact = Contact::getByBirthday($this->birthday)->first();
+        $foundContact = Contact::getByBirthday($contact->birthday)->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->birthday)->toBe($this->birthday);
+        expect($foundContact->birthday)->toBe($contact->birthday);
     });
 
     test('can filter by role using scopeGetByRole', function () {
-        Contact::factory()->create(['role' => $this->role]);
+        $contact = Contact::factory()->create();
 
-        $foundContact = Contact::getByRole($this->role)->first();
+        $foundContact = Contact::getByRole($contact->role)->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->role)->toBe($this->role);
+        expect($foundContact->role)->toBe($contact->role);
     });
 
     test('can filter by created_at using scopeGetByCreatedAt', function () {
@@ -201,8 +196,7 @@ describe('Scope', function () {
 
         $foundContact = Contact::getByCreatedAt($contact->created_at->toDateString())->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->created_at->toDateString())->toBe($contact->created_at->toDateString());
+        expect($foundContact->created_at->toDateString())->toBe($contact->created_at->toDateString());
     });
 
     test('can filter by updated_at using scopeGetByUpdatedAt', function () {
@@ -210,7 +204,6 @@ describe('Scope', function () {
 
         $foundContact = Contact::getByUpdatedAt($contact->updated_at->toDateString())->first();
 
-        expect($foundContact)->not->toBeNull()
-            ->and($foundContact->updated_at->toDateString())->toBe($contact->updated_at->toDateString());
+        expect($foundContact->updated_at->toDateString())->toBe($contact->updated_at->toDateString());
     });
 });
