@@ -20,6 +20,7 @@ import registerPrimeVue from './primevue'
 // import { registerMolecules } from './molecules'
 // import { registerOrganisms } from './organisms'
 // import { registerTemplates } from './templates'
+import { registerGlobalConstants } from './bosons/constants'
 import { registerGlobalUtils } from './bosons/utils'
 
 registerOldStructure(app)
@@ -28,6 +29,7 @@ registerPrimeVue(app)
 // registerMolecules(app)
 // registerOrganisms(app)
 // registerTemplates(app)
+registerGlobalConstants(app)
 registerGlobalUtils(app)
 
 /**

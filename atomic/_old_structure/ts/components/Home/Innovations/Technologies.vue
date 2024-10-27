@@ -18,7 +18,7 @@
         }"
       >
         <swiper-slide v-for="(tech, index) in technologies" :key="index">
-          <ad-anchor :href="tech.url" :src="`img/technologies/${tech.image}`" />
+          <ad-anchor :href="tech.url" :src="technologiesImgUrl + tech.image" />
         </swiper-slide>
       </swiper>
     </div>

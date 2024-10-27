@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="right-side">
-          <ad-image src="img/storyset/charts.svg" class="charts-image" />
+          <ad-image :src="storysetImgUrl + 'charts.svg'" class="charts-image" />
         </div>
       </div>
     </div>
