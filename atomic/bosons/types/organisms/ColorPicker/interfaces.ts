@@ -3,7 +3,7 @@ import { HintedString, PassThrough } from 'primevue/ts-helpers'
 import { ColorPickerPassThroughOptions } from 'primevue/colorpicker'
 import { PassThroughOptions } from 'primevue/passthrough'
 
-import { ColorItemColorsInterface } from 'atomic/bosons/types'
+import { ColorItemColorsInterface } from '../../index'
 
 export interface ColorPickerInterface {
   item?: string

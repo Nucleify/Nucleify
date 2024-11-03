@@ -1,8 +1,10 @@
-import { AppType } from 'vite'
+import { App } from 'vue'
 
 import {
+  Calendar,
   Card,
   Chart,
+  ColorPicker,
   DataTable,
   DataTableSkeleton,
   Dialog,
@@ -10,54 +12,19 @@ import {
   OverlayPanel,
   Password,
   Terminal,
-  Tile,
 } from './'
 
-export default function registerOrganisms(app: AppType): void {
+export default function registerOrganisms(app: App): void {
   app
-    /**
-     *  Card
-     */
+    .component('ad-calendar', Calendar)
     .component('ad-card', Card)
-
-    /**
-     *  Chart
-     */
     .component('ad-chart', Chart)
-
-    /**
-     *  DataTable
-     */
+    .component('ad-color-picker', ColorPicker)
     .component('ad-data-table', DataTable)
     .component('ad-data-table-skeleton', DataTableSkeleton)
-
-    /**
-     *  Dialog
-     */
     .component('ad-dialog', Dialog)
-
-    /**
-     *  Dock
-     */
     .component('ad-dock', Dock)
-
-    /**
-     *  OverlayPanel
-     */
     .component('ad-overlay-panel', OverlayPanel)
-
-    /**
-     *  Password
-     */
     .component('ad-password', Password)
-
-    /**
-     *  Terminal
-     */
     .component('ad-terminal', Terminal)
-
-    /**
-     *  Tile
-     */
-    .component('ad-tile', Tile)
 }

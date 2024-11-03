@@ -59,8 +59,8 @@
 </template>
 
 <script setup lang="ts">
-import { CalendarInterface, CalendarModelValueType } from 'atomic/bosons/types'
-import { formatDate } from 'atomic/bosons/utils'
+import { CalendarInterface, CalendarModelValueType } from '../bosons/types'
+import { formatDate } from '../bosons/utils'
 
 const props = defineProps<CalendarInterface>()
 

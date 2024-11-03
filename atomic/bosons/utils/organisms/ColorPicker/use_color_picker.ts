@@ -3,8 +3,8 @@ import { Ref, ref } from 'vue'
 import {
   UseColorsReturnInterface,
   UseColorPickerInterface,
-} from 'atomic/bosons/types'
-import { darkenColor, setColorOpacity, useColors } from 'atomic/bosons/utils'
+} from '../../../types'
+import { darkenColor, setColorOpacity, useColors } from '../../index'
 
 export function useColorPicker(item: string): UseColorPickerInterface {
   const {

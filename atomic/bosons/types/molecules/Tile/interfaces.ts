@@ -1,4 +1,4 @@
-import { ObjectNameType } from 'atomic/bosons/types'
+import { ObjectNameType } from '../../index'
 
 export interface TileInterface {
   header?: string
