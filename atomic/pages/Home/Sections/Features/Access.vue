@@ -26,6 +26,8 @@
             <div class="flip-card-front">
               <ad-image
                 :src="imgUrl + 'desktop.png'"
+                width="120px"
+                height="100px"
                 alt=""
                 image-class="access-card-image"
               />
@@ -46,6 +48,8 @@
             <div class="flip-card-front">
               <ad-image
                 :src="imgUrl + 'tablet.png'"
+                width="75px"
+                height="100px"
                 alt=""
                 image-class="access-card-image"
               />
@@ -65,6 +69,8 @@
             <div class="flip-card-front">
               <ad-image
                 :src="imgUrl + 'phone.png'"
+                width="54px"
+                height="100px"
                 alt=""
                 image-class="access-card-image"
               />
