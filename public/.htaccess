@@ -27,9 +27,17 @@
     RewriteCond %{REQUEST_FILENAME}.gz -f
     RewriteRule ^(.+)\.(css|js)$ $1.$2.gz [QSA]
 
-    # Set Headers for Gzipped Files
-    <FilesMatch "\.gz$">
+    # Set Headers for Gzipped Files with Correct MIME Types
+    <FilesMatch "\.css\.gz$">
         Header set Content-Encoding gzip
+        Header set Content-Type "text/css"
+        Header set Cache-Control "max-age=31536000, public"
+        Header set Vary "Accept-Encoding"
+    </FilesMatch>
+
+    <FilesMatch "\.js\.gz$">
+        Header set Content-Encoding gzip
+        Header set Content-Type "application/javascript"
         Header set Cache-Control "max-age=31536000, public"
         Header set Vary "Accept-Encoding"
     </FilesMatch>
