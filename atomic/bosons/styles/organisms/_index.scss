@@ -1,7 +1,2 @@
-@use 'DataTable';
-@use 'Dialog';
-@use 'Dock';
-@use 'OverlayPanel';
-@use 'Password';
-@use 'Terminal';
-@use 'Tile';
+@import 'Calendar', 'Card', 'Chart', 'ColorPicker', 'DataTable', 'Dialog',
+  'Dock', 'Dropdown', 'Menu', 'OverlayPanel', 'Password', 'Terminal', 'Toast';

@@ -29,7 +29,6 @@ export default defineConfig({
     resolve: {
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
-            '@': '/atomic/_old_structure/ts',
             'atomic': '/atomic',
             'sass': '/atomic/bosons/styles'
         },

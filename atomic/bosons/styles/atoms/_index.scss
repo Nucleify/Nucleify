@@ -1,7 +1,2 @@
-@use 'Button';
-@use 'Calendar';
-@use 'ColorPicker';
-@use 'Dropdown';
-@use 'InputText';
-@use 'RadioButton';
-@use 'Toast';
+@import 'Button', 'Canvas', 'InputText', 'ProgressSpinner', 'RadioButton',
+  'Textarea';

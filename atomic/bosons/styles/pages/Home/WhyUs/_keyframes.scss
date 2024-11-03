@@ -1,0 +1,116 @@
+@keyframes rotateContainer0 {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateContainer1 {
+  from {
+    transform: rotate(30deg);
+  }
+  to {
+    transform: rotate(390deg);
+  }
+}
+
+@keyframes rotateContainer2 {
+  from {
+    transform: rotate(60deg);
+  }
+  to {
+    transform: rotate(420deg);
+  }
+}
+
+@keyframes rotateContainer3 {
+  from {
+    transform: rotate(90deg);
+  }
+  to {
+    transform: rotate(450deg);
+  }
+}
+
+@keyframes rotateContainer4 {
+  from {
+    transform: rotate(120deg);
+  }
+  to {
+    transform: rotate(480deg);
+  }
+}
+
+@keyframes rotateContainer5 {
+  from {
+    transform: rotate(150deg);
+  }
+  to {
+    transform: rotate(510deg);
+  }
+}
+
+@keyframes rotateItems0 {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rotateItems1 {
+  from {
+    transform: rotate(-30deg);
+  }
+  to {
+    transform: rotate(-390deg);
+  }
+}
+
+@keyframes rotateItems2 {
+  from {
+    transform: rotate(-60deg);
+  }
+  to {
+    transform: rotate(-420deg);
+  }
+}
+
+@keyframes rotateItems3 {
+  from {
+    transform: rotate(-90deg);
+  }
+  to {
+    transform: rotate(-450deg);
+  }
+}
+
+@keyframes rotateItems4 {
+  from {
+    transform: rotate(-120deg);
+  }
+  to {
+    transform: rotate(-480deg);
+  }
+}
+
+@keyframes rotateItems5 {
+  from {
+    transform: rotate(-150deg);
+  }
+  to {
+    transform: rotate(-510deg);
+  }
+}
+
+@keyframes setOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

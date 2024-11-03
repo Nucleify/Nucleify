@@ -1,0 +1,49 @@
+@import 'Features', 'Innovations', 'WhyUs', 'footer', 'navbar', 'sections',
+  'start';
+
+.home-container {
+  background: $white-body-bg !important;
+  padding-top: 140px;
+
+  @media (min-width: 560px) {
+    padding-top: 150px;
+  }
+
+  // Min width 768px
+  @media (min-width: $breakpoint-md) {
+    padding-top: 180px;
+  }
+
+  // Min width 992px
+  @media (min-width: $breakpoint-lg) {
+    padding-top: 250px;
+  }
+
+  // Min width 1200px
+  @media (min-width: $breakpoint-xl) {
+    padding-top: 290px;
+  }
+
+  // Min width 1400px
+  @media (min-width: $breakpoint-xxl) {
+    padding-top: 310px;
+  }
+}
+
+div[data-pc-name='deferredcontent'] {
+  z-index: -1;
+}
+
+#footer {
+  div[data-pc-name='deferredcontent'] {
+    margin-top: -400px;
+    padding-top: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  div[data-pc-name='deferredcontent'] {
+    margin-top: -150px;
+    padding-top: 150px;
+  }
+}

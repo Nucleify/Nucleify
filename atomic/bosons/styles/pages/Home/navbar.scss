@@ -1,0 +1,117 @@
+.home-navbar {
+  width: 100%;
+  z-index: 9999;
+  position: fixed;
+  top: -1px;
+  background: $primary-bg;
+  box-shadow: $box-shadow-none;
+  border: $border-none;
+  border-radius: $border-radius-none;
+  padding: 1em;
+
+  .container {
+    max-width: 1230px;
+  }
+
+  .pi {
+    color: $white-text-color !important;
+  }
+
+  .navbar-toggler {
+    height: 44px;
+    width: 44px;
+    padding: 0;
+  }
+
+  .home-nav-link {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+    padding: 15px;
+    color: $white-text-color;
+    font-size: 18px;
+    text-align: end;
+    transition: all 300ms;
+
+    &:hover {
+      color: $primary-hover-color;
+
+      .homeNavLinkIcon {
+        color: $primary-hover-color !important;
+      }
+    }
+
+    // Min width 768px
+    @media (min-width: $breakpoint-md) {
+      gap: 10px;
+      margin-top: -3px;
+      padding: 8px;
+    }
+  }
+
+  // Min width 768px
+  @media (min-width: $breakpoint-md) {
+    max-height: 100px;
+  }
+
+  // Max width 768px
+  @media (max-width: $breakpoint-md) {
+    &.expanded {
+      .home-nav-link {
+        position: relative;
+        left: 0 !important;
+        opacity: 1 !important;
+
+        &:nth-child(0) {
+          transition-delay: 0.05s;
+        }
+        &:nth-child(1) {
+          transition-delay: 0.1s;
+        }
+        &:nth-child(2) {
+          transition-delay: 0.15s;
+        }
+        &:nth-child(3) {
+          transition-delay: 0.2s;
+        }
+        &:nth-child(4) {
+          transition-delay: 0.25s;
+        }
+      }
+      .loginButton {
+        transition-delay: 0.3s !important;
+        opacity: 1 !important;
+      }
+    }
+    &.not-expanded {
+      .home-nav-link {
+        opacity: 0;
+      }
+    }
+    .loginButton {
+      transition: all 400ms !important;
+      transition-delay: 0.4s;
+      opacity: 0 !important;
+      margin-right: 13px;
+    }
+  }
+}
+
+.applicationHeader {
+  margin-top: -5px;
+  margin-left: 11px;
+  text-decoration: none;
+  color: $white-text-color;
+  font-size: 20px;
+
+  &:hover {
+    color: $white-text-color;
+  }
+
+  // Min width 768px
+  @media (min-width: $breakpoint-md) {
+    font-size: 25px;
+  }
+}

@@ -1,14 +1,15 @@
-@use 'mixins' as *;
+@import 'mixins';
 
 .p-inputtext {
+  max-height: $min-max-width-height-big;
   font-size: 1em;
-}
 
-@each $type in main, activity, article, contact, user {
-  .p-inputtext[v-type='#{$type}'] {
-    @include entity-inputtext-styles(
-      var(--#{$type}-item-color-new),
-      var(--#{$type}-item-focus-color-new)
-    );
+  @each $type in main, activity, article, contact, user {
+    &[v-type='#{$type}'] {
+      @include entity-inputtext-styles(
+        var(--#{$type}-item-color-new),
+        var(--#{$type}-item-focus-color-new)
+      );
+    }
   }
 }

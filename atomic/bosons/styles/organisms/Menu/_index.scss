@@ -1,0 +1,25 @@
+.p-menu,
+.p-menu-list,
+.p-menuitem-content {
+  border-radius: 0;
+}
+
+.p-menu,
+.p-menu-list,
+.p-menuitem {
+  min-width: 130px !important;
+  max-width: 130px;
+}
+
+.p-menu,
+.p-menu-list {
+  padding: 0;
+  margin: 0;
+  gap: 5px;
+  min-width: 170px;
+}
+
+.p-menuitem-link {
+  text-decoration: none !important;
+  gap: 10px;
+}
