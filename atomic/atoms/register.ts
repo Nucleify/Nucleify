@@ -1,9 +1,8 @@
-import { AppType } from 'vite'
+import { App } from 'vue'
 
 import {
   Avatar,
   Button,
-  ColorPicker,
   Header,
   Icon,
   Image,
@@ -19,11 +18,10 @@ import {
   Toast,
 } from './'
 
-export function registerAtoms(app: AppType): void {
+export function registerAtoms(app: App): void {
   app
     .component('ad-avatar', Avatar)
     .component('ad-button', Button)
-    .component('ad-color-picker', ColorPicker)
     .component('ad-header', Header)
     .component('ad-icon', Icon)
     .component('ad-image', Image)

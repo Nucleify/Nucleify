@@ -1,9 +1,6 @@
-import { isCurrentUrl } from 'atomic/bosons/utils'
+import { isCurrentUrl } from '../../index'
 
-import {
-  ColorItemColorsInterface,
-  UseColorsInterface,
-} from 'atomic/bosons/types'
+import { ColorItemColorsInterface, UseColorsInterface } from '../../../types'
 
 export function useColors(): UseColorsInterface {
   const documentStyle: CSSStyleDeclaration = getComputedStyle(

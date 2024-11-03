@@ -1,6 +1,5 @@
 export * from './Avatar'
 export * from './Button'
-export * from './ColorPicker'
 export * from './Heading'
 export * from './Icon'
 export * from './Image'

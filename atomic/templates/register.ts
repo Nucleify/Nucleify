@@ -1,4 +1,4 @@
-import { AppType } from 'vite'
+import { App } from 'vue'
 
 import {
   CardChart,
@@ -8,7 +8,7 @@ import {
   Error404,
 } from './'
 
-export default function registerTemplates(app: AppType): void {
+export default function registerTemplates(app: App): void {
   app
     /**
      *  Anchor

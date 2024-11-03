@@ -9,10 +9,10 @@ import 'sass/index.scss'
 /**
  *  App
  */
-import { AppType } from 'vite'
+import { App } from 'vue'
 import { createApp } from 'vue'
 
-export const app: AppType = createApp({})
+export const app: App = createApp({})
 
 import registerOldStructure from './old'
 import registerPrimeVue from './primevue'
@@ -38,7 +38,6 @@ registerGlobalUtils(app)
 import {
     Avatar,
     Button,
-    ColorPicker,
     Header,
     Icon,
     Image,
@@ -55,12 +54,14 @@ import {
 } from "./atoms"
 import {
     Anchor,
-    Calendar,
-    FloatLabel
+    FloatLabel,
+    Tile
 } from "./molecules"
 import {
+    Calendar,
     Card,
     Chart,
+    ColorPicker,
     DataTable,
     DataTableSkeleton,
     Dialog,
@@ -68,7 +69,6 @@ import {
     OverlayPanel,
     Password,
     Terminal,
-    Tile
 } from "./organisms"
 import {
     BackLink,
