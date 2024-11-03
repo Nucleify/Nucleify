@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import viteCompression from 'vite-plugin-compression';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
@@ -10,6 +11,7 @@ export default defineConfig({
         }
     },
     plugins: [
+        viteCompression(),
         laravel({
             input: [
                 'atomic/bosons/styles/index.scss',

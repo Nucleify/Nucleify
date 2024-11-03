@@ -4,12 +4,12 @@ import {
   CloseDialogFunctionType,
   DeleteEntityRequestFunctionType,
   GetAllEntitiesRequestFunctionType,
-  LoadingType,
+  LoadingRefType,
 } from 'atomic/bosons/types'
 
 export interface ActivityLogRequestsInterface {
   results: ActivityResultsType
-  loading: LoadingType
+  loading: LoadingRefType
   close: CloseDialogFunctionType
   getAllActivities: GetAllEntitiesRequestFunctionType<ActivityLogInterface>
   deleteActivity: DeleteEntityRequestFunctionType
