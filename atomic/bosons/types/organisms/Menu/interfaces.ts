@@ -1,7 +1,11 @@
 import { MenuItem } from 'primevue/menuitem'
 import { HintedString } from 'primevue/ts-helpers'
 
-import { OpenMenuFunctionType, SelectedObjectType } from 'atomic/bosons/types'
+import {
+  ObjectType,
+  OpenMenuFunctionType,
+  SelectedObjectType,
+} from 'atomic/bosons/types'
 
 export interface MenuInterface {
   ref: string
@@ -14,5 +18,6 @@ export interface MenuInterface {
 
 export interface UseMenuInterface {
   selectedObject: SelectedObjectType
+  setSelectedObject: (object: ObjectType) => void
   openMenu: OpenMenuFunctionType
 }
