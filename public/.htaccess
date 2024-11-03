@@ -21,6 +21,19 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
+    # Gzip Handling for Pre-compressed Files
+    # Serve .gz files if they exist and client accepts gzip encoding
+    RewriteCond %{HTTP:Accept-Encoding} gzip
+    RewriteCond %{REQUEST_FILENAME}.gz -f
+    RewriteRule ^(.+)\.(css|js)$ $1.$2.gz [QSA]
+
+    # Set Headers for Gzipped Files
+    <FilesMatch "\.gz$">
+        Header set Content-Encoding gzip
+        Header set Cache-Control "max-age=31536000, public"
+        Header set Vary "Accept-Encoding"
+    </FilesMatch>
+
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
