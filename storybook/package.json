@@ -44,7 +44,8 @@
     "sass": "1.77.6",
     "storybook": "8.1.11",
     "typescript": "5.4.5",
-    "vite": "5.2.6"
+    "vite": "5.2.6",
+    "vite-plugin-compression": "0.5.1"
   },
   "resolutions": {
     "jackspeak": "2.1.1"
