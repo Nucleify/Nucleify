@@ -1,1 +1,6 @@
-@use 'shiny_text';
+@import 'Containers', 'body', 'disabled_item', 'loading', 'main', 'medias',
+  'shiny_text';
+
+* {
+  box-sizing: border-box;
+}

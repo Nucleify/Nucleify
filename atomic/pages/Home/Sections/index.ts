@@ -1,0 +1,6 @@
+export { default as HomeFooter } from './Footer.vue'
+export { default as HomeNavbar } from './Navbar.vue'
+export { default as Features } from './Features/Features.vue'
+export { default as Innovations } from './Innovations/Innovations.vue'
+export { default as Start } from './Start.vue'
+export { default as WhyUs } from './WhyUs.vue'

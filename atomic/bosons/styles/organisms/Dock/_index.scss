@@ -1,7 +1,4 @@
-@import 'Icons';
-@import 'Logo';
-@import 'mixins';
-@import 'variables';
+@import 'Icons', 'Logo', 'mixins';
 
 .dock {
   position: fixed;
@@ -101,8 +98,8 @@
               pointer-events: none;
               opacity: 0;
 
-              // 992px
-              @media (min-width: $min-width-lg) {
+              // Min width 992px
+              @media (min-width: $breakpoint-lg) {
                 pointer-events: inherit;
                 opacity: 1;
               }
@@ -120,7 +117,8 @@
         }
       }
 
-      @media (min-width: $min-width-lg) {
+      // Min width 992px
+      @media (min-width: $breakpoint-lg) {
         gap: 4px;
       }
     }

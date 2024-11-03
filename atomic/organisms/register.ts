@@ -12,6 +12,7 @@ import {
   OverlayPanel,
   Password,
   Terminal,
+  Toast,
 } from './'
 
 export default function registerOrganisms(app: App): void {
@@ -27,4 +28,5 @@ export default function registerOrganisms(app: App): void {
     .component('ad-overlay-panel', OverlayPanel)
     .component('ad-password', Password)
     .component('ad-terminal', Terminal)
+    .component('ad-toast', Toast)
 }
