@@ -1,6 +1,3 @@
-@import '../../mixins/dimensions';
-@import '../../mixins/placement';
-
 @mixin my-animation {
   transform: none !important;
   transform-origin: unset !important;

@@ -1,11 +1,11 @@
 import { App } from 'vue'
 
 import {
-  CardChart,
-  CardDataTable,
   BackLink,
   TestLoginButtons,
-  Error404,
+  CardChart,
+  CardDataTable,
+  ScreenLoader,
 } from './'
 
 export default function registerTemplates(app: App): void {
@@ -27,7 +27,7 @@ export default function registerTemplates(app: App): void {
     .component('ad-card-data-table', CardDataTable)
 
     /**
-     *  Errors
+     *  Screen
      */
-    .component('ad-error-404', Error404)
+    .component('ad-screen-loader', ScreenLoader)
 }

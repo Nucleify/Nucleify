@@ -1,5 +1,4 @@
-@use 'mixins' as *;
-@import '../../variables/index';
+@import 'mixins';
 
 .tile {
   display: flex;

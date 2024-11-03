@@ -1,4 +1,4 @@
-@use 'mixins' as *;
+@import 'mixins';
 
 @each $type in main, activity, article, contact, user {
   .p-colorpicker[v-type='#{$type}'] {

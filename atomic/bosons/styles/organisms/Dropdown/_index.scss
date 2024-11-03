@@ -1,4 +1,4 @@
-@use 'mixins' as *;
+@import 'mixins';
 
 @each $type in main, activity, article, contact, user {
   .p-dropdown[v-type='#{$type}'] {
@@ -15,4 +15,8 @@
       var(--#{$type}-item-highlight-color-new)
     );
   }
+}
+
+.p-dropdown-items {
+  padding: 0;
 }

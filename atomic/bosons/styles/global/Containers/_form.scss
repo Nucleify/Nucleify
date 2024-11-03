@@ -1,0 +1,12 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  font-size: 0.875em;
+
+  .form-div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+  }
+}

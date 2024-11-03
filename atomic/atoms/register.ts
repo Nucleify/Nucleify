@@ -15,7 +15,6 @@ import {
   RadioButton,
   Skeleton,
   Textarea,
-  Toast,
 } from './'
 
 export function registerAtoms(app: App): void {
@@ -34,5 +33,4 @@ export function registerAtoms(app: App): void {
     .component('ad-radio-button', RadioButton)
     .component('ad-skeleton', Skeleton)
     .component('ad-textarea', Textarea)
-    .component('ad-toast', Toast)
 }
