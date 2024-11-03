@@ -1,4 +1,4 @@
-@use 'mixins' as *;
+@import 'mixins';
 
 .p-password {
   @each $type in main, activity, article, contact, user {

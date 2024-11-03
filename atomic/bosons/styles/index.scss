@@ -1,41 +1,18 @@
+@import
+
 // Bootstrap
-@use 'bootstrap/scss/bootstrap';
+'bootstrap/scss/bootstrap',
 
-//  Styles
-@use 'atoms';
-@use 'global';
-@use 'molecules';
-@use 'organisms';
-@use 'templates';
-@use 'views';
-
-// Old structure
-@use '../../_old_structure/sass/app';
+// Mixins
+'mixins',
 
 // Variables
-@import 'variables';
+'variables',
 
-@media (min-width: $breakpoint-lg) {
-    .mobile {
-        display: none !important;
-    }
-}
-
-@media (max-width: $breakpoint-lg) {
-    .desktop {
-        display: none !important;
-    }
-}
-
-body:has(
-    #home,
-    #login,
-    #register
-) {
-    background: $white-body-bg;
-
-    .dock,
-    .overlay-panel-toggle {
-        display: none !important;
-    }
-}
+//  Styles
+'atoms',
+'global',
+'molecules',
+'organisms',
+'pages',
+'templates';

@@ -1,0 +1,91 @@
+.login-card,
+.register-card {
+  width: 95vw !important;
+  position: relative;
+  top: -25px;
+  box-shadow: $primary-box-shadow;
+
+  @media (min-width: 500px) {
+    max-width: 475px !important;
+  }
+
+  .auth-card-header-container {
+    display: flex;
+    justify-content: center;
+
+    .auth-card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1em;
+      margin-top: 2em;
+
+      h1 {
+        font-size: 1.75em;
+      }
+
+      p {
+        text-align: center;
+        font-size: 1em;
+        padding: 0 4px;
+        a {
+          text-decoration: none;
+          color: $primary-color !important;
+        }
+      }
+    }
+  }
+
+  .p-card-body {
+    padding: 10px 10px 15px 10px;
+
+    .p-card-content {
+      padding: 20px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 2.2em;
+      }
+    }
+  }
+
+  // Min width 768px
+  @media (min-width: $breakpoint-md) {
+    padding-bottom: 0;
+
+    .p-card-content,
+    .p-card-content,
+    .p-card-body,
+    .p-card-body {
+      padding: 20px;
+    }
+  }
+
+  .auth-input-text {
+    height: 40px;
+    width: 100%;
+    max-width: 100%;
+
+    .p-inputtext {
+      width: 100%;
+    }
+  }
+}
+
+#login,
+#register {
+  .back-link {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    font-size: $font-size-medium;
+    text-decoration: none;
+    color: $primary-text-color;
+    transition: $transition-colors-300ms;
+
+    &:hover {
+      color: $primary-hover-color;
+    }
+  }
+}
