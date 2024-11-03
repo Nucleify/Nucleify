@@ -1,8 +1,6 @@
 import { ref, Ref } from 'vue'
 
-import { ObjectType } from '@/types'
-
-import { UseDialogInterface } from 'atomic/bosons/types'
+import { ObjectType, UseDialogInterface } from 'atomic/bosons/types'
 
 export function useDialog(): UseDialogInterface {
   const selectedObject: Ref<ObjectType> = ref()
