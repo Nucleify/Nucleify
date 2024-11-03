@@ -11,7 +11,7 @@
   &.top,
   &.right,
   &.left {
-    bottom: -2px;
+    bottom: -3px;
   }
 
   &.bottom {
@@ -38,7 +38,8 @@
       height: 1.25em;
     }
 
-    @media (min-width: 768px) {
+    // Min width 768px
+    @media (min-width: $breakpoint-md) {
       top: 0.5em;
       right: 0.5em;
       height: 12px;
@@ -47,7 +48,8 @@
     }
   }
 
-  @media (min-width: 992px) {
+  // Min width 768px
+  @media (min-width: $breakpoint-lg) {
     height: 300px;
     margin-bottom: 11px;
     margin-left: 2px;

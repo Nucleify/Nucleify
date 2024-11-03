@@ -1,0 +1,24 @@
+.chart-card {
+  .p-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    .p-chart {
+      width: 100%;
+    }
+  }
+
+  .chart-loading {
+    opacity: 0;
+  }
+
+  .chart-loaded {
+    opacity: 1;
+  }
+
+  .annual-chart {
+    min-height: 480px;
+  }
+}

@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="admin">
-        <admin-panel></admin-panel>
+        <ad-admin-page></ad-admin-page>
     </div>
 @endsection

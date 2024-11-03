@@ -1,9 +1,8 @@
-import { AppType } from 'vite'
+import { App } from 'vue'
 
 import {
   Avatar,
   Button,
-  ColorPicker,
   Header,
   Icon,
   Image,
@@ -16,14 +15,12 @@ import {
   RadioButton,
   Skeleton,
   Textarea,
-  Toast,
 } from './'
 
-export function registerAtoms(app: AppType): void {
+export function registerAtoms(app: App): void {
   app
     .component('ad-avatar', Avatar)
     .component('ad-button', Button)
-    .component('ad-color-picker', ColorPicker)
     .component('ad-header', Header)
     .component('ad-icon', Icon)
     .component('ad-image', Image)
@@ -36,5 +33,4 @@ export function registerAtoms(app: AppType): void {
     .component('ad-radio-button', RadioButton)
     .component('ad-skeleton', Skeleton)
     .component('ad-textarea', Textarea)
-    .component('ad-toast', Toast)
 }

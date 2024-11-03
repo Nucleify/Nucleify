@@ -1,6 +1,6 @@
-import { AppType } from 'vite'
+import { App } from 'vue'
 
-export function registerGlobalConstants(app: AppType): void {
+export function registerGlobalConstants(app: App): void {
   /**
    *  Images urls
    */
