@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="contacts">
-        <contact-dashboard></contact-dashboard>
+        <ad-contact-page></ad-contact-page>
     </div>
 @endsection

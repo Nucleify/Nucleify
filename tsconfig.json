@@ -19,9 +19,6 @@
       "cypress"
     ],
     "paths": {
-      "@/*": [
-        "atomic/_old_structure/ts/*"
-      ],
       "sass/*": [
         "atomic/bosons/styles/*"
       ]

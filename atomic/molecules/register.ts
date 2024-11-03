@@ -1,10 +1,10 @@
-import { AppType } from 'vite'
+import { App } from 'vue'
 
-import { Anchor, Calendar, FloatLabel } from './'
+import { Anchor, FloatLabel, Tile } from './'
 
-export default function registerMolecules(app: AppType): void {
+export default function registerMolecules(app: App): void {
   app
     .component('ad-anchor', Anchor)
-    .component('ad-calendar', Calendar)
     .component('ad-float-label', FloatLabel)
+    .component('ad-tile', Tile)
 }

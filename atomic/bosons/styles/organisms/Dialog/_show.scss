@@ -1,0 +1,23 @@
+.show-data-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  .show-data-header {
+    margin-bottom: 0;
+  }
+
+  .show-data-dates-container,
+  .show-data-phone-numbers-container {
+    display: flex;
+  }
+
+  .show-data-date,
+  .show-data-phone-number {
+    padding: 0 !important;
+  }
+
+  .show-data-role {
+    margin-top: -1em;
+  }
+}
