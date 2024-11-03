@@ -1,17 +1,13 @@
 /* eslint-disable */
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import { ChartOptions } from 'chart.js'
-
-import {
-  ActivityLogInterface,
-  ArticleInterface,
-  ChartDataInterface,
-  ContactInterface,
-  UserInterface,
-} from '@/types'
 
 import { documentStyle, months } from 'atomic/bosons/constants'
 import {
+  ActivityLogInterface,
+  ArticleInterface,
+  ContactInterface,
+  UserInterface,
   ChartMethodType,
   ChartType,
   ChartInterface,
@@ -28,7 +24,7 @@ export function useChart() {
     userItemColors,
   }: UseColorsReturnInterface = useColors()
 
-  const chartData = ref<ChartInterface>()
+  const chartData: Ref<ChartInterface | undefined> = ref<ChartInterface>()
 
   const exampleColors = {
     activityItemColors: { primary: '#FFB600', hover: '#E7A60B' },
@@ -50,7 +46,7 @@ export function useChart() {
     contactData?: ContactInterface[],
     userData?: UserInterface[],
     example?: boolean
-  ): ChartDataInterface | null {
+  ) {
     try {
       const labels: string[] = []
       const activityLogDataByMonth: number[] = new Array(12).fill(0)

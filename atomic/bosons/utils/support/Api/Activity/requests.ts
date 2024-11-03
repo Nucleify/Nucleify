@@ -7,8 +7,8 @@ import {
   ActivityResultsType,
   CloseDialogFunctionType,
   DeleteEntityRequestFunctionType,
-  GetAllActivitiesRequestResponseType,
   GetAllEntitiesRequestFunctionType,
+  GetAllEntitiesRequestResponseType,
   UseApiErrorsServiceInterface,
   UseLoadingInterface,
   UseToastInterface,
@@ -37,7 +37,7 @@ export function activityRequests(
         setLoading(true)
       }
 
-      const response: GetAllActivitiesRequestResponseType =
+      const response: GetAllEntitiesRequestResponseType<ActivityLogInterface> =
         await axios.get('/api/activity-log')
 
       results.value = response.data
@@ -53,7 +53,7 @@ export function activityRequests(
   async function deleteActivity(
     id: number,
     getData: () => void
-  ): DeleteEntityRequestFunctionType {
+  ): Promise<DeleteEntityRequestFunctionType> {
     try {
       const response: AxiosResponse = await axios.delete(
         `/api/activity-log/${id}`
