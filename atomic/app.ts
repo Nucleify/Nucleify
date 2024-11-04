@@ -71,6 +71,7 @@ import {
     Toast
 } from "./organisms"
 import {
+    AboutPage,
     AdminPage,
     LoginPage,
     RegisterPage,
@@ -80,6 +81,8 @@ import {
     DashboardPage,
     Error404Page,
     HomePage,
+    HomeNavbar,
+    HomeFooter,
     SettingsPage
 } from "./pages"
 import {
@@ -135,6 +138,7 @@ app
     /**
      *  Pages
      */
+    .component('ad-about-page', AboutPage)
     .component('ad-admin-page', AdminPage)
     .component('ad-login-page', LoginPage)
     .component('ad-register-page', RegisterPage)
@@ -144,6 +148,8 @@ app
     .component('ad-dashboard-page', DashboardPage)
     .component('ad-error-404-page', Error404Page)
     .component('ad-home-page', HomePage)
+    .component('ad-home-navbar', HomeNavbar)
+    .component('ad-home-footer', HomeFooter)
     .component('ad-settings-page', SettingsPage)
 
     /**
