@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
-import viteCompression from 'vite-plugin-compression';
+
 import laravel from 'laravel-vite-plugin';
+import stylelint from "vite-plugin-stylelint";
+import viteCompression from 'vite-plugin-compression';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
@@ -11,7 +13,6 @@ export default defineConfig({
         }
     },
     plugins: [
-        viteCompression(),
         laravel({
             input: [
                 'atomic/bosons/styles/index.scss',
@@ -19,6 +20,8 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        stylelint(),
+        viteCompression(),
         vue({
             template: {
                 transformAssetUrls: {
