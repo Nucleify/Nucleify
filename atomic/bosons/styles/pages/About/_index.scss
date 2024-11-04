@@ -1,1 +1,10 @@
 @import 'Start';
+
+#about > .about-container {
+  padding: 0 10px;
+
+  // Min width 992px
+  @media (min-width: $breakpoint-lg) {
+    display: flex;
+  }
+}
