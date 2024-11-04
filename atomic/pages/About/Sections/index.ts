@@ -1,1 +1,1 @@
-export { default as Start } from './Start.vue'
+export * from './Start'
