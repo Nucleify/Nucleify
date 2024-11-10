@@ -1,10 +1,5 @@
-@import 'Start';
+@import 'Categories', 'Start';
 
 #about > .about-container {
-  padding: 0 10px;
-
-  // Min width 992px
-  @media (min-width: $breakpoint-lg) {
-    display: flex;
-  }
+  padding: 140px 0;
 }
