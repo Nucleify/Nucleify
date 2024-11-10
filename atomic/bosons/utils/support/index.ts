@@ -1,5 +1,6 @@
 export * from './Api'
 export * from './Auth'
+export * from './Element'
 export * from './Get'
 export * from './Fields'
 export * from './Loading'
