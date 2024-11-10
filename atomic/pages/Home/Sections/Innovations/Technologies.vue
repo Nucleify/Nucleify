@@ -11,11 +11,6 @@
         class="mySwiper"
         :slides-per-view="9"
         :loop="true"
-        v-animateonscroll="{
-          enterClass: 'fadein',
-          leaveClass: 'fadeout',
-          rootMargin: isMobile() ? '200px' : '',
-        }"
       >
         <swiper-slide v-for="(tech, index) in technologies" :key="index">
           <ad-anchor :href="tech.url" :src="technologiesImgUrl + tech.image" />
