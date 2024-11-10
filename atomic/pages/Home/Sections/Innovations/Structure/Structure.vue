@@ -1,14 +1,7 @@
 <template>
   <section id="structure">
     <div class="structure-container">
-      <div
-        class="content"
-        v-animateonscroll="{
-          enterClass: 'fadein',
-          leaveClass: 'fadeout',
-          rootMargin: isMobile() ? '200px' : '',
-        }"
-      >
+      <div class="content">
         <div class="animation-container">
           <DeferredContent>
             <animation />

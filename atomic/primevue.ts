@@ -35,7 +35,6 @@ import Toast from 'primevue/toast'
 /**
  *  Directives
  */
-import AnimateOnScroll from 'primevue/animateonscroll'
 import Tooltip from 'primevue/tooltip'
 
 /**
@@ -87,6 +86,5 @@ export default function registerPrimeVue(app: App<Element>): void {
     /**
      *  Directives
      */
-    .directive('animateonscroll', AnimateOnScroll)
     .directive('tooltip', Tooltip)
 }
