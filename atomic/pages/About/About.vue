@@ -2,10 +2,11 @@
   <ad-home-navbar />
   <div class="about-container">
     <start />
+    <categories />
   </div>
   <ad-home-footer />
 </template>
 
 <script setup lang="ts">
-import { Start } from './Sections'
+import { Categories, Start } from './Sections'
 </script>
