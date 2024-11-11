@@ -19,18 +19,20 @@
       margin-left: 5px;
     }
 
-    @media (min-width: 530px) {
+    @media (min-width: $breakpoint-sm) {
       width: max-content;
       max-width: max-content;
     }
 
-    @media (max-width: 550px) {
+    @media (max-width: $breakpoint-sm) {
       &.p-toast-message-success {
         background: $success-toast-bg;
       }
+
       &.p-toast-message-warn {
         background: $warn-toast-bg;
       }
+
       &.p-toast-message-error {
         background: $error-toast-bg;
       }

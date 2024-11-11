@@ -1,11 +1,9 @@
-// Min width 992px
 @media (min-width: $breakpoint-lg) {
   .mobile {
     display: none !important;
   }
 }
 
-// Max width 992px
 @media (max-width: $breakpoint-lg) {
   .desktop {
     display: none !important;

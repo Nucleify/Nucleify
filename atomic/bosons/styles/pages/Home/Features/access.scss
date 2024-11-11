@@ -6,14 +6,13 @@
   .access-container {
     display: flex;
     flex-direction: column;
-    padding: 60px 10px 0 10px;
+    padding: 60px 10px 0;
     overflow-x: hidden;
 
     .access-card-container {
-      margin: 50px 0 70px 0;
+      margin: 50px 0 70px;
       display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
+      flex-flow: wrap;
       justify-content: center;
 
       .access-card {
@@ -27,7 +26,7 @@
       }
 
       .access-card-image {
-        margin: 15px 0 20px 0;
+        margin: 15px 0 20px;
         max-height: 100px;
         height: 100px;
       }
@@ -44,12 +43,12 @@
     color: $dark-text-color;
     font-size: 35px;
     max-width: 320px;
-    margin: 0 auto 15px auto;
+    margin: 0 auto 15px;
     text-align: center;
   }
 
   .access-description {
-    margin: 5px auto 0 auto;
+    margin: 5px auto 0;
     max-width: 900px;
     color: $secondary-text-color;
     text-align: center;
@@ -57,22 +56,23 @@
     font-size: 16px;
   }
 
-  @media (min-width: 547px) {
+  @media (min-width: $breakpoint-sm) {
     .access-header {
       max-width: 100%;
     }
+
     .access-description {
       font-size: 20px;
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoint-md) {
     .access-header {
       font-size: 45px;
     }
   }
 
-  @media (min-width: 1129px) {
+  @media (min-width: $breakpoint-xl) {
     .access-header {
       font-size: $font-size-xl;
     }

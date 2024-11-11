@@ -2541,6 +2541,9 @@ svg#freepik_stories-innovation.animated #freepik--light-bulb--inject-5 {
   animation: 1s 1 forwards cubic-bezier(0.36, -0.01, 0.5, 1.38) zoomIn;
   animation-delay: 0s;
 }
+svg#freepik_stories-innovation #freepik--character--inject-5 {
+  transform: scaleX(-1) !important;
+}
 @keyframes fadeIn {
   0% {
     opacity: 0;
