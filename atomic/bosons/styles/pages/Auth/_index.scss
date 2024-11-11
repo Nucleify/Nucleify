@@ -2,7 +2,6 @@
 .register-card {
   width: 95vw !important;
   position: relative;
-  top: -25px;
   box-shadow: $primary-box-shadow;
 
   @media (min-width: $breakpoint-sm) {

@@ -65,29 +65,11 @@
         max-width: max-content;
 
         .logo img {
-          width: 20px;
+          width: 40px;
         }
 
         &:hover {
-          @keyframes animate-hover {
-            0% {
-              color: black;
-              fill: black;
-            }
-
-            50% {
-              color: white;
-              fill: white;
-            }
-          }
-
-          label {
-            animation: animate-hover 0.5s ease-in;
-          }
-
-          svg path {
-            animation: animate-hover 0.5s ease-in;
-          }
+          animation: fade-in 0.3s ease-in;
         }
       }
     }
@@ -151,7 +133,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: 768px) {
     .footer-content-container {
       position: absolute;
       width: 100%;

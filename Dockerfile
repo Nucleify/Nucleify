@@ -3,7 +3,7 @@ FROM php:8.2-apache
 WORKDIR /var/www/html
 
 RUN apt-get update && \
-    apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip unzip libcap2-bin wget curl gnupg2 && \
+    apt-get install -y curl gnupg2 libcap2-bin libfreetype6-dev libjpeg-dev libpng-dev unzip wget zip && \
     docker-php-ext-configure gd --with-freetype --with-jpeg && \
     docker-php-ext-install gd pdo pdo_mysql && \
     setcap "cap_net_bind_service=+ep" /usr/local/bin/php && \

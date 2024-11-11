@@ -12,6 +12,8 @@
 <script setup lang="ts">
 import { onBeforeMount, onMounted } from 'vue'
 
+import { isMobile, useColors, useViewportChange } from 'atomic/bosons/utils'
+
 import {
   HomeFooter,
   HomeNavbar,
@@ -21,11 +23,22 @@ import {
   WhyUs,
 } from './Sections'
 
-import { useColors } from 'atomic/bosons/utils'
-
 const { setDefaultColors } = useColors()
 
+useViewportChange(
+  [
+    '.home-charts-container',
+    '#access',
+    '#structure',
+    '#technologies',
+    '#why-us',
+    '#footer',
+  ],
+  isMobile() ? 250 : 100
+)
+
 onBeforeMount(() => window.scrollTo(0, 0))
+
 onMounted(() => {
   setDefaultColors(true)
 })

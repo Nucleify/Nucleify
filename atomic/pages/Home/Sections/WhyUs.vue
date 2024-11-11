@@ -2,11 +2,6 @@
   <section id="why-us">
     <div
       class="why-us-container px-4 py-8 md:px-6 lg:px-8 text-center flex justify-content-center align-items-center"
-      v-animateonscroll="{
-        enterClass: 'fadein',
-        leaveClass: 'fadeout',
-        rootMargin: isMobile() ? '100px' : '',
-      }"
     >
       <div class="mb-3 font-bold text-3xl -mt-5 absolute why-us-header">
         <span>Why </span>
