@@ -30,7 +30,6 @@
     }
   }
 
-  // Min width 992px
   @media (min-width: $breakpoint-lg) {
     &:not(.tile) {
       margin-right: 2em;

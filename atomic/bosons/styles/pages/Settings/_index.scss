@@ -10,7 +10,7 @@
     box-shadow: $secondary-card-box-shadow;
     border-radius: 0;
 
-    .refreshButton {
+    .refresh-button {
       width: 32px;
       height: 32px;
 
@@ -58,7 +58,7 @@
     }
   }
 
-  @media (min-width: 576px) {
+  @media (min-width: $breakpoint-sm) {
     flex-direction: row;
   }
 }

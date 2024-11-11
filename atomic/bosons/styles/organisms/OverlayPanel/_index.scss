@@ -38,7 +38,6 @@
       height: 1.25em;
     }
 
-    // Min width 768px
     @media (min-width: $breakpoint-md) {
       top: 0.5em;
       right: 0.5em;
@@ -48,7 +47,6 @@
     }
   }
 
-  // Min width 768px
   @media (min-width: $breakpoint-lg) {
     height: 300px;
     margin-bottom: 11px;
@@ -68,7 +66,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 4px rgb(0 0 0 / 20%);
   cursor: pointer;
   transition: all 300ms !important;
   padding: 8px !important;
