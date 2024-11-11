@@ -70,6 +70,16 @@ jobs:
           path: vendor
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
 
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Verify .env File Exists
+        run: |
+          if [ ! -f .env ]; then
+            echo ".env file was not created!"
+            exit 1
+          fi
+
       - name: Generate Application Key
         run: php artisan key:generate
 
