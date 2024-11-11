@@ -1,13 +1,6 @@
 <template>
   <section id="access">
-    <div
-      class="access-container"
-      v-animateonscroll="{
-        enterClass: 'fadein',
-        leaveClass: 'fadeout',
-        rootMargin: isMobile() ? '370px' : '',
-      }"
-    >
+    <div class="access-container">
       <ad-header
         :tag="1"
         class="access-header"
