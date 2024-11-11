@@ -18,7 +18,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Verify .env File Exists
+        run: |
+          if [ ! -f .env ]; then
+            echo ".env file was not created!"
+            exit 1
+          fi
 
   # Install Dependencies
   install:
