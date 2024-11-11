@@ -5,9 +5,22 @@ on:
       branches: [ "prod" ]
 
 jobs:
-  # Checkout and Install Dependencies
+  # Checkout and Setup
   setup:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+  # Install Dependencies
+  install:
+    runs-on: ubuntu-latest
+    needs: setup
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -31,7 +44,7 @@ jobs:
   # ESLint
   lint:
     runs-on: ubuntu-latest
-    needs: setup
+    needs: install
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
