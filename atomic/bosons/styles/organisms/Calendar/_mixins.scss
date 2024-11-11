@@ -21,14 +21,6 @@
   $selected-color,
   $highlight-color
 ) {
-  th span,
-  .p-datepicker-year,
-  .p-datepicker-month {
-    &:hover {
-      color: $item-color;
-      background: transparent;
-    }
-  }
   span,
   .p-datepicker-prev,
   .p-datepicker-next {
@@ -46,7 +38,7 @@
 
     &:focus {
       box-shadow:
-        0 0 0 2px #ffffff,
+        0 0 0 2px #fff,
         0 0 0 4px $focus-color;
     }
 
@@ -60,6 +52,15 @@
     span {
       color: $item-color;
       background: $highlight-color;
+    }
+  }
+
+  th span,
+  .p-datepicker-year,
+  .p-datepicker-month {
+    &:hover {
+      color: $item-color;
+      background: transparent;
     }
   }
 }

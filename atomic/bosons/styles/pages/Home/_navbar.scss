@@ -37,13 +37,8 @@
 
     &:hover {
       color: $primary-hover-color;
-
-      .homeNavLinkIcon {
-        color: $primary-hover-color !important;
-      }
     }
 
-    // Min width 768px
     @media (min-width: $breakpoint-md) {
       gap: 10px;
       margin-top: -3px;
@@ -51,13 +46,18 @@
     }
   }
 
-  // Min width 768px
   @media (min-width: $breakpoint-md) {
     max-height: 100px;
   }
 
-  // Max width 768px
   @media (max-width: $breakpoint-md) {
+    &.not-expanded {
+      .home-nav-link,
+      .login-button {
+        opacity: 0;
+      }
+    }
+
     &.expanded {
       .home-nav-link {
         position: relative;
@@ -67,51 +67,28 @@
         &:nth-child(0) {
           transition-delay: 0.05s;
         }
+
         &:nth-child(1) {
           transition-delay: 0.1s;
         }
+
         &:nth-child(2) {
           transition-delay: 0.15s;
         }
+
         &:nth-child(3) {
           transition-delay: 0.2s;
         }
+
         &:nth-child(4) {
           transition-delay: 0.25s;
         }
       }
-      .loginButton {
-        transition-delay: 0.3s !important;
+
+      .login-button {
         opacity: 1 !important;
+        transition-delay: 0.3s;
       }
     }
-    &.not-expanded {
-      .home-nav-link {
-        opacity: 0;
-      }
-    }
-    .loginButton {
-      transition: all 400ms !important;
-      transition-delay: 0.4s;
-      opacity: 0 !important;
-      margin-right: 13px;
-    }
-  }
-}
-
-.applicationHeader {
-  margin-top: -5px;
-  margin-left: 11px;
-  text-decoration: none;
-  color: $white-text-color;
-  font-size: 20px;
-
-  &:hover {
-    color: $white-text-color;
-  }
-
-  // Min width 768px
-  @media (min-width: $breakpoint-md) {
-    font-size: 25px;
   }
 }
