@@ -3,6 +3,31 @@
   display: flex;
   justify-content: center;
 
+  .hexagon-rows-container {
+    background: $primary-bg;
+    overflow: hidden;
+
+    .hexagon-row-container {
+      position: relative;
+      top: 25px;
+      margin-top: -9px;
+
+      .hexagon-container {
+        display: flex;
+        gap: 2px;
+
+        img {
+          transition: all 500ms ease-in;
+        }
+
+        &.n2 {
+          margin-top: -9px;
+          margin-left: -21px;
+        }
+      }
+    }
+  }
+
   .footer-content-container {
     position: absolute;
     display: flex;
@@ -14,6 +39,58 @@
     max-width: 1200px;
     padding: 30px 20px;
     z-index: 999;
+
+    .bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 600px;
+
+      .author {
+        margin-right: 1.25em;
+      }
+
+      @media (max-width: 411px) {
+        .email {
+          margin-left: 0.25em;
+        }
+      }
+
+      a {
+        display: flex;
+        align-items: center;
+        color: $white-text-color;
+        text-decoration: none;
+        max-width: max-content;
+
+        .logo img {
+          width: 20px;
+        }
+
+        &:hover {
+          @keyframes animate-hover {
+            0% {
+              color: black;
+              fill: black;
+            }
+
+            50% {
+              color: white;
+              fill: white;
+            }
+          }
+
+          label {
+            animation: animate-hover 0.5s ease-in;
+          }
+
+          svg path {
+            animation: animate-hover 0.5s ease-in;
+          }
+        }
+      }
+    }
 
     .top {
       color: white;
@@ -74,81 +151,7 @@
     }
   }
 
-  .bottom {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 600px;
-
-    .author {
-      margin-right: 1.25em;
-    }
-
-    @media (max-width: 411px) {
-      .email {
-        margin-left: 0.25em;
-      }
-    }
-    a {
-      display: flex;
-      align-items: center;
-      color: $white-text-color;
-      text-decoration: none;
-      max-width: max-content;
-
-      .logo img {
-        width: 20px;
-      }
-
-      &:hover {
-        @keyframes animate-hover {
-          0% {
-            color: black;
-            fill: black;
-          }
-          50% {
-            color: white;
-            fill: white;
-          }
-        }
-
-        label {
-          animation: animate-hover 0.5s ease-in;
-        }
-
-        svg path {
-          animation: animate-hover 0.5s ease-in;
-        }
-      }
-    }
-  }
-  .hexagon-rows-container {
-    background: $primary-bg;
-    overflow: hidden;
-
-    .hexagon-row-container {
-      position: relative;
-      top: 25px;
-      margin-top: -9px;
-
-      .hexagon-container {
-        display: flex;
-        gap: 2px;
-
-        img {
-          transition: all 500ms ease-in;
-        }
-
-        &.n2 {
-          margin-top: -9px;
-          margin-left: -21px;
-        }
-      }
-    }
-  }
-
-  @media (min-width: 768px) {
+  @media (min-width: $breakpoint-md) {
     .footer-content-container {
       position: absolute;
       width: 100%;
@@ -164,6 +167,7 @@
         .about {
           max-width: 200px !important;
         }
+
         .header {
           display: flex;
           align-items: center;

@@ -5,8 +5,9 @@
   font-size: $font-size-medium;
   padding: 10px;
 
-  &.plasmaItem {
+  &.plasma-item {
     @include plasma-item;
+
     border-radius: 38px 30px 20px 15px;
   }
 
