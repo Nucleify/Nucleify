@@ -36,14 +36,12 @@
     .p-terminal-content:not(:has(div)) + .p-terminal-prompt-container {
       width: 92%;
 
-      // Min width 768px
       @media (min-width: $breakpoint-md) {
         width: 96%;
       }
     }
   }
 
-  // Min width 768px
   @media (min-width: $breakpoint-md) {
     padding: 0.5em 0.75em;
     position: absolute;
