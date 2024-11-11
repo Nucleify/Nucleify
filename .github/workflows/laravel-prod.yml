@@ -126,6 +126,14 @@ jobs:
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
 
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Create Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+
       - name: Run Tests
         env:
           DB_CONNECTION: sqlite
