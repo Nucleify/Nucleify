@@ -5,17 +5,17 @@ on:
     branches: [ "dev" ]
 
 jobs:
-  # Setup PHP and Checkout Code
+  # Checkout, Setup, and Install Dependencies
   setup:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Set up PHP
         uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
         with:
           php-version: '8.3.7'
-
-      - name: Checkout Code
-        uses: actions/checkout@v4
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
@@ -26,19 +26,6 @@ jobs:
             echo ".env file was not created!"
             exit 1
           fi
-
-  # Install Dependencies
-  install:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Set up PHP
-        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
-        with:
-          php-version: '8.3.7'
 
       - name: Cache Composer Dependencies
         uses: actions/cache@v3
@@ -54,7 +41,7 @@ jobs:
   # Generate Application Key
   generate-key:
     runs-on: ubuntu-latest
-    needs: install
+    needs: setup
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -86,7 +73,7 @@ jobs:
   # Set Directory Permissions
   set-permissions:
     runs-on: ubuntu-latest
-    needs: generate-key
+    needs: setup
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -102,7 +89,7 @@ jobs:
   # Create Database
   create-database:
     runs-on: ubuntu-latest
-    needs: set-permissions
+    needs: setup
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -120,7 +107,7 @@ jobs:
   # Run Tests
   test:
     runs-on: ubuntu-latest
-    needs: create-database
+    needs: setup
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
