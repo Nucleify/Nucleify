@@ -31,12 +31,12 @@
         max-width: 250px;
       }
 
-      @media (min-width: 768px) {
+      @media (min-width: $breakpoint-md) {
         height: 8.5em;
         flex: 1 1 calc(33.33% - 0.35em);
       }
 
-      @media (min-width: 1200px) {
+      @media (min-width: $breakpoint-xl) {
         height: 9em;
         flex: 1 1 calc(25% - 0.35em);
       }

@@ -1,15 +1,15 @@
-// Text colors
+/* Text colors */
 $dark-text-color: #333941;
 $primary-text-color: #4B5563;
 $secondary-text-color: #5E5E5E;
 $white-text-color: #F5F4F4;
 
-// Core colors
+/* Core colors */
 $white-body-bg: white;
 $body-bg: #EBEBEB;
 $primary-bg: #0A0A0A;
 $secondary-bg: #333941;
-$content-bg: #FFFFFF;
+$content-bg: #FFF;
 $primary-color: #10B981;
 $primary-hover-color: #1BBD79;
 $primary-hover-bg-color: #F6F6F8;
@@ -24,7 +24,7 @@ $secondary-hover-bg-color: #E3FFF4;
 
 $primary-border-color: #F5F5F5;
 
-// Transitions
+/* Transitions */
 $transition-colors-300ms:
     color 300ms,
     background-color 300ms,

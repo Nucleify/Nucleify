@@ -1,5 +1,5 @@
 #activity-log {
-  @media (min-width: 1400px) {
+  @media (min-width: $breakpoint-xxl) {
     .created-at-activity-column {
       width: 22%;
     }
