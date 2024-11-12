@@ -20,6 +20,10 @@
       padding: 35px 15px;
       margin-bottom: -30px;
 
+      div[data-pc-section='body'] {
+        opacity: 0;
+      }
+
       .home-pie-chart {
         position: absolute;
         bottom: 135px;
@@ -32,7 +36,6 @@
       .home-vertical-chart > canvas {
         height: 300px !important;
         width: 100% !important;
-        min-width: 300px;
       }
     }
 
