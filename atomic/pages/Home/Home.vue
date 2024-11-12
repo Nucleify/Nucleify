@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { onBeforeMount, onMounted } from 'vue'
 
-import { isMobile, useColors, useViewportChange } from 'atomic/bosons/utils'
+import { useColors, useViewportChange } from 'atomic/bosons/utils'
 
 import {
   HomeFooter,
@@ -27,15 +27,16 @@ const { setDefaultColors } = useColors()
 
 useViewportChange(
   [
-    '.home-charts-container',
-    '#access',
-    '#structure',
-    '#technologies',
-    '#why-us',
-    '#footer',
+    '#access div',
+    '#structure div',
+    '#technologies div',
+    '#why-us div',
+    '#footer div',
   ],
-  isMobile() ? 250 : 100
+  100
 )
+
+useViewportChange(['.home-chart-card div[data-pc-section="body"]'], 50)
 
 onBeforeMount(() => window.scrollTo(0, 0))
 
