@@ -7,9 +7,9 @@ import {
 } from 'atomic/bosons/types'
 import { useInViewport } from 'atomic/bosons/utils'
 
-export function useViewportChange(selectors: string[], offset: number): void {
+export function useViewportChange(selectors: string[], offset?: number): void {
   const { viewportStatuses }: UseInViewportInterface = useInViewport(
-    offset,
+    offset ? offset : 0,
     ...selectors
   )
   const isInViewport: ViewportStatusesType = ref<ViewportStatusType>({})
@@ -19,13 +19,13 @@ export function useViewportChange(selectors: string[], offset: number): void {
   })
 
   function onEnter(selector: string): void {
-    document.querySelector(selector + ' div')?.classList.add('fade-in')
-    document.querySelector(selector + ' div')?.classList.remove('fade-out')
+    document.querySelector(selector)?.classList.add('fade-in')
+    document.querySelector(selector)?.classList.remove('fade-out')
   }
 
   function onLeave(selector: string): void {
-    document.querySelector(selector + ' div')?.classList.add('fade-out')
-    document.querySelector(selector + ' div')?.classList.remove('fade-in')
+    document.querySelector(selector)?.classList.add('fade-out')
+    document.querySelector(selector)?.classList.remove('fade-in')
   }
 
   watch(
