@@ -45,6 +45,30 @@ describe('Instance', function () {
             ->toBe($money->receiver_id);
     });
 
+    test('can get title', function () {
+        $money = Money::factory()->create();
+
+        expect($money->getTitle())
+            ->toBeString()
+            ->toBe($money->title);
+    });
+
+    test('can get description', function () {
+        $money = Money::factory()->create();
+
+        expect($money->getDescription())
+            ->toBeString()
+            ->toBe($money->description);
+    });
+
+    test('can get category', function () {
+        $money = Money::factory()->create();
+
+        expect($money->getCategory())
+            ->toBeString()
+            ->toBe($money->category);
+    });
+
     test('can get created_at date', function () {
         $money = Money::factory()->create();
 
