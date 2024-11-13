@@ -1,6 +1,7 @@
 export type ComponentType =
-  | 'textarea'
-  | 'input-text'
   | 'calendar'
-  | 'password'
+  | 'dropdown'
   | 'input-mask'
+  | 'input-text'
+  | 'password'
+  | 'textarea'
