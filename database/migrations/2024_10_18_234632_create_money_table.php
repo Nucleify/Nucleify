@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer('sender_id');
             $table->integer('receiver_id');
             $table->string('title');
-            $table->string('description');
-            $table->string('category');
+            $table->string('description')->nullable();
+            $table->string('category')->nullable();
             $table->timestamps();
         });
     }

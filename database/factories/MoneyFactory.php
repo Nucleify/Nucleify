@@ -21,7 +21,7 @@ class MoneyFactory extends Factory
             'sender_id' => $this->faker->randomElement($usersIds),
             'receiver_id' => $this->faker->randomElement($usersIds),
             'title' => $this->faker->title(),
-            'description' => $this->faker->paragraph(),
+            'description' => $this->faker->sentence(),
             'category' => $this->faker->word(),
             'created_at' => $this->faker->dateTimeBetween('-1 year'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year'),
