@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('money', function (Blueprint $table) {
             $table->id();
             $table->integer('count')->default(0);
-            $table->string('sender_id');
-            $table->string('receiver_id');
+            $table->integer('sender_id');
+            $table->integer('receiver_id');
             $table->string('title');
             $table->string('description');
             $table->string('category');
