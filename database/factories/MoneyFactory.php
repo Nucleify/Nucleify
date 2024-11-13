@@ -20,6 +20,9 @@ class MoneyFactory extends Factory
             'count' => $this->faker->numberBetween(-1000000, 1000000),
             'sender_id' => $this->faker->randomElement($usersIds),
             'receiver_id' => $this->faker->randomElement($usersIds),
+            'title' => $this->faker->title(),
+            'description' => $this->faker->paragraph(),
+            'category' => $this->faker->word(),
             'created_at' => $this->faker->dateTimeBetween('-1 year'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year'),
         ];

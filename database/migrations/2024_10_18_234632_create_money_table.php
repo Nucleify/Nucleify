@@ -16,6 +16,9 @@ return new class extends Migration
             $table->integer('count')->default(0);
             $table->string('sender_id');
             $table->string('receiver_id');
+            $table->string('title');
+            $table->string('description');
+            $table->string('category');
             $table->timestamps();
         });
     }

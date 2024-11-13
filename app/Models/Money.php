@@ -12,12 +12,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property int count
  * @property int sender_id
  * @property int receiver_id
+ * @property string title
+ * @property string description
+ * @property string category
  * @property DateTime created_at
  * @property DateTime updated_at
  * @property int getId
  * @property int getCount
  * @property int getSenderId
  * @property int getReceiverId
+ * @property string getTitle
+ * @property string getDescription
+ * @property string getCategory
  * @property DateTime getCreatedAt
  * @property DateTime getUpdatedAt
  * @property BelongsTo sender
@@ -31,6 +37,9 @@ class Money extends Model
         'count',
         'sender_id',
         'receiver_id',
+        'title',
+        'description',
+        'category'
     ];
 
     /**
@@ -52,6 +61,18 @@ class Money extends Model
     public function getReceiverId(): int
     {
         return $this->receiver_id;
+    }
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+    public function getCategory(): string
+    {
+        return $this->category;
     }
     public function getCreatedAt(): DateTime
     {
