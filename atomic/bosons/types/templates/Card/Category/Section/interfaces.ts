@@ -1,5 +1,5 @@
-import { AboutCategoryCardInterface } from 'atomic/bosons/types'
+import { CardCategorySingleInterface } from 'atomic/bosons/types'
 
 export interface CardCategorySectionInterface {
-  cards: AboutCategoryCardInterface[]
+  cards: CardCategorySingleInterface[]
 }

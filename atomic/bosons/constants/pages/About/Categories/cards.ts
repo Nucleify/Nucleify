@@ -1,9 +1,9 @@
 import { ref, Ref, UnwrapRef } from 'vue'
 
-import { AboutCategoryCardInterface } from 'atomic/bosons/types'
+import { CardCategorySingleInterface } from 'atomic/bosons/types'
 
 export const aboutCategoriesCards: Ref<
-  UnwrapRef<AboutCategoryCardInterface[]>
+  UnwrapRef<CardCategorySingleInterface[]>
 > = ref([
   {
     image: 'purpose.svg',
@@ -42,7 +42,8 @@ export const aboutCategoriesCards: Ref<
     image: 'contact.svg',
     altText: 'Contact image',
     title: 'Contact',
-    description: 'Do you have questions? We are here to help! Contact us.',
+    description:
+      'If you have any questions or need assistance, feel free to reach out.',
     url: '/contact',
   },
 ])
