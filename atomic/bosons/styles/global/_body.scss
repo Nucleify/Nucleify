@@ -10,7 +10,7 @@ body {
     }
   }
 
-  &:has(#login, #register, #error-404) {
+  &:has(#login, #register) {
     main > div {
       display: flex;
       flex-direction: column;
