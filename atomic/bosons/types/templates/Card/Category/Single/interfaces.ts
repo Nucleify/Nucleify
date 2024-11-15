@@ -1,4 +1,4 @@
-export interface AboutCategoryCardInterface {
+export interface CardCategorySingleInterface {
   url: string
   image: string
   altText?: string

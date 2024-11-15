@@ -87,11 +87,13 @@ import {
 } from "./pages"
 import {
     BackLink,
+    CardCategorySection,
+    CardCategorySingle,
     CardChart,
     CardDataTable,
     ScreenLoader,
-    TestLoginButtons
-} from "./templates"
+    TestLoginButtons,
+} from './templates'
 
 app
     /**
@@ -156,6 +158,8 @@ app
      *  Templates
      */
     .component('ad-back-link', BackLink)
+    .component('ad-card-category-section', CardCategorySection)
+    .component('ad-card-category-single', CardCategorySingle)
     .component('ad-card-chart', CardChart)
     .component('ad-card-data-table', CardDataTable)
     .component('ad-screen-loader', ScreenLoader)
