@@ -1,7 +1,7 @@
 body {
   background: $body-bg;
 
-  &:has(#home, #login, #register, #error-404) {
+  &:has(#about, #login, #register, #error-404, #home) {
     background: $white-body-bg;
 
     .dock,

@@ -2,6 +2,11 @@ import { App } from 'vue'
 
 import {
   /**
+   *  About
+   */
+  AboutPage,
+
+  /**
    *  Admin
    */
   AdminPage,
@@ -33,6 +38,8 @@ import {
    *  Home
    */
   HomePage,
+  HomeNavbar,
+  HomeFooter,
 
   /**
    *  Settings
@@ -42,6 +49,11 @@ import {
 
 export function registerPages(app: App): void {
   app
+    /**
+     *  About
+     */
+    .component('ad-about-page', AboutPage)
+
     /**
      *  Admin
      */
@@ -74,6 +86,8 @@ export function registerPages(app: App): void {
      *  Home
      */
     .component('ad-home-page', HomePage)
+    .component('ad-home-navbar', HomeNavbar)
+    .component('ad-home-footer', HomeFooter)
 
     /**
      *  Settings
