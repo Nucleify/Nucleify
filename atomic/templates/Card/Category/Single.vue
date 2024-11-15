@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { AboutCategoryCardInterface } from 'atomic/bosons/types'
+import { CardCategorySingleInterface } from 'atomic/bosons/types'
 
-const props = defineProps<AboutCategoryCardInterface>()
+const props = defineProps<CardCategorySingleInterface>()
 </script>

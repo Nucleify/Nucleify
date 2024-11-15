@@ -1,4 +1,4 @@
-#about > .about-container > .categories-container > .cards-container {
+.categories-container > .cards-container {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   flex-wrap: wrap;
@@ -9,13 +9,16 @@
     position: relative;
     width: 100%;
     text-align: center;
-    transition: transform 0.3s;
+    transition:
+      transform 0.3s,
+      box-shadow 0.3s;
     box-shadow: $primary-box-shadow;
     text-decoration: none;
     aspect-ratio: 1/1;
+    overflow: hidden;
 
-    &:hover {
-      box-shadow: $hover-box-shadow;
+    &-description {
+      padding: 1em;
     }
 
     &-image {
@@ -24,51 +27,33 @@
     }
 
     .cta {
-      position: absolute;
-      background: #ffffffbb;
-      backdrop-filter: blur(5px);
-
-      bottom: 0;
-      padding: 0.75em;
       width: 100%;
-      height: 4em;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
-      &:hover {
-        height: 8em;
-      }
+      position: absolute;
+      bottom: 0;
+      padding: 0.75em;
+      gap: 0.25em;
+      background: #ffffffbb;
+      backdrop-filter: blur(5px);
+      overflow: hidden;
+      transition: transform 0.3s;
+      transform: translateY(45%);
 
       &-title {
         font-size: 2em;
         margin: 0;
-        transition: transform 0.3s;
       }
 
       &-description {
-        font-size: 0.9em;
-        font-family: $font-inter-sans-serif;
-        color: $secondary-text-color;
+        transition: opacity 0.3s 0.1s;
         margin-bottom: 0.25em;
         margin-top: 0.5em;
-        opacity: 0;
-        transition:
-          opacity 0.3s,
-          transform 0.3s;
-        transform: translateY(-0.5em);
-      }
-
-      &-description:hover {
-        opacity: 1;
-        transform: translateY(0);
-        padding: 1em;
-      }
-
-      &-title:hover {
-        transform: translateY(-1em);
+        color: $secondary-text-color;
+        font-size: 0.9em;
+        font-family: $font-inter-sans-serif;
       }
 
       &-button {
@@ -83,6 +68,27 @@
 
         &-button {
           font-size: 1.5em;
+        }
+      }
+    }
+
+    &:hover {
+      box-shadow: $hover-box-shadow;
+
+      .cta {
+        transform: translateY(0) !important;
+
+        &-description {
+          opacity: 1;
+        }
+      }
+    }
+
+    &:not(:hover) {
+      .cta {
+        &-description {
+          transition: opacity 0.15s;
+          opacity: 0;
         }
       }
     }
