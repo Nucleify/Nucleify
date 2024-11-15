@@ -93,6 +93,7 @@ import {
     CardDataTable,
     ScreenLoader,
     TestLoginButtons,
+    StartSection,
 } from './templates'
 
 app
@@ -164,5 +165,6 @@ app
     .component('ad-card-data-table', CardDataTable)
     .component('ad-screen-loader', ScreenLoader)
     .component('ad-test-login-buttons', TestLoginButtons)
+    .component('ad-start-section', StartSection)
 
 app.mount('#app')

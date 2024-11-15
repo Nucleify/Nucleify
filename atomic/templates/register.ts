@@ -8,6 +8,7 @@ import {
   CardChart,
   CardDataTable,
   ScreenLoader,
+  StartSection,
 } from './'
 
 export default function registerTemplates(app: App): void {
@@ -34,4 +35,9 @@ export default function registerTemplates(app: App): void {
      *  Screen
      */
     .component('ad-screen-loader', ScreenLoader)
+
+    /**
+     *  Sections
+     */
+    .component('ad-start-section', StartSection)
 }
