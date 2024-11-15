@@ -58,22 +58,17 @@
         transition:
           opacity 0.3s,
           transform 0.3s;
-        transform: translateY(
-          -0.5em
-        ); // Przesunięcie w górę przed pojawieniem się
-        margin-top: -1em;
+        transform: translateY(-0.5em);
       }
 
       &-description:hover {
-        opacity: 1; // Opis pojawia się po najechaniu na kartę
-        transform: translateY(0); // Przesunięcie na miejsce
+        opacity: 1;
+        transform: translateY(0);
         padding: 1em;
       }
 
       &-title:hover {
-        transform: translateY(
-          -1em
-        ); // Tytuł przesuwa się wyżej, by zrobić miejsce dla opisu
+        transform: translateY(-1em);
       }
 
       &-button {
