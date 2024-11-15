@@ -5,7 +5,7 @@ import { AboutCategoryCardInterface } from 'atomic/bosons/types'
 export const aboutCategoriesCards: Ref<UnwrapRef<AboutCategoryCardInterface>> =
   ref([
     {
-      image: 'Purpose.svg',
+      image: 'purpose.svg',
       altText: 'Purpose image',
       title: 'Purpose',
       description:
@@ -13,36 +13,35 @@ export const aboutCategoriesCards: Ref<UnwrapRef<AboutCategoryCardInterface>> =
       url: '/purpose',
     },
     {
-      image: 'SupportUs.svg',
+      image: 'supportus.svg',
       altText: 'Support Us image',
       title: 'Support Us',
       description:
-        'Your contribution matters! If you want to support our business, you can you can do this by recommending our platform to others.',
+        'Your contribution matters! If you want to support our business, you can do this.',
       url: '/support-us',
     },
 
     {
-      image: 'Collaboration.jpg',
+      image: 'collaboration.svg',
       altText: 'Collaboration image',
       title: 'Collaboration',
       description:
-        'Openness to partnerships and innovation allows us to continuously develop our platform and meet the needs of our customers.',
+        'Openness to partnerships and innovation allows us to continuously develop our platform.',
       url: '/collaboration',
     },
     {
-      image: 'License.svg',
+      image: 'license.svg',
       altText: 'License image',
       title: 'License',
       description:
-        'Our platform operates in accordance with the principles of open license. This means that users are free to use our services.',
+        'Our platform operates in accordance with the principles of open license.',
       url: '/license',
     },
     {
-      image: 'Contact.svg',
+      image: 'contact.svg',
       altText: 'Contact image',
       title: 'Contact',
-      description:
-        'Do you have questions? We are here to help! Contact us write directly to our e-mail address: contact@yourcompany.com',
+      description: 'Do you have questions? We are here to help! Contact us.',
       url: '/contact',
     },
   ])
