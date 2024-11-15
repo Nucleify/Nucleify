@@ -132,11 +132,12 @@ yarn storybook
 
 <details><summary> npm </summary><br>
 
-1. Npm clean install - ```npm ci```
-4. Vite build - ```npm run build```
-5. Eslint fix - ```npm run lint```
-6. Run prettier - ```npm run write```
-7. Husky install - ```npm run prepare```
+1. Install packages - ```npm install```
+2. Vite build - ```npm run build```
+3. Run Prettier - ```npm run write```
+4. Run Eslint - ```npm run lint```
+5. Run Stylelint - ```npm run slint```
+6. Husky install - ```npm run prepare```
 
 <br></details>
 
@@ -286,11 +287,12 @@ sail npm run test
 
 <details><summary> npm </summary><br>
 
-1. Npm clean install - ```sail npm ci```
-4. Vite build - ```sail npm run build```
-5. Eslint fix - ```sail npm run lint```
-6. Run prettier - ```sail npm run write```
-7. Husky install - ```sail npm run prepare```
+1. Install packages - ```sail npm install```
+2. Vite build - ```sail npm run build```
+3. Run Prettier - ```sail npm run write```
+4. Run Eslint - ```sail npm run lint```
+5. Run Stylelint - ```sail npm run slint```
+6. Husky install - ```sail npm run prepare```
 
 <br></details>
 
@@ -323,6 +325,7 @@ sail artisan sitemap:generate
   <img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="35" />
   <img src="https://github.com/user-attachments/assets/06bebfc4-9927-45d6-ac7b-75ced6e85501" height="35" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" height="35" />
+  <img src="https://github.com/user-attachments/assets/ea4a5462-085b-4dd6-bf35-9f76cbcf3c35" height="35" />
   <img src="https://github.com/SzymCode/SzymCode/assets/107359025/a983a634-3e81-4a11-9281-0ef0bacfd187" height="35" />
   <img src="https://github.com/SzymCode/SzymCode/assets/107359025/712ed3a9-e9fa-4782-acff-140a4970ba88" height="35" />
 </div>
@@ -342,7 +345,7 @@ Your skills and expertise will directly contribute to the success of our project
 <h3>Contributors</h3>
 
 <a href="https://github.com/karol199393" target="_blank">
-<img src="/public/img/contributors/karol199393.png" width="30" height="30" />
+<img src="/public/img/contributors/karol199393.svg" width="30" height="30" />
 </a>
 
 </div>
