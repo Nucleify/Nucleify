@@ -47,15 +47,18 @@
     .id-column {
       width: 8%;
     }
+
     .title-column,
     .name-column,
     .full-name-column {
       width: 60%;
     }
+
     .tablet-column,
     .desktop-column {
       display: none;
     }
+
     .action-column {
       width: 2%;
       min-width: 49px;
@@ -66,6 +69,7 @@
         gap: 0.15em;
       }
     }
+
     .email-column,
     .role-column,
     .created-at-column,
@@ -75,6 +79,7 @@
     .created-at-activity-column {
       display: none;
     }
+
     .title-column,
     .category-column,
     .description-column,
@@ -82,6 +87,7 @@
       overflow: hidden;
       white-space: nowrap;
     }
+
     .title-column {
       max-width: 200px;
     }
@@ -89,6 +95,7 @@
     .description-column {
       max-width: 260px;
     }
+
     .name-column {
       max-width: 280px;
     }
@@ -99,114 +106,130 @@
       .id-activity-column {
         display: table-cell;
       }
+
       .id-column {
         width: 15%;
       }
+
       .name-column,
       .full-name-column {
         width: 45%;
       }
     }
 
-    // Min width 768px
     @media (min-width: $breakpoint-md) {
       .id-column {
         width: 10%;
       }
+
       .name-column,
       .full-name-column {
         width: 25%;
       }
+
       .role-column,
       .birthday-column {
         width: 18%;
       }
+
       .email-column,
       .created-at-activity-column {
         display: table-cell;
       }
+
       .email-column {
         width: 30%;
       }
+
       .created-at-activity-column {
         width: 28%;
       }
     }
 
-    @media (min-width: 961px) {
+    @media (min-width: $breakpoint-lg) {
       .id-column {
         width: 10%;
       }
-    }
 
-    // Min width 992px
-    @media (min-width: $breakpoint-lg) {
       .desktop-column {
         display: table-cell;
       }
+
       .email-column {
         width: 32%;
       }
+
       .role-column,
       .birthday-column {
         width: 15%;
       }
+
       .title-column {
         width: 38%;
       }
+
       .category-column {
         width: 20%;
       }
+
       .action-column {
         min-width: 120px;
       }
     }
 
-    // Min width 1200px
     @media (min-width: $breakpoint-xl) {
       .id-column {
         width: 8%;
       }
+
       .name-column,
       .full-name-column {
         width: 20%;
       }
+
       .email-column {
         width: 28%;
       }
+
       .created-at-column {
         display: table-cell;
         width: 20%;
       }
+
       .category-column {
         width: 20%;
       }
     }
 
-    // Min width 1400px
-    @media (min-width: $breakpoint-xl) {
+    @media (min-width: $breakpoint-xxl) {
       .id-column {
         width: 6%;
       }
+
       .name-column,
       .full-name-column {
         width: 12%;
       }
+
       .email-column {
         width: 16%;
       }
+
       .role-column,
       .birthday-column {
         width: 10%;
       }
+
       .created-at-column,
       .updated-at-column {
         display: table-cell;
         width: 14%;
       }
+
       .title-column {
         width: 30%;
       }
+
       .category-column {
         width: 18%;
       }
@@ -217,9 +240,11 @@
       .updated-at-column {
         width: 12%;
       }
+
       .title-column {
         width: 23%;
       }
+
       .category-column {
         width: 15%;
       }

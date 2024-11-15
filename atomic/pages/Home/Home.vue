@@ -12,6 +12,8 @@
 <script setup lang="ts">
 import { onBeforeMount, onMounted } from 'vue'
 
+import { useColors, useViewportChange } from 'atomic/bosons/utils'
+
 import {
   HomeFooter,
   HomeNavbar,
@@ -21,11 +23,23 @@ import {
   WhyUs,
 } from './Sections'
 
-import { useColors } from 'atomic/bosons/utils'
-
 const { setDefaultColors } = useColors()
 
+useViewportChange(
+  [
+    '#access div',
+    '#structure div',
+    '#technologies div',
+    '#why-us div',
+    '#footer div',
+  ],
+  100
+)
+
+useViewportChange(['.home-chart-card div[data-pc-section="body"]'], 50)
+
 onBeforeMount(() => window.scrollTo(0, 0))
+
 onMounted(() => {
   setDefaultColors(true)
 })

@@ -10,8 +10,30 @@
   text-decoration: none;
   color: $primary-text-color;
 
+  @each $type in main, activity, article, contact, user {
+    &[v-type='#{$type}'] {
+      @include entity-tile-styles(
+        var(--#{$type}-item-color-new),
+        var(--#{$type}-item-highlight-color-new)
+      );
+    }
+  }
+
   &:hover {
     color: $primary-text-color;
+  }
+
+  .secondary {
+    display: flex;
+    gap: 0.25em;
+
+    p {
+      margin: 0;
+    }
+
+    .count {
+      color: $primary-color;
+    }
   }
 
   .general {
@@ -27,6 +49,7 @@
         color: $secondary-text-color;
         font-size: 0.9em;
       }
+
       .count {
         font-size: 1.1em;
         font-weight: 500;
@@ -41,30 +64,6 @@
       height: 2.2em;
       border-radius: 0.25em;
       padding: 0.5em;
-    }
-  }
-
-  .secondary {
-    display: flex;
-    gap: 0.25em;
-
-    p {
-      margin: 0;
-    }
-
-    .count {
-      color: $primary-color;
-    }
-  }
-}
-
-.tile {
-  @each $type in main, activity, article, contact, user {
-    &[v-type='#{$type}'] {
-      @include entity-tile-styles(
-        var(--#{$type}-item-color-new),
-        var(--#{$type}-item-highlight-color-new)
-      );
     }
   }
 }

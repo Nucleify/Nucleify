@@ -7,7 +7,7 @@
         <ad-button
           icon="pi pi-refresh"
           type="main"
-          class="refreshButton"
+          class="refresh-button"
           @click="setDefaultColors(false)"
           rounded
           text

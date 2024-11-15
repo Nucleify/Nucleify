@@ -3,6 +3,7 @@
 
 npm run check
 npm run lint
+npm run slint
 npm run build
 npm run test
 
