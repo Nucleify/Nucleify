@@ -7,6 +7,7 @@ use App\Http\Controllers\Entities\ActivityController;
 use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SettingsController;
@@ -25,6 +26,10 @@ Route::get('/home', [HomeController::class, 'render'])->name('home');
  */
 Route::get('/about', [AboutController::class, 'render'])->name('about');
 
+/**
+ *  Blog
+ */
+Route::get('/blog', [BlogController::class, 'render'])->name('blog');
 /**
  *  Auth routes
  */
