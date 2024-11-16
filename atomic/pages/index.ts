@@ -5,6 +5,7 @@ export * from './Dashboard'
 export * from './Entity'
 export * from './Errors'
 export * from './Home'
+export * from './Services'
 export * from './Settings'
 
 export * from './register'

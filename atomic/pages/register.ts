@@ -42,6 +42,10 @@ import {
   HomeFooter,
 
   /**
+   *  Services
+   */
+  ServicesPage,
+  /**
    *  Settings
    */
   SettingsPage,
@@ -88,7 +92,10 @@ export function registerPages(app: App): void {
     .component('ad-home-page', HomePage)
     .component('ad-home-navbar', HomeNavbar)
     .component('ad-home-footer', HomeFooter)
-
+    /**
+     *  Services
+     */
+    .component('ad-services-page', ServicesPage)
     /**
      *  Settings
      */
