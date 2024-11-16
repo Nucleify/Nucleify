@@ -18,6 +18,7 @@ const techData: readonly TechnologyInterface[] = [
   ['cypress.svg', 'https://www.cypress.io/'],
   ['sonarcloud.svg', 'https://www.sonarsource.com/products/sonarcloud/'],
   ['eslint.svg', 'https://eslint.org/'],
+  ['stylelint.svg', 'https://stylelint.io/'],
   ['husky.svg', 'https://typicode.github.io/husky/'],
   ['prettier.svg', 'https://prettier.io/'],
 ] as const
