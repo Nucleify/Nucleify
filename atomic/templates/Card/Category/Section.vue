@@ -6,7 +6,7 @@
       <ad-card-category-single
         v-for="(card, index) in props.cards"
         :key="index"
-        :image="storysetBlogImgUrl + card.image"
+        :image="props.prefix + card.image"
         :title="card.title"
         :description="card.description"
         :url="card.url"

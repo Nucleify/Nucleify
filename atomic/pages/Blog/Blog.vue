@@ -7,7 +7,10 @@
     >
       <BlogStartAnimation />
     </ad-start-section>
-    <ad-card-category-section :cards="blogCategoriesCards" />
+    <ad-card-category-section
+      :cards="blogCategoriesCards"
+      :prefix="storysetBlogImgUrl"
+    />
   </div>
   <ad-home-footer />
 </template>
