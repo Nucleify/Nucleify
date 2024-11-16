@@ -7,6 +7,11 @@ import {
   AboutPage,
 
   /**
+   *  Blog
+   */
+  BlogPage,
+
+  /**
    *  Admin
    */
   AdminPage,
@@ -64,6 +69,11 @@ export function registerPages(app: App): void {
      */
     .component('ad-login-page', LoginPage)
     .component('ad-register-page', RegisterPage)
+
+    /**
+     *  Blog
+     */
+    .component('ad-blog-page', BlogPage)
 
     /**
      *  Dashboard
