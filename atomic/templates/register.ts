@@ -3,9 +3,12 @@ import { App } from 'vue'
 import {
   BackLink,
   TestLoginButtons,
+  CardCategorySection,
+  CardCategorySingle,
   CardChart,
   CardDataTable,
   ScreenLoader,
+  StartSection,
 } from './'
 
 export default function registerTemplates(app: App): void {
@@ -23,6 +26,8 @@ export default function registerTemplates(app: App): void {
     /**
      *  Card
      */
+    .component('ad-card-category-section', CardCategorySection)
+    .component('ad-card-category-single', CardCategorySingle)
     .component('ad-card-chart', CardChart)
     .component('ad-card-data-table', CardDataTable)
 
@@ -30,4 +35,9 @@ export default function registerTemplates(app: App): void {
      *  Screen
      */
     .component('ad-screen-loader', ScreenLoader)
+
+    /**
+     *  Sections
+     */
+    .component('ad-start-section', StartSection)
 }
