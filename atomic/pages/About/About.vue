@@ -10,7 +10,10 @@
     >
       <AboutStartAnimation />
     </ad-start-section>
-    <ad-card-category-section :cards="aboutCategoriesCards" />
+    <ad-card-category-section
+      :cards="aboutCategoriesCards"
+      :prefix="storysetAboutImgUrl"
+    />
   </div>
   <ad-home-footer />
 </template>
