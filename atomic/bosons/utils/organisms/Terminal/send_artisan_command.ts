@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export async function sendArtisanCommand(artisanCommand) {
+export async function sendArtisanCommand(artisanCommand: string) {
   try {
     const res = await axios.post('/api/artisan', {
       command: artisanCommand,

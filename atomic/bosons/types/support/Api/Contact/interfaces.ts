@@ -1,18 +1,18 @@
 import {
   ContactInterface,
   ContactResultsType,
-  DeleteEntityRequestType,
+  DeleteEntityRequestFunctionType,
   EditEntityRequestFunctionType,
   GetAllEntitiesRequestFunctionType,
-  LoadingType,
+  LoadingRefType,
   StoreEntityRequestFunctionType,
 } from 'atomic/bosons/types'
 
 export interface ContactRequestsInterface {
   results: ContactResultsType
-  loading: LoadingType
+  loading: LoadingRefType
   getAllContacts: GetAllEntitiesRequestFunctionType<ContactInterface>
   storeContact: StoreEntityRequestFunctionType<ContactInterface>
   editContact: EditEntityRequestFunctionType<ContactInterface>
-  deleteContact: DeleteEntityRequestType
+  deleteContact: DeleteEntityRequestFunctionType
 }

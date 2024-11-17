@@ -1,5 +1,5 @@
-import { ApiErrorsFunctionType } from 'atomic/bosons/functions'
+import { ApiErrorsFunctionType } from 'atomic/bosons/types'
 
-export interface UseApiErrorsServiceInterface {
+export interface UseApiErrorsInterface {
   apiErrors: ApiErrorsFunctionType
 }

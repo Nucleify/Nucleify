@@ -1,6 +1,6 @@
 import { ComponentType } from 'atomic/bosons/types'
 
-export function getComponent(type: string): string {
+export function getComponent(type: ComponentType): string {
   const componentMap: ComponentType[] = [
     'calendar',
     'dropdown',
