@@ -6,15 +6,14 @@ import {
   ActivityLogRequestsInterface,
   ActivityResultsType,
   CloseDialogFunctionType,
-  DeleteEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
   GetAllEntitiesRequestResponseType,
-  UseApiErrorsServiceInterface,
+  UseApiErrorsInterface,
   UseLoadingInterface,
   UseToastInterface,
 } from 'atomic/bosons/types'
 import {
   apiSuccess,
+  catchErrors,
   useApiErrors,
   useLoading,
   useToast,
@@ -23,15 +22,13 @@ import {
 export function activityRequests(
   close: CloseDialogFunctionType
 ): ActivityLogRequestsInterface {
-  const results: ActivityResultsType = ref([])
+  const results: ActivityResultsType = ref<ActivityLogInterface[]>([])
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
-  const { apiErrors }: UseApiErrorsServiceInterface = useApiErrors()
+  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
   const { flashToast }: UseToastInterface = useToast()
 
-  async function getAllActivities(
-    loading?: boolean
-  ): GetAllEntitiesRequestFunctionType<ActivityLogInterface> {
+  async function getAllActivities(loading?: boolean): Promise<void> {
     try {
       if (loading) {
         setLoading(true)
@@ -42,7 +39,7 @@ export function activityRequests(
 
       results.value = response.data
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     } finally {
       if (loading) {
         setLoading(false)
@@ -52,8 +49,8 @@ export function activityRequests(
 
   async function deleteActivity(
     id: number,
-    getData: () => void
-  ): Promise<DeleteEntityRequestFunctionType> {
+    getData: () => Promise<void>
+  ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.delete(
         `/api/activity-log/${id}`
@@ -61,7 +58,7 @@ export function activityRequests(
 
       await apiSuccess(response, getData, flashToast, close, 'delete')
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 

@@ -3,14 +3,9 @@ import axios, { AxiosResponse } from 'axios'
 
 import {
   CloseDialogFunctionType,
-  DeleteEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
   GetAllEntitiesRequestResponseType,
-  GetEntityRequestFunctionType,
   GetUserRequestResponseType,
-  StoreEntityRequestFunctionType,
-  UseApiErrorsServiceInterface,
+  UseApiErrorsInterface,
   UseLoadingInterface,
   UserInterface,
   UserRequestsInterface,
@@ -19,6 +14,7 @@ import {
 } from 'atomic/bosons/types'
 import {
   apiSuccess,
+  catchErrors,
   useApiErrors,
   useLoading,
   useToast,
@@ -30,12 +26,10 @@ export function userRequests(
   const results: UserResultsType = ref([])
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
-  const { apiErrors }: UseApiErrorsServiceInterface = useApiErrors()
+  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
   const { flashToast }: UseToastInterface = useToast()
 
-  async function getAllUsers(
-    loading?: boolean
-  ): GetAllEntitiesRequestFunctionType<UserInterface> {
+  async function getAllUsers(loading?: boolean): Promise<void> {
     try {
       if (loading) {
         setLoading(true)
@@ -46,7 +40,7 @@ export function userRequests(
 
       results.value = response.data
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     } finally {
       if (loading) {
         setLoading(false)
@@ -54,20 +48,20 @@ export function userRequests(
     }
   }
 
-  async function getUser(): GetEntityRequestFunctionType<UserInterface> {
+  async function getUser(): Promise<void> {
     try {
       const response: GetUserRequestResponseType = await axios.get('/api/user')
 
       results.value = response.data
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 
   async function storeUser(
     data: UserInterface,
-    getData: () => void
-  ): StoreEntityRequestFunctionType<UserInterface> {
+    getData: () => Promise<void>
+  ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.post('/api/users', {
         name: data.name,
@@ -77,16 +71,16 @@ export function userRequests(
         confirm_password: data.confirm_password,
       })
 
-      await apiSuccess(response, getData, flashToast, close, 'create')
+      await apiSuccess(response, getData, flashToast, close!, 'create')
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 
   async function editUser(
     data: UserInterface,
-    getData: () => void
-  ): EditEntityRequestFunctionType<UserInterface> {
+    getData: () => Promise<void>
+  ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.put('/api/users/' + data.id, {
         name: data.name,
@@ -94,22 +88,22 @@ export function userRequests(
         role: data.role,
       })
 
-      await apiSuccess(response, getData, flashToast, close, 'edit')
+      await apiSuccess(response, getData, flashToast, close!, 'edit')
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 
   async function deleteUser(
     id: number,
-    getData: () => void
-  ): DeleteEntityRequestFunctionType {
+    getData: () => Promise<void>
+  ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.delete(`/api/users/${id}`)
 
-      await apiSuccess(response, getData, flashToast, close, 'delete')
+      await apiSuccess(response, getData, flashToast, close!, 'delete')
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 

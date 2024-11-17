@@ -6,17 +6,14 @@ import {
   ContactInterface,
   ContactRequestsInterface,
   ContactResultsType,
-  DeleteEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
   GetAllEntitiesRequestResponseType,
-  StoreEntityRequestFunctionType,
-  UseApiErrorsServiceInterface,
+  UseApiErrorsInterface,
   UseLoadingInterface,
   UseToastInterface,
 } from 'atomic/bosons/types'
 import {
   apiSuccess,
+  catchErrors,
   useApiErrors,
   useLoading,
   useToast,
@@ -28,12 +25,10 @@ export function contactRequests(
   const results: ContactResultsType = ref([])
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
-  const { apiErrors }: UseApiErrorsServiceInterface = useApiErrors()
+  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
   const { flashToast }: UseToastInterface = useToast()
 
-  async function getAllContacts(
-    loading?: boolean
-  ): GetAllEntitiesRequestFunctionType<ContactInterface> {
+  async function getAllContacts(loading?: boolean): Promise<void> {
     try {
       if (loading) {
         setLoading(true)
@@ -44,7 +39,7 @@ export function contactRequests(
 
       results.value = response.data
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     } finally {
       if (loading) {
         setLoading(false)
@@ -54,8 +49,8 @@ export function contactRequests(
 
   async function storeContact(
     data: ContactInterface,
-    getData: () => void
-  ): StoreEntityRequestFunctionType<ContactInterface> {
+    getData: () => Promise<void>
+  ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.post('/api/contacts', {
         user_id: window.sessionStorage.getItem('user_id'),
@@ -70,16 +65,16 @@ export function contactRequests(
         role: data.role,
       })
 
-      await apiSuccess(response, getData, flashToast, close, 'create')
+      await apiSuccess(response, getData, flashToast, close!, 'create')
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 
   async function editContact(
     data: ContactInterface,
-    getData: () => void
-  ): EditEntityRequestFunctionType<ContactInterface> {
+    getData: () => Promise<void>
+  ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.put(
         '/api/contacts/' + data.id,
@@ -96,22 +91,22 @@ export function contactRequests(
         }
       )
 
-      await apiSuccess(response, getData, flashToast, close, 'edit')
+      await apiSuccess(response, getData, flashToast, close!, 'edit')
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 
   async function deleteContact(
     id: number,
-    getData: () => void
-  ): DeleteEntityRequestFunctionType {
+    getData: () => Promise<void>
+  ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.delete(`/api/contacts/${id}`)
 
-      await apiSuccess(response, getData, flashToast, close, 'delete')
+      await apiSuccess(response, getData, flashToast, close!, 'delete')
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 

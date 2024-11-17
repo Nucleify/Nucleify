@@ -1,3 +1,3 @@
-export function checkIsEmpty(password: string | undefined | null): boolean {
+export function checkIsEmpty(password: string): boolean {
   return !password || password === ''
 }

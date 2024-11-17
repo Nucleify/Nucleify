@@ -24,7 +24,7 @@ import { setColorsVariables, useColorPicker } from 'atomic/bosons/utils'
 
 const props = defineProps<ColorPickerInterface>()
 
-const { itemColor, setColorValues } = useColorPicker(props.item)
+const { itemColor, setColorValues } = useColorPicker(props.item!)
 
 watchEffect(() => {
   setColorValues()
