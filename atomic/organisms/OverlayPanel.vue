@@ -2,7 +2,7 @@
   <ad-button
     @click="toggle"
     :icon="
-      props.overlayPanelClass.includes('terminal') ? 'pi pi-code' : props.icon
+      props.overlayPanelClass!.includes('terminal') ? 'pi pi-code' : props.icon
     "
     :src="props.src"
     :class="props.buttonClass"

@@ -1,11 +1,11 @@
 import {
   ErrorResponseInterface,
   FlashToastFunctionType,
-  UseApiErrorsServiceInterface,
+  UseApiErrorsInterface,
 } from 'atomic/bosons/types'
 import { useToast } from 'atomic/bosons/utils'
 
-export function useApiErrors(): UseApiErrorsServiceInterface {
+export function useApiErrors(): UseApiErrorsInterface {
   const { flashToast }: { flashToast: FlashToastFunctionType } = useToast()
 
   function apiErrors(error: ErrorResponseInterface): void {

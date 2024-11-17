@@ -1,8 +1,6 @@
 export function checkPasswordsMatch(
-  password: string | undefined | null,
-  password_confirmation: string | undefined | null
+  password: string,
+  password_confirmation: string
 ): boolean {
-  if (password === undefined || null) return
-
   return password === password_confirmation
 }

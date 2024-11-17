@@ -8,8 +8,11 @@ CURRENT_BRANCH=$(git symbolic-ref --short HEAD)
 
 
 case "$CURRENT_BRANCH" in
+    404)
+        FINAL_MSG="404: $ORIGINAL_MSG"
+        ;;
     atomic-design)
-        FINAL_MSG="⚛︎ Atomic Design: $ORIGINAL_MSG"
+        FINAL_MSG="⚛ Atomic Design: $ORIGINAL_MSG"
         ;;
     docker)
         FINAL_MSG="🐋 Docker: $ORIGINAL_MSG"
@@ -22,6 +25,9 @@ case "$CURRENT_BRANCH" in
         ;;
     packages)
         FINAL_MSG="📦 Packages: $ORIGINAL_MSG"
+        ;;
+    page-about)
+        FINAL_MSG="About: $ORIGINAL_MSG"
         ;;
     performance)
         FINAL_MSG="⚡ Performance: $ORIGINAL_MSG"

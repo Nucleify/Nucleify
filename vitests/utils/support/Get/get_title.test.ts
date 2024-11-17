@@ -4,7 +4,7 @@ import { getTitle } from 'atomic/bosons/utils'
 import { ObjectType } from 'atomic/bosons/types'
 
 it('returns undefined for undefined input', (): void => {
-  expect(getTitle(undefined)).toBeUndefined()
+  expect(getTitle(undefined)).toBe('Unknown Entity')
 })
 
 it('returns title if "title" is present', (): void => {

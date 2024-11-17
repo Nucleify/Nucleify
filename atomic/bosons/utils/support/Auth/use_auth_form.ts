@@ -9,12 +9,13 @@ import {
 import {
   LoginFieldsInterface,
   RegisterFieldsInterface,
+  UseApiErrorsServiceInterface,
   UseAuthFormInterface,
 } from 'atomic/bosons/types'
 import { useApiErrors, navigateTo } from 'atomic/bosons/utils'
 
 export function useAuthForm(): UseAuthFormInterface {
-  const { apiErrors } = useApiErrors()
+  const { apiErrors }: UseApiErrorsServiceInterface = useApiErrors()
   let url
 
   async function submitForm(
