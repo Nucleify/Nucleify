@@ -1,6 +1,7 @@
 import { MockUseToastInterface } from 'atomic/bosons/types'
 
-export const mockUseToast = (fn): MockUseToastInterface => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const mockUseToast = (fn: any): MockUseToastInterface => {
   return {
     add: fn,
     success: fn,

@@ -9,6 +9,7 @@ import {
   DataTableSkeleton,
   Dialog,
   Dock,
+  Dropdown,
   OverlayPanel,
   Password,
   Terminal,
@@ -25,6 +26,7 @@ export default function registerOrganisms(app: App): void {
     .component('ad-data-table-skeleton', DataTableSkeleton)
     .component('ad-dialog', Dialog)
     .component('ad-dock', Dock)
+    .component('ad-dropdown', Dropdown)
     .component('ad-overlay-panel', OverlayPanel)
     .component('ad-password', Password)
     .component('ad-terminal', Terminal)

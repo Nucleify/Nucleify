@@ -65,6 +65,7 @@ import {
     DataTableSkeleton,
     Dialog,
     Dock,
+    Dropdown,
     OverlayPanel,
     Password,
     Terminal,
@@ -133,6 +134,7 @@ app
     .component('ad-data-table-skeleton', DataTableSkeleton)
     .component('ad-dialog', Dialog)
     .component('ad-dock', Dock)
+    .component('ad-dropdown', Dropdown)
     .component('ad-overlay-panel', OverlayPanel)
     .component('ad-password', Password)
     .component('ad-terminal', Terminal)
