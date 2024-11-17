@@ -344,6 +344,9 @@ Your skills and expertise will directly contribute to the success of our project
 
 <h3>Contributors</h3>
 
+<a href="https://github.com/KatarzynaS97" target="_blank">
+<img src="/public/img/contributors/KatarzynaS97.svg" width="30" height="30" />
+</a>
 <a href="https://github.com/karol199393" target="_blank">
 <img src="/public/img/contributors/karol199393.svg" width="30" height="30" />
 </a>
