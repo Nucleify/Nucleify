@@ -89,7 +89,7 @@ export interface DataTableInterface {
   type?: ObjectNameType
   actions?: ActionInterface
   styles?: ColorItemStyleInterface
-  openDialog: OpenDialogFunctionType
+  openDialog?: OpenDialogFunctionType
   selectedObject?: SelectedObjectType
 }
 

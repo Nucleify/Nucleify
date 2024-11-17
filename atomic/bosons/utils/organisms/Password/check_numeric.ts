@@ -1,5 +1,3 @@
-export function checkNumeric(password: string | undefined | null): boolean {
-  if (password === undefined || null) return
-
+export function checkNumeric(password: string): boolean {
   return /\d/.test(password)
 }

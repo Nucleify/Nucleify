@@ -1,9 +1,9 @@
 import {
-  DeleteEntityRequestType,
+  DeleteEntityRequestFunctionType,
   EditEntityRequestFunctionType,
   GetAllEntitiesRequestFunctionType,
   GetEntityRequestFunctionType,
-  LoadingType,
+  LoadingRefType,
   StoreEntityRequestFunctionType,
   UserInterface,
   UserResultsType,
@@ -11,10 +11,10 @@ import {
 
 export interface UserRequestsInterface {
   results: UserResultsType
-  loading: LoadingType
+  loading: LoadingRefType
   getAllUsers: GetAllEntitiesRequestFunctionType<UserInterface>
-  getUser: GetEntityRequestFunctionType<UserInterface>
+  getUser: GetEntityRequestFunctionType
   storeUser: StoreEntityRequestFunctionType<UserInterface>
   editUser: EditEntityRequestFunctionType<UserInterface>
-  deleteUser: DeleteEntityRequestType
+  deleteUser: DeleteEntityRequestFunctionType
 }

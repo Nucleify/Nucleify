@@ -4,4 +4,4 @@ export const colorList: string[] = [
   'Article',
   'Contact',
   'User',
-]
+] as const

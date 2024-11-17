@@ -1,7 +1,6 @@
 import {
   ActivityLogInterface,
   ActivityResultsType,
-  CloseDialogFunctionType,
   DeleteEntityRequestFunctionType,
   GetAllEntitiesRequestFunctionType,
   LoadingRefType,
@@ -10,7 +9,6 @@ import {
 export interface ActivityLogRequestsInterface {
   results: ActivityResultsType
   loading: LoadingRefType
-  close: CloseDialogFunctionType
   getAllActivities: GetAllEntitiesRequestFunctionType<ActivityLogInterface>
   deleteActivity: DeleteEntityRequestFunctionType
 }
