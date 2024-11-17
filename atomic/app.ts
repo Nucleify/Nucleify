@@ -83,7 +83,8 @@ import {
     HomePage,
     HomeNavbar,
     HomeFooter,
-    SettingsPage, ServicesPage,
+    ServicesPage,
+    SettingsPage,
 } from './pages'
 import {
     BackLink,
