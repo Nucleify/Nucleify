@@ -13,24 +13,18 @@ export const loginFields: Ref<LoginFieldsInterface> = ref<LoginFieldsInterface>(
   }
 )
 
-const inputData: readonly InputInterface<LoginFieldKey>[] = [
+const inputData: readonly [LoginFieldKey, string, string, string, boolean][] = [
   ['email', 'email', 'email', 'Email Address', false],
   ['password', 'password', 'password', 'Password', false],
 ] as const
 
 export const loginInputs: readonly InputInterface<LoginFieldKey>[] =
   inputData.map(
-    ([
-      model,
-      type,
-      id,
-      label,
-      autofocus,
-    ]): readonly InputInterface<LoginFieldKey>[] => ({
+    ([model, type, id, label, autofocus]): InputInterface<LoginFieldKey> => ({
       model,
       type,
       id,
       label,
       autofocus,
     })
-  ) as const
+  )

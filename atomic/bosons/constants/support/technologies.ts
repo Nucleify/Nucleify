@@ -1,6 +1,6 @@
 import { TechnologyInterface } from 'atomic/bosons/types'
 
-const techData: readonly TechnologyInterface[] = [
+const techData: readonly [string, string][] = [
   ['php.svg', 'https://www.php.net/'],
   ['laravel.svg', 'https://laravel.com/'],
   ['typescript.svg', 'https://www.typescriptlang.org/'],
@@ -18,13 +18,14 @@ const techData: readonly TechnologyInterface[] = [
   ['cypress.svg', 'https://www.cypress.io/'],
   ['sonarcloud.svg', 'https://www.sonarsource.com/products/sonarcloud/'],
   ['eslint.svg', 'https://eslint.org/'],
+  ['stylelint.svg', 'https://stylelint.io/'],
   ['husky.svg', 'https://typicode.github.io/husky/'],
   ['prettier.svg', 'https://prettier.io/'],
 ] as const
 
 export const technologies: readonly TechnologyInterface[] = techData.map(
-  ([image, url]): readonly TechnologyInterface[] => ({
+  ([image, url]): TechnologyInterface => ({
     image,
     url,
   })
-) as const
+)

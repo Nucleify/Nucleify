@@ -11,7 +11,7 @@ const createItem = (
     description,
   }) as const
 
-const itemsData: WhyUsDataInterface[] = [
+const itemsData: readonly [string, string, string][] = [
   [
     'pi pi-cloud',
     'Your Own Cloud',

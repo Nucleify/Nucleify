@@ -15,7 +15,7 @@ it('returns "ad-calendar" for "calendar"', (): void => {
 })
 
 it('returns "Dropdown" for "dropdown"', (): void => {
-  expect(getComponent('dropdown')).toBe('Dropdown')
+  expect(getComponent('dropdown')).toBe('ad-dropdown')
 })
 
 it('returns "ad-password" for "password"', (): void => {

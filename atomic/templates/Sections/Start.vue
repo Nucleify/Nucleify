@@ -1,5 +1,5 @@
 <template>
-  <div class="start-container container">
+  <div class="start-section container">
     <div class="start-animation">
       <slot />
     </div>

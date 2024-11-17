@@ -1,3 +1,3 @@
-export function isDropdownOrCalendar(type: string): void {
+export function isDropdownOrCalendar(type: string): boolean {
   return type === 'dropdown' || type === 'calendar'
 }
