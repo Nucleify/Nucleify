@@ -49,6 +49,27 @@ const updatedContactData = [
     'role' => 'admin'
 ];
 
+/**
+ *  Money
+ */
+const moneyData = [
+    'count' => 100000,
+    'id' => 1,
+    'sender_id' => 1,
+    'receiver_id' => 2,
+    'title' => 'Magnam qui sed explicabo eos quisquam beatae.',
+    'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi.',
+    'category' => 'omnis, voluptatum, omnis'
+];
+const updatedMoneyData = [
+    'count' => 100000,
+    'id' => 1,
+    'sender_id' => 1,
+    'receiver_id' => 2,
+    'title' => ' Quia explicabo eos quisquam beatae.',
+    'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi.',
+    'category' => 'omnis, voluptatum, suspicit'
+];
 
 /**
  *  User

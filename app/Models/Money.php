@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\MoneyContract;
 use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,8 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string title
  * @property string description
  * @property string category
- * @property DateTime created_at
- * @property DateTime updated_at
+ * @property string created_at
+ * @property string updated_at
  * @property int getId
  * @property int getCount
  * @property int getSenderId
@@ -25,8 +26,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string getTitle
  * @property string getDescription
  * @property string getCategory
- * @property DateTime getCreatedAt
- * @property DateTime getUpdatedAt
+ * @property string getCreatedAt
+ * @property string getUpdatedAt
  * @property BelongsTo sender
  * @property BelongsTo receiver
  * @property Builder scopeGetById
@@ -39,7 +40,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Builder scopeGetByCreatedAt
  * @property Builder scopeGetByUpdatedAt
  */
-class Money extends Model
+class Money extends Model implements MoneyContract
 {
     use HasFactory;
 
@@ -84,11 +85,11 @@ class Money extends Model
     {
         return $this->category;
     }
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): string
     {
         return $this->created_at;
     }
-    public function getUpdatedAt(): DateTime
+    public function getUpdatedAt(): string
     {
         return $this->updated_at;
     }

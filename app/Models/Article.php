@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string title
  * @property string description
  * @property string|null category
- * @property DateTime created_at
- * @property DateTime updated_at
+ * @property string created_at
+ * @property string updated_at
  * @property string getTitle
  * @property string getDescription
  * @property string|null getCategory

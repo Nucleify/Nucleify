@@ -72,7 +72,7 @@ describe('Instance', function () {
     test('can get created_at date', function () {
         $money = Money::factory()->create();
 
-        expect($money->getCreatedAt()->format('Y-m-d H:i:s'))
+        expect($money->getCreatedAt())
             ->toBeString()
             ->toBe($money->created_at->toDateTimeString());
     });
@@ -80,7 +80,7 @@ describe('Instance', function () {
     test('can get updated_at date', function () {
         $money = Money::factory()->create();
 
-        expect($money->getUpdatedAt()->format('Y-m-d H:i:s'))
+        expect($money->getUpdatedAt())
             ->toBeString()
             ->toBe($money->updated_at->toDateTimeString());
     });

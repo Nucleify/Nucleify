@@ -2,6 +2,8 @@
 
 namespace App\Contracts;
 
+use DateTime;
+
 interface MoneyContract
 {
     public function getCount(): int;
