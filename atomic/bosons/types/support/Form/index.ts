@@ -1,1 +1,1 @@
-export * from './variables'
+export * from './interfaces'

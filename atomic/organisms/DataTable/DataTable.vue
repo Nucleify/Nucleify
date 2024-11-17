@@ -65,7 +65,7 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
-    @row-click="openDialog('show', $event.data)"
+    @row-click="openDialog!('show', $event.data)"
     :v-type="props.type"
   >
     <Column
@@ -85,7 +85,7 @@
             :type="props.type"
             class="data-table-button"
             icon="pi pi-trash"
-            @click="openDialog('delete', row.data)"
+            @click="openDialog!('delete', row.data)"
             rounded
             text
             :loading="props.loading"
@@ -133,10 +133,10 @@ import { useDropdown, useMenu } from 'atomic/bosons/utils'
 
 const props = defineProps<DataTableInterface>()
 const menu = ref()
-const actions = actionsList(props.openDialog)
+const actions = actionsList(props.openDialog!)
 
 const { openMenu, selectedObject } = useMenu()
-const { dropdownItems } = useDropdown(selectedObject, props.openDialog)
+const { dropdownItems } = useDropdown(selectedObject, props.openDialog!)
 
 const specificColumns = columns[props.type]
 const skeleton = ref(new Array(props.rows))

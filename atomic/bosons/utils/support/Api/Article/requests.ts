@@ -5,18 +5,15 @@ import {
   ArticleInterface,
   ArticleResultsType,
   ArticleRequestsInterface,
-  DeleteEntityRequestFunctionType,
   CloseDialogFunctionType,
   UseLoadingInterface,
-  UseApiErrorsServiceInterface,
+  UseApiErrorsInterface,
   UseToastInterface,
-  GetAllEntitiesRequestFunctionType,
-  StoreEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
   GetAllEntitiesRequestResponseType,
 } from 'atomic/bosons/types'
 import {
   apiSuccess,
+  catchErrors,
   useApiErrors,
   useLoading,
   useToast,
@@ -25,15 +22,13 @@ import {
 export function articleRequests(
   close?: CloseDialogFunctionType
 ): ArticleRequestsInterface {
-  const results: ArticleResultsType = ref([])
+  const results: ArticleResultsType = ref<ArticleInterface[]>([])
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
-  const { apiErrors }: UseApiErrorsServiceInterface = useApiErrors()
+  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
   const { flashToast }: UseToastInterface = useToast()
 
-  async function getAllArticles(
-    loading?: boolean
-  ): GetAllEntitiesRequestFunctionType<ArticleInterface> {
+  async function getAllArticles(loading?: boolean): Promise<void> {
     try {
       if (loading) {
         setLoading(true)
@@ -44,7 +39,7 @@ export function articleRequests(
 
       results.value = response.data
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     } finally {
       if (loading) {
         setLoading(false)
@@ -54,8 +49,8 @@ export function articleRequests(
 
   async function storeArticle(
     data: ArticleInterface,
-    getData: () => void
-  ): StoreEntityRequestFunctionType<ArticleInterface> {
+    getData: () => Promise<void>
+  ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.post('/api/articles', {
         user_id: window.sessionStorage.getItem('user_id'),
@@ -64,16 +59,16 @@ export function articleRequests(
         category: data.category,
       })
 
-      await apiSuccess(response, getData, flashToast, close, 'create')
+      await apiSuccess(response, getData, flashToast, close!, 'create')
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 
   async function editArticle(
     article: ArticleInterface,
-    getData: () => void
-  ): EditEntityRequestFunctionType<ArticleInterface> {
+    getData: () => Promise<void>
+  ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.put(
         `/api/articles/${article.id}`,
@@ -84,22 +79,22 @@ export function articleRequests(
         }
       )
 
-      await apiSuccess(response, getData, flashToast, close, 'edit')
+      await apiSuccess(response, getData, flashToast, close!, 'edit')
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 
   async function deleteArticle(
     id: number,
-    getData: () => void
-  ): DeleteEntityRequestFunctionType {
+    getData: () => Promise<void>
+  ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.delete(`/api/articles/${id}`)
 
-      await apiSuccess(response, getData, flashToast, close, 'delete')
+      await apiSuccess(response, getData, flashToast, close!, 'delete')
     } catch (error) {
-      apiErrors(error)
+      catchErrors(error, apiErrors)
     }
   }
 
