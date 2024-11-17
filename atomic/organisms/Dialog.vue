@@ -3,7 +3,7 @@
     :header="props.header"
     :footer="props.footer"
     :visible="props.visible"
-    :modal="props.modal || 'modal'"
+    :modal="props.modal || true"
     :content-style="props.contentStyle"
     :content-class="props.contentClass"
     :content-props="props.contentProps"
@@ -93,7 +93,7 @@
           :label="props.cancelButtonLabel"
           icon="pi pi-times"
           severity="secondary"
-          @click="close(props.action)"
+          @click="close!(props.action!)"
           rounded
           text
         />
@@ -102,7 +102,7 @@
           :type="props.entity"
           :label="props.confirmButtonLabel"
           icon="pi pi-check"
-          @click="confirm(formData, props.getData)"
+          @click="props.confirm(formData, props.getData)"
           rounded
           text
         />
@@ -113,7 +113,7 @@
           :type="props.entity"
           :label="props.confirmButtonLabel"
           icon="pi pi-check"
-          @click="confirm(props.selectedObject.id, props.getData)"
+          @click="props.confirm(props.selectedObject.id, props.getData)"
           rounded
           text
         />
@@ -125,7 +125,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-import { DialogInterface } from 'atomic/bosons/types'
+import { DialogInterface, FormDataInterface } from 'atomic/bosons/types'
 import {
   getComponent,
   getTitle,
@@ -138,7 +138,9 @@ import {
 
 const props = defineProps<DialogInterface>()
 
-const formData = ref<{ [key: string]: string }>({ ...props.data })
+const formData = ref<FormDataInterface>({
+  ...(props.data && (Array.isArray(props.data) ? {} : props.data)),
+})
 
 watch(
   () => (props.action === 'edit' ? props.selectedObject : props.data),

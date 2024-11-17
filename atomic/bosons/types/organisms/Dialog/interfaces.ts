@@ -40,8 +40,8 @@ export interface DialogInterface {
   appendTo?: HTMLElement | HintedString<'body' | 'self'>
   pt?: PassThrough<DialogPassThroughAttributes>
   ptOptions?: PassThroughOptions
-  entity: ObjectType
-  action: ActionType
+  entity?: ObjectType
+  action?: ActionType
   title?: string
   fields?: Array<{
     name: string
@@ -56,7 +56,7 @@ export interface DialogInterface {
   confirmButtonLabel?: string
   confirm?: ConfirmDialogFunctionType
   cancelButtonLabel?: string
-  close: CloseDialogFunctionType
+  close?: CloseDialogFunctionType
   style?: StyleValue
 }
 

@@ -1,29 +1,28 @@
-import { ArticleFieldInterface } from 'atomic/bosons/types'
+import { ArticleFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
 
-export function useArticleFields() {
-  const fieldData: readonly ArticleFieldInterface[] = [
+export function useArticleFields(): UseFieldsInterface<ArticleFieldInterface> {
+  const fieldData: readonly [string, string][] = [
     ['title', 'Title'],
     ['description', 'Description'],
     ['category', 'Category'],
   ] as const
 
   const createAndEditFields: readonly ArticleFieldInterface[] = fieldData.map(
-    ([name, label]): readonly ArticleFieldInterface[] => ({
+    ([name, label]): ArticleFieldInterface => ({
       name,
       label,
       type: name === 'description' ? 'textarea' : 'input-text',
     })
-  ) as const
+  )
 
   const showFields: readonly ArticleFieldInterface[] = fieldData.map(
-    ([key, label]): readonly ArticleFieldInterface[] => ({
-      key,
+    ([name, label]): ArticleFieldInterface => ({
+      name,
       label,
     })
-  ) as const
+  )
 
   return {
-    fieldData,
     createAndEditFields,
     showFields,
   }

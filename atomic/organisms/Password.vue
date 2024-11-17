@@ -70,10 +70,10 @@ import { PasswordInterface } from '../bosons/types'
 
 const props = defineProps<PasswordInterface>()
 
-const hasLowercase = computed(() => checkLowercase(props.modelValue))
-const hasUppercase = computed(() => checkUppercase(props.modelValue))
-const hasNumeric = computed(() => checkNumeric(props.modelValue))
-const hasMinLength = computed(() => checkMinLength(props.modelValue))
+const hasLowercase = computed(() => checkLowercase(props.modelValue!))
+const hasUppercase = computed(() => checkUppercase(props.modelValue!))
+const hasNumeric = computed(() => checkNumeric(props.modelValue!))
+const hasMinLength = computed(() => checkMinLength(props.modelValue!))
 
 const criteria = computed(() => [
   { label: 'At least one lowercase', isValid: hasLowercase.value },

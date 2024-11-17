@@ -1,5 +1,3 @@
-export function checkLowercase(password: string | undefined | null): boolean {
-  if (password === undefined || null) return
-
+export function checkLowercase(password: string): boolean {
   return /[a-z]/.test(password)
 }

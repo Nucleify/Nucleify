@@ -14,7 +14,13 @@ export const registerFields: Ref<RegisterFieldsInterface> =
     password_confirmation: '',
   })
 
-const registerInputData: readonly InputInterface<RegisterFieldKey>[] = [
+const registerInputData: readonly [
+  RegisterFieldKey,
+  string,
+  string,
+  string,
+  boolean,
+][] = [
   ['name', 'text', 'name', 'Full Name', true],
   ['email', 'email', 'email', 'Email Address', false],
   ['password', 'password', 'password', 'Password', false],
@@ -35,11 +41,11 @@ export const registerInputs: readonly InputInterface<RegisterFieldKey>[] =
       id,
       label,
       autofocus,
-    ]): readonly InputInterface<RegisterFieldKey>[] => ({
+    ]): InputInterface<RegisterFieldKey> => ({
       model,
       type,
       id,
       label,
       autofocus,
     })
-  ) as const
+  )

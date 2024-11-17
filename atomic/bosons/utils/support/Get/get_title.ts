@@ -1,8 +1,8 @@
 import { ObjectType } from 'atomic/bosons/types'
 
-export function getTitle(selectedObject: ObjectType): string | undefined {
+export function getTitle(selectedObject: ObjectType): string {
   if (!selectedObject) {
-    return
+    return 'Unknown Entity'
   }
   switch (true) {
     case 'title' in selectedObject:
