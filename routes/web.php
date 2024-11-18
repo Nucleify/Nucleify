@@ -27,17 +27,16 @@ Route::get('/home', [HomeController::class, 'render'])->name('home');
  */
 Route::get('/about', [AboutController::class, 'render'])->name('about');
 
-/**
-<<<<<<< HEAD
-<<<<<<< HEAD
- *  Services
- */
-Route::get('/services', [ServicesController::class, 'render'])->name('services');
 
 /**
  *  Blog
  */
 Route::get('/blog', [BlogController::class, 'render'])->name('blog');
+
+/**
+ *  Services
+ */
+Route::get('/services', [ServicesController::class, 'render'])->name('services');
 
 /**
  *  Auth routes
