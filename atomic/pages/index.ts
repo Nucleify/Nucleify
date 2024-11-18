@@ -8,5 +8,3 @@ export * from './Errors'
 export * from './Home'
 export * from './Services'
 export * from './Settings'
-
-export * from './register'
