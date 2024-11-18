@@ -8,7 +8,14 @@ The files in the atomic folder follow the **[Atomic Design](https://medium.com/@
 Below is an overview of the typical roles these files play:
 <br>
 
-### 1. Atoms - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
+### 1. Bosons - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
+
+Bosons are the smallest, indivisible pieces of reusable logic or data.
+
+    Constants, styles, types and utils.
+<br>
+
+### 2. Atoms - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
 
 Atoms are the fundamental building blocks of the UI. They represent the smallest, indivisible elements that can exist independently or be combined to form more complex components.
 
@@ -16,7 +23,7 @@ Atoms are the fundamental building blocks of the UI. They represent the smallest
 
 <br>
 
-### 2. Molecules - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
+### 3. Molecules - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
 
 Molecules are combinations of atoms that work together as a single functional unit. These are slightly more complex components but still relatively simple and reusable.
 
@@ -24,7 +31,7 @@ Molecules are combinations of atoms that work together as a single functional un
 
 <br>
 
-### 3. Organisms - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
+### 4. Organisms - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
 
 Organisms are more complex UI structures made up of groups of molecules and/or atoms, or just complex standalone components with functions.
 
@@ -32,7 +39,7 @@ Organisms are more complex UI structures made up of groups of molecules and/or a
 
 <br>
 
-### 4. Templates - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
+### 5. Templates - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
 
 Templates define the structure and layout of combining organisms and other components. **They just serve as a blueprint for components combinations.**
 
@@ -40,7 +47,7 @@ Templates define the structure and layout of combining organisms and other compo
 
 <br>
 
-### 5. Pages - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
+### 6. Pages - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
 
 Pages are specific implementations of templates with functions. **They can be also treated as a "templates", but just for pages.**
 
@@ -48,6 +55,6 @@ Pages are specific implementations of templates with functions. **They can be al
 
 <br>
 
-### 6. Views  - <img src="/public/img/technologies/laravel.svg" width="15"> <img src="/public/img/technologies/php.svg" width="15">
+### 7. Views  - <img src="/public/img/technologies/laravel.svg" width="15"> <img src="/public/img/technologies/php.svg" width="15">
 
 Views are specific implementations of pages, with actual routes binding. ```.blade.php``` filenames serves as routes names. **We put it all specific-route components + meta tags, canonicals, scripts etc.**   
