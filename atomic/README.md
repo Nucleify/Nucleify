@@ -57,4 +57,4 @@ Pages are specific implementations of templates with functions. **They can be al
 
 ### 7. Views  - <img src="/public/img/technologies/laravel.svg" width="15"> <img src="/public/img/technologies/php.svg" width="15">
 
-Views are specific implementations of pages, with actual routes binding. ```.blade.php``` filenames serves as routes names. **We put it all specific-route components + meta tags, canonicals, scripts etc.**   
+Views are specific implementations of pages, with actual routes binding. ```.blade.php``` filenames serves as routes names. **We put in all specific-route components + meta tags, canonicals, scripts etc.**   
