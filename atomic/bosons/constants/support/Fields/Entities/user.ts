@@ -8,23 +8,12 @@ export function useUserFields(): UseFieldsInterface<UserFieldInterface> {
     ['role', 'Role', 'dropdown'],
     ['password', 'Password', 'password'],
     ['password_confirmation', 'Confirm Password', 'password'],
-  ]
+    ['updated_at', 'Updated At', ''],
+    ['created_at', 'Created At', ''],
+  ] as const
 
-  const createFields: UserFieldInterface[] = fieldData.map(
-    ([name, label, type]): UserFieldInterface => {
-      const props =
-        name === 'role'
-          ? { options: roles, placeholder: 'Select a role' }
-          : name === 'password' || name === 'password_confirmation'
-            ? { type: 'password' }
-            : undefined
-
-      return { name, label, type, props }
-    }
-  )
-
-  const editFields: UserFieldInterface[] = fieldData
-    .filter(([name]) => name !== 'password' && name !== 'password_confirmation')
+  const createFields: UserFieldInterface[] = fieldData
+    .filter(([name]) => !['created_at', 'updated_at'].includes(name))
     .map(([name, label, type]): UserFieldInterface => {
       const props =
         name === 'role'
@@ -34,12 +23,34 @@ export function useUserFields(): UseFieldsInterface<UserFieldInterface> {
       return { name, label, type, props }
     })
 
-  const showFields: readonly { label: string; key: string }[] = [
-    { label: 'Email', key: 'email' },
-    { label: 'Role', key: 'role' },
-    { label: 'Created At', key: 'created_at' },
-    { label: 'Updated At', key: 'updated_at' },
-  ]
+  const editFields: UserFieldInterface[] = fieldData
+    .filter(
+      ([name]) =>
+        ![
+          'password',
+          'password_confirmation',
+          'created_at',
+          'updated_at',
+        ].includes(name)
+    )
+    .map(([name, label, type]): UserFieldInterface => {
+      const props =
+        name === 'role'
+          ? { options: roles, placeholder: 'Select a role' }
+          : undefined
+
+      return { name, label, type, props }
+    })
+
+  const showFields: readonly { label: string; key: string }[] = fieldData
+    .filter(
+      ([name]) => !['name', 'password', 'password_confirmation'].includes(name)
+    )
+    .map(([key, label]) => ({
+      name: key,
+      key,
+      label,
+    }))
 
   return {
     createFields,

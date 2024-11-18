@@ -2,48 +2,36 @@ import { roles } from 'atomic/bosons/constants'
 import { ContactFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
 
 export function useContactFields(): UseFieldsInterface<ContactFieldInterface> {
-  const fieldData: readonly [string, string][] = [
-    ['first_name', 'First Name'],
-    ['last_name', 'Last Name'],
-    ['email', 'Email'],
-    ['personal_phone', 'Personal Phone'],
-    ['work_phone', 'Work Phone'],
-    ['address', 'Address'],
-    ['birthday', 'Birthday'],
-    ['contact_groups', 'Contact Groups'],
-    ['role', 'Role'],
-  ]
+  const fieldData: readonly [string, string, string][] = [
+    ['first_name', 'First Name', 'input-text'],
+    ['last_name', 'Last Name', 'input-text'],
+    ['email', 'Email', 'input-text'],
+    ['personal_phone', 'Personal Phone', 'input-mask'],
+    ['work_phone', 'Work Phone', 'input-mask'],
+    ['address', 'Address', 'textarea'],
+    ['birthday', 'Birthday', 'calendar'],
+    ['contact_groups', 'Contact Groups', 'input-text'],
+    ['role', 'Role', 'dropdown'],
+    ['updated_at', 'Updated At', ''],
+    ['created_at', 'Created At', ''],
+  ] as const
 
-  const createAndEditFields: readonly ContactFieldInterface[] = fieldData.map(
-    ([name, label]) => {
-      const field: ContactFieldInterface = {
-        name,
-        label,
-        type:
-          name === 'address'
-            ? 'textarea'
-            : name === 'birthday'
-              ? 'calendar'
-              : name === 'role'
-                ? 'dropdown'
-                : name === 'personal_phone' || name === 'work_phone'
-                  ? 'input-mask'
-                  : 'input-text',
-        ...(name === 'email' && { props: { type: 'email' } }),
-        ...(name === 'role' && {
-          props: { options: roles, placeholder: 'Select a role' },
-        }),
-      }
-      return field
-    }
-  )
+  const createAndEditFields: ContactFieldInterface[] = fieldData
+    .filter(([name]) => !['created_at', 'updated_at'].includes(name))
+    .map(([name, label, type]): ContactFieldInterface => {
+      const props =
+        name === 'role'
+          ? { options: roles, placeholder: 'Select a role' }
+          : undefined
+
+      return { name, label, type, props }
+    })
 
   const showFields: readonly { label: string; key: string }[] = fieldData.map(
     ([key, label]) => ({
       name: key,
       key,
       label,
-      type: 'input-text',
     })
   )
 
