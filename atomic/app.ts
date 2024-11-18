@@ -84,8 +84,9 @@ import {
     HomePage,
     HomeNavbar,
     HomeFooter,
-    SettingsPage
-} from "./pages"
+    ServicesPage,
+    SettingsPage,
+} from './pages'
 import {
     BackLink,
     CardCategorySection,
@@ -155,6 +156,7 @@ app
     .component('ad-home-page', HomePage)
     .component('ad-home-navbar', HomeNavbar)
     .component('ad-home-footer', HomeFooter)
+    .component('ad-services-page', ServicesPage)
     .component('ad-settings-page', SettingsPage)
 
     /**
