@@ -1,5 +1,3 @@
-export * from './register'
-
 export { default as Avatar } from './Avatar.vue'
 export { default as Button } from './Button.vue'
 export { default as Header } from './Header.vue'
@@ -13,5 +11,4 @@ export { default as ProgressBar } from './ProgressBar.vue'
 export { default as ProgressSpinner } from './ProgressSpinner.vue'
 export { default as RadioButton } from './RadioButton.vue'
 export { default as Skeleton } from './Skeleton.vue'
-
 export { default as Textarea } from './Textarea.vue'
