@@ -72,6 +72,7 @@ import {
 } from "./organisms"
 import {
     AboutPage,
+    BlogPage,
     AdminPage,
     LoginPage,
     RegisterPage,
@@ -143,6 +144,7 @@ app
      *  Pages
      */
     .component('ad-about-page', AboutPage)
+    .component('ad-blog-page', BlogPage)
     .component('ad-admin-page', AdminPage)
     .component('ad-login-page', LoginPage)
     .component('ad-register-page', RegisterPage)

@@ -7,10 +7,7 @@
     >
       <ServicesStartAnimation />
     </ad-start-section>
-    <ad-card-category-section
-      :cards="servicesCategoriesCards"
-      :prefix="storysetServicesImgUrl"
-    />
+    <ad-card-category-section :cards="servicesCategoriesCards" />
   </div>
   <ad-home-footer />
 </template>
