@@ -15,26 +15,13 @@ import { createApp } from 'vue'
 export const app: App = createApp({})
 
 import registerPrimeVue from './primevue'
-// import { registerAtoms } from './atoms'
-// import { registerMolecules } from './molecules'
-// import { registerOrganisms } from './organisms'
-// import { registerPages } from './pages'
-// import { registerTemplates } from './templates'
 import { registerGlobalConstants } from './bosons/constants'
 import { registerGlobalUtils } from './bosons/utils'
 
 registerPrimeVue(app)
-// registerAtoms(app)
-// registerMolecules(app)
-// registerOrganisms(app)
-// registerPages(app)
-// registerTemplates(app)
 registerGlobalConstants(app)
 registerGlobalUtils(app)
 
-/**
- *  Use this bellow if your IDE can't find Atomic Design components
- */
 import {
     Avatar,
     Button,
@@ -148,8 +135,6 @@ app
     .component('ad-about-page', AboutPage)
     .component('ad-blog-page', BlogPage)
     .component('ad-admin-page', AdminPage)
-    .component('ad-blog-page', BlogPage)
-
     .component('ad-login-page', LoginPage)
     .component('ad-register-page', RegisterPage)
     .component('ad-activity-page', ActivityPage)
