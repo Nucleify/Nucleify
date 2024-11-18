@@ -7,7 +7,7 @@ export interface UseFieldsInterface<T> {
         'input-text' | 'textarea' | 'dropdown' | 'calendar' | 'password',
       ][]
   createAndEditFields?: readonly T[]
-  showFields?: readonly T[]
+  showFields?: readonly { label: string; key: string }[]
   createFields?: readonly T[]
   editFields?: readonly T[]
 }
