@@ -57,18 +57,18 @@ const moneyData = [
     'id' => 1,
     'sender_id' => 1,
     'receiver_id' => 2,
-    'title' => 'Magnam qui sed explicabo eos quisquam beatae.',
+    'title' => 'Magnam qui sed explicabo eos.',
     'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi.',
-    'category' => 'omnis, voluptatum, omnis'
+    'category' => 'omnis'
 ];
 const updatedMoneyData = [
     'count' => 100000,
     'id' => 1,
     'sender_id' => 1,
     'receiver_id' => 2,
-    'title' => ' Quia explicabo eos quisquam beatae.',
+    'title' => 'Quia explicabo eos quisquam.',
     'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi.',
-    'category' => 'omnis, voluptatum, suspicit'
+    'category' => 'omnis'
 ];
 
 /**

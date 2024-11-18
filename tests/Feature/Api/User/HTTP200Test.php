@@ -8,13 +8,13 @@ beforeEach(function () {
 });
 
 describe('200 > Authorized', function () {
-    test('store api', function () {
-        $this->postJson(route('users.store'), userData)
+    test('index api', function () {
+        $this->getJson(route('users.index'))
             ->assertOk();
     });
 
-    test('index api', function () {
-        $this->getJson(route('users.index'))
+    test('store api', function () {
+        $this->postJson(route('users.store'), userData)
             ->assertOk();
     });
 

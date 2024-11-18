@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Entities\ActivityController;
 use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
+use App\Http\Controllers\Entities\MoneyController;
 use App\Http\Controllers\Entities\UserController;
 use App\Http\Controllers\ArtisanController;
 use App\Http\Controllers\SitemapController;
@@ -63,6 +64,22 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('contacts.update');
         Route::delete('/{id}', 'destroy')
             ->name('contacts.destroy');
+    });
+
+    /**
+     *  Money
+     */
+    Route::prefix('money')->controller(MoneyController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('money.index');
+        Route::get('/{id}', 'show')
+            ->name('money.show');
+        Route::post('/', 'store')
+            ->name('money.store');
+        Route::put('/{id}', 'update')
+            ->name('money.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('money.destroy');
     });
 
     /**
