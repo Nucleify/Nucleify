@@ -2,11 +2,7 @@ import { roles } from 'atomic/bosons/constants'
 import { UseFieldsInterface, UserFieldInterface } from 'atomic/bosons/types'
 
 export function useUserFields(): UseFieldsInterface<UserFieldInterface> {
-  const fieldData: readonly [
-    string,
-    string,
-    'input-text' | 'textarea' | 'dropdown' | 'calendar' | 'password',
-  ][] = [
+  const fieldData: [string, string, string][] = [
     ['name', 'Name', 'input-text'],
     ['email', 'Email', 'input-text'],
     ['role', 'Role', 'dropdown'],
@@ -14,56 +10,36 @@ export function useUserFields(): UseFieldsInterface<UserFieldInterface> {
     ['password_confirmation', 'Confirm Password', 'password'],
   ]
 
-  const createFields: readonly UserFieldInterface[] = fieldData.map(
-    ([name, label, type]) => {
-      const field: UserFieldInterface = {
-        name,
-        label,
-        type,
-      }
+  const createFields: UserFieldInterface[] = fieldData.map(
+    ([name, label, type]): UserFieldInterface => {
+      const props =
+        name === 'role'
+          ? { options: roles, placeholder: 'Select a role' }
+          : name === 'password' || name === 'password_confirmation'
+            ? { type: 'password' }
+            : undefined
 
-      if (name === 'role') {
-        field.props = {
-          options: roles.map((role) => ({ label: role, value: role })),
-          placeholder: 'Select a role',
-        }
-      } else if (name === 'password' || name === 'password_confirmation') {
-        field.props = {
-          type: 'password',
-        }
-      }
-
-      return field
+      return { name, label, type, props }
     }
   )
 
-  const editFields: readonly UserFieldInterface[] = fieldData
+  const editFields: UserFieldInterface[] = fieldData
     .filter(([name]) => name !== 'password' && name !== 'password_confirmation')
-    .map(([name, label, type]) => {
-      const field: UserFieldInterface = {
-        name,
-        label,
-        type,
-      }
+    .map(([name, label, type]): UserFieldInterface => {
+      const props =
+        name === 'role'
+          ? { options: roles, placeholder: 'Select a role' }
+          : undefined
 
-      if (name === 'role') {
-        field.props = {
-          options: roles.map((role) => ({ label: role, value: role })),
-          placeholder: 'Select a role',
-        }
-      }
-
-      return field
+      return { name, label, type, props }
     })
 
-  const showFields: readonly UserFieldInterface[] = fieldData.map(
-    ([key, label, type]) => ({
-      name: key,
-      key,
-      label,
-      type: type || 'input-text',
-    })
-  )
+  const showFields: readonly { label: string; key: string }[] = [
+    { label: 'Email', key: 'email' },
+    { label: 'Role', key: 'role' },
+    { label: 'Created At', key: 'created_at' },
+    { label: 'Updated At', key: 'updated_at' },
+  ]
 
   return {
     createFields,

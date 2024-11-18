@@ -15,12 +15,13 @@ export function useArticleFields(): UseFieldsInterface<ArticleFieldInterface> {
     })
   )
 
-  const showFields: readonly ArticleFieldInterface[] = fieldData.map(
-    ([name, label]): ArticleFieldInterface => ({
-      name,
-      label,
-    })
-  )
+  const showFields: readonly { label: string; key: string }[] = [
+    { label: 'Title', key: 'title' },
+    { label: 'Description', key: 'description' },
+    { label: 'Category', key: 'category' },
+    { label: 'Created At', key: 'created_at' },
+    { label: 'Updated At', key: 'updated_at' },
+  ]
 
   return {
     createAndEditFields,

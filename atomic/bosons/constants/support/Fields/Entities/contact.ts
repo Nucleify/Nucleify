@@ -38,7 +38,7 @@ export function useContactFields(): UseFieldsInterface<ContactFieldInterface> {
     }
   )
 
-  const showFields: readonly ContactFieldInterface[] = fieldData.map(
+  const showFields: readonly { label: string; key: string }[] = fieldData.map(
     ([key, label]) => ({
       name: key,
       key,
