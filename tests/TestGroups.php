@@ -1,0 +1,71 @@
+<?php
+
+/**
+ *  Feature groups
+ */
+uses()
+    ->group('api')
+    ->in('Feature/Api');
+
+uses()
+    ->group('activity-api')
+    ->in('Feature/Api/Activity');
+
+uses()
+    ->group('article-api')
+    ->in('Feature/Api/Article');
+
+uses()
+    ->group('artisan-api')
+    ->in('Feature/Api/Artisan');
+
+uses()
+    ->group('user-api')
+    ->in('Feature/Api/User');
+
+uses()
+    ->group('contact-api')
+    ->in('Feature/Api/Contact');
+
+uses()
+    ->group('sitemap-api')
+    ->in('Feature/Api/Sitemap');
+
+uses()
+    ->group('feature')
+    ->in('Feature');
+
+uses()
+    ->group('global')
+    ->in('Global');
+
+uses()
+    ->group('commands')
+    ->in('Feature/Commands');
+
+uses()
+    ->group('controllers')
+    ->in('Feature/Controllers');
+
+uses()
+    ->group('services')
+    ->in('Feature/Services');
+
+/**
+ *  Database groups
+ */
+uses()
+    ->group('database')
+    ->in('Database');
+
+uses()
+    ->group('models')
+    ->in('Database/Models');
+
+uses()
+    ->group('migrations')
+    ->in('Database/Migrations');
+
+uses()
+    ->group('factories')
+    ->in('Database/Factories');

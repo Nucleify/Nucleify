@@ -1,11 +1,10 @@
 export interface UserFieldInterface {
   name: string
   label: string
-  key?: string
-  type: 'input-text' | 'textarea' | 'dropdown' | 'calendar' | 'password'
+  type: string
   props?: {
-    type?: string
-    options?: Array<{ label: string; value: string }>
+    options?: readonly string[]
     placeholder?: string
+    type?: string
   }
 }
