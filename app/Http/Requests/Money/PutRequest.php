@@ -28,8 +28,8 @@ class PutRequest extends FormRequest
             'sender_id' => 'required|integer',
             'receiver_id' => 'required|integer',
             'title' => 'required|string|min:3|max:30',
-            'description' => 'nullable|string|max:255',
-            'category' => 'nullable|min:3|max:15',
+            'description' => 'nullable|string|min:3|max:255',
+            'category' => 'nullable|string|max:15',
         ];
     }
 }
