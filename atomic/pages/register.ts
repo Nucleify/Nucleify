@@ -80,6 +80,11 @@ export function registerPages(app: App): void {
     .component('ad-register-page', RegisterPage)
 
     /**
+     *  Blog
+     */
+    .component('ad-blog-page', BlogPage)
+
+    /**
      *  Dashboard
      */
     .component('ad-dashboard-page', DashboardPage)

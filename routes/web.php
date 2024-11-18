@@ -29,15 +29,16 @@ Route::get('/about', [AboutController::class, 'render'])->name('about');
 
 /**
 <<<<<<< HEAD
+<<<<<<< HEAD
  *  Services
  */
 Route::get('/services', [ServicesController::class, 'render'])->name('services');
 
-=======
+/**
  *  Blog
  */
 Route::get('/blog', [BlogController::class, 'render'])->name('blog');
->>>>>>> 3e07851b5cda7a0cc3c0a5915e283a33a06fbc40
+
 /**
  *  Auth routes
  */
