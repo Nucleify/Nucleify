@@ -29,6 +29,12 @@ case "$CURRENT_BRANCH" in
     page-about)
         FINAL_MSG="About: $ORIGINAL_MSG"
         ;;
+    page-services)
+        FINAL_MSG="Services: $ORIGINAL_MSG"
+	;;
+    page-blog)
+        FINAL_MSG="Blog: $ORIGINAL_MSG"
+	;;
     performance)
         FINAL_MSG="⚡ Performance: $ORIGINAL_MSG"
         ;;
