@@ -7,6 +7,11 @@ import {
   AboutPage,
 
   /**
+   *  Blog
+   */
+  BlogPage,
+
+  /**
    *  Admin
    */
   AdminPage,
@@ -42,6 +47,10 @@ import {
   HomeFooter,
 
   /**
+   *  Services
+   */
+  ServicesPage,
+  /**
    *  Settings
    */
   SettingsPage,
@@ -55,6 +64,11 @@ export function registerPages(app: App): void {
     .component('ad-about-page', AboutPage)
 
     /**
+     *  Blog
+     */
+    .component('ad-blog-page', BlogPage)
+
+    /**
      *  Admin
      */
     .component('ad-admin-page', AdminPage)
@@ -64,6 +78,11 @@ export function registerPages(app: App): void {
      */
     .component('ad-login-page', LoginPage)
     .component('ad-register-page', RegisterPage)
+
+    /**
+     *  Blog
+     */
+    .component('ad-blog-page', BlogPage)
 
     /**
      *  Dashboard
@@ -88,7 +107,10 @@ export function registerPages(app: App): void {
     .component('ad-home-page', HomePage)
     .component('ad-home-navbar', HomeNavbar)
     .component('ad-home-footer', HomeFooter)
-
+    /**
+     *  Services
+     */
+    .component('ad-services-page', ServicesPage)
     /**
      *  Settings
      */
