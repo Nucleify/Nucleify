@@ -73,6 +73,7 @@ import {
 } from "./organisms"
 import {
     AboutPage,
+    BlogPage,
     AdminPage,
     LoginPage,
     RegisterPage,
@@ -84,8 +85,9 @@ import {
     HomePage,
     HomeNavbar,
     HomeFooter,
-    SettingsPage
-} from "./pages"
+    ServicesPage,
+    SettingsPage,
+} from './pages'
 import {
     BackLink,
     CardCategorySection,
@@ -144,7 +146,10 @@ app
      *  Pages
      */
     .component('ad-about-page', AboutPage)
+    .component('ad-blog-page', BlogPage)
     .component('ad-admin-page', AdminPage)
+    .component('ad-blog-page', BlogPage)
+
     .component('ad-login-page', LoginPage)
     .component('ad-register-page', RegisterPage)
     .component('ad-activity-page', ActivityPage)
@@ -155,6 +160,7 @@ app
     .component('ad-home-page', HomePage)
     .component('ad-home-navbar', HomeNavbar)
     .component('ad-home-footer', HomeFooter)
+    .component('ad-services-page', ServicesPage)
     .component('ad-settings-page', SettingsPage)
 
     /**

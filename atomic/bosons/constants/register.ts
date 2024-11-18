@@ -8,5 +8,7 @@ export function registerGlobalConstants(app: App): void {
   app.config.globalProperties.contributorsImgUrl = 'img/contributors/'
   app.config.globalProperties.storysetImgUrl = 'img/storyset/'
   app.config.globalProperties.storysetAboutImgUrl = 'img/storyset/about/'
+  app.config.globalProperties.storysetServicesImgUrl = 'img/storyset/services/'
+  app.config.globalProperties.storysetBlogImgUrl = 'img/storyset/blog/'
   app.config.globalProperties.technologiesImgUrl = 'img/technologies/'
 }
