@@ -1,3 +1,4 @@
+export * from './Carousel'
 export * from './DataTable'
 
 export { default as Calendar } from './Calendar.vue'

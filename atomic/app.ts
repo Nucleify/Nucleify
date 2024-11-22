@@ -46,6 +46,7 @@ import {
 import {
     Calendar,
     Card,
+    CarouselSwiper,
     Chart,
     ColorPicker,
     DataTable,
@@ -117,6 +118,7 @@ app
      */
     .component('ad-calendar', Calendar)
     .component('ad-card', Card)
+    .component('ad-carousel-swiper', CarouselSwiper)
     .component('ad-chart', Chart)
     .component('ad-color-picker', ColorPicker)
     .component('ad-data-table', DataTable)

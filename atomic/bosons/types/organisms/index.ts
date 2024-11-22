@@ -1,5 +1,6 @@
 export * from './Calendar'
 export * from './Card'
+export * from './Carousel'
 export * from './Chart'
 export * from './ColorPicker'
 export * from './DataTable'
