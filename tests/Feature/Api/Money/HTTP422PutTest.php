@@ -6,695 +6,1043 @@ beforeEach(function () {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) {
+describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updatedMoneyData) {
+    /**
+     * USER ID TESTS
+     */
+    $updatedMoneyData['user_id'] = '';
+    test('invalid empty user_id', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = 'user_id';
+    test('invalid user_id string', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = false;
+    test('invalid user_id false', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [];
+    test('invalid user_id > empty array', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [1];
+    test('invalid user_id > array with positive integer', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [-1];
+    test('invalid user_id > array with negative integer', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [1, 1];
+    test('invalid user_id > array with multiple same positive integers', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [1, 2];
+    test('invalid user_id > array with multiple different positive integers', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [-1, -1];
+    test('invalid user_id > array with multiple same negative integers', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [-1, -2];
+    test('invalid user_id > array with multiple different negative integers', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = ['receiver_id'];
+    test('invalid user_id > array with string', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = ['receiver_id1', 'receiver_id1'];
+    test('invalid user_id > array with multiple same strings', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = ['receiver_id1', 'receiver_id2'];
+    test('invalid user_id > array with multiple different strings', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [true];
+    test('invalid user_id > array with true', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [false];
+    test('invalid user_id > array with false', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [true, true];
+    test('invalid user_id > array with multiple true', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [false, false];
+    test('invalid user_id > array with multiple false', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = [true , false];
+    test('invalid user_id > array with true false', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedMoneyData['user_id'] = updatedMoneyData['user_id']; // reset user_id value
+
+
+
     /**
      * COUNT TESTS
      */
-    $moneyData['count'] = '';
+    $updatedMoneyData['count'] = '';
     test('invalid empty count', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field is required.']
         ]]
     ));
 
-    $moneyData['count'] = 'count';
+    $updatedMoneyData['count'] = 'count';
     test('invalid count string', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = false;
+    $updatedMoneyData['count'] = false;
     test('invalid count false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [];
+    $updatedMoneyData['count'] = [];
     test('invalid count > empty array', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field is required.']
         ]]
     ));
 
-    $moneyData['count'] = [1];
+    $updatedMoneyData['count'] = [1];
     test('invalid count > array with positive integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [-1];
+    $updatedMoneyData['count'] = [-1];
     test('invalid count > array with negative integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [1, 1];
+    $updatedMoneyData['count'] = [1, 1];
     test('invalid count > array with multiple same positive integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [1, 2];
+    $updatedMoneyData['count'] = [1, 2];
     test('invalid count > array with multiple different positive integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [-1, -1];
+    $updatedMoneyData['count'] = [-1, -1];
     test('invalid count > array with multiple same negative integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [-1, -2];
+    $updatedMoneyData['count'] = [-1, -2];
     test('invalid count > array with multiple different negative integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = ['count'];
+    $updatedMoneyData['count'] = ['count'];
     test('invalid count > array with string', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = ['count1', 'count1'];
+    $updatedMoneyData['count'] = ['count1', 'count1'];
     test('invalid count > array with multiple same strings', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = ['count1', 'count2'];
+    $updatedMoneyData['count'] = ['count1', 'count2'];
     test('invalid count > array with multiple different strings', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [true];
+    $updatedMoneyData['count'] = [true];
     test('invalid count > array with true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [false];
+    $updatedMoneyData['count'] = [false];
     test('invalid count > array with false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [true, true];
+    $updatedMoneyData['count'] = [true, true];
     test('invalid count > array with multiple true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [false, false];
+    $updatedMoneyData['count'] = [false, false];
     test('invalid count > array with multiple false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
 
-    $moneyData['count'] = [true , false];
+    $updatedMoneyData['count'] = [true , false];
     test('invalid count > array with true false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['count']],
         ['errors' => [
             'count' => ['The count field must be an integer.']
         ]]
     ));
-    $moneyData['count'] = moneyData['count']; // reset count value
-
-
-    /**
-     * SENDER ID TESTS
-     */
-    $moneyData['sender_id'] = '';
-    test('invalid empty sender_id', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field is required.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = 'sender_id';
-    test('invalid sender_id string', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = false;
-    test('invalid sender_id false', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [];
-    test('invalid sender_id > empty array', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field is required.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [1];
-    test('invalid sender_id > array with positive integer', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [-1];
-    test('invalid sender_id > array with negative integer', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [1, 1];
-    test('invalid sender_id > array with multiple same positive integers', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [1, 2];
-    test('invalid sender_id > array with multiple different positive integers', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [-1, -1];
-    test('invalid sender_id > array with multiple same negative integers', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [-1, -2];
-    test('invalid sender_id > array with multiple different negative integers', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = ['receiver_id'];
-    test('invalid sender_id > array with string', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = ['receiver_id1', 'receiver_id1'];
-    test('invalid sender_id > array with multiple same strings', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = ['receiver_id1', 'receiver_id2'];
-    test('invalid sender_id > array with multiple different strings', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [true];
-    test('invalid sender_id > array with true', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [false];
-    test('invalid sender_id > array with false', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [true, true];
-    test('invalid sender_id > array with multiple true', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [false, false];
-    test('invalid sender_id > array with multiple false', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [true , false];
-    test('invalid sender_id > array with true false', apiTest(
-        'PUT',
-        'money.update',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = moneyData['sender_id']; // reset receiver_id value
+    $updatedMoneyData['count'] = updatedMoneyData['count']; // reset count value
 
 
 
     /**
-     * receiver id TESTS
+     * SENDER TESTS
      */
-    $moneyData['receiver_id'] = '';
-    test('invalid empty receiver_id', apiTest(
+    $updatedMoneyData['sender'] = '';
+    test('invalid sender > empty', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field is required.']
+            'sender' => ['The sender field is required.']
         ]]
     ));
 
-    $moneyData['receiver_id'] = 'receiver_id';
-    test('invalid receiver_id string', apiTest(
+    $updatedMoneyData['sender'] = 1;
+    test('invalid sender > positive integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = false;
-    test('invalid receiver_id false', apiTest(
+    $updatedMoneyData['sender'] = -1;
+    test('invalid sender > negative integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [];
-    test('invalid receiver_id > empty array', apiTest(
+    $updatedMoneyData['sender'] = false;
+    test('invalid sender > false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field is required.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [1];
-    test('invalid receiver_id > array with positive integer', apiTest(
+    $updatedMoneyData['sender'] = true;
+    test('invalid sender > true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [-1];
-    test('invalid receiver_id > array with negative integer', apiTest(
+    $updatedMoneyData['sender'] = [];
+    test('invalid sender > empty array', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field is required.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [1, 1];
-    test('invalid receiver_id > array with multiple same positive integers', apiTest(
+    $updatedMoneyData['sender'] = [1];
+    test('invalid sender > array with positive integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [1, 2];
-    test('invalid receiver_id > array with multiple different positive integers', apiTest(
+    $updatedMoneyData['sender'] = [-1];
+    test('invalid sender > array with negative integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [-1, -1];
-    test('invalid receiver_id > array with multiple same negative integers', apiTest(
+    $updatedMoneyData['sender'] = [1, 1];
+    test('invalid sender > array with multiple same positive integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [-1, -2];
-    test('invalid receiver_id > array with multiple different negative integers', apiTest(
+    $updatedMoneyData['sender'] = [1, 2];
+    test('invalid sender > array with multiple different positive integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = ['receiver_id'];
-    test('invalid receiver_id > array with string', apiTest(
+    $updatedMoneyData['sender'] = [-1, -1];
+    test('invalid sender > array with multiple same negative integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = ['receiver_id1', 'receiver_id1'];
-    test('invalid receiver_id > array with multiple same strings', apiTest(
+    $updatedMoneyData['sender'] = [-1, -2];
+    test('invalid sender > array with multiple different negative integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = ['receiver_id1', 'receiver_id2'];
-    test('invalid receiver_id > array with multiple different strings', apiTest(
+    $updatedMoneyData['sender'] = ['sender'];
+    test('invalid sender > array with string', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [true];
-    test('invalid receiver_id > array with true', apiTest(
+    $updatedMoneyData['sender'] = ['sender1', 'sender1'];
+    test('invalid sender > array with multiple same strings', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [false];
-    test('invalid receiver_id > array with false', apiTest(
+    $updatedMoneyData['sender'] = ['sender1', 'sender2'];
+    test('invalid sender > array with multiple different strings', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [true, true];
-    test('invalid receiver_id > array with multiple true', apiTest(
+    $updatedMoneyData['sender'] = [true];
+    test('invalid sender > array with true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [false, false];
-    test('invalid receiver_id > array with multiple false', apiTest(
+    $updatedMoneyData['sender'] = [false];
+    test('invalid sender > array with false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [true , false];
-    test('invalid receiver_id > array with true false', apiTest(
+    $updatedMoneyData['sender'] = [true, true];
+    test('invalid sender > array with multiple true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
-        ['errors' => ['receiver_id']],
+        $updatedMoneyData,
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = moneyData['receiver_id']; // reset receiver_id value
+    $updatedMoneyData['sender'] = [false, false];
+    test('invalid sender > array with multiple false', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['sender']],
+        ['errors' => [
+            'sender' => [
+                'The sender field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['sender'] = [true , false];
+    test('invalid sender > array with true false', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['sender']],
+        ['errors' => [
+            'sender' => [
+                'The sender field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['sender'] = updatedMoneyData['sender']; // reset sender value
+
+
+
+    /**
+     * RECEIVER TESTS
+     */
+    $updatedMoneyData['receiver'] = '';
+    test('invalid receiver > empty', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => ['The receiver field is required.']
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = 1;
+    test('invalid receiver > positive integer', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = -1;
+    test('invalid receiver > negative integer', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = false;
+    test('invalid receiver > false', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = true;
+    test('invalid receiver > true', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [];
+    test('invalid receiver > empty array', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field is required.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [1];
+    test('invalid receiver > array with positive integer', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [-1];
+    test('invalid receiver > array with negative integer', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [1, 1];
+    test('invalid receiver > array with multiple same positive integers', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [1, 2];
+    test('invalid receiver > array with multiple different positive integers', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [-1, -1];
+    test('invalid receiver > array with multiple same negative integers', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [-1, -2];
+    test('invalid receiver > array with multiple different negative integers', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = ['receiver'];
+    test('invalid receiver > array with string', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = ['receiver1', 'receiver1'];
+    test('invalid receiver > array with multiple same strings', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = ['receiver1', 'receiver2'];
+    test('invalid receiver > array with multiple different strings', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [true];
+    test('invalid receiver > array with true', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [false];
+    test('invalid receiver > array with false', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [true, true];
+    test('invalid receiver > array with multiple true', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [false, false];
+    test('invalid receiver > array with multiple false', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = [true , false];
+    test('invalid receiver > array with true false', apiTest(
+        'PUT',
+        'money.update',
+        422,
+        $updatedMoneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedMoneyData['receiver'] = updatedMoneyData['receiver']; // reset receiver value
 
 
 
     /**
      * TITLE TESTS
      */
-    $moneyData['title'] = '';
+    $updatedMoneyData['title'] = '';
     test('invalid title > empty', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => ['The title field is required.']
         ]]
     ));
 
-    $moneyData['title'] = 1;
+    $updatedMoneyData['title'] = 1;
     test('invalid title > positive integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -704,12 +1052,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = -1;
+    $updatedMoneyData['title'] = -1;
     test('invalid title > negative integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -719,24 +1067,24 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = 'ti';
+    $updatedMoneyData['title'] = 'ti';
     test('invalid title > too short', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => ['The title field must be at least 3 characters.']
         ]]
     ));
 
-    $moneyData['title'] = false;
+    $updatedMoneyData['title'] = false;
     test('invalid title > false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -746,12 +1094,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = true;
+    $updatedMoneyData['title'] = true;
     test('invalid title > true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -761,24 +1109,24 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [];
+    $updatedMoneyData['title'] = [];
     test('invalid title > empty array', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => ['The title field is required.']
         ]]
     ));
 
-    $moneyData['title'] = [1];
+    $updatedMoneyData['title'] = [1];
     test('invalid title > array with positive integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -788,12 +1136,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [-1];
+    $updatedMoneyData['title'] = [-1];
     test('invalid title > array with negative integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -803,12 +1151,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [1, 1];
+    $updatedMoneyData['title'] = [1, 1];
     test('invalid title > array with multiple same positive integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -818,12 +1166,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [1, 2];
+    $updatedMoneyData['title'] = [1, 2];
     test('invalid title > array with multiple different positive integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -833,12 +1181,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [-1, -1];
+    $updatedMoneyData['title'] = [-1, -1];
     test('invalid title > array with multiple same negative integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -848,12 +1196,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [-1, -2];
+    $updatedMoneyData['title'] = [-1, -2];
     test('invalid title > array with multiple different negative integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -863,12 +1211,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = ['title'];
+    $updatedMoneyData['title'] = ['title'];
     test('invalid title > array with string', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -878,12 +1226,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = ['title1', 'title1'];
+    $updatedMoneyData['title'] = ['title1', 'title1'];
     test('invalid title > array with multiple same strings', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -893,12 +1241,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = ['title1', 'title2'];
+    $updatedMoneyData['title'] = ['title1', 'title2'];
     test('invalid title > array with multiple different strings', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -908,12 +1256,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [true];
+    $updatedMoneyData['title'] = [true];
     test('invalid title > array with true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -923,12 +1271,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [false];
+    $updatedMoneyData['title'] = [false];
     test('invalid title > array with false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -938,12 +1286,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [true, true];
+    $updatedMoneyData['title'] = [true, true];
     test('invalid title > array with multiple true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -953,12 +1301,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [false, false];
+    $updatedMoneyData['title'] = [false, false];
     test('invalid title > array with multiple false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -968,12 +1316,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = [true , false];
+    $updatedMoneyData['title'] = [true , false];
     test('invalid title > array with true false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['title']],
         ['errors' => [
             'title' => [
@@ -983,19 +1331,19 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = moneyData['title']; // reset title value
+    $updatedMoneyData['title'] = updatedMoneyData['title']; // reset title value
 
 
 
     /**
      * DESCRIPTION TESTS
      */
-    $moneyData['description'] = 1;
+    $updatedMoneyData['description'] = 1;
     test('invalid description > positive integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1005,12 +1353,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = -1;
+    $updatedMoneyData['description'] = -1;
     test('invalid description > negative integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1020,24 +1368,24 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = 't';
+    $updatedMoneyData['description'] = 't';
     test('invalid description > too short', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => ['The description field must be at least 3 characters.']
         ]]
     ));
 
-    $moneyData['description'] = false;
+    $updatedMoneyData['description'] = false;
     test('invalid description > false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1047,12 +1395,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = true;
+    $updatedMoneyData['description'] = true;
     test('invalid description > true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1062,12 +1410,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [];
+    $updatedMoneyData['description'] = [];
     test('invalid description > empty array', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1077,12 +1425,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [1];
+    $updatedMoneyData['description'] = [1];
     test('invalid description > array with positive integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1092,12 +1440,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [-1];
+    $updatedMoneyData['description'] = [-1];
     test('invalid description > array with negative integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1107,12 +1455,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [1, 1];
+    $updatedMoneyData['description'] = [1, 1];
     test('invalid description > array with multiple same positive integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1122,12 +1470,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [1, 2];
+    $updatedMoneyData['description'] = [1, 2];
     test('invalid description > array with multiple different positive integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1137,12 +1485,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [-1, -1];
+    $updatedMoneyData['description'] = [-1, -1];
     test('invalid description > array with multiple same negative integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1152,12 +1500,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [-1, -2];
+    $updatedMoneyData['description'] = [-1, -2];
     test('invalid description > array with multiple different negative integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1167,12 +1515,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = ['description'];
+    $updatedMoneyData['description'] = ['description'];
     test('invalid description > array with string', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1182,12 +1530,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = ['description1', 'description1'];
+    $updatedMoneyData['description'] = ['description1', 'description1'];
     test('invalid description > array with multiple same strings', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1197,12 +1545,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = ['description1', 'description2'];
+    $updatedMoneyData['description'] = ['description1', 'description2'];
     test('invalid description > array with multiple different strings', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1212,12 +1560,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [true];
+    $updatedMoneyData['description'] = [true];
     test('invalid description > array with true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1227,12 +1575,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [false];
+    $updatedMoneyData['description'] = [false];
     test('invalid description > array with false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1242,12 +1590,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [true, true];
+    $updatedMoneyData['description'] = [true, true];
     test('invalid description > array with multiple true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1257,12 +1605,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [false, false];
+    $updatedMoneyData['description'] = [false, false];
     test('invalid description > array with multiple false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1272,12 +1620,12 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = [true , false];
+    $updatedMoneyData['description'] = [true , false];
     test('invalid description > array with true false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['description']],
         ['errors' => [
             'description' => [
@@ -1287,31 +1635,31 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = moneyData['description']; // reset description value
+    $updatedMoneyData['description'] = updatedMoneyData['description']; // reset description value
 
 
 
     /**
      * CATEGORY TESTS
      */
-    $moneyData['category'] = 1;
+    $updatedMoneyData['category'] = 1;
     test('invalid category > positive integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = -1;
+    $updatedMoneyData['category'] = -1;
     test('invalid category > negative integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
@@ -1319,204 +1667,204 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
     ));
 
 
-    $moneyData['category'] = false;
+    $updatedMoneyData['category'] = false;
     test('invalid category > false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = true;
+    $updatedMoneyData['category'] = true;
     test('invalid category > true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [];
+    $updatedMoneyData['category'] = [];
     test('invalid category > empty array', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [1];
+    $updatedMoneyData['category'] = [1];
     test('invalid category > array with positive integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [-1];
+    $updatedMoneyData['category'] = [-1];
     test('invalid category > array with negative integer', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [1, 1];
+    $updatedMoneyData['category'] = [1, 1];
     test('invalid category > array with multiple same positive integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [1, 2];
+    $updatedMoneyData['category'] = [1, 2];
     test('invalid category > array with multiple different positive integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [-1, -1];
+    $updatedMoneyData['category'] = [-1, -1];
     test('invalid category > array with multiple same negative integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [-1, -2];
+    $updatedMoneyData['category'] = [-1, -2];
     test('invalid category > array with multiple different negative integers', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = ['category'];
+    $updatedMoneyData['category'] = ['category'];
     test('invalid category > array with string', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = ['category1', 'category1'];
+    $updatedMoneyData['category'] = ['category1', 'category1'];
     test('invalid category > array with multiple same strings', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = ['category1', 'category2'];
+    $updatedMoneyData['category'] = ['category1', 'category2'];
     test('invalid category > array with multiple different strings', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [true];
+    $updatedMoneyData['category'] = [true];
     test('invalid category > array with true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [false];
+    $updatedMoneyData['category'] = [false];
     test('invalid category > array with false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [true, true];
+    $updatedMoneyData['category'] = [true, true];
     test('invalid category > array with multiple true', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [false, false];
+    $updatedMoneyData['category'] = [false, false];
     test('invalid category > array with multiple false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']
         ]]
     ));
 
-    $moneyData['category'] = [true , false];
+    $updatedMoneyData['category'] = [true , false];
     test('invalid category > array with true false', apiTest(
         'PUT',
         'money.update',
         422,
-        $moneyData,
+        $updatedMoneyData,
         ['errors' => ['category']],
         ['errors' => [
             'category' => ['The category field must be a string.']

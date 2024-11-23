@@ -24,9 +24,10 @@ class PutRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'user_id' => 'integer',
+            'sender' => 'required|string',
+            'receiver' => 'required|string',
             'count' => 'required|integer',
-            'sender_id' => 'required|integer',
-            'receiver_id' => 'required|integer',
             'title' => 'required|string|min:3|max:30',
             'description' => 'nullable|string|min:3|max:255',
             'category' => 'nullable|string|max:15',

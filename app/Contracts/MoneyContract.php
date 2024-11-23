@@ -6,10 +6,11 @@ use DateTime;
 
 interface MoneyContract
 {
-    public function getCount(): int;
     public function getId(): int;
-    public function getSenderId(): int;
-    public function getReceiverId(): int;
+    public function getUserId(): int;
+    public function getSender(): string;
+    public function getReceiver(): string;
+    public function getCount(): int;
     public function getTitle(): string;
     public function getDescription(): string | null;
     public function getCategory(): string | null;

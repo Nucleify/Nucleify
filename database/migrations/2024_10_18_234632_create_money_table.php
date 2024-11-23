@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('money', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('sender');
+            $table->string('receiver');
             $table->integer('count')->default(0);
-            $table->integer('sender_id');
-            $table->integer('receiver_id');
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('category')->nullable();
