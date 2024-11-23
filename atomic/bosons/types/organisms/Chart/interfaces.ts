@@ -9,6 +9,7 @@ import {
   ContactInterface,
   ChartType,
   ChartMethodType,
+  MoneyInterface,
   UserInterface,
 } from 'atomic/bosons/types'
 
@@ -27,6 +28,7 @@ export interface ChartInterface {
   activityLogData?: ActivityLogInterface[]
   articleData?: ArticleInterface[]
   contactData?: ContactInterface[]
+  moneyData?: MoneyInterface[]
   userData?: UserInterface[]
   chartClass?: string
   example?: boolean
@@ -38,6 +40,7 @@ export interface DisplayChartsInterface {
   Admin: boolean
   Article: boolean
   Contact: boolean
+  Money: boolean
 }
 
 export interface UseDisplayChartsInterface {

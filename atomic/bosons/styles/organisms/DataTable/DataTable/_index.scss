@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  @each $type in activity, article, contact, user {
+  @each $type in activity, article, contact, money, user {
     &[v-type='#{$type}'] {
       @include entity-datatable-styles(
         var(--#{$type}-item-color-new),

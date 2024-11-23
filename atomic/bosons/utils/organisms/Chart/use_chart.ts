@@ -13,6 +13,7 @@ import {
   ChartInterface,
   LabelItemType,
   UseColorsReturnInterface,
+  MoneyInterface,
 } from 'atomic/bosons/types'
 import { useColors } from 'atomic/bosons/utils'
 
@@ -21,6 +22,7 @@ export function useChart() {
     activityItemColors,
     articleItemColors,
     contactItemColors,
+    moneyItemColors,
     userItemColors,
   }: UseColorsReturnInterface = useColors()
 
@@ -30,12 +32,14 @@ export function useChart() {
     activityItemColors: { primary: '#FFB600', hover: '#E7A60B' },
     articleItemColors: { primary: '#1187C7', hover: '#0F79B2' },
     contactItemColors: { primary: '#10B981', hover: '#10A674' },
+    moneyItemColors: { primary: '#0D2C54', hover: '#0d284a' },
     userItemColors: { primary: '#64748B', hover: '#566479' },
   }
 
   const chartLabels: { label: LabelItemType }[] = [
     { label: 'Articles' },
     { label: 'Contacts' },
+    { label: 'Money' },
     { label: 'Users' },
   ]
 
@@ -44,6 +48,7 @@ export function useChart() {
     activityLogData?: ActivityLogInterface[],
     articleData?: ArticleInterface[],
     contactData?: ContactInterface[],
+    moneyData?: MoneyInterface[],
     userData?: UserInterface[],
     example?: boolean
   ) {
@@ -52,6 +57,7 @@ export function useChart() {
       const activityLogDataByMonth: number[] = new Array(12).fill(0)
       const articleDataByMonth: number[] = new Array(12).fill(0)
       const contactDataByMonth: number[] = new Array(12).fill(0)
+      const moneyDataByMonth: number[] = new Array(12).fill(0)
       const userDataByMonth: number[] = new Array(12).fill(0)
 
       const colors = example
@@ -60,6 +66,7 @@ export function useChart() {
             activityItemColors,
             articleItemColors,
             contactItemColors,
+            moneyItemColors,
             userItemColors,
           }
 
@@ -67,6 +74,7 @@ export function useChart() {
         for (let i = 0; i < 12; i++) {
           articleDataByMonth[i] = Math.floor(Math.random() * 100)
           contactDataByMonth[i] = Math.floor(Math.random() * 100)
+          moneyDataByMonth[i] = Math.floor(Math.random() * 100)
           userDataByMonth[i] = Math.floor(Math.random() * 100)
         }
       } else {
@@ -78,6 +86,13 @@ export function useChart() {
         articleData?.forEach((article: ArticleInterface): void => {
           const monthIndex: number = new Date(article.created_at).getMonth()
           articleDataByMonth[monthIndex]++
+        })
+
+        moneyData?.forEach((money: MoneyInterface): void => {
+          if (money.created_at) {
+            const monthIndex: number = new Date(money.created_at).getMonth()
+            moneyDataByMonth[monthIndex]++
+          }
         })
 
         contactData?.forEach((contact: ContactInterface): void => {
@@ -114,6 +129,11 @@ export function useChart() {
               colors: colors.contactItemColors,
             },
             {
+              label: 'Money',
+              data: moneyDataByMonth,
+              colors: colors.moneyItemColors,
+            },
+            {
               label: 'Users',
               data: userDataByMonth,
               colors: colors.userItemColors,
@@ -137,6 +157,7 @@ export function useChart() {
             if (
               (label === 'Articles' && articleData) ||
               (label === 'Contacts' && contactData) ||
+              (label === 'Money' && moneyData) ||
               (label === 'Users' && userData)
             ) {
               labels.push(label)
@@ -151,6 +172,10 @@ export function useChart() {
             (sum: number, value: number) => sum + value,
             0
           )
+          const totalMoney: number = moneyDataByMonth.reduce(
+            (sum: number, value: number) => sum + value,
+            0
+          )
           const totalUsers: number = userDataByMonth.reduce(
             (sum: number, value: number) => sum + value,
             0
@@ -160,15 +185,17 @@ export function useChart() {
             labels,
             datasets: [
               {
-                data: [totalArticles, totalContacts, totalUsers],
+                data: [totalArticles, totalContacts, totalMoney, totalUsers],
                 backgroundColor: [
                   colors.articleItemColors.primary,
                   colors.contactItemColors.primary,
+                  colors.moneyItemColors.primary,
                   colors.userItemColors.primary,
                 ],
                 hoverBackgroundColor: [
                   colors.articleItemColors.hover,
                   colors.contactItemColors.hover,
+                  colors.moneyItemColors.hover,
                   colors.userItemColors.hover,
                 ],
               },

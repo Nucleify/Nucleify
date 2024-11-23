@@ -1,12 +1,12 @@
 <template>
   <div class="panel-container">
     <ad-card-chart
-      v-if="display.Article"
+      v-if="display.Money"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :article-data="results"
+      :money-data="results"
       :chart-class="'h-30rem'"
       :loading="loading"
     />
@@ -15,8 +15,9 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      type="article"
-      headerText="Manage Articles"
+      type="money"
+      headerText="Manage Money"
+      buttonText="New Money"
     />
   </div>
 
@@ -40,12 +41,8 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
 
-import { useArticleFields } from 'atomic/bosons/constants'
-import {
-  articleRequests,
-  useDialog,
-  useDisplayCharts,
-} from 'atomic/bosons/utils'
+import { useMoneyFields } from 'atomic/bosons/constants'
+import { moneyRequests, useDialog, useDisplayCharts } from 'atomic/bosons/utils'
 
 const {
   visibleShow,
@@ -56,25 +53,20 @@ const {
   openDialog,
   closeDialog,
 } = useDialog()
+
 const { display } = useDisplayCharts()
 
-const { createAndEditFields, showFields } = useArticleFields()
-const {
-  results,
-  loading,
-  getAllArticles,
-  storeArticle,
-  editArticle,
-  deleteArticle,
-} = articleRequests(closeDialog)
+const { createAndEditFields, showFields } = useMoneyFields()
+const { loading, results, getAllMoney, storeMoney, editMoney, deleteMoney } =
+  moneyRequests(closeDialog)
 
 onMounted(() => {
-  getAllArticles(true)
+  getAllMoney(true)
 })
 
 const dialogs = computed(() => [
   {
-    entity: 'article',
+    entity: 'money',
     action: 'show',
     visible: visibleShow.value,
     data: selectedObject.value,
@@ -82,37 +74,37 @@ const dialogs = computed(() => [
     fields: showFields,
   },
   {
-    entity: 'article',
+    entity: 'money',
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete article?',
+    title: 'Delete transaction?',
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
-    confirm: deleteArticle,
-    getData: getAllArticles,
+    confirm: deleteMoney,
+    getData: getAllMoney,
   },
   {
-    entity: 'article',
+    entity: 'money',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new article',
+    title: 'Create new transaction',
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
-    confirm: storeArticle,
-    getData: getAllArticles,
+    confirm: storeMoney,
+    getData: getAllMoney,
     fields: createAndEditFields,
   },
   {
-    entity: 'article',
+    entity: 'contact',
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit article',
+    title: 'Edit transaction',
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
-    confirm: editArticle,
-    getData: getAllArticles,
+    confirm: editMoney,
+    getData: getAllMoney,
     fields: createAndEditFields,
   },
 ])
@@ -120,7 +112,7 @@ const dialogs = computed(() => [
 
 <style scoped>
 :deep(.p-progress-spinner-circle) {
-  stroke: var(--article-item-color);
+  stroke: var(--money-item-color);
   animation: p-progress-spinner-dash 1.2s ease-in-out infinite;
 }
 </style>
