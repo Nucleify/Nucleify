@@ -41,6 +41,7 @@ import {
   Rating,
   SelectButton,
   Skeleton,
+  Slider,
   Textarea,
 } from './atoms'
 import { Anchor, FloatLabel, Tile } from './molecules'
@@ -110,6 +111,8 @@ app
   .component('ad-rating', Rating)
   .component('ad-select-button', SelectButton)
   .component('ad-skeleton', Skeleton)
+  .component('ad-slider', Slider)
+
   .component('ad-textarea', Textarea)
 
   /**
