@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <SelectButton />
 </template>
 
 <script setup lang="ts">

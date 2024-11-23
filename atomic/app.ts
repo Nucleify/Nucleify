@@ -39,6 +39,7 @@ import {
   ProgressSpinner,
   RadioButton,
   Rating,
+  SelectButton,
   Skeleton,
   Textarea,
 } from './atoms'
@@ -107,6 +108,7 @@ app
   .component('ad-progress-spinner', ProgressSpinner)
   .component('ad-radio-button', RadioButton)
   .component('ad-rating', Rating)
+  .component('ad-select-button', SelectButton)
   .component('ad-skeleton', Skeleton)
   .component('ad-textarea', Textarea)
 
