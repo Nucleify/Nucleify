@@ -49,6 +49,29 @@ const updatedContactData = [
     'role' => 'admin'
 ];
 
+/**
+ *  Money
+ */
+const moneyData = [
+    'count' => 100000,
+    'id' => 1,
+    'user_id' => 1,
+    'sender' => 'NL20ABNA7044037380',
+    'receiver' => 'LU920102241595375843',
+    'title' => 'Magnam qui sed explicabo eos.',
+    'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi.',
+    'category' => 'omnis'
+];
+const updatedMoneyData = [
+    'count' => 100000,
+    'id' => 1,
+    'user_id' => 1,
+    'sender' => 'NL20ABNA7044037380',
+    'receiver' => 'LU920102241595375843',
+    'title' => 'Quia explicabo eos quisquam.',
+    'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi.',
+    'category' => 'omnis'
+];
 
 /**
  *  User

@@ -21,6 +21,15 @@
         type="contact"
       />
       <ad-tile
+        href="#money"
+        header="Money"
+        :count="money?.length"
+        icon="pi pi-user"
+        count-secondary="20 new"
+        text-secondary="this week"
+        type="money"
+      />
+      <ad-tile
         href="#users"
         header="Users"
         :count="users?.length"
@@ -36,9 +45,10 @@
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
-      :direction="'vertical'"
+      :direction="isMobile() ? 'horizontal' : 'vertical'"
       :article-data="articles"
       :contact-data="contacts"
+      :money-data="money"
       :user-data="users"
       :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
@@ -54,6 +64,11 @@
       :getData="getAllContacts"
       :loading="!allLoaded"
     />
+    <money-dashboard
+      :data="money"
+      :getData="getAllMoney"
+      :loading="!allLoaded"
+    />
     <user-dashboard
       :data="users"
       :getData="getAllUsers"
@@ -65,13 +80,19 @@
 <script setup lang="ts">
 import { onMounted, ref, Ref, watch } from 'vue'
 
-import { ArticleDashboard, ContactDashboard, UserDashboard } from './'
+import {
+  ArticleDashboard,
+  ContactDashboard,
+  MoneyDashboard,
+  UserDashboard,
+} from './'
 
 import {
   articleRequests,
   contactRequests,
   userRequests,
   useDisplayCharts,
+  moneyRequests,
 } from 'atomic/bosons/utils'
 
 const { display } = useDisplayCharts()
@@ -86,20 +107,32 @@ const {
   loading: contactsLoading,
   getAllContacts,
 } = contactRequests()
+const { results: money, loading: moneyLoading, getAllMoney } = moneyRequests()
 const { results: users, loading: usersLoading, getAllUsers } = userRequests()
 
 onMounted(() => {
   getAllArticles(true)
   getAllContacts(true)
+  getAllMoney(true)
   getAllUsers(true)
 })
 
 const allLoaded: Ref<boolean> = ref(false)
 
 watch(
-  [articlesLoading, contactsLoading, usersLoading],
-  ([newArticlesLoading, newContactsLoading, newUsersLoading]) => {
-    if (!newArticlesLoading && !newContactsLoading && !newUsersLoading) {
+  [articlesLoading, contactsLoading, moneyLoading, usersLoading],
+  ([
+    newArticlesLoading,
+    newContactsLoading,
+    newMoneyLoading,
+    newUsersLoading,
+  ]) => {
+    if (
+      !newArticlesLoading &&
+      !newContactsLoading &&
+      !newMoneyLoading &&
+      !newUsersLoading
+    ) {
       setTimeout(() => {
         allLoaded.value = true
       }, 200)
@@ -119,12 +152,15 @@ watch(
 @keyframes p-progress-spinner-custom-color {
   0%,
   100% {
-    stroke: var(--contact-item-color);
-  }
-  40% {
     stroke: var(--article-item-color);
   }
-  80% {
+  25% {
+    stroke: var(--contact-item-color);
+  }
+  50% {
+    stroke: var(--money-item-color);
+  }
+  75% {
     stroke: var(--user-item-color);
   }
 }

@@ -1,5 +1,12 @@
 export function setColorsVariables(): void {
-  const items: string[] = ['main', 'activity', 'article', 'contact', 'user']
+  const items: string[] = [
+    'main',
+    'activity',
+    'article',
+    'contact',
+    'money',
+    'user',
+  ]
 
   const states: string[] = [
     'color',

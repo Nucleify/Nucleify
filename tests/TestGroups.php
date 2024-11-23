@@ -20,12 +20,16 @@ uses()
     ->in('Feature/Api/Artisan');
 
 uses()
-    ->group('user-api')
-    ->in('Feature/Api/User');
-
-uses()
     ->group('contact-api')
     ->in('Feature/Api/Contact');
+
+uses()
+    ->group('money-api')
+    ->in('Feature/Api/Money');
+
+uses()
+    ->group('user-api')
+    ->in('Feature/Api/User');
 
 uses()
     ->group('sitemap-api')
