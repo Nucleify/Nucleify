@@ -22,8 +22,8 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null birthday
  * @property mixed|null contact_groups
  * @property string|null role
- * @property DateTime created_at
- * @property DateTime updated_at
+ * @property string created_at
+ * @property string updated_at
  * @property int getId
  * @property int getUserId
  * @property string getFirstName
