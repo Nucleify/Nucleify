@@ -25,6 +25,7 @@ registerGlobalUtils(app)
 import {
     Avatar,
     Button,
+    Checkbox,
     Heading,
     Icon,
     Image,
@@ -36,8 +37,8 @@ import {
     ProgressSpinner,
     RadioButton,
     Skeleton,
-    Textarea
-} from "./atoms"
+    Textarea,
+} from './atoms'
 import {
     Anchor,
     FloatLabel,
@@ -93,6 +94,7 @@ app
      */
     .component('ad-avatar', Avatar)
     .component('ad-button', Button)
+    .component('ad-checkbox', Checkbox)
     .component('ad-heading', Heading)
     .component('ad-icon', Icon)
     .component('ad-image', Image)
