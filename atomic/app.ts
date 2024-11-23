@@ -46,7 +46,6 @@ import {
 import {
     Calendar,
     Card,
-    CarouselSwiper,
     Chart,
     ColorPicker,
     DataTable,
@@ -56,6 +55,7 @@ import {
     Dropdown,
     OverlayPanel,
     Password,
+    Swiper,
     Terminal,
     Toast
 } from "./organisms"
@@ -118,7 +118,6 @@ app
      */
     .component('ad-calendar', Calendar)
     .component('ad-card', Card)
-    .component('ad-carousel-swiper', CarouselSwiper)
     .component('ad-chart', Chart)
     .component('ad-color-picker', ColorPicker)
     .component('ad-data-table', DataTable)
@@ -128,6 +127,7 @@ app
     .component('ad-dropdown', Dropdown)
     .component('ad-overlay-panel', OverlayPanel)
     .component('ad-password', Password)
+    .component('ad-swiper', Swiper)
     .component('ad-terminal', Terminal)
     .component('ad-toast', Toast)
 
