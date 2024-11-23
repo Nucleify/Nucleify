@@ -1,9 +1,13 @@
 <template>
   <div class="categories-container">
-    <ad-header :tag="2" text="Categories" class="categories-container-header" />
+    <ad-heading
+      :tag="2"
+      text="Categories"
+      class="categories-container-header"
+    />
 
     <div class="cards-container container">
-      <ad-card-category-single
+      <ad-card-category
         v-for="(card, index) in props.cards"
         :key="index"
         :image="props.prefix + card.image"
@@ -16,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { CardCategorySectionInterface } from 'atomic/bosons/types'
+import { SectionCategoryInterface } from 'atomic/bosons/types'
 
-const props = defineProps<CardCategorySectionInterface>()
+const props = defineProps<SectionCategoryInterface>()
 </script>

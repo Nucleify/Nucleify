@@ -2,7 +2,7 @@
   <ad-card class="settings-card settings-small-card">
     <template #header>
       <div class="settings-card-header-container">
-        <ad-header :tag="4" text="Colors" />
+        <ad-heading :tag="4" text="Colors" />
 
         <ad-button
           icon="pi pi-refresh"

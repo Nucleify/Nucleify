@@ -93,12 +93,6 @@ export interface DataTableInterface {
   selectedObject?: SelectedObjectType
 }
 
-export interface DataTableSkeletonInterface {
-  rows: []
-  loading: LoadingType
-  specificColumns: ColumnInterface[]
-}
-
 export interface ColumnInterface {
   field?: string
   header?: string

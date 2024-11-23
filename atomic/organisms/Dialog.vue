@@ -28,12 +28,12 @@
     :class="props.action"
   >
     <template #header>
-      <ad-header
+      <ad-heading
         :tag="2"
         :text="getTitle(props.selectedObject)"
         v-if="props.action === 'show' && props.selectedObject"
       />
-      <ad-header :tag="2" :text="props.title" v-else />
+      <ad-heading :tag="2" :text="props.title" v-else />
     </template>
 
     <form
@@ -82,7 +82,7 @@
       class="show-data-container"
     >
       <div v-for="(item, key) in props.fields" :key="key">
-        <ad-header :tag="5" class="show-data-header" :text="item.label" />
+        <ad-heading :tag="5" class="show-data-header" :text="item.label" />
         <div>{{ (props.selectedObject as any)[item.key] }}</div>
       </div>
     </div>

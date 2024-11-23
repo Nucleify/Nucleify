@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { DataTableSkeletonInterface } from 'atomic/bosons/types'
+import { SkeletonDataTableInterface } from 'atomic/bosons/types'
 
-defineProps<DataTableSkeletonInterface>()
+defineProps<SkeletonDataTableInterface>()
 </script>
