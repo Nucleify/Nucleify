@@ -32,6 +32,7 @@ import {
     Image,
     InputMask,
     InputText,
+    Knob,
     Label,
     Paragraph,
     ProgressBar,
@@ -102,6 +103,7 @@ app
     .component('ad-image', Image)
     .component('ad-input-mask', InputMask)
     .component('ad-input-text', InputText)
+    .component('ad-knob', Knob)
     .component('ad-label', Label)
     .component('ad-paragraph', Paragraph)
     .component('ad-progress-bar', ProgressBar)

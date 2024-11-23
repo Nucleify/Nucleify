@@ -23,6 +23,7 @@ import Image from 'primevue/image'
 import InlineMessage from 'primevue/inlinemessage'
 import InputMask from 'primevue/inputmask'
 import InputText from 'primevue/inputtext'
+import Knob from 'primevue/knob'
 import Menu from 'primevue/menu'
 import OverlayPanel from 'primevue/overlaypanel'
 import Password from 'primevue/password'
@@ -71,6 +72,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('InlineMessage', InlineMessage)
     .component('InputMask', InputMask)
     .component('InputText', InputText)
+    .component('Knob', Knob)
     .component('Menu', Menu)
     .component('OverlayPanel', OverlayPanel)
     .component('Password', Password)
