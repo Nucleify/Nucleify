@@ -26,6 +26,7 @@ import {
     Avatar,
     Button,
     Checkbox,
+    Chips,
     Heading,
     Icon,
     Image,
@@ -95,6 +96,7 @@ app
     .component('ad-avatar', Avatar)
     .component('ad-button', Button)
     .component('ad-checkbox', Checkbox)
+    .component('ad-chips', Chips)
     .component('ad-heading', Heading)
     .component('ad-icon', Icon)
     .component('ad-image', Image)
