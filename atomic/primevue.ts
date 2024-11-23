@@ -33,6 +33,7 @@ import RadioButton from 'primevue/radiobutton'
 import Rating from 'primevue/rating'
 import SelectButton from 'primevue/selectbutton'
 import Skeleton from 'primevue/skeleton'
+import Slider from 'primevue/slider'
 import Terminal from 'primevue/terminal'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
@@ -84,6 +85,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Rating', Rating)
     .component('SelectButton', SelectButton)
     .component('Skeleton', Skeleton)
+    .component('Slider', Slider)
     .component('Terminal', Terminal)
     .component('Textarea', Textarea)
     .component('Toast', Toast)
