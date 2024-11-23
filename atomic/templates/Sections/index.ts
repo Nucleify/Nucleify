@@ -1,1 +1,2 @@
-export { default as StartSection } from './Start.vue'
+export { default as SectionCategory } from './Category.vue'
+export { default as SectionStart } from './Start.vue'

@@ -1,9 +1,8 @@
-export * from './DataTable'
-
 export { default as Calendar } from './Calendar.vue'
 export { default as Card } from './Card.vue'
 export { default as Chart } from './Chart.vue'
 export { default as ColorPicker } from './ColorPicker.vue'
+export { default as DataTable } from './DataTable.vue'
 export { default as Dialog } from './Dialog.vue'
 export { default as Dock } from './Dock.vue'
 export { default as Dropdown } from './Dropdown.vue'

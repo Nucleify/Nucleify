@@ -25,7 +25,7 @@ registerGlobalUtils(app)
 import {
     Avatar,
     Button,
-    Header,
+    Heading,
     Icon,
     Image,
     InputMask,
@@ -49,7 +49,6 @@ import {
     Chart,
     ColorPicker,
     DataTable,
-    DataTableSkeleton,
     Dialog,
     Dock,
     Dropdown,
@@ -78,13 +77,14 @@ import {
 } from './pages'
 import {
     BackLink,
-    CardCategorySection,
-    CardCategorySingle,
+    CardCategory,
     CardChart,
     CardDataTable,
     ScreenLoader,
+    SectionStart,
+    SectionCategory,
+    SkeletonDataTable,
     TestLoginButtons,
-    StartSection,
 } from './templates'
 
 app
@@ -93,7 +93,7 @@ app
      */
     .component('ad-avatar', Avatar)
     .component('ad-button', Button)
-    .component('ad-header', Header)
+    .component('ad-heading', Heading)
     .component('ad-icon', Icon)
     .component('ad-image', Image)
     .component('ad-input-mask', InputMask)
@@ -121,7 +121,6 @@ app
     .component('ad-chart', Chart)
     .component('ad-color-picker', ColorPicker)
     .component('ad-data-table', DataTable)
-    .component('ad-data-table-skeleton', DataTableSkeleton)
     .component('ad-dialog', Dialog)
     .component('ad-dock', Dock)
     .component('ad-dropdown', Dropdown)
@@ -154,12 +153,13 @@ app
      *  Templates
      */
     .component('ad-back-link', BackLink)
-    .component('ad-card-category-section', CardCategorySection)
-    .component('ad-card-category-single', CardCategorySingle)
+    .component('ad-card-category', CardCategory)
     .component('ad-card-chart', CardChart)
     .component('ad-card-data-table', CardDataTable)
     .component('ad-screen-loader', ScreenLoader)
+    .component('ad-skeleton-data-table', SkeletonDataTable)
+    .component('ad-section-category', SectionCategory)
+    .component('ad-section-start', SectionStart)
     .component('ad-test-login-buttons', TestLoginButtons)
-    .component('ad-start-section', StartSection)
 
 app.mount('#app')

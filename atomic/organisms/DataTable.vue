@@ -117,7 +117,7 @@
       </template>
     </Column>
   </DataTable>
-  <ad-data-table-skeleton
+  <ad-skeleton-data-table
     :rows="skeleton"
     :loading="props.loading"
     :specific-columns="specificColumns"

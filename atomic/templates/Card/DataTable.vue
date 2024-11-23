@@ -18,7 +18,7 @@
           />
         </template>
         <template v-else>
-          <ad-header :tag="tag" :type="type" :text="headerText" />
+          <ad-heading :tag="tag" :type="type" :text="headerText" />
 
           <ad-button
             v-if="type !== 'activity'"
