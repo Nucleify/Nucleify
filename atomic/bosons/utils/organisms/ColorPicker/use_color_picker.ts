@@ -12,6 +12,7 @@ export function useColorPicker(item: string): UseColorPickerInterface {
     activityItemColors,
     articleItemColors,
     contactItemColors,
+    moneyItemColors,
     userItemColors,
   }: UseColorsReturnInterface = useColors()
 
@@ -29,6 +30,9 @@ export function useColorPicker(item: string): UseColorPickerInterface {
       break
     case 'contact':
       itemColor.value = contactItemColors.primary!
+      break
+    case 'money':
+      itemColor.value = moneyItemColors.primary!
       break
     case 'user':
       itemColor.value = userItemColors.primary!

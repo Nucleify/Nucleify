@@ -1,6 +1,6 @@
-import { ArticleFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
+import { EntityFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
 
-export function useArticleFields(): UseFieldsInterface<ArticleFieldInterface> {
+export function useArticleFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: readonly [string, string, string][] = [
     ['title', 'Title', 'input-text'],
     ['description', 'Description', 'textarea'],
@@ -9,10 +9,10 @@ export function useArticleFields(): UseFieldsInterface<ArticleFieldInterface> {
     ['created_at', 'Created At', ''],
   ] as const
 
-  const createAndEditFields: readonly ArticleFieldInterface[] = fieldData
+  const createAndEditFields: readonly EntityFieldInterface[] = fieldData
     .filter(([name]) => !['created_at', 'updated_at'].includes(name))
     .map(
-      ([name, label, type]): ArticleFieldInterface => ({
+      ([name, label, type]): EntityFieldInterface => ({
         name,
         label,
         type,

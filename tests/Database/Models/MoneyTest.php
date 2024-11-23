@@ -21,6 +21,30 @@ describe('Instance', function () {
             ->toBe($money->id);
     });
 
+    test('can get user id', function () {
+        $money = Money::factory()->create();
+
+        expect($money->getUserId())
+            ->toBeInt()
+            ->toBe($money->user_id);
+    });
+
+    test('can get sender', function () {
+        $money = Money::factory()->create();
+
+        expect($money->getSender())
+            ->toBeString()
+            ->toBe($money->sender);
+    });
+
+    test('can get receiver', function () {
+        $money = Money::factory()->create();
+
+        expect($money->getReceiver())
+            ->toBeString()
+            ->toBe($money->receiver);
+    });
+
     test('can get count', function () {
         $money = Money::factory()->create();
 
@@ -29,26 +53,34 @@ describe('Instance', function () {
             ->toBe($money->count);
     });
 
-    test('can get sender id', function () {
+    test('can get title', function () {
         $money = Money::factory()->create();
 
-        expect($money->getSenderId())
-            ->toBeInt()
-            ->toBe($money->sender_id);
+        expect($money->getTitle())
+            ->toBeString()
+            ->toBe($money->title);
     });
 
-    test('can get receiver id', function () {
+    test('can get description', function () {
         $money = Money::factory()->create();
 
-        expect($money->getReceiverId())
-            ->toBeInt()
-            ->toBe($money->receiver_id);
+        expect($money->getDescription())
+            ->toBeString()
+            ->toBe($money->description);
+    });
+
+    test('can get category', function () {
+        $money = Money::factory()->create();
+
+        expect($money->getCategory())
+            ->toBeString()
+            ->toBe($money->category);
     });
 
     test('can get created_at date', function () {
         $money = Money::factory()->create();
 
-        expect($money->getCreatedAt()->format('Y-m-d H:i:s'))
+        expect($money->getCreatedAt())
             ->toBeString()
             ->toBe($money->created_at->toDateTimeString());
     });
@@ -56,8 +88,90 @@ describe('Instance', function () {
     test('can get updated_at date', function () {
         $money = Money::factory()->create();
 
-        expect($money->getUpdatedAt()->format('Y-m-d H:i:s'))
+        expect($money->getUpdatedAt())
             ->toBeString()
             ->toBe($money->updated_at->toDateTimeString());
+    });
+});
+
+describe('Scope', function () {
+    test('can filter by id using scopeGetId', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getById($money->id)->first();
+
+        expect($foundMoney->id)->toBe($money->id);
+    });
+
+    test('can filter by user_id using scopeGetUserId', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getByUserId($money->user_id)->first();
+
+        expect($foundMoney->user_id)->toBe($money->user_id);
+    });
+
+    test('can filter by sender using scopeGetSender', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getBySender($money->sender)->first();
+
+        expect($foundMoney->sender)->toBe($money->sender);
+    });
+
+    test('can filter by receiver using scopeGetReceiver', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getByReceiver($money->receiver)->first();
+
+        expect($foundMoney->receiver)->toBe($money->receiver);
+    });
+
+    test('can filter by count using scopeGetCount', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getByCount($money->count)->first();
+
+        expect($foundMoney->count)->toBe($money->count);
+    });
+
+    test('can filter by title using scopeGetTitle', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getByTitle($money->title)->first();
+
+        expect($foundMoney->title)->toBe($money->title);
+    });
+
+    test('can filter by description using scopeGetDescription', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getByDescription($money->description)->first();
+
+        expect($foundMoney->description)->toBe($money->description);
+    });
+
+    test('can filter by category using scopeGetCategory', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getByCategory($money->category)->first();
+
+        expect($foundMoney->category)->toBe($money->category);
+    });
+
+    test('can filter by created_at using scopeGetCreatedAt', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getByCreatedAt($money->created_at->toDateString())->first();
+
+        expect($foundMoney->created_at->toDateString())->toBe($money->created_at->toDateString());
+    });
+
+    test('can filter by updated_at using scopeGetUpdatedAt', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getByUpdatedAt($money->updated_at->toDateString())->first();
+
+        expect($foundMoney->updated_at->toDateString())->toBe($money->updated_at->toDateString());
     });
 });

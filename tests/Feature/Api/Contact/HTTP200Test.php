@@ -8,15 +8,15 @@ beforeEach(function () {
 });
 
 describe('200 > Authorized', function () {
-    test('store api', function () {
-        $this->postJson(route('contacts.store'), contactData)
-            ->assertOk();
-    });
-
     test('index api', function () {
         Contact::factory(3)->create();
 
         $this->getJson(route('contacts.index'))
+            ->assertOk();
+    });
+
+    test('store api', function () {
+        $this->postJson(route('contacts.store'), contactData)
             ->assertOk();
     });
 

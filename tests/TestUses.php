@@ -34,6 +34,11 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/Contact/HTTP422PostTest.php',
             'Feature/Api/Contact/HTTP422PutTest.php',
 
+            // Money API
+            'Feature/Api/Money/HTTP302Test.php',
+            'Feature/Api/Money/HTTP422PostTest.php',
+            'Feature/Api/Money/HTTP422PutTest.php',
+
             // User API
             'Feature/Api/User/HTTP302Test.php',
             'Feature/Api/User/HTTP422PostTest.php',
@@ -64,6 +69,10 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             // Contact API
             'Feature/Api/Contact/HTTP200Test.php',
             'Feature/Api/Contact/HTTP500Test.php',
+
+            // Money API
+            'Feature/Api/Money/HTTP200Test.php',
+            'Feature/Api/Money/HTTP500Test.php',
 
             // User API
             'Feature/Api/User/HTTP200Test.php',
