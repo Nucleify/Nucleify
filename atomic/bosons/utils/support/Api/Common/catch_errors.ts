@@ -11,7 +11,7 @@ export function catchErrors(
 ): void {
   if (axios.isAxiosError(error)) {
     if (error.response) {
-      apiErrors(error.response.data as ErrorResponseInterface)
+      apiErrors(error as ErrorResponseInterface)
     } else {
       console.error('No response from server:', error.message)
     }

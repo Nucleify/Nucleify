@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Entities\ActivityController;
 use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
+use App\Http\Controllers\Entities\MoneyController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
@@ -64,6 +65,11 @@ Route::middleware(['web', 'auth'])->group(function () {
      *  Dashboard
      */
     Route::get('/dashboard', [DashboardController::class, 'render'])->name('dashboard');
+
+    /**
+     *  Money
+     */
+    Route::get('/money', [MoneyController::class, 'render'])->name('money');
 
     /**
      *  Settings

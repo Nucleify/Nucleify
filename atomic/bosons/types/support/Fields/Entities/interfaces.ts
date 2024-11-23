@@ -11,3 +11,15 @@ export interface UseFieldsInterface<T> {
   createFields?: readonly T[]
   editFields?: readonly T[]
 }
+
+export interface EntityFieldInterface {
+  name: string
+  label: string
+  type: string
+  props?: {
+    options?: readonly string[]
+    placeholder?: string
+    type?: string
+  }
+  key?: string
+}
