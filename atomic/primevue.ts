@@ -8,6 +8,7 @@ import Button from 'primevue/button'
 import Calendar from 'primevue/calendar'
 import Card from 'primevue/card'
 import Chart from 'primevue/chart'
+import Checkbox from 'primevue/checkbox'
 import ColorPicker from 'primevue/colorpicker'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
@@ -54,6 +55,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Calendar', Calendar)
     .component('Card', Card)
     .component('Chart', Chart)
+    .component('Checkbox', Checkbox)
     .component('ColorPicker', ColorPicker)
     .component('Column', Column)
     .component('DataTable', DataTable)
