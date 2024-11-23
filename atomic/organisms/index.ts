@@ -1,4 +1,3 @@
-export * from './Carousel'
 export * from './DataTable'
 
 export { default as Calendar } from './Calendar.vue'
@@ -10,5 +9,6 @@ export { default as Dock } from './Dock.vue'
 export { default as Dropdown } from './Dropdown.vue'
 export { default as OverlayPanel } from './OverlayPanel.vue'
 export { default as Password } from './Password.vue'
+export { default as Swiper } from './Swiper.vue'
 export { default as Terminal } from './Terminal.vue'
 export { default as Toast } from './Toast.vue'

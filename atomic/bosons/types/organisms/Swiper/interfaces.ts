@@ -1,5 +1,5 @@
-export interface CarouselSwiperInterface {
-  slides?: SlideInterface[]
+export interface SwiperInterface {
+  slides?: SwiperSlideInterface[]
   slidesPerView?: number
   slidesPerGroup?: number
   spaceBetween?: number
@@ -118,7 +118,7 @@ export interface CarouselSwiperInterface {
   zoom?: any // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
-export interface SlideInterface {
+export interface SwiperSlideInterface {
   url?: string
   prefix?: string
   image?: string
