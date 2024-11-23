@@ -8,6 +8,7 @@
         :activity-log-data="activityLogData"
         :article-data="articleData"
         :contact-data="contactData"
+        :money-data="moneyData"
         :user-data="userData"
         :chart-class="chartClass"
         :class="loading ? 'chart-loading' : 'chart-loaded'"

@@ -31,6 +31,7 @@ onMounted(() => {
     props?.activityLogData,
     props?.articleData,
     props?.contactData,
+    props?.moneyData,
     props?.userData,
     props?.example
   )
@@ -42,6 +43,7 @@ watch(
     props?.activityLogData,
     props?.articleData,
     props?.contactData,
+    props?.moneyData,
     props?.userData,
   ],
   () => {
@@ -50,6 +52,7 @@ watch(
       props?.activityLogData,
       props?.articleData,
       props?.contactData,
+      props?.moneyData,
       props?.userData,
       props?.example
     )

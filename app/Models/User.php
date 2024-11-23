@@ -18,8 +18,8 @@ use Laravel\Sanctum\HasApiTokens;
  * @property string email
  * @property string password
  * @property string role
- * @property DateTime created_at
- * @property DateTime updated_at
+ * @property string created_at
+ * @property string updated_at
  * @property int getId
  * @property string getName
  * @property string getEmail
@@ -43,6 +43,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Builder scopeGetByAdminRole
  * @property Builder scopeGetBySuperAdminRole
  * @property HasMany contacts
+ * @property HasMany money
  * @property void createContactFromUserDetails
  */
 
@@ -169,16 +170,12 @@ class User extends Authenticatable implements UserContract
     }
 
     /**
-     *  ARTICLES METHODS
+     *  Relational methods
      */
     public function articles(): HasMany
     {
         return $this->hasMany(Article::class);
     }
-
-    /**
-     *  CONTACT METHODS
-     */
     public function contacts(): HasMany
     {
         return $this->hasMany(Contact::class);
@@ -200,5 +197,9 @@ class User extends Authenticatable implements UserContract
 
             $this->contacts()->create($contactData);
         }
+    }
+    public function money(): HasMany
+    {
+        return $this->hasMany(Money::class, 'user_id');
     }
 }
