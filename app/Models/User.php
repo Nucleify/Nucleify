@@ -200,6 +200,6 @@ class User extends Authenticatable implements UserContract
     }
     public function money(): HasMany
     {
-        return $this->hasMany(Money::class, 'sender_id');
+        return $this->hasMany(Money::class, 'user_id');
     }
 }

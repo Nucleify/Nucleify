@@ -11,29 +11,30 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int id
+ * @property int user_id
+ * @property string sender
+ * @property string receiver
  * @property int count
- * @property int sender_id
- * @property int receiver_id
  * @property string title
  * @property string description
  * @property string category
  * @property string created_at
  * @property string updated_at
  * @property int getId
+ * @property int getUserId
+ * @property string getSender
+ * @property string getReceiver
  * @property int getCount
- * @property int getSenderId
- * @property int getReceiverId
  * @property string getTitle
  * @property string getDescription
  * @property string getCategory
  * @property string getCreatedAt
  * @property string getUpdatedAt
- * @property BelongsTo sender
- * @property BelongsTo receiver
+ * @property BelongsTo user
  * @property Builder scopeGetById
+ * @property Builder scopeGetBySender
+ * @property Builder scopeGetByReceiver
  * @property Builder scopeGetByCount
- * @property Builder scopeGetBySenderId
- * @property Builder scopeGetByReceiverId
  * @property Builder scopeGetByTitle
  * @property Builder scopeGetByDescription
  * @property Builder scopeGetByCategory
@@ -45,9 +46,10 @@ class Money extends Model implements MoneyContract
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
+        'sender',
+        'receiver',
         'count',
-        'sender_id',
-        'receiver_id',
         'title',
         'description',
         'category'
@@ -60,18 +62,21 @@ class Money extends Model implements MoneyContract
     {
         return $this->id;
     }
-
+    public function getUserId(): int
+    {
+        return $this->user_id;
+    }
     public function getCount(): int
     {
         return $this->count;
     }
-    public function getSenderId(): int
+    public function getSender(): string
     {
-        return $this->sender_id;
+        return $this->sender;
     }
-    public function getReceiverId(): int
+    public function getReceiver(): string
     {
-        return $this->receiver_id;
+        return $this->receiver;
     }
     public function getTitle(): string
     {
@@ -101,17 +106,21 @@ class Money extends Model implements MoneyContract
     {
         return $query->where('id', $id);
     }
+    public function scopeGetByUserId(Builder $query, int $user_id): Builder
+    {
+        return $query->where('user_id', $user_id);
+    }
+    public function scopeGetBySender(Builder $query, string $sender): Builder
+    {
+        return $query->where('sender', $sender);
+    }
+    public function scopeGetByReceiver(Builder $query, string $receiver): Builder
+    {
+        return $query->where('receiver', $receiver);
+    }
     public function scopeGetByCount(Builder $query, int $count): Builder
     {
         return $query->where('count', $count);
-    }
-    public function scopeGetBySenderId(Builder $query, int $sender_id): Builder
-    {
-        return $query->where('sender_id', $sender_id);
-    }
-    public function scopeGetByReceiverId(Builder $query, int $receiver_id): Builder
-    {
-        return $query->where('receiver_id', $receiver_id);
     }
     public function scopeGetByTitle(Builder $query, string $title): Builder
     {
@@ -137,13 +146,9 @@ class Money extends Model implements MoneyContract
     /**
      *  Relational functions
      */
-    public function sender(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'sender_id');
-    }
-    public function receiver(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'receiver_id');
+        return $this->belongsTo(User::class);
     }
 }
 

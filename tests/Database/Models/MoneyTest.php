@@ -21,28 +21,36 @@ describe('Instance', function () {
             ->toBe($money->id);
     });
 
+    test('can get user id', function () {
+        $money = Money::factory()->create();
+
+        expect($money->getUserId())
+            ->toBeInt()
+            ->toBe($money->user_id);
+    });
+
+    test('can get sender', function () {
+        $money = Money::factory()->create();
+
+        expect($money->getSender())
+            ->toBeString()
+            ->toBe($money->sender);
+    });
+
+    test('can get receiver', function () {
+        $money = Money::factory()->create();
+
+        expect($money->getReceiver())
+            ->toBeString()
+            ->toBe($money->receiver);
+    });
+
     test('can get count', function () {
         $money = Money::factory()->create();
 
         expect($money->getCount())
             ->toBeInt()
             ->toBe($money->count);
-    });
-
-    test('can get sender id', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getSenderId())
-            ->toBeInt()
-            ->toBe($money->sender_id);
-    });
-
-    test('can get receiver id', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getReceiverId())
-            ->toBeInt()
-            ->toBe($money->receiver_id);
     });
 
     test('can get title', function () {
@@ -95,28 +103,36 @@ describe('Scope', function () {
         expect($foundMoney->id)->toBe($money->id);
     });
 
+    test('can filter by user_id using scopeGetUserId', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getByUserId($money->user_id)->first();
+
+        expect($foundMoney->user_id)->toBe($money->user_id);
+    });
+
+    test('can filter by sender using scopeGetSender', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getBySender($money->sender)->first();
+
+        expect($foundMoney->sender)->toBe($money->sender);
+    });
+
+    test('can filter by receiver using scopeGetReceiver', function () {
+        $money = Money::factory()->create();
+
+        $foundMoney = Money::getByReceiver($money->receiver)->first();
+
+        expect($foundMoney->receiver)->toBe($money->receiver);
+    });
+
     test('can filter by count using scopeGetCount', function () {
         $money = Money::factory()->create();
 
         $foundMoney = Money::getByCount($money->count)->first();
 
         expect($foundMoney->count)->toBe($money->count);
-    });
-
-    test('can filter by sender_id using scopeGetSenderId', function () {
-        $money = Money::factory()->create();
-
-        $foundMoney = Money::getBySenderId($money->sender_id)->first();
-
-        expect($foundMoney->sender_id)->toBe($money->sender_id);
-    });
-
-    test('can filter by receiver_id using scopeReceiverId', function () {
-        $money = Money::factory()->create();
-
-        $foundMoney = Money::getByReceiverId($money->receiver_id)->first();
-
-        expect($foundMoney->receiver_id)->toBe($money->receiver_id);
     });
 
     test('can filter by title using scopeGetTitle', function () {

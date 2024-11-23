@@ -27,7 +27,7 @@ class MoneyService
                     case $causer->isUser():
                         $money = $causer
                             ->money()
-                            ->where('sender_id', $causer->id)
+                            ->where('user_id', $causer->id)
                             ->get();
 
                         ActivityLogger::logMessage(
@@ -48,7 +48,7 @@ class MoneyService
             default:
                 $money = $causer
                     ->money()
-                    ->where('sender_id', $causer->id)
+                    ->where('user_id', $causer->id)
                     ->get();
 
                 ActivityLogger::logMessage(
@@ -75,7 +75,7 @@ class MoneyService
             default:
                 $model = $causer
                     ->money()
-                    ->where('sender_id', $causer->id)
+                    ->where('user_id', $causer->id)
                     ->findOrFail($id);
                 break;
         }
@@ -113,7 +113,7 @@ class MoneyService
             default:
                 $model = $causer
                     ->money()
-                    ->where('sender_id', $causer->id)
+                    ->where('user_id', $causer->id)
                     ->findOrFail($id);
                 break;
         }
@@ -139,7 +139,7 @@ class MoneyService
             default:
                 $model = $causer
                     ->money()
-                    ->where('sender_id', $causer->id)
+                    ->where('user_id', $causer->id)
                     ->findOrFail($id);
                 break;
         }

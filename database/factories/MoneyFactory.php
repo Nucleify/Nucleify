@@ -17,10 +17,11 @@ class MoneyFactory extends Factory
         $usersIds = $users->pluck('id')->toArray();
 
         return [
+            'user_id' => $this->faker->randomElement($usersIds),
+            'sender' => $this->faker->iban(),
+            'receiver' => $this->faker->iban(),
             'count' => $this->faker->numberBetween(-1000000, 1000000),
-            'sender_id' => $this->faker->randomElement($usersIds),
-            'receiver_id' => $this->faker->randomElement($usersIds),
-            'title' => $this->faker->title(),
+            'title' => $this->faker->sentence(3),
             'description' => $this->faker->sentence(),
             'category' => $this->faker->word(),
             'created_at' => $this->faker->dateTimeBetween('-1 year'),

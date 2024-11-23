@@ -11,10 +11,11 @@ class MoneyTransformer extends TransformerAbstract
     public function transform(MoneyContract $model): array
     {
         return [
-            'count' => $model->getCount(),
             'id' => $model->getId(),
-            'sender_id' =>  $model->getSenderId(),
-            'receiver_id' =>  $model->getReceiverId(),
+            'user_id' =>  $model->getUserId(),
+            'sender' =>  $model->getSender(),
+            'receiver' =>  $model->getReceiver(),
+            'count' => $model->getCount(),
             'title' =>  $model->getTitle(),
             'description' =>  $model->getDescription(),
             'category' =>  $model->getCategory(),

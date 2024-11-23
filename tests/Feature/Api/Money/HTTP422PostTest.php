@@ -8,6 +8,229 @@ beforeEach(function () {
 
 describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) {
     /**
+     * USER ID TESTS
+     */
+    $moneyData['user_id'] = '';
+    test('invalid empty user_id', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field is required.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = 'user_id';
+    test('invalid user_id string', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = false;
+    test('invalid user_id false', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [];
+    test('invalid user_id > empty array', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field is required.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [1];
+    test('invalid user_id > array with positive integer', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [-1];
+    test('invalid user_id > array with negative integer', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [1, 1];
+    test('invalid user_id > array with multiple same positive integers', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [1, 2];
+    test('invalid user_id > array with multiple different positive integers', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [-1, -1];
+    test('invalid user_id > array with multiple same negative integers', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [-1, -2];
+    test('invalid user_id > array with multiple different negative integers', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = ['receiver_id'];
+    test('invalid user_id > array with string', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = ['receiver_id1', 'receiver_id1'];
+    test('invalid user_id > array with multiple same strings', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = ['receiver_id1', 'receiver_id2'];
+    test('invalid user_id > array with multiple different strings', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [true];
+    test('invalid user_id > array with true', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [false];
+    test('invalid user_id > array with false', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [true, true];
+    test('invalid user_id > array with multiple true', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [false, false];
+    test('invalid user_id > array with multiple false', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = [true , false];
+    test('invalid user_id > array with true false', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $moneyData['user_id'] = moneyData['user_id']; // reset user_id value
+
+
+
+    /**
      * COUNT TESTS
      */
     $moneyData['count'] = '';
@@ -228,452 +451,577 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
     $moneyData['count'] = moneyData['count']; // reset count value
 
 
-    /**
-     * SENDER ID TESTS
-     */
-    $moneyData['sender_id'] = '';
-    test('invalid empty sender_id', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field is required.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = 'sender_id';
-    test('invalid sender_id string', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = false;
-    test('invalid sender_id false', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [];
-    test('invalid sender_id > empty array', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field is required.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [1];
-    test('invalid sender_id > array with positive integer', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [-1];
-    test('invalid sender_id > array with negative integer', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [1, 1];
-    test('invalid sender_id > array with multiple same positive integers', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [1, 2];
-    test('invalid sender_id > array with multiple different positive integers', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [-1, -1];
-    test('invalid sender_id > array with multiple same negative integers', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [-1, -2];
-    test('invalid sender_id > array with multiple different negative integers', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = ['receiver_id'];
-    test('invalid sender_id > array with string', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = ['receiver_id1', 'receiver_id1'];
-    test('invalid sender_id > array with multiple same strings', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = ['receiver_id1', 'receiver_id2'];
-    test('invalid sender_id > array with multiple different strings', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [true];
-    test('invalid sender_id > array with true', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [false];
-    test('invalid sender_id > array with false', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [true, true];
-    test('invalid sender_id > array with multiple true', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [false, false];
-    test('invalid sender_id > array with multiple false', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = [true , false];
-    test('invalid sender_id > array with true false', apiTest(
-        'POST',
-        'money.store',
-        422,
-        $moneyData,
-        ['errors' => ['sender_id']],
-        ['errors' => [
-            'sender_id' => ['The sender id field must be an integer.']
-        ]]
-    ));
-
-    $moneyData['sender_id'] = moneyData['sender_id']; // reset receiver_id value
-
-
 
     /**
-     * receiver id TESTS
+     * SENDER TESTS
      */
-    $moneyData['receiver_id'] = '';
-    test('invalid empty receiver_id', apiTest(
+    $moneyData['sender'] = '';
+    test('invalid sender > empty', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field is required.']
+            'sender' => ['The sender field is required.']
         ]]
     ));
 
-    $moneyData['receiver_id'] = 'receiver_id';
-    test('invalid receiver_id string', apiTest(
+    $moneyData['sender'] = 1;
+    test('invalid sender > positive integer', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = false;
-    test('invalid receiver_id false', apiTest(
+    $moneyData['sender'] = -1;
+    test('invalid sender > negative integer', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [];
-    test('invalid receiver_id > empty array', apiTest(
+    $moneyData['sender'] = false;
+    test('invalid sender > false', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field is required.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [1];
-    test('invalid receiver_id > array with positive integer', apiTest(
+    $moneyData['sender'] = true;
+    test('invalid sender > true', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [-1];
-    test('invalid receiver_id > array with negative integer', apiTest(
+    $moneyData['sender'] = [];
+    test('invalid sender > empty array', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field is required.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [1, 1];
-    test('invalid receiver_id > array with multiple same positive integers', apiTest(
+    $moneyData['sender'] = [1];
+    test('invalid sender > array with positive integer', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [1, 2];
-    test('invalid receiver_id > array with multiple different positive integers', apiTest(
+    $moneyData['sender'] = [-1];
+    test('invalid sender > array with negative integer', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [-1, -1];
-    test('invalid receiver_id > array with multiple same negative integers', apiTest(
+    $moneyData['sender'] = [1, 1];
+    test('invalid sender > array with multiple same positive integers', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [-1, -2];
-    test('invalid receiver_id > array with multiple different negative integers', apiTest(
+    $moneyData['sender'] = [1, 2];
+    test('invalid sender > array with multiple different positive integers', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = ['receiver_id'];
-    test('invalid receiver_id > array with string', apiTest(
+    $moneyData['sender'] = [-1, -1];
+    test('invalid sender > array with multiple same negative integers', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = ['receiver_id1', 'receiver_id1'];
-    test('invalid receiver_id > array with multiple same strings', apiTest(
+    $moneyData['sender'] = [-1, -2];
+    test('invalid sender > array with multiple different negative integers', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = ['receiver_id1', 'receiver_id2'];
-    test('invalid receiver_id > array with multiple different strings', apiTest(
+    $moneyData['sender'] = ['sender'];
+    test('invalid sender > array with string', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [true];
-    test('invalid receiver_id > array with true', apiTest(
+    $moneyData['sender'] = ['sender1', 'sender1'];
+    test('invalid sender > array with multiple same strings', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [false];
-    test('invalid receiver_id > array with false', apiTest(
+    $moneyData['sender'] = ['sender1', 'sender2'];
+    test('invalid sender > array with multiple different strings', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [true, true];
-    test('invalid receiver_id > array with multiple true', apiTest(
+    $moneyData['sender'] = [true];
+    test('invalid sender > array with true', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [false, false];
-    test('invalid receiver_id > array with multiple false', apiTest(
+    $moneyData['sender'] = [false];
+    test('invalid sender > array with false', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = [true , false];
-    test('invalid receiver_id > array with true false', apiTest(
+    $moneyData['sender'] = [true, true];
+    test('invalid sender > array with multiple true', apiTest(
         'POST',
         'money.store',
         422,
         $moneyData,
-        ['errors' => ['receiver_id']],
+        ['errors' => ['sender']],
         ['errors' => [
-            'receiver_id' => ['The receiver id field must be an integer.']
+            'sender' => [
+                'The sender field must be a string.',
+            ]
         ]]
     ));
 
-    $moneyData['receiver_id'] = moneyData['receiver_id']; // reset receiver_id value
+    $moneyData['sender'] = [false, false];
+    test('invalid sender > array with multiple false', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['sender']],
+        ['errors' => [
+            'sender' => [
+                'The sender field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['sender'] = [true , false];
+    test('invalid sender > array with true false', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['sender']],
+        ['errors' => [
+            'sender' => [
+                'The sender field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['sender'] = moneyData['sender']; // reset sender value
 
 
 
+    /**
+     * RECEIVER TESTS
+     */
+    $moneyData['receiver'] = '';
+    test('invalid receiver > empty', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => ['The receiver field is required.']
+        ]]
+    ));
+
+    $moneyData['receiver'] = 1;
+    test('invalid receiver > positive integer', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = -1;
+    test('invalid receiver > negative integer', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = false;
+    test('invalid receiver > false', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = true;
+    test('invalid receiver > true', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [];
+    test('invalid receiver > empty array', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field is required.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [1];
+    test('invalid receiver > array with positive integer', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [-1];
+    test('invalid receiver > array with negative integer', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [1, 1];
+    test('invalid receiver > array with multiple same positive integers', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [1, 2];
+    test('invalid receiver > array with multiple different positive integers', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [-1, -1];
+    test('invalid receiver > array with multiple same negative integers', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [-1, -2];
+    test('invalid receiver > array with multiple different negative integers', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = ['receiver'];
+    test('invalid receiver > array with string', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = ['receiver1', 'receiver1'];
+    test('invalid receiver > array with multiple same strings', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = ['receiver1', 'receiver2'];
+    test('invalid receiver > array with multiple different strings', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [true];
+    test('invalid receiver > array with true', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [false];
+    test('invalid receiver > array with false', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [true, true];
+    test('invalid receiver > array with multiple true', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [false, false];
+    test('invalid receiver > array with multiple false', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = [true , false];
+    test('invalid receiver > array with true false', apiTest(
+        'POST',
+        'money.store',
+        422,
+        $moneyData,
+        ['errors' => ['receiver']],
+        ['errors' => [
+            'receiver' => [
+                'The receiver field must be a string.',
+            ]
+        ]]
+    ));
+
+    $moneyData['receiver'] = moneyData['receiver']; // reset receiver value
+    
+    
+    
     /**
      * TITLE TESTS
      */
