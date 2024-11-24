@@ -7,7 +7,7 @@
     :src="props.src"
     :class="props.buttonClass"
     :style="props.buttonStyle"
-    type="main"
+    ad-type="main"
     rounded
   />
 

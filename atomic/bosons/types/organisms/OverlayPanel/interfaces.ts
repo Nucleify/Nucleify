@@ -1,14 +1,16 @@
-import { HintedString, PassThrough } from 'primevue/ts-helpers'
+import { PassThrough } from 'primevue/ts-helpers'
 import {
   OverlayPanelBreakpoints,
   OverlayPanelPassThroughOptions,
 } from 'primevue/overlaypanel'
 import { PassThroughOptions } from 'primevue/passthrough'
 
+import { ElementAppendTo } from 'atomic/bosons/types'
+
 export interface OverlayPanelInterface {
   dismissable?: boolean
   showCloseIcon?: boolean
-  appendTo?: HTMLElement | HintedString<'body' | 'self'>
+  appendTo?: ElementAppendTo
   baseZIndex?: number
   autoZIndex?: boolean
   breakpoints?: OverlayPanelBreakpoints

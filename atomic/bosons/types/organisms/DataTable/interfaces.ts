@@ -17,9 +17,11 @@ import {
   ObjectNameType,
   SelectedObjectType,
   OpenDialogFunctionType,
+  ElementSizeType,
 } from 'atomic/bosons/types'
 
 export interface DataTableInterface {
+  adType: ObjectNameType
   value: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   dataKey?: string
   rows?: number
@@ -59,7 +61,7 @@ export interface DataTableInterface {
   resizableColumns?: boolean
   columnResizeMode?: 'expand' | 'fit'
   reorderableColumns?: boolean
-  expandedRows?: null | any[] | DataTableExpandedRows // eslint-disable-line @typescript-eslint/no-explicit-any
+  expandedRows?: any[] | DataTableExpandedRows // eslint-disable-line @typescript-eslint/no-explicit-any
   rowGroupMode?: 'rowspan' | 'subheader'
   groupRowsBy?: string | string[] | void
   expandableRowGroups?: boolean
@@ -78,7 +80,7 @@ export interface DataTableInterface {
   showGridlines?: boolean
   stripedRows?: boolean
   highlightOnSelect?: boolean
-  size?: 'small' | 'large'
+  size?: ElementSizeType
   tableStyle?: string | object
   tableClass?: string | object
   tableProps?: TableHTMLAttributes
@@ -86,7 +88,6 @@ export interface DataTableInterface {
   pt?: PassThrough<DataTablePassThroughOptions>
   ptOptions?: PassThroughOptions
   unstyled?: boolean
-  type?: ObjectNameType
   actions?: ActionInterface
   styles?: ColorItemStyleInterface
   openDialog?: OpenDialogFunctionType

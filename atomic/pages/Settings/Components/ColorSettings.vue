@@ -6,7 +6,7 @@
 
         <ad-button
           icon="pi pi-refresh"
-          type="main"
+          ad-type="main"
           class="refresh-button"
           @click="setDefaultColors(false)"
           rounded
@@ -19,7 +19,7 @@
       <ul class="settings-card-item-list">
         <li v-for="item in colorList" :key="item" class="settings-card-item">
           <ad-label :label="item" :for="item" />
-          <ad-color-picker :item="item.toLowerCase()" />
+          <ad-color-picker :ad-type="item.toLowerCase()" />
         </li>
       </ul>
     </template>

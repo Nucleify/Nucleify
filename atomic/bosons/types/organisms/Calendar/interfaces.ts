@@ -1,9 +1,8 @@
 import { HTMLAttributes, InputHTMLAttributes } from 'vue'
-import { HintedString, PassThrough } from 'primevue/ts-helpers'
+import { PassThrough } from 'primevue/ts-helpers'
 import { PassThroughOptions } from 'primevue/passthrough'
 import {
   CalendarPassThroughOptions,
-  CalendarProps,
   CalendarResponsiveOptions,
 } from 'primevue/calendar'
 
@@ -11,12 +10,13 @@ import {
   CalendarModelValueType,
   CalendarVariant,
   DateSelectionModeType,
+  ElementAppendTo,
   HourFormatType,
   IconDisplayType,
   ViewType,
-} from './types'
+} from 'atomic/bosons/types'
 
-export interface CalendarInterface extends CalendarProps {
+export interface CalendarInterface {
   modelValue?: CalendarModelValueType
   selectionMode?: DateSelectionModeType
   dateFormat?: string
@@ -56,7 +56,7 @@ export interface CalendarInterface extends CalendarProps {
   variant?: CalendarVariant
   readonly?: boolean
   placeholder?: string
-  appendTo?: HTMLElement | HintedString<'body' | 'self'>
+  appendTo?: ElementAppendTo
   id?: string
   inputId?: string
   inputStyle?: object

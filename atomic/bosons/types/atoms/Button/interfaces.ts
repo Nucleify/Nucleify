@@ -1,42 +1,43 @@
-import { HintedString, PassThrough } from 'primevue/ts-helpers'
+import { PassThrough } from 'primevue/ts-helpers'
+import { ButtonPassThroughOptions } from 'primevue/button'
 import { PassThroughOptions } from 'primevue/passthrough'
 
-import { LoadingType, ObjectNameType } from 'atomic/bosons/types'
+import {
+  AdTypeType,
+  ButtonBadgeSeverityType,
+  ButtonOnClickType,
+  ButtonSeverityType,
+  ButtonType,
+  ElementSizeType,
+  LoadingType,
+  PositionType,
+} from 'atomic/bosons/types'
 
 export interface ButtonInterface {
+  adType?: AdTypeType
   label?: string
   icon?: string
-  iconPos?: 'left' | 'top' | 'bottom' | 'right'
+  iconPos?: PositionType
   iconClass?: string
   badge?: string
   badgeClass?: string
-  badgeSeverity?: null | HintedString<
-    'success' | 'secondary' | 'info' | 'warning' | 'danger' | 'contrast'
-  >
+  badgeSeverity?: ButtonBadgeSeverityType
   loading?: LoadingType
   loadingIcon?: string
   link?: string
-  severity?:
-    | string
-    | 'primary'
-    | 'secondary'
-    | 'success'
-    | 'info'
-    | 'warning'
-    | 'help'
-    | 'danger'
+  severity?: ButtonSeverityType
   raised?: boolean
   rounded?: boolean
   text?: boolean
   outlined?: boolean
-  size?: 'small' | 'large'
+  size?: ElementSizeType
   plain?: string
-  pt?: PassThrough<PassThroughOptions>
+  pt?: PassThrough<ButtonPassThroughOptions>
   ptOptions?: PassThroughOptions
   unstyled?: string
   disabled?: boolean
-  onclick?: (event: MouseEvent) => void
-  type?: ObjectNameType
+  onclick?: ButtonOnClickType
+  type?: ButtonType
   width?: string
   height?: string
   gap?: string

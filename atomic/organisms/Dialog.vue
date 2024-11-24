@@ -48,7 +48,7 @@
           v-model="formData[field.name]"
           v-bind="field.props"
           :id="field.name"
-          :v-type="props.entity"
+          :ad-type="props.entity"
           :panel-class="isDropdownOrCalendar(field.type) ? props.entity : null"
           :date-format="field.type === 'calendar' ? 'yy-mm-dd' : null"
           :toggle-mask="field.type === 'password' ? true : null"
@@ -99,7 +99,7 @@
         />
         <ad-button
           v-if="props.fields && props.confirm"
-          :type="props.entity"
+          :ad-type="props.entity"
           :label="props.confirmButtonLabel"
           icon="pi pi-check"
           @click="props.confirm(formData, props.getData)"
@@ -110,7 +110,7 @@
           v-if="
             props.action === 'delete' && props.confirm && props.selectedObject
           "
-          :type="props.entity"
+          :ad-type="props.entity"
           :label="props.confirmButtonLabel"
           icon="pi pi-check"
           @click="props.confirm(props.selectedObject.id, props.getData)"

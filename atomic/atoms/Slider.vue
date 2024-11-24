@@ -1,5 +1,6 @@
 <template>
   <Slider
+    :ad-type="props.adType"
     :model-value="props.modelValue"
     :min="props.min"
     :max="props.max"

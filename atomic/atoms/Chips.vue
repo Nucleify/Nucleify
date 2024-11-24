@@ -1,5 +1,6 @@
 <template>
   <Chips
+    :ad-type="props.adType"
     :model-value="props.modelValue"
     :max="props.max"
     :add-on-blur="props.addOnBlur"

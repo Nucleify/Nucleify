@@ -1,4 +1,4 @@
-import { IsThrottledType } from 'atomic/bosons/variables'
+import { IsThrottledType } from 'atomic/bosons/types'
 
 export interface UseThrottleInterface {
   isThrottled: IsThrottledType

@@ -1,5 +1,6 @@
 <template>
   <Checkbox
+    :ad-type="props.adType"
     :value="props.value"
     :model-value="props.modelValue"
     :name="props.name"

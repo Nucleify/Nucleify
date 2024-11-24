@@ -1,3 +1,5 @@
+import { ElementDirectionType } from 'atomic/bosons/types'
+
 export interface SwiperInterface {
   slides?: SwiperSlideInterface[]
   slidesPerView?: number
@@ -26,7 +28,7 @@ export interface SwiperInterface {
   creativeEffect?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   cssMode?: boolean
   cubeEffect?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  direction?: 'horizontal' | 'vertical'
+  direction?: ElementDirectionType
   edgeSwipeDetection?: string | boolean
   edgeSwipeThreshold?: number
   effect?: string

@@ -8,7 +8,7 @@
   font-size: 1.2rem;
 
   @each $type in main, activity, article, contact, user {
-    &[v-type='#{$type}'] {
+    &[ad-type='#{$type}'] {
       @include entity-button-styles(
         var(--#{$type}-item-color-new),
         var(--#{$type}-item-focus-color-new),

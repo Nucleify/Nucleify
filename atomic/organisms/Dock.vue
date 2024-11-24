@@ -50,7 +50,7 @@
         class="item"
         @click="item.click"
         :url="'/' + item.url"
-        :type="item.url"
+        :ad-type="item.url"
       />
       <div class="dock-position-buttons" v-if="item.label === 'position'">
         <ad-radio-button
@@ -59,7 +59,7 @@
           :key="pos.value"
           :value="pos.value"
           :class="pos.value"
-          type="main"
+          ad-type="main"
           class="flex"
           unstyled
         />

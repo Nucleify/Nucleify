@@ -1,6 +1,7 @@
 <template>
   <DataTable
     v-if="props.value && !props.loading"
+    :ad-type="props.adType"
     :value="props.value"
     :data-key="props.dataKey"
     :rows="props.rows"
@@ -66,7 +67,6 @@
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
     @row-click="openDialog!('show', $event.data)"
-    :v-type="props.type"
   >
     <Column
       v-for="col in specificColumns"
@@ -81,8 +81,8 @@
       <template #body="row">
         <div class="action-column-content">
           <ad-button
-            v-if="props.type === 'activity'"
-            :type="props.type"
+            v-if="props.adType === 'activity'"
+            :ad-type="props.adType"
             class="data-table-button"
             icon="pi pi-trash"
             @click="openDialog!('delete', row.data)"
@@ -93,7 +93,7 @@
           <template v-else>
             <ad-button
               v-for="action in actions"
-              :type="props.type"
+              :ad-type="props.adType"
               :key="action.icon"
               class="desktop-button data-table-button"
               :icon="action.icon"
@@ -103,7 +103,7 @@
               :loading="props.loading"
             />
             <ad-button
-              :type="props.type"
+              :ad-type="props.adType"
               class="mobile-button data-table-button"
               icon="pi pi-bars"
               @click="openMenu(menu, $event, row.data)"
@@ -132,12 +132,13 @@ import { DataTableInterface } from 'atomic/bosons/types'
 import { useDropdown, useMenu } from 'atomic/bosons/utils'
 
 const props = defineProps<DataTableInterface>()
+
 const menu = ref()
 const actions = actionsList(props.openDialog!)
 
 const { openMenu, selectedObject } = useMenu()
 const { dropdownItems } = useDropdown(selectedObject, props.openDialog!)
 
-const specificColumns = columns[props.type]
+const specificColumns = columns[props.adType]
 const skeleton = ref(new Array(props.rows))
 </script>

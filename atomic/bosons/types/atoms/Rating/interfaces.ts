@@ -1,8 +1,11 @@
-import { PassThroughOptions } from 'primevue/passthrough'
-import { RatingPassThroughOptions } from 'primevue/rating'
 import { PassThrough } from 'primevue/ts-helpers'
+import { RatingPassThroughOptions } from 'primevue/rating'
+import { PassThroughOptions } from 'primevue/passthrough'
+
+import { AdTypeType } from 'atomic/bosons/types'
 
 export interface RatingInterface {
+  adType?: AdTypeType
   modelValue?: number
   name?: string
   disabled?: boolean

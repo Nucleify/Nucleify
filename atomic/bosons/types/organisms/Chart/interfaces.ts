@@ -1,6 +1,6 @@
 import { CanvasHTMLAttributes } from 'vue'
-import { ChartPassThroughOptions } from 'primevue/chart'
 import { PassThrough } from 'primevue/ts-helpers'
+import { ChartPassThroughOptions } from 'primevue/chart'
 import { PassThroughOptions } from 'primevue/passthrough'
 
 import {

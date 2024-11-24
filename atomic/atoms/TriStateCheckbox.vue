@@ -1,5 +1,6 @@
 <template>
   <TriStateCheckbox
+    :ad-type="props.adType"
     :v-model="props.modelValue"
     :invalid="props.invalid"
     :disabled="props.disabled"

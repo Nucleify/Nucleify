@@ -1,8 +1,11 @@
-import { ChipsPassThroughOptions } from 'primevue/chips'
 import { PassThrough } from 'primevue/ts-helpers'
+import { ChipsPassThroughOptions } from 'primevue/chips'
 import { PassThroughOptions } from 'primevue/passthrough'
 
+import { AdTypeType, ElementVariantType } from 'atomic/bosons/types'
+
 export interface ChipsInterface {
+  adType?: AdTypeType
   modelValue?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   max?: number
   addOnBlur?: boolean
@@ -13,7 +16,7 @@ export interface ChipsInterface {
   inputStyle?: object
   invalid?: boolean
   disabled?: boolean
-  variant?: 'filled' | 'outlined'
+  variant?: ElementVariantType
   placeholder?: string
   ariaLabelledby?: string
   ariaLabel?: string
