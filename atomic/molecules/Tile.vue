@@ -1,11 +1,11 @@
 <template>
-  <ad-anchor class="tile my-card" :href="props.href" :v-type="props.type">
+  <ad-anchor class="tile my-card" :href="props.href" :ad-type="props.adType">
     <div class="general">
       <div class="info">
         <ad-paragraph class="header" :text="props.header" />
         <ad-paragraph class="count" :text="props.count" />
       </div>
-      <ad-icon class="icon" :icon="props.icon" :v-type="props.type" />
+      <ad-icon class="icon" :icon="props.icon" :ad-type="props.adType" />
     </div>
     <div class="secondary">
       <ad-paragraph class="count" :text="props.countSecondary" />

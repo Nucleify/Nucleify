@@ -15,7 +15,7 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      type="activity"
+      ad-type="activity"
       headerText="Manage Activities"
     />
   </div>

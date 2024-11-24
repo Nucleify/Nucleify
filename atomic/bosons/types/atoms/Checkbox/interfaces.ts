@@ -1,15 +1,18 @@
-import { CheckboxPassThroughOptions } from 'primevue/checkbox'
 import { PassThrough } from 'primevue/ts-helpers'
+import { CheckboxPassThroughOptions } from 'primevue/checkbox'
 import { PassThroughOptions } from 'primevue/passthrough'
 
+import { AdTypeType, ElementVariantType } from 'atomic/bosons/types'
+
 export interface CheckboxInterface {
+  adType?: AdTypeType
   value?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   modelValue?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   name?: string
   binary?: boolean
   invalid?: boolean
   disabled?: boolean
-  variant?: 'filled' | 'outlined'
+  variant?: ElementVariantType
   readonly?: boolean
   required?: boolean
   tabindex?: number

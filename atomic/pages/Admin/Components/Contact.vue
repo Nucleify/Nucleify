@@ -1,11 +1,11 @@
 <template>
   <section id="contacts">
     <ad-card-data-table
+      ad-type="contact"
       :value="data"
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      type="contact"
       headerText="Manage Contacts"
       buttonText="New Contact"
     />

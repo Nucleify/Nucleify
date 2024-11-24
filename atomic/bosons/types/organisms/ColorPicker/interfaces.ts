@@ -1,21 +1,26 @@
 import { Ref } from 'vue'
-import { HintedString, PassThrough } from 'primevue/ts-helpers'
+import { PassThrough } from 'primevue/ts-helpers'
 import { ColorPickerPassThroughOptions } from 'primevue/colorpicker'
 import { PassThroughOptions } from 'primevue/passthrough'
 
-import { ColorItemColorsInterface } from '../../index'
+import {
+  AdTypeType,
+  ColorItemColorsInterface,
+  ColorType,
+  ElementAppendTo,
+} from 'atomic/bosons/types'
 
 export interface ColorPickerInterface {
-  item?: string
+  adType?: AdTypeType
   modelValue?: string
   defaultColor?: string
   inline?: boolean
-  format?: 'rgb' | 'hex' | 'hsb'
+  format?: ColorType
   disabled?: boolean
   tabindex?: string
   autoZIndex?: boolean
   panelClass?: string
-  appendTo?: HTMLElement | HintedString<'body' | 'self'>
+  appendTo?: ElementAppendTo
   pt?: PassThrough<ColorPickerPassThroughOptions>
   ptOptions?: PassThroughOptions
   unstyled?: boolean

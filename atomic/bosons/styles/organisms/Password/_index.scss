@@ -2,7 +2,7 @@
 
 .p-password {
   @each $type in main, activity, article, contact, user {
-    &[v-type='#{$type}'] {
+    &[ad-type='#{$type}'] {
       .p-inputtext {
         @include entity-password-styles(
           var(--#{$type}-item-color-new),

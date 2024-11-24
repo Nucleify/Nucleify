@@ -1,5 +1,6 @@
 <template>
   <Rating
+    :ad-type="props.adType"
     :model-value="props.modelValue"
     :name="props.name"
     :disabled="props.disabled"

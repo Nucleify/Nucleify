@@ -9,7 +9,7 @@
         icon="pi pi-comment"
         count-secondary="20 new"
         text-secondary="this week"
-        type="article"
+        ad-type="article"
       />
       <ad-tile
         href="#contacts"
@@ -18,7 +18,7 @@
         icon="pi pi-user"
         count-secondary="20 new"
         text-secondary="this week"
-        type="contact"
+        ad-type="contact"
       />
       <ad-tile
         href="#users"
@@ -27,7 +27,7 @@
         icon="pi pi-user"
         count-secondary="20 new"
         text-secondary="this week"
-        type="user"
+        ad-type="user"
       />
     </div>
 
@@ -35,7 +35,7 @@
       v-if="display.Admin"
       class="annual-chart-card"
       :chart-method-type="'annual'"
-      :type="'bar'"
+      type="bar"
       :direction="'vertical'"
       :article-data="articles"
       :contact-data="contacts"

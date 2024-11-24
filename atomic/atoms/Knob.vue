@@ -1,5 +1,6 @@
 <template>
   <Knob
+    :ad-type="props.adType"
     :model-value="props.modelValue"
     :size="props.size"
     :disabled="props.disabled"

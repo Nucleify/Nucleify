@@ -25,7 +25,7 @@
       gap: props.gap,
       padding: props.padding,
     }"
-    :v-type="props.type"
+    :ad-type="props.adType"
   >
     <ad-image v-if="props.src" :src="props.src" />
     <slot />

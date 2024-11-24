@@ -18,7 +18,7 @@
             />
             <ad-chart
               :chart-method-type="'count'"
-              :type="'pie'"
+              type="pie"
               :chart-class="'home-pie-chart'"
               :example="true"
             />

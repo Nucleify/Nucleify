@@ -1,5 +1,5 @@
-import { ImagePassThroughOptions } from 'primevue/image'
 import { PassThrough } from 'primevue/ts-helpers'
+import { ImagePassThroughOptions } from 'primevue/image'
 import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface ImageInterface {

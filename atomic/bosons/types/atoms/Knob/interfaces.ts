@@ -1,8 +1,11 @@
-import { KnobPassThroughOptions } from 'primevue/knob'
 import { PassThrough } from 'primevue/ts-helpers'
+import { KnobPassThroughOptions } from 'primevue/knob'
 import { PassThroughOptions } from 'primevue/passthrough'
 
+import { AdTypeType } from 'atomic/bosons/types'
+
 export interface KnobInterface {
+  adType?: AdTypeType
   modelValue?: number
   size?: number
   disabled?: boolean

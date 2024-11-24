@@ -2,7 +2,10 @@ import { PassThrough } from 'primevue/ts-helpers'
 import { SelectButtonPassThroughOptions } from 'primevue/selectbutton'
 import { PassThroughOptions } from 'primevue/passthrough'
 
+import { AdTypeType } from 'atomic/bosons/types'
+
 export interface SelectButtonInterface {
+  adType?: AdTypeType
   modelValue?: number
   options?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   optionLabel?: string | void

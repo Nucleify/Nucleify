@@ -2,11 +2,14 @@ import { PassThrough } from 'primevue/ts-helpers'
 import { TriStateCheckboxPassThroughOptions } from 'primevue/tristatecheckbox'
 import { PassThroughOptions } from 'primevue/passthrough'
 
+import { AdTypeType, ElementVariantType } from 'atomic/bosons/types'
+
 export interface TriStateCheckboxInterface {
+  adType?: AdTypeType
   modelValue?: boolean
   invalid?: boolean
   disabled?: boolean
-  variant?: 'filled' | 'outlined'
+  variant?: ElementVariantType
   readonly?: boolean
   tabindex?: string
   inputId?: string

@@ -1,5 +1,6 @@
 <template>
   <SelectButton
+    :ad-type="props.adType"
     :model-value="props.modelValue"
     :options="props.options"
     :option-label="props.optionLabel"
