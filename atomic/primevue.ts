@@ -37,6 +37,7 @@ import Slider from 'primevue/slider'
 import Terminal from 'primevue/terminal'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
+import TriStateCheckbox from 'primevue/tristatecheckbox'
 
 /**
  *  Directives
@@ -89,6 +90,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Terminal', Terminal)
     .component('Textarea', Textarea)
     .component('Toast', Toast)
+    .component('TriStateCheckbox', TriStateCheckbox)
 
     /**
      *  Services
