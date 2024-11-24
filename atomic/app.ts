@@ -43,6 +43,7 @@ import {
   Skeleton,
   Slider,
   Textarea,
+  TriStateCheckbox,
 } from './atoms'
 import { Anchor, FloatLabel, Tile } from './molecules'
 import {
@@ -112,8 +113,8 @@ app
   .component('ad-select-button', SelectButton)
   .component('ad-skeleton', Skeleton)
   .component('ad-slider', Slider)
-
   .component('ad-textarea', Textarea)
+  .component('ad-tri-state-checkbox', TriStateCheckbox)
 
   /**
    *  Molecules
