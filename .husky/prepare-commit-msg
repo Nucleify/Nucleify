@@ -23,6 +23,9 @@ case "$CURRENT_BRANCH" in
     home)
         FINAL_MSG="🏠 Home: $ORIGINAL_MSG"
         ;;
+    laravel-meta-tags)
+        FINAL_MSG="LaravelMetaTags: $ORIGINAL_MSG"
+        ;;
     packages)
         FINAL_MSG="📦 Packages: $ORIGINAL_MSG"
         ;;
@@ -31,10 +34,10 @@ case "$CURRENT_BRANCH" in
         ;;
     page-services)
         FINAL_MSG="Services: $ORIGINAL_MSG"
-	;;
+	      ;;
     page-blog)
         FINAL_MSG="Blog: $ORIGINAL_MSG"
-	;;
+	      ;;
     performance)
         FINAL_MSG="⚡ Performance: $ORIGINAL_MSG"
         ;;
