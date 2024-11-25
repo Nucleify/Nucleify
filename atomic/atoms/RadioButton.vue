@@ -1,5 +1,6 @@
 <template>
   <RadioButton
+    :ad-type="props.adType"
     :value="props.value"
     :name="props.name"
     :binary="props.binary"
@@ -16,7 +17,6 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
-    :v-type="props.type"
   />
 </template>
 

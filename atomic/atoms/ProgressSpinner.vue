@@ -1,5 +1,6 @@
 <template>
   <ProgressSpinner
+    :ad-type="props.adType"
     :stroke-width="props.strokeWidth"
     :fill="props.fill"
     :animation-duration="props.animationDuration"

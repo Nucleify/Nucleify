@@ -28,11 +28,10 @@ body:has(.p-dock.p-dock-left) {
 
 body:has(.p-dock.p-dock-bottom) {
   .panel-container {
-    padding-bottom: 79px;
+    padding-bottom: 80px;
 
     @media (min-width: $breakpoint-lg) {
       padding-top: 8px;
-      padding-bottom: 79px;
     }
   }
 }

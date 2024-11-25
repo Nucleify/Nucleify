@@ -3,14 +3,14 @@
     <div class="container">
       <div class="container start-container">
         <div class="left-side">
-          <ad-header :tag="1" class="header">
+          <ad-heading :tag="1" class="header">
             One
             <span class="shiny-text first-text">place</span> <br />
             for all
             <span class="shiny-text">your data</span>
-          </ad-header>
+          </ad-heading>
 
-          <ad-header
+          <ad-heading
             :tag="2"
             text="Manage various data types from a single place and access them everywhere with this development template."
             class="start-description"

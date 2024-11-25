@@ -33,7 +33,7 @@
     :passwords-match="passwordsMatch"
     :empty-password="emptyPassword"
     :empty-confirm-password="emptyConfirmPassword"
-    :v-type="props.type"
+    :ad-type="props.type"
   >
     <template #footer v-if="id !== 'password_confirmation'">
       <Divider />
@@ -59,14 +59,14 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+
+import { PasswordInterface } from 'atomic/bosons/types'
 import {
   checkLowercase,
   checkMinLength,
   checkNumeric,
   checkUppercase,
-} from '../bosons/utils'
-
-import { PasswordInterface } from '../bosons/types'
+} from 'atomic/bosons/utils'
 
 const props = defineProps<PasswordInterface>()
 

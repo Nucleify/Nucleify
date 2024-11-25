@@ -1,11 +1,11 @@
 <template>
   <section id="users">
     <ad-card-data-table
+      ad-type="user"
       :value="data"
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      type="user"
       headerText="Manage Users"
       buttonText="New User"
     />

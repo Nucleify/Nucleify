@@ -15,7 +15,7 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      type="article"
+      ad-type="article"
       headerText="Manage Articles"
     />
   </div>

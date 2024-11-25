@@ -34,7 +34,7 @@
     <template #header>
       <div class="flex align-items-center gap-4">
         <ad-icon :icon="dialogData.icon" class="text-xl" />
-        <ad-header :tag="4" class="m-0" :text="dialogData.title" />
+        <ad-heading :tag="4" class="m-0" :text="dialogData.title" />
       </div>
     </template>
     <template #default>

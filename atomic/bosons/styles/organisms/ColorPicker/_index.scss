@@ -1,10 +1,10 @@
 @import 'mixins';
 
 @each $type in main, activity, article, contact, money, user {
-  .p-colorpicker[v-type='#{$type}'] {
+  .p-colorpicker[ad-type='#{$type}'] {
     @include entity-colorpicker-styles(
-      var(--#{$type}-item-color-new),
-      var(--#{$type}-item-focus-color-new)
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-focus-color-new) !important
     );
   }
 }

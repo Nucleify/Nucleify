@@ -1,5 +1,6 @@
 <template>
   <ProgressBar
+    :ad-type="props.adType"
     :value="props.value"
     :mode="props.mode"
     :show-value="props.showValue"
