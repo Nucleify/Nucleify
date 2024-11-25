@@ -32,6 +32,7 @@ import {
   Icon,
   Image,
   InputMask,
+  InputOtp,
   InputText,
   Knob,
   Label,
@@ -106,6 +107,7 @@ app
   .component('ad-icon', Icon)
   .component('ad-image', Image)
   .component('ad-input-mask', InputMask)
+  .component('ad-input-otp', InputOtp)
   .component('ad-input-text', InputText)
   .component('ad-knob', Knob)
   .component('ad-label', Label)

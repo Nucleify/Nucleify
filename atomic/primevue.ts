@@ -23,6 +23,7 @@ import FloatLabel from 'primevue/floatlabel'
 import Image from 'primevue/image'
 import InlineMessage from 'primevue/inlinemessage'
 import InputMask from 'primevue/inputmask'
+import InputOtp from 'primevue/inputotp'
 import InputText from 'primevue/inputtext'
 import Knob from 'primevue/knob'
 import Menu from 'primevue/menu'
@@ -79,6 +80,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Image', Image)
     .component('InlineMessage', InlineMessage)
     .component('InputMask', InputMask)
+    .component('InputOtp', InputOtp)
     .component('InputText', InputText)
     .component('Knob', Knob)
     .component('Menu', Menu)
