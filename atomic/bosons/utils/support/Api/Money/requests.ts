@@ -41,9 +41,11 @@ export function moneyRequests(
     } catch (error) {
       catchErrors(error, apiErrors)
     } finally {
-      if (loading) {
-        setLoading(false)
-      }
+      setTimeout(() => {
+        if (loading) {
+          setLoading(false)
+        }
+      })
     }
   }
 

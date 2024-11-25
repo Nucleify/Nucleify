@@ -73,6 +73,12 @@
   }
 }
 
-.why-us-dialog .p-dialog-content {
-  top: -1px;
+.why-us-dialog {
+  button {
+    display: none !important;
+  }
+
+  .p-dialog-content {
+    top: -1px;
+  }
 }

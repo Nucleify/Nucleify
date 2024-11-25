@@ -1,6 +1,6 @@
 export type ComponentType =
-  | 'calendar'
-  | 'dropdown'
+  | 'date-picker'
+  | 'select'
   | 'input-mask'
   | 'input-text'
   | 'password'

@@ -49,8 +49,8 @@
           v-bind="field.props"
           :id="field.name"
           :ad-type="props.entity"
-          :panel-class="isDropdownOrCalendar(field.type) ? props.entity : null"
-          :date-format="field.type === 'calendar' ? 'yy-mm-dd' : null"
+          :panel-class="isSelectOrDatePicker(field.type) ? props.entity : null"
+          :date-format="field.type === 'date-picker' ? 'yy-mm-dd' : null"
           :toggle-mask="field.type === 'password' ? true : null"
           :passwords-match="
             field.name === 'password_confirmation' && isPasswordsMatch(formData)
@@ -129,11 +129,11 @@ import { DialogInterface, FormDataInterface } from 'atomic/bosons/types'
 import {
   getComponent,
   getTitle,
-  isDropdownOrCalendar,
   isEmptyConfirmPassword,
   isEmptyPassword,
   isPasswordsMatch,
   isPhoneField,
+  isSelectOrDatePicker,
 } from 'atomic/bosons/utils'
 
 const props = defineProps<DialogInterface>()

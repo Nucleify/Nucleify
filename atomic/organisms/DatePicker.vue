@@ -1,5 +1,5 @@
 <template>
-  <Calendar
+  <DatePicker
     :model-value="props.modelValue"
     @update:model-value="onUpdateModelValue"
     :selection-mode="props.selectionMode"
@@ -59,14 +59,17 @@
 </template>
 
 <script setup lang="ts">
-import { CalendarInterface, CalendarModelValueType } from '../bosons/types'
-import { formatDate } from '../bosons/utils'
+import {
+  DatePickerInterface,
+  DatePickerModelValueType,
+} from 'atomic/bosons/types'
+import { formatDate } from 'atomic/bosons/utils'
 
-const props = defineProps<CalendarInterface>()
+const props = defineProps<DatePickerInterface>()
 
 const emit = defineEmits(['update:modelValue'])
 
-function onUpdateModelValue(value: CalendarModelValueType) {
+function onUpdateModelValue(value: DatePickerModelValueType) {
   if (value instanceof Date) {
     const formattedValue = formatDate(value)
     emit('update:modelValue', formattedValue)
