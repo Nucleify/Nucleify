@@ -3,6 +3,7 @@ import { App } from 'vue'
 /**
  *  Components
  */
+import AutoComplete from 'primevue/autocomplete'
 import Avatar from 'primevue/avatar'
 import Badge from 'primevue/badge'
 import Button from 'primevue/button'
@@ -61,6 +62,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     /**
      *  Components
      */
+    .component('AutoComplete', AutoComplete)
     .component('Avatar', Avatar)
     .component('Badge', Badge)
     .component('Button', Button)
