@@ -1,5 +1,16 @@
-.p-inputtextarea {
+@import 'mixins';
+
+.p-textarea {
   padding: 5px 10px;
-  min-height: 75px;
+  min-height: 100px;
   max-height: 400px;
+
+  @each $type in main, activity, article, contact, money, user {
+    &[ad-type='#{$type}'] {
+      @include entity-textarea-styles(
+        var(--#{$type}-item-color-new) !important,
+        var(--#{$type}-item-focus-color-new) !important
+      );
+    }
+  }
 }

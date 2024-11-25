@@ -30,16 +30,11 @@
     }
   }
 
-  span {
+  span,
+  .p-button {
     &.p-highlight {
       color: $item-color;
       background: $highlight-color;
-    }
-
-    &:focus {
-      box-shadow:
-        0 0 0 2px #fff,
-        0 0 0 4px $focus-color;
     }
 
     &:not(.p-disabled, .p-highlight).p-focus {
@@ -55,12 +50,23 @@
     }
   }
 
-  th span,
-  .p-datepicker-year,
-  .p-datepicker-month {
+  .p-button {
     &:hover {
       color: $item-color;
-      background: transparent;
+      background: $selected-color;
+    }
+  }
+
+  th span,
+  .p-datepicker-decade,
+  .p-datepicker-year,
+  .p-datepicker-month,
+  .p-datepicker-weekday,
+  .p-datepicker-select-year,
+  .p-datepicker-select-month {
+    &:hover {
+      color: $item-color;
+      background: transparent !important;
     }
   }
 }

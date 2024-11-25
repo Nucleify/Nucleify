@@ -7,8 +7,8 @@
   @each $type in main, activity, article, contact, money, user {
     &[ad-type='#{$type}'] {
       @include entity-inputtext-styles(
-        var(--#{$type}-item-color-new),
-        var(--#{$type}-item-focus-color-new)
+        var(--#{$type}-item-color-new) !important,
+        var(--#{$type}-item-focus-color-new) !important
       );
     }
   }

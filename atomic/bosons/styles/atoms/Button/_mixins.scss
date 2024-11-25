@@ -4,14 +4,7 @@
     all 0.1s,
     background-color 0.5s,
     box-shadow 0.5s,
-    color 0.2s !important;
-
-  &:focus,
-  &:focus-visible {
-    box-shadow:
-      0 0 0 2px #fff,
-      0 0 0 4px $focus-color;
-  }
+    color 0.2s;
 
   &:active,
   &:focus-visible {
@@ -20,6 +13,8 @@
   }
 
   &:hover {
+    background-color: $selected-color;
+
     svg,
     g {
       fill: $item-color;

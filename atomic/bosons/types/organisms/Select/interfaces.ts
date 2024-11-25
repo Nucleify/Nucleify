@@ -1,12 +1,12 @@
 import { HTMLAttributes, InputHTMLAttributes } from 'vue'
 import { HintedString, PassThrough } from 'primevue/ts-helpers'
 import { VirtualScrollerProps } from 'primevue/virtualscroller'
-import { DropdownPassThroughOptions } from 'primevue/dropdown'
+import { SelectPassThroughOptions } from 'primevue/select'
 import { PassThroughOptions } from 'primevue/passthrough'
 
 import { ElementAppendTo, ElementVariantType } from 'atomic/bosons/types'
 
-export interface DropdownInterface {
+export interface SelectInterface {
   modelValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   option?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   optionLabel?: string | void
@@ -53,7 +53,7 @@ export interface DropdownInterface {
   tabindex?: string | number
   ariaLabel?: string
   ariaLabelledby?: string
-  pt?: PassThrough<DropdownPassThroughOptions>
+  pt?: PassThrough<SelectPassThroughOptions>
   ptOptions?: PassThroughOptions
   unstyled?: boolean
 }

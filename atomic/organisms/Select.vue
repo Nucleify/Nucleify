@@ -1,5 +1,5 @@
 <template>
-  <Dropdown
+  <Select
     :model-value="props.modelValue"
     @update:model-value="onUpdateModelValue"
     :option="props.option"
@@ -54,9 +54,9 @@
 </template>
 
 <script setup lang="ts">
-import { DropdownInterface } from 'atomic/bosons/types'
+import { SelectInterface } from 'atomic/bosons/types'
 
-const props = defineProps<DropdownInterface>()
+const props = defineProps<SelectInterface>()
 const emit = defineEmits(['update:modelValue'])
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

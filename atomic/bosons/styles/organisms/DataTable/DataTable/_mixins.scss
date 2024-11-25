@@ -1,6 +1,6 @@
 @mixin entity-datatable-styles($item-color, $selected-color, $highlight-color) {
-  .p-highlight,
-  .p-paginator-element:hover {
+  .p-datatable-column-sorted,
+  .p-paginator-content button:hover {
     color: $item-color;
     background: $highlight-color;
 
@@ -10,7 +10,7 @@
   }
 
   .p-datatable-thead {
-    th:not(.p-highlight) {
+    th:not(.p-datatable-column-sorted, .action-column) {
       &:hover {
         background: $selected-color;
       }

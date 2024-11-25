@@ -1,5 +1,5 @@
 @mixin entity-colorpicker-styles($item-color, $box-shadow-color) {
-  .p-inputtext:enabled {
+  .p-colorpicker-preview {
     &:hover {
       border-color: $item-color;
     }
