@@ -24,10 +24,10 @@
         href="#money"
         header="Money"
         :count="money?.length"
-        icon="pi pi-user"
+        icon="pi pi-dollar"
         count-secondary="20 new"
         text-secondary="this week"
-        type="money"
+        ad-type="money"
       />
       <ad-tile
         href="#users"
