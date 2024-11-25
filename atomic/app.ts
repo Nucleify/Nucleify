@@ -27,6 +27,7 @@ import {
   Badge,
   Button,
   Checkbox,
+  Divider,
   Chips,
   Heading,
   Icon,
@@ -104,6 +105,7 @@ app
   .component('ad-button', Button)
   .component('ad-checkbox', Checkbox)
   .component('ad-chips', Chips)
+  .component('ad-divider', Divider)
   .component('ad-heading', Heading)
   .component('ad-icon', Icon)
   .component('ad-image', Image)
