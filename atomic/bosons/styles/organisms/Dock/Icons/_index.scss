@@ -26,8 +26,8 @@ $items: (
 
 @each $item, $props in $items {
   #app:has(> ##{$item}) {
-    .dock .pi[v-type='#{$item}'] {
-      @include entity-dock-item-styles(var(map-get($props, color)));
+    .dock .pi[ad-type='#{$item}'] {
+      @include entity-dock-item-styles(var(map-get($props, color)) !important);
     }
   }
 }

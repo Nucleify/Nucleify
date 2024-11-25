@@ -28,12 +28,12 @@
     :class="props.action"
   >
     <template #header>
-      <ad-header
+      <ad-heading
         :tag="2"
         :text="getTitle(props.selectedObject)"
         v-if="props.action === 'show' && props.selectedObject"
       />
-      <ad-header :tag="2" :text="props.title" v-else />
+      <ad-heading :tag="2" :text="props.title" v-else />
     </template>
 
     <form
@@ -48,9 +48,9 @@
           v-model="formData[field.name]"
           v-bind="field.props"
           :id="field.name"
-          :v-type="props.entity"
-          :panel-class="isDropdownOrCalendar(field.type) ? props.entity : null"
-          :date-format="field.type === 'calendar' ? 'yy-mm-dd' : null"
+          :ad-type="props.entity"
+          :panel-class="isSelectOrDatePicker(field.type) ? props.entity : null"
+          :date-format="field.type === 'date-picker' ? 'yy-mm-dd' : null"
           :toggle-mask="field.type === 'password' ? true : null"
           :passwords-match="
             field.name === 'password_confirmation' && isPasswordsMatch(formData)
@@ -82,7 +82,7 @@
       class="show-data-container"
     >
       <div v-for="(item, key) in props.fields" :key="key">
-        <ad-header :tag="5" class="show-data-header" :text="item.label" />
+        <ad-heading :tag="5" class="show-data-header" :text="item.label" />
         <div>{{ (props.selectedObject as any)[item.key] }}</div>
       </div>
     </div>
@@ -99,7 +99,7 @@
         />
         <ad-button
           v-if="props.fields && props.confirm"
-          :type="props.entity"
+          :ad-type="props.entity"
           :label="props.confirmButtonLabel"
           icon="pi pi-check"
           @click="props.confirm(formData, props.getData)"
@@ -110,7 +110,7 @@
           v-if="
             props.action === 'delete' && props.confirm && props.selectedObject
           "
-          :type="props.entity"
+          :ad-type="props.entity"
           :label="props.confirmButtonLabel"
           icon="pi pi-check"
           @click="props.confirm(props.selectedObject.id, props.getData)"
@@ -129,11 +129,11 @@ import { DialogInterface, FormDataInterface } from 'atomic/bosons/types'
 import {
   getComponent,
   getTitle,
-  isDropdownOrCalendar,
   isEmptyConfirmPassword,
   isEmptyPassword,
   isPasswordsMatch,
   isPhoneField,
+  isSelectOrDatePicker,
 } from 'atomic/bosons/utils'
 
 const props = defineProps<DialogInterface>()

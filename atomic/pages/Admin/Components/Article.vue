@@ -1,11 +1,11 @@
 <template>
   <section id="articles">
     <ad-card-data-table
+      ad-type="article"
       :value="data"
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      type="article"
       headerText="Manage Articles"
       buttonText="New Article"
     />

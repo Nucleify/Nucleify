@@ -1,7 +1,7 @@
 import { roles } from 'atomic/bosons/constants'
-import { EntityFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
+import { ContactFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
 
-export function useContactFields(): UseFieldsInterface<EntityFieldInterface> {
+export function useContactFields(): UseFieldsInterface<ContactFieldInterface> {
   const fieldData: readonly [string, string, string][] = [
     ['first_name', 'First Name', 'input-text'],
     ['last_name', 'Last Name', 'input-text'],
@@ -9,16 +9,16 @@ export function useContactFields(): UseFieldsInterface<EntityFieldInterface> {
     ['personal_phone', 'Personal Phone', 'input-mask'],
     ['work_phone', 'Work Phone', 'input-mask'],
     ['address', 'Address', 'textarea'],
-    ['birthday', 'Birthday', 'calendar'],
+    ['birthday', 'Birthday', 'date-picker'],
     ['contact_groups', 'Contact Groups', 'input-text'],
-    ['role', 'Role', 'dropdown'],
+    ['role', 'Role', 'select'],
     ['updated_at', 'Updated At', ''],
     ['created_at', 'Created At', ''],
   ] as const
 
-  const createAndEditFields: EntityFieldInterface[] = fieldData
+  const createAndEditFields: ContactFieldInterface[] = fieldData
     .filter(([name]) => !['created_at', 'updated_at'].includes(name))
-    .map(([name, label, type]): EntityFieldInterface => {
+    .map(([name, label, type]): ContactFieldInterface => {
       const props =
         name === 'role'
           ? { options: roles, placeholder: 'Select a role' }

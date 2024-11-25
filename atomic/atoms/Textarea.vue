@@ -1,5 +1,6 @@
 <template>
   <Textarea
+    :ad-type="props.adType"
     :model-value="props.modelValue"
     @update:model-value="updateValue"
     :auto-resize="props.autoResize"
@@ -8,7 +9,6 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
-    :type="props.type"
   />
 </template>
 

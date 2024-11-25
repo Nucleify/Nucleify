@@ -1,5 +1,6 @@
 <template>
   <InputMask
+    :ad-type="props.adType"
     :v-model="props.value"
     :slot-char="props.slotChar"
     :mask="props.mask"

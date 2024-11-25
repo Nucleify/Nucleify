@@ -10,12 +10,12 @@ it('returns "ad-input-text" for "input-text"', (): void => {
   expect(getComponent('input-text')).toBe('ad-input-text')
 })
 
-it('returns "ad-calendar" for "calendar"', (): void => {
-  expect(getComponent('calendar')).toBe('ad-calendar')
+it('returns "ad-date-picker" for "date-picker"', (): void => {
+  expect(getComponent('date-picker')).toBe('ad-date-picker')
 })
 
-it('returns "Dropdown" for "dropdown"', (): void => {
-  expect(getComponent('dropdown')).toBe('ad-dropdown')
+it('returns "ad-select" for "select"', (): void => {
+  expect(getComponent('select')).toBe('ad-select')
 })
 
 it('returns "ad-password" for "password"', (): void => {

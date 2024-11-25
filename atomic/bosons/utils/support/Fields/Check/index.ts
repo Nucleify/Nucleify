@@ -1,5 +1,5 @@
-export * from './is_dropdown_or_calendar'
 export * from './is_empty_confirm_password'
 export * from './is_empty_password'
 export * from './is_passwords_match'
 export * from './is_phone_field'
+export * from './is_select_or_date_picker'

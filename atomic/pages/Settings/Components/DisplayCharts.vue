@@ -2,11 +2,11 @@
   <ad-card class="settings-card settings-small-card">
     <template #header>
       <div class="settings-card-header-container">
-        <ad-header :tag="4" text="Charts" />
+        <ad-heading :tag="4" text="Charts" />
 
         <ad-button
           icon="pi pi-refresh"
-          type="main"
+          ad-type="main"
           class="refresh-button"
           @click="setDefaultChartsDisplay(false, true)"
           rounded
@@ -27,7 +27,7 @@
           <ad-radio-button
             :input-id="item"
             :value="item"
-            type="main"
+            ad-type="main"
             @click="displayChartsToggle(item)"
             :class="display[item] ? 'p-highlight' : ''"
             class="p-radiobutton-main"

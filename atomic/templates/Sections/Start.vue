@@ -4,7 +4,7 @@
       <slot />
     </div>
     <div class="start">
-      <ad-header
+      <ad-heading
         :tag="1"
         :text="props.header"
         class="shiny-text start-header"
@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { StartSectionInterface } from 'atomic/bosons/types'
+import { SectionStartInterface } from 'atomic/bosons/types'
 
-const props = defineProps<StartSectionInterface>()
+const props = defineProps<SectionStartInterface>()
 </script>

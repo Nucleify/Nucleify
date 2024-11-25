@@ -4,11 +4,11 @@
       <div class="top">
         <ad-anchor href="#start" class="header">
           <ad-image :src="imgUrl + 'logo.svg'" class="logo" />
-          <ad-header :tag="1" text="DataManager" class="name" />
+          <ad-heading :tag="1" text="DataManager" class="name" />
         </ad-anchor>
         <div class="content">
           <div class="entities">
-            <ad-header :tag="3" text="Entities" />
+            <ad-heading :tag="3" text="Entities" />
             <ad-anchor href="/activity-log" text="Activities" />
             <ad-anchor href="/articles" text="Articles" />
             <ad-anchor text="Calendar" />
@@ -17,7 +17,7 @@
             <ad-anchor href="/admin" text="Users" />
           </div>
           <div class="services">
-            <ad-header :tag="3" text="Services" />
+            <ad-heading :tag="3" text="Services" />
             <ad-anchor text="Open Source" />
             <ad-anchor text="Data Storage" />
             <ad-anchor text="Data Migration" />
@@ -26,7 +26,7 @@
             <ad-anchor text="Page Builder" />
           </div>
           <div class="about">
-            <ad-header :tag="3" text="About" />
+            <ad-heading :tag="3" text="About" />
             <ad-anchor text="Purpose" />
             <ad-anchor text="Collaboration" />
             <ad-anchor text="Support Us" />
@@ -34,7 +34,7 @@
             <ad-anchor text="Contact" />
           </div>
           <div class="blog">
-            <ad-header :tag="3" text="Blog" />
+            <ad-heading :tag="3" text="Blog" />
             <ad-anchor text="The Importance of Open Source in Today's World" />
             <ad-anchor text="How to Automate Your Data Pipeline" />
             <ad-anchor text="Maximizing Data Security" />

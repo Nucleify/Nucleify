@@ -5,13 +5,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  transition: 0.2s 0.15s opacity;
+
+  &:not(:has(.p-skeleton)) {
+    margin-top: 4px;
+  }
 
   @each $type in activity, article, contact, money, user {
-    &[v-type='#{$type}'] {
+    &[ad-type='#{$type}'] {
       @include entity-datatable-styles(
-        var(--#{$type}-item-color-new),
-        var(--#{$type}-item-selected-color-new),
-        var(--#{$type}-item-highlight-color-new)
+        var(--#{$type}-item-color-new) !important,
+        var(--#{$type}-item-selected-color-new) !important,
+        var(--#{$type}-item-highlight-color-new) !important
       );
     }
   }
@@ -24,12 +29,37 @@
     }
   }
 
+  th {
+    padding: 8px 9px !important;
+  }
+
   td {
+    padding: 6px 9px !important;
     cursor: pointer;
   }
 
   .p-component-overlay {
     background: transparent;
+  }
+
+  .p-datatable-paginator-bottom {
+    border: 0;
+
+    .p-paginator {
+      position: relative;
+      bottom: 20px;
+      margin: 0;
+      padding: 0;
+
+      .p-paginator-current {
+        margin: 0 4px;
+      }
+
+      .p-paginator-content {
+        display: flex;
+        gap: 8px;
+      }
+    }
   }
 
   :has(.p-datatable-loading-overlay) {
