@@ -1,2 +1,1 @@
-export * from './Section'
-export * from './Single'
+export * from './interfaces'

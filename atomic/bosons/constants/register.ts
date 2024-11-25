@@ -1,14 +1,24 @@
 import { App } from 'vue'
 
+import {
+  imgUrl,
+  contributorsImgUrl,
+  storysetImgUrl,
+  storysetAboutImgUrl,
+  storysetServicesImgUrl,
+  storysetBlogImgUrl,
+  technologiesImgUrl,
+} from 'atomic/bosons/constants'
+
 export function registerGlobalConstants(app: App): void {
   /**
    *  Images urls
    */
-  app.config.globalProperties.imgUrl = 'img/'
-  app.config.globalProperties.contributorsImgUrl = 'img/contributors/'
-  app.config.globalProperties.storysetImgUrl = 'img/storyset/'
-  app.config.globalProperties.storysetAboutImgUrl = 'img/storyset/about/'
-  app.config.globalProperties.storysetServicesImgUrl = 'img/storyset/services/'
-  app.config.globalProperties.storysetBlogImgUrl = 'img/storyset/blog/'
-  app.config.globalProperties.technologiesImgUrl = 'img/technologies/'
+  app.config.globalProperties.imgUrl = imgUrl
+  app.config.globalProperties.contributorsImgUrl = contributorsImgUrl
+  app.config.globalProperties.storysetImgUrl = storysetImgUrl
+  app.config.globalProperties.storysetAboutImgUrl = storysetAboutImgUrl
+  app.config.globalProperties.storysetServicesImgUrl = storysetServicesImgUrl
+  app.config.globalProperties.storysetBlogImgUrl = storysetBlogImgUrl
+  app.config.globalProperties.technologiesImgUrl = technologiesImgUrl
 }

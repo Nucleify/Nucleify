@@ -4,6 +4,8 @@ import { VirtualScrollerProps } from 'primevue/virtualscroller'
 import { DropdownPassThroughOptions } from 'primevue/dropdown'
 import { PassThroughOptions } from 'primevue/passthrough'
 
+import { ElementAppendTo, ElementVariantType } from 'atomic/bosons/types'
+
 export interface DropdownInterface {
   modelValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   option?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -21,7 +23,7 @@ export interface DropdownInterface {
   placeholder?: string
   invalid?: boolean
   disabled?: boolean
-  variant?: 'filled' | 'outlined'
+  variant?: ElementVariantType
   dataKey?: string
   showClear?: boolean
   inputId?: string
@@ -32,7 +34,7 @@ export interface DropdownInterface {
   panelClass?: string | object
   panelProps?: HTMLAttributes
   filterInputProps?: InputHTMLAttributes
-  appendTo?: HTMLElement | HintedString<'body' | 'self'>
+  appendTo?: ElementAppendTo
   loading?: boolean
   resetFilterOnHide?: boolean
   resetFilterOnClear?: boolean

@@ -1,7 +1,7 @@
 <template>
   <section id="charts">
     <div class="home-charts-container">
-      <ad-header
+      <ad-heading
         :tag="5"
         class="home-charts-header"
         text="Choose from bar charts, line graphs, pie charts and more to best represent your data."
@@ -18,7 +18,7 @@
             />
             <ad-chart
               :chart-method-type="'count'"
-              :type="'pie'"
+              type="pie"
               :chart-class="'home-pie-chart'"
               :example="true"
             />

@@ -2,9 +2,9 @@
   <Terminal
     :welcome-message="props.welcomeMessage"
     :prompt="props.prompt"
-    :pt="pt"
-    :pt-options="ptOptions"
-    :unstyled="unstyled"
+    :pt="props.pt"
+    :pt-options="props.ptOptions"
+    :unstyled="props.unstyled"
   />
 </template>
 
