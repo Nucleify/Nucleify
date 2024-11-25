@@ -5,7 +5,7 @@
     :options="props.options"
     :option-label="props.optionLabel"
     :option-value="props.optionValue"
-    :optionDisabled="props.optionDisabled"
+    :option-disabled="props.optionDisabled"
     :multiple="props.multiple"
     :invalid="props.invalid"
     :disabled="props.disabled"

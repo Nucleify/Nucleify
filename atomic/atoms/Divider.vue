@@ -1,10 +1,10 @@
 <template>
   <Divider
-    :aling="props.align"
+    :align="props.align"
     :layout="props.layout"
     :type="props.type"
     :pt="props.pt"
-    :ptOptions="props.ptOptions"
+    :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   />
 </template>

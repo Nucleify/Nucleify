@@ -16,7 +16,7 @@
     :value-template="props.valueTemplate"
     :tabindex="props.tabindex"
     :aria-labelledby="props.ariaLabelledby"
-    :ariaLabel="props.ariaLabel"
+    :aria-label="props.ariaLabel"
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"

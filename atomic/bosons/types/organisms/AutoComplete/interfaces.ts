@@ -1,9 +1,9 @@
+import { HTMLAttributes, InputHTMLAttributes } from 'vue'
+import { VirtualScrollerProps } from 'primevue/virtualscroller'
 import { PassThrough } from 'primevue/ts-helpers'
 import { AutoCompletePassThroughOptions } from 'primevue/autocomplete'
 import { PassThroughOptions } from 'primevue/passthrough'
 
-import { HTMLAttributes, InputHTMLAttributes } from 'vue'
-import { VirtualScrollerProps } from 'primevue/virtualscroller'
 import { ElementAppendTo, ElementVariantType } from 'atomic/bosons/types'
 
 export interface AutoCompleteInterface {
