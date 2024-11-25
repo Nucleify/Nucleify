@@ -1,12 +1,12 @@
 <template>
   <section id="access">
     <div class="access-container">
-      <ad-header
+      <ad-heading
         :tag="1"
         class="access-header"
         text="Access your data everywhere"
       />
-      <ad-header
+      <ad-heading
         :tag="2"
         class="access-description"
         text="Use DataManager application on your phone, tablet and desktop. You
@@ -24,7 +24,7 @@
                 alt=""
                 image-class="access-card-image"
               />
-              <ad-header :tag="3" class="access-card-header" text="Desktop" />
+              <ad-heading :tag="3" class="access-card-header" text="Desktop" />
             </div>
             <div class="flip-card-back">
               <ad-paragraph
@@ -46,7 +46,7 @@
                 alt=""
                 image-class="access-card-image"
               />
-              <ad-header :tag="3" class="access-card-header" text="Tablet" />
+              <ad-heading :tag="3" class="access-card-header" text="Tablet" />
             </div>
             <div class="flip-card-back">
               <ad-paragraph
@@ -67,7 +67,7 @@
                 alt=""
                 image-class="access-card-image"
               />
-              <ad-header :tag="3" class="access-card-header" text="Phone" />
+              <ad-heading :tag="3" class="access-card-header" text="Phone" />
             </div>
             <div class="flip-card-back">
               <ad-paragraph

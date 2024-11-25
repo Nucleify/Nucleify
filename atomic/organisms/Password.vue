@@ -33,7 +33,7 @@
     :passwords-match="passwordsMatch"
     :empty-password="emptyPassword"
     :empty-confirm-password="emptyConfirmPassword"
-    :v-type="props.type"
+    :ad-type="props.type"
   >
     <template #footer v-if="id !== 'password_confirmation'">
       <Divider />

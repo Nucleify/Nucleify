@@ -5,7 +5,7 @@
       <div class="auth-card-header-container">
         <div class="auth-card-header">
           <ad-image :src="imgUrl + 'logo.svg'" width="50" />
-          <ad-header :tag="1" text="Welcome Back" />
+          <ad-heading :tag="1" text="Welcome Back" />
 
           <ad-paragraph class="mb-2" text="Don't have an account?">
             <ad-anchor href="/register" :label="'Create today!'" />

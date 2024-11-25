@@ -1,5 +1,6 @@
 <template>
   <ColorPicker
+    :ad-type="props.adType"
     v-model="itemColor"
     :default-color="props.defaultColor"
     :inline="props.inline"
@@ -12,7 +13,6 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
-    :v-type="props.item"
   />
 </template>
 
@@ -24,7 +24,7 @@ import { setColorsVariables, useColorPicker } from 'atomic/bosons/utils'
 
 const props = defineProps<ColorPickerInterface>()
 
-const { itemColor, setColorValues } = useColorPicker(props.item!)
+const { itemColor, setColorValues } = useColorPicker(props.adType!)
 
 watchEffect(() => {
   setColorValues()

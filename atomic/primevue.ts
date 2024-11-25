@@ -3,11 +3,15 @@ import { App } from 'vue'
 /**
  *  Components
  */
+import AutoComplete from 'primevue/autocomplete'
 import Avatar from 'primevue/avatar'
+import Badge from 'primevue/badge'
 import Button from 'primevue/button'
 import Calendar from 'primevue/calendar'
 import Card from 'primevue/card'
 import Chart from 'primevue/chart'
+import Checkbox from 'primevue/checkbox'
+import Chips from 'primevue/chips'
 import ColorPicker from 'primevue/colorpicker'
 import Column from 'primevue/column'
 import DataTable from 'primevue/datatable'
@@ -20,17 +24,26 @@ import FloatLabel from 'primevue/floatlabel'
 import Image from 'primevue/image'
 import InlineMessage from 'primevue/inlinemessage'
 import InputMask from 'primevue/inputmask'
+import InputNumber from 'primevue/inputnumber'
+import InputOtp from 'primevue/inputotp'
 import InputText from 'primevue/inputtext'
+import Knob from 'primevue/knob'
 import Menu from 'primevue/menu'
 import OverlayPanel from 'primevue/overlaypanel'
 import Password from 'primevue/password'
 import ProgressBar from 'primevue/progressbar'
 import ProgressSpinner from 'primevue/progressspinner'
 import RadioButton from 'primevue/radiobutton'
+import Rating from 'primevue/rating'
+import ScrollTop from 'primevue/scrolltop'
+import SelectButton from 'primevue/selectbutton'
 import Skeleton from 'primevue/skeleton'
+import Slider from 'primevue/slider'
+import Tag from 'primevue/tag'
 import Terminal from 'primevue/terminal'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
+import TriStateCheckbox from 'primevue/tristatecheckbox'
 
 /**
  *  Directives
@@ -49,11 +62,15 @@ export default function registerPrimeVue(app: App<Element>): void {
     /**
      *  Components
      */
+    .component('AutoComplete', AutoComplete)
     .component('Avatar', Avatar)
+    .component('Badge', Badge)
     .component('Button', Button)
     .component('Calendar', Calendar)
     .component('Card', Card)
     .component('Chart', Chart)
+    .component('Checkbox', Checkbox)
+    .component('Chips', Chips)
     .component('ColorPicker', ColorPicker)
     .component('Column', Column)
     .component('DataTable', DataTable)
@@ -66,17 +83,26 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Image', Image)
     .component('InlineMessage', InlineMessage)
     .component('InputMask', InputMask)
+    .component('InputNumber', InputNumber)
+    .component('InputOtp', InputOtp)
     .component('InputText', InputText)
+    .component('Knob', Knob)
     .component('Menu', Menu)
     .component('OverlayPanel', OverlayPanel)
     .component('Password', Password)
     .component('ProgressBar', ProgressBar)
     .component('ProgressSpinner', ProgressSpinner)
     .component('RadioButton', RadioButton)
+    .component('Rating', Rating)
+    .component('ScrollTop', ScrollTop)
+    .component('SelectButton', SelectButton)
     .component('Skeleton', Skeleton)
+    .component('Slider', Slider)
+    .component('Tag', Tag)
     .component('Terminal', Terminal)
     .component('Textarea', Textarea)
     .component('Toast', Toast)
+    .component('TriStateCheckbox', TriStateCheckbox)
 
     /**
      *  Services

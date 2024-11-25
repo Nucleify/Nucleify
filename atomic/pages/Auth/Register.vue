@@ -5,7 +5,7 @@
       <template #header>
         <div class="auth-card-header-container">
           <div class="auth-card-header">
-            <ad-header :tag="1" text="Register" />
+            <ad-heading :tag="1" text="Register" />
 
             <ad-paragraph class="mb-2" text="Already have an account?">
               <ad-anchor href="/login" :label="'Log in!'" />

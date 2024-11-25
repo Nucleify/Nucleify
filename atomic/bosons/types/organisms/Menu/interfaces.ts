@@ -1,7 +1,7 @@
 import { MenuItem } from 'primevue/menuitem'
-import { HintedString } from 'primevue/ts-helpers'
 
 import {
+  ElementAppendTo,
   ObjectType,
   OpenMenuFunctionType,
   SelectedObjectType,
@@ -11,7 +11,7 @@ export interface MenuInterface {
   ref: string
   model: MenuItem[]
   popup: boolean
-  appendTo?: HTMLElement | HintedString<'body' | 'self'>
+  appendTo?: ElementAppendTo
   autoZIndex?: boolean
   baseZIndex?: number
 }

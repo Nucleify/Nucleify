@@ -15,7 +15,7 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      type="contact"
+      ad-type="contact"
       headerText="Manage Contacts"
       buttonText="New Contact"
     />
