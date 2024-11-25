@@ -40,6 +40,7 @@ import {
   ProgressSpinner,
   RadioButton,
   Rating,
+  ScrollTop,
   SelectButton,
   Skeleton,
   Slider,
@@ -113,6 +114,7 @@ app
   .component('ad-progress-spinner', ProgressSpinner)
   .component('ad-radio-button', RadioButton)
   .component('ad-rating', Rating)
+  .component('ad-scroll-top', ScrollTop)
   .component('ad-select-button', SelectButton)
   .component('ad-skeleton', Skeleton)
   .component('ad-slider', Slider)
