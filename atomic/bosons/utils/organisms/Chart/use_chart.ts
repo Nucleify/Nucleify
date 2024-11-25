@@ -2,7 +2,7 @@
 import { Ref, ref } from 'vue'
 import { ChartOptions } from 'chart.js'
 
-import { documentStyle, months } from 'atomic/bosons/constants'
+import { months } from 'atomic/bosons/constants'
 import {
   ActivityLogInterface,
   ArticleInterface,
@@ -31,8 +31,8 @@ export function useChart() {
   const exampleColors = {
     activityItemColors: { primary: '#FFB600', hover: '#E7A60B' },
     articleItemColors: { primary: '#1187C7', hover: '#0F79B2' },
-    contactItemColors: { primary: '#10B981', hover: '#10A674' },
-    moneyItemColors: { primary: '#0D2C54', hover: '#0d284a' },
+    contactItemColors: { primary: '#0D2C54', hover: '#0d284a' },
+    moneyItemColors: { primary: '#10B981', hover: '#10A674' },
     userItemColors: { primary: '#64748B', hover: '#566479' },
   }
 
@@ -215,20 +215,13 @@ export function useChart() {
     chartType: ChartType,
     direction?: string
   ): ChartOptions {
-    const textColor: string = documentStyle.getPropertyValue('--text-color')
-    const textColorSecondary: string = documentStyle.getPropertyValue(
-      '--text-color-secondary'
-    )
-    const surfaceBorder: string =
-      documentStyle.getPropertyValue('--surface-border')
-
     let options: ChartOptions = {
       maintainAspectRatio: false,
       aspectRatio: 0.8,
       plugins: {
         legend: {
           labels: {
-            color: textColor,
+            color: '#4B5563',
           },
         },
       },
@@ -244,7 +237,7 @@ export function useChart() {
       options.scales = {
         x: {
           ticks: {
-            color: textColorSecondary,
+            color: '#4B5563',
             font: {
               weight: 500,
             },
@@ -255,10 +248,11 @@ export function useChart() {
         },
         y: {
           ticks: {
-            color: textColorSecondary,
+            color: '#4B5563',
           },
           grid: {
-            color: surfaceBorder,
+            display: true,
+            color: '#EBEBEB',
           },
         },
       }

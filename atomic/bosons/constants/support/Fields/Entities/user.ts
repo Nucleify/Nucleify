@@ -5,7 +5,7 @@ export function useUserFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: [string, string, string][] = [
     ['name', 'Name', 'input-text'],
     ['email', 'Email', 'input-text'],
-    ['role', 'Role', 'dropdown'],
+    ['role', 'Role', 'select'],
     ['password', 'Password', 'password'],
     ['password_confirmation', 'Confirm Password', 'password'],
     ['updated_at', 'Updated At', ''],

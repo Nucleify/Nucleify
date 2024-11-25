@@ -1,15 +1,15 @@
 <template>
-  <ad-overlay-panel
+  <ad-popover
     dismissable
     show-close-icon
-    :button-class="'overlay-panel-toggle ' + positionClass"
-    :overlay-panel-class="'terminal ' + positionClass"
+    :button-class="'popover-toggle ' + positionClass"
+    :popover-class="'terminal ' + positionClass"
   >
     <ad-terminal
       prompt="artisan >"
       welcome-message="The ''help'' command displays help"
     />
-  </ad-overlay-panel>
+  </ad-popover>
 
   <Dock
     :model="dockItems"

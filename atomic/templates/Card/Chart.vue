@@ -13,7 +13,6 @@
         :chart-class="chartClass"
         :class="loading ? 'chart-loading' : 'chart-loaded'"
       />
-      <ad-progress-spinner v-if="loading" />
     </template>
   </ad-card>
 </template>

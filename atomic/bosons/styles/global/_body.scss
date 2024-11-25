@@ -1,11 +1,11 @@
 body {
   background: $body-bg;
 
-  &:has(#about, #blog, #login, #register, #error-404, #home) {
+  &:has(#about, #blog, #login, #register, #error-404, #home, #services) {
     background: $white-body-bg;
 
     .dock,
-    .overlay-panel-toggle {
+    .popover-toggle {
       display: none !important;
     }
   }

@@ -5,8 +5,8 @@
     &[ad-type='#{$type}'] {
       .p-inputtext {
         @include entity-password-styles(
-          var(--#{$type}-item-color-new),
-          var(--#{$type}-item-focus-color-new)
+          var(--#{$type}-item-color-new) !important,
+          var(--#{$type}-item-focus-color-new) !important
         );
       }
     }

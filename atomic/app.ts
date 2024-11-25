@@ -1,7 +1,6 @@
 /**
  *  Styles
  */
-import 'primevue/resources/themes/lara-light-green/theme.css'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
 import 'sass/index.scss'
@@ -28,7 +27,6 @@ import {
   Button,
   Checkbox,
   Divider,
-  Chips,
   Heading,
   Icon,
   Image,
@@ -49,21 +47,20 @@ import {
   Slider,
   Tag,
   Textarea,
-  TriStateCheckbox,
 } from './atoms'
 import { Anchor, FloatLabel, Tile } from './molecules'
 import {
   AutoComplete,
-  Calendar,
   Card,
   Chart,
   ColorPicker,
   DataTable,
+  DatePicker,
   Dialog,
   Dock,
-  Dropdown,
-  OverlayPanel,
   Password,
+  Popover,
+  Select,
   Swiper,
   Terminal,
   Toast,
@@ -106,7 +103,6 @@ app
   .component('ad-badge', Badge)
   .component('ad-button', Button)
   .component('ad-checkbox', Checkbox)
-  .component('ad-chips', Chips)
   .component('ad-divider', Divider)
   .component('ad-heading', Heading)
   .component('ad-icon', Icon)
@@ -128,7 +124,6 @@ app
   .component('ad-slider', Slider)
   .component('ad-tag', Tag)
   .component('ad-textarea', Textarea)
-  .component('ad-tri-state-checkbox', TriStateCheckbox)
 
   /**
    *  Molecules
@@ -141,16 +136,16 @@ app
    *  Organisms
    */
   .component('ad-auto-complete', AutoComplete)
-  .component('ad-calendar', Calendar)
+  .component('ad-date-picker', DatePicker)
   .component('ad-card', Card)
   .component('ad-chart', Chart)
   .component('ad-color-picker', ColorPicker)
   .component('ad-data-table', DataTable)
   .component('ad-dialog', Dialog)
   .component('ad-dock', Dock)
-  .component('ad-dropdown', Dropdown)
-  .component('ad-overlay-panel', OverlayPanel)
+  .component('ad-popover', Popover)
   .component('ad-password', Password)
+  .component('ad-select', Select)
   .component('ad-swiper', Swiper)
   .component('ad-terminal', Terminal)
   .component('ad-toast', Toast)
