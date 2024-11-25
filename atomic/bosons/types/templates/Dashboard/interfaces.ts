@@ -1,7 +1,7 @@
-import { ObjectType } from '@/types'
+import { ObjectType } from 'atomic/bosons/types'
 
 export interface DashboardInterface {
-  data?: ObjectType[] | undefined
+  data?: ObjectType[]
   getData?: () => void
   store?: () => void
   edit?: () => void

@@ -1,7 +1,7 @@
 <template>
   <ad-home-navbar />
   <div class="about-container">
-    <ad-start-section
+    <ad-section-start
       header="About Us"
       description="
         We are passionate about providing innovative systems for data management
@@ -9,8 +9,8 @@
       "
     >
       <AboutStartAnimation />
-    </ad-start-section>
-    <ad-card-category-section
+    </ad-section-start>
+    <ad-section-category
       :cards="aboutCategoriesCards"
       :prefix="storysetAboutImgUrl"
     />
