@@ -38,10 +38,11 @@
     "write:vitest": "prettier --write vitests"
   },
   "dependencies": {
+    "@primevue/themes": "^4.2.3",
     "chart.js": "4.4.3",
     "primeflex": "3.3.1",
     "primeicons": "7.0.0",
-    "primevue": "3.53.0",
+    "primevue": "^4.2.3",
     "swiper": "11.1.14"
   },
   "devDependencies": {

@@ -21,6 +21,13 @@
     height: 44px;
     width: 44px;
     padding: 0;
+    background: transparent;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .login-button {
+    padding: 5px 15px !important;
   }
 
   .home-nav-link {

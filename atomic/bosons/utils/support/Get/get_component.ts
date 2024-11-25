@@ -2,8 +2,8 @@ import { ComponentType } from 'atomic/bosons/types'
 
 export function getComponent(type: ComponentType): string {
   const componentMap: ComponentType[] = [
-    'calendar',
-    'dropdown',
+    'date-picker',
+    'select',
     'input-mask',
     'input-text',
     'password',

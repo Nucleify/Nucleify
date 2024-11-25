@@ -1,9 +1,7 @@
 <template>
   <ad-button
     @click="toggle"
-    :icon="
-      props.overlayPanelClass!.includes('terminal') ? 'pi pi-code' : props.icon
-    "
+    :icon="props.popoverClass!.includes('terminal') ? 'pi pi-code' : props.icon"
     :src="props.src"
     :class="props.buttonClass"
     :style="props.buttonStyle"
@@ -11,8 +9,8 @@
     rounded
   />
 
-  <OverlayPanel
-    ref="op"
+  <Popover
+    ref="pop"
     :dismissable="props.dismissable"
     :show-close-icon="props.showCloseIcon"
     :append-to="props.appendTo"
@@ -23,22 +21,22 @@
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
     :closeOnEscape="props.closeOnEscape"
-    :class="props.overlayPanelClass"
+    :class="props.popoverClass"
   >
     <slot />
-  </OverlayPanel>
+  </Popover>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { OverlayPanelInterface } from 'atomic/bosons/types'
+import { PopoverInterface } from 'atomic/bosons/types'
 
-const props = defineProps<OverlayPanelInterface>()
+const props = defineProps<PopoverInterface>()
 
-const op = ref()
+const pop = ref()
 
 const toggle = (event) => {
-  op.value.toggle(event)
+  pop.value.toggle(event)
 }
 </script>

@@ -2,7 +2,9 @@
 
 @each $type in main, activity, article, contact, money, user {
   .p-radiobutton[ad-type='#{$type}'] {
-    @include entity-radiobutton-styles(var(--#{$type}-item-color-new));
+    @include entity-radiobutton-styles(
+      var(--#{$type}-item-color-new) !important
+    );
   }
 
   .dock
@@ -13,6 +15,6 @@
     .dock-position-buttons
     div[ad-type='#{$type}']
     input[type='radio']:checked {
-    @include dock-radiobutton-styles(var(--#{$type}-item-color-new));
+    @include dock-radiobutton-styles(var(--#{$type}-item-color-new) !important);
   }
 }

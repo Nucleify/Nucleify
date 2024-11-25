@@ -1,5 +1,5 @@
 // Temporary ignored files
 
-atomic/bosons/styles/organisms/Calendar/_index.scss
-atomic/bosons/styles/organisms/Dropdown/_index.scss
+atomic/bosons/styles/organisms/DatePicker/_index.scss
+atomic/bosons/styles/organisms/Select/_index.scss
 atomic/bosons/styles/pages/Home/WhyUs/_index.scss
