@@ -9,9 +9,9 @@ export function useContactFields(): UseFieldsInterface<ContactFieldInterface> {
     ['personal_phone', 'Personal Phone', 'input-mask'],
     ['work_phone', 'Work Phone', 'input-mask'],
     ['address', 'Address', 'textarea'],
-    ['birthday', 'Birthday', 'calendar'],
+    ['birthday', 'Birthday', 'date-picker'],
     ['contact_groups', 'Contact Groups', 'input-text'],
-    ['role', 'Role', 'dropdown'],
+    ['role', 'Role', 'select'],
     ['updated_at', 'Updated At', ''],
     ['created_at', 'Created At', ''],
   ] as const

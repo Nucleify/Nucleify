@@ -1,0 +1,30 @@
+@import 'mixins';
+
+@each $type in main, activity, article, contact, money, user {
+  .p-select[ad-type='#{$type}'] {
+    @include entity-select-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-focus-color-new) !important
+    );
+  }
+
+  .p-select-panel.#{$type} {
+    @include entity-select-item-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-selected-color-new) !important,
+      var(--#{$type}-item-highlight-color-new) !important
+    );
+  }
+}
+
+.p-select-items {
+  padding: 0;
+}
+
+.p-select-list {
+  padding: 4px !important;
+
+  .p-select-option {
+    border-radius: 4px;
+  }
+}

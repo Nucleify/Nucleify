@@ -1,4 +1,4 @@
-@mixin entity-dropdown-styles($item-color, $focus-color) {
+@mixin entity-select-styles($item-color, $focus-color) {
   &:hover {
     border-color: $item-color;
   }
@@ -11,12 +11,12 @@
   }
 }
 
-@mixin entity-dropdown-item-styles(
+@mixin entity-select-item-styles(
   $item-color,
   $selected-color,
   $highlight-color
 ) {
-  .p-dropdown-item {
+  .p-select-item {
     &:hover {
       background: $highlight-color;
     }

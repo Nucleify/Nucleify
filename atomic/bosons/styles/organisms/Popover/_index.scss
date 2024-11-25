@@ -1,11 +1,10 @@
-.p-overlaypanel {
+.p-popover {
   display: block !important;
   position: fixed !important;
   top: unset !important;
   z-index: 9999 !important;
-  width: 100%;
+  width: 100% !important;
   height: 100vh;
-  max-width: 450px;
   border-radius: 0;
 
   &.top,
@@ -15,7 +14,7 @@
   }
 
   &.bottom {
-    bottom: 68px;
+    bottom: 70px;
   }
 
   &::before,
@@ -23,7 +22,7 @@
     display: none !important;
   }
 
-  .p-overlaypanel-close {
+  .p-popover-close {
     position: fixed;
     height: 1.5em;
     width: 1.5em;
@@ -49,20 +48,21 @@
 
   @media (min-width: $breakpoint-lg) {
     height: 300px;
+    max-width: 450px;
     margin-bottom: 11px;
-    margin-left: 2px;
+    margin-left: 4px;
   }
 }
 
-.overlay-panel-toggle {
-  position: fixed;
+.popover-toggle {
+  position: fixed !important;
   right: 12px;
   z-index: 999;
-  width: 36px;
-  height: 36px;
+  width: 36px !important;
+  height: 36px !important;
   border-radius: 50%;
-  border: none;
-  background: white;
+  border: none !important;
+  background: white !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,6 +98,6 @@
   }
 
   &.bottom {
-    bottom: 83px;
+    bottom: 85px;
   }
 }
