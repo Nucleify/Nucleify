@@ -4,6 +4,7 @@ import { App } from 'vue'
  *  Components
  */
 import Avatar from 'primevue/avatar'
+import Badge from 'primevue/badge'
 import Button from 'primevue/button'
 import Calendar from 'primevue/calendar'
 import Card from 'primevue/card'
@@ -57,6 +58,7 @@ export default function registerPrimeVue(app: App<Element>): void {
      *  Components
      */
     .component('Avatar', Avatar)
+    .component('Badge', Badge)
     .component('Button', Button)
     .component('Calendar', Calendar)
     .component('Card', Card)

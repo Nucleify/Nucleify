@@ -24,6 +24,7 @@ registerGlobalUtils(app)
 
 import {
   Avatar,
+  Badge,
   Button,
   Checkbox,
   Chips,
@@ -95,6 +96,7 @@ app
    *  Atoms
    */
   .component('ad-avatar', Avatar)
+  .component('ad-badge', Badge)
   .component('ad-button', Button)
   .component('ad-checkbox', Checkbox)
   .component('ad-chips', Chips)
