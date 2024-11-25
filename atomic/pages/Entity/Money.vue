@@ -15,7 +15,7 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      type="money"
+      ad-type="money"
       headerText="Manage Money"
       buttonText="New Money"
     />
@@ -96,7 +96,7 @@ const dialogs = computed(() => [
     fields: createAndEditFields,
   },
   {
-    entity: 'contact',
+    entity: 'money',
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,

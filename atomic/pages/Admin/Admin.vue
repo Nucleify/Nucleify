@@ -9,7 +9,7 @@
         icon="pi pi-comment"
         count-secondary="20 new"
         text-secondary="this week"
-        type="article"
+        ad-type="article"
       />
       <ad-tile
         href="#contacts"
@@ -18,16 +18,16 @@
         icon="pi pi-user"
         count-secondary="20 new"
         text-secondary="this week"
-        type="contact"
+        ad-type="contact"
       />
       <ad-tile
         href="#money"
         header="Money"
         :count="money?.length"
-        icon="pi pi-user"
+        icon="pi pi-dollar"
         count-secondary="20 new"
         text-secondary="this week"
-        type="money"
+        ad-type="money"
       />
       <ad-tile
         href="#users"
@@ -36,7 +36,7 @@
         icon="pi pi-user"
         count-secondary="20 new"
         text-secondary="this week"
-        type="user"
+        ad-type="user"
       />
     </div>
 

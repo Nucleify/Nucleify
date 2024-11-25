@@ -5,7 +5,7 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      type="money"
+      ad-type="money"
       headerText="Manage Money"
       buttonText="New Transaction"
     />

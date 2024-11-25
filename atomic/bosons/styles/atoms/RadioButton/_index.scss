@@ -1,7 +1,7 @@
 @import 'mixins';
 
 @each $type in main, activity, article, contact, money, user {
-  .p-radiobutton[v-type='#{$type}'] {
+  .p-radiobutton[ad-type='#{$type}'] {
     @include entity-radiobutton-styles(var(--#{$type}-item-color-new));
   }
 
@@ -11,7 +11,7 @@
     .p-dock-item
     a
     .dock-position-buttons
-    div[v-type='#{$type}']
+    div[ad-type='#{$type}']
     input[type='radio']:checked {
     @include dock-radiobutton-styles(var(--#{$type}-item-color-new));
   }

@@ -1,6 +1,6 @@
 import { HTMLAttributes, StyleValue } from 'vue'
+import { PassThrough } from 'primevue/ts-helpers'
 import { DialogBreakpoints, DialogPassThroughAttributes } from 'primevue/dialog'
-import { HintedString, PassThrough } from 'primevue/ts-helpers'
 import { PassThroughOptions } from 'primevue/passthrough'
 
 import {
@@ -8,6 +8,7 @@ import {
   CloseDialogFunctionType,
   ConfirmDialogFunctionType,
   DialogPositionType,
+  ElementAppendTo,
   ObjectType,
   OpenDialogFunctionType,
   SelectedObjectType,
@@ -37,7 +38,7 @@ export interface DialogInterface {
   keepInViewPort?: boolean
   minX?: number
   minY?: number
-  appendTo?: HTMLElement | HintedString<'body' | 'self'>
+  appendTo?: ElementAppendTo
   pt?: PassThrough<DialogPassThroughAttributes>
   ptOptions?: PassThroughOptions
   entity?: ObjectType

@@ -18,11 +18,11 @@
           />
         </template>
         <template v-else>
-          <ad-header :tag="tag" :type="type" :text="headerText" />
+          <ad-heading :tag="tag" :text="headerText" />
 
           <ad-button
-            v-if="type !== 'activity'"
-            :type="type"
+            v-if="adType !== 'activity'"
+            :ad-type="adType"
             icon="pi pi-plus"
             @click="openDialog('create')"
             class=""
@@ -39,7 +39,7 @@
         :rows="10"
         :open-dialog="openDialog"
         :styles="styles"
-        :type="type"
+        :ad-type="adType"
         :loading="loading"
         paginator-template="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
         current-page-report-template="{first} to {last} of {totalRecords}"

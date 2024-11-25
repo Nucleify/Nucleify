@@ -1,9 +1,13 @@
 import { HTMLAttributes, InputHTMLAttributes } from 'vue'
-import { HintedString, PassThrough } from 'primevue/ts-helpers'
+import { PassThrough } from 'primevue/ts-helpers'
 import { PasswordPassThroughOptions } from 'primevue/password'
 import { PassThroughOptions } from 'primevue/passthrough'
 
-import { ObjectNameType } from 'atomic/bosons/types'
+import {
+  ElementAppendTo,
+  ElementVariantType,
+  ObjectNameType,
+} from 'atomic/bosons/types'
 
 export interface PasswordInterface {
   value?: string
@@ -15,11 +19,11 @@ export interface PasswordInterface {
   mediumLabel?: string
   strongLabel?: string
   feedback?: boolean
-  appendTo?: HTMLElement | HintedString<'body' | 'self'>
+  appendTo?: ElementAppendTo
   toggleMask?: boolean
   invalid?: boolean
   disabled?: boolean
-  variant?: 'filled' | 'outlined'
+  variant?: ElementVariantType
   placeholder?: string
   required?: boolean
   inputId?: string

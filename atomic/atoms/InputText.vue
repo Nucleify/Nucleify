@@ -1,5 +1,6 @@
 <template>
   <InputText
+    :ad-type="props.adType"
     :v-model="props.value"
     :size="props.size"
     :invalid="props.invalid"
@@ -10,7 +11,6 @@
     :pt-options="props.ptOptions"
     :class="[{ 'p-invalid': props.invalid }]"
     :id="props.id"
-    :type="props.type"
   />
 </template>
 
