@@ -4,7 +4,7 @@ export interface UseFieldsInterface<T> {
     | [
         string,
         string,
-        'input-text' | 'textarea' | 'dropdown' | 'calendar' | 'password',
+        'input-text' | 'textarea' | 'select' | 'date-picker' | 'password',
       ][]
   createAndEditFields?: readonly T[]
   showFields?: readonly { label: string; key: string }[]

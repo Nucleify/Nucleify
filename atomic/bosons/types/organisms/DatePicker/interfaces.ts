@@ -2,13 +2,13 @@ import { HTMLAttributes, InputHTMLAttributes } from 'vue'
 import { PassThrough } from 'primevue/ts-helpers'
 import { PassThroughOptions } from 'primevue/passthrough'
 import {
-  CalendarPassThroughOptions,
-  CalendarResponsiveOptions,
-} from 'primevue/calendar'
+  DatePickerPassThroughOptions,
+  DatePickerResponsiveOptions,
+} from 'primevue/datepicker'
 
 import {
-  CalendarModelValueType,
-  CalendarVariant,
+  DatePickerModelValueType,
+  DatePickerVariant,
   DateSelectionModeType,
   ElementAppendTo,
   HourFormatType,
@@ -16,8 +16,8 @@ import {
   ViewType,
 } from 'atomic/bosons/types'
 
-export interface CalendarInterface {
-  modelValue?: CalendarModelValueType
+export interface DatePickerInterface {
+  modelValue?: DatePickerModelValueType
   selectionMode?: DateSelectionModeType
   dateFormat?: string
   inline?: boolean
@@ -26,7 +26,7 @@ export interface CalendarInterface {
   showIcon?: boolean
   iconDisplay?: IconDisplayType
   numberOfMonths?: number
-  responsiveOptions?: CalendarResponsiveOptions[]
+  responsiveOptions?: DatePickerResponsiveOptions[]
   breakpoint?: string
   view?: ViewType
   touchUI?: boolean
@@ -53,7 +53,7 @@ export interface CalendarInterface {
   manualInput?: boolean
   invalid?: boolean
   disabled?: boolean
-  variant?: CalendarVariant
+  variant?: DatePickerVariant
   readonly?: boolean
   placeholder?: string
   appendTo?: ElementAppendTo
@@ -68,7 +68,7 @@ export interface CalendarInterface {
   name?: string
   ariaLabelledby?: string
   ariaLabel?: string
-  pt?: PassThrough<CalendarPassThroughOptions>
+  pt?: PassThrough<DatePickerPassThroughOptions>
   ptOptions?: PassThroughOptions
   unstyled?: boolean
 }

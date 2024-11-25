@@ -111,7 +111,7 @@
               text
               :loading="props.loading"
             />
-            <Menu ref="menu" :model="dropdownItems" :popup="true" />
+            <Menu ref="menu" :model="selectItems" :popup="true" />
           </template>
         </div>
       </template>
@@ -129,7 +129,7 @@ import { ref } from 'vue'
 
 import { columns, actions as actionsList } from 'atomic/bosons/constants'
 import { DataTableInterface } from 'atomic/bosons/types'
-import { useDropdown, useMenu } from 'atomic/bosons/utils'
+import { useSelect, useMenu } from 'atomic/bosons/utils'
 
 const props = defineProps<DataTableInterface>()
 
@@ -137,7 +137,7 @@ const menu = ref()
 const actions = actionsList(props.openDialog!)
 
 const { openMenu, selectedObject } = useMenu()
-const { dropdownItems } = useDropdown(selectedObject, props.openDialog!)
+const { selectItems } = useSelect(selectedObject, props.openDialog!)
 
 const specificColumns = columns[props.adType]
 const skeleton = ref(new Array(props.rows))

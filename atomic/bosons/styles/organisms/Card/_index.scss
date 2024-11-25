@@ -3,6 +3,10 @@
     width: 100%;
   }
 
+  :has(.p-datatable) {
+    padding-bottom: 0;
+  }
+
   background: $content-bg;
   box-shadow: $secondary-card-box-shadow;
   border: none;
@@ -13,7 +17,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 12px 0 4px;
-    margin-bottom: -8px;
+    margin-bottom: 8px;
 
     h3 {
       margin: 0;
@@ -37,7 +41,6 @@
 
     .my-card-header-container {
       padding: 2px 12px 0 6px;
-      margin-bottom: 0;
 
       .heading-skeleton {
         height: 38px !important;

@@ -13,8 +13,8 @@
   @each $type in main, activity, article, contact, money, user {
     &[ad-type='#{$type}'] {
       @include entity-tile-styles(
-        var(--#{$type}-item-color-new),
-        var(--#{$type}-item-highlight-color-new)
+        var(--#{$type}-item-color-new) !important,
+        var(--#{$type}-item-highlight-color-new) !important
       );
     }
   }
