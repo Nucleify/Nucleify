@@ -8,9 +8,9 @@
     :tabindex="props.tabindex"
     :length="props.length"
     :mask="props.mask"
-    :integerOnly="props.integerOnly"
+    :integer-only="props.integerOnly"
     :pt="props.pt"
-    :ptOptions="props.ptOptions"
+    :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   />
 </template>

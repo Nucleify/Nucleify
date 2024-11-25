@@ -36,7 +36,7 @@
     :aria-labelledby="props.ariaLabelledby"
     :aria-label="props.ariaLabel"
     :pt="props.pt"
-    :ptOptions="props.ptOptions"
+    :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   />
 </template>

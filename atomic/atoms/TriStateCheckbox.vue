@@ -11,7 +11,7 @@
     :input-class="props.inputClass"
     :input-style="props.inputStyle"
     :aria-labelledby="props.ariaLabelledby"
-    :ariaLabel="props.ariaLabel"
+    :aria-label="props.ariaLabel"
     :pt="props.pt"
     :pt-options="ptOptions"
     :unstyled="props.unstyled"

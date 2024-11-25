@@ -1,12 +1,12 @@
+import { ButtonHTMLAttributes, InputHTMLAttributes } from 'vue'
 import { PassThrough } from 'primevue/ts-helpers'
-import { PassThroughOptions } from 'primevue/passthrough'
-
 import {
   InputNumberPassThroughOptions,
   RoundingMode,
 } from 'primevue/inputnumber'
-import { ButtonHTMLAttributes, InputHTMLAttributes } from 'vue'
-import { ElementDirectionType, ElementVariantType } from '../../support'
+import { PassThroughOptions } from 'primevue/passthrough'
+
+import { ElementDirectionType, ElementVariantType } from 'atomic/bosons/types'
 
 export interface InputNumberInterface {
   modelValue?: number

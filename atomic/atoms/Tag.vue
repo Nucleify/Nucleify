@@ -4,7 +4,7 @@
     :severity="props.severity"
     :rounded="props.rounded"
     :pt="props.pt"
-    :pr-options="props.ptOptions"
+    :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   />
 </template>

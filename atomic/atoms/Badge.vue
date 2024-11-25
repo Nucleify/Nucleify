@@ -3,8 +3,8 @@
     :value="props.value"
     :severity="props.severity"
     :size="props.size"
-    :pr="props.pt"
-    :ptOptions="props.ptOptions"
+    :pt="props.pt"
+    :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   />
 </template>
