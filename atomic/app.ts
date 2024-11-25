@@ -43,6 +43,7 @@ import {
   SelectButton,
   Skeleton,
   Slider,
+  Tag,
   Textarea,
   TriStateCheckbox,
 } from './atoms'
@@ -115,6 +116,7 @@ app
   .component('ad-select-button', SelectButton)
   .component('ad-skeleton', Skeleton)
   .component('ad-slider', Slider)
+  .component('ad-tag', Tag)
   .component('ad-textarea', Textarea)
   .component('ad-tri-state-checkbox', TriStateCheckbox)
 
