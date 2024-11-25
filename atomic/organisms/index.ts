@@ -1,3 +1,4 @@
+export { default as AutoComplete } from './AutoComplete.vue'
 export { default as Calendar } from './Calendar.vue'
 export { default as Card } from './Card.vue'
 export { default as Chart } from './Chart.vue'
