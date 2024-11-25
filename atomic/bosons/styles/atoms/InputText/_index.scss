@@ -4,7 +4,7 @@
   max-height: $min-max-width-height-big;
   font-size: 1em;
 
-  @each $type in main, activity, article, contact, user {
+  @each $type in main, activity, article, contact, money, user {
     &[ad-type='#{$type}'] {
       @include entity-inputtext-styles(
         var(--#{$type}-item-color-new),

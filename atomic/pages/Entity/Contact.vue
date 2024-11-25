@@ -5,7 +5,7 @@
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
-      :direction="'vertical'"
+      :direction="isMobile() ? 'horizontal' : 'vertical'"
       :contact-data="results"
       :chart-class="'h-30rem'"
       :loading="loading"

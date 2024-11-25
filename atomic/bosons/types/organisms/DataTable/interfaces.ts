@@ -105,5 +105,6 @@ export interface ColumnsInterface {
   activity: ColumnInterface[]
   article: ColumnInterface[]
   contact: ColumnInterface[]
+  money: ColumnInterface[]
   user: ColumnInterface[]
 }

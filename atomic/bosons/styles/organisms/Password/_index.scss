@@ -1,7 +1,7 @@
 @import 'mixins';
 
 .p-password {
-  @each $type in main, activity, article, contact, user {
+  @each $type in main, activity, article, contact, money, user {
     &[ad-type='#{$type}'] {
       .p-inputtext {
         @include entity-password-styles(
