@@ -1,6 +1,6 @@
 @import 'mixins';
 
-@each $type in main, activity, article, contact, user {
+@each $type in main, activity, article, contact, money, user {
   .p-dropdown[ad-type='#{$type}'] {
     @include entity-dropdown-styles(
       var(--#{$type}-item-color-new),

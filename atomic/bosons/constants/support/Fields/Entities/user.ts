@@ -1,7 +1,7 @@
 import { roles } from 'atomic/bosons/constants'
-import { UseFieldsInterface, UserFieldInterface } from 'atomic/bosons/types'
+import { EntityFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
 
-export function useUserFields(): UseFieldsInterface<UserFieldInterface> {
+export function useUserFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: [string, string, string][] = [
     ['name', 'Name', 'input-text'],
     ['email', 'Email', 'input-text'],
@@ -12,9 +12,9 @@ export function useUserFields(): UseFieldsInterface<UserFieldInterface> {
     ['created_at', 'Created At', ''],
   ] as const
 
-  const createFields: UserFieldInterface[] = fieldData
+  const createFields: EntityFieldInterface[] = fieldData
     .filter(([name]) => !['created_at', 'updated_at'].includes(name))
-    .map(([name, label, type]): UserFieldInterface => {
+    .map(([name, label, type]): EntityFieldInterface => {
       const props =
         name === 'role'
           ? { options: roles, placeholder: 'Select a role' }
@@ -23,7 +23,7 @@ export function useUserFields(): UseFieldsInterface<UserFieldInterface> {
       return { name, label, type, props }
     })
 
-  const editFields: UserFieldInterface[] = fieldData
+  const editFields: EntityFieldInterface[] = fieldData
     .filter(
       ([name]) =>
         ![
@@ -33,7 +33,7 @@ export function useUserFields(): UseFieldsInterface<UserFieldInterface> {
           'updated_at',
         ].includes(name)
     )
-    .map(([name, label, type]): UserFieldInterface => {
+    .map(([name, label, type]): EntityFieldInterface => {
       const props =
         name === 'role'
           ? { options: roles, placeholder: 'Select a role' }

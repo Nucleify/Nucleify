@@ -77,6 +77,7 @@ import {
   ActivityPage,
   ArticlePage,
   ContactPage,
+  MoneyPage,
   DashboardPage,
   Error404Page,
   HomePage,
@@ -170,6 +171,7 @@ app
   .component('ad-home-page', HomePage)
   .component('ad-home-navbar', HomeNavbar)
   .component('ad-home-footer', HomeFooter)
+  .component('ad-money-page', MoneyPage)
   .component('ad-services-page', ServicesPage)
   .component('ad-settings-page', SettingsPage)
 

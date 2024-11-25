@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use App\Models\Money;
 
@@ -15,7 +14,9 @@ class MoneySeeder extends Seeder
     {
         if (env('APP_ENV') === 'production' || 'dev') {
             for ($i = 1; $i <= 6; $i++) {
-                Money::factory(20)->create();
+                Money::factory(40)->create([
+                    'user_id' => $i,
+                ]);
             }
         }
     }

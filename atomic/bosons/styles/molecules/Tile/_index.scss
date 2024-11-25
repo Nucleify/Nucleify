@@ -10,7 +10,7 @@
   text-decoration: none;
   color: $primary-text-color;
 
-  @each $type in main, activity, article, contact, user {
+  @each $type in main, activity, article, contact, money, user {
     &[ad-type='#{$type}'] {
       @include entity-tile-styles(
         var(--#{$type}-item-color-new),

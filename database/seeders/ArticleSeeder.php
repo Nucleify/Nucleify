@@ -15,7 +15,7 @@ class ArticleSeeder extends Seeder
     {
         if (env('APP_ENV') === 'production' || 'dev') {
             for ($i = 1; $i <= 6; $i++) {
-                Article::factory(41)->create([
+                Article::factory(40)->create([
                     'user_id' => $i,
                 ]);
             }

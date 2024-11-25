@@ -11,6 +11,7 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
     Admin: window.localStorage.getItem('display-admin-graphs') === 'true',
     Article: window.localStorage.getItem('display-article-graphs') === 'true',
     Contact: window.localStorage.getItem('display-contact-graphs') === 'true',
+    Money: window.localStorage.getItem('display-money-graphs') === 'true',
   })
 
   function displayChartsToggle(action: string): void {
@@ -32,6 +33,7 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
       'display-admin-graphs',
       'display-article-graphs',
       'display-contact-graphs',
+      'display-money-graphs',
     ]
 
     if (initial) {
