@@ -12,6 +12,7 @@ export interface AvatarInterface {
   shape?: ElementShapeType
   ariaLabel?: string
   ariaLabelledby?: string
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<AvatarPassThroughOptions>
   ptOptions?: PassThroughOptions
   unstyled?: boolean
