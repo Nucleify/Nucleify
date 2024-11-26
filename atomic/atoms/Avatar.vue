@@ -7,6 +7,7 @@
     :shape="props.shape"
     :aria-label="props.ariaLabel"
     :aria-labelledby="props.ariaLabelledby"
+    :dt="props.dt"
     :unstyled="props.unstyled"
     :pt="props.pt"
     :pt-options="props.ptOptions"
