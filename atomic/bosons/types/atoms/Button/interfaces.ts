@@ -1,6 +1,5 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { ButtonPassThroughOptions } from 'primevue/button'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import {
   AdTypeType,
@@ -12,6 +11,7 @@ import {
   LoadingType,
   PositionType,
 } from 'atomic/bosons/types'
+import { Component } from 'vue'
 
 export interface ButtonInterface {
   adType?: AdTypeType
@@ -24,6 +24,8 @@ export interface ButtonInterface {
   badgeSeverity?: ButtonBadgeSeverityType
   loading?: LoadingType
   loadingIcon?: string
+  as?: string | Component
+  asChild?: boolean
   link?: string
   severity?: ButtonSeverityType
   raised?: boolean
@@ -31,9 +33,11 @@ export interface ButtonInterface {
   text?: boolean
   outlined?: boolean
   size?: ElementSizeType
-  plain?: string
+  variant?: 'outlined' | 'text' | 'link'
+  fluid?: boolean
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<ButtonPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: string
   disabled?: boolean
   onclick?: ButtonOnClickType
