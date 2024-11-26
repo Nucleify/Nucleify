@@ -2,40 +2,29 @@
 
 namespace App\Providers;
 
-use Butschster\Head\Contracts\Packages\PackageInterface;
+use Butschster\Head\Facades\Meta;
 use Butschster\Head\Facades\PackageManager;
-use Butschster\Head\MetaTags\Meta;
-use Butschster\Head\Contracts\MetaTags\MetaInterface;
-use Butschster\Head\Contracts\Packages\ManagerInterface;
 use Butschster\Head\Providers\MetaTagsApplicationServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class MetaTagsServiceProvider extends ServiceProvider
 {
-    protected function packages()
+    protected function packages(): void
     {
-        // Create your own packages here
-    }
-
-    // if you don't want to change anything in this method just remove it
-    protected function registerMeta(): void
-    {
-        $this->app->singleton(MetaInterface::class, function () {
-            $meta = new Meta(
-                $this->app[ManagerInterface::class],
-                $this->app['config']
-            );
-
-            // It just an imagination, you can automatically
-            // add favicon if it exists
-            // if (file_exists(public_path('favicon.ico'))) {
-            //    $meta->setFavicon('/favicon.ico');
-            // }
-
-            // This method gets default values from config and creates tags, includes default packages, e.t.c
-            // If you don't want to use default values just remove it.
-            $meta->initialize();
-
-            return $meta;
+        PackageManager::create('default_tags', function(): void {
+            Meta::prependTitle('DataManager')
+                ->setTitleSeparator(' | ')
+                ->setTitle('ERP template & Page Builder')
+                ->setDescription(
+                    'Build cutting-edge applications with DataManager - developer-focused template. Leverage the latest 
+                    technologies like Laravel, Vue.js, and more to create powerful ERP solutions. Our modern frameworks and 
+                    tools provide a seamless development experience, enabling fast, efficient, and scalable solutions. 
+                    Perfect for developers looking to integrate high-tech features, streamline workflows, and deliver robust 
+                    applications. Unlock the potential of advanced tech stacks and stay ahead in software innovation.'
+                )
+                ->setRobots('follow,index')
+                ->setCanonical(env('APP_URL') . '/' . collect(explode('/', url()->current()))->last())
+                ->setFavicon(env('APP_URL') . '/favicon.ico');
         });
     }
 }
