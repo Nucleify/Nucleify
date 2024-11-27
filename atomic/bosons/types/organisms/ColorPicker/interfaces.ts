@@ -1,7 +1,6 @@
 import { Ref } from 'vue'
 import { PassThrough } from 'primevue/ts-helpers'
 import { ColorPickerPassThroughOptions } from 'primevue/colorpicker'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import {
   AdTypeType,
@@ -14,15 +13,22 @@ export interface ColorPickerInterface {
   adType?: AdTypeType
   modelValue?: string
   defaultColor?: string
+  defaultValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  name?: string
   inline?: boolean
   format?: ColorType
+  invalid?: boolean
   disabled?: boolean
   tabindex?: string
   autoZIndex?: boolean
-  panelClass?: string
+  baseZIndex?: number
+  inputId?: string
+  overlayClass?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   appendTo?: ElementAppendTo
+  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<ColorPickerPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }
 
