@@ -3,6 +3,8 @@
     :value="props.value"
     :severity="props.severity"
     :rounded="props.rounded"
+    :icon="props.icon"
+    :dt="props.dt"
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
