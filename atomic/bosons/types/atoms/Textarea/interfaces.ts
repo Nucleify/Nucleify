@@ -1,17 +1,22 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { TextareaPassThroughOptions } from 'primevue/textarea'
-import { PassThroughOptions } from 'primevue/passthrough'
 
-import { ElementVariantType } from 'atomic/bosons/types'
+import { ElementSizeType, ElementVariantType } from 'atomic/bosons/types'
 
 export interface TextareaInterface {
   adType?: string
   value?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   modelValue?: string
+  defaultValue?: string
+  name?: string
   autoResize?: boolean
+  size?: ElementSizeType
   invalid?: boolean
   variant?: ElementVariantType
+  fluid?: boolean
+  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<TextareaPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }
