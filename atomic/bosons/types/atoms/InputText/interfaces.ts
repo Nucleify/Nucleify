@@ -1,6 +1,5 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { InputTextPassThroughOptions } from 'primevue/inputtext'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import {
   AdTypeType,
@@ -11,13 +10,18 @@ import {
 export interface InputTextInterface {
   adType?: AdTypeType
   value?: string
+  defaultValue?: string
+  name?: string
   size?: ElementSizeType
   invalid?: boolean
   variant?: ElementVariantType
-  disabled?: boolean
-  unstyled?: boolean
+  fluid?: boolean
+  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<InputTextPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  unstyled?: boolean
+  disabled?: boolean
   id?: string
   placeholder?: string
 }
