@@ -1,9 +1,9 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { CardPassThroughOptions } from 'primevue/card'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface CardInterface {
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<CardPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }
