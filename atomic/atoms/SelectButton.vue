@@ -2,6 +2,8 @@
   <SelectButton
     :ad-type="props.adType"
     :model-value="props.modelValue"
+    :default-value="props.defaultValue"
+    :name="props.name"
     :options="props.options"
     :option-label="props.optionLabel"
     :option-value="props.optionValue"
@@ -12,7 +14,10 @@
     :data-key="props.dataKey"
     :allow-empty="props.allowEmpty"
     :aria-labelledby="props.ariaLabelledby"
+    :size="props.size"
+    :form-control="props.formControl"
     :pt="props.pt"
+    :dt="props.dt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   />
