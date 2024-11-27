@@ -8,6 +8,7 @@
     :width="props.width"
     :height="props.height"
     :canvas-props="props.canvasProps"
+    :dt="props.dt"
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :class="props.chartClass"
