@@ -1,12 +1,14 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { ScrollTopPassThroughOptions } from 'primevue/scrolltop'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface ScrollTopInterface {
   target?: 'window' | 'parent'
   threshold?: number
+  icon?: string
   behavior?: string
+  buttonProps?: object
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<ScrollTopPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }
