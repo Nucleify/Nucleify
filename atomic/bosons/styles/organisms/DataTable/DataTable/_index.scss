@@ -21,6 +21,10 @@
     }
   }
 
+  .p-datatable-header-cell {
+    background: $bg-black-color;
+  }
+
   .p-sortable-column {
     .p-column-header-content {
       display: flex;

@@ -8,7 +8,8 @@
   min-width: 150px;
   padding: 1em;
   text-decoration: none;
-  color: $primary-text-color;
+  background: var(--p-card-background) !important;
+  color: var(--p-card-color);
 
   @each $type in main, activity, article, contact, money, user {
     &[ad-type='#{$type}'] {
@@ -20,7 +21,7 @@
   }
 
   &:hover {
-    color: $primary-text-color;
+    color: var(--p-card-color);
   }
 
   .secondary {
@@ -46,7 +47,7 @@
       flex-direction: column;
 
       .header {
-        color: $secondary-text-color;
+        color: var(--p-card-color);
         font-size: 0.9em;
       }
 

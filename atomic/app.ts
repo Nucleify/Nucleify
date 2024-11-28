@@ -50,6 +50,7 @@ import {
 } from './atoms'
 import { Anchor, FloatLabel, Tile } from './molecules'
 import {
+  Accordion,
   AutoComplete,
   Card,
   Chart,
@@ -88,6 +89,7 @@ import {
   CardCategory,
   CardChart,
   CardDataTable,
+  ScreenLights,
   ScreenLoader,
   SectionStart,
   SectionCategory,
@@ -135,6 +137,7 @@ app
   /**
    *  Organisms
    */
+  .component('ad-accordion', Accordion)
   .component('ad-auto-complete', AutoComplete)
   .component('ad-date-picker', DatePicker)
   .component('ad-card', Card)
@@ -177,6 +180,7 @@ app
   .component('ad-card-category', CardCategory)
   .component('ad-card-chart', CardChart)
   .component('ad-card-data-table', CardDataTable)
+  .component('ad-screen-lights', ScreenLights)
   .component('ad-screen-loader', ScreenLoader)
   .component('ad-skeleton-data-table', SkeletonDataTable)
   .component('ad-section-category', SectionCategory)

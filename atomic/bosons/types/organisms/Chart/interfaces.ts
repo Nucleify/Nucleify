@@ -1,7 +1,6 @@
 import { CanvasHTMLAttributes } from 'vue'
 import { PassThrough } from 'primevue/ts-helpers'
 import { ChartPassThroughOptions } from 'primevue/chart'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import {
   ActivityLogInterface,
@@ -21,8 +20,9 @@ export interface ChartInterface {
   width?: number
   height?: number
   canvasProps?: CanvasHTMLAttributes
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<ChartPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   direction?: string
   chartMethodType: ChartMethodType
   activityLogData?: ActivityLogInterface[]
