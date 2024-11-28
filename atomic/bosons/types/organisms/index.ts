@@ -1,3 +1,4 @@
+export * from './Accordion'
 export * from './AutoComplete'
 export * from './Card'
 export * from './Chart'
