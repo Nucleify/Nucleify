@@ -1,6 +1,6 @@
 .settings-panel-container {
   display: flex;
-  flex-direction: row;
+  flex-flow: wrap;
 
   .settings-card {
     margin: 0;
