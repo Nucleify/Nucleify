@@ -1,5 +1,4 @@
-{
-    "type": "module",
+{"type": "module",
   "name": "data-manager",
   "description": "This website helps to storage various data types and share it with others.",
   "private": true,
