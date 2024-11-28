@@ -14,7 +14,10 @@
     a
     .dock-position-buttons
     div[ad-type='#{$type}']
-    input[type='radio']:checked {
-    @include dock-radiobutton-styles(var(--#{$type}-item-color-new) !important);
+    input[type='radio'] {
+    @include dock-radiobutton-styles(
+      #ffffff15,
+      var(--#{$type}-item-color-new) !important
+    );
   }
 }

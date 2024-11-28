@@ -89,6 +89,7 @@ import {
   CardCategory,
   CardChart,
   CardDataTable,
+  ScreenLights,
   ScreenLoader,
   SectionStart,
   SectionCategory,
@@ -179,6 +180,7 @@ app
   .component('ad-card-category', CardCategory)
   .component('ad-card-chart', CardChart)
   .component('ad-card-data-table', CardDataTable)
+  .component('ad-screen-lights', ScreenLights)
   .component('ad-screen-loader', ScreenLoader)
   .component('ad-skeleton-data-table', SkeletonDataTable)
   .component('ad-section-category', SectionCategory)

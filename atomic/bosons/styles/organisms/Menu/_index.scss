@@ -1,3 +1,7 @@
+.p-menu {
+  backdrop-filter: blur(0.25em);
+}
+
 .p-menu,
 .p-menu-list,
 .p-menuitem-content {
@@ -21,9 +25,10 @@
 
 .p-menu-item-link {
   text-decoration: none !important;
-  gap: 16px !important;
+  gap: 1em !important;
+  padding-left: 1.45em !important;
 
   span {
-    color: $primary-text-color !important;
+    color: $white-text-color !important;
   }
 }
