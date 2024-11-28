@@ -1,13 +1,17 @@
-import { HTMLAttributes, InputHTMLAttributes } from 'vue'
 import { VirtualScrollerProps } from 'primevue/virtualscroller'
 import { PassThrough } from 'primevue/ts-helpers'
 import { AutoCompletePassThroughOptions } from 'primevue/autocomplete'
-import { PassThroughOptions } from 'primevue/passthrough'
 
-import { ElementAppendTo, ElementVariantType } from 'atomic/bosons/types'
+import {
+  ElementAppendTo,
+  ElementSizeType,
+  ElementVariantType,
+} from 'atomic/bosons/types'
 
 export interface AutoCompleteInterface {
   modelValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  defaultValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  name?: string
   suggestions?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   optionLabel?: string | void
   optionDisabled?: string | void
@@ -19,6 +23,7 @@ export interface AutoCompleteInterface {
   multiple?: boolean
   placeholder?: string
   loading?: boolean
+  size?: ElementSizeType
   invalid?: boolean
   disabled?: boolean
   variant?: ElementVariantType
@@ -31,11 +36,15 @@ export interface AutoCompleteInterface {
   inputId?: string
   inputStyle?: object
   inputClass?: string | object
-  inputProps?: InputHTMLAttributes
   panelStyle?: object
   panelClass?: string | object
-  panelProps?: HTMLAttributes
+  overlayStyle?: object
+  overlayClass?: string | object
+  dropdownIcon?: string | object
   dropdownClass?: string | object
+  loader?: string
+  removeTokenIcon?: string
+  chipIcon?: string
   virtualScrollerOptions?: VirtualScrollerProps
   autoOptionFocus?: boolean
   selectOnFocus?: boolean
@@ -45,10 +54,14 @@ export interface AutoCompleteInterface {
   selectionMessage?: string
   emptySelectionMessage?: string
   emptySearchMessage?: string
+  showEmptyMessage?: boolean
   tabindex?: string | number
+  fluid?: boolean
   ariaLabel?: string
   ariaLabelledby?: string
+  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<AutoCompletePassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }

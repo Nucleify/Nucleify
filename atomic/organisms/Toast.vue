@@ -5,11 +5,17 @@
     :auto-z-index="props.autoZIndex"
     :base-z-index="props.baseZIndex"
     :breakpoints="props.breakpoints"
-    :icon="props.icon"
+    :close-icon="props.closeIcon"
+    :info-icon="props.infoIcon"
+    :warn-icon="props.warnIcon"
+    :error-icon="props.errorIcon"
+    :success-icon="props.successIcon"
+    :close-button-props="props.closeButtonProps"
     :message="props.message"
-    :unstyled="props.unstyled"
+    :dt="props.dt"
     :pt="props.pt"
     :pt-options="props.ptOptions"
+    :unstyled="props.unstyled"
   >
     <slot />
   </Toast>

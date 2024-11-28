@@ -12,6 +12,18 @@
   </ad-popover>
 
   <Dock
+    :v-model="props.modelValue"
+    :possition="props.position"
+    :breakpoint="props.breakpoint"
+    :tooltip-options="props.tooltipOptions"
+    :menu-id="props.menuId"
+    :tabindex="props.tabindex"
+    :aria-labelledby="props.ariaLabelledby"
+    :aria-label="props.ariaLabel"
+    :dt="props.dt"
+    :pt="props.pt"
+    :pt-options="props.ptOptions"
+    :unstyled="props.unstyled"
     :model="dockItems"
     :position="position"
     class="dock"
@@ -72,10 +84,12 @@
 import { onMounted, ref, watch, computed } from 'vue'
 
 import { dockItems, positions } from 'atomic/bosons/constants'
-import { PositionType } from 'atomic/bosons/types'
+import { DockInterface, PositionType } from 'atomic/bosons/types'
 import { isAdmin as useIsAdmin, setColorsVariables } from 'atomic/bosons/utils'
 
 const LOCAL_STORAGE_KEY = 'dock-position'
+
+const props = defineProps<DockInterface>()
 
 const position = ref<PositionType>('bottom')
 const isAdmin = ref(false)

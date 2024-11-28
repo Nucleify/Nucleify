@@ -1,5 +1,10 @@
 <template>
-  <Card :pt="props.pt" :pt-options="props.ptOptions" :unstyled="props.unstyled">
+  <Card
+    :dt="props.dt"
+    :pt="props.pt"
+    :pt-options="props.ptOptions"
+    :unstyled="props.unstyled"
+  >
     <template #header>
       <slot name="header" />
     </template>

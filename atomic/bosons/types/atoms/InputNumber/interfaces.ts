@@ -1,22 +1,28 @@
-import { ButtonHTMLAttributes, InputHTMLAttributes } from 'vue'
 import { PassThrough } from 'primevue/ts-helpers'
 import {
   InputNumberPassThroughOptions,
   RoundingMode,
 } from 'primevue/inputnumber'
-import { PassThroughOptions } from 'primevue/passthrough'
 
-import { ElementDirectionType, ElementVariantType } from 'atomic/bosons/types'
+import {
+  ElementDirectionType,
+  ElementSizeType,
+  ElementVariantType,
+} from 'atomic/bosons/types'
 
 export interface InputNumberInterface {
   modelValue?: number
+  defaultValue?: number
+  name?: string
   format?: boolean
   showButtons?: boolean
-  buttonLayout?: ElementDirectionType
+  buttonLayout?: ElementDirectionType | 'stacked'
   incrementButtonClass?: string
   decrementButtonClass?: string
+  incrementIcon?: string
+  decrementIcon?: string
   locale?: string
-  localMatcher?: 'best fit' | 'lookup'
+  localMatcher?: 'lookup' | 'best fit'
   mode?: 'decimal' | 'currency'
   prefix?: string
   suffix?: string
@@ -31,20 +37,21 @@ export interface InputNumberInterface {
   step?: number
   allowEmpty?: boolean
   highlightOnFocus?: boolean
+  size?: ElementSizeType
   invalid?: boolean
   disabled?: boolean
   variant?: ElementVariantType
   readonly?: boolean
   placeholder?: string
+  fluid?: boolean
   inputId?: string
   inputClass?: string | object
   inputStyle?: object
-  inputProps?: InputHTMLAttributes
-  incrementButtonProps?: ButtonHTMLAttributes
-  decrementButtonProps?: ButtonHTMLAttributes
   ariaLabelledby?: string
   ariaLabel?: string
+  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<InputNumberPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }

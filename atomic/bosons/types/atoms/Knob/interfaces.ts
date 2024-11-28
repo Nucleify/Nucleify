@@ -1,13 +1,15 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { KnobPassThroughOptions } from 'primevue/knob'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import { AdTypeType } from 'atomic/bosons/types'
 
 export interface KnobInterface {
   adType?: AdTypeType
   modelValue?: number
+  defaultValue?: any //eslint-disable-line @typescript-eslint/no-explicit-any
+  name?: string
   size?: number
+  invalid?: boolean
   disabled?: boolean
   readonly?: boolean
   step?: number
@@ -18,11 +20,13 @@ export interface KnobInterface {
   textColor?: string
   strokeWidth?: number
   showValue?: boolean
-  valueTemplate?: void
+  valueTemplate?: string | void
   tabindex?: number
   ariaLabelledby?: string
   ariaLabel?: string
+  formControl?: Record<string, any> //eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any //eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<KnobPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any //eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }

@@ -1,11 +1,11 @@
 import { TerminalPassThroughOptions } from 'primevue/terminal'
 import { PassThrough } from 'primevue/ts-helpers'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface TerminalInterface {
   welcomeMessage?: string
   prompt?: string
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<TerminalPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }

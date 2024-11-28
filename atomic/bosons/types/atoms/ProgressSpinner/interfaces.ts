@@ -1,6 +1,5 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { ProgressBarPassThroughOptions } from 'primevue/progressbar'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import { AdTypeType } from 'atomic/bosons/types'
 
@@ -9,8 +8,9 @@ export interface ProgressSpinnerInterface {
   strokeWidth?: string
   fill?: string
   animationDuration?: string
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<ProgressBarPassThroughOptions>
-  ptOption?: PassThroughOptions
+  ptOption?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
   width?: string
   height?: string

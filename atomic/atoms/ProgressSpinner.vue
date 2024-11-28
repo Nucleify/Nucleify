@@ -4,6 +4,7 @@
     :stroke-width="props.strokeWidth"
     :fill="props.fill"
     :animation-duration="props.animationDuration"
+    :dt="props.dt"
     :pt="props.pt"
     :pt-option="props.ptOption"
     :unstyled="props.unstyled"
