@@ -1,18 +1,17 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { PopoverBreakpoints, PopoverPassThroughOptions } from 'primevue/popover'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import { ElementAppendTo } from 'atomic/bosons/types'
 
 export interface PopoverInterface {
   dismissable?: boolean
-  showCloseIcon?: boolean
   appendTo?: ElementAppendTo
   baseZIndex?: number
   autoZIndex?: boolean
   breakpoints?: PopoverBreakpoints
+  dt?: any //eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<PopoverPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any //eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
   closeOnEscape?: boolean
   src?: string
