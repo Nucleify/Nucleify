@@ -4,9 +4,9 @@ import {
   ToastPassThroughOptions,
 } from 'primevue/toast'
 import { PassThrough } from 'primevue/ts-helpers'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import { FlashToastFunctionType, ToastPositionType } from 'atomic/bosons/types'
+import { ButtonHTMLAttributes } from 'vue'
 
 export interface ToastInterface {
   group?: string
@@ -14,11 +14,17 @@ export interface ToastInterface {
   autoZIndex?: boolean
   baseZIndex?: number
   breakpoints?: ToastBreakpointsType
-  icon?: string
+  closeIcon?: string
+  infoIcon?: string
+  warnIcon?: string
+  errorIcon?: string
+  successIcon?: string
+  closeButtonProps?: ButtonHTMLAttributes
   message?: ToastMessageOptions
-  unstyled?: boolean
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<ToastPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  unstyled?: boolean
 }
 
 export interface UseToastInterface {
