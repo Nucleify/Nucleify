@@ -1,6 +1,4 @@
-import { HTMLAttributes, InputHTMLAttributes } from 'vue'
 import { PassThrough } from 'primevue/ts-helpers'
-import { PassThroughOptions } from 'primevue/passthrough'
 import {
   DatePickerPassThroughOptions,
   DatePickerResponsiveOptions,
@@ -11,6 +9,7 @@ import {
   DatePickerVariant,
   DateSelectionModeType,
   ElementAppendTo,
+  ElementSizeType,
   HourFormatType,
   IconDisplayType,
   ViewType,
@@ -18,6 +17,8 @@ import {
 
 export interface DatePickerInterface {
   modelValue?: DatePickerModelValueType
+  defaultValue?: Date | Date[] | (null | Date)[]
+  name?: string
   selectionMode?: DateSelectionModeType
   dateFormat?: string
   inline?: boolean
@@ -25,16 +26,21 @@ export interface DatePickerInterface {
   selectOtherMonths?: boolean
   showIcon?: boolean
   iconDisplay?: IconDisplayType
+  icon?: string
+  prevIcon?: string
+  nextIcon?: string
+  incrementIcon?: string
+  decrementIcon?: string
   numberOfMonths?: number
   responsiveOptions?: DatePickerResponsiveOptions[]
   breakpoint?: string
   view?: ViewType
-  touchUI?: boolean
   minDate?: Date
   maxDate?: Date
   disabledDates?: Date[]
   disabledDays?: number[]
   maxDateCount?: number
+  showOnFocus?: boolean
   autoZIndex?: boolean
   baseZIndex?: number
   showButtonBar?: boolean
@@ -51,6 +57,7 @@ export interface DatePickerInterface {
   timeSeparator?: string
   showWeek?: boolean
   manualInput?: boolean
+  size?: ElementSizeType
   invalid?: boolean
   disabled?: boolean
   variant?: DatePickerVariant
@@ -61,14 +68,18 @@ export interface DatePickerInterface {
   inputId?: string
   inputStyle?: object
   inputClass?: string | object
-  inputProps?: InputHTMLAttributes
   panelStyle?: object
   panelClass?: string | object
-  panelProps?: HTMLAttributes
-  name?: string
+  todayButtonProps?: object
+  clearButtonProps?: object
+  navigatorButtonProps?: object
+  timepickerButtonProps?: object
+  fluid?: boolean
   ariaLabelledby?: string
   ariaLabel?: string
+  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<DatePickerPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }
