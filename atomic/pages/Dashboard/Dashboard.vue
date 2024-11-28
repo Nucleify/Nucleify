@@ -1,5 +1,5 @@
 <template>
-  <ad-accordion></ad-accordion>
+  <div></div>
 </template>
 
 <script setup lang="ts">
