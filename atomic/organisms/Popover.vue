@@ -12,11 +12,11 @@
   <Popover
     ref="pop"
     :dismissable="props.dismissable"
-    :show-close-icon="props.showCloseIcon"
     :append-to="props.appendTo"
     :base-z-index="props.baseZIndex"
     :auto-z-index="props.autoZIndex"
     :breakpoints="props.breakpoints"
+    :dt="props.dt"
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"

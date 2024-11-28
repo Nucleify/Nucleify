@@ -1,9 +1,10 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { FloatLabelPassThroughOptions } from 'primevue/floatlabel'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 export interface FloatLabelInterface {
-  unstyled?: boolean
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<FloatLabelPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  unstyled?: boolean
+  variant?: 'in' | 'over' | 'on'
 }

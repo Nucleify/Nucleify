@@ -3,6 +3,7 @@
     :align="props.align"
     :layout="props.layout"
     :type="props.type"
+    :dt="props.dt"
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"

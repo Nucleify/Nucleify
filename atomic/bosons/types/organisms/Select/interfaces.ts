@@ -1,13 +1,17 @@
-import { HTMLAttributes, InputHTMLAttributes } from 'vue'
 import { HintedString, PassThrough } from 'primevue/ts-helpers'
 import { VirtualScrollerProps } from 'primevue/virtualscroller'
 import { SelectPassThroughOptions } from 'primevue/select'
-import { PassThroughOptions } from 'primevue/passthrough'
 
-import { ElementAppendTo, ElementVariantType } from 'atomic/bosons/types'
+import {
+  ElementAppendTo,
+  ElementSizeType,
+  ElementVariantType,
+} from 'atomic/bosons/types'
 
 export interface SelectInterface {
   modelValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  defaultValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  name?: string
   option?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   optionLabel?: string | void
   optionValue?: string | void
@@ -21,21 +25,23 @@ export interface SelectInterface {
   filterFields?: string[]
   editable?: boolean
   placeholder?: string
+  size?: ElementSizeType
   invalid?: boolean
   disabled?: boolean
   variant?: ElementVariantType
   dataKey?: string
   showClear?: boolean
-  inputId?: string
-  inputStyle?: object
-  inputClass?: string | object
-  inputProps?: HTMLAttributes | InputHTMLAttributes
-  panelStyle?: object
-  panelClass?: string | object
-  panelProps?: HTMLAttributes
-  filterInputProps?: InputHTMLAttributes
+  fluid?: boolean
+  labelId?: string
+  labelStyle?: string
+  labelClass?: string | object
+  overlayStyle?: object
+  overlayClass?: string | object
   appendTo?: ElementAppendTo
   loading?: boolean
+  clearIcon?: string
+  dropdownIcon?: string
+  loadingIcon?: string
   resetFilterOnHide?: boolean
   resetFilterOnClear?: boolean
   virtualScrollerOptions?: VirtualScrollerProps
@@ -53,7 +59,9 @@ export interface SelectInterface {
   tabindex?: string | number
   ariaLabel?: string
   ariaLabelledby?: string
+  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<SelectPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }

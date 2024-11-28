@@ -50,6 +50,7 @@ import {
 } from './atoms'
 import { Anchor, FloatLabel, Tile } from './molecules'
 import {
+  Accordion,
   AutoComplete,
   Card,
   Chart,
@@ -135,6 +136,7 @@ app
   /**
    *  Organisms
    */
+  .component('ad-accordion', Accordion)
   .component('ad-auto-complete', AutoComplete)
   .component('ad-date-picker', DatePicker)
   .component('ad-card', Card)

@@ -8,6 +8,7 @@ export interface BadgeInterface {
   value?: string | number
   severity?: ButtonBadgeSeverityType
   size?: ElementSizeType | 'xlarge'
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<BadgePassThroughOptions>
   ptOptions?: PassThroughOptions
   unstyled?: boolean
