@@ -1,6 +1,4 @@
 #innovations > #technologies {
-  background: black;
-
   .swiper-container {
     display: flex;
     justify-content: center;
@@ -8,9 +6,6 @@
     .swiper {
       max-width: 1000px;
       padding: 3em 0;
-      box-shadow:
-        inset 30px 0 30px -15px rgb(0 0 0 / 50%),
-        inset -30px 0 30px -15px rgb(0 0 0 / 50%);
 
       .swiper-slide {
         padding: 0 1em;
@@ -18,7 +13,7 @@
         justify-content: center;
 
         a {
-          background: #242938;
+          background: #0a0a0a;
           padding: 0.25em;
           border-radius: 12px;
 

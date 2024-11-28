@@ -17,6 +17,7 @@
 </head>
 <body>
     <main id="app">
+        <ad-screen-lights :count="8"></ad-screen-lights>
         <ad-toast></ad-toast>
         @auth
             <ad-dock></ad-dock>

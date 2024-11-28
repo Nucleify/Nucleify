@@ -28,6 +28,7 @@
     :ad-type="props.adType"
   >
     <ad-image v-if="props.src" :src="props.src" />
+    <template v-if="props.label">{{ props.label }}</template>
     <slot />
   </Button>
 </template>

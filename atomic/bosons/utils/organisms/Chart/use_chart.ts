@@ -186,6 +186,7 @@ export function useChart() {
             datasets: [
               {
                 data: [totalArticles, totalContacts, totalMoney, totalUsers],
+                borderColor: '#041E13FF',
                 backgroundColor: [
                   colors.articleItemColors.primary,
                   colors.contactItemColors.primary,
@@ -252,7 +253,7 @@ export function useChart() {
           },
           grid: {
             display: true,
-            color: '#EBEBEB',
+            color: '#39404a',
           },
         },
       }

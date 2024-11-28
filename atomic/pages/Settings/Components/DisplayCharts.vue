@@ -24,13 +24,11 @@
         >
           <ad-label :label="item" :for="item" />
 
-          <ad-radio-button
-            :input-id="item"
-            :value="item"
+          <ad-select-button
             ad-type="main"
+            :model-value="display[item] ? 'On' : 'Off'"
+            :options="options"
             @click="displayChartsToggle(item)"
-            :class="display[item] ? 'p-highlight' : ''"
-            class="p-radiobutton-main"
           />
         </li>
       </ul>
@@ -39,9 +37,12 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import { displayChartList } from 'atomic/bosons/constants'
 import { useDisplayCharts } from 'atomic/bosons/utils'
 
 const { display, setDefaultChartsDisplay, displayChartsToggle } =
   useDisplayCharts()
+
+const options = ref(['On', 'Off'])
 </script>

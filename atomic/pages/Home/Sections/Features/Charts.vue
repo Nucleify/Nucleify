@@ -6,7 +6,7 @@
         class="home-charts-header"
         text="Choose from bar charts, line graphs, pie charts and more to best represent your data."
       />
-      <ad-card unstyled class="my-card home-chart-card">
+      <ad-card class="my-card home-chart-card">
         <template #content>
           <DeferredContent>
             <ad-chart

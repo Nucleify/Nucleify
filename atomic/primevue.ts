@@ -1,5 +1,4 @@
 import { App } from 'vue'
-import Lara from '@primevue/themes/lara'
 
 /**
  *  Components
@@ -54,13 +53,18 @@ import Tooltip from 'primevue/tooltip'
 import ToastService from 'primevue/toastservice'
 import PrimeVue from 'primevue/config'
 
+/**
+ *  Preset
+ */
+import { DataManagerPreset } from './primevue_preset'
+
 export default function registerPrimeVue(app: App<Element>): void {
   app
     .use(PrimeVue, {
       theme: {
-        preset: Lara,
+        preset: DataManagerPreset,
         options: {
-          darkModeSelector: false,
+          darkModeSelector: true,
         },
       },
       ripple: true,

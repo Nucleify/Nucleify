@@ -33,15 +33,14 @@
   }
 
   .flip-card-front {
-    background: $content-bg;
-    color: black;
+    color: $white-text-color;
     padding-top: 8px;
   }
 
   .flip-card-back {
     padding: 50px 20px;
-    background: $content-bg;
     transform: rotateY(180deg);
     font-size: $font-size-small;
+    color: $white-text-color;
   }
 }
