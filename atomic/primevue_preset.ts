@@ -50,6 +50,15 @@ export const DataManagerPreset = definePreset(Lara, {
         },
       },
     },
+    menu: {
+      colorScheme: {
+        dark: {
+          root: {
+            background: '#13131399',
+          },
+        },
+      },
+    },
     paginator: {
       colorScheme: {
         dark: {
@@ -78,6 +87,15 @@ export const DataManagerPreset = definePreset(Lara, {
       },
     },
     textarea: {
+      colorScheme: {
+        dark: {
+          root: {
+            background: '#13131399',
+          },
+        },
+      },
+    },
+    toast: {
       colorScheme: {
         dark: {
           root: {

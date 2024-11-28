@@ -23,14 +23,13 @@ main:has(:not(#home)) .screen-lights-container .screen-light {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 
-  $colors: (
-    var(--main-item-selected-color-new),
-    var(--main-item-highlight-color-new)
-  );
-
   @for $i from 1 through $amount {
     &:nth-child(#{$i}) {
-      color: nth($colors, random(length($colors)));
+      color: if(
+        random() > 0.5,
+        var(--main-item-selected-color-new),
+        var(--main-item-highlight-color-new)
+      );
       top: random(100) * 1%;
       left: random(100) * 1%;
       animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;

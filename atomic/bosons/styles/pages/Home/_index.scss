@@ -2,7 +2,11 @@
   'start';
 
 .home-container {
-  padding-top: 180px;
+  padding-top: 150px;
+
+  @media (min-width: $breakpoint-sm) {
+    padding-top: 180px;
+  }
 }
 
 div[data-pc-name='deferredcontent'] {
