@@ -28,8 +28,9 @@
     width: 1.5em;
     top: 1em;
     right: 1em;
-    background: white;
-    color: black;
+    background: $bg-black-color;
+    backdrop-filter: blur(1em);
+    color: $primary-white-green-text-color;
     white-space: wrap;
 
     .p-icon {
@@ -62,7 +63,8 @@
   height: 36px !important;
   border-radius: 50%;
   border: none !important;
-  background: white !important;
+  background: $bg-black-color !important;
+  backdrop-filter: blur(1em) !important;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,7 +75,7 @@
 
   span {
     transition: all 300ms;
-    color: black;
+    color: $primary-white-green-text-color !important;
   }
 
   &:active {

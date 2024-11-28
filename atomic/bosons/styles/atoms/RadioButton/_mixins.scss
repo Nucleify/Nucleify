@@ -10,9 +10,11 @@
   }
 }
 
-@mixin dock-radiobutton-styles($item-color) {
+@mixin dock-radiobutton-styles($not-checked-color, $checked-color) {
+  background: $not-checked-color;
+
   &:checked {
-    background: $item-color;
-    opacity: 0.7;
+    background: $checked-color;
+    opacity: 0.8;
   }
 }

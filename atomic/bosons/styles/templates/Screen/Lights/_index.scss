@@ -1,0 +1,78 @@
+@use 'sass:math';
+
+$particleSize: 22vmin;
+$animationDuration: 7s;
+$amount: 15;
+
+.screen-lights-container {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+main:has(:not(#home)) .screen-lights-container .screen-light {
+  width: $particleSize;
+  height: $particleSize;
+  border-radius: $particleSize;
+  backface-visibility: hidden;
+  position: absolute;
+  animation-name: move;
+  animation-duration: $animationDuration;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  $colors: (
+    var(--main-item-selected-color-new),
+    var(--main-item-highlight-color-new)
+  );
+
+  @for $i from 1 through $amount {
+    &:nth-child(#{$i}) {
+      color: nth($colors, random(length($colors)));
+      top: random(100) * 1%;
+      left: random(100) * 1%;
+      animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
+      animation-delay: math.div(random(($animationDuration + 10s) * 10), 10);
+      transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
+      $blurRadius: (random() + 0.5) * $particleSize * 0.5;
+      $x: if(random() > 0.5, -1, 1);
+      box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+    }
+  }
+}
+
+main:has(#home, #login, #register) .screen-lights-container .screen-light {
+  width: $particleSize;
+  height: $particleSize;
+  border-radius: $particleSize;
+  backface-visibility: hidden;
+  position: absolute;
+  animation-name: move;
+  animation-duration: $animationDuration;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  $colors: (#10b98119, #10b98111, #10b98122);
+
+  @for $i from 1 through $amount {
+    &:nth-child(#{$i}) {
+      color: nth($colors, random(length($colors))) !important;
+      top: random(100) * 1%;
+      left: random(100) * 1%;
+      animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
+      animation-delay: math.div(random(($animationDuration + 10s) * 10), 10);
+      transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
+      $blurRadius: (random() + 0.5) * $particleSize * 0.5;
+      $x: if(random() > 0.5, -1, 1);
+      box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+    }
+  }
+}
+
+@keyframes move {
+  100% {
+    transform: translate3d(0, 0, 1px) rotate(360deg);
+  }
+}

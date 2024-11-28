@@ -1,6 +1,4 @@
 #innovations > #structure {
-  background: black;
-
   .structure-container {
     display: flex;
     justify-content: center;
@@ -29,7 +27,7 @@
         flex-direction: column;
         justify-content: center;
         gap: 1em;
-        color: white;
+        color: $primary-white-green-text-color;
 
         .title {
           width: 100%;

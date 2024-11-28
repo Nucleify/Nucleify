@@ -3,8 +3,6 @@
   flex-direction: row;
 
   .settings-card {
-    width: 100%;
-    max-width: 220px;
     margin: 0;
     padding: 20px;
     box-shadow: $secondary-card-box-shadow;
@@ -60,6 +58,13 @@
 
   @media (min-width: $breakpoint-sm) {
     flex-direction: row;
+  }
+
+  .p-selectbutton {
+    .p-togglebutton {
+      font-size: 10px;
+      padding: 5px 10px;
+    }
   }
 }
 

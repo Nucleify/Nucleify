@@ -3,7 +3,8 @@
   z-index: 9999;
   position: fixed;
   top: -1px;
-  background: $primary-bg;
+  background: $bg-black-color;
+  backdrop-filter: blur(1em);
   box-shadow: $box-shadow-none;
   border: $border-none;
   border-radius: $border-radius-none;
@@ -11,6 +12,39 @@
 
   .container {
     max-width: 1230px;
+
+    .application-header {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 1em;
+      text-decoration: none;
+      z-index: 999;
+
+      h1 {
+        color: $white-text-color;
+        font-size: 1.5em;
+        margin: 0;
+      }
+
+      img {
+        height: 44px;
+        width: 44px;
+      }
+    }
+
+    @media (min-width: $breakpoint-md) {
+      #navbar-supported-content {
+        display: flex;
+        justify-content: center;
+
+        > .navbar-nav {
+          width: 100%;
+          display: flex;
+          justify-content: end;
+        }
+      }
+    }
   }
 
   .pi {
@@ -21,13 +55,19 @@
     height: 44px;
     width: 44px;
     padding: 0;
-    background: transparent;
+    background: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
   }
 
   .login-button {
-    padding: 5px 15px !important;
+    background: transparent !important;
+    padding: 10px 25px !important;
+
+    @media (max-width: $breakpoint-md) {
+      position: relative;
+      left: 10px;
+    }
   }
 
   .home-nav-link {
@@ -38,7 +78,7 @@
     margin-top: 10px;
     padding: 15px;
     color: $white-text-color;
-    font-size: 18px;
+    font-size: 0.9em;
     text-align: end;
     transition: all 300ms;
 

@@ -5,8 +5,12 @@
     :class="navbarExpanded ? 'expanded' : 'not-expanded'"
   >
     <div class="container">
-      <ad-anchor href="/home">
-        <ad-image :src="imgUrl + 'logo.svg'" width="70px" height="70px" />
+      <ad-anchor
+        class="application-header"
+        href="/home"
+        :src="imgUrl + 'logo.svg'"
+      >
+        <ad-heading :tag="1" text="DataManager" />
       </ad-anchor>
 
       <ad-button
@@ -28,7 +32,7 @@
         <div class="navbar-nav ms-auto md:gap-5 lg:gap-7">
           <div class="navbar-nav flex md:gap-3 lg:gap-6">
             <ad-anchor
-              class="nav-link home-nav-link -mt-1 md:mt-0"
+              class="nav-link home-nav-link"
               href="/home"
               label="Home"
             />
@@ -50,10 +54,11 @@
           </div>
 
           <ad-button
-            label="Log In"
-            class="primary-button login-button max-w-6 ml-auto my-4 md:my-0 text-sm px-3"
+            label="Login"
+            class="login-button my-4 md:my-0 ml-auto md:ml-0 text-sm"
             @click="navigateTo('/login')"
             :rounded="true"
+            text
           />
         </div>
       </div>
