@@ -1,8 +1,10 @@
 <template>
   <FloatLabel
-    :unstyled="props.unstyled"
+    :dt="props.dt"
     :pt="props.pt"
     :pt-options="props.ptOptions"
+    :unstyled="props.unstyled"
+    :variant="props.variant"
   >
     <slot>
       <!-- Example use

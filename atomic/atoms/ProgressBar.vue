@@ -4,6 +4,7 @@
     :value="props.value"
     :mode="props.mode"
     :show-value="props.showValue"
+    :dt="props.dt"
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"

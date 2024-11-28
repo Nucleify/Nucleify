@@ -1,9 +1,12 @@
 import { App } from 'vue'
-import Lara from '@primevue/themes/lara'
 
 /**
  *  Components
  */
+import Accordion from 'primevue/accordion'
+import AccordionContent from 'primevue/accordioncontent'
+import AccordionHeader from 'primevue/accordionheader'
+import AccordionPanel from 'primevue/accordionpanel'
 import AutoComplete from 'primevue/autocomplete'
 import Avatar from 'primevue/avatar'
 import Badge from 'primevue/badge'
@@ -54,13 +57,18 @@ import Tooltip from 'primevue/tooltip'
 import ToastService from 'primevue/toastservice'
 import PrimeVue from 'primevue/config'
 
+/**
+ *  Preset
+ */
+import { DataManagerPreset } from './primevue_preset'
+
 export default function registerPrimeVue(app: App<Element>): void {
   app
     .use(PrimeVue, {
       theme: {
-        preset: Lara,
+        preset: DataManagerPreset,
         options: {
-          darkModeSelector: false,
+          darkModeSelector: true,
         },
       },
       ripple: true,
@@ -68,6 +76,10 @@ export default function registerPrimeVue(app: App<Element>): void {
     /**
      *  Components
      */
+    .component('Accordion', Accordion)
+    .component('AccordionHeader', AccordionHeader)
+    .component('AccordionContent', AccordionContent)
+    .component('AccordionPanel', AccordionPanel)
     .component('AutoComplete', AutoComplete)
     .component('Avatar', Avatar)
     .component('Badge', Badge)

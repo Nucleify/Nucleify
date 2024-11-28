@@ -1,6 +1,5 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { SkeletonPassThroughOptions } from 'primevue/skeleton'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import { LoadingType } from 'atomic/bosons/types'
 
@@ -11,8 +10,9 @@ export interface SkeletonInterface {
   height?: string
   borderRadius?: string
   animation?: 'none' | 'wave'
-  unstyled?: boolean
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<SkeletonPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  unstyled?: boolean
   loading?: LoadingType
 }

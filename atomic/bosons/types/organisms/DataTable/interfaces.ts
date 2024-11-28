@@ -1,14 +1,15 @@
 import { InputHTMLAttributes, TableHTMLAttributes } from 'vue'
 import {
+  DataTableEditButtonPropsOptions,
   DataTableEditingRows,
   DataTableExpandedRows,
+  DataTableFilterButtonPropsOptions,
   DataTableFilterMeta,
   DataTablePassThroughOptions,
   DataTableSortMeta,
 } from 'primevue/datatable'
 import { HintedString, Nullable, PassThrough } from 'primevue/ts-helpers'
 import { VirtualScrollerProps } from 'primevue/virtualscroller'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import {
   ActionInterface,
@@ -36,6 +37,7 @@ export interface DataTableInterface {
   currentPageReportTemplate?: string
   lazy?: boolean
   loading?: LoadingType
+  loadingIcon?: string
   sortField?: string
   sortOrder?: number
   nullSortOrder?: number
@@ -62,6 +64,8 @@ export interface DataTableInterface {
   columnResizeMode?: 'expand' | 'fit'
   reorderableColumns?: boolean
   expandedRows?: any[] | DataTableExpandedRows // eslint-disable-line @typescript-eslint/no-explicit-any
+  expandedRowIcon?: string
+  collaspeRowIcon?: string
   rowGroupMode?: 'rowspan' | 'subheader'
   groupRowsBy?: string | string[] | void
   expandableRowGroups?: boolean
@@ -77,6 +81,7 @@ export interface DataTableInterface {
   virtualScrollerOptions?: VirtualScrollerProps
   frozenValue?: null | any[] // eslint-disable-line @typescript-eslint/no-explicit-any
   breakpoint?: string
+  showHeaders?: boolean
   showGridlines?: boolean
   stripedRows?: boolean
   highlightOnSelect?: boolean
@@ -85,8 +90,11 @@ export interface DataTableInterface {
   tableClass?: string | object
   tableProps?: TableHTMLAttributes
   filterInputProps?: InputHTMLAttributes
+  filterButtonProps?: DataTableFilterButtonPropsOptions
+  editButtonProps?: DataTableEditButtonPropsOptions
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<DataTablePassThroughOptions>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
   actions?: ActionInterface
   styles?: ColorItemStyleInterface

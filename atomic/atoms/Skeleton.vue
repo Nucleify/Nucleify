@@ -7,9 +7,10 @@
     :height="props.height"
     :border-radius="props.borderRadius"
     :animation="props.animation"
-    :unstyled="props.unstyled"
+    :dt="props.dt"
     :pt="props.pt"
     :pt-options="props.ptOptions"
+    :unstyled="props.unstyled"
   />
 </template>
 

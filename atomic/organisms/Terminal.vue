@@ -2,6 +2,7 @@
   <Terminal
     :welcome-message="props.welcomeMessage"
     :prompt="props.prompt"
+    :dt="props.dt"
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"

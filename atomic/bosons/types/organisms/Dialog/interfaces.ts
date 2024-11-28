@@ -1,7 +1,6 @@
 import { HTMLAttributes, StyleValue } from 'vue'
 import { PassThrough } from 'primevue/ts-helpers'
 import { DialogBreakpoints, DialogPassThroughAttributes } from 'primevue/dialog'
-import { PassThroughOptions } from 'primevue/passthrough'
 
 import {
   ActionType,
@@ -23,7 +22,6 @@ export interface DialogInterface {
   contentStyle?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   contentClass?: string
   contentProps?: HTMLAttributes
-  rtl?: boolean
   closable?: boolean
   dismissableMask?: boolean
   closeOnEscape?: boolean
@@ -39,8 +37,15 @@ export interface DialogInterface {
   minX?: number
   minY?: number
   appendTo?: ElementAppendTo
+  closeIcon?: string
+  maximizeIcon?: string
+  minimizeIcon?: string
+  closeButtonProps?: object
+  maximizeButtonProps?: object
+  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<DialogPassThroughAttributes>
-  ptOptions?: PassThroughOptions
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  unstyled?: boolean
   entity?: ObjectType
   action?: ActionType
   title?: string
