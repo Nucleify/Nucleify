@@ -1,13 +1,18 @@
 #access {
   height: auto;
   width: 100%;
-  background: $secondary-green-bg-color;
+  background: $bg-green-color-05;
 
   .access-container {
     display: flex;
     flex-direction: column;
     padding: 60px 10px 0;
     overflow-x: hidden;
+
+    .flip-card-front,
+    .flip-card-back {
+      background: #0a0a0a;
+    }
 
     .access-card-container {
       margin: 50px 0 70px;
@@ -40,7 +45,7 @@
   .access-header {
     font-family: $font-inter-sans-serif;
     font-weight: bold;
-    color: $dark-text-color;
+    color: $primary-white-green-text-color;
     font-size: 35px;
     max-width: 320px;
     margin: 0 auto 15px;
@@ -48,9 +53,9 @@
   }
 
   .access-description {
-    margin: 5px auto 0;
+    margin: 15px auto 0;
     max-width: 900px;
-    color: $secondary-text-color;
+    color: $primary-white-green-text-color;
     text-align: center;
     padding: 0 40px;
     font-size: 16px;

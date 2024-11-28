@@ -5,6 +5,8 @@
   padding: 0 10px;
 
   .p-dialog {
+    backdrop-filter: blur(0.5em);
+
     &.my-dialog {
       width: 30em;
       max-height: 620px;

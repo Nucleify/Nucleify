@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { useArticleFields } from 'atomic/bosons/constants'
+import { useMoneyFields } from 'atomic/bosons/constants'
 import { DashboardInterface } from 'atomic/bosons/types'
 import { moneyRequests, useDialog } from 'atomic/bosons/utils'
 
@@ -47,7 +47,7 @@ const {
   closeDialog,
 } = useDialog()
 
-const { createAndEditFields, showFields } = useArticleFields()
+const { createAndEditFields, showFields } = useMoneyFields()
 const { deleteMoney, storeMoney, editMoney } = moneyRequests(closeDialog)
 
 const dialogs = computed(() => [

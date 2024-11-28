@@ -2,27 +2,10 @@
   'start';
 
 .home-container {
-  background: $white-body-bg !important;
-  padding-top: 140px;
+  padding-top: 150px;
 
   @media (min-width: $breakpoint-sm) {
-    padding-top: 150px;
-  }
-
-  @media (min-width: $breakpoint-md) {
     padding-top: 180px;
-  }
-
-  @media (min-width: $breakpoint-lg) {
-    padding-top: 250px;
-  }
-
-  @media (min-width: $breakpoint-xl) {
-    padding-top: 290px;
-  }
-
-  @media (min-width: $breakpoint-xxl) {
-    padding-top: 310px;
   }
 }
 

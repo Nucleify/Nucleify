@@ -1,6 +1,5 @@
 #charts {
   width: 100%;
-  background: $primary-color;
 
   .home-charts-container {
     margin: 0 auto;
@@ -11,14 +10,21 @@
     align-items: center;
 
     .home-chart-card {
+      backdrop-filter: blur(0.5em);
       position: relative;
       display: flex;
       justify-content: center;
       height: 360px;
       width: 100%;
       max-width: 600px;
-      padding: 35px 15px;
+      padding: 25px 35px 35px !important;
       margin-bottom: -30px;
+      border-radius: 12px;
+
+      .p-card-body {
+        padding: 0;
+        height: 100%;
+      }
 
       div[data-pc-section='body'] {
         opacity: 0;
@@ -40,9 +46,9 @@
     }
 
     .home-charts-header {
-      font-weight: 800;
-      color: $dark-text-color;
-      font-size: 1.75em;
+      font-weight: 400;
+      color: $primary-white-green-text-color;
+      font-size: 1.5em;
       padding: 0 35px;
       text-align: center;
       margin-bottom: 60px;

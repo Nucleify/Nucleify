@@ -10,20 +10,21 @@
     padding-top: 50px;
     opacity: 0;
     animation: fade-in 1s forwards;
+    color: $primary-white-green-text-color;
   }
 
   .why-us-item {
     height: min-content;
     width: min-content;
     padding: 10px;
-    background: white;
+    background: var(--p-card-background);
     font-size: 15px;
     box-shadow:
       0 4px 10px rgba(0, 0, 0, 0.03),
       0 0 2px rgba(0, 0, 0, 0.06),
       0 2px 6px rgba(0, 0, 0, 0.12);
     border-radius: 8px;
-    color: $primary-text-color;
+    color: $primary-white-green-text-color;
     transition: color 300ms;
     cursor: pointer;
     opacity: 0;
@@ -34,13 +35,11 @@
 
     @media (min-width: 768px) {
       padding: 12px;
-      background: white;
       font-size: 20px;
     }
 
     @media (min-width: 992px) {
       padding: 15px;
-      background: white;
       font-size: 25px;
     }
   }
