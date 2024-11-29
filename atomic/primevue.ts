@@ -30,6 +30,7 @@ import InputOtp from 'primevue/inputotp'
 import InputText from 'primevue/inputtext'
 import Knob from 'primevue/knob'
 import Menu from 'primevue/menu'
+import OrganizationChart from 'primevue/organizationchart'
 import Popover from 'primevue/popover'
 import Password from 'primevue/password'
 import ProgressBar from 'primevue/progressbar'
@@ -103,6 +104,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('InputText', InputText)
     .component('Knob', Knob)
     .component('Menu', Menu)
+    .component('OrganizationChart', OrganizationChart)
     .component('Popover', Popover)
     .component('Password', Password)
     .component('ProgressBar', ProgressBar)

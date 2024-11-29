@@ -60,6 +60,7 @@ import {
   DeferredContent,
   Dialog,
   Dock,
+  OrganizationChart,
   Password,
   Popover,
   Select,
@@ -148,6 +149,7 @@ app
   .component('ad-data-table', DataTable)
   .component('ad-dialog', Dialog)
   .component('ad-dock', Dock)
+  .component('ad-organization-chart', OrganizationChart)
   .component('ad-popover', Popover)
   .component('ad-password', Password)
   .component('ad-select', Select)
