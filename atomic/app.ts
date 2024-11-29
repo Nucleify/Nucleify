@@ -57,6 +57,7 @@ import {
   ColorPicker,
   DataTable,
   DatePicker,
+  DeferredContent,
   Dialog,
   Dock,
   Password,
@@ -140,6 +141,7 @@ app
   .component('ad-accordion', Accordion)
   .component('ad-auto-complete', AutoComplete)
   .component('ad-date-picker', DatePicker)
+  .component('ad-deferred-content', DeferredContent)
   .component('ad-card', Card)
   .component('ad-chart', Chart)
   .component('ad-color-picker', ColorPicker)
