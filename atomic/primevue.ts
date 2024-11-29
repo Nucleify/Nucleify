@@ -43,6 +43,7 @@ import Select from 'primevue/select'
 import SelectButton from 'primevue/selectbutton'
 import Skeleton from 'primevue/skeleton'
 import Slider from 'primevue/slider'
+import SpeedDial from 'primevue/speeddial'
 import Tag from 'primevue/tag'
 import Terminal from 'primevue/terminal'
 import Textarea from 'primevue/textarea'
@@ -118,6 +119,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('SelectButton', SelectButton)
     .component('Skeleton', Skeleton)
     .component('Slider', Slider)
+    .component('SpeedDial', SpeedDial)
     .component('Tag', Tag)
     .component('Terminal', Terminal)
     .component('Textarea', Textarea)

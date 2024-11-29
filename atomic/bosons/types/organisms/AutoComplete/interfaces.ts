@@ -1,5 +1,4 @@
 import { VirtualScrollerProps } from 'primevue/virtualscroller'
-import { PassThrough } from 'primevue/ts-helpers'
 import { AutoCompletePassThroughOptions } from 'primevue/autocomplete'
 
 import {
