@@ -65,6 +65,7 @@ import {
   Password,
   Popover,
   Select,
+  SpeedDial,
   Swiper,
   Terminal,
   Toast,
@@ -155,6 +156,7 @@ app
   .component('ad-popover', Popover)
   .component('ad-password', Password)
   .component('ad-select', Select)
+  .component('ad-speed-dial', SpeedDial)
   .component('ad-swiper', Swiper)
   .component('ad-terminal', Terminal)
   .component('ad-toast', Toast)
