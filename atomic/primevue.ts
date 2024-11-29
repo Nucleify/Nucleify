@@ -22,6 +22,7 @@ import DeferredContent from 'primevue/deferredcontent'
 import Dialog from 'primevue/dialog'
 import Divider from 'primevue/divider'
 import Dock from 'primevue/dock'
+import Fieldset from 'primevue/fieldset'
 import FloatLabel from 'primevue/floatlabel'
 import Image from 'primevue/image'
 import InputMask from 'primevue/inputmask'
@@ -98,6 +99,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Dialog', Dialog)
     .component('Divider', Divider)
     .component('Dock', Dock)
+    .component('Fieldset', Fieldset)
     .component('FloatLabel', FloatLabel)
     .component('Image', Image)
     .component('InputMask', InputMask)
