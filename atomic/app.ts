@@ -89,6 +89,7 @@ import {
   ServicesPage,
   SettingsPage,
 } from './pages'
+import { SectionStart, SectionCategory } from './sections'
 import {
   BackLink,
   CardCategory,
@@ -96,8 +97,6 @@ import {
   CardDataTable,
   ScreenLights,
   ScreenLoader,
-  SectionStart,
-  SectionCategory,
   SkeletonDataTable,
   TestLoginButtons,
 } from './templates'
@@ -184,6 +183,12 @@ app
   .component('ad-settings-page', SettingsPage)
 
   /**
+   *  Sections
+   */
+  .component('ad-section-category', SectionCategory)
+  .component('ad-section-start', SectionStart)
+
+  /**
    *  Templates
    */
   .component('ad-back-link', BackLink)
@@ -193,8 +198,6 @@ app
   .component('ad-screen-lights', ScreenLights)
   .component('ad-screen-loader', ScreenLoader)
   .component('ad-skeleton-data-table', SkeletonDataTable)
-  .component('ad-section-category', SectionCategory)
-  .component('ad-section-start', SectionStart)
   .component('ad-test-login-buttons', TestLoginButtons)
 
 app.mount('#app')
