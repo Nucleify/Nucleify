@@ -1,6 +1,7 @@
 export * from './Accordion'
 export * from './AutoComplete'
 export * from './Card'
+export * from './Carousel'
 export * from './Chart'
 export * from './ColorPicker'
 export * from './DataTable'

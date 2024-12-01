@@ -54,6 +54,7 @@ import {
   AutoComplete,
   Card,
   Chart,
+  Carousel,
   ColorPicker,
   DataTable,
   DatePicker,
@@ -148,6 +149,7 @@ app
   .component('ad-date-picker', DatePicker)
   .component('ad-deferred-content', DeferredContent)
   .component('ad-card', Card)
+  .component('ad-carousel', Carousel)
   .component('ad-chart', Chart)
   .component('ad-color-picker', ColorPicker)
   .component('ad-data-table', DataTable)
