@@ -13,6 +13,7 @@ import Badge from 'primevue/badge'
 import Button from 'primevue/button'
 import DatePicker from 'primevue/datepicker'
 import Card from 'primevue/card'
+import Carousel from 'primevue/carousel'
 import Chart from 'primevue/chart'
 import Checkbox from 'primevue/checkbox'
 import ColorPicker from 'primevue/colorpicker'
@@ -90,6 +91,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Badge', Badge)
     .component('Button', Button)
     .component('Card', Card)
+    .component('Carousel', Carousel)
     .component('Chart', Chart)
     .component('Checkbox', Checkbox)
     .component('ColorPicker', ColorPicker)
