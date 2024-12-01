@@ -1,5 +1,4 @@
 export * from './Card'
 export * from './Dashboard'
 export * from './Screen'
-export * from './Sections'
 export * from './Skeleton'

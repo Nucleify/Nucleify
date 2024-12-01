@@ -2,7 +2,8 @@ import { PassThrough } from 'primevue/ts-helpers'
 import { AccordionPassThroughOptions } from 'primevue'
 
 export interface AccordionInterface {
-  value?: AccordionPanelInterface | AccordionPanelInterface[]
+  panels?: AccordionPanelInterface[]
+  value?: number
   multiple?: boolean
   lazy?: boolean
   expandIcon?: string
@@ -15,8 +16,7 @@ export interface AccordionInterface {
   unstyled?: boolean
 }
 export interface AccordionPanelInterface {
-  value?: number
-  header?: string
-  content?: string
-  panel?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  value: number
+  header: string
+  content: string
 }

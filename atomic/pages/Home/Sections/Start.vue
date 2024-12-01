@@ -21,13 +21,13 @@
           <div class="cta">
             <ad-button
               label="Try it out!"
-              class="start-button caterpillar-buttom"
+              class="start-button caterpillar-button"
               @click="navigateTo('/register')"
             />
             <ad-button
               label="GitHub"
               :src="technologiesImgUrl + 'github.svg'"
-              class="start-button caterpillar-buttom"
+              class="start-button caterpillar-button"
               @click="navigateTo('https://github.com/SzymCode/DataManager')"
             />
           </div>
