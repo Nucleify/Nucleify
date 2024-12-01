@@ -18,7 +18,7 @@
       :key="index"
     >
       <AccordionHeader>{{ panel.header }}</AccordionHeader>
-      <AccordionContent> {{ panel.content }}</AccordionContent>
+      <AccordionContent>{{ panel.content }}</AccordionContent>
     </AccordionPanel>
   </Accordion>
 </template>

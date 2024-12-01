@@ -89,7 +89,7 @@ import {
   ServicesPage,
   SettingsPage,
 } from './pages'
-import { SectionStart, SectionCategory } from './sections'
+import { SectionCategory, SectionFaq, SectionStart } from './sections'
 import {
   BackLink,
   CardCategory,
@@ -186,6 +186,7 @@ app
    *  Sections
    */
   .component('ad-section-category', SectionCategory)
+  .component('ad-section-faq', SectionFaq)
   .component('ad-section-start', SectionStart)
 
   /**
