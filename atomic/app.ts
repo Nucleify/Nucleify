@@ -57,11 +57,16 @@ import {
   ColorPicker,
   DataTable,
   DatePicker,
+  DeferredContent,
   Dialog,
   Dock,
+  Fieldset,
+  MultiSelect,
+  OrganizationChart,
   Password,
   Popover,
   Select,
+  SpeedDial,
   Swiper,
   Terminal,
   Toast,
@@ -84,6 +89,7 @@ import {
   ServicesPage,
   SettingsPage,
 } from './pages'
+import { SectionCategory, SectionFaq, SectionStart } from './sections'
 import {
   BackLink,
   CardCategory,
@@ -91,8 +97,6 @@ import {
   CardDataTable,
   ScreenLights,
   ScreenLoader,
-  SectionStart,
-  SectionCategory,
   SkeletonDataTable,
   TestLoginButtons,
 } from './templates'
@@ -140,15 +144,20 @@ app
   .component('ad-accordion', Accordion)
   .component('ad-auto-complete', AutoComplete)
   .component('ad-date-picker', DatePicker)
+  .component('ad-deferred-content', DeferredContent)
   .component('ad-card', Card)
   .component('ad-chart', Chart)
   .component('ad-color-picker', ColorPicker)
   .component('ad-data-table', DataTable)
   .component('ad-dialog', Dialog)
   .component('ad-dock', Dock)
+  .component('ad-fieldset', Fieldset)
+  .component('ad-multi-select', MultiSelect)
+  .component('ad-organization-chart', OrganizationChart)
   .component('ad-popover', Popover)
   .component('ad-password', Password)
   .component('ad-select', Select)
+  .component('ad-speed-dial', SpeedDial)
   .component('ad-swiper', Swiper)
   .component('ad-terminal', Terminal)
   .component('ad-toast', Toast)
@@ -174,6 +183,13 @@ app
   .component('ad-settings-page', SettingsPage)
 
   /**
+   *  Sections
+   */
+  .component('ad-section-category', SectionCategory)
+  .component('ad-section-faq', SectionFaq)
+  .component('ad-section-start', SectionStart)
+
+  /**
    *  Templates
    */
   .component('ad-back-link', BackLink)
@@ -183,8 +199,6 @@ app
   .component('ad-screen-lights', ScreenLights)
   .component('ad-screen-loader', ScreenLoader)
   .component('ad-skeleton-data-table', SkeletonDataTable)
-  .component('ad-section-category', SectionCategory)
-  .component('ad-section-start', SectionStart)
   .component('ad-test-login-buttons', TestLoginButtons)
 
 app.mount('#app')

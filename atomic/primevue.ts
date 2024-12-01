@@ -22,6 +22,7 @@ import DeferredContent from 'primevue/deferredcontent'
 import Dialog from 'primevue/dialog'
 import Divider from 'primevue/divider'
 import Dock from 'primevue/dock'
+import Fieldset from 'primevue/fieldset'
 import FloatLabel from 'primevue/floatlabel'
 import Image from 'primevue/image'
 import InputMask from 'primevue/inputmask'
@@ -30,6 +31,8 @@ import InputOtp from 'primevue/inputotp'
 import InputText from 'primevue/inputtext'
 import Knob from 'primevue/knob'
 import Menu from 'primevue/menu'
+import MultiSelect from 'primevue/multiselect'
+import OrganizationChart from 'primevue/organizationchart'
 import Popover from 'primevue/popover'
 import Password from 'primevue/password'
 import ProgressBar from 'primevue/progressbar'
@@ -41,6 +44,7 @@ import Select from 'primevue/select'
 import SelectButton from 'primevue/selectbutton'
 import Skeleton from 'primevue/skeleton'
 import Slider from 'primevue/slider'
+import SpeedDial from 'primevue/speeddial'
 import Tag from 'primevue/tag'
 import Terminal from 'primevue/terminal'
 import Textarea from 'primevue/textarea'
@@ -95,6 +99,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Dialog', Dialog)
     .component('Divider', Divider)
     .component('Dock', Dock)
+    .component('Fieldset', Fieldset)
     .component('FloatLabel', FloatLabel)
     .component('Image', Image)
     .component('InputMask', InputMask)
@@ -103,6 +108,8 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('InputText', InputText)
     .component('Knob', Knob)
     .component('Menu', Menu)
+    .component('MultiSelect', MultiSelect)
+    .component('OrganizationChart', OrganizationChart)
     .component('Popover', Popover)
     .component('Password', Password)
     .component('ProgressBar', ProgressBar)
@@ -114,6 +121,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('SelectButton', SelectButton)
     .component('Skeleton', Skeleton)
     .component('Slider', Slider)
+    .component('SpeedDial', SpeedDial)
     .component('Tag', Tag)
     .component('Terminal', Terminal)
     .component('Textarea', Textarea)

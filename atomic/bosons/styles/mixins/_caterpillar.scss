@@ -1,9 +1,4 @@
-@import 'keyframes', 'properties';
-
-.caterpillar-button {
-  background: transparent !important;
-  border: 0 !important;
-  outline: #ffffff30 1px solid !important;
+@mixin caterpillar {
   backdrop-filter: blur(0.5em);
   border-radius: 0 !important;
   z-index: 1;
@@ -26,8 +21,8 @@
     border: 2px solid transparent !important;
     border-image: conic-gradient(
         from var(--angle),
-        #10b981 0deg 80deg,
-        transparent 60deg 200deg
+        #10b981 0deg 20deg,
+        transparent 20deg 200deg
       )
       1 stretch !important;
     animation: rotate 4s linear infinite;
