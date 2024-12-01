@@ -1,0 +1,5 @@
+@mixin entity-styles($item-color, $focus-color, $selected-color) {
+  .p-accordionheader:hover {
+    background: $selected-color;
+  }
+}

@@ -1,0 +1,26 @@
+@import 'mixins';
+
+.p-accordion {
+  overflow: visible;
+
+  @each $type in main, activity, article, contact, money, user {
+    &[ad-type='#{$type}'] {
+      @include entity-styles(
+        var(--#{$type}-item-color-new) !important,
+        var(--#{$type}-item-focus-color-new) !important,
+        var(--#{$type}-item-highlight-color-new) !important
+      );
+    }
+  }
+
+  .p-accordionheader {
+    @include caterpillar;
+
+    background: #1c1c1caa !important;
+  }
+
+  .p-accordioncontent-content {
+    background: $bg-black-color;
+    backdrop-filter: blur(0.5em);
+  }
+}
