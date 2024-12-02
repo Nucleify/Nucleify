@@ -48,6 +48,11 @@ import SelectButton from 'primevue/selectbutton'
 import Skeleton from 'primevue/skeleton'
 import Slider from 'primevue/slider'
 import SpeedDial from 'primevue/speeddial'
+import Tabs from 'primevue/tabs'
+import TabList from 'primevue/tablist'
+import Tab from 'primevue/tab'
+import TabPanels from 'primevue/tabpanels'
+import TabPanel from 'primevue/tabpanel'
 import Tag from 'primevue/tag'
 import Terminal from 'primevue/terminal'
 import Textarea from 'primevue/textarea'
@@ -128,6 +133,11 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Skeleton', Skeleton)
     .component('Slider', Slider)
     .component('SpeedDial', SpeedDial)
+    .component('Tabs', Tabs)
+    .component('TabList', TabList)
+    .component('Tab', Tab)
+    .component('TabPanels', TabPanels)
+    .component('TabPanel', TabPanel)
     .component('Tag', Tag)
     .component('Terminal', Terminal)
     .component('Textarea', Textarea)

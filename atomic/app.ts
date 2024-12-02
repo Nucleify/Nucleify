@@ -71,6 +71,7 @@ import {
   Select,
   SpeedDial,
   Swiper,
+  Tabs,
   Terminal,
   Toast,
 } from './organisms'
@@ -165,6 +166,7 @@ app
   .component('ad-select', Select)
   .component('ad-speed-dial', SpeedDial)
   .component('ad-swiper', Swiper)
+  .component('ad-tabs', Tabs)
   .component('ad-terminal', Terminal)
   .component('ad-toast', Toast)
 
