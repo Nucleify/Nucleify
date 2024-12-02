@@ -26,6 +26,7 @@ import Dock from 'primevue/dock'
 import Fieldset from 'primevue/fieldset'
 import FileUpload from 'primevue/fileupload'
 import FloatLabel from 'primevue/floatlabel'
+import Galleria from 'primevue/galleria'
 import Image from 'primevue/image'
 import InputMask from 'primevue/inputmask'
 import InputNumber from 'primevue/inputnumber'
@@ -105,6 +106,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Fieldset', Fieldset)
     .component('FileUpload', FileUpload)
     .component('FloatLabel', FloatLabel)
+    .component('Galleria', Galleria)
     .component('Image', Image)
     .component('InputMask', InputMask)
     .component('InputNumber', InputNumber)

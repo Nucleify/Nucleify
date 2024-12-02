@@ -63,6 +63,7 @@ import {
   Dock,
   Fieldset,
   FileUpload,
+  Galleria,
   MultiSelect,
   OrganizationChart,
   Password,
@@ -156,6 +157,7 @@ app
   .component('ad-dock', Dock)
   .component('ad-fieldset', Fieldset)
   .component('ad-file-upload', FileUpload)
+  .component('ad-galleria', Galleria)
   .component('ad-multi-select', MultiSelect)
   .component('ad-organization-chart', OrganizationChart)
   .component('ad-popover', Popover)
