@@ -69,6 +69,7 @@ import {
   MultiSelect,
   OrganizationChart,
   Panel,
+  PickList,
   Password,
   Popover,
   ScrollPanel,
@@ -168,6 +169,7 @@ app
   .component('ad-multi-select', MultiSelect)
   .component('ad-organization-chart', OrganizationChart)
   .component('ad-panel', Panel)
+  .component('ad-pick-list', PickList)
   .component('ad-popover', Popover)
   .component('ad-password', Password)
   .component('ad-scroll-panel', ScrollPanel)
