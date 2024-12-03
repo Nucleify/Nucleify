@@ -62,6 +62,7 @@ import {
   DeferredContent,
   Dialog,
   Dock,
+  Editor,
   Fieldset,
   FileUpload,
   Galleria,
@@ -164,6 +165,7 @@ app
   .component('ad-data-table', DataTable)
   .component('ad-dialog', Dialog)
   .component('ad-dock', Dock)
+  .component('ad-editor', Editor)
   .component('ad-fieldset', Fieldset)
   .component('ad-file-upload', FileUpload)
   .component('ad-galleria', Galleria)

@@ -44,6 +44,7 @@
     "primeflex": "3.3.1",
     "primeicons": "7.0.0",
     "primevue": "^4.2.3",
+    "quill": "^2.0.3",
     "swiper": "11.1.14"
   },
   "devDependencies": {
