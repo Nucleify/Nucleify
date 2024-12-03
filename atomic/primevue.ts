@@ -39,6 +39,7 @@ import MeterGroup from 'primevue/metergroup'
 import MultiSelect from 'primevue/multiselect'
 import OrganizationChart from 'primevue/organizationchart'
 import Popover from 'primevue/popover'
+import Panel from 'primevue/panel'
 import Password from 'primevue/password'
 import ProgressBar from 'primevue/progressbar'
 import ProgressSpinner from 'primevue/progressspinner'
@@ -126,6 +127,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('MultiSelect', MultiSelect)
     .component('OrganizationChart', OrganizationChart)
     .component('Popover', Popover)
+    .component('Panel', Panel)
     .component('Password', Password)
     .component('ProgressBar', ProgressBar)
     .component('ProgressSpinner', ProgressSpinner)
