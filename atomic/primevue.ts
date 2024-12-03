@@ -24,6 +24,7 @@ import DeferredContent from 'primevue/deferredcontent'
 import Dialog from 'primevue/dialog'
 import Divider from 'primevue/divider'
 import Dock from 'primevue/dock'
+import Editor from 'primevue/editor'
 import Fieldset from 'primevue/fieldset'
 import FileUpload from 'primevue/fileupload'
 import FloatLabel from 'primevue/floatlabel'
@@ -116,6 +117,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Dialog', Dialog)
     .component('Divider', Divider)
     .component('Dock', Dock)
+    .component('Editor', Editor)
     .component('Fieldset', Fieldset)
     .component('FileUpload', FileUpload)
     .component('FloatLabel', FloatLabel)
