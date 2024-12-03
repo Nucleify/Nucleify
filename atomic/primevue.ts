@@ -35,6 +35,7 @@ import InputOtp from 'primevue/inputotp'
 import InputText from 'primevue/inputtext'
 import Knob from 'primevue/knob'
 import Menu from 'primevue/menu'
+import MegaMenu from 'primevue/megamenu'
 import MeterGroup from 'primevue/metergroup'
 import MultiSelect from 'primevue/multiselect'
 import OrganizationChart from 'primevue/organizationchart'
@@ -126,6 +127,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('InputText', InputText)
     .component('Knob', Knob)
     .component('Menu', Menu)
+    .component('MegaMenu', MegaMenu)
     .component('MeterGroup', MeterGroup)
     .component('MultiSelect', MultiSelect)
     .component('OrganizationChart', OrganizationChart)

@@ -65,6 +65,7 @@ import {
   Fieldset,
   FileUpload,
   Galleria,
+  MegaMenu,
   MeterGroup,
   MultiSelect,
   OrganizationChart,
@@ -167,6 +168,7 @@ app
   .component('ad-file-upload', FileUpload)
   .component('ad-galleria', Galleria)
   .component('ad-meter-group', MeterGroup)
+  .component('ad-mega-menu', MegaMenu)
   .component('ad-multi-select', MultiSelect)
   .component('ad-organization-chart', OrganizationChart)
   .component('ad-panel', Panel)
