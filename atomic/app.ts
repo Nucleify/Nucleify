@@ -71,6 +71,7 @@ import {
   Panel,
   Password,
   Popover,
+  ScrollPanel,
   Select,
   SpeedDial,
   Swiper,
@@ -169,6 +170,7 @@ app
   .component('ad-panel', Panel)
   .component('ad-popover', Popover)
   .component('ad-password', Password)
+  .component('ad-scroll-panel', ScrollPanel)
   .component('ad-select', Select)
   .component('ad-speed-dial', SpeedDial)
   .component('ad-swiper', Swiper)
