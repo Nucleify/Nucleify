@@ -60,6 +60,7 @@ import TabPanels from 'primevue/tabpanels'
 import TabPanel from 'primevue/tabpanel'
 import Tag from 'primevue/tag'
 import Terminal from 'primevue/terminal'
+import Timeline from 'primevue/terminal'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
 
@@ -150,6 +151,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('TabPanel', TabPanel)
     .component('Tag', Tag)
     .component('Terminal', Terminal)
+    .component('Timeline', Timeline)
     .component('Textarea', Textarea)
     .component('Toast', Toast)
 
