@@ -78,6 +78,7 @@ import {
   Swiper,
   Tabs,
   Terminal,
+  Timeline,
   Toast,
 } from './organisms'
 import {
@@ -178,6 +179,7 @@ app
   .component('ad-swiper', Swiper)
   .component('ad-tabs', Tabs)
   .component('ad-terminal', Terminal)
+  .component('ad-timeline', Timeline)
   .component('ad-toast', Toast)
 
   /**
