@@ -1,5 +1,6 @@
 export { default as Accordion } from './Accordion.vue'
 export { default as AutoComplete } from './AutoComplete.vue'
+export { default as BlockUI } from './BlockUI.vue'
 export { default as DatePicker } from './DatePicker.vue'
 export { default as Card } from './Card.vue'
 export { default as Carousel } from './Carousel.vue'

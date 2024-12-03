@@ -10,6 +10,7 @@ import AccordionPanel from 'primevue/accordionpanel'
 import AutoComplete from 'primevue/autocomplete'
 import Avatar from 'primevue/avatar'
 import Badge from 'primevue/badge'
+import BlockUI from 'primevue/blockui'
 import Button from 'primevue/button'
 import DatePicker from 'primevue/datepicker'
 import Card from 'primevue/card'
@@ -96,6 +97,7 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('AutoComplete', AutoComplete)
     .component('Avatar', Avatar)
     .component('Badge', Badge)
+    .component('BlockUI', BlockUI)
     .component('Button', Button)
     .component('Card', Card)
     .component('Carousel', Carousel)

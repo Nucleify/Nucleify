@@ -1,5 +1,6 @@
 export * from './Accordion'
 export * from './AutoComplete'
+export * from './BlockUI'
 export * from './Card'
 export * from './Carousel'
 export * from './Chart'
