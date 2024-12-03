@@ -64,6 +64,7 @@ import {
   Fieldset,
   FileUpload,
   Galleria,
+  MeterGroup,
   MultiSelect,
   OrganizationChart,
   Password,
@@ -159,6 +160,7 @@ app
   .component('ad-fieldset', Fieldset)
   .component('ad-file-upload', FileUpload)
   .component('ad-galleria', Galleria)
+  .component('ad-meter-group', MeterGroup)
   .component('ad-multi-select', MultiSelect)
   .component('ad-organization-chart', OrganizationChart)
   .component('ad-popover', Popover)
