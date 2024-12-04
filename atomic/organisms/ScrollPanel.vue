@@ -5,8 +5,7 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
-  >
-  </ScrollPanel>
+  />
 </template>
 
 <script setup lang="ts">

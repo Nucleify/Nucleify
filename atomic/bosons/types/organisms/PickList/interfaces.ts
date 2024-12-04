@@ -30,4 +30,3 @@ export interface PickListInterface {
   ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }
-x

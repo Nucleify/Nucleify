@@ -34,13 +34,12 @@
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   >
-    <template #item="{ item }">
+    <template #item="item">
       <div>
         <img :src="item.itemImageSrc" :alt="item.alt" />
       </div>
     </template>
-
-    <template #thumbnail="{ item }">
+    <template #thumbnail="item">
       <img :src="item.thumbnailImageSrc" :alt="item.alt" />
     </template>
   </Galleria>

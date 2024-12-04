@@ -9,9 +9,9 @@
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   >
-    <template #event="{ event }">
+    <template #event="event">
       <div :style="{ color: event.color }">
-        <i :class="event.icon"></i>
+        <ad-icon :icon="event.icon" />
         <strong>{{ event.status }}</strong> - {{ event.date }}
       </div>
     </template>

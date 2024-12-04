@@ -16,6 +16,7 @@
     :unstyled="props.unstyled"
   />
 </template>
+
 <script setup lang="ts">
 import { EditorInterface } from 'atomic/bosons/types'
 
