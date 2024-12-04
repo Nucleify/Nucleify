@@ -61,7 +61,7 @@ services:
     storybook:
         build:
             context: .
-            dockerfile: storybook/Dockerfile
+            dockerfile: Dockerfile.storybook
         ports:
             - '6006:6006'
         volumes:

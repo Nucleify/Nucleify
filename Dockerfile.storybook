@@ -1,10 +1,14 @@
 FROM node:20
 
-WORKDIR app/storybook
+WORKDIR /app
 
 COPY package*.json ./
 
 RUN npm install
+
+COPY . .
+
+WORKDIR /app/.storybook
 
 EXPOSE 6006
 
