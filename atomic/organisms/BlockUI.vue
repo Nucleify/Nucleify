@@ -1,6 +1,7 @@
 <template>
-  <Button label="Block" @click="blocked = true"></Button>
-  <Button label="Unblock" @click="blocked = false"></Button>
+  <ad-button label="Block" @click="blocked = true" />
+  <ad-button label="Unblock" @click="blocked = false" />
+
   <BlockUI
     v-for="(panel, index) in props.panels"
     :key="index"
@@ -13,16 +14,17 @@
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   >
-    <Heading tag="3">{{ panel.header }} </Heading>
-    <Paragraph> {{ panel.content }} </Paragraph>
+    <ad-heading :tag="3" :text="panel.header" />
+    <ad-paragraph :text="panel.content" />
   </BlockUI>
 </template>
 
 <script setup lang="ts">
-import { BlockUIInterface } from 'atomic/bosons/types'
 import { ref } from 'vue'
-import { Heading, Paragraph } from 'atomic/atoms'
+
+import { BlockUIInterface } from 'atomic/bosons/types'
+
+const props = defineProps<BlockUIInterface>()
 
 const blocked = ref(false)
-const props = defineProps<BlockUIInterface>()
 </script>

@@ -17,7 +17,7 @@
         :value="list.value"
         :key="index"
       >
-        <Heading tag="4">{{ list.header }}</Heading>
+        <ad-heading :tag="4" :text="list.header" />
       </Tab>
     </TabList>
     <TabPanels>
@@ -26,9 +26,7 @@
         :value="panel.value"
         :key="index"
       >
-        <Paragraph>
-          {{ panel.content }}
-        </Paragraph>
+        <ad-paragraph :text="panel.content" />
       </TabPanel>
     </TabPanels>
   </Tabs>
@@ -36,8 +34,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+
 import { TabsInterface } from 'atomic/bosons/types'
-import { Heading, Paragraph } from 'atomic/atoms'
 
 const activeTab = ref(0)
 const props = defineProps<TabsInterface>()

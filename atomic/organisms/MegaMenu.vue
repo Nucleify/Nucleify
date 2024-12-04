@@ -12,8 +12,7 @@
     :pt="props.pt"
     :pt-options="props.pt"
     :unstyled="props.unstyled"
-  >
-  </MegaMenu>
+  />
 </template>
 
 <script setup lang="ts">
