@@ -57,6 +57,7 @@
     :unstyled="props.unstyled"
   />
 </template>
+
 <script setup lang="ts">
 import { AutoCompleteInterface } from 'atomic/bosons/types'
 

@@ -10,9 +10,11 @@ import AccordionPanel from 'primevue/accordionpanel'
 import AutoComplete from 'primevue/autocomplete'
 import Avatar from 'primevue/avatar'
 import Badge from 'primevue/badge'
+import BlockUI from 'primevue/blockui'
 import Button from 'primevue/button'
 import DatePicker from 'primevue/datepicker'
 import Card from 'primevue/card'
+import Carousel from 'primevue/carousel'
 import Chart from 'primevue/chart'
 import Checkbox from 'primevue/checkbox'
 import ColorPicker from 'primevue/colorpicker'
@@ -22,8 +24,11 @@ import DeferredContent from 'primevue/deferredcontent'
 import Dialog from 'primevue/dialog'
 import Divider from 'primevue/divider'
 import Dock from 'primevue/dock'
+import Editor from 'primevue/editor'
 import Fieldset from 'primevue/fieldset'
+import FileUpload from 'primevue/fileupload'
 import FloatLabel from 'primevue/floatlabel'
+import Galleria from 'primevue/galleria'
 import Image from 'primevue/image'
 import InputMask from 'primevue/inputmask'
 import InputNumber from 'primevue/inputnumber'
@@ -31,22 +36,33 @@ import InputOtp from 'primevue/inputotp'
 import InputText from 'primevue/inputtext'
 import Knob from 'primevue/knob'
 import Menu from 'primevue/menu'
+import MegaMenu from 'primevue/megamenu'
+import MeterGroup from 'primevue/metergroup'
 import MultiSelect from 'primevue/multiselect'
 import OrganizationChart from 'primevue/organizationchart'
 import Popover from 'primevue/popover'
+import Panel from 'primevue/panel'
+import PickList from 'primevue/picklist'
 import Password from 'primevue/password'
 import ProgressBar from 'primevue/progressbar'
 import ProgressSpinner from 'primevue/progressspinner'
 import RadioButton from 'primevue/radiobutton'
 import Rating from 'primevue/rating'
+import ScrollPanel from 'primevue/scrollpanel'
 import ScrollTop from 'primevue/scrolltop'
 import Select from 'primevue/select'
 import SelectButton from 'primevue/selectbutton'
 import Skeleton from 'primevue/skeleton'
 import Slider from 'primevue/slider'
 import SpeedDial from 'primevue/speeddial'
+import Tabs from 'primevue/tabs'
+import TabList from 'primevue/tablist'
+import Tab from 'primevue/tab'
+import TabPanels from 'primevue/tabpanels'
+import TabPanel from 'primevue/tabpanel'
 import Tag from 'primevue/tag'
 import Terminal from 'primevue/terminal'
+import Timeline from 'primevue/timeline'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
 
@@ -87,8 +103,10 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('AutoComplete', AutoComplete)
     .component('Avatar', Avatar)
     .component('Badge', Badge)
+    .component('BlockUI', BlockUI)
     .component('Button', Button)
     .component('Card', Card)
+    .component('Carousel', Carousel)
     .component('Chart', Chart)
     .component('Checkbox', Checkbox)
     .component('ColorPicker', ColorPicker)
@@ -99,8 +117,11 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('Dialog', Dialog)
     .component('Divider', Divider)
     .component('Dock', Dock)
+    .component('Editor', Editor)
     .component('Fieldset', Fieldset)
+    .component('FileUpload', FileUpload)
     .component('FloatLabel', FloatLabel)
+    .component('Galleria', Galleria)
     .component('Image', Image)
     .component('InputMask', InputMask)
     .component('InputNumber', InputNumber)
@@ -108,22 +129,33 @@ export default function registerPrimeVue(app: App<Element>): void {
     .component('InputText', InputText)
     .component('Knob', Knob)
     .component('Menu', Menu)
+    .component('MegaMenu', MegaMenu)
+    .component('MeterGroup', MeterGroup)
     .component('MultiSelect', MultiSelect)
     .component('OrganizationChart', OrganizationChart)
     .component('Popover', Popover)
+    .component('Panel', Panel)
     .component('Password', Password)
+    .component('PickList', PickList)
     .component('ProgressBar', ProgressBar)
     .component('ProgressSpinner', ProgressSpinner)
     .component('RadioButton', RadioButton)
     .component('Rating', Rating)
+    .component('ScrollPanel', ScrollPanel)
     .component('ScrollTop', ScrollTop)
     .component('Select', Select)
     .component('SelectButton', SelectButton)
     .component('Skeleton', Skeleton)
     .component('Slider', Slider)
     .component('SpeedDial', SpeedDial)
+    .component('Tabs', Tabs)
+    .component('TabList', TabList)
+    .component('Tab', Tab)
+    .component('TabPanels', TabPanels)
+    .component('TabPanel', TabPanel)
     .component('Tag', Tag)
     .component('Terminal', Terminal)
+    .component('Timeline', Timeline)
     .component('Textarea', Textarea)
     .component('Toast', Toast)
 
