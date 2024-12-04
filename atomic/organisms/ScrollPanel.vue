@@ -1,0 +1,15 @@
+<template>
+  <ScrollPanel
+    :step="props.step"
+    :dt="props.dt"
+    :pt="props.pt"
+    :pt-options="props.ptOptions"
+    :unstyled="props.unstyled"
+  />
+</template>
+
+<script setup lang="ts">
+import { ScrollPanelInterface } from 'atomic/bosons/types'
+
+const props = defineProps<ScrollPanelInterface>()
+</script>

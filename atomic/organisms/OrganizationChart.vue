@@ -9,8 +9,7 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
-  >
-  </OrganizationChart>
+  />
 </template>
 
 <script setup lang="ts">
