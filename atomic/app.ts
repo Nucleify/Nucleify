@@ -52,23 +52,35 @@ import { Anchor, FloatLabel, Tile } from './molecules'
 import {
   Accordion,
   AutoComplete,
+  BlockUI,
   Card,
   Chart,
+  Carousel,
   ColorPicker,
   DataTable,
   DatePicker,
   DeferredContent,
   Dialog,
   Dock,
+  Editor,
   Fieldset,
+  FileUpload,
+  Galleria,
+  MegaMenu,
+  MeterGroup,
   MultiSelect,
   OrganizationChart,
+  Panel,
+  PickList,
   Password,
   Popover,
+  ScrollPanel,
   Select,
   SpeedDial,
   Swiper,
+  Tabs,
   Terminal,
+  Timeline,
   Toast,
 } from './organisms'
 import {
@@ -143,23 +155,35 @@ app
    */
   .component('ad-accordion', Accordion)
   .component('ad-auto-complete', AutoComplete)
+  .component('ad-block-ui', BlockUI)
   .component('ad-date-picker', DatePicker)
   .component('ad-deferred-content', DeferredContent)
   .component('ad-card', Card)
+  .component('ad-carousel', Carousel)
   .component('ad-chart', Chart)
   .component('ad-color-picker', ColorPicker)
   .component('ad-data-table', DataTable)
   .component('ad-dialog', Dialog)
   .component('ad-dock', Dock)
+  .component('ad-editor', Editor)
   .component('ad-fieldset', Fieldset)
+  .component('ad-file-upload', FileUpload)
+  .component('ad-galleria', Galleria)
+  .component('ad-meter-group', MeterGroup)
+  .component('ad-mega-menu', MegaMenu)
   .component('ad-multi-select', MultiSelect)
   .component('ad-organization-chart', OrganizationChart)
+  .component('ad-panel', Panel)
+  .component('ad-pick-list', PickList)
   .component('ad-popover', Popover)
   .component('ad-password', Password)
+  .component('ad-scroll-panel', ScrollPanel)
   .component('ad-select', Select)
   .component('ad-speed-dial', SpeedDial)
   .component('ad-swiper', Swiper)
+  .component('ad-tabs', Tabs)
   .component('ad-terminal', Terminal)
+  .component('ad-timeline', Timeline)
   .component('ad-toast', Toast)
 
   /**
