@@ -15,6 +15,8 @@
 </template>
 
 <script setup lang="ts">
+import Avatar from 'primevue/avatar' // Import for Storybook
+
 import { AvatarInterface } from 'atomic/bosons/types'
 
 const props = defineProps<AvatarInterface>()
