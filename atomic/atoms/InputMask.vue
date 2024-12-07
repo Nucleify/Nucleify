@@ -24,6 +24,8 @@
 </template>
 
 <script setup lang="ts">
+import InputMask from 'primevue/inputmask' // Import for Storybook
+
 import { InputMaskInterface } from 'atomic/bosons/types'
 
 const props = defineProps<InputMaskInterface>()
