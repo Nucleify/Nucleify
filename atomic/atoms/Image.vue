@@ -18,6 +18,8 @@
 </template>
 
 <script setup lang="ts">
+import Image from 'primevue/image' // Import for Storybook
+
 import { ImageInterface } from 'atomic/bosons/types'
 
 const props = defineProps<ImageInterface>()
