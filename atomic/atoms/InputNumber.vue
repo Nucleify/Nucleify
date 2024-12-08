@@ -47,6 +47,8 @@
 </template>
 
 <script setup lang="ts">
+import InputNumber from 'primevue/inputnumber' // Import for Storybook
+
 import { InputNumberInterface } from 'atomic/bosons/types'
 
 const props = defineProps<InputNumberInterface>()
