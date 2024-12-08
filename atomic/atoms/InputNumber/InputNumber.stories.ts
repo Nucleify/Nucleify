@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 
-import { InputNumber as AdInputNumber } from '../../atomic/atoms'
+import { InputNumber as AdInputNumber } from './'
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
   title: 'Example/InputNumber',
   component: AdInputNumber,
@@ -28,7 +27,7 @@ const meta = {
     useGrouping: true,
     minFractionDigits: 0,
     maxFractionDigits: 0,
-    roundingMode: '',
+    roundingMode: undefined,
     min: 0,
     max: 100,
     step: 1,
@@ -84,9 +83,5 @@ const meta = {
 
 export default meta
 type Story = StoryObj<typeof meta>
-/*
- *👇 Render functions are a framework specific feature to allow you control on how the component renders.
- * See https://storybook.js.org/docs/api/csf
- * to learn how to use render functions.
- */
+
 export const InputNumber: Story = {}

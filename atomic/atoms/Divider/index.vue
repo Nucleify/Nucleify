@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import Divider from 'primevue/divider' // Import for Storybook
+import Divider from 'primevue/divider' // Import for AvatarStories
 
 import { DividerInterface } from 'atomic/bosons/types'
 
