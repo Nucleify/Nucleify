@@ -1,3 +1,3 @@
 export * from './Sections'
 
-export { default as ServicesPage } from './Services.vue'
+export { default as ServicesPage } from './index.vue'
