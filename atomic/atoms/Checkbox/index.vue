@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import Checkbox from 'primevue/checkbox' // Import for Storybook
+import Checkbox from 'primevue/checkbox' // Import for AvatarStories
 
 import { CheckboxInterface } from 'atomic/bosons/types'
 

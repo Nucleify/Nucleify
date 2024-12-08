@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import Avatar from 'primevue/avatar' // Import for Storybook
+import Avatar from 'primevue/avatar' // Import for AvatarStories
 
 import { AvatarInterface } from 'atomic/bosons/types'
 

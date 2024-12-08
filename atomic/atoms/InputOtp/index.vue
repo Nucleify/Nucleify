@@ -20,7 +20,7 @@
   />
 </template>
 <script setup lang="ts">
-import InputOtp from 'primevue/inputotp' // Import for Storybook
+import InputOtp from 'primevue/inputotp' // Import for AvatarStories
 
 import { InputOtpInterface } from 'atomic/bosons/types'
 
