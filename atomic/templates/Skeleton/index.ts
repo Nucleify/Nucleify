@@ -1,1 +1,1 @@
-export { default as SkeletonDataTable } from './DataTable.vue'
+export * from './DataTable'
