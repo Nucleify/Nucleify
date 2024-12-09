@@ -13,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import ProgressBar from 'primevue/progressbar' // Import for AvatarStories
+
 import { ProgressBarInterface } from 'atomic/bosons/types'
 
 const props = defineProps<ProgressBarInterface>()
