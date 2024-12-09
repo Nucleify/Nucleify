@@ -21,6 +21,8 @@
 </template>
 
 <script setup lang="ts">
+import InputText from 'primevue/inputtext' // Import for AvatarStories
+
 import { InputTextInterface } from 'atomic/bosons/types'
 
 const props = defineProps<InputTextInterface>()
