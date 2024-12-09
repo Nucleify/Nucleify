@@ -28,6 +28,8 @@
   />
 </template>
 <script setup lang="ts">
+import Knob from 'primevue/knob' // Import for AvatarStories
+
 import { KnobInterface } from 'atomic/bosons/types'
 
 const props = defineProps<KnobInterface>()
