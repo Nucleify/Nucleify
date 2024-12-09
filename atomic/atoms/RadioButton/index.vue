@@ -25,6 +25,8 @@
 </template>
 
 <script setup lang="ts">
+import RadioButton from 'primevue/radiobutton' // Import for AvatarStories
+
 import { RadioButtonInterface } from 'atomic/bosons/types'
 
 const props = defineProps<RadioButtonInterface>()
