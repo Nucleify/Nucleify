@@ -13,6 +13,8 @@
 </template>
 
 <script setup lang="ts">
+import ProgressSpinner from 'primevue/progressspinner' // Import for AvatarStories
+
 import { ProgressSpinnerInterface } from 'atomic/bosons/types'
 
 const props = defineProps<ProgressSpinnerInterface>()
