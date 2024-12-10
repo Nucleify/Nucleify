@@ -15,6 +15,8 @@
 </template>
 
 <script setup lang="ts">
+import Skeleton from 'primevue/skeleton' // Import for AvatarStories
+
 import { SkeletonInterface } from 'atomic/bosons/types'
 
 const props = defineProps<SkeletonInterface>()
