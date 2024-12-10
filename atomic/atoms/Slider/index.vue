@@ -21,6 +21,8 @@
   />
 </template>
 <script setup lang="ts">
+import Slider from 'primevue/slider' // Import for AvatarStories
+
 import { SliderInterface } from 'atomic/bosons/types'
 
 const props = defineProps<SliderInterface>()
