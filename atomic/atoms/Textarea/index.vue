@@ -19,6 +19,8 @@
 </template>
 
 <script setup lang="ts">
+import Textarea from 'primevue/textarea' // Import for AvatarStories
+
 import { TextareaInterface } from 'atomic/bosons/types'
 
 const props = defineProps<TextareaInterface>()
