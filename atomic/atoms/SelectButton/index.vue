@@ -24,6 +24,8 @@
 </template>
 
 <script setup lang="ts">
+import SelectButton from 'primevue/selectbutton' // Import for AvatarStories
+
 import { SelectButtonInterface } from 'atomic/bosons/types'
 
 const props = defineProps<SelectButtonInterface>()
