@@ -59,6 +59,8 @@
 </template>
 
 <script setup lang="ts">
+import AutoComplete from 'primevue/autocomplete' // Import for AutoCompleteStories
+
 import { AutoCompleteInterface } from 'atomic/bosons/types'
 
 const props = defineProps<AutoCompleteInterface>()
