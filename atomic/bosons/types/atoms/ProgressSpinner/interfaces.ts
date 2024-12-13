@@ -10,7 +10,7 @@ export interface ProgressSpinnerInterface {
   animationDuration?: string
   dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   pt?: PassThrough<ProgressBarPassThroughOptions>
-  ptOption?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
   width?: string
   height?: string

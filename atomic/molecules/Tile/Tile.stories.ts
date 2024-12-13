@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Tile as AdTile } from './'
 
 const meta = {
-  title: 'Example/Tile',
+  title: 'Molecules/Tile',
   component: AdTile,
   tags: ['autodocs'],
   args: {

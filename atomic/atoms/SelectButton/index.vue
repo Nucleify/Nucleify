@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import SelectButton from 'primevue/selectbutton' // Import for AvatarStories
+import SelectButton from 'primevue/selectbutton' // Import for Storybook
 
 import { SelectButtonInterface } from 'atomic/bosons/types'
 

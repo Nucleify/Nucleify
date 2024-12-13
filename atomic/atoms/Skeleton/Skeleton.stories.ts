@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Skeleton as AdSkeleton } from './'
 
 const meta = {
-  title: 'Example/Skeleton',
+  title: 'Atoms/Skeleton',
   component: AdSkeleton,
   tags: ['autodocs'],
   args: {

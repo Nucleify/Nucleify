@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { FloatLabel as AdFloatLabel } from './'
 
 const meta = {
-  title: 'Example/FloatLabel',
+  title: 'Molecules/FloatLabel',
   component: AdFloatLabel,
   tags: ['autodocs'],
   args: {

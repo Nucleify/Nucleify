@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Paragraph as AdParagraph } from './'
 
 const meta = {
-  title: 'Example/Paragraph',
+  title: 'Atoms/Paragraph',
   component: AdParagraph,
   tags: ['autodocs'],
   args: {

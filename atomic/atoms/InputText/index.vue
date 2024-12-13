@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import InputText from 'primevue/inputtext' // Import for AvatarStories
+import InputText from 'primevue/inputtext' // Import for Storybook
 
 import { InputTextInterface } from 'atomic/bosons/types'
 

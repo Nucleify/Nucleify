@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { SelectButton as AdSelectButton } from './'
 
 const meta = {
-  title: 'Example/SelectButton',
+  title: 'Atoms/SelectButton',
   component: AdSelectButton,
   tags: ['autodocs'],
   args: {

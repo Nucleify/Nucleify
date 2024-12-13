@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { AutoComplete as AdAutoComplete } from './'
 
 const meta = {
-  title: 'Example/AutoComplete',
+  title: 'Organisms/AutoComplete',
   component: AdAutoComplete,
   tags: ['autodocs'],
   args: {

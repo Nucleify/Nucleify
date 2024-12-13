@@ -5,12 +5,14 @@ import {
 } from 'primevue/inputnumber'
 
 import {
+  AdTypeType,
   ElementDirectionType,
   ElementSizeType,
   ElementVariantType,
 } from 'atomic/bosons/types'
 
 export interface InputNumberInterface {
+  adType?: AdTypeType
   modelValue?: number
   defaultValue?: number
   name?: string

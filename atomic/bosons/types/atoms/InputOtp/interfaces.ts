@@ -1,9 +1,14 @@
 import { PassThrough } from 'primevue/ts-helpers'
 import { InputOtpPassThroughOptions } from 'primevue/inputotp'
 
-import { ElementSizeType, ElementVariantType } from 'atomic/bosons/types'
+import {
+  AdTypeType,
+  ElementSizeType,
+  ElementVariantType,
+} from 'atomic/bosons/types'
 
 export interface InputOtpInterface {
+  adType?: AdTypeType
   modelValue?: boolean
   defaultValue?: string | boolean
   name?: string

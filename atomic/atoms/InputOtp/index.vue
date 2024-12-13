@@ -1,5 +1,6 @@
 <template>
   <InputOtp
+    :ad-type="props.adType"
     :v-model="props.modelValue"
     :default-value="props.defaultValue"
     :name="props.name"
@@ -20,7 +21,7 @@
   />
 </template>
 <script setup lang="ts">
-import InputOtp from 'primevue/inputotp' // Import for AvatarStories
+import InputOtp from 'primevue/inputotp' // Import for Storybook
 
 import { InputOtpInterface } from 'atomic/bosons/types'
 

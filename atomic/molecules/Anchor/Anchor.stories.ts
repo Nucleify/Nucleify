@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Anchor as AdAnchor } from './'
 
 const meta = {
-  title: 'Example/Anchor',
+  title: 'Molecules/Anchor',
   component: AdAnchor,
   tags: ['autodocs'],
   args: {

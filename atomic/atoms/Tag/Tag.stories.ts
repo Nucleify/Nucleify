@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Tag as AdTag } from './'
 
 const meta = {
-  title: 'Example/Tag',
+  title: 'Atoms/Tag',
   component: AdTag,
   tags: ['autodocs'],
   args: {

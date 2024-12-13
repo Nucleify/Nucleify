@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import Skeleton from 'primevue/skeleton' // Import for AvatarStories
+import Skeleton from 'primevue/skeleton' // Import for Storybook
 
 import { SkeletonInterface } from 'atomic/bosons/types'
 

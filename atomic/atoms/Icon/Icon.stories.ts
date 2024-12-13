@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Icon as AdIcon } from './'
 
 const meta = {
-  title: 'Example/Icon',
+  title: 'Atoms/Icon',
   component: AdIcon,
   tags: ['autodocs'],
   args: {
@@ -11,7 +11,12 @@ const meta = {
     url: '',
     adType: '',
   },
-  argTypes: {},
+  argTypes: {
+    adType: {
+      control: 'select',
+      options: ['main', 'activity', 'article', 'contact', 'money', 'user'],
+    },
+  },
 } satisfies Meta<typeof AdIcon>
 
 export default meta

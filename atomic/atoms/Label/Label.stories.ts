@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Label as AdLabel } from './'
 
 const meta = {
-  title: 'Example/Label',
+  title: 'Atoms/Label',
   component: AdLabel,
   tags: ['autodocs'],
   args: {

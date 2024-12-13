@@ -3,18 +3,18 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Checkbox as AdCheckbox } from './'
 
 const meta = {
-  title: 'Example/Checkbox',
+  title: 'Atoms/Checkbox',
   component: AdCheckbox,
   tags: ['autodocs'],
   args: {
-    adType: '',
+    adType: undefined,
     value: undefined,
-    modelValue: {},
-    defaultValue: {},
+    modelValue: undefined,
+    defaultValue: undefined,
     name: '',
     binary: true,
     disabled: false,
-    variant: '',
+    variant: undefined,
     readonly: false,
     required: false,
     tabindex: 0,
@@ -32,6 +32,10 @@ const meta = {
     unstyled: false,
   },
   argTypes: {
+    adType: {
+      control: 'select',
+      options: ['main', 'activity', 'article', 'contact', 'money', 'user'],
+    },
     value: { control: 'text' },
     variant: { control: 'select', options: ['outlined', 'text', 'link'] },
     size: { control: 'select', options: ['small', 'medium', 'large'] },

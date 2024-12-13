@@ -28,7 +28,7 @@
   />
 </template>
 <script setup lang="ts">
-import Knob from 'primevue/knob' // Import for AvatarStories
+import Knob from 'primevue/knob' // Import for Storybook
 
 import { KnobInterface } from 'atomic/bosons/types'
 
