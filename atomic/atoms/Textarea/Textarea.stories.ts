@@ -3,11 +3,11 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Textarea as AdTextarea } from './'
 
 const meta = {
-  title: 'Example/Textarea',
+  title: 'Atoms/Textarea',
   component: AdTextarea,
   tags: ['autodocs'],
   args: {
-    adType: '',
+    adType: undefined,
     value: [],
     modelValue: '',
     defaultValue:
@@ -26,6 +26,10 @@ const meta = {
     unstyled: false,
   },
   argTypes: {
+    adType: {
+      control: 'select',
+      options: ['main', 'activity', 'article', 'contact', 'money', 'user'],
+    },
     value: { control: 'text' },
     size: { control: 'select', options: ['small', 'medium', 'large'] },
     variant: { control: 'select', options: ['outlined', 'text', 'link'] },

@@ -3,21 +3,21 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Avatar as AdAvatar } from './'
 
 const meta = {
-  title: 'Example/Avatar',
+  title: 'Atoms/Avatar',
   component: AdAvatar,
   tags: ['autodocs'],
   args: {
     label: 'A',
     icon: '',
     image: undefined,
-    size: '',
-    shape: '',
+    size: 'small',
+    shape: 'circle',
     ariaLabel: '',
     ariaLabelledby: '',
     dt: {},
     pt: {},
     ptOptions: {},
-    unstyled: '',
+    unstyled: false,
   },
   argTypes: {
     size: { control: 'select', options: ['small', 'medium', 'large'] },

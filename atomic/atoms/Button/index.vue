@@ -40,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import Button from 'primevue/button' // Import for AvatarStories
+import Button from 'primevue/button' // Import for Storybook
 
 import { ButtonInterface } from 'atomic/bosons/types'
 

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { ProgressBar as AdProgressBar } from './'
 
 const meta = {
-  title: 'Example/PogressBar',
+  title: 'Atoms/PogressBar',
   component: AdProgressBar,
   tags: ['autodocs'],
   args: {

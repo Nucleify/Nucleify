@@ -1,5 +1,6 @@
 <template>
   <InputNumber
+    :ad-type="props.adType"
     :v-model="props.modelValue"
     :default-value="props.defaultValue"
     :name="props.name"
@@ -47,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import InputNumber from 'primevue/inputnumber' // Import for AvatarStories
+import InputNumber from 'primevue/inputnumber' // Import for Storybook
 
 import { InputNumberInterface } from 'atomic/bosons/types'
 

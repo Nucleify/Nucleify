@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import Textarea from 'primevue/textarea' // Import for AvatarStories
+import Textarea from 'primevue/textarea' // Import for Storybook
 
 import { TextareaInterface } from 'atomic/bosons/types'
 

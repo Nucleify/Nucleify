@@ -1,5 +1,6 @@
-
-
+/**
+ *  Styles
+ */
 import '../atomic/bosons/styles/index.scss'
 
 /**
@@ -11,7 +12,6 @@ export const app = createApp({})
 /**
  *  PrimeVue
  */
-import '../atomic/bosons/styles/index.scss'
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
 
@@ -42,7 +42,3 @@ const preview: Preview = {
 }
 
 export default preview
-
-/**
- *  Use DataManager's Sass styles
- */

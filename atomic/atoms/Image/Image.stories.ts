@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Image as AdImage } from './'
 
 const meta = {
-  title: 'Example/Image',
+  title: 'Atoms/Image',
   component: AdImage,
   tags: ['autodocs'],
   args: {

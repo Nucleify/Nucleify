@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { RadioButton as AdRadioButton } from './'
 
 const meta = {
-  title: 'Example/RadioButton',
+  title: 'Atoms/RadioButton',
   component: AdRadioButton,
   tags: ['autodocs'],
   args: {
@@ -30,6 +30,10 @@ const meta = {
     unstyled: false,
   },
   argTypes: {
+    adType: {
+      control: 'select',
+      options: ['main', 'activity', 'article', 'contact', 'money', 'user'],
+    },
     size: { control: 'select', options: ['small', 'large'] },
     variant: { control: 'select', options: ['outlined', 'filled'] },
   },

@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import Image from 'primevue/image' // Import for AvatarStories
+import Image from 'primevue/image' // Import for Storybook
 
 import { ImageInterface } from 'atomic/bosons/types'
 

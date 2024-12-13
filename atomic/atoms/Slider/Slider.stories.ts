@@ -3,11 +3,11 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Slider as AdSlider } from './'
 
 const meta = {
-  title: 'Example/Slider',
+  title: 'Atoms/Slider',
   component: AdSlider,
   tags: ['autodocs'],
   args: {
-    adType: 'main',
+    adType: undefined,
     modelValue: 1,
     defaultValue: 20,
     min: 10,
@@ -27,6 +27,10 @@ const meta = {
     unstyled: false,
   },
   argTypes: {
+    adType: {
+      control: 'select',
+      options: ['main', 'activity', 'article', 'contact', 'money', 'user'],
+    },
     orientation: { control: 'select', options: ['horizontal', 'vertical'] },
   },
 } satisfies Meta<typeof AdSlider>

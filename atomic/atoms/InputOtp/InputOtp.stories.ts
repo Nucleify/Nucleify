@@ -3,12 +3,13 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { InputOtp as AdInputOtp } from './'
 
 const meta = {
-  title: 'Example/InputOtp',
+  title: 'Atoms/InputOtp',
   component: AdInputOtp,
   tags: ['autodocs'],
   args: {
-    modelValue: '',
-    defaultValue: 4,
+    adType: undefined,
+    modelValue: undefined,
+    defaultValue: undefined,
     name: '',
     size: 'small',
     invalid: false,
@@ -26,6 +27,10 @@ const meta = {
     unstyled: false,
   },
   argTypes: {
+    adType: {
+      control: 'select',
+      options: ['main', 'activity', 'article', 'contact', 'money', 'user'],
+    },
     size: { control: 'select', options: ['small', 'large'] },
     variant: { control: 'select', options: ['outlined', 'filled'] },
     length: { control: 'number' },

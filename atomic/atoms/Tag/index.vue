@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import Tag from 'primevue/tag' // Import for AvatarStories
+import Tag from 'primevue/tag' // Import for Storybook
 
 import { TagInterface } from 'atomic/bosons/types'
 

@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import AutoComplete from 'primevue/autocomplete' // Import for AutoCompleteStories
+import AutoComplete from 'primevue/autocomplete' // Import for Storybook
 
 import { AutoCompleteInterface } from 'atomic/bosons/types'
 

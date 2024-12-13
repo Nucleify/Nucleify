@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Knob as AdKnob } from './'
 
 const meta = {
-  title: 'Example/Knob',
+  title: 'Atoms/Knob',
   component: AdKnob,
   tags: ['autodocs'],
   args: {

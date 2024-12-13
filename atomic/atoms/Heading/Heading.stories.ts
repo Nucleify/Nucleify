@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Heading as AdHeading } from './'
 
 const meta = {
-  title: 'Example/Heading',
+  title: 'Atoms/Heading',
   component: AdHeading,
   tags: ['autodocs'],
   args: {

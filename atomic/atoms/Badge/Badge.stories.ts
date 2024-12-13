@@ -3,20 +3,19 @@ import type { Meta, StoryObj } from '@storybook/vue3'
 import { Badge as AdBadge } from './'
 
 const meta = {
-  title: 'Example/Badge',
+  title: 'Atoms/Badge',
   component: AdBadge,
   tags: ['autodocs'],
   args: {
     value: '2',
     severity: '',
-    size: '',
+    size: 'small',
     dt: {},
     pt: {},
     ptOptions: {},
-    unstyled: '',
+    unstyled: false,
   },
   argTypes: {
-    value: { control: 'text' },
     severity: {
       control: 'select',
       options: [
