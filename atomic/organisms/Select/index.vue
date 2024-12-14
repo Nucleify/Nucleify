@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { SelectInterface } from 'atomic/bosons/types'
+import { SelectInterface } from 'atomic'
 
 const props = defineProps<SelectInterface>()
 const emit = defineEmits(['update:modelValue'])

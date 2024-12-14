@@ -1,4 +1,4 @@
-import { ActivityLogInterface } from 'atomic/bosons/types'
+import { ActivityLogInterface } from 'atomic'
 
 export const mockActivity: ActivityLogInterface = {
   id: 999999,

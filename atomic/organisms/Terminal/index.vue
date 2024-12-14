@@ -13,8 +13,7 @@
 import { onMounted, onBeforeUnmount } from 'vue'
 import TerminalService from 'primevue/terminalservice'
 
-import { TerminalInterface } from 'atomic/bosons/types'
-import { handleCommands } from 'atomic/bosons/utils'
+import { TerminalInterface, handleCommands } from 'atomic'
 
 const props = defineProps<TerminalInterface>()
 

@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { ToastInterface } from 'atomic/bosons/types'
+import { ToastInterface } from 'atomic'
 
 const props = defineProps<ToastInterface>()
 </script>

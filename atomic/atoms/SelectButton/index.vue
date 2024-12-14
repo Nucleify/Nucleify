@@ -26,7 +26,7 @@
 <script setup lang="ts">
 import SelectButton from 'primevue/selectbutton' // Import for Storybook
 
-import { SelectButtonInterface } from 'atomic/bosons/types'
+import { SelectButtonInterface } from 'atomic'
 
 const props = defineProps<SelectButtonInterface>()
 </script>

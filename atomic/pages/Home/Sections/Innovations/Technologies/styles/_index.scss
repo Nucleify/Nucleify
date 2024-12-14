@@ -1,0 +1,28 @@
+#innovations > #technologies {
+  .swiper-container {
+    display: flex;
+    justify-content: center;
+
+    .swiper {
+      max-width: 1000px;
+      padding: 3em 0;
+
+      .swiper-slide {
+        padding: 0 1em;
+        display: flex;
+        justify-content: center;
+
+        a {
+          background: #0a0a0a;
+          padding: 0.25em;
+          border-radius: 12px;
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+  }
+}

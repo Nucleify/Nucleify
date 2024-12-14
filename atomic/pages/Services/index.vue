@@ -15,7 +15,5 @@
   <ad-home-footer />
 </template>
 <script setup lang="ts">
-import { ServicesStartAnimation } from './Sections'
-
-import { servicesCategoriesCards } from 'atomic/bosons/constants'
+import { ServicesStartAnimation, servicesCategoriesCards } from 'atomic'
 </script>

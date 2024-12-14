@@ -1,7 +1,6 @@
 import { it, expect, beforeEach } from 'vitest'
 
-import { mockUser } from 'atomic/bosons/constants'
-import { setUserToSessionStorage } from 'atomic/bosons/utils'
+import { mockUser, setUserToSessionStorage } from 'atomic'
 
 beforeEach((): void => {
   window.sessionStorage.clear()

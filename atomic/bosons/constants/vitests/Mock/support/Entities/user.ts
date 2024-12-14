@@ -1,4 +1,4 @@
-import { UserInterface } from 'atomic/bosons/types'
+import { UserInterface } from 'atomic'
 
 export const mockUser: UserInterface = {
   id: '999999',

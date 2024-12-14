@@ -20,8 +20,7 @@ import { ref, onMounted, watch } from 'vue'
 
 import Chart from 'primevue/chart' // Import for Storybook
 
-import { ChartInterface } from 'atomic/bosons/types'
-import { useChart } from 'atomic/bosons/utils'
+import { ChartInterface, useChart } from '.'
 
 const props = defineProps<ChartInterface>()
 

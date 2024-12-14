@@ -38,5 +38,5 @@
 </template>
 
 <script setup lang="ts">
-import { navigateTo } from 'atomic/bosons/utils'
+import { navigateTo } from 'atomic'
 </script>

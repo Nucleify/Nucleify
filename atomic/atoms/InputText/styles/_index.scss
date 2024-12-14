@@ -1,0 +1,15 @@
+@import 'mixins';
+
+.p-inputtext {
+  max-height: $min-max-width-height-big;
+  font-size: 1em;
+
+  @each $type in main, activity, article, contact, money, user {
+    &[ad-type='#{$type}'] {
+      @include entity-inputtext-styles(
+        var(--#{$type}-item-color-new) !important,
+        var(--#{$type}-item-focus-color-new) !important
+      );
+    }
+  }
+}

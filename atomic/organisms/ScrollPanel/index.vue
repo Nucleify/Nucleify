@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { ScrollPanelInterface } from 'atomic/bosons/types'
+import { ScrollPanelInterface } from 'atomic'
 
 const props = defineProps<ScrollPanelInterface>()
 </script>

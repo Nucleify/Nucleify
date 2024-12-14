@@ -30,13 +30,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { PopoverInterface } from 'atomic/bosons/types'
+import { PopoverInterface } from 'atomic'
 
 const props = defineProps<PopoverInterface>()
 
 const pop = ref()
 
-const toggle = (event) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const toggle = (event: any) => {
   pop.value.toggle(event)
 }
 </script>

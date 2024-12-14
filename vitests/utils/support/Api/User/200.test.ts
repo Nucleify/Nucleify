@@ -1,14 +1,16 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
 import axios from 'axios'
 
-import { mockUser, mockUseToast } from 'atomic/bosons/constants'
 import {
+  mockUser,
+  mockUseToast,
   UserInterface,
   UserRequestsInterface,
   EntityResponseType,
   MockUseToastInterface,
-} from 'atomic/bosons/types'
-import { useDialog, userRequests } from 'atomic/bosons/utils'
+  useDialog,
+  userRequests,
+} from 'atomic'
 
 vi.mock('axios')
 vi.mock('primevue/usetoast', (): { useToast: () => MockUseToastInterface } => ({

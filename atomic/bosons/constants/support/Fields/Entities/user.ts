@@ -1,5 +1,4 @@
-import { roles } from 'atomic/bosons/constants'
-import { EntityFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
+import { roles, EntityFieldInterface, UseFieldsInterface } from 'atomic'
 
 export function useUserFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: [string, string, string][] = [

@@ -4,7 +4,7 @@ import {
   InputInterface,
   RegisterFieldKey,
   RegisterFieldsInterface,
-} from 'atomic/bosons/types'
+} from 'atomic'
 
 export const registerFields: Ref<RegisterFieldsInterface> =
   ref<RegisterFieldsInterface>({

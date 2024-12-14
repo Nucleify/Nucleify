@@ -1,6 +1,6 @@
 import { it, expect, beforeEach } from 'vitest'
 
-import { useLoading } from 'atomic/bosons/utils'
+import { useLoading } from 'atomic'
 
 let loadingInstance: ReturnType<typeof useLoading>
 

@@ -2,7 +2,7 @@ import {
   InputInterface,
   LoginFieldsInterface,
   RegisterFieldsInterface,
-} from 'atomic/bosons/types'
+} from 'atomic'
 
 export type LoginFieldKey = keyof LoginFieldsInterface
 export type RegisterFieldKey = keyof RegisterFieldsInterface
