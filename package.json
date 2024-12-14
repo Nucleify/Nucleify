@@ -28,6 +28,7 @@
     "lint:storybook --fix": "eslint \".storybook/**/*.{ts,tsx}\" --fix",
     "lint:vitest --fix": "eslint \"vitests/**/*.{ts,tsx}\" --fix",
     "slint": "npx stylelint \"atomic/bosons/styles/**/*.scss\"",
+    "typeslint": "tsc --noemit",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",

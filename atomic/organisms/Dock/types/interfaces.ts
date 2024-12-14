@@ -1,6 +1,5 @@
-import { PassThrough } from 'primevue/ts-helpers'
 import { MenuItem } from 'primevue/menuitem'
-import { DockPassThroughOptions, DockTooltipOptions } from 'primevue'
+import { DockTooltipOptions } from 'primevue'
 
 import { PositionType } from 'atomic'
 
@@ -13,9 +12,9 @@ export interface DockInterface {
   tabindex?: string | number
   ariaLabelledby?: string
   ariaLabel?: string
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<DockPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }
 export interface DockItemInterface {

@@ -1,7 +1,3 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { AvatarPassThroughOptions } from 'primevue/avatar'
-import { PassThroughOptions } from 'primevue/passthrough'
-
 import { ElementShapeType } from 'atomic'
 
 export interface AvatarInterface {
@@ -12,8 +8,8 @@ export interface AvatarInterface {
   shape?: ElementShapeType
   ariaLabel?: string
   ariaLabelledby?: string
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<AvatarPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

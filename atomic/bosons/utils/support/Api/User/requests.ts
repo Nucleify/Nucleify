@@ -4,7 +4,6 @@ import axios, { AxiosResponse } from 'axios'
 import {
   CloseDialogFunctionType,
   GetAllEntitiesRequestResponseType,
-  GetUserRequestResponseType,
   UseApiErrorsInterface,
   UseLoadingInterface,
   UserInterface,
@@ -48,7 +47,8 @@ export function userRequests(
 
   async function getUser(): Promise<void> {
     try {
-      const response: GetUserRequestResponseType = await axios.get('/api/user')
+      const response: GetAllEntitiesRequestResponseType<UserInterface> =
+        await axios.get('/api/user')
 
       results.value = response.data
     } catch (error) {

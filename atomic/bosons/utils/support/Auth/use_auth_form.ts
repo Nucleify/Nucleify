@@ -7,14 +7,14 @@ import {
   registerInputs,
   LoginFieldsInterface,
   RegisterFieldsInterface,
-  UseApiErrorsServiceInterface,
+  UseApiErrorsInterface,
   UseAuthFormInterface,
   useApiErrors,
   navigateTo,
 } from 'atomic'
 
 export function useAuthForm(): UseAuthFormInterface {
-  const { apiErrors }: UseApiErrorsServiceInterface = useApiErrors()
+  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
   let url
 
   async function submitForm(

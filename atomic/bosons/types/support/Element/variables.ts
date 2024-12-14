@@ -1,6 +1,4 @@
-import { HintedString } from 'primevue/ts-helpers'
-
-export type ElementAppendTo = HTMLElement | HintedString<'body' | 'self'>
+export type ElementAppendTo = HTMLElement | 'body' | 'self'
 
 export type ElementType = HTMLElement | null
 export type ElementsType = ElementType[]

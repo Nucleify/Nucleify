@@ -1,8 +1,10 @@
-import { HintedString } from 'primevue/ts-helpers'
-
-export type ButtonBadgeSeverityType = HintedString<
-  'success' | 'secondary' | 'info' | 'warning' | 'danger' | 'contrast'
->
+export type ButtonBadgeSeverityType =
+  | 'success'
+  | 'secondary'
+  | 'info'
+  | 'warning'
+  | 'danger'
+  | 'contrast'
 
 export type ButtonOnClickType = (event: MouseEvent) => void
 

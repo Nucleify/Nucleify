@@ -1,15 +1,12 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { TagPassThroughOptions } from 'primevue/tag'
-
 import { ButtonBadgeSeverityType } from 'atomic'
 
 export interface TagInterface {
-  value?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+  value?: any[] // eslint-disable-line
   severity?: ButtonBadgeSeverityType
   rounded?: boolean
   icon?: string
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<TagPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

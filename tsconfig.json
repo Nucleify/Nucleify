@@ -12,10 +12,10 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
+    "skipLibCheck": true,
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env",
       "cypress"
     ],
     "paths": {

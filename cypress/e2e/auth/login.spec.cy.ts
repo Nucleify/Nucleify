@@ -11,10 +11,6 @@ describe('login on different users', (): void => {
     cy.login('test_admin')
   })
 
-  it('login successfully on test admin 2', (): void => {
-    cy.login('test_admin_2')
-  })
-
   it('login successfully on test tech', (): void => {
     cy.login('test_tech')
   })

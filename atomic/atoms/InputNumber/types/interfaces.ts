@@ -1,8 +1,4 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import {
-  InputNumberPassThroughOptions,
-  RoundingMode,
-} from 'primevue/inputnumber'
+import { RoundingMode } from 'primevue/inputnumber'
 
 import {
   AdTypeType,
@@ -51,9 +47,9 @@ export interface InputNumberInterface {
   inputStyle?: object
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<InputNumberPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }
