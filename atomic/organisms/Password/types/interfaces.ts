@@ -1,6 +1,4 @@
 import { HTMLAttributes, InputHTMLAttributes } from 'vue'
-import { PassThrough } from 'primevue/ts-helpers'
-import { PasswordPassThroughOptions } from 'primevue/password'
 
 import {
   ElementAppendTo,
@@ -47,10 +45,10 @@ export interface PasswordInterface {
   overlayProps?: HTMLAttributes
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<PasswordPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
   id?: string
   passwordsMatch?: boolean

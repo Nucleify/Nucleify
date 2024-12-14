@@ -1,5 +1,4 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { PopoverBreakpoints, PopoverPassThroughOptions } from 'primevue/popover'
+import { PopoverBreakpoints } from 'primevue/popover'
 
 import { ElementAppendTo } from 'atomic'
 
@@ -10,7 +9,7 @@ export interface PopoverInterface {
   autoZIndex?: boolean
   breakpoints?: PopoverBreakpoints
   dt?: any //eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<PopoverPassThroughOptions>
+  pt?: any // eslint-disable-line
   ptOptions?: any //eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
   closeOnEscape?: boolean

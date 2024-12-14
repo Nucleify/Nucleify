@@ -1,6 +1,3 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { KnobPassThroughOptions } from 'primevue/knob'
-
 import { AdTypeType } from 'atomic'
 
 export interface KnobInterface {
@@ -26,7 +23,7 @@ export interface KnobInterface {
   ariaLabel?: string
   formControl?: Record<string, any> //eslint-disable-line @typescript-eslint/no-explicit-any
   dt?: any //eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<KnobPassThroughOptions>
+  pt?: any // eslint-disable-line
   ptOptions?: any //eslint-disable-line @typescript-eslint/no-explicit-any
   unstyled?: boolean
 }

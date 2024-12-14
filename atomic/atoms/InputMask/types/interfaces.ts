@@ -1,6 +1,3 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { InputMaskPassThroughOptions } from 'primevue/inputmask'
-
 import { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
 
 export interface InputMaskInterface {
@@ -20,8 +17,8 @@ export interface InputMaskInterface {
   variant?: ElementVariantType
   fluid?: boolean
   disabled?: boolean
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<InputMaskPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

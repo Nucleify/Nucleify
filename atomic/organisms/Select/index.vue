@@ -65,7 +65,7 @@ import { SelectInterface } from 'atomic'
 const props = defineProps<SelectInterface>()
 const emit = defineEmits(['update:modelValue'])
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line
 function onUpdateModelValue(value: any) {
   emit('update:modelValue', value)
 }

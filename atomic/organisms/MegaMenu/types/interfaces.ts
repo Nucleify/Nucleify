@@ -1,6 +1,4 @@
-import { PassThrough } from 'primevue/ts-helpers'
 import { MenuItem } from 'primevue/menuitem'
-import { MegaMenuPassThroughOptions } from 'primevue'
 
 import { ElementDirectionType } from 'atomic'
 
@@ -14,9 +12,9 @@ export interface MegaMenuInterface {
   scrollHeight?: string
   ariaLabel?: string
   ariaLabelledby?: string
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<MegaMenuPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }
 export interface MegaMenuValuesInterface {

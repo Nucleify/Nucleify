@@ -1,6 +1,3 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { ProgressBarPassThroughOptions } from 'primevue/progressbar'
-
 import { AdTypeType, ProgressBarModeType } from 'atomic'
 
 export interface ProgressBarInterface {
@@ -8,9 +5,9 @@ export interface ProgressBarInterface {
   value?: number
   mode?: ProgressBarModeType
   showValue?: boolean
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<ProgressBarPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
   width?: string
   height?: string

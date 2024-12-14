@@ -1,14 +1,10 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { CheckboxPassThroughOptions } from 'primevue/checkbox'
-import { PassThroughOptions } from 'primevue/passthrough'
-
 import { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
 
 export interface CheckboxInterface {
   adType?: AdTypeType
-  value?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
-  modelValue?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
-  defaultValue?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+  value?: any[] // eslint-disable-line
+  modelValue?: any[] // eslint-disable-line
+  defaultValue?: any[] // eslint-disable-line
   name?: string
   binary?: boolean
   indeterminate?: boolean
@@ -26,9 +22,9 @@ export interface CheckboxInterface {
   inputStyle?: string | object
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
   dt?: any //eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<CheckboxPassThroughOptions>
-  ptOptions?: PassThroughOptions
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

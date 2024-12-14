@@ -1,6 +1,3 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { InputTextPassThroughOptions } from 'primevue/inputtext'
-
 import { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
 
 export interface InputTextInterface {
@@ -12,10 +9,10 @@ export interface InputTextInterface {
   invalid?: boolean
   variant?: ElementVariantType
   fluid?: boolean
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<InputTextPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
   disabled?: boolean
   id?: string

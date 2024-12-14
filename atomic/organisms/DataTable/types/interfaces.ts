@@ -5,10 +5,8 @@ import {
   DataTableExpandedRows,
   DataTableFilterButtonPropsOptions,
   DataTableFilterMeta,
-  DataTablePassThroughOptions,
   DataTableSortMeta,
 } from 'primevue/datatable'
-import { HintedString, PassThrough } from 'primevue/ts-helpers'
 import { VirtualScrollerProps } from 'primevue/virtualscroller'
 
 import {
@@ -23,7 +21,7 @@ import {
 
 export interface DataTableInterface {
   adType: ObjectNameType
-  value: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+  value: any[] // eslint-disable-line
   dataKey?: string
   rows?: number
   first?: number
@@ -31,7 +29,7 @@ export interface DataTableInterface {
   paginator?: boolean
   paginatorPosition?: 'both' | 'top' | 'bottom'
   alwaysShowPaginator?: boolean
-  paginatorTemplate?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  paginatorTemplate?: any // eslint-disable-line
   pageLinkSize?: number
   rowsPerPageOptions?: number[]
   currentPageReportTemplate?: string
@@ -49,12 +47,12 @@ export interface DataTableInterface {
   filterDisplay?: 'menu' | 'row'
   globalFilterFields?: (string | void)[]
   filterLocale?: string
-  selection?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  selection?: any // eslint-disable-line
   selectionMode?: 'multiple' | 'single'
   compareSelectionBy?: 'equals' | 'deepEquals'
   metaKeySelection?: boolean
   contextMenu?: boolean
-  contextMenuSelection?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  contextMenuSelection?: any // eslint-disable-line
   selectAll?: boolean
   rowHover?: boolean
   csvSeparator?: string
@@ -63,23 +61,23 @@ export interface DataTableInterface {
   resizableColumns?: boolean
   columnResizeMode?: 'expand' | 'fit'
   reorderableColumns?: boolean
-  expandedRows?: any[] | DataTableExpandedRows // eslint-disable-line @typescript-eslint/no-explicit-any
+  expandedRows?: any[] | DataTableExpandedRows // eslint-disable-line
   expandedRowIcon?: string
   collaspeRowIcon?: string
   rowGroupMode?: 'rowspan' | 'subheader'
   groupRowsBy?: string | string[] | void
   expandableRowGroups?: boolean
-  expandedRowGroups?: any[] | DataTableExpandedRows // eslint-disable-line @typescript-eslint/no-explicit-any
+  expandedRowGroups?: any[] | DataTableExpandedRows // eslint-disable-line
   stateStorage?: 'local' | 'session'
   stateKey?: string
   editMode?: 'cell' | 'row'
-  editingRows?: any[] | DataTableEditingRows // eslint-disable-line @typescript-eslint/no-explicit-any
+  editingRows?: any[] | DataTableEditingRows // eslint-disable-line
   rowClass?: string
   rowStyle?: object
   scrollable?: boolean
-  scrollHeight?: HintedString<'flex'>
+  scrollHeight?: 'flex'
   virtualScrollerOptions?: VirtualScrollerProps
-  frozenValue?: null | any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+  frozenValue?: null | any[] // eslint-disable-line
   breakpoint?: string
   showHeaders?: boolean
   showGridlines?: boolean
@@ -92,9 +90,9 @@ export interface DataTableInterface {
   filterInputProps?: InputHTMLAttributes
   filterButtonProps?: DataTableFilterButtonPropsOptions
   editButtonProps?: DataTableEditButtonPropsOptions
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<DataTablePassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
   actions?: ActionInterface
   styles?: ColorItemStyleInterface

@@ -1,6 +1,5 @@
 import { HTMLAttributes, StyleValue } from 'vue'
-import { PassThrough } from 'primevue/ts-helpers'
-import { DialogBreakpoints, DialogPassThroughAttributes } from 'primevue/dialog'
+import { DialogBreakpoints } from 'primevue/dialog'
 
 import {
   ActionType,
@@ -19,7 +18,7 @@ export interface DialogInterface {
   footer?: string
   visible: boolean
   modal?: boolean
-  contentStyle?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  contentStyle?: any // eslint-disable-line
   contentClass?: string
   contentProps?: HTMLAttributes
   closable?: boolean
@@ -42,9 +41,9 @@ export interface DialogInterface {
   minimizeIcon?: string
   closeButtonProps?: object
   maximizeButtonProps?: object
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<DialogPassThroughAttributes>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
   entity?: ObjectType
   action?: ActionType
@@ -54,7 +53,7 @@ export interface DialogInterface {
     label: string
     type: string
     key: string
-    props?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
+    props?: Record<string, any> // eslint-disable-line
   }>
   selectedObject?: ObjectType
   data?: ObjectType[]
