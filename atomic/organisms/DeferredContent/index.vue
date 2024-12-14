@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { DeferredContentInterface } from 'atomic/bosons/types'
+import { DeferredContentInterface } from 'atomic'
 
 const props = defineProps<DeferredContentInterface>()
 </script>

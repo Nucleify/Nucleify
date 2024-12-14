@@ -1,1 +1,1 @@
-export { default as DashboardPage } from './Dashboard.vue'
+export { default as DashboardPage } from './index.vue'

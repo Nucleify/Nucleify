@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import InputText from 'primevue/inputtext' // Import for Storybook
 
-import { InputTextInterface } from 'atomic/bosons/types'
+import { InputTextInterface } from 'atomic'
 
 const props = defineProps<InputTextInterface>()
 </script>

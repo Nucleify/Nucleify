@@ -6,7 +6,7 @@ import {
   GetAllEntitiesRequestFunctionType,
   LoadingRefType,
   StoreEntityRequestFunctionType,
-} from 'atomic/bosons/types'
+} from 'atomic'
 
 export interface ArticleRequestsInterface {
   results: ArticleResultsType

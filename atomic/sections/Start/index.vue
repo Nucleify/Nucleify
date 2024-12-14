@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { SectionStartInterface } from 'atomic/bosons/types'
+import { SectionStartInterface } from 'atomic'
 
 const props = defineProps<SectionStartInterface>()
 </script>

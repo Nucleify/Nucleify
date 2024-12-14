@@ -8,7 +8,7 @@ import {
   storysetServicesImgUrl,
   storysetBlogImgUrl,
   technologiesImgUrl,
-} from 'atomic/bosons/constants'
+} from 'atomic'
 
 export function registerGlobalConstants(app: App): void {
   /**

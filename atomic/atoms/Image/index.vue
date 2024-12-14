@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import Image from 'primevue/image' // Import for Storybook
 
-import { ImageInterface } from 'atomic/bosons/types'
+import { ImageInterface } from 'atomic'
 
 const props = defineProps<ImageInterface>()
 </script>

@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import Divider from 'primevue/divider' // Import for Storybook
 
-import { DividerInterface } from 'atomic/bosons/types'
+import { DividerInterface } from 'atomic'
 
 const props = defineProps<DividerInterface>()
 </script>

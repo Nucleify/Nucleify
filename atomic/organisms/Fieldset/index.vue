@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { FieldsetInterface } from 'atomic/bosons/types'
+import { FieldsetInterface } from 'atomic'
 
 const props = defineProps<FieldsetInterface>()
 </script>

@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { GalleriaInterface } from 'atomic/bosons/types'
+import { GalleriaInterface } from 'atomic'
 
 const props = defineProps<GalleriaInterface>()
 </script>

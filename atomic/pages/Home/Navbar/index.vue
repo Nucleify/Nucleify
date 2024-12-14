@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { navigateTo, useNavbar } from 'atomic/bosons/utils'
+import { navigateTo, useNavbar } from 'atomic'
 
 const { navbarExpanded, toggleNavbar } = useNavbar()
 </script>

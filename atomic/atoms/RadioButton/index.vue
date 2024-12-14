@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import RadioButton from 'primevue/radiobutton' // Import for Storybook
 
-import { RadioButtonInterface } from 'atomic/bosons/types'
+import { RadioButtonInterface } from 'atomic'
 
 const props = defineProps<RadioButtonInterface>()
 </script>

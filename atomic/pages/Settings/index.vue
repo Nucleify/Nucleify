@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { ColorSettings, DisplayCharts } from './Components'
+import { ColorSettings, DisplayCharts } from 'atomic'
 </script>
 
 <style scoped>

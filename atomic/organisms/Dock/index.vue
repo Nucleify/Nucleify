@@ -83,9 +83,14 @@
 <script setup lang="ts">
 import { onMounted, ref, watch, computed } from 'vue'
 
-import { dockItems, positions } from 'atomic/bosons/constants'
-import { DockInterface, PositionType } from 'atomic/bosons/types'
-import { isAdmin as useIsAdmin, setColorsVariables } from 'atomic/bosons/utils'
+import {
+  dockItems,
+  positions,
+  DockInterface,
+  PositionType,
+  isAdmin as useIsAdmin,
+  setColorsVariables,
+} from 'atomic'
 
 const LOCAL_STORAGE_KEY = 'dock-position'
 

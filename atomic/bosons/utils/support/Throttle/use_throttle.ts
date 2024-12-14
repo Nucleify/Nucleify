@@ -1,6 +1,6 @@
 import { Ref, ref } from 'vue'
 
-import { UseThrottleInterface } from 'atomic/bosons/types'
+import { UseThrottleInterface } from 'atomic'
 
 export function useThrottle(): UseThrottleInterface {
   const isThrottled: Ref<boolean> = ref(false)

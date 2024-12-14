@@ -10,14 +10,12 @@ import {
   UseApiErrorsInterface,
   UseToastInterface,
   GetAllEntitiesRequestResponseType,
-} from 'atomic/bosons/types'
-import {
   apiSuccess,
   catchErrors,
   useApiErrors,
   useLoading,
   useToast,
-} from 'atomic/bosons/utils'
+} from 'atomic'
 
 export function articleRequests(
   close?: CloseDialogFunctionType

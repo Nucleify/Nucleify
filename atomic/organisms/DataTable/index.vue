@@ -134,9 +134,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { columns, actions as actionsList } from 'atomic/bosons/constants'
-import { DataTableInterface } from 'atomic/bosons/types'
-import { useSelect, useMenu } from 'atomic/bosons/utils'
+import {
+  actions as actionsList,
+  columns,
+  DataTableInterface,
+  useSelect,
+  useMenu,
+} from 'atomic'
 
 const props = defineProps<DataTableInterface>()
 

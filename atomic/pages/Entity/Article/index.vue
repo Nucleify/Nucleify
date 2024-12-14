@@ -40,12 +40,12 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
 
-import { useArticleFields } from 'atomic/bosons/constants'
 import {
+  useArticleFields,
   articleRequests,
   useDialog,
   useDisplayCharts,
-} from 'atomic/bosons/utils'
+} from 'atomic'
 
 const {
   visibleShow,

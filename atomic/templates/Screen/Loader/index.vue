@@ -8,7 +8,7 @@
 </template>
 
 <script setup lang="ts">
-import { hideLoader } from 'atomic/bosons/utils'
+import { hideLoader } from 'atomic'
 
 hideLoader()
 </script>
