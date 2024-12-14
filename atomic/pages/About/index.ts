@@ -1,3 +1,4 @@
-export * from './Sections'
+export * from './components'
+export * from './constants'
 
-export { default as AboutPage } from './About.vue'
+export { default as AboutPage } from './index.vue'

@@ -4,7 +4,7 @@ import {
   ActionType,
   CloseDialogFunctionType,
   FlashToastFunctionType,
-} from 'atomic/bosons/types'
+} from 'atomic'
 
 export async function apiSuccess(
   response: AxiosResponse,

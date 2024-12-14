@@ -1,8 +1,4 @@
-export * from './molecules'
-export * from './organisms'
-export * from './pages'
 export * from './support'
-export * from './views'
 export * from './vitests'
 
 export * from './register'

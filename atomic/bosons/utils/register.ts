@@ -1,6 +1,6 @@
 import { App } from 'vue'
 
-import { isDesktop, isMobile } from 'atomic/bosons/utils'
+import { isDesktop, isMobile } from 'atomic'
 
 export function registerGlobalUtils(app: App): void {
   app.config.globalProperties.isMobile = isMobile
