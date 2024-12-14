@@ -26,6 +26,8 @@
 <script setup lang="ts">
 import { watchEffect } from 'vue'
 
+import ColorPicker from 'primevue/colorpicker' // Import for Storybook
+
 import { ColorPickerInterface } from 'atomic/bosons/types'
 import { setColorsVariables, useColorPicker } from 'atomic/bosons/utils'
 
