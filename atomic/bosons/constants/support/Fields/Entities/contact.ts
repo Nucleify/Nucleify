@@ -1,5 +1,4 @@
-import { roles } from 'atomic/bosons/constants'
-import { ContactFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
+import { roles, ContactFieldInterface, UseFieldsInterface } from 'atomic'
 
 export function useContactFields(): UseFieldsInterface<ContactFieldInterface> {
   const fieldData: readonly [string, string, string][] = [

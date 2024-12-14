@@ -1,5 +1,4 @@
-import { roles } from 'atomic/bosons/constants'
-import { EntityFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
+import { roles, EntityFieldInterface, UseFieldsInterface } from 'atomic'
 
 export function useMoneyFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: readonly [string, string, string][] = [

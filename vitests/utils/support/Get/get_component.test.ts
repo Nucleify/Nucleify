@@ -1,6 +1,6 @@
 import { it, expect } from 'vitest'
 
-import { getComponent } from 'atomic/bosons/utils'
+import { getComponent } from 'atomic'
 
 it('returns "ad-textarea" for "textarea"', (): void => {
   expect(getComponent('textarea')).toBe('ad-textarea')

@@ -1,4 +1,4 @@
-import { navigateTo, removeUserFromSessionStorage } from 'atomic/bosons/utils'
+import { navigateTo, removeUserFromSessionStorage } from 'atomic'
 
 export function logout(): void {
   navigateTo('/logout')
