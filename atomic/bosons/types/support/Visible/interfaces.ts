@@ -1,4 +1,4 @@
-import { VisibleType } from 'atomic/bosons/types'
+import { VisibleType } from 'atomic'
 
 export interface VisibleInterface {
   create: VisibleType

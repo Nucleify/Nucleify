@@ -15,7 +15,7 @@
 <script setup lang="ts">
 import ProgressBar from 'primevue/progressbar' // Import for Storybook
 
-import { ProgressBarInterface } from 'atomic/bosons/types'
+import { ProgressBarInterface } from 'atomic'
 
 const props = defineProps<ProgressBarInterface>()
 </script>

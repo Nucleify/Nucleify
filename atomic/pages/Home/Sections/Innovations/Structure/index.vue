@@ -4,7 +4,7 @@
       <div class="content">
         <div class="animation-container">
           <DeferredContent>
-            <animation />
+            <StructureAnimation />
           </DeferredContent>
         </div>
         <div class="description-container">
@@ -26,5 +26,5 @@
 </template>
 
 <script setup lang="ts">
-import Animation from './Animation.vue'
+import { StructureAnimation } from 'atomic'
 </script>

@@ -5,14 +5,13 @@ import {
   loginInputs,
   registerFields,
   registerInputs,
-} from 'atomic/bosons/constants'
-import {
   LoginFieldsInterface,
   RegisterFieldsInterface,
   UseApiErrorsServiceInterface,
   UseAuthFormInterface,
-} from 'atomic/bosons/types'
-import { useApiErrors, navigateTo } from 'atomic/bosons/utils'
+  useApiErrors,
+  navigateTo,
+} from 'atomic'
 
 export function useAuthForm(): UseAuthFormInterface {
   const { apiErrors }: UseApiErrorsServiceInterface = useApiErrors()

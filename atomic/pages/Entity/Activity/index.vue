@@ -39,11 +39,7 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue'
 
-import {
-  activityRequests,
-  useDialog,
-  useDisplayCharts,
-} from 'atomic/bosons/utils'
+import { activityRequests, useDialog, useDisplayCharts } from 'atomic'
 
 const { visibleDelete, selectedObject, openDialog, closeDialog } = useDialog()
 const { display } = useDisplayCharts()

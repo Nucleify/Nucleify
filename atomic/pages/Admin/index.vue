@@ -93,7 +93,7 @@ import {
   userRequests,
   useDisplayCharts,
   moneyRequests,
-} from 'atomic/bosons/utils'
+} from 'atomic'
 
 const { display } = useDisplayCharts()
 

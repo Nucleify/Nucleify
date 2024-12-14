@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { AnchorInterface } from 'atomic/bosons/types'
+import { AnchorInterface } from 'atomic'
 
 const props = defineProps<AnchorInterface>()
 </script>

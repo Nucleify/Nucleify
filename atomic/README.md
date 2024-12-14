@@ -10,7 +10,7 @@ Below is an overview of the typical roles these files play:
 
 ### 1. Bosons - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
 
-Bosons are the smallest, indivisible pieces of reusable logic or data.
+Bosons are the smallest, indivisible pieces of reusable logic or data. Put it in component's folder if possible.
 
     Constants, styles, types and utils.
 <br>

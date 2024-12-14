@@ -41,12 +41,12 @@
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
 
-import { useContactFields } from 'atomic/bosons/constants'
 import {
+  useContactFields,
   contactRequests,
   useDialog,
   useDisplayCharts,
-} from 'atomic/bosons/utils'
+} from 'atomic'
 
 const {
   visibleShow,

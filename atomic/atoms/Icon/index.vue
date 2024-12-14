@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { IconInterface } from 'atomic/bosons/types'
+import { IconInterface } from 'atomic'
 
 const props = defineProps<IconInterface>()
 </script>

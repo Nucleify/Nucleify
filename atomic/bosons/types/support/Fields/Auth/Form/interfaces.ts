@@ -5,7 +5,7 @@ import {
   LoginInputInterface,
   RegisterFieldsInterface,
   RegisterInputInterface,
-} from 'atomic/bosons/types'
+} from 'atomic'
 
 export interface UseAuthFormInterface {
   loginFields: Ref<LoginFieldsInterface>

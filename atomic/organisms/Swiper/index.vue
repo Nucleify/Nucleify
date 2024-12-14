@@ -133,7 +133,7 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue'
 
-import { SwiperInterface } from 'atomic/bosons/types'
+import { SwiperInterface } from 'atomic'
 
 const props = defineProps<SwiperInterface>()
 </script>

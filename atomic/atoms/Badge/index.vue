@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import Badge from 'primevue/badge' // Import for Storybook
 
-import { BadgeInterface } from 'atomic/bosons/types'
+import { BadgeInterface } from 'atomic'
 
 const props = defineProps<BadgeInterface>()
 </script>

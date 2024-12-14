@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { MegaMenuInterface } from 'atomic/bosons/types'
+import { MegaMenuInterface } from 'atomic'
 
 const props = defineProps<MegaMenuInterface>()
 </script>

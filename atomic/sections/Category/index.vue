@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { SectionCategoryInterface } from 'atomic/bosons/types'
+import { SectionCategoryInterface } from 'atomic'
 
 const props = defineProps<SectionCategoryInterface>()
 </script>

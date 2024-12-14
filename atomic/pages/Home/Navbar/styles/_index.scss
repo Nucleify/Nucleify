@@ -1,0 +1,141 @@
+.home-navbar {
+  width: 100%;
+  z-index: 9999;
+  position: fixed;
+  top: -1px;
+  background: $bg-black-color;
+  backdrop-filter: blur(1em);
+  box-shadow: $box-shadow-none;
+  border: $border-none;
+  border-radius: $border-radius-none;
+  padding: 1em;
+
+  .container {
+    max-width: 1230px;
+
+    .application-header {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      gap: 1em;
+      text-decoration: none;
+      z-index: 999;
+
+      h1 {
+        color: $white-text-color;
+        font-size: 1.5em;
+        margin: 0;
+      }
+
+      img {
+        height: 44px;
+        width: 44px;
+      }
+    }
+
+    @media (min-width: $breakpoint-md) {
+      #navbar-supported-content {
+        display: flex;
+        justify-content: center;
+
+        > .navbar-nav {
+          width: 100%;
+          display: flex;
+          justify-content: end;
+        }
+      }
+    }
+  }
+
+  .pi {
+    color: $white-text-color !important;
+  }
+
+  .navbar-toggler {
+    height: 44px;
+    width: 44px;
+    padding: 0;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .login-button {
+    background: transparent !important;
+    padding: 10px 25px !important;
+
+    @media (max-width: $breakpoint-md) {
+      position: relative;
+      left: 10px;
+    }
+  }
+
+  .home-nav-link {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+    padding: 15px;
+    color: $white-text-color;
+    font-size: 0.9em;
+    text-align: end;
+    transition: all 300ms;
+
+    &:hover {
+      color: $primary-hover-color;
+    }
+
+    @media (min-width: $breakpoint-md) {
+      gap: 10px;
+      margin-top: -3px;
+      padding: 8px;
+    }
+  }
+
+  @media (min-width: $breakpoint-md) {
+    max-height: 100px;
+  }
+
+  @media (max-width: $breakpoint-md) {
+    &.not-expanded {
+      .home-nav-link,
+      .login-button {
+        opacity: 0;
+      }
+    }
+
+    &.expanded {
+      .home-nav-link {
+        position: relative;
+        left: 0 !important;
+        opacity: 1 !important;
+
+        &:nth-child(0) {
+          transition-delay: 0.05s;
+        }
+
+        &:nth-child(1) {
+          transition-delay: 0.1s;
+        }
+
+        &:nth-child(2) {
+          transition-delay: 0.15s;
+        }
+
+        &:nth-child(3) {
+          transition-delay: 0.2s;
+        }
+
+        &:nth-child(4) {
+          transition-delay: 0.25s;
+        }
+      }
+
+      .login-button {
+        opacity: 1 !important;
+        transition-delay: 0.3s;
+      }
+    }
+  }
+}

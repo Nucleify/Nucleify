@@ -6,7 +6,7 @@ import {
   ContactInterface,
   MoneyInterface,
   UserInterface,
-} from 'atomic/bosons/types'
+} from 'atomic'
 
 export type ObjectType =
   | ActivityLogInterface

@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import Textarea from 'primevue/textarea' // Import for Storybook
 
-import { TextareaInterface } from 'atomic/bosons/types'
+import { TextareaInterface } from 'atomic'
 
 const props = defineProps<TextareaInterface>()
 

@@ -1,5 +1,9 @@
-import { UserIdType, UserRequestsInterface } from 'atomic/bosons/types'
-import { userRequests, setUserToSessionStorage } from 'atomic/bosons/utils'
+import {
+  UserIdType,
+  UserRequestsInterface,
+  userRequests,
+  setUserToSessionStorage,
+} from 'atomic'
 
 export async function isAdmin(): Promise<boolean> {
   const { results, getUser }: UserRequestsInterface = userRequests()

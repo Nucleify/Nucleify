@@ -130,8 +130,9 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-import { DialogInterface, FormDataInterface } from 'atomic/bosons/types'
 import {
+  DialogInterface,
+  FormDataInterface,
   getComponent,
   getTitle,
   isEmptyConfirmPassword,
@@ -139,7 +140,7 @@ import {
   isPasswordsMatch,
   isPhoneField,
   isSelectOrDatePicker,
-} from 'atomic/bosons/utils'
+} from 'atomic'
 
 const props = defineProps<DialogInterface>()
 

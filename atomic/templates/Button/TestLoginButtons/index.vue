@@ -17,5 +17,5 @@
 </template>
 
 <script setup lang="ts">
-import { testLogin } from 'atomic/bosons/utils'
+import { testLogin } from 'atomic'
 </script>

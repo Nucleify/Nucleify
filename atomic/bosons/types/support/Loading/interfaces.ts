@@ -1,4 +1,4 @@
-import { LoadingRefType } from 'atomic/bosons/types'
+import { LoadingRefType } from 'atomic'
 
 export interface UseLoadingInterface {
   loading: LoadingRefType

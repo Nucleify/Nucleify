@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-import { navigateTo } from 'atomic/bosons/utils'
-import { LoginFieldsInterface, UserRoleType } from 'atomic/bosons/types'
+import { LoginFieldsInterface, UserRoleType, navigateTo } from 'atomic'
 
 export async function testLogin(role: UserRoleType): Promise<void> {
   const credentials: Record<UserRoleType, LoginFieldsInterface | undefined> = {

@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { PanelInterface } from 'atomic/bosons/types'
+import { PanelInterface } from 'atomic'
 
 const props = defineProps<PanelInterface>()
 </script>
