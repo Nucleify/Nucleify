@@ -18,6 +18,8 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue'
 
+import Chart from 'primevue/chart' // Import for Storybook
+
 import { ChartInterface } from 'atomic/bosons/types'
 import { useChart } from 'atomic/bosons/utils'
 
