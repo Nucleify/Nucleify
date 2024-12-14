@@ -15,6 +15,5 @@
   <ad-home-footer />
 </template>
 <script setup lang="ts">
-import { BlogStartAnimation } from 'atomic/pages'
-import { blogCategoriesCards } from 'atomic/bosons/constants'
+import { BlogStartAnimation, blogCategoriesCards } from 'atomic'
 </script>

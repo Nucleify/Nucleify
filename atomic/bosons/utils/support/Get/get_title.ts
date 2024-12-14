@@ -1,4 +1,4 @@
-import { ObjectType } from 'atomic/bosons/types'
+import { ObjectType } from 'atomic'
 
 export function getTitle(selectedObject: ObjectType): string {
   if (!selectedObject) {

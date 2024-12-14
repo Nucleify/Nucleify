@@ -73,13 +73,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { PasswordInterface } from 'atomic/bosons/types'
 import {
+  PasswordInterface,
   checkLowercase,
   checkMinLength,
   checkNumeric,
   checkUppercase,
-} from 'atomic/bosons/utils'
+} from 'atomic'
 
 const props = defineProps<PasswordInterface>()
 

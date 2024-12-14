@@ -14,8 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { SectionFaqInterface } from 'atomic/bosons/types'
-import { useSplitQuestions } from 'atomic/bosons/utils'
+import { SectionFaqInterface, useSplitQuestions } from 'atomic'
 
 const props = defineProps<SectionFaqInterface>()
 

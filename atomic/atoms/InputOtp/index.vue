@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import InputOtp from 'primevue/inputotp' // Import for Storybook
 
-import { InputOtpInterface } from 'atomic/bosons/types'
+import { InputOtpInterface } from 'atomic'
 
 const props = defineProps<InputOtpInterface>()
 </script>

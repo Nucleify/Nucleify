@@ -74,8 +74,8 @@
 import {
   DatePickerInterface,
   DatePickerModelValueType,
-} from 'atomic/bosons/types'
-import { formatDate } from 'atomic/bosons/utils'
+  formatDate,
+} from 'atomic'
 
 const props = defineProps<DatePickerInterface>()
 

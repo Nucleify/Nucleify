@@ -46,7 +46,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
-import { whyUsData } from 'atomic/bosons/constants'
+import { whyUsData } from 'atomic'
 
 const dialogVisible = ref(false)
 const dialogData = ref()

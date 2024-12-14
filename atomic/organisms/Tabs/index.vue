@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { TabsInterface } from 'atomic/bosons/types'
+import { TabsInterface } from 'atomic'
 
 const activeTab = ref(0)
 const props = defineProps<TabsInterface>()

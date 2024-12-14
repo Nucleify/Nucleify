@@ -1,4 +1,4 @@
-import { ComponentType } from 'atomic/bosons/types'
+import { ComponentType } from 'atomic'
 
 export function getComponent(type: ComponentType): string {
   const componentMap: ComponentType[] = [

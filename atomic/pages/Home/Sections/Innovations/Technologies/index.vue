@@ -28,7 +28,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-import { technologies } from 'atomic/bosons/constants'
+import { technologies } from 'atomic'
 
 const modules = [Autoplay]
 </script>

@@ -1,10 +1,6 @@
 import { Ref, ref } from 'vue'
 
-import {
-  InputInterface,
-  LoginFieldKey,
-  LoginFieldsInterface,
-} from 'atomic/bosons/types'
+import { InputInterface, LoginFieldKey, LoginFieldsInterface } from 'atomic'
 
 export const loginFields: Ref<LoginFieldsInterface> = ref<LoginFieldsInterface>(
   {

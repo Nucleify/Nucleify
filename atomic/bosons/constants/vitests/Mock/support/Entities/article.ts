@@ -1,4 +1,4 @@
-import { ArticleInterface } from 'atomic/bosons/types'
+import { ArticleInterface } from 'atomic'
 
 export const mockArticle: ArticleInterface = {
   id: 999999,

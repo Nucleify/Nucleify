@@ -1,0 +1,30 @@
+.p-progress-spinner {
+  min-width: 80px;
+  min-height: 80px;
+  width: 150px;
+  height: 150px;
+  position: relative;
+
+  &::before {
+    display: none;
+  }
+}
+
+.annual-chart-card {
+  .p-progress-spinner {
+    top: -350px;
+    margin-bottom: -150px;
+  }
+}
+
+.count-chart-card {
+  .p-progress-spinner {
+    top: -75px;
+  }
+}
+
+.p-datatable {
+  .p-progress-spinner {
+    top: -50px;
+  }
+}

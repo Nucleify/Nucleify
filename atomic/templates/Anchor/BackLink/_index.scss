@@ -1,13 +1,1 @@
-.back-link {
-  position: absolute;
-  top: 15px;
-  left: 20px;
-  font-size: $font-size-medium;
-  text-decoration: none;
-  color: $primary-text-color;
-  transition: $transition-colors-300ms;
-
-  &:hover {
-    color: $primary-hover-color;
-  }
-}
+@import 'styles';

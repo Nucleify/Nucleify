@@ -1,5 +1,4 @@
-import { technologiesImgUrl } from 'atomic/bosons/constants'
-import { TechnologyInterface } from 'atomic/bosons/types'
+import { technologiesImgUrl, TechnologyInterface } from 'atomic'
 
 const techData: readonly [string, string, string][] = [
   ['php.svg', 'https://www.php.net/', technologiesImgUrl],

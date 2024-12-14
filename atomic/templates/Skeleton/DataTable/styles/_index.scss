@@ -1,0 +1,20 @@
+.skeleton-data-table {
+  th {
+    padding: 9px !important;
+  }
+
+  td {
+    padding: 10px 9px !important;
+
+    .p-skeleton {
+      height: 26px !important;
+      width: 100% !important;
+    }
+
+    &.action-column {
+      .p-skeleton {
+        width: 26px !important;
+      }
+    }
+  }
+}

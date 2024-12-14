@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { CardChartInterface } from 'atomic/bosons/types'
+import { CardChartInterface } from 'atomic'
 
 defineProps<CardChartInterface>()
 </script>

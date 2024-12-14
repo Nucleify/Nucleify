@@ -61,7 +61,7 @@
 <script setup lang="ts">
 import AutoComplete from 'primevue/autocomplete' // Import for Storybook
 
-import { AutoCompleteInterface } from 'atomic/bosons/types'
+import { AutoCompleteInterface } from 'atomic'
 
 const props = defineProps<AutoCompleteInterface>()
 </script>

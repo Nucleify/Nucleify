@@ -12,7 +12,7 @@
   />
 </template>
 <script setup lang="ts">
-import { ScrollTopInterface } from 'atomic/bosons/types'
+import { ScrollTopInterface } from 'atomic'
 
 const props = defineProps<ScrollTopInterface>()
 </script>

@@ -19,7 +19,5 @@
 </template>
 
 <script setup lang="ts">
-import { AboutStartAnimation } from './Sections'
-
-import { aboutCategoriesCards } from 'atomic/bosons/constants'
+import { AboutStartAnimation, aboutCategoriesCards } from 'atomic'
 </script>

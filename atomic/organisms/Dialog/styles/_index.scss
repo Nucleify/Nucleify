@@ -1,0 +1,69 @@
+@import 'show';
+
+.p-dialog-mask {
+  z-index: 999;
+  padding: 0 10px;
+
+  .p-dialog {
+    backdrop-filter: blur(0.5em);
+
+    &.my-dialog {
+      width: 30em;
+      max-height: 620px;
+    }
+
+    .p-dialog-header {
+      padding-top: 18px;
+      padding-bottom: 0;
+    }
+
+    .p-dialog-content {
+      padding: 20px;
+    }
+
+    .p-dialog-header-icon {
+      display: none;
+    }
+
+    .p-dialog-footer {
+      padding: 20px;
+      box-shadow: $my-card-box-shadow;
+    }
+
+    .dialog-buttons-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &.delete {
+      max-width: 300px;
+
+      .p-dialog-header {
+        display: flex;
+        justify-content: center;
+      }
+
+      .p-dialog-content {
+        display: none;
+      }
+
+      .p-dialog-footer {
+        box-shadow: none !important;
+
+        .dialog-buttons-container {
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          gap: 25px;
+        }
+      }
+    }
+
+    .p-button {
+      padding: 8px 15px;
+      gap: 8px;
+      font-size: 1.1em;
+    }
+  }
+}

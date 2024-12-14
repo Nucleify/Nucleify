@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { CardDataTableInterface } from 'atomic/bosons/types'
+import { CardDataTableInterface } from 'atomic'
 
 defineProps<CardDataTableInterface>()
 </script>

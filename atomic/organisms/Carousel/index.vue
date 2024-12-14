@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { CarouselInterface } from 'atomic/bosons/types/organisms/Carousel/interfaces'
+import { CarouselInterface } from 'atomic'
 
 const props = defineProps<CarouselInterface>()
 </script>

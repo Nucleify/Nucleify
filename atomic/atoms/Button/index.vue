@@ -42,9 +42,7 @@
 <script setup lang="ts">
 import Button from 'primevue/button' // Import for Storybook
 
-import AdImage from 'atomic/atoms/Image/index.vue'
-
-import { ButtonInterface } from 'atomic/bosons/types'
+import { ButtonInterface } from 'atomic'
 
 const props = defineProps<ButtonInterface>()
 </script>

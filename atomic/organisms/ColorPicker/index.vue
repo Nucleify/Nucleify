@@ -28,8 +28,11 @@ import { watchEffect } from 'vue'
 
 import ColorPicker from 'primevue/colorpicker' // Import for Storybook
 
-import { ColorPickerInterface } from 'atomic/bosons/types'
-import { setColorsVariables, useColorPicker } from 'atomic/bosons/utils'
+import {
+  ColorPickerInterface,
+  setColorsVariables,
+  useColorPicker,
+} from 'atomic'
 
 const props = defineProps<ColorPickerInterface>()
 

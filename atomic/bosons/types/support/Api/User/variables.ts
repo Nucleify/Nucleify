@@ -1,6 +1,6 @@
 import { Ref } from 'vue'
 
-import { UserInterface } from 'atomic/bosons/types'
+import { UserInterface } from 'atomic'
 
 export type UserIdType = string | null
 export type UserResultsType = Ref<UserInterface[] | undefined>
