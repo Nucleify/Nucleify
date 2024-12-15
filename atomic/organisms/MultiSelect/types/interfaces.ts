@@ -1,13 +1,10 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { MultiSelectPassThroughOptions } from 'primevue'
-
 import { ElementAppendTo, ElementSizeType, ElementVariantType } from 'atomic'
 
 export interface MultiSelectInterface {
-  modelValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  defaultValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  modelValue?: any // eslint-disable-line
+  defaultValue?: any // eslint-disable-line
   name?: string
-  options?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+  options?: any[] // eslint-disable-line
   optionLabel?: string | void
   optionDisabled?: string | void
   optionGroupLabel?: string | void
@@ -20,8 +17,8 @@ export interface MultiSelectInterface {
   variant?: ElementVariantType
   fluid?: boolean
   inputId?: string
-  overlayStyle?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  overlayClass?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  overlayStyle?: any // eslint-disable-line
+  overlayClass?: any // eslint-disable-line
   dataKey?: string
   showClear?: boolean
   clearIcon?: string
@@ -44,7 +41,7 @@ export interface MultiSelectInterface {
   chipIcon?: string
   selectAll?: boolean
   resetFilterOnHide?: boolean
-  virtualScrollerOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  virtualScrollerOptions?: any // eslint-disable-line
   autoOptionFocus?: boolean
   autoFilterFocus?: boolean
   focusOnHover?: boolean
@@ -57,9 +54,9 @@ export interface MultiSelectInterface {
   tabindex?: string | number
   ariaLabel?: string
   ariaLabelledby?: string
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<MultiSelectPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

@@ -1,9 +1,14 @@
-import { ActionInterface, ObjectType, OpenDialogFunctionType } from 'atomic'
+import {
+  ActionInterface,
+  ActionType,
+  ObjectType,
+  OpenDialogFunctionType,
+} from 'atomic'
 
 export const actions = (
   openDialog: OpenDialogFunctionType
 ): readonly ActionInterface[] => {
-  const actionData: readonly [string, string][] = [
+  const actionData: readonly [string, ActionType][] = [
     ['pi pi-eye', 'show'],
     ['pi pi-pencil', 'edit'],
     ['pi pi-trash', 'delete'],

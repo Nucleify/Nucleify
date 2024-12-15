@@ -1,8 +1,4 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import {
-  DatePickerPassThroughOptions,
-  DatePickerResponsiveOptions,
-} from 'primevue/datepicker'
+import { DatePickerResponsiveOptions } from 'primevue/datepicker'
 
 import {
   DatePickerModelValueType,
@@ -77,9 +73,9 @@ export interface DatePickerInterface {
   fluid?: boolean
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<DatePickerPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

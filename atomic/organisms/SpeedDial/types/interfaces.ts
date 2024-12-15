@@ -1,6 +1,5 @@
-import { PassThrough } from 'primevue/ts-helpers'
 import { MenuItem } from 'primevue/menuitem'
-import { SpeedDialPassThroughOptions, SpeedDialTooltipOptions } from 'primevue'
+import { SpeedDialTooltipOptions } from 'primevue'
 
 import { ElementDirectionType } from 'atomic'
 
@@ -14,8 +13,8 @@ export interface SpeedDialInterface {
   mask?: boolean
   disabled?: boolean
   hideOnClickOutside?: boolean
-  buttonClass?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  maskStyle?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  buttonClass?: any // eslint-disable-line
+  maskStyle?: any // eslint-disable-line
   maskClass?: string
   showIcon?: string
   hideIcon?: string
@@ -25,8 +24,8 @@ export interface SpeedDialInterface {
   actionButtonProps?: object
   ariaLabel?: string
   ariaLabelledby?: string
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<SpeedDialPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

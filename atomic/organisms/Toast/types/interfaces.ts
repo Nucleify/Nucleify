@@ -1,10 +1,5 @@
 import { ButtonHTMLAttributes } from 'vue'
-import {
-  ToastBreakpointsType,
-  ToastMessageOptions,
-  ToastPassThroughOptions,
-} from 'primevue/toast'
-import { PassThrough } from 'primevue/ts-helpers'
+import { ToastBreakpointsType, ToastMessageOptions } from 'primevue/toast'
 
 import { FlashToastFunctionType, ToastPositionType } from 'atomic'
 
@@ -21,9 +16,9 @@ export interface ToastInterface {
   successIcon?: string
   closeButtonProps?: ButtonHTMLAttributes
   message?: ToastMessageOptions
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<ToastPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }
 

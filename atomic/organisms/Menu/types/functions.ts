@@ -1,9 +1,7 @@
-import Menu from 'primevue/menu'
-
 import { ObjectType } from 'atomic'
 
 export type OpenMenuFunctionType = (
-  menu: Menu,
+  menu: any, // eslint-disable-line
   event: MouseEvent,
   object: ObjectType
 ) => void

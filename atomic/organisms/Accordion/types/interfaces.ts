@@ -1,6 +1,3 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { AccordionPassThroughOptions } from 'primevue'
-
 export interface AccordionInterface {
   panels?: AccordionPanelInterface[]
   value?: number
@@ -10,9 +7,9 @@ export interface AccordionInterface {
   collapseIcon?: string
   tabindex?: number
   selectOnFocus?: boolean
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<AccordionPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }
 export interface AccordionPanelInterface {

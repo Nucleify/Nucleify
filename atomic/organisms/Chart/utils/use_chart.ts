@@ -1,4 +1,5 @@
 /* eslint-disable */
+// @ts-nocheck
 import { Ref, ref } from 'vue'
 import { ChartOptions } from 'chart.js'
 

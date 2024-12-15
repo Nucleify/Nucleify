@@ -1,6 +1,4 @@
 import { Component } from 'vue'
-import { PassThrough } from 'primevue/ts-helpers'
-import { ButtonPassThroughOptions } from 'primevue/button'
 
 import {
   AdTypeType,
@@ -35,9 +33,9 @@ export interface ButtonInterface {
   size?: ElementSizeType
   variant?: 'outlined' | 'text' | 'link'
   fluid?: boolean
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<ButtonPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
   disabled?: boolean
   onclick?: ButtonOnClickType

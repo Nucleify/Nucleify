@@ -10,6 +10,11 @@ it('should store user data in sessionStorage', (): void => {
   setUserToSessionStorage(mockUser)
 
   Object.entries(mockUser).forEach(([key, value]): void => {
-    expect(window.sessionStorage.getItem(`user_${key}`)).toBe(value)
+    const sessionStorageValue = window.sessionStorage.getItem(`user_${key}`)
+    if (typeof value === 'number') {
+      expect(Number(sessionStorageValue)).toBe(value)
+    } else {
+      expect(sessionStorageValue).toBe(String(value))
+    }
   })
 })

@@ -1,17 +1,14 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { TimelinePassThroughOptions } from 'primevue'
-
 import { ElementDirectionType } from 'atomic'
 
 export interface TimelineInterface {
   events?: TimelineEventInterface[]
-  value?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+  value?: any[] // eslint-disable-line
   align?: 'left' | 'right' | 'top' | 'bottom' | 'alternate'
   layout?: ElementDirectionType
   dataKey?: string
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<TimelinePassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }
 

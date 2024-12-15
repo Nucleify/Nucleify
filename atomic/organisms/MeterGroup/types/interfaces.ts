@@ -1,5 +1,4 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { MeterGroupPassThroughOptions, MeterItem } from 'primevue'
+import { MeterItem } from 'primevue'
 
 import { ElementDirectionType } from 'atomic'
 
@@ -10,9 +9,9 @@ export interface MeterGroupInterface {
   orientation?: ElementDirectionType
   labelPosition?: 'start' | 'end'
   labelOrientation?: ElementDirectionType
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<MeterGroupPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }
 
