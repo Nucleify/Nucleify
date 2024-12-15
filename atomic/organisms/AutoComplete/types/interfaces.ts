@@ -1,13 +1,12 @@
 import { VirtualScrollerProps } from 'primevue/virtualscroller'
-import { AutoCompletePassThroughOptions } from 'primevue/autocomplete'
 
 import { ElementAppendTo, ElementSizeType, ElementVariantType } from 'atomic'
 
 export interface AutoCompleteInterface {
-  modelValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  defaultValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  modelValue?: any // eslint-disable-line
+  defaultValue?: any // eslint-disable-line
   name?: string
-  suggestions?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+  suggestions?: any[] // eslint-disable-line
   optionLabel?: string | void
   optionDisabled?: string | void
   optionGroupLabel?: string | void
@@ -54,9 +53,9 @@ export interface AutoCompleteInterface {
   fluid?: boolean
   ariaLabel?: string
   ariaLabelledby?: string
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<AutoCompletePassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

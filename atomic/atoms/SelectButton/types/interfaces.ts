@@ -1,14 +1,11 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { SelectButtonPassThroughOptions } from 'primevue/selectbutton'
-
 import { AdTypeType, ElementSizeType } from 'atomic'
 
 export interface SelectButtonInterface {
   adType?: AdTypeType
   modelValue?: number
-  defaultValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  defaultValue?: any // eslint-disable-line
   name?: string
-  options?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+  options?: any[] // eslint-disable-line
   optionLabel?: string | void
   optionValue?: string | void
   optionDisabled?: string | void
@@ -19,9 +16,9 @@ export interface SelectButtonInterface {
   allowEmpty?: boolean
   ariaLabelledby?: string
   size?: ElementSizeType
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<SelectButtonPassThroughOptions> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  pt?: any // eslint-disable-line
+  dt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

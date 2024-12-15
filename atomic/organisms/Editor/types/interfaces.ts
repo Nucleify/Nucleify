@@ -1,19 +1,16 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { EditorPassThroughOptions } from 'primevue/editor'
-
 export interface EditorInterface {
   modelValue?: string
-  defaultValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  defaultValue?: any // eslint-disable-line
   name?: string
   placeholder?: string
   readonly?: boolean
   invalid?: boolean
-  formats?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
-  editorStyle?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  modules?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<EditorPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formats?: any[] // eslint-disable-line
+  editorStyle?: any // eslint-disable-line
+  modules?: any // eslint-disable-line
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

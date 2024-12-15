@@ -6,48 +6,48 @@ export interface SwiperInterface {
   slidesPerGroup?: number
   spaceBetween?: number
   speed?: number
-  modules?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+  modules?: any[] // eslint-disable-line
   navigation?: boolean
-  pagination?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  scrollbar?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  pagination?: any // eslint-disable-line
+  scrollbar?: any // eslint-disable-line
   allowSlideNext?: boolean
   allowSlidePrev?: boolean
   allowTouchMove?: boolean
   autoHeight?: boolean
-  autoplay?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  breakpoints?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  autoplay?: any // eslint-disable-line
+  breakpoints?: any // eslint-disable-line
   breakpointsBase?: 'container' | 'window'
-  cardsEffect?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  cardsEffect?: any // eslint-disable-line
   centerInsufficientSlides?: boolean
   centeredSlides?: boolean
   centeredSlidesBounds?: boolean
   containerModifierClass?: string
-  controller?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  coverflowEffect?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  controller?: any // eslint-disable-line
+  coverflowEffect?: any // eslint-disable-line
   createElements?: boolean
-  creativeEffect?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  creativeEffect?: any // eslint-disable-line
   cssMode?: boolean
-  cubeEffect?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  cubeEffect?: any // eslint-disable-line
   direction?: ElementDirectionType
   edgeSwipeDetection?: string | boolean
   edgeSwipeThreshold?: number
   effect?: string
   enabled?: boolean
   eventsPrefix?: string
-  fadeEffect?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  flipEffect?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  fadeEffect?: any // eslint-disable-line
+  flipEffect?: any // eslint-disable-line
   focusableElements?: string
   followFinger?: boolean
-  freeMode?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  grid?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  hashNavigation?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  freeMode?: any // eslint-disable-line
+  grid?: any // eslint-disable-line
+  hashNavigation?: any // eslint-disable-line
   height?: number
-  history?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  history?: any // eslint-disable-line
   init?: boolean
   initialSlide?: number
   injectStyles?: string[]
   injectStylesUrls?: string[]
-  keyboard?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  keyboard?: any // eslint-disable-line
   lazyPreloadPrevNext?: number
   lazyPreloaderClass?: string
   longSwipes?: boolean
@@ -58,7 +58,7 @@ export interface SwiperInterface {
   loopAdditionalSlides?: number
   loopPreventsSliding?: boolean
   maxBackfaceHiddenSlides?: number
-  mousewheel?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  mousewheel?: any // eslint-disable-line
   nested?: boolean
   noSwiping?: boolean
   noSwipingClass?: string
@@ -68,9 +68,9 @@ export interface SwiperInterface {
   observeSlideChildren?: boolean
   observer?: boolean
   on?: object
-  onAny?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  onAny?: any // eslint-disable-line
   oneWayMovement?: boolean
-  parallax?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  parallax?: any // eslint-disable-line
   passiveListeners?: boolean
   preventClicks?: boolean
   preventClicksPropagation?: boolean
@@ -96,10 +96,10 @@ export interface SwiperInterface {
   slidesOffsetBefore?: number
   slidesPerGroupAuto?: boolean
   slidesPerGroupSkip?: number
-  swipeHandler?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  swipeHandler?: any // eslint-disable-line
   swiperElementNodeName?: string
   threshold?: number
-  thumbs?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  thumbs?: any // eslint-disable-line
   touchAngle?: number
   touchEventsTarget?: 'container' | 'wrapper'
   touchMoveStopPropagation?: boolean
@@ -111,13 +111,13 @@ export interface SwiperInterface {
   updateOnWindowResize?: boolean
   url?: string
   userAgent?: string
-  virtual?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  virtual?: any // eslint-disable-line
   virtualTranslate?: boolean
   watchOverflow?: boolean
   watchSlidesProgress?: boolean
   width?: number
   wrapperClass?: string
-  zoom?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  zoom?: any // eslint-disable-line
 }
 
 export interface SwiperSlideInterface {

@@ -1,6 +1,3 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { TabsPassThroughOptions } from 'primevue'
-
 export interface TabsInterface {
   lists?: TabListInterface[]
   panels?: TabPanelInterface[]
@@ -10,9 +7,9 @@ export interface TabsInterface {
   showNavigators?: boolean
   tabindex?: number
   selectOnFocus?: boolean
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<TabsPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }
 export interface TabListInterface {

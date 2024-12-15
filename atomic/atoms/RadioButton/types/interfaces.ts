@@ -1,12 +1,9 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { RadioButtonPassThroughOptions } from 'primevue/radiobutton'
-
 import { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
 
 export interface RadioButtonInterface {
   adType?: AdTypeType
-  value?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  defaultValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  value?: any // eslint-disable-line
+  defaultValue?: any // eslint-disable-line
   name?: string
   binary?: boolean
   size?: ElementSizeType
@@ -20,9 +17,9 @@ export interface RadioButtonInterface {
   inputClass?: string
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<RadioButtonPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

@@ -1,5 +1,4 @@
 import { ref, Ref } from 'vue'
-import Menu from 'primevue/menu'
 
 import { ObjectType, UseMenuInterface } from 'atomic'
 
@@ -10,7 +9,8 @@ export function useMenu(): UseMenuInterface {
     selectedObject.value = object
   }
 
-  function openMenu(menu: Menu, event: MouseEvent, object: ObjectType): void {
+  // eslint-disable-next-line
+  function openMenu(menu: any, event: MouseEvent, object: ObjectType): void {
     setSelectedObject(object)
     menu.toggle(event)
   }

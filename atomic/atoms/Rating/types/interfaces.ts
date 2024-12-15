@@ -1,6 +1,3 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { RatingPassThroughOptions } from 'primevue/rating'
-
 import { AdTypeType } from 'atomic'
 
 export interface RatingInterface {
@@ -14,9 +11,9 @@ export interface RatingInterface {
   stars?: number
   onIcon?: string
   offIcon?: string
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<RatingPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

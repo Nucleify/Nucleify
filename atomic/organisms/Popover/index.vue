@@ -36,7 +36,7 @@ const props = defineProps<PopoverInterface>()
 
 const pop = ref()
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line
 const toggle = (event: any) => {
   pop.value.toggle(event)
 }

@@ -1,14 +1,12 @@
-import { HintedString, PassThrough } from 'primevue/ts-helpers'
 import { VirtualScrollerProps } from 'primevue/virtualscroller'
-import { SelectPassThroughOptions } from 'primevue/select'
 
 import { ElementAppendTo, ElementSizeType, ElementVariantType } from 'atomic'
 
 export interface SelectInterface {
-  modelValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  defaultValue?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  modelValue?: any // eslint-disable-line
+  defaultValue?: any // eslint-disable-line
   name?: string
-  option?: any[] // eslint-disable-line @typescript-eslint/no-explicit-any
+  option?: any[] // eslint-disable-line
   optionLabel?: string | void
   optionValue?: string | void
   optionDisabled?: string | void
@@ -17,7 +15,7 @@ export interface SelectInterface {
   filter?: boolean
   filterPlaceholder?: string
   filterLocale?: string
-  filterMatchMode?: HintedString<'endsWith' | 'startsWith' | 'contains'>
+  filterMatchMode?: 'endsWith' | 'startsWith' | 'contains'
   filterFields?: string[]
   editable?: boolean
   placeholder?: string
@@ -55,9 +53,9 @@ export interface SelectInterface {
   tabindex?: string | number
   ariaLabel?: string
   ariaLabelledby?: string
-  formControl?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<SelectPassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }

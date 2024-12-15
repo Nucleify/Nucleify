@@ -1,16 +1,13 @@
-import { PassThrough } from 'primevue/ts-helpers'
-import { ImagePassThroughOptions } from 'primevue/image'
-
 export interface ImageInterface {
   preview?: boolean
-  imageStyle?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  imageClass?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  imageStyle?: any // eslint-disable-line
+  imageClass?: any // eslint-disable-line
   previewIcon?: string
   zoomInDisabled?: boolean
   zoomOutDisabled?: boolean
-  dt?: any // eslint-disable-line @typescript-eslint/no-explicit-any
-  pt?: PassThrough<ImagePassThroughOptions>
-  ptOptions?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
+  pt?: any // eslint-disable-line
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
   src: string
   alt?: string
