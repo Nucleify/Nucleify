@@ -11,7 +11,7 @@
     "dev": "vite",
     "open": "cypress open",
     "prepare": "husky install",
-    "build": "vite build && storybook build",
+    "build": "vite build",
     "check": "npm run check:atomic && npm run check:cypress && npm run check:storybook && npm run check:vitest",
     "check:atomic": "prettier --check atomic",
     "check:cypress": "prettier --check cypress",
@@ -37,7 +37,8 @@
     "write:cypress": "prettier --write cypress",
     "write:storybook": "prettier --write .storybook/",
     "write:vitest": "prettier --write vitests",
-    "storybook": "storybook dev -p 6006 --ci"
+    "storybook": "storybook dev -p 6006 --ci",
+    "storybook:build": "storybook build"
   },
   "dependencies": {
     "@primevue/themes": "^4.2.3",
