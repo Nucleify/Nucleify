@@ -1,5 +1,4 @@
-import { FormDataInterface } from 'atomic/bosons/types'
-import { checkPasswordsMatch } from 'atomic/bosons/utils'
+import { FormDataInterface, checkPasswordsMatch } from 'atomic'
 
 export function isPasswordsMatch(formData: FormDataInterface): boolean {
   return checkPasswordsMatch(

@@ -1,4 +1,4 @@
-import { UserInterface } from 'atomic/bosons/types'
+import { UserInterface } from 'atomic'
 
 export function setUserToSessionStorage(user: UserInterface): void {
   const sanitizedUser: UserInterface = {

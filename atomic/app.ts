@@ -52,7 +52,6 @@ import { Anchor, FloatLabel, Tile } from './molecules'
 import {
   Accordion,
   AutoComplete,
-  BlockUI,
   Card,
   Chart,
   Carousel,
@@ -155,7 +154,6 @@ app
    */
   .component('ad-accordion', Accordion)
   .component('ad-auto-complete', AutoComplete)
-  .component('ad-block-ui', BlockUI)
   .component('ad-date-picker', DatePicker)
   .component('ad-deferred-content', DeferredContent)
   .component('ad-card', Card)

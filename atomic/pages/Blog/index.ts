@@ -1,3 +1,4 @@
-export * from './Sections'
+export * from './components'
+export * from './constants'
 
-export { default as BlogPage } from './Blog.vue'
+export { default as BlogPage } from './index.vue'

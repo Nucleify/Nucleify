@@ -1,1 +1,1 @@
-export { default as BackLink } from './BackLink.vue'
+export * from './BackLink'

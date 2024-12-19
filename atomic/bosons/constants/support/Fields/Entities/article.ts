@@ -1,4 +1,4 @@
-import { EntityFieldInterface, UseFieldsInterface } from 'atomic/bosons/types'
+import { EntityFieldInterface, UseFieldsInterface } from 'atomic'
 
 export function useArticleFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: readonly [string, string, string][] = [

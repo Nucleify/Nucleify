@@ -1,7 +1,7 @@
 import { it, expect, beforeEach, vi } from 'vitest'
 import { nextTick } from 'vue'
 
-import { useThrottle } from 'atomic/bosons/utils'
+import { useThrottle } from 'atomic'
 
 beforeEach((): void => {
   vi.useFakeTimers()

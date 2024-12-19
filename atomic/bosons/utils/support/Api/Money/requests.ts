@@ -10,14 +10,12 @@ import {
   MoneyResultsType,
   MoneyRequestsInterface,
   MoneyInterface,
-} from 'atomic/bosons/types'
-import {
   apiSuccess,
   catchErrors,
   useApiErrors,
   useLoading,
   useToast,
-} from 'atomic/bosons/utils'
+} from 'atomic'
 
 export function moneyRequests(
   close?: CloseDialogFunctionType

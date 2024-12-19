@@ -1,0 +1,67 @@
+<template>
+  <AutoComplete
+    :v-model="props.modelValue"
+    :default-value="props.defaultValue"
+    :name="props.name"
+    :suggestions="props.suggestions"
+    :option-label="props.optionLabel"
+    :option-disabled="props.optionDisabled"
+    :option-group-label="props.optionLabel"
+    :option-group-children="props.optionGroupChildren"
+    :scroll-height="props.scrollHeight"
+    :dropdown="props.dropdown"
+    :dropdown-mode="props.dropdownMode"
+    :multiple="props.multiple"
+    :placeholder="props.placeholder"
+    :loading="props.loading"
+    :size="props.size"
+    :invalid="props.invalid"
+    :disabled="props.disabled"
+    :variant="props.variant"
+    :data-key="props.dataKey"
+    :min-length="props.minLength"
+    :delay="props.delay"
+    :append-to="props.appendTo"
+    :force-selection="props.forceSelection"
+    :complete-on-focus="props.completeOnFocus"
+    :input-id="props.inputId"
+    :input-style="props.inputStyle"
+    :input-class="props.inputClass"
+    :panel-style="props.panelStyle"
+    :panel-class="props.panelClass"
+    :overlay-style="props.overlayStyle"
+    :overlay-class="props.overlayClass"
+    :dropdown-icon="props.dropdownIcon"
+    :dropdown-class="props.dropdownClass"
+    :loader="props.loader"
+    :remove-token-icon="props.removeTokenIcon"
+    :chip-icon="props.chipIcon"
+    :virtual-scroller-options="props.virtualScrollerOptions"
+    :auto-option-focus="props.autoOptionFocus"
+    :select-on-focus="props.selectOnFocus"
+    :focus-on-hover="props.focusOnHover"
+    :search-locale="props.searchLocale"
+    :search-message="props.searchMessage"
+    :selection-message="props.selectionMessage"
+    :empty-selection-message="props.emptySelectionMessage"
+    :empty-search-message="props.emptySearchMessage"
+    :show-empty-message="props.showEmptyMessage"
+    :tabindex="props.tabindex"
+    :fluid="props.fluid"
+    :aria-label="props.ariaLabel"
+    :aria-labelledby="props.ariaLabelledby"
+    :form-control="props.formControl"
+    :dt="props.dt"
+    :pt="props.pt"
+    :pt-options="props.ptOptions"
+    :unstyled="props.unstyled"
+  />
+</template>
+
+<script setup lang="ts">
+import AutoComplete from 'primevue/autocomplete' // Import for Storybook
+
+import { AutoCompleteInterface } from 'atomic'
+
+const props = defineProps<AutoCompleteInterface>()
+</script>

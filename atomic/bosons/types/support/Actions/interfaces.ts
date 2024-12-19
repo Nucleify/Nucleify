@@ -1,4 +1,4 @@
-import { ObjectType } from 'atomic/bosons/types'
+import { ObjectType } from 'atomic'
 
 export interface ActionInterface {
   icon: string

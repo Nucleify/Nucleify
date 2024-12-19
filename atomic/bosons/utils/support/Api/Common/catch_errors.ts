@@ -1,9 +1,6 @@
 import axios from 'axios'
 
-import {
-  ApiErrorsFunctionType,
-  ErrorResponseInterface,
-} from 'atomic/bosons/types'
+import { ApiErrorsFunctionType, ErrorResponseInterface } from 'atomic'
 
 export function catchErrors(
   error: unknown,
