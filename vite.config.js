@@ -42,9 +42,14 @@ export default defineConfig({
         chunkSizeWarningLimit: 1600,
         sourcemap: true,
         rollupOptions: {
-            output: {
-                sourcemapExcludeSources: true
-            },
+            output:{
+                sourcemapExcludeSources: true,
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                    }
+                }
+            }
         },
     },
     define: {

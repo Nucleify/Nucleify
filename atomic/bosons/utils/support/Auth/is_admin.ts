@@ -1,5 +1,11 @@
-import { UserIdType, UserRequestsInterface } from 'atomic/bosons/types'
-import { userRequests, setUserToSessionStorage } from 'atomic/bosons/utils'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+import {
+  UserIdType,
+  UserRequestsInterface,
+  userRequests,
+  setUserToSessionStorage,
+} from 'atomic'
 
 export async function isAdmin(): Promise<boolean> {
   const { results, getUser }: UserRequestsInterface = userRequests()

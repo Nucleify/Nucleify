@@ -6,7 +6,7 @@ import {
   MoneyResultsType,
   LoadingRefType,
   StoreEntityRequestFunctionType,
-} from 'atomic/bosons/types'
+} from 'atomic'
 
 export interface MoneyRequestsInterface {
   results: MoneyResultsType

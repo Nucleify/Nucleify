@@ -1,1 +1,3 @@
-export { default as SettingsPage } from './Settings.vue'
+export * from './components'
+
+export { default as SettingsPage } from './index.vue'

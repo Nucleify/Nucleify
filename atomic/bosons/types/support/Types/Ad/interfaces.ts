@@ -1,3 +1,3 @@
-import { ObjectNameType } from 'atomic/bosons/types'
+import { ObjectNameType } from 'atomic'
 
 export type AdTypeType = ObjectNameType | 'main'

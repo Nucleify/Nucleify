@@ -1,6 +1,6 @@
 import { it, expect, beforeEach } from 'vitest'
 
-import { isCurrentUrl } from 'atomic/bosons/utils'
+import { isCurrentUrl } from 'atomic'
 
 beforeEach((): void => {
   Object.defineProperty(window, 'location', {
