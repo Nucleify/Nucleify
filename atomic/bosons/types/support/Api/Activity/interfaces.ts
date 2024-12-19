@@ -4,7 +4,7 @@ import {
   DeleteEntityRequestFunctionType,
   GetAllEntitiesRequestFunctionType,
   LoadingRefType,
-} from 'atomic/bosons/types'
+} from 'atomic'
 
 export interface ActivityLogRequestsInterface {
   results: ActivityResultsType

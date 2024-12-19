@@ -6,7 +6,7 @@ import {
   ViewportStatusType,
   ViewportStatusesType,
   UseInViewportInterface,
-} from 'atomic/bosons/types'
+} from 'atomic'
 
 export function useInViewport(
   offset: number,

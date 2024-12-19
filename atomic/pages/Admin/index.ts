@@ -1,2 +1,3 @@
-export * from './Components'
-export { default as AdminPage } from './Admin.vue'
+export * from './components'
+
+export { default as AdminPage } from './index.vue'

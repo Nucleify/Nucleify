@@ -1,0 +1,53 @@
+@import 'Footer', 'Navbar', 'Sections';
+
+.home-container {
+  padding-top: 140px;
+
+  @media (min-width: $breakpoint-sm) {
+    padding-top: 180px;
+  }
+}
+
+div[data-pc-name='deferredcontent'] {
+  z-index: -1;
+}
+
+#footer {
+  div[data-pc-name='deferredcontent'] {
+    margin-top: -400px;
+    padding-top: 400px;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  div[data-pc-name='deferredcontent'] {
+    margin-top: -150px;
+    padding-top: 150px;
+  }
+}
+
+#start {
+  scroll-margin-top: 350px;
+  padding-bottom: 100px;
+
+  @media (min-width: $breakpoint-md) {
+    padding-bottom: 150px;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    padding-bottom: 230px;
+  }
+}
+
+#features {
+  overflow-x: hidden;
+  scroll-margin-top: 50px;
+
+  @media (min-width: $breakpoint-md) {
+    top: 160px;
+  }
+}
+
+#why-us {
+  scroll-margin-top: 150px;
+}

@@ -1,2 +1,2 @@
-export { default as ScreenLights } from './Lights.vue'
-export { default as ScreenLoader } from './Loader.vue'
+export * from './Lights'
+export * from './Loader'
