@@ -4,8 +4,8 @@ import {
   UseInViewportInterface,
   ViewportStatusType,
   ViewportStatusesType,
-} from 'atomic/bosons/types'
-import { useInViewport } from 'atomic/bosons/utils'
+  useInViewport,
+} from 'atomic'
 
 export function useViewportChange(selectors: string[], offset?: number): void {
   const { viewportStatuses }: UseInViewportInterface = useInViewport(

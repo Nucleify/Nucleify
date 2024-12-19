@@ -1,6 +1,6 @@
 import { it, expect, beforeEach, afterEach } from 'vitest'
 
-import { isMobile } from 'atomic/bosons/utils'
+import { isMobile } from 'atomic'
 
 beforeEach((): void => {
   Object.defineProperty(window.screen, 'width', {

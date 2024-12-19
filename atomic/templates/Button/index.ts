@@ -1,1 +1,1 @@
-export { default as TestLoginButtons } from './TestLoginButtons.vue'
+export * from './TestLoginButtons'

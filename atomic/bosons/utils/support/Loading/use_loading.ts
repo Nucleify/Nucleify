@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-import { LoadingRefType, UseLoadingInterface } from 'atomic/bosons/types'
+import { LoadingRefType, UseLoadingInterface } from 'atomic'
 
 export function useLoading(): UseLoadingInterface {
   const loading: LoadingRefType = ref(false)

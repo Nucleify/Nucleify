@@ -4,21 +4,18 @@ import axios, { AxiosResponse } from 'axios'
 import {
   CloseDialogFunctionType,
   GetAllEntitiesRequestResponseType,
-  GetUserRequestResponseType,
   UseApiErrorsInterface,
   UseLoadingInterface,
   UserInterface,
   UserRequestsInterface,
   UserResultsType,
   UseToastInterface,
-} from 'atomic/bosons/types'
-import {
   apiSuccess,
   catchErrors,
   useApiErrors,
   useLoading,
   useToast,
-} from 'atomic/bosons/utils'
+} from 'atomic'
 
 export function userRequests(
   close?: CloseDialogFunctionType
@@ -50,7 +47,8 @@ export function userRequests(
 
   async function getUser(): Promise<void> {
     try {
-      const response: GetUserRequestResponseType = await axios.get('/api/user')
+      const response: GetAllEntitiesRequestResponseType<UserInterface> =
+        await axios.get('/api/user')
 
       results.value = response.data
     } catch (error) {

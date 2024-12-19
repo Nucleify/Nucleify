@@ -1,4 +1,4 @@
-import { MessageOrMessagesType } from 'atomic/bosons/types'
+import { MessageOrMessagesType } from 'atomic'
 
 export interface ErrorResponseInterface {
   response: {
