@@ -9,7 +9,7 @@
 
   svg {
     width: 100%;
-    max-width: 500px;
+    max-width: 300px;
     animation: fade-in 0.3s ease-out forwards;
   }
 
@@ -26,6 +26,12 @@
 
     &:hover {
       color: $primary-color;
+    }
+  }
+
+  @media (min-width: $breakpoint-sm) {
+    svg {
+      max-width: 500px;
     }
   }
 }
