@@ -26,17 +26,25 @@ main:has(:not(#home)) .screen-lights-container .screen-light {
   @for $i from 1 through $amount {
     &:nth-child(#{$i}) {
       color: if(
-        random() > 0.5,
+        math.random() > 0.5,
         var(--main-item-selected-color-new),
         var(--main-item-highlight-color-new)
       );
-      top: random(100) * 1%;
-      left: random(100) * 1%;
-      animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
-      animation-delay: math.div(random(($animationDuration + 10s) * 10), 10);
-      transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
-      $blurRadius: (random() + 0.5) * $particleSize * 0.5;
-      $x: if(random() > 0.5, -1, 1);
+      top: math.random(100) * 1%;
+      left: math.random(100) * 1%;
+      animation-duration: math.random(math.div($animationDuration, 1s)) *
+        1s +
+        10s;
+      animation-delay: math.div(
+        math.random(math.div($animationDuration, 1s)),
+        10
+      );
+      transform-origin: (math.random(50) - 25) *
+        1vw
+        (math.random(50) - 25) *
+        1vh;
+      $blurRadius: (math.random() + 0.5) * $particleSize * 0.5;
+      $x: if(math.random() > 0.5, -1, 1);
       box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
     }
   }
@@ -57,14 +65,22 @@ main:has(#home, #login, #register) .screen-lights-container .screen-light {
 
   @for $i from 1 through $amount {
     &:nth-child(#{$i}) {
-      color: nth($colors, random(length($colors))) !important;
-      top: random(100) * 1%;
-      left: random(100) * 1%;
-      animation-duration: (random($animationDuration * 10) / 10) * 1s + 10s;
-      animation-delay: math.div(random(($animationDuration + 10s) * 10), 10);
-      transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
-      $blurRadius: (random() + 0.5) * $particleSize * 0.5;
-      $x: if(random() > 0.5, -1, 1);
+      color: nth($colors, math.random(length($colors))) !important;
+      top: math.random(100) * 1%;
+      left: math.random(100) * 1%;
+      animation-duration: math.random(math.div($animationDuration, 1s)) *
+        1s +
+        10s;
+      animation-delay: math.div(
+        math.random(math.div($animationDuration, 1s)),
+        10
+      );
+      transform-origin: (math.random(50) - 25) *
+        1vw
+        (math.random(50) - 25) *
+        1vh;
+      $blurRadius: (math.random() + 0.5) * $particleSize * 0.5;
+      $x: if(math.random() > 0.5, -1, 1);
       box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
     }
   }

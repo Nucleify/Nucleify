@@ -3,7 +3,7 @@ import { AdTypeType } from 'atomic'
 export interface KnobInterface {
   adType?: AdTypeType
   modelValue?: number
-  defaultValue?: any //eslint-disable-line @typescript-eslint/no-explicit-any
+  defaultValue?: any // eslint-disable-line
   name?: string
   size?: number
   invalid?: boolean
@@ -21,9 +21,9 @@ export interface KnobInterface {
   tabindex?: number
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> //eslint-disable-line @typescript-eslint/no-explicit-any
-  dt?: any //eslint-disable-line @typescript-eslint/no-explicit-any
+  formControl?: Record<string, any> // eslint-disable-line
+  dt?: any // eslint-disable-line
   pt?: any // eslint-disable-line
-  ptOptions?: any //eslint-disable-line @typescript-eslint/no-explicit-any
+  ptOptions?: any // eslint-disable-line
   unstyled?: boolean
 }
