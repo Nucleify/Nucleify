@@ -1,12 +1,12 @@
 <template>
   <div class="panel-container">
     <ad-card-chart
-      v-if="display.Contact"
+      v-if="display.Money"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :contact-data="results"
+      :money-data="results"
       :chart-class="'h-30rem'"
       :loading="loading"
     />
@@ -15,9 +15,9 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      ad-type="contact"
-      headerText="Manage Contacts"
-      buttonText="New Contact"
+      ad-type="money"
+      headerText="Manage Money"
+      buttonText="New Money"
     />
   </div>
 
@@ -42,8 +42,8 @@
 import { onMounted, computed } from 'vue'
 
 import {
-  useContactFields,
-  contactRequests,
+  useMoneyFields,
+  moneyRequests,
   useDialog,
   useDisplayCharts,
 } from 'atomic'
@@ -60,23 +60,17 @@ const {
 
 const { display } = useDisplayCharts()
 
-const { createAndEditFields, showFields } = useContactFields()
-const {
-  loading,
-  results,
-  getAllContacts,
-  storeContact,
-  editContact,
-  deleteContact,
-} = contactRequests(closeDialog)
+const { createAndEditFields, showFields } = useMoneyFields()
+const { loading, results, getAllMoney, storeMoney, editMoney, deleteMoney } =
+  moneyRequests(closeDialog)
 
 onMounted(() => {
-  getAllContacts(true)
+  getAllMoney(true)
 })
 
 const dialogs = computed(() => [
   {
-    entity: 'contact',
+    entity: 'money',
     action: 'show',
     visible: visibleShow.value,
     data: selectedObject.value,
@@ -84,37 +78,37 @@ const dialogs = computed(() => [
     fields: showFields,
   },
   {
-    entity: 'contact',
+    entity: 'money',
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete contact?',
+    title: 'Delete transaction?',
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
-    confirm: deleteContact,
-    getData: getAllContacts,
+    confirm: deleteMoney,
+    getData: getAllMoney,
   },
   {
-    entity: 'contact',
+    entity: 'money',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new contact',
+    title: 'Create new transaction',
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
-    confirm: storeContact,
-    getData: getAllContacts,
+    confirm: storeMoney,
+    getData: getAllMoney,
     fields: createAndEditFields,
   },
   {
-    entity: 'contact',
+    entity: 'money',
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit contact',
+    title: 'Edit transaction',
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
-    confirm: editContact,
-    getData: getAllContacts,
+    confirm: editMoney,
+    getData: getAllMoney,
     fields: createAndEditFields,
   },
 ])
@@ -122,7 +116,7 @@ const dialogs = computed(() => [
 
 <style scoped>
 :deep(.p-progress-spinner-circle) {
-  stroke: var(--contact-item-color);
+  stroke: var(--money-item-color);
   animation: p-progress-spinner-dash 1.2s ease-in-out infinite;
 }
 </style>
