@@ -50,7 +50,9 @@ main:has(:not(#home)) .screen-lights-container .screen-light {
   }
 }
 
-main:has(#home, #login, #register) .screen-lights-container .screen-light {
+main:has(#home, #login, #register, #error-404)
+  .screen-lights-container
+  .screen-light {
   width: $particleSize;
   height: $particleSize;
   border-radius: $particleSize;

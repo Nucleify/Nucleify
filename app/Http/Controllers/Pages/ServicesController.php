@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pages;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Contracts\Support\Renderable;
 
-class HomeController extends Controller
+class ServicesController extends Controller
 {
     /**
      * Show the application dashboard.
@@ -13,6 +14,6 @@ class HomeController extends Controller
      */
     public function render(): Renderable
     {
-        return view('home');
+        return view('services');
     }
 }
