@@ -58,7 +58,7 @@
     :virtual-scroller-options="props.virtualScrollerOptions"
     :frozen-value="props.frozenValue"
     :breakpoint="props.breakpoint"
-    :show-headers="props.showHeaders"
+    :show-headers="props.showHeaders || true"
     :show-gridlines="props.showGridlines"
     :striped-rows="props.stripedRows || true"
     :highlight-on-select="props.highlightOnSelect"

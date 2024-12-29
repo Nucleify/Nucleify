@@ -14,8 +14,8 @@ import { createApp } from 'vue'
 export const app: App = createApp({})
 
 import registerPrimeVue from './primevue'
-import { registerGlobalConstants } from './bosons/constants'
-import { registerGlobalUtils } from './bosons/utils'
+import { registerGlobalConstants } from './bosons'
+import { registerGlobalUtils } from './bosons'
 
 registerPrimeVue(app)
 registerGlobalConstants(app)
