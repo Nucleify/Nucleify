@@ -15,15 +15,15 @@ export interface CheckboxInterface {
   readonly?: boolean
   required?: boolean
   tabindex?: number
-  trueValue?: any //eslint-disable-line @typescript-eslint/no-explicit-any
-  falseValue?: any //eslint-disable-line @typescript-eslint/no-explicit-any
+  trueValue?: any // eslint-disable-line
+  falseValue?: any // eslint-disable-line
   inputId?: string
   inputClass?: object
   inputStyle?: string | object
   ariaLabelledby?: string
   ariaLabel?: string
   formControl?: Record<string, any> // eslint-disable-line
-  dt?: any //eslint-disable-line @typescript-eslint/no-explicit-any
+  dt?: any // eslint-disable-line
   pt?: any // eslint-disable-line
   ptOptions?: any // eslint-disable-line
   unstyled?: boolean
