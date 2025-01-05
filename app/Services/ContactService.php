@@ -30,16 +30,13 @@ class ContactService
                             ->where('user_id', $causer->id)
                             ->get();
 
-                        ActivityLogger::logMessage(
-                            $causer->name . ' has fetched all his contacts'
-                        );
+                        ActivityLogger::logIndex($causer, $this->entity, false);
                         break;
 
                     default:
                         $contacts = $this->model->all();
-                        ActivityLogger::logMessage(
-                            $causer->name . ' has fetched all contacts for all users'
-                        );
+
+                        ActivityLogger::logIndex($causer, $this->entity, true);
                         break;
                 }
                 break;
@@ -51,9 +48,7 @@ class ContactService
                     ->where('user_id', $causer->id)
                     ->get();
 
-                ActivityLogger::logMessage(
-                    $causer->name . ' has fetched all his contacts'
-                );
+                ActivityLogger::logIndex($causer, $this->entity, false);
                 break;
         }
 
@@ -96,6 +91,7 @@ class ContactService
         $causer = auth()->user();
 
         $model = $this->model::create($data);
+
         ActivityLogger::log($causer, $model, $this->entity, 'created');
 
         return fractal()
@@ -122,6 +118,7 @@ class ContactService
         }
 
         $model->update($data);
+
         ActivityLogger::log($causer, $model, $this->entity, 'updated');
 
         return fractal()
@@ -149,6 +146,7 @@ class ContactService
         }
 
         $model->delete();
+
         ActivityLogger::log($causer, $model, $this->entity, 'deleted');
     }
 }
