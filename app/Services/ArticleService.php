@@ -5,13 +5,12 @@ namespace App\Services;
 use Illuminate\Http\Request;
 
 use App\Facades\ActivityLogger;
-
 use App\Models\Article;
 use App\Transformers\ArticleTransformer;
 
 class ArticleService
 {
-    public function __construct(private readonly Article $model, protected string $entity = 'Article'){}
+    public function __construct(private readonly Article $model, protected string $entity = 'article'){}
 
     public function getAll(Request $request)
     {
@@ -30,16 +29,13 @@ class ArticleService
                             ->where('user_id', $causer->id)
                             ->get();
 
-                        ActivityLogger::logMessage(
-                            $causer->name . ' has fetched all his articles'
-                        );
+                        ActivityLogger::logIndex($causer, $this->entity, false);
                         break;
 
                     default:
                         $articles = $this->model->all();
-                        ActivityLogger::logMessage(
-                            $causer->name . ' has fetched all articles for all users'
-                        );
+
+                        ActivityLogger::logIndex($causer, $this->entity, true);
                         break;
                 }
                 break;
@@ -51,9 +47,7 @@ class ArticleService
                     ->where('user_id', $causer->id)
                     ->get();
 
-                ActivityLogger::logMessage(
-                    $causer->name . ' has fetched all his articles'
-                );
+                ActivityLogger::logIndex($causer, $this->entity, false);
                 break;
         }
 
@@ -93,6 +87,7 @@ class ArticleService
         $causer = auth()->user();
 
         $model = $this->model::create($data);
+
         ActivityLogger::log($causer, $model, $this->entity, 'created');
 
         return fractal()
@@ -119,6 +114,7 @@ class ArticleService
         }
 
         $model->update($data);
+
         ActivityLogger::log($causer, $model, $this->entity, 'updated');
 
         return fractal()
@@ -145,6 +141,7 @@ class ArticleService
         }
 
         $model->delete();
+
         ActivityLogger::log($causer, $model, $this->entity, 'deleted');
     }
 }

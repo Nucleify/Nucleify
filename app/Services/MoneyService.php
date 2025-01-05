@@ -30,16 +30,13 @@ class MoneyService
                             ->where('user_id', $causer->id)
                             ->get();
 
-                        ActivityLogger::logMessage(
-                            $causer->name . ' has fetched all his money transactions'
-                        );
+                        ActivityLogger::logIndex($causer, $this->entity, false);
                         break;
 
                     default:
                         $money = $this->model->all();
-                        ActivityLogger::logMessage(
-                            $causer->name . ' has fetched all money transactions for all users'
-                        );
+
+                        ActivityLogger::logIndex($causer, $this->entity, true);
                         break;
                 }
                 break;
@@ -51,9 +48,7 @@ class MoneyService
                     ->where('user_id', $causer->id)
                     ->get();
 
-                ActivityLogger::logMessage(
-                    $causer->name . ' has fetched all his money transactions'
-                );
+                ActivityLogger::logIndex($causer, $this->entity, false);
                 break;
         }
 
@@ -93,6 +88,7 @@ class MoneyService
         $causer = auth()->user();
 
         $model = $this->model::create($data);
+
         ActivityLogger::log($causer, $model, $this->entity, 'created');
 
         return fractal()
@@ -119,6 +115,7 @@ class MoneyService
         }
 
         $model->update($data);
+
         ActivityLogger::log($causer, $model, $this->entity, 'updated');
 
         return fractal()
@@ -145,6 +142,7 @@ class MoneyService
         }
 
         $model->delete();
+
         ActivityLogger::log($causer, $model, $this->entity, 'deleted');
     }
 }
