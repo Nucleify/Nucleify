@@ -10,6 +10,9 @@ class ArtisanCommand extends Command
     protected $signature = 'run:{code}';
     protected $description = 'Execute artisan code';
 
+    /**
+     * @return void
+     */
     public function handle(): void
     {
         $code = $this->argument('code');

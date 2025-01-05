@@ -17,6 +17,9 @@ class ArticleController extends Controller
 {
     private ArticleService $service;
 
+    /**
+     * @param ArticleService $service
+     */
     public function __construct(ArticleService $service)
     {
         $this->service = $service;
@@ -32,6 +35,11 @@ class ArticleController extends Controller
         return view('articles');
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
     public function index(Request $request): JsonResponse
     {
         try {
@@ -43,6 +51,11 @@ class ArticleController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function show($id): JsonResponse
     {
         try {
@@ -54,6 +67,11 @@ class ArticleController extends Controller
         }
     }
 
+    /**
+     * @param PostRequest $request
+     *
+     * @return JsonResponse
+     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -69,6 +87,12 @@ class ArticleController extends Controller
         }
     }
 
+    /**
+     * @param PutRequest $request
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -84,6 +108,11 @@ class ArticleController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function destroy($id): JsonResponse
     {
         $model = Article::findOrFail($id);

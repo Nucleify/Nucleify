@@ -17,6 +17,9 @@ class MoneyController extends Controller
 {
     private MoneyService $service;
 
+    /**
+     * @param MoneyService $service
+     */
     public function __construct(MoneyService $service)
     {
         $this->service = $service;
@@ -32,6 +35,11 @@ class MoneyController extends Controller
         return view('money');
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
     public function index(Request $request): JsonResponse
     {
         try {
@@ -43,6 +51,11 @@ class MoneyController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function show($id): JsonResponse
     {
         try {
@@ -54,6 +67,11 @@ class MoneyController extends Controller
         }
     }
 
+    /**
+     * @param PostRequest $request
+     *
+     * @return JsonResponse
+     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -69,6 +87,12 @@ class MoneyController extends Controller
         }
     }
 
+    /**
+     * @param PutRequest $request
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -84,6 +108,11 @@ class MoneyController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function destroy($id): JsonResponse
     {
         $model = Money::findOrFail($id);

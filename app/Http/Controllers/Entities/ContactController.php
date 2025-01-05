@@ -18,6 +18,9 @@ class ContactController extends Controller
 {
     private ContactService $service;
 
+    /**
+     * @param ContactService $service
+     */
     public function __construct(ContactService $service)
     {
         $this->service = $service;
@@ -33,6 +36,11 @@ class ContactController extends Controller
         return view('contacts');
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
     public function index(Request $request): JsonResponse
     {
         try {
@@ -44,6 +52,11 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function show($id): JsonResponse
     {
         try {
@@ -55,6 +68,11 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * @param PostRequest $request
+     *
+     * @return JsonResponse
+     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -70,6 +88,12 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * @param PutRequest $request
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -85,6 +109,11 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function destroy($id): JsonResponse
     {
         $model = Contact::findOrFail($id);
