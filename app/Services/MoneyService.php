@@ -4,14 +4,16 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 
-use App\Facades\ActivityLogger;
-
 use App\Models\Money;
 use App\Transformers\MoneyTransformer;
 
 class MoneyService
 {
-    public function __construct(private readonly Money $model, protected string $entity = 'Money'){}
+    public function __construct(
+        private readonly Money $model,
+        protected string $entity = 'money',
+        private readonly ActivityLoggerService $logger = new ActivityLoggerService()
+    ) {}
 
     public function getAll(Request $request)
     {
@@ -25,30 +27,28 @@ class MoneyService
             case $referer && !str_contains($referer, '/money'):
                 switch (true) {
                     case $causer->isUser():
-                        $money = $causer
-                            ->money()
+                        $money = $this->model
                             ->where('user_id', $causer->id)
                             ->get();
 
-                        ActivityLogger::logIndex($causer, $this->entity, false);
+                        $this->logger->logIndex($causer, $this->entity);
                         break;
 
                     default:
                         $money = $this->model->all();
 
-                        ActivityLogger::logIndex($causer, $this->entity, true);
+                        $this->logger->logIndex($causer, $this->entity, true);
                         break;
                 }
                 break;
 
             // Default behavior if the URL contains '/money'
             default:
-                $money = $causer
-                    ->money()
+                $money = $this->model
                     ->where('user_id', $causer->id)
                     ->get();
 
-                ActivityLogger::logIndex($causer, $this->entity, false);
+                $this->logger->logIndex($causer, $this->entity);
                 break;
         }
 
@@ -62,20 +62,15 @@ class MoneyService
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
+        $model = match (true) {
+            $causer->isUser() => $this->model
+                ->where('user_id', $causer->id)
+                ->findOrFail($id),
 
-            default:
-                $model = $causer
-                    ->money()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+            default => $this->model::findOrFail($id)
+        };
 
-        ActivityLogger::log($causer, $model, $this->entity, 'showed');
+        $this->logger->log($causer, $model, $this->entity, 'showed');
 
         return fractal()
             ->item($model)
@@ -89,7 +84,7 @@ class MoneyService
 
         $model = $this->model::create($data);
 
-        ActivityLogger::log($causer, $model, $this->entity, 'created');
+        $this->logger->log($causer, $model, $this->entity, 'created');
 
         return fractal()
             ->item($model)
@@ -101,22 +96,17 @@ class MoneyService
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
+        $model = match (true) {
+            $causer->isUser() => $this->model
+                ->where('user_id', $causer->id)
+                ->findOrFail($id),
 
-            default:
-                $model = $causer
-                    ->money()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+            default => $this->model::findOrFail($id)
+        };
 
         $model->update($data);
 
-        ActivityLogger::log($causer, $model, $this->entity, 'updated');
+        $this->logger->log($causer, $model, $this->entity, 'updated');
 
         return fractal()
             ->item($model->fresh())
@@ -128,21 +118,16 @@ class MoneyService
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
+        $model = match (true) {
+            $causer->isUser() => $this->model
+                ->where('user_id', $causer->id)
+                ->findOrFail($id),
 
-            default:
-                $model = $causer
-                    ->money()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+            default => $this->model::findOrFail($id)
+        };
 
         $model->delete();
 
-        ActivityLogger::log($causer, $model, $this->entity, 'deleted');
+        $this->logger->log($causer, $model, $this->entity, 'deleted');
     }
 }
