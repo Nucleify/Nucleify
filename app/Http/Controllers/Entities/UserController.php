@@ -16,11 +16,17 @@ class UserController extends Controller
 {
     private UserService $service;
 
+    /**
+     * @param UserService $service
+     */
     public function __construct(UserService $service)
     {
         $this->service = $service;
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function index(): JsonResponse
     {
         try {
@@ -32,6 +38,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function show($id): JsonResponse
     {
         try {
@@ -43,6 +54,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param PostRequest $request
+     *
+     * @return JsonResponse
+     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -58,6 +74,12 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param PutRequest $request
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -73,6 +95,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function destroy($id): JsonResponse
     {
         try {

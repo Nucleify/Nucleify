@@ -14,6 +14,9 @@ class ActivityController extends Controller
 {
     private ActivityService $service;
 
+    /**
+     * @param ActivityService $service
+     */
     public function __construct(ActivityService $service)
     {
         $this->service = $service;
@@ -29,6 +32,9 @@ class ActivityController extends Controller
         return view('activity-log');
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function index(): JsonResponse
     {
         try {
@@ -40,6 +46,11 @@ class ActivityController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function show($id): JsonResponse
     {
         try {
@@ -51,6 +62,11 @@ class ActivityController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function destroy($id): JsonResponse
     {
         try {
