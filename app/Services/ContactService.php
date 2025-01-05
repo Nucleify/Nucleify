@@ -4,14 +4,16 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 
-use App\Facades\ActivityLogger;
-
 use App\Models\Contact;
 use App\Transformers\ContactTransformer;
 
 class ContactService
 {
-    public function __construct(private readonly Contact $model, protected string $entity = 'Contact'){}
+    public function __construct(
+        private readonly Contact $model,
+        protected string $entity = 'contact',
+        private readonly ActivityLoggerService $logger = new ActivityLoggerService()
+    ) {}
 
     public function getAll(Request $request): array
     {
@@ -25,30 +27,28 @@ class ContactService
             case $referer && !str_contains($referer, '/contacts'):
                 switch (true) {
                     case $causer->isUser():
-                        $contacts = $causer
-                            ->contacts()
+                        $contacts = $this->model
                             ->where('user_id', $causer->id)
                             ->get();
 
-                        ActivityLogger::logIndex($causer, $this->entity, false);
+                        $this->logger->logIndex($causer, $this->entity);
                         break;
 
                     default:
                         $contacts = $this->model->all();
 
-                        ActivityLogger::logIndex($causer, $this->entity, true);
+                        $this->logger->logIndex($causer, $this->entity, true);
                         break;
                 }
                 break;
 
             // Default behavior if the URL contains '/contacts'
             default:
-                $contacts = $causer
-                    ->contacts()
+                $contacts = $this->model
                     ->where('user_id', $causer->id)
                     ->get();
 
-                ActivityLogger::logIndex($causer, $this->entity, false);
+                $this->logger->logIndex($causer, $this->entity);
                 break;
         }
 
@@ -63,22 +63,15 @@ class ContactService
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
+        $model = match (true) {
+            $causer->isUser() => $this->model
+                ->where('user_id', $causer->id)
+                ->findOrFail($id),
 
-                break;
+            default => $this->model::findOrFail($id)
+        };
 
-            default:
-                $model = $causer
-                    ->contacts()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
-
-        ActivityLogger::log($causer, $model, $this->entity, 'showed');
-
+        $this->logger->log($causer, $model, $this->entity, 'showed');
 
         return fractal()
             ->item($model)
@@ -92,7 +85,7 @@ class ContactService
 
         $model = $this->model::create($data);
 
-        ActivityLogger::log($causer, $model, $this->entity, 'created');
+        $this->logger->log($causer, $model, $this->entity, 'created');
 
         return fractal()
             ->item($model)
@@ -104,22 +97,17 @@ class ContactService
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
+        $model = match (true) {
+            $causer->isUser() => $this->model
+                ->where('user_id', $causer->id)
+                ->findOrFail($id),
 
-            default:
-                $model = $causer
-                    ->contacts()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+            default => $this->model::findOrFail($id)
+        };
 
         $model->update($data);
 
-        ActivityLogger::log($causer, $model, $this->entity, 'updated');
+        $this->logger->log($causer, $model, $this->entity, 'updated');
 
         return fractal()
             ->item($model->fresh())
@@ -132,21 +120,16 @@ class ContactService
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
+        $model = match (true) {
+            $causer->isUser() => $this->model
+                ->where('user_id', $causer->id)
+                ->findOrFail($id),
 
-            default:
-                $model = $causer
-                    ->contacts()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+            default => $this->model::findOrFail($id)
+        };
 
         $model->delete();
 
-        ActivityLogger::log($causer, $model, $this->entity, 'deleted');
+        $this->logger->log($causer, $model, $this->entity, 'deleted');
     }
 }

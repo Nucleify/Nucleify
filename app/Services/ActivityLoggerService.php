@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use Exception;
+
 class ActivityLoggerService
 {
     public function log($causer, $model, $entity, $method): string
@@ -17,6 +19,15 @@ class ActivityLoggerService
         activity()->log($message);
 
         return $message;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function logAndThrow($logMessage, $exceptionMessage): void
+    {
+        $this->logMessage($logMessage);
+        throw new Exception($exceptionMessage);
     }
 
     public function constructLogMessage($causer, $model, $entity, $method): string

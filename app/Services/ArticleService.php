@@ -4,13 +4,16 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 
-use App\Facades\ActivityLogger;
 use App\Models\Article;
 use App\Transformers\ArticleTransformer;
 
 class ArticleService
 {
-    public function __construct(private readonly Article $model, protected string $entity = 'article'){}
+    public function __construct(
+        private readonly Article $model,
+        protected string $entity = 'article',
+        private readonly ActivityLoggerService $logger = new ActivityLoggerService()
+    ) {}
 
     public function getAll(Request $request)
     {
@@ -24,30 +27,28 @@ class ArticleService
             case $referer && !str_contains($referer, '/articles'):
                 switch (true) {
                     case $causer->isUser():
-                        $articles = $causer
-                            ->articles()
+                        $articles = $this->model
                             ->where('user_id', $causer->id)
                             ->get();
 
-                        ActivityLogger::logIndex($causer, $this->entity, false);
+                        $this->logger->logIndex($causer, $this->entity);
                         break;
 
                     default:
                         $articles = $this->model->all();
 
-                        ActivityLogger::logIndex($causer, $this->entity, true);
+                        $this->logger->logIndex($causer, $this->entity, true);
                         break;
                 }
                 break;
 
             // Default behavior if the URL contains '/articles'
             default:
-                $articles = $causer
-                    ->articles()
+                $articles = $this->model
                     ->where('user_id', $causer->id)
                     ->get();
 
-                ActivityLogger::logIndex($causer, $this->entity, false);
+                $this->logger->logIndex($causer, $this->entity);
                 break;
         }
 
@@ -61,20 +62,15 @@ class ArticleService
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
+        $model = match (true) {
+            $causer->isUser() => $this->model
+                ->where('user_id', $causer->id)
+                ->findOrFail($id),
 
-            default:
-                $model = $causer
-                    ->articles()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+            default => $this->model::findOrFail($id),
+        };
 
-        ActivityLogger::log($causer, $model, $this->entity, 'showed');
+        $this->logger->log($causer, $model, $this->entity, 'showed');
 
         return fractal()
             ->item($model)
@@ -88,7 +84,7 @@ class ArticleService
 
         $model = $this->model::create($data);
 
-        ActivityLogger::log($causer, $model, $this->entity, 'created');
+        $this->logger->log($causer, $model, $this->entity, 'created');
 
         return fractal()
             ->item($model)
@@ -100,22 +96,17 @@ class ArticleService
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
+        $model = match (true) {
+            $causer->isUser() => $this->model
+                ->where('user_id', $causer->id)
+                ->findOrFail($id),
 
-            default:
-                $model = $causer
-                    ->articles()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+            default => $this->model::findOrFail($id),
+        };
 
         $model->update($data);
 
-        ActivityLogger::log($causer, $model, $this->entity, 'updated');
+        $this->logger->log($causer, $model, $this->entity, 'updated');
 
         return fractal()
             ->item($model->fresh())
@@ -127,21 +118,16 @@ class ArticleService
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
+        $model = match (true) {
+            $causer->isUser() => $this->model
+                ->where('user_id', $causer->id)
+                ->findOrFail($id),
 
-            default:
-                $model = $causer
-                    ->articles()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+            default => $this->model::findOrFail($id),
+        };
 
         $model->delete();
 
-        ActivityLogger::log($causer, $model, $this->entity, 'deleted');
+        $this->logger->log($causer, $model, $this->entity, 'deleted');
     }
 }
