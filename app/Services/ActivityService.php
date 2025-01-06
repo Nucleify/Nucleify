@@ -14,17 +14,16 @@ readonly class ActivityService
         private ActivityLoggerService $logger = new ActivityLoggerService()
     ) {}
 
+    /**
+     * @return array
+     */
     public function getAll(): array
     {
         $causer = auth()->user();
 
-        $model = match (true) {
-            $causer->isUser() => $this->model
-                ->where('causer_id', $causer->id)
-                ->get(),
-
-            default => $this->model->all()
-        };
+        $model = $causer->isUser()
+            ? $this->model->where('causer_id', $causer->id)->get()
+            : $this->model->all();
 
         return fractal()
             ->collection($model)
@@ -33,27 +32,23 @@ readonly class ActivityService
     }
 
     /**
+     * @param int $id
+     *
+     * @return array
+     *
      * @throws Exception
      */
     public function getById(int $id): array
     {
         $causer = auth()->user();
+
         $model = $this->model::findOrFail($id);
 
-        switch (true) {
-            case $causer->isUser():
-                if ($causer->id !== $model->causer_id) {
-                    $this->logger->logAndThrow(
-                        $causer->name . ' tried to fetch other user activity log, but he doesn\'t have permissions',
-                        'You don\'t have permission to fetch other users activity log'
-                    );
-                }
-                break;
-
-            default:
-//                ActivityLogger::logMessage(
-//                    $causer->name . ' has fetched activity log "'. $model->description .'"'. 'from: '. User::findOrFail($model->causer_id)
-//                );
+        if ($causer->isUser() && $causer->id !== $model->causer_id) {
+            $this->logger->logAndThrow(
+                "User: ''$causer->name'' tried to fetch other user activity log, but he doesn't have permissions",
+                "You don't have permission to fetch other users' activity log"
+            );
         }
 
         return fractal()
@@ -62,24 +57,19 @@ readonly class ActivityService
             ->toArray()['data'];
     }
 
+    /**
+     * @param $id
+     *
+     * @return void
+     */
     public function delete($id): void
     {
         $causer = auth()->user();
 
-        $model = match (true) {
-            $causer->isUser() => $this->model
-                ->where('causer_id', $causer->id)
-                ->findOrFail($id),
-
-            default => $this->model->findOrFail($id)
-        };
+        $model = $causer->isUser()
+            ? $this->model->where('causer_id', $causer->id)->findOrFail($id)
+            : $this->model->findOrFail($id);
 
         $model->delete();
-
-//        if (strpos($model->description, '"'. $causer->name. '" has deleted his activity log with ID: "') === false) {
-//            ActivityLogger::logMessage(
-//                $causer->name . ' has deleted his activity log with ID: "'. $id .'" and description: "'. $model->description
-//            );
-//        }
     }
 }
