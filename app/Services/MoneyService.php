@@ -25,7 +25,7 @@ class MoneyService
      *
      * @return mixed
      */
-    public function getAll(Request $request)
+    public function index(Request $request)
     {
         $causer = auth()->user();
 
@@ -50,7 +50,7 @@ class MoneyService
      *
      * @return array
      */
-    public function getById($id): array
+    public function show($id): array
     {
         $causer = auth()->user();
 

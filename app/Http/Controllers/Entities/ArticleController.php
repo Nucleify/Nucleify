@@ -43,7 +43,7 @@ class ArticleController extends Controller
     public function index(Request $request): JsonResponse
     {
         try {
-            $result = $this->service->getAll($request);
+            $result = $this->service->index($request);
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -59,7 +59,7 @@ class ArticleController extends Controller
     public function show($id): JsonResponse
     {
         try {
-            $result = $this->service->getById($id);
+            $result = $this->service->show($id);
 
             return response()->json($result);
         } catch (Exception $e) {

@@ -25,7 +25,7 @@ class ArticleService
      *
      * @return mixed
      */
-    public function getAll(Request $request): mixed
+    public function index(Request $request): mixed
     {
         $causer = auth()->user();
 
@@ -50,7 +50,7 @@ class ArticleService
      *
      * @return array
      */
-    public function getById($id): array
+    public function show($id): array
     {
         $causer = auth()->user();
 

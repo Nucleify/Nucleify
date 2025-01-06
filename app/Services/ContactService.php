@@ -25,7 +25,7 @@ class ContactService
      *
      * @return array
      */
-    public function getAll(Request $request): array
+    public function index(Request $request): array
     {
         $causer = auth()->user();
 
@@ -50,7 +50,7 @@ class ContactService
      *
      * @return array
      */
-    public function getById($id): array
+    public function show($id): array
     {
         $causer = auth()->user();
 
