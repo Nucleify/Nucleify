@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import axios, { AxiosResponse } from 'axios'
 
 import {
@@ -21,6 +21,7 @@ export function articleRequests(
   close?: CloseDialogFunctionType
 ): ArticleRequestsInterface {
   const results: ArticleResultsType = ref<ArticleInterface[]>([])
+  const createdLastWeek: Ref<number> = ref<number>(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiErrors }: UseApiErrorsInterface = useApiErrors()
@@ -42,6 +43,20 @@ export function articleRequests(
       if (loading) {
         setLoading(false)
       }
+    }
+  }
+
+  async function getCountArticlesByCreatedLastWeek(): Promise<void> {
+    try {
+      const response = await axios.get(
+        '/api/articles/count-by-created-last-week'
+      )
+
+      createdLastWeek.value = response.data.count
+
+      console.log(createdLastWeek.value)
+    } catch (error) {
+      catchErrors(error, apiErrors)
     }
   }
 
@@ -98,8 +113,10 @@ export function articleRequests(
 
   return {
     results,
+    createdLastWeek,
     loading,
     getAllArticles,
+    getCountArticlesByCreatedLastWeek,
     storeArticle,
     editArticle,
     deleteArticle,

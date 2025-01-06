@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import axios, { AxiosResponse } from 'axios'
 
 import {
@@ -21,6 +21,7 @@ export function contactRequests(
   close?: CloseDialogFunctionType
 ): ContactRequestsInterface {
   const results: ContactResultsType = ref([])
+  const createdLastWeek: Ref<number> = ref<number>(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiErrors }: UseApiErrorsInterface = useApiErrors()
@@ -42,6 +43,20 @@ export function contactRequests(
       if (loading) {
         setLoading(false)
       }
+    }
+  }
+
+  async function getCountContactsByCreatedLastWeek(): Promise<void> {
+    try {
+      const response = await axios.get(
+        '/api/contacts/count-by-created-last-week'
+      )
+
+      createdLastWeek.value = response.data.count
+
+      console.log(createdLastWeek.value)
+    } catch (error) {
+      catchErrors(error, apiErrors)
     }
   }
 
@@ -110,8 +125,10 @@ export function contactRequests(
 
   return {
     results,
+    createdLastWeek,
     loading,
     getAllContacts,
+    getCountContactsByCreatedLastWeek,
     storeContact,
     editContact,
     deleteContact,

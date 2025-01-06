@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import axios, { AxiosResponse } from 'axios'
 
 import {
@@ -21,6 +21,7 @@ export function moneyRequests(
   close?: CloseDialogFunctionType
 ): MoneyRequestsInterface {
   const results: MoneyResultsType = ref<MoneyInterface[]>([])
+  const createdLastWeek: Ref<number> = ref<number>(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiErrors }: UseApiErrorsInterface = useApiErrors()
@@ -44,6 +45,18 @@ export function moneyRequests(
           setLoading(false)
         }
       })
+    }
+  }
+
+  async function getCountMoneyByCreatedLastWeek(): Promise<void> {
+    try {
+      const response = await axios.get('/api/money/count-by-created-last-week')
+
+      createdLastWeek.value = response.data.count
+
+      console.log(createdLastWeek.value)
+    } catch (error) {
+      catchErrors(error, apiErrors)
     }
   }
 
@@ -103,8 +116,10 @@ export function moneyRequests(
 
   return {
     results,
+    createdLastWeek,
     loading,
     getAllMoney,
+    getCountMoneyByCreatedLastWeek,
     storeMoney,
     editMoney,
     deleteMoney,
