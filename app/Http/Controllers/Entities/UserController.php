@@ -30,7 +30,7 @@ class UserController extends Controller
     public function index(): JsonResponse
     {
         try {
-            $result = $this->service->getAll();
+            $result = $this->service->index();
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -46,7 +46,7 @@ class UserController extends Controller
     public function show($id): JsonResponse
     {
         try {
-            $result = $this->service->getById($id);
+            $result = $this->service->show($id);
 
             return response()->json($result);
         } catch (Exception $e) {

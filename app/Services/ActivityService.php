@@ -17,7 +17,7 @@ readonly class ActivityService
     /**
      * @return array
      */
-    public function getAll(): array
+    public function index(): array
     {
         $causer = auth()->user();
 
@@ -38,7 +38,7 @@ readonly class ActivityService
      *
      * @throws Exception
      */
-    public function getById(int $id): array
+    public function show(int $id): array
     {
         $causer = auth()->user();
 

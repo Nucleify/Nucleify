@@ -25,7 +25,7 @@ class UserService
      *
      * @throws Exception
      */
-    public function getAll(): array
+    public function index(): array
     {
         $causer = auth()->user();
 
@@ -51,7 +51,7 @@ class UserService
      *
      * @throws Exception
      */
-    public function getById($id): array
+    public function show($id): array
     {
         $model = $this->model::findOrFail($id);
 
