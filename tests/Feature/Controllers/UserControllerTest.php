@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\Entities\UserController;
 use App\Http\Requests\User\PostRequest;
 use App\Http\Requests\User\PutRequest;
@@ -12,14 +14,22 @@ beforeEach(function () {
     $this->controller = app()->makeWith(UserController::class, ['userService' => app()->make(UserService::class)]);
 });
 
-it('runs index method successfully', function () {
+test('index > success', function () {
     $response = $this->controller->index();
 
     expect($response->getStatusCode())->toEqual(200);
     expect($response->getData(true));
 });
 
-it('runs show method successfully', function () {
+test('countByCreatedLastWeek > success', function () {
+    $request = new Request();
+
+    $response = $this->controller->countByCreatedLastWeek($request);
+
+    expect($response->getStatusCode())->toEqual(200);
+});
+
+test('show > success', function () {
     $user = User::factory()->create();
 
     $response = $this->controller->show($user->id);
@@ -28,7 +38,7 @@ it('runs show method successfully', function () {
     expect($response->getData(true));
 });
 
-it('runs store method successfully', function () {
+test('store > success', function () {
     $request = Mockery::mock(PostRequest::class);
     $request->shouldReceive('validated')
         ->andReturn(userData);
@@ -39,7 +49,7 @@ it('runs store method successfully', function () {
     expect($response->getData(true));
 });
 
-it('runs update method successfully', function () {
+test('update > success', function () {
     $user = User::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
@@ -52,7 +62,7 @@ it('runs update method successfully', function () {
     expect($response->getData(true));
 });
 
-it('runs delete method successfully', function () {
+test('delete > success', function () {
     $user = User::factory()->create();
 
     $response = $this->controller->destroy($user->id);

@@ -28,10 +28,10 @@ class ArticleService
     public function index(Request $request): mixed
     {
         $causer = auth()->user();
-
         $referer = $request->header('referer');
+        $isRefererAdmin = $referer && !str_contains($referer, '/articles');
 
-        $articles = $referer && !str_contains($referer, '/articles')
+        $articles = $isRefererAdmin
             ? ($causer->isUser()
                 ? $this->model->where('user_id', $causer->id)->get()
                 : $this->model->all())
@@ -43,6 +43,29 @@ class ArticleService
             ->collection($articles)
             ->transformWith(new ArticleTransformer())
             ->toArray()['data'];
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function countByCreatedLastWeek(Request $request): array
+    {
+        $causer = auth()->user();
+        $referer = $request->header('referer');
+        $lastWeek = now()->subWeek()->toDateString();
+        $isRefererAdmin = $referer && !str_contains($referer, '/articles');
+
+        $count = $this->model
+            ->when(!$causer->isUser() || $isRefererAdmin, fn($query) => $query)
+            ->where('user_id', $causer->id)
+            ->whereDate('created_at', '>=', $lastWeek)
+            ->count();
+
+        $this->logger->logCountByCreatedLastWeek($causer->name, $this->entity, $isRefererAdmin);
+
+        return ['count' => $count];
     }
 
     /**

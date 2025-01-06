@@ -28,6 +28,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::prefix('activity-log')->controller(ActivityController::class)->group(function () {
         Route::get('/', 'index')
             ->name('activity-log.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('activity-log.countByCreatedLastWeek');
         Route::get('/{id}', 'show')
             ->name('activity-log.show');
         Route::delete('/{id}', 'destroy')
@@ -40,6 +42,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::prefix('articles')->controller(ArticleController::class)->group(function () {
         Route::get('/', 'index')
             ->name('articles.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('articles.countByCreatedLastWeek');
         Route::get('/{id}', 'show')
             ->name('articles.show');
         Route::post('/', 'store')
@@ -56,6 +60,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::prefix('contacts')->controller(ContactController::class)->group(function () {
         Route::get('/', 'index')
             ->name('contacts.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('contacts.countByCreatedLastWeek');
         Route::get('/{id}', 'show')
             ->name('contacts.show');
         Route::post('/', 'store')
@@ -72,6 +78,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::prefix('money')->controller(MoneyController::class)->group(function () {
         Route::get('/', 'index')
             ->name('money.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('money.countByCreatedLastWeek');
         Route::get('/{id}', 'show')
             ->name('money.show');
         Route::post('/', 'store')
@@ -88,6 +96,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::prefix('users')->controller(UserController::class)->group(function () {
         Route::get('/', 'index')
             ->name('users.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('users.countByCreatedLastWeek');
         Route::get('/{id}', 'show')
             ->name('users.show');
         Route::post('/', 'store')
