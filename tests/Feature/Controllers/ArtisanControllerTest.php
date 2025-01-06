@@ -11,7 +11,7 @@ beforeEach(function () {
     $this->controller = app()->makeWith(ArtisanController::class);
 });
 
-it('runs tinker command activity log factory successfully', function () {
+test('tinker command activity log factory > success', function () {
     $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute ActivityFactory::new()->count(100)->create()']);
     $response = $this->controller->run($request);
 
@@ -23,7 +23,7 @@ it('runs tinker command activity log factory successfully', function () {
         ]);
 });
 
-it('runs tinker command article factory successfully', function () {
+test('tinker command article factory > success', function () {
     $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute Article::factory(100)->create()']);
     $response = $this->controller->run($request);
 
@@ -35,7 +35,7 @@ it('runs tinker command article factory successfully', function () {
         ]);
 });
 
-it('runs tinker command contact factory successfully', function () {
+test('tinker command contact factory > success', function () {
     $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute Contact::factory(100)->create()']);
     $response = $this->controller->run($request);
 
@@ -47,7 +47,7 @@ it('runs tinker command contact factory successfully', function () {
         ]);
 });
 
-it('runs tinker command user factory successfully', function () {
+test('tinker command user factory > success', function () {
     $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute User::factory(100)->create()']);
     $response = $this->controller->run($request);
 
@@ -59,7 +59,7 @@ it('runs tinker command user factory successfully', function () {
         ]);
 });
 
-it('runs migrate:rollback command successfully', function () {
+test('migrate:rollback command > success', function () {
     $request = Request::create('/artisan', 'POST', ['command' => 'migrate:rollback']);
 
     $response = $this->controller->run($request);
@@ -73,7 +73,7 @@ it('runs migrate:rollback command successfully', function () {
         ->and(Schema::hasTable('users'))->toBeFalse();
 });
 
-it('runs migrate command successfully', function () {
+test('migrate command > success', function () {
     $request = Request::create('/artisan', 'POST', ['command' => 'migrate']);
 
     $response = $this->controller->run($request);
@@ -87,7 +87,7 @@ it('runs migrate command successfully', function () {
         ->and(Schema::hasTable('users'))->toBeTrue();
 });
 
-it('runs migrate:fresh command successfully', function () {
+test('migrate:fresh command > success', function () {
     $request = Request::create('/artisan', 'POST', ['command' => 'migrate:fresh']);
 
     $response = $this->controller->run($request);
@@ -101,7 +101,7 @@ it('runs migrate:fresh command successfully', function () {
         ->and(Schema::hasTable('users'))->toBeTrue();
 });
 
-it('runs migrate:fresh --seed command successfully', function () {
+test('migrate:fresh --seed command > success', function () {
     $request = Request::create('/artisan', 'POST', ['command' => 'migrate:fresh --seed']);
 
     $response = $this->controller->run($request);

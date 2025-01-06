@@ -5,12 +5,14 @@ namespace App\Services;
 use Exception;
 
 use App\Transformers\ActivityTransformer;
+use Illuminate\Http\Request;
 use Spatie\Activitylog\Models\Activity;
 
 readonly class ActivityService
 {
     public function __construct(
         private Activity $model,
+        protected string $entity = 'activity',
         private ActivityLoggerService $logger = new ActivityLoggerService()
     ) {}
 
@@ -32,6 +34,27 @@ readonly class ActivityService
     }
 
     /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function countByCreatedLastWeek(Request $request): array
+    {
+        $causer = auth()->user();
+        $referer = $request->header('referer');
+        $lastWeek = now()->subWeek()->toDateString();
+        $isRefererAdmin = $referer && !str_contains($referer, '/activity-log');
+
+        $count = $this->model
+            ->when(!$causer->isUser() || $isRefererAdmin, fn($query) => $query)
+            ->where('causer_id', $causer->id)
+            ->whereDate('created_at', '>=', $lastWeek)
+            ->count();
+
+        return ['count' => $count];
+    }
+
+    /**
      * @param int $id
      *
      * @return array
@@ -49,12 +72,12 @@ readonly class ActivityService
                 "User: ''$causer->name'' tried to fetch other user activity log, but he doesn't have permissions",
                 "You don't have permission to fetch other users' activity log"
             );
+        } else {
+            return fractal()
+                ->item($model)
+                ->transformWith(new ActivityTransformer())
+                ->toArray()['data'];
         }
-
-        return fractal()
-            ->item($model)
-            ->transformWith(new ActivityTransformer())
-            ->toArray()['data'];
     }
 
     /**

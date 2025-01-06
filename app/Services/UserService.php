@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Exception;
+use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Transformers\UserTransformer;
@@ -42,6 +43,28 @@ class UserService
             ->collection($this->model->all())
             ->transformWith(new UserTransformer())
             ->toArray()['data'];
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function countByCreatedLastWeek(Request $request): array
+    {
+        $causer = auth()->user();
+        $referer = $request->header('referer');
+        $lastWeek = now()->subWeek()->toDateString();
+        $isRefererAdmin = $referer && !str_contains($referer, '/users');
+
+        $count = $this->model
+            ->when(!$causer->isUser() || $isRefererAdmin, fn($query) => $query)
+            ->whereDate('created_at', '>=', $lastWeek)
+            ->count();
+
+        $this->logger->logIndex($causer->name, $this->entity, $isRefererAdmin);
+
+        return ['count' => $count];
     }
 
     /**

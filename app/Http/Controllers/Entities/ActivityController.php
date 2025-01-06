@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 use App\Services\ActivityService;
 
@@ -39,6 +40,22 @@ class ActivityController extends Controller
     {
         try {
             $result = $this->service->index();
+
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function countByCreatedLastWeek(Request $request): JsonResponse
+    {
+        try {
+            $result = $this->service->countByCreatedLastWeek($request);
 
             return response()->json($result);
         } catch (Exception $e) {

@@ -94,11 +94,49 @@ class ActivityLoggerService
      */
     public function constructLogIndexMessage(string $causer, string $entity, bool $all): string
     {
-        $entity = $entity === 'money' ? $entity : $entity . 's';
+        $entity = $entity === 'money'
+            ? $entity
+            : ($entity === 'activity' ? 'activities' : $entity . 's');
 
         return match ($all) {
             true => "User: ''$causer'' has fetched all $entity for all users",
             default => "User: ''$causer'' has fetched all his $entity",
+        };
+    }
+
+
+    /**
+     * @param string $causer
+     * @param string $entity
+     * @param bool $all
+     *
+     * @return string
+     */
+    public function logCountByCreatedLastWeek(string $causer, string $entity, bool $all = false): string
+    {
+        $message = $this->constructLogCountByCreatedLastWeekMessage($causer, $entity, $all);
+
+        activity()->log($message);
+
+        return $message;
+    }
+
+    /**
+     * @param string $causer
+     * @param string $entity
+     * @param bool $all
+     *
+     * @return string
+     */
+    public function constructLogCountByCreatedLastWeekMessage(string $causer, string $entity, bool $all): string
+    {
+        $entity = $entity === 'money'
+            ? $entity
+            : ($entity === 'activity' ? 'activities' : $entity . 's');
+
+        return match ($all) {
+            true => "User: ''$causer'' has counted $entity for all users",
+            default => "User: ''$causer'' has counted all his $entity",
         };
     }
 }

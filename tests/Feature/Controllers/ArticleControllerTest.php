@@ -14,7 +14,7 @@ beforeEach(function () {
     $this->controller = app()->makeWith(ArticleController::class, ['articleService' => app()->make(ArticleService::class)]);
 });
 
-it('runs index method successfully', function () {
+test('index > success', function () {
     Article::factory()->count(3)->create();
 
     $request = new Request();
@@ -25,7 +25,15 @@ it('runs index method successfully', function () {
     expect($response->getData(true));
 });
 
-it('runs show method successfully', function () {
+test('countByCreatedLastWeek > success', function () {
+    $request = new Request();
+
+    $response = $this->controller->countByCreatedLastWeek($request);
+
+    expect($response->getStatusCode())->toEqual(200);
+});
+
+test('show > success', function () {
     $article = Article::factory()->create();
 
     $response = $this->controller->show($article->id);
@@ -34,7 +42,7 @@ it('runs show method successfully', function () {
     expect($response->getData(true));
 });
 
-it('runs store method successfully', function () {
+test('store > success', function () {
     $request = Mockery::mock(PostRequest::class);
     $request->shouldReceive('validated')
         ->andReturn(articleData);
@@ -45,7 +53,7 @@ it('runs store method successfully', function () {
     expect($response->getData(true));
 });
 
-it('runs update method successfully', function () {
+test('update > success', function () {
     $article = Article::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
@@ -58,7 +66,7 @@ it('runs update method successfully', function () {
     expect($response->getData(true));
 });
 
-it('runs delete method successfully', function () {
+test('delete > success', function () {
     $article = Article::factory()->create();
 
     $response = $this->controller->destroy($article->id);

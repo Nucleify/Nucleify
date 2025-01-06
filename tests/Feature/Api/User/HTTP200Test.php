@@ -13,6 +13,13 @@ describe('200 > Authorized', function () {
             ->assertOk();
     });
 
+    test('countByCreatedLastWeek api', function () {
+        User::factory(3)->create();
+
+        $this->getJson(route('users.countByCreatedLastWeek'))
+            ->assertOk();
+    });
+
     test('store api', function () {
         $this->postJson(route('users.store'), userData)
             ->assertOk();

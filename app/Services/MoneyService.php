@@ -25,10 +25,9 @@ class MoneyService
      *
      * @return mixed
      */
-    public function index(Request $request)
+    public function index(Request $request): mixed
     {
         $causer = auth()->user();
-
         $referer = $request->header('referer');
 
         $money = $referer && !str_contains($referer, '/money')
@@ -43,6 +42,29 @@ class MoneyService
             ->collection($money)
             ->transformWith(new MoneyTransformer())
             ->toArray()['data'];
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function countByCreatedLastWeek(Request $request): array
+    {
+        $causer = auth()->user();
+        $referer = $request->header('referer');
+        $lastWeek = now()->subWeek()->toDateString();
+        $isRefererAdmin = $referer && !str_contains($referer, '/money');
+
+        $count = $this->model
+            ->when(!$causer->isUser() || $isRefererAdmin, fn($query) => $query)
+            ->where('user_id', $causer->id)
+            ->whereDate('created_at', '>=', $lastWeek)
+            ->count();
+
+        $this->logger->logIndex($causer->name, $this->entity, $isRefererAdmin);
+
+        return ['count' => $count];
     }
 
     /**

@@ -28,7 +28,6 @@ class ContactService
     public function index(Request $request): array
     {
         $causer = auth()->user();
-
         $referer = $request->header('referer');
 
         $contacts = $referer && !str_contains($referer, '/contacts')
@@ -43,6 +42,29 @@ class ContactService
             ->collection($contacts)
             ->transformWith(new ContactTransformer())
             ->toArray()['data'];
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function countByCreatedLastWeek(Request $request): array
+    {
+        $causer = auth()->user();
+        $referer = $request->header('referer');
+        $lastWeek = now()->subWeek()->toDateString();
+        $isRefererAdmin = $referer && !str_contains($referer, '/contacts');
+
+        $count = $this->model
+            ->when(!$causer->isUser() || $isRefererAdmin, fn($query) => $query)
+            ->where('user_id', $causer->id)
+            ->whereDate('created_at', '>=', $lastWeek)
+            ->count();
+
+        $this->logger->logIndex($causer->name, $this->entity, $isRefererAdmin);
+
+        return ['count' => $count];
     }
 
     /**
