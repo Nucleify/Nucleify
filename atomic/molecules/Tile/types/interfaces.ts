@@ -6,6 +6,6 @@ export interface TileInterface {
   href?: string
   count?: number
   icon?: string
-  countSecondary?: string
+  countSecondary?: number
   textSecondary?: string
 }

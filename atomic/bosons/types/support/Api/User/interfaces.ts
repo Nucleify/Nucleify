@@ -1,3 +1,5 @@
+import { Ref } from 'vue'
+
 import {
   DeleteEntityRequestFunctionType,
   EditEntityRequestFunctionType,
@@ -11,8 +13,10 @@ import {
 
 export interface UserRequestsInterface {
   results: UserResultsType
+  createdLastWeek: Ref<number>
   loading: LoadingRefType
   getAllUsers: GetAllEntitiesRequestFunctionType<UserInterface>
+  getCountUsersByCreatedLastWeek: GetEntityRequestFunctionType
   getUser: GetEntityRequestFunctionType
   storeUser: StoreEntityRequestFunctionType<UserInterface>
   editUser: EditEntityRequestFunctionType<UserInterface>
