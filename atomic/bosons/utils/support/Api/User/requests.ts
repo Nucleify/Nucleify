@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { Ref, ref } from 'vue'
 import axios, { AxiosResponse } from 'axios'
 
 import {
@@ -21,6 +21,7 @@ export function userRequests(
   close?: CloseDialogFunctionType
 ): UserRequestsInterface {
   const results: UserResultsType = ref([])
+  const createdLastWeek: Ref<number> = ref<number>(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiErrors }: UseApiErrorsInterface = useApiErrors()
@@ -42,6 +43,16 @@ export function userRequests(
       if (loading) {
         setLoading(false)
       }
+    }
+  }
+
+  async function getCountUsersByCreatedLastWeek(): Promise<void> {
+    try {
+      const response = await axios.get('/api/users/count-by-created-last-week')
+
+      createdLastWeek.value = response.data.count
+    } catch (error) {
+      catchErrors(error, apiErrors)
     }
   }
 
@@ -107,8 +118,10 @@ export function userRequests(
 
   return {
     results,
+    createdLastWeek,
     loading,
     getAllUsers,
+    getCountUsersByCreatedLastWeek,
     getUser,
     storeUser,
     editUser,

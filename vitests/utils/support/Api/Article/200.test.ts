@@ -39,6 +39,16 @@ describe('articleRequests', (): void => {
     expect(mockUseToast.success)
   })
 
+  it('getCountArticlesByCreatedLastWeek', async (): Promise<void> => {
+    await requests.getCountArticlesByCreatedLastWeek()
+
+    expect(axios.get).toHaveBeenCalledWith(
+      '/api/articles/count-by-created-last-week'
+    )
+    expect(requests.results.value).toEqual(mockResponse.data)
+    expect(mockUseToast.success)
+  })
+
   it('storeArticle', async (): Promise<void> => {
     await requests.storeArticle(mockArticle)
 
