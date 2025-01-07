@@ -22,6 +22,22 @@ describe('405 > Method Not Allowed > Authorized', function () {
         $this->deleteJson(route('activity-log.index', 1))
             ->assertStatus(405);
     });
+    test('invalid method put > countByCreatedLastWeek api', function () {
+        $this->put(route('activity-log.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method put json > countByCreatedLastWeek api', function () {
+        $this->putJson(route('activity-log.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post json > countByCreatedLastWeek api', function () {
+        $this->postJson(route('activity-log.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post > countByCreatedLastWeek api', function () {
+        $this->post(route('activity-log.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
     test('invalid method post json > show api', function () {
         $this->postJson(route('activity-log.show', 1))
             ->assertStatus(405);

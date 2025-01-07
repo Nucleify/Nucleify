@@ -18,6 +18,9 @@ class ContactController extends Controller
 {
     private ContactService $service;
 
+    /**
+     * @param ContactService $service
+     */
     public function __construct(ContactService $service)
     {
         $this->service = $service;
@@ -33,10 +36,15 @@ class ContactController extends Controller
         return view('contacts');
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
     public function index(Request $request): JsonResponse
     {
         try {
-            $result = $this->service->getAll($request);
+            $result = $this->service->index($request);
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -44,10 +52,31 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function countByCreatedLastWeek(Request $request): JsonResponse
+    {
+        try {
+            $result = $this->service->countByCreatedLastWeek($request);
+
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function show($id): JsonResponse
     {
         try {
-            $result = $this->service->getById($id);
+            $result = $this->service->show($id);
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -55,6 +84,11 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * @param PostRequest $request
+     *
+     * @return JsonResponse
+     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -70,6 +104,12 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * @param PutRequest $request
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -85,6 +125,11 @@ class ContactController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function destroy($id): JsonResponse
     {
         $model = Contact::findOrFail($id);

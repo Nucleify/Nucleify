@@ -4,58 +4,39 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 
-use App\Facades\ActivityLogger;
-
 use App\Models\Contact;
 use App\Transformers\ContactTransformer;
 
 class ContactService
 {
-    public function __construct(private readonly Contact $model, protected string $entity = 'Contact'){}
+    /**
+     * @param Contact $model
+     * @param string $entity
+     * @param ActivityLoggerService $logger
+     */
+    public function __construct(
+        private readonly Contact $model,
+        protected string $entity = 'contact',
+        private readonly ActivityLoggerService $logger = new ActivityLoggerService()
+    ) {}
 
-    public function getAll(Request $request): array
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function index(Request $request): array
     {
         $causer = auth()->user();
-
-        // Get the URL from which the request was sent
         $referer = $request->header('referer');
 
-        switch (true) {
-            // If the URL not contains '/contacts', fetch contacts based on user role
-            case $referer && !str_contains($referer, '/contacts'):
-                switch (true) {
-                    case $causer->isUser():
-                        $contacts = $causer
-                            ->contacts()
-                            ->where('user_id', $causer->id)
-                            ->get();
+        $contacts = $referer && !str_contains($referer, '/contacts')
+            ? ($causer->isUser()
+                ? $this->model->where('user_id', $causer->id)->get()
+                : $this->model->all())
+            : $this->model->where('user_id', $causer->id)->get();
 
-                        ActivityLogger::logMessage(
-                            $causer->name . ' has fetched all his contacts'
-                        );
-                        break;
-
-                    default:
-                        $contacts = $this->model->all();
-                        ActivityLogger::logMessage(
-                            $causer->name . ' has fetched all contacts for all users'
-                        );
-                        break;
-                }
-                break;
-
-            // Default behavior if the URL contains '/contacts'
-            default:
-                $contacts = $causer
-                    ->contacts()
-                    ->where('user_id', $causer->id)
-                    ->get();
-
-                ActivityLogger::logMessage(
-                    $causer->name . ' has fetched all his contacts'
-                );
-                break;
-        }
+        $this->logger->logIndex($causer->name, $this->entity, $referer && !str_contains($referer, '/contacts'));
 
         return fractal()
             ->collection($contacts)
@@ -63,27 +44,43 @@ class ContactService
             ->toArray()['data'];
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function countByCreatedLastWeek(Request $request): array
+    {
+        $causer = auth()->user();
+        $referer = $request->header('referer');
+        $lastWeek = now()->subWeek()->toDateString();
+        $isRefererAdmin = $referer && !str_contains($referer, '/contacts');
 
-    public function getById($id): array
+        $count = $this->model
+            ->when(!$causer->isUser() || $isRefererAdmin, fn($query) => $query)
+            ->where('user_id', $causer->id)
+            ->whereDate('created_at', '>=', $lastWeek)
+            ->count();
+
+        $this->logger->logIndex($causer->name, $this->entity, $isRefererAdmin);
+
+        return ['count' => $count];
+    }
+
+    /**
+     * @param $id
+     *
+     * @return array
+     */
+    public function show($id): array
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
+        $model = $causer->isUser()
+            ? $this->model->where('user_id', $causer->id)->findOrFail($id)
+            : $this->model::findOrFail($id);
 
-                break;
-
-            default:
-                $model = $causer
-                    ->contacts()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
-
-        ActivityLogger::log($causer, $model, $this->entity, 'showed');
-
+        $this->logger->log($causer->name, $model->getFullName(), $this->entity, 'showed');
 
         return fractal()
             ->item($model)
@@ -91,12 +88,18 @@ class ContactService
             ->toArray()['data'];
     }
 
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
     public function create(array $data): array
     {
         $causer = auth()->user();
 
         $model = $this->model::create($data);
-        ActivityLogger::log($causer, $model, $this->entity, 'created');
+
+        $this->logger->log($causer->name, $model->getFullName(), $this->entity, 'created');
 
         return fractal()
             ->item($model)
@@ -104,25 +107,23 @@ class ContactService
             ->toArray()['data'];
     }
 
+    /**
+     * @param $id
+     * @param array $data
+     *
+     * @return array
+     */
     public function update($id, array $data): array
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
-
-            default:
-                $model = $causer
-                    ->contacts()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+        $model = $causer->isUser()
+            ? $this->model->where('user_id', $causer->id)->findOrFail($id)
+            : $this->model::findOrFail($id);
 
         $model->update($data);
-        ActivityLogger::log($causer, $model, $this->entity, 'updated');
+
+        $this->logger->log($causer->name, $model->getFullName(), $this->entity, 'updated');
 
         return fractal()
             ->item($model->fresh())
@@ -130,25 +131,20 @@ class ContactService
             ->toArray()['data'];
     }
 
-
+    /**
+     * @param $id
+     *
+     * @return void
+     */
     public function delete($id): void
     {
         $causer = auth()->user();
-
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
-
-            default:
-                $model = $causer
-                    ->contacts()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+        $model = $causer->isUser()
+            ? $this->model->where('user_id', $causer->id)->findOrFail($id)
+            : $this->model::findOrFail($id);
 
         $model->delete();
-        ActivityLogger::log($causer, $model, $this->entity, 'deleted');
+
+        $this->logger->log($causer->name, $model->getFullName(), $this->entity, 'deleted');
     }
 }

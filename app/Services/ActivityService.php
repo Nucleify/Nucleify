@@ -4,38 +4,28 @@ namespace App\Services;
 
 use Exception;
 
-use App\Facades\ActivityLogger;
-
 use App\Transformers\ActivityTransformer;
+use Illuminate\Http\Request;
 use Spatie\Activitylog\Models\Activity;
 
-class ActivityService
+readonly class ActivityService
 {
-    public function __construct(private readonly Activity $model){}
+    public function __construct(
+        private Activity $model,
+        protected string $entity = 'activity',
+        private ActivityLoggerService $logger = new ActivityLoggerService()
+    ) {}
 
-    public function getAll(): array
+    /**
+     * @return array
+     */
+    public function index(): array
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case $causer->isUser():
-                $model = $this->model
-                    ->where('causer_id', $causer->id)
-                    ->get();
-
-//                ActivityLogger::logMessage(
-//                    $causer->name . ' has fetched his activity log data'
-//                );
-                break;
-
-            default:
-                $model = $this->model->all();
-
-//                ActivityLogger::logMessage(
-//                    $causer->name . ' has fetched all activity log data'
-//                );
-                break;
-        }
+        $model = $causer->isUser()
+            ? $this->model->where('causer_id', $causer->id)->get()
+            : $this->model->all();
 
         return fractal()
             ->collection($model)
@@ -44,56 +34,65 @@ class ActivityService
     }
 
     /**
-     * @throws Exception
+     * @param Request $request
+     *
+     * @return array
      */
-    public function getById(int $id): array
+    public function countByCreatedLastWeek(Request $request): array
     {
         $causer = auth()->user();
+        $referer = $request->header('referer');
+        $lastWeek = now()->subWeek()->toDateString();
+        $isRefererAdmin = $referer && !str_contains($referer, '/activity-log');
+
+        $count = $this->model
+            ->when(!$causer->isUser() || $isRefererAdmin, fn($query) => $query)
+            ->where('causer_id', $causer->id)
+            ->whereDate('created_at', '>=', $lastWeek)
+            ->count();
+
+        return ['count' => $count];
+    }
+
+    /**
+     * @param int $id
+     *
+     * @return array
+     *
+     * @throws Exception
+     */
+    public function show(int $id): array
+    {
+        $causer = auth()->user();
+
         $model = $this->model::findOrFail($id);
 
-        switch (true) {
-            case $causer->isUser():
-                if ($causer->id !== $model->causer_id) {
-                    ActivityLogger::logMessage(
-                        $causer->name . ' tried to fetch other user activity log, but he doesn\'t have permissions'
-                    );
-
-                    throw new Exception('You don\'t have permission to fetch other users activity log');
-                }
-
-            default:
-//                ActivityLogger::logMessage(
-//                    $causer->name . ' has fetched activity log "'. $model->description .'"'. 'from: '. User::findOrFail($model->causer_id)
-//                );
-
-                return fractal()
-                    ->item($model)
-                    ->transformWith(new ActivityTransformer())
-                    ->toArray()['data'];
+        if ($causer->isUser() && $causer->id !== $model->causer_id) {
+            $this->logger->logAndThrow(
+                "User: ''$causer->name'' tried to fetch other user activity log, but he doesn't have permissions",
+                "You don't have permission to fetch other users' activity log"
+            );
+        } else {
+            return fractal()
+                ->item($model)
+                ->transformWith(new ActivityTransformer())
+                ->toArray()['data'];
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return void
+     */
     public function delete($id): void
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case $causer->isUser():
-                $model = $this->model
-                    ->where('causer_id', $causer->id)
-                    ->findOrFail($id);
-                break;
+        $model = $causer->isUser()
+            ? $this->model->where('causer_id', $causer->id)->findOrFail($id)
+            : $this->model->findOrFail($id);
 
-            default:
-                $model = $this->model->findOrFail($id);
-                break;
-        }
         $model->delete();
-
-//        if (strpos($model->description, '"'. $causer->name. '" has deleted his activity log with ID: "') === false) {
-//            ActivityLogger::logMessage(
-//                $causer->name . ' has deleted his activity log with ID: "'. $id .'" and description: "'. $model->description
-//            );
-//        }
     }
 }

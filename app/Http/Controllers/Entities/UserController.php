@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Entities;
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 use App\Models\User;
 use App\Services\UserService;
@@ -16,15 +17,21 @@ class UserController extends Controller
 {
     private UserService $service;
 
+    /**
+     * @param UserService $service
+     */
     public function __construct(UserService $service)
     {
         $this->service = $service;
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function index(): JsonResponse
     {
         try {
-            $result = $this->service->getAll();
+            $result = $this->service->index();
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -32,10 +39,31 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function countByCreatedLastWeek(Request $request): JsonResponse
+    {
+        try {
+            $result = $this->service->countByCreatedLastWeek($request);
+
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function show($id): JsonResponse
     {
         try {
-            $result = $this->service->getById($id);
+            $result = $this->service->show($id);
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -43,6 +71,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param PostRequest $request
+     *
+     * @return JsonResponse
+     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -58,6 +91,12 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param PutRequest $request
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -73,6 +112,11 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function destroy($id): JsonResponse
     {
         try {

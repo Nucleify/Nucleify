@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 use App\Services\ActivityService;
 
@@ -14,6 +15,9 @@ class ActivityController extends Controller
 {
     private ActivityService $service;
 
+    /**
+     * @param ActivityService $service
+     */
     public function __construct(ActivityService $service)
     {
         $this->service = $service;
@@ -29,10 +33,13 @@ class ActivityController extends Controller
         return view('activity-log');
     }
 
+    /**
+     * @return JsonResponse
+     */
     public function index(): JsonResponse
     {
         try {
-            $result = $this->service->getAll();
+            $result = $this->service->index();
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -40,10 +47,31 @@ class ActivityController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function countByCreatedLastWeek(Request $request): JsonResponse
+    {
+        try {
+            $result = $this->service->countByCreatedLastWeek($request);
+
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function show($id): JsonResponse
     {
         try {
-            $result = $this->service->getById($id);
+            $result = $this->service->show($id);
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -51,6 +79,11 @@ class ActivityController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function destroy($id): JsonResponse
     {
         try {

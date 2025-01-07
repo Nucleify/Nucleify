@@ -27,7 +27,7 @@ class GenerateSitemapCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return int
+     * @return bool
      */
     public function handle(): bool
     {
