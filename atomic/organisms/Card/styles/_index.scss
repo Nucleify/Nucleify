@@ -8,7 +8,6 @@
   }
 
   box-shadow: $secondary-card-box-shadow;
-  border: none;
   border-radius: 0;
 
   .my-card-header-container {
@@ -46,4 +45,9 @@
       }
     }
   }
+}
+
+.p-card,
+.my-card {
+  border: 1px solid $p-card-border;
 }

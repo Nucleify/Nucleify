@@ -6,6 +6,7 @@
     margin: 0;
     padding: 20px;
     box-shadow: $secondary-card-box-shadow;
+    border: 1px solid $p-card-border;
     border-radius: 0;
 
     .refresh-button {
@@ -39,6 +40,7 @@
     .settings-card-header-container {
       display: flex;
       justify-content: space-between;
+      margin-bottom: 0.5em;
     }
 
     .settings-card-item-list {
