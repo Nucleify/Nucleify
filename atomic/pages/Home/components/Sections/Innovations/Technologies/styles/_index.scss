@@ -5,7 +5,7 @@
 
     .swiper {
       max-width: 1000px;
-      padding: 3em 0;
+      padding: 4em 0;
 
       .swiper-slide {
         padding: 0 1em;
@@ -13,13 +13,14 @@
         justify-content: center;
 
         a {
-          background: #0a0a0a;
-          padding: 0.25em;
+          background: $p-card-background;
+          border: 1px solid $p-card-border;
+          padding: 0.35em;
           border-radius: 12px;
 
           img {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
           }
         }
       }
