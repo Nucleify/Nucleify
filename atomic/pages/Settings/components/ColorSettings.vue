@@ -13,7 +13,6 @@
           text
         />
       </div>
-      <hr />
     </template>
     <template #content>
       <ul class="settings-card-item-list">

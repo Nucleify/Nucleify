@@ -6,11 +6,16 @@
   @each $type in main, activity, article, contact, money, user {
     &[ad-type='#{$type}'] {
       @include entity-styles(
-        var(--#{$type}-item-color-new) !important,
-        var(--#{$type}-item-focus-color-new) !important,
-        var(--#{$type}-item-highlight-color-new) !important
+        var(--#{$type}-item-color) !important,
+        var(--#{$type}-item-focus-color) !important,
+        var(--#{$type}-item-highlight-color) !important
       );
     }
+  }
+
+  .p-accordionheader,
+  .p-accordionheader-toggle-icon {
+    transition: color 300ms;
   }
 
   .p-accordionheader {

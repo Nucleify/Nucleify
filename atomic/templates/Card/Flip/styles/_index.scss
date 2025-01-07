@@ -16,10 +16,18 @@
     box-shadow: $secondary-card-box-shadow;
   }
 
+  .flip-card-front {
+    transition: all 150ms 200ms;
+  }
+
   &:hover {
     .flip-card-inner {
       transform: rotateY(180deg);
       box-shadow: $primary-box-shadow;
+    }
+
+    .flip-card-front {
+      opacity: 0;
     }
   }
 
