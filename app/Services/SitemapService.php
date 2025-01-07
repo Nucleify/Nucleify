@@ -9,7 +9,7 @@ class SitemapService
     /**
      * Generate the sitemap.
      *
-     * @return void
+     * @return bool
      */
     public function generateSitemap(): bool
     {

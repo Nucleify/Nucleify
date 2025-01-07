@@ -4,58 +4,40 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 
-use App\Facades\ActivityLogger;
-
 use App\Models\Article;
 use App\Transformers\ArticleTransformer;
 
 class ArticleService
 {
-    public function __construct(private readonly Article $model, protected string $entity = 'Article'){}
+    /**
+     * @param Article $model
+     * @param string $entity
+     * @param ActivityLoggerService $logger
+     */
+    public function __construct(
+        private readonly Article $model,
+        protected string $entity = 'article',
+        private readonly ActivityLoggerService $logger = new ActivityLoggerService()
+    ) {}
 
-    public function getAll(Request $request)
+    /**
+     * @param Request $request
+     *
+     * @return mixed
+     */
+    public function index(Request $request): mixed
     {
         $causer = auth()->user();
-
-        // Get the URL from which the request was sent
         $referer = $request->header('referer');
+        $isRefererAdmin = $referer && !str_contains($referer, '/articles');
 
-        switch (true) {
-            // If the URL not contains '/articles', fetch contacts based on user role
-            case $referer && !str_contains($referer, '/articles'):
-                switch (true) {
-                    case $causer->isUser():
-                        $articles = $causer
-                            ->articles()
-                            ->where('user_id', $causer->id)
-                            ->get();
+        $articles = $isRefererAdmin
+            ? ($causer->isUser()
+                ? $this->model->where('user_id', $causer->id)->get()
+                : $this->model->all())
+            : $this->model->where('user_id', $causer->id)->get();
 
-                        ActivityLogger::logMessage(
-                            $causer->name . ' has fetched all his articles'
-                        );
-                        break;
-
-                    default:
-                        $articles = $this->model->all();
-                        ActivityLogger::logMessage(
-                            $causer->name . ' has fetched all articles for all users'
-                        );
-                        break;
-                }
-                break;
-
-            // Default behavior if the URL contains '/articles'
-            default:
-                $articles = $causer
-                    ->articles()
-                    ->where('user_id', $causer->id)
-                    ->get();
-
-                ActivityLogger::logMessage(
-                    $causer->name . ' has fetched all his articles'
-                );
-                break;
-        }
+        $this->logger->logIndex($causer->name, $this->entity, $referer && !str_contains($referer, '/articles'));
 
         return fractal()
             ->collection($articles)
@@ -63,24 +45,43 @@ class ArticleService
             ->toArray()['data'];
     }
 
-    public function getById($id): array
+    /**
+     * @param Request $request
+     *
+     * @return array
+     */
+    public function countByCreatedLastWeek(Request $request): array
+    {
+        $causer = auth()->user();
+        $referer = $request->header('referer');
+        $lastWeek = now()->subWeek()->toDateString();
+        $isRefererAdmin = $referer && !str_contains($referer, '/articles');
+
+        $count = $this->model
+            ->when(!$causer->isUser() || $isRefererAdmin, fn($query) => $query)
+            ->where('user_id', $causer->id)
+            ->whereDate('created_at', '>=', $lastWeek)
+            ->count();
+
+        $this->logger->logCountByCreatedLastWeek($causer->name, $this->entity, $isRefererAdmin);
+
+        return ['count' => $count];
+    }
+
+    /**
+     * @param $id
+     *
+     * @return array
+     */
+    public function show($id): array
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
+        $model = $causer->isUser()
+            ? $this->model->where('user_id', $causer->id)->findOrFail($id)
+            : $this->model::findOrFail($id);
 
-            default:
-                $model = $causer
-                    ->articles()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
-
-        ActivityLogger::log($causer, $model, $this->entity, 'showed');
+        $this->logger->log($causer->name, $model->title, $this->entity, 'showed');
 
         return fractal()
             ->item($model)
@@ -88,12 +89,18 @@ class ArticleService
             ->toArray()['data'];
     }
 
+    /**
+     * @param array $data
+     *
+     * @return array
+     */
     public function create(array $data): array
     {
         $causer = auth()->user();
 
         $model = $this->model::create($data);
-        ActivityLogger::log($causer, $model, $this->entity, 'created');
+
+        $this->logger->log($causer->name, $model->title, $this->entity, 'created');
 
         return fractal()
             ->item($model)
@@ -101,50 +108,44 @@ class ArticleService
             ->toArray()['data'];
     }
 
+    /**
+     * @param $id
+     * @param array $data
+     *
+     * @return array
+     */
     public function update($id, array $data): array
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
-
-            default:
-                $model = $causer
-                    ->articles()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+        $model = $causer->isUser()
+            ? $this->model->where('user_id', $causer->id)->findOrFail($id)
+            : $this->model::findOrFail($id);
 
         $model->update($data);
-        ActivityLogger::log($causer, $model, $this->entity, 'updated');
 
-        return fractal()
-            ->item($model->fresh())
+        $this->logger->log($causer->name, $model->title, $this->entity, 'updated');
+
+        return fractal()->item($model->fresh())
             ->transformWith(new ArticleTransformer())
             ->toArray()['data'];
     }
 
+    /**
+     * @param $id
+     *
+     * @return void
+     */
     public function delete($id): void
     {
         $causer = auth()->user();
 
-        switch (true) {
-            case !$causer->isUser():
-                $model = $this->model::findOrFail($id);
-                break;
-
-            default:
-                $model = $causer
-                    ->articles()
-                    ->where('user_id', $causer->id)
-                    ->findOrFail($id);
-                break;
-        }
+        $model = $causer->isUser()
+            ? $this->model->where('user_id', $causer->id)->findOrFail($id)
+            : $this->model::findOrFail($id);
 
         $model->delete();
-        ActivityLogger::log($causer, $model, $this->entity, 'deleted');
+
+        $this->logger->log($causer->name, $model->title, $this->entity, 'deleted');
     }
 }

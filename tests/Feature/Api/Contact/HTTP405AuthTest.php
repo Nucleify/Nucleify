@@ -23,6 +23,14 @@ describe('405 > Method Not Allowed > Authorized', function () {
         $this->deleteJson(route('contacts.index', 1))
             ->assertStatus(405);
     });
+    test('invalid method post json > countByCreatedLastWeek api', function () {
+        $this->postJson(route('contacts.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post > countByCreatedLastWeek api', function () {
+        $this->post(route('contacts.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
     test('invalid method post json with parameter > show api', function () {
         $this->postJson(route('contacts.show', 1))
             ->assertStatus(405);

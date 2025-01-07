@@ -17,6 +17,9 @@ class ArticleController extends Controller
 {
     private ArticleService $service;
 
+    /**
+     * @param ArticleService $service
+     */
     public function __construct(ArticleService $service)
     {
         $this->service = $service;
@@ -32,10 +35,15 @@ class ArticleController extends Controller
         return view('articles');
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
     public function index(Request $request): JsonResponse
     {
         try {
-            $result = $this->service->getAll($request);
+            $result = $this->service->index($request);
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -43,10 +51,31 @@ class ArticleController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
+    public function countByCreatedLastWeek(Request $request): JsonResponse
+    {
+        try {
+            $result = $this->service->countByCreatedLastWeek($request);
+
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function show($id): JsonResponse
     {
         try {
-            $result = $this->service->getById($id);
+            $result = $this->service->show($id);
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -54,6 +83,11 @@ class ArticleController extends Controller
         }
     }
 
+    /**
+     * @param PostRequest $request
+     *
+     * @return JsonResponse
+     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -69,6 +103,12 @@ class ArticleController extends Controller
         }
     }
 
+    /**
+     * @param PutRequest $request
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -84,6 +124,11 @@ class ArticleController extends Controller
         }
     }
 
+    /**
+     * @param $id
+     *
+     * @return JsonResponse
+     */
     public function destroy($id): JsonResponse
     {
         $model = Article::findOrFail($id);

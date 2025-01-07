@@ -1,10 +1,5 @@
 <?php
 
-beforeEach(function () {
-    $this->createUsers();
-    $this->actingAs($this->user);
-});
-
 describe('405 > Unauthorized', function () {
     test('invalid method put > index api', function () {
         $this->put(route('articles.index', 1))
@@ -20,6 +15,14 @@ describe('405 > Unauthorized', function () {
     });
     test('invalid method delete json > index api', function () {
         $this->deleteJson(route('articles.index', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post json > countByCreatedLastWeek api', function () {
+        $this->postJson(route('articles.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post > countByCreatedLastWeek api', function () {
+        $this->post(route('articles.countByCreatedLastWeek', 1))
             ->assertStatus(405);
     });
     test('invalid method post json > show api', function () {
