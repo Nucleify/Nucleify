@@ -6,6 +6,7 @@
   width: 100% !important;
   height: 100vh;
   border-radius: 0;
+  overflow: hidden;
 
   &.top,
   &.right,
@@ -14,7 +15,7 @@
   }
 
   &.bottom {
-    bottom: 70px;
+    bottom: 72px;
   }
 
   &::before,
@@ -28,7 +29,7 @@
     width: 1.5em;
     top: 1em;
     right: 1em;
-    background: $bg-black-color;
+    background: transparent;
     backdrop-filter: blur(1em);
     color: $primary-white-green-text-color;
     white-space: wrap;
@@ -51,7 +52,7 @@
     height: 300px;
     max-width: 450px;
     margin-bottom: 11px;
-    margin-left: 4px;
+    margin-left: 3px;
   }
 }
 
@@ -62,8 +63,8 @@
   width: 36px !important;
   height: 36px !important;
   border-radius: 50%;
-  border: none !important;
-  background: $bg-black-color !important;
+  border: 1px solid $p-card-border !important;
+  background: $p-card-background !important;
   backdrop-filter: blur(1em) !important;
   display: flex;
   justify-content: center;
@@ -90,7 +91,7 @@
   }
 
   &.right {
-    right: 83px;
+    right: 84px;
   }
 
   &.top,
@@ -100,6 +101,6 @@
   }
 
   &.bottom {
-    bottom: 85px;
+    bottom: 86px;
   }
 }
