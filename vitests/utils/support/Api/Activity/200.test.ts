@@ -40,6 +40,16 @@ describe('activityRequests', (): void => {
     expect(mockUseToast.success)
   })
 
+  it('getCountActivitiesByCreatedLastWeek', async (): Promise<void> => {
+    await requests.getCountActivitiesByCreatedLastWeek()
+
+    expect(axios.get).toHaveBeenCalledWith(
+      '/api/activity-log/count-by-created-last-week'
+    )
+    expect(requests.results.value).toEqual(mockResponse.data)
+    expect(mockUseToast.success)
+  })
+
   it('deleteActivity', async (): Promise<void> => {
     await requests.deleteActivity(
       mockActivity.id,

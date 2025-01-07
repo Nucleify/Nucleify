@@ -7,7 +7,7 @@
         header="Articles"
         :count="articles?.length"
         icon="pi pi-comment"
-        count-secondary="20 new"
+        :count-secondary="articlesCreatedLastWeek"
         text-secondary="this week"
         ad-type="article"
       />
@@ -16,7 +16,7 @@
         header="Contacts"
         :count="contacts?.length"
         icon="pi pi-user"
-        count-secondary="20 new"
+        :count-secondary="contactsCreatedLastWeek"
         text-secondary="this week"
         ad-type="contact"
       />
@@ -25,7 +25,7 @@
         header="Money"
         :count="money?.length"
         icon="pi pi-dollar"
-        count-secondary="20 new"
+        :count-secondary="moneyCreatedLastWeek"
         text-secondary="this week"
         ad-type="money"
       />
@@ -34,7 +34,7 @@
         header="Users"
         :count="users?.length"
         icon="pi pi-user"
-        count-secondary="20 new"
+        :count-secondary="usersCreatedLastWeek"
         text-secondary="this week"
         ad-type="user"
       />
@@ -99,22 +99,42 @@ const { display } = useDisplayCharts()
 
 const {
   results: articles,
+  createdLastWeek: articlesCreatedLastWeek,
   loading: articlesLoading,
   getAllArticles,
+  getCountArticlesByCreatedLastWeek,
 } = articleRequests()
 const {
   results: contacts,
+  createdLastWeek: contactsCreatedLastWeek,
   loading: contactsLoading,
   getAllContacts,
+  getCountContactsByCreatedLastWeek,
 } = contactRequests()
-const { results: money, loading: moneyLoading, getAllMoney } = moneyRequests()
-const { results: users, loading: usersLoading, getAllUsers } = userRequests()
+const {
+  results: money,
+  createdLastWeek: moneyCreatedLastWeek,
+  loading: moneyLoading,
+  getAllMoney,
+  getCountMoneyByCreatedLastWeek,
+} = moneyRequests()
+const {
+  results: users,
+  createdLastWeek: usersCreatedLastWeek,
+  loading: usersLoading,
+  getAllUsers,
+  getCountUsersByCreatedLastWeek,
+} = userRequests()
 
 onMounted(() => {
   getAllArticles(true)
   getAllContacts(true)
   getAllMoney(true)
   getAllUsers(true)
+  getCountArticlesByCreatedLastWeek()
+  getCountContactsByCreatedLastWeek()
+  getCountMoneyByCreatedLastWeek()
+  getCountUsersByCreatedLastWeek()
 })
 
 const allLoaded: Ref<boolean> = ref(false)
