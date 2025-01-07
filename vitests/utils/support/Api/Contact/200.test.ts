@@ -40,6 +40,16 @@ describe('contactRequests', (): void => {
     expect(mockUseToast.success)
   })
 
+  it('getCountContactsByCreatedLastWeek', async (): Promise<void> => {
+    await requests.getCountContactsByCreatedLastWeek()
+
+    expect(axios.get).toHaveBeenCalledWith(
+      '/api/contacts/count-by-created-last-week'
+    )
+    expect(requests.results.value).toEqual(mockResponse.data)
+    expect(mockUseToast.success)
+  })
+
   it('storeContact', async (): Promise<void> => {
     await requests.storeContact(mockContact, requests.getAllContacts(), close)
 
