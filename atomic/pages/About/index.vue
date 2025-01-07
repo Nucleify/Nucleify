@@ -14,10 +14,15 @@
       :cards="aboutCategoriesCards"
       :prefix="storysetAboutImgUrl"
     />
+    <ad-section-faq :questions="aboutQuestions" />
   </div>
   <ad-home-footer />
 </template>
 
 <script setup lang="ts">
-import { AboutStartAnimation, aboutCategoriesCards } from 'atomic'
+import {
+  AboutStartAnimation,
+  aboutCategoriesCards,
+  aboutQuestions,
+} from 'atomic'
 </script>
