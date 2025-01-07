@@ -11,7 +11,8 @@
 
     .flip-card-front,
     .flip-card-back {
-      background: #0a0a0a;
+      background: $p-card-background;
+      border: 1px solid $p-card-border;
     }
 
     .access-card-container {

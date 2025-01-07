@@ -13,6 +13,11 @@
     }
   }
 
+  .p-accordionheader,
+  .p-accordionheader-toggle-icon {
+    transition: color 300ms;
+  }
+
   .p-accordionheader {
     @include caterpillar;
 

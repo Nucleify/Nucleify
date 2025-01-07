@@ -28,7 +28,7 @@ body:has(.p-dock.p-dock-left) {
 
 body:has(.p-dock.p-dock-bottom) {
   .panel-container {
-    padding-bottom: 80px;
+    padding-bottom: 82px;
 
     @media (min-width: $breakpoint-lg) {
       padding-top: 8px;
