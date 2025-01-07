@@ -14,7 +14,7 @@ beforeEach(function () {
 describe('500 > Internal Server Error', function($contactData = contactData)  {
     test('index api', function () {
         $this->service
-            ->shouldReceive('getAll')
+            ->shouldReceive('index')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
@@ -26,7 +26,7 @@ describe('500 > Internal Server Error', function($contactData = contactData)  {
 
     test('show api', function () {
         $this->service
-            ->shouldReceive('getById')
+            ->shouldReceive('show')
             ->with(1)
             ->once()
             ->andThrow(new Exception('Internal Server Error'));

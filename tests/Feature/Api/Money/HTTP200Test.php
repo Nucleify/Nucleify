@@ -15,6 +15,13 @@ describe('200 > Authorized', function () {
             ->assertOk();
     });
 
+    test('countByCreatedLastWeek api', function () {
+        Money::factory(3)->create();
+
+        $this->getJson(route('money.countByCreatedLastWeek'))
+            ->assertOk();
+    });
+
     test('show api', function () {
         $money = Money::factory()->create();
 

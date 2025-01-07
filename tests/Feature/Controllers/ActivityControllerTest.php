@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\Entities\ActivityController;
 use App\Services\ActivityService;
 use Database\Factories\ActivityFactory;
@@ -10,14 +12,22 @@ beforeEach(function () {
     $this->controller = app()->makeWith(ActivityController::class, ['articleService' => app()->make(ActivityService::class)]);
 });
 
-it('runs index method successfully', function () {
+test('index > success', function () {
     $response = $this->controller->index();
 
     expect($response->getStatusCode())->toEqual(200);
     expect($response->getData(true));
 });
 
-it('runs show method successfully', function () {
+test('countByCreatedLastWeek > success', function () {
+    $request = new Request();
+
+    $response = $this->controller->countByCreatedLastWeek($request);
+
+    expect($response->getStatusCode())->toEqual(200);
+});
+
+test('show > success', function () {
     $activity = ActivityFactory::new()->create();
 
     $response = $this->controller->show($activity->id);
@@ -26,7 +36,7 @@ it('runs show method successfully', function () {
     expect($response->getData(true));
 });
 
-it('runs delete method successfully', function () {
+test('delete > success', function () {
     $activity = ActivityFactory::new()->create();
 
     $response = $this->controller->destroy($activity->id);

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Contracts\MoneyContract;
-use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Artisan;
 
 class ArtisanController extends Controller
 {
+    /**
+     * @param Request $request
+     *
+     * @return JsonResponse
+     */
     public function run(Request $request): JsonResponse
     {
         $command = $request->input('command');

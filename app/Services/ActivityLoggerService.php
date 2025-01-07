@@ -2,9 +2,20 @@
 
 namespace App\Services;
 
+use Exception;
+use Illuminate\Support\Str;
+
 class ActivityLoggerService
 {
-    public function log($causer, $model, $entity, $method): string
+    /**
+     * @param string $causer
+     * @param string $model
+     * @param string $entity
+     * @param string $method
+     *
+     * @return string
+     */
+    public function log(string $causer, string $model, string $entity, string $method): string
     {
         $message = $this->constructLogMessage($causer, $model, $entity, $method);
 
@@ -13,23 +24,119 @@ class ActivityLoggerService
         return $message;
     }
 
-    public function logMessage($message): string {
+    /**
+     * @param string $message
+     *
+     * @return string
+     */
+    public function logMessage(string $message): string {
         activity()->log($message);
 
         return $message;
     }
 
-    public function constructLogMessage($causer, $model, $entity, $method): string
+    /**
+     * @param string $logMessage
+     * @param string $exceptionMessage
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function logAndThrow(string $logMessage, string $exceptionMessage): void
     {
-        switch ($entity) {
-            case 'Article':
-                return "$entity: ''$model->title'' has been $method by $causer->name";
-            case 'Contact':
-                return "$entity: ''$model->first_name $model->last_name'' has been $method by $causer->name";
-            case 'User':
-                return "$entity: ''$model->name'' has been $method by $causer->name";
-            default:
-                return 0;
+        $this->logMessage($logMessage);
+
+        throw new Exception($exceptionMessage);
+    }
+
+    /**
+     * @param string $causer
+     * @param string|null $model
+     * @param string $entity
+     * @param string $method
+     *
+     * @return string
+     */
+    public function constructLogMessage(string $causer, string|null $model, string $entity, string $method): string
+    {
+        if (!in_array($entity, ['activity', 'article', 'contact', 'money', 'user'])) {
+            return false;
         }
+
+        $pascalCase = Str::studly($entity);
+
+        return "$pascalCase: ''$model'' has been $method by ''$causer''";
+    }
+
+    /**
+     * @param string $causer
+     * @param string $entity
+     * @param bool $all
+     *
+     * @return string
+     */
+    public function logIndex(string $causer, string $entity, bool $all = false): string
+    {
+        $message = $this->constructLogIndexMessage($causer, $entity, $all);
+
+        activity()->log($message);
+
+        return $message;
+    }
+
+    /**
+     * @param string $causer
+     * @param string $entity
+     * @param bool $all
+     *
+     * @return string
+     */
+    public function constructLogIndexMessage(string $causer, string $entity, bool $all): string
+    {
+        $entity = $entity === 'money'
+            ? $entity
+            : ($entity === 'activity' ? 'activities' : $entity . 's');
+
+        return match ($all) {
+            true => "User: ''$causer'' has fetched all $entity for all users",
+            default => "User: ''$causer'' has fetched all his $entity",
+        };
+    }
+
+
+    /**
+     * @param string $causer
+     * @param string $entity
+     * @param bool $all
+     *
+     * @return string
+     */
+    public function logCountByCreatedLastWeek(string $causer, string $entity, bool $all = false): string
+    {
+        $message = $this->constructLogCountByCreatedLastWeekMessage($causer, $entity, $all);
+
+        activity()->log($message);
+
+        return $message;
+    }
+
+    /**
+     * @param string $causer
+     * @param string $entity
+     * @param bool $all
+     *
+     * @return string
+     */
+    public function constructLogCountByCreatedLastWeekMessage(string $causer, string $entity, bool $all): string
+    {
+        $entity = $entity === 'money'
+            ? $entity
+            : ($entity === 'activity' ? 'activities' : $entity . 's');
+
+        return match ($all) {
+            true => "User: ''$causer'' has counted $entity for all users",
+            default => "User: ''$causer'' has counted all his $entity",
+        };
     }
 }
