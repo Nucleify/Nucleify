@@ -31,7 +31,12 @@
       }
 
       .p-accordionheader {
+        background: $p-card-background !important;
         border-top: 1px solid var(--p-accordion-panel-border-color);
+      }
+
+      .p-accordioncontent-content {
+        background: $content-background !important;
       }
 
       .p-accordionheader,
@@ -60,5 +65,9 @@
         }
       }
     }
+  }
+
+  @media (min-width: $breakpoint-xl) {
+    padding: 8em;
   }
 }

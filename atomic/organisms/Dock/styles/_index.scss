@@ -37,12 +37,12 @@
     ul {
       background: $bg-black-color;
       backdrop-filter: blur(1em);
+      border-radius: var(--p-dock-border-radius);
 
       @include center-content;
 
       padding: 0;
       margin: 0;
-      border-radius: 0;
 
       .p-dock-item {
         @include center-content;
@@ -143,6 +143,30 @@
   &:not(.admin) {
     .p-dock-item[aria-label='Admin Panel'] {
       display: none;
+    }
+  }
+
+  &.p-dock-top {
+    .p-dock-list-container {
+      border-bottom: 1px solid $p-card-border;
+    }
+  }
+
+  &.p-dock-bottom {
+    .p-dock-list-container {
+      border-top: 1px solid $p-card-border;
+    }
+  }
+
+  &.p-dock-left {
+    .p-dock-list-container {
+      border-right: 1px solid $p-card-border;
+    }
+  }
+
+  &.p-dock-right {
+    .p-dock-list-container {
+      border-left: 1px solid $p-card-border;
     }
   }
 }
