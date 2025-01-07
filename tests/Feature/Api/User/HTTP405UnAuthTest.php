@@ -17,6 +17,14 @@ describe('405 > Unauthorized', function () {
         $this->deleteJson(route('users.index', 1))
             ->assertStatus(405);
     });
+    test('invalid method post json > countByCreatedLastWeek api', function () {
+        $this->postJson(route('users.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post > countByCreatedLastWeek api', function () {
+        $this->post(route('users.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
     test('invalid method post json > show api', function () {
         $this->postJson(route('users.show', 1))
             ->assertStatus(405);

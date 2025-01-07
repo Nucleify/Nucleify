@@ -10,11 +10,19 @@ class FriendController extends Controller
 {
     private FriendService $service;
 
+    /**
+     * @param FriendService $service
+     */
     public function __construct(FriendService $service)
     {
         $this->service = $service;
     }
 
+    /**
+     * @param $recipient
+     *
+     * @return JsonResponse
+     */
     public function sendRequest($recipient): JsonResponse
     {
         try {
@@ -25,6 +33,11 @@ class FriendController extends Controller
         }
     }
 
+    /**
+     * @param $sender
+     *
+     * @return JsonResponse
+     */
     public function acceptRequest($sender): JsonResponse
     {
         try {
@@ -35,6 +48,11 @@ class FriendController extends Controller
         }
     }
 
+    /**
+     * @param $sender
+     *
+     * @return JsonResponse
+     */
     public function denyRequest($sender): JsonResponse
     {
         try {
@@ -45,6 +63,11 @@ class FriendController extends Controller
         }
     }
 
+    /**
+     * @param $friend
+     *
+     * @return JsonResponse
+     */
     public function removeFriend($friend): JsonResponse
     {
         try {
@@ -55,6 +78,11 @@ class FriendController extends Controller
         }
     }
 
+    /**
+     * @param $friend
+     *
+     * @return JsonResponse
+     */
     public function blockFriend($friend): JsonResponse
     {
         try {
@@ -65,6 +93,11 @@ class FriendController extends Controller
         }
     }
 
+    /**
+     * @param $friend
+     *
+     * @return JsonResponse
+     */
     public function unblockFriend($friend): JsonResponse
     {
         try {

@@ -10,6 +10,15 @@ describe('401 > Unauthorized', function () {
         ['message' => 'Unauthenticated.']
     ));
 
+    test('countByCreatedLastWeek api', apiTest(
+        'GET',
+        'activity-log.countByCreatedLastWeek',
+        401,
+        null,
+        ['message'],
+        ['message' => 'Unauthenticated.']
+    ));
+
     test('show api', apiTest(
         'SHOW',
         'activity-log.show',

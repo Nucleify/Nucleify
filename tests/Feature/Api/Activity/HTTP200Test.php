@@ -15,6 +15,13 @@ describe('200 > Authorized', function () {
             ->assertOk();
     });
 
+    test('countByCreatedLastWeek api', function () {
+        ActivityFactory::new()->count(10)->create();
+
+        $this->getJson(route('activity-log.countByCreatedLastWeek'))
+            ->assertOk();
+    });
+
     test('show api', function () {
         $activity = ActivityFactory::new()->create();
 
