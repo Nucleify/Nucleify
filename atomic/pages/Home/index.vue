@@ -6,6 +6,7 @@
     <innovations />
     <why-us />
     <ad-section-faq :questions="homeQuestions" />
+    <contact />
   </div>
   <home-footer />
 </template>
@@ -15,7 +16,15 @@ import { onBeforeMount, onMounted } from 'vue'
 
 import { homeQuestions, useColors, useViewportChange } from 'atomic'
 
-import { HomeFooter, HomeNavbar, Features, Innovations, Start, WhyUs } from './'
+import {
+  Contact,
+  HomeFooter,
+  HomeNavbar,
+  Features,
+  Innovations,
+  Start,
+  WhyUs,
+} from './'
 
 const { setDefaultColors } = useColors()
 

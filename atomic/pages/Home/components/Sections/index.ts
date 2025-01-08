@@ -1,3 +1,4 @@
+export * from './Contact'
 export * from './Features'
 export * from './Innovations'
 export * from './Start'
