@@ -1,0 +1,47 @@
+.boxes-container {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+  .card-box {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid $primary-border-color;
+
+    &-heading {
+      display: flex;
+      flex-direction: row;
+      gap: 0.5em;
+      color: $primary-white-text-color;
+      font-weight: 600;
+      font-size: $font-size-medium;
+      padding: 0;
+    }
+
+    &-description {
+      color: $primary-white-green-text-color;
+    }
+
+    img {
+      width: 35px;
+      height: 35px;
+    }
+
+    .p-card-body {
+      height: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .card-box {
+        padding: 0.5em;
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0 3em;
+  }
+}

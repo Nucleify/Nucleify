@@ -100,9 +100,15 @@ import {
   ServicesPage,
   SettingsPage,
 } from './pages'
-import { SectionCategory, SectionFaq, SectionStart } from './sections'
+import {
+  SectionCategory,
+  SectionFaq,
+  SectionStack,
+  SectionStart,
+} from './sections'
 import {
   BackLink,
+  CardBoxes,
   CardCategory,
   CardChart,
   CardDataTable,
@@ -209,12 +215,14 @@ app
    */
   .component('ad-section-category', SectionCategory)
   .component('ad-section-faq', SectionFaq)
+  .component('ad-section-stack', SectionStack)
   .component('ad-section-start', SectionStart)
 
   /**
    *  Templates
    */
   .component('ad-back-link', BackLink)
+  .component('ad-card-boxes', CardBoxes)
   .component('ad-card-category', CardCategory)
   .component('ad-card-chart', CardChart)
   .component('ad-card-data-table', CardDataTable)
