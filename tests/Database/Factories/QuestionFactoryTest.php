@@ -42,4 +42,4 @@ it("can't create multiple records", function () {
   }
 
   $this->fail('Expected exception not thrown.');
-})->skip(env('DB_DATABASE') === 'database/database/sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
