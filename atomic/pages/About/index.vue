@@ -10,6 +10,7 @@
     >
       <AboutStartAnimation />
     </ad-section-start>
+    <ad-section-stack />
     <ad-section-category
       :cards="aboutCategoriesCards"
       :prefix="storysetAboutImgUrl"
