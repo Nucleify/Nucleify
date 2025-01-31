@@ -26,9 +26,9 @@ class QuestionFactory extends Factory
 
         $data = [
             'user_id' => $this->faker->randomElement($usersIds),
-            'index' => $this->faker->numberBetween(-1000000, 1000000),
+            'index' => $this->faker->numberBetween(0, 1000000),
             'content' => $this->faker->sentence(),
-            'answer' => $this->faker->paragraph,
+            'answer' => $this->faker->sentence(10),
             'category' => implode(', ', $this->faker->words()),
             'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
             'updated_at' => $this-> faker->dateTimeBetween('-1 year')->format('Y-m-d')
@@ -36,7 +36,7 @@ class QuestionFactory extends Factory
 
         Validator::make($data, [
             'user_id' => 'required|integer|exists:users,id',
-            'index' => 'required|integer',
+            'index' => 'required|integer|min:0',
             'content' => 'required|string|max:255',
             'answer' => 'required|string|max:1000',
             'category' => 'string|max:255',

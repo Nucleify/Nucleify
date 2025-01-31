@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\QuestionContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null category
  * @property string created_at
  * @property string updated_at
+ * @property int getId
+ * @property int getUserId
  * @property int getIndex
  * @property string getContent
  * @property string getAnswer
@@ -23,6 +26,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string getCreatedAt
  * @property string getUpdatedAt
  * @property BelongsTo user
+ * @property Builder scopeGetById
+ * @property Builder scopeGetByUserId
  * @property Builder scopeGetByIndex
  * @property Builder scopeGetByContent
  * @property Builder scopeGetByAnswer
@@ -30,7 +35,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Builder scopeGetByCreatedAt
  * @property Builder scopeGetByUpdatedAt
  */
-class Question extends Model
+
+class Question extends Model implements QuestionContract
 {
     use HasFactory;
 
@@ -48,6 +54,10 @@ class Question extends Model
     public function getId(): int
     {
         return $this->id;
+    }
+    public function getUserId(): int
+    {
+        return $this->user_id;
     }
     public function getIndex(): int
     {
@@ -80,6 +90,10 @@ class Question extends Model
     public function scopeGetById(Builder $query, int $id): Builder
     {
         return $query->where('id', $id);
+    }
+    public function scopeGetByUserId(Builder $query, int $user_id): Builder
+    {
+        return $query->where('user_id', $user_id);
     }
     public function scopeGetByIndex(Builder $query, int $index): Builder
     {
