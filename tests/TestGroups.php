@@ -36,6 +36,10 @@ uses()
     ->in('Feature/Api/Sitemap');
 
 uses()
+    ->group('question-api')
+    ->in('Feature/Api/Question');
+
+uses()
     ->group('feature')
     ->in('Feature');
 
