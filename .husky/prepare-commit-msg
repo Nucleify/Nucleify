@@ -23,6 +23,9 @@ case "$CURRENT_BRANCH" in
     entity-money)
         FINAL_MSG="💵 Money: $ORIGINAL_MSG"
         ;;
+    entity-task)
+        FINAL_MSG="Task: $ORIGINAL_MSG"
+        ;;
     home)
         FINAL_MSG="🏠 Home: $ORIGINAL_MSG"
         ;;
