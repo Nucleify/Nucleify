@@ -9,6 +9,7 @@ use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\Entities\MoneyController;
 use App\Http\Controllers\Pages\AboutController;
+use App\Http\Controllers\Pages\LicenseController;
 use App\Http\Controllers\Pages\BlogController;
 use App\Http\Controllers\Pages\DashboardController;
 use App\Http\Controllers\Pages\HomeController;
@@ -33,6 +34,11 @@ Route::get('/home', [HomeController::class, 'render'])->name('home');
  *  Blog
  */
 //Route::get('/blog', [BlogController::class, 'render'])->name('blog');
+
+/**
+ *  License
+ */
+//Route::get('/license', [LicenseController::class, 'render'])->name('license');
 
 /**
  *  Services
