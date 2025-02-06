@@ -30,7 +30,7 @@
             <ad-anchor text="Purpose" />
             <ad-anchor text="Collaboration" />
             <ad-anchor text="Support Us" />
-            <ad-anchor text="License" />
+            <ad-anchor href="/license" text="License" />
             <ad-anchor text="Contact" />
           </div>
           <div class="blog">

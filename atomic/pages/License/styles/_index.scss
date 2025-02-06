@@ -1,0 +1,36 @@
+#license > .license-container {
+  padding: 130px 50px;
+  color: $white-text-color;
+}
+
+.license-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5em 0;
+  font-size: 2em;
+  font-weight: 700;
+}
+
+.license-content {
+  width: 100%;
+  max-width: 1000px;
+}
+
+@media (min-width: $breakpoint-md) {
+  #license > .license-container {
+    padding: 8em 6em;
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  #license > .license-container {
+    padding: 8em 10em;
+  }
+}
+
+@media (min-width: $breakpoint-xl) {
+  #license > .license-container {
+    padding: 8em 16em;
+  }
+}
