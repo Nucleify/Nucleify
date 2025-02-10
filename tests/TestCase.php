@@ -4,7 +4,6 @@ namespace Tests;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use App\Models\User;
 use Closure;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,10 +11,16 @@ use Illuminate\Database\Schema\SQLiteBuilder;
 use Illuminate\Database\SQLiteConnection;
 use Illuminate\Support\Fluent;
 
+use App\Models\Task\Task;
+use App\Models\Task\TaskCollaboration;
+use App\Models\User;
+
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
+    protected Task $task;
+    protected TaskCollaboration $collaboration;
     protected User $admin, $user;
 
     protected function createUsers(): void
@@ -34,6 +39,12 @@ abstract class TestCase extends BaseTestCase
             'password' => Hash::make('password'),
             'role' => 'user'
         ]);
+    }
+
+    protected function createTask(): void
+    {
+        $this->task = Task::factory()->create();
+        $this->collaboration = TaskCollaboration::factory()->create(['task_id' => $this->task->id]);
     }
 
     public function __construct(?string $name = null, array $data = [], string $dataName = '')

@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
-use App\Contracts\UserContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Multicaret\Acquaintances\Traits\Friendable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Multicaret\Acquaintances\Traits\Friendable;
+
+use App\Contracts\UserContract;
+use App\Models\Task\Task;
 
 /**
  * @property int id
@@ -43,6 +46,9 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Builder scopeGetBySuperAdminRole
  * @property HasMany contacts
  * @property HasMany money
+ * @property HasMany createdTasks
+ * @property HasMany assignedTasks
+ * @property BelongsToMany collaboratedTasks
  * @property void createContactFromUserDetails
  */
 
@@ -200,5 +206,17 @@ class User extends Authenticatable implements UserContract
     public function money(): HasMany
     {
         return $this->hasMany(Money::class, 'user_id');
+    }
+    public function createdTasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'creator_id');
+    }
+    public function assignedTasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'assignee_id');
+    }
+    public function collaboratedTasks(): BelongsToMany
+    {
+        return $this->belongsToMany(Task::class, 'task_collaborators', 'collaborator_id', 'task_id');
     }
 }

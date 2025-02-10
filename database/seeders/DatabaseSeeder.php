@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+use Database\Seeders\Task\TaskCollaborationSeeder;
+use Database\Seeders\Task\TaskSeeder;
+
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
@@ -13,7 +16,9 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             ArticleSeeder::class,
 //            ActivitySeeder::class,
-            MoneySeeder::class
+            MoneySeeder::class,
+            TaskSeeder::class,
+            TaskCollaborationSeeder::class
         ]);
     }
 }
