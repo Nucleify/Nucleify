@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\User;
+use App\Models\Question;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Question>
+ * @extends Factory<Question>
  */
 class QuestionFactory extends Factory
 {
@@ -26,7 +27,7 @@ class QuestionFactory extends Factory
 
         $data = [
             'user_id' => $this->faker->randomElement($usersIds),
-            'index' => $this->faker->numberBetween(0, 1000000),
+            'index' => $this->faker->numberBetween(0, 100),
             'content' => $this->faker->sentence(),
             'answer' => $this->faker->sentence(10),
             'category' => implode(', ', $this->faker->words()),

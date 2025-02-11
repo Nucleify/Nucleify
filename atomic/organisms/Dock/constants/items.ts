@@ -28,6 +28,7 @@ const dockData: readonly DockItemInterface[] = [
   ['pi pi-dollar', 'Money', 'money'],
   ['pi pi-phone', 'Contacts', 'contacts'],
   ['pi pi-comment', 'Articles', 'articles'],
+  ['pi pi-question', 'Questions', 'questions'],
   ['pi pi-history', 'Activities', 'activity-log'],
   ['pi pi-envelope disabled-item', 'Messages'],
   ['pi pi-check-square disabled-item', 'Tasks'],

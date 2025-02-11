@@ -71,6 +71,7 @@ describe('questionRequests', (): void => {
     expect(axios.put).toHaveBeenCalledWith(
       '/api/questions/' + mockQuestion.id,
       {
+        index: mockQuestion.index,
         content: mockQuestion.content,
         answer: mockQuestion.answer,
         category: mockQuestion.category,
