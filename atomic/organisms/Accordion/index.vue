@@ -14,11 +14,11 @@
   >
     <AccordionPanel
       v-for="(panel, index) in props.panels"
-      :value="panel.value"
+      :value="panel.index"
       :key="index"
     >
-      <AccordionHeader>{{ panel.header }}</AccordionHeader>
-      <AccordionContent>{{ panel.content }}</AccordionContent>
+      <AccordionHeader>{{ panel.content }}</AccordionHeader>
+      <AccordionContent>{{ panel.answer }}</AccordionContent>
     </AccordionPanel>
   </Accordion>
 </template>
