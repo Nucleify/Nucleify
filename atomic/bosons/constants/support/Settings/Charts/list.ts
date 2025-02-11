@@ -3,4 +3,5 @@ export const displayChartList: string[] = [
   'Admin',
   'Article',
   'Contact',
+  'Question',
 ] as const

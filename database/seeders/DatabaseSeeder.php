@@ -13,7 +13,8 @@ class DatabaseSeeder extends Seeder
             ContactSeeder::class,
             ArticleSeeder::class,
 //            ActivitySeeder::class,
-            MoneySeeder::class
+            MoneySeeder::class,
+            QuestionSeeder::class,
         ]);
     }
 }

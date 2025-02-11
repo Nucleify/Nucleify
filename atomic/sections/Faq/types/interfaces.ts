@@ -1,12 +1,7 @@
+import { QuestionInterface } from 'atomic'
+
 export interface SectionFaqInterface {
   questions: QuestionInterface | QuestionInterface[]
-}
-
-export interface QuestionInterface {
-  value: number
-  header: string
-  content: string
-  category: string
 }
 
 export interface UseSplitQuestionsInterface {
