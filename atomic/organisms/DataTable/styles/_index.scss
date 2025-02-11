@@ -11,7 +11,7 @@
     margin-top: 4px;
   }
 
-  @each $type in activity, article, contact, money, user {
+  @each $type in activity, article, contact, money, question, user {
     &[ad-type='#{$type}'] {
       @include entity-datatable-styles(
         var(--#{$type}-item-color-new) !important,
@@ -78,10 +78,12 @@
   }
 
   .p-datatable-table {
-    .id-column {
+    .id-column,
+    .index-column {
       width: 8%;
     }
 
+    .content-column,
     .title-column,
     .name-column,
     .full-name-column {
@@ -114,6 +116,7 @@
       display: none;
     }
 
+    .content-column,
     .title-column,
     .category-column,
     .description-column,
@@ -122,6 +125,7 @@
       white-space: nowrap;
     }
 
+    .content-column,
     .title-column {
       max-width: 200px;
     }
@@ -135,14 +139,15 @@
     }
 
     @media (min-width: 530px) {
+      .index-column,
+      .id-column {
+        width: 15%;
+      }
+
       .role-column,
       .birthday-column,
       .id-activity-column {
         display: table-cell;
-      }
-
-      .id-column {
-        width: 15%;
       }
 
       .name-column,
@@ -152,6 +157,7 @@
     }
 
     @media (min-width: $breakpoint-md) {
+      .index-column,
       .id-column {
         width: 10%;
       }
@@ -181,6 +187,7 @@
     }
 
     @media (min-width: $breakpoint-lg) {
+      .index-column,
       .id-column {
         width: 10%;
       }
@@ -198,6 +205,7 @@
         width: 15%;
       }
 
+      .content-column,
       .title-column {
         width: 38%;
       }
@@ -212,6 +220,7 @@
     }
 
     @media (min-width: $breakpoint-xl) {
+      .index-column,
       .id-column {
         width: 8%;
       }
@@ -236,6 +245,7 @@
     }
 
     @media (min-width: $breakpoint-xxl) {
+      .index-column,
       .id-column {
         width: 6%;
       }
@@ -260,6 +270,7 @@
         width: 14%;
       }
 
+      .content-column,
       .title-column {
         width: 30%;
       }
@@ -275,6 +286,7 @@
         width: 12%;
       }
 
+      .content-column,
       .title-column {
         width: 23%;
       }

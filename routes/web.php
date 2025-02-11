@@ -8,6 +8,7 @@ use App\Http\Controllers\Entities\ActivityController;
 use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\Entities\MoneyController;
+use App\Http\Controllers\Entities\QuestionController;
 use App\Http\Controllers\Pages\AboutController;
 use App\Http\Controllers\Pages\BlogController;
 use App\Http\Controllers\Pages\DashboardController;
@@ -62,14 +63,19 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/contacts', [ContactController::class, 'render'])->name('contacts');
 
     /**
-     *  Dashboard
-     */
-    Route::get('/dashboard', [DashboardController::class, 'render'])->name('dashboard');
-
-    /**
      *  Money
      */
     Route::get('/money', [MoneyController::class, 'render'])->name('money');
+
+    /**
+     *  Questions
+     */
+    Route::get('/questions', [QuestionController::class, 'render'])->name('questions');
+
+    /**
+     *  Dashboard
+     */
+    Route::get('/dashboard', [DashboardController::class, 'render'])->name('dashboard');
 
     /**
      *  Settings

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\File;
 use App\Models\Article;
 use App\Models\Contact;
 use App\Models\User;
+use App\Models\Question;
 
 function apiTest($method, $route, $status, $data = null, $expectedJsonStructure = null, $expectedJsonFragment = null, $validationErrors = null): Closure
 {
@@ -37,17 +38,20 @@ function expectLogMessage($log, $model, $method, $causer, $entity): void
         case 'User':
             expect($log)->toContain('User')->toContain($model->name)->toContain($method)->toContain($causer->name);
             break;
+        case 'Question':
+            expect($log)->toContain('Question')->toContain($model->content)->toContain($model->answer)->toContain($method)->toContain($causer->user_id);
         default:
             break;
     }
 }
 
-function getModelByEntity(string $entity): Contact|Article|User|null
+function getModelByEntity(string $entity): Contact|Article|User|Question|null
 {
     return match ($entity) {
         'Article' => new Article(['title' => 'Test Article']),
         'Contact' => new Contact(['first_name' => 'Test', 'last_name' => 'Name']),
         'User' => new User(['name' => 'Test Name']),
+        'Question' => new Question(['content' => 'Test Question']),
         default => null,
     };
 }
