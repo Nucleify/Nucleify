@@ -8,13 +8,14 @@ import {
   ActivityLogInterface,
   ArticleInterface,
   ContactInterface,
+  MoneyInterface,
   UserInterface,
+  QuestionInterface,
   ChartMethodType,
   ChartType,
   ChartInterface,
   LabelItemType,
   UseColorsReturnInterface,
-  MoneyInterface,
   useColors,
 } from 'atomic'
 
@@ -24,6 +25,7 @@ export function useChart() {
     articleItemColors,
     contactItemColors,
     moneyItemColors,
+    questionItemColors,
     userItemColors,
   }: UseColorsReturnInterface = useColors()
 
@@ -34,6 +36,7 @@ export function useChart() {
     articleItemColors: { primary: '#1187C7', hover: '#0F79B2' },
     contactItemColors: { primary: '#0D2C54', hover: '#0d284a' },
     moneyItemColors: { primary: '#10B981', hover: '#10A674' },
+    questionItemColors: { primary: '#8cb910', hover: '#8cb910' },
     userItemColors: { primary: '#64748B', hover: '#566479' },
   }
 
@@ -41,6 +44,7 @@ export function useChart() {
     { label: 'Articles' },
     { label: 'Contacts' },
     { label: 'Money' },
+    { label: 'Questions' },
     { label: 'Users' },
   ]
 
@@ -50,6 +54,7 @@ export function useChart() {
     articleData?: ArticleInterface[],
     contactData?: ContactInterface[],
     moneyData?: MoneyInterface[],
+    questionData?: QuestionInterface[],
     userData?: UserInterface[],
     example?: boolean
   ) {
@@ -59,6 +64,7 @@ export function useChart() {
       const articleDataByMonth: number[] = new Array(12).fill(0)
       const contactDataByMonth: number[] = new Array(12).fill(0)
       const moneyDataByMonth: number[] = new Array(12).fill(0)
+      const questionDataByMonth: number[] = new Array(12).fill(0)
       const userDataByMonth: number[] = new Array(12).fill(0)
 
       const colors = example
@@ -68,6 +74,7 @@ export function useChart() {
             articleItemColors,
             contactItemColors,
             moneyItemColors,
+            questionItemColors,
             userItemColors,
           }
 
@@ -89,6 +96,13 @@ export function useChart() {
           articleDataByMonth[monthIndex]++
         })
 
+        contactData?.forEach((contact: ContactInterface): void => {
+          if (contact.created_at) {
+            const monthIndex: number = new Date(contact.created_at).getMonth()
+            contactDataByMonth[monthIndex]++
+          }
+        })
+
         moneyData?.forEach((money: MoneyInterface): void => {
           if (money.created_at) {
             const monthIndex: number = new Date(money.created_at).getMonth()
@@ -96,10 +110,10 @@ export function useChart() {
           }
         })
 
-        contactData?.forEach((contact: ContactInterface): void => {
-          if (contact.created_at) {
-            const monthIndex: number = new Date(contact.created_at).getMonth()
-            contactDataByMonth[monthIndex]++
+        questionData?.forEach((question: QuestionInterface): void => {
+          if (question.created_at) {
+            const monthIndex: number = new Date(question.created_at).getMonth()
+            questionDataByMonth[monthIndex]++
           }
         })
 
@@ -135,6 +149,11 @@ export function useChart() {
               colors: colors.moneyItemColors,
             },
             {
+              label: 'Question',
+              data: questionDataByMonth,
+              colors: colors.questionItemColors,
+            },
+            {
               label: 'Users',
               data: userDataByMonth,
               colors: colors.userItemColors,
@@ -159,6 +178,7 @@ export function useChart() {
               (label === 'Articles' && articleData) ||
               (label === 'Contacts' && contactData) ||
               (label === 'Money' && moneyData) ||
+              (label === 'Question' && questionData) ||
               (label === 'Users' && userData)
             ) {
               labels.push(label)
@@ -177,6 +197,10 @@ export function useChart() {
             (sum: number, value: number) => sum + value,
             0
           )
+          const totalQuestions: number = questionDataByMonth.reduce(
+            (sum: number, value: number) => sum + value,
+            0
+          )
           const totalUsers: number = userDataByMonth.reduce(
             (sum: number, value: number) => sum + value,
             0
@@ -186,18 +210,26 @@ export function useChart() {
             labels,
             datasets: [
               {
-                data: [totalArticles, totalContacts, totalMoney, totalUsers],
+                data: [
+                  totalArticles,
+                  totalContacts,
+                  totalMoney,
+                  totalQuestions,
+                  totalUsers,
+                ],
                 borderColor: '#041E13FF',
                 backgroundColor: [
                   colors.articleItemColors.primary,
                   colors.contactItemColors.primary,
                   colors.moneyItemColors.primary,
+                  colors.questionItemColors.primary,
                   colors.userItemColors.primary,
                 ],
                 hoverBackgroundColor: [
                   colors.articleItemColors.hover,
                   colors.contactItemColors.hover,
                   colors.moneyItemColors.hover,
+                  colors.questionItemColors.hover,
                   colors.userItemColors.hover,
                 ],
               },

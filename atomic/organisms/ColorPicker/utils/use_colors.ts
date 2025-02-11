@@ -36,6 +36,11 @@ export function useColors(): UseColorsInterface {
     hover: window.localStorage.getItem('money-item-hover-color'),
     selected: window.localStorage.getItem('money-item-highlight-color'),
   }
+  const questionItemColors: ColorItemColorsInterface = {
+    primary: window.localStorage.getItem('question-item-color'),
+    hover: window.localStorage.getItem('question-item-hover-color'),
+    selected: window.localStorage.getItem('question-item-highlight-color'),
+  }
   const userItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('user-item-color'),
     hover: window.localStorage.getItem('user-item-hover-color'),
@@ -78,6 +83,13 @@ export function useColors(): UseColorsInterface {
       'money-item-selected-color',
       'money-item-highlight-color',
 
+      // Question properties
+      'question-item-color',
+      'question-item-hover-color',
+      'question-item-focus-color',
+      'question-item-selected-color',
+      'question-item-highlight-color',
+
       // User properties
       'user-item-color',
       'user-item-hover-color',
@@ -112,6 +124,7 @@ export function useColors(): UseColorsInterface {
     articleItemColors,
     contactItemColors,
     moneyItemColors,
+    questionItemColors,
     userItemColors,
     setDefaultColors,
   }

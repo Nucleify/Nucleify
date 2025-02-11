@@ -43,6 +43,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property Builder scopeGetBySuperAdminRole
  * @property HasMany contacts
  * @property HasMany money
+ * @property HasMany question
  * @property void createContactFromUserDetails
  */
 
@@ -200,5 +201,9 @@ class User extends Authenticatable implements UserContract
     public function money(): HasMany
     {
         return $this->hasMany(Money::class, 'user_id');
+    }
+    public function question(): HasMany
+    {
+        return $this->hasMany(Question::class);
     }
 }

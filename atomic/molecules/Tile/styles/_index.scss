@@ -11,7 +11,7 @@
   background: var(--p-card-background) !important;
   color: var(--p-card-color);
 
-  @each $type in main, activity, article, contact, money, user {
+  @each $type in main, activity, article, contact, money, question, user {
     &[ad-type='#{$type}'] {
       @include entity-tile-styles(
         var(--#{$type}-item-color-new) !important,

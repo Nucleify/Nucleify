@@ -7,6 +7,7 @@ use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\Entities\MoneyController;
 use App\Http\Controllers\Entities\UserController;
+use App\Http\Controllers\Entities\QuestionController;
 use App\Http\Controllers\ArtisanController;
 use App\Http\Controllers\SitemapController;
 
@@ -106,6 +107,21 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('users.update');
         Route::delete('/{id}', 'destroy')
             ->name('users.destroy');
+    });
+
+    Route::prefix('questions')->controller(QuestionController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('questions.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('questions.countByCreatedLastWeek');
+        Route::get('/{id}', 'show')
+            ->name('questions.show');
+        Route::post('/', 'store')
+            ->name('questions.store');
+        Route::put('/{id}', 'update')
+            ->name('questions.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('questions.destroy');;
     });
 
     Route::get('/user', function () {

@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Transformers;
+
+use League\Fractal\TransformerAbstract;
+
+use App\Contracts\QuestionContract;
+
+class QuestionTransformer extends TransformerAbstract
+{
+  public function transform(QuestionContract $model): array
+  {
+    return [
+      'id' => $model->getId(),
+      'user_id' => $model->getUserId(),
+      'index' => $model->getIndex(),
+      'content' => $model->getContent(),
+      'answer' => $model->getAnswer(),
+      'category' => $model->getCategory(),
+      'created_at' => $model->getCreatedAt(),
+      'updated_at' => $model->getUpdatedAt(),
+    ];
+  }
+}
