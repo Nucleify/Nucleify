@@ -1,4 +1,4 @@
-import { QuestionInterface } from '../../../bosons/types/support/Entities/Question/interfaces'
+import { QuestionInterface } from 'atomic'
 
 export interface SectionFaqInterface {
   questions: QuestionInterface | QuestionInterface[]

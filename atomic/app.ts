@@ -99,6 +99,7 @@ import {
   HomeFooter,
   ServicesPage,
   SettingsPage,
+  QuestionPage,
 } from './pages'
 import { SectionCategory, SectionFaq, SectionStart } from './sections'
 import {
@@ -203,6 +204,7 @@ app
   .component('ad-money-page', MoneyPage)
   .component('ad-services-page', ServicesPage)
   .component('ad-settings-page', SettingsPage)
+  .component('ad-question-page', QuestionPage)
 
   /**
    *  Sections

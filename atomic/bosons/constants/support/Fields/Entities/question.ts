@@ -2,6 +2,7 @@ import { EntityFieldInterface, UseFieldsInterface } from 'atomic'
 
 export function useQuestionFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: readonly [string, string, string][] = [
+    ['index', 'Index', 'input-text'],
     ['content', 'Content', 'input-text'],
     ['answer', 'Answer', 'textarea'],
     ['category', 'Category', 'input-text'],

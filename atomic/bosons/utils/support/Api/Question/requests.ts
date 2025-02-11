@@ -53,8 +53,6 @@ export function questionRequests(
       )
 
       createdLastWeek.value = response.data.count
-
-      console.log(createdLastWeek.value)
     } catch (error) {
       catchErrors(error, apiErrors)
     }
@@ -80,16 +78,17 @@ export function questionRequests(
   }
 
   async function editQuestion(
-    question: QuestionInterface,
+    data: QuestionInterface,
     getData: () => Promise<void>
   ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.put(
-        `/api/questions/${question.id}`,
+        `/api/questions/${data.id}`,
         {
-          content: question.content,
-          answer: question.answer,
-          category: question.category,
+          index: data.index,
+          content: data.content,
+          answer: data.answer,
+          category: data.category,
         }
       )
 

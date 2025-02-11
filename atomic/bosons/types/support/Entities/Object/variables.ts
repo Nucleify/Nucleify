@@ -6,6 +6,7 @@ import {
   ContactInterface,
   MoneyInterface,
   UserInterface,
+  QuestionInterface,
 } from 'atomic'
 
 export type ObjectType =
@@ -14,6 +15,7 @@ export type ObjectType =
   | ContactInterface
   | MoneyInterface
   | UserInterface
+  | QuestionInterface
   | undefined
 
 export type ObjectNameType =
@@ -22,5 +24,6 @@ export type ObjectNameType =
   | 'contact'
   | 'money'
   | 'user'
+  | 'question'
 
 export type SelectedObjectType = Ref<ObjectType>

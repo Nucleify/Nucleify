@@ -3,5 +3,7 @@ export const colorList: string[] = [
   'Activity',
   'Article',
   'Contact',
+  'Money',
+  'Question',
   'User',
 ] as const
