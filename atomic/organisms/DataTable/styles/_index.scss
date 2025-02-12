@@ -7,6 +7,14 @@
   justify-content: space-between;
   transition: 0.2s 0.15s opacity;
 
+  .p-row-even {
+    background: $p-card-background !important;
+  }
+
+  .p-row-odd {
+    background: $content-background !important;
+  }
+
   &:not(:has(.p-skeleton)) {
     margin-top: 4px;
   }
@@ -50,6 +58,7 @@
     border: 0;
 
     .p-paginator {
+      background: transparent !important;
       position: relative;
       bottom: 20px;
       margin: 0;
