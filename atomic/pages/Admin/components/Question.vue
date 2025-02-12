@@ -6,7 +6,7 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="question"
-      headerText="Manage Question"
+      headerText="Manage Questions"
       buttonText="New Question"
     />
 
