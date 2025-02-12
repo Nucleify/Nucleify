@@ -22,6 +22,9 @@
 }
 
 .p-select-list {
+  background: $content-background !important;
+  border: 1px solid $p-card-border !important;
+  color: $white-text-color !important;
   padding: 4px !important;
 
   .p-select-option {

@@ -5,6 +5,9 @@
   padding: 0 10px;
 
   .p-dialog {
+    background: $p-card-background !important;
+    border: 1px solid $p-card-border !important;
+    color: $white-text-color !important;
     backdrop-filter: blur(0.5em);
 
     &.my-dialog {
@@ -37,7 +40,7 @@
     }
 
     &.delete {
-      max-width: 350px;
+      max-width: 300px;
 
       .p-dialog-header {
         display: flex;
@@ -64,6 +67,14 @@
       padding: 8px 15px;
       gap: 8px;
       font-size: 1.1em;
+    }
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    .p-dialog {
+      &.delete {
+        max-width: 350px;
+      }
     }
   }
 }
