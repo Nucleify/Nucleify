@@ -62,6 +62,9 @@ case "$CURRENT_BRANCH" in
     vitest)
         FINAL_MSG="Vitest: $ORIGINAL_MSG"
         ;;
+    *)
+        FINAL_MSG="$ORIGINAL_MSG"
+        ;;
 esac
 
 echo "$FINAL_MSG" > "$COMMIT_MSG_FILE"
