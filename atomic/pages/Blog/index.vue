@@ -1,5 +1,4 @@
 <template>
-  <ad-home-navbar />
   <div class="blog-container">
     <ad-section-start
       header="Blog"
@@ -12,8 +11,8 @@
       :prefix="storysetBlogImgUrl"
     />
   </div>
-  <ad-home-footer />
 </template>
+
 <script setup lang="ts">
 import { BlogStartAnimation, blogCategoriesCards } from 'atomic'
 </script>

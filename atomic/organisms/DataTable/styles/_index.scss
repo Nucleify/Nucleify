@@ -129,7 +129,8 @@
     .title-column,
     .category-column,
     .description-column,
-    .name-column {
+    .name-column,
+    .question-category-column {
       overflow: hidden;
       white-space: nowrap;
     }
@@ -219,6 +220,7 @@
         width: 38%;
       }
 
+      .question-category-column,
       .category-column {
         width: 20%;
       }
@@ -250,6 +252,10 @@
 
       .category-column {
         width: 20%;
+      }
+
+      .question-category-column {
+        width: 19%;
       }
     }
 
