@@ -1,5 +1,5 @@
 #contact {
-  padding: 5em 0;
+  padding: 6em 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,7 +7,7 @@
   text-align: center;
   gap: 5em;
 
-  &-content {
+  .contact-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,7 +22,7 @@
 
     &-description {
       line-height: 1.5;
-      max-width: 500px;
+      max-width: 550px;
       margin: 1.5em 0;
     }
 

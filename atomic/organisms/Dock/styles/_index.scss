@@ -38,11 +38,9 @@
       background: $bg-black-color;
       backdrop-filter: blur(1em);
       border-radius: var(--p-dock-border-radius);
-
-      @include center-content;
-
       padding: 0;
       margin: 0;
+      @include center-content;
 
       .p-dock-item {
         @include center-content;
@@ -67,13 +65,12 @@
         }
 
         a {
-          @include center-content;
-          @include min-content;
-
           overflow: visible;
           text-decoration: none;
           cursor: pointer;
           transition: all 300ms;
+          @include center-content;
+          @include min-content;
 
           &:has(.dock-position-buttons) {
             padding: 0;
@@ -86,13 +83,12 @@
           }
 
           .dock-position-buttons {
-            @include center-content;
-
             flex-wrap: wrap;
             gap: 0.25rem;
             max-width: 36px;
             max-height: 36px;
             transform: rotate(45deg);
+            @include center-content;
 
             &:hover {
               transform: rotate(45deg);

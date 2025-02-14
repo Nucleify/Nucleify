@@ -40,35 +40,31 @@
     z-index: 999;
 
     .bottom {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
       width: 100%;
-      max-width: 600px;
+      display: flex;
+      justify-content: center;
 
-      .author {
-        margin-right: 1.25em;
-      }
-
-      @media (max-width: 411px) {
-        .email {
-          margin-left: 0.25em;
-        }
-      }
-
-      a {
+      .authors {
         display: flex;
         align-items: center;
-        color: $white-text-color;
         text-decoration: none;
-        max-width: max-content;
+        font-size: 0.8em;
+        color: #fff;
+        margin-left: 1.5rem;
 
-        .logo img {
-          width: 40px;
+        img {
+          position: relative;
+          top: -2px;
+          margin-left: 0.5em;
+          animation: rotate-right 1s linear infinite;
+          transition: all 500ms;
+          opacity: 0;
         }
 
         &:hover {
-          animation: fade-in 0.3s ease-in;
+          img {
+            opacity: 1;
+          }
         }
       }
     }
@@ -168,11 +164,8 @@
       }
 
       .bottom {
-        gap: 2em;
-
-        a {
-          gap: 0.25em;
-        }
+        justify-content: flex-end;
+        margin-left: 0;
       }
     }
   }

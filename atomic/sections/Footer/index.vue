@@ -44,19 +44,10 @@
         </div>
       </div>
       <div class="bottom">
-        <ad-anchor
-          href="https://github.com/SzymCode"
-          label="SzymCode"
-          class="author"
-        >
-          <ad-image :src="imgUrl + 'szymcode.svg'" class="logo" />
+        <ad-anchor href="https://github.com/Atomic-IT" class="authors">
+          made by Atomic IT
+          <img src="/logo.png" width="28" height="28" alt="Atomic IT logo" />
         </ad-anchor>
-
-        <ad-anchor
-          href="mailto:szymon.radomski@yahoo.com"
-          label="szymon.radomski@yahoo.com"
-          class="email"
-        />
       </div>
     </div>
     <DeferredContent>
@@ -152,9 +143,9 @@ onBeforeUnmount(() => {
 
 if (window.innerWidth < 992) {
   setInterval(updateHexagonPatterns, 700)
-  totalRows.value = 11
+  totalRows.value = 10
 } else {
   setInterval(updateHexagonPatterns, 350)
-  totalRows.value = 9
+  totalRows.value = 8
 }
 </script>

@@ -95,15 +95,16 @@ import {
   DashboardPage,
   Error404Page,
   HomePage,
-  HomeNavbar,
-  HomeFooter,
   ServicesPage,
   SettingsPage,
   QuestionPage,
 } from './pages'
 import {
   SectionCategory,
+  SectionContact,
   SectionFaq,
+  SectionFooter,
+  SectionNavbar,
   SectionStack,
   SectionStart,
 } from './sections'
@@ -205,8 +206,6 @@ app
   .component('ad-dashboard-page', DashboardPage)
   .component('ad-error-404-page', Error404Page)
   .component('ad-home-page', HomePage)
-  .component('ad-home-navbar', HomeNavbar)
-  .component('ad-home-footer', HomeFooter)
   .component('ad-money-page', MoneyPage)
   .component('ad-services-page', ServicesPage)
   .component('ad-settings-page', SettingsPage)
@@ -216,7 +215,10 @@ app
    *  Sections
    */
   .component('ad-section-category', SectionCategory)
+  .component('ad-section-contact', SectionContact)
   .component('ad-section-faq', SectionFaq)
+  .component('ad-section-footer', SectionFooter)
+  .component('ad-section-navbar', SectionNavbar)
   .component('ad-section-stack', SectionStack)
   .component('ad-section-start', SectionStart)
 

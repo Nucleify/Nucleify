@@ -14,9 +14,9 @@
           </ad-heading>
           <ad-paragraph
             text="
-                            Utilizing Atomic Design principles to develop dynamic, modular solutions that enhance
-                            scalability and ensure seamless integration in your development processes.
-                        "
+              Utilizing Atomic Design principles to develop dynamic, modular solutions that enhance
+              scalability and ensure seamless integration in your development processes.
+            "
             class="description"
           />
         </div>
@@ -26,5 +26,5 @@
 </template>
 
 <script setup lang="ts">
-import { StructureAnimation } from 'atomic'
+import { StructureAnimation } from './'
 </script>

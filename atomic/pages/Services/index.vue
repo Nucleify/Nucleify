@@ -1,5 +1,4 @@
 <template>
-  <ad-home-navbar />
   <div class="services-container">
     <ad-section-start
       header="Services"
@@ -12,8 +11,8 @@
       :prefix="storysetServicesImgUrl"
     />
     <ad-section-faq :questions="servicesQuestions" />
+    <ad-section-contact />
   </div>
-  <ad-home-footer />
 </template>
 
 <script setup lang="ts">
