@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Utilities\Activity;
 
 use Exception;
 use Illuminate\Support\Str;
 
-class ActivityLoggerService
+class LoggerService
 {
     /**
      * @param string $causer

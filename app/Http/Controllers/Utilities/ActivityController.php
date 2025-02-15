@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Entities;
+namespace App\Http\Controllers\Utilities;
 
 use App\Http\Controllers\Controller;
+use App\Services\Utilities\Activity\ActivityService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
-use App\Services\ActivityService;
 
 
 class ActivityController extends Controller

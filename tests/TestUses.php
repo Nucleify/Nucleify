@@ -91,6 +91,7 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Database/Migrations',
 
             'Feature/Controllers',
-            'Feature/Services'
+            'Feature/Services',
+            'Feature/Traits'
         );
 }

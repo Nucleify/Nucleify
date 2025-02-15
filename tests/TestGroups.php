@@ -59,6 +59,10 @@ uses()
     ->group('services')
     ->in('Feature/Services');
 
+uses()
+    ->group('traits')
+    ->in('Feature/Traits');
+
 /**
  *  Database groups
  */

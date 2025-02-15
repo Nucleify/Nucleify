@@ -5,7 +5,7 @@ beforeEach(function () {
     $this->actingAs($this->admin);
 });
 
-describe('422 > PUT', function ($updatedUserData = updatedUserData) {
+describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updatedUserData) {
     /**
      * NAME TESTS
      */

@@ -63,6 +63,7 @@
         @click="item.click"
         :url="'/' + item.url"
         :ad-type="item.url"
+        v-tooltip="item.label"
       />
       <div class="dock-position-buttons" v-if="item.label === 'position'">
         <ad-radio-button

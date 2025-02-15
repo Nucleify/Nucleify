@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Entities;
 
-use App\Http\Controllers\Controller;
 use Exception;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-use App\Models\Article;
-use App\Services\ArticleService;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Article\PostRequest;
 use App\Http\Requests\Article\PutRequest;
+use App\Models\Article;
+use App\Services\Entities\ArticleService;
 
 class ArticleController extends Controller
 {
@@ -23,16 +22,6 @@ class ArticleController extends Controller
     public function __construct(ArticleService $service)
     {
         $this->service = $service;
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return Renderable
-     */
-    public function render(): Renderable
-    {
-        return view('articles');
     }
 
     /**
