@@ -91,6 +91,7 @@ import {
   ActivityPage,
   ArticlePage,
   ContactPage,
+  EntitiesPage,
   MoneyPage,
   DashboardPage,
   Error404Page,
@@ -204,6 +205,7 @@ app
   .component('ad-article-page', ArticlePage)
   .component('ad-contact-page', ContactPage)
   .component('ad-dashboard-page', DashboardPage)
+  .component('ad-entities-page', EntitiesPage)
   .component('ad-error-404-page', Error404Page)
   .component('ad-home-page', HomePage)
   .component('ad-money-page', MoneyPage)

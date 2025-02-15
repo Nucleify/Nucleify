@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\Entities;
 
-use App\Http\Controllers\Controller;
 use Exception;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-use App\Models\Contact;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Contact\PostRequest;
 use App\Http\Requests\Contact\PutRequest;
-use App\Services\ContactService;
-
+use App\Models\Contact;
+use App\Services\Entities\ContactService;
 
 class ContactController extends Controller
 {
@@ -24,16 +22,6 @@ class ContactController extends Controller
     public function __construct(ContactService $service)
     {
         $this->service = $service;
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return Renderable
-     */
-    public function render(): Renderable
-    {
-        return view('contacts');
     }
 
     /**

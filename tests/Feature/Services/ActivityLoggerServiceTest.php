@@ -1,10 +1,10 @@
 <?php
 
-use App\Services\ActivityLoggerService;
 use App\Models\User;
+use App\Services\Utilities\Activity\LoggerService;
 
 it('successfully logs message with attributes for all entities and methods', function () {
-    $activityLogger = new ActivityLoggerService();
+    $activityLogger = new LoggerService();
     $causer = new User(['name' => 'Test Name']);
 
     $entities = ['article', 'contact', 'money', 'user'];
@@ -26,7 +26,7 @@ it('successfully logs message with attributes for all entities and methods', fun
 });
 
 it('successfully logs message', function () {
-    $activityLogger = new ActivityLoggerService();
+    $activityLogger = new LoggerService();
 
     $log = $activityLogger->logMessage('Example log message');
 
@@ -34,7 +34,7 @@ it('successfully logs message', function () {
 });
 
 it('does not render log message for unknown entity', function () {
-    $activityLogger = new ActivityLoggerService();
+    $activityLogger = new LoggerService();
     $causer = new User(['name' => 'Test Name']);
     $entity = 'Unknown';
     $method = 'created';

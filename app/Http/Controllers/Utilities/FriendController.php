@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Utilities;
 
-use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\Services\Utilities\FriendshipService;
 use Exception;
-use App\Services\FriendService;
+use Illuminate\Http\JsonResponse;
 
 class FriendController extends Controller
 {
-    private FriendService $service;
+    private FriendshipService $service;
 
     /**
-     * @param FriendService $service
+     * @param FriendshipService $service
      */
-    public function __construct(FriendService $service)
+    public function __construct(FriendshipService $service)
     {
         $this->service = $service;
     }
@@ -27,6 +28,7 @@ class FriendController extends Controller
     {
         try {
             $result = $this->service->sendRequest($recipient);
+
             return response()->json($result);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -42,6 +44,7 @@ class FriendController extends Controller
     {
         try {
             $result = $this->service->acceptRequest($sender);
+
             return response()->json($result);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -57,6 +60,7 @@ class FriendController extends Controller
     {
         try {
             $result = $this->service->denyRequest($sender);
+
             return response()->json($result);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -72,6 +76,7 @@ class FriendController extends Controller
     {
         try {
             $result = $this->service->removeFriend($friend);
+
             return response()->json($result);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -87,6 +92,7 @@ class FriendController extends Controller
     {
         try {
             $result = $this->service->blockFriend($friend);
+
             return response()->json($result);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -102,6 +108,7 @@ class FriendController extends Controller
     {
         try {
             $result = $this->service->unblockFriend($friend);
+
             return response()->json($result);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

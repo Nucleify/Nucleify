@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\FriendController;
-use App\Services\FriendService;
+use App\Http\Controllers\Utilities\FriendController;
+use App\Services\Utilities\FriendshipService;
 use Database\Factories\UserFactory;
 
 beforeEach(function () {
     $this->createUsers();
     $this->actingAs($this->admin);
-    $this->controller = app()->makeWith(FriendController::class, ['service' => app()->make(FriendService::class)]);
+    $this->controller = app()->makeWith(FriendController::class, ['service' => app()->make(FriendshipService::class)]);
 });
 
 test('send friend request > success', function () {

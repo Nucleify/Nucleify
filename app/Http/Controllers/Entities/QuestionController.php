@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Entities;
 
-use App\Http\Controllers\Controller;
 use Exception;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-use App\Models\Question;
-use App\Services\QuestionService;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Question\PostRequest;
 use App\Http\Requests\Question\PutRequest;
+use App\Models\Question;
+use App\Services\Entities\QuestionService;
 
-class QuestionController extends Controller 
+class QuestionController extends Controller
 {
   private QuestionService $service;
 
@@ -23,16 +22,6 @@ class QuestionController extends Controller
   public function __construct(QuestionService $service)
   {
     $this->service = $service;
-  }
-
-  /**
-   * Show the application dashboard.
-   * 
-   * @return Renderable
-   */
-  public function render(): Renderable
-  {
-    return view('questions');
   }
 
   /**

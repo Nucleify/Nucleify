@@ -3,7 +3,7 @@
 use function Pest\Laravel\mock;
 
 use App\Models\Contact;
-use App\Services\ContactService;
+use App\Services\Entities\ContactService;
 
 beforeEach(function () {
     $this->createUsers();
