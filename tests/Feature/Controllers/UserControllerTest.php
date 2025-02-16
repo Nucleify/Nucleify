@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
-
 use App\Http\Controllers\Entities\UserController;
 use App\Http\Requests\User\PostRequest;
 use App\Http\Requests\User\PutRequest;
 use App\Models\User;
-use App\Services\UserService;
+use App\Services\Entities\UserService;
+use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();

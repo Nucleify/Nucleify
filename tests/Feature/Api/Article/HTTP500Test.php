@@ -3,7 +3,7 @@
 use function Pest\Laravel\mock;
 
 use App\Models\Article;
-use App\Services\ArticleService;
+use App\Services\Entities\ArticleService;
 
 beforeEach(function () {
     $this->createUsers();

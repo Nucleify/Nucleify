@@ -5,3 +5,11 @@
     @include entity-styles(var(--#{$type}-item-highlight-color-new) !important);
   }
 }
+
+.p-selectbutton {
+  color: $white-text-color !important;
+
+  .p-togglebutton {
+    background: $p-card-background !important;
+  }
+}

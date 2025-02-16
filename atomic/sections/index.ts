@@ -1,3 +1,7 @@
 export * from './Category'
+export * from './Contact'
 export * from './Faq'
+export * from './Footer'
+export * from './Navbar'
+export * from './Stack'
 export * from './Start'

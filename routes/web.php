@@ -1,20 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Entities\ActivityController;
-use App\Http\Controllers\Entities\ArticleController;
-use App\Http\Controllers\Entities\ContactController;
-use App\Http\Controllers\Entities\MoneyController;
-use App\Http\Controllers\Entities\QuestionController;
-use App\Http\Controllers\Pages\AboutController;
-use App\Http\Controllers\Pages\BlogController;
+use App\Http\Controllers\Entities\EntitiesController;
 use App\Http\Controllers\Pages\DashboardController;
 use App\Http\Controllers\Pages\HomeController;
-use App\Http\Controllers\Pages\ServicesController;
 use App\Http\Controllers\Pages\SettingsController;
+use App\Http\Controllers\Utilities\ActivityController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /**
  *  Home
@@ -48,29 +41,27 @@ Auth::routes();
 Route::middleware(['web', 'auth'])->group(function () {
 
     /**
+     *  Entities routes
+     */
+    $entities = [
+        'index',
+        'articles',
+        'contacts',
+        'money',
+        'questions',
+    ];
+
+
+    foreach ($entities as $entity) {
+        $endpoint = ($entity !== 'index') ? $entity : '';
+
+        Route::get("/entities/$endpoint", [EntitiesController::class, 'renderEntity'])->name($entity)->defaults('entity', $entity);
+    }
+
+    /**
      *  Activity log
      */
     Route::get('/activity-log', [ActivityController::class, 'render'])->name('activity-log');
-
-    /**
-     *  Articles
-     */
-    Route::get('/articles', [ArticleController::class, 'render'])->name('articles');
-
-    /**
-     *  Contacts
-     */
-    Route::get('/contacts', [ContactController::class, 'render'])->name('contacts');
-
-    /**
-     *  Money
-     */
-    Route::get('/money', [MoneyController::class, 'render'])->name('money');
-
-    /**
-     *  Questions
-     */
-    Route::get('/questions', [QuestionController::class, 'render'])->name('questions');
 
     /**
      *  Dashboard

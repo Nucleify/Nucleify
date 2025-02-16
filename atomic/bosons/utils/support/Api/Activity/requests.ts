@@ -53,8 +53,6 @@ export function activityRequests(
       )
 
       createdLastWeek.value = response.data.count
-
-      console.log(createdLastWeek.value)
     } catch (error) {
       catchErrors(error, apiErrors)
     }

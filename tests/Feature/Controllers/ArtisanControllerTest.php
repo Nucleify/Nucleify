@@ -1,8 +1,7 @@
 <?php
 
+use App\Http\Controllers\Utilities\ArtisanController;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ArtisanController;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 beforeEach(function () {
