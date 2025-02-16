@@ -1,15 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\Entities\ActivityController;
 use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\Entities\MoneyController;
-use App\Http\Controllers\Entities\UserController;
 use App\Http\Controllers\Entities\QuestionController;
-use App\Http\Controllers\ArtisanController;
-use App\Http\Controllers\SitemapController;
+use App\Http\Controllers\Entities\UserController;
+use App\Http\Controllers\Utilities\ActivityController;
+use App\Http\Controllers\Utilities\ArtisanController;
+use App\Http\Controllers\Utilities\SitemapController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

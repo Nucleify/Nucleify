@@ -19,6 +19,7 @@
             <ad-input-text
               v-if="field.type !== 'password'"
               v-model="registerFields[field.model]"
+              ad-type="main"
               :type="field.type"
               :id="field.id"
               class="auth-input-text"
@@ -28,6 +29,7 @@
             <ad-password
               v-else
               v-model="registerFields[field.model]"
+              ad-type="main"
               :id="field.id"
               class="auth-input-text"
               :autofocus="field.autofocus"
