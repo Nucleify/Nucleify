@@ -53,8 +53,6 @@ export function moneyRequests(
       const response = await axios.get('/api/money/count-by-created-last-week')
 
       createdLastWeek.value = response.data.count
-
-      console.log(createdLastWeek.value)
     } catch (error) {
       catchErrors(error, apiErrors)
     }

@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Entities;
 
-use App\Http\Controllers\Controller;
 use Exception;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-use App\Models\Money;
-use App\Services\MoneyService;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Money\PostRequest;
 use App\Http\Requests\Money\PutRequest;
+use App\Models\Money;
+use App\Services\Entities\MoneyService;
 
 class MoneyController extends Controller
 {
@@ -23,16 +22,6 @@ class MoneyController extends Controller
     public function __construct(MoneyService $service)
     {
         $this->service = $service;
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return Renderable
-     */
-    public function render(): Renderable
-    {
-        return view('money');
     }
 
     /**

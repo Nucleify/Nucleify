@@ -7,6 +7,14 @@
   justify-content: space-between;
   transition: 0.2s 0.15s opacity;
 
+  .p-row-even {
+    background: $p-card-background !important;
+  }
+
+  .p-row-odd {
+    background: $content-background !important;
+  }
+
   &:not(:has(.p-skeleton)) {
     margin-top: 4px;
   }
@@ -50,6 +58,7 @@
     border: 0;
 
     .p-paginator {
+      background: transparent !important;
       position: relative;
       bottom: 20px;
       margin: 0;
@@ -120,7 +129,8 @@
     .title-column,
     .category-column,
     .description-column,
-    .name-column {
+    .name-column,
+    .question-category-column {
       overflow: hidden;
       white-space: nowrap;
     }
@@ -210,6 +220,7 @@
         width: 38%;
       }
 
+      .question-category-column,
       .category-column {
         width: 20%;
       }
@@ -241,6 +252,10 @@
 
       .category-column {
         width: 20%;
+      }
+
+      .question-category-column {
+        width: 19%;
       }
     }
 

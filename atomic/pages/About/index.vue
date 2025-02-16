@@ -1,5 +1,4 @@
 <template>
-  <ad-home-navbar />
   <div class="about-container">
     <ad-section-start
       header="About Us"
@@ -10,13 +9,14 @@
     >
       <AboutStartAnimation />
     </ad-section-start>
+    <ad-section-stack />
     <ad-section-category
       :cards="aboutCategoriesCards"
       :prefix="storysetAboutImgUrl"
     />
     <ad-section-faq :questions="aboutQuestions" />
+    <ad-section-contact />
   </div>
-  <ad-home-footer />
 </template>
 
 <script setup lang="ts">

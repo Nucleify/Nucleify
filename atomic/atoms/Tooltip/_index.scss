@@ -1,0 +1,10 @@
+.p-tooltip {
+  &-text {
+    background: $p-card-background !important;
+    backdrop-filter: blur(1em);
+    border: 1px solid $p-card-border !important;
+    color: $primary-white-text-color !important;
+    font-size: 0.75em;
+    padding: 0.5em 0.75em !important;
+  }
+}

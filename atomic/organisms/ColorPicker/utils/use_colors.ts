@@ -50,6 +50,7 @@ export function useColors(): UseColorsInterface {
     const properties: string[] = [
       // Main properties
       'main-item-color',
+      'main-item-dark-color',
       'main-item-hover-color',
       'main-item-focus-color',
       'main-item-selected-color',
@@ -57,6 +58,7 @@ export function useColors(): UseColorsInterface {
 
       // Activity properties
       'activity-item-color',
+      'activity-item-dark-color',
       'activity-item-hover-color',
       'activity-item-focus-color',
       'activity-item-selected-color',
@@ -64,6 +66,7 @@ export function useColors(): UseColorsInterface {
 
       // Article properties
       'article-item-color',
+      'article-item-dark-color',
       'article-item-hover-color',
       'article-item-focus-color',
       'article-item-selected-color',
@@ -71,6 +74,7 @@ export function useColors(): UseColorsInterface {
 
       // Contact properties
       'contact-item-color',
+      'contact-item-dark-color',
       'contact-item-hover-color',
       'contact-item-focus-color',
       'contact-item-selected-color',
@@ -78,6 +82,7 @@ export function useColors(): UseColorsInterface {
 
       // Money properties
       'money-item-color',
+      'money-item-dark-color',
       'money-item-hover-color',
       'money-item-focus-color',
       'money-item-selected-color',
@@ -85,6 +90,7 @@ export function useColors(): UseColorsInterface {
 
       // Question properties
       'question-item-color',
+      'question-item-dark-color',
       'question-item-hover-color',
       'question-item-focus-color',
       'question-item-selected-color',
@@ -92,6 +98,7 @@ export function useColors(): UseColorsInterface {
 
       // User properties
       'user-item-color',
+      'user-item-dark-color',
       'user-item-hover-color',
       'user-item-focus-color',
       'user-item-selected-color',
