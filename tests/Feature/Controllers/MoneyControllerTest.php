@@ -1,12 +1,11 @@
 <?php
 
-use Illuminate\Http\Request;
-
 use App\Http\Controllers\Entities\MoneyController;
 use App\Http\Requests\Money\PostRequest;
 use App\Http\Requests\Money\PutRequest;
 use App\Models\Money;
-use App\Services\MoneyService;
+use App\Services\Entities\MoneyService;
+use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();

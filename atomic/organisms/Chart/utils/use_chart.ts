@@ -34,8 +34,8 @@ export function useChart() {
   const exampleColors = {
     activityItemColors: { primary: '#FFB600', hover: '#E7A60B' },
     articleItemColors: { primary: '#1187C7', hover: '#0F79B2' },
-    contactItemColors: { primary: '#0D2C54', hover: '#0d284a' },
-    moneyItemColors: { primary: '#10B981', hover: '#10A674' },
+    contactItemColors: { primary: '#10B981', hover: '#10A674' },
+    moneyItemColors: { primary: '#11c73b', hover: '#0eb233' },
     questionItemColors: { primary: '#8cb910', hover: '#8cb910' },
     userItemColors: { primary: '#64748B', hover: '#566479' },
   }
@@ -255,7 +255,7 @@ export function useChart() {
       plugins: {
         legend: {
           labels: {
-            color: '#4B5563',
+            color: '#cce4dd',
           },
         },
       },
@@ -271,7 +271,7 @@ export function useChart() {
       options.scales = {
         x: {
           ticks: {
-            color: '#4B5563',
+            color: '#e6e6e6',
             font: {
               weight: 500,
             },
@@ -282,7 +282,7 @@ export function useChart() {
         },
         y: {
           ticks: {
-            color: '#4B5563',
+            color: '#e6e6e6',
           },
           grid: {
             display: true,

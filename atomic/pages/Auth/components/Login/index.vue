@@ -18,6 +18,7 @@
         <ad-float-label v-for="(field, index) in loginInputs" :key="index">
           <ad-input-text
             v-model="loginFields[field.model]"
+            :ad-type="'main'"
             :type="field.type"
             :id="field.id"
             class="auth-input-text"

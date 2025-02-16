@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-
-use App\Http\Controllers\Entities\ActivityController;
-use App\Services\ActivityService;
+use App\Http\Controllers\Utilities\ActivityController;
+use App\Services\Utilities\Activity\ActivityService;
 use Database\Factories\ActivityFactory;
+use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();

@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Entities;
 
-use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-use App\Models\User;
-use App\Services\UserService;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\User\PostRequest;
 use App\Http\Requests\User\PutRequest;
-
+use App\Models\User;
+use App\Services\Entities\UserService;
 
 class UserController extends Controller
 {

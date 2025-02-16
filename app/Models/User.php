@@ -30,6 +30,7 @@ use Laravel\Sanctum\HasApiTokens;
  * @property bool isTestAdmin
  * @property bool isAdmin
  * @property bool isSuperAdmin
+ * @property bool hasRole
  * @property Builder scopeGetById
  * @property Builder scopeGetByName
  * @property Builder scopeGetByEmail
@@ -119,6 +120,15 @@ class User extends Authenticatable implements UserContract
     public function isSuperAdmin(): bool
     {
         return $this->role === 'super_admin';
+    }
+    public function isStaff(): bool
+    {
+        return $this->hasRole(['tech', 'test_admin', 'admin', 'super_admin']);
+    }
+    public function hasRole($roles): bool
+    {
+        $roles = is_array($roles) ? $roles : [$roles];
+        return in_array($this->role, $roles);
     }
 
     /**
