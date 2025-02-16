@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('content');
             $table->string('answer');
             $table->string('category')->nullable();
+            $table->boolean('on_site');
+            $table->boolean('display');
             $table->timestamps();
         });
     }

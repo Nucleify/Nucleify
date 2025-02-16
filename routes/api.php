@@ -114,6 +114,8 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('questions.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
             ->name('questions.countByCreatedLastWeek');
+        Route::get('/get-by-category/{category}', 'getByCategory')
+            ->name('questions.getByCategory');
         Route::get('/{id}', 'show')
             ->name('questions.show');
         Route::post('/', 'store')
