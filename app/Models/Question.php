@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string content
  * @property string answer
  * @property string|null category
+ * @property boolean on_site
+ * @property boolean display
  * @property string created_at
  * @property string updated_at
  * @property int getId
@@ -32,6 +34,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Builder scopeGetByContent
  * @property Builder scopeGetByAnswer
  * @property Builder scopeGetByCategory
+ * @property Builder scopeGetByOnSite
+ * @property Builder scopeGetByDisplay
  * @property Builder scopeGetByCreatedAt
  * @property Builder scopeGetByUpdatedAt
  */
@@ -45,7 +49,9 @@ class Question extends Model implements QuestionContract
         'index',
         'content',
         'answer',
-        'category'
+        'category',
+        'on_site',
+        'display'
     ];
 
     /**
@@ -74,6 +80,14 @@ class Question extends Model implements QuestionContract
     public function getCategory(): string|null
     {
         return $this->category;
+    }
+    public function getOnSite(): bool
+    {
+        return $this->on_site;
+    }
+    public function getDisplay(): bool
+    {
+        return $this->display;
     }
     public function getCreatedAt(): string
     {
@@ -110,6 +124,14 @@ class Question extends Model implements QuestionContract
     public function scopeGetByCategory(Builder $query, ?string $category): Builder
     {
         return $query->where('category', $category);
+    }
+    public function scopeGetByOnSite(Builder $query, bool $on_site): Builder
+    {
+        return $query->where('on_site', $on_site);
+    }
+    public function scopeGetByDisplay(Builder $query, bool $display): Builder
+    {
+        return $query->where('display', $display);
     }
     public function scopeGetByCreatedAt(Builder $query, string $createdAt): Builder
     {

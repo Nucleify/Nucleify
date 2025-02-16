@@ -100,7 +100,9 @@ const questionData = [
     'index' => 1,
     'content' => 'Question',
     'answer' => 'Answer',
-    'category' => 'test'
+    'category' => 'test',
+    'on_site' => True,
+    'display' => True
 ];
 const updatedQuestionData = [
     'id' => 1,
@@ -108,5 +110,7 @@ const updatedQuestionData = [
     'index' => 1,
     'content' => 'Question2',
     'answer' => 'Answer2',
-    'category' => 'test2'
+    'category' => 'test2',
+    'on_site' => False,
+    'display' => False
 ];
