@@ -2,47 +2,54 @@
 
 use App\Models\Question;
 
+uses()->group('question-api-200');
+
 beforeEach(function () {
-  $this->createUsers();
-  $this->actingAs($this->admin);
+    $this->createUsers();
+    $this->actingAs($this->admin);
 });
 
 describe('200 > Authorized', function () {
-  test('index api', function () {
-    Question::factory(3)->create();
+    test('index api', function () {
+        Question::factory(3)->create();
 
-    $this->getJson(route('questions.index'))
-      ->assertOk();
-  });
+        $this->getJson(route('questions.index'))
+            ->assertOk();
+    });
 
-  test('countByCreatedLastWeek api', function () {
-    Question::factory(3)->create();
+    test('countByCreatedLastWeek api', function () {
+        Question::factory(3)->create();
 
-    $this->getJson(route('questions.countByCreatedLastWeek'))
-      ->assertOk();
-  });
+        $this->getJson(route('questions.countByCreatedLastWeek'))
+            ->assertOk();
+    });
 
-  test('show api', function () {
-    $question = Question::factory()->create();
+    test('getByCategory api', function () {
+        Question::factory(3)->create(['category' => 'technology']);
 
-    $this->getJson(route('questions.show', $question->id))
-      ->assertOk();
-  });
+        $this->getJson(route('questions.getByCategory', ['category' => 'technology']))
+            ->assertOk();
+    });
 
-  test('update api', function () {
-    $question = Question::factory()->create();
+    test('show api', function () {
+        $question = Question::factory()->create();
 
-    $this->putJson(route('questions.update', $question->id), updatedQuestionData)
-      ->assertOk();
-  });
+        $this->getJson(route('questions.show', $question->id))
+            ->assertOk();
+    });
 
-  test('destroy api', function () {
-    $question = Question::factory()->create();
+    test('update api', function () {
+        $question = Question::factory()->create();
 
-    $this->deleteJson(route('questions.destroy', $question->id))
-      ->assertOk();
-    $this->assertDatabaseMissing('questions', ['id' => $question->id]);
-  });
+        $this->putJson(route('questions.update', $question->id), updatedQuestionData)
+            ->assertOk();
+    });
+
+    test('destroy api', function () {
+        $question = Question::factory()->create();
+
+        $this->deleteJson(route('questions.destroy', $question->id))
+            ->assertOk();
+        $this->assertDatabaseMissing('questions', ['id' => $question->id]);
+    });
 });
-
-

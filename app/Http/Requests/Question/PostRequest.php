@@ -27,7 +27,9 @@ class PostRequest extends FormRequest
       'index' => 'required|integer',
       'content' => 'required|string|max:255',
       'answer' => 'required|string|max:1000',
-      'category' => 'string|max:255'
+      'category' => 'string|max:255',
+      'on_site' => 'bool',
+      'display' => 'bool'
     ];
   }
 }

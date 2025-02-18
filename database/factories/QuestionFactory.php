@@ -16,7 +16,7 @@ class QuestionFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array<string, mixed> 
      */
     protected static ?string $password;
 
@@ -25,12 +25,16 @@ class QuestionFactory extends Factory
         $users = User::all();
         $usersIds = $users->pluck('id')->toArray();
 
+        $category = $this->faker->randomElement(['home', 'about', 'services', 'other']);
+
         $data = [
             'user_id' => $this->faker->randomElement($usersIds),
             'index' => $this->faker->numberBetween(0, 100),
             'content' => $this->faker->sentence(),
             'answer' => $this->faker->sentence(10),
-            'category' => implode(', ', $this->faker->words()),
+            'category' => $category,
+            'on_site' => in_array($category, ['home', 'about', 'services']),
+            'display' => $this->faker->boolean(),
             'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
             'updated_at' => $this-> faker->dateTimeBetween('-1 year')->format('Y-m-d')
         ];
@@ -41,6 +45,8 @@ class QuestionFactory extends Factory
             'content' => 'required|string|max:255',
             'answer' => 'required|string|max:1000',
             'category' => 'string|max:255',
+            'on_site' => 'bool',
+            'display' => 'bool'
         ]);
 
         return $data;
