@@ -7,4 +7,6 @@ export const mockQuestion: QuestionInterface = {
   content: 'Example question?',
   answer: 'Example answer.',
   category: 'example',
+  on_site: false,
+  display: false,
 }

@@ -15,12 +15,15 @@ import {
   useApiErrors,
   useLoading,
   useToast,
+  SiteQuestionCategoryType,
 } from 'atomic'
 
 export function questionRequests(
   close?: CloseDialogFunctionType
 ): QuestionRequestsInterface {
   const results: QuestionResultsType = ref<QuestionInterface[]>([])
+  const resultsByCategory: QuestionResultsType = ref<QuestionInterface[]>([])
+  const resultsBySite: Ref<QuestionInterface[]> = ref<QuestionInterface[]>([])
   const createdLastWeek: Ref<number> = ref<number>(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
@@ -55,6 +58,39 @@ export function questionRequests(
       createdLastWeek.value = response.data.count
     } catch (error) {
       catchErrors(error, apiErrors)
+    }
+  }
+
+  async function getQuestionsByCategory(category: string): Promise<void> {
+    try {
+      const response = await axios.get(
+        `/api/questions/get-by-category/${category}`
+      )
+
+      resultsByCategory.value = response.data.count
+    } catch (error) {
+      catchErrors(error, apiErrors)
+    }
+  }
+
+  async function getSiteQuestions(
+    loading: boolean,
+    site: SiteQuestionCategoryType
+  ): Promise<void> {
+    try {
+      if (loading) {
+        setLoading(true)
+      }
+
+      const response = await axios.get(
+        `/api/questions/get-site-questions/${site}`
+      )
+
+      resultsBySite.value = response.data
+    } catch (error) {
+      catchErrors(error, apiErrors)
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -113,10 +149,14 @@ export function questionRequests(
 
   return {
     results,
+    resultsByCategory,
+    resultsBySite,
     createdLastWeek,
     loading,
     getAllQuestions,
     getCountQuestionsByCreatedLastWeek,
+    getQuestionsByCategory,
+    getSiteQuestions,
     storeQuestion,
     editQuestion,
     deleteQuestion,

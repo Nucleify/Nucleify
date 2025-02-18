@@ -76,10 +76,19 @@ const questions: readonly [number, string, string, string][] = [
 ] as const
 
 export const aboutQuestions: readonly QuestionInterface[] = questions.map(
-  ([index, content, answer, category]): QuestionInterface => ({
+  ([
     index,
     content,
     answer,
     category,
+    on_site = true,
+    display = true,
+  ]): QuestionInterface => ({
+    index,
+    content,
+    answer,
+    category,
+    on_site,
+    display,
   })
 )

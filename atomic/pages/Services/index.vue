@@ -10,15 +10,11 @@
       :cards="servicesCategoriesCards"
       :prefix="storysetServicesImgUrl"
     />
-    <ad-section-faq :questions="servicesQuestions" />
+    <ad-section-faq site="services" />
     <ad-section-contact />
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  ServicesStartAnimation,
-  servicesCategoriesCards,
-  servicesQuestions,
-} from 'atomic'
+import { ServicesStartAnimation, servicesCategoriesCards } from 'atomic'
 </script>

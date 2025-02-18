@@ -79,6 +79,48 @@ class QuestionService
     }
 
     /**
+     * @param $category
+     * 
+     * @return array
+     */
+    public function getByCategory(string $category): array
+    {
+        $this->defineUserData();
+
+        $questions = $this->causer->isUser()
+            ? $this->model->where('user_id', $this->causer->id)::getByCategory($category)->get()
+            : $this->model::getByCategory($category)->get();
+
+        $this->logger->logMessage($this->causer->name . ' filtered questions by category: ' . $category . '.');
+
+        return fractal()
+            ->collection($questions)
+            ->transformWith(new QuestionTransformer())
+            ->toArray()['data'];
+    }
+
+    /**
+     * @param $site
+     * 
+     * @return array
+     */
+    public function getSiteQuestions(string $site): array
+    {
+        $this->defineUserData();
+
+        $questions = $this->model::getByCategory($site)->get();
+
+        $user = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->logMessage($user  . ' filtered questions by site: ' . $site . '.');
+
+        return fractal()
+            ->collection($questions)
+            ->transformWith(new QuestionTransformer())
+            ->toArray()['data'];
+    }
+
+    /**
      * @param $id
      *
      * @return array

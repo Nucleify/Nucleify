@@ -4,4 +4,4 @@ export * from './Contact'
 export * from './Money'
 export * from './Question'
 
-export { default as EntitiesPage } from './Index/index.vue'
+export { default as EntitiesPage } from './General/index.vue'
