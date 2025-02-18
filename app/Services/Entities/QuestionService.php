@@ -91,13 +91,34 @@ class QuestionService
             ? $this->model->where('user_id', $this->causer->id)::getByCategory($category)->get()
             : $this->model::getByCategory($category)->get();
 
-        $this->logger->log($this->causer->name, 'Filtered by category: ' . $category, 'question', 'filtered');
+        $this->logger->logMessage($this->causer->name . ' filtered questions by category: ' . $category . '.');
 
         return fractal()
             ->collection($questions)
             ->transformWith(new QuestionTransformer())
             ->toArray()['data'];
-    }       
+    }
+
+    /**
+     * @param $site
+     * 
+     * @return array
+     */
+    public function getSiteQuestions(string $site): array
+    {
+        $this->defineUserData();
+
+        $questions = $this->model::getByCategory($site)->get();
+
+        $user = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->logMessage($user  . ' filtered questions by site: ' . $site . '.');
+
+        return fractal()
+            ->collection($questions)
+            ->transformWith(new QuestionTransformer())
+            ->toArray()['data'];
+    }
 
     /**
      * @param $id

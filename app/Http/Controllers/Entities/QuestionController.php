@@ -83,6 +83,22 @@ class QuestionController extends Controller
     }
 
     /**
+     * @param $category
+     * 
+     * @return JsonResponse
+     */
+    public function getSiteQuestions(string $site): JsonResponse
+    {
+        try {
+            $result = $this->service->getSiteQuestions($site);
+
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
      * @param $id
      * 
      * @return JsonResponse

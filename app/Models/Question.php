@@ -83,7 +83,7 @@ class Question extends Model implements QuestionContract
     }
     public function getOnSite(): bool
     {
-        return $this->on_site;
+        return in_array($this->category, ['home', 'about', 'services']);
     }
     public function getDisplay(): bool
     {
