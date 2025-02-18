@@ -10,9 +10,32 @@
 </template>
 
 <script setup lang="ts">
-import { SectionFaqInterface, useSplitQuestions } from 'atomic'
+import {
+  questionRequests,
+  SectionFaqInterface,
+  QuestionInterface,
+  useSplitQuestions,
+  useDialog,
+} from 'atomic'
 
+import { onMounted, ref, watchEffect } from 'vue'
+
+const { closeDialog } = useDialog()
 const props = defineProps<SectionFaqInterface>()
 
-const { column1, column2 } = useSplitQuestions(props.questions)
+const { getSiteQuestions, resultsBySite } = questionRequests(closeDialog)
+
+const column1 = ref<QuestionInterface[]>([])
+const column2 = ref<QuestionInterface[]>([])
+
+onMounted(async () => {
+  await getSiteQuestions(true, props.site!)
+})
+
+watchEffect(() => {
+  const questions = resultsBySite.value || props.questions
+  if (!questions) return
+  ;({ column1: column1.value, column2: column2.value } =
+    useSplitQuestions(questions))
+})
 </script>

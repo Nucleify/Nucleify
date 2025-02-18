@@ -4,7 +4,7 @@
     <features />
     <innovations />
     <why-us />
-    <ad-section-faq :questions="homeQuestions" />
+    <ad-section-faq site="home" />
     <ad-section-contact />
   </div>
 </template>
@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { onBeforeMount, onMounted } from 'vue'
 
-import { homeQuestions, useColors, useViewportChange } from 'atomic'
+import { useColors, useViewportChange } from 'atomic'
 
 import { Features, Innovations, Start, WhyUs } from './'
 

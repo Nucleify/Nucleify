@@ -25,7 +25,7 @@ class QuestionFactory extends Factory
         $users = User::all();
         $usersIds = $users->pluck('id')->toArray();
 
-        $category = implode(', ', $this->faker->words());
+        $category = $this->faker->randomElement(['home', 'about', 'services', 'other']);
 
         $data = [
             'user_id' => $this->faker->randomElement($usersIds),

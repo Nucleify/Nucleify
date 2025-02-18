@@ -21,6 +21,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/questions/get-site-questions/{site}', [QuestionController::class, 'getSiteQuestions'])
+    ->name('questions.getSiteQuestions');
+
 Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Activity log
