@@ -22,6 +22,7 @@ export interface DockItemInterface {
   label?: string
   url?: string
   class?: string
+  adType?: string
   click?: () => void
   logo?: boolean
 }

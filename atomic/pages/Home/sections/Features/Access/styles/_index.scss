@@ -29,6 +29,10 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+
+        @media (max-width: 400px) {
+          width: 100%;
+        }
       }
 
       .access-card-image {

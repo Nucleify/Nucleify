@@ -9,6 +9,7 @@ trait RequestSetterTrait
     use RequestGetterTrait;
 
     protected bool $isRefererAdmin;
+    protected bool $isRefererStructural;
     protected ?string $referrer = null;
 
     /**
@@ -20,5 +21,6 @@ trait RequestSetterTrait
     {
         $this->referrer = $this->getReferrer($request);
         $this->isRefererAdmin = $this->getRefererIsAdmin($this->referrer);
+        $this->isRefererStructural = $this->getRefererIsStructural($this->referrer);
     }
 }
