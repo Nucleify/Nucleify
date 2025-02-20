@@ -1,7 +1,6 @@
 <template>
   <ad-popover
     dismissable
-    show-close-icon
     :button-class="'popover-toggle ' + positionClass"
     :popover-class="'terminal ' + positionClass"
   >
@@ -27,7 +26,7 @@
     :model="dockItems"
     :position="position"
     class="dock"
-    :class="{ admin: isAdmin }"
+    :class="{ staff: isStaff }"
   >
     <template #icon="{ item }">
       <div v-if="item.logo">
@@ -61,8 +60,8 @@
         :icon="item.icon"
         class="item"
         @click="item.click"
-        :url="'/' + item.url"
-        :ad-type="item.url"
+        :url="item.url"
+        :ad-type="item.adType"
         v-tooltip="item.label"
       />
       <div class="dock-position-buttons" v-if="item.label === 'position'">
@@ -89,7 +88,7 @@ import {
   positions,
   DockInterface,
   PositionType,
-  isAdmin as useIsAdmin,
+  getUserRole,
   setColorsVariables,
 } from 'atomic'
 
@@ -98,7 +97,7 @@ const LOCAL_STORAGE_KEY = 'dock-position'
 const props = defineProps<DockInterface>()
 
 const position = ref<PositionType>('bottom')
-const isAdmin = ref(false)
+const isStaff = ref(false)
 
 const positionClass = computed(() =>
   ['top', 'right', 'bottom', 'left'].includes(position.value)
@@ -120,7 +119,9 @@ onMounted(async () => {
     position.value = savedPosition as PositionType
   }
 
-  isAdmin.value = await useIsAdmin()
+  getUserRole().then(({ isStaff: staffStatus }) => {
+    isStaff.value = staffStatus()
+  })
 
   window.addEventListener('resize', setDockPositionForScreenSize)
 })

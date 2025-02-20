@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Entities;
-
-use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+namespace App\Http\Controllers\Structural;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Question\PostRequest;
 use App\Http\Requests\Question\PutRequest;
 use App\Models\Question;
-use App\Services\Entities\QuestionService;
+use App\Services\Structural\QuestionService;
+use Exception;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -26,7 +26,7 @@ class QuestionController extends Controller
 
     /**
      * Show the application dashboard.
-     * 
+     *
      * @return Renderable
      */
     public function render(): Renderable
@@ -36,7 +36,7 @@ class QuestionController extends Controller
 
     /**
      * @param Request $request
-     * 
+     *
      * @return JsonResponse
      */
     public function index(Request $request): JsonResponse
@@ -52,7 +52,7 @@ class QuestionController extends Controller
 
     /**
      * @param Request $request
-     * 
+     *
      * @return JsonResponse
      */
     public function countByCreatedLastWeek(Request $request): JsonResponse
@@ -65,10 +65,10 @@ class QuestionController extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-    
+
     /**
      * @param $category
-     * 
+     *
      * @return JsonResponse
      */
     public function getByCategory(string $category): JsonResponse
@@ -84,7 +84,7 @@ class QuestionController extends Controller
 
     /**
      * @param $category
-     * 
+     *
      * @return JsonResponse
      */
     public function getSiteQuestions(string $site): JsonResponse
@@ -100,7 +100,7 @@ class QuestionController extends Controller
 
     /**
      * @param $id
-     * 
+     *
      * @return JsonResponse
      */
     public function show($id): JsonResponse
@@ -116,7 +116,7 @@ class QuestionController extends Controller
 
     /**
      * @param PostRequest $request
-     * 
+     *
      * @return JsonResponse
      */
     public function store(PostRequest $request): JsonResponse
@@ -137,7 +137,7 @@ class QuestionController extends Controller
     /**
      * @param PutRequest $request
      * @param $id
-     * 
+     *
      * @return JsonResponse
      */
     public function update(PutRequest $request, $id): JsonResponse
@@ -157,10 +157,10 @@ class QuestionController extends Controller
 
     /**
      * @param $id
-     * 
+     *
      * @return JsonResponse
      */
-    public function destroy($id): JsonResponse 
+    public function destroy($id): JsonResponse
     {
         $model = Question::findOrFail($id);
 

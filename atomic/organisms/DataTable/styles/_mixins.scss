@@ -4,6 +4,10 @@
     color: $item-color;
     background: $highlight-color;
 
+    .p-datatable-column-title {
+      color: $item-color;
+    }
+
     svg {
       color: $item-color;
     }

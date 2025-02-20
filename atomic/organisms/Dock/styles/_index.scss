@@ -2,7 +2,7 @@
 
 .p-dock.dock {
   position: fixed;
-  z-index: 999;
+  z-index: 98;
 
   .logo[type='main'] {
     .lighter-color {
@@ -136,7 +136,7 @@
     }
   }
 
-  &:not(.admin) {
+  &:not(.staff) {
     .p-dock-item[aria-label='Admin Panel'] {
       display: none;
     }
@@ -181,6 +181,9 @@ $items: (
     color: --activity-item-color-new,
   ),
   settings: (
+    color: --main-item-color-new,
+  ),
+  structural: (
     color: --main-item-color-new,
   ),
 );

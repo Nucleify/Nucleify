@@ -3,8 +3,8 @@
 use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\Entities\MoneyController;
-use App\Http\Controllers\Entities\QuestionController;
 use App\Http\Controllers\Entities\UserController;
+use App\Http\Controllers\Structural\QuestionController;
 use App\Http\Controllers\Utilities\ActivityController;
 use App\Http\Controllers\Utilities\ArtisanController;
 use App\Http\Controllers\Utilities\SitemapController;
@@ -125,7 +125,7 @@ Route::middleware(['web', 'auth'])->group(function () {
         Route::put('/{id}', 'update')
             ->name('questions.update');
         Route::delete('/{id}', 'destroy')
-            ->name('questions.destroy');;
+            ->name('questions.destroy');
     });
 
     Route::get('/user', function () {

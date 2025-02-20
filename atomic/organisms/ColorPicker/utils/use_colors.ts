@@ -14,32 +14,32 @@ export function useColors(): UseColorsInterface {
   const mainItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('main-item-color'),
     hover: window.localStorage.getItem('main-item-hover-color'),
-    selected: window.localStorage.getItem('main-item-highlight-color'),
+    selected: window.localStorage.getItem('main-item-selected-color'),
   }
   const activityItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('activity-item-color'),
     hover: window.localStorage.getItem('activity-item-hover-color'),
-    selected: window.localStorage.getItem('activity-item-highlight-color'),
+    selected: window.localStorage.getItem('activity-item-selected-color'),
   }
   const articleItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('article-item-color'),
     hover: window.localStorage.getItem('article-item-hover-color'),
-    selected: window.localStorage.getItem('article-item-highlight-color'),
+    selected: window.localStorage.getItem('article-item-selected-color'),
   }
   const contactItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('contact-item-color'),
     hover: window.localStorage.getItem('contact-item-hover-color'),
-    selected: window.localStorage.getItem('contact-item-highlight-color'),
+    selected: window.localStorage.getItem('contact-item-selected-color'),
   }
   const moneyItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('money-item-color'),
     hover: window.localStorage.getItem('money-item-hover-color'),
-    selected: window.localStorage.getItem('money-item-highlight-color'),
+    selected: window.localStorage.getItem('money-item-selected-color'),
   }
   const questionItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('question-item-color'),
     hover: window.localStorage.getItem('question-item-hover-color'),
-    selected: window.localStorage.getItem('question-item-highlight-color'),
+    selected: window.localStorage.getItem('question-item-selected-color'),
   }
   const userItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('user-item-color'),

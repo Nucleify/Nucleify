@@ -13,7 +13,11 @@
         :loop="true"
       >
         <swiper-slide v-for="(tech, index) in technologies" :key="index">
-          <ad-anchor :href="tech.url" :src="technologiesImgUrl + tech.image" />
+          <ad-anchor
+            :href="tech.url"
+            :src="technologiesImgUrl + tech.image"
+            v-tooltip="tech.name"
+          />
         </swiper-slide>
       </swiper>
     </div>
