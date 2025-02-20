@@ -11,6 +11,11 @@
     background: $p-card-background !important;
   }
 
+  .p-datatable-column-title,
+  td {
+    color: $primary-white-text-color;
+  }
+
   .p-row-odd {
     background: $content-background !important;
   }

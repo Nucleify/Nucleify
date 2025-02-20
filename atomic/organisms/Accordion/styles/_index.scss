@@ -14,6 +14,15 @@
   }
 
   .p-accordionheader,
+  .p-accordioncontent-content {
+    border: 1px solid $p-card-border !important;
+  }
+
+  .p-accordioncontent-content {
+    border-top: none !important;
+  }
+
+  .p-accordionheader,
   .p-accordionheader-toggle-icon {
     transition: color 300ms;
   }

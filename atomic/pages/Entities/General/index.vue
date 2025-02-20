@@ -29,15 +29,6 @@
         text-secondary="this week"
         ad-type="money"
       />
-      <ad-tile
-        href="/entities/questions"
-        header="Questions"
-        :count="questions?.length"
-        icon="pi pi-question"
-        :count-secondary="questionCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="question"
-      />
     </div>
 
     <ad-card-chart
@@ -49,30 +40,23 @@
       :article-data="articles"
       :contact-data="contacts"
       :money-data="money"
-      :question-data="questions"
-      :user-data="users"
       :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />
 
-    <article-dashboard
+    <ad-article-dashboard
       :data="articles"
       :getData="getAllArticles"
       :loading="!allLoaded"
     />
-    <contact-dashboard
+    <ad-contact-dashboard
       :data="contacts"
       :getData="getAllContacts"
       :loading="!allLoaded"
     />
-    <money-dashboard
+    <ad-money-dashboard
       :data="money"
       :getData="getAllMoney"
-      :loading="!allLoaded"
-    />
-    <question-dashboard
-      :data="questions"
-      :getData="getAllQuestions"
       :loading="!allLoaded"
     />
   </div>
@@ -82,17 +66,9 @@
 import { onMounted, ref, Ref, watch } from 'vue'
 
 import {
-  ArticleDashboard,
-  ContactDashboard,
-  MoneyDashboard,
-  QuestionDashboard,
-} from './'
-
-import {
   articleRequests,
   contactRequests,
   moneyRequests,
-  questionRequests,
   useDisplayCharts,
 } from 'atomic'
 
@@ -119,41 +95,22 @@ const {
   getAllMoney,
   getCountMoneyByCreatedLastWeek,
 } = moneyRequests()
-const {
-  results: questions,
-  createdLastWeek: questionCreatedLastWeek,
-  loading: questionLoading,
-  getAllQuestions,
-  getCountQuestionsByCreatedLastWeek,
-} = questionRequests()
 
 onMounted(() => {
   getAllArticles(true)
   getAllContacts(true)
   getAllMoney(true)
-  getAllQuestions(true)
   getCountArticlesByCreatedLastWeek()
   getCountContactsByCreatedLastWeek()
   getCountMoneyByCreatedLastWeek()
-  getCountQuestionsByCreatedLastWeek()
 })
 
 const allLoaded: Ref<boolean> = ref(false)
 
 watch(
-  [articlesLoading, contactsLoading, moneyLoading, questionLoading],
-  ([
-    newArticlesLoading,
-    newContactsLoading,
-    newMoneyLoading,
-    newQuestionLoading,
-  ]) => {
-    if (
-      !newArticlesLoading &&
-      !newContactsLoading &&
-      !newMoneyLoading &&
-      !newQuestionLoading
-    ) {
+  [articlesLoading, contactsLoading, moneyLoading],
+  ([newArticlesLoading, newContactsLoading, newMoneyLoading]) => {
+    if (!newArticlesLoading && !newContactsLoading && !newMoneyLoading) {
       setTimeout(() => {
         allLoaded.value = true
       }, 200)

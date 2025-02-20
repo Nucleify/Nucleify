@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Question;
-use App\Services\Entities\QuestionService;
+use App\Services\Structural\QuestionService;
 use function Pest\Laravel\mock;
 
 beforeEach(function () {

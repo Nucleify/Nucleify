@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\Entities\QuestionController;
+use App\Http\Controllers\Structural\QuestionController;
 use App\Http\Requests\Question\PostRequest;
 use App\Http\Requests\Question\PutRequest;
 use App\Models\Question;
-use App\Services\Entities\QuestionService;
+use App\Services\Structural\QuestionService;
 use Illuminate\Http\Request;
 
 beforeEach(function () {
@@ -44,7 +44,7 @@ test('getByCategory > success', function () {
     $data = $response->getData(true);
 
     expect($response->getStatusCode())->toEqual(200);
-    
+
     foreach ($data as $question) {
         expect($question['category'])->toEqual($category);
     }

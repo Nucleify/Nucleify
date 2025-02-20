@@ -7,7 +7,10 @@ import {
   setUserToSessionStorage,
 } from 'atomic'
 
-export async function isAdmin(): Promise<boolean> {
+export async function getUserRole(): Promise<{
+  isAdmin: () => boolean
+  isStaff: () => boolean
+}> {
   const { results, getUser }: UserRequestsInterface = userRequests()
   const userId: UserIdType = window.sessionStorage.getItem('user_id')
 
@@ -18,5 +21,13 @@ export async function isAdmin(): Promise<boolean> {
 
   const userRole: string = window.sessionStorage.getItem('user_role')!
 
-  return ['admin', 'test_admin', 'super_admin'].includes(userRole)
+  const isAdmin: () => boolean = () => {
+    return ['admin', 'test_admin', 'super_admin'].includes(userRole)
+  }
+
+  const isStaff: () => boolean = () => {
+    return ['tech', 'test_admin', 'admin', 'super_admin'].includes(userRole)
+  }
+
+  return { isAdmin, isStaff }
 }
