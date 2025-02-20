@@ -26,4 +26,14 @@ trait RequestGetterTrait
     {
         return $referer && str_contains($referer, 'admin');
     }
+
+    /**
+     * @param string|null $referer
+     *
+     * @return bool
+     */
+    public function getRefererIsStructural(?string $referer): bool
+    {
+        return $referer && str_contains($referer, 'structural');
+    }
 }

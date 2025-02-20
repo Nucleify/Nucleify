@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Entities;
+namespace App\Services\Structural;
 
 use App\Models\Question;
 use App\Services\Utilities\Activity\LoggerService;
@@ -37,13 +37,13 @@ class QuestionService
         $this->defineRequestData($request);
         $this->defineUserData();
 
-        $questions = $this->isCauserStaff ? ($this->isRefererAdmin
+        $questions = $this->isCauserStaff ? ($this->isRefererStructural
             ? $this->model->all()
             : $this->model->where('user_id', $this->causer->id)->get()
         )
             : $this->model->where('user_id', $this->causer->id)->get();
 
-        $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererAdmin);
+        $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererStructural);
 
         return fractal()
             ->collection($questions)
@@ -62,7 +62,7 @@ class QuestionService
         $this->defineTimeData();
         $this->defineUserData();
 
-        $count = $this->isCauserStaff ? ($this->isRefererAdmin
+        $count = $this->isCauserStaff ? ($this->isRefererStructural
             ? $this->model->whereDate('created_at', '>=', $this->lastWeek)
                 ->count()
             : $this->model->whereDate('created_at', '>=', $this->lastWeek)
@@ -73,14 +73,14 @@ class QuestionService
                 ->where('user_id', $this->causer->id)
                 ->count();
 
-        $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererAdmin);
+        $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererStructural);
 
         return ['count' => $count];
     }
 
     /**
      * @param $category
-     * 
+     *
      * @return array
      */
     public function getByCategory(string $category): array
@@ -101,7 +101,7 @@ class QuestionService
 
     /**
      * @param $site
-     * 
+     *
      * @return array
      */
     public function getSiteQuestions(string $site): array

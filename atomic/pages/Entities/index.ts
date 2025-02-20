@@ -1,7 +1,4 @@
-export * from './Activity'
 export * from './Article'
 export * from './Contact'
+export * from './General'
 export * from './Money'
-export * from './Question'
-
-export { default as EntitiesPage } from './General/index.vue'

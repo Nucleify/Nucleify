@@ -98,7 +98,8 @@ import {
   HomePage,
   ServicesPage,
   SettingsPage,
-  QuestionPage,
+  StructuralPage,
+  QuestionsPage,
 } from './pages'
 import {
   SectionCategory,
@@ -110,6 +111,12 @@ import {
   SectionStart,
 } from './sections'
 import {
+  ActivityDashboard,
+  ArticleDashboard,
+  ContactDashboard,
+  MoneyDashboard,
+  QuestionDashboard,
+  UserDashboard,
   BackLink,
   CardBoxes,
   CardCategory,
@@ -211,7 +218,8 @@ app
   .component('ad-money-page', MoneyPage)
   .component('ad-services-page', ServicesPage)
   .component('ad-settings-page', SettingsPage)
-  .component('ad-question-page', QuestionPage)
+  .component('ad-structural-page', StructuralPage)
+  .component('ad-questions-page', QuestionsPage)
 
   /**
    *  Sections
@@ -227,6 +235,12 @@ app
   /**
    *  Templates
    */
+  .component('ad-activity-dashboard', ActivityDashboard)
+  .component('ad-article-dashboard', ArticleDashboard)
+  .component('ad-contact-dashboard', ContactDashboard)
+  .component('ad-money-dashboard', MoneyDashboard)
+  .component('ad-question-dashboard', QuestionDashboard)
+  .component('ad-user-dashboard', UserDashboard)
   .component('ad-back-link', BackLink)
   .component('ad-card-boxes', CardBoxes)
   .component('ad-card-category', CardCategory)
