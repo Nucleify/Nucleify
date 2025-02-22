@@ -11,12 +11,33 @@ class QuestionSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {   
-        if (env('APP_ENV') === 'production' || 'dev') {
-            Question::factory(7)->create([
+    {
+        $aboutQuestions = require_once 'database/constants/Questions/About.php';
+        $homeQuestions = require_once 'database/constants/Questions/Home.php';
+        $servicesQuestions = require_once 'database/constants/Questions/Services.php';
+
+        foreach ($aboutQuestions as $question) {
+            Question::factory()->create(array_merge($question, [
                 'user_id' => 1,
-                'category' => 'home'
-            ]);
+                'category' => 'about',
+                'display' => true
+            ]));
+        }
+
+        foreach ($homeQuestions as $question) {
+            Question::factory()->create(array_merge($question, [
+                'user_id' => 1,
+                'category' => 'home',
+                'display' => true
+            ]));
+        }
+
+        foreach ($servicesQuestions as $question) {
+            Question::factory()->create(array_merge($question, [
+                'user_id' => 1,
+                'category' => 'services',
+                'display' => true
+            ]));
         }
     }
 }
