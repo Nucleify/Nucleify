@@ -16,3 +16,17 @@
     }
   }
 }
+
+body:has(#login),
+body:has(#register) {
+  .p-inputtext {
+    @each $type in main, activity, article, contact, money, question, user {
+      &[ad-type='#{$type}'] {
+        @include entity-inputtext-styles(
+          var(--#{$type}-item-color) !important,
+          var(--#{$type}-item-focus-color) !important
+        );
+      }
+    }
+  }
+}
