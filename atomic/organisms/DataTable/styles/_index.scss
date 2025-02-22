@@ -16,6 +16,10 @@
     color: $primary-white-text-color;
   }
 
+  td {
+    border-color: #27272a !important;
+  }
+
   .p-row-odd {
     background: $content-background !important;
   }
@@ -69,13 +73,22 @@
       margin: 0;
       padding: 0;
 
-      .p-paginator-current {
+      &-current {
         margin: 0 4px;
       }
 
-      .p-paginator-content {
+      &-content {
         display: flex;
         gap: 8px;
+      }
+
+      &-page,
+      &-first,
+      &-prev,
+      &-current,
+      &-next,
+      &-last {
+        color: #a1a1aa !important;
       }
     }
   }

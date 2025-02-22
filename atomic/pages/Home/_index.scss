@@ -12,6 +12,13 @@ div[data-pc-name='deferredcontent'] {
   z-index: -1;
 }
 
+#structure {
+  div[data-pc-name='deferredcontent'] {
+    margin-top: -150px;
+    padding-top: 150px;
+  }
+}
+
 #footer {
   div[data-pc-name='deferredcontent'] {
     margin-top: -400px;

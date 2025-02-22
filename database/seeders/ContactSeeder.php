@@ -22,14 +22,12 @@ class ContactSeeder extends Seeder
             'role' => 'user'
         ]);
 
+        $count = (env('APP_ENV') === 'production') ? 100 : 40;
 
-        // Create contacts for every test user defined in UserSeeder
-        if (env('APP_ENV') === 'production' || 'dev') {
-            for ($i = 1; $i <= 6; $i++) {
-                Contact::factory(50)->create([
-                    'user_id' => $i,
-                ]);
-            }
+        for ($i = 1; $i <= 6; $i++) {
+            Contact::factory($count)->create([
+                'user_id' => $i,
+            ]);
         }
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Contact;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -59,8 +60,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('test_user123'),
         ]);
 
-        if (env('APP_ENV') === 'production' || 'dev') {
-            User::factory(200)->create();
-        }
+        $count = (env('APP_ENV') === 'production') ? 400 : 200;
+
+        User::factory($count)->create();
     }
 }
