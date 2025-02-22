@@ -32,7 +32,7 @@
 
     &:hover {
       color: $primary-color;
-      border-color: $primary-color;
+      border-color: $primary-color !important;
     }
 
     @media (min-width: 768px) {
