@@ -13,12 +13,12 @@ class ArticleSeeder extends Seeder
      */
     public function run(): void
     {
-        if (env('APP_ENV') === 'production' || 'dev') {
-            for ($i = 1; $i <= 6; $i++) {
-                Article::factory(40)->create([
-                    'user_id' => $i,
-                ]);
-            }
+        $count = (env('APP_ENV') === 'production') ? 100 : 40;
+
+        for ($i = 1; $i <= 6; $i++) {
+            Article::factory($count)->create([
+                'user_id' => $i,
+            ]);
         }
     }
 }
