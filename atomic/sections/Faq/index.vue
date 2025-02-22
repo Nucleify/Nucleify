@@ -28,8 +28,8 @@ const { getSiteQuestions, resultsBySite } = questionRequests(closeDialog)
 const column1 = ref<QuestionInterface[]>([])
 const column2 = ref<QuestionInterface[]>([])
 
-onMounted(async () => {
-  await getSiteQuestions(true, props.site!)
+onMounted(() => {
+  getSiteQuestions(true, props.site!)
 })
 
 watchEffect(() => {

@@ -7,39 +7,17 @@
           <ad-heading :tag="1" text="DataManager" class="name" />
         </ad-anchor>
         <div class="content">
-          <div class="entities">
-            <ad-heading :tag="3" text="Entities" />
-            <ad-anchor href="/activity-log" text="Activities" />
-            <ad-anchor href="/articles" text="Articles" />
-            <ad-anchor text="Calendar" />
-            <ad-anchor href="/contacts" text="Contacts" />
-            <ad-anchor text="Money" />
-            <ad-anchor href="/admin" text="Users" />
-          </div>
-          <div class="services">
-            <ad-heading :tag="3" text="Services" />
-            <ad-anchor text="Open Source" />
-            <ad-anchor text="Data Storage" />
-            <ad-anchor text="Data Migration" />
-            <ad-anchor text="Data Integration" />
-            <ad-anchor text="Data Analysis" />
-            <ad-anchor text="Page Builder" />
-          </div>
-          <div class="about">
-            <ad-heading :tag="3" text="About" />
-            <ad-anchor text="Purpose" />
-            <ad-anchor text="Collaboration" />
-            <ad-anchor text="Support Us" />
-            <ad-anchor text="License" />
-            <ad-anchor text="Contact" />
-          </div>
-          <div class="blog">
-            <ad-heading :tag="3" text="Blog" />
-            <ad-anchor text="The Importance of Open Source in Today's World" />
-            <ad-anchor text="How to Automate Your Data Pipeline" />
-            <ad-anchor text="Maximizing Data Security" />
-            <ad-anchor text="Building a Scalable Website" />
-            <ad-anchor text="The Best Tools for Every Business" />
+          <div
+            v-for="(column, columnIndex) in columns"
+            :key="columnIndex"
+            :class="`column-${columnIndex + 1}`"
+          >
+            <template v-for="(item, itemIndex) in column" :key="itemIndex">
+              <ad-anchor :href="item.url" v-if="item?.header">
+                <ad-heading :tag="3" :text="item.name" />
+              </ad-anchor>
+              <ad-anchor v-else :href="item.url" :text="item.name" />
+            </template>
           </div>
         </div>
       </div>
@@ -90,6 +68,46 @@ const imagesPerRow = ref(0)
 const hexagonRows: Ref<number[][][]> = ref([])
 
 const hexagonWidth = 40
+
+const columns = [
+  // Entities
+  [
+    { name: 'Entities', url: '/entities', header: true },
+    { name: 'Activities', url: '/activity-log' },
+    { name: 'Articles', url: '/entities/articles' },
+    { name: 'Contacts', url: '/entities/contacts' },
+    { name: 'Money', url: '/entities/money' },
+    { name: 'Users', url: '/admin' },
+  ],
+  // Services
+  [
+    { name: 'Services', url: '/services', header: true },
+    { name: 'Open Source' },
+    { name: 'Data Storage' },
+    { name: 'Data Migration' },
+    { name: 'Data Integration' },
+    { name: 'Data Analysis' },
+    { name: 'Page Builder' },
+  ],
+  // About
+  [
+    { name: 'About', url: '/about', header: true },
+    { name: 'Purpose' },
+    { name: 'Collaboration' },
+    { name: 'Support Us' },
+    { name: 'License' },
+    { name: 'Contact' },
+  ],
+  // Blog
+  [
+    { name: 'Blog', url: '/blog', header: true },
+    { name: "The Importance of Open Source in Today's World" },
+    { name: 'How to Automate Your Data Pipeline' },
+    { name: 'Maximizing Data Security' },
+    { name: 'Building a Scalable Website' },
+    { name: 'The Best Tools for Every Business' },
+  ],
+]
 
 function updateImagesPerRow(screenWidth: number) {
   imagesPerRow.value = Math.floor(screenWidth / hexagonWidth) * 2 + 1

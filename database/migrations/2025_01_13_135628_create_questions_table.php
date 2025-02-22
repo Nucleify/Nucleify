@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->integer('index');
             $table->string('content');
-            $table->string('answer');
+            $table->text('answer');
             $table->string('category')->nullable();
             $table->boolean('on_site');
             $table->boolean('display');

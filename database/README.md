@@ -4,16 +4,21 @@ Laravel provides an elegant and expressive way to interact with databases, ensur
 
 <br>
 
-### 1. Factories
+### 1. Constans
+We basically use this folder to store constants used within seeders or factories.
+
+<br>
+
+### 2. Factories
 Factories in Laravel are used to quickly generate fake data for models. They are particularly useful for testing and seeding the database with realistic sample data. Factories leverage the Faker library to create attributes like names, emails, or dates.
 
 <br>
 
-### 2. Migrations
+### 3. Migrations
 Migrations are version-controlled scripts for managing database schema changes in Laravel. They allow developers to create, modify, or drop database tables programmatically, ensuring consistency across environments.
 
 <br>
 
-### 3. Seeders
+### 4. Seeders
 
 Seeders are classes used to populate the database with initial or test data. They are often combined with factories to fill tables with large amounts of realistic data during development or testing.
