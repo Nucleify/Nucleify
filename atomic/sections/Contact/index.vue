@@ -12,7 +12,7 @@
       <ad-button
         class="contact-content-button caterpillar-button"
         label="Mail"
-        @click="navigateTo('mailto:szymon.radomski@yahoo.com')"
+        @click="navigateTo('mailto:business@atomic-it.org')"
       />
     </div>
   </div>
