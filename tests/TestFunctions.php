@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\File;
 
-use App\Models\Article;
-use App\Models\Contact;
-use App\Models\User;
-use App\Models\Question;
+use App\Models\Entities\Article;
+use App\Models\Entities\Contact;
+use App\Models\Entities\User;
+use App\Models\Structural\Question;
 
 function apiTest($method, $route, $status, $data = null, $expectedJsonStructure = null, $expectedJsonFragment = null, $validationErrors = null): Closure
 {
