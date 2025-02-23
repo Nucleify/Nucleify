@@ -2,12 +2,12 @@
 
 namespace App\Services\Entities;
 
-use App\Models\Article;
+use App\Models\Entities\Article;
 use App\Services\Utilities\Activity\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\ArticleTransformer;
+use App\Transformers\Entities\ArticleTransformer;
 use Illuminate\Http\Request;
 
 class ArticleService

@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Entities;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Entities\Article\PostRequest;
+use App\Http\Requests\Entities\Article\PutRequest;
+use App\Models\Entities\Article;
+use App\Services\Entities\ArticleService;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Article\PostRequest;
-use App\Http\Requests\Article\PutRequest;
-use App\Models\Article;
-use App\Services\Entities\ArticleService;
 
 class ArticleController extends Controller
 {

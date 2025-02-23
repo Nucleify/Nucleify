@@ -2,12 +2,12 @@
 
 namespace App\Services\Structural;
 
-use App\Models\Question;
+use App\Models\Structural\Question;
 use App\Services\Utilities\Activity\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\QuestionTransformer;
+use App\Transformers\Structural\QuestionTransformer;
 use Illuminate\Http\Request;
 
 class QuestionService
