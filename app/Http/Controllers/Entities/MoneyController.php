@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Entities;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Entities\Money\PostRequest;
+use App\Http\Requests\Entities\Money\PutRequest;
+use App\Models\Entities\Money;
+use App\Services\Entities\MoneyService;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Money\PostRequest;
-use App\Http\Requests\Money\PutRequest;
-use App\Models\Money;
-use App\Services\Entities\MoneyService;
 
 class MoneyController extends Controller
 {

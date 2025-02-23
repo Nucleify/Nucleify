@@ -2,14 +2,13 @@
 
 namespace App\Services\Entities;
 
-use Illuminate\Http\Request;
-
-use App\Models\Contact;
+use App\Models\Entities\Contact;
 use App\Services\Utilities\Activity\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\ContactTransformer;
+use App\Transformers\Entities\ContactTransformer;
+use Illuminate\Http\Request;
 
 class ContactService
 {
