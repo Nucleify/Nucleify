@@ -102,45 +102,45 @@ class Question extends Model implements QuestionContract
     /**
      *  Scope methods
      */
-    public function scopeGetById(Builder $query, int $id): Builder
+    public function scopeGetById(Builder $query, int $parameter): Builder
     {
-        return $query->where('id', $id);
+        return $query->where('id', $parameter);
     }
-    public function scopeGetByUserId(Builder $query, int $user_id): Builder
+    public function scopeGetByUserId(Builder $query, int $parameter): Builder
     {
-        return $query->where('user_id', $user_id);
+        return $query->where('user_id', $parameter);
     }
-    public function scopeGetByIndex(Builder $query, int $index): Builder
+    public function scopeGetByIndex(Builder $query, int $parameter): Builder
     {
-        return $query->where('index', $index);
+        return $query->where('index', $parameter);
     }
-    public function scopeGetByContent(Builder $query, string $content): Builder
+    public function scopeGetByContent(Builder $query, string $parameter): Builder
     {
-        return $query->where('content', $content);
+        return $query->where('content', $parameter);
     }
-    public function scopeGetByAnswer(Builder $query, string $answer): Builder
+    public function scopeGetByAnswer(Builder $query, string $parameter): Builder
     {
-        return $query->where('answer', $answer);
+        return $query->where('answer', $parameter);
     }
-    public function scopeGetByCategory(Builder $query, ?string $category): Builder
+    public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
     {
-        return $query->where('category', $category);
+        return $query->where('category', $parameter);
     }
-    public function scopeGetByOnSite(Builder $query, bool $on_site): Builder
+    public function scopeGetByOnSite(Builder $query, bool $parameter): Builder
     {
-        return $query->where('on_site', $on_site);
+        return $query->where('on_site', $parameter);
     }
-    public function scopeGetByDisplay(Builder $query, bool $display): Builder
+    public function scopeGetByDisplay(Builder $query, bool $parameter): Builder
     {
-        return $query->where('display', $display);
+        return $query->where('display', $parameter);
     }
-    public function scopeGetByCreatedAt(Builder $query, string $createdAt): Builder
+    public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('created_at', $createdAt);
+        return $query->whereDate('created_at', $parameter);
     }
-    public function scopeGetByUpdatedAt(Builder $query, string $updatedAt): Builder
+    public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('updated_at', $updatedAt);
+        return $query->whereDate('updated_at', $parameter);
     }
 
     /**

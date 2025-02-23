@@ -69,29 +69,29 @@ class Article extends Model implements ArticleContract
     /**
      *  Scope methods
      */
-    public function scopeGetById(Builder $query, int $id): Builder
+    public function scopeGetById(Builder $query, int $parameter): Builder
     {
-        return $query->where('id', $id);
+        return $query->where('id', $parameter);
     }
-    public function scopeGetByTitle(Builder $query, string $title): Builder
+    public function scopeGetByTitle(Builder $query, string $parameter): Builder
     {
-        return $query->where('title', $title);
+        return $query->where('title', $parameter);
     }
-    public function scopeGetByDescription(Builder $query, string $description): Builder
+    public function scopeGetByDescription(Builder $query, string $parameter): Builder
     {
-        return $query->where('description', $description);
+        return $query->where('description', $parameter);
     }
-    public function scopeGetByCategory(Builder $query, ?string $category): Builder
+    public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
     {
-        return $query->where('category', $category);
+        return $query->where('category', $parameter);
     }
-    public function scopeGetByCreatedAt(Builder $query, string $createdAt): Builder
+    public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('created_at', $createdAt);
+        return $query->whereDate('created_at', $parameter);
     }
-    public function scopeGetByUpdatedAt(Builder $query, string $updatedAt): Builder
+    public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('updated_at', $updatedAt);
+        return $query->whereDate('updated_at', $parameter);
     }
 
     public function user(): BelongsTo
