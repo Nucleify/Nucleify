@@ -142,49 +142,49 @@ class Contact extends Model implements ContactContract
     /**
      *  Scope methods
      */
-    public function scopeGetByUserId(Builder $query, int $userId): Builder
+    public function scopeGetByUserId(Builder $query, int $parameter): Builder
     {
-        return $query->where('user_id', $userId);
+        return $query->where('user_id', $parameter);
     }
-    public function scopeGetByFirstName(Builder $query, string $firstName): Builder
+    public function scopeGetByFirstName(Builder $query, string $parameter): Builder
     {
-        return $query->where('first_name', $firstName);
+        return $query->where('first_name', $parameter);
     }
-    public function scopeGetByLastName(Builder $query, ?string $lastName): Builder
+    public function scopeGetByLastName(Builder $query, ?string $parameter): Builder
     {
-        return $query->where('last_name', $lastName);
+        return $query->where('last_name', $parameter);
     }
-    public function scopeGetByEmail(Builder $query, ?string $email): Builder
+    public function scopeGetByEmail(Builder $query, ?string $parameter): Builder
     {
-        return $query->where('email', $email);
+        return $query->where('email', $parameter);
     }
-    public function scopeGetByPersonalPhone(Builder $query, ?string $personalPhone): Builder
+    public function scopeGetByPersonalPhone(Builder $query, ?string $parameter): Builder
     {
-        return $query->where('personal_phone', $personalPhone);
+        return $query->where('personal_phone', $parameter);
     }
-    public function scopeGetByWorkPhone(Builder $query, ?string $workPhone): Builder
+    public function scopeGetByWorkPhone(Builder $query, ?string $parameter): Builder
     {
-        return $query->where('work_phone', $workPhone);
+        return $query->where('work_phone', $parameter);
     }
-    public function scopeGetByAddress(Builder $query, ?string $address): Builder
+    public function scopeGetByAddress(Builder $query, ?string $parameter): Builder
     {
-        return $query->where('address', $address);
+        return $query->where('address', $parameter);
     }
-    public function scopeGetByBirthday(Builder $query, ?string $birthday): Builder
+    public function scopeGetByBirthday(Builder $query, ?string $parameter): Builder
     {
-        return $query->where('birthday', $birthday);
+        return $query->where('birthday', $parameter);
     }
-    public function scopeGetByRole(Builder $query, ?string $role): Builder
+    public function scopeGetByRole(Builder $query, ?string $parameter): Builder
     {
-        return $query->where('role', $role);
+        return $query->where('role', $parameter);
     }
-    public function scopeGetByCreatedAt(Builder $query, string $createdAt): Builder
+    public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('created_at', $createdAt);
+        return $query->whereDate('created_at', $parameter);
     }
-    public function scopeGetByUpdatedAt(Builder $query, string $updatedAt): Builder
+    public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('updated_at', $updatedAt);
+        return $query->whereDate('updated_at', $parameter);
     }
 
     public function user(): BelongsTo

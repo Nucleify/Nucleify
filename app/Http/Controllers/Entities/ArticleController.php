@@ -84,7 +84,7 @@ class ArticleController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: ' . $result['title']
+                'message' => 'Successfully created: ' . $result['title'] . ' article'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -105,7 +105,7 @@ class ArticleController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['title']
+                'message' => 'Successfully updated: ' . $result['title'] . ' article'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -119,13 +119,13 @@ class ArticleController extends Controller
      */
     public function destroy($id): JsonResponse
     {
-        $model = Article::findOrFail($id);
+        $result = Article::findOrFail($id);
 
         try {
             $this->service->delete($id);
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: '. $model->title
+                'message' => 'Successfully deleted: '. $result->getTitle() . ' article'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

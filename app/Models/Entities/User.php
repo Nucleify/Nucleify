@@ -135,29 +135,29 @@ class User extends Authenticatable implements UserContract
     /**
      *  Scope methods
      */
-    public function scopeGetById(Builder $query, int $id): Builder
+    public function scopeGetById(Builder $query, int $parameter): Builder
     {
-        return $query->where('id', $id);
+        return $query->where('id', $parameter);
     }
-    public function scopeGetByName(Builder $query, string $name): Builder
+    public function scopeGetByName(Builder $query, string $parameter): Builder
     {
-        return $query->where('name', $name);
+        return $query->where('name', $parameter);
     }
-    public function scopeGetByEmail(Builder $query, string $email): Builder
+    public function scopeGetByEmail(Builder $query, string $parameter): Builder
     {
-        return $query->where('email', $email);
+        return $query->where('email', $parameter);
     }
-    public function scopeGetByRole(Builder $query, string $role): Builder
+    public function scopeGetByRole(Builder $query, string $parameter): Builder
     {
-        return $query->where('role', $role);
+        return $query->where('role', $parameter);
     }
-    public function scopeGetByCreatedAt(Builder $query, string $createdAt): Builder
+    public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('created_at', $createdAt);
+        return $query->whereDate('created_at', $parameter);
     }
-    public function scopeGetByUpdatedAt(Builder $query, string $updatedAt): Builder
+    public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('updated_at', $updatedAt);
+        return $query->whereDate('updated_at', $parameter);
     }
     public function scopeGetByUserRole(Builder $query): Builder
     {
