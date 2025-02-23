@@ -2,14 +2,13 @@
 
 namespace App\Services\Entities;
 
-use Illuminate\Http\Request;
-
-use App\Models\Money;
+use App\Models\Entities\Money;
 use App\Services\Utilities\Activity\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\MoneyTransformer;
+use App\Transformers\Entities\MoneyTransformer;
+use Illuminate\Http\Request;
 
 class MoneyService
 {

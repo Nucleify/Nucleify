@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Structural;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Question\PostRequest;
-use App\Http\Requests\Question\PutRequest;
-use App\Models\Question;
+use App\Http\Requests\Structural\Question\PostRequest;
+use App\Http\Requests\Structural\Question\PutRequest;
+use App\Models\Structural\Question;
 use App\Services\Structural\QuestionService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;

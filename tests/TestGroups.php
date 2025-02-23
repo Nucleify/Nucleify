@@ -8,36 +8,36 @@ uses()
     ->in('Feature/Api');
 
 uses()
-    ->group('activity-api')
-    ->in('Feature/Api/Activity');
-
-uses()
     ->group('article-api')
-    ->in('Feature/Api/Article');
-
-uses()
-    ->group('artisan-api')
-    ->in('Feature/Api/Artisan');
+    ->in('Feature/Api/Entities/Article');
 
 uses()
     ->group('contact-api')
-    ->in('Feature/Api/Contact');
+    ->in('Feature/Api/Entities/Contact');
 
 uses()
     ->group('money-api')
-    ->in('Feature/Api/Money');
+    ->in('Feature/Api/Entities/Money');
 
 uses()
     ->group('user-api')
-    ->in('Feature/Api/User');
-
-uses()
-    ->group('sitemap-api')
-    ->in('Feature/Api/Sitemap');
+    ->in('Feature/Api/Entities/User');
 
 uses()
     ->group('question-api')
-    ->in('Feature/Api/Question');
+    ->in('Feature/Api/Structural/Question');
+
+uses()
+    ->group('activity-api')
+    ->in('Feature/Api/Utilities/Activity');
+
+uses()
+    ->group('artisan-api')
+    ->in('Feature/Api/Utilities/Artisan');
+
+uses()
+    ->group('sitemap-api')
+    ->in('Feature/Api/Utilities/Sitemap');
 
 uses()
     ->group('feature')

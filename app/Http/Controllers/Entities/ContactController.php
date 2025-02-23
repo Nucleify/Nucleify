@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Entities;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Entities\Contact\PostRequest;
+use App\Http\Requests\Entities\Contact\PutRequest;
+use App\Models\Entities\Contact;
+use App\Services\Entities\ContactService;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Contact\PostRequest;
-use App\Http\Requests\Contact\PutRequest;
-use App\Models\Contact;
-use App\Services\Entities\ContactService;
 
 class ContactController extends Controller
 {

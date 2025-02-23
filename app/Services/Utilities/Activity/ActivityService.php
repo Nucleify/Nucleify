@@ -2,14 +2,13 @@
 
 namespace App\Services\Utilities\Activity;
 
-use Exception;
-use Illuminate\Http\Request;
-use Spatie\Activitylog\Models\Activity;
-
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\ActivityTransformer;
+use App\Transformers\Utilities\ActivityTransformer;
+use Exception;
+use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class ActivityService
 {

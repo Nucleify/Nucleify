@@ -4,13 +4,14 @@ namespace Tests;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use App\Models\User;
 use Closure;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Schema\SQLiteBuilder;
 use Illuminate\Database\SQLiteConnection;
 use Illuminate\Support\Fluent;
+
+use App\Models\Entities\User;
 
 abstract class TestCase extends BaseTestCase
 {
