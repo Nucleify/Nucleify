@@ -6,7 +6,7 @@ beforeEach(function () {
     $this->actingAs($this->admin);
 });
 
-describe('405 > Authorized', function () {
+describe('405 > Method Not Allowed > Authorized', function () {
     test('invalid method put > index api', function () {
         $this->put(route('users.index', 1))
             ->assertStatus(405);

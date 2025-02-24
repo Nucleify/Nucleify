@@ -1,6 +1,6 @@
 <?php
 
-describe('405 > Unauthorized', function () {
+describe('405 > Method Not Allowed > Unauthorized', function () {
     test('invalid method get without parameter > run command api', function () {
         $this->get(route('artisan.run'))
             ->assertStatus(405);

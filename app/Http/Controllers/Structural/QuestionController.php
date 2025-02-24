@@ -67,7 +67,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * @param $category
+     * @param string $category
      *
      * @return JsonResponse
      */
@@ -83,7 +83,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * @param $category
+     * @param string $site
      *
      * @return JsonResponse
      */

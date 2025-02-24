@@ -2,7 +2,6 @@
 
 namespace App\Contracts\Structural;
 
-use Illuminate\Database\Eloquent\Builder;
 
 interface QuestionContract
 {
@@ -35,14 +34,6 @@ interface QuestionContract
    * @return string|null
    */
   public function getCategory(): string | null;
-
-  /**
-   * @param Builder
-   * @param string|null
-   *
-   * @return Builder
-   */
-  public function scopeGetByCategory(Builder $query, ?string $category): Builder;
 
   /**
    * @return bool

@@ -19,7 +19,7 @@ describe('401 > Unauthorized', function () {
         ['message' => 'Unauthenticated.']
     ));
 
-    test('shop api', apiTest(
+    test('show api', apiTest(
         'SHOW',
         'questions.show',
         401,

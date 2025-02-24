@@ -85,7 +85,7 @@ class QuestionService
             ? $this->model->where('user_id', $this->causer->id)::getByCategory($category)->get()
             : $this->model::getByCategory($category)->get();
 
-        $this->logger->logMessage($this->causer->name . ' filtered questions by category: ' . $category . '.');
+        $this->logger->logMessage($this->causer->name . ' fetched questions by category: ' . $category . '.');
 
         return fractal()
             ->collection($result)
@@ -94,7 +94,7 @@ class QuestionService
     }
 
     /**
-     * @param $site
+     * @param string $site
      *
      * @return array
      */
@@ -106,7 +106,7 @@ class QuestionService
 
         $name = $this->causer ? $this->causer->name : 'Guest';
 
-        $this->logger->logMessage($name  . ' filtered questions by site: ' . $site . '.');
+        $this->logger->logMessage($name  . ' fetched questions by site: ' . $site . '.');
 
         return fractal()
             ->collection($result)

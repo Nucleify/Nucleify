@@ -2,6 +2,7 @@
 
 namespace App\Models\Structural;
 
+use App\Contracts\Structural\TechnologyContract;
 use App\Models\Entities\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -42,7 +43,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Builder scopeGetByUpdatedAt
  */
 
-class Technology extends Model
+class Technology extends Model implements TechnologyContract
 {
     use HasFactory;
 
@@ -52,7 +53,8 @@ class Technology extends Model
         'src',
         'label',
         'description',
-        'display'
+        'display',
+        'category'
     ];
 
     /**
