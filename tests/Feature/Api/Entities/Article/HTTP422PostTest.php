@@ -23,22 +23,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
     ));
 
     $articleData['title'] = 1;
-    test('invalid title > positive integer', apiTest(
-        'POST',
-        'articles.store',
-        422,
-        $articleData,
-        ['errors' => ['title']],
-        ['errors' => [
-            'title' => [
-                'The title field must be a string.',
-                'The title field must be at least 3 characters.'
-            ]
-        ]]
-    ));
-
-    $articleData['title'] = -1;
-    test('invalid title > negative integer', apiTest(
+    test('invalid title > integer', apiTest(
         'POST',
         'articles.store',
         422,
@@ -114,22 +99,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
      * DESCRIPTION TESTS
      */
     $articleData['description'] = 1;
-    test('invalid description > positive integer', apiTest(
-        'POST',
-        'articles.store',
-        422,
-        $articleData,
-        ['errors' => ['description']],
-        ['errors' => [
-            'description' => [
-                'The description field must be a string.',
-                'The description field must be at least 10 characters.'
-            ]
-        ]]
-    ));
-
-    $articleData['description'] = -1;
-    test('invalid description > negative integer', apiTest(
+    test('invalid description > integer', apiTest(
         'POST',
         'articles.store',
         422,
@@ -205,19 +175,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
      * CATEGORY TESTS
      */
     $articleData['category'] = 1;
-    test('invalid category > positive integer', apiTest(
-        'POST',
-        'articles.store',
-        422,
-        $articleData,
-        ['errors' => ['category']],
-        ['errors' => [
-            'category' => ['The category field must be a string.']
-        ]]
-    ));
-
-    $articleData['category'] = -1;
-    test('invalid category > negative integer', apiTest(
+    test('invalid category > integer', apiTest(
         'POST',
         'articles.store',
         422,

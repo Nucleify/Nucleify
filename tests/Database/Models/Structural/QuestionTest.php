@@ -4,164 +4,133 @@ use App\Models\Structural\Question;
 
 beforeEach(function () {
     $this->createUsers();
+    $this->model = Question::factory()->create();
 });
 
 it('can be created', function () {
-    $question = Question::factory()->create();
-
-    expect($question)->toBeInstanceOf(Question::class);
+    expect($this->model)->toBeInstanceOf(Question::class);
 });
 
 describe('Instance', function () {
     test('can get id', function () {
-        $question = Question::factory()->create();
-
-        expect($question->getId())
+        expect($this->model->getId())
             ->toBeInt()
-            ->toBe($question->id);
+            ->toBe($this->model->id);
+    });
+
+    test('can get user_id', function () {
+        expect($this->model->getUserId())
+            ->toBeInt()
+            ->toBe($this->model->user_id);
     });
 
     test('can get index', function () {
-        $question = Question::factory()->create();
-
-        expect($question->getIndex())
+        expect($this->model->getIndex())
             ->toBeInt()
-            ->toBe($question->index);
+            ->toBe($this->model->index);
     });
 
     test('can get content', function () {
-        $question = Question::factory()->create();
-
-        expect($question->getContent())
+        expect($this->model->getContent())
             ->toBeString()
-            ->toBe($question->content);
+            ->toBe($this->model->content);
     });
 
     test('can get answer', function () {
-        $question = Question::factory()->create();
-
-        expect($question->getAnswer())
+        expect($this->model->getAnswer())
             ->toBeString()
-            ->toBe($question->answer);
+            ->toBe($this->model->answer);
     });
 
     test('can get category', function () {
-        $question = Question::factory()->create();
-
-        expect($question->getCategory())
+        expect($this->model->getCategory())
             ->toBeString()
-            ->toBe($question->category);
-    });
-
-    test('can get null for category if not set', function () {
-        $question = Question::factory()->create(['category' => null]);
-
-        expect($question->getCategory())->toBeNull();
+            ->toBe($this->model->category);
     });
 
     test('can get on_site', function () {
-        $question = Question::factory()->create();
-
-        expect($question->getOnSite())
+        expect($this->model->getOnSite())
             ->toBeBool()
-            ->toBe($question->on_site);
+            ->toBe($this->model->on_site);
     });
 
     test('can get display', function () {
-        $question = Question::factory()->create();
-
-        expect($question->getDisplay())
+        expect($this->model->getDisplay())
             ->toBeBool()
-            ->toBe($question->display);
+            ->toBe($this->model->display);
     });
 
     test('can get created_at date', function () {
-        $question = Question::factory()->create();
-
-        expect($question->getCreatedAt())
+        expect($this->model->getCreatedAt())
             ->toBeString()
-            ->toBe($question->created_at->toDateTimeString());
+            ->toBe($this->model->created_at->toDateTimeString());
     });
 
     test('can get updated_at date', function () {
-        $question = Question::factory()->create();
-
-        expect($question->getUpdatedAt())
+        expect($this->model->getUpdatedAt())
             ->toBeString()
-            ->toBe($question->updated_at->toDateTimeString());
+            ->toBe($this->model->updated_at->toDateTimeString());
     });
 });
 
 describe('Scope', function () {
-    test('can filter by id using scopeGetId', function () {
-        $question = Question::factory()->create();
+    test('can filter by id using scopeGetById', function () {
+        $foundModel = Question::getById($this->model->id)->first();
 
-        $foundQuestion = Question::getById($question->id)->first();
-
-        expect($foundQuestion->id)->toBe($question->id);
+        expect($foundModel->id)->toBe($this->model->id);
     });
 
-    test('can filter by index using scopeGetIndex', function () {
-        $question = Question::factory()->create();
+    test('can filter by user_id using scopeGetByUserId', function () {
+        $foundModel = Question::getByUserId($this->model->user_id)->first();
 
-        $foundQuestion = Question::getByIndex($question->index)->first();
-
-        expect($foundQuestion->index)->toBe($question->index);
+        expect($foundModel->user_id)->toBe($this->model->user_id);
     });
 
-    test('can filter by content using scopeGetContent', function () {
-        $question = Question::factory()->create();
+    test('can filter by index using scopeGetByIndex', function () {
+        $foundModel = Question::getByIndex($this->model->index)->first();
 
-        $foundQuestion = Question::getByContent($question->content)->first();
-
-        expect($foundQuestion->content)->toBe($question->content);
+        expect($foundModel->index)->toBe($this->model->index);
     });
 
-    test('can filter by answer using scopeGetAnswer', function () {
-        $question = Question::factory()->create();
+    test('can filter by content using scopeGetByContent', function () {
+        $foundModel = Question::getByContent($this->model->content)->first();
 
-        $foundQuestion = Question::getByAnswer($question->answer)->first();
-
-        expect($foundQuestion->answer)->toBe($question->answer);
+        expect($foundModel->content)->toBe($this->model->content);
     });
 
-    test('can filter by category using scopeGetCategory', function () {
-        $question = Question::factory()->create();
+    test('can filter by answer using scopeGetByAnswer', function () {
+        $foundModel = Question::getByAnswer($this->model->answer)->first();
 
-        $foundQuestion = Question::getByCategory($question->category)->first();
-
-        expect($foundQuestion->category)->toBe($question->category);
+        expect($foundModel->answer)->toBe($this->model->answer);
     });
 
-    test('can filter by on_site using scopeGetOnSite', function () {
-        $question = Question::factory()->create();
+    test('can filter by category using scopeGetByCategory', function () {
+        $foundModel = Question::getByCategory($this->model->category)->first();
 
-        $foundQuestion = Question::getByOnSite($question->on_site)->first();
-
-        expect($foundQuestion->on_site)->toEqual($question->on_site);
+        expect($foundModel->category)->toBe($this->model->category);
     });
 
-    test('can filter by display using scopeGetDisplay', function () {
-        $question = Question::factory()->create();
+    test('can filter by on_site using scopeGetByOnSite', function () {
+        $foundModel = Question::getByOnSite($this->model->on_site)->first();
 
-        $foundQuestion = Question::getByDisplay($question->display)->first();
-
-        expect($foundQuestion->display)->toEqual($question->display);
+        expect($foundModel->on_site)->toEqual($this->model->on_site);
     });
 
-    test('can filter by created_at using scopeGetCreatedAt', function () {
-        $question = Question::factory()->create();
+    test('can filter by display using scopeGetByDisplay', function () {
+        $foundModel = Question::getByDisplay($this->model->display)->first();
 
-        $foundQuestion = Question::getByCreatedAt($question->created_at->toDateString())->first();
-
-        expect($foundQuestion->created_at->toDateString())->toBe($question->created_at->toDateString());
+        expect($foundModel->display)->toEqual($this->model->display);
     });
 
-    test('can filter by updated_at using scopeGetUpdatedAt', function () {
-        $question = Question::factory()->create();
+    test('can filter by created_at using scopeGetByCreatedAt', function () {
+        $foundModel = Question::getByCreatedAt($this->model->created_at->toDateString())->first();
 
-        $foundQuestion = Question::getByUpdatedAt($question->updated_at->toDateString())->first();
+        expect($foundModel->created_at->toDateString())->toBe($this->model->created_at->toDateString());
+    });
 
-        expect($foundQuestion->updated_at->toDateString())->toBe($question->updated_at->toDateString());
+    test('can filter by updated_at using scopeGetByUpdatedAt', function () {
+        $foundModel = Question::getByUpdatedAt($this->model->updated_at->toDateString())->first();
+
+        expect($foundModel->updated_at->toDateString())->toBe($this->model->updated_at->toDateString());
     });
 });

@@ -1,14 +1,14 @@
 <?php
 
-use App\Models\Entities\Money;
+use App\Models\Structural\Technology;
 
 beforeEach(function () {
     $this->createUsers();
-    $this->model = Money::factory()->create();
+    $this->model = Technology::factory()->create();
 });
 
 it('can be created', function () {
-    expect($this->model)->toBeInstanceOf(Money::class);
+    expect($this->model)->toBeInstanceOf(Technology::class);
 });
 
 describe('Instance', function () {
@@ -24,28 +24,22 @@ describe('Instance', function () {
             ->toBe($this->model->user_id);
     });
 
-    test('can get sender', function () {
-        expect($this->model->getSender())
+    test('can get href', function () {
+        expect($this->model->getHref())
             ->toBeString()
-            ->toBe($this->model->sender);
+            ->toBe($this->model->href);
     });
 
-    test('can get receiver', function () {
-        expect($this->model->getReceiver())
+    test('can get src', function () {
+        expect($this->model->getSrc())
             ->toBeString()
-            ->toBe($this->model->receiver);
+            ->toBe($this->model->src);
     });
 
-    test('can get count', function () {
-        expect($this->model->getCount())
-            ->toBeInt()
-            ->toBe($this->model->count);
-    });
-
-    test('can get title', function () {
-        expect($this->model->getTitle())
+    test('can get label', function () {
+        expect($this->model->getLabel())
             ->toBeString()
-            ->toBe($this->model->title);
+            ->toBe($this->model->label);
     });
 
     test('can get description', function () {
@@ -58,6 +52,12 @@ describe('Instance', function () {
         expect($this->model->getCategory())
             ->toBeString()
             ->toBe($this->model->category);
+    });
+
+    test('can get display', function () {
+        expect($this->model->getDisplay())
+            ->toBeBool()
+            ->toBe($this->model->display);
     });
 
     test('can get created_at date', function () {
@@ -75,61 +75,61 @@ describe('Instance', function () {
 
 describe('Scope', function () {
     test('can filter by id using scopeGetById', function () {
-        $foundModel = Money::getById($this->model->id)->first();
+        $foundModel = Technology::getById($this->model->id)->first();
 
         expect($foundModel->id)->toBe($this->model->id);
     });
 
-    test('can filter by user_id using scopeGetByUserId', function () {
-        $foundModel = Money::getByUserId($this->model->user_id)->first();
+    test('can filter by id using scopeGetByUserId', function () {
+        $foundModel = Technology::getByUserId($this->model->user_id)->first();
 
         expect($foundModel->user_id)->toBe($this->model->user_id);
     });
 
-    test('can filter by sender using scopeGetBySender', function () {
-        $foundModel = Money::getBySender($this->model->sender)->first();
+    test('can filter by id using scopeGetByHref', function () {
+        $foundModel = Technology::getByHref($this->model->href)->first();
 
-        expect($foundModel->sender)->toBe($this->model->sender);
+        expect($foundModel->href)->toBe($this->model->href);
     });
 
-    test('can filter by receiver using scopeGetByReceiver', function () {
-        $foundModel = Money::getByReceiver($this->model->receiver)->first();
+    test('can filter by id using scopeGetBySrc', function () {
+        $foundModel = Technology::getBySrc($this->model->src)->first();
 
-        expect($foundModel->receiver)->toBe($this->model->receiver);
+        expect($foundModel->src)->toBe($this->model->src);
     });
 
-    test('can filter by count using scopeGetByCount', function () {
-        $foundModel = Money::getByCount($this->model->count)->first();
+    test('can filter by answer using scopeGetByLabel', function () {
+        $foundModel = Technology::getByLabel($this->model->label)->first();
 
-        expect($foundModel->count)->toBe($this->model->count);
+        expect($foundModel->label)->toBe($this->model->label);
     });
 
-    test('can filter by title using scopeGetByTitle', function () {
-        $foundModel = Money::getByTitle($this->model->title)->first();
-
-        expect($foundModel->title)->toBe($this->model->title);
-    });
-
-    test('can filter by description using scopeGetByDescription', function () {
-        $foundModel = Money::getByDescription($this->model->description)->first();
+    test('can filter by category using scopeGetByDescription', function () {
+        $foundModel = Technology::getByDescription($this->model->description)->first();
 
         expect($foundModel->description)->toBe($this->model->description);
     });
 
     test('can filter by category using scopeGetByCategory', function () {
-        $foundModel = Money::getByCategory($this->model->category)->first();
+        $foundModel = Technology::getByCategory($this->model->category)->first();
 
         expect($foundModel->category)->toBe($this->model->category);
     });
 
+    test('can filter by display using scopeGetByDisplay', function () {
+        $foundModel = Technology::getByDisplay($this->model->display)->first();
+
+        expect($foundModel->display)->toEqual($this->model->display);
+    });
+
     test('can filter by created_at using scopeGetByCreatedAt', function () {
-        $foundModel = Money::getByCreatedAt($this->model->created_at->toDateString())->first();
+        $foundModel = Technology::getByCreatedAt($this->model->created_at->toDateString())->first();
 
         expect($foundModel->created_at->toDateString())->toBe($this->model->created_at->toDateString());
     });
 
     test('can filter by updated_at using scopeGetByUpdatedAt', function () {
-        $foundModel = Money::getByUpdatedAt($this->model->updated_at->toDateString())->first();
+        $foundModel = Technology::getByUpdatedAt($this->model->updated_at->toDateString())->first();
 
         expect($foundModel->updated_at->toDateString())->toBe($this->model->updated_at->toDateString());
     });

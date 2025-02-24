@@ -38,6 +38,7 @@ use Illuminate\Notifications\Notifiable;
  * @property string getCreatedAt
  * @property string getUpdatedAt
  * @property BelongsTo user
+ * @property Builder scopeGetById
  * @property Builder scopeGetByUserId
  * @property Builder scopeGetByFirstName
  * @property Builder scopeGetByLastName
@@ -142,6 +143,10 @@ class Contact extends Model implements ContactContract
     /**
      *  Scope methods
      */
+    public function scopeGetById(Builder $query, int $parameter): Builder
+    {
+        return $query->where('id', $parameter);
+    }
     public function scopeGetByUserId(Builder $query, int $parameter): Builder
     {
         return $query->where('user_id', $parameter);
