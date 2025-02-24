@@ -5,142 +5,123 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 beforeEach(function () {
     $this->createUsers();
+    $this->model = User::factory()->create();
 });
 
 
 describe('Instance', function () {
     test('can be created', function () {
-        $user = User::factory()->create();
-
-        expect($user)->toBeInstanceOf(User::class);
+        expect($this->model)->toBeInstanceOf(User::class);
     });
 
     test('can have many contacts', function () {
-        $user = User::factory()->create();
-        $contacts = $user->contacts();
+        $contacts = $this->model->contacts();
 
         expect($contacts)->toBeInstanceOf(HasMany::class);
     });
 
     test('can create contact from user details', function () {
-        $user = User::factory()->create();
+        $this->model->createContactFromUserDetails();
 
-        $user->createContactFromUserDetails();
-
-        $contactsCount = $user->contacts()->count();
+        $contactsCount = $this->model->contacts()->count();
         expect($contactsCount)->toBe(1);
 
-        $contact = $user->contacts()->first();
-        expect($contact->first_name)->toBe($user->getName())
-            ->and($contact->email)->toBe($user->getEmail())
-            ->and($contact->role)->toBe($user->getRole());
+        $contact = $this->model->contacts()->first();
+        expect($contact->first_name)->toBe($this->model->getName())
+            ->and($contact->email)->toBe($this->model->getEmail())
+            ->and($contact->role)->toBe($this->model->getRole());
     });
 
     test('can get id', function () {
-        $user = User::factory()->create();
-
-        expect($user->getId())
+        expect($this->model->getId())
             ->toBeInt()
-            ->toBe($user->id);
+            ->toBe($this->model->id);
     });
 
     test('can get name', function () {
-        $user = User::factory()->create();
-
-        expect($user->getName())
+        expect($this->model->getName())
             ->toBeString()
-            ->toBe($user->name);
+            ->toBe($this->model->name);
     });
 
     test('can get email', function () {
-        $user = User::factory()->create();
-
-        expect($user->getEmail())
+        expect($this->model->getEmail())
             ->toBeString()
-            ->toBe($user->email);
+            ->toBe($this->model->email);
     });
 
     test('can get role', function () {
-        $user = User::factory()->create();
-
-        expect($user->getRole())
+        expect($this->model->getRole())
             ->toBeString()
-            ->toBe($user->role);
+            ->toBe($this->model->role);
     });
 
     test('can get created_at date', function () {
-        $user = User::factory()->create();
-
-        expect($user->getCreatedAt())
+        expect($this->model->getCreatedAt())
             ->toBeString()
-            ->toBe($user->created_at->toDateTimeString());
+            ->toBe($this->model->created_at->toDateTimeString());
     });
 
     test('can get updated_at date', function () {
-        $user = User::factory()->create();
-
-        expect($user->getUpdatedAt())
+        expect($this->model->getUpdatedAt())
             ->toBeString()
-            ->toBe($user->updated_at->toDateTimeString());
+            ->toBe($this->model->updated_at->toDateTimeString());
     });
 
     test('can check if user is a user', function () {
         $user = User::factory()->create(['role' => 'user']);
+
         expect($user->isUser())->toBeTrue();
     });
 
     test('can check if user is tech', function () {
         $user = User::factory()->create(['role' => 'tech']);
+
         expect($user->isTech())->toBeTrue();
     });
 
     test('can check if user is test admin', function () {
         $user = User::factory()->create(['role' => 'test_admin']);
+
         expect($user->isTestAdmin())->toBeTrue();
     });
 
     test('can check if user is admin', function () {
         $user = User::factory()->create(['role' => 'admin']);
+
         expect($user->isAdmin())->toBeTrue();
     });
 
     test('can check if user is super admin', function () {
         $user = User::factory()->create(['role' => 'super_admin']);
+
         expect($user->isSuperAdmin())->toBeTrue();
     });
 });
 
 describe('Scope', function () {
     test('can filter users by id using scopeGetById', function () {
-        $user = User::factory()->create();
+        $foundModel = User::getById($this->model->id)->first();
 
-        $foundUser = User::getById($user->id)->first();
-
-        expect($foundUser->id)->toBe($user->id);
+        expect($foundModel->id)->toBe($this->model->id);
     });
 
     test('can filter users by name using scopeGetByName', function () {
-        $user = User::factory()->create();
+        $foundModel = User::getByName($this->model->name)->first();
 
-        $foundUser = User::getByName($user->name)->first();
-
-        expect($foundUser->name)->toBe($user->name);
+        expect($foundModel->name)->toBe($this->model->name);
     });
 
     test('can filter users by email using scopeGetByEmail', function () {
-        $user = User::factory()->create();
+        $foundModel = User::getByEmail($this->model->email)->first();
 
-        $foundUser = User::getByEmail($user->email)->first();
-
-        expect($foundUser->email)->toBe($user->email);
+        expect($foundModel->email)->toBe($this->model->email);
     });
 
     test('can filter users by role using scopeGetByRole', function () {
-        $user = User::factory()->create();
+        $foundModel = User::getByRole($this->model->role)->first();
 
-        $foundUser = User::getByRole($user->role)->first();
-
-        expect($foundUser->role)->toBe($user->role);
+        expect($foundModel->role)->toBe($this->model->role);
     });
 
     test('can filter users by user role using scopeGetByUserRole', function () {

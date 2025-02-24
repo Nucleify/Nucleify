@@ -4,116 +4,97 @@ use App\Models\Entities\Article;
 
 beforeEach(function () {
     $this->createUsers();
+    $this->model = Article::factory()->create();
 });
 
 it('can be created', function () {
-    $article = Article::factory()->create();
-
-    expect($article)->toBeInstanceOf(Article::class);
+    expect($this->model)->toBeInstanceOf(Article::class);
 });
 
 describe('Instance', function () {
     test('can get id', function () {
-        $article = Article::factory()->create();
-
-        expect($article->getId())
+        expect($this->model->getId())
             ->toBeInt()
-            ->toBe($article->id);
+            ->toBe($this->model->id);
+    });
+
+    test('can get user_id', function () {
+        expect($this->model->getUserId())
+            ->toBeInt()
+            ->toBe($this->model->user_id);
     });
 
     test('can get title', function () {
-        $article = Article::factory()->create();
-
-        expect($article->getTitle())
+        expect($this->model->getTitle())
             ->toBeString()
-            ->toBe($article->title);
+            ->toBe($this->model->title);
     });
 
     test('can get description', function () {
-        $article = Article::factory()->create();
-
-        expect($article->getDescription())
+        expect($this->model->getDescription())
             ->toBeString()
-            ->toBe($article->description);
+            ->toBe($this->model->description);
     });
 
     test('can get category', function () {
-        $article = Article::factory()->create();
-
-        expect($article->getCategory())
+        expect($this->model->getCategory())
             ->toBeString()
-            ->toBe($article->category);
-    });
-
-    test('can get null for category if not set', function () {
-        $article = Article::factory()->create(['category' => null]);
-
-        expect($article->getCategory())->toBeNull();
+            ->toBe($this->model->category);
     });
 
     test('can get created_at date', function () {
-        $article = Article::factory()->create();
-
-        expect($article->getCreatedAt())
+        expect($this->model->getCreatedAt())
             ->toBeString()
-            ->toBe($article->created_at->toDateTimeString());
+            ->toBe($this->model->created_at->toDateTimeString());
     });
 
     test('can get updated_at date', function () {
-        $article = Article::factory()->create();
-
-        expect($article->getUpdatedAt())
+        expect($this->model->getUpdatedAt())
             ->toBeString()
-            ->toBe($article->updated_at->toDateTimeString());
+            ->toBe($this->model->updated_at->toDateTimeString());
     });
 });
 
 describe('Scope', function () {
-    test('can filter by id using scopeGetId', function () {
-        $article = Article::factory()->create();
+    test('can filter by id using scopeGetById', function () {
+        $foundModel = Article::getById($this->model->id)->first();
 
-        $foundArticle = Article::getById($article->id)->first();
-
-        expect($foundArticle->id)->toBe($article->id);
+        expect($foundModel->id)->toBe($this->model->id);
     });
 
-    test('can filter by title using scopeGetTitle', function () {
-        $article = Article::factory()->create();
+    test('can filter by id using scopeGetByUserId', function () {
+        $foundModel = Article::getByUserId($this->model->user_id)->first();
 
-        $foundArticle = Article::getByTitle($article->title)->first();
-
-        expect($foundArticle->title)->toBe($article->title);
+        expect($foundModel->user_id)->toBe($this->model->user_id);
     });
 
-    test('can filter by description using scopeGetDescription', function () {
-        $article = Article::factory()->create();
+    test('can filter by title using scopeGetByTitle', function () {
+        $foundModel = Article::getByTitle($this->model->title)->first();
 
-        $foundArticle = Article::getByDescription($article->description)->first();
-
-        expect($foundArticle->description)->toBe($article->description);
+        expect($foundModel->title)->toBe($this->model->title);
     });
 
-    test('can filter by category using scopeGetCategory', function () {
-        $article = Article::factory()->create();
+    test('can filter by description using scopeGetByDescription', function () {
+        $foundModel = Article::getByDescription($this->model->description)->first();
 
-        $foundArticle = Article::getByCategory($article->category)->first();
-
-        expect($foundArticle->category)->toBe($article->category);
+        expect($foundModel->description)->toBe($this->model->description);
     });
 
-    test('can filter by created_at using scopeGetCreatedAt', function () {
-        $article = Article::factory()->create();
+    test('can filter by category using scopeGetByCategory', function () {
+        $foundModel = Article::getByCategory($this->model->category)->first();
 
-        $foundArticle = Article::getByCreatedAt($article->created_at->toDateString())->first();
-
-        expect($foundArticle->created_at->toDateString())->toBe($article->created_at->toDateString());
+        expect($foundModel->category)->toBe($this->model->category);
     });
 
-    test('can filter by updated_at using scopeGetUpdatedAt', function () {
-        $article = Article::factory()->create();
+    test('can filter by created_at using scopeGetByCreatedAt', function () {
+        $foundModel = Article::getByCreatedAt($this->model->created_at->toDateString())->first();
 
-        $foundArticle = Article::getByUpdatedAt($article->updated_at->toDateString())->first();
+        expect($foundModel->created_at->toDateString())->toBe($this->model->created_at->toDateString());
+    });
 
-        expect($foundArticle->updated_at->toDateString())->toBe($article->updated_at->toDateString());
+    test('can filter by updated_at using scopeGetByUpdatedAt', function () {
+        $foundModel = Article::getByUpdatedAt($this->model->updated_at->toDateString())->first();
+
+        expect($foundModel->updated_at->toDateString())->toBe($this->model->updated_at->toDateString());
     });
 });

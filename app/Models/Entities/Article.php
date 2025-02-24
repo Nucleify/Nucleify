@@ -16,11 +16,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null category
  * @property string created_at
  * @property string updated_at
+ * @property int getId
+ * @property int getUserId
  * @property string getTitle
  * @property string getDescription
  * @property string|null getCategory
  * @property string getCreatedAt
  * @property string getUpdatedAt
+ * @property Builder scopeGetById
+ * @property Builder scopeGetByUserId
  * @property Builder scopeGetByTitle
  * @property Builder scopeGetByDescription
  * @property Builder scopeGetByCategory
@@ -44,6 +48,10 @@ class Article extends Model implements ArticleContract
     public function getId(): int
     {
         return $this->id;
+    }
+    public function getUserId(): int
+    {
+        return $this->user_id;
     }
     public function getTitle(): string
     {
@@ -72,6 +80,10 @@ class Article extends Model implements ArticleContract
     public function scopeGetById(Builder $query, int $parameter): Builder
     {
         return $query->where('id', $parameter);
+    }
+    public function scopeGetByUserId(Builder $query, int $parameter): Builder
+    {
+        return $query->where('user_id', $parameter);
     }
     public function scopeGetByTitle(Builder $query, string $parameter): Builder
     {

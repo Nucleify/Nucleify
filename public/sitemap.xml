@@ -2,92 +2,97 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
         <loc>https://data-manager.szymco.de/admin</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/home</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/login</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/logout</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/register</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/password/reset</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/password/email</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/password/reset/{token}</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/password/confirm</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/entities</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/entities/articles</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/entities/contacts</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/entities/money</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/entities/questions</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <loc>https://data-manager.szymco.de/structural</loc>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
+
+            </url>
+    <url>
+        <loc>https://data-manager.szymco.de/structural/questions</loc>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/activity-log</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/dashboard</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
     <url>
         <loc>https://data-manager.szymco.de/settings</loc>
-        <lastmod>2025-02-16T20:24:09+01:00</lastmod>
+        <lastmod>2025-02-23T20:09:47+01:00</lastmod>
 
             </url>
 </urlset>

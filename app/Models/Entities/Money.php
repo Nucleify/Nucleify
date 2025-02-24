@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string getUpdatedAt
  * @property BelongsTo user
  * @property Builder scopeGetById
+ * @property Builder scopeGetByUserId
  * @property Builder scopeGetBySender
  * @property Builder scopeGetByReceiver
  * @property Builder scopeGetByCount
