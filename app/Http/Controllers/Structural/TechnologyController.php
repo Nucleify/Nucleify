@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Structural;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Structural\Question\PostRequest;
-use App\Http\Requests\Structural\Question\PutRequest;
-use App\Models\Structural\Question;
-use App\Services\Structural\QuestionService;
+use App\Http\Requests\Structural\Technology\PostRequest;
+use App\Http\Requests\Structural\Technology\PutRequest;
+use App\Models\Structural\Technology;
+use App\Services\Structural\TechnologyService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class QuestionController extends Controller
+class TechnologyController extends Controller
 {
-    private QuestionService $service;
+    private TechnologyService $service;
 
     /**
-     * @param QuestionService $service
+     * @param TechnologyService $service
      */
-    public function __construct(QuestionService $service)
+    public function __construct(TechnologyService $service)
     {
         $this->service = $service;
     }
@@ -31,7 +31,7 @@ class QuestionController extends Controller
      */
     public function render(): Renderable
     {
-        return view('questions');
+        return view('technologies');
     }
 
     /**
@@ -87,10 +87,10 @@ class QuestionController extends Controller
      *
      * @return JsonResponse
      */
-    public function getSiteQuestions(string $site): JsonResponse
+    public function getSiteTechnologies(string $site): JsonResponse
     {
         try {
-            $result = $this->service->getSiteQuestions($site);
+            $result = $this->service->getSiteTechnologies($site);
 
             return response()->json($result);
         } catch (Exception $e) {
@@ -127,7 +127,7 @@ class QuestionController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: ' . $result['content'] . ' question'
+                'message' => 'Successfully created: ' . $result['label'] . ' technology'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -148,7 +148,7 @@ class QuestionController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['content'] . ' question'
+                'message' => 'Successfully updated: ' . $result['label'] . ' technology'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -162,13 +162,13 @@ class QuestionController extends Controller
      */
     public function destroy($id): JsonResponse
     {
-        $result = Question::findOrFail($id);
+        $result = Technology::findOrFail($id);
 
         try {
             $this->service->delete($id);
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: ' . $result->getContent() . ' question'
+                'message' => 'Successfully deleted: ' . $result->getLabel() . ' technology'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

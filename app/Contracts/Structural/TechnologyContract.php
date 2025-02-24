@@ -2,8 +2,7 @@
 
 namespace App\Contracts\Structural;
 
-
-interface QuestionContract
+interface TechnologyContract
 {
   /**
    * @return int
@@ -16,29 +15,29 @@ interface QuestionContract
   public function getUserId(): int;
 
   /**
-   * @return int
+   * @return string
    */
-  public function getIndex(): int;
+  public function getHref(): string;
 
   /**
    * @return string
    */
-  public function getContent(): string;
+  public function getSrc(): string;
 
   /**
    * @return string
    */
-  public function getAnswer(): string;
+  public function getLabel(): string;
+
+  /**
+   * @return string
+   */
+  public function getDescription(): string;
 
   /**
    * @return string|null
    */
   public function getCategory(): string | null;
-
-  /**
-   * @return bool
-   */
-  public function getOnSite(): bool;
 
   /**
    * @return bool

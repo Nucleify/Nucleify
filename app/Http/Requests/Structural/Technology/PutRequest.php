@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Structural\Question;
+namespace App\Http\Requests\Structural\Technology;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -25,12 +25,12 @@ class PutRequest extends FormRequest
     {
         return [
             'user_id' => 'integer|exists:users,id',
-            'index' => 'required|integer',
-            'content' => 'required|string|max:255',
-            'answer' => 'required|string|max:1000',
-            'category' => 'string|max:255',
-            'on_site' => 'bool',
-            'display' => 'bool'
+            'href' => 'required|string',
+            'src' => 'required|string',
+            'label' => 'required|string|max:50',
+            'description' => 'string|min:3|max:255',
+            'category' => 'string',
+            'display' => 'required|bool'
         ];
     }
 }

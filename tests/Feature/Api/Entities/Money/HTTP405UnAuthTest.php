@@ -5,7 +5,7 @@ beforeEach(function () {
     $this->actingAs($this->user);
 });
 
-describe('405 > Unauthorized', function () {
+describe('405 > Method Not Allowed > Unauthorized', function () {
     test('invalid method put > index api', function () {
         $this->put(route('money.index', 1))
             ->assertStatus(405);

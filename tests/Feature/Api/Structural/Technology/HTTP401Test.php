@@ -1,9 +1,11 @@
 <?php
 
+uses()->group('technology-api-302');
+
 describe('401 > Unauthorized', function () {
     test('index api', apiTest(
         'GET',
-        'questions.index',
+        'technologies.index',
         401,
         null,
         ['message'],
@@ -12,7 +14,7 @@ describe('401 > Unauthorized', function () {
 
     test('countByCreatedLastWeek api', apiTest(
         'GET',
-        'questions.countByCreatedLastWeek',
+        'technologies.countByCreatedLastWeek',
         401,
         null,
         ['message'],
@@ -21,7 +23,7 @@ describe('401 > Unauthorized', function () {
 
     test('show api', apiTest(
         'SHOW',
-        'questions.show',
+        'technologies.show',
         401,
         1,
         ['message'],
@@ -30,16 +32,16 @@ describe('401 > Unauthorized', function () {
 
     test('store api with data', apiTest(
         'POST',
-        'questions.store',
+        'technologies.store',
         401,
-        questionData,
+        technologyData,
         ['message'],
         ['message' => 'Unauthenticated.']
     ));
 
     test('store api empty json', apiTest(
         'POST',
-        'questions.store',
+        'technologies.store',
         401,
         [],
         ['message'],
@@ -48,16 +50,16 @@ describe('401 > Unauthorized', function () {
 
     test('update api with data', apiTest(
         'PUT',
-        'questions.update',
+        'technologies.update',
         401,
-        questionData,
+        technologyData,
         ['message'],
         ['message' => 'Unauthenticated.']
     ));
 
     test('update api empty json', apiTest(
         'PUT',
-        'questions.update',
+        'technologies.update',
         401,
         [],
         ['message'],
@@ -66,7 +68,7 @@ describe('401 > Unauthorized', function () {
 
     test('destroy api', apiTest(
         'DELETE',
-        'questions.destroy',
+        'technologies.destroy',
         401,
         null,
         ['message'],

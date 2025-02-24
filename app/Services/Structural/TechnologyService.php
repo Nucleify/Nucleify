@@ -2,28 +2,28 @@
 
 namespace App\Services\Structural;
 
-use App\Models\Structural\Question;
+use App\Models\Structural\Technology;
 use App\Services\Utilities\Activity\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\Structural\QuestionTransformer;
+use App\Transformers\Structural\TechnologyTransformer;
 use Illuminate\Http\Request;
 
-class QuestionService
+class TechnologyService
 {
     use RequestSetterTrait;
     use TimeSetterTrait;
     use UserSetterTrait;
 
     /**
-     * @param Question $model
+     * @param Technology $model
      * @param string $entity
      * @param LoggerService $logger
      */
     public function __construct(
-        private readonly Question $model,
-        protected string $entity = 'question',
+        private readonly Technology $model,
+        protected string $entity = 'technology',
         private readonly LoggerService $logger = new LoggerService()
     ) {}
 
@@ -45,7 +45,7 @@ class QuestionService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new TechnologyTransformer())
             ->toArray()['data'];
     }
 
@@ -85,11 +85,11 @@ class QuestionService
             ? $this->model->where('user_id', $this->causer->id)::getByCategory($category)->get()
             : $this->model::getByCategory($category)->get();
 
-        $this->logger->logMessage($this->causer->name . ' fetched questions by category: ' . $category . '.');
+        $this->logger->logMessage($this->causer->name . ' fetched technologies by category: ' . $category . '.');
 
         return fractal()
             ->collection($result)
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new TechnologyTransformer())
             ->toArray()['data'];
     }
 
@@ -98,7 +98,7 @@ class QuestionService
      *
      * @return array
      */
-    public function getSiteQuestions(string $site): array
+    public function getSiteTechnologies(string $site): array
     {
         $this->defineUserData();
 
@@ -106,11 +106,11 @@ class QuestionService
 
         $name = $this->causer ? $this->causer->name : 'Guest';
 
-        $this->logger->logMessage($name  . ' fetched questions by site: ' . $site . '.');
+        $this->logger->logMessage($name  . ' fetched technologies by site: ' . $site . '.');
 
         return fractal()
             ->collection($result)
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new TechnologyTransformer())
             ->toArray()['data'];
     }
 
@@ -127,11 +127,11 @@ class QuestionService
             ? $this->model::findOrFail($id)
             : $this->model->where('user_id', $this->causer->id)->findOrFail($id);
 
-        $this->logger->log($this->causer->name, $result->getContent(), $this->entity, 'showed');
+        $this->logger->log($this->causer->name, $result->getLabel(), $this->entity, 'showed');
 
         return fractal()
             ->item($result)
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new TechnologyTransformer())
             ->toArray()['data'];
     }
 
@@ -146,11 +146,11 @@ class QuestionService
 
         $result = $this->model::create($data);
 
-        $this->logger->log($this->causer->name, $result->getContent(), $this->entity, 'created');
+        $this->logger->log($this->causer->name, $result->getLabel(), $this->entity, 'created');
 
         return fractal()
             ->item($result)
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new TechnologyTransformer())
             ->toArray()['data'];
     }
 
@@ -170,11 +170,11 @@ class QuestionService
 
         $result->update($data);
 
-        $this->logger->log($this->causer->name, $result->getContent(), $this->entity, 'updated');
+        $this->logger->log($this->causer->name, $result->getLabel(), $this->entity, 'updated');
 
         return fractal()
             ->item($result->fresh())
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new TechnologyTransformer())
             ->toArray()['data'];
     }
 
@@ -193,6 +193,6 @@ class QuestionService
 
         $model->delete();
 
-        $this->logger->log($this->causer->name, $model->getContent(), $this->entity, 'deleted');
+        $this->logger->log($this->causer->name, $model->getLabel(), $this->entity, 'deleted');
     }
 }

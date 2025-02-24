@@ -114,3 +114,27 @@ const updatedQuestionData = [
     'on_site' => False,
     'display' => False
 ];
+
+/**
+ * Technology
+ */
+const technologyData = [
+    'id' => 1,
+    'user_id' => 1,
+    'href' => 'href',
+    'src' => 'src',
+    'label' => 'Label',
+    'description' => 'Description',
+    'category' => 'test',
+    'display' => True
+];
+const updatedTechnologyData = [
+    'id' => 1,
+    'user_id' => 1,
+    'href' => 'href2',
+    'src' => 'src2',
+    'label' => 'Label2',
+    'description' => 'Description2',
+    'category' => 'test2',
+    'display' => False
+];

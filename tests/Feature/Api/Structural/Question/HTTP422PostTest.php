@@ -7,6 +7,116 @@ beforeEach(function () {
 
 describe('422 > Unprocessable Content > POST', function($questionData = questionData) {
     /**
+     * USER ID TESTS
+     */
+    $questionData['user_id'] = '';
+    test('invalid user_id > empty', apiTest(
+        'POST',
+        'questions.store',
+        422,
+        $questionData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field is required.']
+        ]]
+    ));
+
+    $questionData['user_id'] = 'user_id';
+    test('invalid user_id > string', apiTest(
+        'POST',
+        'questions.store',
+        422,
+        $questionData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $questionData['user_id'] = false;
+    test('invalid user_id > false', apiTest(
+        'POST',
+        'questions.store',
+        422,
+        $questionData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $questionData['user_id'] = [];
+    test('invalid user_id > empty array', apiTest(
+        'POST',
+        'questions.store',
+        422,
+        $questionData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field is required.']
+        ]]
+    ));
+
+    $questionData['user_id'] = questionData['user_id']; // reset user_id value
+
+
+
+    /**
+     * INDEX TESTS
+     */
+    $questionData['index'] = '';
+    test('invalid index > empty', apiTest(
+        'POST',
+        'questions.store',
+        422,
+        $questionData,
+        ['errors' => ['index']],
+        ['errors' => [
+            'index' => ['The index field is required.']
+        ]]
+    ));
+
+    $questionData['index'] = 'index';
+    test('invalid index > string', apiTest(
+        'POST',
+        'questions.store',
+        422,
+        $questionData,
+        ['errors' => ['index']],
+        ['errors' => [
+            'index' => ['The index field must be an integer.']
+        ]]
+    ));
+
+    $questionData['index'] = false;
+    test('invalid index > false', apiTest(
+        'POST',
+        'questions.store',
+        422,
+        $questionData,
+        ['errors' => ['index']],
+        ['errors' => [
+            'index' => ['The index field must be an integer.']
+        ]]
+    ));
+
+    $questionData['index'] = [];
+    test('invalid index > empty array', apiTest(
+        'POST',
+        'questions.store',
+        422,
+        $questionData,
+        ['errors' => ['index']],
+        ['errors' => [
+            'index' => ['The index field is required.']
+        ]]
+    ));
+
+    $questionData['index'] = questionData['index']; // reset index value
+
+
+
+    /**
      * CONTENT TESTS
      */
     $questionData['content'] = '';

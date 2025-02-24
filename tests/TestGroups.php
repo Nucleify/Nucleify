@@ -28,6 +28,10 @@ uses()
     ->in('Feature/Api/Structural/Question');
 
 uses()
+    ->group('technology-api')
+    ->in('Feature/Api/Structural/Technology');
+
+uses()
     ->group('activity-api')
     ->in('Feature/Api/Utilities/Activity');
 

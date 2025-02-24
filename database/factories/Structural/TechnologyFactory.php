@@ -40,7 +40,7 @@ class TechnologyFactory extends Factory
             'href' => 'required|string',
             'src' => 'required|string',
             'label' => 'required|string|max:50',
-            'description' => 'string|max:255',
+            'description' => 'string|min:3|max:255',
             'category' => 'string',
             'display' => 'required|bool'
         ]);
