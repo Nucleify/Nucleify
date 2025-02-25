@@ -1,4 +1,4 @@
-import { technologiesImgUrl, TechnologyInterface } from 'atomic'
+import { technologiesImgUrl } from 'atomic'
 
 const techData: readonly [string, string, string, string][] = [
   ['PHP', 'php.svg', 'https://www.php.net/', technologiesImgUrl],
@@ -53,11 +53,9 @@ const techData: readonly [string, string, string, string][] = [
   ['Prettier', 'prettier.svg', 'https://prettier.io/', technologiesImgUrl],
 ] as const
 
-export const technologies: readonly TechnologyInterface[] = techData.map(
-  ([name, image, url, prefix]): TechnologyInterface => ({
-    name,
-    image,
-    url,
-    prefix,
-  })
-)
+export const technologies = techData.map(([name, image, url, prefix]) => ({
+  name,
+  image,
+  url,
+  prefix,
+}))
