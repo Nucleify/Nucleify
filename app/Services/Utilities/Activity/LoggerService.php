@@ -60,7 +60,7 @@ class LoggerService
      */
     public function constructLogMessage(string $causer, string|null $model, string $entity, string $method): string
     {
-        if (!in_array($entity, ['activity', 'article', 'contact', 'money', 'user'])) {
+        if (!in_array($entity, ['activity', 'article', 'contact', 'money', 'question', 'technology', 'user'])) {
             return false;
         }
 
@@ -96,7 +96,9 @@ class LoggerService
     {
         $entity = $entity === 'money'
             ? $entity
-            : ($entity === 'activity' ? 'activities' : $entity . 's');
+            : ($entity === 'activity'
+                ? 'activities'
+                : ($entity === 'technology' ? 'technologies' : $entity . 's'));
 
         return match ($all) {
             true => "User: ''$causer'' has fetched all $entity for all users",
@@ -132,7 +134,9 @@ class LoggerService
     {
         $entity = $entity === 'money'
             ? $entity
-            : ($entity === 'activity' ? 'activities' : $entity . 's');
+            : ($entity === 'activity'
+                ? 'activities'
+                : ($entity === 'technology' ? 'technologies' : $entity . 's'));
 
         return match ($all) {
             true => "User: ''$causer'' has counted $entity for all users",
