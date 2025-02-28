@@ -4,17 +4,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Entities\ActivityController;
-use App\Http\Controllers\Entities\ArticleController;
-use App\Http\Controllers\Entities\ContactController;
-use App\Http\Controllers\Entities\MoneyController;
-use App\Http\Controllers\Pages\AboutController;
-use App\Http\Controllers\Pages\LicenseController;
-use App\Http\Controllers\Pages\BlogController;
+use App\Http\Controllers\Entities\EntitiesController;
 use App\Http\Controllers\Pages\DashboardController;
 use App\Http\Controllers\Pages\HomeController;
-use App\Http\Controllers\Pages\ServicesController;
+use App\Http\Controllers\Pages\LicenseController;
 use App\Http\Controllers\Pages\SettingsController;
+use App\Http\Controllers\Structural\StructuralController;
+use App\Http\Controllers\Utilities\ActivityController;
 
 /**
  *  Home
@@ -38,7 +34,7 @@ Route::get('/home', [HomeController::class, 'render'])->name('home');
 /**
  *  License
  */
-//Route::get('/license', [LicenseController::class, 'render'])->name('license');
+Route::get('/license', [LicenseController::class, 'render'])->name('license');
 
 /**
  *  Services
@@ -53,29 +49,49 @@ Auth::routes();
 Route::middleware(['web', 'auth'])->group(function () {
 
     /**
+     *  Entities routes
+     */
+    $entities = [
+        'index',
+        'articles',
+        'contacts',
+        'money',
+    ];
+
+    foreach ($entities as $route) {
+        $endpoint = ($route !== 'index') ? $route : '';
+
+        Route::get("/entities/$endpoint", [EntitiesController::class, 'renderEntity'])
+            ->name($route)
+            ->defaults('entity', $route);
+    }
+
+    /**
+     *  Structural routes
+     */
+    $structural = [
+        'index',
+        'questions',
+        'technologies'
+    ];
+
+    foreach ($structural as $route) {
+        $endpoint = ($route !== 'index') ? $route : '';
+
+        Route::get("/structural/$endpoint", [StructuralController::class, 'renderStructural'])
+            ->name($route)
+            ->defaults('structural', $route);
+    }
+
+    /**
      *  Activity log
      */
     Route::get('/activity-log', [ActivityController::class, 'render'])->name('activity-log');
 
     /**
-     *  Articles
-     */
-    Route::get('/articles', [ArticleController::class, 'render'])->name('articles');
-
-    /**
-     *  Contacts
-     */
-    Route::get('/contacts', [ContactController::class, 'render'])->name('contacts');
-
-    /**
      *  Dashboard
      */
     Route::get('/dashboard', [DashboardController::class, 'render'])->name('dashboard');
-
-    /**
-     *  Money
-     */
-    Route::get('/money', [MoneyController::class, 'render'])->name('money');
 
     /**
      *  Settings

@@ -9,6 +9,11 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
     Article: window.localStorage.getItem('display-article-graphs') === 'true',
     Contact: window.localStorage.getItem('display-contact-graphs') === 'true',
     Money: window.localStorage.getItem('display-money-graphs') === 'true',
+    Question: window.localStorage.getItem('display-question-graphs') === 'true',
+    Structural:
+      window.localStorage.getItem('display-structural-graphs') === 'true',
+    Technology:
+      window.localStorage.getItem('display-technology-graphs') === 'true',
   })
 
   function displayChartsToggle(action: string): void {
@@ -31,6 +36,9 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
       'display-article-graphs',
       'display-contact-graphs',
       'display-money-graphs',
+      'display-question-graphs',
+      'display-structural-graphs',
+      'display-technology-graphs',
     ]
 
     if (initial) {

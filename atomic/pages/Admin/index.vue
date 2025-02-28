@@ -54,22 +54,22 @@
       :loading="!allLoaded"
     />
 
-    <article-dashboard
+    <ad-article-dashboard
       :data="articles"
       :getData="getAllArticles"
       :loading="!allLoaded"
     />
-    <contact-dashboard
+    <ad-contact-dashboard
       :data="contacts"
       :getData="getAllContacts"
       :loading="!allLoaded"
     />
-    <money-dashboard
+    <ad-money-dashboard
       :data="money"
       :getData="getAllMoney"
       :loading="!allLoaded"
     />
-    <user-dashboard
+    <ad-user-dashboard
       :data="users"
       :getData="getAllUsers"
       :loading="!allLoaded"
@@ -81,18 +81,11 @@
 import { onMounted, ref, Ref, watch } from 'vue'
 
 import {
-  ArticleDashboard,
-  ContactDashboard,
-  MoneyDashboard,
-  UserDashboard,
-} from './'
-
-import {
   articleRequests,
   contactRequests,
+  moneyRequests,
   userRequests,
   useDisplayCharts,
-  moneyRequests,
 } from 'atomic'
 
 const { display } = useDisplayCharts()

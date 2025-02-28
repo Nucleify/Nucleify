@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\Utilities\Activity\LoggerService;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-
-use App\Services\ActivityLoggerService;
-use App\Services\SitemapService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
         closedir($dirHandle);
 
         $this->app->singleton('activityLoggerService', function () {
-            return new ActivityLoggerService();
+            return new LoggerService();
         });
     }
     /**

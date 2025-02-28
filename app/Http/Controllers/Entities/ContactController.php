@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\Entities;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Entities\Contact\PostRequest;
+use App\Http\Requests\Entities\Contact\PutRequest;
+use App\Models\Entities\Contact;
+use App\Services\Entities\ContactService;
 use Exception;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
-use App\Models\Contact;
-use App\Http\Requests\Contact\PostRequest;
-use App\Http\Requests\Contact\PutRequest;
-use App\Services\ContactService;
-
 
 class ContactController extends Controller
 {
@@ -24,16 +21,6 @@ class ContactController extends Controller
     public function __construct(ContactService $service)
     {
         $this->service = $service;
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return Renderable
-     */
-    public function render(): Renderable
-    {
-        return view('contacts');
     }
 
     /**
@@ -97,7 +84,7 @@ class ContactController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: ' . $result['first_name'] . ' ' . $result['last_name']
+                'message' => 'Successfully created: ' . $result['first_name'] . ' ' . $result['last_name'] . ' contact'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -118,7 +105,7 @@ class ContactController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['first_name'] . ' ' . $result['last_name']
+                'message' => 'Successfully updated: ' . $result['first_name'] . ' ' . $result['last_name'] . ' contact'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -132,13 +119,13 @@ class ContactController extends Controller
      */
     public function destroy($id): JsonResponse
     {
-        $model = Contact::findOrFail($id);
+        $result = Contact::findOrFail($id);
 
         try {
             $this->service->delete($id);
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: '. $model->first_name . ' '. $model->last_name
+                'message' => 'Successfully deleted: '. $result->getFullName() . ' contact'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

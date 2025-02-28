@@ -1,6 +1,6 @@
 <?php
 
-// USE THIS IF YOU RUN TESTS ON LINUX
+// // USE THIS IF YOU RUN TESTS ON LINUX
 require_once __DIR__ . '/TestExpectations.php';
 require_once __DIR__ . '/TestFunctions.php';
 require_once __DIR__ . '/TestGroups.php';
@@ -12,9 +12,12 @@ $contactData = require_once __DIR__ . '/TestConstants.php';
 $updatedContactData = require_once __DIR__ . '/TestConstants.php';
 $userData = require_once __DIR__ . '/TestConstants.php';
 $updatedUserData = require_once __DIR__ . '/TestConstants.php';
+$questionData = require_once __DIR__ . '/TestConstants.php';
+$updatedQuestionData = require_once __DIR__ . '/TestConstants.php';
+$technologyData = require_once __DIR__ . '/TestConstants.php';
+$updatedTechnologyData = require_once __DIR__ . '/TestConstants.php';
 
-
-// USE THIS IF YOU RUN TESTS ON WINDOWS
+// USE THIS IF YOU RUN TESTS ON WIaNDOWS
 // require_once __DIR__ . '\TestExpectations.php';
 // require_once __DIR__ . '\TestFunctions.php';
 // require_once __DIR__ . '\TestGroups.php';
@@ -26,3 +29,5 @@ $updatedUserData = require_once __DIR__ . '/TestConstants.php';
 // $updatedData = require_once __DIR__ . '\TestConstants.php';
 // $userData = require_once __DIR__ . '\TestConstants.php';
 // $updatedUserData = require_once __DIR__ . '\TestConstants.php';
+// $questionData = require_once __DIR__ . '\TestConstants.php';
+// $updatedQuestionData = require_once __DIR__ . '\TestConstants.php';

@@ -1,4 +1,6 @@
 .my-card {
+  border-radius: 0;
+
   &:not(.tile) {
     width: 100%;
   }
@@ -6,9 +8,6 @@
   :has(.p-datatable) {
     padding-bottom: 0;
   }
-
-  box-shadow: $secondary-card-box-shadow;
-  border-radius: 0;
 
   .my-card-header-container {
     display: flex;
@@ -49,5 +48,7 @@
 
 .p-card,
 .my-card {
-  border: 1px solid $p-card-border;
+  background: $p-card-background !important;
+  border: 1px solid $p-card-border !important;
+  color: $white-text-color !important;
 }

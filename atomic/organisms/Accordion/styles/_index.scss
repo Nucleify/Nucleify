@@ -3,7 +3,9 @@
 .p-accordion {
   overflow: visible;
 
-  @each $type in main, activity, article, contact, money, user {
+  @each $type in main, activity, article, contact, money, question, technology,
+    user
+  {
     &[ad-type='#{$type}'] {
       @include entity-styles(
         var(--#{$type}-item-color) !important,
@@ -11,6 +13,15 @@
         var(--#{$type}-item-highlight-color) !important
       );
     }
+  }
+
+  .p-accordionheader,
+  .p-accordioncontent-content {
+    border: 1px solid $p-card-border !important;
+  }
+
+  .p-accordioncontent-content {
+    border-top: none !important;
   }
 
   .p-accordionheader,

@@ -1,15 +1,36 @@
 @import 'mixins';
 
 .p-inputtext {
+  background: $p-card-background !important;
+  border: 1px solid $p-card-border !important;
+  color: $white-text-color !important;
   max-height: $min-max-width-height-big;
   font-size: 1em;
 
-  @each $type in main, activity, article, contact, money, user {
+  @each $type in main, activity, article, contact, money, question, technology,
+    user
+  {
     &[ad-type='#{$type}'] {
       @include entity-inputtext-styles(
         var(--#{$type}-item-color-new) !important,
         var(--#{$type}-item-focus-color-new) !important
       );
+    }
+  }
+}
+
+body:has(#login),
+body:has(#register) {
+  .p-inputtext {
+    @each $type in main, activity, article, contact, money, question, technology,
+      user
+    {
+      &[ad-type='#{$type}'] {
+        @include entity-inputtext-styles(
+          var(--#{$type}-item-color) !important,
+          var(--#{$type}-item-focus-color) !important
+        );
+      }
     }
   }
 }

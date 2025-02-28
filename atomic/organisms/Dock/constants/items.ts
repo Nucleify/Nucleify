@@ -9,6 +9,7 @@ const createDockItem = (
   label?: string,
   url?: string,
   className?: string,
+  adType?: string,
   click?: () => void,
   logo?: boolean
 ): DockItemInterface =>
@@ -17,23 +18,23 @@ const createDockItem = (
     label,
     url,
     class: className,
+    adType,
     click,
     logo,
   }) as const
 
 const dockData: readonly DockItemInterface[] = [
-  [undefined, undefined, 'home', 'logo', undefined, true],
-  ['pi pi-user-edit', 'Admin Panel', 'admin'],
-  ['pi pi-chart-line', 'Dashboard', 'dashboard'],
-  ['pi pi-dollar', 'Money', 'money'],
-  ['pi pi-phone', 'Contacts', 'contacts'],
-  ['pi pi-comment', 'Articles', 'articles'],
-  ['pi pi-history', 'Activities', 'activity-log'],
+  [undefined, undefined, '/home', 'logo', undefined, undefined, true],
+  ['pi pi-crown', 'Admin Panel', '/admin', undefined, 'admin'],
+  ['pi pi-sitemap', 'Structural', '/structural', undefined, 'structural'],
+  ['pi pi-chart-line', 'Dashboard', '/dashboard', undefined, 'dashboard'],
+  ['pi pi-box', 'Entities', '/entities', undefined, 'entities'],
+  ['pi pi-history', 'Activities', '/activity-log', undefined, 'activity-log'],
   ['pi pi-envelope disabled-item', 'Messages'],
-  ['pi pi-check-square disabled-item', 'Tasks'],
   ['pi pi-calendar disabled-item', 'Calendar'],
-  ['pi pi-cog', 'Settings', 'settings'],
-  ['pi pi-sign-out', 'Logout', undefined, undefined, logout],
+  ['pi pi-user disabled-item', 'Profile'],
+  ['pi pi-cog', 'Settings', '/settings', undefined, 'settings'],
+  ['pi pi-sign-out', 'Logout', undefined, undefined, undefined, logout],
   [undefined, 'position', undefined, 'position'],
 ] as const
 
@@ -44,9 +45,10 @@ export const dockItems: readonly DockItemInterface[] = ref(
       label,
       url,
       className,
+      adType,
       click,
       logo,
     ]): readonly DockItemInterface[] =>
-      createDockItem(icon, label, url, className, click, logo)
+      createDockItem(icon, label, url, className, adType, click, logo)
   )
 ) as const
