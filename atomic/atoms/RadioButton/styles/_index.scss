@@ -1,6 +1,8 @@
 @import 'mixins';
 
-@each $type in main, activity, article, contact, money, question, user {
+@each $type in main, activity, article, contact, money, question, technology,
+  user
+{
   .p-radiobutton[ad-type='#{$type}'] {
     @include entity-radiobutton-styles(
       var(--#{$type}-item-color-new) !important

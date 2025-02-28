@@ -52,6 +52,26 @@ test('getByCategory > success', function () {
     expect(count($data))->toEqual(Question::where('category', $category)->count());
 });
 
+test('getSiteQuestions > success', function () {
+    $category = 'technology';
+    $categories = ['other', 'science', $category];
+
+    foreach ($categories as $cat) {
+        Question::factory()->create(['category' => $cat]);
+    }
+
+    $response = $this->controller->getSiteQuestions($category);
+    $data = $response->getData(true);
+
+    expect($response->getStatusCode())->toEqual(200);
+
+    foreach ($data as $question) {
+        expect($question['category'])->toEqual($category);
+    }
+
+    expect(count($data))->toEqual(Question::where('category', $category)->count());
+});
+
 test('show > success', function () {
     $question = Question::factory()->create();
 

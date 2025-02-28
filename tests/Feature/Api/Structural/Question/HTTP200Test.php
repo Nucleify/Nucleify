@@ -2,8 +2,6 @@
 
 use App\Models\Structural\Question;
 
-uses()->group('question-api-200');
-
 beforeEach(function () {
     $this->createUsers();
     $this->actingAs($this->admin);
@@ -28,6 +26,18 @@ describe('200 > Authorized', function () {
         Question::factory(3)->create(['category' => 'technology']);
 
         $this->getJson(route('questions.getByCategory', ['category' => 'technology']))
+            ->assertOk();
+    });
+
+    test('getSiteQuestions api', function () {
+        Question::factory(3)->create(['category' => 'technology']);
+
+        $this->getJson(route('questions.getSiteQuestions', ['site' => 'technology']))
+            ->assertOk();
+    });
+
+    test('store api', function () {
+        $this->postJson(route('questions.store'), questionData)
             ->assertOk();
     });
 

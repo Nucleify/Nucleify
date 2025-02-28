@@ -4,14 +4,17 @@ export function getTitle(selectedObject: ObjectType): string {
   if (!selectedObject) {
     return 'Unknown Entity'
   }
-  switch (true) {
-    case 'title' in selectedObject:
-      return selectedObject.title
-    case 'name' in selectedObject:
-      return selectedObject.name
-    case 'first_name' && 'last_name' in selectedObject:
-      return selectedObject.first_name + ' ' + selectedObject.last_name
-    default:
-      return 'Unknown Entity'
+
+  const propertyOrder = ['title', 'name', 'first_name', 'last_name', 'label']
+
+  for (const property of propertyOrder) {
+    if (property in selectedObject) {
+      if (property === 'first_name' && 'last_name' in selectedObject) {
+        return `${selectedObject.first_name} ${selectedObject.last_name}`
+      }
+      return selectedObject[property as keyof ObjectType]
+    }
   }
+
+  return 'Unknown Entity'
 }

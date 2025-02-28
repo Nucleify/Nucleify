@@ -11,7 +11,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
      * USER ID TESTS
      */
     $moneyData['user_id'] = '';
-    test('invalid empty user_id', apiTest(
+    test('invalid user_id > empty', apiTest(
         'POST',
         'money.store',
         422,
@@ -23,7 +23,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
     ));
 
     $moneyData['user_id'] = 'user_id';
-    test('invalid user_id string', apiTest(
+    test('invalid user_id > string', apiTest(
         'POST',
         'money.store',
         422,
@@ -35,7 +35,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
     ));
 
     $moneyData['user_id'] = false;
-    test('invalid user_id false', apiTest(
+    test('invalid user_id > false', apiTest(
         'POST',
         'money.store',
         422,
@@ -66,7 +66,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
      * COUNT TESTS
      */
     $moneyData['count'] = '';
-    test('invalid empty count', apiTest(
+    test('invalid count > empty', apiTest(
         'POST',
         'money.store',
         422,
@@ -78,7 +78,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
     ));
 
     $moneyData['count'] = 'count';
-    test('invalid count string', apiTest(
+    test('invalid count > string', apiTest(
         'POST',
         'money.store',
         422,
@@ -90,7 +90,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
     ));
 
     $moneyData['count'] = false;
-    test('invalid count false', apiTest(
+    test('invalid count > false', apiTest(
         'POST',
         'money.store',
         422,
@@ -264,9 +264,9 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
     ));
 
     $moneyData['receiver'] = moneyData['receiver']; // reset receiver value
-    
-    
-    
+
+
+
     /**
      * TITLE TESTS
      */
@@ -438,7 +438,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
      * CATEGORY TESTS
      */
     $moneyData['category'] = 1;
-    test('invalid category > positive integer', apiTest(
+    test('invalid category > integer', apiTest(
         'POST',
         'money.store',
         422,

@@ -6,6 +6,7 @@ export function setColorsVariables(): void {
     'contact',
     'money',
     'question',
+    'technology',
     'user',
   ]
 

@@ -37,16 +37,14 @@ class ContactService
         $this->defineRequestData($request);
         $this->defineUserData();
 
-        $contacts = $this->isCauserStaff ? ($this->isRefererAdmin
+        $result = $this->isCauserStaff && $this->isRefererAdmin
             ? $this->model->all()
-            : $this->model->where('user_id', $this->causer->id)->get()
-        )
             : $this->model->where('user_id', $this->causer->id)->get();
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererAdmin);
 
         return fractal()
-            ->collection($contacts)
+            ->collection($result)
             ->transformWith(new ContactTransformer())
             ->toArray()['data'];
     }
@@ -62,20 +60,16 @@ class ContactService
         $this->defineTimeData();
         $this->defineUserData();
 
-        $count = $this->isCauserStaff ? ($this->isRefererAdmin
+        $result = $this->isCauserStaff && $this->isRefererAdmin
             ? $this->model->whereDate('created_at', '>=', $this->lastWeek)
                 ->count()
-            : $this->model->whereDate('created_at', '>=', $this->lastWeek)
-                ->where('user_id', $this->causer->id)
-                ->count()
-        )
             : $this->model->whereDate('created_at', '>=', $this->lastWeek)
                 ->where('user_id', $this->causer->id)
                 ->count();
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererAdmin);
 
-        return ['count' => $count];
+        return ['count' => $result];
     }
 
     /**
@@ -87,14 +81,14 @@ class ContactService
     {
         $this->defineUserData();
 
-        $model = $this->isCauserStaff
+        $result = $this->isCauserStaff
             ? $this->model::findOrFail($id)
             : $this->model->where('user_id', $this->causer->id)->findOrFail($id);
 
-        $this->logger->log($this->causer->name, $model->getFullName(), $this->entity, 'showed');
+        $this->logger->log($this->causer->name, $result->getFullName(), $this->entity, 'showed');
 
         return fractal()
-            ->item($model)
+            ->item($result)
             ->transformWith(new ContactTransformer())
             ->toArray()['data'];
     }
@@ -108,12 +102,12 @@ class ContactService
     {
         $this->defineUserData();
 
-        $model = $this->model::create($data);
+        $result = $this->model::create($data);
 
-        $this->logger->log($this->causer->name, $model->getFullName(), $this->entity, 'created');
+        $this->logger->log($this->causer->name, $result->getFullName(), $this->entity, 'created');
 
         return fractal()
-            ->item($model)
+            ->item($result)
             ->transformWith(new ContactTransformer())
             ->toArray()['data'];
     }
@@ -128,16 +122,16 @@ class ContactService
     {
         $this->defineUserData();
 
-        $model = $this->isCauserStaff
+        $result = $this->isCauserStaff
             ? $this->model::findOrFail($id)
             : $this->model->where('user_id', $this->causer->id)->findOrFail($id);
 
-        $model->update($data);
+        $result->update($data);
 
-        $this->logger->log($this->causer->name, $model->getFullName(), $this->entity, 'updated');
+        $this->logger->log($this->causer->name, $result->getFullName(), $this->entity, 'updated');
 
         return fractal()
-            ->item($model->fresh())
+            ->item($result->fresh())
             ->transformWith(new ContactTransformer())
             ->toArray()['data'];
     }
@@ -151,12 +145,12 @@ class ContactService
     {
         $this->defineUserData();
 
-        $model = $this->isCauserStaff
+        $result = $this->isCauserStaff
             ? $this->model::findOrFail($id)
             : $this->model->where('user_id', $this->causer->id)->findOrFail($id);
 
-        $model->delete();
+        $result->delete();
 
-        $this->logger->log($this->causer->name, $model->getFullName(), $this->entity, 'deleted');
+        $this->logger->log($this->causer->name, $result->getFullName(), $this->entity, 'deleted');
     }
 }

@@ -100,6 +100,7 @@ import {
   SettingsPage,
   StructuralPage,
   QuestionsPage,
+  TechnologiesPage,
 } from './pages'
 import {
   SectionCategory,
@@ -116,6 +117,7 @@ import {
   ContactDashboard,
   MoneyDashboard,
   QuestionDashboard,
+  TechnologyDashboard,
   UserDashboard,
   BackLink,
   CardBoxes,
@@ -220,6 +222,7 @@ app
   .component('ad-settings-page', SettingsPage)
   .component('ad-structural-page', StructuralPage)
   .component('ad-questions-page', QuestionsPage)
+  .component('ad-technologies-page', TechnologiesPage)
 
   /**
    *  Sections
@@ -240,6 +243,7 @@ app
   .component('ad-contact-dashboard', ContactDashboard)
   .component('ad-money-dashboard', MoneyDashboard)
   .component('ad-question-dashboard', QuestionDashboard)
+  .component('ad-technology-dashboard', TechnologyDashboard)
   .component('ad-user-dashboard', UserDashboard)
   .component('ad-back-link', BackLink)
   .component('ad-card-boxes', CardBoxes)

@@ -41,6 +41,11 @@ export function useColors(): UseColorsInterface {
     hover: window.localStorage.getItem('question-item-hover-color'),
     selected: window.localStorage.getItem('question-item-selected-color'),
   }
+  const technologyItemColors: ColorItemColorsInterface = {
+    primary: window.localStorage.getItem('technology-item-color'),
+    hover: window.localStorage.getItem('technology-item-hover-color'),
+    selected: window.localStorage.getItem('technology-item-selected-color'),
+  }
   const userItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('user-item-color'),
     hover: window.localStorage.getItem('user-item-hover-color'),
@@ -96,6 +101,14 @@ export function useColors(): UseColorsInterface {
       'question-item-selected-color',
       'question-item-highlight-color',
 
+      // Technology properties
+      'technology-item-color',
+      'technology-item-dark-color',
+      'technology-item-hover-color',
+      'technology-item-focus-color',
+      'technology-item-selected-color',
+      'technology-item-highlight-color',
+
       // User properties
       'user-item-color',
       'user-item-dark-color',
@@ -132,6 +145,7 @@ export function useColors(): UseColorsInterface {
     contactItemColors,
     moneyItemColors,
     questionItemColors,
+    technologyItemColors,
     userItemColors,
     setDefaultColors,
   }

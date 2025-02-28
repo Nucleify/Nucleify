@@ -3,7 +3,9 @@
 .p-accordion {
   overflow: visible;
 
-  @each $type in main, activity, article, contact, money, question, user {
+  @each $type in main, activity, article, contact, money, question, technology,
+    user
+  {
     &[ad-type='#{$type}'] {
       @include entity-styles(
         var(--#{$type}-item-color) !important,

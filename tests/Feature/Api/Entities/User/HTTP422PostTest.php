@@ -83,7 +83,7 @@ describe('422 > Unprocessable Content > POST', function($userData = userData) {
     ));
 
     $userData['email'] = 1;
-    test('invalid email > positive integer', apiTest(
+    test('invalid email > integer', apiTest(
         'POST',
         'users.store',
         422,

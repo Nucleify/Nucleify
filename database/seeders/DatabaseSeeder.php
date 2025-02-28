@@ -16,7 +16,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(EntitiesSeeder::class);
+        $this->showMessage('Entities seeding completed.', $this->command);
+
         $this->call(StructuralSeeder::class);
+        $this->showMessage('Structural entities seeding completed.', $this->command);
+
         $this->call(UtilitiesSeeder::class);
+        $this->showMessage('Utilities entities seeding completed.', $this->command);
     }
 }

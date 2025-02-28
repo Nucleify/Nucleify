@@ -63,11 +63,18 @@ class UserService
         $this->defineTimeData();
         $this->defineUserData();
 
-        $count = $this->model->whereDate('created_at', '>=', $this->lastWeek)->count();
+        if (!$this->isCauserStaff) {
+            $this->logger->logAndThrow(
+                "User: ''{$this->causer->name}'' tried to fetch all users data, but he doesn't have permissions",
+                'Only admins or tech users can fetch all users data'
+            );
+        }
+
+        $data = $this->model->whereDate('created_at', '>=', $this->lastWeek)->count();
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererAdmin);
 
-        return ['count' => $count];
+        return ['count' => $data];
     }
 
     /**
@@ -81,19 +88,19 @@ class UserService
     {
         $this->defineUserData();
 
-        $model = $this->model::findOrFail($id);
+        $result = $this->model::findOrFail($id);
 
-        if (!$this->isCauserStaff && $this->causer->id !== $model->id) {
+        if (!$this->isCauserStaff && $this->causer->id !== $result->id) {
             $this->logger->logAndThrow(
                 "User: ''{$this->causer->name}'' tried to fetch other user data, but he doesn't have permissions",
                 "You don't have permission to fetch this user"
             );
         }
 
-        $this->logger->log($this->causer->name, $model->name, $this->entity, 'showed');
+        $this->logger->log($this->causer->name, $result->name, $this->entity, 'showed');
 
         return fractal()
-            ->item($model)
+            ->item($result)
             ->transformWith(new UserTransformer())
             ->toArray()['data'];
     }
@@ -116,12 +123,12 @@ class UserService
             );
         }
 
-        $model = $this->model::create($data);
+        $result = $this->model::create($data);
 
-        $this->logger->log($this->causer->name, $model->name, $this->entity, 'created');
+        $this->logger->log($this->causer->name, $result->name, $this->entity, 'created');
 
         return fractal()
-            ->item($model)
+            ->item($result)
             ->transformWith(new UserTransformer())
             ->toArray()['data'];
     }
@@ -138,7 +145,7 @@ class UserService
     {
         $this->defineUserData();
 
-        $model = $this->model::findOrFail($id);
+        $result = $this->model::findOrFail($id);
 
         $conditions = [
             [str_contains($this->causer->name, 'Test Admin') && $this->model->isSuperAdmin(),
@@ -151,22 +158,22 @@ class UserService
                 "Test Admin can't update admin"
             ],
 
-            [str_contains($this->causer->name, 'Test Admin') && $this->causer->id === $model->id,
+            [str_contains($this->causer->name, 'Test Admin') && $this->causer->id === $result->id,
                 "User: ''{$this->causer->name}'' tried to update his user data, but he can't update himself",
                 "Test Admin can't update himself"
             ],
 
-            [str_contains($this->causer->name, 'Test Admin') && str_contains($model->name, 'Test'),
+            [str_contains($this->causer->name, 'Test Admin') && str_contains($result->name, 'Test'),
                 "User: ''{$this->causer->name}'' tried to update test user data, but he can't update test users",
                 "Test Admin can't update test users"
             ],
 
-            [$this->causer->isAdmin() && $model->isSuperAdmin(),
+            [$this->causer->isAdmin() && $result->isSuperAdmin(),
                 "Admin tried to update super admin data, but he doesn't have permissions",
                 "Admin can't update super admin"
             ],
 
-            [$this->causer->isUser() && $this->causer->id !== $model->id,
+            [$this->causer->isUser() && $this->causer->id !== $result->id,
                 "User: ''{$this->causer->name}'' tried to update other user data, but he doesn't have permissions",
                 "Can't update other user without admin permissions"
             ],
@@ -178,12 +185,12 @@ class UserService
             }
         }
 
-        $model->update($data);
+        $result->update($data);
 
-        $this->logger->log($this->causer->name, $model->name, $this->entity, 'updated');
+        $this->logger->log($this->causer->name, $result->name, $this->entity, 'updated');
 
         return fractal()
-            ->item($model->fresh())
+            ->item($result->fresh())
             ->transformWith(new UserTransformer())
             ->toArray()['data'];
     }
@@ -199,35 +206,35 @@ class UserService
     {
         $this->defineUserData();
 
-        $model = User::findOrFail($id);
+        $result = User::findOrFail($id);
 
         $conditions = [
-            [str_contains($this->causer->name, 'Test Admin') && $model->isSuperAdmin(),
+            [str_contains($this->causer->name, 'Test Admin') && $result->isSuperAdmin(),
                 "User: ''{$this->causer->name}'' tried to delete super admin data, but he doesn't have permissions",
                 "Test Admin can't delete super admin"
             ],
 
-            [str_contains($this->causer->name, 'Test Admin') && $model->isAdmin(),
+            [str_contains($this->causer->name, 'Test Admin') && $result->isAdmin(),
                 "User: ''{$this->causer->name}'' tried to delete admin data, but he doesn't have permissions",
                 "Test Admin can't delete admin"
             ],
 
-            [str_contains($this->causer->name, 'Test Admin') && $this->causer->id === $model->id,
+            [str_contains($this->causer->name, 'Test Admin') && $this->causer->id === $result->id,
                 "User: ''{$this->causer->name}'' tried to delete his user data, but he can't delete himself",
                 "Test Admin can't delete himself"
             ],
 
-            [str_contains($this->causer->name, 'Test Admin') && str_contains($model->name, 'Test'),
+            [str_contains($this->causer->name, 'Test Admin') && str_contains($result->name, 'Test'),
                 "User: ''{$this->causer->name}'' tried to delete test user data, but he can't delete test users",
                 "Test Admin can't delete test users"
             ],
 
-            [$this->causer->isAdmin() && $model->isSuperAdmin(),
+            [$this->causer->isAdmin() && $result->isSuperAdmin(),
                 "Admin tried to delete super admin data, but he doesn't have permissions",
                 "Admin can't delete super admin"
             ],
 
-            [$this->causer->isUser() && $this->causer->id !== $model->id,
+            [$this->causer->isUser() && $this->causer->id !== $result->id,
                 "User: ''{$this->causer->name}'' tried to delete other user data, but he doesn't have permissions",
                 "Can't delete other user without admin permissions"
             ],
@@ -239,9 +246,9 @@ class UserService
             }
         }
 
-        $model->delete();
+        $result->delete();
 
-        $this->logger->log($this->causer->name, $model->name, $this->entity, 'deleted');
+        $this->logger->log($this->causer->name, $result->name, $this->entity, 'deleted');
 
         return ['success' => true];
     }

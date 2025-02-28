@@ -5,7 +5,7 @@ beforeEach(function () {
     $this->actingAs($this->admin);
 });
 
-describe('405 > Authorized', function () {
+describe('405 > Method Not Allowed > Authorized', function () {
     test('invalid method get without parameter > run command api', function () {
         $this->get(route('artisan.run'))
             ->assertStatus(405);

@@ -8,7 +8,9 @@
   min-height: 100px;
   max-height: 400px;
 
-  @each $type in main, activity, article, contact, money, question, user {
+  @each $type in main, activity, article, contact, money, question, technology,
+    user
+  {
     &[ad-type='#{$type}'] {
       @include entity-textarea-styles(
         var(--#{$type}-item-color-new) !important,

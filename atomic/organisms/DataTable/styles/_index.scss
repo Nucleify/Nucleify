@@ -28,7 +28,7 @@
     margin-top: 4px;
   }
 
-  @each $type in activity, article, contact, money, question, user {
+  @each $type in activity, article, contact, money, question, technology, user {
     &[ad-type='#{$type}'] {
       @include entity-datatable-styles(
         var(--#{$type}-item-color-new) !important,
@@ -111,6 +111,7 @@
     }
 
     .content-column,
+    .label-column,
     .title-column,
     .name-column,
     .full-name-column {
@@ -144,6 +145,7 @@
     }
 
     .content-column,
+    .label-column,
     .title-column,
     .category-column,
     .description-column,
@@ -154,6 +156,7 @@
     }
 
     .content-column,
+    .label-column,
     .title-column {
       max-width: 200px;
     }
@@ -234,6 +237,7 @@
       }
 
       .content-column,
+      .label-column,
       .title-column {
         width: 38%;
       }
@@ -304,6 +308,7 @@
       }
 
       .content-column,
+      .label-column,
       .title-column {
         width: 30%;
       }
@@ -320,6 +325,7 @@
       }
 
       .content-column,
+      .label-column,
       .title-column {
         width: 23%;
       }

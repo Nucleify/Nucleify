@@ -23,22 +23,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedArticleData = upd
     ));
 
     $updatedArticleData['title'] = 1;
-    test('invalid title > positive integer', apiTest(
-        'PUT',
-        'articles.update',
-        422,
-        $updatedArticleData,
-        ['errors' => ['title']],
-        ['errors' => [
-            'title' => [
-                'The title field must be a string.',
-                'The title field must be at least 3 characters.'
-            ]
-        ]]
-    ));
-
-    $updatedArticleData['title'] = -1;
-    test('invalid title > negative integer', apiTest(
+    test('invalid title > integer', apiTest(
         'PUT',
         'articles.update',
         422,
@@ -114,22 +99,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedArticleData = upd
      * DESCRIPTION TESTS
      */
     $updatedArticleData['description'] = 1;
-    test('invalid description > positive integer', apiTest(
-        'PUT',
-        'articles.update',
-        422,
-        $updatedArticleData,
-        ['errors' => ['description']],
-        ['errors' => [
-            'description' => [
-                'The description field must be a string.',
-                'The description field must be at least 10 characters.'
-            ]
-        ]]
-    ));
-
-    $updatedArticleData['description'] = -1;
-    test('invalid description > negative integer', apiTest(
+    test('invalid description > integer', apiTest(
         'PUT',
         'articles.update',
         422,
@@ -205,7 +175,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedArticleData = upd
      * CATEGORY TESTS
      */
     $updatedArticleData['category'] = 1;
-    test('invalid category > positive integer', apiTest(
+    test('invalid category > integer', apiTest(
         'PUT',
         'articles.update',
         422,
@@ -215,19 +185,6 @@ describe('422 > Unprocessable Content > PUT', function($updatedArticleData = upd
             'category' => ['The category field must be a string.']
         ]]
     ));
-
-    $updatedArticleData['category'] = -1;
-    test('invalid category > negative integer', apiTest(
-        'PUT',
-        'articles.update',
-        422,
-        $updatedArticleData,
-        ['errors' => ['category']],
-        ['errors' => [
-            'category' => ['The category field must be a string.']
-        ]]
-    ));
-
 
     $updatedArticleData['category'] = false;
     test('invalid category > false', apiTest(

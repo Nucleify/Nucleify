@@ -31,6 +31,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string getUpdatedAt
  * @property BelongsTo user
  * @property Builder scopeGetById
+ * @property Builder scopeGetByUserId
  * @property Builder scopeGetBySender
  * @property Builder scopeGetByReceiver
  * @property Builder scopeGetByCount
@@ -101,45 +102,45 @@ class Money extends Model implements MoneyContract
     /**
      *  Scope methods
      */
-    public function scopeGetById(Builder $query, int $id): Builder
+    public function scopeGetById(Builder $query, int $parameter): Builder
     {
-        return $query->where('id', $id);
+        return $query->where('id', $parameter);
     }
-    public function scopeGetByUserId(Builder $query, int $user_id): Builder
+    public function scopeGetByUserId(Builder $query, int $parameter): Builder
     {
-        return $query->where('user_id', $user_id);
+        return $query->where('user_id', $parameter);
     }
-    public function scopeGetBySender(Builder $query, string $sender): Builder
+    public function scopeGetBySender(Builder $query, string $parameter): Builder
     {
-        return $query->where('sender', $sender);
+        return $query->where('sender', $parameter);
     }
-    public function scopeGetByReceiver(Builder $query, string $receiver): Builder
+    public function scopeGetByReceiver(Builder $query, string $parameter): Builder
     {
-        return $query->where('receiver', $receiver);
+        return $query->where('receiver', $parameter);
     }
-    public function scopeGetByCount(Builder $query, int $count): Builder
+    public function scopeGetByCount(Builder $query, int $parameter): Builder
     {
-        return $query->where('count', $count);
+        return $query->where('count', $parameter);
     }
-    public function scopeGetByTitle(Builder $query, string $title): Builder
+    public function scopeGetByTitle(Builder $query, string $parameter): Builder
     {
-        return $query->where('title', $title);
+        return $query->where('title', $parameter);
     }
-    public function scopeGetByDescription(Builder $query, string $description): Builder
+    public function scopeGetByDescription(Builder $query, string $parameter): Builder
     {
-        return $query->where('description', $description);
+        return $query->where('description', $parameter);
     }
-    public function scopeGetByCategory(Builder $query, ?string $category): Builder
+    public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
     {
-        return $query->where('category', $category);
+        return $query->where('category', $parameter);
     }
-    public function scopeGetByCreatedAt(Builder $query, string $createdAt): Builder
+    public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('created_at', $createdAt);
+        return $query->whereDate('created_at', $parameter);
     }
-    public function scopeGetByUpdatedAt(Builder $query, string $updatedAt): Builder
+    public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('updated_at', $updatedAt);
+        return $query->whereDate('updated_at', $parameter);
     }
 
     /**
