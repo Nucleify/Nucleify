@@ -5,6 +5,7 @@ use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\Entities\MoneyController;
 use App\Http\Controllers\Entities\UserController;
 use App\Http\Controllers\Structural\QuestionController;
+use App\Http\Controllers\Structural\TechnologyController;
 use App\Http\Controllers\Utilities\ActivityController;
 use App\Http\Controllers\Utilities\ArtisanController;
 use App\Http\Controllers\Utilities\SitemapController;
@@ -23,6 +24,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/questions/get-site-questions/{site}', [QuestionController::class, 'getSiteQuestions'])
     ->name('questions.getSiteQuestions');
+
+Route::get('/technologies/get-site-technologies/{site}', [TechnologyController::class, 'getSiteTechnologies'])
+    ->name('technologies.getSiteTechnologies');
 
 Route::middleware(['web', 'auth'])->group(function () {
     /**
@@ -111,6 +115,9 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('users.destroy');
     });
 
+    /**
+     *  Questions
+     */
     Route::prefix('questions')->controller(QuestionController::class)->group(function () {
         Route::get('/', 'index')
             ->name('questions.index');
@@ -126,6 +133,26 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('questions.update');
         Route::delete('/{id}', 'destroy')
             ->name('questions.destroy');
+    });
+
+    /**
+     *  Technologies
+     */
+    Route::prefix('technologies')->controller(TechnologyController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('technologies.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('technologies.countByCreatedLastWeek');
+        Route::get('/get-by-category/{category}', 'getByCategory')
+            ->name('technologies.getByCategory');
+        Route::get('/{id}', 'show')
+            ->name('technologies.show');
+        Route::post('/', 'store')
+            ->name('technologies.store');
+        Route::put('/{id}', 'update')
+            ->name('technologies.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('technologies.destroy');
     });
 
     Route::get('/user', function () {

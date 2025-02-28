@@ -82,7 +82,7 @@ class UserController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: '. $result['name']
+                'message' => 'Successfully created: '. $result['name'] . ' user'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -103,7 +103,7 @@ class UserController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: '. $result['name']
+                'message' => 'Successfully updated: '. $result['name'] . ' user'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -118,12 +118,12 @@ class UserController extends Controller
     public function destroy($id): JsonResponse
     {
         try {
-            $model = User::findOrFail($id);
+            $result = User::findOrFail($id);
             $this->service->delete($id);
 
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: '. $model->name
+                'message' => 'Successfully deleted: '. $result->name . ' user'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

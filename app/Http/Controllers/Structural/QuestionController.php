@@ -67,7 +67,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * @param $category
+     * @param string $category
      *
      * @return JsonResponse
      */
@@ -83,7 +83,7 @@ class QuestionController extends Controller
     }
 
     /**
-     * @param $category
+     * @param string $site
      *
      * @return JsonResponse
      */
@@ -127,7 +127,7 @@ class QuestionController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: ' . $result['content']
+                'message' => 'Successfully created: ' . $result['content'] . ' question'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -148,7 +148,7 @@ class QuestionController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['content']
+                'message' => 'Successfully updated: ' . $result['content'] . ' question'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -162,13 +162,13 @@ class QuestionController extends Controller
      */
     public function destroy($id): JsonResponse
     {
-        $model = Question::findOrFail($id);
+        $result = Question::findOrFail($id);
 
         try {
             $this->service->delete($id);
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: ' . $model->content
+                'message' => 'Successfully deleted: ' . $result->getContent() . ' question'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

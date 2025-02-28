@@ -52,6 +52,12 @@ const columnsData: readonly ColumnsInterface[] = {
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
+  technology: [
+    ['label', 'Label', 'label-column'],
+    ['category', 'Category', 'category-column desktop-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
 } as const
 
 export const columns: readonly ColumnsInterface[] = Object.fromEntries(

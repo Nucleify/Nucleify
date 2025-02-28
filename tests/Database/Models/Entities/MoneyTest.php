@@ -4,174 +4,133 @@ use App\Models\Entities\Money;
 
 beforeEach(function () {
     $this->createUsers();
+    $this->model = Money::factory()->create();
 });
 
 it('can be created', function () {
-    $money = Money::factory()->create();
-
-    expect($money)->toBeInstanceOf(Money::class);
+    expect($this->model)->toBeInstanceOf(Money::class);
 });
 
 describe('Instance', function () {
     test('can get id', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getId())
+        expect($this->model->getId())
             ->toBeInt()
-            ->toBe($money->id);
+            ->toBe($this->model->id);
     });
 
-    test('can get user id', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getUserId())
+    test('can get user_id', function () {
+        expect($this->model->getUserId())
             ->toBeInt()
-            ->toBe($money->user_id);
+            ->toBe($this->model->user_id);
     });
 
     test('can get sender', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getSender())
+        expect($this->model->getSender())
             ->toBeString()
-            ->toBe($money->sender);
+            ->toBe($this->model->sender);
     });
 
     test('can get receiver', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getReceiver())
+        expect($this->model->getReceiver())
             ->toBeString()
-            ->toBe($money->receiver);
+            ->toBe($this->model->receiver);
     });
 
     test('can get count', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getCount())
+        expect($this->model->getCount())
             ->toBeInt()
-            ->toBe($money->count);
+            ->toBe($this->model->count);
     });
 
     test('can get title', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getTitle())
+        expect($this->model->getTitle())
             ->toBeString()
-            ->toBe($money->title);
+            ->toBe($this->model->title);
     });
 
     test('can get description', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getDescription())
+        expect($this->model->getDescription())
             ->toBeString()
-            ->toBe($money->description);
+            ->toBe($this->model->description);
     });
 
     test('can get category', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getCategory())
+        expect($this->model->getCategory())
             ->toBeString()
-            ->toBe($money->category);
+            ->toBe($this->model->category);
     });
 
     test('can get created_at date', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getCreatedAt())
+        expect($this->model->getCreatedAt())
             ->toBeString()
-            ->toBe($money->created_at->toDateTimeString());
+            ->toBe($this->model->created_at->toDateTimeString());
     });
 
     test('can get updated_at date', function () {
-        $money = Money::factory()->create();
-
-        expect($money->getUpdatedAt())
+        expect($this->model->getUpdatedAt())
             ->toBeString()
-            ->toBe($money->updated_at->toDateTimeString());
+            ->toBe($this->model->updated_at->toDateTimeString());
     });
 });
 
 describe('Scope', function () {
-    test('can filter by id using scopeGetId', function () {
-        $money = Money::factory()->create();
+    test('can filter by id using scopeGetById', function () {
+        $foundModel = Money::getById($this->model->id)->first();
 
-        $foundMoney = Money::getById($money->id)->first();
-
-        expect($foundMoney->id)->toBe($money->id);
+        expect($foundModel->id)->toBe($this->model->id);
     });
 
-    test('can filter by user_id using scopeGetUserId', function () {
-        $money = Money::factory()->create();
+    test('can filter by user_id using scopeGetByUserId', function () {
+        $foundModel = Money::getByUserId($this->model->user_id)->first();
 
-        $foundMoney = Money::getByUserId($money->user_id)->first();
-
-        expect($foundMoney->user_id)->toBe($money->user_id);
+        expect($foundModel->user_id)->toBe($this->model->user_id);
     });
 
-    test('can filter by sender using scopeGetSender', function () {
-        $money = Money::factory()->create();
+    test('can filter by sender using scopeGetBySender', function () {
+        $foundModel = Money::getBySender($this->model->sender)->first();
 
-        $foundMoney = Money::getBySender($money->sender)->first();
-
-        expect($foundMoney->sender)->toBe($money->sender);
+        expect($foundModel->sender)->toBe($this->model->sender);
     });
 
-    test('can filter by receiver using scopeGetReceiver', function () {
-        $money = Money::factory()->create();
+    test('can filter by receiver using scopeGetByReceiver', function () {
+        $foundModel = Money::getByReceiver($this->model->receiver)->first();
 
-        $foundMoney = Money::getByReceiver($money->receiver)->first();
-
-        expect($foundMoney->receiver)->toBe($money->receiver);
+        expect($foundModel->receiver)->toBe($this->model->receiver);
     });
 
-    test('can filter by count using scopeGetCount', function () {
-        $money = Money::factory()->create();
+    test('can filter by count using scopeGetByCount', function () {
+        $foundModel = Money::getByCount($this->model->count)->first();
 
-        $foundMoney = Money::getByCount($money->count)->first();
-
-        expect($foundMoney->count)->toBe($money->count);
+        expect($foundModel->count)->toBe($this->model->count);
     });
 
-    test('can filter by title using scopeGetTitle', function () {
-        $money = Money::factory()->create();
+    test('can filter by title using scopeGetByTitle', function () {
+        $foundModel = Money::getByTitle($this->model->title)->first();
 
-        $foundMoney = Money::getByTitle($money->title)->first();
-
-        expect($foundMoney->title)->toBe($money->title);
+        expect($foundModel->title)->toBe($this->model->title);
     });
 
-    test('can filter by description using scopeGetDescription', function () {
-        $money = Money::factory()->create();
+    test('can filter by description using scopeGetByDescription', function () {
+        $foundModel = Money::getByDescription($this->model->description)->first();
 
-        $foundMoney = Money::getByDescription($money->description)->first();
-
-        expect($foundMoney->description)->toBe($money->description);
+        expect($foundModel->description)->toBe($this->model->description);
     });
 
-    test('can filter by category using scopeGetCategory', function () {
-        $money = Money::factory()->create();
+    test('can filter by category using scopeGetByCategory', function () {
+        $foundModel = Money::getByCategory($this->model->category)->first();
 
-        $foundMoney = Money::getByCategory($money->category)->first();
-
-        expect($foundMoney->category)->toBe($money->category);
+        expect($foundModel->category)->toBe($this->model->category);
     });
 
-    test('can filter by created_at using scopeGetCreatedAt', function () {
-        $money = Money::factory()->create();
+    test('can filter by created_at using scopeGetByCreatedAt', function () {
+        $foundModel = Money::getByCreatedAt($this->model->created_at->toDateString())->first();
 
-        $foundMoney = Money::getByCreatedAt($money->created_at->toDateString())->first();
-
-        expect($foundMoney->created_at->toDateString())->toBe($money->created_at->toDateString());
+        expect($foundModel->created_at->toDateString())->toBe($this->model->created_at->toDateString());
     });
 
-    test('can filter by updated_at using scopeGetUpdatedAt', function () {
-        $money = Money::factory()->create();
+    test('can filter by updated_at using scopeGetByUpdatedAt', function () {
+        $foundModel = Money::getByUpdatedAt($this->model->updated_at->toDateString())->first();
 
-        $foundMoney = Money::getByUpdatedAt($money->updated_at->toDateString())->first();
-
-        expect($foundMoney->updated_at->toDateString())->toBe($money->updated_at->toDateString());
+        expect($foundModel->updated_at->toDateString())->toBe($this->model->updated_at->toDateString());
     });
 });

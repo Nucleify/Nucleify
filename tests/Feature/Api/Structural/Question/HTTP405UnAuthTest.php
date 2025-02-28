@@ -1,6 +1,6 @@
 <?php
 
-describe('405 > Authorized', function () {
+describe('405 > Method Not Allowed > Unauthorized', function () {
     test('invalid method put > index api', function () {
         $this->put(route('questions.index', 1))
             ->assertStatus(405);

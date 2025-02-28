@@ -11,7 +11,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
      * USER ID TESTS
      */
     $updatedMoneyData['user_id'] = '';
-    test('invalid empty user_id', apiTest(
+    test('invalid user_id > empty', apiTest(
         'PUT',
         'money.update',
         422,
@@ -23,7 +23,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
     ));
 
     $updatedMoneyData['user_id'] = 'user_id';
-    test('invalid user_id string', apiTest(
+    test('invalid user_id > string', apiTest(
         'PUT',
         'money.update',
         422,
@@ -35,7 +35,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
     ));
 
     $updatedMoneyData['user_id'] = false;
-    test('invalid user_id false', apiTest(
+    test('invalid user_id > false', apiTest(
         'PUT',
         'money.update',
         422,
@@ -66,7 +66,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
      * COUNT TESTS
      */
     $updatedMoneyData['count'] = '';
-    test('invalid empty count', apiTest(
+    test('invalid count > empty', apiTest(
         'PUT',
         'money.update',
         422,
@@ -78,7 +78,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
     ));
 
     $updatedMoneyData['count'] = 'count';
-    test('invalid count string', apiTest(
+    test('invalid count > string', apiTest(
         'PUT',
         'money.update',
         422,
@@ -90,7 +90,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
     ));
 
     $updatedMoneyData['count'] = false;
-    test('invalid count false', apiTest(
+    test('invalid count > false', apiTest(
         'PUT',
         'money.update',
         422,

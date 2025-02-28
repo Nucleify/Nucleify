@@ -34,12 +34,12 @@ class ActivityService
     {
         $this->defineUserData();
 
-        $model = $this->isCauserStaff
+        $result = $this->isCauserStaff
             ? $this->model->all()
             : $this->model->where('causer_id', $this->causer->id)->get();
 
         return fractal()
-            ->collection($model)
+            ->collection($result)
             ->transformWith(new ActivityTransformer())
             ->toArray()['data'];
     }
@@ -55,14 +55,14 @@ class ActivityService
         $this->defineTimeData();
         $this->defineUserData();
 
-        $count = $this->isCauserStaff
+        $result = $this->isCauserStaff
             ? $this->model->whereDate('created_at', '>=', $this->lastWeek)
                 ->count()
             : $this->model->whereDate('created_at', '>=', $this->lastWeek)
                 ->where('user_id', $this->causer->id)
                 ->count();
 
-        return ['count' => $count];
+        return ['count' => $result];
     }
 
     /**
@@ -76,16 +76,16 @@ class ActivityService
     {
         $this->defineUserData();
 
-        $model = $this->model::findOrFail($id);
+        $result = $this->model::findOrFail($id);
 
-        if (!$this->isCauserStaff && $this->causer->id !== $model->causer_id) {
+        if (!$this->isCauserStaff && $this->causer->id !== $result->causer_id) {
             $this->logger->logAndThrow(
                 "User: ''$this->causer->name'' tried to fetch other user activity log, but he doesn't have permissions",
                 "You don't have permission to fetch other users' activity log"
             );
         } else {
             return fractal()
-                ->item($model)
+                ->item($result)
                 ->transformWith(new ActivityTransformer())
                 ->toArray()['data'];
         }
@@ -100,10 +100,10 @@ class ActivityService
     {
         $this->defineUserData();
 
-        $model = $this->isCauserStaff
+        $result = $this->isCauserStaff
             ? $this->model->findOrFail($id)
             : $this->model->where('causer_id', $this->causer->id)->findOrFail($id);
 
-        $model->delete();
+        $result->delete();
     }
 }

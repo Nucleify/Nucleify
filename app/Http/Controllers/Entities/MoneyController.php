@@ -119,13 +119,13 @@ class MoneyController extends Controller
      */
     public function destroy($id): JsonResponse
     {
-        $model = Money::findOrFail($id);
+        $result = Money::findOrFail($id);
 
         try {
             $this->service->delete($id);
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: '. $model->title . ' transaction'
+                'message' => 'Successfully deleted: '. $result->getTitle() . ' transaction'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

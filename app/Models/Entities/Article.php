@@ -16,11 +16,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null category
  * @property string created_at
  * @property string updated_at
+ * @property int getId
+ * @property int getUserId
  * @property string getTitle
  * @property string getDescription
  * @property string|null getCategory
  * @property string getCreatedAt
  * @property string getUpdatedAt
+ * @property Builder scopeGetById
+ * @property Builder scopeGetByUserId
  * @property Builder scopeGetByTitle
  * @property Builder scopeGetByDescription
  * @property Builder scopeGetByCategory
@@ -44,6 +48,10 @@ class Article extends Model implements ArticleContract
     public function getId(): int
     {
         return $this->id;
+    }
+    public function getUserId(): int
+    {
+        return $this->user_id;
     }
     public function getTitle(): string
     {
@@ -69,29 +77,33 @@ class Article extends Model implements ArticleContract
     /**
      *  Scope methods
      */
-    public function scopeGetById(Builder $query, int $id): Builder
+    public function scopeGetById(Builder $query, int $parameter): Builder
     {
-        return $query->where('id', $id);
+        return $query->where('id', $parameter);
     }
-    public function scopeGetByTitle(Builder $query, string $title): Builder
+    public function scopeGetByUserId(Builder $query, int $parameter): Builder
     {
-        return $query->where('title', $title);
+        return $query->where('user_id', $parameter);
     }
-    public function scopeGetByDescription(Builder $query, string $description): Builder
+    public function scopeGetByTitle(Builder $query, string $parameter): Builder
     {
-        return $query->where('description', $description);
+        return $query->where('title', $parameter);
     }
-    public function scopeGetByCategory(Builder $query, ?string $category): Builder
+    public function scopeGetByDescription(Builder $query, string $parameter): Builder
     {
-        return $query->where('category', $category);
+        return $query->where('description', $parameter);
     }
-    public function scopeGetByCreatedAt(Builder $query, string $createdAt): Builder
+    public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
     {
-        return $query->whereDate('created_at', $createdAt);
+        return $query->where('category', $parameter);
     }
-    public function scopeGetByUpdatedAt(Builder $query, string $updatedAt): Builder
+    public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->whereDate('updated_at', $updatedAt);
+        return $query->whereDate('created_at', $parameter);
+    }
+    public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
+    {
+        return $query->whereDate('updated_at', $parameter);
     }
 
     public function user(): BelongsTo

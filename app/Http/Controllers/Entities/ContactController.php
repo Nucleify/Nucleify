@@ -84,7 +84,7 @@ class ContactController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: ' . $result['first_name'] . ' ' . $result['last_name']
+                'message' => 'Successfully created: ' . $result['first_name'] . ' ' . $result['last_name'] . ' contact'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -105,7 +105,7 @@ class ContactController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['first_name'] . ' ' . $result['last_name']
+                'message' => 'Successfully updated: ' . $result['first_name'] . ' ' . $result['last_name'] . ' contact'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -119,13 +119,13 @@ class ContactController extends Controller
      */
     public function destroy($id): JsonResponse
     {
-        $model = Contact::findOrFail($id);
+        $result = Contact::findOrFail($id);
 
         try {
             $this->service->delete($id);
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: '. $model->first_name . ' '. $model->last_name
+                'message' => 'Successfully deleted: '. $result->getFullName() . ' contact'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

@@ -37,16 +37,14 @@ class QuestionService
         $this->defineRequestData($request);
         $this->defineUserData();
 
-        $questions = $this->isCauserStaff ? ($this->isRefererStructural
+        $result = $this->isCauserStaff && $this->isRefererStructural
             ? $this->model->all()
-            : $this->model->where('user_id', $this->causer->id)->get()
-        )
             : $this->model->where('user_id', $this->causer->id)->get();
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererStructural);
 
         return fractal()
-            ->collection($questions)
+            ->collection($result)
             ->transformWith(new QuestionTransformer())
             ->toArray()['data'];
     }
@@ -62,24 +60,20 @@ class QuestionService
         $this->defineTimeData();
         $this->defineUserData();
 
-        $count = $this->isCauserStaff ? ($this->isRefererStructural
+        $result = $this->isCauserStaff && $this->isRefererStructural
             ? $this->model->whereDate('created_at', '>=', $this->lastWeek)
                 ->count()
-            : $this->model->whereDate('created_at', '>=', $this->lastWeek)
-                ->where('user_id', $this->causer->id)
-                ->count()
-        )
             : $this->model->whereDate('created_at', '>=', $this->lastWeek)
                 ->where('user_id', $this->causer->id)
                 ->count();
 
         $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererStructural);
 
-        return ['count' => $count];
+        return ['count' => $result];
     }
 
     /**
-     * @param $category
+     * @param string $category
      *
      * @return array
      */
@@ -87,20 +81,20 @@ class QuestionService
     {
         $this->defineUserData();
 
-        $questions = $this->causer->isUser()
+        $result = $this->causer->isUser()
             ? $this->model->where('user_id', $this->causer->id)::getByCategory($category)->get()
             : $this->model::getByCategory($category)->get();
 
-        $this->logger->logMessage($this->causer->name . ' filtered questions by category: ' . $category . '.');
+        $this->logger->logMessage($this->causer->name . ' fetched questions by category: ' . $category . '.');
 
         return fractal()
-            ->collection($questions)
+            ->collection($result)
             ->transformWith(new QuestionTransformer())
             ->toArray()['data'];
     }
 
     /**
-     * @param $site
+     * @param string $site
      *
      * @return array
      */
@@ -108,14 +102,14 @@ class QuestionService
     {
         $this->defineUserData();
 
-        $questions = $this->model::getByCategory($site)->get();
+        $result = $this->model::getByCategory($site)->get();
 
-        $user = $this->causer ? $this->causer->name : 'Guest';
+        $name = $this->causer ? $this->causer->name : 'Guest';
 
-        $this->logger->logMessage($user  . ' filtered questions by site: ' . $site . '.');
+        $this->logger->logMessage($name  . ' fetched questions by site: ' . $site . '.');
 
         return fractal()
-            ->collection($questions)
+            ->collection($result)
             ->transformWith(new QuestionTransformer())
             ->toArray()['data'];
     }
@@ -129,14 +123,14 @@ class QuestionService
     {
         $this->defineUserData();
 
-        $model = $this->isCauserStaff
+        $result = $this->isCauserStaff
             ? $this->model::findOrFail($id)
             : $this->model->where('user_id', $this->causer->id)->findOrFail($id);
 
-        $this->logger->log($this->causer->name, $model->getContent(), $this->entity, 'showed');
+        $this->logger->log($this->causer->name, $result->getContent(), $this->entity, 'showed');
 
         return fractal()
-            ->item($model)
+            ->item($result)
             ->transformWith(new QuestionTransformer())
             ->toArray()['data'];
     }
@@ -150,12 +144,12 @@ class QuestionService
     {
         $this->defineUserData();
 
-        $model = $this->model::create($data);
+        $result = $this->model::create($data);
 
-        $this->logger->log($this->causer->name, $model->getContent(), $this->entity, 'created');
+        $this->logger->log($this->causer->name, $result->getContent(), $this->entity, 'created');
 
         return fractal()
-            ->item($model)
+            ->item($result)
             ->transformWith(new QuestionTransformer())
             ->toArray()['data'];
     }
@@ -170,16 +164,16 @@ class QuestionService
     {
         $this->defineUserData();
 
-        $model = $this->isCauserStaff
+        $result = $this->isCauserStaff
             ? $this->model::findOrFail($id)
             : $this->model->where('user_id', $this->causer->id)->findOrFail($id);
 
-        $model->update($data);
+        $result->update($data);
 
-        $this->logger->log($this->causer->name, $model->getContent(), $this->entity, 'updated');
+        $this->logger->log($this->causer->name, $result->getContent(), $this->entity, 'updated');
 
         return fractal()
-            ->item($model->fresh())
+            ->item($result->fresh())
             ->transformWith(new QuestionTransformer())
             ->toArray()['data'];
     }

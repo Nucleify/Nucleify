@@ -11,6 +11,7 @@ import {
   MoneyInterface,
   UserInterface,
   QuestionInterface,
+  TechnologyInterface,
   ChartMethodType,
   ChartType,
   ChartInterface,
@@ -26,6 +27,7 @@ export function useChart() {
     contactItemColors,
     moneyItemColors,
     questionItemColors,
+    technologyItemColors,
     userItemColors,
   }: UseColorsReturnInterface = useColors()
 
@@ -37,6 +39,7 @@ export function useChart() {
     contactItemColors: { primary: '#10B981', hover: '#10A674' },
     moneyItemColors: { primary: '#11c73b', hover: '#0eb233' },
     questionItemColors: { primary: '#8cb910', hover: '#8cb910' },
+    technologyItemColors: { primary: '#b95910', hover: '#9b4b0e' },
     userItemColors: { primary: '#64748B', hover: '#566479' },
   }
 
@@ -55,6 +58,7 @@ export function useChart() {
     contactData?: ContactInterface[],
     moneyData?: MoneyInterface[],
     questionData?: QuestionInterface[],
+    technologyData?: TechnologyInterface[],
     userData?: UserInterface[],
     example?: boolean
   ) {
@@ -65,6 +69,7 @@ export function useChart() {
       const contactDataByMonth: number[] = new Array(12).fill(0)
       const moneyDataByMonth: number[] = new Array(12).fill(0)
       const questionDataByMonth: number[] = new Array(12).fill(0)
+      const technologyDataByMonth: number[] = new Array(12).fill(0)
       const userDataByMonth: number[] = new Array(12).fill(0)
 
       const colors = example
@@ -75,6 +80,7 @@ export function useChart() {
             contactItemColors,
             moneyItemColors,
             questionItemColors,
+            technologyItemColors,
             userItemColors,
           }
 
@@ -97,31 +103,28 @@ export function useChart() {
         })
 
         contactData?.forEach((contact: ContactInterface): void => {
-          if (contact.created_at) {
-            const monthIndex: number = new Date(contact.created_at).getMonth()
-            contactDataByMonth[monthIndex]++
-          }
+          const monthIndex: number = new Date(contact.created_at).getMonth()
+          contactDataByMonth[monthIndex]++
         })
 
         moneyData?.forEach((money: MoneyInterface): void => {
-          if (money.created_at) {
-            const monthIndex: number = new Date(money.created_at).getMonth()
-            moneyDataByMonth[monthIndex]++
-          }
+          const monthIndex: number = new Date(money.created_at).getMonth()
+          moneyDataByMonth[monthIndex]++
         })
 
         questionData?.forEach((question: QuestionInterface): void => {
-          if (question.created_at) {
-            const monthIndex: number = new Date(question.created_at).getMonth()
-            questionDataByMonth[monthIndex]++
-          }
+          const monthIndex: number = new Date(question.created_at).getMonth()
+          questionDataByMonth[monthIndex]++
+        })
+
+        technologyData?.forEach((technology: TechnologyInterface): void => {
+          const monthIndex: number = new Date(technology.created_at).getMonth()
+          technologyDataByMonth[monthIndex]++
         })
 
         userData?.forEach((user: UserInterface): void => {
-          if (user.created_at) {
-            const monthIndex: number = new Date(user.created_at).getMonth()
-            userDataByMonth[monthIndex]++
-          }
+          const monthIndex: number = new Date(user.created_at).getMonth()
+          userDataByMonth[monthIndex]++
         })
       }
 
@@ -154,6 +157,11 @@ export function useChart() {
               colors: colors.questionItemColors,
             },
             {
+              label: 'Technology',
+              data: technologyDataByMonth,
+              colors: colors.technologyItemColors,
+            },
+            {
               label: 'Users',
               data: userDataByMonth,
               colors: colors.userItemColors,
@@ -179,6 +187,7 @@ export function useChart() {
               (label === 'Contacts' && contactData) ||
               (label === 'Money' && moneyData) ||
               (label === 'Question' && questionData) ||
+              (label === 'Technology' && technologyData) ||
               (label === 'Users' && userData)
             ) {
               labels.push(label)
@@ -201,6 +210,10 @@ export function useChart() {
             (sum: number, value: number) => sum + value,
             0
           )
+          const totalTechnologies: number = technologiesDataByMonth.reduce(
+            (sum: number, value: number) => sum + value,
+            0
+          )
           const totalUsers: number = userDataByMonth.reduce(
             (sum: number, value: number) => sum + value,
             0
@@ -215,6 +228,7 @@ export function useChart() {
                   totalContacts,
                   totalMoney,
                   totalQuestions,
+                  totalTechnologies,
                   totalUsers,
                 ],
                 borderColor: '#041E13FF',
@@ -223,6 +237,7 @@ export function useChart() {
                   colors.contactItemColors.primary,
                   colors.moneyItemColors.primary,
                   colors.questionItemColors.primary,
+                  colors.technologyItemColors.primary,
                   colors.userItemColors.primary,
                 ],
                 hoverBackgroundColor: [
@@ -230,6 +245,7 @@ export function useChart() {
                   colors.contactItemColors.hover,
                   colors.moneyItemColors.hover,
                   colors.questionItemColors.hover,
+                  colors.technologyItemColors.hover,
                   colors.userItemColors.hover,
                 ],
               },

@@ -7,6 +7,61 @@ beforeEach(function () {
 
 describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = updatedQuestionData) {
     /**
+     * USER ID TESTS
+     */
+    $updatedQuestionData['user_id'] = '';
+    test('invalid user_id > empty', apiTest(
+        'PUT',
+        'questions.update',
+        422,
+        $updatedQuestionData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedQuestionData['user_id'] = 'user_id';
+    test('invalid user_id > string', apiTest(
+        'PUT',
+        'questions.update',
+        422,
+        $updatedQuestionData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedQuestionData['user_id'] = false;
+    test('invalid user_id > false', apiTest(
+        'PUT',
+        'questions.update',
+        422,
+        $updatedQuestionData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedQuestionData['user_id'] = [];
+    test('invalid user_id > empty array', apiTest(
+        'PUT',
+        'questions.update',
+        422,
+        $updatedQuestionData,
+        ['errors' => ['user_id']],
+        ['errors' => [
+            'user_id' => ['The user id field must be an integer.']
+        ]]
+    ));
+
+    $updatedQuestionData['user_id'] = updatedQuestionData['user_id']; // reset user_id value
+
+
+
+    /**
      * CONTENT TESTS
      */
     $updatedQuestionData['content'] = '';
