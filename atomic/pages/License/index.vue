@@ -1,5 +1,4 @@
 <template>
-  <ad-home-navbar />
   <div class="license-container">
     <ad-heading tag="1" text="License" class="shiny-text license-heading" />
     <div class="license-content">
@@ -38,7 +37,6 @@
       />
     </div>
   </div>
-  <ad-home-footer />
 </template>
 
 <script setup lang="ts"></script>

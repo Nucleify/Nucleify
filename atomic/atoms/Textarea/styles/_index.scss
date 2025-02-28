@@ -1,11 +1,16 @@
 @import 'mixins';
 
 .p-textarea {
+  background: $p-card-background !important;
+  border: 1px solid $p-card-border !important;
+  color: $white-text-color !important;
   padding: 5px 10px;
   min-height: 100px;
   max-height: 400px;
 
-  @each $type in main, activity, article, contact, money, user {
+  @each $type in main, activity, article, contact, money, question, technology,
+    user
+  {
     &[ad-type='#{$type}'] {
       @include entity-textarea-styles(
         var(--#{$type}-item-color-new) !important,

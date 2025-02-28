@@ -8,13 +8,15 @@ import {
   ActivityLogInterface,
   ArticleInterface,
   ContactInterface,
+  MoneyInterface,
   UserInterface,
+  QuestionInterface,
+  TechnologyInterface,
   ChartMethodType,
   ChartType,
   ChartInterface,
   LabelItemType,
   UseColorsReturnInterface,
-  MoneyInterface,
   useColors,
 } from 'atomic'
 
@@ -24,6 +26,8 @@ export function useChart() {
     articleItemColors,
     contactItemColors,
     moneyItemColors,
+    questionItemColors,
+    technologyItemColors,
     userItemColors,
   }: UseColorsReturnInterface = useColors()
 
@@ -32,8 +36,10 @@ export function useChart() {
   const exampleColors = {
     activityItemColors: { primary: '#FFB600', hover: '#E7A60B' },
     articleItemColors: { primary: '#1187C7', hover: '#0F79B2' },
-    contactItemColors: { primary: '#0D2C54', hover: '#0d284a' },
-    moneyItemColors: { primary: '#10B981', hover: '#10A674' },
+    contactItemColors: { primary: '#10B981', hover: '#10A674' },
+    moneyItemColors: { primary: '#11c73b', hover: '#0eb233' },
+    questionItemColors: { primary: '#8cb910', hover: '#8cb910' },
+    technologyItemColors: { primary: '#b95910', hover: '#9b4b0e' },
     userItemColors: { primary: '#64748B', hover: '#566479' },
   }
 
@@ -41,6 +47,7 @@ export function useChart() {
     { label: 'Articles' },
     { label: 'Contacts' },
     { label: 'Money' },
+    { label: 'Questions' },
     { label: 'Users' },
   ]
 
@@ -50,6 +57,8 @@ export function useChart() {
     articleData?: ArticleInterface[],
     contactData?: ContactInterface[],
     moneyData?: MoneyInterface[],
+    questionData?: QuestionInterface[],
+    technologyData?: TechnologyInterface[],
     userData?: UserInterface[],
     example?: boolean
   ) {
@@ -59,6 +68,8 @@ export function useChart() {
       const articleDataByMonth: number[] = new Array(12).fill(0)
       const contactDataByMonth: number[] = new Array(12).fill(0)
       const moneyDataByMonth: number[] = new Array(12).fill(0)
+      const questionDataByMonth: number[] = new Array(12).fill(0)
+      const technologyDataByMonth: number[] = new Array(12).fill(0)
       const userDataByMonth: number[] = new Array(12).fill(0)
 
       const colors = example
@@ -68,6 +79,8 @@ export function useChart() {
             articleItemColors,
             contactItemColors,
             moneyItemColors,
+            questionItemColors,
+            technologyItemColors,
             userItemColors,
           }
 
@@ -89,25 +102,29 @@ export function useChart() {
           articleDataByMonth[monthIndex]++
         })
 
-        moneyData?.forEach((money: MoneyInterface): void => {
-          if (money.created_at) {
-            const monthIndex: number = new Date(money.created_at).getMonth()
-            moneyDataByMonth[monthIndex]++
-          }
+        contactData?.forEach((contact: ContactInterface): void => {
+          const monthIndex: number = new Date(contact.created_at).getMonth()
+          contactDataByMonth[monthIndex]++
         })
 
-        contactData?.forEach((contact: ContactInterface): void => {
-          if (contact.created_at) {
-            const monthIndex: number = new Date(contact.created_at).getMonth()
-            contactDataByMonth[monthIndex]++
-          }
+        moneyData?.forEach((money: MoneyInterface): void => {
+          const monthIndex: number = new Date(money.created_at).getMonth()
+          moneyDataByMonth[monthIndex]++
+        })
+
+        questionData?.forEach((question: QuestionInterface): void => {
+          const monthIndex: number = new Date(question.created_at).getMonth()
+          questionDataByMonth[monthIndex]++
+        })
+
+        technologyData?.forEach((technology: TechnologyInterface): void => {
+          const monthIndex: number = new Date(technology.created_at).getMonth()
+          technologyDataByMonth[monthIndex]++
         })
 
         userData?.forEach((user: UserInterface): void => {
-          if (user.created_at) {
-            const monthIndex: number = new Date(user.created_at).getMonth()
-            userDataByMonth[monthIndex]++
-          }
+          const monthIndex: number = new Date(user.created_at).getMonth()
+          userDataByMonth[monthIndex]++
         })
       }
 
@@ -135,6 +152,16 @@ export function useChart() {
               colors: colors.moneyItemColors,
             },
             {
+              label: 'Question',
+              data: questionDataByMonth,
+              colors: colors.questionItemColors,
+            },
+            {
+              label: 'Technology',
+              data: technologyDataByMonth,
+              colors: colors.technologyItemColors,
+            },
+            {
               label: 'Users',
               data: userDataByMonth,
               colors: colors.userItemColors,
@@ -159,6 +186,8 @@ export function useChart() {
               (label === 'Articles' && articleData) ||
               (label === 'Contacts' && contactData) ||
               (label === 'Money' && moneyData) ||
+              (label === 'Question' && questionData) ||
+              (label === 'Technology' && technologyData) ||
               (label === 'Users' && userData)
             ) {
               labels.push(label)
@@ -177,6 +206,14 @@ export function useChart() {
             (sum: number, value: number) => sum + value,
             0
           )
+          const totalQuestions: number = questionDataByMonth.reduce(
+            (sum: number, value: number) => sum + value,
+            0
+          )
+          const totalTechnologies: number = technologiesDataByMonth.reduce(
+            (sum: number, value: number) => sum + value,
+            0
+          )
           const totalUsers: number = userDataByMonth.reduce(
             (sum: number, value: number) => sum + value,
             0
@@ -186,18 +223,29 @@ export function useChart() {
             labels,
             datasets: [
               {
-                data: [totalArticles, totalContacts, totalMoney, totalUsers],
+                data: [
+                  totalArticles,
+                  totalContacts,
+                  totalMoney,
+                  totalQuestions,
+                  totalTechnologies,
+                  totalUsers,
+                ],
                 borderColor: '#041E13FF',
                 backgroundColor: [
                   colors.articleItemColors.primary,
                   colors.contactItemColors.primary,
                   colors.moneyItemColors.primary,
+                  colors.questionItemColors.primary,
+                  colors.technologyItemColors.primary,
                   colors.userItemColors.primary,
                 ],
                 hoverBackgroundColor: [
                   colors.articleItemColors.hover,
                   colors.contactItemColors.hover,
                   colors.moneyItemColors.hover,
+                  colors.questionItemColors.hover,
+                  colors.technologyItemColors.hover,
                   colors.userItemColors.hover,
                 ],
               },
@@ -223,7 +271,7 @@ export function useChart() {
       plugins: {
         legend: {
           labels: {
-            color: '#4B5563',
+            color: '#cce4dd',
           },
         },
       },
@@ -239,7 +287,7 @@ export function useChart() {
       options.scales = {
         x: {
           ticks: {
-            color: '#4B5563',
+            color: '#e6e6e6',
             font: {
               weight: 500,
             },
@@ -250,7 +298,7 @@ export function useChart() {
         },
         y: {
           ticks: {
-            color: '#4B5563',
+            color: '#e6e6e6',
           },
           grid: {
             display: true,

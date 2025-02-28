@@ -14,27 +14,37 @@ export function useColors(): UseColorsInterface {
   const mainItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('main-item-color'),
     hover: window.localStorage.getItem('main-item-hover-color'),
-    selected: window.localStorage.getItem('main-item-highlight-color'),
+    selected: window.localStorage.getItem('main-item-selected-color'),
   }
   const activityItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('activity-item-color'),
     hover: window.localStorage.getItem('activity-item-hover-color'),
-    selected: window.localStorage.getItem('activity-item-highlight-color'),
+    selected: window.localStorage.getItem('activity-item-selected-color'),
   }
   const articleItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('article-item-color'),
     hover: window.localStorage.getItem('article-item-hover-color'),
-    selected: window.localStorage.getItem('article-item-highlight-color'),
+    selected: window.localStorage.getItem('article-item-selected-color'),
   }
   const contactItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('contact-item-color'),
     hover: window.localStorage.getItem('contact-item-hover-color'),
-    selected: window.localStorage.getItem('contact-item-highlight-color'),
+    selected: window.localStorage.getItem('contact-item-selected-color'),
   }
   const moneyItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('money-item-color'),
     hover: window.localStorage.getItem('money-item-hover-color'),
-    selected: window.localStorage.getItem('money-item-highlight-color'),
+    selected: window.localStorage.getItem('money-item-selected-color'),
+  }
+  const questionItemColors: ColorItemColorsInterface = {
+    primary: window.localStorage.getItem('question-item-color'),
+    hover: window.localStorage.getItem('question-item-hover-color'),
+    selected: window.localStorage.getItem('question-item-selected-color'),
+  }
+  const technologyItemColors: ColorItemColorsInterface = {
+    primary: window.localStorage.getItem('technology-item-color'),
+    hover: window.localStorage.getItem('technology-item-hover-color'),
+    selected: window.localStorage.getItem('technology-item-selected-color'),
   }
   const userItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('user-item-color'),
@@ -45,6 +55,7 @@ export function useColors(): UseColorsInterface {
     const properties: string[] = [
       // Main properties
       'main-item-color',
+      'main-item-dark-color',
       'main-item-hover-color',
       'main-item-focus-color',
       'main-item-selected-color',
@@ -52,6 +63,7 @@ export function useColors(): UseColorsInterface {
 
       // Activity properties
       'activity-item-color',
+      'activity-item-dark-color',
       'activity-item-hover-color',
       'activity-item-focus-color',
       'activity-item-selected-color',
@@ -59,6 +71,7 @@ export function useColors(): UseColorsInterface {
 
       // Article properties
       'article-item-color',
+      'article-item-dark-color',
       'article-item-hover-color',
       'article-item-focus-color',
       'article-item-selected-color',
@@ -66,6 +79,7 @@ export function useColors(): UseColorsInterface {
 
       // Contact properties
       'contact-item-color',
+      'contact-item-dark-color',
       'contact-item-hover-color',
       'contact-item-focus-color',
       'contact-item-selected-color',
@@ -73,13 +87,31 @@ export function useColors(): UseColorsInterface {
 
       // Money properties
       'money-item-color',
+      'money-item-dark-color',
       'money-item-hover-color',
       'money-item-focus-color',
       'money-item-selected-color',
       'money-item-highlight-color',
 
+      // Question properties
+      'question-item-color',
+      'question-item-dark-color',
+      'question-item-hover-color',
+      'question-item-focus-color',
+      'question-item-selected-color',
+      'question-item-highlight-color',
+
+      // Technology properties
+      'technology-item-color',
+      'technology-item-dark-color',
+      'technology-item-hover-color',
+      'technology-item-focus-color',
+      'technology-item-selected-color',
+      'technology-item-highlight-color',
+
       // User properties
       'user-item-color',
+      'user-item-dark-color',
       'user-item-hover-color',
       'user-item-focus-color',
       'user-item-selected-color',
@@ -112,6 +144,8 @@ export function useColors(): UseColorsInterface {
     articleItemColors,
     contactItemColors,
     moneyItemColors,
+    questionItemColors,
+    technologyItemColors,
     userItemColors,
     setDefaultColors,
   }

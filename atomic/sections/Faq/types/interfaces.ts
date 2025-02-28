@@ -1,12 +1,8 @@
-export interface SectionFaqInterface {
-  questions: QuestionInterface | QuestionInterface[]
-}
+import { QuestionInterface, SiteType } from 'atomic'
 
-export interface QuestionInterface {
-  value: number
-  header: string
-  content: string
-  category: string
+export interface SectionFaqInterface {
+  questions?: QuestionInterface | QuestionInterface[]
+  site?: SiteType
 }
 
 export interface UseSplitQuestionsInterface {

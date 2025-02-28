@@ -9,6 +9,8 @@
         :article-data="articleData"
         :contact-data="contactData"
         :money-data="moneyData"
+        :question-data="questionData"
+        :technology-data="technologyData"
         :user-data="userData"
         :chart-class="chartClass"
         :class="loading ? 'chart-loading' : 'chart-loaded'"

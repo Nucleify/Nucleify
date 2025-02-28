@@ -5,4 +5,9 @@
   gap: 1em;
   bottom: 0;
   left: 0;
+
+  .p-button-secondary {
+    background: $bg-dark-color !important;
+    border-color: $bg-dark-color !important;
+  }
 }

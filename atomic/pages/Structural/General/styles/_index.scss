@@ -1,0 +1,45 @@
+#structural {
+  .tiles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 0.5em;
+
+    .tile {
+      height: 8em;
+      width: 100%;
+      flex: 1 1 calc(50% - 0.3em);
+      max-width: calc(50% - 0.3em);
+
+      .secondary {
+        p {
+          font-size: 0.7em;
+        }
+      }
+
+      @media (min-width: 360px) {
+        .secondary {
+          p {
+            font-size: 0.9em;
+          }
+        }
+      }
+
+      @media (min-width: 500px) {
+        max-width: 250px;
+      }
+
+      @media (min-width: $breakpoint-md) {
+        height: 8.5em;
+        flex: 1 1 calc(33.33% - 0.35em);
+      }
+
+      @media (min-width: $breakpoint-xl) {
+        height: 9em;
+        flex: 1 1 calc(25% - 0.35em);
+      }
+    }
+  }
+}

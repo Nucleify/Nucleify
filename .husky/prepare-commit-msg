@@ -24,6 +24,12 @@ case "$CURRENT_BRANCH" in
     entity-money)
         FINAL_MSG="💵 Money: $ORIGINAL_MSG"
         ;;
+    entity-question)
+        FINAL_MSG="❓ Question: $ORIGINAL_MSG"
+        ;;
+    entity-technology)
+        FINAL_MSG="🤖 Technologies: $ORIGINAL_MSG"
+        ;;
     home)
         FINAL_MSG="🏠 Home: $ORIGINAL_MSG"
         ;;
@@ -59,6 +65,9 @@ case "$CURRENT_BRANCH" in
         ;;
     vitest)
         FINAL_MSG="Vitest: $ORIGINAL_MSG"
+        ;;
+    *)
+        FINAL_MSG="$ORIGINAL_MSG"
         ;;
 esac
 

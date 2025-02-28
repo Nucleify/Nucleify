@@ -7,6 +7,8 @@ import {
   ChartType,
   ChartMethodType,
   MoneyInterface,
+  QuestionInterface,
+  TechnologyInterface,
   UserInterface,
 } from 'atomic'
 
@@ -27,6 +29,8 @@ export interface ChartInterface {
   articleData?: ArticleInterface[]
   contactData?: ContactInterface[]
   moneyData?: MoneyInterface[]
+  questionData?: QuestionInterface[]
+  technologyData?: TechnologyInterface[]
   userData?: UserInterface[]
   chartClass?: string
   example?: boolean
@@ -39,6 +43,9 @@ export interface DisplayChartsInterface {
   Article: boolean
   Contact: boolean
   Money: boolean
+  Question: boolean
+  Structural: boolean
+  Technology: boolean
 }
 
 export interface UseDisplayChartsInterface {

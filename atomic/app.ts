@@ -92,22 +92,34 @@ import {
   ActivityPage,
   ArticlePage,
   ContactPage,
+  EntitiesPage,
   MoneyPage,
   DashboardPage,
   Error404Page,
   HomePage,
-  HomeNavbar,
-  HomeFooter,
   ServicesPage,
   SettingsPage,
+  StructuralPage,
+  QuestionsPage,
+  TechnologiesPage,
 } from './pages'
 import {
   SectionCategory,
+  SectionContact,
   SectionFaq,
+  SectionFooter,
+  SectionNavbar,
   SectionStack,
   SectionStart,
 } from './sections'
 import {
+  ActivityDashboard,
+  ArticleDashboard,
+  ContactDashboard,
+  MoneyDashboard,
+  QuestionDashboard,
+  TechnologyDashboard,
+  UserDashboard,
   BackLink,
   CardBoxes,
   CardCategory,
@@ -204,25 +216,37 @@ app
   .component('ad-article-page', ArticlePage)
   .component('ad-contact-page', ContactPage)
   .component('ad-dashboard-page', DashboardPage)
+  .component('ad-entities-page', EntitiesPage)
   .component('ad-error-404-page', Error404Page)
   .component('ad-home-page', HomePage)
-  .component('ad-home-navbar', HomeNavbar)
-  .component('ad-home-footer', HomeFooter)
   .component('ad-money-page', MoneyPage)
   .component('ad-services-page', ServicesPage)
   .component('ad-settings-page', SettingsPage)
+  .component('ad-structural-page', StructuralPage)
+  .component('ad-questions-page', QuestionsPage)
+  .component('ad-technologies-page', TechnologiesPage)
 
   /**
    *  Sections
    */
   .component('ad-section-category', SectionCategory)
+  .component('ad-section-contact', SectionContact)
   .component('ad-section-faq', SectionFaq)
+  .component('ad-section-footer', SectionFooter)
+  .component('ad-section-navbar', SectionNavbar)
   .component('ad-section-stack', SectionStack)
   .component('ad-section-start', SectionStart)
 
   /**
    *  Templates
    */
+  .component('ad-activity-dashboard', ActivityDashboard)
+  .component('ad-article-dashboard', ArticleDashboard)
+  .component('ad-contact-dashboard', ContactDashboard)
+  .component('ad-money-dashboard', MoneyDashboard)
+  .component('ad-question-dashboard', QuestionDashboard)
+  .component('ad-technology-dashboard', TechnologyDashboard)
+  .component('ad-user-dashboard', UserDashboard)
   .component('ad-back-link', BackLink)
   .component('ad-card-boxes', CardBoxes)
   .component('ad-card-category', CardCategory)

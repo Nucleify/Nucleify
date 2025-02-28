@@ -13,7 +13,7 @@ export interface AccordionInterface {
   unstyled?: boolean
 }
 export interface AccordionPanelInterface {
-  value: number
-  header: string
+  index: number
   content: string
+  answer: string
 }
