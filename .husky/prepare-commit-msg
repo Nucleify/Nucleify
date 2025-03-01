@@ -29,6 +29,9 @@ case "$CURRENT_BRANCH" in
     entity-technology)
         FINAL_MSG="🤖 Technologies: $ORIGINAL_MSG"
         ;;
+    entity-link)
+        FINAL_MSG="🔗 Link: $ORIGINAL_MSG"
+        ;;
     home)
         FINAL_MSG="🏠 Home: $ORIGINAL_MSG"
         ;;
