@@ -14,7 +14,7 @@
       position: relative;
       display: flex;
       justify-content: center;
-      height: 360px;
+      height: 460px;
       width: 100%;
       max-width: 600px;
       padding: 25px 35px 35px !important;
@@ -31,16 +31,18 @@
       }
 
       .home-pie-chart {
+        background: black;
         position: absolute;
         bottom: 135px;
         right: 10px;
         z-index: 100;
         width: 8.5em;
         height: 8.5em;
+        border-radius: 50%;
       }
 
       .home-vertical-chart > canvas {
-        height: 300px !important;
+        height: 400px !important;
         width: 100% !important;
       }
     }
@@ -52,12 +54,6 @@
       padding: 0 35px;
       text-align: center;
       margin-bottom: 60px;
-
-      @media (min-width: $breakpoint-lg) {
-        max-width: 400px;
-        text-align: left;
-        padding: 0 55px 0 35px;
-      }
     }
 
     @media (min-width: $breakpoint-lg) {
@@ -65,6 +61,17 @@
 
       .home-chart-card {
         padding: 35px;
+        height: 360px;
+
+        .home-vertical-chart > canvas {
+          height: 300px !important;
+        }
+      }
+
+      .home-charts-header {
+        max-width: 400px;
+        text-align: left;
+        padding: 0 55px 0 35px;
       }
     }
   }

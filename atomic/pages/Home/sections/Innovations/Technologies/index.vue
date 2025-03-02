@@ -13,11 +13,11 @@
         :slides-per-group="2"
         :loop="true"
       >
-        <swiper-slide v-for="(tech, index) in technologies" :key="index">
+        <swiper-slide v-for="(tech, index) in resultsBySite" :key="index">
           <ad-anchor
-            :href="tech.url"
-            :src="technologiesImgUrl + tech.image"
-            v-tooltip="tech.name"
+            :href="tech.href"
+            :src="technologiesImgUrl + tech.src"
+            v-tooltip="tech.label"
           />
         </swiper-slide>
       </swiper>
@@ -33,7 +33,14 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-import { technologies } from 'atomic'
+import { technologyRequests } from 'atomic'
+import { onMounted } from 'vue'
 
 const modules = [Autoplay]
+
+const { getSiteTechnologies, resultsBySite } = technologyRequests()
+
+onMounted(() => {
+  getSiteTechnologies(true, 'general')
+})
 </script>

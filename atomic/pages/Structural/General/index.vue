@@ -41,7 +41,7 @@
     />
     <ad-technology-dashboard
       :data="technologies"
-      :getData="getAllQuestions"
+      :getData="getAllTechnologies"
       :loading="!allLoaded"
     />
   </div>

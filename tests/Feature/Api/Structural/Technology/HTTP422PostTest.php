@@ -62,152 +62,6 @@ describe('422 > Unprocessable Content > POST', function($technologyData = techno
 
 
     /**
-     * href TESTS
-     */
-    $technologyData['href'] = '';
-    test('invalid href > empty', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['href']],
-        ['errors' => [
-            'href' => ['The href field is required.']
-        ]]
-    ));
-
-    $technologyData['href'] = 1;
-    test('invalid href > integer', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['href']],
-        ['errors' => [
-            'href' => [
-                'The href field must be a string.',
-            ]
-        ]]
-    ));
-
-    $technologyData['href'] = false;
-    test('invalid href > false', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['href']],
-        ['errors' => [
-            'href' => [
-                'The href field must be a string.',
-            ]
-        ]]
-    ));
-
-    $technologyData['href'] = true;
-    test('invalid href > true', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['href']],
-        ['errors' => [
-            'href' => [
-                'The href field must be a string.',
-            ]
-        ]]
-    ));
-
-    $technologyData['href'] = [];
-    test('invalid href > empty array', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['href']],
-        ['errors' => [
-            'href' => ['The href field is required.']
-        ]]
-    ));
-
-    $technologyData['href'] = technologyData['href']; // reset href value
-
-
-
-    /**
-     * SRC TESTS
-     */
-    $technologyData['src'] = '';
-    test('invalid src > empty', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['src']],
-        ['errors' => [
-            'src' => ['The src field is required.']
-        ]]
-    ));
-
-    $technologyData['src'] = 1;
-    test('invalid src > integer', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['src']],
-        ['errors' => [
-            'src' => [
-                'The src field must be a string.',
-            ]
-        ]]
-    ));
-
-    $technologyData['src'] = false;
-    test('invalid src > false', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['src']],
-        ['errors' => [
-            'src' => [
-                'The src field must be a string.',
-            ]
-        ]]
-    ));
-
-    $technologyData['src'] = true;
-    test('invalid src > true', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['src']],
-        ['errors' => [
-            'src' => [
-                'The src field must be a string.',
-            ]
-        ]]
-    ));
-
-    $technologyData['src'] = [];
-    test('invalid src > empty array', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['src']],
-        ['errors' => [
-            'src' => ['The src field is required.']
-        ]]
-    ));
-
-    $technologyData['src'] = technologyData['src']; // reset src value
-
-
-
-    /**
      * LABEL TESTS
      */
     $technologyData['label'] = '';
@@ -357,6 +211,151 @@ describe('422 > Unprocessable Content > POST', function($technologyData = techno
 
     $technologyData['description'] = technologyData['description']; // reset description value
 
+
+
+    /**
+     * HREF TESTS
+     */
+    $technologyData['href'] = '';
+    test('invalid href > empty', apiTest(
+        'POST',
+        'technologies.store',
+        422,
+        $technologyData,
+        ['errors' => ['href']],
+        ['errors' => [
+            'href' => ['The href field is required.']
+        ]]
+    ));
+
+    $technologyData['href'] = 1;
+    test('invalid href > integer', apiTest(
+        'POST',
+        'technologies.store',
+        422,
+        $technologyData,
+        ['errors' => ['href']],
+        ['errors' => [
+            'href' => [
+                'The href field must be a string.',
+            ]
+        ]]
+    ));
+
+    $technologyData['href'] = false;
+    test('invalid href > false', apiTest(
+        'POST',
+        'technologies.store',
+        422,
+        $technologyData,
+        ['errors' => ['href']],
+        ['errors' => [
+            'href' => [
+                'The href field must be a string.',
+            ]
+        ]]
+    ));
+
+    $technologyData['href'] = true;
+    test('invalid href > true', apiTest(
+        'POST',
+        'technologies.store',
+        422,
+        $technologyData,
+        ['errors' => ['href']],
+        ['errors' => [
+            'href' => [
+                'The href field must be a string.',
+            ]
+        ]]
+    ));
+
+    $technologyData['href'] = [];
+    test('invalid href > empty array', apiTest(
+        'POST',
+        'technologies.store',
+        422,
+        $technologyData,
+        ['errors' => ['href']],
+        ['errors' => [
+            'href' => ['The href field is required.']
+        ]]
+    ));
+
+    $technologyData['href'] = technologyData['href']; // reset href value
+
+
+
+    /**
+     * SRC TESTS
+     */
+    $technologyData['src'] = '';
+    test('invalid src > empty', apiTest(
+        'POST',
+        'technologies.store',
+        422,
+        $technologyData,
+        ['errors' => ['src']],
+        ['errors' => [
+            'src' => ['The src field is required.']
+        ]]
+    ));
+
+    $technologyData['src'] = 1;
+    test('invalid src > integer', apiTest(
+        'POST',
+        'technologies.store',
+        422,
+        $technologyData,
+        ['errors' => ['src']],
+        ['errors' => [
+            'src' => [
+                'The src field must be a string.',
+            ]
+        ]]
+    ));
+
+    $technologyData['src'] = false;
+    test('invalid src > false', apiTest(
+        'POST',
+        'technologies.store',
+        422,
+        $technologyData,
+        ['errors' => ['src']],
+        ['errors' => [
+            'src' => [
+                'The src field must be a string.',
+            ]
+        ]]
+    ));
+
+    $technologyData['src'] = true;
+    test('invalid src > true', apiTest(
+        'POST',
+        'technologies.store',
+        422,
+        $technologyData,
+        ['errors' => ['src']],
+        ['errors' => [
+            'src' => [
+                'The src field must be a string.',
+            ]
+        ]]
+    ));
+
+    $technologyData['src'] = [];
+    test('invalid src > empty array', apiTest(
+        'POST',
+        'technologies.store',
+        422,
+        $technologyData,
+        ['errors' => ['src']],
+        ['errors' => [
+            'src' => ['The src field is required.']
+        ]]
+    ));
+
+    $technologyData['src'] = technologyData['src']; // reset src value
 
 
     /**

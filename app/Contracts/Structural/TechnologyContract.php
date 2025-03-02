@@ -14,6 +14,16 @@ interface TechnologyContract
    */
   public function getUserId(): int;
 
+    /**
+     * @return string
+     */
+    public function getLabel(): string;
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): string | null;
+
   /**
    * @return string
    */
@@ -23,16 +33,6 @@ interface TechnologyContract
    * @return string
    */
   public function getSrc(): string;
-
-  /**
-   * @return string
-   */
-  public function getLabel(): string;
-
-  /**
-   * @return string
-   */
-  public function getDescription(): string;
 
   /**
    * @return string|null
