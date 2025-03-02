@@ -137,7 +137,8 @@
   }
 
   &:not(.staff) {
-    .p-dock-item[aria-label='Admin Panel'] {
+    .p-dock-item[aria-label='Admin Panel'],
+    .p-dock-item[aria-label='Structural'] {
       display: none;
     }
   }

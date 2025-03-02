@@ -2,7 +2,7 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\AdminPanel;
+use App\Http\Middleware\Staff;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
@@ -72,8 +72,8 @@ class Kernel extends HttpKernel
             SubstituteBindings::class,
         ],
 
-        'admin' => [
-            AdminPanel::class,
+        'staff' => [
+            Staff::class,
         ]
     ];
 
