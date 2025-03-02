@@ -1,0 +1,20 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+
+// #TODO Check is tests working correctly
+
+describe('Link Table Migration', function () {
+    it('can create table', function () {
+        expect(Schema::hasTable('links'))->toBeTrue()
+            ->and(Schema::hasColumns('links', [
+                'id', 'download', 'href', 'src', 'icon', 'category', 'hreflang', 'media', 'ping', 'referrerpolicy', 'rel', 'target', 'type', 'start_date', 'end_date', 'created_at', 'updated_at'
+            ]))->toBeTrue();
+    });
+
+    it('can be rolled back', function () {
+        $this->artisan('migrate:rollback');
+
+        expect(Schema::hasTable('links'))->toBeFalse();
+    });
+});
