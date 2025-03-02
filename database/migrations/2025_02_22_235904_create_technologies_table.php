@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('technologies', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->string('label');
+            $table->string('description')->nullable();
             $table->string('href');
             $table->string('src');
-            $table->string('label');
-            $table->string('description');
-            $table->string('category');
+            $table->string('category')->nullable();
             $table->boolean('display');
             $table->timestamps();
         });

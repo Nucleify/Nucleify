@@ -1,1 +1,1 @@
-export type SiteType = 'home' | 'about' | 'services'
+export type SiteType = 'home' | 'about' | 'services' | 'general'

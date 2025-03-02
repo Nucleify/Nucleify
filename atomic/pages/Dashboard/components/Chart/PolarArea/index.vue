@@ -30,9 +30,9 @@ const chartData = ref({
       label: 'Requests Data',
       data: [props.articles.length, props.contacts.length, props.money.length],
       backgroundColor: [
-        articleItemColors.selected,
-        contactItemColors.selected,
-        moneyItemColors.selected,
+        articleItemColors.secondary,
+        contactItemColors.secondary,
+        moneyItemColors.secondary,
       ],
       borderColor: [
         articleItemColors.primary,
@@ -76,7 +76,7 @@ watchEffect(() => {
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 0 1rem 1.5rem;
+      padding: 0.75em 1.25em 1.5em;
 
       .p-card-caption {
         display: none;

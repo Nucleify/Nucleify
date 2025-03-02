@@ -13,13 +13,13 @@
               chart-method-type="annual"
               type="bar"
               chart-class="home-vertical-chart"
-              direction="'vertical'"
+              :direction="isMobile() ? 'horizontal' : 'vertical'"
               :example="true"
             />
             <ad-chart
-              :chart-method-type="'count'"
+              chart-method-type="count"
               type="pie"
-              :chart-class="'home-pie-chart'"
+              chart-class="home-pie-chart"
               :example="true"
             />
           </DeferredContent>
