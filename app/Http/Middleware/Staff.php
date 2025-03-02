@@ -5,15 +5,11 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AdminPanel
+class Staff
 {
     public function handle(Request $request, Closure $next)
     {
-        if (
-            auth()->user()->isAdmin() ||
-            auth()->user()->isTestAdmin() ||
-            auth()->user()->isSuperAdmin()
-        ) {
+        if (auth()->user()->isStaff()) {
             return $next($request);
         }
 
