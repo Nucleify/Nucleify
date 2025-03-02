@@ -1,37 +1,37 @@
 .panel-container {
   position: relative;
-  padding: 8px;
+  padding: 0.5em;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5em;
 }
 
 body:has(.p-dock.p-dock-top) {
   .panel-container {
-    padding-top: 80px;
+    padding-top: 5em;
   }
 }
 
 body:has(.p-dock.p-dock-right) {
   .panel-container {
-    padding-top: 8px;
-    padding-right: 80px;
+    padding-top: 0.5em;
+    padding-right: 5em;
   }
 }
 
 body:has(.p-dock.p-dock-left) {
   .panel-container {
-    padding-top: 8px;
-    padding-left: 80px;
+    padding-top: 0.5em;
+    padding-left: 5em;
   }
 }
 
 body:has(.p-dock.p-dock-bottom) {
   .panel-container {
-    padding-bottom: 82px;
+    padding-bottom: 5em;
 
     @media (min-width: $breakpoint-lg) {
-      padding-top: 8px;
+      padding-top: 0.5em;
     }
   }
 }

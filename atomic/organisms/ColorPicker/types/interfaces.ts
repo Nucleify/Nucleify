@@ -37,6 +37,7 @@ export interface UseColorsReturnInterface {
   contactItemColors: ColorItemColorsInterface
   moneyItemColors: ColorItemColorsInterface
   questionItemColors: ColorItemColorsInterface
+  technologyItemColors: ColorItemColorsInterface
   userItemColors: ColorItemColorsInterface
 }
 
@@ -52,6 +53,7 @@ export interface UseColorsInterface {
   contactItemColors: ColorItemColorsInterface
   moneyItemColors: ColorItemColorsInterface
   questionItemColors: ColorItemColorsInterface
+  technologyItemColors: ColorItemColorsInterface
   userItemColors: ColorItemColorsInterface
   setDefaultColors: (initial: boolean) => void
 }

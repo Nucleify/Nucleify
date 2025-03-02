@@ -1,9 +1,17 @@
 <template>
   <div class="container">
-    <ad-card-boxes :boxes="technologyStack" />
+    <ad-card-boxes :boxes="resultsBySite" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { technologyStack } from './constants'
+import { onMounted } from 'vue'
+
+import { technologyRequests } from 'atomic'
+
+const { getSiteTechnologies, resultsBySite } = technologyRequests()
+
+onMounted(() => {
+  getSiteTechnologies(true, 'general')
+})
 </script>

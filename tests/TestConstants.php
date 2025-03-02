@@ -100,7 +100,9 @@ const questionData = [
     'index' => 1,
     'content' => 'Question',
     'answer' => 'Answer',
-    'category' => 'test'
+    'category' => 'test',
+    'on_site' => True,
+    'display' => True
 ];
 const updatedQuestionData = [
     'id' => 1,
@@ -108,5 +110,31 @@ const updatedQuestionData = [
     'index' => 1,
     'content' => 'Question2',
     'answer' => 'Answer2',
-    'category' => 'test2'
+    'category' => 'test2',
+    'on_site' => False,
+    'display' => False
+];
+
+/**
+ * Technology
+ */
+const technologyData = [
+    'id' => 1,
+    'user_id' => 1,
+    'href' => 'href',
+    'src' => 'src',
+    'label' => 'Label',
+    'description' => 'Description',
+    'category' => 'test',
+    'display' => True
+];
+const updatedTechnologyData = [
+    'id' => 1,
+    'user_id' => 1,
+    'href' => 'href2',
+    'src' => 'src2',
+    'label' => 'Label2',
+    'description' => 'Description2',
+    'category' => 'test2',
+    'display' => False
 ];

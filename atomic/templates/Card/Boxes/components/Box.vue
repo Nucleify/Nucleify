@@ -2,7 +2,11 @@
   <ad-card class="card-box">
     <template #title>
       <div class="card-box-heading">
-        <ad-image :src="props.src" class="card-box-heading-image" />
+        <ad-image
+          :src="props.src"
+          :alt="props.title"
+          class="card-box-heading-image"
+        />
         <ad-paragraph :text="props.title" class="card-box-heading-title" />
       </div>
     </template>

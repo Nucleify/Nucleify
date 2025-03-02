@@ -1,7 +1,9 @@
 @import 'mixins';
 
 .p-password {
-  @each $type in main, activity, article, contact, money, question, user {
+  @each $type in main, activity, article, contact, money, question, technology,
+    user
+  {
     &[ad-type='#{$type}'] {
       .p-inputtext {
         @include entity-password-styles(
@@ -21,6 +23,24 @@
   .p-password {
     .p-icon {
       margin-right: 5.5px;
+    }
+  }
+}
+
+body:has(#login),
+body:has(#register) {
+  .p-password {
+    @each $type in main, activity, article, contact, money, question, technology,
+      user
+    {
+      &[ad-type='#{$type}'] {
+        .p-inputtext {
+          @include entity-password-styles(
+            var(--#{$type}-item-color) !important,
+            var(--#{$type}-item-focus-color) !important
+          );
+        }
+      }
     }
   }
 }

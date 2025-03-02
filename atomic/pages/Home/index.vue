@@ -1,30 +1,20 @@
 <template>
-  <home-navbar />
   <div class="home-container">
     <start />
     <features />
     <innovations />
     <why-us />
-    <ad-section-faq :questions="homeQuestions" />
-    <contact />
+    <ad-section-faq site="home" />
+    <ad-section-contact />
   </div>
-  <home-footer />
 </template>
 
 <script setup lang="ts">
 import { onBeforeMount, onMounted } from 'vue'
 
-import { homeQuestions, useColors, useViewportChange } from 'atomic'
+import { useColors, useViewportChange } from 'atomic'
 
-import {
-  Contact,
-  HomeFooter,
-  HomeNavbar,
-  Features,
-  Innovations,
-  Start,
-  WhyUs,
-} from './'
+import { Features, Innovations, Start, WhyUs } from './'
 
 const { setDefaultColors } = useColors()
 

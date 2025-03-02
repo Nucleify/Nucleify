@@ -18,37 +18,40 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         RefreshDatabase::class
     )
         ->in(
-        // Activity API
-            'Feature/Api/Activity/HTTP401Test.php',
+            // Activity API
+            'Feature/Api/Utilities/Activity/HTTP401Test.php',
 
             // Article API
-            'Feature/Api/Article/HTTP302Test.php',
-            'Feature/Api/Article/HTTP422PutTest.php',
+            'Feature/Api/Entities/Article/HTTP302Test.php',
+            'Feature/Api/Entities/Article/HTTP422PutTest.php',
 
             // Artisan API
-            'Feature/Api/Artisan/HTTP405AuthTest.php',
-            'Feature/Api/Artisan/HTTP405UnAuthTest.php',
+            'Feature/Api/Utilities/Artisan/HTTP405AuthTest.php',
+            'Feature/Api/Utilities/Artisan/HTTP405UnAuthTest.php',
 
             // Contact API
-            'Feature/Api/Contact/HTTP302Test.php',
-            'Feature/Api/Contact/HTTP422PostTest.php',
-            'Feature/Api/Contact/HTTP422PutTest.php',
+            'Feature/Api/Entities/Contact/HTTP302Test.php',
+            'Feature/Api/Entities/Contact/HTTP422PostTest.php',
+            'Feature/Api/Entities/Contact/HTTP422PutTest.php',
 
             // Money API
-            'Feature/Api/Money/HTTP302Test.php',
-            'Feature/Api/Money/HTTP422PostTest.php',
-            'Feature/Api/Money/HTTP422PutTest.php',
+            'Feature/Api/Entities/Money/HTTP302Test.php',
+            'Feature/Api/Entities/Money/HTTP422PostTest.php',
+            'Feature/Api/Entities/Money/HTTP422PutTest.php',
 
             // User API
-            'Feature/Api/User/HTTP302Test.php',
-            'Feature/Api/User/HTTP422PostTest.php',
-            'Feature/Api/User/HTTP422PutTest.php',
+            'Feature/Api/Entities/User/HTTP302Test.php',
+            'Feature/Api/Entities/User/HTTP422PostTest.php',
+            'Feature/Api/Entities/User/HTTP422PutTest.php',
 
             // Question API
-            'Feature/Api/Question/HTTP302Test.php',
+            'Feature/Api/Structural/Question/HTTP302Test.php',
+
+            // Technology API
+            'Feature/Api/Structural/Technology/HTTP302Test.php',
 
             // Sitemap API
-            'Feature/Api/Sitemap',
+            'Feature/Api/Utilities/Sitemap',
 
             'Database/Models'
         );
@@ -58,39 +61,46 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
     )
         ->in(
         // Activity API
-            'Feature/Api/Activity/HTTP200Test.php',
+            'Feature/Api/Utilities/Activity/HTTP200Test.php',
 
             // Article API
-            'Feature/Api/Article/HTTP200Test.php',
-            'Feature/Api/Article/HTTP422PostTest.php',
-            'Feature/Api/Article/HTTP500Test.php',
+            'Feature/Api/Entities/Article/HTTP200Test.php',
+            'Feature/Api/Entities/Article/HTTP422PostTest.php',
+            'Feature/Api/Entities/Article/HTTP500Test.php',
 
             // Artisan API
-            'Feature/Api/Artisan/HTTP200Test.php',
-            'Feature/Api/Artisan/HTTP500Test.php',
+            'Feature/Api/Utilities/Artisan/HTTP200Test.php',
+            'Feature/Api/Utilities/Artisan/HTTP500Test.php',
 
             // Contact API
-            'Feature/Api/Contact/HTTP200Test.php',
-            'Feature/Api/Contact/HTTP500Test.php',
+            'Feature/Api/Entities/Contact/HTTP200Test.php',
+            'Feature/Api/Entities/Contact/HTTP500Test.php',
 
             // Money API
-            'Feature/Api/Money/HTTP200Test.php',
-            'Feature/Api/Money/HTTP500Test.php',
+            'Feature/Api/Entities/Money/HTTP200Test.php',
+            'Feature/Api/Entities/Money/HTTP500Test.php',
 
             // User API
-            'Feature/Api/User/HTTP200Test.php',
-            'Feature/Api/User/HTTP500Test.php',
+            'Feature/Api/Entities/User/HTTP200Test.php',
+            'Feature/Api/Entities/User/HTTP500Test.php',
 
             // Question API
-            'Feature/Api/Question/HTTP200Test.php',
-            'Feature/Api/Question/HTTP500Test.php',
-            'Feature/Api/Question/HTTP422PostTest.php',
-            'Feature/Api/Question/HTTP422PutTest.php',
+            'Feature/Api/Structural/Question/HTTP200Test.php',
+            'Feature/Api/Structural/Question/HTTP500Test.php',
+            'Feature/Api/Structural/Question/HTTP422PostTest.php',
+            'Feature/Api/Structural/Question/HTTP422PutTest.php',
+
+            // Technology API
+            'Feature/Api/Structural/Technology/HTTP200Test.php',
+            'Feature/Api/Structural/Technology/HTTP500Test.php',
+            'Feature/Api/Structural/Technology/HTTP422PostTest.php',
+            'Feature/Api/Structural/Technology/HTTP422PutTest.php',
 
             'Database/Factories',
             'Database/Migrations',
 
             'Feature/Controllers',
-            'Feature/Services'
+            'Feature/Services',
+            'Feature/Traits'
         );
 }

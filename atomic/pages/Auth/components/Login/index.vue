@@ -4,7 +4,11 @@
     <template #header>
       <div class="auth-card-header-container">
         <div class="auth-card-header">
-          <ad-image :src="imgUrl + 'logo.svg'" width="50" />
+          <ad-image
+            :src="imgUrl + 'logo.svg'"
+            alt="DataManager logo"
+            width="50"
+          />
           <ad-heading :tag="1" text="Welcome Back" />
 
           <ad-paragraph class="mb-2" text="Don't have an account?">
@@ -18,6 +22,7 @@
         <ad-float-label v-for="(field, index) in loginInputs" :key="index">
           <ad-input-text
             v-model="loginFields[field.model]"
+            :ad-type="'main'"
             :type="field.type"
             :id="field.id"
             class="auth-input-text"

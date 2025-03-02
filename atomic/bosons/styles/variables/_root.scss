@@ -1,50 +1,66 @@
 :root {
     /*  Main colors  */
     --main-item-color: #10B981;
+    --main-item-dark-color: #054a32;
     --main-item-hover-color: #10A674;
-    --main-item-selected-color: #10B98126;
     --main-item-focus-color: #10B98180;
+    --main-item-secondary-color: #10B98135;
+    --main-item-selected-color: #10B98126;
     --main-item-highlight-color: #10B98115;
 
     /*  Activity colors  */
     --activity-item-color: #FFB600;
     --activity-item-hover-color: #E7A60B;
-    --activity-item-selected-color: #FFB60026;
     --activity-item-focus-color: #FFB60080;
+    --activity-item-secondary-color: #FFB60035;
+    --activity-item-selected-color: #FFB60026;
     --activity-item-highlight-color: #FFB60015;
 
     /*  Article colors  */
     --article-item-color: #1187C7;
     --article-item-hover-color: #0F79B2;
-    --article-item-selected-color: #1187C726;
     --article-item-focus-color: #1187C780;
+    --article-item-secondary-color: #1187C735;
+    --article-item-selected-color: #1187C726;
     --article-item-highlight-color: #1187C715;
 
     /*  Contact colors  */
-    --contact-item-color: #0D2C54;
-    --contact-item-hover-color: #0d284a;
-    --contact-item-selected-color: #0D2C5426;
-    --contact-item-focus-color: #0D2C5480;
-    --contact-item-highlight-color: #0D2C5415;
+    --contact-item-color: #10B981;
+    --contact-item-hover-color: #10A674;
+    --contact-item-focus-color: #10B98180;
+    --contact-item-secondary-color: #10B98135;
+    --contact-item-selected-color: #10B98126;
+    --contact-item-highlight-color: #10B98115;
 
     /*  Money colors  */
-    --money-item-color: #10B981;
-    --money-item-hover-color: #10A674;
-    --money-item-selected-color: #10B98126;
-    --money-item-focus-color: #10B98180;
-    --money-item-highlight-color: #10B98115;
+    --money-item-color: #11c73b;
+    --money-item-hover-color: #11c73b;
+    --money-item-focus-color: #11c73b80;
+    --money-item-secondary-color: #11c73b35;
+    --money-item-selected-color: #11c73b26;
+    --money-item-highlight-color: #11c73b15;
 
-    /*  Money colors  */
+    /*  Question colors  */
     --question-item-color: #8cb910;
     --question-item-hover-color: #7ca40f;
-    --question-item-selected-color: #8cb91026;
     --question-item-focus-color: #8cb91080;
+    --question-item-secondary-color: #8cb91035;
+    --question-item-selected-color: #8cb91026;
     --question-item-highlight-color: #8cb91015;
+
+    /*  Technology colors  */
+    --technology-item-color: #b95910;
+    --technology-item-hover-color: #9b4b0e;
+    --technology-item-focus-color: #b9591080;
+    --technology-item-secondary-color: #b9591035;
+    --technology-item-selected-color: #b9591026;
+    --technology-item-highlight-color: #b9591015;
 
     /*  User colors  */
     --user-item-color: #64748B;
     --user-item-hover-color: #566479;
-    --user-item-selected-color: #64748B26;
     --user-item-focus-color: #64748B80;
+    --user-item-secondary-color: #64748B35;
+    --user-item-selected-color: #64748B26;
     --user-item-highlight-color: #64748B15;
 }
