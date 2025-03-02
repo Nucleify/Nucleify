@@ -8,5 +8,5 @@ export interface ColorItemStyleInterface {
 export interface ColorItemColorsInterface {
   primary?: string
   hover?: string
-  selected?: string
+  secondary?: string
 }
