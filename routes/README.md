@@ -4,4 +4,6 @@ Each file in the [routes](https://laravel.com/docs/11.x/routing) folder typicall
 
 1. ```admin.php``` - admin routes
 2. ```api.php``` - api routes
-3. ```web.php``` - general routes
+3. ```entities.php``` - entities routes
+4. ```structural.php``` - structural entities routes
+5. ```web.php``` - general routes

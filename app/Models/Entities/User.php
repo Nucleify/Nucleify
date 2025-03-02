@@ -31,6 +31,7 @@ use Multicaret\Acquaintances\Traits\Friendable;
  * @property bool isTestAdmin
  * @property bool isAdmin
  * @property bool isSuperAdmin
+ * @property bool isStaff
  * @property bool hasRole
  * @property Builder scopeGetById
  * @property Builder scopeGetByName
