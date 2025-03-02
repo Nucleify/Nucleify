@@ -9,9 +9,10 @@
   padding: 1em;
   text-decoration: none;
   background: var(--p-card-background) !important;
-  color: var(--p-card-color);
 
-  @each $type in main, activity, article, contact, money, question, user {
+  @each $type in main, activity, article, contact, money, question, technology,
+    user
+  {
     &[ad-type='#{$type}'] {
       @include entity-tile-styles(
         var(--#{$type}-item-color-new) !important,
@@ -47,7 +48,7 @@
       flex-direction: column;
 
       .header {
-        color: var(--p-card-color);
+        color: $primary-white-text-color;
         font-size: 0.9em;
       }
 

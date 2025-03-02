@@ -6,6 +6,7 @@ ORIGINAL_MSG=$(cat "$COMMIT_MSG_FILE")
 
 CURRENT_BRANCH=$(git symbolic-ref --short HEAD)
 
+FINAL_MSG="$ORIGINAL_MSG"
 
 case "$CURRENT_BRANCH" in
     404)
@@ -25,6 +26,9 @@ case "$CURRENT_BRANCH" in
         ;;
     entity-question)
         FINAL_MSG="❓ Question: $ORIGINAL_MSG"
+        ;;
+    entity-technology)
+        FINAL_MSG="🤖 Technologies: $ORIGINAL_MSG"
         ;;
     home)
         FINAL_MSG="🏠 Home: $ORIGINAL_MSG"

@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\Entities;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Entities\Article\PostRequest;
+use App\Http\Requests\Entities\Article\PutRequest;
+use App\Models\Entities\Article;
+use App\Services\Entities\ArticleService;
 use Exception;
-use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-
-use App\Models\Article;
-use App\Services\ArticleService;
-use App\Http\Requests\Article\PostRequest;
-use App\Http\Requests\Article\PutRequest;
 
 class ArticleController extends Controller
 {
@@ -23,16 +21,6 @@ class ArticleController extends Controller
     public function __construct(ArticleService $service)
     {
         $this->service = $service;
-    }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return Renderable
-     */
-    public function render(): Renderable
-    {
-        return view('articles');
     }
 
     /**
@@ -96,7 +84,7 @@ class ArticleController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: ' . $result['title']
+                'message' => 'Successfully created: ' . $result['title'] . ' article'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -117,7 +105,7 @@ class ArticleController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['title']
+                'message' => 'Successfully updated: ' . $result['title'] . ' article'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -131,13 +119,13 @@ class ArticleController extends Controller
      */
     public function destroy($id): JsonResponse
     {
-        $model = Article::findOrFail($id);
+        $result = Article::findOrFail($id);
 
         try {
             $this->service->delete($id);
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: '. $model->title
+                'message' => 'Successfully deleted: '. $result->getTitle() . ' article'
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

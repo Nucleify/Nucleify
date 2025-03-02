@@ -30,15 +30,6 @@
         ad-type="money"
       />
       <ad-tile
-        href="#questions"
-        header="Questions"
-        :count="questions?.length"
-        icon="pi pi-question"
-        :count-secondary="questionCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="question"
-      />
-      <ad-tile
         href="#users"
         header="Users"
         :count="users?.length"
@@ -58,33 +49,27 @@
       :article-data="articles"
       :contact-data="contacts"
       :money-data="money"
-      :question-data="questions"
       :user-data="users"
       :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />
 
-    <article-dashboard
+    <ad-article-dashboard
       :data="articles"
       :getData="getAllArticles"
       :loading="!allLoaded"
     />
-    <contact-dashboard
+    <ad-contact-dashboard
       :data="contacts"
       :getData="getAllContacts"
       :loading="!allLoaded"
     />
-    <money-dashboard
+    <ad-money-dashboard
       :data="money"
       :getData="getAllMoney"
       :loading="!allLoaded"
     />
-    <question-dashboard
-      :data="questions"
-      :getData="getAllQuestions"
-      :loading="!allLoaded"
-    />
-    <user-dashboard
+    <ad-user-dashboard
       :data="users"
       :getData="getAllUsers"
       :loading="!allLoaded"
@@ -96,18 +81,9 @@
 import { onMounted, ref, Ref, watch } from 'vue'
 
 import {
-  ArticleDashboard,
-  ContactDashboard,
-  MoneyDashboard,
-  QuestionDashboard,
-  UserDashboard,
-} from './'
-
-import {
   articleRequests,
   contactRequests,
   moneyRequests,
-  questionRequests,
   userRequests,
   useDisplayCharts,
 } from 'atomic'
@@ -136,13 +112,6 @@ const {
   getCountMoneyByCreatedLastWeek,
 } = moneyRequests()
 const {
-  results: questions,
-  createdLastWeek: questionCreatedLastWeek,
-  loading: questionLoading,
-  getAllQuestions,
-  getCountQuestionsByCreatedLastWeek,
-} = questionRequests()
-const {
   results: users,
   createdLastWeek: usersCreatedLastWeek,
   loading: usersLoading,
@@ -154,37 +123,27 @@ onMounted(() => {
   getAllArticles(true)
   getAllContacts(true)
   getAllMoney(true)
-  getAllQuestions(true)
   getAllUsers(true)
   getCountArticlesByCreatedLastWeek()
   getCountContactsByCreatedLastWeek()
   getCountMoneyByCreatedLastWeek()
-  getCountQuestionsByCreatedLastWeek()
   getCountUsersByCreatedLastWeek()
 })
 
 const allLoaded: Ref<boolean> = ref(false)
 
 watch(
-  [
-    articlesLoading,
-    contactsLoading,
-    moneyLoading,
-    questionLoading,
-    usersLoading,
-  ],
+  [articlesLoading, contactsLoading, moneyLoading, usersLoading],
   ([
     newArticlesLoading,
     newContactsLoading,
     newMoneyLoading,
-    newQuestionLoading,
     newUsersLoading,
   ]) => {
     if (
       !newArticlesLoading &&
       !newContactsLoading &&
       !newMoneyLoading &&
-      !newQuestionLoading &&
       !newUsersLoading
     ) {
       setTimeout(() => {

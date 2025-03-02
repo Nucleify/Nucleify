@@ -11,6 +11,15 @@
     background: $p-card-background !important;
   }
 
+  .p-datatable-column-title,
+  td {
+    color: $primary-white-text-color;
+  }
+
+  td {
+    border-color: #27272a !important;
+  }
+
   .p-row-odd {
     background: $content-background !important;
   }
@@ -19,7 +28,7 @@
     margin-top: 4px;
   }
 
-  @each $type in activity, article, contact, money, question, user {
+  @each $type in activity, article, contact, money, question, technology, user {
     &[ad-type='#{$type}'] {
       @include entity-datatable-styles(
         var(--#{$type}-item-color-new) !important,
@@ -64,13 +73,22 @@
       margin: 0;
       padding: 0;
 
-      .p-paginator-current {
+      &-current {
         margin: 0 4px;
       }
 
-      .p-paginator-content {
+      &-content {
         display: flex;
         gap: 8px;
+      }
+
+      &-page,
+      &-first,
+      &-prev,
+      &-current,
+      &-next,
+      &-last {
+        color: #a1a1aa !important;
       }
     }
   }
@@ -93,6 +111,7 @@
     }
 
     .content-column,
+    .label-column,
     .title-column,
     .name-column,
     .full-name-column {
@@ -126,15 +145,18 @@
     }
 
     .content-column,
+    .label-column,
     .title-column,
     .category-column,
     .description-column,
-    .name-column {
+    .name-column,
+    .question-category-column {
       overflow: hidden;
       white-space: nowrap;
     }
 
     .content-column,
+    .label-column,
     .title-column {
       max-width: 200px;
     }
@@ -215,10 +237,12 @@
       }
 
       .content-column,
+      .label-column,
       .title-column {
         width: 38%;
       }
 
+      .question-category-column,
       .category-column {
         width: 20%;
       }
@@ -251,6 +275,10 @@
       .category-column {
         width: 20%;
       }
+
+      .question-category-column {
+        width: 19%;
+      }
     }
 
     @media (min-width: $breakpoint-xxl) {
@@ -280,6 +308,7 @@
       }
 
       .content-column,
+      .label-column,
       .title-column {
         width: 30%;
       }
@@ -296,6 +325,7 @@
       }
 
       .content-column,
+      .label-column,
       .title-column {
         width: 23%;
       }

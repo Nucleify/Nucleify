@@ -4,7 +4,7 @@
       v-for="(technology, index) in props.boxes"
       :key="index"
       :src="technologiesImgUrl + technology.src"
-      :title="technology.title"
+      :title="technology.label"
       :description="technology.description"
       class="caterpillar-button"
     />

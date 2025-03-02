@@ -1,6 +1,8 @@
 @import 'mixins';
 
-@each $type in main, activity, article, contact, money, question, user {
+@each $type in main, activity, article, contact, money, question, technology,
+  user
+{
   .p-select[ad-type='#{$type}'] {
     @include entity-select-styles(
       var(--#{$type}-item-color-new) !important,
@@ -21,8 +23,9 @@
   padding: 0;
 }
 
+.p-select,
 .p-select-list {
-  background: $content-background !important;
+  background: $p-card-background !important;
   border: 1px solid $p-card-border !important;
   color: $white-text-color !important;
   padding: 4px !important;

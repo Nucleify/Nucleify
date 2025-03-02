@@ -4,7 +4,6 @@ namespace Tests;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use App\Models\User;
 use Closure;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Schema\Blueprint;
@@ -12,11 +11,13 @@ use Illuminate\Database\Schema\SQLiteBuilder;
 use Illuminate\Database\SQLiteConnection;
 use Illuminate\Support\Fluent;
 
+use App\Models\Entities\User;
+
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    protected User $admin, $user;
+    protected User $admin, $tech, $user;
 
     protected function createUsers(): void
     {
@@ -25,10 +26,17 @@ abstract class TestCase extends BaseTestCase
             'name' => fake()->firstName(),
             'email' => fake()->email(),
             'password' => Hash::make('password'),
-            'role' => 'super_admin'
+            'role' => 'admin'
+        ]);
+        $this->tech = User::create([
+            'id' => 2,
+            'name' => fake()->firstName(),
+            'email' => fake()->email(),
+            'password' => Hash::make('password'),
+            'role' => 'tech'
         ]);
         $this->user = User::create([
-            'id' => 2,
+            'id' => 3,
             'name' => fake()->firstName(),
             'email' => fake()->email(),
             'password' => Hash::make('password'),

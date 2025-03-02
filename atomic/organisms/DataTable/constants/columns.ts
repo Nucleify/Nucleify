@@ -47,8 +47,13 @@ const columnsData: readonly ColumnsInterface[] = {
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
   question: [
-    ['index', 'Index', 'index-column'],
     ['content', 'Content', 'content-column'],
+    ['category', 'Category', 'category-column desktop-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
+  technology: [
+    ['label', 'Label', 'label-column'],
     ['category', 'Category', 'category-column desktop-column'],
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],

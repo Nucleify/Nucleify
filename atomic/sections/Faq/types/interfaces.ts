@@ -1,7 +1,8 @@
-import { QuestionInterface } from 'atomic'
+import { QuestionInterface, SiteType } from 'atomic'
 
 export interface SectionFaqInterface {
-  questions: QuestionInterface | QuestionInterface[]
+  questions?: QuestionInterface | QuestionInterface[]
+  site?: SiteType
 }
 
 export interface UseSplitQuestionsInterface {
