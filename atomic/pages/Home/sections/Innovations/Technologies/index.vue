@@ -10,6 +10,7 @@
         :modules="modules"
         class="mySwiper"
         :slides-per-view="9"
+        :slides-per-group="2"
         :loop="true"
       >
         <swiper-slide v-for="(tech, index) in technologies" :key="index">
