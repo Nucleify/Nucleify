@@ -7,6 +7,7 @@
 
   .categories-container-header {
     font-size: $font-size-lg;
+    color: $white-text-color;
   }
 
   @media (min-width: $breakpoint-md) {
@@ -30,6 +31,7 @@
         transform 0.3s,
         box-shadow 0.3s;
       box-shadow: $primary-box-shadow;
+      border: 1px solid $secondary-gray-color;
       text-decoration: none;
       aspect-ratio: 1/1;
       overflow: hidden;
@@ -53,7 +55,8 @@
         bottom: 0;
         padding: 0.75em;
         gap: 0.25em;
-        background: #fffb;
+        background: black;
+        border: 1px solid $secondary-gray-color;
         backdrop-filter: blur(5px);
         overflow: hidden;
         transition: transform 0.3s;
@@ -62,13 +65,14 @@
         &-title {
           font-size: 2em;
           margin: 0;
+          color: $white-text-color;
         }
 
         &-description {
           transition: opacity 0.3s 0.1s;
           margin-bottom: 0.25em;
           margin-top: 0.5em;
-          color: $secondary-text-color;
+          color: $white-text-color;
           font-size: 0.9em;
           font-family: $font-inter-sans-serif;
         }

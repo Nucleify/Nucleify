@@ -19,7 +19,7 @@
                 :src="imgUrl + 'desktop.png'"
                 width="120px"
                 height="100px"
-                alt=""
+                alt="Desktop image"
                 image-class="access-card-image"
               />
               <ad-heading :tag="3" class="access-card-header" text="Desktop" />
@@ -41,7 +41,7 @@
                 :src="imgUrl + 'tablet.png'"
                 width="75px"
                 height="100px"
-                alt=""
+                alt="Tablet image"
                 image-class="access-card-image"
               />
               <ad-heading :tag="3" class="access-card-header" text="Tablet" />
@@ -62,7 +62,7 @@
                 :src="imgUrl + 'phone.png'"
                 width="54px"
                 height="100px"
-                alt=""
+                alt="Phone image"
                 image-class="access-card-image"
               />
               <ad-heading :tag="3" class="access-card-header" text="Phone" />

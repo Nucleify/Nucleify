@@ -1,15 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Entities\EntitiesController;
 use App\Http\Controllers\Pages\DashboardController;
 use App\Http\Controllers\Pages\HomeController;
+use App\Http\Controllers\Pages\LicenseController;
 use App\Http\Controllers\Pages\SettingsController;
 use App\Http\Controllers\Structural\StructuralController;
 use App\Http\Controllers\Utilities\ActivityController;
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 
 /**
  *  Home
@@ -29,6 +30,11 @@ Route::get('/home', [HomeController::class, 'render'])->name('home');
  *  Blog
  */
 //Route::get('/blog', [BlogController::class, 'render'])->name('blog');
+
+/**
+ *  License
+ */
+Route::get('/license', [LicenseController::class, 'render'])->name('license');
 
 /**
  *  Services

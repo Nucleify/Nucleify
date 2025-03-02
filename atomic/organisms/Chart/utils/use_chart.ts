@@ -87,7 +87,6 @@ export function useChart() {
       if (example) {
         for (let i = 0; i < 12; i++) {
           articleDataByMonth[i] = Math.floor(Math.random() * 100)
-          contactDataByMonth[i] = Math.floor(Math.random() * 100)
           moneyDataByMonth[i] = Math.floor(Math.random() * 100)
           userDataByMonth[i] = Math.floor(Math.random() * 100)
         }
@@ -210,7 +209,7 @@ export function useChart() {
             (sum: number, value: number) => sum + value,
             0
           )
-          const totalTechnologies: number = technologiesDataByMonth.reduce(
+          const totalTechnologies: number = technologyDataByMonth.reduce(
             (sum: number, value: number) => sum + value,
             0
           )
