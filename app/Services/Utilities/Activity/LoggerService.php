@@ -3,6 +3,7 @@
 namespace App\Services\Utilities\Activity;
 
 use Exception;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Str;
 
 class LoggerService
@@ -48,6 +49,23 @@ class LoggerService
         $this->logMessage($logMessage);
 
         throw new Exception($exceptionMessage);
+    }
+
+    /**
+     * @param Authenticatable $causer
+     * @param string $api
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
+    public function logAndThrowUnauthorizedApi(Authenticatable $causer, string $api): void
+    {
+        $error = "unauthorized to use " . $api . " API.";
+
+        $this->logMessage("User: ''" . $causer . "'' was " . $error);
+
+        throw new Exception("You are " . $error);
     }
 
     /**

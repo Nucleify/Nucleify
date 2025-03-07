@@ -66,16 +66,20 @@ export function useColorPicker(item: string): UseColorPickerInterface {
         darkenColor(colorValue, 10)
       )
       localStorage.setItem(
-        `${item}-item-selected-color`,
-        setColorOpacity(colorValue, 0.08)
-      )
-      localStorage.setItem(
         `${item}-item-focus-color`,
         setColorOpacity(colorValue, 0.35)
       )
       localStorage.setItem(
         `${item}-item-highlight-color`,
         setColorOpacity(colorValue, 0.15)
+      )
+      localStorage.setItem(
+        `${item}-item-secondary-color`,
+        setColorOpacity(colorValue, 0.4)
+      )
+      localStorage.setItem(
+        `${item}-item-selected-color`,
+        setColorOpacity(colorValue, 0.08)
       )
     }
   }
