@@ -28,14 +28,14 @@ describe('RequestGetterTrait', function () {
         $request = new Request();
         $request->headers->set('referer', "$this->appUrl/admin");
 
-        expect($this->trait->getReferrer($request))->toBe("$this->appUrl/admin");
-        expect($this->trait->getRefererIsAdmin("$this->appUrl/admin"))->toBeTrue();
+        expect($this->trait->getReferrer($request))->toBe("$this->appUrl/admin")
+            ->and($this->trait->getRefererIsAdmin("$this->appUrl/admin"))->toBeTrue();
     });
 
     test('no referer header provided', function () {
         $request = new Request();
 
-        expect($this->trait->getReferrer($request))->toBeNull();
-        expect($this->trait->getRefererIsAdmin(null))->toBeFalse();
+        expect($this->trait->getReferrer($request))->toBeNull()
+            ->and($this->trait->getRefererIsAdmin(null))->toBeFalse();
     });
 });
