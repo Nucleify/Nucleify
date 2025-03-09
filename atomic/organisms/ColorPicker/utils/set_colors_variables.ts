@@ -15,6 +15,7 @@ export function setColorsVariables(): void {
     'dark-color',
     'highlight-color',
     'focus-color',
+    'secondary-color',
     'selected-color',
     'hover-color',
   ]
