@@ -14,8 +14,8 @@ describe('UserGetterTrait', function () {
     test('getCauser returns authenticated user', function () {
         $this->actingAs($this->admin);
 
-        expect($this->trait->getCauser())->toBe(auth()->user());
-        expect($this->trait->getCauser()->id)->toBe($this->admin->id);
+        expect($this->trait->getCauser())->toBe(auth()->user())
+            ->and($this->trait->getCauser()->id)->toBe($this->admin->id);
     });
 
     test('getCauser returns null if not authenticated', function () {
