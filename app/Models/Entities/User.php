@@ -49,7 +49,6 @@ use Multicaret\Acquaintances\Traits\Friendable;
  * @property HasMany question
  * @property void createContactFromUserDetails
  */
-
 class User extends Authenticatable implements UserContract
 {
     use HasApiTokens, HasFactory, Friendable, Notifiable;

@@ -40,7 +40,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Builder scopeGetByCreatedAt
  * @property Builder scopeGetByUpdatedAt
  */
-
 class Question extends Model implements QuestionContract
 {
     use HasFactory;

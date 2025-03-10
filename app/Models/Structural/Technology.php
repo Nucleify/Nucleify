@@ -42,7 +42,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property Builder scopeGetByCreatedAt
  * @property Builder scopeGetByUpdatedAt
  */
-
 class Technology extends Model implements TechnologyContract
 {
     use HasFactory;

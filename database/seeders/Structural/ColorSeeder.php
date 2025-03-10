@@ -9,21 +9,16 @@ use Illuminate\Database\Seeder;
 class ColorSeeder extends Seeder
 {
     /**
-     * @var string
-     */
-    protected string $path = 'database/constants/Structural/Colors/';
-
-    /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $generalColors = require_once $this->path . 'Colors.php';
+        $count = (env('APP_ENV') === 'production') ? 100 : 40;
 
-        foreach ($generalColors as $color) {
-            Color::factory()->create(array_merge($color, [
-                'user_id' => 1,
-            ]));
+        for ($i = 1; $i <= 6; $i++) {
+            Color::factory($count)->create([
+                'user_id' => $i,
+            ]);
         }
     }
 }
