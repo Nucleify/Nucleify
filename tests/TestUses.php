@@ -44,6 +44,9 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/Entities/User/HTTP422PostTest.php',
             'Feature/Api/Entities/User/HTTP422PutTest.php',
 
+            // Card API
+            'Feature/Api/Structural/Card/HTTP302Test.php',
+
             // Question API
             'Feature/Api/Structural/Question/HTTP302Test.php',
 
@@ -83,6 +86,12 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             // User API
             'Feature/Api/Entities/User/HTTP200Test.php',
             'Feature/Api/Entities/User/HTTP500Test.php',
+
+            // Card API
+            'Feature/Api/Structural/Card/HTTP200Test.php',
+            'Feature/Api/Structural/Card/HTTP500Test.php',
+            'Feature/Api/Structural/Card/HTTP422PostTest.php',
+            'Feature/Api/Structural/Card/HTTP422PutTest.php',
 
             // Question API
             'Feature/Api/Structural/Question/HTTP200Test.php',

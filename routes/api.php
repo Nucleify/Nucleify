@@ -4,6 +4,7 @@ use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\Entities\MoneyController;
 use App\Http\Controllers\Entities\UserController;
+use App\Http\Controllers\Structural\CardController;
 use App\Http\Controllers\Structural\QuestionController;
 use App\Http\Controllers\Structural\TechnologyController;
 use App\Http\Controllers\Utilities\ActivityController;
@@ -59,6 +60,24 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('articles.update');
         Route::delete('/{id}', 'destroy')
             ->name('articles.destroy');
+    });
+
+        /**
+     *  Cards
+     */
+    Route::prefix('cards')->controller(CardController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('cards.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('cards.countByCreatedLastWeek');
+        Route::get('/{id}', 'show')
+            ->name('cards.show');
+        Route::post('/', 'store')
+            ->name('cards.store');
+        Route::put('/{id}', 'update')
+            ->name('cards.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('cards.destroy');
     });
 
     /**

@@ -24,6 +24,10 @@ uses()
     ->in('Feature/Api/Entities/User');
 
 uses()
+    ->group('card-api')
+    ->in('Feature/Api/Structural/Card');    
+
+uses()
     ->group('question-api')
     ->in('Feature/Api/Structural/Question');
 
