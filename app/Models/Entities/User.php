@@ -3,6 +3,7 @@
 namespace App\Models\Entities;
 
 use App\Contracts\Entities\UserContract;
+use App\Models\Structural\Card;
 use App\Models\Structural\Question;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,6 +47,7 @@ use Multicaret\Acquaintances\Traits\Friendable;
  * @property Builder scopeGetBySuperAdminRole
  * @property HasMany contacts
  * @property HasMany money
+ * @property HasMany card
  * @property HasMany question
  * @property void createContactFromUserDetails
  */
@@ -213,6 +215,10 @@ class User extends Authenticatable implements UserContract
     public function money(): HasMany
     {
         return $this->hasMany(Money::class, 'user_id');
+    }
+    public function card(): HasMany
+    {
+        return $this->hasMany(Card::class);
     }
     public function question(): HasMany
     {

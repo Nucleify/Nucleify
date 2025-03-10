@@ -5,8 +5,7 @@ namespace App\Transformers\Structural;
 use App\Contracts\Structural\QuestionContract;
 use League\Fractal\TransformerAbstract;
 
-class
-QuestionTransformer extends TransformerAbstract
+class QuestionTransformer extends TransformerAbstract
 {
     public function transform(QuestionContract $model): array
     {

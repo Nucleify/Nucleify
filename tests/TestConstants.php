@@ -92,6 +92,27 @@ const updatedUserData = [
 ];
 
 /**
+ *  Card
+ */
+const cardData = [
+    'id' => 1,
+    'src' => 'testSrc',
+    'title' => 'testTitle',
+    'description' => 'test description test',
+    'component' => 'testComponent',
+    'display' => false
+];
+
+const updatedCardData = [
+    'id' => 1,
+    'src' => 'updatedTestSrc',
+    'title' => 'updatedTestTitle',
+    'description' => 'updated test description test',
+    'component' => 'updatedTestComponent',
+    'display' => true
+];
+
+/**
  * Question
  */
 const questionData = [

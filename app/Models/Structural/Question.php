@@ -26,6 +26,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string getContent
  * @property string getAnswer
  * @property string|null getCategory
+ * @property boolean getDisplay
+ * @property boolean getOnSite
  * @property string getCreatedAt
  * @property string getUpdatedAt
  * @property BelongsTo user
