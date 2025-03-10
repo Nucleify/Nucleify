@@ -138,3 +138,21 @@ const updatedTechnologyData = [
     'category' => 'test2',
     'display' => False
 ];
+/**
+ *  Color
+ */
+const colorData = [
+    'id' => 1,
+    'user_id' => 1,
+    'entity' => 'article',
+    'value' => '#6d7c75',
+    'new' => true,
+];
+
+const updatedColorData = [
+    'id' => 1,
+    'user_id' => 1,
+    'entity' => 'contact',
+    'value' => '#39965b',
+    'new' => false,
+];

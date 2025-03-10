@@ -24,6 +24,10 @@ uses()
     ->in('Feature/Api/Entities/User');
 
 uses()
+    ->group('color-api')
+    ->in('Feature/Api/Structural/Color');
+
+uses()
     ->group('question-api')
     ->in('Feature/Api/Structural/Question');
 
