@@ -66,7 +66,8 @@ Route::middleware(['web', 'auth'])->group(function () {
     $structural = [
         'index',
         'questions',
-        'technologies'
+        'technologies',
+        'links'
     ];
 
     foreach ($structural as $route) {

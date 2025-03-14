@@ -21,12 +21,10 @@ class LinkTransformer extends TransformerAbstract
             'hreflang' => $model->getHreflang(),
             'media' => $model->getMedia(),
             'ping' => $model->getPing(),
-            'referrer_policy' => $model->getReferrerPolicy(),
+            'referrerpolicy' => $model->getReferrerPolicy(),
             'rel' => $model->getRel(),
             'target' => $model->getTarget(),
             'type' => $model->getType(),
-            'start_date' => $model->getStartDate(),
-            'end_date' => $model->getEndDate(),
             'created_at' => $model->getCreatedAt(),
             'updated_at' => $model->getUpdatedAt(),
         ];

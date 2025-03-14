@@ -14,6 +14,7 @@ export function useColorPicker(item: string): UseColorPickerInterface {
     activityItemColors,
     articleItemColors,
     contactItemColors,
+    linkItemColors,
     moneyItemColors,
     questionItemColors,
     technologyItemColors,
@@ -34,6 +35,9 @@ export function useColorPicker(item: string): UseColorPickerInterface {
       break
     case 'contact':
       itemColor.value = contactItemColors.primary!
+      break
+    case 'link':
+      itemColor.value = linkItemColors.primary!
       break
     case 'money':
       itemColor.value = moneyItemColors.primary!

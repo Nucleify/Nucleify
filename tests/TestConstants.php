@@ -156,8 +156,6 @@ const linkData = [
     'rel' => 'nofollow',
     'target' => '_blank',
     'type' => 'text/html',
-    'start_date' => '2025-01-01',
-    'end_date' => '2025-12-31',
 ];
 
 const updatedLinkData = [
@@ -174,6 +172,4 @@ const updatedLinkData = [
     'rel' => 'nofollow',
     'target' => '_blank',
     'type' => 'text/html',
-    'start_date' => '2025-01-01',
-    'end_date' => '2025-12-31',
 ];
