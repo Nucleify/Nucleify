@@ -1,0 +1,34 @@
+<?php
+
+
+namespace App\Transformers\Structural;
+
+use App\Models\Structural\Link;
+use League\Fractal\TransformerAbstract;
+
+
+class LinkTransformer extends TransformerAbstract
+{
+    public function transform(Link $model): array
+    {
+        return [
+            'id' => $model->getId(),
+            'download' => $model->getDownload(),
+            'href' => $model->getHref(),
+            'src' => $model->getSrc(),
+            'icon' => $model->getIcon(),
+            'category' => $model->getCategory(),
+            'hreflang' => $model->getHreflang(),
+            'media' => $model->getMedia(),
+            'ping' => $model->getPing(),
+            'referrer_policy' => $model->getReferrerPolicy(),
+            'rel' => $model->getRel(),
+            'target' => $model->getTarget(),
+            'type' => $model->getType(),
+            'start_date' => $model->getStartDate(),
+            'end_date' => $model->getEndDate(),
+            'created_at' => $model->getCreatedAt(),
+            'updated_at' => $model->getUpdatedAt(),
+        ];
+    }
+}
