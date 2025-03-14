@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { hideLoader } from 'atomic'
+import { hideLoader } from '.'
 
 hideLoader()
 </script>

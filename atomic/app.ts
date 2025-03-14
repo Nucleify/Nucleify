@@ -125,11 +125,10 @@ import {
   CardCategory,
   CardChart,
   CardDataTable,
-  ScreenLights,
-  ScreenLoader,
   SkeletonDataTable,
   TestLoginButtons,
 } from './templates'
+import { DMScreenLights, DMScreenLoader } from '../modules'
 
 app
   /**
@@ -252,9 +251,13 @@ app
   .component('ad-card-category', CardCategory)
   .component('ad-card-chart', CardChart)
   .component('ad-card-data-table', CardDataTable)
-  .component('ad-screen-lights', ScreenLights)
-  .component('ad-screen-loader', ScreenLoader)
   .component('ad-skeleton-data-table', SkeletonDataTable)
   .component('ad-test-login-buttons', TestLoginButtons)
+
+  /**
+   *  Modules
+   */
+  .component('dm-screen-lights', DMScreenLights)
+  .component('dm-screen-loader', DMScreenLoader)
 
 app.mount('#app')
