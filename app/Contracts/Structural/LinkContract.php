@@ -72,16 +72,6 @@ interface LinkContract
     /**
      * @return string
      */
-    public function getStartDate(): string;
-
-    /**
-     * @return string
-     */
-    public function getEndDate(): string;
-
-    /**
-     * @return string
-     */
     public function getCreatedAt(): string;
 
     /**

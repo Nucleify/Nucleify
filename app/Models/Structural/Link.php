@@ -22,8 +22,6 @@ use App\Contracts\Structural\LinkContract;
  * @property string|null $rel
  * @property string|null $target
  * @property string|null $type
- * @property string $start_date
- * @property string $end_date
  * @property string $created_at
  * @property string $updated_at
  * @property int getId
@@ -39,10 +37,23 @@ use App\Contracts\Structural\LinkContract;
  * @property string|null getRel
  * @property string|null getTarget
  * @property string|null getType
- * @property string getStartDate
- * @property string getEndDate
  * @property string getCreatedAt
  * @property string getUpdatedAt
+ * @property Builder scopeGetById
+ * @property Builder scopeGetByDownload
+ * @property Builder scopeGetByHref
+ * @property Builder scopeGetBySrc
+ * @property Builder scopeGetByIcon
+ * @property Builder scopeGetByCategory
+ * @property Builder scopeGetByHreflang
+ * @property Builder scopeGetByMedia
+ * @property Builder scopeGetByPing
+ * @property Builder scopeGetByReferrerPolicy
+ * @property Builder scopeGetByRel
+ * @property Builder scopeGetByTarget
+ * @property Builder scopeGetByType
+ * @property Builder scopeGetByCreatedAt
+ * @property Builder scopeGetByUpdatedAt
  */
 class Link extends Model implements LinkContract
 {
@@ -61,8 +72,6 @@ class Link extends Model implements LinkContract
         'rel',
         'target',
         'type',
-        'start_date',
-        'end_date'
     ];
 
     public function getId(): int
@@ -116,14 +125,6 @@ class Link extends Model implements LinkContract
     public function getType(): ?string
     {
         return $this->type;
-    }
-    public function getStartDate(): string
-    {
-        return $this->start_date;
-    }
-    public function getEndDate(): string
-    {
-        return $this->end_date;
     }
     public function getCreatedAt(): string
     {
@@ -190,15 +191,6 @@ class Link extends Model implements LinkContract
     {
         return $query->where('type', $parameter);
     }
-    public function scopeGetByStartDate(Builder $query, string $parameter): Builder
-    {
-        return $query->where('start_date', $parameter);
-    }
-    public function scopeGetByEndDate(Builder $query, string $parameter): Builder
-    {
-        return $query->where('end_date', $parameter);
-    }
-
     public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('created_at', $parameter);

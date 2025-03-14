@@ -18,6 +18,7 @@ import {
   LabelItemType,
   UseColorsReturnInterface,
   useColors,
+  LinkInterface,
 } from 'atomic'
 
 export function useChart() {
@@ -25,6 +26,7 @@ export function useChart() {
     activityItemColors,
     articleItemColors,
     contactItemColors,
+    linkItemColors,
     moneyItemColors,
     questionItemColors,
     technologyItemColors,
@@ -37,6 +39,7 @@ export function useChart() {
     activityItemColors: { primary: '#FFB600', hover: '#E7A60B' },
     articleItemColors: { primary: '#1187C7', hover: '#0F79B2' },
     contactItemColors: { primary: '#10B981', hover: '#10A674' },
+    linkItemColors: { primary: '#10b3b9', hover: '#0f93a4' },
     moneyItemColors: { primary: '#11c73b', hover: '#0eb233' },
     questionItemColors: { primary: '#8cb910', hover: '#8cb910' },
     technologyItemColors: { primary: '#b95910', hover: '#9b4b0e' },
@@ -46,6 +49,7 @@ export function useChart() {
   const chartLabels: { label: LabelItemType }[] = [
     { label: 'Articles' },
     { label: 'Contacts' },
+    { label: 'Links' },
     { label: 'Money' },
     { label: 'Questions' },
     { label: 'Users' },
@@ -56,6 +60,7 @@ export function useChart() {
     activityLogData?: ActivityLogInterface[],
     articleData?: ArticleInterface[],
     contactData?: ContactInterface[],
+    linkData?: LinkInterface[],
     moneyData?: MoneyInterface[],
     questionData?: QuestionInterface[],
     technologyData?: TechnologyInterface[],
@@ -67,6 +72,7 @@ export function useChart() {
       const activityLogDataByMonth: number[] = new Array(12).fill(0)
       const articleDataByMonth: number[] = new Array(12).fill(0)
       const contactDataByMonth: number[] = new Array(12).fill(0)
+      const linkDataByMonth: number[] = new Array(12).fill(0)
       const moneyDataByMonth: number[] = new Array(12).fill(0)
       const questionDataByMonth: number[] = new Array(12).fill(0)
       const technologyDataByMonth: number[] = new Array(12).fill(0)
@@ -78,6 +84,7 @@ export function useChart() {
             activityItemColors,
             articleItemColors,
             contactItemColors,
+            linkItemColors,
             moneyItemColors,
             questionItemColors,
             technologyItemColors,
@@ -105,6 +112,11 @@ export function useChart() {
         contactData?.forEach((contact: ContactInterface): void => {
           const monthIndex: number = new Date(contact.created_at).getMonth()
           contactDataByMonth[monthIndex]++
+        })
+
+        linkData?.forEach((link: LinkInterface): void => {
+          const monthIndex: number = new Date(link.created_at).getMonth()
+          linkDataByMonth[monthIndex]++
         })
 
         moneyData?.forEach((money: MoneyInterface): void => {
@@ -147,6 +159,11 @@ export function useChart() {
               colors: colors.contactItemColors,
             },
             {
+              label: 'Links',
+              data: linkDataByMonth,
+              colors: colors.linkItemColors,
+            },
+            {
               label: 'Money',
               data: moneyDataByMonth,
               colors: colors.moneyItemColors,
@@ -185,6 +202,7 @@ export function useChart() {
             if (
               (label === 'Articles' && articleData) ||
               (label === 'Contacts' && contactData) ||
+              (label === 'Links' && linkData) ||
               (label === 'Money' && moneyData) ||
               (label === 'Question' && questionData) ||
               (label === 'Technology' && technologyData) ||
@@ -199,6 +217,10 @@ export function useChart() {
             0
           )
           const totalContacts: number = contactDataByMonth.reduce(
+            (sum: number, value: number) => sum + value,
+            0
+          )
+          const totalLinks: number = contactDataByMonth.reduce(
             (sum: number, value: number) => sum + value,
             0
           )
@@ -226,6 +248,7 @@ export function useChart() {
                 data: [
                   totalArticles,
                   totalContacts,
+                  totalLinks,
                   totalMoney,
                   totalQuestions,
                   totalTechnologies,
@@ -235,6 +258,7 @@ export function useChart() {
                 backgroundColor: [
                   colors.articleItemColors.primary,
                   colors.contactItemColors.primary,
+                  colors.linkItemColors.primary,
                   colors.moneyItemColors.primary,
                   colors.questionItemColors.primary,
                   colors.technologyItemColors.primary,
@@ -243,6 +267,7 @@ export function useChart() {
                 hoverBackgroundColor: [
                   colors.articleItemColors.hover,
                   colors.contactItemColors.hover,
+                  colors.linkItemColors.hover,
                   colors.moneyItemColors.hover,
                   colors.questionItemColors.hover,
                   colors.technologyItemColors.hover,

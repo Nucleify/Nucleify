@@ -173,21 +173,6 @@ describe('Instance', function () {
         expect($link->getType())->toBeNull();
     });
 
-    test('can get start_date', function () {
-        $link = Link::factory()->create();
-
-        expect($link->getStartDate())
-            ->toBeString()
-            ->toBe($link->start_date);
-    });
-
-    test('can get end_date', function () {
-        $link = Link::factory()->create();
-
-        expect($link->getEndDate())
-            ->toBeString()
-            ->toBe($link->end_date);
-    });
 
     test('can get created_at date', function () {
         $link = Link::factory()->create();
@@ -283,18 +268,6 @@ describe('Scope', function () {
         $link = Link::factory()->create();
         $foundLink = Link::getByType($link->type)->first();
         expect($foundLink->type)->toBe($link->type);
-    });
-
-    test('can filter by start_date using scopeGetByStartDate', function () {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByStartDate($link->start_date)->first();
-        expect($foundLink->start_date)->toBe($link->start_date);
-    });
-
-    test('can filter by end_date using scopeGetByEndDate', function () {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByEndDate($link->end_date)->first();
-        expect($foundLink->end_date)->toBe($link->end_date);
     });
 
     test('can filter by created_at using scopeGetByCreatedAt', function () {

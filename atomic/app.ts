@@ -128,6 +128,7 @@ import {
   ScreenLoader,
   SkeletonDataTable,
   TestLoginButtons,
+  LinkDashboard,
 } from './templates'
 
 app
@@ -243,6 +244,7 @@ app
   .component('ad-contact-dashboard', ContactDashboard)
   .component('ad-money-dashboard', MoneyDashboard)
   .component('ad-question-dashboard', QuestionDashboard)
+  .component('ad-link-dashboard', LinkDashboard)
   .component('ad-technology-dashboard', TechnologyDashboard)
   .component('ad-user-dashboard', UserDashboard)
   .component('ad-back-link', BackLink)

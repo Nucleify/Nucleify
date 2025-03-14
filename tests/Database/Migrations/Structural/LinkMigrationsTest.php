@@ -8,7 +8,7 @@ describe('Link Table Migration', function () {
     it('can create table', function () {
         expect(Schema::hasTable('links'))->toBeTrue()
             ->and(Schema::hasColumns('links', [
-                'id', 'download', 'href', 'src', 'icon', 'category', 'hreflang', 'media', 'ping', 'referrerpolicy', 'rel', 'target', 'type', 'start_date', 'end_date', 'created_at', 'updated_at'
+                'id', 'download', 'href', 'src', 'icon', 'category', 'hreflang', 'media', 'ping', 'referrerpolicy', 'rel', 'target', 'type', 'created_at', 'updated_at'
             ]))->toBeTrue();
     });
 

@@ -38,8 +38,6 @@ class LinkFactory extends Factory
             ]),
             'target' => $this->faker->randomElement(['_blank', '_parent', '_self', '_top']),
             'type' => $this->faker->mimeType(),
-            'start_date' => $this->faker->date(),
-            'end_date' => $this->faker->date(),
             'created_at' => now(),
             'updated_at' => now(),
         ];
@@ -61,8 +59,6 @@ class LinkFactory extends Factory
                 'license,next,nofollow,noreferrer,noopener,prev,search,tag',
             'target' => 'nullable|string|max:255|in:_blank,_parent,_self,_top',
             'type' => 'nullable|string|max:255',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
         ]);
         return $data;
     }

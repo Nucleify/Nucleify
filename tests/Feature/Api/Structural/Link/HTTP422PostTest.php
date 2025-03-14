@@ -6,12 +6,9 @@ beforeEach(function () {
 });
 
 describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
-
-
     /**
      * DOWNLOAD TESTS
      */
-
     $linkData['download'] = 1;
     test('invalid download > int', apiTest(
         'POST',
@@ -36,11 +33,12 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-
     $linkData['download'] = 'dsdds';
 
+
+
     /**
-     * yyy TESTS
+     * HREF TESTS
      */
     $linkData['href'] = '';
     test('invalid href > empty', apiTest(
@@ -116,7 +114,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
 
 
     /**
-     * yyy TESTS
+     * CATEGORY TESTS
      */
     $linkData['category'] = '';
     test('invalid content > empty', apiTest(
@@ -188,12 +186,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
 
 
 
-
-
     /**
-     * yyy TESTS
+     * SRC TESTS
      */
-
     $linkData['src'] = 1;
     test('invalid src > integer', apiTest(
         'POST',
@@ -259,9 +254,8 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
 
 
     /**
-     * yyy TESTS
+     * ICON TESTS
      */
-
     $linkData['icon'] = 1;
     test('invalid icon > integer', apiTest(
         'POST',
@@ -321,9 +315,8 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
 
 
     /**
-     * yyy TESTS
+     * HREFLANG TESTS
      */
-
     $linkData['hreflang'] = 1;
     test('invalid hreflang > integer', apiTest(
         'POST',
@@ -382,11 +375,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
 
 
 
-
     /**
-     * yyy TESTS
+     * MEDIA TESTS
      */
-
     $linkData['media'] = 1;
     test('invalid media > integer', apiTest(
         'POST',
@@ -445,11 +436,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
 
 
 
-
     /**
-     * yyy TESTS
+     * PING TESTS
      */
-
     $linkData['ping'] = 1;
     test('invalid ping > integer', apiTest(
         'POST',
@@ -508,11 +497,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
 
 
 
-
     /**
-     * yyy TESTS
+     * REL TESTS
      */
-
     $linkData['rel'] = 1;
     test('invalid rel > integer', apiTest(
         'POST',
@@ -577,11 +564,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
 
 
 
-
     /**
-     * yyy TESTS
+     * TARGET TESTS
      */
-
     $linkData['target'] = 1;
     test('invalid target > integer', apiTest(
         'POST',
@@ -646,11 +631,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
 
 
 
-
     /**
-     * yyy TESTS
+     * TYPE TESTS
      */
-
     $linkData['type'] = 1;
     test('invalid type > integer', apiTest(
         'POST',
@@ -706,9 +689,4 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
     ));
 
     $linkData['type'] = linkData['type']; // reset content value
-
-
-
-
-
 });
