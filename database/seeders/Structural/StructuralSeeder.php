@@ -12,7 +12,7 @@ class StructuralSeeder extends Seeder
         $this->call([
             QuestionSeeder::class,
             LinkSeeder::class,
-//            TechnologySeeder::class,
+            TechnologySeeder::class,
         ]);
     }
 }

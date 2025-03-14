@@ -50,6 +50,9 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             // Technology API
             'Feature/Api/Structural/Technology/HTTP302Test.php',
 
+            // Link API
+            'Feature/Api/Structural/Link/HTTP302Test.php',
+
             // Sitemap API
             'Feature/Api/Utilities/Sitemap',
 
@@ -95,6 +98,12 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/Structural/Technology/HTTP500Test.php',
             'Feature/Api/Structural/Technology/HTTP422PostTest.php',
             'Feature/Api/Structural/Technology/HTTP422PutTest.php',
+
+            // Link API
+            'Feature/Api/Structural/Link/HTTP200Test.php',
+            'Feature/Api/Structural/Link/HTTP500Test.php',
+            'Feature/Api/Structural/Link/HTTP422PostTest.php',
+            'Feature/Api/Structural/Link/HTTP422PutTest.php',
 
             'Database/Factories',
             'Database/Migrations',

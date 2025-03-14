@@ -32,6 +32,10 @@ uses()
     ->in('Feature/Api/Structural/Technology');
 
 uses()
+    ->group('link-api')
+    ->in('Feature/Api/Structural/Link');
+
+uses()
     ->group('activity-api')
     ->in('Feature/Api/Utilities/Activity');
 

@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
+use App\Contracts\Structural\LinkContract;
+
 /**
  * @property int $id
  * @property string|null $download
@@ -42,7 +44,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property string getCreatedAt
  * @property string getUpdatedAt
  */
-class Link extends Model
+class Link extends Model implements LinkContract
 {
     use HasFactory;
 

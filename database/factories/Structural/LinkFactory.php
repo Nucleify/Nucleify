@@ -44,7 +44,7 @@ class LinkFactory extends Factory
             'updated_at' => now(),
         ];
 
-        /// #TODO fix validation (nulable max etc.)
+
         Validator::make($data, [
             'download' => 'nullable|string',
             'href' => 'required|string|url',

@@ -138,3 +138,42 @@ const updatedTechnologyData = [
     'category' => 'test2',
     'display' => False
 ];
+
+/**
+ * Link
+ */
+const linkData = [
+    'id' => 1,
+    'download' => 'file1.png',
+    'href' => 'https://example.com',
+    'src' => 'https://example.com/image.png',
+    'icon' => 'icon.png',
+    'category' => 'test3',
+    'hreflang' => 'en',
+    'media' => 'screen',
+    'ping' => 'https://example.com/image.png|https://example.com/image.png',
+    'referrerpolicy' => 'no-referrer',
+    'rel' => 'nofollow',
+    'target' => '_blank',
+    'type' => 'text/html',
+    'start_date' => '2025-01-01',
+    'end_date' => '2025-12-31',
+];
+
+const updatedLinkData = [
+    'id' => 1,
+    'download' => 'file1.png',
+    'href' => 'https://example.com',
+    'src' => 'https://example.com/image.png',
+    'icon' => 'icon.png',
+    'category' => 'test3',
+    'hreflang' => 'en',
+    'media' => 'screen',
+    'ping' => 'https://example.com/image.png|https://example.com/image.png',
+    'referrerpolicy' => 'no-referrer',
+    'rel' => 'nofollow',
+    'target' => '_blank',
+    'type' => 'text/html',
+    'start_date' => '2025-01-01',
+    'end_date' => '2025-12-31',
+];
