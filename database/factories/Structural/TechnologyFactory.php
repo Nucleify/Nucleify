@@ -25,10 +25,10 @@ class TechnologyFactory extends Factory
 
         $data = [
             'user_id' => $this->faker->randomElement($usersIds),
-            'href' => $this->faker->url(),
-            'src' => $this->faker->url(),
             'label' => $this->faker->word(),
             'description' => $this->faker->sentence(5),
+            'href' => $this->faker->url(),
+            'src' => $this->faker->url(),
             'category' => $this->faker->word(),
             'display' => $this->faker->boolean(),
             'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
@@ -37,10 +37,10 @@ class TechnologyFactory extends Factory
 
         Validator::make($data, [
             'user_id' => 'required|integer|exists:users,id',
-            'href' => 'required|string',
-            'src' => 'required|string',
             'label' => 'required|string|max:50',
             'description' => 'string|min:3|max:255',
+            'href' => 'required|string',
+            'src' => 'required|string',
             'category' => 'string',
             'display' => 'required|bool'
         ]);

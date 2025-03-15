@@ -24,18 +24,6 @@ describe('Instance', function () {
             ->toBe($this->model->user_id);
     });
 
-    test('can get href', function () {
-        expect($this->model->getHref())
-            ->toBeString()
-            ->toBe($this->model->href);
-    });
-
-    test('can get src', function () {
-        expect($this->model->getSrc())
-            ->toBeString()
-            ->toBe($this->model->src);
-    });
-
     test('can get label', function () {
         expect($this->model->getLabel())
             ->toBeString()
@@ -46,6 +34,18 @@ describe('Instance', function () {
         expect($this->model->getDescription())
             ->toBeString()
             ->toBe($this->model->description);
+    });
+
+    test('can get href', function () {
+        expect($this->model->getHref())
+            ->toBeString()
+            ->toBe($this->model->href);
+    });
+
+    test('can get src', function () {
+        expect($this->model->getSrc())
+            ->toBeString()
+            ->toBe($this->model->src);
     });
 
     test('can get category', function () {
@@ -86,18 +86,6 @@ describe('Scope', function () {
         expect($foundModel->user_id)->toBe($this->model->user_id);
     });
 
-    test('can filter by id using scopeGetByHref', function () {
-        $foundModel = Technology::getByHref($this->model->href)->first();
-
-        expect($foundModel->href)->toBe($this->model->href);
-    });
-
-    test('can filter by id using scopeGetBySrc', function () {
-        $foundModel = Technology::getBySrc($this->model->src)->first();
-
-        expect($foundModel->src)->toBe($this->model->src);
-    });
-
     test('can filter by answer using scopeGetByLabel', function () {
         $foundModel = Technology::getByLabel($this->model->label)->first();
 
@@ -108,6 +96,18 @@ describe('Scope', function () {
         $foundModel = Technology::getByDescription($this->model->description)->first();
 
         expect($foundModel->description)->toBe($this->model->description);
+    });
+
+    test('can filter by id using scopeGetByHref', function () {
+        $foundModel = Technology::getByHref($this->model->href)->first();
+
+        expect($foundModel->href)->toBe($this->model->href);
+    });
+
+    test('can filter by id using scopeGetBySrc', function () {
+        $foundModel = Technology::getBySrc($this->model->src)->first();
+
+        expect($foundModel->src)->toBe($this->model->src);
     });
 
     test('can filter by category using scopeGetByCategory', function () {

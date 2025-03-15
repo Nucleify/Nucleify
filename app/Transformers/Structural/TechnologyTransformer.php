@@ -13,10 +13,10 @@ TechnologyTransformer extends TransformerAbstract
         return [
             'id' => $model->getId(),
             'user_id' => $model->getUserId(),
-            'href' => $model->getHref(),
-            'src' => $model->getSrc(),
             'label' => $model->getLabel(),
             'description' => $model->getDescription(),
+            'href' => $model->getHref(),
+            'src' => $model->getSrc(),
             'category' => $model->getCategory(),
             'display' => $model->getDisplay(),
             'created_at' => $model->getCreatedAt(),
