@@ -4,6 +4,7 @@ use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\Entities\MoneyController;
 use App\Http\Controllers\Entities\UserController;
+use App\Http\Controllers\Structural\LinkController;
 use App\Http\Controllers\Structural\ColorController;
 use App\Http\Controllers\Structural\QuestionController;
 use App\Http\Controllers\Structural\TechnologyController;
@@ -28,6 +29,9 @@ Route::get('/questions/get-site-questions/{site}', [QuestionController::class, '
 
 Route::get('/technologies/get-site-technologies/{site}', [TechnologyController::class, 'getSiteTechnologies'])
     ->name('technologies.getSiteTechnologies');
+
+Route::get('/links/get-site-links/{site}', [LinkController::class, 'getSiteLinks'])
+    ->name('links.getSiteLinks');
 
 Route::middleware(['web', 'auth'])->group(function () {
     /**
@@ -172,6 +176,24 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('colors.update');
         Route::delete('/{id}', 'destroy')
             ->name('colors.destroy');
+    });
+
+
+    Route::prefix('links')->controller(LinkController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('links.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('links.countByCreatedLastWeek');
+        Route::get('/get-by-category/{category}', 'getByCategory')
+            ->name('links.getByCategory');
+        Route::get('/{id}', 'show')
+            ->name('links.show');
+        Route::post('/', 'store')
+            ->name('links.store');
+        Route::put('/{id}', 'update')
+            ->name('links.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('links.destroy');
     });
 
     Route::get('/user', function () {

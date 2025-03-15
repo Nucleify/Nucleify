@@ -50,6 +50,25 @@ const updatedContactData = [
 ];
 
 /**
+ *  Color
+ */
+const colorData = [
+    'id' => 1,
+    'user_id' => 1,
+    'entity' => 'article',
+    'value' => '#6d7c75',
+    'new' => true,
+];
+
+const updatedColorData = [
+    'id' => 1,
+    'user_id' => 1,
+    'entity' => 'contact',
+    'value' => '#39965b',
+    'new' => false,
+];
+
+/**
  *  Money
  */
 const moneyData = [
@@ -138,21 +157,38 @@ const updatedTechnologyData = [
     'category' => 'test2',
     'display' => False
 ];
+
 /**
- *  Color
+ * Link
  */
-const colorData = [
+const linkData = [
     'id' => 1,
-    'user_id' => 1,
-    'entity' => 'article',
-    'value' => '#6d7c75',
-    'new' => true,
+    'download' => 'file1.png',
+    'href' => 'https://example.com',
+    'src' => 'https://example.com/image.png',
+    'icon' => 'icon.png',
+    'category' => 'test3',
+    'hreflang' => 'en',
+    'media' => 'screen',
+    'ping' => 'https://example.com/image.png|https://example.com/image.png',
+    'referrerpolicy' => 'no-referrer',
+    'rel' => 'nofollow',
+    'target' => '_blank',
+    'type' => 'text/html',
 ];
 
-const updatedColorData = [
+const updatedLinkData = [
     'id' => 1,
-    'user_id' => 1,
-    'entity' => 'contact',
-    'value' => '#39965b',
-    'new' => false,
+    'download' => 'file1.png',
+    'href' => 'https://example.com',
+    'src' => 'https://example.com/image.png',
+    'icon' => 'icon.png',
+    'category' => 'test3',
+    'hreflang' => 'en',
+    'media' => 'screen',
+    'ping' => 'https://example.com/image.png|https://example.com/image.png',
+    'referrerpolicy' => 'no-referrer',
+    'rel' => 'nofollow',
+    'target' => '_blank',
+    'type' => 'text/html',
 ];

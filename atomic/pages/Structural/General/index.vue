@@ -20,6 +20,15 @@
         text-secondary="this week"
         ad-type="technology"
       />
+      <ad-tile
+        href="/structural/links"
+        header="Links"
+        :count="links?.length"
+        icon="pi pi-link"
+        :count-secondary="linksCreatedLastWeek"
+        text-secondary="this week"
+        ad-type="link"
+      />
     </div>
 
     <ad-card-chart
@@ -28,6 +37,7 @@
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
+      :link-data="links"
       :question-data="questions"
       :technology-data="technologies"
       :chart-class="'myChart h-30rem'"
@@ -44,13 +54,23 @@
       :getData="getAllTechnologies"
       :loading="!allLoaded"
     />
+    <ad-link-dashboard
+      :data="links"
+      :getData="getAllLinks"
+      :loading="!allLoaded"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref, Ref, watch } from 'vue'
 
-import { questionRequests, technologyRequests, useDisplayCharts } from 'atomic'
+import {
+  linkRequests,
+  questionRequests,
+  technologyRequests,
+  useDisplayCharts,
+} from 'atomic'
 
 const { display } = useDisplayCharts()
 
@@ -70,19 +90,29 @@ const {
   getCountTechnologiesByCreatedLastWeek,
 } = technologyRequests()
 
+const {
+  results: links,
+  createdLastWeek: linksCreatedLastWeek,
+  loading: linksLoading,
+  getAllLinks,
+  getCountLinksByCreatedLastWeek,
+} = linkRequests()
+
 onMounted(() => {
   getAllQuestions(true)
   getCountQuestionsByCreatedLastWeek()
   getAllTechnologies(true)
   getCountTechnologiesByCreatedLastWeek()
+  getAllLinks(true)
+  getCountLinksByCreatedLastWeek()
 })
 
 const allLoaded: Ref<boolean> = ref(false)
 
 watch(
-  [questionsLoading, technologiesLoading],
-  ([newQuestionsLoading, newTechnologiesLoading]) => {
-    if (!newQuestionsLoading && !newTechnologiesLoading) {
+  [questionsLoading, technologiesLoading, linksLoading],
+  ([newQuestionsLoading, newTechnologiesLoading, newLinksLoading]) => {
+    if (!newQuestionsLoading && !newTechnologiesLoading && !newLinksLoading) {
       setTimeout(() => {
         allLoaded.value = true
       }, 200)

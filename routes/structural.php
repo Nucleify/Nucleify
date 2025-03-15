@@ -6,6 +6,7 @@ use App\Http\Controllers\Structural\StructuralController;
 
 $routes = [
     'index',
+    'links',
     'questions',
     'technologies'
 ];

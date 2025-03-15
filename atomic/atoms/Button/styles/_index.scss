@@ -7,8 +7,8 @@
   padding: 5px 15px;
   font-size: 1.2rem;
 
-  @each $type in main, activity, article, contact, money, question, technology,
-    user
+  @each $type in main, activity, article, contact, link, money, question,
+    technology, user
   {
     &[ad-type='#{$type}'] {
       @include entity-button-styles(
