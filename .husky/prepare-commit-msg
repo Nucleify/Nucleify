@@ -39,6 +39,9 @@ case "$CURRENT_BRANCH" in
     laravel-meta-tags)
         FINAL_MSG="LaravelMetaTags: $ORIGINAL_MSG"
         ;;
+    modules)
+        FINAL_MSG="📦 Modules: $ORIGINAL_MSG"
+        ;;
     packages)
         FINAL_MSG="📦 Packages: $ORIGINAL_MSG"
         ;;

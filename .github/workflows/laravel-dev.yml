@@ -18,7 +18,7 @@ jobs:
           php-version: '8.3.7'
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
 
       - name: Verify .env File Exists
         run: |
@@ -58,7 +58,7 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
 
       - name: Verify .env File Exists
         run: |
