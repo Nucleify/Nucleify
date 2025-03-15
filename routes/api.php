@@ -4,6 +4,7 @@ use App\Http\Controllers\Entities\ArticleController;
 use App\Http\Controllers\Entities\ContactController;
 use App\Http\Controllers\Entities\MoneyController;
 use App\Http\Controllers\Entities\UserController;
+use App\Http\Controllers\Structural\ColorController;
 use App\Http\Controllers\Structural\QuestionController;
 use App\Http\Controllers\Structural\TechnologyController;
 use App\Http\Controllers\Utilities\ActivityController;
@@ -153,6 +154,24 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('technologies.update');
         Route::delete('/{id}', 'destroy')
             ->name('technologies.destroy');
+    });
+    Route::prefix('colors')->controller(ColorController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('colors.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('colors.countByCreatedLastWeek');
+        Route::get('/get-by-entity/{entity}', 'getByEntity')
+            ->name('colors.getByEntity');
+        Route::get('/get-site-colors/{site}', 'getSiteColors')
+            ->name('colors.getSiteColors');
+        Route::get('/{id}', 'show')
+            ->name('colors.show');
+        Route::post('/', 'store')
+            ->name('colors.store');
+        Route::put('/{id}', 'update')
+            ->name('colors.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('colors.destroy');
     });
 
     Route::get('/user', function () {

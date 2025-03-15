@@ -51,7 +51,6 @@ use Illuminate\Notifications\Notifiable;
  * @property Builder scopeGetByCreatedAt
  * @property Builder scopeGetByUpdatedAt
  */
-
 class Contact extends Model implements ContactContract
 {
     use HasFactory, Notifiable;
