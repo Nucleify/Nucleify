@@ -1,7 +1,16 @@
 body {
   background: $bg-dark-green-color;
 
-  &:has(#about, #blog, #login, #register, #error-404, #home, #services) {
+  &:has(
+      #about,
+      #blog,
+      #login,
+      #register,
+      #error-404,
+      #home,
+      #license,
+      #services
+    ) {
     .dock,
     .popover-toggle {
       display: none !important;

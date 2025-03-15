@@ -12,20 +12,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int id
  * @property int user_id
+ * @property string label
+ * @property string|null description
  * @property string href
  * @property string src
- * @property string label
- * @property string description
  * @property string|null category
  * @property boolean display
  * @property string created_at
  * @property string updated_at
  * @property int getId
  * @property int getUserId
+ * @property string getLabel
+ * @property string|null getDescription
  * @property int getHref
  * @property int getSrc
- * @property string getLabel
- * @property string getDescription
  * @property string|null getCategory
  * @property string getDisplay
  * @property string getCreatedAt
@@ -33,26 +33,25 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property BelongsTo user
  * @property Builder scopeGetById
  * @property Builder scopeGetByUserId
- * @property Builder scopeGetByHref
- * @property Builder scopeGetBySrc
  * @property Builder scopeGetByLabel
  * @property Builder scopeGetByDescription
+ * @property Builder scopeGetByHref
+ * @property Builder scopeGetBySrc
  * @property Builder scopeGetByCategory
  * @property Builder scopeGetByDisplay
  * @property Builder scopeGetByCreatedAt
  * @property Builder scopeGetByUpdatedAt
  */
-
 class Technology extends Model implements TechnologyContract
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'href',
-        'src',
         'label',
         'description',
+        'href',
+        'src',
         'display',
         'category'
     ];
@@ -68,6 +67,14 @@ class Technology extends Model implements TechnologyContract
     {
         return $this->user_id;
     }
+    public function getLabel(): string
+    {
+        return $this->label;
+    }
+    public function getDescription(): string|null
+    {
+        return $this->description;
+    }
     public function getHref(): string
     {
         return $this->href;
@@ -75,14 +82,6 @@ class Technology extends Model implements TechnologyContract
     public function getSrc(): string
     {
         return $this->src;
-    }
-    public function getLabel(): string
-    {
-        return $this->label;
-    }
-    public function getDescription(): string
-    {
-        return $this->description;
     }
     public function getCategory(): string|null
     {
@@ -112,14 +111,6 @@ class Technology extends Model implements TechnologyContract
     {
         return $query->where('user_id', $parameter);
     }
-    public function scopeGetByHref(Builder $query, string $parameter): Builder
-    {
-        return $query->where('href', $parameter);
-    }
-    public function scopeGetBySrc(Builder $query, string $parameter): Builder
-    {
-        return $query->where('src', $parameter);
-    }
     public function scopeGetByLabel(Builder $query, string $parameter): Builder
     {
         return $query->where('label', $parameter);
@@ -127,6 +118,14 @@ class Technology extends Model implements TechnologyContract
     public function scopeGetByDescription(Builder $query, string $parameter): Builder
     {
         return $query->where('description', $parameter);
+    }
+    public function scopeGetByHref(Builder $query, string $parameter): Builder
+    {
+        return $query->where('href', $parameter);
+    }
+    public function scopeGetBySrc(Builder $query, string $parameter): Builder
+    {
+        return $query->where('src', $parameter);
     }
     public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
     {

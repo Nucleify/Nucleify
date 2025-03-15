@@ -2,7 +2,11 @@
   <section id="start">
     <div class="container">
       <div class="container start-container">
-        <ad-image :src="imgUrl + 'logo.svg'" class="start-image" />
+        <ad-image
+          :src="imgUrl + 'logo.svg'"
+          alt="DataManager logo"
+          class="start-image"
+        />
 
         <div class="left-side">
           <ad-heading :tag="1" class="header">

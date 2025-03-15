@@ -5,7 +5,7 @@ export interface CardBoxesInterface {
 export interface BoxInterface {
   src?: string
   href?: string
-  title?: string
+  label?: string
   description?: string
   prefix?: string
 }

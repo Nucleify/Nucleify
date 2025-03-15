@@ -25,10 +25,10 @@ class PutRequest extends FormRequest
     {
         return [
             'user_id' => 'integer|exists:users,id',
-            'href' => 'required|string',
-            'src' => 'required|string',
             'label' => 'required|string|max:50',
             'description' => 'string|min:3|max:255',
+            'href' => 'required|string',
+            'src' => 'required|string',
             'category' => 'string',
             'display' => 'required|bool'
         ];
