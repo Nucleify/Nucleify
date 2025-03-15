@@ -21,6 +21,9 @@ case "$CURRENT_BRANCH" in
     docker)
         FINAL_MSG="🐋 Docker: $ORIGINAL_MSG"
         ;;
+    entity-color)
+        FINAL_MSG="🎨 Color: $ORIGINAL_MSG"
+        ;;
     entity-money)
         FINAL_MSG="💵 Money: $ORIGINAL_MSG"
         ;;

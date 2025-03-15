@@ -44,6 +44,9 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/Entities/User/HTTP422PostTest.php',
             'Feature/Api/Entities/User/HTTP422PutTest.php',
 
+            // Color API
+            'Feature/Api/Structural/Color/HTTP302Test.php',
+
             // Question API
             'Feature/Api/Structural/Question/HTTP302Test.php',
 
@@ -60,7 +63,7 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         DatabaseMigrations::class
     )
         ->in(
-        // Activity API
+            // Activity API
             'Feature/Api/Utilities/Activity/HTTP200Test.php',
 
             // Article API
@@ -83,6 +86,12 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             // User API
             'Feature/Api/Entities/User/HTTP200Test.php',
             'Feature/Api/Entities/User/HTTP500Test.php',
+
+            // Color API
+            'Feature/Api/Structural/Color/HTTP200Test.php',
+            'Feature/Api/Structural/Color/HTTP500Test.php',
+            'Feature/Api/Structural/Color/HTTP422PostTest.php',
+            'Feature/Api/Structural/Color/HTTP422PutTest.php',
 
             // Question API
             'Feature/Api/Structural/Question/HTTP200Test.php',
