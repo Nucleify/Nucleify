@@ -4,6 +4,7 @@ export function setColorsVariables(): void {
     'activity',
     'article',
     'contact',
+    'link',
     'money',
     'question',
     'technology',

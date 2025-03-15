@@ -8,6 +8,7 @@
         :activity-log-data="activityLogData"
         :article-data="articleData"
         :contact-data="contactData"
+        :link-data="linkData"
         :money-data="moneyData"
         :question-data="questionData"
         :technology-data="technologyData"

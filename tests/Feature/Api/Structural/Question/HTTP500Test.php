@@ -7,7 +7,7 @@ use function Pest\Laravel\mock;
 beforeEach(function () {
     $this->createUsers();
     $this->actingAs($this->admin);
-    $this->service = mock(questionService::class);
+    $this->service = mock(QuestionService::class);
 });
 
 describe('500 > Internal Server Error', function() {
