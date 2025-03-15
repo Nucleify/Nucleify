@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { ScreenLightsInterface } from 'atomic'
+import { ScreenLightsInterface } from '.'
 
 const props = defineProps<ScreenLightsInterface>()
 </script>
