@@ -1,0 +1,104 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\ColorController;
+use App\Http\Controllers\LinkController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\TechnologyController;
+
+
+Route::get('/questions/get-site-questions/{site}', [QuestionController::class, 'getSiteQuestions'])
+    ->name('questions.getSiteQuestions');
+
+Route::get('/technologies/get-site-technologies/{site}', [TechnologyController::class, 'getSiteTechnologies'])
+    ->name('technologies.getSiteTechnologies');
+
+Route::get('/links/get-site-links/{site}', [LinkController::class, 'getSiteLinks'])
+    ->name('links.getSiteLinks');
+
+
+Route::middleware(['web', 'auth'])->group(function () {
+    /**
+     *  Colors
+     */
+    Route::prefix('colors')->controller(ColorController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('colors.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('colors.countByCreatedLastWeek');
+        Route::get('/get-by-entity/{entity}', 'getByEntity')
+            ->name('colors.getByEntity');
+        Route::get('/get-site-colors/{site}', 'getSiteColors')
+            ->name('colors.getSiteColors');
+        Route::get('/{id}', 'show')
+            ->name('colors.show');
+        Route::post('/', 'store')
+            ->name('colors.store');
+        Route::put('/{id}', 'update')
+            ->name('colors.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('colors.destroy');
+    });
+
+
+    /**
+     *  Links
+     */
+    Route::prefix('links')->controller(LinkController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('links.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('links.countByCreatedLastWeek');
+        Route::get('/get-by-category/{category}', 'getByCategory')
+            ->name('links.getByCategory');
+        Route::get('/{id}', 'show')
+            ->name('links.show');
+        Route::post('/', 'store')
+            ->name('links.store');
+        Route::put('/{id}', 'update')
+            ->name('links.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('links.destroy');
+    });
+
+    /**
+     *  Questions
+     */
+    Route::prefix('questions')->controller(QuestionController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('questions.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('questions.countByCreatedLastWeek');
+        Route::get('/get-by-category/{category}', 'getByCategory')
+            ->name('questions.getByCategory');
+        Route::get('/{id}', 'show')
+            ->name('questions.show');
+        Route::post('/', 'store')
+            ->name('questions.store');
+        Route::put('/{id}', 'update')
+            ->name('questions.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('questions.destroy');
+    });
+
+    /**
+     *  Technologies
+     */
+    Route::prefix('technologies')->controller(TechnologyController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('technologies.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('technologies.countByCreatedLastWeek');
+        Route::get('/get-by-category/{category}', 'getByCategory')
+            ->name('technologies.getByCategory');
+        Route::get('/{id}', 'show')
+            ->name('technologies.show');
+        Route::post('/', 'store')
+            ->name('technologies.store');
+        Route::put('/{id}', 'update')
+            ->name('technologies.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('technologies.destroy');
+    });
+});

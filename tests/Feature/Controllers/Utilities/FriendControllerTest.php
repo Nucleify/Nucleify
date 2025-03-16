@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Utilities\FriendController;
 use App\Services\Utilities\FriendshipService;
-use Database\Factories\Entities\UserFactory;
+use Database\Factories\UserFactory;
 
 beforeEach(function () {
     $this->createUsers();

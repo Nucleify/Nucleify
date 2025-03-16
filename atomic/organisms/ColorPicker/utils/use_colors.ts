@@ -34,7 +34,7 @@ export function useColors(): UseColorsInterface {
   const linkItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('link-item-color'),
     hover: window.localStorage.getItem('link-item-hover-color'),
-    selected: window.localStorage.getItem('link-item-selected-color'),
+    secondary: window.localStorage.getItem('link-item-secondary-color'),
   }
   const moneyItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('money-item-color'),
@@ -100,6 +100,7 @@ export function useColors(): UseColorsInterface {
       'link-item-dark-color',
       'link-item-hover-color',
       'link-item-focus-color',
+      'link-item-secondary-color',
       'link-item-selected-color',
       'link-item-highlight-color',
 

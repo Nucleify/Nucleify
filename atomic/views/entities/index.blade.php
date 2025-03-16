@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="entities">
-        <ad-entities-page></ad-entities-page>
+        <dm-entities-page></dm-entities-page>
     </div>
 @endsection

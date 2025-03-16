@@ -23,69 +23,41 @@ export function useColorPicker(item: string): UseColorPickerInterface {
 
   const itemColor: Ref<string | undefined> = ref<string>()
 
-  switch (item) {
-    case 'main':
-      itemColor.value = mainItemColors.primary!
-      break
-    case 'activity':
-      itemColor.value = activityItemColors.primary!
-      break
-    case 'article':
-      itemColor.value = articleItemColors.primary!
-      break
-    case 'contact':
-      itemColor.value = contactItemColors.primary!
-      break
-    case 'link':
-      itemColor.value = linkItemColors.primary!
-      break
-    case 'money':
-      itemColor.value = moneyItemColors.primary!
-      break
-    case 'question':
-      itemColor.value = questionItemColors.primary!
-      break
-    case 'technology':
-      itemColor.value = technologyItemColors.primary!
-      break
-    case 'user':
-      itemColor.value = userItemColors.primary!
-      break
-    default:
-      itemColor.value = '#000000'
+  const colorMap: Record<string, string> = {
+    main: mainItemColors.primary!,
+    activity: activityItemColors.primary!,
+    article: articleItemColors.primary!,
+    contact: contactItemColors.primary!,
+    link: linkItemColors.primary!,
+    money: moneyItemColors.primary!,
+    question: questionItemColors.primary!,
+    technology: technologyItemColors.primary!,
+    user: userItemColors.primary!,
   }
 
+  itemColor.value = colorMap[item] || '#000000'
+
   function setColorValues(): void {
-    const colorValue: string = itemColor.value?.startsWith('#')
+    const colorValue = itemColor.value?.startsWith('#')
       ? itemColor.value
       : `#${itemColor.value}`
-    if (colorValue) {
-      localStorage.setItem(`${item}-item-color`, colorValue)
-      localStorage.setItem(
-        `${item}-item-dark-color`,
-        darkenColor(colorValue, 60)
-      )
-      localStorage.setItem(
-        `${item}-item-hover-color`,
-        darkenColor(colorValue, 10)
-      )
-      localStorage.setItem(
-        `${item}-item-focus-color`,
-        setColorOpacity(colorValue, 0.35)
-      )
-      localStorage.setItem(
-        `${item}-item-highlight-color`,
-        setColorOpacity(colorValue, 0.15)
-      )
-      localStorage.setItem(
-        `${item}-item-secondary-color`,
-        setColorOpacity(colorValue, 0.4)
-      )
-      localStorage.setItem(
-        `${item}-item-selected-color`,
-        setColorOpacity(colorValue, 0.08)
-      )
+
+    if (!colorValue) return
+
+    const colorSettings = {
+      '': colorValue,
+      dark: darkenColor(colorValue, 60),
+      hover: darkenColor(colorValue, 10),
+      focus: setColorOpacity(colorValue, 0.5),
+      highlight: setColorOpacity(colorValue, 0.08),
+      secondary: setColorOpacity(colorValue, 0.21),
+      selected: setColorOpacity(colorValue, 0.15),
     }
+
+    Object.entries(colorSettings).forEach(([key, value]) =>
+      localStorage.setItem(`${item}-item${key ? `-${key}` : ''}-color`, value)
+    )
   }
+
   return { itemColor, setColorValues }
 }
