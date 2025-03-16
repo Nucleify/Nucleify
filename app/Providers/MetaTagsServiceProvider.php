@@ -16,10 +16,10 @@ class MetaTagsServiceProvider extends ServiceProvider
                 ->setTitleSeparator(' | ')
                 ->setTitle('ERP template & Page Builder')
                 ->setDescription(
-                    'Build cutting-edge applications with DataManager - developer-focused template. Leverage the latest 
-                    technologies like Laravel, Vue.js, and more to create powerful ERP solutions. Our modern frameworks and 
-                    tools provide a seamless development experience, enabling fast, efficient, and scalable solutions. 
-                    Perfect for developers looking to integrate high-tech features, streamline workflows, and deliver robust 
+                    'Build cutting-edge applications with DataManager - developer-focused template. Leverage the latest
+                    technologies like Laravel, Vue.js, and more to create powerful ERP solutions. Our modern frameworks and
+                    tools provide a seamless development experience, enabling fast, efficient, and scalable solutions.
+                    Perfect for developers looking to integrate high-tech features, streamline workflows, and deliver robust
                     applications. Unlock the potential of advanced tech stacks and stay ahead in software innovation.'
                 )
                 ->setRobots('follow,index')

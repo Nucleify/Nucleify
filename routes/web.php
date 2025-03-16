@@ -65,3 +65,9 @@ Route::middleware(['web', 'auth'])->group(function () {
      */
     Route::get('/logout', [LogoutController::class, 'logout'])->name('logout');
 });
+
+/**
+ *  Modules includes
+ */
+require base_path('modules/dm_entities/routes/web.php');
+require base_path('modules/dm_entities_structural/routes/web.php');

@@ -8,38 +8,6 @@ uses()
     ->in('Feature/Api');
 
 uses()
-    ->group('article-api')
-    ->in('Feature/Api/Entities/Article');
-
-uses()
-    ->group('contact-api')
-    ->in('Feature/Api/Entities/Contact');
-
-uses()
-    ->group('money-api')
-    ->in('Feature/Api/Entities/Money');
-
-uses()
-    ->group('user-api')
-    ->in('Feature/Api/Entities/User');
-
-uses()
-    ->group('color-api')
-    ->in('Feature/Api/Structural/Color');
-
-uses()
-    ->group('question-api')
-    ->in('Feature/Api/Structural/Question');
-
-uses()
-    ->group('technology-api')
-    ->in('Feature/Api/Structural/Technology');
-
-uses()
-    ->group('link-api')
-    ->in('Feature/Api/Structural/Link');
-
-uses()
     ->group('activity-api')
     ->in('Feature/Api/Utilities/Activity');
 
@@ -75,9 +43,6 @@ uses()
     ->group('traits')
     ->in('Feature/Traits');
 
-/**
- *  Database groups
- */
 uses()
     ->group('database')
     ->in('Database');
@@ -93,3 +58,7 @@ uses()
 uses()
     ->group('factories')
     ->in('Database/Factories');
+
+uses()
+    ->group('modules')
+    ->in('Modules');
