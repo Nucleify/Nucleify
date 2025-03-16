@@ -90,18 +90,11 @@ import {
   LoginPage,
   RegisterPage,
   ActivityPage,
-  ArticlePage,
-  ContactPage,
-  EntitiesPage,
-  MoneyPage,
   DashboardPage,
   Error404Page,
   HomePage,
   ServicesPage,
   SettingsPage,
-  StructuralPage,
-  QuestionsPage,
-  TechnologiesPage,
 } from './pages'
 import {
   SectionCategory,
@@ -114,12 +107,6 @@ import {
 } from './sections'
 import {
   ActivityDashboard,
-  ArticleDashboard,
-  ContactDashboard,
-  MoneyDashboard,
-  QuestionDashboard,
-  TechnologyDashboard,
-  UserDashboard,
   BackLink,
   CardBoxes,
   CardCategory,
@@ -127,9 +114,7 @@ import {
   CardDataTable,
   SkeletonDataTable,
   TestLoginButtons,
-  LinkDashboard,
 } from './templates'
-import { DMScreenLights, DMScreenLoader } from '../modules'
 
 app
   /**
@@ -213,18 +198,11 @@ app
   .component('ad-login-page', LoginPage)
   .component('ad-register-page', RegisterPage)
   .component('ad-activity-page', ActivityPage)
-  .component('ad-article-page', ArticlePage)
-  .component('ad-contact-page', ContactPage)
   .component('ad-dashboard-page', DashboardPage)
-  .component('ad-entities-page', EntitiesPage)
   .component('ad-error-404-page', Error404Page)
   .component('ad-home-page', HomePage)
-  .component('ad-money-page', MoneyPage)
   .component('ad-services-page', ServicesPage)
   .component('ad-settings-page', SettingsPage)
-  .component('ad-structural-page', StructuralPage)
-  .component('ad-questions-page', QuestionsPage)
-  .component('ad-technologies-page', TechnologiesPage)
 
   /**
    *  Sections
@@ -241,13 +219,6 @@ app
    *  Templates
    */
   .component('ad-activity-dashboard', ActivityDashboard)
-  .component('ad-article-dashboard', ArticleDashboard)
-  .component('ad-contact-dashboard', ContactDashboard)
-  .component('ad-money-dashboard', MoneyDashboard)
-  .component('ad-question-dashboard', QuestionDashboard)
-  .component('ad-link-dashboard', LinkDashboard)
-  .component('ad-technology-dashboard', TechnologyDashboard)
-  .component('ad-user-dashboard', UserDashboard)
   .component('ad-back-link', BackLink)
   .component('ad-card-boxes', CardBoxes)
   .component('ad-card-category', CardCategory)
@@ -256,10 +227,22 @@ app
   .component('ad-skeleton-data-table', SkeletonDataTable)
   .component('ad-test-login-buttons', TestLoginButtons)
 
-  /**
-   *  Modules
-   */
-  .component('dm-screen-lights', DMScreenLights)
-  .component('dm-screen-loader', DMScreenLoader)
+/**
+ *  Register modules
+ */
+import {
+  registerDMEntities,
+  registerDMEntitiesStructural,
+  registerDMScreenLights,
+  registerDMScreenLoader,
+} from '../modules'
 
+registerDMEntities(app)
+registerDMEntitiesStructural(app)
+registerDMScreenLights(app)
+registerDMScreenLoader(app)
+
+/**
+ *  Mount app
+ */
 app.mount('#app')

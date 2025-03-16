@@ -27,8 +27,8 @@ main:has(:not(#home)) .screen-lights-container .screen-light {
     &:nth-child(#{$i}) {
       color: if(
         math.random() > 0.5,
-        var(--main-item-selected-color-new),
-        var(--main-item-highlight-color-new)
+        var(--main-item-highlight-color-new),
+        var(--main-item-selected-color-new)
       );
       top: math.random(100) * 1%;
       left: math.random(100) * 1%;

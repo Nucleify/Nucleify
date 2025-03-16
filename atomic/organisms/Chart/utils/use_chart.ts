@@ -36,14 +36,14 @@ export function useChart() {
   const chartData: Ref<ChartInterface | undefined> = ref<ChartInterface>()
 
   const exampleColors = {
-    activityItemColors: { primary: '#FFB600', hover: '#E7A60B' },
-    articleItemColors: { primary: '#1187C7', hover: '#0F79B2' },
-    contactItemColors: { primary: '#10B981', hover: '#10A674' },
-    linkItemColors: { primary: '#10b3b9', hover: '#0f93a4' },
-    moneyItemColors: { primary: '#11c73b', hover: '#0eb233' },
-    questionItemColors: { primary: '#8cb910', hover: '#8cb910' },
-    technologyItemColors: { primary: '#b95910', hover: '#9b4b0e' },
-    userItemColors: { primary: '#64748B', hover: '#566479' },
+    activityItemColors: { primary: '#FFB600', secondary: '#E7A60B35' },
+    articleItemColors: { primary: '#1187C7', secondary: '#0F79B235' },
+    contactItemColors: { primary: '#10B981', secondary: '#10A67435' },
+    linkItemColors: { primary: '#10b3b9', secondary: '#0f93a435' },
+    moneyItemColors: { primary: '#11c73b', secondary: '#0eb23335' },
+    questionItemColors: { primary: '#8cb910', secondary: '#8cb91035' },
+    technologyItemColors: { primary: '#b95910', secondary: '#9b4b0e35' },
+    userItemColors: { primary: '#64748B', secondary: '#56647935' },
   }
 
   const chartLabels: { label: LabelItemType }[] = [
@@ -68,15 +68,19 @@ export function useChart() {
     example?: boolean
   ) {
     try {
-      const labels: string[] = []
-      const activityLogDataByMonth: number[] = new Array(12).fill(0)
-      const articleDataByMonth: number[] = new Array(12).fill(0)
-      const contactDataByMonth: number[] = new Array(12).fill(0)
-      const linkDataByMonth: number[] = new Array(12).fill(0)
-      const moneyDataByMonth: number[] = new Array(12).fill(0)
-      const questionDataByMonth: number[] = new Array(12).fill(0)
-      const technologyDataByMonth: number[] = new Array(12).fill(0)
-      const userDataByMonth: number[] = new Array(12).fill(0)
+      let labels: string[] = []
+      const dataByMonth = Object.fromEntries(
+        [
+          'activity',
+          'article',
+          'contact',
+          'link',
+          'money',
+          'question',
+          'technology',
+          'user',
+        ].map((key) => [`${key}`, new Array(12).fill(0)])
+      )
 
       const colors = example
         ? exampleColors
@@ -93,189 +97,118 @@ export function useChart() {
 
       if (example) {
         for (let i = 0; i < 12; i++) {
-          articleDataByMonth[i] = Math.floor(Math.random() * 100)
-          contactDataByMonth[i] = Math.floor(Math.random() * 100)
-          moneyDataByMonth[i] = Math.floor(Math.random() * 100)
-          userDataByMonth[i] = Math.floor(Math.random() * 100)
+          dataByMonth.article[i] = Math.floor(Math.random() * 100)
+          dataByMonth.contact[i] = Math.floor(Math.random() * 100)
         }
       } else {
-        activityLogData?.forEach((activityLog: ActivityLogInterface): void => {
-          const monthIndex: number = new Date(activityLog.created_at).getMonth()
-          activityLogDataByMonth[monthIndex]++
-        })
+        const incrementByMonth = (
+          data: { created_at: string }[],
+          dataByMonth: number[]
+        ) => {
+          data?.forEach(
+            ({ created_at }) => dataByMonth[new Date(created_at).getMonth()]++
+          )
+        }
 
-        articleData?.forEach((article: ArticleInterface): void => {
-          const monthIndex: number = new Date(article.created_at).getMonth()
-          articleDataByMonth[monthIndex]++
-        })
-
-        contactData?.forEach((contact: ContactInterface): void => {
-          const monthIndex: number = new Date(contact.created_at).getMonth()
-          contactDataByMonth[monthIndex]++
-        })
-
-        linkData?.forEach((link: LinkInterface): void => {
-          const monthIndex: number = new Date(link.created_at).getMonth()
-          linkDataByMonth[monthIndex]++
-        })
-
-        moneyData?.forEach((money: MoneyInterface): void => {
-          const monthIndex: number = new Date(money.created_at).getMonth()
-          moneyDataByMonth[monthIndex]++
-        })
-
-        questionData?.forEach((question: QuestionInterface): void => {
-          const monthIndex: number = new Date(question.created_at).getMonth()
-          questionDataByMonth[monthIndex]++
-        })
-
-        technologyData?.forEach((technology: TechnologyInterface): void => {
-          const monthIndex: number = new Date(technology.created_at).getMonth()
-          technologyDataByMonth[monthIndex]++
-        })
-
-        userData?.forEach((user: UserInterface): void => {
-          const monthIndex: number = new Date(user.created_at).getMonth()
-          userDataByMonth[monthIndex]++
-        })
+        ;[
+          [activityLogData, dataByMonth.activity],
+          [articleData, dataByMonth.article],
+          [contactData, dataByMonth.contact],
+          [linkData, dataByMonth.link],
+          [moneyData, dataByMonth.money],
+          [questionData, dataByMonth.question],
+          [technologyData, dataByMonth.technology],
+          [userData, dataByMonth.user],
+        ].forEach(([data, dataByMonth]) =>
+          incrementByMonth(data as { created_at: string }[], dataByMonth)
+        )
       }
 
       switch (chartMethodType) {
-        case 'annual':
-          const dataTypes = [
-            {
-              label: 'Activities',
-              data: activityLogDataByMonth,
-              colors: colors.activityItemColors,
-            },
-            {
-              label: 'Articles',
-              data: articleDataByMonth,
-              colors: colors.articleItemColors,
-            },
-            {
-              label: 'Contacts',
-              data: contactDataByMonth,
-              colors: colors.contactItemColors,
-            },
-            {
-              label: 'Links',
-              data: linkDataByMonth,
-              colors: colors.linkItemColors,
-            },
-            {
-              label: 'Money',
-              data: moneyDataByMonth,
-              colors: colors.moneyItemColors,
-            },
-            {
-              label: 'Question',
-              data: questionDataByMonth,
-              colors: colors.questionItemColors,
-            },
-            {
-              label: 'Technology',
-              data: technologyDataByMonth,
-              colors: colors.technologyItemColors,
-            },
-            {
-              label: 'Users',
-              data: userDataByMonth,
-              colors: colors.userItemColors,
-            },
-          ]
+        case 'annual': {
+          const createData = (data, colors) => ({ data, colors })
 
-          const datasets = dataTypes
-            .map((dataType) => ({
-              label: dataType.label,
-              backgroundColor: dataType.colors.primary,
-              borderColor: dataType.colors.primary,
-              hoverBackgroundColor: dataType.colors.hover,
-              data: dataType.data,
-            }))
-            .filter((dataset) => dataset.data.some((count) => count > 0))
+          const dataMap = {
+            Activities: createData(
+              dataByMonth.activity,
+              colors.activityItemColors
+            ),
+            Articles: createData(dataByMonth.article, colors.articleItemColors),
+            Contacts: createData(dataByMonth.contact, colors.contactItemColors),
+            Links: createData(dataByMonth.link, colors.linkItemColors),
+            Money: createData(dataByMonth.money, colors.moneyItemColors),
+            Question: createData(
+              dataByMonth.question,
+              colors.questionItemColors
+            ),
+            Technology: createData(
+              dataByMonth.technology,
+              colors.technologyItemColors
+            ),
+            Users: createData(dataByMonth.user, colors.userItemColors),
+          }
 
-          return { labels: months, datasets }
+          const dataTypes = Object.keys(dataMap).map((label) => ({
+            label,
+            ...dataMap[label],
+          }))
 
-        case 'count':
-          chartLabels.forEach(({ label }): void => {
-            if (
-              (label === 'Articles' && articleData) ||
-              (label === 'Contacts' && contactData) ||
-              (label === 'Links' && linkData) ||
-              (label === 'Money' && moneyData) ||
-              (label === 'Question' && questionData) ||
-              (label === 'Technology' && technologyData) ||
-              (label === 'Users' && userData)
-            ) {
-              labels.push(label)
-            }
-          })
+          return {
+            labels: months,
+            datasets: dataTypes
+              .map(({ label, data, colors }) => ({
+                label,
+                backgroundColor: colors.secondary,
+                borderColor: colors.primary,
+                borderWidth: 1.5,
+                data,
+              }))
+              .filter(({ data }) => data.some((count) => count > 0)),
+          }
+        }
 
-          const totalArticles: number = articleDataByMonth.reduce(
-            (sum: number, value: number) => sum + value,
-            0
-          )
-          const totalContacts: number = contactDataByMonth.reduce(
-            (sum: number, value: number) => sum + value,
-            0
-          )
-          const totalLinks: number = contactDataByMonth.reduce(
-            (sum: number, value: number) => sum + value,
-            0
-          )
-          const totalMoney: number = moneyDataByMonth.reduce(
-            (sum: number, value: number) => sum + value,
-            0
-          )
-          const totalQuestions: number = questionDataByMonth.reduce(
-            (sum: number, value: number) => sum + value,
-            0
-          )
-          const totalTechnologies: number = technologiesDataByMonth.reduce(
-            (sum: number, value: number) => sum + value,
-            0
-          )
-          const totalUsers: number = userDataByMonth.reduce(
-            (sum: number, value: number) => sum + value,
-            0
-          )
+        case 'count': {
+          labels = chartLabels
+            .filter(
+              ({ label }) =>
+                ({
+                  Articles: articleData,
+                  Contacts: contactData,
+                  Links: linkData,
+                  Money: moneyData,
+                  Question: questionData,
+                  Technology: technologyData,
+                  Users: userData,
+                })[label]
+            )
+            .map(({ label }) => label)
+
+          const totals = [
+            dataByMonth.article,
+            dataByMonth.contact,
+            dataByMonth.link,
+            dataByMonth.money,
+            dataByMonth.question,
+            dataByMonth.technology,
+            dataByMonth.user,
+          ].map((data) => data.reduce((sum, value) => sum + value, 0))
 
           return {
             labels,
             datasets: [
               {
-                data: [
-                  totalArticles,
-                  totalContacts,
-                  totalLinks,
-                  totalMoney,
-                  totalQuestions,
-                  totalTechnologies,
-                  totalUsers,
-                ],
-                borderColor: '#041E13FF',
-                backgroundColor: [
-                  colors.articleItemColors.primary,
-                  colors.contactItemColors.primary,
-                  colors.linkItemColors.primary,
-                  colors.moneyItemColors.primary,
-                  colors.questionItemColors.primary,
-                  colors.technologyItemColors.primary,
-                  colors.userItemColors.primary,
-                ],
-                hoverBackgroundColor: [
-                  colors.articleItemColors.hover,
-                  colors.contactItemColors.hover,
-                  colors.linkItemColors.hover,
-                  colors.moneyItemColors.hover,
-                  colors.questionItemColors.hover,
-                  colors.technologyItemColors.hover,
-                  colors.userItemColors.hover,
-                ],
+                data: totals,
+                borderWidth: 1.5,
+                borderColor: totals.map(
+                  (_, i) => Object.values(colors)[i + 1].primary
+                ),
+                backgroundColor: totals.map(
+                  (_, i) => Object.values(colors)[i + 1].secondary
+                ),
               },
             ],
           }
+        }
 
         default:
           return null
@@ -327,7 +260,7 @@ export function useChart() {
           },
           grid: {
             display: true,
-            color: '#39404a',
+            color: '#39404a50',
           },
         },
       }
