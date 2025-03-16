@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="structural">
-        <ad-structural-page></ad-structural-page>
+        <dm-structural-page></dm-structural-page>
     </div>
 @endsection

@@ -1,0 +1,13 @@
+/**
+ *  Module's main file export
+ */
+export * from './dm_entities_structural'
+
+/**
+ *  Folders exports
+ */
+export * from './atomic'
+
+/**
+ *  File exports
+ */

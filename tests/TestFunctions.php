@@ -2,10 +2,10 @@
 
 use Illuminate\Support\Facades\File;
 
-use App\Models\Entities\Article;
-use App\Models\Entities\Contact;
-use App\Models\Entities\User;
-use App\Models\Structural\Question;
+use App\Models\Article;
+use App\Models\Contact;
+use App\Models\Question;
+use App\Models\User;
 
 function apiTest($method, $route, $status, $data = null, $expectedJsonStructure = null, $expectedJsonFragment = null, $validationErrors = null): Closure
 {
@@ -40,6 +40,7 @@ function expectLogMessage($log, $model, $method, $causer, $entity): void
             break;
         case 'Question':
             expect($log)->toContain('Question')->toContain($model->content)->toContain($model->answer)->toContain($method)->toContain($causer->user_id);
+            break;
         default:
             break;
     }
@@ -56,7 +57,8 @@ function getModelByEntity(string $entity): Contact|Article|User|Question|null
     };
 }
 
-function removeSitemap() {
+function removeSitemap(): void
+{
     if (File::exists(public_path('sitemap.xml'))) {
         File::delete(public_path('sitemap.xml'));
     }

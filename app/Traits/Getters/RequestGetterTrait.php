@@ -2,7 +2,6 @@
 
 namespace App\Traits\Getters;
 
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 
 trait RequestGetterTrait
