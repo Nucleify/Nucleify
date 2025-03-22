@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\File;
 
 use App\Models\Article;
 use App\Models\Contact;
+use App\Models\Feature;
 use App\Models\Question;
 use App\Models\User;
 
@@ -34,6 +35,9 @@ function expectLogMessage($log, $model, $method, $causer, $entity): void
             break;
         case 'Contact':
             expect($log)->toContain('Contact')->toContain($model->first_name)->toContain($model->last_name)->toContain($method)->toContain($causer->name);
+            break;
+        case 'Feature':
+            expect($log)->toContain('Feature')->toContain($model->header)->toContain($method)->toContain($causer->name);
             break;
         case 'User':
             expect($log)->toContain('User')->toContain($model->name)->toContain($method)->toContain($causer->name);
