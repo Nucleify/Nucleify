@@ -1,6 +1,6 @@
 @import 'mixins';
 
-@each $type in main, activity, article, contact, money, link, question,
+@each $type in main, activity, article, contact, feature, money, link, question,
   technology, user
 {
   .p-datepicker[ad-type='#{$type}'] {

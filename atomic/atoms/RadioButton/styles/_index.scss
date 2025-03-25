@@ -1,6 +1,6 @@
 @import 'mixins';
 
-@each $type in main, activity, article, contact, link, money, question,
+@each $type in main, activity, article, contact, feature, link, money, question,
   technology, user
 {
   .p-radiobutton[ad-type='#{$type}'] {
