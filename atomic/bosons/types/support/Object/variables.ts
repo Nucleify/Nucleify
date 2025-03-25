@@ -4,6 +4,7 @@ import {
   ActivityLogInterface,
   ArticleInterface,
   ContactInterface,
+  FeatureInterface,
   LinkInterface,
   MoneyInterface,
   QuestionInterface,
@@ -15,6 +16,7 @@ export type ObjectType =
   | ActivityLogInterface
   | ArticleInterface
   | ContactInterface
+  | FeatureInterface
   | LinkInterface
   | MoneyInterface
   | QuestionInterface
@@ -26,6 +28,7 @@ export type ObjectNameType =
   | 'activity'
   | 'article'
   | 'contact'
+  | 'feature'
   | 'link'
   | 'money'
   | 'user'

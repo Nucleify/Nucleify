@@ -5,9 +5,10 @@ use App\Http\Controllers\StructuralController;
 
 $routes = [
     'index',
+    'features',
     'links',
     'questions',
-    'technologies'
+    'technologies',
 ];
 
 Route::prefix('structural')->group(function () use ($routes) {

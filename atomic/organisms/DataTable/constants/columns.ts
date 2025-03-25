@@ -33,6 +33,12 @@ const columnsData: readonly ColumnsInterface[] = {
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
+  feature: [
+    ['header', 'Header', 'header-column'],
+    ['category', 'Category', 'category-column desktop-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
   money: [
     ['title', 'Title', 'title-column'],
     ['category', 'Category', 'category-column desktop-column'],

@@ -11,6 +11,7 @@
         :link-data="linkData"
         :money-data="moneyData"
         :question-data="questionData"
+        :feature-data="featureData"
         :technology-data="technologyData"
         :user-data="userData"
         :chart-class="chartClass"
