@@ -9,6 +9,7 @@ class StructuralSeeder extends Seeder
     public function run(): void
     {
         $this->call([
+            CardSeeder::class,
             QuestionSeeder::class,
             TechnologySeeder::class,
         ]);

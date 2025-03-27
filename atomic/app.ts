@@ -91,6 +91,7 @@ import {
   RegisterPage,
   ActivityPage,
   ArticlePage,
+  CardPage,
   ContactPage,
   EntitiesPage,
   MoneyPage,
@@ -116,6 +117,7 @@ import {
   ActivityDashboard,
   ArticleDashboard,
   ContactDashboard,
+  CardDashboard,
   MoneyDashboard,
   QuestionDashboard,
   TechnologyDashboard,
@@ -223,6 +225,7 @@ app
   .component('ad-services-page', ServicesPage)
   .component('ad-settings-page', SettingsPage)
   .component('ad-structural-page', StructuralPage)
+  .component('ad-cards-page', CardPage)
   .component('ad-questions-page', QuestionsPage)
   .component('ad-technologies-page', TechnologiesPage)
 
@@ -242,6 +245,7 @@ app
    */
   .component('ad-activity-dashboard', ActivityDashboard)
   .component('ad-article-dashboard', ArticleDashboard)
+  .component('ad-card-dashboard', CardDashboard)
   .component('ad-contact-dashboard', ContactDashboard)
   .component('ad-money-dashboard', MoneyDashboard)
   .component('ad-question-dashboard', QuestionDashboard)

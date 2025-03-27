@@ -3,6 +3,7 @@ export function setColorsVariables(): void {
     'main',
     'activity',
     'article',
+    'card',
     'contact',
     'money',
     'question',

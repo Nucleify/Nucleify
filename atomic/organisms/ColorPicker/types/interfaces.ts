@@ -34,6 +34,7 @@ export interface UseColorsReturnInterface {
   mainItemColors: ColorItemColorsInterface
   activityItemColors: ColorItemColorsInterface
   articleItemColors: ColorItemColorsInterface
+  cardItemColors: ColorItemColorsInterface
   contactItemColors: ColorItemColorsInterface
   moneyItemColors: ColorItemColorsInterface
   questionItemColors: ColorItemColorsInterface
@@ -50,6 +51,7 @@ export interface UseColorsInterface {
   mainItemColors: ColorItemColorsInterface
   activityItemColors: ColorItemColorsInterface
   articleItemColors: ColorItemColorsInterface
+  cardItemColors: ColorItemColorsInterface
   contactItemColors: ColorItemColorsInterface
   moneyItemColors: ColorItemColorsInterface
   questionItemColors: ColorItemColorsInterface

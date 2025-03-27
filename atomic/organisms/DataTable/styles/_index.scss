@@ -28,7 +28,9 @@
     margin-top: 4px;
   }
 
-  @each $type in activity, article, contact, money, question, technology, user {
+  @each $type in activity, article, card, contact, card, money, question,
+    technology, user
+  {
     &[ad-type='#{$type}'] {
       @include entity-datatable-styles(
         var(--#{$type}-item-color-new) !important,

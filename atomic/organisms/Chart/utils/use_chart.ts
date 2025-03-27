@@ -7,6 +7,7 @@ import {
   months,
   ActivityLogInterface,
   ArticleInterface,
+  StructuralCardInterface,
   ContactInterface,
   MoneyInterface,
   UserInterface,
@@ -24,6 +25,7 @@ export function useChart() {
   const {
     activityItemColors,
     articleItemColors,
+    cardItemColors,
     contactItemColors,
     moneyItemColors,
     questionItemColors,
@@ -36,6 +38,7 @@ export function useChart() {
   const exampleColors = {
     activityItemColors: { primary: '#FFB600', secondary: '#FFB60050' },
     articleItemColors: { primary: '#1187C7', secondary: '#1187C750' },
+    cardItemColors: { primary: '9500ff', secondary: '9500ff78' },
     contactItemColors: { primary: '#10B981', secondary: '#10B98150' },
     moneyItemColors: { primary: '#11c73b', secondary: '#11c73b50' },
     questionItemColors: { primary: '#8cb910', secondary: '#8cb91050' },
@@ -46,6 +49,7 @@ export function useChart() {
   const chartLabels: { label: LabelItemType }[] = [
     { label: 'Articles' },
     { label: 'Contacts' },
+    { label: 'Cards' },
     { label: 'Money' },
     { label: 'Questions' },
     { label: 'Users' },
@@ -55,6 +59,7 @@ export function useChart() {
     chartMethodType: ChartMethodType,
     activityLogData?: ActivityLogInterface[],
     articleData?: ArticleInterface[],
+    cardData?: StructuralCardInterface[],
     contactData?: ContactInterface[],
     moneyData?: MoneyInterface[],
     questionData?: QuestionInterface[],
@@ -62,10 +67,12 @@ export function useChart() {
     userData?: UserInterface[],
     example?: boolean
   ) {
+    console.log(cardData, questionData)
     try {
       let labels: string[] = []
       const activityLogDataByMonth: number[] = new Array(12).fill(0)
       const articleDataByMonth: number[] = new Array(12).fill(0)
+      const cardDataByMonth: number[] = new Array(12).fill(0)
       const contactDataByMonth: number[] = new Array(12).fill(0)
       const moneyDataByMonth: number[] = new Array(12).fill(0)
       const questionDataByMonth: number[] = new Array(12).fill(0)
@@ -77,6 +84,7 @@ export function useChart() {
         : {
             activityItemColors,
             articleItemColors,
+            cardItemColors,
             contactItemColors,
             moneyItemColors,
             questionItemColors,
@@ -102,6 +110,7 @@ export function useChart() {
         ;[
           [activityLogData, activityLogDataByMonth],
           [articleData, articleDataByMonth],
+          [cardData, cardDataByMonth],
           [contactData, contactDataByMonth],
           [moneyData, moneyDataByMonth],
           [questionData, questionDataByMonth],
@@ -122,6 +131,7 @@ export function useChart() {
               colors.activityItemColors
             ),
             Articles: createData(articleDataByMonth, colors.articleItemColors),
+            Card: createData(cardDataByMonth, colors.cardItemColors),
             Contacts: createData(contactDataByMonth, colors.contactItemColors),
             Money: createData(moneyDataByMonth, colors.moneyItemColors),
             Question: createData(
@@ -160,6 +170,7 @@ export function useChart() {
               ({ label }) =>
                 ({
                   Articles: articleData,
+                  Card: cardData,
                   Contacts: contactData,
                   Money: moneyData,
                   Question: questionData,
@@ -171,6 +182,7 @@ export function useChart() {
 
           const totals = [
             articleDataByMonth,
+            cardDataByMonth,
             contactDataByMonth,
             moneyDataByMonth,
             questionDataByMonth,
