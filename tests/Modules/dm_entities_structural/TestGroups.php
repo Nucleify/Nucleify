@@ -12,6 +12,10 @@ uses()
     ->in('Feature/Api/Color');
 
 uses()
+    ->group('feature-api')
+    ->in('Feature/Api/Feature');
+
+uses()
     ->group('question-api')
     ->in('Feature/Api/Question');
 

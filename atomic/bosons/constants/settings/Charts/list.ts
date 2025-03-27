@@ -3,6 +3,7 @@ export const displayChartList: string[] = [
   'Admin',
   'Article',
   'Contact',
+  'Feature',
   'Link',
   'Money',
   'Question',

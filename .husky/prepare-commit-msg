@@ -24,6 +24,9 @@ case "$CURRENT_BRANCH" in
     entity-color)
         FINAL_MSG="🎨 Color: $ORIGINAL_MSG"
         ;;
+    entity-feature)
+        FINAL_MSG="Feature: $ORIGINAL_MSG"
+        ;;
     entity-money)
         FINAL_MSG="💵 Money: $ORIGINAL_MSG"
         ;;

@@ -10,6 +10,7 @@ export function getTitle(selectedObject: ObjectType): string {
     'name',
     'first_name',
     'last_name',
+    'header',
     'label',
     'src',
     'content',

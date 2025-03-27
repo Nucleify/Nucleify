@@ -1,8 +1,8 @@
 @import 'mixins';
 
 .p-password {
-  @each $type in main, activity, article, contact, link, money, question,
-    technology, user
+  @each $type in main, activity, article, contact, feature, link, money,
+    question, technology, user
   {
     &[ad-type='#{$type}'] {
       .p-inputtext {
@@ -30,8 +30,8 @@
 body:has(#login),
 body:has(#register) {
   .p-password {
-    @each $type in main, activity, article, contact, link, money, question,
-      technology, user
+    @each $type in main, activity, article, contact, feature, link, money,
+      question, technology, user
     {
       &[ad-type='#{$type}'] {
         .p-inputtext {

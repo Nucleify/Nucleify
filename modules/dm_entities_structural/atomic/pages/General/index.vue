@@ -3,6 +3,15 @@
   <div class="panel-container">
     <div class="tiles grid col-12">
       <ad-tile
+        href="/structural/features"
+        header="Features"
+        :count="features?.length"
+        icon="pi pi-star"
+        :count-secondary="featuresCreatedLastWeek"
+        text-secondary="this week"
+        ad-type="feature"
+      />
+      <ad-tile
         href="/structural/questions"
         header="Questions"
         :count="questions?.length"
@@ -40,10 +49,16 @@
       :link-data="links"
       :question-data="questions"
       :technology-data="technologies"
+      :feature-data="features"
       :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />
 
+    <dm-feature-dashboard
+      :data="features"
+      :getData="getAllFeatures"
+      :loading="!allLoaded"
+    />
     <dm-question-dashboard
       :data="questions"
       :getData="getAllQuestions"
@@ -66,6 +81,7 @@
 import { onMounted, ref, Ref, watch } from 'vue'
 
 import {
+  featureRequests,
   linkRequests,
   questionRequests,
   technologyRequests,
@@ -73,6 +89,14 @@ import {
 } from 'atomic'
 
 const { display } = useDisplayCharts()
+
+const {
+  results: features,
+  createdLastWeek: featuresCreatedLastWeek,
+  loading: featuresLoading,
+  getAllFeatures,
+  getCountFeaturesByCreatedLastWeek,
+} = featureRequests()
 
 const {
   results: questions,
@@ -99,6 +123,8 @@ const {
 } = linkRequests()
 
 onMounted(() => {
+  getAllFeatures(true)
+  getCountFeaturesByCreatedLastWeek()
   getAllQuestions(true)
   getCountQuestionsByCreatedLastWeek()
   getAllTechnologies(true)
@@ -110,9 +136,19 @@ onMounted(() => {
 const allLoaded: Ref<boolean> = ref(false)
 
 watch(
-  [questionsLoading, technologiesLoading, linksLoading],
-  ([newQuestionsLoading, newTechnologiesLoading, newLinksLoading]) => {
-    if (!newQuestionsLoading && !newTechnologiesLoading && !newLinksLoading) {
+  [questionsLoading, technologiesLoading, linksLoading, featuresLoading],
+  ([
+    newQuestionsLoading,
+    newTechnologiesLoading,
+    newLinksLoading,
+    newFeaturesLoading,
+  ]) => {
+    if (
+      !newQuestionsLoading &&
+      !newTechnologiesLoading &&
+      !newLinksLoading &&
+      !newFeaturesLoading
+    ) {
       setTimeout(() => {
         allLoaded.value = true
       }, 200)

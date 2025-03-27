@@ -6,6 +6,8 @@
 require_once __DIR__ . '/TestGroups.php';
 require_once __DIR__ . '/TestUses.php';
 
+$featureData = require_once __DIR__ . '/TestConstants.php';
+$updatedFeatureData = require_once __DIR__ . '/TestConstants.php';
 $questionData = require_once __DIR__ . '/TestConstants.php';
 $updatedQuestionData = require_once __DIR__ . '/TestConstants.php';
 $technologyData = require_once __DIR__ . '/TestConstants.php';

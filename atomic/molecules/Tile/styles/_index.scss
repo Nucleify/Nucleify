@@ -10,8 +10,8 @@
   text-decoration: none;
   background: var(--p-card-background) !important;
 
-  @each $type in main, activity, article, contact, link, money, question,
-    technology, user
+  @each $type in main, activity, article, contact, feature, link, money,
+    question, technology, user
   {
     &[ad-type='#{$type}'] {
       @include entity-tile-styles(
