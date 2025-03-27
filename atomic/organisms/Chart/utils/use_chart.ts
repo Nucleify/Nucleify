@@ -19,6 +19,7 @@ import {
   UseColorsReturnInterface,
   useColors,
   LinkInterface,
+  FeatureInterface,
 } from 'atomic'
 
 export function useChart() {
@@ -26,6 +27,7 @@ export function useChart() {
     activityItemColors,
     articleItemColors,
     contactItemColors,
+    featureItemColors,
     linkItemColors,
     moneyItemColors,
     questionItemColors,
@@ -39,6 +41,7 @@ export function useChart() {
     activityItemColors: { primary: '#FFB600', secondary: '#E7A60B35' },
     articleItemColors: { primary: '#1187C7', secondary: '#0F79B235' },
     contactItemColors: { primary: '#10B981', secondary: '#10A67435' },
+    featureItemColors: { primary: '#b9101080', secondary: '#0EA5E935' },
     linkItemColors: { primary: '#10b3b9', secondary: '#0f93a435' },
     moneyItemColors: { primary: '#11c73b', secondary: '#0eb23335' },
     questionItemColors: { primary: '#8cb910', secondary: '#8cb91035' },
@@ -49,6 +52,7 @@ export function useChart() {
   const chartLabels: { label: LabelItemType }[] = [
     { label: 'Articles' },
     { label: 'Contacts' },
+    { label: 'Features' },
     { label: 'Links' },
     { label: 'Money' },
     { label: 'Questions' },
@@ -60,6 +64,7 @@ export function useChart() {
     activityLogData?: ActivityLogInterface[],
     articleData?: ArticleInterface[],
     contactData?: ContactInterface[],
+    featureData?: FeatureInterface[],
     linkData?: LinkInterface[],
     moneyData?: MoneyInterface[],
     questionData?: QuestionInterface[],
@@ -74,6 +79,7 @@ export function useChart() {
           'activity',
           'article',
           'contact',
+          'feature',
           'link',
           'money',
           'question',
@@ -88,6 +94,7 @@ export function useChart() {
             activityItemColors,
             articleItemColors,
             contactItemColors,
+            featureItemColors,
             linkItemColors,
             moneyItemColors,
             questionItemColors,
@@ -114,6 +121,7 @@ export function useChart() {
           [activityLogData, dataByMonth.activity],
           [articleData, dataByMonth.article],
           [contactData, dataByMonth.contact],
+          [featureData, dataByMonth.feature],
           [linkData, dataByMonth.link],
           [moneyData, dataByMonth.money],
           [questionData, dataByMonth.question],
@@ -135,6 +143,7 @@ export function useChart() {
             ),
             Articles: createData(dataByMonth.article, colors.articleItemColors),
             Contacts: createData(dataByMonth.contact, colors.contactItemColors),
+            Features: createData(dataByMonth.feature, colors.featureItemColors),
             Links: createData(dataByMonth.link, colors.linkItemColors),
             Money: createData(dataByMonth.money, colors.moneyItemColors),
             Question: createData(
@@ -174,6 +183,7 @@ export function useChart() {
                 ({
                   Articles: articleData,
                   Contacts: contactData,
+                  Features: featureData,
                   Links: linkData,
                   Money: moneyData,
                   Question: questionData,
@@ -186,6 +196,7 @@ export function useChart() {
           const totals = [
             dataByMonth.article,
             dataByMonth.contact,
+            dataByMonth.feature,
             dataByMonth.link,
             dataByMonth.money,
             dataByMonth.question,

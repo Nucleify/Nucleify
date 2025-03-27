@@ -20,6 +20,23 @@ const updatedColorData = [
 ];
 
 /**
+ *  Feature
+ */
+const featureData = [
+    'id' => 1,
+    'header' => 'Feature #test',
+    'description' => 'Example description #test',
+    'category' => 'test',
+];
+
+const updatedFeatureData = [
+    'id' => 1,
+    'header' => 'Feature #test2',
+    'description' => 'Example description #test2',
+    'category' => 'test2',
+];
+
+/**
  * Question
  */
 const questionData = [

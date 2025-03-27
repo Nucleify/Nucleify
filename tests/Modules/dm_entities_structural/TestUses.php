@@ -20,6 +20,9 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         ->in(
             // Color API
             'Feature/Api/Color/HTTP302Test.php',
+            
+            // Feature API
+            'Feature/Api/Feature/HTTP302Test.php',
 
             // Question API
             'Feature/Api/Question/HTTP302Test.php',
@@ -43,6 +46,12 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/Color/HTTP500Test.php',
             'Feature/Api/Color/HTTP422PostTest.php',
             'Feature/Api/Color/HTTP422PutTest.php',
+            
+            // Feature API
+            'Feature/Api/Feature/HTTP200Test.php',
+            'Feature/Api/Feature/HTTP500Test.php',
+            'Feature/Api/Feature/HTTP422PostTest.php',
+            'Feature/Api/Feature/HTTP422PutTest.php',
 
             // Question API
             'Feature/Api/Question/HTTP200Test.php',

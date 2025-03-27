@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ColorController;
+use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TechnologyController;
@@ -41,6 +42,25 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('colors.destroy');
     });
 
+    /**
+     *  Features
+     */
+    Route::prefix('features')->controller(FeatureController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('features.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('features.countByCreatedLastWeek');
+        Route::get('/get-by-category/{category}', 'getByCategory')
+            ->name('features.getByCategory');
+        Route::get('/{id}', 'show')
+            ->name('features.show');
+        Route::post('/', 'store')
+            ->name('features.store');
+        Route::put('/{id}', 'update')
+            ->name('features.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('features.destroy');
+    });
 
     /**
      *  Links

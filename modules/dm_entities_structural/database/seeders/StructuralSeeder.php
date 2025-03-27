@@ -10,6 +10,7 @@ class StructuralSeeder extends Seeder
     {
         $this->call([
             ColorSeeder::class,
+            FeatureSeeder::class,
             QuestionSeeder::class,
             LinkSeeder::class,
             TechnologySeeder::class

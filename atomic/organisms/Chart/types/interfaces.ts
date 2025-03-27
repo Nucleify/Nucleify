@@ -11,6 +11,7 @@ import {
   TechnologyInterface,
   UserInterface,
   LinkInterface,
+  FeatureInterface,
 } from 'atomic'
 
 export interface ChartInterface {
@@ -29,6 +30,7 @@ export interface ChartInterface {
   activityLogData?: ActivityLogInterface[]
   articleData?: ArticleInterface[]
   contactData?: ContactInterface[]
+  featureData?: FeatureInterface[]
   linkData?: LinkInterface[]
   moneyData?: MoneyInterface[]
   questionData?: QuestionInterface[]
@@ -44,6 +46,7 @@ export interface DisplayChartsInterface {
   Admin: boolean
   Article: boolean
   Contact: boolean
+  Feature: boolean
   Link: boolean
   Money: boolean
   Question: boolean
