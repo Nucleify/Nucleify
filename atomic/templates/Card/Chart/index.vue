@@ -7,6 +7,7 @@
         :direction="direction"
         :activity-log-data="activityLogData"
         :article-data="articleData"
+        :card-data="cardData"
         :contact-data="contactData"
         :money-data="moneyData"
         :question-data="questionData"
