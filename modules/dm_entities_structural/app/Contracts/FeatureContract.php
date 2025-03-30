@@ -12,6 +12,11 @@ interface FeatureContract
     /**
      * @return string
      */
+    public function getIcon(): string;
+    
+    /**
+     * @return string
+     */
     public function getHeader(): string;
 
     /**

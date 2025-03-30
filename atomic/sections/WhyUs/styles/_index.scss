@@ -1,16 +1,27 @@
 @import 'keyframes';
 
 .why-us-container {
-  height: 450px;
-  display: flex;
   align-items: center;
+  display: flex;
+  height: 450px;
+  justify-content: center;
   margin: 0 auto;
+  padding: 8rem 4rem;
+  text-align: center;
 
   .why-us-header {
-    padding-top: 50px;
-    opacity: 0;
+    position: absolute;
     animation: fade-in 1s forwards;
     color: $primary-white-green-text-color;
+    margin-top: -2rem;
+    opacity: 0;
+    padding-top: 50px;
+    font-size: $font-size-lg;
+    font-weight: 700;
+
+    & > span:last-child {
+      color: $primary-color !important;
+    }
   }
 
   .why-us-item {
@@ -48,8 +59,12 @@
 
   @for $i from 0 through 5 {
     .why-us-#{$i} {
-      width: if($i % 2 == 0, 310px, 280px);
       animation: rotate-container-#{$i} 60s linear infinite;
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+
+      width: if($i % 2 == 0, 310px, 280px);
 
       @media (min-width: 768px) {
         width: if($i % 2 == 0, 450px, 400px);
@@ -68,15 +83,20 @@
 
   @media (min-width: $breakpoint-md) {
     height: 540px;
+    padding-left: 6rem;
+    padding-right: 6rem;
   }
   @media (min-width: $breakpoint-lg) {
     height: 650px;
+    padding-left: 8rem;
+    padding-right: 8rem;
   }
 }
 
 .why-us-dialog {
-  width: 100%;
   max-width: 360px;
+  margin: 4rem;
+  width: 100%;
 
   button {
     display: none !important;

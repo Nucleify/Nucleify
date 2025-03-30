@@ -82,7 +82,26 @@ class FeatureService
             ->toArray()['data'];
     }
 
+    /**
+     * @param string $site
+     *
+     * @return array
+     */
+    public function getSiteFeatures(string $site): array
+    {
+        $this->defineUserData();
 
+        $result = $this->model::getByCategory($site)->get();
+
+        $name = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->logMessage($name  . ' fetched features by site: ' . $site . '.');
+
+        return fractal()
+            ->collection($result)
+            ->transformWith(new FeatureTransformer())
+            ->toArray()['data'];
+    }
 
     /**
      * @param $id
@@ -99,8 +118,6 @@ class FeatureService
             ->transformWith(new FeatureTransformer())
             ->toArray()['data'];
     }
-
-
 
     /**
      * @param array $data

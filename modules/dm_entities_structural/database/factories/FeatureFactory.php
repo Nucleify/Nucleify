@@ -21,6 +21,7 @@ class FeatureFactory extends Factory
     public function definition(): array
     {
         $data = [
+            'icon' => $this->faker->randomElement(['pi-home', 'pi-user', 'pi-search', 'pi-heart', 'pi-settings']),
             'header' =>  $this->faker->sentence(3),
             'description' => $this->faker->sentence(6),
             'category' => $this->faker->word(),
