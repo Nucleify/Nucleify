@@ -29,6 +29,12 @@ describe('200 > Authorized', function () {
             ->assertOk();
     });
 
+    test('getSiteFeatures api', function () {
+        Feature::factory(3)->create(['category' => 'technology']);
+
+        $this->getJson(route('features.getSiteFeatures', ['site' => 'technology']))
+            ->assertOk();
+    });
 
     test('store api', function () {
         $this->postJson(route('features.store'), featureData)

@@ -13,6 +13,7 @@ class FeatureTransformer extends TransformerAbstract
     {
         return [
             'id' => $model->getId(),
+            'icon' => $model->getIcon(),
             'header' => $model->getHeader(),
             'description' => $model->getDescription(),
             'category' => $model->getCategory(),

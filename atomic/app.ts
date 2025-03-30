@@ -104,6 +104,7 @@ import {
   SectionNavbar,
   SectionStack,
   SectionStart,
+  SectionWhyUs,
 } from './sections'
 import {
   ActivityDashboard,
@@ -214,6 +215,7 @@ app
   .component('ad-section-navbar', SectionNavbar)
   .component('ad-section-stack', SectionStack)
   .component('ad-section-start', SectionStart)
+  .component('ad-section-why-us', SectionWhyUs)
 
   /**
    *  Templates

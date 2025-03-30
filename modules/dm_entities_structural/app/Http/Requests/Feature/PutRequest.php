@@ -24,6 +24,7 @@ class PutRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'icon' => 'required|string|max:32',
             'header' => 'required|string|max:255',
             'description' => 'required|string|max:1000',
             'category' => 'required|string|max:255',

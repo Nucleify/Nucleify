@@ -17,23 +17,26 @@ describe('Instance', function () {
             ->toBeInt()
             ->toBe($this->model->id);
     });
-    
+
+    test('can get icon', function () {
+        expect($this->model->getIcon())
+            ->toBeString()
+            ->toBe($this->model->icon);
+    });
+
     test('can get header', function () {
-        
         expect($this->model->getHeader())
             ->toBeString()
             ->toBe($this->model->header);
     });
-    
+
     test('can get description', function () {
-        
         expect($this->model->getDescription())
             ->toBeString()
             ->toBe($this->model->description);
     });
-    
+
     test('can get category', function () {
-        
         expect($this->model->getCategory())
             ->toBeString()
             ->toBe($this->model->category);
@@ -55,21 +58,31 @@ describe('Instance', function () {
 describe('Scope', function () {
     test('can filter by id using scopeGetById', function () {
         $foundModel = Feature::getById($this->model->id)->first();
+        
         expect($foundModel->id)->toBe($this->model->id);
     });
 
-    test('can filter header id using scopeGetByHeader', function () {
+    test('can filter icon using scopeGetByIcon', function () {
+        $foundModel = Feature::getByIcon($this->model->icon)->first();
+
+        expect($foundModel->icon)->toBe($this->model->icon);
+    });
+
+    test('can filter header using scopeGetByHeader', function () {
         $foundModel = Feature::getByHeader($this->model->header)->first();
+
         expect($foundModel->header)->toBe($this->model->header);
     });
 
-    test('can filter description id using scopeGetByDescription', function () {
+    test('can filter description using scopeGetByDescription', function () {
         $foundModel = Feature::getByDescription($this->model->description)->first();
+
         expect($foundModel->description)->toBe($this->model->description);
     });
 
     test('can filter by category using scopeGetByCategory', function () {
         $foundModel = Feature::getByCategory($this->model->category)->first();
+
         expect($foundModel->category)->toBe($this->model->category);
     });
 

@@ -7,6 +7,67 @@ beforeEach(function () {
 
 describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = updatedFeatureData) {
     /**
+     * ICON TESTS
+     */
+    $updatedFeatureData['icon'] = 1;
+    test('invalid icon > integer', apiTest(
+        'PUT',
+        'features.update',
+        422,
+        $updatedFeatureData,
+        ['errors' => ['icon']],
+        ['errors' => [
+            'icon' => [
+                'The icon field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedFeatureData['icon'] = false;
+    test('invalid icon > false', apiTest(
+        'PUT',
+        'features.update',
+        422,
+        $updatedFeatureData,
+        ['errors' => ['icon']],
+        ['errors' => [
+            'icon' => [
+                'The icon field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedFeatureData['icon'] = true;
+    test('invalid icon > true', apiTest(
+        'PUT',
+        'features.update',
+        422,
+        $updatedFeatureData,
+        ['errors' => ['icon']],
+        ['errors' => [
+            'icon' => [
+                'The icon field must be a string.',
+            ]
+        ]]
+    ));
+
+    $updatedFeatureData['icon'] = [];
+    test('invalid icon > empty array', apiTest(
+        'PUT',
+        'features.update',
+        422,
+        $updatedFeatureData,
+        ['errors' => ['icon']],
+        ['errors' => [
+            'icon' => ['The icon field is required.']
+        ]]
+    ));
+
+    $updatedFeatureData['icon'] = updatedFeatureData['icon']; // reset content value
+
+    
+    
+    /**
      * HEADER TESTS
      */
     $updatedFeatureData['header'] = '';
@@ -210,5 +271,4 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['category'] = updatedFeatureData['category']; // reset content value
-
 });

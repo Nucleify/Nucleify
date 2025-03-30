@@ -7,6 +7,67 @@ beforeEach(function () {
 
 describe('422 > Unprocessable Content > POST', function($featureData = featureData) {
     /**
+     * ICON TESTS
+     */
+    $featureData['icon'] = 1;
+    test('invalid icon > integer', apiTest(
+        'POST',
+        'features.store',
+        422,
+        $featureData,
+        ['errors' => ['icon']],
+        ['errors' => [
+            'icon' => [
+                'The icon field must be a string.',
+            ]
+        ]]
+    ));
+
+    $featureData['icon'] = false;
+    test('invalid icon > false', apiTest(
+        'POST',
+        'features.store',
+        422,
+        $featureData,
+        ['errors' => ['icon']],
+        ['errors' => [
+            'icon' => [
+                'The icon field must be a string.',
+            ]
+        ]]
+    ));
+
+    $featureData['icon'] = true;
+    test('invalid icon > true', apiTest(
+        'POST',
+        'features.store',
+        422,
+        $featureData,
+        ['errors' => ['icon']],
+        ['errors' => [
+            'icon' => [
+                'The icon field must be a string.',
+            ]
+        ]]
+    ));
+
+    $featureData['icon'] = [];
+    test('invalid icon > empty array', apiTest(
+        'POST',
+        'features.store',
+        422,
+        $featureData,
+        ['errors' => ['icon']],
+        ['errors' => [
+            'icon' => ['The icon field is required.']
+        ]]
+    ));
+
+    $featureData['icon'] = featureData['icon']; // reset content value
+
+
+    
+    /**
      * HEADER TESTS
      */
     $featureData['header'] = '';
@@ -210,5 +271,4 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
     ));
 
     $featureData['category'] = featureData['category']; // reset content value
-
 });

@@ -10,7 +10,7 @@ class QuestionSeeder extends Seeder
     /**
      * @var string
      */
-    protected string $path = 'database/constants/Structural/Questions/';
+    protected string $path = 'modules/dm_entities_structural/database/constants/Questions/';
 
     /**
      * Run the database seeds.

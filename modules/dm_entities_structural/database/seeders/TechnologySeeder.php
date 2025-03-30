@@ -11,7 +11,7 @@ class TechnologySeeder extends Seeder
     /**
      * @var string
      */
-    protected string $path = 'database/constants/Structural/Technologies/';
+    protected string $path = 'modules/dm_entities_structural/database/constants/Technologies/';
 
     /**
      * Run the database seeds.
