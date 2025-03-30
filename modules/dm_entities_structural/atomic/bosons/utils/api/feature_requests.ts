@@ -67,7 +67,7 @@ export function featureRequests(
         `/api/features/get-by-category/${category}`
       )
 
-      resultsByCategory.value = response.data.count
+      resultsByCategory.value = response.data
     } catch (error) {
       catchErrors(error, apiErrors)
     }

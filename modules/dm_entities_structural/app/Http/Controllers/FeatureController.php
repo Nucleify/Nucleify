@@ -82,6 +82,22 @@ class FeatureController extends Controller
     }
 
     /**
+     * @param string $site
+     *
+     * @return JsonResponse
+     */
+    public function getSiteFeatures(string $site): JsonResponse
+    {
+        try {
+            $result = $this->service->getSiteFeatures($site);
+
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
      * @param $id
      *
      * @return JsonResponse

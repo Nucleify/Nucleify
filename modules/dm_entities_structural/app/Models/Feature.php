@@ -9,16 +9,19 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @property int id
+ * @property string icon
  * @property string header
  * @property string description
  * @property string category
  * @property int getId
+ * @property string getIcon
  * @property string getHeader
  * @property string getDescription
  * @property string getCategory
  * @property string getCreatedAt
  * @property string getUpdatedAt
  * @property Builder scopeGetById
+ * @property Builder scopeGetByIcon
  * @property Builder scopeGetByHeader
  * @property Builder scopeGetByDescription
  * @property Builder scopeGetByCategory
@@ -31,6 +34,7 @@ class Feature extends Model implements FeatureContract
     use HasFactory;
 
     protected $fillable = [
+        'icon',
         'header',
         'description',
         'category',
@@ -42,6 +46,10 @@ class Feature extends Model implements FeatureContract
     public function getId(): int
     {
         return $this->id;
+    }
+    public function getIcon(): string
+    {
+        return $this->icon;
     }
     public function getHeader(): string
     {
@@ -70,6 +78,10 @@ class Feature extends Model implements FeatureContract
     public function scopeGetById(Builder $query, int $parameter): Builder
     {
         return $query->where('id', $parameter);
+    }
+    public function scopeGetByIcon(Builder $query, string $parameter): Builder
+    {
+        return $query->where('icon', $parameter);
     }
     public function scopeGetByHeader(Builder $query, string $parameter): Builder
     {
