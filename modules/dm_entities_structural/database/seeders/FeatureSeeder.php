@@ -11,18 +11,21 @@ class FeatureSeeder extends Seeder
     /**
      * @var string
      */
-    protected string $path = 'database/constants/Structural/Questions/';
+    protected string $path = 'modules/dm_entities_structural/database/constants/Features/';
+
 
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
+        $whyUsFeatures = require_once $this->path . 'WhyUs.php';
 
-        Feature::factory()->create( [
-            'header' => 'Feature #1',
-            'description' => 'Lorem ipsum dolor sit amet.',
-            'category' => 'category #1',
-        ]);
+
+        foreach ($whyUsFeatures as $feature) {
+            Feature::factory()->create(array_merge($feature, [
+                'category' => 'home',
+            ]));
+        }
     }
 }

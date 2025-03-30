@@ -9,6 +9,9 @@ use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TechnologyController;
 
 
+Route::get('/features/get-site-features/{site}', [FeatureController::class, 'getSiteFeatures'])
+    ->name('features.getSiteFeatures');
+
 Route::get('/questions/get-site-questions/{site}', [QuestionController::class, 'getSiteQuestions'])
     ->name('questions.getSiteQuestions');
 

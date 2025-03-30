@@ -1,5 +1,6 @@
 export interface FeatureInterface {
   id?: number
+  icon?: string
   header?: string
   description?: string
   category?: string

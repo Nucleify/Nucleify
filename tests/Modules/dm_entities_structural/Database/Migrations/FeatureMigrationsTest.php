@@ -7,6 +7,7 @@ it('can create table', function () {
     expect(Schema::hasTable('features'))->toBeTrue()
         ->and(Schema::hasColumns('features', [
             'id',
+            'icon',
             'header',
             'description',
             'category',
