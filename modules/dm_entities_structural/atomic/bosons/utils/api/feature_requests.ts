@@ -100,6 +100,7 @@ export function featureRequests(
   ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.post('/api/features', {
+        icon: data.icon,
         header: data.header,
         description: data.description,
         category: data.category,
@@ -119,6 +120,7 @@ export function featureRequests(
       const response: AxiosResponse = await axios.put(
         `/api/features/${data.id}`,
         {
+          icon: data.icon,
           header: data.header,
           description: data.description,
           category: data.category,
