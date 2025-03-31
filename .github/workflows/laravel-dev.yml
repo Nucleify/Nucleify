@@ -36,7 +36,7 @@ jobs:
             ${{ runner.os }}-composer-
 
       - name: Install Dependencies
-        run: composer install --prefer-dist --no-interaction --no-scripts --no-progress
+        run: composer install --prefer-dist --no-interaction --no-progress
 
   # Generate Application Key
   generate-key:
