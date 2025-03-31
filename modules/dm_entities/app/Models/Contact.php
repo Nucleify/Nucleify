@@ -194,6 +194,6 @@ class Contact extends Model implements ContactContract
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\Models\User::class);
     }
 }

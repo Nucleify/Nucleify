@@ -80,7 +80,6 @@ export function useChart() {
     console.log(cardData, questionData)
     try {
       let labels: string[] = []
-
       const dataByMonth = Object.fromEntries(
         [
           'activity',
