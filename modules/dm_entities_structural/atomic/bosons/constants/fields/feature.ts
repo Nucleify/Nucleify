@@ -2,7 +2,7 @@ import { EntityFieldInterface, UseFieldsInterface } from 'atomic'
 
 export function useFeatureFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: readonly [string, string, string][] = [
-    ['icon', 'Category', 'input-text'],
+    ['icon', 'Icon', 'input-text'],
     ['header', 'Header', 'input-text'],
     ['description', 'Description', 'textarea'],
     ['category', 'Category', 'input-text'],
