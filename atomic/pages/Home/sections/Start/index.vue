@@ -6,6 +6,7 @@
           :src="imgUrl + 'logo.svg'"
           alt="DataManager logo"
           class="start-image"
+          fetchpriority="high"
         />
 
         <div class="left-side">

@@ -14,4 +14,5 @@ export interface AnchorInterface {
   anchorClass?: string
   itemClass?: string
   style?: StyleValue
+  fetchpriority?: 'high' | 'low'
 }

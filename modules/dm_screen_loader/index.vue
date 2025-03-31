@@ -6,6 +6,7 @@
         alt="DataManager logo"
         width="150px"
         height="150px"
+        fetchpriority="high"
       />
       <ad-progress-bar mode="indeterminate" width="100px" height="10px" />
     </div>
@@ -13,7 +14,11 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from 'vue'
+
 import { hideLoader } from '.'
 
-hideLoader()
+onMounted(() => {
+  hideLoader()
+})
 </script>
