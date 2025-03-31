@@ -109,6 +109,9 @@ jobs:
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist
 
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+
       - name: Verify .env File Exists
         run: |
           if [ ! -f .env ]; then
