@@ -36,7 +36,7 @@ php artisan key:generate
 
 ```bash
 npm install
-composer update
+composer install
 
 # if you want use storybook
 cd storybook
@@ -182,7 +182,7 @@ php artisan key:generate
 - Install modules in root directory
 
 ```bash
-composer update
+composer install
 php artisan sail:install
 sail npm install
 
@@ -306,7 +306,7 @@ sail artisan sitemap:generate
 
 </details></details><hr><br></details></details>
 
-<details><summary> <h2> &nbsp; 🛠️ &nbsp; Tech Stack </h2> </summary> <br>
+<details><summary> <h2> &nbsp;🛠️&nbsp;&nbsp; Tech Stack </h2> </summary> <br>
 <div align="center">
   <img src="https://skillicons.dev/icons?i=php" height="35" />
   <img src="https://skillicons.dev/icons?i=ts" height="35" />
@@ -344,6 +344,15 @@ Your skills and expertise will directly contribute to the success of our project
 
 <h3>Contributors</h3>
 
+<a href="https://github.com/SzymCode" target="_blank">
+<img src="/public/img/contributors/szymcode.svg" width="30" height="30" />
+</a>
+<a href="https://github.com/kbloski" target="_blank">
+<img src="/public/img/contributors/kbloski.svg" width="30" height="30" />
+</a>
+<a href="https://github.com/kbujak09" target="_blank">
+<img src="/public/img/contributors/kbujak09.svg" width="30" height="30" />
+</a>
 <a href="https://github.com/KatarzynaS97" target="_blank">
 <img src="/public/img/contributors/KatarzynaS97.svg" width="30" height="30" />
 </a>

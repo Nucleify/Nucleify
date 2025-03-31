@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Utilities;
 
 use App\Http\Controllers\Controller;
-use App\Services\Utilities\FriendshipService;
 use Exception;
 use Illuminate\Http\JsonResponse;
+
+use App\Services\Utilities\FriendshipService;
 
 class FriendController extends Controller
 {

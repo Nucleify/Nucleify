@@ -3,7 +3,10 @@ export function setColorsVariables(): void {
     'main',
     'activity',
     'article',
+    'card',
     'contact',
+    'feature',
+    'link',
     'money',
     'question',
     'technology',
@@ -15,6 +18,7 @@ export function setColorsVariables(): void {
     'dark-color',
     'highlight-color',
     'focus-color',
+    'secondary-color',
     'selected-color',
     'hover-color',
   ]

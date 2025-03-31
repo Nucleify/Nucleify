@@ -2,7 +2,7 @@
 
 namespace Database\Factories\Utilities;
 
-use App\Models\Entities\User;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Spatie\Activitylog\Models\Activity;
 

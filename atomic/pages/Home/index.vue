@@ -3,7 +3,7 @@
     <start />
     <features />
     <innovations />
-    <why-us />
+    <ad-section-why-us site="home" />
     <ad-section-faq site="home" />
     <ad-section-contact />
   </div>
@@ -14,7 +14,7 @@ import { onBeforeMount, onMounted } from 'vue'
 
 import { useColors, useViewportChange } from 'atomic'
 
-import { Features, Innovations, Start, WhyUs } from './'
+import { Features, Innovations, Start } from './'
 
 const { setDefaultColors } = useColors()
 

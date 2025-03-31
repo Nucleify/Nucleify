@@ -169,6 +169,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\MetaTagsServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        /**
+         *  Modules
+         */
+        Modules\dm_entities\dm_entities::class,
+        Modules\dm_entities_structural\dm_entities_structural::class,
     ])->toArray(),
 
     /*

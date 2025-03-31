@@ -5,7 +5,16 @@ export function getTitle(selectedObject: ObjectType): string {
     return 'Unknown Entity'
   }
 
-  const propertyOrder = ['title', 'name', 'first_name', 'last_name', 'label']
+  const propertyOrder = [
+    'title',
+    'name',
+    'first_name',
+    'last_name',
+    'header',
+    'label',
+    'src',
+    'content',
+  ]
 
   for (const property of propertyOrder) {
     if (property in selectedObject) {

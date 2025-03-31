@@ -1,0 +1,108 @@
+@import 'keyframes';
+
+.why-us-container {
+  align-items: center;
+  display: flex;
+  height: 450px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 8rem 4rem;
+  text-align: center;
+
+  .why-us-header {
+    position: absolute;
+    animation: fade-in 1s forwards;
+    color: $primary-white-green-text-color;
+    margin-top: -2rem;
+    opacity: 0;
+    padding-top: 50px;
+    font-size: $font-size-lg;
+    font-weight: 700;
+
+    & > span:last-child {
+      color: $primary-color !important;
+    }
+  }
+
+  .why-us-item {
+    height: min-content;
+    width: min-content;
+    padding: 10px;
+    background: $p-card-background;
+    font-size: 15px;
+    box-shadow:
+      0 4px 10px rgba(0, 0, 0, 0.03),
+      0 0 2px rgba(0, 0, 0, 0.06),
+      0 2px 6px rgba(0, 0, 0, 0.12);
+    border: 1px solid $p-card-border !important;
+    border-radius: 8px;
+    color: $primary-white-green-text-color;
+    transition: all 300ms;
+    cursor: pointer;
+    opacity: 0;
+
+    &:hover {
+      color: $primary-color;
+      border-color: $primary-color !important;
+    }
+
+    @media (min-width: 768px) {
+      padding: 12px;
+      font-size: 20px;
+    }
+
+    @media (min-width: 992px) {
+      padding: 15px;
+      font-size: 25px;
+    }
+  }
+
+  @for $i from 0 through 5 {
+    .why-us-#{$i} {
+      animation: rotate-container-#{$i} 60s linear infinite;
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+
+      width: if($i % 2 == 0, 310px, 280px);
+
+      @media (min-width: 768px) {
+        width: if($i % 2 == 0, 450px, 400px);
+      }
+      @media (min-width: 992px) {
+        width: if($i % 2 == 0, 500px, 450px);
+      }
+
+      .why-us-item {
+        animation:
+          rotate-items-#{$i} 60s linear infinite,
+          fade-in 1s #{$i * 0.1}s forwards;
+      }
+    }
+  }
+
+  @media (min-width: $breakpoint-md) {
+    height: 540px;
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+  @media (min-width: $breakpoint-lg) {
+    height: 650px;
+    padding-left: 8rem;
+    padding-right: 8rem;
+  }
+}
+
+.why-us-dialog {
+  max-width: 360px;
+  margin: 4rem;
+  width: 100%;
+
+  button {
+    display: none !important;
+  }
+
+  .p-dialog-content {
+    top: -1px;
+  }
+}

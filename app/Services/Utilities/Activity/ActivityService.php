@@ -2,13 +2,14 @@
 
 namespace App\Services\Utilities\Activity;
 
+use Exception;
+use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
+
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\Utilities\ActivityTransformer;
-use Exception;
-use Illuminate\Http\Request;
-use Spatie\Activitylog\Models\Activity;
 
 class ActivityService
 {
@@ -81,7 +82,7 @@ class ActivityService
         if (!$this->isCauserStaff && $this->causer->id !== $result->causer_id) {
             $this->logger->logAndThrow(
                 "User: ''$this->causer->name'' tried to fetch other user activity log, but he doesn't have permissions",
-                "You don't have permission to fetch other users' activity log"
+                "You don't have permission to fetch other users activity log"
             );
         } else {
             return fractal()

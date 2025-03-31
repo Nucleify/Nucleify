@@ -26,10 +26,25 @@ export function useColors(): UseColorsInterface {
     hover: window.localStorage.getItem('article-item-hover-color'),
     secondary: window.localStorage.getItem('article-item-secondary-color'),
   }
+  const cardItemColors: ColorItemColorsInterface = {
+    primary: window.localStorage.getItem('card-item-color'),
+    hover: window.localStorage.getItem('card-item-hover-color'),
+    secondary: window.localStorage.getItem('card-item-secondary-color'),
+  }
   const contactItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('contact-item-color'),
     hover: window.localStorage.getItem('contact-item-hover-color'),
     secondary: window.localStorage.getItem('contact-item-secondary-color'),
+  }
+  const featureItemColors: ColorItemColorsInterface = {
+    primary: window.localStorage.getItem('feature-item-color'),
+    hover: window.localStorage.getItem('feature-item-hover-color'),
+    secondary: window.localStorage.getItem('feature-item-secondary-color'),
+  }
+  const linkItemColors: ColorItemColorsInterface = {
+    primary: window.localStorage.getItem('link-item-color'),
+    hover: window.localStorage.getItem('link-item-hover-color'),
+    secondary: window.localStorage.getItem('link-item-secondary-color'),
   }
   const moneyItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('money-item-color'),
@@ -81,6 +96,15 @@ export function useColors(): UseColorsInterface {
       'article-item-selected-color',
       'article-item-highlight-color',
 
+      // Card properties
+      'card-item-color',
+      'card-item-dark-color',
+      'card-item-hover-color',
+      'card-item-focus-color',
+      'card-item-secondary-color',
+      'card-item-selected-color',
+      'card-item-highlight-color',
+
       // Contact properties
       'contact-item-color',
       'contact-item-dark-color',
@@ -89,6 +113,24 @@ export function useColors(): UseColorsInterface {
       'contact-item-secondary-color',
       'contact-item-selected-color',
       'contact-item-highlight-color',
+
+      // Feature properties
+      'feature-item-color',
+      'feature-item-dark-color',
+      'feature-item-hover-color',
+      'feature-item-focus-color',
+      'feature-item-secondary-color',
+      'feature-item-selected-color',
+      'feature-item-highlight-color',
+
+      // Link properties
+      'link-item-color',
+      'link-item-dark-color',
+      'link-item-hover-color',
+      'link-item-focus-color',
+      'link-item-secondary-color',
+      'link-item-selected-color',
+      'link-item-highlight-color',
 
       // Money properties
       'money-item-color',
@@ -151,7 +193,10 @@ export function useColors(): UseColorsInterface {
     mainItemColors,
     activityItemColors,
     articleItemColors,
+    cardItemColors,
     contactItemColors,
+    featureItemColors,
+    linkItemColors,
     moneyItemColors,
     questionItemColors,
     technologyItemColors,
