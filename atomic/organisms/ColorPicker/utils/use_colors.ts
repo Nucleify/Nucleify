@@ -36,6 +36,16 @@ export function useColors(): UseColorsInterface {
     hover: window.localStorage.getItem('contact-item-hover-color'),
     secondary: window.localStorage.getItem('contact-item-secondary-color'),
   }
+  const featureItemColors: ColorItemColorsInterface = {
+    primary: window.localStorage.getItem('feature-item-color'),
+    hover: window.localStorage.getItem('feature-item-hover-color'),
+    secondary: window.localStorage.getItem('feature-item-secondary-color'),
+  }
+  const linkItemColors: ColorItemColorsInterface = {
+    primary: window.localStorage.getItem('link-item-color'),
+    hover: window.localStorage.getItem('link-item-hover-color'),
+    secondary: window.localStorage.getItem('link-item-secondary-color'),
+  }
   const moneyItemColors: ColorItemColorsInterface = {
     primary: window.localStorage.getItem('money-item-color'),
     hover: window.localStorage.getItem('money-item-hover-color'),
@@ -104,6 +114,24 @@ export function useColors(): UseColorsInterface {
       'contact-item-selected-color',
       'contact-item-highlight-color',
 
+      // Feature properties
+      'feature-item-color',
+      'feature-item-dark-color',
+      'feature-item-hover-color',
+      'feature-item-focus-color',
+      'feature-item-secondary-color',
+      'feature-item-selected-color',
+      'feature-item-highlight-color',
+
+      // Link properties
+      'link-item-color',
+      'link-item-dark-color',
+      'link-item-hover-color',
+      'link-item-focus-color',
+      'link-item-secondary-color',
+      'link-item-selected-color',
+      'link-item-highlight-color',
+
       // Money properties
       'money-item-color',
       'money-item-dark-color',
@@ -167,6 +195,8 @@ export function useColors(): UseColorsInterface {
     articleItemColors,
     cardItemColors,
     contactItemColors,
+    featureItemColors,
+    linkItemColors,
     moneyItemColors,
     questionItemColors,
     technologyItemColors,

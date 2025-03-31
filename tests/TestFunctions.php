@@ -2,11 +2,12 @@
 
 use Illuminate\Support\Facades\File;
 
-use App\Models\Entities\Article;
-use App\Models\Entities\Contact;
-use App\Models\Entities\User;
-use App\Models\Structural\Card;
-use App\Models\Structural\Question;
+use App\Models\Article;
+use App\Models\Card;
+use App\Models\Contact;
+use App\Models\Feature;
+use App\Models\Question;
+use App\Models\User;
 
 function apiTest($method, $route, $status, $data = null, $expectedJsonStructure = null, $expectedJsonFragment = null, $validationErrors = null): Closure
 {
@@ -39,11 +40,15 @@ function expectLogMessage($log, $model, $method, $causer, $entity): void
         case 'Contact':
             expect($log)->toContain('Contact')->toContain($model->first_name)->toContain($model->last_name)->toContain($method)->toContain($causer->name);
             break;
+        case 'Feature':
+            expect($log)->toContain('Feature')->toContain($model->header)->toContain($method)->toContain($causer->name);
+            break;
         case 'User':
             expect($log)->toContain('User')->toContain($model->name)->toContain($method)->toContain($causer->name);
             break;
         case 'Question':
             expect($log)->toContain('Question')->toContain($model->content)->toContain($model->answer)->toContain($method)->toContain($causer->user_id);
+            break;
         default:
             break;
     }
@@ -61,7 +66,8 @@ function getModelByEntity(string $entity): Contact|Card|Article|User|Question|nu
     };
 }
 
-function removeSitemap() {
+function removeSitemap(): void
+{
     if (File::exists(public_path('sitemap.xml'))) {
         File::delete(public_path('sitemap.xml'));
     }

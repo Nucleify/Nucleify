@@ -5,6 +5,9 @@
          colors="true"
 >
     <testsuites>
+        <testsuite name="Modules">
+            <directory>tests/Modules</directory>
+        </testsuite>
         <testsuite name="Global">
             <directory>tests/Global</directory>
         </testsuite>
@@ -18,6 +21,7 @@
     <source>
         <include>
             <directory>app</directory>
+            <directory>modules</directory>
         </include>
     </source>
     <php>

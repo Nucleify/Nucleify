@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 
 /**
  *  Article
@@ -159,3 +160,5 @@ const updatedTechnologyData = [
     'category' => 'test2',
     'display' => False
 ];
+=======
+>>>>>>> e351cf8084501f8b326f181ed601c28daa25c4e5

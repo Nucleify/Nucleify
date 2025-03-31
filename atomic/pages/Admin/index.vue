@@ -54,22 +54,22 @@
       :loading="!allLoaded"
     />
 
-    <ad-article-dashboard
+    <dm-article-dashboard
       :data="articles"
       :getData="getAllArticles"
       :loading="!allLoaded"
     />
-    <ad-contact-dashboard
+    <dm-contact-dashboard
       :data="contacts"
       :getData="getAllContacts"
       :loading="!allLoaded"
     />
-    <ad-money-dashboard
+    <dm-money-dashboard
       :data="money"
       :getData="getAllMoney"
       :loading="!allLoaded"
     />
-    <ad-user-dashboard
+    <dm-user-dashboard
       :data="users"
       :getData="getAllUsers"
       :loading="!allLoaded"

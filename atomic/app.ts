@@ -90,19 +90,11 @@ import {
   LoginPage,
   RegisterPage,
   ActivityPage,
-  ArticlePage,
-  CardPage,
-  ContactPage,
-  EntitiesPage,
-  MoneyPage,
   DashboardPage,
   Error404Page,
   HomePage,
   ServicesPage,
   SettingsPage,
-  StructuralPage,
-  QuestionsPage,
-  TechnologiesPage,
 } from './pages'
 import {
   SectionCategory,
@@ -112,23 +104,15 @@ import {
   SectionNavbar,
   SectionStack,
   SectionStart,
+  SectionWhyUs,
 } from './sections'
 import {
   ActivityDashboard,
-  ArticleDashboard,
-  ContactDashboard,
-  CardDashboard,
-  MoneyDashboard,
-  QuestionDashboard,
-  TechnologyDashboard,
-  UserDashboard,
   BackLink,
   CardBoxes,
   CardCategory,
   CardChart,
   CardDataTable,
-  ScreenLights,
-  ScreenLoader,
   SkeletonDataTable,
   TestLoginButtons,
 } from './templates'
@@ -215,19 +199,11 @@ app
   .component('ad-login-page', LoginPage)
   .component('ad-register-page', RegisterPage)
   .component('ad-activity-page', ActivityPage)
-  .component('ad-article-page', ArticlePage)
-  .component('ad-contact-page', ContactPage)
   .component('ad-dashboard-page', DashboardPage)
-  .component('ad-entities-page', EntitiesPage)
   .component('ad-error-404-page', Error404Page)
   .component('ad-home-page', HomePage)
-  .component('ad-money-page', MoneyPage)
   .component('ad-services-page', ServicesPage)
   .component('ad-settings-page', SettingsPage)
-  .component('ad-structural-page', StructuralPage)
-  .component('ad-cards-page', CardPage)
-  .component('ad-questions-page', QuestionsPage)
-  .component('ad-technologies-page', TechnologiesPage)
 
   /**
    *  Sections
@@ -239,26 +215,36 @@ app
   .component('ad-section-navbar', SectionNavbar)
   .component('ad-section-stack', SectionStack)
   .component('ad-section-start', SectionStart)
+  .component('ad-section-why-us', SectionWhyUs)
 
   /**
    *  Templates
    */
   .component('ad-activity-dashboard', ActivityDashboard)
-  .component('ad-article-dashboard', ArticleDashboard)
-  .component('ad-card-dashboard', CardDashboard)
-  .component('ad-contact-dashboard', ContactDashboard)
-  .component('ad-money-dashboard', MoneyDashboard)
-  .component('ad-question-dashboard', QuestionDashboard)
-  .component('ad-technology-dashboard', TechnologyDashboard)
-  .component('ad-user-dashboard', UserDashboard)
   .component('ad-back-link', BackLink)
   .component('ad-card-boxes', CardBoxes)
   .component('ad-card-category', CardCategory)
   .component('ad-card-chart', CardChart)
   .component('ad-card-data-table', CardDataTable)
-  .component('ad-screen-lights', ScreenLights)
-  .component('ad-screen-loader', ScreenLoader)
   .component('ad-skeleton-data-table', SkeletonDataTable)
   .component('ad-test-login-buttons', TestLoginButtons)
 
+/**
+ *  Register modules
+ */
+import {
+  registerDMEntities,
+  registerDMEntitiesStructural,
+  registerDMScreenLights,
+  registerDMScreenLoader,
+} from '../modules'
+
+registerDMEntities(app)
+registerDMEntitiesStructural(app)
+registerDMScreenLights(app)
+registerDMScreenLoader(app)
+
+/**
+ *  Mount app
+ */
 app.mount('#app')
