@@ -27,16 +27,8 @@ jobs:
             exit 1
           fi
 
-      - name: Cache Composer Dependencies
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-
-      - name: Install Dependencies
-        run: composer install --prefer-dist --no-interaction --no-progress
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --no-interaction
 
   # Generate Application Key
   generate-key:
@@ -51,14 +43,8 @@ jobs:
         with:
           php-version: '8.3.7'
 
-      - name: composer dump-autoload
-        run: composer dump-autoload -o
-
-      - name: Restore Composer Dependencies
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
@@ -120,17 +106,18 @@ jobs:
         with:
           php-version: '8.3.7'
 
-      - name: composer dump-autoload
-        run: composer dump-autoload -o
-
-      - name: Restore Composer Dependencies
-        uses: actions/cache@v3
-        with:
-          path: vendor
-          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+
+      - name: Verify .env File Exists
+        run: |
+          if [ ! -f .env ]; then
+            echo ".env file was not created!"
+            exit 1
+          fi
 
       - name: Generate key
         run: php artisan key:generate
