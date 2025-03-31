@@ -109,7 +109,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-    $linkData['href'] = linkData['href']; // reset content value
+    $linkData['href'] = linkData['href'];
 
 
 
@@ -182,7 +182,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-    $linkData['category'] = linkData['category']; // reset content value
+    $linkData['category'] = linkData['category'];
 
 
 
@@ -249,7 +249,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-    $linkData['src'] = linkData['src']; // reset content value
+    $linkData['src'] = linkData['src'];
 
 
 
@@ -310,7 +310,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-    $linkData['icon'] = linkData['icon']; // reset content value
+    $linkData['icon'] = linkData['icon'];
 
 
 
@@ -371,7 +371,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-    $linkData['hreflang'] = linkData['hreflang']; // reset content value
+    $linkData['hreflang'] = linkData['hreflang'];
 
 
 
@@ -432,7 +432,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-    $linkData['media'] = linkData['media']; // reset content value
+    $linkData['media'] = linkData['media'];
 
 
 
@@ -493,7 +493,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-    $linkData['ping'] = linkData['ping']; // reset content value
+    $linkData['ping'] = linkData['ping'];
 
 
 
@@ -560,7 +560,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-    $linkData['rel'] = linkData['rel']; // reset content value
+    $linkData['rel'] = linkData['rel'];
 
 
 
@@ -627,7 +627,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-    $linkData['target'] = linkData['target']; // reset content value
+    $linkData['target'] = linkData['target'];
 
 
 
@@ -688,5 +688,5 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ]]
     ));
 
-    $linkData['type'] = linkData['type']; // reset content value
+    $linkData['type'] = linkData['type'];
 });

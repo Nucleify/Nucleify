@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\ArticleController;
 use App\Http\Requests\Article\PostRequest;
 use App\Http\Requests\Article\PutRequest;
 use App\Models\Article;
 use App\Services\ArticleService;
-use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();

@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\QuestionController;
 use App\Http\Requests\Question\PostRequest;
 use App\Http\Requests\Question\PutRequest;
 use App\Models\Question;
 use App\Services\QuestionService;
-use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();

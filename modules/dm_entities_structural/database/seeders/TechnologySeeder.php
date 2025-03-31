@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Technology;
-
 use Illuminate\Database\Seeder;
+
+use App\Models\Technology;
 
 class TechnologySeeder extends Seeder
 {
@@ -22,7 +22,6 @@ class TechnologySeeder extends Seeder
 
         foreach ($generalTechnologies as $technology) {
             Technology::factory()->create(array_merge($technology, [
-                'user_id' => 1,
                 'category' => 'general',
                 'display' => true
             ]));

@@ -62,3 +62,11 @@ uses()
 uses()
     ->group('modules')
     ->in('Modules');
+
+uses()
+    ->group('dm-entities')
+    ->in('Modules/dm_entities');
+
+uses()
+    ->group('dm-entities-structural')
+    ->in('Modules/dm_entities_structural');

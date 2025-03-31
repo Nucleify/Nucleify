@@ -10,19 +10,14 @@ interface TechnologyContract
   public function getId(): int;
 
   /**
-   * @return int
+   * @return string
    */
-  public function getUserId(): int;
+  public function getLabel(): string;
 
-    /**
-     * @return string
-     */
-    public function getLabel(): string;
-
-    /**
-     * @return string|null
-     */
-    public function getDescription(): string | null;
+  /**
+   * @return string|null
+   */
+  public function getDescription(): string | null;
 
   /**
    * @return string

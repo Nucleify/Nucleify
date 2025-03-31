@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use App\Contracts\FeatureContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+
+use App\Contracts\FeatureContract;
 
 /**
  * @property int id

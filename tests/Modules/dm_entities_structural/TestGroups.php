@@ -8,6 +8,10 @@ uses()
     ->in('Feature/Api');
 
 uses()
+    ->group('card-api')
+    ->in('Feature/Api/Card');
+
+uses()
     ->group('color-api')
     ->in('Feature/Api/Color');
 

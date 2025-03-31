@@ -58,7 +58,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
         ]]
     ));
 
-    $updatedMoneyData['user_id'] = updatedMoneyData['user_id']; // reset user_id value
+    $updatedMoneyData['user_id'] = updatedMoneyData['user_id'];
 
 
 
@@ -113,7 +113,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
         ]]
     ));
 
-    $updatedMoneyData['count'] = updatedMoneyData['count']; // reset count value
+    $updatedMoneyData['count'] = updatedMoneyData['count'];
 
 
 
@@ -188,7 +188,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
         ]]
     ));
 
-    $updatedMoneyData['sender'] = updatedMoneyData['sender']; // reset sender value
+    $updatedMoneyData['sender'] = updatedMoneyData['sender'];
 
 
 
@@ -263,7 +263,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
         ]]
     ));
 
-    $updatedMoneyData['receiver'] = updatedMoneyData['receiver']; // reset receiver value
+    $updatedMoneyData['receiver'] = updatedMoneyData['receiver'];
 
 
 
@@ -351,7 +351,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
         ]]
     ));
 
-    $updatedMoneyData['title'] = updatedMoneyData['title']; // reset title value
+    $updatedMoneyData['title'] = updatedMoneyData['title'];
 
 
 
@@ -430,7 +430,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedMoneyData = updat
         ]]
     ));
 
-    $updatedMoneyData['description'] = updatedMoneyData['description']; // reset description value
+    $updatedMoneyData['description'] = updatedMoneyData['description'];
 
 
 

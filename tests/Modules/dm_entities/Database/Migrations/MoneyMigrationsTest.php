@@ -5,7 +5,16 @@ use Illuminate\Support\Facades\Schema;
 it('can create table', function () {
     expect(Schema::hasTable('money'))->toBeTrue()
         ->and(Schema::hasColumns('money', [
-            'id', 'user_id', 'sender', 'receiver', 'count', 'title', 'description', 'category', 'created_at', 'updated_at'
+            'id',
+            'user_id',
+            'sender',
+            'receiver',
+            'count',
+            'title',
+            'description',
+            'category',
+            'created_at',
+            'updated_at'
         ]))->toBeTrue();
 });
 

@@ -58,7 +58,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ]]
     ));
 
-    $contactData['user_id'] = contactData['user_id']; // reset user_id value
+    $contactData['user_id'] = contactData['user_id'];
 
 
     /**
@@ -157,7 +157,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ]]
     ));
 
-    $contactData['first_name'] = contactData['first_name']; // reset first_name value
+    $contactData['first_name'] = contactData['first_name'];
 
 
     /**
@@ -247,7 +247,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ]]
     ));
 
-    $contactData['last_name'] = contactData['last_name']; // reset last_name value
+    $contactData['last_name'] = contactData['last_name'];
 
 
 
@@ -326,7 +326,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ]]
     ));
 
-    $contactData['email'] = contactData['email']; // reset email value
+    $contactData['email'] = contactData['email'];
 
 
 
@@ -411,7 +411,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ]]
     ));
 
-    $contactData['personal_phone'] = contactData['personal_phone']; // reset personal_phone value
+    $contactData['personal_phone'] = contactData['personal_phone'];
 
 
 
@@ -496,7 +496,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ]]
     ));
 
-    $contactData['work_phone'] = contactData['work_phone']; // reset work_phone value
+    $contactData['work_phone'] = contactData['work_phone'];
 
 
 
@@ -587,7 +587,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ]]
     ));
 
-    $contactData['address'] = contactData['address']; // reset address value
+    $contactData['address'] = contactData['address'];
 
 
 
@@ -666,7 +666,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ]]
     ));
 
-    $contactData['birthday'] = contactData['birthday']; // reset birthday value
+    $contactData['birthday'] = contactData['birthday'];
 
 
 
@@ -710,7 +710,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ]]
     ));
 
-    $contactData['contact_groups'] = contactData['contact_groups']; // reset contact_groups value
+    $contactData['contact_groups'] = contactData['contact_groups'];
 
 
 

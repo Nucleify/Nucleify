@@ -100,7 +100,6 @@ export function questionRequests(
   ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.post('/api/questions', {
-        user_id: window.sessionStorage.getItem('user_id'),
         index: data.index,
         content: data.content,
         answer: data.answer,

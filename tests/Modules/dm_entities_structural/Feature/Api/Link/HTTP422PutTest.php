@@ -109,7 +109,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ]]
     ));
 
-    $updatedLinkData['href'] = updatedLinkData['href']; // reset href value
+    $updatedLinkData['href'] = updatedLinkData['href'];
 
 
 
@@ -182,7 +182,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ]]
     ));
 
-    $updatedLinkData['category'] = updatedLinkData['category']; // reset category value
+    $updatedLinkData['category'] = updatedLinkData['category'];
 
 
 
@@ -249,7 +249,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ]]
     ));
 
-    $updatedLinkData['src'] = updatedLinkData['src']; // reset src value
+    $updatedLinkData['src'] = updatedLinkData['src'];
 
 
 
@@ -310,7 +310,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ]]
     ));
 
-    $updatedLinkData['icon'] = updatedLinkData['icon']; // reset icon value
+    $updatedLinkData['icon'] = updatedLinkData['icon'];
 
 
 
@@ -371,7 +371,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ]]
     ));
 
-    $updatedLinkData['hreflang'] = updatedLinkData['hreflang']; // reset hreflang value
+    $updatedLinkData['hreflang'] = updatedLinkData['hreflang'];
 
 
 
@@ -432,7 +432,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ]]
     ));
 
-    $updatedLinkData['media'] = updatedLinkData['media']; // reset media value
+    $updatedLinkData['media'] = updatedLinkData['media'];
 
 
 
@@ -493,7 +493,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ]]
     ));
 
-    $updatedLinkData['ping'] = updatedLinkData['ping']; // reset ping value
+    $updatedLinkData['ping'] = updatedLinkData['ping'];
 
 
 
@@ -561,7 +561,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ]]
     ));
 
-    $updatedLinkData['rel'] = updatedLinkData['rel']; // reset rel value
+    $updatedLinkData['rel'] = updatedLinkData['rel'];
 
 
 
@@ -628,7 +628,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ]]
     ));
 
-    $updatedLinkData['target'] = updatedLinkData['target']; // reset target value
+    $updatedLinkData['target'] = updatedLinkData['target'];
 
 
 
@@ -689,5 +689,5 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ]]
     ));
 
-    $updatedLinkData['type'] = updatedLinkData['type']; // reset type value
+    $updatedLinkData['type'] = updatedLinkData['type'];
 });

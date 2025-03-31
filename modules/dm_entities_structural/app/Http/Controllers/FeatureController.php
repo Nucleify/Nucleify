@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Feature\PostRequest;
-use App\Http\Requests\Feature\PutRequest;
-use App\Models\Feature;
-use App\Services\FeatureService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
+use App\Http\Requests\Feature\PostRequest;
+use App\Http\Requests\Feature\PutRequest;
+use App\Models\Feature;
+use App\Services\FeatureService;
 
 class FeatureController extends Controller
 {

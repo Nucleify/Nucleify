@@ -1,8 +1,9 @@
 <?php
 
+use function Pest\Laravel\mock;
+
 use App\Models\Money;
 use App\Services\MoneyService;
-use function Pest\Laravel\mock;
 
 beforeEach(function () {
     $this->createUsers();

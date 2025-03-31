@@ -19,11 +19,7 @@ class TechnologyFactory extends Factory
      */
     public function definition(): array
     {
-        $users = User::all();
-        $usersIds = $users->pluck('id')->toArray();
-
         $data = [
-            'user_id' => $this->faker->randomElement($usersIds),
             'label' => $this->faker->word(),
             'description' => $this->faker->sentence(5),
             'href' => $this->faker->url(),
@@ -35,7 +31,6 @@ class TechnologyFactory extends Factory
         ];
 
         Validator::make($data, [
-            'user_id' => 'required|integer|exists:users,id',
             'label' => 'required|string|max:50',
             'description' => 'string|min:3|max:255',
             'href' => 'required|string',

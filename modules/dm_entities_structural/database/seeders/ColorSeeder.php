@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Color;
-
 use Illuminate\Database\Seeder;
+
+use App\Models\Color;
 
 class ColorSeeder extends Seeder
 {

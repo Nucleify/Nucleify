@@ -58,7 +58,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['user_id'] = moneyData['user_id']; // reset user_id value
+    $moneyData['user_id'] = moneyData['user_id'];
 
 
 
@@ -113,7 +113,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['count'] = moneyData['count']; // reset count value
+    $moneyData['count'] = moneyData['count'];
 
 
 
@@ -188,7 +188,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['sender'] = moneyData['sender']; // reset sender value
+    $moneyData['sender'] = moneyData['sender'];
 
 
 
@@ -263,7 +263,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['receiver'] = moneyData['receiver']; // reset receiver value
+    $moneyData['receiver'] = moneyData['receiver'];
 
 
 
@@ -351,7 +351,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['title'] = moneyData['title']; // reset title value
+    $moneyData['title'] = moneyData['title'];
 
 
 
@@ -430,7 +430,7 @@ describe('422 > Unprocessable Content > POST', function($moneyData = moneyData) 
         ]]
     ));
 
-    $moneyData['description'] = moneyData['description']; // reset description value
+    $moneyData['description'] = moneyData['description'];
 
 
 

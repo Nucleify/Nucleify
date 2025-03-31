@@ -2,17 +2,16 @@
 
 namespace App\Transformers;
 
-use App\Contracts\QuestionContract;
 use League\Fractal\TransformerAbstract;
 
-class
-QuestionTransformer extends TransformerAbstract
+use App\Contracts\QuestionContract;
+
+class QuestionTransformer extends TransformerAbstract
 {
     public function transform(QuestionContract $model): array
     {
         return [
             'id' => $model->getId(),
-            'user_id' => $model->getUserId(),
             'index' => $model->getIndex(),
             'content' => $model->getContent(),
             'answer' => $model->getAnswer(),

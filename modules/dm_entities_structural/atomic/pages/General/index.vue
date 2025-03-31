@@ -3,6 +3,15 @@
   <div class="panel-container">
     <div class="tiles grid col-12">
       <ad-tile
+        href="/structural/cards"
+        header="Cards"
+        :count="cards?.length"
+        icon="pi pi-stop"
+        :count-secondary="cardsCreatedLastWeek"
+        text-secondary="this week"
+        ad-type="card"
+      />
+      <ad-tile
         href="/structural/features"
         header="Features"
         :count="features?.length"
@@ -46,6 +55,7 @@
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
+      :card-data="cards"
       :link-data="links"
       :question-data="questions"
       :technology-data="technologies"
@@ -54,9 +64,19 @@
       :loading="!allLoaded"
     />
 
+    <dm-card-dashboard
+      :data="cards"
+      :getData="getAllCards"
+      :loading="!allLoaded"
+    />
     <dm-feature-dashboard
       :data="features"
       :getData="getAllFeatures"
+      :loading="!allLoaded"
+    />
+    <dm-link-dashboard
+      :data="links"
+      :getData="getAllLinks"
       :loading="!allLoaded"
     />
     <dm-question-dashboard
@@ -69,11 +89,6 @@
       :getData="getAllTechnologies"
       :loading="!allLoaded"
     />
-    <dm-link-dashboard
-      :data="links"
-      :getData="getAllLinks"
-      :loading="!allLoaded"
-    />
   </div>
 </template>
 
@@ -81,6 +96,7 @@
 import { onMounted, ref, Ref, watch } from 'vue'
 
 import {
+  cardRequests,
   featureRequests,
   linkRequests,
   questionRequests,
@@ -91,12 +107,28 @@ import {
 const { display } = useDisplayCharts()
 
 const {
+  results: cards,
+  createdLastWeek: cardsCreatedLastWeek,
+  loading: cardsLoading,
+  getAllCards,
+  getCountCardsByCreatedLastWeek,
+} = cardRequests()
+
+const {
   results: features,
   createdLastWeek: featuresCreatedLastWeek,
   loading: featuresLoading,
   getAllFeatures,
   getCountFeaturesByCreatedLastWeek,
 } = featureRequests()
+
+const {
+  results: links,
+  createdLastWeek: linksCreatedLastWeek,
+  loading: linksLoading,
+  getAllLinks,
+  getCountLinksByCreatedLastWeek,
+} = linkRequests()
 
 const {
   results: questions,
@@ -114,40 +146,42 @@ const {
   getCountTechnologiesByCreatedLastWeek,
 } = technologyRequests()
 
-const {
-  results: links,
-  createdLastWeek: linksCreatedLastWeek,
-  loading: linksLoading,
-  getAllLinks,
-  getCountLinksByCreatedLastWeek,
-} = linkRequests()
-
 onMounted(() => {
+  getAllCards(true)
+  getCountCardsByCreatedLastWeek()
   getAllFeatures(true)
   getCountFeaturesByCreatedLastWeek()
+  getAllLinks(true)
+  getCountLinksByCreatedLastWeek()
   getAllQuestions(true)
   getCountQuestionsByCreatedLastWeek()
   getAllTechnologies(true)
   getCountTechnologiesByCreatedLastWeek()
-  getAllLinks(true)
-  getCountLinksByCreatedLastWeek()
 })
 
 const allLoaded: Ref<boolean> = ref(false)
 
 watch(
-  [questionsLoading, technologiesLoading, linksLoading, featuresLoading],
+  [
+    cardsLoading,
+    featuresLoading,
+    linksLoading,
+    questionsLoading,
+    technologiesLoading,
+  ],
   ([
+    newCardsLoading,
+    newFeaturesLoading,
+    newLinksLoading,
     newQuestionsLoading,
     newTechnologiesLoading,
-    newLinksLoading,
-    newFeaturesLoading,
   ]) => {
     if (
-      !newQuestionsLoading &&
-      !newTechnologiesLoading &&
+      !newCardsLoading &&
+      !newFeaturesLoading &&
       !newLinksLoading &&
-      !newFeaturesLoading
+      !newQuestionsLoading &&
+      !newTechnologiesLoading
     ) {
       setTimeout(() => {
         allLoaded.value = true

@@ -7,61 +7,6 @@ beforeEach(function () {
 
 describe('422 > Unprocessable Content > POST', function($questionData = questionData) {
     /**
-     * USER ID TESTS
-     */
-    $questionData['user_id'] = '';
-    test('invalid user_id > empty', apiTest(
-        'POST',
-        'questions.store',
-        422,
-        $questionData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field is required.']
-        ]]
-    ));
-
-    $questionData['user_id'] = 'user_id';
-    test('invalid user_id > string', apiTest(
-        'POST',
-        'questions.store',
-        422,
-        $questionData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
-        ]]
-    ));
-
-    $questionData['user_id'] = false;
-    test('invalid user_id > false', apiTest(
-        'POST',
-        'questions.store',
-        422,
-        $questionData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
-        ]]
-    ));
-
-    $questionData['user_id'] = [];
-    test('invalid user_id > empty array', apiTest(
-        'POST',
-        'questions.store',
-        422,
-        $questionData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field is required.']
-        ]]
-    ));
-
-    $questionData['user_id'] = questionData['user_id']; // reset user_id value
-
-
-
-    /**
      * INDEX TESTS
      */
     $questionData['index'] = '';
@@ -112,7 +57,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         ]]
     ));
 
-    $questionData['index'] = questionData['index']; // reset index value
+    $questionData['index'] = questionData['index'];
 
 
 
@@ -185,7 +130,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         ]]
     ));
 
-    $questionData['content'] = questionData['content']; // reset content value
+    $questionData['content'] = questionData['content'];
 
 
 
@@ -246,7 +191,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         ]]
     ));
 
-    $questionData['answer'] = questionData['answer']; // reset answer value
+    $questionData['answer'] = questionData['answer'];
 
 
 

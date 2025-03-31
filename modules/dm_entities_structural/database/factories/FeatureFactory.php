@@ -2,11 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Structural;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Validator;
-
 
 /**
  * @extends Factory<Feature>

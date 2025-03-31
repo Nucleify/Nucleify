@@ -1,6 +1,29 @@
 <?php
 
 /**
+ *  Card
+ */
+const cardData = [
+    'id' => 1,
+    'src' => 'testSrc',
+    'title' => 'testTitle',
+    'description' => 'test description test',
+    'category' => 'test',
+    'component' => 'testComponent',
+    'display' => false
+];
+
+const updatedCardData = [
+    'id' => 1,
+    'src' => 'updatedTestSrc',
+    'title' => 'updatedTestTitle',
+    'description' => 'updated test description test',
+    'category' => 'test2',
+    'component' => 'updatedTestComponent',
+    'display' => true
+];
+
+/**
  *  Color
  */
 const colorData = [
@@ -43,7 +66,6 @@ const updatedFeatureData = [
  */
 const questionData = [
     'id' => 1,
-    'user_id' => 1,
     'index' => 1,
     'content' => 'Question',
     'answer' => 'Answer',
@@ -53,7 +75,6 @@ const questionData = [
 ];
 const updatedQuestionData = [
     'id' => 1,
-    'user_id' => 1,
     'index' => 1,
     'content' => 'Question2',
     'answer' => 'Answer2',
@@ -67,7 +88,6 @@ const updatedQuestionData = [
  */
 const technologyData = [
     'id' => 1,
-    'user_id' => 1,
     'href' => 'href',
     'src' => 'src',
     'label' => 'Label',
@@ -77,7 +97,6 @@ const technologyData = [
 ];
 const updatedTechnologyData = [
     'id' => 1,
-    'user_id' => 1,
     'href' => 'href2',
     'src' => 'src2',
     'label' => 'Label2',

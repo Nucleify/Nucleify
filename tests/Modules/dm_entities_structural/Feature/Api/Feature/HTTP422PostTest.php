@@ -63,7 +63,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ]]
     ));
 
-    $featureData['icon'] = featureData['icon']; // reset content value
+    $featureData['icon'] = featureData['icon'];
 
 
     
@@ -136,7 +136,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ]]
     ));
 
-    $featureData['header'] = featureData['header']; // reset content value
+    $featureData['header'] = featureData['header'];
 
 
 
@@ -197,7 +197,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ]]
     ));
 
-    $featureData['description'] = featureData['description']; // reset content value
+    $featureData['description'] = featureData['description'];
 
 
 
@@ -269,6 +269,4 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
             'category' => ['The category field is required.']
         ]]
     ));
-
-    $featureData['category'] = featureData['category']; // reset content value
 });

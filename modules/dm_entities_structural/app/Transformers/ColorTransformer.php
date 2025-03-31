@@ -2,11 +2,11 @@
 
 namespace App\Transformers;
 
-use App\Contracts\ColorContract;
 use League\Fractal\TransformerAbstract;
 
-class
-ColorTransformer extends TransformerAbstract
+use App\Contracts\ColorContract;
+
+class ColorTransformer extends TransformerAbstract
 {
     public function transform(ColorContract $model): array
     {

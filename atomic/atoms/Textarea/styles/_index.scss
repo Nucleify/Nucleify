@@ -8,7 +8,7 @@
   min-height: 100px;
   max-height: 400px;
 
-  @each $type in main, activity, article, contact, feature, link, money,
+  @each $type in main, activity, article, card, contact, feature, link, money,
     question, technology, user
   {
     &[ad-type='#{$type}'] {

@@ -26,6 +26,12 @@ const columnsData: readonly ColumnsInterface[] = {
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
+  card: [
+    ['title', 'Title', 'title-column'],
+    ['category', 'Category', 'category-column desktop-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
   contact: [
     ['full_name', 'Full Name', 'full-name-column'],
     ['email', 'Email', 'email-column tablet-column'],

@@ -199,6 +199,5 @@ class Link extends Model implements LinkContract
     {
         return $query->whereDate('updated_at', $parameter);
     }
-
 }
 

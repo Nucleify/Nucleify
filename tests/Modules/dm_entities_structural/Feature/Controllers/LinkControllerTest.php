@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\LinkController;
 use App\Http\Requests\Link\PostRequest;
 use App\Http\Requests\Link\PutRequest;
 use App\Models\Link;
 use App\Services\LinkService;
-use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();

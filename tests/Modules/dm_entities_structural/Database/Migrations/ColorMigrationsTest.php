@@ -5,7 +5,13 @@ use Illuminate\Support\Facades\Schema;
 it('can create table', function () {
     expect(Schema::hasTable('colors'))->toBeTrue()
         ->and(Schema::hasColumns('colors', [
-            'id', 'user_id', 'entity', 'value', 'new', 'created_at', 'updated_at'
+            'id',
+            'user_id',
+            'entity',
+            'value',
+            'new',
+            'created_at',
+            'updated_at'
         ]))->toBeTrue();
 });
 

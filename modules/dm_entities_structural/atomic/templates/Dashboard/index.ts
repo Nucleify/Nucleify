@@ -1,3 +1,4 @@
+export { default as CardDashboard } from './Card.vue'
 export { default as FeatureDashboard } from './Feature.vue'
 export { default as LinkDashboard } from './Link.vue'
 export { default as QuestionDashboard } from './Question.vue'

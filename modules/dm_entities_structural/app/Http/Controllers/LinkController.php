@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Link\PostRequest;
-use App\Http\Requests\Link\PutRequest;
-use App\Models\Link;
-use App\Services\LinkService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
+use App\Http\Requests\Link\PostRequest;
+use App\Http\Requests\Link\PutRequest;
+use App\Models\Link;
+use App\Services\LinkService;
 
 class LinkController extends Controller
 {

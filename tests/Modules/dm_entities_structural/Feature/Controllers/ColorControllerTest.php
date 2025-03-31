@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\ColorController;
 use App\Http\Requests\Color\PostRequest;
 use App\Http\Requests\Color\PutRequest;
 use App\Models\Color;
 use App\Services\ColorService;
-use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();

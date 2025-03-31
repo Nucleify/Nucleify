@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Feature;
-
 use Illuminate\Database\Seeder;
+
+use App\Models\Feature;
 
 class FeatureSeeder extends Seeder
 {
@@ -12,7 +12,6 @@ class FeatureSeeder extends Seeder
      * @var string
      */
     protected string $path = 'modules/dm_entities_structural/database/constants/Features/';
-
 
     /**
      * Run the database seeds.

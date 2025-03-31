@@ -1,8 +1,9 @@
 <?php
 
+use function Pest\Laravel\mock;
+
 use App\Models\Question;
 use App\Services\QuestionService;
-use function Pest\Laravel\mock;
 
 beforeEach(function () {
     $this->createUsers();

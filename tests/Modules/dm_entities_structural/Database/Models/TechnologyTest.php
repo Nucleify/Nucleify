@@ -18,12 +18,6 @@ describe('Instance', function () {
             ->toBe($this->model->id);
     });
 
-    test('can get user_id', function () {
-        expect($this->model->getUserId())
-            ->toBeInt()
-            ->toBe($this->model->user_id);
-    });
-
     test('can get label', function () {
         expect($this->model->getLabel())
             ->toBeString()
@@ -78,12 +72,6 @@ describe('Scope', function () {
         $foundModel = Technology::getById($this->model->id)->first();
 
         expect($foundModel->id)->toBe($this->model->id);
-    });
-
-    test('can filter by id using scopeGetByUserId', function () {
-        $foundModel = Technology::getByUserId($this->model->user_id)->first();
-
-        expect($foundModel->user_id)->toBe($this->model->user_id);
     });
 
     test('can filter by answer using scopeGetByLabel', function () {

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Contracts\UserContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,6 +9,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Multicaret\Acquaintances\Traits\Friendable;
+
+use App\Contracts\UserContract;
 
 /**
  * @property int id
@@ -45,6 +46,7 @@ use Multicaret\Acquaintances\Traits\Friendable;
  * @property Builder scopeGetBySuperAdminRole
  * @property HasMany contacts
  * @property HasMany money
+ * @property HasMany card
  * @property HasMany question
  * @property void createContactFromUserDetails
  */
@@ -211,6 +213,10 @@ class User extends Authenticatable implements UserContract
     public function money(): HasMany
     {
         return $this->hasMany(Money::class, 'user_id');
+    }
+    public function card(): HasMany
+    {
+        return $this->hasMany(Card::class);
     }
     public function question(): HasMany
     {

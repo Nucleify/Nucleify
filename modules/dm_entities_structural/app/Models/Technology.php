@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Contracts\TechnologyContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+use App\Contracts\TechnologyContract;
+
 /**
  * @property int id
- * @property int user_id
  * @property string label
  * @property string|null description
  * @property string href
@@ -20,7 +20,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string created_at
  * @property string updated_at
  * @property int getId
- * @property int getUserId
  * @property string getLabel
  * @property string|null getDescription
  * @property int getHref
@@ -29,9 +28,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string getDisplay
  * @property string getCreatedAt
  * @property string getUpdatedAt
- * @property BelongsTo user
  * @property Builder scopeGetById
- * @property Builder scopeGetByUserId
  * @property Builder scopeGetByLabel
  * @property Builder scopeGetByDescription
  * @property Builder scopeGetByHref
@@ -46,7 +43,6 @@ class Technology extends Model implements TechnologyContract
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'label',
         'description',
         'href',
@@ -61,10 +57,6 @@ class Technology extends Model implements TechnologyContract
     public function getId(): int
     {
         return $this->id;
-    }
-    public function getUserId(): int
-    {
-        return $this->user_id;
     }
     public function getLabel(): string
     {
@@ -106,10 +98,6 @@ class Technology extends Model implements TechnologyContract
     {
         return $query->where('id', $parameter);
     }
-    public function scopeGetByUserId(Builder $query, int $parameter): Builder
-    {
-        return $query->where('user_id', $parameter);
-    }
     public function scopeGetByLabel(Builder $query, string $parameter): Builder
     {
         return $query->where('label', $parameter);
@@ -141,13 +129,5 @@ class Technology extends Model implements TechnologyContract
     public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('updated_at', $parameter);
-    }
-
-    /**
-     *  Relational functions
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 }

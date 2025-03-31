@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Technology\PostRequest;
-use App\Http\Requests\Technology\PutRequest;
-use App\Models\Technology;
-use App\Services\TechnologyService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
+use App\Http\Requests\Technology\PostRequest;
+use App\Http\Requests\Technology\PutRequest;
+use App\Models\Technology;
+use App\Services\TechnologyService;
 
 class TechnologyController extends Controller
 {

@@ -1,6 +1,5 @@
 export interface QuestionInterface {
   id?: number
-  user_id?: number
   index: number
   content: string
   answer: string

@@ -54,7 +54,6 @@ describe('technologyRequests', (): void => {
     await requests.storeTechnology(mockTechnology)
 
     expect(axios.post).toHaveBeenCalledWith('/api/technologies', {
-      user_id: window.sessionStorage.getItem('user_id'),
       href: mockTechnology.href,
       src: mockTechnology.src,
       label: mockTechnology.label,

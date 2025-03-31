@@ -1,8 +1,9 @@
 <?php
 
+use function Pest\Laravel\mock;
+
 use App\Models\Link;
 use App\Services\LinkService;
-use function Pest\Laravel\mock;
 
 beforeEach(function () {
     $this->createUsers();
