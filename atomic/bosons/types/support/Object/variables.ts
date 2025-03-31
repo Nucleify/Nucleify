@@ -3,6 +3,7 @@ import { Ref } from 'vue'
 import {
   ActivityLogInterface,
   ArticleInterface,
+  StructuralCardInterface,
   ContactInterface,
   FeatureInterface,
   LinkInterface,
@@ -15,6 +16,7 @@ import {
 export type ObjectType =
   | ActivityLogInterface
   | ArticleInterface
+  | StructuralCardInterface
   | ContactInterface
   | FeatureInterface
   | LinkInterface
@@ -27,6 +29,7 @@ export type ObjectType =
 export type ObjectNameType =
   | 'activity'
   | 'article'
+  | 'card'
   | 'contact'
   | 'feature'
   | 'link'

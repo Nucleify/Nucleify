@@ -54,7 +54,6 @@ describe('questionRequests', (): void => {
     await requests.storeQuestion(mockQuestion)
 
     expect(axios.post).toHaveBeenCalledWith('/api/questions', {
-      user_id: window.sessionStorage.getItem('user_id'),
       index: mockQuestion.index,
       content: mockQuestion.content,
       answer: mockQuestion.answer,

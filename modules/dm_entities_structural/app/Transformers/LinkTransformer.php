@@ -3,9 +3,9 @@
 
 namespace App\Transformers;
 
-use App\Contracts\LinkContract;
 use League\Fractal\TransformerAbstract;
 
+use App\Contracts\LinkContract;
 
 class LinkTransformer extends TransformerAbstract
 {

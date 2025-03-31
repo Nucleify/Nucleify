@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Color\PostRequest;
-use App\Http\Requests\Color\PutRequest;
-use App\Models\Color;
-use App\Services\ColorService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
+use App\Http\Requests\Color\PostRequest;
+use App\Http\Requests\Color\PutRequest;
+use App\Models\Color;
+use App\Services\ColorService;
 
 class ColorController extends Controller
 {

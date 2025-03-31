@@ -1,6 +1,5 @@
 export interface TechnologyInterface {
   id?: number
-  user_id?: number
   href?: string
   src?: string
   label?: string

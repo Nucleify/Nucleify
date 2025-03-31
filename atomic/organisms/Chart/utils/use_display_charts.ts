@@ -6,7 +6,8 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
   const display: DisplayChartsInterface = reactive({
     Activity: window.localStorage.getItem('display-activity-graphs') === 'true',
     Admin: window.localStorage.getItem('display-admin-graphs') === 'true',
-    Article: window.localStorage.getItem('display-article-graphs') == 'true',
+    Article: window.localStorage.getItem('display-article-graphs') === 'true',
+    Card: window.localStorage.getItem('display-card-graphs') === 'true',
     Contact: window.localStorage.getItem('display-contact-graphs') === 'true',
     Feature: window.localStorage.getItem('display-feature-graphs') === 'true',
     Link: window.localStorage.getItem('display-link-graphs') === 'true',
@@ -36,6 +37,7 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
       'display-activity-graphs',
       'display-admin-graphs',
       'display-article-graphs',
+      'display-card-graphs',
       'display-contact-graphs',
       'display-feature-graphs',
       'display-link-graphs',

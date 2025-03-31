@@ -7,61 +7,6 @@ beforeEach(function () {
 
 describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = updatedTechnologyData) {
     /**
-     * USER ID TESTS
-     */
-    $updatedTechnologyData['user_id'] = '';
-    test('invalid user_id > empty', apiTest(
-        'PUT',
-        'technologies.update',
-        422,
-        $updatedTechnologyData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
-        ]]
-    ));
-
-    $updatedTechnologyData['user_id'] = 'user_id';
-    test('invalid user_id > string', apiTest(
-        'PUT',
-        'technologies.update',
-        422,
-        $updatedTechnologyData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
-        ]]
-    ));
-
-    $updatedTechnologyData['user_id'] = false;
-    test('invalid user_id > false', apiTest(
-        'PUT',
-        'technologies.update',
-        422,
-        $updatedTechnologyData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
-        ]]
-    ));
-
-    $updatedTechnologyData['user_id'] = [];
-    test('invalid user_id > empty array', apiTest(
-        'PUT',
-        'technologies.update',
-        422,
-        $updatedTechnologyData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
-        ]]
-    ));
-
-    $updatedTechnologyData['user_id'] = updatedTechnologyData['user_id']; // reset user_id value
-
-
-
-    /**
      * LABEL TESTS
      */
     $updatedTechnologyData['label'] = '';
@@ -130,7 +75,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ]]
     ));
 
-    $updatedTechnologyData['label'] = updatedTechnologyData['label']; // reset label value
+    $updatedTechnologyData['label'] = updatedTechnologyData['label'];
 
 
 
@@ -209,7 +154,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ]]
     ));
 
-    $updatedTechnologyData['description'] = updatedTechnologyData['description']; // reset description value
+    $updatedTechnologyData['description'] = updatedTechnologyData['description'];
 
 
 
@@ -282,7 +227,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ]]
     ));
 
-    $updatedTechnologyData['href'] = updatedTechnologyData['href']; // reset href value
+    $updatedTechnologyData['href'] = updatedTechnologyData['href'];
 
 
 
@@ -355,7 +300,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ]]
     ));
 
-    $updatedTechnologyData['src'] = updatedTechnologyData['src']; // reset src value
+    $updatedTechnologyData['src'] = updatedTechnologyData['src'];
 
 
 

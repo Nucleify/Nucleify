@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
-use App\Models\Color;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Validator;
+
+use App\Models\Color;
+use App\Models\User;
 
 /**
  * @extends Factory<Color>

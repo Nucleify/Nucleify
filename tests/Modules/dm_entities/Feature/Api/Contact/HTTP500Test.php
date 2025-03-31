@@ -1,8 +1,9 @@
 <?php
 
+use function Pest\Laravel\mock;
+
 use App\Models\Contact;
 use App\Services\ContactService;
-use function Pest\Laravel\mock;
 
 beforeEach(function () {
     $this->createUsers();

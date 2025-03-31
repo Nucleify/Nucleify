@@ -2,18 +2,12 @@
 
 namespace App\Contracts;
 
-
 interface QuestionContract
 {
   /**
    * @return int
    */
   public function getId(): int;
-
-  /**
-   * @return int
-   */
-  public function getUserId(): int;
 
   /**
    * @return int

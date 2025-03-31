@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Contracts\QuestionContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+use App\Contracts\QuestionContract;
+
 /**
  * @property int id
- * @property int user_id
  * @property int index
  * @property string content
  * @property string answer
@@ -20,16 +20,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string created_at
  * @property string updated_at
  * @property int getId
- * @property int getUserId
  * @property int getIndex
  * @property string getContent
  * @property string getAnswer
  * @property string|null getCategory
+ * @property boolean getDisplay
+ * @property boolean getOnSite
  * @property string getCreatedAt
  * @property string getUpdatedAt
- * @property BelongsTo user
  * @property Builder scopeGetById
- * @property Builder scopeGetByUserId
  * @property Builder scopeGetByIndex
  * @property Builder scopeGetByContent
  * @property Builder scopeGetByAnswer
@@ -44,7 +43,6 @@ class Question extends Model implements QuestionContract
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
         'index',
         'content',
         'answer',
@@ -59,10 +57,6 @@ class Question extends Model implements QuestionContract
     public function getId(): int
     {
         return $this->id;
-    }
-    public function getUserId(): int
-    {
-        return $this->user_id;
     }
     public function getIndex(): int
     {
@@ -104,10 +98,6 @@ class Question extends Model implements QuestionContract
     {
         return $query->where('id', $parameter);
     }
-    public function scopeGetByUserId(Builder $query, int $parameter): Builder
-    {
-        return $query->where('user_id', $parameter);
-    }
     public function scopeGetByIndex(Builder $query, int $parameter): Builder
     {
         return $query->where('index', $parameter);
@@ -139,13 +129,5 @@ class Question extends Model implements QuestionContract
     public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('updated_at', $parameter);
-    }
-
-    /**
-     *  Relational functions
-     */
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 }

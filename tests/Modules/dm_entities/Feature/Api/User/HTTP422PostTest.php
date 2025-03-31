@@ -63,7 +63,7 @@ describe('422 > Unprocessable Content > POST', function($userData = userData) {
         ]]
     ));
 
-    $userData['name'] = userData['name']; // reset name value
+    $userData['name'] = userData['name'];
 
 
 
@@ -166,7 +166,7 @@ describe('422 > Unprocessable Content > POST', function($userData = userData) {
         ]]
     ));
 
-    $userData['email'] = userData['email']; // reset email value
+    $userData['email'] = userData['email'];
 
 
 
@@ -257,7 +257,7 @@ describe('422 > Unprocessable Content > POST', function($userData = userData) {
         ]]
     ));
 
-    $userData['password'] = userData['password']; // reset password value
+    $userData['password'] = userData['password'];
 
 
 

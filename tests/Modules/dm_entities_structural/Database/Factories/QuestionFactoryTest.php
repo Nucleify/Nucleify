@@ -24,7 +24,7 @@ it('can create multiple records', function () {
 
 it("can't create record", function () {
     try {
-        Question::factory()->create(['user_id' => 'user_id']);
+        Question::factory()->create(['id' => 'id']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
         return;
@@ -35,7 +35,7 @@ it("can't create record", function () {
 
 it("can't create multiple records", function () {
     try {
-        Question::factory()->count(2)->create(['user_id' => 'user_id']);
+        Question::factory()->count(2)->create(['id' => 'id']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
         return;

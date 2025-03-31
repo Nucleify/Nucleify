@@ -2,17 +2,16 @@
 
 namespace App\Transformers;
 
-use App\Contracts\TechnologyContract;
 use League\Fractal\TransformerAbstract;
 
-class
-TechnologyTransformer extends TransformerAbstract
+use App\Contracts\TechnologyContract;
+
+class TechnologyTransformer extends TransformerAbstract
 {
     public function transform(TechnologyContract $model): array
     {
         return [
             'id' => $model->getId(),
-            'user_id' => $model->getUserId(),
             'label' => $model->getLabel(),
             'description' => $model->getDescription(),
             'href' => $model->getHref(),

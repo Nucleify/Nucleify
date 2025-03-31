@@ -3,9 +3,9 @@
 
 namespace App\Transformers;
 
-use App\Contracts\FeatureContract;
 use League\Fractal\TransformerAbstract;
 
+use App\Contracts\FeatureContract;
 
 class FeatureTransformer extends TransformerAbstract
 {

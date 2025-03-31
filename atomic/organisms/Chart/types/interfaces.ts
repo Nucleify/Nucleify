@@ -10,6 +10,7 @@ import {
   QuestionInterface,
   TechnologyInterface,
   UserInterface,
+  StructuralCardInterface,
   LinkInterface,
   FeatureInterface,
 } from 'atomic'
@@ -29,6 +30,7 @@ export interface ChartInterface {
   chartMethodType: ChartMethodType
   activityLogData?: ActivityLogInterface[]
   articleData?: ArticleInterface[]
+  cardData?: StructuralCardInterface[]
   contactData?: ContactInterface[]
   featureData?: FeatureInterface[]
   linkData?: LinkInterface[]
@@ -46,6 +48,7 @@ export interface DisplayChartsInterface {
   Admin: boolean
   Article: boolean
   Contact: boolean
+  Card: boolean
   Feature: boolean
   Link: boolean
   Money: boolean

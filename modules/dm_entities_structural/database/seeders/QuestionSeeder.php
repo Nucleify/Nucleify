@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Question;
 use Illuminate\Database\Seeder;
+
+use App\Models\Question;
 
 class QuestionSeeder extends Seeder
 {
@@ -23,7 +24,6 @@ class QuestionSeeder extends Seeder
 
         foreach ($aboutQuestions as $question) {
             Question::factory()->create(array_merge($question, [
-                'user_id' => 1,
                 'category' => 'about',
                 'display' => true
             ]));
@@ -31,7 +31,6 @@ class QuestionSeeder extends Seeder
 
         foreach ($homeQuestions as $question) {
             Question::factory()->create(array_merge($question, [
-                'user_id' => 1,
                 'category' => 'home',
                 'display' => true
             ]));
@@ -39,7 +38,6 @@ class QuestionSeeder extends Seeder
 
         foreach ($servicesQuestions as $question) {
             Question::factory()->create(array_merge($question, [
-                'user_id' => 1,
                 'category' => 'services',
                 'display' => true
             ]));

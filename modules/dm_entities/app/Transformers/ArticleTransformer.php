@@ -6,7 +6,6 @@ use League\Fractal\TransformerAbstract;
 
 use App\Contracts\ArticleContract;
 
-
 class ArticleTransformer extends TransformerAbstract
 {
     public function transform(ArticleContract $model): array

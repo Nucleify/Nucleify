@@ -7,7 +7,7 @@
   padding: 5px 15px;
   font-size: 1.2rem;
 
-  @each $type in main, activity, article, contact, feature, link, money,
+  @each $type in main, activity, article, card, contact, feature, link, money,
     question, technology, user
   {
     &[ad-type='#{$type}'] {

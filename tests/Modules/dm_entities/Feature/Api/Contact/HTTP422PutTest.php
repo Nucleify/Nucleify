@@ -58,7 +58,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedContactData = upd
         ]]
     ));
 
-    $updatedContactData['user_id'] = updatedContactData['user_id']; // reset user_id value
+    $updatedContactData['user_id'] = updatedContactData['user_id'];
 
 
 
@@ -158,7 +158,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedContactData = upd
         ]]
     ));
 
-    $updatedContactData['first_name'] = updatedContactData['first_name']; // reset first_name value
+    $updatedContactData['first_name'] = updatedContactData['first_name'];
 
 
 
@@ -249,7 +249,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedContactData = upd
         ]]
     ));
 
-    $updatedContactData['last_name'] = updatedContactData['last_name']; // reset last_name value
+    $updatedContactData['last_name'] = updatedContactData['last_name'];
 
 
 
@@ -328,7 +328,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedContactData = upd
         ]]
     ));
 
-    $updatedContactData['email'] = updatedContactData['email']; // reset email value
+    $updatedContactData['email'] = updatedContactData['email'];
 
 
 
@@ -413,7 +413,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedContactData = upd
         ]]
     ));
 
-    $updatedContactData['personal_phone'] = updatedContactData['personal_phone']; // reset personal_phone value
+    $updatedContactData['personal_phone'] = updatedContactData['personal_phone'];
 
 
 
@@ -498,7 +498,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedContactData = upd
         ]]
     ));
 
-    $updatedContactData['work_phone'] =updatedContactData['work_phone']; // reset work_phone value
+    $updatedContactData['work_phone'] =updatedContactData['work_phone'];
 
 
 
@@ -589,7 +589,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedContactData = upd
         ]]
     ));
 
-    $updatedContactData['address'] = updatedContactData['address']; // reset address value
+    $updatedContactData['address'] = updatedContactData['address'];
 
 
 
@@ -668,7 +668,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedContactData = upd
         ]]
     ));
 
-    $updatedContactData['birthday'] = updatedContactData['birthday']; // reset birthday value
+    $updatedContactData['birthday'] = updatedContactData['birthday'];
 
 
 
@@ -700,7 +700,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedContactData = upd
         ]]
     ));
 
-    $updatedContactData['contact_groups'] = updatedContactData['contact_groups']; // reset contact_groups value
+    $updatedContactData['contact_groups'] = updatedContactData['contact_groups'];
 
 
 

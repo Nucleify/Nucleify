@@ -31,9 +31,6 @@ Route::middleware(['web', 'auth'])->group(function () {
             ->name('activity-log.destroy');
     });
 
-    Route::get('/user', function () {
-        return auth()->user();
-    });
 
     /**
      *  Sitemap

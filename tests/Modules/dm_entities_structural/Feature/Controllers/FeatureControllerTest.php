@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\FeatureController;
 use App\Http\Requests\Feature\PostRequest;
 use App\Http\Requests\Feature\PutRequest;
 use App\Models\Feature;
 use App\Services\FeatureService;
-use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();

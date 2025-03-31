@@ -63,7 +63,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
         ]]
     ));
 
-    $updatedFeatureData['icon'] = updatedFeatureData['icon']; // reset content value
+    $updatedFeatureData['icon'] = updatedFeatureData['icon'];
 
     
     
@@ -136,7 +136,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
         ]]
     ));
 
-    $updatedFeatureData['header'] = updatedFeatureData['header']; // reset content value
+    $updatedFeatureData['header'] = updatedFeatureData['header'];
 
 
 
@@ -197,7 +197,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
         ]]
     ));
 
-    $updatedFeatureData['description'] = updatedFeatureData['description']; // reset content value
+    $updatedFeatureData['description'] = updatedFeatureData['description'];
 
 
 
@@ -269,6 +269,4 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
             'category' => ['The category field is required.']
         ]]
     ));
-
-    $updatedFeatureData['category'] = updatedFeatureData['category']; // reset content value
 });

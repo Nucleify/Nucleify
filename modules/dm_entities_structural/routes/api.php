@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\LinkController;
@@ -23,6 +24,26 @@ Route::get('/links/get-site-links/{site}', [LinkController::class, 'getSiteLinks
 
 
 Route::middleware(['web', 'auth'])->group(function () {
+    /**
+     *  Cards
+     */
+    Route::prefix('cards')->controller(CardController::class)->group(function () {
+        Route::get('/', 'index')
+            ->name('cards.index');
+        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+            ->name('cards.countByCreatedLastWeek');
+        Route::get('/get-by-category/{category}', 'getByCategory')
+            ->name('cards.getByCategory');
+        Route::get('/{id}', 'show')
+            ->name('cards.show');
+        Route::post('/', 'store')
+            ->name('cards.store');
+        Route::put('/{id}', 'update')
+            ->name('cards.update');
+        Route::delete('/{id}', 'destroy')
+            ->name('cards.destroy');
+    });
+
     /**
      *  Colors
      */

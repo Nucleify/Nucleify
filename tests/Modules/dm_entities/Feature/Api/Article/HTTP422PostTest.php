@@ -91,7 +91,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         ]]
     ));
 
-    $articleData['title'] = articleData['title']; // reset title value
+    $articleData['title'] = articleData['title'];
 
 
 
@@ -167,7 +167,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         ]]
     ));
 
-    $articleData['description'] = articleData['description']; // reset description value
+    $articleData['description'] = articleData['description'];
 
 
 

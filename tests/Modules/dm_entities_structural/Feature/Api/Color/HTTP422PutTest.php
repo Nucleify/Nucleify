@@ -57,7 +57,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         ]]
     ));
 
-    $updatedColorData['user_id'] = updatedColorData['user_id']; // reset user_id value
+    $updatedColorData['user_id'] = updatedColorData['user_id'];
 
 
 
@@ -124,7 +124,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         ]]
     ));
 
-    $updatedColorData['entity'] = updatedColorData['entity']; // reset entity value
+    $updatedColorData['entity'] = updatedColorData['entity'];
 
 
 
@@ -191,7 +191,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         ]]
     ));
 
-    $updatedColorData['value'] = updatedColorData['value']; // reset value value
+    $updatedColorData['value'] = updatedColorData['value'];
 
 
 
@@ -234,5 +234,5 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         ]]
     ));
 
-    $updatedColorData['new'] = updatedColorData['new']; // reset new value
+    $updatedColorData['new'] = updatedColorData['new'];
 });

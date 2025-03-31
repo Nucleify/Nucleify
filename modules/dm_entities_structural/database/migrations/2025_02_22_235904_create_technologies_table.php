@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('technologies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
             $table->string('label');
             $table->string('description')->nullable();
             $table->string('href');

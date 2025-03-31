@@ -18,6 +18,9 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         RefreshDatabase::class
     )
         ->in(
+            // Card API
+            'Feature/Api/Card/HTTP302Test.php',
+
             // Color API
             'Feature/Api/Color/HTTP302Test.php',
             
@@ -41,6 +44,12 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         DatabaseMigrations::class
     )
         ->in(
+            // Card API
+            'Feature/Api/Card/HTTP200Test.php',
+            'Feature/Api/Card/HTTP500Test.php',
+            'Feature/Api/Card/HTTP422PostTest.php',
+            'Feature/Api/Card/HTTP422PutTest.php',
+
             // Color API
             'Feature/Api/Color/HTTP200Test.php',
             'Feature/Api/Color/HTTP500Test.php',

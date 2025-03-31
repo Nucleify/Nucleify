@@ -91,7 +91,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedArticleData = upd
         ]]
     ));
 
-    $updatedArticleData['title'] = articleData['title']; // reset title value
+    $updatedArticleData['title'] = articleData['title'];
 
 
 
@@ -167,7 +167,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedArticleData = upd
         ]]
     ));
 
-    $updatedArticleData['description'] = articleData['description']; // reset description value
+    $updatedArticleData['description'] = articleData['description'];
 
 
 

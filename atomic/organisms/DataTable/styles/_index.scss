@@ -28,8 +28,8 @@
     margin-top: 4px;
   }
 
-  @each $type in activity, article, contact, feature, link, money, question,
-    technology, user
+  @each $type in activity, article, card, contact, feature, link, money,
+    question, technology, user
   {
     &[ad-type='#{$type}'] {
       @include entity-datatable-styles(

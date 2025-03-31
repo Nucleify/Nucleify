@@ -5,6 +5,7 @@ use App\Http\Controllers\StructuralController;
 
 $routes = [
     'index',
+    'cards',
     'features',
     'links',
     'questions',

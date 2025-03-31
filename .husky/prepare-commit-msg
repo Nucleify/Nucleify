@@ -30,6 +30,9 @@ case "$CURRENT_BRANCH" in
     entity-money)
         FINAL_MSG="💵 Money: $ORIGINAL_MSG"
         ;;
+    entity-card)
+        FINAL_MSG="Card: $ORIGINAL_MSG"
+        ;;
     entity-question)
         FINAL_MSG="❓ Question: $ORIGINAL_MSG"
         ;;

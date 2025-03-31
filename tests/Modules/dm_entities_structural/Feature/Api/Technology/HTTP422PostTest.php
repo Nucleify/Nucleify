@@ -7,61 +7,6 @@ beforeEach(function () {
 
 describe('422 > Unprocessable Content > POST', function($technologyData = technologyData) {
     /**
-     * USER ID TESTS
-     */
-    $technologyData['user_id'] = '';
-    test('invalid user_id > empty', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field is required.']
-        ]]
-    ));
-
-    $technologyData['user_id'] = 'user_id';
-    test('invalid user_id > string', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
-        ]]
-    ));
-
-    $technologyData['user_id'] = false;
-    test('invalid user_id > false', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
-        ]]
-    ));
-
-    $technologyData['user_id'] = [];
-    test('invalid user_id > empty array', apiTest(
-        'POST',
-        'technologies.store',
-        422,
-        $technologyData,
-        ['errors' => ['user_id']],
-        ['errors' => [
-            'user_id' => ['The user id field is required.']
-        ]]
-    ));
-
-    $technologyData['user_id'] = technologyData['user_id']; // reset user_id value
-
-
-
-    /**
      * LABEL TESTS
      */
     $technologyData['label'] = '';
@@ -130,7 +75,7 @@ describe('422 > Unprocessable Content > POST', function($technologyData = techno
         ]]
     ));
 
-    $technologyData['label'] = technologyData['label']; // reset label value
+    $technologyData['label'] = technologyData['label'];
 
 
 
@@ -209,7 +154,7 @@ describe('422 > Unprocessable Content > POST', function($technologyData = techno
         ]]
     ));
 
-    $technologyData['description'] = technologyData['description']; // reset description value
+    $technologyData['description'] = technologyData['description'];
 
 
 
@@ -282,7 +227,7 @@ describe('422 > Unprocessable Content > POST', function($technologyData = techno
         ]]
     ));
 
-    $technologyData['href'] = technologyData['href']; // reset href value
+    $technologyData['href'] = technologyData['href'];
 
 
 
@@ -355,7 +300,7 @@ describe('422 > Unprocessable Content > POST', function($technologyData = techno
         ]]
     ));
 
-    $technologyData['src'] = technologyData['src']; // reset src value
+    $technologyData['src'] = technologyData['src'];
 
 
     /**

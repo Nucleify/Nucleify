@@ -23,7 +23,6 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|integer|exists:users,id',
             'index' => 'required|integer',
             'content' => 'required|string|max:255',
             'answer' => 'required|string|max:1000',

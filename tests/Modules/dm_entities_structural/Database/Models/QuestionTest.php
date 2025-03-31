@@ -18,12 +18,6 @@ describe('Instance', function () {
             ->toBe($this->model->id);
     });
 
-    test('can get user_id', function () {
-        expect($this->model->getUserId())
-            ->toBeInt()
-            ->toBe($this->model->user_id);
-    });
-
     test('can get index', function () {
         expect($this->model->getIndex())
             ->toBeInt()
@@ -78,12 +72,6 @@ describe('Scope', function () {
         $foundModel = Question::getById($this->model->id)->first();
 
         expect($foundModel->id)->toBe($this->model->id);
-    });
-
-    test('can filter by user_id using scopeGetByUserId', function () {
-        $foundModel = Question::getByUserId($this->model->user_id)->first();
-
-        expect($foundModel->user_id)->toBe($this->model->user_id);
     });
 
     test('can filter by index using scopeGetByIndex', function () {

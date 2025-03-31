@@ -2,8 +2,9 @@
 
 namespace App\Transformers;
 
-use App\Contracts\UserContract;
 use League\Fractal\TransformerAbstract;
+
+use App\Contracts\UserContract;
 
 class UserTransformer extends TransformerAbstract
 {

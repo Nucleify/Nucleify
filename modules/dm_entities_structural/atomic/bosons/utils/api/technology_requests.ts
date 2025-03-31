@@ -104,7 +104,6 @@ export function technologyRequests(
   ): Promise<void> {
     try {
       const response: AxiosResponse = await axios.post('/api/technologies', {
-        user_id: window.sessionStorage.getItem('user_id'),
         href: data.href,
         src: data.src,
         label: data.label,

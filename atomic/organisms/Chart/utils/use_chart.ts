@@ -7,6 +7,7 @@ import {
   months,
   ActivityLogInterface,
   ArticleInterface,
+  StructuralCardInterface,
   ContactInterface,
   MoneyInterface,
   UserInterface,
@@ -26,6 +27,7 @@ export function useChart() {
   const {
     activityItemColors,
     articleItemColors,
+    cardItemColors,
     contactItemColors,
     featureItemColors,
     linkItemColors,
@@ -40,6 +42,7 @@ export function useChart() {
   const exampleColors = {
     activityItemColors: { primary: '#FFB600', secondary: '#E7A60B35' },
     articleItemColors: { primary: '#1187C7', secondary: '#0F79B235' },
+    cardItemColors: { primary: '#1b10b9', secondary: '#1b10b935' },
     contactItemColors: { primary: '#10B981', secondary: '#10A67435' },
     featureItemColors: { primary: '#b9101080', secondary: '#0EA5E935' },
     linkItemColors: { primary: '#10b3b9', secondary: '#0f93a435' },
@@ -52,6 +55,7 @@ export function useChart() {
   const chartLabels: { label: LabelItemType }[] = [
     { label: 'Articles' },
     { label: 'Contacts' },
+    { label: 'Cards' },
     { label: 'Features' },
     { label: 'Links' },
     { label: 'Money' },
@@ -63,6 +67,7 @@ export function useChart() {
     chartMethodType: ChartMethodType,
     activityLogData?: ActivityLogInterface[],
     articleData?: ArticleInterface[],
+    cardData?: StructuralCardInterface[],
     contactData?: ContactInterface[],
     featureData?: FeatureInterface[],
     linkData?: LinkInterface[],
@@ -72,12 +77,14 @@ export function useChart() {
     userData?: UserInterface[],
     example?: boolean
   ) {
+    console.log(cardData, questionData)
     try {
       let labels: string[] = []
       const dataByMonth = Object.fromEntries(
         [
           'activity',
           'article',
+          'card',
           'contact',
           'feature',
           'link',
@@ -93,6 +100,7 @@ export function useChart() {
         : {
             activityItemColors,
             articleItemColors,
+            cardItemColors,
             contactItemColors,
             featureItemColors,
             linkItemColors,
@@ -120,6 +128,7 @@ export function useChart() {
         ;[
           [activityLogData, dataByMonth.activity],
           [articleData, dataByMonth.article],
+          [cardData, dataByMonth.card],
           [contactData, dataByMonth.contact],
           [featureData, dataByMonth.feature],
           [linkData, dataByMonth.link],
@@ -142,6 +151,7 @@ export function useChart() {
               colors.activityItemColors
             ),
             Articles: createData(dataByMonth.article, colors.articleItemColors),
+            Card: createData(dataByMonth.card, colors.cardItemColors),
             Contacts: createData(dataByMonth.contact, colors.contactItemColors),
             Features: createData(dataByMonth.feature, colors.featureItemColors),
             Links: createData(dataByMonth.link, colors.linkItemColors),
@@ -182,6 +192,7 @@ export function useChart() {
               ({ label }) =>
                 ({
                   Articles: articleData,
+                  Card: cardData,
                   Contacts: contactData,
                   Features: featureData,
                   Links: linkData,
@@ -195,6 +206,7 @@ export function useChart() {
 
           const totals = [
             dataByMonth.article,
+            dataByMonth.card,
             dataByMonth.contact,
             dataByMonth.feature,
             dataByMonth.link,

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Question\PostRequest;
-use App\Http\Requests\Question\PutRequest;
-use App\Models\Question;
-use App\Services\QuestionService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
+use App\Http\Requests\Question\PostRequest;
+use App\Http\Requests\Question\PutRequest;
+use App\Models\Question;
+use App\Services\QuestionService;
 
 class QuestionController extends Controller
 {

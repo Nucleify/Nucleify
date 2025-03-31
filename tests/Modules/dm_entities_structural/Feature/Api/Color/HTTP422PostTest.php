@@ -57,7 +57,7 @@ describe('422 > Unprocessable Content > POST', function($colorData = colorData) 
         ]]
     ));
 
-    $colorData['user_id'] = colorData['user_id']; // reset user_id value
+    $colorData['user_id'] = colorData['user_id'];
 
 
 
@@ -124,7 +124,7 @@ describe('422 > Unprocessable Content > POST', function($colorData = colorData) 
         ]]
     ));
 
-    $colorData['entity'] = colorData['entity']; // reset entity value
+    $colorData['entity'] = colorData['entity'];
 
 
 
@@ -191,7 +191,7 @@ describe('422 > Unprocessable Content > POST', function($colorData = colorData) 
         ]]
     ));
 
-    $colorData['value'] = colorData['value']; // reset value value
+    $colorData['value'] = colorData['value'];
 
 
 
@@ -234,5 +234,5 @@ describe('422 > Unprocessable Content > POST', function($colorData = colorData) 
         ]]
     ));
 
-    $colorData['new'] = colorData['new']; // reset new value
+    $colorData['new'] = colorData['new'];
 });

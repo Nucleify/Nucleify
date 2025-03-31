@@ -63,7 +63,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         ]]
     ));
 
-    $updatedUserData['name'] = updatedUserData['name']; // reset name value
+    $updatedUserData['name'] = updatedUserData['name'];
 
 
 
@@ -166,7 +166,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         ]]
     ));
 
-    $updatedUserData['email'] = updatedUserData['email']; // reset email value
+    $updatedUserData['email'] = updatedUserData['email'];
 
 
 
@@ -257,7 +257,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         ]]
     ));
 
-    $updatedUserData['password'] = updatedUserData['password']; // reset password value
+    $updatedUserData['password'] = updatedUserData['password'];
 
 
 
