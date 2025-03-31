@@ -5,11 +5,13 @@
     :class="navbarExpanded ? 'expanded' : 'not-expanded'"
   >
     <div class="container">
-      <ad-anchor
-        class="application-header"
-        href="/home"
-        :src="imgUrl + 'logo.svg'"
-      >
+      <ad-anchor class="application-header" href="/home">
+        <ad-image
+          :src="imgUrl + 'logo.svg'"
+          alt="DataManager logo"
+          fetchpriority="high"
+        />
+
         <ad-heading :tag="1" text="DataManager" />
       </ad-anchor>
 
