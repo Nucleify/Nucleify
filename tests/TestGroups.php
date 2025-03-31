@@ -8,7 +8,6 @@ uses()
     ->in('Feature/Api');
 
 uses()
-
     ->group('activity-api')
     ->in('Feature/Api/Utilities/Activity');
 

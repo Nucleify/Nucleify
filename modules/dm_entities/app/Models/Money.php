@@ -149,7 +149,7 @@ class Money extends Model implements MoneyContract
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(\App\Models\User::class);
     }
 }
 
