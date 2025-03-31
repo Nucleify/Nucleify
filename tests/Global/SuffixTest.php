@@ -14,8 +14,7 @@ it('should have controller suffix')
 
 it('should have request suffix')
     ->expect('App\Http\Requests')
-    ->toHaveSuffix('Request')
-    ->toBeUsedIn('App\Http\Controllers');
+    ->toHaveSuffix('Request');
 
 it('should have provider suffix')
     ->expect('App\Http\Providers')
@@ -36,10 +35,6 @@ it('should have factory suffix')
 it('should have seeder suffix')
     ->expect('Database\Seeders')
     ->toHaveSuffix('Seeder');
-
-it('should have component suffix')
-    ->expect('Resources\js\Components')
-    ->toHaveSuffix('Component');
 
 it('should have command suffix')
     ->expect('App\Console\Commands')

@@ -28,7 +28,9 @@
     margin-top: 4px;
   }
 
-  @each $type in activity, article, contact, money, question, technology, user {
+  @each $type in activity, article, card, contact, feature, link, money,
+    question, technology, user
+  {
     &[ad-type='#{$type}'] {
       @include entity-datatable-styles(
         var(--#{$type}-item-color-new) !important,
@@ -111,6 +113,7 @@
     }
 
     .content-column,
+    .header-column,
     .label-column,
     .title-column,
     .name-column,
@@ -145,18 +148,22 @@
     }
 
     .content-column,
+    .header-column,
     .label-column,
     .title-column,
     .category-column,
     .description-column,
     .name-column,
+    .src-column,
     .question-category-column {
       overflow: hidden;
       white-space: nowrap;
     }
 
     .content-column,
+    .header-column,
     .label-column,
+    .src-column,
     .title-column {
       max-width: 200px;
     }
@@ -237,7 +244,9 @@
       }
 
       .content-column,
+      .header-column,
       .label-column,
+      .src-column,
       .title-column {
         width: 38%;
       }
@@ -308,7 +317,9 @@
       }
 
       .content-column,
+      .header-column,
       .label-column,
+      .src-column,
       .title-column {
         width: 30%;
       }
@@ -325,7 +336,9 @@
       }
 
       .content-column,
+      .header-column,
       .label-column,
+      .src-column,
       .title-column {
         width: 23%;
       }

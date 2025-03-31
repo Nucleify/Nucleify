@@ -42,7 +42,7 @@ export default defineConfig({
         chunkSizeWarningLimit: 1600,
         sourcemap: true,
         rollupOptions: {
-            output:{
+            output: {
                 sourcemapExcludeSources: true,
                 manualChunks(id) {
                     if (id.includes('node_modules')) {
@@ -51,6 +51,8 @@ export default defineConfig({
                 }
             }
         },
+        assetsDir: '',
+        manifest: true,
     },
     define: {
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false

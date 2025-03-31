@@ -4,6 +4,7 @@
       :articles="articles!"
       :contacts="contacts!"
       :money="money!"
+      :loading="!allLoaded"
     />
   </div>
 </template>
@@ -33,30 +34,20 @@ const {
   results: articles,
   loading: articlesLoading,
   getAllArticles,
-  getCountArticlesByCreatedLastWeek,
 } = articleRequests()
 
 const {
   results: contacts,
   loading: contactsLoading,
   getAllContacts,
-  getCountContactsByCreatedLastWeek,
 } = contactRequests()
 
-const {
-  results: money,
-  loading: moneyLoading,
-  getAllMoney,
-  getCountMoneyByCreatedLastWeek,
-} = moneyRequests()
+const { results: money, loading: moneyLoading, getAllMoney } = moneyRequests()
 
 onMounted(() => {
   getAllArticles(true)
   getAllContacts(true)
   getAllMoney(true)
-  getCountArticlesByCreatedLastWeek()
-  getCountContactsByCreatedLastWeek()
-  getCountMoneyByCreatedLastWeek()
 })
 
 const allLoaded: Ref<boolean> = ref(false)
