@@ -51,6 +51,9 @@ jobs:
         with:
           php-version: '8.3.7'
 
+      - name: composer dump-autoload
+        run: composer dump-autoload -o
+
       - name: Restore Composer Dependencies
         uses: actions/cache@v3
         with:
@@ -117,6 +120,9 @@ jobs:
         with:
           php-version: '8.3.7'
 
+      - name: composer dump-autoload
+        run: composer dump-autoload -o
+        
       - name: Restore Composer Dependencies
         uses: actions/cache@v3
         with:
