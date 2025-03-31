@@ -9,6 +9,8 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
     Article: window.localStorage.getItem('display-article-graphs') === 'true',
     Card: window.localStorage.getItem('display-card-graphs') === 'true',
     Contact: window.localStorage.getItem('display-contact-graphs') === 'true',
+    Feature: window.localStorage.getItem('display-feature-graphs') === 'true',
+    Link: window.localStorage.getItem('display-link-graphs') === 'true',
     Money: window.localStorage.getItem('display-money-graphs') === 'true',
     Question: window.localStorage.getItem('display-question-graphs') === 'true',
     Structural:
@@ -37,6 +39,8 @@ export function useDisplayCharts(): UseDisplayChartsInterface {
       'display-article-graphs',
       'display-card-graphs',
       'display-contact-graphs',
+      'display-feature-graphs',
+      'display-link-graphs',
       'display-money-graphs',
       'display-question-graphs',
       'display-structural-graphs',

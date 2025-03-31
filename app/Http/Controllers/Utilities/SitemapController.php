@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Utilities;
 
 use App\Http\Controllers\Controller;
-use App\Services\Utilities\SitemapService;
 use Illuminate\Http\JsonResponse;
+
+use App\Services\Utilities\SitemapService;
 
 class SitemapController extends Controller
 {

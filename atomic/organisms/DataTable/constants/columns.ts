@@ -28,7 +28,7 @@ const columnsData: readonly ColumnsInterface[] = {
   ],
   card: [
     ['title', 'Title', 'title-column'],
-    ['description', 'Description', 'description-column desktop-column'],
+    ['category', 'Category', 'category-column desktop-column'],
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
@@ -36,6 +36,12 @@ const columnsData: readonly ColumnsInterface[] = {
     ['full_name', 'Full Name', 'full-name-column'],
     ['email', 'Email', 'email-column tablet-column'],
     ['birthday', 'Birthday', 'birthday-column desktop-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
+  feature: [
+    ['header', 'Header', 'header-column'],
+    ['category', 'Category', 'category-column desktop-column'],
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
@@ -60,6 +66,12 @@ const columnsData: readonly ColumnsInterface[] = {
   ],
   technology: [
     ['label', 'Label', 'label-column'],
+    ['category', 'Category', 'category-column desktop-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
+  link: [
+    ['src', 'Src', 'src-column'],
     ['category', 'Category', 'category-column desktop-column'],
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],

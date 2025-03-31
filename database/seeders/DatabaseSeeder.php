@@ -3,11 +3,8 @@
 namespace Database\Seeders;
 
 use App\Traits\Runners\MessageRunnerTrait;
-use Illuminate\Database\Seeder;
-
-use Database\Seeders\Entities\EntitiesSeeder;
-use Database\Seeders\Structural\StructuralSeeder;
 use Database\Seeders\Utilities\UtilitiesSeeder;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {

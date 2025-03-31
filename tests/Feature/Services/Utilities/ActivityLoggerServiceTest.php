@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Entities\User;
+use App\Models\User;
 use App\Services\Utilities\Activity\LoggerService;
 
 it('successfully logs message with attributes for all entities and methods', function () {

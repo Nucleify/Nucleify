@@ -5,6 +5,8 @@ import {
   ArticleInterface,
   StructuralCardInterface,
   ContactInterface,
+  FeatureInterface,
+  LinkInterface,
   MoneyInterface,
   QuestionInterface,
   TechnologyInterface,
@@ -16,6 +18,8 @@ export type ObjectType =
   | ArticleInterface
   | StructuralCardInterface
   | ContactInterface
+  | FeatureInterface
+  | LinkInterface
   | MoneyInterface
   | QuestionInterface
   | TechnologyInterface
@@ -27,6 +31,8 @@ export type ObjectNameType =
   | 'article'
   | 'card'
   | 'contact'
+  | 'feature'
+  | 'link'
   | 'money'
   | 'user'
   | 'question'

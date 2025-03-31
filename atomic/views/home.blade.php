@@ -6,7 +6,7 @@
     <div id="home">
         <ad-section-navbar></ad-section-navbar>
         <ad-home-page></ad-home-page>
-        <ad-screen-loader></ad-screen-loader>
+        <dm-screen-loader></dm-screen-loader>
         <ad-section-footer></ad-section-footer>
     </div>
 @endsection
