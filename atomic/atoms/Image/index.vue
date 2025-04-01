@@ -14,6 +14,7 @@
     :alt="props.alt"
     :width="props.width"
     :height="props.height"
+    :fetchpriority="props.fetchpriority || 'low'"
   />
 </template>
 
