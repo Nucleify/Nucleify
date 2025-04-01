@@ -35,6 +35,7 @@ export default defineConfig({
         alias: {
             vue: 'vue/dist/vue.esm-bundler.js',
             'atomic': '/atomic',
+            'modules': '/modules',
             'sass': '/atomic/bosons/styles'
         },
     },
@@ -52,7 +53,6 @@ export default defineConfig({
             }
         },
         assetsDir: '',
-        manifest: true,
     },
     define: {
         __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
