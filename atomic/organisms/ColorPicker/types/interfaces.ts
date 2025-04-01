@@ -1,11 +1,6 @@
 import { Ref } from 'vue'
 
-import {
-  AdTypeType,
-  ColorItemColorsInterface,
-  ColorType,
-  ElementAppendTo,
-} from 'atomic'
+import { AdTypeType, ColorType, ElementAppendTo } from 'atomic'
 
 export interface ColorPickerInterface {
   adType?: AdTypeType
@@ -30,36 +25,7 @@ export interface ColorPickerInterface {
   unstyled?: boolean
 }
 
-export interface UseColorsReturnInterface {
-  mainItemColors: ColorItemColorsInterface
-  activityItemColors: ColorItemColorsInterface
-  articleItemColors: ColorItemColorsInterface
-  cardItemColors: ColorItemColorsInterface
-  contactItemColors: ColorItemColorsInterface
-  featureItemColors: ColorItemColorsInterface
-  linkItemColors: ColorItemColorsInterface
-  moneyItemColors: ColorItemColorsInterface
-  questionItemColors: ColorItemColorsInterface
-  technologyItemColors: ColorItemColorsInterface
-  userItemColors: ColorItemColorsInterface
-}
-
 export interface UseColorPickerInterface {
   itemColor: Ref<string | undefined>
   setColorValues: () => void
-}
-
-export interface UseColorsInterface {
-  mainItemColors: ColorItemColorsInterface
-  activityItemColors: ColorItemColorsInterface
-  articleItemColors: ColorItemColorsInterface
-  cardItemColors: ColorItemColorsInterface
-  contactItemColors: ColorItemColorsInterface
-  featureItemColors: ColorItemColorsInterface
-  linkItemColors: ColorItemColorsInterface
-  moneyItemColors: ColorItemColorsInterface
-  questionItemColors: ColorItemColorsInterface
-  technologyItemColors: ColorItemColorsInterface
-  userItemColors: ColorItemColorsInterface
-  setDefaultColors: (initial: boolean) => void
 }
