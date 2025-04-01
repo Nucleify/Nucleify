@@ -4,6 +4,8 @@ import { Ref, ref } from 'vue'
 import { ChartOptions } from 'chart.js'
 
 import {
+  allEntitiesKeys,
+  allEntitiesLabels,
   months,
   ActivityLogInterface,
   ArticleInterface,
@@ -17,51 +19,37 @@ import {
   ChartType,
   ChartInterface,
   LabelItemType,
-  UseColorsReturnInterface,
-  useColors,
   LinkInterface,
   FeatureInterface,
+  UseColorsInterface,
+  useColors,
 } from 'atomic'
 
 export function useChart() {
-  const {
-    activityItemColors,
-    articleItemColors,
-    cardItemColors,
-    contactItemColors,
-    featureItemColors,
-    linkItemColors,
-    moneyItemColors,
-    questionItemColors,
-    technologyItemColors,
-    userItemColors,
-  }: UseColorsReturnInterface = useColors()
+  const { colors }: UseColorsInterface = useColors()
 
   const chartData: Ref<ChartInterface | undefined> = ref<ChartInterface>()
 
-  const exampleColors = {
-    activityItemColors: { primary: '#FFB600', secondary: '#E7A60B35' },
-    articleItemColors: { primary: '#1187C7', secondary: '#0F79B235' },
-    cardItemColors: { primary: '#1b10b9', secondary: '#1b10b935' },
-    contactItemColors: { primary: '#10B981', secondary: '#10A67435' },
-    featureItemColors: { primary: '#b9101080', secondary: '#0EA5E935' },
-    linkItemColors: { primary: '#10b3b9', secondary: '#0f93a435' },
-    moneyItemColors: { primary: '#11c73b', secondary: '#0eb23335' },
-    questionItemColors: { primary: '#8cb910', secondary: '#8cb91035' },
-    technologyItemColors: { primary: '#b95910', secondary: '#9b4b0e35' },
-    userItemColors: { primary: '#64748B', secondary: '#56647935' },
-  }
+  const exampleColors = Object.fromEntries(
+    [
+      ['activity', '#FFB600'],
+      ['article', '#1187C7'],
+      ['contact', '#10B981'],
+      ['money', '#11C73B'],
+      ['user', '#64748B'],
+      ['card', '#1B10B9'],
+      ['feature', '#B91010'],
+      ['link', '#10B3B9'],
+      ['question', '#8CB910'],
+      ['technology', '#B95910'],
+    ].map(([key, primary]) => [key, { primary, secondary: `${primary}35` }])
+  )
 
-  const chartLabels: { label: LabelItemType }[] = [
-    { label: 'Articles' },
-    { label: 'Contacts' },
-    { label: 'Cards' },
-    { label: 'Features' },
-    { label: 'Links' },
-    { label: 'Money' },
-    { label: 'Questions' },
-    { label: 'Users' },
-  ]
+  const chartLabels: { label: LabelItemType }[] = allEntitiesLabels.map(
+    (label) => ({
+      label,
+    })
+  )
 
   function setChartData(
     chartMethodType: ChartMethodType,
@@ -77,38 +65,13 @@ export function useChart() {
     userData?: UserInterface[],
     example?: boolean
   ) {
-    console.log(cardData, questionData)
     try {
       let labels: string[] = []
       const dataByMonth = Object.fromEntries(
-        [
-          'activity',
-          'article',
-          'card',
-          'contact',
-          'feature',
-          'link',
-          'money',
-          'question',
-          'technology',
-          'user',
-        ].map((key) => [`${key}`, new Array(12).fill(0)])
+        [...allEntitiesKeys].map((key) => [`${key}`, new Array(12).fill(0)])
       )
 
-      const colors = example
-        ? exampleColors
-        : {
-            activityItemColors,
-            articleItemColors,
-            cardItemColors,
-            contactItemColors,
-            featureItemColors,
-            linkItemColors,
-            moneyItemColors,
-            questionItemColors,
-            technologyItemColors,
-            userItemColors,
-          }
+      const chartColors = example ? exampleColors : colors
 
       if (example) {
         for (let i = 0; i < 12; i++) {
@@ -145,27 +108,12 @@ export function useChart() {
         case 'annual': {
           const createData = (data, colors) => ({ data, colors })
 
-          const dataMap = {
-            Activities: createData(
-              dataByMonth.activity,
-              colors.activityItemColors
-            ),
-            Articles: createData(dataByMonth.article, colors.articleItemColors),
-            Card: createData(dataByMonth.card, colors.cardItemColors),
-            Contacts: createData(dataByMonth.contact, colors.contactItemColors),
-            Features: createData(dataByMonth.feature, colors.featureItemColors),
-            Links: createData(dataByMonth.link, colors.linkItemColors),
-            Money: createData(dataByMonth.money, colors.moneyItemColors),
-            Question: createData(
-              dataByMonth.question,
-              colors.questionItemColors
-            ),
-            Technology: createData(
-              dataByMonth.technology,
-              colors.technologyItemColors
-            ),
-            Users: createData(dataByMonth.user, colors.userItemColors),
-          }
+          const dataMap = Object.fromEntries(
+            Object.entries(dataByMonth).map(([key, value]) => [
+              key.charAt(0).toUpperCase() + key.slice(1),
+              createData(value, chartColors[key]),
+            ])
+          )
 
           const dataTypes = Object.keys(dataMap).map((label) => ({
             label,
@@ -191,30 +139,23 @@ export function useChart() {
             .filter(
               ({ label }) =>
                 ({
+                  Activities: activityLogData,
                   Articles: articleData,
-                  Card: cardData,
                   Contacts: contactData,
+                  Money: moneyData,
+                  Users: userData,
+                  Cards: cardData,
                   Features: featureData,
                   Links: linkData,
-                  Money: moneyData,
                   Question: questionData,
                   Technology: technologyData,
-                  Users: userData,
                 })[label]
             )
             .map(({ label }) => label)
 
-          const totals = [
-            dataByMonth.article,
-            dataByMonth.card,
-            dataByMonth.contact,
-            dataByMonth.feature,
-            dataByMonth.link,
-            dataByMonth.money,
-            dataByMonth.question,
-            dataByMonth.technology,
-            dataByMonth.user,
-          ].map((data) => data.reduce((sum, value) => sum + value, 0))
+          const totals = Object.values(dataByMonth).map((data) =>
+            data.reduce((sum, value) => sum + value, 0)
+          )
 
           return {
             labels,
@@ -223,10 +164,10 @@ export function useChart() {
                 data: totals,
                 borderWidth: 1.5,
                 borderColor: totals.map(
-                  (_, i) => Object.values(colors)[i + 1].primary
+                  (_, i) => Object.values(chartColors)[i].primary
                 ),
                 backgroundColor: totals.map(
-                  (_, i) => Object.values(colors)[i + 1].secondary
+                  (_, i) => Object.values(chartColors)[i].secondary
                 ),
               },
             ],

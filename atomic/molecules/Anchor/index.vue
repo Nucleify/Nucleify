@@ -7,7 +7,12 @@
   >
     <slot />
     <ad-icon v-if="props.icon" :icon="props.icon" />
-    <ad-image v-if="props.src" :src="props.src" :alt="props.label" />
+    <ad-image
+      v-if="props.src"
+      :src="props.src"
+      :alt="props.label"
+      :fetchpriority="props.fetchpriority"
+    />
     <ad-label
       v-if="props.label"
       :label="props.label"

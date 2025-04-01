@@ -13,4 +13,5 @@ export interface ImageInterface {
   alt?: string
   width?: string
   height?: string
+  fetchpriority?: 'high' | 'low'
 }

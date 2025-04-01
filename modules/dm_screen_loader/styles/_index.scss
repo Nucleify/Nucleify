@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   opacity: 1;
-  animation: fade-out 0.25s 0.6s ease-out forwards;
+  animation: fade-out 0.25s 0.9s ease-out forwards;
 
   .screen-loader-content {
     display: flex;
@@ -20,5 +20,23 @@
     gap: 50px;
     opacity: 0;
     animation: fade-in 0.5s forwards;
+
+    .p-progressbar {
+      background: $p-card-background;
+
+      &-value {
+        background: var(--main-item-secondary-color) !important;
+
+        &::before {
+          border: 1px solid var(--main-item-color) !important;
+          border-radius: 0.25em;
+          margin: 0.125em;
+        }
+
+        &::after {
+          display: none;
+        }
+      }
+    }
   }
 }
