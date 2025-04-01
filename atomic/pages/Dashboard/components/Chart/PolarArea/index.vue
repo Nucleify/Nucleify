@@ -15,11 +15,7 @@ import {
   UseColorsReturnInterface,
 } from 'atomic'
 
-const {
-  articleItemColors,
-  contactItemColors,
-  moneyItemColors,
-}: UseColorsReturnInterface = useColors()
+const { colors }: UseColorsReturnInterface = useColors()
 
 const props = defineProps<PolarChartInterface>()
 
@@ -27,17 +23,16 @@ const chartData = ref({
   labels: ['Articles', 'Contacts', 'Money'],
   datasets: [
     {
-      label: 'Requests Data',
       data: [props.articles.length, props.contacts.length, props.money.length],
       backgroundColor: [
-        articleItemColors.secondary,
-        contactItemColors.secondary,
-        moneyItemColors.secondary,
+        colors.article.secondary,
+        colors.contact.secondary,
+        colors.money.secondary,
       ],
       borderColor: [
-        articleItemColors.primary,
-        contactItemColors.primary,
-        moneyItemColors.primary,
+        colors.article.primary,
+        colors.contact.primary,
+        colors.money.primary,
       ],
     },
   ],
