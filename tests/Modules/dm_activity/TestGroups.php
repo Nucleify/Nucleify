@@ -1,8 +1,5 @@
 <?php
 
-/**
- *  Feature groups
- */
 uses()
     ->group('api')
     ->in('Feature/Api');

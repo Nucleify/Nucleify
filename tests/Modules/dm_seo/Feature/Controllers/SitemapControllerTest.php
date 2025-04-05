@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Utilities\SitemapController;
-use App\Services\Utilities\SitemapService;
 use Illuminate\Support\Facades\File;
+
+use App\Http\Controllers\SitemapController;
+use App\Services\SitemapService;
 
 beforeEach(function () {
     $this->createUsers();

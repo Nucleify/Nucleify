@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\Utilities\SitemapService;
+use App\Services\SitemapService;
 
 beforeEach(function () {
     removeSitemap();
