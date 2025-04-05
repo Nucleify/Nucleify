@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="register">
-        <ad-register-page></register-page>
+        <dm-register-page></dm-register-page>
     </div>
 @endsection

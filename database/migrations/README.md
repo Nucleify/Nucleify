@@ -1,0 +1,1 @@
+Most migrations are located in modules folder.
