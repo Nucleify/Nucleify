@@ -1,5 +1,4 @@
 export * from './About'
-export * from './Activity'
 export * from './Admin'
 export * from './Auth'
 export * from './Blog'

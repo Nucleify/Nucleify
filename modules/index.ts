@@ -1,3 +1,4 @@
+export * from './dm_activity'
 export * from './dm_colors'
 export * from './dm_entities'
 export * from './dm_entities_structural'

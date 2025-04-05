@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Traits\Runners\MessageRunnerTrait;
-use Database\Seeders\Utilities\UtilitiesSeeder;
 use Illuminate\Database\Seeder;
+
+use App\Traits\Runners\MessageRunnerTrait;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StructuralSeeder::class);
         $this->showMessage('Structural entities seeding completed.', $this->command);
 
-        $this->call(UtilitiesSeeder::class);
-        $this->showMessage('Utilities entities seeding completed.', $this->command);
+        $this->call(ActivitySeeder::class);
+        $this->showMessage('Activities seeding completed.', $this->command);
     }
 }
