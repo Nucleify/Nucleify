@@ -87,9 +87,6 @@ import {
   BlogPage,
   AdminPage,
   LicensePage,
-  LoginPage,
-  RegisterPage,
-  ActivityPage,
   DashboardPage,
   Error404Page,
   HomePage,
@@ -107,14 +104,12 @@ import {
   SectionWhyUs,
 } from './sections'
 import {
-  ActivityDashboard,
   BackLink,
   CardBoxes,
   CardCategory,
   CardChart,
   CardDataTable,
   SkeletonDataTable,
-  TestLoginButtons,
 } from './templates'
 
 app
@@ -196,9 +191,6 @@ app
   .component('ad-blog-page', BlogPage)
   .component('ad-admin-page', AdminPage)
   .component('ad-license-page', LicensePage)
-  .component('ad-login-page', LoginPage)
-  .component('ad-register-page', RegisterPage)
-  .component('ad-activity-page', ActivityPage)
   .component('ad-dashboard-page', DashboardPage)
   .component('ad-error-404-page', Error404Page)
   .component('ad-home-page', HomePage)
@@ -220,25 +212,27 @@ app
   /**
    *  Templates
    */
-  .component('ad-activity-dashboard', ActivityDashboard)
   .component('ad-back-link', BackLink)
   .component('ad-card-boxes', CardBoxes)
   .component('ad-card-category', CardCategory)
   .component('ad-card-chart', CardChart)
   .component('ad-card-data-table', CardDataTable)
   .component('ad-skeleton-data-table', SkeletonDataTable)
-  .component('ad-test-login-buttons', TestLoginButtons)
 
 /**
  *  Register modules
  */
 import {
+  registerDMActivity,
+  registerDMAuth,
   registerDMEntities,
   registerDMEntitiesStructural,
   registerDMScreenLights,
   registerDMScreenLoader,
 } from '../modules'
 
+registerDMActivity(app)
+registerDMAuth(app)
 registerDMEntities(app)
 registerDMEntitiesStructural(app)
 registerDMScreenLights(app)

@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
+use Illuminate\Http\Request;
+
 use App\Models\Link;
-use App\Services\Utilities\Activity\LoggerService;
+use App\Services\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\LinkTransformer;
-use Illuminate\Http\Request;
 
 class LinkService {
 
