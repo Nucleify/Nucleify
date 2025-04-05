@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Utilities;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 
-use App\Services\Utilities\SitemapService;
+use App\Services\SitemapService;
 
 class SitemapController extends Controller
 {
