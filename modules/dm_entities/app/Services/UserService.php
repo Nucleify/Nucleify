@@ -6,7 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 
 use App\Models\User;
-use App\Services\Utilities\Activity\LoggerService;
+use App\Services\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;

@@ -89,7 +89,6 @@ import {
   LicensePage,
   LoginPage,
   RegisterPage,
-  ActivityPage,
   DashboardPage,
   Error404Page,
   HomePage,
@@ -107,7 +106,6 @@ import {
   SectionWhyUs,
 } from './sections'
 import {
-  ActivityDashboard,
   BackLink,
   CardBoxes,
   CardCategory,
@@ -198,7 +196,6 @@ app
   .component('ad-license-page', LicensePage)
   .component('ad-login-page', LoginPage)
   .component('ad-register-page', RegisterPage)
-  .component('ad-activity-page', ActivityPage)
   .component('ad-dashboard-page', DashboardPage)
   .component('ad-error-404-page', Error404Page)
   .component('ad-home-page', HomePage)
@@ -220,7 +217,6 @@ app
   /**
    *  Templates
    */
-  .component('ad-activity-dashboard', ActivityDashboard)
   .component('ad-back-link', BackLink)
   .component('ad-card-boxes', CardBoxes)
   .component('ad-card-category', CardCategory)
@@ -233,12 +229,14 @@ app
  *  Register modules
  */
 import {
+  registerDMActivity,
   registerDMEntities,
   registerDMEntitiesStructural,
   registerDMScreenLights,
   registerDMScreenLoader,
 } from '../modules'
 
+registerDMActivity(app)
 registerDMEntities(app)
 registerDMEntitiesStructural(app)
 registerDMScreenLights(app)

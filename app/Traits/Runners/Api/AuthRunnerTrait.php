@@ -2,9 +2,10 @@
 
 namespace App\Traits\Runners\Api;
 
-use App\Services\Utilities\Activity\LoggerService;
-use App\Traits\Setters\UserSetterTrait;
 use Exception;
+
+use App\Services\LoggerService;
+use App\Traits\Setters\UserSetterTrait;
 
 trait AuthRunnerTrait
 {
