@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Utilities;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
-use App\Services\Utilities\FriendshipService;
+use App\Services\FriendshipService;
 
 class FriendController extends Controller
 {
