@@ -2,15 +2,16 @@
 
 namespace App\Services;
 
+use Exception;
+use Illuminate\Http\Request;
+
 use App\Models\Question;
-use App\Services\Utilities\Activity\LoggerService;
+use App\Services\LoggerService;
 use App\Traits\Runners\Api\AuthRunnerTrait;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\QuestionTransformer;
-use Exception;
-use Illuminate\Http\Request;
 
 class QuestionService
 {

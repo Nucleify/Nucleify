@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\Utilities\ActivityController;
+use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\Utilities\ArtisanController;
 use App\Http\Controllers\Utilities\SitemapController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +53,6 @@ Route::middleware(['web', 'auth'])->group(function () {
 /**
  *  Modules includes
  */
+require base_path('modules/dm_activity/routes/api.php');
 require base_path('modules/dm_entities/routes/api.php');
 require base_path('modules/dm_entities_structural/routes/api.php');
