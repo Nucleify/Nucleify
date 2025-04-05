@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Utilities\FriendController;
-use App\Services\Utilities\FriendshipService;
 use Database\Factories\UserFactory;
+
+use App\Http\Controllers\FriendController;
+use App\Services\FriendshipService;
 
 beforeEach(function () {
     $this->createUsers();

@@ -176,6 +176,7 @@ return [
         Modules\dm_activity\dm_activity::class,
         Modules\dm_entities\dm_entities::class,
         Modules\dm_entities_structural\dm_entities_structural::class,
+        Modules\dm_friendship\dm_friendship::class,
     ])->toArray(),
 
     /*

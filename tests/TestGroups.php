@@ -72,5 +72,9 @@ uses()
     ->in('Modules/dm_entities_structural');
 
 uses()
+    ->group('dm-friendship')
+    ->in('Modules/dm_friendship');
+
+uses()
     ->group('dm-seo')
     ->in('Modules/dm_seo');
