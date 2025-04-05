@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Utilities;
+namespace App\Services;
 
 class FriendshipService
 {
