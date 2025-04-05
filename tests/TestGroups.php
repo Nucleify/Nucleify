@@ -64,6 +64,10 @@ uses()
     ->in('Modules/dm_activity');
 
 uses()
+    ->group('dm-auth')
+    ->in('Modules/dm_auth');
+
+uses()
     ->group('dm-entities')
     ->in('Modules/dm_entities');
 

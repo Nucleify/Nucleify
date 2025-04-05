@@ -1,6 +1,5 @@
 export * from './About'
 export * from './Admin'
-export * from './Auth'
 export * from './Blog'
 export * from './Dashboard'
 export * from './Errors'
