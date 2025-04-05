@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Technology;
-use App\Services\Utilities\Activity\LoggerService;
+use App\Services\LoggerService;
 use App\Traits\Runners\Api\AuthRunnerTrait;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;

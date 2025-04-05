@@ -9,7 +9,7 @@ use App\Http\Controllers\Pages\DashboardController;
 use App\Http\Controllers\Pages\HomeController;
 use App\Http\Controllers\Pages\LicenseController;
 use App\Http\Controllers\Pages\SettingsController;
-use App\Http\Controllers\Utilities\ActivityController;
+use App\Http\Controllers\ActivityController;
 
 /**
  *  Home
@@ -70,5 +70,6 @@ Route::middleware(['web', 'auth'])->group(function () {
 /**
  *  Modules includes
  */
+require base_path('modules/dm_activity/routes/web.php');
 require base_path('modules/dm_entities/routes/web.php');
 require base_path('modules/dm_entities_structural/routes/web.php');
