@@ -34,14 +34,6 @@ Route::middleware(['web', 'auth'])->group(function () {
 
 
     /**
-     *  Sitemap
-     */
-    Route::prefix('sitemap')->controller(SitemapController::class)->group(function () {
-        Route::get('/generate', 'generate')
-            ->name('sitemap.generate');
-    });
-
-    /**
      *  Tinker Command
      */
     Route::prefix('artisan')->controller(ArtisanController::class)->group(function () {
@@ -56,3 +48,4 @@ Route::middleware(['web', 'auth'])->group(function () {
 require base_path('modules/dm_activity/routes/api.php');
 require base_path('modules/dm_entities/routes/api.php');
 require base_path('modules/dm_entities_structural/routes/api.php');
+require base_path('modules/dm_seo/routes/api.php');
