@@ -87,8 +87,6 @@ import {
   BlogPage,
   AdminPage,
   LicensePage,
-  LoginPage,
-  RegisterPage,
   DashboardPage,
   Error404Page,
   HomePage,
@@ -112,7 +110,6 @@ import {
   CardChart,
   CardDataTable,
   SkeletonDataTable,
-  TestLoginButtons,
 } from './templates'
 
 app
@@ -194,8 +191,6 @@ app
   .component('ad-blog-page', BlogPage)
   .component('ad-admin-page', AdminPage)
   .component('ad-license-page', LicensePage)
-  .component('ad-login-page', LoginPage)
-  .component('ad-register-page', RegisterPage)
   .component('ad-dashboard-page', DashboardPage)
   .component('ad-error-404-page', Error404Page)
   .component('ad-home-page', HomePage)
@@ -223,13 +218,13 @@ app
   .component('ad-card-chart', CardChart)
   .component('ad-card-data-table', CardDataTable)
   .component('ad-skeleton-data-table', SkeletonDataTable)
-  .component('ad-test-login-buttons', TestLoginButtons)
 
 /**
  *  Register modules
  */
 import {
   registerDMActivity,
+  registerDMAuth,
   registerDMEntities,
   registerDMEntitiesStructural,
   registerDMScreenLights,
@@ -237,6 +232,7 @@ import {
 } from '../modules'
 
 registerDMActivity(app)
+registerDMAuth(app)
 registerDMEntities(app)
 registerDMEntitiesStructural(app)
 registerDMScreenLights(app)
