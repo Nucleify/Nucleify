@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use App\Services\Utilities\Activity\LoggerService;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+
+use App\Services\LoggerService;
 
 class AppServiceProvider extends ServiceProvider
 {

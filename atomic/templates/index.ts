@@ -1,5 +1,4 @@
 export * from './Anchor'
-export * from './Button'
 export * from './Card'
 export * from './Dashboard'
 export * from './Skeleton'

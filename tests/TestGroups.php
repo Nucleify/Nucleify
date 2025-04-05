@@ -8,16 +8,8 @@ uses()
     ->in('Feature/Api');
 
 uses()
-    ->group('activity-api')
-    ->in('Feature/Api/Utilities/Activity');
-
-uses()
     ->group('artisan-api')
     ->in('Feature/Api/Utilities/Artisan');
-
-uses()
-    ->group('sitemap-api')
-    ->in('Feature/Api/Utilities/Sitemap');
 
 uses()
     ->group('feature')
@@ -59,9 +51,21 @@ uses()
     ->group('factories')
     ->in('Database/Factories');
 
+
+/**
+ *  Modules
+ */
 uses()
     ->group('modules')
     ->in('Modules');
+
+uses()
+    ->group('dm-activity')
+    ->in('Modules/dm_activity');
+
+uses()
+    ->group('dm-auth')
+    ->in('Modules/dm_auth');
 
 uses()
     ->group('dm-entities')
@@ -70,3 +74,11 @@ uses()
 uses()
     ->group('dm-entities-structural')
     ->in('Modules/dm_entities_structural');
+
+uses()
+    ->group('dm-friendship')
+    ->in('Modules/dm_friendship');
+
+uses()
+    ->group('dm-seo')
+    ->in('Modules/dm_seo');
