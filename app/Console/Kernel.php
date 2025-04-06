@@ -5,12 +5,14 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
-use Modules\DmSeo\App\Console\Commands\GenerateSitemapCommand;
+use Modules\dm_seo\App\Console\Commands\GenerateSitemapCommand;
+use Modules\dm_terminal\App\Console\Commands\ArtisanCommand;
 
 class Kernel extends ConsoleKernel
 {
     protected $commands = [
         GenerateSitemapCommand::class,
+        ArtisanCommand::class
     ];
     
     /**
@@ -34,6 +36,6 @@ class Kernel extends ConsoleKernel
     {
         $this->load(__DIR__.'/Commands');
 
-        require base_path('routes/console.php');
+        require base_path('modules/dm_terminal/routes/console.php');
     }
 }
