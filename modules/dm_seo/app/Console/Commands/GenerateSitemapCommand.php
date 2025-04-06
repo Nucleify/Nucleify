@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\DmSeo\App\Console\Commands;
+namespace Modules\dm_seo\App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Spatie\Sitemap\Sitemap;

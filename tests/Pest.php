@@ -11,3 +11,4 @@ require_once 'Modules/dm_entities/Pest.php';
 require_once 'Modules/dm_entities_structural/Pest.php';
 require_once 'Modules/dm_friendship/Pest.php';
 require_once 'Modules/dm_seo/Pest.php';
+require_once 'Modules/dm_terminal/Pest.php';

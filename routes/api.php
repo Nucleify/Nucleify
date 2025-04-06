@@ -1,11 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-use App\Http\Controllers\ActivityController;
-use App\Http\Controllers\Utilities\ArtisanController;
-use App\Http\Controllers\Utilities\SitemapController;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,30 +11,6 @@ use App\Http\Controllers\Utilities\SitemapController;
 |
 */
 
-Route::middleware(['web', 'auth'])->group(function () {
-    /**
-     *  Activity log
-     */
-    Route::prefix('activity-log')->controller(ActivityController::class)->group(function () {
-        Route::get('/', 'index')
-            ->name('activity-log.index');
-        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
-            ->name('activity-log.countByCreatedLastWeek');
-        Route::get('/{id}', 'show')
-            ->name('activity-log.show');
-        Route::delete('/{id}', 'destroy')
-            ->name('activity-log.destroy');
-    });
-
-
-    /**
-     *  Tinker Command
-     */
-    Route::prefix('artisan')->controller(ArtisanController::class)->group(function () {
-        Route::post('/', 'run')
-            ->name('artisan.run');
-    });
-});
 
 /**
  *  Modules includes
@@ -49,3 +19,4 @@ require base_path('modules/dm_activity/routes/api.php');
 require base_path('modules/dm_entities/routes/api.php');
 require base_path('modules/dm_entities_structural/routes/api.php');
 require base_path('modules/dm_seo/routes/api.php');
+require base_path('modules/dm_terminal/routes/api.php');
