@@ -43,11 +43,6 @@ Route::get('/license', [LicenseController::class, 'render'])->name('license');
 
 Route::middleware(['web', 'auth'])->group(function () {
     /**
-     *  Activity log
-     */
-    Route::get('/activity-log', [ActivityController::class, 'render'])->name('activity-log');
-
-    /**
      *  Dashboard
      */
     Route::get('/dashboard', [DashboardController::class, 'render'])->name('dashboard');

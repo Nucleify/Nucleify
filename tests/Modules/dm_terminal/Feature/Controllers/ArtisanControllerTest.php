@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\Utilities\ArtisanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+
+use App\Http\Controllers\ArtisanController;
 
 beforeEach(function () {
     $this->createUsers();

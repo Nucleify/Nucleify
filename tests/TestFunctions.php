@@ -65,10 +65,3 @@ function getModelByEntity(string $entity): Contact|Card|Article|User|Question|nu
         default => null,
     };
 }
-
-function removeSitemap(): void
-{
-    if (File::exists(public_path('sitemap.xml'))) {
-        File::delete(public_path('sitemap.xml'));
-    }
-}
