@@ -1,0 +1,1 @@
+Most controllers tests are located in modules folder.

@@ -18,16 +18,6 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         RefreshDatabase::class
     )
         ->in(
-            // Activity API
-            'Feature/Api/Utilities/Activity/HTTP401Test.php',
-
-            // Artisan API
-            'Feature/Api/Utilities/Artisan/HTTP405AuthTest.php',
-            'Feature/Api/Utilities/Artisan/HTTP405UnAuthTest.php',
-
-            // Sitemap API
-            'Feature/Api/Utilities/Sitemap',
-
             'Database/Models'
         );
 
@@ -35,13 +25,6 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         DatabaseMigrations::class
     )
         ->in(
-            // Activity API
-            'Feature/Api/Utilities/Activity/HTTP200Test.php',
-
-            // Artisan API
-            'Feature/Api/Utilities/Artisan/HTTP200Test.php',
-            'Feature/Api/Utilities/Artisan/HTTP500Test.php',
-
             'Database/Factories',
             'Database/Migrations',
 
