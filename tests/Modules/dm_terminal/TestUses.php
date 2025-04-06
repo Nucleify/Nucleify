@@ -18,18 +18,19 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         RefreshDatabase::class
     )
         ->in(
-            'Database/Models'
+            // Artisan API
+            'Feature/Api/Artisan/HTTP405AuthTest.php',
+            'Feature/Api/Artisan/HTTP405UnAuthTest.php',
         );
 
     uses(
         DatabaseMigrations::class
     )
         ->in(
-            'Database/Factories',
-            'Database/Migrations',
+            // Artisan API
+            'Feature/Api/Artisan/HTTP200Test.php',
+            'Feature/Api/Artisan/HTTP500Test.php',
 
             'Feature/Controllers',
-            'Feature/Services',
-            'Feature/Traits'
         );
 }

@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use App\Console\Commands\ArtisanCommand;
 use function Pest\Laravel\artisan;
+
+use Modules\dm_terminal\App\Console\Commands\ArtisanCommand;
 
 afterAll(function () {
     artisan('migrate:fresh');
