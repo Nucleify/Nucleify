@@ -1,6 +1,6 @@
-# dm_activity
+# dm_terminal
 
-Module that tracks activities.
+Module that contains terminal functions.
 
 <br>
 

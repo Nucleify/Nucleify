@@ -82,3 +82,8 @@ uses()
 uses()
     ->group('dm-seo')
     ->in('Modules/dm_seo');
+
+
+uses()
+    ->group('dm-terminal')
+    ->in('Modules/dm_terminal');
