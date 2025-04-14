@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use Modules\dm_pages\dm_pages;
 
 class LoginController extends Controller
 {
@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected string $redirectTo = RouteServiceProvider::HOME;
+    protected string $redirectTo = dm_pages::HOME;
 
     /**
      * Create a new controller instance.

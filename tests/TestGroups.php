@@ -80,9 +80,12 @@ uses()
     ->in('Modules/dm_friendship');
 
 uses()
+    ->group('dm-pages')
+    ->in('Modules/dm_pages');
+
+uses()
     ->group('dm-seo')
     ->in('Modules/dm_seo');
-
 
 uses()
     ->group('dm-terminal')

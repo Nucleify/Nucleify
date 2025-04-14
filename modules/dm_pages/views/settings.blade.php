@@ -2,6 +2,6 @@
 
 @section('content')
     <div id="settings">
-        <ad-settings-page></ad-settings-page>
+        <dm-settings-page></dm-settings-page>
     </div>
 @endsection
