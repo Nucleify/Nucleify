@@ -42,7 +42,7 @@
     "storybook/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "atomic/bosons/constants/vitests/Mock/api/Utilities/activity.ts", "modules/dm_activity/atomic/Activity.vue"  ],
+  ],
   "exclude": [
     "node_modules"
   ]
