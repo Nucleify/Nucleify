@@ -6,29 +6,29 @@ if (!defined('PEST_RUNNING')) {
 
 use App\Models\Card;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->model = Card::factory()->create();
 });
 
-it('can be created', function () {
+it('can be created', function (): void {
     expect($this->model)->toBeInstanceOf(Card::class);
 });
 
-describe('Instance', function () {
-    test('can get id', function () {
+describe('Instance', function (): void {
+    test('can get id', function (): void {
         expect($this->model->getId())
             ->toBeInt()
             ->toBe($this->model->id);
     });
 
-    test('can get src', function () {
+    test('can get src', function (): void {
         expect($this->model->getSrc())
             ->toBeString()
             ->toBe($this->model->src);
     });
 
-    test('can get title', function () {
+    test('can get title', function (): void {
         $this->model = Card::factory()->create();
 
         expect($this->model->getTitle())
@@ -36,7 +36,7 @@ describe('Instance', function () {
             ->toBe($this->model->title);
     });
 
-    test('can get description', function () {
+    test('can get description', function (): void {
         $this->model = Card::factory()->create();
 
         expect($this->model->getDescription())
@@ -44,13 +44,13 @@ describe('Instance', function () {
             ->toBe($this->model->description);
     });
 
-    test('can get category', function () {
+    test('can get category', function (): void {
         expect($this->model->getCategory())
             ->toBeString()
             ->toBe($this->model->category);
     });
 
-    test('can get component', function () {
+    test('can get component', function (): void {
         $this->model = Card::factory()->create();
 
         expect($this->model->getComponent())
@@ -58,7 +58,7 @@ describe('Instance', function () {
             ->toBe($this->model->component);
     });
 
-    test('can get display', function () {
+    test('can get display', function (): void {
         $this->model = Card::factory()->create();
 
         expect($this->model->getDisplay())
@@ -66,7 +66,7 @@ describe('Instance', function () {
             ->toBe($this->model->display);
     });
 
-    test('can get created_at date', function () {
+    test('can get created_at date', function (): void {
         $this->model = Card::factory()->create();
 
         expect($this->model->getCreatedAt())
@@ -74,7 +74,7 @@ describe('Instance', function () {
             ->toBe($this->model->created_at->toDateTimeString());
     });
 
-    test('can get updated_at date', function () {
+    test('can get updated_at date', function (): void {
         $this->model = Card::factory()->create();
 
         expect($this->model->getUpdatedAt())
@@ -83,8 +83,8 @@ describe('Instance', function () {
     });
 });
 
-describe('Scope', function () {
-    test('can filter by id using scopeGetId', function () {
+describe('Scope', function (): void {
+    test('can filter by id using scopeGetId', function (): void {
         $this->model = Card::factory()->create();
 
         $foundCard = Card::getById($this->model->id)->first();
@@ -92,7 +92,7 @@ describe('Scope', function () {
         expect($foundCard->id)->toBe($this->model->id);
     });
 
-    test('can filter by src using scopeGetSrc', function () {
+    test('can filter by src using scopeGetSrc', function (): void {
         $this->model = Card::factory()->create();
 
         $foundCard = Card::getBySrc($this->model->src)->first();
@@ -100,7 +100,7 @@ describe('Scope', function () {
         expect($foundCard->src)->toBe($this->model->src);
     });
 
-    test('can filter by title using scopeGetTitle', function () {
+    test('can filter by title using scopeGetTitle', function (): void {
         $this->model = Card::factory()->create();
 
         $foundCard = Card::getByTitle($this->model->title)->first();
@@ -108,7 +108,7 @@ describe('Scope', function () {
         expect($foundCard->title)->toBe($this->model->title);
     });
 
-    test('can filter by description using scopeGetDescription', function () {
+    test('can filter by description using scopeGetDescription', function (): void {
         $this->model = Card::factory()->create();
 
         $foundCard = Card::getByDescription($this->model->description)->first();
@@ -116,7 +116,7 @@ describe('Scope', function () {
         expect($foundCard->description)->toBe($this->model->description);
     });
 
-    test('can filter by category using scopeGetCategory', function () {
+    test('can filter by category using scopeGetCategory', function (): void {
         $this->model = Card::factory()->create();
 
         $foundCard = Card::getByCategory($this->model->category)->first();
@@ -124,7 +124,7 @@ describe('Scope', function () {
         expect($foundCard->category)->toBe($this->model->category);
     });
 
-    test('can filter by component using scopeGetComponent', function () {
+    test('can filter by component using scopeGetComponent', function (): void {
         $this->model = Card::factory()->create();
 
         $foundCard = Card::getByComponent($this->model->component)->first();
@@ -132,7 +132,7 @@ describe('Scope', function () {
         expect($foundCard->component)->toBe($this->model->component);
     });
 
-    test('can filter by display using scopeGetDisplay', function () {
+    test('can filter by display using scopeGetDisplay', function (): void {
         $this->model = Card::factory()->create();
 
         $foundCard = Card::getByDisplay($this->model->display)->first();
@@ -140,7 +140,7 @@ describe('Scope', function () {
         expect($foundCard->display)->toEqual($this->model->display);
     });
 
-    test('can filter by created_at using scopeGetCreatedAt', function () {
+    test('can filter by created_at using scopeGetCreatedAt', function (): void {
         $this->model = Card::factory()->create();
 
         $foundCard = Card::getByCreatedAt($this->model->created_at->toDateString())->first();
@@ -148,7 +148,7 @@ describe('Scope', function () {
         expect($foundCard->created_at->toDateString())->toBe($this->model->created_at->toDateString());
     });
 
-    test('can filter by updated_at using scopeGetUpdatedAt', function () {
+    test('can filter by updated_at using scopeGetUpdatedAt', function (): void {
         $this->model = Card::factory()->create();
 
         $foundCard = Card::getByUpdatedAt($this->model->updated_at->toDateString())->first();

@@ -6,18 +6,18 @@ if (!defined('PEST_RUNNING')) {
 
 use App\Models\Technology;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
 });
 
-it('can create record', function () {
+it('can create record', function (): void {
     $technology = Technology::factory()->create();
 
     $this->assertDatabaseCount('technologies', 1);
     $this->assertDatabaseHas('technologies', ['id' => $technology->id]);
 });
 
-it('can create multiple records', function () {
+it('can create multiple records', function (): void {
     $technologies = Technology::factory()->count(3)->create();
 
     $this->assertDatabaseCount('technologies', 3);
@@ -26,7 +26,7 @@ it('can create multiple records', function () {
     }
 });
 
-it("can't create record", function () {
+it("can't create record", function (): void {
     try {
         Technology::factory()->create(['id' => 'id']);
     } catch (Exception $e) {
@@ -38,7 +38,7 @@ it("can't create record", function () {
     $this->fail('Expected exception not thrown.');
 })->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
 
-it("can't create multiple records", function () {
+it("can't create multiple records", function (): void {
     try {
         Technology::factory()->count(2)->create(['id' => 'id']);
     } catch (Exception $e) {

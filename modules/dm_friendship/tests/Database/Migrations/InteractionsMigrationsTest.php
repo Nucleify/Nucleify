@@ -7,7 +7,7 @@ if (!defined('PEST_RUNNING')) {
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 
-it('can create table', function () {
+it('can create table', function (): void {
     Artisan::call('migrate');
 
     expect(Schema::hasTable('interactions'))->toBeTrue()
@@ -16,7 +16,7 @@ it('can create table', function () {
         ]))->toBeTrue();
 });
 
-it('can be rolled back', function () {
+it('can be rolled back', function (): void {
     Artisan::call('migrate');
 
     Artisan::call('migrate:rollback');

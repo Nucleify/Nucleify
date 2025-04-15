@@ -6,46 +6,46 @@ if (!defined('PEST_RUNNING')) {
 
 use App\Models\Contact;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function () {
-    test('index api', function () {
+describe('200 > Authorized', function (): void {
+    test('index api', function (): void {
         Contact::factory(3)->create();
 
         $this->getJson(route('contacts.index'))
             ->assertOk();
     });
 
-    test('countByCreatedLastWeek api', function () {
+    test('countByCreatedLastWeek api', function (): void {
         Contact::factory(3)->create();
 
         $this->getJson(route('contacts.countByCreatedLastWeek'))
             ->assertOk();
     });
 
-    test('store api', function () {
+    test('store api', function (): void {
         $this->postJson(route('contacts.store'), contactData)
             ->assertOk();
     });
 
-    test('show api', function () {
+    test('show api', function (): void {
         $contact = Contact::factory()->create();
 
         $this->getJson(route('contacts.show', $contact->id))
             ->assertOk();
     });
 
-    test('update api', function () {
+    test('update api', function (): void {
         $contact = Contact::factory()->create();
 
         $this->putJson(route('contacts.update', $contact->id), updatedContactData)
             ->assertOk();
     });
 
-    test('destroy api', function () {
+    test('destroy api', function (): void {
         $contact = Contact::factory()->create();
 
         $this->deleteJson(route('contacts.destroy', $contact->id))

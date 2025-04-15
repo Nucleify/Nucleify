@@ -6,11 +6,11 @@ if (!defined('PEST_RUNNING')) {
 
 use App\Services\SitemapService;
 
-beforeEach(function () {
+beforeEach(function (): void {
     removeSitemap();
 });
 
-test('it generates a valid sitemap', function () {
+test('it generates a valid sitemap', function (): void {
     $sitemapService = new SitemapService;
 
     $sitemapService->generateSitemap();

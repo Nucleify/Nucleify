@@ -8,13 +8,13 @@ use App\Http\Controllers\FriendController;
 use App\Services\FriendshipService;
 use Database\Factories\UserFactory;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->controller = app()->makeWith(FriendController::class, ['service' => app()->make(FriendshipService::class)]);
 });
 
-test('send friend request > success', function () {
+test('send friend request > success', function (): void {
     $recipient = UserFactory::new()->create();
     $response = $this->controller->sendRequest($recipient);
 
@@ -22,7 +22,7 @@ test('send friend request > success', function () {
     expect($response->getData(true))->toEqual(['message' => 'Friend request sent successfully']);
 });
 
-test('accept friend request > success', function () {
+test('accept friend request > success', function (): void {
     $sender = UserFactory::new()->create();
     $response = $this->controller->acceptRequest($sender);
 
@@ -30,7 +30,7 @@ test('accept friend request > success', function () {
     expect($response->getData(true))->toEqual(['message' => 'Friend request accepted successfully']);
 });
 
-test('deny friend request > success', function () {
+test('deny friend request > success', function (): void {
     $sender = UserFactory::new()->create();
     $response = $this->controller->denyRequest($sender);
 
@@ -38,7 +38,7 @@ test('deny friend request > success', function () {
     expect($response->getData(true))->toEqual(['message' => 'Friend request denied successfully']);
 });
 
-test('remove friend method > success', function () {
+test('remove friend method > success', function (): void {
     $friend = UserFactory::new()->create();
     $response = $this->controller->removeFriend($friend);
 
@@ -46,7 +46,7 @@ test('remove friend method > success', function () {
     expect($response->getData(true))->toEqual(['message' => 'Friend removed successfully']);
 });
 
-test('block friend method > success', function () {
+test('block friend method > success', function (): void {
     $friend = UserFactory::new()->create();
     $response = $this->controller->blockFriend($friend);
 
@@ -54,7 +54,7 @@ test('block friend method > success', function () {
     expect($response->getData(true))->toEqual(['message' => 'Friend blocked successfully']);
 });
 
-test('unblock friend method > success', function () {
+test('unblock friend method > success', function (): void {
     $friend = UserFactory::new()->create();
     $response = $this->controller->unblockFriend($friend);
 

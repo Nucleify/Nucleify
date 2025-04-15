@@ -11,13 +11,13 @@ use App\Models\Money;
 use App\Services\MoneyService;
 use Illuminate\Http\Request;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->controller = app()->makeWith(MoneyController::class, ['moneyService' => app()->make(MoneyService::class)]);
 });
 
-test('index > success', function () {
+test('index > success', function (): void {
     Money::factory(3)->create();
 
     $request = new Request;
@@ -28,7 +28,7 @@ test('index > success', function () {
     expect($response->getData(true));
 });
 
-test('countByCreatedLastWeek > success', function () {
+test('countByCreatedLastWeek > success', function (): void {
     $request = new Request;
 
     $response = $this->controller->countByCreatedLastWeek($request);
@@ -36,7 +36,7 @@ test('countByCreatedLastWeek > success', function () {
     expect($response->getStatusCode())->toEqual(200);
 });
 
-test('show > success', function () {
+test('show > success', function (): void {
     $money = Money::factory()->create();
 
     $response = $this->controller->show($money->id);
@@ -45,7 +45,7 @@ test('show > success', function () {
     expect($response->getData(true));
 });
 
-test('store > success', function () {
+test('store > success', function (): void {
     $request = Mockery::mock(PostRequest::class);
     $request->shouldReceive('validated')
         ->andReturn(moneyData);
@@ -56,7 +56,7 @@ test('store > success', function () {
     expect($response->getData(true));
 });
 
-test('update > success', function () {
+test('update > success', function (): void {
     $money = Money::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
@@ -69,7 +69,7 @@ test('update > success', function () {
     expect($response->getData(true));
 });
 
-test('delete > success', function () {
+test('delete > success', function (): void {
     $money = Money::factory()->create();
 
     $response = $this->controller->destroy($money->id);

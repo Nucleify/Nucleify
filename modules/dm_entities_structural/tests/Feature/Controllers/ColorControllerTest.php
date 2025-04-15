@@ -11,13 +11,13 @@ use App\Models\Color;
 use App\Services\ColorService;
 use Illuminate\Http\Request;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->controller = app()->makeWith(ColorController::class, ['colorService' => app()->make(ColorService::class)]);
 });
 
-test('index > success', function () {
+test('index > success', function (): void {
     Color::factory()->count(3)->create();
 
     $request = new Request;
@@ -28,7 +28,7 @@ test('index > success', function () {
     expect($response->getData(true));
 });
 
-test('countByCreatedLastWeek > success', function () {
+test('countByCreatedLastWeek > success', function (): void {
     $request = new Request;
 
     $response = $this->controller->countByCreatedLastWeek($request);
@@ -36,7 +36,7 @@ test('countByCreatedLastWeek > success', function () {
     expect($response->getStatusCode())->toEqual(200);
 });
 
-test('getByEntity > success', function () {
+test('getByEntity > success', function (): void {
     $entity = 'article';
     $entities = ['other', 'science', $entity];
 
@@ -56,7 +56,7 @@ test('getByEntity > success', function () {
     expect(count($data))->toEqual(Color::where('entity', $entity)->count());
 });
 
-test('getSiteColors > success', function () {
+test('getSiteColors > success', function (): void {
     $entity = 'article';
     $entities = ['other', 'science', $entity];
 
@@ -76,7 +76,7 @@ test('getSiteColors > success', function () {
     expect(count($data))->toEqual(Color::where('entity', $entity)->count());
 });
 
-test('show > success', function () {
+test('show > success', function (): void {
     $color = Color::factory()->create();
 
     $response = $this->controller->show($color->id);
@@ -85,7 +85,7 @@ test('show > success', function () {
     expect($response->getData(true));
 });
 
-test('store > success', function () {
+test('store > success', function (): void {
     $request = Mockery::mock(PostRequest::class);
     $request->shouldReceive('validated')
         ->andReturn(colorData);
@@ -96,7 +96,7 @@ test('store > success', function () {
     expect($response->getData(true));
 });
 
-test('update > success', function () {
+test('update > success', function (): void {
     $color = Color::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
@@ -109,7 +109,7 @@ test('update > success', function () {
     expect($response->getData(true));
 });
 
-test('delete > success', function () {
+test('delete > success', function (): void {
     $color = Color::factory()->create();
 
     $response = $this->controller->destroy($color->id);

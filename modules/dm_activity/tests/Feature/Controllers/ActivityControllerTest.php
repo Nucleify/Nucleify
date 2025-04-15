@@ -9,20 +9,20 @@ use App\Services\ActivityService;
 use Database\Factories\ActivityFactory;
 use Illuminate\Http\Request;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->controller = app()->makeWith(ActivityController::class, ['articleService' => app()->make(ActivityService::class)]);
 });
 
-test('index > success', function () {
+test('index > success', function (): void {
     $response = $this->controller->index();
 
     expect($response->getStatusCode())->toEqual(200);
     expect($response->getData(true));
 });
 
-test('countByCreatedLastWeek > success', function () {
+test('countByCreatedLastWeek > success', function (): void {
     $request = new Request;
 
     $response = $this->controller->countByCreatedLastWeek($request);
@@ -30,7 +30,7 @@ test('countByCreatedLastWeek > success', function () {
     expect($response->getStatusCode())->toEqual(200);
 });
 
-test('show > success', function () {
+test('show > success', function (): void {
     $activity = ActivityFactory::new()->create();
 
     $response = $this->controller->show($activity->id);
@@ -39,7 +39,7 @@ test('show > success', function () {
     expect($response->getData(true));
 });
 
-test('delete > success', function () {
+test('delete > success', function (): void {
     $activity = ActivityFactory::new()->create();
 
     $response = $this->controller->destroy($activity->id);

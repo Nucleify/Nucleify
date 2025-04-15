@@ -7,11 +7,11 @@ if (!defined('PEST_RUNNING')) {
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 
-beforeEach(function () {
+beforeEach(function (): void {
     removeSitemap();
 });
 
-it('can run sitemap:generate successfully', function () {
+it('can run sitemap:generate successfully', function (): void {
     $this->assertFalse(File::exists(public_path('sitemap.xml')));
 
     Artisan::call('sitemap:generate');

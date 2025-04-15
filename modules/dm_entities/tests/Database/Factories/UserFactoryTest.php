@@ -6,14 +6,14 @@ if (!defined('PEST_RUNNING')) {
 
 use App\Models\User;
 
-it('can create record', function () {
+it('can create record', function (): void {
     $user = User::factory()->create();
 
     $this->assertDatabaseCount('users', 1);
     $this->assertDatabaseHas('users', ['id' => $user->id]);
 });
 
-it('can create multiple records', function () {
+it('can create multiple records', function (): void {
     $users = User::factory()->count(3)->create();
 
     $this->assertDatabaseCount('users', 3);

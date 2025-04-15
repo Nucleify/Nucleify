@@ -6,7 +6,7 @@ if (!defined('PEST_RUNNING')) {
 
 use Illuminate\Support\Facades\Schema;
 
-it('can create password_resets table', function () {
+it('can create password_resets table', function (): void {
     $this->artisan('migrate');
 
     expect(Schema::hasTable('password_resets'))->toBeTrue()
@@ -15,7 +15,7 @@ it('can create password_resets table', function () {
         ]))->toBeTrue();
 });
 
-it('can be rolled back', function () {
+it('can be rolled back', function (): void {
     $this->artisan('migrate:rollback');
 
     expect(Schema::hasTable('password_resets'))->toBeFalse();

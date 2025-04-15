@@ -3,7 +3,7 @@
 use App\Traits\Getters\RequestGetterTrait;
 use Illuminate\Http\Request;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->guest = null;
 
@@ -15,15 +15,15 @@ beforeEach(function () {
     $this->appUrl = config('app.url');
 });
 
-describe('RequestGetterTrait', function () {
-    test('getReferrer handles referer', function () {
+describe('RequestGetterTrait', function (): void {
+    test('getReferrer handles referer', function (): void {
         $request = new Request;
         $request->headers->set('referer', "$this->appUrl");
 
         expect($this->trait->getReferrer($request))->toBe("$this->appUrl");
     });
 
-    test('admin user accessing admin URL', function () {
+    test('admin user accessing admin URL', function (): void {
         $this->actingAs($this->admin);
 
         $request = new Request;
@@ -33,7 +33,7 @@ describe('RequestGetterTrait', function () {
             ->and($this->trait->getRefererIsAdmin("$this->appUrl/admin"))->toBeTrue();
     });
 
-    test('no referer header provided', function () {
+    test('no referer header provided', function (): void {
         $request = new Request;
 
         expect($this->trait->getReferrer($request))->toBeNull()

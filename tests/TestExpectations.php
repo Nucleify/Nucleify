@@ -11,6 +11,6 @@
 |
 */
 
-expect()->extend('toBeOne', function () {
+expect()->extend('toBeOne', function (): void {
     return $this->toBe(1);
 });

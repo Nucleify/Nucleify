@@ -3,7 +3,7 @@
 use App\Traits\Setters\RequestSetterTrait;
 use Illuminate\Http\Request;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->trait = new class
     {
         use RequestSetterTrait;
@@ -22,8 +22,8 @@ beforeEach(function () {
     $this->appUrl = config('app.url');
 });
 
-describe('RequestSetterTrait', function () {
-    test('defineRequestData sets referrer and isRefererAdmin correctly for admin URL', function () {
+describe('RequestSetterTrait', function (): void {
+    test('defineRequestData sets referrer and isRefererAdmin correctly for admin URL', function (): void {
         $request = new Request;
         $request->headers->set('referer', "$this->appUrl/admin");
 
@@ -33,7 +33,7 @@ describe('RequestSetterTrait', function () {
         expect($this->trait->getIsRefererAdminValue())->toBeTrue();
     });
 
-    test('defineRequestData sets referrer and isRefererAdmin correctly for non-admin URL', function () {
+    test('defineRequestData sets referrer and isRefererAdmin correctly for non-admin URL', function (): void {
         $request = new Request;
         $request->headers->set('referer', "$this->appUrl/dashboard");
 
@@ -43,7 +43,7 @@ describe('RequestSetterTrait', function () {
         expect($this->trait->getIsRefererAdminValue())->toBeFalse();
     });
 
-    test('defineRequestData sets referrer to null and isRefererAdmin to false when no referer header', function () {
+    test('defineRequestData sets referrer to null and isRefererAdmin to false when no referer header', function (): void {
         $request = new Request;
 
         $this->trait->defineRequestData($request);
@@ -52,7 +52,7 @@ describe('RequestSetterTrait', function () {
         expect($this->trait->getIsRefererAdminValue())->toBeFalse();
     });
 
-    test('defineRequestData sets isRefererAdmin to false for unrelated URL patterns', function () {
+    test('defineRequestData sets isRefererAdmin to false for unrelated URL patterns', function (): void {
         $request = new Request;
         $request->headers->set('referer', "$this->appUrl/blog");
 

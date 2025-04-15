@@ -8,7 +8,7 @@ use App\Http\Controllers\SitemapController;
 use App\Services\SitemapService;
 use Illuminate\Support\Facades\File;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->controller = app()->makeWith(SitemapController::class, ['service' => app()->make(SitemapService::class)]);
@@ -16,7 +16,7 @@ beforeEach(function () {
     removeSitemap();
 });
 
-it('generates a valid sitemap', function () {
+it('generates a valid sitemap', function (): void {
     $response = $this->controller->generate();
 
     expect($response->getStatusCode())->toEqual(200);

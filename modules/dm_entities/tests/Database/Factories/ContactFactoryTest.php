@@ -6,18 +6,18 @@ if (!defined('PEST_RUNNING')) {
 
 use App\Models\Contact;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
 });
 
-it('can create record', function () {
+it('can create record', function (): void {
     $contact = Contact::factory()->create();
 
     $this->assertDatabaseCount('contacts', 1);
     $this->assertDatabaseHas('contacts', ['id' => $contact->id]);
 });
 
-it('can create multiple records', function () {
+it('can create multiple records', function (): void {
     $contacts = Contact::factory()->count(3)->create();
 
     $this->assertDatabaseCount('contacts', 3);
@@ -26,7 +26,7 @@ it('can create multiple records', function () {
     }
 });
 
-it('cant\'t create record', function () {
+it('cant\'t create record', function (): void {
     try {
         Contact::factory()->create(['birthday' => 'invalid_date']);
     } catch (Exception $e) {
@@ -38,7 +38,7 @@ it('cant\'t create record', function () {
     $this->fail('Expected exception not thrown.');
 })->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
 
-it('cant\'t create multiple records', function () {
+it('cant\'t create multiple records', function (): void {
     try {
         Contact::factory()->count(2)->create(['birthday' => 'invalid_date']);
     } catch (Exception $e) {

@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 if (env('DB_DATABASE') === 'database/database.sqlite') {
     uses(Tests\TestCase::class)
-        ->beforeEach(function () {
+        ->beforeEach(function (): void {
             $this->artisan('migrate:fresh');
         })
         ->in('Feature', 'Database', 'Global');

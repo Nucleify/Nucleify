@@ -11,13 +11,13 @@ use App\Models\Link;
 use App\Services\LinkService;
 use Illuminate\Http\Request;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->controller = app()->makeWith(LinkController::class, ['linkService' => app()->make(LinkService::class)]);
 });
 
-test('index > success', function () {
+test('index > success', function (): void {
     Link::factory()->count(3)->create();
 
     $request = new Request;
@@ -27,7 +27,7 @@ test('index > success', function () {
     expect($response->getData(true));
 });
 
-test('getByCategory > success', function () {
+test('getByCategory > success', function (): void {
     $category = 'technology';
     $categories = ['other', 'science', $category];
 
@@ -47,7 +47,7 @@ test('getByCategory > success', function () {
     expect(count($data))->toEqual(Link::where('category', $category)->count());
 });
 
-test('show > success', function () {
+test('show > success', function (): void {
     $link = Link::factory()->create();
 
     $response = $this->controller->show($link->id);
@@ -56,7 +56,7 @@ test('show > success', function () {
     expect($response->getData(true));
 });
 
-test('store > success', function () {
+test('store > success', function (): void {
     $request = Mockery::mock(PostRequest::class);
     $request->shouldReceive('validated')
         ->andReturn(linkData);
@@ -67,7 +67,7 @@ test('store > success', function () {
     expect($response->getData(true));
 });
 
-test('update > success', function () {
+test('update > success', function (): void {
     $link = Link::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
@@ -80,7 +80,7 @@ test('update > success', function () {
     expect($response->getData(true));
 });
 
-test('delete > success', function () {
+test('delete > success', function (): void {
     $link = Link::factory()->create();
 
     $response = $this->controller->destroy($link->id);
