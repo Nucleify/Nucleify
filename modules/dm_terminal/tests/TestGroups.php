@@ -1,5 +1,21 @@
 <?php
 
+
+/**
+ *  Main tests group
+ */
+uses()
+    ->group('dm-terminal')
+    ->in('.');
+
+uses()
+    ->group('dm-terminal-ft')
+    ->in('Feature');
+
+
+/**
+ *  Feature groups
+ */
 uses()
     ->group('api')
     ->in('Feature/Api');
