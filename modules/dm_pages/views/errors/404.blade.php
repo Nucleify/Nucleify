@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="license">
+    <div id="error-404">
         <ad-section-navbar></ad-section-navbar>
-        <ad-license-page></ad-license-page>
+        <dm-error-404-page></dm-error-404-page>
         <ad-section-footer></ad-section-footer>
     </div>
 @endsection

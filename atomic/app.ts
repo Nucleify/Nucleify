@@ -83,17 +83,6 @@ import {
   Toast,
 } from './organisms'
 import {
-  AboutPage,
-  BlogPage,
-  AdminPage,
-  LicensePage,
-  DashboardPage,
-  Error404Page,
-  HomePage,
-  ServicesPage,
-  SettingsPage,
-} from './pages'
-import {
   SectionCategory,
   SectionContact,
   SectionFaq,
@@ -185,19 +174,6 @@ app
   .component('ad-toast', Toast)
 
   /**
-   *  Pages
-   */
-  .component('ad-about-page', AboutPage)
-  .component('ad-blog-page', BlogPage)
-  .component('ad-admin-page', AdminPage)
-  .component('ad-license-page', LicensePage)
-  .component('ad-dashboard-page', DashboardPage)
-  .component('ad-error-404-page', Error404Page)
-  .component('ad-home-page', HomePage)
-  .component('ad-services-page', ServicesPage)
-  .component('ad-settings-page', SettingsPage)
-
-  /**
    *  Sections
    */
   .component('ad-section-category', SectionCategory)
@@ -227,6 +203,7 @@ import {
   registerDMAuth,
   registerDMEntities,
   registerDMEntitiesStructural,
+  registerDMPages,
   registerDMScreenLights,
   registerDMScreenLoader,
 } from '../modules'
@@ -235,6 +212,7 @@ registerDMActivity(app)
 registerDMAuth(app)
 registerDMEntities(app)
 registerDMEntitiesStructural(app)
+registerDMPages(app)
 registerDMScreenLights(app)
 registerDMScreenLoader(app)
 

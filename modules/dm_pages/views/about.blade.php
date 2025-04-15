@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="blog">
+    <div id="about">
         <ad-section-navbar></ad-section-navbar>
-        <ad-blog-page></ad-blog-page>
-        <ad-section-footer></ad-section-foot>
+        <dm-about-page></dm-about-page>
+        <ad-section-footer></ad-section-footer>
     </div>
 @endsection
