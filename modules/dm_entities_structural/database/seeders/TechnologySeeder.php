@@ -2,15 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-
 use App\Models\Technology;
+use Illuminate\Database\Seeder;
 
 class TechnologySeeder extends Seeder
 {
-    /**
-     * @var string
-     */
     protected string $path = 'modules/dm_entities_structural/database/constants/Technologies/';
 
     /**
@@ -23,7 +19,7 @@ class TechnologySeeder extends Seeder
         foreach ($generalTechnologies as $technology) {
             Technology::factory()->create(array_merge($technology, [
                 'category' => 'general',
-                'display' => true
+                'display' => true,
             ]));
         }
     }

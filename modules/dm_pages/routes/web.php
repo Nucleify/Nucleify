@@ -1,13 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\PagesController;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Route;
 
 $publicRoutes = require __DIR__ . '/constants/public.php';
 $authRoutes = require __DIR__ . '/constants/auth.php';
 
-Route::get('/', function () {
+Route::get('/', function (): Redirector|RedirectResponse {
     return redirect('/home');
 });
 

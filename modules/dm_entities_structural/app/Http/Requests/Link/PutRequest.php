@@ -31,10 +31,10 @@ class PutRequest extends FormRequest
             'hreflang' => 'nullable|string|max:255',
             'media' => 'nullable|string|max:255',
             'ping' => 'nullable|string',
-            'referrerpolicy' => 'nullable|string|max:255|'.
-                'in:no-referrer,no-referrer-when-downgrade,origin,origin-when-cross-origin,'.
+            'referrerpolicy' => 'nullable|string|max:255|' .
+                'in:no-referrer,no-referrer-when-downgrade,origin,origin-when-cross-origin,' .
                 'same-origin,strict-origin-when-cross-origin,unsafe-url',
-            'rel' => 'nullable|string|max:255|in:alternate,author,bookmark,external,help,'.
+            'rel' => 'nullable|string|max:255|in:alternate,author,bookmark,external,help,' .
                 'license,next,nofollow,noreferrer,noopener,prev,search,tag',
             'target' => 'nullable|string|max:255|in:_blank,_parent,_self,_top',
             'type' => 'nullable|string|max:255',

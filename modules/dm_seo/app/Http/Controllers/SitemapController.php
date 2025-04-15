@@ -2,26 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\JsonResponse;
-
 use App\Services\SitemapService;
+use Illuminate\Http\JsonResponse;
 
 class SitemapController extends Controller
 {
     protected SitemapService $sitemapService;
 
-    /**
-     * @param SitemapService $sitemapService
-     */
     public function __construct(SitemapService $sitemapService)
     {
         $this->sitemapService = $sitemapService;
     }
 
-    /**
-     * @return JsonResponse
-     */
     public function generate(): JsonResponse
     {
         if ($this->sitemapService->generateSitemap()) {
@@ -31,4 +23,3 @@ class SitemapController extends Controller
         }
     }
 }
-

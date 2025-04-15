@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-
 use App\Models\Contact;
+use Illuminate\Database\Seeder;
 
 class ContactSeeder extends Seeder
 {
@@ -19,7 +18,7 @@ class ContactSeeder extends Seeder
             'work_phone' => '987654321',
             'address' => '123 Main St, City',
             'birthday' => '2022-04-10',
-            'role' => 'user'
+            'role' => 'user',
         ]);
 
         $count = (env('APP_ENV') === 'production') ? 100 : 40;

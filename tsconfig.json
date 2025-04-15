@@ -42,7 +42,7 @@
     "storybook/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "modules/dm_activity/vitests/constants/api/activity.ts"  ],
   "exclude": [
     "node_modules"
   ]

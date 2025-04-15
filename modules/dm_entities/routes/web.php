@@ -2,10 +2,8 @@
 
 namespace Routes;
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\EntitiesController;
-
+use Illuminate\Support\Facades\Route;
 
 $routes = [
     'index',

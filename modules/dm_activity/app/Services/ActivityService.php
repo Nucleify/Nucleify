@@ -2,14 +2,13 @@
 
 namespace App\Services;
 
-use Exception;
-use Illuminate\Http\Request;
-use Spatie\Activitylog\Models\Activity;
-
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\ActivityTransformer;
+use Exception;
+use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 
 class ActivityService
 {
@@ -17,20 +16,12 @@ class ActivityService
     use TimeSetterTrait;
     use UserSetterTrait;
 
-    /**
-     * @param Activity $model
-     * @param string $entity
-     * @param LoggerService $logger
-     */
     public function __construct(
         private readonly Activity $model,
         protected string $entity = 'activity',
-        private readonly LoggerService $logger = new LoggerService()
+        private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    /**
-     * @return array
-     */
     public function index(): array
     {
         $this->defineUserData();
@@ -41,15 +32,10 @@ class ActivityService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new ActivityTransformer())
+            ->transformWith(new ActivityTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
     public function countByCreatedLastWeek(Request $request): array
     {
         $this->defineRequestData($request);
@@ -67,10 +53,6 @@ class ActivityService
     }
 
     /**
-     * @param int $id
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function show(int $id): array
@@ -87,16 +69,11 @@ class ActivityService
         } else {
             return fractal()
                 ->item($result)
-                ->transformWith(new ActivityTransformer())
+                ->transformWith(new ActivityTransformer)
                 ->toArray()['data'];
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return void
-     */
     public function delete($id): void
     {
         $this->defineUserData();

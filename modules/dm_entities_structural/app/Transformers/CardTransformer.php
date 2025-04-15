@@ -2,13 +2,12 @@
 
 namespace App\Transformers;
 
+use App\Contracts\CardContract;
 use League\Fractal\TransformerAbstract;
 
-use App\Contracts\CardContract;
-
-class CardTransformer extends TransformerAbstract 
+class CardTransformer extends TransformerAbstract
 {
-    public function transform(CardContract $model): array 
+    public function transform(CardContract $model): array
     {
         return [
             'id' => $model->getId(),
@@ -19,7 +18,7 @@ class CardTransformer extends TransformerAbstract
             'component' => $model->getComponent(),
             'display' => $model->getDisplay(),
             'created_at' => $model->getCreatedAt(),
-            'updated_at' => $model->getUpdatedAt()
+            'updated_at' => $model->getUpdatedAt(),
         ];
     }
 }

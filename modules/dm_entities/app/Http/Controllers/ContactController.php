@@ -2,32 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-
 use App\Http\Requests\Contact\PostRequest;
 use App\Http\Requests\Contact\PutRequest;
 use App\Models\Contact;
 use App\Services\ContactService;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
     private ContactService $service;
 
-    /**
-     * @param ContactService $service
-     */
     public function __construct(ContactService $service)
     {
         $this->service = $service;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function index(Request $request): JsonResponse
     {
         try {
@@ -39,11 +30,6 @@ class ContactController extends Controller
         }
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function countByCreatedLastWeek(Request $request): JsonResponse
     {
         try {
@@ -55,11 +41,6 @@ class ContactController extends Controller
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function show($id): JsonResponse
     {
         try {
@@ -71,11 +52,6 @@ class ContactController extends Controller
         }
     }
 
-    /**
-     * @param PostRequest $request
-     *
-     * @return JsonResponse
-     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -84,19 +60,13 @@ class ContactController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: ' . $result['first_name'] . ' ' . $result['last_name'] . ' contact'
+                'message' => 'Successfully created: ' . $result['first_name'] . ' ' . $result['last_name'] . ' contact',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param PutRequest $request
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -105,27 +75,23 @@ class ContactController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['first_name'] . ' ' . $result['last_name'] . ' contact'
+                'message' => 'Successfully updated: ' . $result['first_name'] . ' ' . $result['last_name'] . ' contact',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function destroy($id): JsonResponse
     {
         $result = Contact::findOrFail($id);
 
         try {
             $this->service->delete($id);
+
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: '. $result->getFullName() . ' contact'
+                'message' => 'Successfully deleted: ' . $result->getFullName() . ' contact',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

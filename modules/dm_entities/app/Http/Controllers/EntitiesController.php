@@ -8,9 +8,6 @@ class EntitiesController extends Controller
 {
     /**
      * Render the view for the specified entity.
-     *
-     * @param string $entity
-     * @return Renderable
      */
     public function renderEntity(string $entity): Renderable
     {

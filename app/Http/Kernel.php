@@ -2,13 +2,13 @@
 
 namespace App\Http;
 
-use App\Http\Middleware\Staff;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\Staff;
 use App\Http\Middleware\TrimStrings;
-//use App\Http\Middleware\TrustHosts;
+// use App\Http\Middleware\TrustHosts;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\ValidateSignature;
 use App\Http\Middleware\VerifyCsrfToken;
@@ -28,9 +28,10 @@ use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-//use Laravel\Sanctum\Http\Middleware\CheckAbilities;
-//use Laravel\Sanctum\Http\Middleware\CheckForAnyAbility;
-//use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
+
+// use Laravel\Sanctum\Http\Middleware\CheckAbilities;
+// use Laravel\Sanctum\Http\Middleware\CheckForAnyAbility;
+// use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 class Kernel extends HttpKernel
 {
@@ -42,7 +43,7 @@ class Kernel extends HttpKernel
      * @var array<int, class-string|string>
      */
     protected $middleware = [
-//         TrustHosts::class,
+        //         TrustHosts::class,
         TrustProxies::class,
         HandleCors::class,
         PreventRequestsDuringMaintenance::class,
@@ -67,14 +68,14 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-//             EnsureFrontendRequestsAreStateful::class,
-            ThrottleRequests::class.':api',
+            //             EnsureFrontendRequestsAreStateful::class,
+            ThrottleRequests::class . ':api',
             SubstituteBindings::class,
         ],
 
         'staff' => [
             Staff::class,
-        ]
+        ],
     ];
 
     /**
@@ -85,8 +86,8 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
-//        'abilities' => CheckAbilities::class,
-//        'ability' => CheckForAnyAbility::class,
+        //        'abilities' => CheckAbilities::class,
+        //        'ability' => CheckForAnyAbility::class,
         'auth' => Authenticate::class,
         'auth.basic' => AuthenticateWithBasicAuth::class,
         'auth.session' => AuthenticateSession::class,

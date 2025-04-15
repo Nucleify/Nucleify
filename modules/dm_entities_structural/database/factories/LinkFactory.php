@@ -29,19 +29,18 @@ class LinkFactory extends Factory
             'referrerpolicy' => $this->faker->randomElement([
                 'no-referrer', 'no-referrer-when-downgrade', 'origin',
                 'origin-when-cross-origin', 'same-origin',
-                'strict-origin-when-cross-origin', 'unsafe-url'
+                'strict-origin-when-cross-origin', 'unsafe-url',
             ]),
             'rel' => $this->faker->randomElement([
                 'alternate', 'author', 'bookmark', 'external',
                 'help', 'license', 'next', 'nofollow',
-                'noreferrer', 'noopener', 'prev', 'search', 'tag'
+                'noreferrer', 'noopener', 'prev', 'search', 'tag',
             ]),
             'target' => $this->faker->randomElement(['_blank', '_parent', '_self', '_top']),
             'type' => $this->faker->mimeType(),
             'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
-            'updated_at' => $this-> faker->dateTimeBetween('-1 year')->format('Y-m-d')
+            'updated_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
         ];
-
 
         Validator::make($data, [
             'download' => 'nullable|string',
@@ -52,14 +51,15 @@ class LinkFactory extends Factory
             'hreflang' => 'nullable|string|max:255',
             'media' => 'nullable|string|max:255',
             'ping' => 'nullable|string',
-            'referrerpolicy' => 'nullable|string|max:255|'.
-                'in:no-referrer,no-referrer-when-downgrade,origin,origin-when-cross-origin,'.
+            'referrerpolicy' => 'nullable|string|max:255|' .
+                'in:no-referrer,no-referrer-when-downgrade,origin,origin-when-cross-origin,' .
                 'same-origin,strict-origin-when-cross-origin,unsafe-url',
-            'rel' => 'nullable|string|max:255|in:alternate,author,bookmark,external,help,'.
+            'rel' => 'nullable|string|max:255|in:alternate,author,bookmark,external,help,' .
                 'license,next,nofollow,noreferrer,noopener,prev,search,tag',
             'target' => 'nullable|string|max:255|in:_blank,_parent,_self,_top',
             'type' => 'nullable|string|max:255',
         ]);
+
         return $data;
     }
 }

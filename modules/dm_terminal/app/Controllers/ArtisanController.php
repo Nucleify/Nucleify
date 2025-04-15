@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Artisan;
 
 class ArtisanController extends Controller
 {
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function run(Request $request): JsonResponse
     {
         $command = $request->input('command');
@@ -24,11 +19,11 @@ class ArtisanController extends Controller
 
             return response()->json([
                 'exit_code' => $exitCode,
-                'output' => $output
+                'output' => $output,
             ]);
         } catch (Exception $e) {
             return response()->json([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 500);
         }
     }

@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-
 use App\Models\Link;
+use Illuminate\Database\Seeder;
 
 class LinkSeeder extends Seeder
 {

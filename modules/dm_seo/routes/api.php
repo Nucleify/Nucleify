@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\SitemapController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +16,7 @@ use App\Http\Controllers\SitemapController;
 Route::controller(SitemapController::class)
     ->middleware(['web', 'auth'])
     ->prefix('sitemap')
-    ->group(function () {
+    ->group(function (): void {
         Route::get('/generate', 'generate')
             ->name('sitemap.generate');
     });
