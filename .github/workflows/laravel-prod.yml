@@ -107,7 +107,7 @@ jobs:
           php-version: '8.3.7'
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist
+        run: composer install --no-progress --prefer-dist --no-interaction
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
