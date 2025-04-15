@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Structural;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +27,7 @@ class QuestionFactory extends Factory
             'on_site' => in_array($category, ['home', 'about', 'services']),
             'display' => $this->faker->boolean(),
             'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
-            'updated_at' => $this-> faker->dateTimeBetween('-1 year')->format('Y-m-d')
+            'updated_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
         ];
 
         Validator::make($data, [
@@ -38,7 +36,7 @@ class QuestionFactory extends Factory
             'answer' => 'required|string|max:1000',
             'category' => 'string|max:255',
             'on_site' => 'bool',
-            'display' => 'bool'
+            'display' => 'bool',
         ]);
 
         return $data;

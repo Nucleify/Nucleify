@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Card\PostRequest;
+use App\Http\Requests\Card\PutRequest;
+use App\Models\Card;
+use App\Services\CardService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Card\PostRequest;
-use App\Http\Requests\Card\PutRequest;
-use App\Models\Card;
-use App\Services\CardService;
-
-class CardController extends Controller 
+class CardController extends Controller
 {
     private CardService $service;
 
-    /**
-     * @param CardService $service
-     */
     public function __construct(CardService $service)
     {
         $this->service = $service;
@@ -27,19 +22,12 @@ class CardController extends Controller
 
     /**
      * Show the application dashboard.
-     * 
-     * @return Renderable
      */
     public function render(): Renderable
     {
         return view('cards');
     }
 
-    /**
-     * @param Request $request
-     * 
-     * @return JsonResponse
-     */
     public function index(Request $request): JsonResponse
     {
         try {
@@ -51,11 +39,6 @@ class CardController extends Controller
         }
     }
 
-    /**
-     * @param Request $request
-     * 
-     * @return JsonResponse
-     */
     public function countByCreatedLastWeek(Request $request): JsonResponse
     {
         try {
@@ -67,11 +50,6 @@ class CardController extends Controller
         }
     }
 
-    /**
-     * @param string $category
-     *
-     * @return JsonResponse
-     */
     public function getByCategory(string $category): JsonResponse
     {
         try {
@@ -83,12 +61,7 @@ class CardController extends Controller
         }
     }
 
-    /**
-     * @param $id
-     * 
-     * @return JsonResponse
-     */
-    public function show($id): JsonResponse 
+    public function show($id): JsonResponse
     {
         try {
             $result = $this->service->show($id);
@@ -99,11 +72,6 @@ class CardController extends Controller
         }
     }
 
-    /**
-     * @param PostRequest $request
-     * 
-     * @return JsonResponse
-     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -112,19 +80,13 @@ class CardController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created ' . $result['title'] . ' card'
+                'message' => 'Successfully created ' . $result['title'] . ' card',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param PutRequest $request
-     * @param $id
-     * 
-     * @return JsonResponse
-     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -133,27 +95,23 @@ class CardController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['title'] . ' card'
+                'message' => 'Successfully updated: ' . $result['title'] . ' card',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param $id
-     * 
-     * @return JsonResponse
-     */
     public function destroy($id): JsonResponse
     {
         $result = Card::findOrFail($id);
 
         try {
             $this->service->delete($id);
+
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted ' . $result->getTitle() . ' card'
+                'message' => 'Successfully deleted ' . $result->getTitle() . ' card',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

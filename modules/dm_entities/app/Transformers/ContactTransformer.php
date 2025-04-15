@@ -2,9 +2,8 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\Contracts\ContactContract;
+use League\Fractal\TransformerAbstract;
 
 class ContactTransformer extends TransformerAbstract
 {
@@ -24,7 +23,7 @@ class ContactTransformer extends TransformerAbstract
             'role' => $model->getRole(),
             'contact_groups' => $model->getContactGroups(),
             'created_at' => $model->getCreatedAt(),
-            'updated_at' => $model->getUpdatedAt()
+            'updated_at' => $model->getUpdatedAt(),
         ];
     }
 }

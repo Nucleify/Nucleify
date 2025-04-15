@@ -10,9 +10,6 @@ trait TimeSetterTrait
 
     protected string $lastWeek;
 
-    /**
-     * @return void
-     */
     public function defineTimeData(): void
     {
         $this->lastWeek = $this->getLastWeek();

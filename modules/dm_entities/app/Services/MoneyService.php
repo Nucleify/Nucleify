@@ -2,14 +2,12 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
-
 use App\Models\Money;
-use App\Services\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\MoneyTransformer;
+use Illuminate\Http\Request;
 
 class MoneyService
 {
@@ -17,22 +15,12 @@ class MoneyService
     use TimeSetterTrait;
     use UserSetterTrait;
 
-    /**
-     * @param Money $model
-     * @param string $entity
-     * @param LoggerService $logger
-     */
     public function __construct(
         private readonly Money $model,
         protected string $entity = 'money',
-        private readonly LoggerService $logger = new LoggerService()
+        private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    /**
-     * @param Request $request
-     *
-     * @return mixed
-     */
     public function index(Request $request): mixed
     {
         $this->defineRequestData($request);
@@ -46,15 +34,10 @@ class MoneyService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new MoneyTransformer())
+            ->transformWith(new MoneyTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
     public function countByCreatedLastWeek(Request $request): array
     {
         $this->defineRequestData($request);
@@ -73,11 +56,6 @@ class MoneyService
         return ['count' => $result];
     }
 
-    /**
-     * @param $id
-     *
-     * @return array
-     */
     public function show($id): array
     {
         $this->defineUserData();
@@ -90,15 +68,10 @@ class MoneyService
 
         return fractal()
             ->item($result)
-            ->transformWith(new MoneyTransformer())
+            ->transformWith(new MoneyTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param array $data
-     *
-     * @return array
-     */
     public function create(array $data): array
     {
         $this->defineUserData();
@@ -109,16 +82,10 @@ class MoneyService
 
         return fractal()
             ->item($result)
-            ->transformWith(new MoneyTransformer())
+            ->transformWith(new MoneyTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     * @param array $data
-     *
-     * @return array
-     */
     public function update($id, array $data): array
     {
         $this->defineUserData();
@@ -133,15 +100,10 @@ class MoneyService
 
         return fractal()
             ->item($result->fresh())
-            ->transformWith(new MoneyTransformer())
+            ->transformWith(new MoneyTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     *
-     * @return void
-     */
     public function delete($id): void
     {
         $this->defineUserData();

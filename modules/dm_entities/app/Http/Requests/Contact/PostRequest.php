@@ -16,7 +16,6 @@ class PostRequest extends FormRequest
         return Auth::check();
     }
 
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -34,7 +33,7 @@ class PostRequest extends FormRequest
             'address' => 'nullable|string|min:15|max:100',
             'birthday' => 'nullable|date',
             'contact_groups' => 'nullable|string',
-            'role' => 'nullable|string|in:user,tech,test_admin,admin,super_admin'
+            'role' => 'nullable|string|in:user,tech,test_admin,admin,super_admin',
         ];
     }
 }

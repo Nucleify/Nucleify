@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Providers\RouteServiceProvider;
+use Modules\dm_pages\dm_pages;
 
 class RegisterController extends Controller
 {
@@ -29,10 +28,8 @@ class RegisterController extends Controller
 
     /**
      * Where to redirect users after registration.
-     *
-     * @var string
      */
-    protected string $redirectTo = RouteServiceProvider::HOME;
+    protected string $redirectTo = dm_pages::HOME;
 
     /**
      * Create a new controller instance.
@@ -46,9 +43,6 @@ class RegisterController extends Controller
 
     /**
      * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data): \Illuminate\Contracts\Validation\Validator
     {
@@ -61,9 +55,6 @@ class RegisterController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return Builder|Model
      */
     protected function create(array $data): Builder|Model
     {

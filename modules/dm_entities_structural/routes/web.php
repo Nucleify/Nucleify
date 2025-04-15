@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StructuralController;
+use Illuminate\Support\Facades\Route;
 
 $routes = [
     'index',
@@ -17,8 +17,7 @@ Route::prefix('structural')->group(function () use ($routes) {
         $endpoint = ($route !== 'index') ? $route : '';
 
         Route::get("/$endpoint", [StructuralController::class, 'renderStructural'])
-            ->name($route)
+            ->name('structural.' . $route)
             ->defaults('structural', $route);
     }
 });
-

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\UserContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,8 +10,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Multicaret\Acquaintances\Traits\Friendable;
-
-use App\Contracts\UserContract;
 
 /**
  * @property int id
@@ -52,7 +51,7 @@ use App\Contracts\UserContract;
  */
 class User extends Authenticatable implements UserContract
 {
-    use HasApiTokens, HasFactory, Friendable, Notifiable;
+    use Friendable, HasApiTokens, HasFactory, Notifiable;
 
     public function __construct(array $attributes = [])
     {
@@ -63,7 +62,7 @@ class User extends Authenticatable implements UserContract
         'name',
         'email',
         'password',
-        'role'
+        'role',
     ];
 
     protected $hidden = [
@@ -83,53 +82,66 @@ class User extends Authenticatable implements UserContract
     {
         return $this->id;
     }
+
     public function getName(): string
     {
         return $this->name;
     }
+
     public function getEmail(): string
     {
         return $this->email;
     }
+
     public function getRole(): string
     {
         return $this->role;
     }
+
     public function getCreatedAt(): string
     {
         return $this->created_at;
     }
+
     public function getUpdatedAt(): string
     {
         return $this->updated_at;
     }
+
     public function isUser(): bool
     {
         return $this->role === 'user';
     }
+
     public function isTech(): bool
     {
         return $this->role === 'tech';
     }
+
     public function isTestAdmin(): bool
     {
         return $this->role === 'test_admin';
     }
+
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
     }
+
     public function isSuperAdmin(): bool
     {
         return $this->role === 'super_admin';
     }
+
     public function isStaff(): bool
     {
         return $this->hasRole(['tech', 'test_admin', 'admin', 'super_admin']);
     }
+
     public function hasRole($roles): bool
     {
         $roles = is_array($roles) ? $roles : [$roles];
+
         return in_array($this->role, $roles);
     }
 
@@ -140,42 +152,52 @@ class User extends Authenticatable implements UserContract
     {
         return $query->where('id', $parameter);
     }
+
     public function scopeGetByName(Builder $query, string $parameter): Builder
     {
         return $query->where('name', $parameter);
     }
+
     public function scopeGetByEmail(Builder $query, string $parameter): Builder
     {
         return $query->where('email', $parameter);
     }
+
     public function scopeGetByRole(Builder $query, string $parameter): Builder
     {
         return $query->where('role', $parameter);
     }
+
     public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('created_at', $parameter);
     }
+
     public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('updated_at', $parameter);
     }
+
     public function scopeGetByUserRole(Builder $query): Builder
     {
         return $query->where('role', 'user');
     }
+
     public function scopeGetByTechRole(Builder $query): Builder
     {
         return $query->where('role', 'tech');
     }
+
     public function scopeGetByTestAdminRole(Builder $query): Builder
     {
         return $query->where('role', 'test_admin');
     }
+
     public function scopeGetByAdminRole(Builder $query): Builder
     {
         return $query->where('role', 'admin');
     }
+
     public function scopeGetBySuperAdminRole(Builder $query): Builder
     {
         return $query->where('role', 'super_admin');
@@ -188,10 +210,12 @@ class User extends Authenticatable implements UserContract
     {
         return $this->hasMany(Article::class);
     }
+
     public function contacts(): HasMany
     {
         return $this->hasMany(Contact::class);
     }
+
     public function createContactFromUserDetails(): void
     {
         $userId = $this->getAttribute('id');
@@ -204,20 +228,23 @@ class User extends Authenticatable implements UserContract
                 'user_id' => $userId,
                 'first_name' => $userName,
                 'email' => $userEmail,
-                'role' => $userRole
+                'role' => $userRole,
             ];
 
             $this->contacts()->create($contactData);
         }
     }
+
     public function money(): HasMany
     {
         return $this->hasMany(Money::class, 'user_id');
     }
+
     public function card(): HasMany
     {
         return $this->hasMany(Card::class);
     }
+
     public function question(): HasMany
     {
         return $this->hasMany(Question::class);

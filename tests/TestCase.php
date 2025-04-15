@@ -16,7 +16,11 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    protected User $admin, $tech, $user;
+    protected User $admin;
+
+    protected User $tech;
+
+    protected User $user;
 
     protected function createUsers(): void
     {
@@ -25,21 +29,21 @@ abstract class TestCase extends BaseTestCase
             'name' => fake()->firstName(),
             'email' => fake()->email(),
             'password' => Hash::make('password'),
-            'role' => 'admin'
+            'role' => 'admin',
         ]);
         $this->tech = User::create([
             'id' => 2,
             'name' => fake()->firstName(),
             'email' => fake()->email(),
             'password' => Hash::make('password'),
-            'role' => 'tech'
+            'role' => 'tech',
         ]);
         $this->user = User::create([
             'id' => 3,
             'name' => fake()->firstName(),
             'email' => fake()->email(),
             'password' => Hash::make('password'),
-            'role' => 'user'
+            'role' => 'user',
         ]);
     }
 
@@ -48,25 +52,28 @@ abstract class TestCase extends BaseTestCase
         $this->resolveSqlite();
         parent::__construct($name, $data, $dataName);
     }
+
     public function resolveSqlite()
     {
         Connection::resolverFor('sqlite',
             function ($connection, $database, $prefix, $config) {
-                return new class($connection, $database, $prefix, $config)
-                    extends SQLiteConnection {
+                return new class($connection, $database, $prefix, $config) extends SQLiteConnection
+                {
                     public function getSchemaBuilder()
                     {
                         if ($this->schemaGrammar === null) {
                             $this->useDefaultSchemaGrammar();
                         }
 
-                        return new class($this) extends SQLiteBuilder {
-                            protected function createBlueprint($table, Closure $callback = null)
+                        return new class($this) extends SQLiteBuilder
+                        {
+                            protected function createBlueprint($table, ?Closure $callback = null)
                             {
-                                return new class($table, $callback) extends Blueprint {
+                                return new class($table, $callback) extends Blueprint
+                                {
                                     public function dropForeign($index)
                                     {
-                                        return new Fluent();
+                                        return new Fluent;
                                     }
                                 };
                             }

@@ -21,7 +21,7 @@ class UserFactory extends Factory
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
             'role' => $this->faker->randomElement(['user', 'test_admin']),
-            'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d')
+            'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
         ];
 
         $validator = Validator::make($data, [
@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'name' => 'required|string|min:3|max:30',
             'email' => 'required|email|min:3|max:70|unique:users,email',
             'password' => 'required|min:8|max:50',
-            'role' => 'required|in:user,test_admin'
+            'role' => 'required|in:user,test_admin',
         ]);
 
         while ($validator->fails()) {

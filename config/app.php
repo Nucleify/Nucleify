@@ -168,7 +168,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\MetaTagsServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
 
         /**
          *  Modules
@@ -178,6 +177,7 @@ return [
         Modules\dm_entities\dm_entities::class,
         Modules\dm_entities_structural\dm_entities_structural::class,
         Modules\dm_friendship\dm_friendship::class,
+        Modules\dm_pages\dm_pages::class,
     ])->toArray(),
 
     /*

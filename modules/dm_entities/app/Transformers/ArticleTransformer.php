@@ -2,9 +2,8 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\Contracts\ArticleContract;
+use League\Fractal\TransformerAbstract;
 
 class ArticleTransformer extends TransformerAbstract
 {
@@ -12,9 +11,9 @@ class ArticleTransformer extends TransformerAbstract
     {
         return [
             'id' => $model->getId(),
-            'title' =>  $model->getTitle(),
-            'description' =>  $model->getDescription(),
-            'category' =>  $model->getCategory(),
+            'title' => $model->getTitle(),
+            'description' => $model->getDescription(),
+            'category' => $model->getCategory(),
             'created_at' => $model->getCreatedAt(),
             'updated_at' => $model->getUpdatedAt(),
         ];

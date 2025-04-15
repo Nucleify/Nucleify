@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Auth\ConfirmsPasswords;
-
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Modules\dm_pages\dm_pages;
 
 class ConfirmPasswordController extends Controller
 {
@@ -24,10 +23,8 @@ class ConfirmPasswordController extends Controller
 
     /**
      * Where to redirect users when the intended url fails.
-     *
-     * @var string
      */
-    protected string $redirectTo = RouteServiceProvider::HOME;
+    protected string $redirectTo = dm_pages::HOME;
 
     /**
      * Create a new controller instance.

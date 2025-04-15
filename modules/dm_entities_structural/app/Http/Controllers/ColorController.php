@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Color\PostRequest;
+use App\Http\Requests\Color\PutRequest;
+use App\Models\Color;
+use App\Services\ColorService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\Color\PostRequest;
-use App\Http\Requests\Color\PutRequest;
-use App\Models\Color;
-use App\Services\ColorService;
-
 class ColorController extends Controller
 {
     private ColorService $service;
 
-    /**
-     * @param ColorService $service
-     */
     public function __construct(ColorService $service)
     {
         $this->service = $service;
@@ -26,19 +22,12 @@ class ColorController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return Renderable
      */
     public function render(): Renderable
     {
         return view('colors');
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function index(Request $request): JsonResponse
     {
         try {
@@ -50,11 +39,6 @@ class ColorController extends Controller
         }
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function countByCreatedLastWeek(Request $request): JsonResponse
     {
         try {
@@ -66,11 +50,6 @@ class ColorController extends Controller
         }
     }
 
-    /**
-     * @param string $entity
-     *
-     * @return JsonResponse
-     */
     public function getByEntity(string $entity): JsonResponse
     {
         try {
@@ -82,11 +61,6 @@ class ColorController extends Controller
         }
     }
 
-    /**
-     * @param string $site
-     *
-     * @return JsonResponse
-     */
     public function getSiteColors(string $site): JsonResponse
     {
         try {
@@ -98,11 +72,6 @@ class ColorController extends Controller
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function show($id): JsonResponse
     {
         try {
@@ -114,11 +83,6 @@ class ColorController extends Controller
         }
     }
 
-    /**
-     * @param PostRequest $request
-     *
-     * @return JsonResponse
-     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -127,19 +91,13 @@ class ColorController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: ' . $result['value'] . ' color'
+                'message' => 'Successfully created: ' . $result['value'] . ' color',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param PutRequest $request
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -148,27 +106,23 @@ class ColorController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['value'] . ' color'
+                'message' => 'Successfully updated: ' . $result['value'] . ' color',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function destroy($id): JsonResponse
     {
         $result = Color::findOrFail($id);
 
         try {
             $this->service->delete($id);
+
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: ' . $result->getValue() . ' color'
+                'message' => 'Successfully deleted: ' . $result->getValue() . ' color',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

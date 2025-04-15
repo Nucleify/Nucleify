@@ -2,29 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Services\FriendshipService;
 use Exception;
 use Illuminate\Http\JsonResponse;
-
-use App\Services\FriendshipService;
 
 class FriendController extends Controller
 {
     private FriendshipService $service;
 
-    /**
-     * @param FriendshipService $service
-     */
     public function __construct(FriendshipService $service)
     {
         $this->service = $service;
     }
 
-    /**
-     * @param $recipient
-     *
-     * @return JsonResponse
-     */
     public function sendRequest($recipient): JsonResponse
     {
         try {
@@ -36,11 +26,6 @@ class FriendController extends Controller
         }
     }
 
-    /**
-     * @param $sender
-     *
-     * @return JsonResponse
-     */
     public function acceptRequest($sender): JsonResponse
     {
         try {
@@ -52,11 +37,6 @@ class FriendController extends Controller
         }
     }
 
-    /**
-     * @param $sender
-     *
-     * @return JsonResponse
-     */
     public function denyRequest($sender): JsonResponse
     {
         try {
@@ -68,11 +48,6 @@ class FriendController extends Controller
         }
     }
 
-    /**
-     * @param $friend
-     *
-     * @return JsonResponse
-     */
     public function removeFriend($friend): JsonResponse
     {
         try {
@@ -84,11 +59,6 @@ class FriendController extends Controller
         }
     }
 
-    /**
-     * @param $friend
-     *
-     * @return JsonResponse
-     */
     public function blockFriend($friend): JsonResponse
     {
         try {
@@ -100,11 +70,6 @@ class FriendController extends Controller
         }
     }
 
-    /**
-     * @param $friend
-     *
-     * @return JsonResponse
-     */
     public function unblockFriend($friend): JsonResponse
     {
         try {

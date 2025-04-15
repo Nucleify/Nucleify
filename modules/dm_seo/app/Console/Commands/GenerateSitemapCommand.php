@@ -2,11 +2,11 @@
 
 namespace Modules\dm_seo\App\Console\Commands;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Route;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
-use Illuminate\Support\Facades\Route;
-use Carbon\Carbon;
 
 class GenerateSitemapCommand extends Command
 {
@@ -26,8 +26,6 @@ class GenerateSitemapCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return bool
      */
     public function handle(): bool
     {
@@ -59,9 +57,6 @@ class GenerateSitemapCommand extends Command
 
     /**
      * Determine if the URI is valid for the sitemap.
-     *
-     * @param string $uri
-     * @return bool
      */
     private function isValidUri(string $uri): bool
     {
@@ -71,7 +66,7 @@ class GenerateSitemapCommand extends Command
             'sanctum/*',
             'telescope/*',
             '_ignition/*',
-            'generate-sitemap'
+            'generate-sitemap',
         ];
 
         foreach ($excludedPatterns as $pattern) {

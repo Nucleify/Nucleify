@@ -2,76 +2,33 @@
 
 namespace App\Contracts;
 
-
 interface ContactContract
 {
-    /**
-     * @return int
-     */
     public function getId(): int;
 
-    /**
-     * @return int
-     */
     public function getUserId(): int;
 
-    /**
-     * @return string
-     */
     public function getFirstName(): string;
 
-    /**
-     * @return string|null
-     */
-    public function getLastName(): string|null;
+    public function getLastName(): ?string;
 
-    /**
-     * @return string|null
-     */
-    public function getFullName(): string|null;
+    public function getFullName(): ?string;
 
-    /**
-     * @return string|null
-     */
-    public function getEmail(): string|null;
+    public function getEmail(): ?string;
 
-    /**
-     * @return string|null
-     */
-    public function getPersonalPhone(): string|null;
+    public function getPersonalPhone(): ?string;
 
-    /**
-     * @return string|null
-     */
-    public function getWorkPhone(): string|null;
+    public function getWorkPhone(): ?string;
 
-    /**
-     * @return string|null
-     */
-    public function getAddress(): string|null;
+    public function getAddress(): ?string;
 
-    /**
-     * @return string|null
-     */
-    public function getBirthday(): string|null;
+    public function getBirthday(): ?string;
 
-    /**
-     * @return string|null
-     */
-    public function getRole(): string|null;
+    public function getRole(): ?string;
 
-    /**
-     * @return string|null
-     */
-    public function getContactGroups(): string|null;
+    public function getContactGroups(): ?string;
 
-    /**
-     * @return string
-     */
     public function getCreatedAt(): string;
 
-    /**
-     * @return string
-     */
     public function getUpdatedAt(): string;
 }

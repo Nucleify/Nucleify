@@ -2,18 +2,17 @@
 
 namespace Routes;
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\MoneyController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
-Route::middleware(['web', 'auth'])->group(function () {
+Route::middleware(['web', 'auth'])->group(function (): void {
     /**
      *  Articles
      */
-    Route::prefix('articles')->controller(ArticleController::class)->group(function () {
+    Route::prefix('articles')->controller(ArticleController::class)->group(function (): void {
         Route::get('/', 'index')
             ->name('articles.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
@@ -31,7 +30,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Contacts
      */
-    Route::prefix('contacts')->controller(ContactController::class)->group(function () {
+    Route::prefix('contacts')->controller(ContactController::class)->group(function (): void {
         Route::get('/', 'index')
             ->name('contacts.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
@@ -49,7 +48,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Money
      */
-    Route::prefix('money')->controller(MoneyController::class)->group(function () {
+    Route::prefix('money')->controller(MoneyController::class)->group(function (): void {
         Route::get('/', 'index')
             ->name('money.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
@@ -67,7 +66,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Users
      */
-    Route::prefix('users')->controller(UserController::class)->group(function () {
+    Route::prefix('users')->controller(UserController::class)->group(function (): void {
         Route::get('/', 'index')
             ->name('users.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
