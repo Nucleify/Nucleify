@@ -6,18 +6,18 @@ if (!defined('PEST_RUNNING')) {
 
 use Database\Factories\ActivityFactory;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
 });
 
-it('can create record', function () {
+it('can create record', function (): void {
     $activity = ActivityFactory::new()->create();
 
     $this->assertDatabaseCount('activity_log', 1);
     $this->assertDatabaseHas('activity_log', ['id' => $activity->id]);
 });
 
-it('can create multiple records', function () {
+it('can create multiple records', function (): void {
     $activities = ActivityFactory::new()->count(3)->create();
 
     $this->assertDatabaseCount('activity_log', 3);
@@ -26,7 +26,7 @@ it('can create multiple records', function () {
     }
 });
 
-it('cant\'t create record', function () {
+it('cant\'t create record', function (): void {
     try {
         ActivityFactory::new()->create(['causer_id' => 'causer_id']);
     } catch (Exception $e) {
@@ -38,7 +38,7 @@ it('cant\'t create record', function () {
     $this->fail('Expected exception not thrown.');
 })->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
 
-it('cant\'t create multiple records', function () {
+it('cant\'t create multiple records', function (): void {
     try {
         ActivityFactory::new()->count(2)->create(['causer_id' => 'causer_id']);
     } catch (Exception $e) {

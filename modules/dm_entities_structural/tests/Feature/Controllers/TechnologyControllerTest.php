@@ -11,13 +11,13 @@ use App\Models\Technology;
 use App\Services\TechnologyService;
 use Illuminate\Http\Request;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->controller = app()->makeWith(TechnologyController::class, ['technologyService' => app()->make(TechnologyService::class)]);
 });
 
-test('index > success', function () {
+test('index > success', function (): void {
     Technology::factory()->count(3)->create();
 
     $request = new Request;
@@ -28,7 +28,7 @@ test('index > success', function () {
     expect($response->getData(true));
 });
 
-test('countByCreatedLastWeek > success', function () {
+test('countByCreatedLastWeek > success', function (): void {
     $request = new Request;
 
     $response = $this->controller->countByCreatedLastWeek($request);
@@ -36,7 +36,7 @@ test('countByCreatedLastWeek > success', function () {
     expect($response->getStatusCode())->toEqual(200);
 });
 
-test('getByCategory > success', function () {
+test('getByCategory > success', function (): void {
     $category = 'technology';
     $categories = ['other', 'science', $category];
 
@@ -56,7 +56,7 @@ test('getByCategory > success', function () {
     expect(count($data))->toEqual(Technology::where('category', $category)->count());
 });
 
-test('getSiteTechnologies > success', function () {
+test('getSiteTechnologies > success', function (): void {
     $category = 'technology';
     $categories = ['other', 'science', $category];
 
@@ -76,7 +76,7 @@ test('getSiteTechnologies > success', function () {
     expect(count($data))->toEqual(Technology::where('category', $category)->count());
 });
 
-test('show > success', function () {
+test('show > success', function (): void {
     $technology = Technology::factory()->create();
 
     $response = $this->controller->show($technology->id);
@@ -85,7 +85,7 @@ test('show > success', function () {
     expect($response->getData(true));
 });
 
-test('store > success', function () {
+test('store > success', function (): void {
     $request = Mockery::mock(PostRequest::class);
     $request->shouldReceive('validated')
         ->andReturn(technologyData);
@@ -96,7 +96,7 @@ test('store > success', function () {
     expect($response->getData(true));
 });
 
-test('update > success', function () {
+test('update > success', function (): void {
     $technology = Technology::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
@@ -109,7 +109,7 @@ test('update > success', function () {
     expect($response->getData(true));
 });
 
-test('delete > success', function () {
+test('delete > success', function (): void {
     $technology = Technology::factory()->create();
 
     $response = $this->controller->destroy($technology->id);

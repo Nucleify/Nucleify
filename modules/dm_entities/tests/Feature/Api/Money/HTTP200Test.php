@@ -6,46 +6,46 @@ if (!defined('PEST_RUNNING')) {
 
 use App\Models\Money;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function () {
-    test('index api', function () {
+describe('200 > Authorized', function (): void {
+    test('index api', function (): void {
         Money::factory(3)->create();
 
         $this->getJson(route('money.index'))
             ->assertOk();
     });
 
-    test('countByCreatedLastWeek api', function () {
+    test('countByCreatedLastWeek api', function (): void {
         Money::factory(3)->create();
 
         $this->getJson(route('money.countByCreatedLastWeek'))
             ->assertOk();
     });
 
-    test('show api', function () {
+    test('show api', function (): void {
         $money = Money::factory()->create();
 
         $this->getJson(route('money.show', $money->id))
             ->assertOk();
     });
 
-    test('store api', function () {
+    test('store api', function (): void {
         $this->postJson(route('money.store'), moneyData)
             ->assertOk();
     });
 
-    test('update api', function () {
+    test('update api', function (): void {
         $money = Money::factory()->create();
 
         $this->putJson(route('money.update', $money->id), updatedMoneyData)
             ->assertOk();
     });
 
-    test('destroy api', function () {
+    test('destroy api', function (): void {
         $money = Money::factory()->create();
 
         $this->deleteJson(route('money.destroy', $money->id))

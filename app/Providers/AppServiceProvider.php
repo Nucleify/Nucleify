@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
 
         closedir($dirHandle);
 
-        $this->app->singleton('activityLoggerService', function () {
+        $this->app->singleton('activityLoggerService', function (): LoggerService {
             return new LoggerService;
         });
     }

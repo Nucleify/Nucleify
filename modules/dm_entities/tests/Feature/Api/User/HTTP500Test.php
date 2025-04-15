@@ -9,14 +9,14 @@ use App\Services\UserService;
 
 use function Pest\Laravel\mock;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->service = mock(UserService::class);
 });
 
-describe('500 > Internal Server Error', function () {
-    it('index api', function () {
+describe('500 > Internal Server Error', function (): void {
+    it('index api', function (): void {
         $this->service
             ->shouldReceive('index')
             ->once()
@@ -28,7 +28,7 @@ describe('500 > Internal Server Error', function () {
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
-    it('show api', function () {
+    it('show api', function (): void {
         $this->service
             ->shouldReceive('show')
             ->with(1)
@@ -41,7 +41,7 @@ describe('500 > Internal Server Error', function () {
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
-    it('store api', function () {
+    it('store api', function (): void {
         $this->service
             ->shouldReceive('create')
             ->once()
@@ -53,7 +53,7 @@ describe('500 > Internal Server Error', function () {
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
-    it('update api', function () {
+    it('update api', function (): void {
         $this->service
             ->shouldReceive('update')
             ->with(1, Mockery::any())
@@ -66,7 +66,7 @@ describe('500 > Internal Server Error', function () {
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
-    it('destroy api', function () {
+    it('destroy api', function (): void {
         $user = User::factory()->create();
 
         $this->service

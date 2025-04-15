@@ -6,14 +6,14 @@ if (!defined('PEST_RUNNING')) {
 
 use Illuminate\Support\Facades\Schema;
 
-it('can create table', function () {
+it('can create table', function (): void {
     expect(Schema::hasTable('friendships'))->toBeTrue()
         ->and(Schema::hasColumns('friendships', [
             'id', 'sender_id', 'sender_type', 'recipient_id', 'recipient_type', 'status', 'created_at', 'updated_at',
         ]))->toBeTrue();
 });
 
-it('can be rolled back', function () {
+it('can be rolled back', function (): void {
     $this->artisan('migrate:rollback');
 
     expect(Schema::hasTable('friendships'))->toBeFalse();

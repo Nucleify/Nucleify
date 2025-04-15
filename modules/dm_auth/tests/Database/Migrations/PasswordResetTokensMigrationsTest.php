@@ -6,7 +6,7 @@ if (!defined('PEST_RUNNING')) {
 
 use Illuminate\Support\Facades\Schema;
 
-it('can create password_reset_tokens table', function () {
+it('can create password_reset_tokens table', function (): void {
     $this->artisan('migrate');
 
     expect(Schema::hasTable('password_reset_tokens'))->toBeTrue()
@@ -15,7 +15,7 @@ it('can create password_reset_tokens table', function () {
         ]))->toBeTrue();
 });
 
-it('can be rolled back', function () {
+it('can be rolled back', function (): void {
     $this->artisan('migrate:rollback');
 
     expect(Schema::hasTable('password_reset_tokens'))->toBeFalse();

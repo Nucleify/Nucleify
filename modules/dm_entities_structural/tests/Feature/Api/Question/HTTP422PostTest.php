@@ -4,7 +4,7 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });

@@ -7,11 +7,11 @@ if (!defined('PEST_RUNNING')) {
 use Database\Factories\ActivityFactory;
 use Spatie\Activitylog\Models\Activity;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
 });
 
-it('can be created', function () {
+it('can be created', function (): void {
     $activity = ActivityFactory::new()->create();
 
     expect($activity)->toBeInstanceOf(Activity::class);

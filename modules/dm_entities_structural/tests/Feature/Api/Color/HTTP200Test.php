@@ -8,60 +8,60 @@ use App\Models\Color;
 
 uses()->group('color-api-200');
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function () {
-    test('index api', function () {
+describe('200 > Authorized', function (): void {
+    test('index api', function (): void {
         Color::factory(3)->create();
 
         $this->getJson(route('colors.index'))
             ->assertOk();
     });
 
-    test('countByCreatedLastWeek api', function () {
+    test('countByCreatedLastWeek api', function (): void {
         Color::factory(3)->create();
 
         $this->getJson(route('colors.countByCreatedLastWeek'))
             ->assertOk();
     });
 
-    test('getByEntity api', function () {
+    test('getByEntity api', function (): void {
         Color::factory(3)->create(['entity' => 'article']);
 
         $this->getJson(route('colors.getByEntity', ['entity' => 'article']))
             ->assertOk();
     });
 
-    test('getSiteColors api', function () {
+    test('getSiteColors api', function (): void {
         Color::factory(3)->create(['entity' => 'article']);
 
         $this->getJson(route('colors.getSiteColors', ['site' => 'article']))
             ->assertOk();
     });
 
-    test('store api', function () {
+    test('store api', function (): void {
         $this->postJson(route('colors.store'), colorData)
             ->assertOk();
     });
 
-    test('show api', function () {
+    test('show api', function (): void {
         $color = Color::factory()->create();
 
         $this->getJson(route('colors.show', $color->id))
             ->assertOk();
     });
 
-    test('update api', function () {
+    test('update api', function (): void {
         $color = Color::factory()->create();
 
         $this->putJson(route('colors.update', $color->id), updatedColorData)
             ->assertOk();
     });
 
-    test('destroy api', function () {
+    test('destroy api', function (): void {
         $color = Color::factory()->create();
 
         $this->deleteJson(route('colors.destroy', $color->id))

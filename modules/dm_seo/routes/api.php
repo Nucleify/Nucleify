@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(SitemapController::class)
     ->middleware(['web', 'auth'])
     ->prefix('sitemap')
-    ->group(function () {
+    ->group(function (): void {
         Route::get('/generate', 'generate')
             ->name('sitemap.generate');
     });

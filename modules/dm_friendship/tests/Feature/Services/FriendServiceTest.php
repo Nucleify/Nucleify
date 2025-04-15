@@ -7,7 +7,7 @@ if (!defined('PEST_RUNNING')) {
 use App\Models\User;
 use App\Services\FriendshipService;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $this->user = User::factory()->create();
     $this->otherUser = User::factory()->create();
 
@@ -15,14 +15,14 @@ beforeEach(function () {
     $this->actingAs($this->user);
 });
 
-it('sends a friend request', function () {
+it('sends a friend request', function (): void {
     $response = $this->service->sendRequest($this->otherUser);
 
     expect($response['message'])->toBe('Friend request sent successfully');
     expect($this->user->hasSentFriendRequestTo($this->otherUser))->toBeTrue();
 });
 
-it('accepts a friend request', function () {
+it('accepts a friend request', function (): void {
     $this->otherUser->befriend($this->user);
 
     $response = $this->service->acceptRequest($this->otherUser);
@@ -31,7 +31,7 @@ it('accepts a friend request', function () {
     expect($this->user->isFriendWith($this->otherUser))->toBeTrue();
 });
 
-it('denies a friend request', function () {
+it('denies a friend request', function (): void {
     $this->otherUser->befriend($this->user);
 
     $response = $this->service->denyRequest($this->otherUser);
@@ -40,7 +40,7 @@ it('denies a friend request', function () {
     expect($this->user->hasFriendRequestFrom($this->otherUser))->toBeFalse();
 });
 
-it('removes a friend', function () {
+it('removes a friend', function (): void {
     $this->user->befriend($this->otherUser);
     $this->otherUser->acceptFriendRequest($this->user);
 
@@ -50,14 +50,14 @@ it('removes a friend', function () {
     expect($this->user->isFriendWith($this->otherUser))->toBeFalse();
 });
 
-it('blocks a friend', function () {
+it('blocks a friend', function (): void {
     $response = $this->service->blockFriend($this->otherUser);
 
     expect($response['message'])->toBe('Friend blocked successfully');
     expect($this->user->hasBlocked($this->otherUser))->toBeTrue();
 });
 
-it('unblocks a friend', function () {
+it('unblocks a friend', function (): void {
     $this->user->blockFriend($this->otherUser);
 
     $response = $this->service->unblockFriend($this->otherUser);

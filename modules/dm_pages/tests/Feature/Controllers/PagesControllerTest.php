@@ -6,7 +6,7 @@ if (!defined('PEST_RUNNING')) {
 
 use function Pest\Laravel\get;
 
-it('renders an existing view', function () {
+it('renders an existing view', function (): void {
     $viewDir = base_path('modules/dm_pages/views');
     $viewPath = "$viewDir/home.blade.php";
 
@@ -16,7 +16,7 @@ it('renders an existing view', function () {
     get('/home')->assertOk();
 })->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
 
-it('returns 404 for a non-existing view', function () {
+it('returns 404 for a non-existing view', function (): void {
     $response = get('/page/non-existent-view');
 
     $response->assertNotFound();
