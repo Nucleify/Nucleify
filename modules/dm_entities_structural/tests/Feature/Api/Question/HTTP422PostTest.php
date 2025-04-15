@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
-  $this->createUsers();
-  $this->actingAs($this->admin);
+    $this->createUsers();
+    $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function($questionData = questionData) {
+describe('422 > Unprocessable Content > POST', function ($questionData = questionData) {
     /**
      * INDEX TESTS
      */
@@ -18,7 +21,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['index']],
         ['errors' => [
-            'index' => ['The index field is required.']
+            'index' => ['The index field is required.'],
         ]]
     ));
 
@@ -30,7 +33,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['index']],
         ['errors' => [
-            'index' => ['The index field must be an integer.']
+            'index' => ['The index field must be an integer.'],
         ]]
     ));
 
@@ -42,7 +45,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['index']],
         ['errors' => [
-            'index' => ['The index field must be an integer.']
+            'index' => ['The index field must be an integer.'],
         ]]
     ));
 
@@ -54,13 +57,11 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['index']],
         ['errors' => [
-            'index' => ['The index field is required.']
+            'index' => ['The index field is required.'],
         ]]
     ));
 
     $questionData['index'] = questionData['index'];
-
-
 
     /**
      * CONTENT TESTS
@@ -73,7 +74,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['content']],
         ['errors' => [
-            'content' => ['The content field is required.']
+            'content' => ['The content field is required.'],
         ]]
     ));
 
@@ -87,7 +88,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         ['errors' => [
             'content' => [
                 'The content field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -101,7 +102,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         ['errors' => [
             'content' => [
                 'The content field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -115,7 +116,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         ['errors' => [
             'content' => [
                 'The content field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -127,13 +128,11 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['content']],
         ['errors' => [
-            'content' => ['The content field is required.']
+            'content' => ['The content field is required.'],
         ]]
     ));
 
     $questionData['content'] = questionData['content'];
-
-
 
     /**
      * ANSWER TESTS
@@ -148,7 +147,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         ['errors' => [
             'answer' => [
                 'The answer field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -162,7 +161,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         ['errors' => [
             'answer' => [
                 'The answer field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -176,7 +175,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         ['errors' => [
             'answer' => [
                 'The answer field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -188,13 +187,11 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['answer']],
         ['errors' => [
-            'answer' => ['The answer field is required.']
+            'answer' => ['The answer field is required.'],
         ]]
     ));
 
     $questionData['answer'] = questionData['answer'];
-
-
 
     /**
      * CATEGORY TESTS
@@ -207,7 +204,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -219,7 +216,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -231,7 +228,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -243,7 +240,7 @@ describe('422 > Unprocessable Content > POST', function($questionData = question
         $questionData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 });

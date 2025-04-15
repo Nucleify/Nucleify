@@ -8,9 +8,6 @@ class StructuralController extends Controller
 {
     /**
      * Render the view for the specified structural.
-     *
-     * @param string $structural
-     * @return Renderable
      */
     public function renderStructural(string $structural): Renderable
     {

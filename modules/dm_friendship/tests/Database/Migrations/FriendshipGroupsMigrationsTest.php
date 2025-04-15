@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use Illuminate\Support\Facades\Schema;
 
 it('can create table', function () {
     expect(Schema::hasTable('friendship_groups'))->toBeTrue()
         ->and(Schema::hasColumns('friendship_groups', [
-            'id', 'friendship_id', 'friend_id', 'friend_type', 'group_id'
+            'id', 'friendship_id', 'friend_id', 'friend_type', 'group_id',
         ]))->toBeTrue();
 });
 

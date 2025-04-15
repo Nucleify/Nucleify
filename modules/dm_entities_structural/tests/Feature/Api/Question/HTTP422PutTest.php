@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
-  $this->createUsers();
-  $this->actingAs($this->admin);
+    $this->createUsers();
+    $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = updatedQuestionData) {
+describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = updatedQuestionData) {
     /**
      * CONTENT TESTS
      */
@@ -18,7 +21,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         $updatedQuestionData,
         ['errors' => ['content']],
         ['errors' => [
-            'content' => ['The content field is required.']
+            'content' => ['The content field is required.'],
         ]]
     ));
 
@@ -32,7 +35,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         ['errors' => [
             'content' => [
                 'The content field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -46,7 +49,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         ['errors' => [
             'content' => [
                 'The content field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -60,7 +63,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         ['errors' => [
             'content' => [
                 'The content field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -72,13 +75,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         $updatedQuestionData,
         ['errors' => ['content']],
         ['errors' => [
-            'content' => ['The content field is required.']
+            'content' => ['The content field is required.'],
         ]]
     ));
 
     $updatedQuestionData['content'] = updatedQuestionData['content'];
-
-
 
     /**
      * ANSWER TESTS
@@ -93,7 +94,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         ['errors' => [
             'answer' => [
                 'The answer field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -107,7 +108,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         ['errors' => [
             'answer' => [
                 'The answer field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -121,7 +122,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         ['errors' => [
             'answer' => [
                 'The answer field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -133,13 +134,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         $updatedQuestionData,
         ['errors' => ['answer']],
         ['errors' => [
-            'answer' => ['The answer field is required.']
+            'answer' => ['The answer field is required.'],
         ]]
     ));
 
     $updatedQuestionData['answer'] = updatedQuestionData['answer'];
-
-
 
     /**
      * CATEGORY TESTS
@@ -152,7 +151,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         $updatedQuestionData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -164,7 +163,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         $updatedQuestionData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -176,7 +175,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         $updatedQuestionData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -188,7 +187,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedQuestionData = up
         $updatedQuestionData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 });

@@ -18,4 +18,4 @@
 $directory = new RecursiveDirectoryIterator('modules');
 $iterator = new RecursiveIteratorIterator($directory);
 $regex = new RegexIterator($iterator, '/^.+\/tests\/.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
-$guard = "if (!defined('PEST_RUNNING')) return;";
+$guard = "\n\nif (!defined('PEST_RUNNING')) {\n    return;\n}\n\n";

@@ -1,10 +1,12 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
-
-use Illuminate\Support\Facades\File;
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Http\Controllers\SitemapController;
 use App\Services\SitemapService;
+use Illuminate\Support\Facades\File;
 
 beforeEach(function () {
     $this->createUsers();

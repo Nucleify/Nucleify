@@ -4,7 +4,7 @@ it('should have test suffix')
     ->expect([
         'Tests\Feature',
         'Tests\Unit',
-        'Tests\Global'
+        'Tests\Global',
     ])
     ->toHaveSuffix('Test');
 

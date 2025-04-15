@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  *  Database groups
  */
@@ -19,7 +18,6 @@ uses()
 uses()
     ->group('factories')
     ->in('Database/Factories');
-
 
 /**
  *  Feature groups
@@ -52,14 +50,12 @@ uses()
     ->group('traits')
     ->in('Feature/Traits');
 
-
 /**
  *  Global groups
  */
 uses()
     ->group('global')
     ->in('Global');
-
 
 /**
  *  Modules groups

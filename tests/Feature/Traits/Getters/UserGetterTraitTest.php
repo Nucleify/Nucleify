@@ -5,7 +5,8 @@ use App\Traits\Getters\UserGetterTrait;
 beforeEach(function () {
     $this->createUsers();
 
-    $this->trait = new class {
+    $this->trait = new class
+    {
         use UserGetterTrait;
     };
 });

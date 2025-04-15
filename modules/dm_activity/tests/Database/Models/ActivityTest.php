@@ -1,9 +1,11 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
-
-use Spatie\Activitylog\Models\Activity;
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use Database\Factories\ActivityFactory;
+use Spatie\Activitylog\Models\Activity;
 
 beforeEach(function () {
     $this->createUsers();

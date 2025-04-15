@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use Illuminate\Support\Facades\Schema;
 
@@ -20,7 +23,7 @@ it('can create table', function () {
             'target',
             'type',
             'created_at',
-            'updated_at'
+            'updated_at',
         ]))->toBeTrue();
 });
 
@@ -29,4 +32,3 @@ it('can be rolled back', function () {
 
     expect(Schema::hasTable('links'))->toBeFalse();
 });
-

@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
     $this->createUsers();
@@ -15,7 +18,7 @@ describe('200 > Authorized', function () {
         $response->assertStatus(200);
 
         $response->assertJson([
-            'message' => 'Sitemap generated successfully'
+            'message' => 'Sitemap generated successfully',
         ]);
     });
 });

@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 /**
  *  Article
@@ -9,14 +12,14 @@ const articleData = [
     'user_id' => 1,
     'title' => 'Magnam qui sed explicabo eos quisquam beatae.',
     'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi. Similique reprehenderit ipsum nisi omnis aliquid. Itaque a ad dolor quis illo ea magni.',
-    'category' => 'omnis, voluptatum, omnis'
+    'category' => 'omnis, voluptatum, omnis',
 ];
 
 const updatedArticleData = [
     'id' => 1,
     'title' => 'Magnam qui sed explicabo eos quisquam beatae.',
     'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi. Similique reprehenderit ipsum nisi omnis aliquid. Itaque a ad dolor quis illo ea magni.',
-    'category' => 'omnis, voluptatum, suspicit'
+    'category' => 'omnis, voluptatum, suspicit',
 ];
 
 /**
@@ -33,7 +36,7 @@ const contactData = [
     'address' => '123 Main St, City',
     'birthday' => '2023-11-25',
     'contact_groups' => null,
-    'role' => 'user'
+    'role' => 'user',
 ];
 
 const updatedContactData = [
@@ -47,7 +50,7 @@ const updatedContactData = [
     'address' => '123 Update St, City',
     'birthday' => '2023-11-26',
     'contact_groups' => null,
-    'role' => 'admin'
+    'role' => 'admin',
 ];
 
 /**
@@ -61,7 +64,7 @@ const moneyData = [
     'receiver' => 'LU920102241595375843',
     'title' => 'Magnam qui sed explicabo eos.',
     'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi.',
-    'category' => 'omnis'
+    'category' => 'omnis',
 ];
 const updatedMoneyData = [
     'count' => 100000,
@@ -71,7 +74,7 @@ const updatedMoneyData = [
     'receiver' => 'LU920102241595375843',
     'title' => 'Quia explicabo eos quisquam.',
     'description' => 'Id laboriosam in consequatur perspiciatis ut perferendis. Quia suscipit earum quasi.',
-    'category' => 'omnis'
+    'category' => 'omnis',
 ];
 
 /**
@@ -82,12 +85,12 @@ const userData = [
     'name' => 'User',
     'email' => 'user@example.com',
     'password' => 'password',
-    'role' => 'user'
+    'role' => 'user',
 ];
 const updatedUserData = [
     'id' => 1,
     'name' => 'Updated User',
     'password' => 'password',
     'email' => 'updateduser@example.com',
-    'role' => 'user'
+    'role' => 'user',
 ];

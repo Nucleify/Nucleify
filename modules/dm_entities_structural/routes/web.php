@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\StructuralController;
+use Illuminate\Support\Facades\Route;
 
 $routes = [
     'index',
@@ -22,4 +21,3 @@ Route::prefix('structural')->group(function () use ($routes) {
             ->defaults('structural', $route);
     }
 });
-

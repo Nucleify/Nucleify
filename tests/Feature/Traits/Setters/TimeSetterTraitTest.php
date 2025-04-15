@@ -3,7 +3,8 @@
 use App\Traits\Setters\TimeSetterTrait;
 
 beforeEach(function () {
-    $this->trait = new class {
+    $this->trait = new class
+    {
         use TimeSetterTrait;
 
         public function getLastWeekValue(): string

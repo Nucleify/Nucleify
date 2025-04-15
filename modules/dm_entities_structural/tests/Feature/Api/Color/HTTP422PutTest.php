@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
     $this->createUsers();
@@ -18,7 +21,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['user_id']],
         ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
+            'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
@@ -30,7 +33,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['user_id']],
         ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
+            'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
@@ -42,7 +45,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['user_id']],
         ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
+            'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
@@ -54,13 +57,11 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['user_id']],
         ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
+            'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
     $updatedColorData['user_id'] = updatedColorData['user_id'];
-
-
 
     /**
      * ENTITY TESTS
@@ -73,7 +74,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['entity']],
         ['errors' => [
-            'entity' => ['The entity field is required.']
+            'entity' => ['The entity field is required.'],
         ]]
     ));
 
@@ -85,7 +86,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['entity']],
         ['errors' => [
-            'entity' => ['The entity field must be a string.']
+            'entity' => ['The entity field must be a string.'],
         ]]
     ));
 
@@ -97,7 +98,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['entity']],
         ['errors' => [
-            'entity' => ['The entity field must be a string.']
+            'entity' => ['The entity field must be a string.'],
         ]]
     ));
 
@@ -109,7 +110,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['entity']],
         ['errors' => [
-         'entity' => ['The entity field must be a string.']
+            'entity' => ['The entity field must be a string.'],
         ]]
     ));
 
@@ -121,13 +122,11 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['entity']],
         ['errors' => [
-            'entity' => ['The entity field is required.']
+            'entity' => ['The entity field is required.'],
         ]]
     ));
 
     $updatedColorData['entity'] = updatedColorData['entity'];
-
-
 
     /**
      * VALUE TESTS
@@ -140,7 +139,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['value']],
         ['errors' => [
-            'value' => ['The value field is required.']
+            'value' => ['The value field is required.'],
         ]]
     ));
 
@@ -152,7 +151,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['value']],
         ['errors' => [
-            'value' => ['The value field must be a string.']
+            'value' => ['The value field must be a string.'],
         ]]
     ));
 
@@ -164,7 +163,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['value']],
         ['errors' => [
-            'value' => ['The value field must be a string.']
+            'value' => ['The value field must be a string.'],
         ]]
     ));
 
@@ -176,7 +175,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['value']],
         ['errors' => [
-            'value' => ['The value field must be a string.']
+            'value' => ['The value field must be a string.'],
         ]]
     ));
 
@@ -188,13 +187,11 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['value']],
         ['errors' => [
-            'value' => ['The value field is required.']
+            'value' => ['The value field is required.'],
         ]]
     ));
 
     $updatedColorData['value'] = updatedColorData['value'];
-
-
 
     /**
      * NEW TESTS
@@ -203,11 +200,10 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
     test('invalid new > empty', apiTest(
         'PUT',
         'colors.update',
-        422
-        , $updatedColorData,
+        422, $updatedColorData,
         ['errors' => ['new']],
         ['errors' => [
-            'new' => ['The new field is required.']
+            'new' => ['The new field is required.'],
         ]]
     ));
 
@@ -219,7 +215,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['new']],
         ['errors' => [
-            'new' => ['The new field must be true or false.']
+            'new' => ['The new field must be true or false.'],
         ]]
     ));
 
@@ -231,7 +227,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedColorData = upda
         $updatedColorData,
         ['errors' => ['new']],
         ['errors' => [
-            'new' => ['The new field is required.']
+            'new' => ['The new field is required.'],
         ]]
     ));
 

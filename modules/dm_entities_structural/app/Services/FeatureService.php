@@ -2,34 +2,26 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
-
 use App\Models\Feature;
-use App\Services\LoggerService;
 use App\Traits\Runners\Api\AuthRunnerTrait;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\FeatureTransformer;
+use Illuminate\Http\Request;
 
-class FeatureService 
+class FeatureService
 {
     use AuthRunnerTrait;
     use RequestSetterTrait;
     use TimeSetterTrait;
     use UserSetterTrait;
 
-    /**
-     * @param Feature $model
-     * @param string $entity
-     * @param LoggerService $logger
-     */
     public function __construct(
         private readonly Feature $model,
         protected string $entity = 'feature',
-        private readonly LoggerService $logger = new LoggerService()
+        private readonly LoggerService $logger = new LoggerService
     ) {}
-
 
     public function index(Request $request): mixed
     {
@@ -42,15 +34,10 @@ class FeatureService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new FeatureTransformer())
+            ->transformWith(new FeatureTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
     public function countByCreatedLastWeek(Request $request): array
     {
         $this->defineRequestData($request);
@@ -58,17 +45,12 @@ class FeatureService
         $this->defineUserData();
 
         $result = $this->model->whereDate('created_at', '>=', $this->lastWeek)
-                ->count();
+            ->count();
         $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererStructural);
 
         return ['count' => $result];
     }
 
-    /**
-     * @param string $category
-     *
-     * @return array
-     */
     public function getByCategory(string $category): array
     {
         $this->defineUserData();
@@ -79,15 +61,10 @@ class FeatureService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new FeatureTransformer())
+            ->transformWith(new FeatureTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param string $site
-     *
-     * @return array
-     */
     public function getSiteFeatures(string $site): array
     {
         $this->defineUserData();
@@ -96,19 +73,14 @@ class FeatureService
 
         $name = $this->causer ? $this->causer->name : 'Guest';
 
-        $this->logger->logMessage($name  . ' fetched features by site: ' . $site . '.');
+        $this->logger->logMessage($name . ' fetched features by site: ' . $site . '.');
 
         return fractal()
             ->collection($result)
-            ->transformWith(new FeatureTransformer())
+            ->transformWith(new FeatureTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     *
-     * @return array
-     */
     public function show($id): array
     {
 
@@ -116,15 +88,11 @@ class FeatureService
 
         return fractal()
             ->item($result)
-            ->transformWith(new FeatureTransformer())
+            ->transformWith(new FeatureTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param array $data
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function create(array $data): array
@@ -138,16 +106,10 @@ class FeatureService
 
         return fractal()
             ->item($result)
-            ->transformWith(new FeatureTransformer())
+            ->transformWith(new FeatureTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     * @param array $data
-     *
-     * @return array
-     */
     public function update($id, array $data): array
     {
         $this->defineUserData();
@@ -160,15 +122,10 @@ class FeatureService
 
         return fractal()
             ->item($result->fresh())
-            ->transformWith(new FeatureTransformer())
+            ->transformWith(new FeatureTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     *
-     * @return void
-     */
     public function delete($id): void
     {
         $this->defineUserData();

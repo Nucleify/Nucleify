@@ -2,15 +2,13 @@
 
 namespace App\Services;
 
-use Exception;
-use Illuminate\Http\Request;
-
 use App\Models\User;
-use App\Services\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\UserTransformer;
+use Exception;
+use Illuminate\Http\Request;
 
 class UserService
 {
@@ -18,20 +16,13 @@ class UserService
     use TimeSetterTrait;
     use UserSetterTrait;
 
-    /**
-     * @param User $model
-     * @param string $entity
-     * @param LoggerService $logger
-     */
     public function __construct(
         private readonly User $model,
         protected string $entity = 'user',
-        private readonly LoggerService $logger = new LoggerService()
+        private readonly LoggerService $logger = new LoggerService
     ) {}
 
     /**
-     * @return array
-     *
      * @throws Exception
      */
     public function index(): array
@@ -49,15 +40,10 @@ class UserService
 
         return fractal()
             ->collection($this->model->all())
-            ->transformWith(new UserTransformer())
+            ->transformWith(new UserTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
     public function countByCreatedLastWeek(Request $request): array
     {
         $this->defineRequestData($request);
@@ -79,10 +65,6 @@ class UserService
     }
 
     /**
-     * @param $id
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function show($id): array
@@ -102,15 +84,11 @@ class UserService
 
         return fractal()
             ->item($result)
-            ->transformWith(new UserTransformer())
+            ->transformWith(new UserTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param array $data
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function create(array $data): array
@@ -120,7 +98,7 @@ class UserService
         if (!$this->isCauserStaff) {
             $this->logger->logAndThrow(
                 "User: ''{$this->causer->name}'' tried to create a user, but he doesn't have permissions",
-                "Only admins can create users"
+                'Only admins can create users'
             );
         }
 
@@ -130,16 +108,11 @@ class UserService
 
         return fractal()
             ->item($result)
-            ->transformWith(new UserTransformer())
+            ->transformWith(new UserTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     * @param array $data
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function update($id, array $data): array
@@ -151,32 +124,32 @@ class UserService
         $conditions = [
             [str_contains($this->causer->name, 'Test Admin') && $this->model->isSuperAdmin(),
                 "User: ''{$this->causer->name}'' tried to update super admin data, but he doesn't have permissions",
-                "Test Admin can't update super admin"
+                "Test Admin can't update super admin",
             ],
 
             [str_contains($this->causer->name, 'Test Admin') && $this->model->isAdmin(),
                 "User: ''{$this->causer->name}'' tried to update admin data, but he doesn't have permissions",
-                "Test Admin can't update admin"
+                "Test Admin can't update admin",
             ],
 
             [str_contains($this->causer->name, 'Test Admin') && $this->causer->id === $result->id,
                 "User: ''{$this->causer->name}'' tried to update his user data, but he can't update himself",
-                "Test Admin can't update himself"
+                "Test Admin can't update himself",
             ],
 
             [str_contains($this->causer->name, 'Test Admin') && str_contains($result->name, 'Test'),
                 "User: ''{$this->causer->name}'' tried to update test user data, but he can't update test users",
-                "Test Admin can't update test users"
+                "Test Admin can't update test users",
             ],
 
             [$this->causer->isAdmin() && $result->isSuperAdmin(),
                 "Admin tried to update super admin data, but he doesn't have permissions",
-                "Admin can't update super admin"
+                "Admin can't update super admin",
             ],
 
             [$this->causer->isUser() && $this->causer->id !== $result->id,
                 "User: ''{$this->causer->name}'' tried to update other user data, but he doesn't have permissions",
-                "Can't update other user without admin permissions"
+                "Can't update other user without admin permissions",
             ],
         ];
 
@@ -192,13 +165,11 @@ class UserService
 
         return fractal()
             ->item($result->fresh())
-            ->transformWith(new UserTransformer())
+            ->transformWith(new UserTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     *
      * @return true[]
      *
      * @throws Exception
@@ -212,32 +183,32 @@ class UserService
         $conditions = [
             [str_contains($this->causer->name, 'Test Admin') && $result->isSuperAdmin(),
                 "User: ''{$this->causer->name}'' tried to delete super admin data, but he doesn't have permissions",
-                "Test Admin can't delete super admin"
+                "Test Admin can't delete super admin",
             ],
 
             [str_contains($this->causer->name, 'Test Admin') && $result->isAdmin(),
                 "User: ''{$this->causer->name}'' tried to delete admin data, but he doesn't have permissions",
-                "Test Admin can't delete admin"
+                "Test Admin can't delete admin",
             ],
 
             [str_contains($this->causer->name, 'Test Admin') && $this->causer->id === $result->id,
                 "User: ''{$this->causer->name}'' tried to delete his user data, but he can't delete himself",
-                "Test Admin can't delete himself"
+                "Test Admin can't delete himself",
             ],
 
             [str_contains($this->causer->name, 'Test Admin') && str_contains($result->name, 'Test'),
                 "User: ''{$this->causer->name}'' tried to delete test user data, but he can't delete test users",
-                "Test Admin can't delete test users"
+                "Test Admin can't delete test users",
             ],
 
             [$this->causer->isAdmin() && $result->isSuperAdmin(),
                 "Admin tried to delete super admin data, but he doesn't have permissions",
-                "Admin can't delete super admin"
+                "Admin can't delete super admin",
             ],
 
             [$this->causer->isUser() && $this->causer->id !== $result->id,
                 "User: ''{$this->causer->name}'' tried to delete other user data, but he doesn't have permissions",
-                "Can't delete other user without admin permissions"
+                "Can't delete other user without admin permissions",
             ],
         ];
 

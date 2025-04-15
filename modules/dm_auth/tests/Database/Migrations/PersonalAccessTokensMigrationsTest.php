@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use Illuminate\Support\Facades\Schema;
 
@@ -7,7 +10,7 @@ it('can create table', function () {
     expect(Schema::hasTable('personal_access_tokens'))->toBeTrue()
         ->and(Schema::hasColumns('personal_access_tokens', [
             'id', 'tokenable_id', 'tokenable_type', 'name', 'token', 'abilities',
-            'last_used_at', 'expires_at', 'created_at', 'updated_at'
+            'last_used_at', 'expires_at', 'created_at', 'updated_at',
         ]))->toBeTrue();
 });
 

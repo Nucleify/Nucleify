@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use function Pest\Laravel\artisan;
-
 use Modules\dm_terminal\App\Console\Commands\ArtisanCommand;
+
+use function Pest\Laravel\artisan;
 
 afterAll(function () {
     artisan('migrate:fresh');

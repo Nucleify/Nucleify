@@ -1,14 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TechnologyController;
-
+use Illuminate\Support\Facades\Route;
 
 Route::get('/features/get-site-features/{site}', [FeatureController::class, 'getSiteFeatures'])
     ->name('features.getSiteFeatures');
@@ -21,7 +19,6 @@ Route::get('/technologies/get-site-technologies/{site}', [TechnologyController::
 
 Route::get('/links/get-site-links/{site}', [LinkController::class, 'getSiteLinks'])
     ->name('links.getSiteLinks');
-
 
 Route::middleware(['web', 'auth'])->group(function () {
     /**

@@ -1,11 +1,14 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Models\User;
 use App\Services\LoggerService;
 
 it('successfully logs message with attributes for all entities and methods', function () {
-    $activityLogger = new LoggerService();
+    $activityLogger = new LoggerService;
     $causer = new User(['name' => 'Test Name']);
 
     $entities = ['article', 'contact', 'money', 'user'];
@@ -27,7 +30,7 @@ it('successfully logs message with attributes for all entities and methods', fun
 });
 
 it('successfully logs message', function () {
-    $activityLogger = new LoggerService();
+    $activityLogger = new LoggerService;
 
     $log = $activityLogger->logMessage('Example log message');
 
@@ -35,7 +38,7 @@ it('successfully logs message', function () {
 });
 
 it('does not render log message for unknown entity', function () {
-    $activityLogger = new LoggerService();
+    $activityLogger = new LoggerService;
     $causer = new User(['name' => 'Test Name']);
     $entity = 'Unknown';
     $method = 'created';

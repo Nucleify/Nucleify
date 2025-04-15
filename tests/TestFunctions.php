@@ -1,11 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\File;
-
 use App\Models\Article;
 use App\Models\Card;
 use App\Models\Contact;
-use App\Models\Feature;
 use App\Models\Question;
 use App\Models\User;
 

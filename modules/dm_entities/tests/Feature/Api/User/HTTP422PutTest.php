@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
     $this->createUsers();
@@ -18,7 +21,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['name']],
         ['errors' => [
-            'name' => ['The name field is required.']
+            'name' => ['The name field is required.'],
         ]]
     ));
 
@@ -32,8 +35,8 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         ['errors' => [
             'name' => [
                 'The name field must be a string.',
-                'The name field must be at least 3 characters.'
-            ]
+                'The name field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -47,8 +50,8 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         ['errors' => [
             'name' => [
                 'The name field must be a string.',
-                'The name field must be at least 3 characters.'
-            ]
+                'The name field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -60,13 +63,11 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['name']],
         ['errors' => [
-            'name' => ['The name field is required.']
+            'name' => ['The name field is required.'],
         ]]
     ));
 
     $updatedUserData['name'] = updatedUserData['name'];
-
-
 
     /**
      * EMAIL TESTS
@@ -79,7 +80,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['email']],
         ['errors' => [
-            'email' => ['The email field must be a valid email address.']
+            'email' => ['The email field must be a valid email address.'],
         ]]
     ));
 
@@ -93,8 +94,8 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         ['errors' => [
             'email' => [
                 'The email field must be a valid email address.',
-                'The email field must be at least 3 characters.'
-            ]
+                'The email field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -108,8 +109,8 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         ['errors' => [
             'email' => [
                 'The email field must be a valid email address.',
-                'The email field must be at least 3 characters.'
-            ]
+                'The email field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -123,8 +124,8 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         ['errors' => [
             'email' => [
                 'The email field must be a valid email address.',
-                'The email field must be at least 3 characters.'
-            ]
+                'The email field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -138,8 +139,8 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         ['errors' => [
             'email' => [
                 'The email field must be a valid email address.',
-                'The email field must be at least 3 characters.'
-            ]
+                'The email field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -151,7 +152,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['email']],
         ['errors' => [
-            'email' => ['The email field must not be greater than 70 characters.']
+            'email' => ['The email field must not be greater than 70 characters.'],
         ]]
     ));
 
@@ -163,13 +164,11 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['email']],
         ['errors' => [
-            'email' => ['The email field is required.']
+            'email' => ['The email field is required.'],
         ]]
     ));
 
     $updatedUserData['email'] = updatedUserData['email'];
-
-
 
     /**
      * PASSWORD TESTS
@@ -182,7 +181,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must be at least 8 characters.']
+            'password' => ['The password field must be at least 8 characters.'],
         ]]
     ));
 
@@ -194,7 +193,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must be at least 8 characters.']
+            'password' => ['The password field must be at least 8 characters.'],
         ]]
     ));
 
@@ -206,7 +205,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must be at least 8 characters.']
+            'password' => ['The password field must be at least 8 characters.'],
         ]]
     ));
 
@@ -218,7 +217,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must be at least 8 characters.']
+            'password' => ['The password field must be at least 8 characters.'],
         ]]
     ));
 
@@ -230,7 +229,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must be at least 8 characters.']
+            'password' => ['The password field must be at least 8 characters.'],
         ]]
     ));
 
@@ -242,7 +241,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must not be greater than 50 characters.']
+            'password' => ['The password field must not be greater than 50 characters.'],
         ]]
     ));
 
@@ -254,13 +253,11 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must be at least 8 characters.']
+            'password' => ['The password field must be at least 8 characters.'],
         ]]
     ));
 
     $updatedUserData['password'] = updatedUserData['password'];
-
-
 
     /**
      * ROLE TESTS
@@ -273,7 +270,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['role']],
         ['errors' => [
-            'role' => ['The role field is required.']
+            'role' => ['The role field is required.'],
         ]]
     ));
 
@@ -285,7 +282,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['role']],
         ['errors' => [
-            'role' => ['The selected role is invalid.']
+            'role' => ['The selected role is invalid.'],
         ]]
     ));
 
@@ -297,7 +294,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['role']],
         ['errors' => [
-            'role' => ['The selected role is invalid.']
+            'role' => ['The selected role is invalid.'],
         ]]
     ));
 
@@ -309,7 +306,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
         $updatedUserData,
         ['errors' => ['role']],
         ['errors' => [
-            'role' => ['The role field is required.']
+            'role' => ['The role field is required.'],
         ]]
     ));
 });

@@ -4,7 +4,8 @@ use App\Traits\Setters\RequestSetterTrait;
 use Illuminate\Http\Request;
 
 beforeEach(function () {
-    $this->trait = new class {
+    $this->trait = new class
+    {
         use RequestSetterTrait;
 
         public function getReferrerValue(): ?string
@@ -23,7 +24,7 @@ beforeEach(function () {
 
 describe('RequestSetterTrait', function () {
     test('defineRequestData sets referrer and isRefererAdmin correctly for admin URL', function () {
-        $request = new Request();
+        $request = new Request;
         $request->headers->set('referer', "$this->appUrl/admin");
 
         $this->trait->defineRequestData($request);
@@ -33,7 +34,7 @@ describe('RequestSetterTrait', function () {
     });
 
     test('defineRequestData sets referrer and isRefererAdmin correctly for non-admin URL', function () {
-        $request = new Request();
+        $request = new Request;
         $request->headers->set('referer', "$this->appUrl/dashboard");
 
         $this->trait->defineRequestData($request);
@@ -43,7 +44,7 @@ describe('RequestSetterTrait', function () {
     });
 
     test('defineRequestData sets referrer to null and isRefererAdmin to false when no referer header', function () {
-        $request = new Request();
+        $request = new Request;
 
         $this->trait->defineRequestData($request);
 
@@ -52,7 +53,7 @@ describe('RequestSetterTrait', function () {
     });
 
     test('defineRequestData sets isRefererAdmin to false for unrelated URL patterns', function () {
-        $request = new Request();
+        $request = new Request;
         $request->headers->set('referer', "$this->appUrl/blog");
 
         $this->trait->defineRequestData($request);

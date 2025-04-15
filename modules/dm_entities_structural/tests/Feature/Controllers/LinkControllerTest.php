@@ -1,13 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
-
-use Illuminate\Http\Request;
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Http\Controllers\LinkController;
 use App\Http\Requests\Link\PostRequest;
 use App\Http\Requests\Link\PutRequest;
 use App\Models\Link;
 use App\Services\LinkService;
+use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();
@@ -18,7 +20,7 @@ beforeEach(function () {
 test('index > success', function () {
     Link::factory()->count(3)->create();
 
-    $request = new Request();
+    $request = new Request;
     $response = $this->controller->index($request);
 
     expect($response->getStatusCode())->toEqual(200);

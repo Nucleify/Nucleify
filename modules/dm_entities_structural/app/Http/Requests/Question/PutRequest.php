@@ -29,7 +29,7 @@ class PutRequest extends FormRequest
             'answer' => 'required|string|max:1000',
             'category' => 'string|max:255',
             'on_site' => 'bool',
-            'display' => 'bool'
+            'display' => 'bool',
         ];
     }
 }

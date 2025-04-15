@@ -2,9 +2,8 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\Contracts\QuestionContract;
+use League\Fractal\TransformerAbstract;
 
 class QuestionTransformer extends TransformerAbstract
 {

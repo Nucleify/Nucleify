@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Models\Article;
 
@@ -28,6 +31,7 @@ it('cant\'t create record', function () {
         Article::factory()->create(['user_id' => 'user_id']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
+
         return;
     }
 
@@ -39,6 +43,7 @@ it('cant\'t create multiple records', function () {
         Article::factory()->count(2)->create(['user_id' => 'user_id']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
+
         return;
     }
 

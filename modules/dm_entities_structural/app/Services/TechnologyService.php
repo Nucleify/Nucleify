@@ -3,14 +3,13 @@
 namespace App\Services;
 
 use App\Models\Technology;
-use App\Services\LoggerService;
 use App\Traits\Runners\Api\AuthRunnerTrait;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
+use App\Transformers\TechnologyTransformer;
 use Exception;
 use Illuminate\Http\Request;
-use App\Transformers\TechnologyTransformer;
 
 class TechnologyService
 {
@@ -19,22 +18,13 @@ class TechnologyService
     use TimeSetterTrait;
     use UserSetterTrait;
 
-    /**
-     * @param Technology $model
-     * @param string $entity
-     * @param LoggerService $logger
-     */
     public function __construct(
         private readonly Technology $model,
         protected string $entity = 'technology',
-        private readonly LoggerService $logger = new LoggerService()
+        private readonly LoggerService $logger = new LoggerService
     ) {}
 
     /**
-     * @param Request $request
-     *
-     * @return mixed
-     *
      * @throws Exception
      */
     public function index(Request $request): mixed
@@ -49,16 +39,11 @@ class TechnologyService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new TechnologyTransformer())
+            ->transformWith(new TechnologyTransformer)
             ->toArray()['data'];
     }
 
-
     /**
-     * @param Request $request
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function countByCreatedLastWeek(Request $request): array
@@ -76,10 +61,6 @@ class TechnologyService
     }
 
     /**
-     * @param string $category
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function getByCategory(string $category): array
@@ -93,15 +74,10 @@ class TechnologyService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new TechnologyTransformer())
+            ->transformWith(new TechnologyTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param string $site
-     *
-     * @return array
-     */
     public function getSiteTechnologies(string $site): array
     {
         $this->defineUserData();
@@ -110,19 +86,15 @@ class TechnologyService
 
         $name = $this->causer ? $this->causer->name : 'Guest';
 
-        $this->logger->logMessage($name  . ' fetched technologies by site: ' . $site . '.');
+        $this->logger->logMessage($name . ' fetched technologies by site: ' . $site . '.');
 
         return fractal()
             ->collection($result)
-            ->transformWith(new TechnologyTransformer())
+            ->transformWith(new TechnologyTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function show($id): array
@@ -136,15 +108,11 @@ class TechnologyService
 
         return fractal()
             ->item($result)
-            ->transformWith(new TechnologyTransformer())
+            ->transformWith(new TechnologyTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param array $data
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function create(array $data): array
@@ -158,16 +126,11 @@ class TechnologyService
 
         return fractal()
             ->item($result)
-            ->transformWith(new TechnologyTransformer())
+            ->transformWith(new TechnologyTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     * @param array $data
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function update($id, array $data): array
@@ -183,15 +146,11 @@ class TechnologyService
 
         return fractal()
             ->item($result->fresh())
-            ->transformWith(new TechnologyTransformer())
+            ->transformWith(new TechnologyTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     *
-     * @return void
-     *
      * @throws Exception
      */
     public function delete($id): void

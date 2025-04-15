@@ -15,10 +15,6 @@ class dm_pages extends ServiceProvider
      */
     public const HOME = '/dashboard';
 
-
-    /**
-     * @return void
-     */
     public function boot(): void
     {
         app()->register(App\Providers\RouteServiceProvider::class);

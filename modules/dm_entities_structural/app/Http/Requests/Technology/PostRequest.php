@@ -28,7 +28,7 @@ class PostRequest extends FormRequest
             'href' => 'required|string',
             'src' => 'required|string',
             'category' => 'string',
-            'display' => 'required|bool'
+            'display' => 'required|bool',
         ];
     }
 }

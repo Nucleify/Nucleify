@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function($contactData = contactData) {
+describe('422 > Unprocessable Content > POST', function ($contactData = contactData) {
     /**
      * USER ID TESTS
      */
@@ -18,7 +21,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['user_id']],
         ['errors' => [
-            'user_id' => ['The user id field is required.']
+            'user_id' => ['The user id field is required.'],
         ]]
     ));
 
@@ -30,7 +33,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['user_id']],
         ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
+            'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
@@ -42,7 +45,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['user_id']],
         ['errors' => [
-            'user_id' => ['The user id field must be an integer.']
+            'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
@@ -54,12 +57,11 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['user_id']],
         ['errors' => [
-            'user_id' => ['The user id field is required.']
+            'user_id' => ['The user id field is required.'],
         ]]
     ));
 
     $contactData['user_id'] = contactData['user_id'];
-
 
     /**
      * FIRST NAME TESTS
@@ -72,7 +74,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['first_name']],
         ['errors' => [
-            'first_name' => ['The first name field is required.']
+            'first_name' => ['The first name field is required.'],
         ]]
     ));
 
@@ -86,8 +88,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'first_name' => [
                 'The first name field must be at least 3 characters.',
-                'The first name field must be a string.'
-            ]
+                'The first name field must be a string.',
+            ],
         ]]
     ));
 
@@ -101,8 +103,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'first_name' => [
                 'The first name field must be at least 3 characters.',
-                'The first name field must be a string.'
-            ]
+                'The first name field must be a string.',
+            ],
         ]]
     ));
 
@@ -116,8 +118,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'first_name' => [
                 'The first name field must be at least 3 characters.',
-                'The first name field must be a string.'
-            ]
+                'The first name field must be a string.',
+            ],
         ]]
     ));
 
@@ -129,7 +131,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['first_name']],
         ['errors' => [
-            'first_name' => ['The first name field must be at least 3 characters.']
+            'first_name' => ['The first name field must be at least 3 characters.'],
         ]]
     ));
 
@@ -141,7 +143,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['first_name']],
         ['errors' => [
-            'first_name' => ['The first name field must not be greater than 30 characters.']
+            'first_name' => ['The first name field must not be greater than 30 characters.'],
         ]]
     ));
 
@@ -153,12 +155,11 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['first_name']],
         ['errors' => [
-            'first_name' => ['The first name field is required.']
+            'first_name' => ['The first name field is required.'],
         ]]
     ));
 
     $contactData['first_name'] = contactData['first_name'];
-
 
     /**
      * LAST NAME TESTS
@@ -173,8 +174,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'last_name' => [
                 'The last name field must be at least 3 characters.',
-                'The last name field must be a string.'
-            ]
+                'The last name field must be a string.',
+            ],
         ]]
     ));
 
@@ -188,8 +189,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'last_name' => [
                 'The last name field must be at least 3 characters.',
-                'The last name field must be a string.'
-            ]
+                'The last name field must be a string.',
+            ],
         ]]
     ));
 
@@ -203,8 +204,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'last_name' => [
                 'The last name field must be at least 3 characters.',
-                'The last name field must be a string.'
-            ]
+                'The last name field must be a string.',
+            ],
         ]]
     ));
 
@@ -216,7 +217,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['last_name']],
         ['errors' => [
-            'last_name' => ['The last name field must be at least 3 characters.']
+            'last_name' => ['The last name field must be at least 3 characters.'],
         ]]
     ));
 
@@ -228,7 +229,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['last_name']],
         ['errors' => [
-            'last_name' => ['The last name field must not be greater than 30 characters.']
+            'last_name' => ['The last name field must not be greater than 30 characters.'],
         ]]
     ));
 
@@ -240,16 +241,14 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['last_name']],
         ['errors' => [
-            'last_name' =>[
+            'last_name' => [
                 'The last name field must be at least 3 characters.',
-                'The last name field must be a string.'
-            ]
+                'The last name field must be a string.',
+            ],
         ]]
     ));
 
     $contactData['last_name'] = contactData['last_name'];
-
-
 
     /**
      * EMAIL TESTS
@@ -262,7 +261,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['email']],
         ['errors' => [
-            'email' => ['The email field must be a valid email address.']
+            'email' => ['The email field must be a valid email address.'],
         ]]
     ));
 
@@ -276,8 +275,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'email' => [
                 'The email field must be at least 3 characters.',
-                'The email field must be a valid email address.'
-            ]
+                'The email field must be a valid email address.',
+            ],
         ]]
     ));
 
@@ -291,8 +290,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'email' => [
                 'The email field must be at least 3 characters.',
-                'The email field must be a valid email address.'
-            ]
+                'The email field must be a valid email address.',
+            ],
         ]]
     ));
 
@@ -306,8 +305,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'email' => [
                 'The email field must be at least 3 characters.',
-                'The email field must be a valid email address.'
-            ]
+                'The email field must be a valid email address.',
+            ],
         ]]
     ));
 
@@ -321,14 +320,12 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'email' => [
                 'The email field must be a valid email address.',
-                'The email field must be at least 3 characters.'
-            ]
+                'The email field must be at least 3 characters.',
+            ],
         ]]
     ));
 
     $contactData['email'] = contactData['email'];
-
-
 
     /**
      * PERSONAL PHONE TESTS
@@ -344,8 +341,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
             'personal_phone' => [
                 'The personal phone field must be a string.',
                 'The personal phone field must be at least 9 characters.',
-                'The personal phone field format is invalid.'
-            ]
+                'The personal phone field format is invalid.',
+            ],
         ]]
     ));
 
@@ -360,8 +357,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
             'personal_phone' => [
                 'The personal phone field must be a string.',
                 'The personal phone field must be at least 9 characters.',
-                'The personal phone field format is invalid.'
-            ]
+                'The personal phone field format is invalid.',
+            ],
         ]]
     ));
 
@@ -375,8 +372,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'personal_phone' => [
                 'The personal phone field must be at least 9 characters.',
-                'The personal phone field format is invalid.'
-            ]
+                'The personal phone field format is invalid.',
+            ],
         ]]
     ));
 
@@ -390,8 +387,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'personal_phone' => [
                 'The personal phone field must not be greater than 9 characters.',
-                'The personal phone field format is invalid.'
-            ]
+                'The personal phone field format is invalid.',
+            ],
         ]]
     ));
 
@@ -406,14 +403,12 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
             'personal_phone' => [
                 'The personal phone field must be a string.',
                 'The personal phone field must be at least 9 characters.',
-                'The personal phone field format is invalid.'
-            ]
+                'The personal phone field format is invalid.',
+            ],
         ]]
     ));
 
     $contactData['personal_phone'] = contactData['personal_phone'];
-
-
 
     /**
      * WORK PHONE TESTS
@@ -429,8 +424,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
             'work_phone' => [
                 'The work phone field must be a string.',
                 'The work phone field must be at least 9 characters.',
-                'The work phone field format is invalid.'
-            ]
+                'The work phone field format is invalid.',
+            ],
         ]]
     ));
 
@@ -445,8 +440,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
             'work_phone' => [
                 'The work phone field must be a string.',
                 'The work phone field must be at least 9 characters.',
-                'The work phone field format is invalid.'
-            ]
+                'The work phone field format is invalid.',
+            ],
         ]]
     ));
 
@@ -460,8 +455,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'work_phone' => [
                 'The work phone field must be at least 9 characters.',
-                'The work phone field format is invalid.'
-            ]
+                'The work phone field format is invalid.',
+            ],
         ]]
     ));
 
@@ -475,8 +470,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'work_phone' => [
                 'The work phone field must not be greater than 9 characters.',
-                'The work phone field format is invalid.'
-            ]
+                'The work phone field format is invalid.',
+            ],
         ]]
     ));
 
@@ -492,13 +487,11 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
                 'The work phone field must be a string.',
                 'The work phone field format is invalid.',
                 'The work phone field must be at least 9 characters.',
-            ]
+            ],
         ]]
     ));
 
     $contactData['work_phone'] = contactData['work_phone'];
-
-
 
     /**
      * ADDRESS TESTS
@@ -513,8 +506,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'address' => [
                 'The address field must be at least 15 characters.',
-                'The address field must be a string.'
-            ]
+                'The address field must be a string.',
+            ],
         ]]
     ));
 
@@ -528,8 +521,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'address' => [
                 'The address field must be at least 15 characters.',
-                'The address field must be a string.'
-            ]
+                'The address field must be a string.',
+            ],
         ]]
     ));
 
@@ -543,8 +536,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'address' => [
                 'The address field must be at least 15 characters.',
-                'The address field must be a string.'
-            ]
+                'The address field must be a string.',
+            ],
         ]]
     ));
 
@@ -556,7 +549,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['address']],
         ['errors' => [
-            'address' => ['The address field must be at least 15 characters.']
+            'address' => ['The address field must be at least 15 characters.'],
         ]]
     ));
 
@@ -568,7 +561,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['address']],
         ['errors' => [
-            'address' => ['The address field must not be greater than 100 characters.']
+            'address' => ['The address field must not be greater than 100 characters.'],
         ]]
     ));
 
@@ -582,14 +575,12 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'address' => [
                 'The address field must be a string.',
-                'The address field must be at least 15 characters.'
-            ]
+                'The address field must be at least 15 characters.',
+            ],
         ]]
     ));
 
     $contactData['address'] = contactData['address'];
-
-
 
     /**
      * BIRTHDAY TESTS
@@ -602,7 +593,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['birthday']],
         ['errors' => [
-            'birthday' => ['The birthday field must be a valid date.']
+            'birthday' => ['The birthday field must be a valid date.'],
         ]]
     ));
 
@@ -614,7 +605,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['birthday']],
         ['errors' => [
-            'birthday' => ['The birthday field must be a valid date.']
+            'birthday' => ['The birthday field must be a valid date.'],
         ]]
     ));
 
@@ -626,7 +617,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['birthday']],
         ['errors' => [
-            'birthday' => ['The birthday field must be a valid date.']
+            'birthday' => ['The birthday field must be a valid date.'],
         ]]
     ));
 
@@ -638,7 +629,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['birthday']],
         ['errors' => [
-            'birthday' => ['The birthday field must be a valid date.']
+            'birthday' => ['The birthday field must be a valid date.'],
         ]]
     ));
 
@@ -650,7 +641,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['birthday']],
         ['errors' => [
-            'birthday' => ['The birthday field must be a valid date.']
+            'birthday' => ['The birthday field must be a valid date.'],
         ]]
     ));
 
@@ -662,13 +653,11 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['birthday']],
         ['errors' => [
-            'birthday' => ['The birthday field must be a valid date.']
+            'birthday' => ['The birthday field must be a valid date.'],
         ]]
     ));
 
     $contactData['birthday'] = contactData['birthday'];
-
-
 
     /**
      * CONTACT GROUPS TESTS
@@ -681,7 +670,7 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a string.']
+            'contact_groups' => ['The contact groups field must be a string.'],
         ]]
     ));
 
@@ -693,10 +682,9 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a string.']
+            'contact_groups' => ['The contact groups field must be a string.'],
         ]]
     ));
-
 
     $contactData['contact_groups'] = [];
     test('invalid contact_groups > empty array', apiTest(
@@ -706,13 +694,11 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         $contactData,
         ['errors' => ['contact_groups']],
         ['errors' => [
-            'contact_groups' => ['The contact groups field must be a string.']
+            'contact_groups' => ['The contact groups field must be a string.'],
         ]]
     ));
 
     $contactData['contact_groups'] = contactData['contact_groups'];
-
-
 
     /**
      * ROLE TESTS
@@ -727,8 +713,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'role' => [
                 'The role field must be a string.',
-                'The selected role is invalid.'
-            ]
+                'The selected role is invalid.',
+            ],
         ]]
     ));
 
@@ -741,8 +727,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => ['role']],
         ['errors' => [
             'role' => [
-                'The selected role is invalid.'
-            ]
+                'The selected role is invalid.',
+            ],
         ]]
     ));
 
@@ -756,8 +742,8 @@ describe('422 > Unprocessable Content > POST', function($contactData = contactDa
         ['errors' => [
             'role' => [
                 'The role field must be a string.',
-                'The selected role is invalid.'
-            ]
+                'The selected role is invalid.',
+            ],
         ]]
     ));
 });
