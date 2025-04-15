@@ -2,16 +2,14 @@
 
 namespace App\Services;
 
-use Exception;
-use Illuminate\Http\Request;
-
 use App\Models\Color;
-use App\Services\LoggerService;
 use App\Traits\Runners\Api\AuthRunnerTrait;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\ColorTransformer;
+use Exception;
+use Illuminate\Http\Request;
 
 class ColorService
 {
@@ -20,22 +18,13 @@ class ColorService
     use TimeSetterTrait;
     use UserSetterTrait;
 
-    /**
-     * @param Color $model
-     * @param string $entity
-     * @param LoggerService $logger
-     */
     public function __construct(
         private readonly Color $model,
         protected string $entity = 'color',
-        private readonly LoggerService $logger = new LoggerService()
+        private readonly LoggerService $logger = new LoggerService
     ) {}
 
     /**
-     * @param Request $request
-     *
-     * @return mixed
-     *
      * @throws Exception
      */
     public function index(Request $request): mixed
@@ -50,15 +39,11 @@ class ColorService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new ColorTransformer())
+            ->transformWith(new ColorTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param Request $request
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function countByCreatedLastWeek(Request $request): array
@@ -76,10 +61,6 @@ class ColorService
     }
 
     /**
-     * @param string $value
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function getByValue(string $value): array
@@ -93,15 +74,10 @@ class ColorService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new ColorTransformer())
+            ->transformWith(new ColorTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param string $site
-     *
-     * @return array
-     */
     public function getSiteColors(string $site): array
     {
         $this->defineUserData();
@@ -110,25 +86,21 @@ class ColorService
 
         $name = $this->causer ? $this->causer->name : 'Guest';
 
-        $this->logger->logMessage($name  . ' fetched colors by site: ' . $site . '.');
+        $this->logger->logMessage($name . ' fetched colors by site: ' . $site . '.');
 
         return fractal()
             ->collection($result)
-            ->transformWith(new ColorTransformer())
+            ->transformWith(new ColorTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     *
-     * @return array
+     * @param  $id
      *
      * @throws Exception
      */
 
     /**
-     * @param string $entity
-     * @return array
      * @throws Exception
      */
     public function getByEntity(string $entity): array
@@ -142,18 +114,13 @@ class ColorService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new ColorTransformer())
+            ->transformWith(new ColorTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     *
-     * @return array
-     *
      * @throws Exception
      */
-
     public function show($id): array
     {
         $this->defineUserData();
@@ -165,15 +132,11 @@ class ColorService
 
         return fractal()
             ->item($result)
-            ->transformWith(new ColorTransformer())
+            ->transformWith(new ColorTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param array $data
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function create(array $data): array
@@ -187,16 +150,11 @@ class ColorService
 
         return fractal()
             ->item($result)
-            ->transformWith(new ColorTransformer())
+            ->transformWith(new ColorTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     * @param array $data
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function update($id, array $data): array
@@ -212,16 +170,12 @@ class ColorService
 
         return fractal()
             ->item($result->fresh())
-            ->transformWith(new ColorTransformer())
+            ->transformWith(new ColorTransformer)
             ->toArray()['data'];
 
     }
 
     /**
-     * @param $id
-     *
-     * @return void
-     *
      * @throws Exception
      */
     public function delete($id): void

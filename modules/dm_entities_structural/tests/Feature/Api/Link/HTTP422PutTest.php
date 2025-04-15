@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function($updatedLinkData = updatedLinkData) {
+describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updatedLinkData) {
     /**
      * DOWNLOAD TESTS
      */
@@ -18,7 +21,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['download']],
         ['errors' => [
-            'download' => ['The download field must be a string.']
+            'download' => ['The download field must be a string.'],
         ]]
     ));
 
@@ -30,13 +33,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['download']],
         ['errors' => [
-            'download' => ['The download field must be a string.']
+            'download' => ['The download field must be a string.'],
         ]]
     ));
 
     $updatedLinkData['download'] = updatedLinkData['download'];
-
-
 
     /**
      * HREF TESTS
@@ -49,7 +50,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['href']],
         ['errors' => [
-            'href' => ['The href field is required.']
+            'href' => ['The href field is required.'],
         ]]
     ));
 
@@ -63,8 +64,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'href' => [
                 'The href field must be a string.',
-                'The href field must be a valid URL.'
-            ]
+                'The href field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -78,8 +79,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'href' => [
                 'The href field must be a string.',
-                'The href field must be a valid URL.'
-            ]
+                'The href field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -93,8 +94,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'href' => [
                 'The href field must be a string.',
-                'The href field must be a valid URL.'
-            ]
+                'The href field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -106,13 +107,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['href']],
         ['errors' => [
-            'href' => ['The href field is required.']
+            'href' => ['The href field is required.'],
         ]]
     ));
 
     $updatedLinkData['href'] = updatedLinkData['href'];
-
-
 
     /**
      * CATEGORY TESTS
@@ -125,7 +124,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field is required.']
+            'category' => ['The category field is required.'],
         ]]
     ));
 
@@ -139,7 +138,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'category' => [
                 'The category field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -153,7 +152,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'category' => [
                 'The category field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -167,7 +166,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'category' => [
                 'The category field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -179,13 +178,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field is required.']
+            'category' => ['The category field is required.'],
         ]]
     ));
 
     $updatedLinkData['category'] = updatedLinkData['category'];
-
-
 
     /**
      * SRC TESTS
@@ -200,8 +197,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'src' => [
                 'The src field must be a string.',
-                "The src field must be a valid URL."
-            ]
+                'The src field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -215,8 +212,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'src' => [
                 'The src field must be a string.',
-                "The src field must be a valid URL."
-            ]
+                'The src field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -230,8 +227,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'src' => [
                 'The src field must be a string.',
-                "The src field must be a valid URL."
-            ]
+                'The src field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -245,14 +242,12 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'src' => [
                 'The src field must be a string.',
-                "The src field must be a valid URL."
-            ]
+                'The src field must be a valid URL.',
+            ],
         ]]
     ));
 
     $updatedLinkData['src'] = updatedLinkData['src'];
-
-
 
     /**
      * ICON TESTS
@@ -267,7 +262,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'icon' => [
                 'The icon field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -281,7 +276,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'icon' => [
                 'The icon field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -295,7 +290,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'icon' => [
                 'The icon field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -307,13 +302,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['icon']],
         ['errors' => [
-            'icon' => ['The icon field must be a string.']
+            'icon' => ['The icon field must be a string.'],
         ]]
     ));
 
     $updatedLinkData['icon'] = updatedLinkData['icon'];
-
-
 
     /**
      * HREFLANG TESTS
@@ -328,7 +321,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'hreflang' => [
                 'The hreflang field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -342,7 +335,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'hreflang' => [
                 'The hreflang field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -356,7 +349,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'hreflang' => [
                 'The hreflang field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -368,13 +361,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['hreflang']],
         ['errors' => [
-            'hreflang' => ['The hreflang field must be a string.']
+            'hreflang' => ['The hreflang field must be a string.'],
         ]]
     ));
 
     $updatedLinkData['hreflang'] = updatedLinkData['hreflang'];
-
-
 
     /**
      * MEDIA TESTS
@@ -389,7 +380,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'media' => [
                 'The media field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -403,7 +394,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'media' => [
                 'The media field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -417,7 +408,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'media' => [
                 'The media field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -429,13 +420,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['media']],
         ['errors' => [
-            'media' => ['The media field must be a string.']
+            'media' => ['The media field must be a string.'],
         ]]
     ));
 
     $updatedLinkData['media'] = updatedLinkData['media'];
-
-
 
     /**
      * PING TESTS
@@ -450,7 +439,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'ping' => [
                 'The ping field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -464,7 +453,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'ping' => [
                 'The ping field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -478,7 +467,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'ping' => [
                 'The ping field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -490,14 +479,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['ping']],
         ['errors' => [
-            'ping' => ['The ping field must be a string.']
+            'ping' => ['The ping field must be a string.'],
         ]]
     ));
 
     $updatedLinkData['ping'] = updatedLinkData['ping'];
-
-
-
 
     /**
      * REL TESTS
@@ -512,8 +498,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'rel' => [
                 'The rel field must be a string.',
-                'The selected rel is invalid.'
-            ]
+                'The selected rel is invalid.',
+            ],
         ]]
     ));
 
@@ -527,8 +513,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'rel' => [
                 'The rel field must be a string.',
-                'The selected rel is invalid.'
-            ]
+                'The selected rel is invalid.',
+            ],
         ]]
     ));
 
@@ -542,8 +528,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'rel' => [
                 'The rel field must be a string.',
-                'The selected rel is invalid.'
-            ]
+                'The selected rel is invalid.',
+            ],
         ]]
     ));
 
@@ -557,14 +543,12 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'rel' => [
                 'The rel field must be a string.',
-                'The selected rel is invalid.'
-            ]
+                'The selected rel is invalid.',
+            ],
         ]]
     ));
 
     $updatedLinkData['rel'] = updatedLinkData['rel'];
-
-
 
     /**
      * TARGET TESTS
@@ -578,9 +562,9 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => ['target']],
         ['errors' => [
             'target' => [
-                "The selected target is invalid.",
+                'The selected target is invalid.',
                 'The target field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -593,9 +577,9 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => ['target']],
         ['errors' => [
             'target' => [
-                "The selected target is invalid.",
+                'The selected target is invalid.',
                 'The target field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -608,9 +592,9 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => ['target']],
         ['errors' => [
             'target' => [
-                "The selected target is invalid.",
+                'The selected target is invalid.',
                 'The target field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -623,15 +607,13 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => ['target']],
         ['errors' => [
             'target' => [
-                "The selected target is invalid.",
+                'The selected target is invalid.',
                 'The target field must be a string.',
-            ]
+            ],
         ]]
     ));
 
     $updatedLinkData['target'] = updatedLinkData['target'];
-
-
 
     /**
      * TYPE TESTS
@@ -646,7 +628,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'type' => [
                 'The type field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -660,7 +642,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'type' => [
                 'The type field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -674,7 +656,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         ['errors' => [
             'type' => [
                 'The type field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -686,7 +668,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedLinkData = update
         $updatedLinkData,
         ['errors' => ['type']],
         ['errors' => [
-            'type' => ['The type field must be a string.']
+            'type' => ['The type field must be a string.'],
         ]]
     ));
 

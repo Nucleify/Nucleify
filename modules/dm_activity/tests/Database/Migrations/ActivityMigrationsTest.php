@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use Illuminate\Support\Facades\Schema;
 
@@ -7,7 +10,7 @@ it('can create table', function () {
     expect(Schema::hasTable('activity_log'))->toBeTrue()
         ->and(Schema::hasColumns('activity_log', [
             'id', 'log_name', 'description', 'subject_type', 'event', 'subject_id', 'causer_type',
-            'causer_id', 'properties', 'batch_uuid', 'created_at', 'updated_at'
+            'causer_id', 'properties', 'batch_uuid', 'created_at', 'updated_at',
         ]))->toBeTrue();
 });
 

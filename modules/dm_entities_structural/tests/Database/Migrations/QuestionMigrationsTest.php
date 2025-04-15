@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use Illuminate\Support\Facades\Schema;
 
@@ -14,7 +17,7 @@ it('can create table', function () {
             'on_site',
             'display',
             'created_at',
-            'updated_at'
+            'updated_at',
         ]))->toBeTrue();
 });
 

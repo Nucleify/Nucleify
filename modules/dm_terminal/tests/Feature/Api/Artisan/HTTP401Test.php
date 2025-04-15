@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 describe('401 > Unauthorized', function () {
     it('cant\'t run migrate:rollback command', function () {
@@ -7,7 +10,7 @@ describe('401 > Unauthorized', function () {
 
         $response->assertStatus(401)
             ->assertJson([
-                'message' => 'Unauthenticated.'
+                'message' => 'Unauthenticated.',
             ]);
     });
 
@@ -16,7 +19,7 @@ describe('401 > Unauthorized', function () {
 
         $response->assertStatus(401)
             ->assertJson([
-                'message' => 'Unauthenticated.'
+                'message' => 'Unauthenticated.',
             ]);
     });
 
@@ -25,7 +28,7 @@ describe('401 > Unauthorized', function () {
 
         $response->assertStatus(401)
             ->assertJson([
-                'message' => 'Unauthenticated.'
+                'message' => 'Unauthenticated.',
             ]);
     });
 
@@ -34,7 +37,7 @@ describe('401 > Unauthorized', function () {
 
         $response->assertStatus(401)
             ->assertJson([
-                'message' => 'Unauthenticated.'
+                'message' => 'Unauthenticated.',
             ]);
     });
 });

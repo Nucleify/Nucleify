@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 describe('302 > Redirect > Unauthorized', function () {
     test('sitemap generate api', function () {

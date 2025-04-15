@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use Illuminate\Support\Facades\Schema;
 
@@ -8,7 +11,7 @@ it('can create password_resets table', function () {
 
     expect(Schema::hasTable('password_resets'))->toBeTrue()
         ->and(Schema::hasColumns('password_resets', [
-            'email', 'token', 'created_at'
+            'email', 'token', 'created_at',
         ]))->toBeTrue();
 });
 

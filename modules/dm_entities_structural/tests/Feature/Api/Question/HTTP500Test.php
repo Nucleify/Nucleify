@@ -1,10 +1,13 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
-
-use function Pest\Laravel\mock;
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Models\Question;
 use App\Services\QuestionService;
+
+use function Pest\Laravel\mock;
 
 beforeEach(function () {
     $this->createUsers();
@@ -12,7 +15,7 @@ beforeEach(function () {
     $this->service = mock(QuestionService::class);
 });
 
-describe('500 > Internal Server Error', function() {
+describe('500 > Internal Server Error', function () {
     test('index api', function () {
         $this->service
             ->shouldReceive('index')

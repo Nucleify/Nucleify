@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Models\Money;
 
@@ -28,6 +31,7 @@ it('cant\'t create record', function () {
         Money::factory()->create(['count' => 'invalid_count']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
+
         return;
     }
 
@@ -39,6 +43,7 @@ it('cant\'t create multiple records', function () {
         Money::factory()->count(2)->create(['count' => 'invalid_count']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
+
         return;
     }
 

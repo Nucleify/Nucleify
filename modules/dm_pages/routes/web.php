@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\PagesController;
+use Illuminate\Support\Facades\Route;
 
 $publicRoutes = require __DIR__ . '/constants/public.php';
 $authRoutes = require __DIR__ . '/constants/auth.php';

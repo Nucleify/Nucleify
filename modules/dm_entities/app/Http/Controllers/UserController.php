@@ -2,30 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-
 use App\Http\Requests\User\PostRequest;
 use App\Http\Requests\User\PutRequest;
 use App\Models\User;
 use App\Services\UserService;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     private UserService $service;
 
-    /**
-     * @param UserService $service
-     */
     public function __construct(UserService $service)
     {
         $this->service = $service;
     }
 
-    /**
-     * @return JsonResponse
-     */
     public function index(): JsonResponse
     {
         try {
@@ -37,11 +30,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function countByCreatedLastWeek(Request $request): JsonResponse
     {
         try {
@@ -53,11 +41,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function show($id): JsonResponse
     {
         try {
@@ -69,11 +52,6 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * @param PostRequest $request
-     *
-     * @return JsonResponse
-     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -82,19 +60,13 @@ class UserController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: '. $result['name'] . ' user'
+                'message' => 'Successfully created: ' . $result['name'] . ' user',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param PutRequest $request
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -103,18 +75,13 @@ class UserController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: '. $result['name'] . ' user'
+                'message' => 'Successfully updated: ' . $result['name'] . ' user',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function destroy($id): JsonResponse
     {
         try {
@@ -123,11 +90,10 @@ class UserController extends Controller
 
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: '. $result->name . ' user'
+                'message' => 'Successfully deleted: ' . $result->name . ' user',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
-
 }

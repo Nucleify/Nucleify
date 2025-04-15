@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Models\Contact;
 
@@ -28,6 +31,7 @@ it('cant\'t create record', function () {
         Contact::factory()->create(['birthday' => 'invalid_date']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect date value', $e->getMessage());
+
         return;
     }
 
@@ -39,6 +43,7 @@ it('cant\'t create multiple records', function () {
         Contact::factory()->count(2)->create(['birthday' => 'invalid_date']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect date value', $e->getMessage());
+
         return;
     }
 

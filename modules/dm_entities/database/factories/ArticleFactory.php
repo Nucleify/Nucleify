@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Validator;
-
-use App\Models\User;
 
 class ArticleFactory extends Factory
 {
@@ -21,7 +20,7 @@ class ArticleFactory extends Factory
             'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraph,
             'category' => implode(', ', $this->faker->words()),
-            'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d')
+            'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
         ];
 
         Validator::make($data, [

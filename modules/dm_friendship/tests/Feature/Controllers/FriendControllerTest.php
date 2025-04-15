@@ -1,10 +1,12 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
-
-use Database\Factories\UserFactory;
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Http\Controllers\FriendController;
 use App\Services\FriendshipService;
+use Database\Factories\UserFactory;
 
 beforeEach(function () {
     $this->createUsers();

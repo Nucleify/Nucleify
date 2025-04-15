@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Services\SitemapService;
 
@@ -8,7 +11,7 @@ beforeEach(function () {
 });
 
 test('it generates a valid sitemap', function () {
-    $sitemapService = new SitemapService();
+    $sitemapService = new SitemapService;
 
     $sitemapService->generateSitemap();
 

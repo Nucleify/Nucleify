@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -8,7 +11,6 @@ beforeEach(function () {
     $this->createUsers();
     $this->model = User::factory()->create();
 });
-
 
 describe('Instance', function () {
     test('can be created', function () {

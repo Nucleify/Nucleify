@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use Database\Factories\ActivityFactory;
 
@@ -28,6 +31,7 @@ it('cant\'t create record', function () {
         ActivityFactory::new()->create(['causer_id' => 'causer_id']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
+
         return;
     }
 
@@ -39,6 +43,7 @@ it('cant\'t create multiple records', function () {
         ActivityFactory::new()->count(2)->create(['causer_id' => 'causer_id']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
+
         return;
     }
 

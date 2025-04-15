@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use function Pest\Laravel\get;
 
@@ -13,9 +16,8 @@ it('renders an existing view', function () {
     get('/home')->assertOk();
 })->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
 
-
 it('returns 404 for a non-existing view', function () {
     $response = get('/page/non-existent-view');
-    
+
     $response->assertNotFound();
 })->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests

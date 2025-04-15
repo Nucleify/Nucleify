@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 /**
  *  Main tests group
@@ -16,7 +19,6 @@ uses()
     ->group('dm-friendship-ft')
     ->in('Feature');
 
-
 /**
  *  Database groups
  */
@@ -27,7 +29,6 @@ uses()
 uses()
     ->group('migrations')
     ->in('Database/Migrations');
-
 
 /**
  *  Feature groups

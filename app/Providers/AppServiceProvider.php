@@ -2,12 +2,11 @@
 
 namespace App\Providers;
 
+use App\Services\LoggerService;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-
-use App\Services\LoggerService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $serviceNamespace = 'App\\Services\\';
-        $servicePath = __DIR__.'/../Services/';
+        $servicePath = __DIR__ . '/../Services/';
         $dirHandle = opendir($servicePath);
 
         while (($file = readdir($dirHandle)) !== false) {
@@ -30,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         closedir($dirHandle);
 
         $this->app->singleton('activityLoggerService', function () {
-            return new LoggerService();
+            return new LoggerService;
         });
     }
 

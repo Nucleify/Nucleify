@@ -2,9 +2,8 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\Contracts\ColorContract;
+use League\Fractal\TransformerAbstract;
 
 class ColorTransformer extends TransformerAbstract
 {

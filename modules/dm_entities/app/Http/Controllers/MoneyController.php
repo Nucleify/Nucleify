@@ -2,32 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-
 use App\Http\Requests\Money\PostRequest;
 use App\Http\Requests\Money\PutRequest;
 use App\Models\Money;
 use App\Services\MoneyService;
+use Exception;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class MoneyController extends Controller
 {
     private MoneyService $service;
 
-    /**
-     * @param MoneyService $service
-     */
     public function __construct(MoneyService $service)
     {
         $this->service = $service;
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function index(Request $request): JsonResponse
     {
         try {
@@ -39,11 +30,6 @@ class MoneyController extends Controller
         }
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function countByCreatedLastWeek(Request $request): JsonResponse
     {
         try {
@@ -55,11 +41,6 @@ class MoneyController extends Controller
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function show($id): JsonResponse
     {
         try {
@@ -71,11 +52,6 @@ class MoneyController extends Controller
         }
     }
 
-    /**
-     * @param PostRequest $request
-     *
-     * @return JsonResponse
-     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -84,19 +60,13 @@ class MoneyController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: ' . $result['title'] . ' transaction'
+                'message' => 'Successfully created: ' . $result['title'] . ' transaction',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param PutRequest $request
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -105,27 +75,23 @@ class MoneyController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['title'] . ' transaction'
+                'message' => 'Successfully updated: ' . $result['title'] . ' transaction',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function destroy($id): JsonResponse
     {
         $result = Money::findOrFail($id);
 
         try {
             $this->service->delete($id);
+
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: '. $result->getTitle() . ' transaction'
+                'message' => 'Successfully deleted: ' . $result->getTitle() . ' transaction',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

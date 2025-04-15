@@ -2,9 +2,8 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\Contracts\MoneyContract;
+use League\Fractal\TransformerAbstract;
 
 class MoneyTransformer extends TransformerAbstract
 {
@@ -12,13 +11,13 @@ class MoneyTransformer extends TransformerAbstract
     {
         return [
             'id' => $model->getId(),
-            'user_id' =>  $model->getUserId(),
-            'sender' =>  $model->getSender(),
-            'receiver' =>  $model->getReceiver(),
+            'user_id' => $model->getUserId(),
+            'sender' => $model->getSender(),
+            'receiver' => $model->getReceiver(),
             'count' => $model->getCount(),
-            'title' =>  $model->getTitle(),
-            'description' =>  $model->getDescription(),
-            'category' =>  $model->getCategory(),
+            'title' => $model->getTitle(),
+            'description' => $model->getDescription(),
+            'category' => $model->getCategory(),
             'created_at' => $model->getCreatedAt(),
             'updated_at' => $model->getUpdatedAt(),
         ];

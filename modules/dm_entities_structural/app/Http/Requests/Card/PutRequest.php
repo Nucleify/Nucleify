@@ -18,7 +18,7 @@ class PutRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     * 
+     *
      * @return array<string, ValidationRule|array|string>
      */
     public function rules(): array
@@ -29,7 +29,7 @@ class PutRequest extends FormRequest
             'description' => 'required|string|max:1000',
             'category' => 'string|max:255',
             'component' => 'required|string|max:100',
-            'display' => 'bool'
+            'display' => 'bool',
         ];
     }
 }

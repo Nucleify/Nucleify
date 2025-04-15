@@ -9,14 +9,11 @@ trait RequestSetterTrait
     use RequestGetterTrait;
 
     protected bool $isRefererAdmin;
+
     protected bool $isRefererStructural;
+
     protected ?string $referrer = null;
 
-    /**
-     * @param $request
-     *
-     * @return void
-     */
     public function defineRequestData($request): void
     {
         $this->referrer = $this->getReferrer($request);

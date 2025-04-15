@@ -1,13 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
-
-use Illuminate\Http\Request;
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Http\Controllers\UserController;
 use App\Http\Requests\User\PostRequest;
 use App\Http\Requests\User\PutRequest;
 use App\Models\User;
 use App\Services\UserService;
+use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();
@@ -23,7 +25,7 @@ test('index > success', function () {
 });
 
 test('countByCreatedLastWeek > success', function () {
-    $request = new Request();
+    $request = new Request;
 
     $response = $this->controller->countByCreatedLastWeek($request);
 

@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
@@ -9,7 +12,7 @@ it('can create table', function () {
 
     expect(Schema::hasTable('interactions'))->toBeTrue()
         ->and(Schema::hasColumns('interactions', [
-            'id', 'user_id', 'subject_id', 'subject_type', 'relation', 'relation_value', 'relation_type', 'created_at', 'updated_at'
+            'id', 'user_id', 'subject_id', 'subject_type', 'relation', 'relation_value', 'relation_type', 'created_at', 'updated_at',
         ]))->toBeTrue();
 });
 

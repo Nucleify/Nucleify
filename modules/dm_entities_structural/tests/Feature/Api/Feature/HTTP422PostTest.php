@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
-  $this->createUsers();
-  $this->actingAs($this->admin);
+    $this->createUsers();
+    $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function($featureData = featureData) {
+describe('422 > Unprocessable Content > POST', function ($featureData = featureData) {
     /**
      * ICON TESTS
      */
@@ -20,7 +23,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'icon' => [
                 'The icon field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -34,7 +37,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'icon' => [
                 'The icon field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -48,7 +51,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'icon' => [
                 'The icon field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -60,14 +63,12 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         $featureData,
         ['errors' => ['icon']],
         ['errors' => [
-            'icon' => ['The icon field is required.']
+            'icon' => ['The icon field is required.'],
         ]]
     ));
 
     $featureData['icon'] = featureData['icon'];
 
-
-    
     /**
      * HEADER TESTS
      */
@@ -79,7 +80,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         $featureData,
         ['errors' => ['header']],
         ['errors' => [
-            'header' => ['The header field is required.']
+            'header' => ['The header field is required.'],
         ]]
     ));
 
@@ -93,7 +94,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'header' => [
                 'The header field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -107,7 +108,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'header' => [
                 'The header field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -121,7 +122,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'header' => [
                 'The header field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -133,13 +134,11 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         $featureData,
         ['errors' => ['header']],
         ['errors' => [
-            'header' => ['The header field is required.']
+            'header' => ['The header field is required.'],
         ]]
     ));
 
     $featureData['header'] = featureData['header'];
-
-
 
     /**
      * DESCRIPTION TESTS
@@ -154,7 +153,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'description' => [
                 'The description field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -168,7 +167,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'description' => [
                 'The description field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -182,7 +181,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'description' => [
                 'The description field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -194,13 +193,11 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         $featureData,
         ['errors' => ['description']],
         ['errors' => [
-            'description' => ['The description field is required.']
+            'description' => ['The description field is required.'],
         ]]
     ));
 
     $featureData['description'] = featureData['description'];
-
-
 
     /**
      * CATEGORY TESTS
@@ -213,7 +210,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         $featureData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field is required.']
+            'category' => ['The category field is required.'],
         ]]
     ));
 
@@ -227,7 +224,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'category' => [
                 'The category field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -241,7 +238,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'category' => [
                 'The category field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -255,7 +252,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         ['errors' => [
             'category' => [
                 'The category field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -267,7 +264,7 @@ describe('422 > Unprocessable Content > POST', function($featureData = featureDa
         $featureData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field is required.']
+            'category' => ['The category field is required.'],
         ]]
     ));
 });

@@ -2,39 +2,27 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
-
 use App\Models\Card;
-use App\Services\LoggerService;
 use App\Traits\Runners\Api\AuthRunnerTrait;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\CardTransformer;
+use Illuminate\Http\Request;
 
-class CardService 
+class CardService
 {
     use AuthRunnerTrait;
     use RequestSetterTrait;
     use TimeSetterTrait;
     use UserSetterTrait;
 
-    /**
-     * @param Card $model
-     * @param string $entity
-     * @param LoggerService $logger
-     */
     public function __construct(
         private readonly Card $model,
         protected string $entity = 'card',
-        private readonly LoggerService $logger = new LoggerService()
+        private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    /**
-     * @param Request $request
-     * 
-     * @return mixed
-     */
     public function index(Request $request): mixed
     {
         $this->defineRequestData($request);
@@ -47,15 +35,10 @@ class CardService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new CardTransformer())
+            ->transformWith(new CardTransformer)
             ->toArray()['data'];
     }
-    
-    /**
-     * @param Request $request
-     * 
-     * @return array
-     */
+
     public function countByCreatedLastWeek(Request $request): array
     {
         $this->defineRequestData($request);
@@ -68,13 +51,9 @@ class CardService
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererStructural);
 
         return ['count' => $result];
-    }       
+    }
 
     /**
-     * @param string $category
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function getByCategory(string $category): array
@@ -88,15 +67,10 @@ class CardService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new CardTransformer())
+            ->transformWith(new CardTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     * 
-     * @return array
-     */
     public function show($id): array
     {
         $this->defineUserData();
@@ -108,15 +82,10 @@ class CardService
 
         return fractal()
             ->item($result)
-            ->transformWith(new CardTransformer())
+            ->transformWith(new CardTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param array $data
-     * 
-     * @return array
-     */
     public function create(array $data): array
     {
         $this->defineUserData();
@@ -128,14 +97,11 @@ class CardService
 
         return fractal()
             ->item($result)
-            ->transformWith(new CardTransformer())
+            ->transformWith(new CardTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     * @param array $data
-     * 
      * @return data
      */
     public function update($id, array $data): array
@@ -151,15 +117,10 @@ class CardService
 
         return fractal()
             ->item($result->fresh())
-            ->transformWith(new CardTransformer())
+            ->transformWith(new CardTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     * 
-     * @return void
-     */
     public function delete($id): void
     {
         $this->defineUserData();

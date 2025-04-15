@@ -1,15 +1,17 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Models\User;
 use App\Services\FriendshipService;
-
 
 beforeEach(function () {
     $this->user = User::factory()->create();
     $this->otherUser = User::factory()->create();
 
-    $this->service = new FriendshipService();
+    $this->service = new FriendshipService;
     $this->actingAs($this->user);
 });
 

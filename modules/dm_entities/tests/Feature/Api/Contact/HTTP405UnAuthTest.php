@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 describe('405 > Method Not Allowed > Unauthorized', function () {
     test('invalid method put with parameter > index api', function () {

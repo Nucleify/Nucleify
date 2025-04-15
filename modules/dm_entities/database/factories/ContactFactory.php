@@ -2,13 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Validator;
 
-use App\Models\User;
-
-class
-ContactFactory extends Factory
+class ContactFactory extends Factory
 {
     public function definition(): array
     {
@@ -26,7 +24,7 @@ ContactFactory extends Factory
             'birthday' => $this->faker->date(),
             'contact_groups' => implode(', ', $this->faker->words()),
             'role' => $this->faker->randomElement(['', 'user', 'tech', 'test_admin', 'admin', 'super_admin']),
-            'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d')
+            'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
         ];
 
         $validator = Validator::make($data, [
@@ -40,7 +38,7 @@ ContactFactory extends Factory
             'address' => 'nullable|string|min:15|max:100',
             'birthday' => 'nullable|date',
             'contact_groups' => 'nullable|string|in:' . implode(', ', $this->faker->words()),
-            'role' => 'nullable|string|in:user,tech,test_admin,admin,super_admin'
+            'role' => 'nullable|string|in:user,tech,test_admin,admin,super_admin',
         ]);
 
         while ($validator->fails()) {

@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 /**
  *  Main tests group
@@ -11,7 +14,6 @@ uses()
 uses()
     ->group('dm-terminal-ft')
     ->in('Feature');
-
 
 /**
  *  Feature groups

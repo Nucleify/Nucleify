@@ -1,13 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
-
-use Illuminate\Http\Request;
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Http\Controllers\TechnologyController;
 use App\Http\Requests\Technology\PostRequest;
 use App\Http\Requests\Technology\PutRequest;
 use App\Models\Technology;
 use App\Services\TechnologyService;
+use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();
@@ -18,7 +20,7 @@ beforeEach(function () {
 test('index > success', function () {
     Technology::factory()->count(3)->create();
 
-    $request = new Request();
+    $request = new Request;
 
     $response = $this->controller->index($request);
 
@@ -27,7 +29,7 @@ test('index > success', function () {
 });
 
 test('countByCreatedLastWeek > success', function () {
-    $request = new Request();
+    $request = new Request;
 
     $response = $this->controller->countByCreatedLastWeek($request);
 

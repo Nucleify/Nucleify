@@ -1,13 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
-
-use Illuminate\Http\Request;
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Http\Controllers\ColorController;
 use App\Http\Requests\Color\PostRequest;
 use App\Http\Requests\Color\PutRequest;
 use App\Models\Color;
 use App\Services\ColorService;
+use Illuminate\Http\Request;
 
 beforeEach(function () {
     $this->createUsers();
@@ -18,7 +20,7 @@ beforeEach(function () {
 test('index > success', function () {
     Color::factory()->count(3)->create();
 
-    $request = new Request();
+    $request = new Request;
 
     $response = $this->controller->index($request);
 
@@ -27,7 +29,7 @@ test('index > success', function () {
 });
 
 test('countByCreatedLastWeek > success', function () {
-    $request = new Request();
+    $request = new Request;
 
     $response = $this->controller->countByCreatedLastWeek($request);
 

@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function($articleData = articleData) {
+describe('422 > Unprocessable Content > POST', function ($articleData = articleData) {
     /**
      * TITLE TESTS
      */
@@ -18,7 +21,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         $articleData,
         ['errors' => ['title']],
         ['errors' => [
-            'title' => ['The title field is required.']
+            'title' => ['The title field is required.'],
         ]]
     ));
 
@@ -32,8 +35,8 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         ['errors' => [
             'title' => [
                 'The title field must be a string.',
-                'The title field must be at least 3 characters.'
-            ]
+                'The title field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -45,7 +48,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         $articleData,
         ['errors' => ['title']],
         ['errors' => [
-            'title' => ['The title field must be at least 3 characters.']
+            'title' => ['The title field must be at least 3 characters.'],
         ]]
     ));
 
@@ -59,8 +62,8 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         ['errors' => [
             'title' => [
                 'The title field must be a string.',
-                'The title field must be at least 3 characters.'
-            ]
+                'The title field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -74,8 +77,8 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         ['errors' => [
             'title' => [
                 'The title field must be a string.',
-                'The title field must be at least 3 characters.'
-            ]
+                'The title field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -87,13 +90,11 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         $articleData,
         ['errors' => ['title']],
         ['errors' => [
-            'title' => ['The title field is required.']
+            'title' => ['The title field is required.'],
         ]]
     ));
 
     $articleData['title'] = articleData['title'];
-
-
 
     /**
      * DESCRIPTION TESTS
@@ -108,8 +109,8 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         ['errors' => [
             'description' => [
                 'The description field must be a string.',
-                'The description field must be at least 10 characters.'
-            ]
+                'The description field must be at least 10 characters.',
+            ],
         ]]
     ));
 
@@ -121,7 +122,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         $articleData,
         ['errors' => ['description']],
         ['errors' => [
-            'description' => ['The description field must be at least 10 characters.']
+            'description' => ['The description field must be at least 10 characters.'],
         ]]
     ));
 
@@ -135,8 +136,8 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         ['errors' => [
             'description' => [
                 'The description field must be a string.',
-                'The description field must be at least 10 characters.'
-            ]
+                'The description field must be at least 10 characters.',
+            ],
         ]]
     ));
 
@@ -150,8 +151,8 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         ['errors' => [
             'description' => [
                 'The description field must be a string.',
-                'The description field must be at least 10 characters.'
-            ]
+                'The description field must be at least 10 characters.',
+            ],
         ]]
     ));
 
@@ -163,13 +164,11 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         $articleData,
         ['errors' => ['description']],
         ['errors' => [
-            'description' => ['The description field is required.']
+            'description' => ['The description field is required.'],
         ]]
     ));
 
     $articleData['description'] = articleData['description'];
-
-
 
     /**
      * CATEGORY TESTS
@@ -182,7 +181,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         $articleData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -194,7 +193,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         $articleData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -206,7 +205,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         $articleData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -218,7 +217,7 @@ describe('422 > Unprocessable Content > POST', function($articleData = articleDa
         $articleData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 });

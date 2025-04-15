@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
-  $this->createUsers();
-  $this->actingAs($this->admin);
+    $this->createUsers();
+    $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
+describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     /**
      * DOWNLOAD TESTS
      */
@@ -18,7 +21,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['download']],
         ['errors' => [
-            'download' => ['The download field must be a string.']
+            'download' => ['The download field must be a string.'],
         ]]
     ));
 
@@ -30,13 +33,11 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['download']],
         ['errors' => [
-            'download' => ['The download field must be a string.']
+            'download' => ['The download field must be a string.'],
         ]]
     ));
 
     $linkData['download'] = 'dsdds';
-
-
 
     /**
      * HREF TESTS
@@ -49,7 +50,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['href']],
         ['errors' => [
-            'href' => ['The href field is required.']
+            'href' => ['The href field is required.'],
         ]]
     ));
 
@@ -63,8 +64,8 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'href' => [
                 'The href field must be a string.',
-                'The href field must be a valid URL.'
-            ]
+                'The href field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -78,8 +79,8 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'href' => [
                 'The href field must be a string.',
-                'The href field must be a valid URL.'
-            ]
+                'The href field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -93,8 +94,8 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'href' => [
                 'The href field must be a string.',
-                'The href field must be a valid URL.'
-            ]
+                'The href field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -106,13 +107,11 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['href']],
         ['errors' => [
-            'href' => ['The href field is required.']
+            'href' => ['The href field is required.'],
         ]]
     ));
 
     $linkData['href'] = linkData['href'];
-
-
 
     /**
      * CATEGORY TESTS
@@ -125,7 +124,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field is required.']
+            'category' => ['The category field is required.'],
         ]]
     ));
 
@@ -139,7 +138,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'category' => [
                 'The category field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -153,7 +152,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'category' => [
                 'The category field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -167,7 +166,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'category' => [
                 'The category field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -179,13 +178,11 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field is required.']
+            'category' => ['The category field is required.'],
         ]]
     ));
 
     $linkData['category'] = linkData['category'];
-
-
 
     /**
      * SRC TESTS
@@ -200,8 +197,8 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'src' => [
                 'The src field must be a string.',
-                "The src field must be a valid URL."
-            ]
+                'The src field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -214,9 +211,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => ['src']],
         ['errors' => [
             'src' => [
-                                'The src field must be a string.',
-                "The src field must be a valid URL."
-            ]
+                'The src field must be a string.',
+                'The src field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -229,9 +226,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => ['src']],
         ['errors' => [
             'src' => [
-                                'The src field must be a string.',
-                "The src field must be a valid URL."
-            ]
+                'The src field must be a string.',
+                'The src field must be a valid URL.',
+            ],
         ]]
     ));
 
@@ -245,14 +242,12 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'src' => [
                 'The src field must be a string.',
-                "The src field must be a valid URL."
-            ]
+                'The src field must be a valid URL.',
+            ],
         ]]
     ));
 
     $linkData['src'] = linkData['src'];
-
-
 
     /**
      * ICON TESTS
@@ -267,7 +262,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'icon' => [
                 'The icon field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -281,7 +276,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'icon' => [
                 'The icon field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -295,7 +290,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'icon' => [
                 'The icon field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -307,13 +302,11 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['icon']],
         ['errors' => [
-            'icon' => ['The icon field must be a string.']
+            'icon' => ['The icon field must be a string.'],
         ]]
     ));
 
     $linkData['icon'] = linkData['icon'];
-
-
 
     /**
      * HREFLANG TESTS
@@ -328,7 +321,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'hreflang' => [
                 'The hreflang field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -342,7 +335,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'hreflang' => [
                 'The hreflang field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -356,7 +349,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'hreflang' => [
                 'The hreflang field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -368,13 +361,11 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['hreflang']],
         ['errors' => [
-            'hreflang' => ['The hreflang field must be a string.']
+            'hreflang' => ['The hreflang field must be a string.'],
         ]]
     ));
 
     $linkData['hreflang'] = linkData['hreflang'];
-
-
 
     /**
      * MEDIA TESTS
@@ -389,7 +380,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'media' => [
                 'The media field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -403,7 +394,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'media' => [
                 'The media field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -417,7 +408,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'media' => [
                 'The media field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -429,13 +420,11 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['media']],
         ['errors' => [
-            'media' => ['The media field must be a string.']
+            'media' => ['The media field must be a string.'],
         ]]
     ));
 
     $linkData['media'] = linkData['media'];
-
-
 
     /**
      * PING TESTS
@@ -450,7 +439,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'ping' => [
                 'The ping field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -464,7 +453,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'ping' => [
                 'The ping field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -478,7 +467,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'ping' => [
                 'The ping field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -490,13 +479,11 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['ping']],
         ['errors' => [
-            'ping' => ['The ping field must be a string.']
+            'ping' => ['The ping field must be a string.'],
         ]]
     ));
 
     $linkData['ping'] = linkData['ping'];
-
-
 
     /**
      * REL TESTS
@@ -511,8 +498,8 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'rel' => [
                 'The rel field must be a string.',
-                'The selected rel is invalid.'
-            ]
+                'The selected rel is invalid.',
+            ],
         ]]
     ));
 
@@ -526,8 +513,8 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'rel' => [
                 'The rel field must be a string.',
-                'The selected rel is invalid.'
-            ]
+                'The selected rel is invalid.',
+            ],
         ]]
     ));
 
@@ -541,8 +528,8 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'rel' => [
                 'The rel field must be a string.',
-                'The selected rel is invalid.'
-            ]
+                'The selected rel is invalid.',
+            ],
         ]]
     ));
 
@@ -556,14 +543,12 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'rel' => [
                 'The rel field must be a string.',
-                'The selected rel is invalid.'
-            ]
+                'The selected rel is invalid.',
+            ],
         ]]
     ));
 
     $linkData['rel'] = linkData['rel'];
-
-
 
     /**
      * TARGET TESTS
@@ -577,9 +562,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => ['target']],
         ['errors' => [
             'target' => [
-                "The selected target is invalid.",
+                'The selected target is invalid.',
                 'The target field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -592,9 +577,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => ['target']],
         ['errors' => [
             'target' => [
-                "The selected target is invalid.",
+                'The selected target is invalid.',
                 'The target field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -607,9 +592,9 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => ['target']],
         ['errors' => [
             'target' => [
-                "The selected target is invalid.",
+                'The selected target is invalid.',
                 'The target field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -622,15 +607,13 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => ['target']],
         ['errors' => [
             'target' => [
-                "The selected target is invalid.",
+                'The selected target is invalid.',
                 'The target field must be a string.',
-            ]
+            ],
         ]]
     ));
 
     $linkData['target'] = linkData['target'];
-
-
 
     /**
      * TYPE TESTS
@@ -645,7 +628,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'type' => [
                 'The type field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -659,7 +642,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'type' => [
                 'The type field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -673,7 +656,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         ['errors' => [
             'type' => [
                 'The type field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -685,7 +668,7 @@ describe('422 > Unprocessable Content > POST', function($linkData = linkData) {
         $linkData,
         ['errors' => ['type']],
         ['errors' => [
-            'type' => ['The type field must be a string.']
+            'type' => ['The type field must be a string.'],
         ]]
     ));
 

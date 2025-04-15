@@ -3,7 +3,8 @@
 use App\Traits\Getters\TimeGetterTrait;
 
 beforeEach(function () {
-    $this->trait = new class {
+    $this->trait = new class
+    {
         use TimeGetterTrait;
     };
 });

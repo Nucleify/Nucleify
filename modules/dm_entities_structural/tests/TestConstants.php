@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 /**
  *  Card
@@ -11,7 +14,7 @@ const cardData = [
     'description' => 'test description test',
     'category' => 'test',
     'component' => 'testComponent',
-    'display' => false
+    'display' => false,
 ];
 
 const updatedCardData = [
@@ -21,7 +24,7 @@ const updatedCardData = [
     'description' => 'updated test description test',
     'category' => 'test2',
     'component' => 'updatedTestComponent',
-    'display' => true
+    'display' => true,
 ];
 
 /**
@@ -71,8 +74,8 @@ const questionData = [
     'content' => 'Question',
     'answer' => 'Answer',
     'category' => 'test',
-    'on_site' => True,
-    'display' => True
+    'on_site' => true,
+    'display' => true,
 ];
 const updatedQuestionData = [
     'id' => 1,
@@ -80,8 +83,8 @@ const updatedQuestionData = [
     'content' => 'Question2',
     'answer' => 'Answer2',
     'category' => 'test2',
-    'on_site' => False,
-    'display' => False
+    'on_site' => false,
+    'display' => false,
 ];
 
 /**
@@ -94,7 +97,7 @@ const technologyData = [
     'label' => 'Label',
     'description' => 'Description',
     'category' => 'test',
-    'display' => True
+    'display' => true,
 ];
 const updatedTechnologyData = [
     'id' => 1,
@@ -103,7 +106,7 @@ const updatedTechnologyData = [
     'label' => 'Label2',
     'description' => 'Description2',
     'category' => 'test2',
-    'display' => False
+    'display' => false,
 ];
 
 /**

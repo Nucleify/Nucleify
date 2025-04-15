@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
-  $this->createUsers();
-  $this->actingAs($this->admin);
+    $this->createUsers();
+    $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function($updatedCardData = updatedCardData) {
+describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updatedCardData) {
     /**
      * SRC TESTS
      */
@@ -18,7 +21,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['src']],
         ['errors' => [
-            'src' => ['The src field is required.']
+            'src' => ['The src field is required.'],
         ]]
     ));
 
@@ -30,7 +33,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['src']],
         ['errors' => [
-            'src' => ['The src field must be a string.']
+            'src' => ['The src field must be a string.'],
         ]]
     ));
 
@@ -42,13 +45,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['src']],
         ['errors' => [
-            'src' => ['The src field must be a string.']
+            'src' => ['The src field must be a string.'],
         ]]
     ));
 
     $updatedCardData['src'] = updatedCardData['src'];
-
-
 
     /**
      * TITLE TESTS
@@ -61,7 +62,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['title']],
         ['errors' => [
-            'title' => ['The title field is required.']
+            'title' => ['The title field is required.'],
         ]]
     ));
 
@@ -73,7 +74,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['title']],
         ['errors' => [
-            'title' => ['The title field must be a string.']
+            'title' => ['The title field must be a string.'],
         ]]
     ));
 
@@ -85,13 +86,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['title']],
         ['errors' => [
-            'title' => ['The title field must be a string.']
+            'title' => ['The title field must be a string.'],
         ]]
     ));
 
     $updatedCardData['title'] = updatedCardData['title'];
-
-
 
     /**
      * DESCRIPTION TESTS
@@ -104,7 +103,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['description']],
         ['errors' => [
-            'description' => ['The description field is required.']
+            'description' => ['The description field is required.'],
         ]]
     ));
 
@@ -116,13 +115,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['description']],
         ['errors' => [
-            'description' => ['The description field must be a string.']
+            'description' => ['The description field must be a string.'],
         ]]
     ));
 
     $updatedCardData['description'] = updatedCardData['description'];
-
-
 
     /**
      * CATEGORY TESTS
@@ -135,7 +132,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -147,7 +144,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -159,7 +156,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -171,13 +168,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
     $updatedCardData['category'] = updatedCardData['category'];
-
-
 
     /**
      * COMPONENT TESTS
@@ -190,7 +185,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['component']],
         ['errors' => [
-            'component' => ['The component field is required.']
+            'component' => ['The component field is required.'],
         ]]
     ));
 
@@ -202,13 +197,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['component']],
         ['errors' => [
-            'component' => ['The component field must be a string.']
+            'component' => ['The component field must be a string.'],
         ]]
     ));
 
     $updatedCardData['component'] = updatedCardData['component'];
-
-
 
     /**
      * DISPLAY TESTS
@@ -221,7 +214,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['display']],
         ['errors' => [
-            'display' => ['The display field must be true or false.']
+            'display' => ['The display field must be true or false.'],
         ]]
     ));
 
@@ -233,7 +226,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedCardData = update
         $updatedCardData,
         ['errors' => ['display']],
         ['errors' => [
-            'display' => ['The display field must be true or false.']
+            'display' => ['The display field must be true or false.'],
         ]]
     ));
 });

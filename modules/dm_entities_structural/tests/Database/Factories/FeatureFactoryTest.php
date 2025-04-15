@@ -1,5 +1,8 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 use App\Models\Feature;
 
@@ -22,6 +25,7 @@ it('can\'t create record', function () {
         Feature::factory()->create(['category' => null]);
     } catch (Exception $e) {
         $this->assertNotEmpty($e->getMessage());
+
         return;
     }
     $this->fail('Expected exception not thrown.');
@@ -32,6 +36,7 @@ it('can\'t create multiple records', function () {
         Feature::factory()->count(2)->create(['category' => null]);
     } catch (Exception $e) {
         $this->assertNotEmpty($e->getMessage());
+
         return;
     }
     $this->fail('Expected exception not thrown.');

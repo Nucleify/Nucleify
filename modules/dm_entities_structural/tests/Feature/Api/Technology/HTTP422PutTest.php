@@ -1,12 +1,15 @@
-<?php if (!defined('PEST_RUNNING')) return; 
+<?php
 
+if (!defined('PEST_RUNNING')) {
+    return;
+}
 
 beforeEach(function () {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = updatedTechnologyData) {
+describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData = updatedTechnologyData) {
     /**
      * LABEL TESTS
      */
@@ -18,7 +21,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['label']],
         ['errors' => [
-            'label' => ['The label field is required.']
+            'label' => ['The label field is required.'],
         ]]
     ));
 
@@ -32,7 +35,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'label' => [
                 'The label field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -46,7 +49,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'label' => [
                 'The label field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -60,7 +63,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'label' => [
                 'The label field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -72,13 +75,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['label']],
         ['errors' => [
-            'label' => ['The label field is required.']
+            'label' => ['The label field is required.'],
         ]]
     ));
 
     $updatedTechnologyData['label'] = updatedTechnologyData['label'];
-
-
 
     /**
      * DESCRIPTION TESTS
@@ -93,8 +94,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'description' => [
                 'The description field must be a string.',
-                'The description field must be at least 3 characters.'
-            ]
+                'The description field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -106,7 +107,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['description']],
         ['errors' => [
-            'description' => ['The description field must be at least 3 characters.']
+            'description' => ['The description field must be at least 3 characters.'],
         ]]
     ));
 
@@ -120,8 +121,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'description' => [
                 'The description field must be a string.',
-                'The description field must be at least 3 characters.'
-            ]
+                'The description field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -135,8 +136,8 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'description' => [
                 'The description field must be a string.',
-                'The description field must be at least 3 characters.'
-            ]
+                'The description field must be at least 3 characters.',
+            ],
         ]]
     ));
 
@@ -150,14 +151,12 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'description' => [
                 'The description field must be a string.',
-                'The description field must be at least 3 characters.'
-            ]
+                'The description field must be at least 3 characters.',
+            ],
         ]]
     ));
 
     $updatedTechnologyData['description'] = updatedTechnologyData['description'];
-
-
 
     /**
      * HREF TESTS
@@ -170,7 +169,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['href']],
         ['errors' => [
-            'href' => ['The href field is required.']
+            'href' => ['The href field is required.'],
         ]]
     ));
 
@@ -184,7 +183,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'href' => [
                 'The href field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -198,7 +197,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'href' => [
                 'The href field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -212,7 +211,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'href' => [
                 'The href field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -224,13 +223,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['href']],
         ['errors' => [
-            'href' => ['The href field is required.']
+            'href' => ['The href field is required.'],
         ]]
     ));
 
     $updatedTechnologyData['href'] = updatedTechnologyData['href'];
-
-
 
     /**
      * SRC TESTS
@@ -243,7 +240,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['src']],
         ['errors' => [
-            'src' => ['The src field is required.']
+            'src' => ['The src field is required.'],
         ]]
     ));
 
@@ -257,7 +254,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'src' => [
                 'The src field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -271,7 +268,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'src' => [
                 'The src field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -285,7 +282,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         ['errors' => [
             'src' => [
                 'The src field must be a string.',
-            ]
+            ],
         ]]
     ));
 
@@ -297,13 +294,11 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['src']],
         ['errors' => [
-            'src' => ['The src field is required.']
+            'src' => ['The src field is required.'],
         ]]
     ));
 
     $updatedTechnologyData['src'] = updatedTechnologyData['src'];
-
-
 
     /**
      * CATEGORY TESTS
@@ -316,7 +311,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -328,7 +323,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -340,7 +335,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 
@@ -352,7 +347,7 @@ describe('422 > Unprocessable Content > PUT', function($updatedTechnologyData = 
         $updatedTechnologyData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.']
+            'category' => ['The category field must be a string.'],
         ]]
     ));
 });
