@@ -11,10 +11,11 @@ it('renders an existing view', function () {
     View::addLocation($viewDir);
 
     get('/home')->assertOk();
-});
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
+
 
 it('returns 404 for a non-existing view', function () {
     $response = get('/page/non-existent-view');
     
     $response->assertNotFound();
-});
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
