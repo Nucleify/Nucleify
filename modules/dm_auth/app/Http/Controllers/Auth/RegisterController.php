@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
+use Modules\dm_pages\dm_pages;
 
 class RegisterController extends Controller
 {
@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected string $redirectTo = RouteServiceProvider::HOME;
+    protected string $redirectTo = dm_pages::HOME;
 
     /**
      * Create a new controller instance.
