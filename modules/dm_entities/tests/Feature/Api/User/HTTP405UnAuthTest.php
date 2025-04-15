@@ -1,0 +1,56 @@
+<?php
+
+if (!defined('PEST_RUNNING')) {
+    return;
+}
+
+describe('405 > Method Not Allowed > Unauthorized', function (): void {
+    test('invalid method put > index api', function (): void {
+        $this->put(route('users.index', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method put json > index api', function (): void {
+        $this->putJson(route('users.index', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method delete > index api', function (): void {
+        $this->delete(route('users.index', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method delete json > index api', function (): void {
+        $this->deleteJson(route('users.index', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post json > countByCreatedLastWeek api', function (): void {
+        $this->postJson(route('users.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post > countByCreatedLastWeek api', function (): void {
+        $this->post(route('users.countByCreatedLastWeek', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post json > show api', function (): void {
+        $this->postJson(route('users.show', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method put json > post api', function (): void {
+        $this->putJson(route('users.store', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method delete json > post api', function (): void {
+        $this->deleteJson(route('users.store', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post json > update api', function (): void {
+        $this->postJson(route('users.update', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post > delete api', function (): void {
+        $this->post(route('users.destroy', 1))
+            ->assertStatus(405);
+    });
+    test('invalid method post json > delete api', function (): void {
+        $this->postJson(route('users.destroy', 1))
+            ->assertStatus(405);
+    });
+});

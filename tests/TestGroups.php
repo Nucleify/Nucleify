@@ -1,6 +1,25 @@
 <?php
 
 /**
+ *  Database groups
+ */
+uses()
+    ->group('database')
+    ->in('Database');
+
+uses()
+    ->group('models')
+    ->in('Database/Models');
+
+uses()
+    ->group('migrations')
+    ->in('Database/Migrations');
+
+uses()
+    ->group('factories')
+    ->in('Database/Factories');
+
+/**
  *  Feature groups
  */
 uses()
@@ -14,10 +33,6 @@ uses()
 uses()
     ->group('feature')
     ->in('Feature');
-
-uses()
-    ->group('global')
-    ->in('Global');
 
 uses()
     ->group('commands')
@@ -35,55 +50,16 @@ uses()
     ->group('traits')
     ->in('Feature/Traits');
 
+/**
+ *  Global groups
+ */
 uses()
-    ->group('database')
-    ->in('Database');
-
-uses()
-    ->group('models')
-    ->in('Database/Models');
-
-uses()
-    ->group('migrations')
-    ->in('Database/Migrations');
-
-uses()
-    ->group('factories')
-    ->in('Database/Factories');
-
+    ->group('global')
+    ->in('Global');
 
 /**
- *  Modules
+ *  Modules groups
  */
 uses()
     ->group('modules')
-    ->in('Modules');
-
-uses()
-    ->group('dm-activity')
-    ->in('Modules/dm_activity');
-
-uses()
-    ->group('dm-auth')
-    ->in('Modules/dm_auth');
-
-uses()
-    ->group('dm-entities')
-    ->in('Modules/dm_entities');
-
-uses()
-    ->group('dm-entities-structural')
-    ->in('Modules/dm_entities_structural');
-
-uses()
-    ->group('dm-friendship')
-    ->in('Modules/dm_friendship');
-
-uses()
-    ->group('dm-seo')
-    ->in('Modules/dm_seo');
-
-
-uses()
-    ->group('dm-terminal')
-    ->in('Modules/dm_terminal');
+    ->in('../modules');

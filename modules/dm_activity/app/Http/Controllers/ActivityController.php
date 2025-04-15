@@ -2,21 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Services\ActivityService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-use App\Services\ActivityService;
-
 class ActivityController extends Controller
 {
     private ActivityService $service;
 
-    /**
-     * @param ActivityService $service
-     */
     public function __construct(ActivityService $service)
     {
         $this->service = $service;
@@ -24,17 +19,12 @@ class ActivityController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return Renderable
      */
     public function render(): Renderable
     {
         return view('activity-log');
     }
 
-    /**
-     * @return JsonResponse
-     */
     public function index(): JsonResponse
     {
         try {
@@ -46,11 +36,6 @@ class ActivityController extends Controller
         }
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function countByCreatedLastWeek(Request $request): JsonResponse
     {
         try {
@@ -62,11 +47,6 @@ class ActivityController extends Controller
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function show($id): JsonResponse
     {
         try {
@@ -78,11 +58,6 @@ class ActivityController extends Controller
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function destroy($id): JsonResponse
     {
         try {
@@ -90,7 +65,7 @@ class ActivityController extends Controller
 
             return response()->json([
                 'deleted' => true,
-                'message' => 'Activity log deleted successfully'
+                'message' => 'Activity log deleted successfully',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

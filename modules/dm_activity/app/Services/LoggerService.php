@@ -8,14 +8,6 @@ use Illuminate\Support\Str;
 
 class LoggerService
 {
-    /**
-     * @param string $causer
-     * @param string $model
-     * @param string $entity
-     * @param string $method
-     *
-     * @return string
-     */
     public function log(string $causer, string $model, string $entity, string $method): string
     {
         $message = $this->constructLogMessage($causer, $model, $entity, $method);
@@ -25,23 +17,14 @@ class LoggerService
         return $message;
     }
 
-    /**
-     * @param string $message
-     *
-     * @return string
-     */
-    public function logMessage(string $message): string {
+    public function logMessage(string $message): string
+    {
         activity()->log($message);
 
         return $message;
     }
 
     /**
-     * @param string $logMessage
-     * @param string $exceptionMessage
-     *
-     * @return void
-     *
      * @throws Exception
      */
     public function logAndThrow(string $logMessage, string $exceptionMessage): void
@@ -52,31 +35,18 @@ class LoggerService
     }
 
     /**
-     * @param Authenticatable $causer
-     * @param string $api
-     *
-     * @return void
-     *
      * @throws Exception
      */
     public function logAndThrowUnauthorizedApi(Authenticatable $causer, string $api): void
     {
-        $error = "unauthorized to use " . $api . " API.";
+        $error = 'unauthorized to use ' . $api . ' API.';
 
         $this->logMessage("User: ''" . $causer . "'' was " . $error);
 
-        throw new Exception("You are " . $error);
+        throw new Exception('You are ' . $error);
     }
 
-    /**
-     * @param string $causer
-     * @param string|null $model
-     * @param string $entity
-     * @param string $method
-     *
-     * @return string
-     */
-    public function constructLogMessage(string $causer, string|null $model, string $entity, string $method): string
+    public function constructLogMessage(string $causer, ?string $model, string $entity, string $method): string
     {
         if (!in_array($entity, ['activity', 'article', 'contact', 'money', 'question', 'technology', 'user'])) {
             return false;
@@ -87,13 +57,6 @@ class LoggerService
         return "$pascalCase: ''$model'' has been $method by ''$causer''";
     }
 
-    /**
-     * @param string $causer
-     * @param string $entity
-     * @param bool $all
-     *
-     * @return string
-     */
     public function logIndex(string $causer, string $entity, bool $all = false): string
     {
         $message = $this->constructLogIndexMessage($causer, $entity, $all);
@@ -103,13 +66,6 @@ class LoggerService
         return $message;
     }
 
-    /**
-     * @param string $causer
-     * @param string $entity
-     * @param bool $all
-     *
-     * @return string
-     */
     public function constructLogIndexMessage(string $causer, string $entity, bool $all): string
     {
         $entity = $entity === 'money'
@@ -124,14 +80,6 @@ class LoggerService
         };
     }
 
-
-    /**
-     * @param string $causer
-     * @param string $entity
-     * @param bool $all
-     *
-     * @return string
-     */
     public function logCountByCreatedLastWeek(string $causer, string $entity, bool $all = false): string
     {
         $message = $this->constructLogCountByCreatedLastWeekMessage($causer, $entity, $all);
@@ -141,13 +89,6 @@ class LoggerService
         return $message;
     }
 
-    /**
-     * @param string $causer
-     * @param string $entity
-     * @param bool $all
-     *
-     * @return string
-     */
     public function constructLogCountByCreatedLastWeekMessage(string $causer, string $entity, bool $all): string
     {
         $entity = $entity === 'money'

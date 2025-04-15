@@ -4,48 +4,21 @@ namespace App\Contracts;
 
 interface TechnologyContract
 {
-  /**
-   * @return int
-   */
-  public function getId(): int;
+    public function getId(): int;
 
-  /**
-   * @return string
-   */
-  public function getLabel(): string;
+    public function getLabel(): string;
 
-  /**
-   * @return string|null
-   */
-  public function getDescription(): string | null;
+    public function getDescription(): ?string;
 
-  /**
-   * @return string
-   */
-  public function getHref(): string;
+    public function getHref(): string;
 
-  /**
-   * @return string
-   */
-  public function getSrc(): string;
+    public function getSrc(): string;
 
-  /**
-   * @return string|null
-   */
-  public function getCategory(): string | null;
+    public function getCategory(): ?string;
 
-  /**
-   * @return bool
-   */
-  public function getDisplay(): bool;
+    public function getDisplay(): bool;
 
-  /**
-   * @return string
-   */
-  public function getCreatedAt(): string;
+    public function getCreatedAt(): string;
 
-  /**
-   * @return string
-   */
-  public function getUpdatedAt(): string;
+    public function getUpdatedAt(): string;
 }

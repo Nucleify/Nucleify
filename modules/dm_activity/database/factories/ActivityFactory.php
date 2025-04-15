@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Spatie\Activitylog\Models\Activity;
-
-use App\Models\User;
 
 class ActivityFactory extends Factory
 {
@@ -25,7 +24,7 @@ class ActivityFactory extends Factory
                 'User has fetched his contacts data',
                 'User has created new contact',
                 'User has updated his contact',
-                'User has deleted his contact'
+                'User has deleted his contact',
             ]),
             'properties' => [],
             'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),

@@ -2,12 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Money;
 use Illuminate\Database\Seeder;
 
-use App\Models\Money;
-
-class
-MoneySeeder extends Seeder
+class MoneySeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
+use App\Contracts\ContactContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
-
-use App\Contracts\ContactContract;
 
 /**
  * @property int id
@@ -66,7 +65,7 @@ class Contact extends Model implements ContactContract
         'address',
         'birthday',
         'contact_groups',
-        'role'
+        'role',
     ];
 
     protected $hidden = [
@@ -86,59 +85,71 @@ class Contact extends Model implements ContactContract
     {
         return $this->id;
     }
+
     public function getUserId(): int
     {
         return $this->user_id;
     }
+
     public function getFirstName(): string
     {
         return $this->first_name;
     }
-    public function getLastName(): string|null
+
+    public function getLastName(): ?string
     {
         return $this->last_name;
     }
-    public function getFullName(): string|null
+
+    public function getFullName(): ?string
     {
         return $this->first_name . ' ' . $this->last_name;
     }
-    public function getEmail(): string|null
+
+    public function getEmail(): ?string
     {
         return $this->email;
     }
-    public function getPersonalPhone(): string|null
+
+    public function getPersonalPhone(): ?string
     {
         return $this->personal_phone;
     }
-    public function getWorkPhone(): string|null
+
+    public function getWorkPhone(): ?string
     {
         return $this->work_phone;
     }
-    public function getAddress(): string|null
+
+    public function getAddress(): ?string
     {
         return $this->address;
     }
-    public function getBirthday(): string|null
+
+    public function getBirthday(): ?string
     {
         return $this->birthday;
     }
-    public function getRole(): string|null
+
+    public function getRole(): ?string
     {
         return $this->role;
     }
-    public function getContactGroups(): string|null
+
+    public function getContactGroups(): ?string
     {
         return $this->contact_groups;
     }
+
     public function getCreatedAt(): string
     {
         return $this->created_at;
     }
+
     public function getUpdatedAt(): string
     {
         return $this->updated_at;
     }
-
 
     /**
      *  Scope methods
@@ -147,46 +158,57 @@ class Contact extends Model implements ContactContract
     {
         return $query->where('id', $parameter);
     }
+
     public function scopeGetByUserId(Builder $query, int $parameter): Builder
     {
         return $query->where('user_id', $parameter);
     }
+
     public function scopeGetByFirstName(Builder $query, string $parameter): Builder
     {
         return $query->where('first_name', $parameter);
     }
+
     public function scopeGetByLastName(Builder $query, ?string $parameter): Builder
     {
         return $query->where('last_name', $parameter);
     }
+
     public function scopeGetByEmail(Builder $query, ?string $parameter): Builder
     {
         return $query->where('email', $parameter);
     }
+
     public function scopeGetByPersonalPhone(Builder $query, ?string $parameter): Builder
     {
         return $query->where('personal_phone', $parameter);
     }
+
     public function scopeGetByWorkPhone(Builder $query, ?string $parameter): Builder
     {
         return $query->where('work_phone', $parameter);
     }
+
     public function scopeGetByAddress(Builder $query, ?string $parameter): Builder
     {
         return $query->where('address', $parameter);
     }
+
     public function scopeGetByBirthday(Builder $query, ?string $parameter): Builder
     {
         return $query->where('birthday', $parameter);
     }
+
     public function scopeGetByRole(Builder $query, ?string $parameter): Builder
     {
         return $query->where('role', $parameter);
     }
+
     public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('created_at', $parameter);
     }
+
     public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('updated_at', $parameter);

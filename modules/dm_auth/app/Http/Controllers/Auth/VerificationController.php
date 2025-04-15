@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Auth\VerifiesEmails;
-
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\VerifiesEmails;
+use Modules\dm_pages\dm_pages;
 
 class VerificationController extends Controller
 {
@@ -24,10 +23,8 @@ class VerificationController extends Controller
 
     /**
      * Where to redirect users after verification.
-     *
-     * @var string
      */
-    protected string $redirectTo = RouteServiceProvider::HOME;
+    protected string $redirectTo = dm_pages::HOME;
 
     /**
      * Create a new controller instance.

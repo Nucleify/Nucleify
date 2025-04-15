@@ -2,9 +2,8 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\Contracts\TechnologyContract;
+use League\Fractal\TransformerAbstract;
 
 class TechnologyTransformer extends TransformerAbstract
 {

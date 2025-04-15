@@ -17,7 +17,7 @@ class PostRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     * 
+     *
      * @return array<string, mixed>
      */
     public function rules(): array
@@ -28,7 +28,7 @@ class PostRequest extends FormRequest
             'description' => 'required|string|max:1000',
             'category' => 'string|max:255',
             'component' => 'required|string|max:100',
-            'display' => 'bool'
+            'display' => 'bool',
         ];
     }
 }

@@ -2,14 +2,12 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
-
 use App\Models\Article;
-use App\Services\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\ArticleTransformer;
+use Illuminate\Http\Request;
 
 class ArticleService
 {
@@ -17,22 +15,12 @@ class ArticleService
     use TimeSetterTrait;
     use UserSetterTrait;
 
-    /**
-     * @param Article $model
-     * @param string $entity
-     * @param LoggerService $logger
-     */
     public function __construct(
         private readonly Article $model,
         protected string $entity = 'article',
-        private readonly LoggerService $logger = new LoggerService()
+        private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    /**
-     * @param Request $request
-     *
-     * @return mixed
-     */
     public function index(Request $request): mixed
     {
         $this->defineRequestData($request);
@@ -46,15 +34,10 @@ class ArticleService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new ArticleTransformer())
+            ->transformWith(new ArticleTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
     public function countByCreatedLastWeek(Request $request): array
     {
         $this->defineRequestData($request);
@@ -73,11 +56,6 @@ class ArticleService
         return ['count' => $result];
     }
 
-    /**
-     * @param $id
-     *
-     * @return array
-     */
     public function show($id): array
     {
         $this->defineUserData();
@@ -90,15 +68,10 @@ class ArticleService
 
         return fractal()
             ->item($result)
-            ->transformWith(new ArticleTransformer())
+            ->transformWith(new ArticleTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param array $data
-     *
-     * @return array
-     */
     public function create(array $data): array
     {
         $this->defineUserData();
@@ -109,16 +82,10 @@ class ArticleService
 
         return fractal()
             ->item($result)
-            ->transformWith(new ArticleTransformer())
+            ->transformWith(new ArticleTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     * @param array $data
-     *
-     * @return array
-     */
     public function update($id, array $data): array
     {
         $this->defineUserData();
@@ -132,15 +99,10 @@ class ArticleService
         $this->logger->log($this->causer->name, $result->getTitle(), $this->entity, 'updated');
 
         return fractal()->item($result->fresh())
-            ->transformWith(new ArticleTransformer())
+            ->transformWith(new ArticleTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     *
-     * @return void
-     */
     public function delete($id): void
     {
         $this->defineUserData();

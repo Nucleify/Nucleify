@@ -8,8 +8,6 @@ class SitemapService
 {
     /**
      * Generate the sitemap.
-     *
-     * @return bool
      */
     public function generateSitemap(): bool
     {

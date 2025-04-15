@@ -2,20 +2,17 @@
 
 namespace App\Traits\Setters;
 
-use Illuminate\Contracts\Auth\Authenticatable;
-
 use App\Traits\Getters\UserGetterTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 trait UserSetterTrait
 {
     use UserGetterTrait;
 
     protected ?Authenticatable $causer = null;
+
     protected bool $isCauserStaff = false;
 
-    /**
-     * @return void
-     */
     public function defineUserData(): void
     {
         $this->causer = $this->getCauser();

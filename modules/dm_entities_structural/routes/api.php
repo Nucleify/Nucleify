@@ -1,14 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TechnologyController;
-
+use Illuminate\Support\Facades\Route;
 
 Route::get('/features/get-site-features/{site}', [FeatureController::class, 'getSiteFeatures'])
     ->name('features.getSiteFeatures');
@@ -22,12 +20,11 @@ Route::get('/technologies/get-site-technologies/{site}', [TechnologyController::
 Route::get('/links/get-site-links/{site}', [LinkController::class, 'getSiteLinks'])
     ->name('links.getSiteLinks');
 
-
-Route::middleware(['web', 'auth'])->group(function () {
+Route::middleware(['web', 'auth'])->group(function (): void {
     /**
      *  Cards
      */
-    Route::prefix('cards')->controller(CardController::class)->group(function () {
+    Route::prefix('cards')->controller(CardController::class)->group(function (): void {
         Route::get('/', 'index')
             ->name('cards.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
@@ -47,7 +44,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Colors
      */
-    Route::prefix('colors')->controller(ColorController::class)->group(function () {
+    Route::prefix('colors')->controller(ColorController::class)->group(function (): void {
         Route::get('/', 'index')
             ->name('colors.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
@@ -69,7 +66,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Features
      */
-    Route::prefix('features')->controller(FeatureController::class)->group(function () {
+    Route::prefix('features')->controller(FeatureController::class)->group(function (): void {
         Route::get('/', 'index')
             ->name('features.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
@@ -89,7 +86,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Links
      */
-    Route::prefix('links')->controller(LinkController::class)->group(function () {
+    Route::prefix('links')->controller(LinkController::class)->group(function (): void {
         Route::get('/', 'index')
             ->name('links.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
@@ -109,7 +106,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Questions
      */
-    Route::prefix('questions')->controller(QuestionController::class)->group(function () {
+    Route::prefix('questions')->controller(QuestionController::class)->group(function (): void {
         Route::get('/', 'index')
             ->name('questions.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
@@ -129,7 +126,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     /**
      *  Technologies
      */
-    Route::prefix('technologies')->controller(TechnologyController::class)->group(function () {
+    Route::prefix('technologies')->controller(TechnologyController::class)->group(function (): void {
         Route::get('/', 'index')
             ->name('technologies.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')

@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Structural;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Validator;
 
@@ -27,7 +25,7 @@ class TechnologyFactory extends Factory
             'category' => $this->faker->word(),
             'display' => $this->faker->boolean(),
             'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
-            'updated_at' => $this-> faker->dateTimeBetween('-1 year')->format('Y-m-d')
+            'updated_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
         ];
 
         Validator::make($data, [
@@ -36,7 +34,7 @@ class TechnologyFactory extends Factory
             'href' => 'required|string',
             'src' => 'required|string',
             'category' => 'string',
-            'display' => 'required|bool'
+            'display' => 'required|bool',
         ]);
 
         return $data;
