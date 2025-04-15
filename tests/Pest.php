@@ -1,4 +1,5 @@
-<?php
+<?php define('PEST_RUNNING', true);
+
 
 require_once __DIR__ . '/TestExpectations.php';
 require_once __DIR__ . '/TestFunctions.php';

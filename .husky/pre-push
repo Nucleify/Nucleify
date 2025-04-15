@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+php .pest/guard_check.php
 npm run check
 npm run lint
 npm run typeslint

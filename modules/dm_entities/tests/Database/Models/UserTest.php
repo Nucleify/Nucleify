@@ -1,4 +1,5 @@
-<?php
+<?php if (!defined('PEST_RUNNING')) return; 
+
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;

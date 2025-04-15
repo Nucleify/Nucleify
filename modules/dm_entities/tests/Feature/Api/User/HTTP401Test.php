@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('PEST_RUNNING')) return; 
 
 
 describe('401 > Unauthorized', function () {

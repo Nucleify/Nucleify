@@ -1,4 +1,5 @@
-<?php
+<?php if (!defined('PEST_RUNNING')) return; 
+
 
 use Spatie\Activitylog\Models\Activity;
 
