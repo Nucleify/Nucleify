@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(ActivityController::class)
     ->prefix('activity-log')
     ->middleware(['web', 'auth'])
-    ->group(function (): void {
+    ->group(function () {
         Route::get('/', 'index')
             ->name('activity-log.index');
         Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
