@@ -81,7 +81,7 @@ Route::middleware(['web', 'auth'])->group(function (): void {
             ->name('users.destroy');
     });
 
-    Route::get('/user', function (): void {
+    Route::get('/user', function () {
         return auth()->user();
     });
 });
