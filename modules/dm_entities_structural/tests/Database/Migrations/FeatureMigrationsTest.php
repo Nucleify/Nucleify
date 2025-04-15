@@ -1,5 +1,6 @@
 
-<?php
+<?php if (!defined('PEST_RUNNING')) return; 
+
 
 use Illuminate\Support\Facades\Schema;
 
