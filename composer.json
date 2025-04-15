@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2.0",
-        "butschster/meta-tags": "^3.1",
+        "butschster/meta-tags": "3.1.1",
         "fakerphp/faker": "1.19.0",
         "guzzlehttp/guzzle": "7.8.1",
         "laravel/framework": "11.5.0",
@@ -19,7 +19,7 @@
         "spatie/laravel-sitemap": "7.2.1"
     },
     "require-dev": {
-        "laravel/pint": "1.16.1",
+        "laravel/pint": "1.22.0",
         "laravel/sail": "1.30",
         "mockery/mockery": "1.6.12",
         "nunomaduro/collision": "8.1.1",
