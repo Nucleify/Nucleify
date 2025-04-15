@@ -6,7 +6,7 @@
 >
     <testsuites>
         <testsuite name="Modules">
-            <directory>tests/Modules</directory>
+            <directory>modules</directory>
         </testsuite>
         <testsuite name="Global">
             <directory>tests/Global</directory>

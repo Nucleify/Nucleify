@@ -1,5 +1,21 @@
 <?php
 
+
+/**
+ *  Main tests group
+ */
+uses()
+    ->group('dm-seo')
+    ->in('.');
+
+uses()
+    ->group('dm-seo-ft')
+    ->in('Feature');
+
+
+/**
+ *  Feature groups
+ */
 uses()
     ->group('api')
     ->in('Feature/Api');

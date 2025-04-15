@@ -1,5 +1,43 @@
 <?php
 
+
+/**
+ *  Main tests group
+ */
+uses()
+    ->group('dm-entities-structural')
+    ->in('.');
+
+uses()
+    ->group('dm-entities-structural-db')
+    ->in('Database');
+
+uses()
+    ->group('dm-entities-structural-ft')
+    ->in('Feature');
+
+
+
+/**
+ *  Database groups
+ */
+uses()
+    ->group('database')
+    ->in('Database');
+
+uses()
+    ->group('models')
+    ->in('Database/Models');
+
+uses()
+    ->group('migrations')
+    ->in('Database/Migrations');
+
+uses()
+    ->group('factories')
+    ->in('Database/Factories');
+
+    
 /**
  *  Feature groups
  */
@@ -54,22 +92,4 @@ uses()
 uses()
     ->group('traits')
     ->in('Feature/Traits');
-
-/**
- *  Database groups
- */
-uses()
-    ->group('database')
-    ->in('Database');
-
-uses()
-    ->group('models')
-    ->in('Database/Models');
-
-uses()
-    ->group('migrations')
-    ->in('Database/Migrations');
-
-uses()
-    ->group('factories')
-    ->in('Database/Factories');
+    

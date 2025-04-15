@@ -2,6 +2,22 @@
 
 
 /**
+ *  Main tests group
+ */
+uses()
+    ->group('dm-activity')
+    ->in('.');
+
+uses()
+    ->group('dm-activity-db')
+    ->in('Database');
+
+uses()
+    ->group('dm-activity-ft')
+    ->in('Feature');
+
+
+/**
  *  Database groups
  */
 uses()
@@ -29,16 +45,12 @@ uses()
     ->in('Feature/Api');
 
 uses()
-    ->group('artisan-api')
-    ->in('Feature/Api/Utilities/Artisan');
+    ->group('activity-api')
+    ->in('Feature/Api/Activity');
 
 uses()
     ->group('feature')
     ->in('Feature');
-
-uses()
-    ->group('commands')
-    ->in('Feature/Commands');
 
 uses()
     ->group('controllers')
@@ -47,23 +59,3 @@ uses()
 uses()
     ->group('services')
     ->in('Feature/Services');
-
-uses()
-    ->group('traits')
-    ->in('Feature/Traits');
-
-
-/**
- *  Global groups
- */
-uses()
-    ->group('global')
-    ->in('Global');
-
-
-/**
- *  Modules groups
- */
-uses()
-    ->group('modules')
-    ->in('../modules');

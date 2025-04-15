@@ -18,7 +18,7 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         RefreshDatabase::class
     )
         ->in(
-            'Feature/Api/HTTP401Test.php',
+            'Feature/Api/Activity/HTTP401Test.php',
 
             'Database/Models'
         );
@@ -28,7 +28,7 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
     )
         ->in(
             // Activity API
-            'Feature/Api/HTTP200Test.php',
+            'Feature/Api/Activity/HTTP200Test.php',
 
             'Database/Factories',
             'Database/Migrations',
