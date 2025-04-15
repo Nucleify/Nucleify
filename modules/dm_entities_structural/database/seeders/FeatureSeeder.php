@@ -2,15 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-
 use App\Models\Feature;
+use Illuminate\Database\Seeder;
 
 class FeatureSeeder extends Seeder
 {
-    /**
-     * @var string
-     */
     protected string $path = 'modules/dm_entities_structural/database/constants/Features/';
 
     /**
@@ -19,7 +15,6 @@ class FeatureSeeder extends Seeder
     public function run(): void
     {
         $whyUsFeatures = require_once $this->path . 'WhyUs.php';
-
 
         foreach ($whyUsFeatures as $feature) {
             Feature::factory()->create(array_merge($feature, [

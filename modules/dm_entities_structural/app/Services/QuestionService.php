@@ -2,16 +2,14 @@
 
 namespace App\Services;
 
-use Exception;
-use Illuminate\Http\Request;
-
 use App\Models\Question;
-use App\Services\LoggerService;
 use App\Traits\Runners\Api\AuthRunnerTrait;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\QuestionTransformer;
+use Exception;
+use Illuminate\Http\Request;
 
 class QuestionService
 {
@@ -20,22 +18,13 @@ class QuestionService
     use TimeSetterTrait;
     use UserSetterTrait;
 
-    /**
-     * @param Question $model
-     * @param string $entity
-     * @param LoggerService $logger
-     */
     public function __construct(
         private readonly Question $model,
         protected string $entity = 'question',
-        private readonly LoggerService $logger = new LoggerService()
+        private readonly LoggerService $logger = new LoggerService
     ) {}
 
     /**
-     * @param Request $request
-     *
-     * @return mixed
-     *
      * @throws Exception
      */
     public function index(Request $request): mixed
@@ -50,15 +39,11 @@ class QuestionService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new QuestionTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param Request $request
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function countByCreatedLastWeek(Request $request): array
@@ -76,10 +61,6 @@ class QuestionService
     }
 
     /**
-     * @param string $category
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function getByCategory(string $category): array
@@ -93,15 +74,10 @@ class QuestionService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new QuestionTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param string $site
-     *
-     * @return array
-     */
     public function getSiteQuestions(string $site): array
     {
         $this->defineUserData();
@@ -110,19 +86,15 @@ class QuestionService
 
         $name = $this->causer ? $this->causer->name : 'Guest';
 
-        $this->logger->logMessage($name  . ' fetched questions by site: ' . $site . '.');
+        $this->logger->logMessage($name . ' fetched questions by site: ' . $site . '.');
 
         return fractal()
             ->collection($result)
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new QuestionTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function show($id): array
@@ -136,15 +108,11 @@ class QuestionService
 
         return fractal()
             ->item($result)
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new QuestionTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param array $data
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function create(array $data): array
@@ -158,16 +126,11 @@ class QuestionService
 
         return fractal()
             ->item($result)
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new QuestionTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     * @param array $data
-     *
-     * @return array
-     *
      * @throws Exception
      */
     public function update($id, array $data): array
@@ -183,15 +146,11 @@ class QuestionService
 
         return fractal()
             ->item($result->fresh())
-            ->transformWith(new QuestionTransformer())
+            ->transformWith(new QuestionTransformer)
             ->toArray()['data'];
     }
 
     /**
-     * @param $id
-     *
-     * @return void
-     *
      * @throws Exception
      */
     public function delete($id): void

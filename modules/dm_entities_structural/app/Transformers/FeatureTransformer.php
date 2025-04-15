@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\Contracts\FeatureContract;
+use League\Fractal\TransformerAbstract;
 
 class FeatureTransformer extends TransformerAbstract
 {

@@ -6,7 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2.0",
-        "butschster/meta-tags": "^3.1",
+        "butschster/meta-tags": "3.1.1",
         "fakerphp/faker": "1.19.0",
         "guzzlehttp/guzzle": "7.8.1",
         "laravel/framework": "11.5.0",
@@ -19,7 +19,7 @@
         "spatie/laravel-sitemap": "7.2.1"
     },
     "require-dev": {
-        "laravel/pint": "1.16.1",
+        "laravel/pint": "1.22.0",
         "laravel/sail": "1.30",
         "mockery/mockery": "1.6.12",
         "nunomaduro/collision": "8.1.1",
@@ -31,9 +31,11 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "Modules\\": "modules/"
-        }
+            "Database\\Seeders\\": "database/seeders"
+        },
+        "classmap": [
+            "modules/"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -43,7 +45,7 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi || true"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -61,6 +63,9 @@
         }
     },
     "config": {
+        "platform": {
+            "php": "8.3.0"
+        },
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,

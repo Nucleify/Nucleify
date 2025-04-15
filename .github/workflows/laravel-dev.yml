@@ -44,7 +44,7 @@ jobs:
           php-version: '8.3.7'
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist
+        run: composer install --no-progress --prefer-dist --no-interaction
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
@@ -93,6 +93,64 @@ jobs:
           mkdir -p database
           touch database/database.sqlite
 
+ # Pint
+  pint:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.3.7'
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --no-interaction
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+
+      - name: Verify .env File Exists
+        run: |
+          if [ ! -f .env ]; then
+            echo ".env file was not created!"
+            exit 1
+          fi
+
+      - name: Run Pint check
+        run: ./vendor/bin/pint
+
+  # Check Guard
+  guard-check:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.3.7'
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --no-interaction
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+
+      - name: Verify .env File Exists
+        run: |
+          if [ ! -f .env ]; then
+            echo ".env file was not created!"
+            exit 1
+          fi
+
+      - name: Check Guard
+        run: php .pest/guard_check.php
+
   # Run Tests
   test:
     runs-on: ubuntu-latest
@@ -107,7 +165,7 @@ jobs:
           php-version: '8.3.7'
 
       - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist
+        run: composer install --no-progress --prefer-dist --no-interaction
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"

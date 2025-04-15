@@ -2,9 +2,8 @@
 
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\Contracts\UserContract;
+use League\Fractal\TransformerAbstract;
 
 class UserTransformer extends TransformerAbstract
 {
@@ -16,7 +15,7 @@ class UserTransformer extends TransformerAbstract
             'email' => $model->getEmail(),
             'role' => $model->getRole(),
             'created_at' => $model->getCreatedAt(),
-            'updated_at' => $model->getUpdatedAt()
+            'updated_at' => $model->getUpdatedAt(),
         ];
     }
 }

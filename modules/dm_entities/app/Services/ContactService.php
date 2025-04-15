@@ -2,14 +2,12 @@
 
 namespace App\Services;
 
-use Illuminate\Http\Request;
-
 use App\Models\Contact;
-use App\Services\LoggerService;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
 use App\Transformers\ContactTransformer;
+use Illuminate\Http\Request;
 
 class ContactService
 {
@@ -17,22 +15,12 @@ class ContactService
     use TimeSetterTrait;
     use UserSetterTrait;
 
-    /**
-     * @param Contact $model
-     * @param string $entity
-     * @param LoggerService $logger
-     */
     public function __construct(
         private readonly Contact $model,
         protected string $entity = 'contact',
-        private readonly LoggerService $logger = new LoggerService()
+        private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
     public function index(Request $request): array
     {
         $this->defineRequestData($request);
@@ -46,15 +34,10 @@ class ContactService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new ContactTransformer())
+            ->transformWith(new ContactTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return array
-     */
     public function countByCreatedLastWeek(Request $request): array
     {
         $this->defineRequestData($request);
@@ -73,11 +56,6 @@ class ContactService
         return ['count' => $result];
     }
 
-    /**
-     * @param $id
-     *
-     * @return array
-     */
     public function show($id): array
     {
         $this->defineUserData();
@@ -90,15 +68,10 @@ class ContactService
 
         return fractal()
             ->item($result)
-            ->transformWith(new ContactTransformer())
+            ->transformWith(new ContactTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param array $data
-     *
-     * @return array
-     */
     public function create(array $data): array
     {
         $this->defineUserData();
@@ -109,16 +82,10 @@ class ContactService
 
         return fractal()
             ->item($result)
-            ->transformWith(new ContactTransformer())
+            ->transformWith(new ContactTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     * @param array $data
-     *
-     * @return array
-     */
     public function update($id, array $data): array
     {
         $this->defineUserData();
@@ -133,15 +100,10 @@ class ContactService
 
         return fractal()
             ->item($result->fresh())
-            ->transformWith(new ContactTransformer())
+            ->transformWith(new ContactTransformer)
             ->toArray()['data'];
     }
 
-    /**
-     * @param $id
-     *
-     * @return void
-     */
     public function delete($id): void
     {
         $this->defineUserData();

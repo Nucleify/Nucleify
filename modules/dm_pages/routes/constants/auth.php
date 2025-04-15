@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'dashboard', 
-    'settings', 
-    'logout'
+    'dashboard',
+    'settings',
+    'logout',
 ];

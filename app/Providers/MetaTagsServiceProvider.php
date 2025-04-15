@@ -5,13 +5,12 @@ namespace App\Providers;
 use Butschster\Head\Facades\Meta;
 use Butschster\Head\Facades\PackageManager;
 use Butschster\Head\Providers\MetaTagsApplicationServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Route;
 
 class MetaTagsServiceProvider extends ServiceProvider
 {
     protected function packages(): void
     {
-        PackageManager::create('default_tags', function(): void {
+        PackageManager::create('default_tags', function (): void {
             Meta::prependTitle('DataManager')
                 ->setTitleSeparator(' | ')
                 ->setTitle('ERP template & Page Builder')

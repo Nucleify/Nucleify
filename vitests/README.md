@@ -4,3 +4,6 @@ This folder contains [Vitest](https://vitest.dev/guide/) tests, organized same w
 
 1. Types for Vitest tests are located in ```atomic/bosons/types/vitests``` folder
 2. Constants for Vitest tests are located in ```atomic/bosons/constants/vitests``` folder
+
+
+We can also put Vitests inside modules folders!

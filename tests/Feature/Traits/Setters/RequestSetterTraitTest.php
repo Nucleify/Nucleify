@@ -3,8 +3,9 @@
 use App\Traits\Setters\RequestSetterTrait;
 use Illuminate\Http\Request;
 
-beforeEach(function () {
-    $this->trait = new class {
+beforeEach(function (): void {
+    $this->trait = new class
+    {
         use RequestSetterTrait;
 
         public function getReferrerValue(): ?string
@@ -21,9 +22,9 @@ beforeEach(function () {
     $this->appUrl = config('app.url');
 });
 
-describe('RequestSetterTrait', function () {
-    test('defineRequestData sets referrer and isRefererAdmin correctly for admin URL', function () {
-        $request = new Request();
+describe('RequestSetterTrait', function (): void {
+    test('defineRequestData sets referrer and isRefererAdmin correctly for admin URL', function (): void {
+        $request = new Request;
         $request->headers->set('referer', "$this->appUrl/admin");
 
         $this->trait->defineRequestData($request);
@@ -32,8 +33,8 @@ describe('RequestSetterTrait', function () {
         expect($this->trait->getIsRefererAdminValue())->toBeTrue();
     });
 
-    test('defineRequestData sets referrer and isRefererAdmin correctly for non-admin URL', function () {
-        $request = new Request();
+    test('defineRequestData sets referrer and isRefererAdmin correctly for non-admin URL', function (): void {
+        $request = new Request;
         $request->headers->set('referer', "$this->appUrl/dashboard");
 
         $this->trait->defineRequestData($request);
@@ -42,8 +43,8 @@ describe('RequestSetterTrait', function () {
         expect($this->trait->getIsRefererAdminValue())->toBeFalse();
     });
 
-    test('defineRequestData sets referrer to null and isRefererAdmin to false when no referer header', function () {
-        $request = new Request();
+    test('defineRequestData sets referrer to null and isRefererAdmin to false when no referer header', function (): void {
+        $request = new Request;
 
         $this->trait->defineRequestData($request);
 
@@ -51,8 +52,8 @@ describe('RequestSetterTrait', function () {
         expect($this->trait->getIsRefererAdminValue())->toBeFalse();
     });
 
-    test('defineRequestData sets isRefererAdmin to false for unrelated URL patterns', function () {
-        $request = new Request();
+    test('defineRequestData sets isRefererAdmin to false for unrelated URL patterns', function (): void {
+        $request = new Request;
         $request->headers->set('referer', "$this->appUrl/blog");
 
         $this->trait->defineRequestData($request);

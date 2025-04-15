@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-
 use App\Traits\Runners\MessageRunnerTrait;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {

@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-
 use Database\Factories\ActivityFactory;
+use Illuminate\Database\Seeder;
 
 class ActivitySeeder extends Seeder
 {

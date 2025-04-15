@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
+use App\Contracts\ArticleContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
-use App\Contracts\ArticleContract;
 
 /**
  * @property int id
@@ -50,26 +49,32 @@ class Article extends Model implements ArticleContract
     {
         return $this->id;
     }
+
     public function getUserId(): int
     {
         return $this->user_id;
     }
+
     public function getTitle(): string
     {
         return $this->title;
     }
+
     public function getDescription(): string
     {
         return $this->description;
     }
-    public function getCategory(): string|null
+
+    public function getCategory(): ?string
     {
         return $this->category;
     }
+
     public function getCreatedAt(): string
     {
         return $this->created_at;
     }
+
     public function getUpdatedAt(): string
     {
         return $this->updated_at;
@@ -82,26 +87,32 @@ class Article extends Model implements ArticleContract
     {
         return $query->where('id', $parameter);
     }
+
     public function scopeGetByUserId(Builder $query, int $parameter): Builder
     {
         return $query->where('user_id', $parameter);
     }
+
     public function scopeGetByTitle(Builder $query, string $parameter): Builder
     {
         return $query->where('title', $parameter);
     }
+
     public function scopeGetByDescription(Builder $query, string $parameter): Builder
     {
         return $query->where('description', $parameter);
     }
+
     public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
     {
         return $query->where('category', $parameter);
     }
+
     public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('created_at', $parameter);
     }
+
     public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('updated_at', $parameter);

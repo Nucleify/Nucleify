@@ -2,11 +2,10 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Validator;
-
 use App\Models\Color;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Validator;
 
 /**
  * @extends Factory<Color>
@@ -31,7 +30,7 @@ class ColorFactory extends Factory
             'value' => $value,
             'new' => $this->faker->boolean(),
             'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
-            'updated_at' => $this-> faker->dateTimeBetween('-1 year')->format('Y-m-d')
+            'updated_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
         ];
 
         Validator::make($data, [

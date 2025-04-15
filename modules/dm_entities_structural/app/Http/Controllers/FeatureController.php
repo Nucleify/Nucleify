@@ -2,23 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Feature\PostRequest;
+use App\Http\Requests\Feature\PutRequest;
+use App\Models\Feature;
+use App\Services\FeatureService;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\Feature\PostRequest;
-use App\Http\Requests\Feature\PutRequest;
-use App\Models\Feature;
-use App\Services\FeatureService;
-
 class FeatureController extends Controller
 {
     private FeatureService $service;
 
-    /**
-     * @param FeatureService $service
-     */
     public function __construct(FeatureService $service)
     {
         $this->service = $service;
@@ -26,19 +22,12 @@ class FeatureController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return Renderable
      */
     public function render(): Renderable
     {
         return view('features');
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function index(Request $request): JsonResponse
     {
         try {
@@ -50,11 +39,6 @@ class FeatureController extends Controller
         }
     }
 
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse
-     */
     public function countByCreatedLastWeek(Request $request): JsonResponse
     {
         try {
@@ -66,11 +50,6 @@ class FeatureController extends Controller
         }
     }
 
-    /**
-     * @param string $category
-     *
-     * @return JsonResponse
-     */
     public function getByCategory(string $category): JsonResponse
     {
         try {
@@ -82,11 +61,6 @@ class FeatureController extends Controller
         }
     }
 
-    /**
-     * @param string $site
-     *
-     * @return JsonResponse
-     */
     public function getSiteFeatures(string $site): JsonResponse
     {
         try {
@@ -98,11 +72,6 @@ class FeatureController extends Controller
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function show($id): JsonResponse
     {
         try {
@@ -114,11 +83,6 @@ class FeatureController extends Controller
         }
     }
 
-    /**
-     * @param PostRequest $request
-     *
-     * @return JsonResponse
-     */
     public function store(PostRequest $request): JsonResponse
     {
         try {
@@ -127,19 +91,13 @@ class FeatureController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully created: ' . $result['header'] . ' feature'
+                'message' => 'Successfully created: ' . $result['header'] . ' feature',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param PutRequest $request
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function update(PutRequest $request, $id): JsonResponse
     {
         try {
@@ -148,27 +106,23 @@ class FeatureController extends Controller
 
             return response()->json([
                 $result,
-                'message' => 'Successfully updated: ' . $result['header'] . ' feature'
+                'message' => 'Successfully updated: ' . $result['header'] . ' feature',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    /**
-     * @param $id
-     *
-     * @return JsonResponse
-     */
     public function destroy($id): JsonResponse
     {
         $result = Feature::findOrFail($id);
 
         try {
             $this->service->delete($id);
+
             return response()->json([
                 'deleted' => true,
-                'message' => 'Successfully deleted: ' . $result->getHeader() . ' feature'
+                'message' => 'Successfully deleted: ' . $result->getHeader() . ' feature',
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

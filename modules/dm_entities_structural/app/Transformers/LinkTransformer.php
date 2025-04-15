@@ -1,11 +1,9 @@
 <?php
 
-
 namespace App\Transformers;
 
-use League\Fractal\TransformerAbstract;
-
 use App\Contracts\LinkContract;
+use League\Fractal\TransformerAbstract;
 
 class LinkTransformer extends TransformerAbstract
 {

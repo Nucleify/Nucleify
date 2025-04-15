@@ -2,8 +2,9 @@
 
 use App\Traits\Setters\TimeSetterTrait;
 
-beforeEach(function () {
-    $this->trait = new class {
+beforeEach(function (): void {
+    $this->trait = new class
+    {
         use TimeSetterTrait;
 
         public function getLastWeekValue(): string
@@ -13,8 +14,8 @@ beforeEach(function () {
     };
 });
 
-describe('TimeSetterTrait', function () {
-    test('defineTimeData sets lastWeek correctly', function () {
+describe('TimeSetterTrait', function (): void {
+    test('defineTimeData sets lastWeek correctly', function (): void {
         $expectedDate = now()->subWeek()->toDateString();
 
         $this->trait->defineTimeData();
@@ -22,7 +23,7 @@ describe('TimeSetterTrait', function () {
         expect($this->trait->getLastWeekValue())->toBe($expectedDate);
     });
 
-    test('lastWeek date format is correct', function () {
+    test('lastWeek date format is correct', function (): void {
         $this->trait->defineTimeData();
 
         expect(preg_match('/^\d{4}-\d{2}-\d{2}$/', $this->trait->getLastWeekValue()))->toBe(1);

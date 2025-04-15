@@ -8,11 +8,9 @@ use Throwable;
 class ArtisanCommand extends Command
 {
     protected $signature = 'run:{code}';
+
     protected $description = 'Execute artisan code';
 
-    /**
-     * @return void
-     */
     public function handle(): void
     {
         $code = $this->argument('code');
@@ -28,5 +26,4 @@ class ArtisanCommand extends Command
             $this->error('Error: ' . $e->getMessage());
         }
     }
-
 }

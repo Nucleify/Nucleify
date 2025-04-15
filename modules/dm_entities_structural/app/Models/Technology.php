@@ -2,12 +2,10 @@
 
 namespace App\Models;
 
+use App\Contracts\TechnologyContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-
-use App\Contracts\TechnologyContract;
 
 /**
  * @property int id
@@ -16,7 +14,7 @@ use App\Contracts\TechnologyContract;
  * @property string href
  * @property string src
  * @property string|null category
- * @property boolean display
+ * @property bool display
  * @property string created_at
  * @property string updated_at
  * @property int getId
@@ -48,7 +46,7 @@ class Technology extends Model implements TechnologyContract
         'href',
         'src',
         'display',
-        'category'
+        'category',
     ];
 
     /**
@@ -58,34 +56,42 @@ class Technology extends Model implements TechnologyContract
     {
         return $this->id;
     }
+
     public function getLabel(): string
     {
         return $this->label;
     }
-    public function getDescription(): string|null
+
+    public function getDescription(): ?string
     {
         return $this->description;
     }
+
     public function getHref(): string
     {
         return $this->href;
     }
+
     public function getSrc(): string
     {
         return $this->src;
     }
-    public function getCategory(): string|null
+
+    public function getCategory(): ?string
     {
         return $this->category;
     }
+
     public function getDisplay(): bool
     {
         return $this->display;
     }
+
     public function getCreatedAt(): string
     {
         return $this->created_at;
     }
+
     public function getUpdatedAt(): string
     {
         return $this->updated_at;
@@ -98,34 +104,42 @@ class Technology extends Model implements TechnologyContract
     {
         return $query->where('id', $parameter);
     }
+
     public function scopeGetByLabel(Builder $query, string $parameter): Builder
     {
         return $query->where('label', $parameter);
     }
+
     public function scopeGetByDescription(Builder $query, string $parameter): Builder
     {
         return $query->where('description', $parameter);
     }
+
     public function scopeGetByHref(Builder $query, string $parameter): Builder
     {
         return $query->where('href', $parameter);
     }
+
     public function scopeGetBySrc(Builder $query, string $parameter): Builder
     {
         return $query->where('src', $parameter);
     }
+
     public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
     {
         return $query->where('category', $parameter);
     }
+
     public function scopeGetByDisplay(Builder $query, bool $parameter): Builder
     {
         return $query->where('display', $parameter);
     }
+
     public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('created_at', $parameter);
     }
+
     public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('updated_at', $parameter);
