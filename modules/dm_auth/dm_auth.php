@@ -8,6 +8,6 @@ class dm_auth extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->loadMigrationsFrom(base_path('modules/dm_auth/database/migrations'));
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 }
