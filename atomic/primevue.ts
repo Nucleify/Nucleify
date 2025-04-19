@@ -87,7 +87,7 @@ export default function registerPrimeVue(app: App<Element>): void {
       theme: {
         preset: DataManagerPreset,
         options: {
-          darkModeSelector: true,
+          darkModeSelector: '.my-app-dark',
         },
       },
       ripple: true,
