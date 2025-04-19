@@ -32,7 +32,7 @@
   .p-accordionheader {
     @include caterpillar;
 
-    background: #1c1c1caa !important;
+    background: $content-background !important;
   }
 
   .p-accordioncontent-content {
