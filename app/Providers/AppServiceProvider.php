@@ -3,116 +3,74 @@
 namespace App\Providers;
 
 use App\Services\LoggerService;
-use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
+    private const SERVICES_PATH = __DIR__ . '/../Services/';
+
+    private const SERVICES_NAMESPACE = 'App\\Services\\';
+
     public function register(): void
     {
-        $serviceNamespace = 'App\\Services\\';
-        $servicePath = __DIR__ . '/../Services/';
-        $dirHandle = opendir($servicePath);
+        $this->registerServices();
+        $this->registerActivityLogger();
+        $this->mergeConfigFrom(base_path('config/modules.php'), 'modules');
+        $this->app->register(ModulesProvider::class);
+    }
 
-        while (($file = readdir($dirHandle)) !== false) {
-            if (is_file($servicePath . $file) && pathinfo($file, PATHINFO_EXTENSION) === 'php') {
-                $serviceClass = str_replace('.php', '', $file);
-                $this->app->singleton($serviceNamespace . $serviceClass, $serviceNamespace . $serviceClass);
+    public function boot(): void
+    {
+        $this->forceHttpsInProduction();
+    }
+
+    private function registerServices(): void
+    {
+        $this->scanDirectory(self::SERVICES_PATH, function (string $file): void {
+            if ($this->isPhpFile($file)) {
+                $serviceClass = $this->getClassName($file);
+                $this->app->singleton(
+                    self::SERVICES_NAMESPACE . $serviceClass,
+                    self::SERVICES_NAMESPACE . $serviceClass
+                );
             }
-        }
-
-        closedir($dirHandle);
-
-        $this->app->singleton('activityLoggerService', function (): LoggerService {
-            return new LoggerService;
         });
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
+    private function registerActivityLogger(): void
+    {
+        $this->app->singleton('activityLoggerService', fn (): LoggerService => new LoggerService);
+    }
+
+    private function forceHttpsInProduction(): void
     {
         if (!$this->app->environment('local')) {
             URL::forceScheme('https');
         }
-
-        $modulePath = base_path('modules');
-
-        if (File::exists($modulePath)) {
-            foreach (scandir($modulePath) as $module) {
-                if ($module !== '.' && $module !== '..') {
-                    $moduleAppPath = "$modulePath/$module/app";
-                    $moduleDatabasePath = "$modulePath/$module/database";
-                    $moduleConfigPath = "$modulePath/$module/config";
-                    $moduleRoutesPath = "$modulePath/$module/routes";
-                    $moduleTestsPath = "$modulePath/$module/tests";
-
-                    if (File::exists($moduleAppPath)) {
-                        foreach (File::allFiles($moduleAppPath) as $file) {
-                            require_once $file->getRealPath();
-                        }
-                    }
-
-                    $this->loadDatabaseFiles($moduleDatabasePath);
-
-                    $this->loadConfigFiles($moduleConfigPath, $module);
-
-                    if (File::exists($moduleRoutesPath)) {
-                        foreach (File::allFiles($moduleRoutesPath) as $file) {
-                            require_once $file->getRealPath();
-                        }
-                    }
-
-                    if (File::exists($moduleTestsPath)) {
-                        foreach (File::allFiles($moduleTestsPath) as $file) {
-                            require_once $file->getRealPath();
-                        }
-                    }
-                }
-            }
-        }
     }
 
-    /**
-     * Load migration, factory, and seeder files from the module's database directory.
-     */
-    private function loadDatabaseFiles(string $moduleDatabasePath): void
+    private function scanDirectory(string $path, callable $callback): void
     {
-        if (File::exists($moduleDatabasePath . '/migrations')) {
-            foreach (File::allFiles($moduleDatabasePath . '/migrations') as $file) {
-                require_once $file->getRealPath();
-            }
+        if (!File::exists($path)) {
+            return;
         }
 
-        if (File::exists($moduleDatabasePath . '/factories')) {
-            foreach (File::allFiles($moduleDatabasePath . '/factories') as $file) {
-                require_once $file->getRealPath();
-            }
+        $dirHandle = opendir($path);
+        while (($file = readdir($dirHandle)) !== false) {
+            $callback($file);
         }
-
-        if (File::exists($moduleDatabasePath . '/seeders')) {
-            foreach (File::allFiles($moduleDatabasePath . '/seeders') as $file) {
-                require_once $file->getRealPath();
-            }
-        }
+        closedir($dirHandle);
     }
 
-    /**
-     * Load configuration files from the module's config directory.
-     */
-    private function loadConfigFiles(string $moduleConfigPath, string $module): void
+    private function isPhpFile(string $file): bool
     {
-        if (File::exists($moduleConfigPath)) {
-            foreach (File::allFiles($moduleConfigPath) as $file) {
-                $configName = $module . '.' . basename($file->getRealPath(), '.php');
-                Config::set($configName, require $file->getRealPath());
-            }
-        }
+        return is_file(self::SERVICES_PATH . $file) && pathinfo($file, PATHINFO_EXTENSION) === 'php';
+    }
+
+    private function getClassName(string $file): string
+    {
+        return str_replace('.php', '', $file);
     }
 }
