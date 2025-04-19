@@ -8,7 +8,7 @@ use App\Http\Controllers\MoneyController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['web', 'auth'])->group(function (): void {
+Route::middleware(['web', 'auth'])->prefix('api')->group(function (): void {
     /**
      *  Articles
      */
