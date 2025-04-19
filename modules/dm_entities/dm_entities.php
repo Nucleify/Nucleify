@@ -8,6 +8,7 @@ class dm_entities extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->loadMigrationsFrom(base_path('modules/dm_entities/database/migrations'));
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
+        $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
     }
 }
