@@ -31,17 +31,12 @@
       }
 
       .p-accordionheader {
-        background: $p-card-background !important;
+        background: $content-background !important;
         border-top: 1px solid var(--p-accordion-panel-border-color);
       }
 
       .p-accordioncontent-content {
-        background: $content-background !important;
-      }
-
-      .p-accordionheader,
-      .p-accordioncontent-content {
-        color: $primary-white-green-text-color;
+        background: $p-card-background !important;
       }
     }
   }
@@ -68,6 +63,6 @@
   }
 
   @media (min-width: $breakpoint-xl) {
-    padding: 8em;
+    padding: 8em 6em;
   }
 }

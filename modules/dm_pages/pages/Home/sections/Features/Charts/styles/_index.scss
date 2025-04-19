@@ -20,6 +20,7 @@
       padding: 25px 35px 35px !important;
       margin-bottom: -30px;
       border-radius: 12px;
+      background: $content-background !important;
 
       .p-card-body {
         padding: 0;
@@ -31,7 +32,7 @@
       }
 
       .home-pie-chart {
-        background: black;
+        background: #090909;
         position: absolute;
         bottom: 135px;
         right: 10px;

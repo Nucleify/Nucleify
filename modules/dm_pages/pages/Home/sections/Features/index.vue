@@ -1,7 +1,7 @@
 <template>
   <section id="features">
-    <charts></charts>
-    <access></access>
+    <charts />
+    <access />
     <!--
             TODO: More features
          -->

@@ -13,7 +13,7 @@
     position: absolute;
     animation: fade-in 1s forwards;
     color: $primary-white-green-text-color;
-    margin-top: -2rem;
+    margin-top: -3rem;
     opacity: 0;
     padding-top: 50px;
     font-size: $font-size-lg;
@@ -28,7 +28,7 @@
     height: min-content;
     width: min-content;
     padding: 10px;
-    background: $p-card-background;
+    background: $content-background;
     font-size: 15px;
     box-shadow:
       0 4px 10px rgba(0, 0, 0, 0.03),
