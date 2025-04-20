@@ -86,7 +86,7 @@
     "stylelint": "16.10.0",
     "stylelint-config-standard": "36.0.1",
     "typescript": "5.3.3",
-    "vite": "6.2.3",
+    "vite": "6.3.2",
     "vite-plugin-compression": "0.5.1",
     "vite-plugin-stylelint": "6.0.0",
     "vitest": "3.0.9",
