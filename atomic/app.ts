@@ -200,6 +200,7 @@ app
  */
 import {
   registerDMActivity,
+  registerDMAnimations,
   registerDMAuth,
   registerDMEntities,
   registerDMEntitiesStructural,
@@ -209,6 +210,7 @@ import {
 } from '../modules'
 
 registerDMActivity(app)
+registerDMAnimations(app)
 registerDMAuth(app)
 registerDMEntities(app)
 registerDMEntitiesStructural(app)
