@@ -47,6 +47,7 @@
   "dependencies": {
     "@primevue/themes": "4.2.3",
     "chart.js": "4.4.3",
+    "marked": "15.0.8",
     "primeflex": "3.3.1",
     "primeicons": "7.0.0",
     "primevue": "4.2.3",
@@ -63,6 +64,7 @@
     "@storybook/vue3": "8.4.6",
     "@storybook/vue3-vite": "8.4.6",
     "@types/bootstrap": "5.2.10",
+    "@types/marked": "5.0.2",
     "@types/node": "20.14.11",
     "@typescript-eslint/eslint-plugin": "7.3.1",
     "@typescript-eslint/parser": "7.0.2",
