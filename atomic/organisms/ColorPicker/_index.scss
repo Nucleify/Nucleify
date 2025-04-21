@@ -1,1 +1,12 @@
-@import 'styles';
+@import 'mixins';
+
+@each $type in main, activity, article, card, contact, feature, link, money,
+  question, technology, user
+{
+  .p-colorpicker[ad-type='#{$type}'] {
+    @include entity-colorpicker-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-focus-color-new) !important
+    );
+  }
+}
