@@ -9,6 +9,7 @@
       <ad-card class="my-card home-chart-card">
         <template #content>
           <DeferredContent>
+            <dm-animation-hexagons style="opacity: 0.3" />
             <ad-chart
               chart-method-type="annual"
               type="bar"
