@@ -7,13 +7,14 @@
         text="Access your data everywhere"
       />
       <ad-heading :tag="2" class="access-description">
-        Use <span class="shiny-text">DataManager</span> application on your
-        phone, tablet and desktop. You can now manage all data in one place and
-        take a step ahead in your management process
+        Use <span class="shiny">DataManager</span> application on your phone,
+        tablet and desktop. You can now manage all data in one place and take a
+        step ahead in your management process
       </ad-heading>
       <div class="access-card-container">
         <div class="access-card flip-card col-12 md:col-6 xl:col-4">
           <div class="flip-card-inner">
+            <dm-animation-hexagons />
             <div class="flip-card-front">
               <ad-image
                 :src="imgUrl + 'desktop.png'"
@@ -36,6 +37,7 @@
         </div>
         <div class="access-card flip-card col-12 md:col-6 xl:col-4">
           <div class="flip-card-inner">
+            <dm-animation-hexagons />
             <div class="flip-card-front">
               <ad-image
                 :src="imgUrl + 'tablet.png'"
@@ -57,6 +59,7 @@
         </div>
         <div class="access-card flip-card col-12 md:col-6 xl:col-4">
           <div class="flip-card-inner">
+            <dm-animation-hexagons />
             <div class="flip-card-front">
               <ad-image
                 :src="imgUrl + 'phone.png'"

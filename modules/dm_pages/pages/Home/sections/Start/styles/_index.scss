@@ -6,6 +6,7 @@
   text-align: center;
   padding: 0 10px;
   gap: 5em;
+  margin-top: -20px;
 
   .header {
     font-size: 35px;
@@ -121,7 +122,6 @@
 
   @media (min-width: $breakpoint-lg) {
     display: flex;
-    margin-top: -10px;
 
     .header {
       font-size: 55px;

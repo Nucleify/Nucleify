@@ -1,4 +1,5 @@
 export * from './dm_activity'
+export * from './dm_animations'
 export * from './dm_auth'
 export * from './dm_colors'
 export * from './dm_entities'

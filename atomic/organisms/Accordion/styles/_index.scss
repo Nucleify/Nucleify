@@ -30,13 +30,21 @@
   }
 
   .p-accordionheader {
+    position: relative;
+    padding: 0 1em;
+    height: 60px !important;
     @include caterpillar;
 
-    background: #1c1c1caa !important;
+    background: $content-background !important;
+
+    .hexagon-rows-container {
+      overflow: visible;
+      top: -25px;
+    }
   }
 
   .p-accordioncontent-content {
-    background: $bg-black-color;
+    background: $content-background;
     backdrop-filter: blur(0.5em);
   }
 }

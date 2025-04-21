@@ -18,4 +18,5 @@ export interface EntityColorsInterface {
 
 export interface UseColorsInterface {
   colors: EntityColorsInterface
+  setDefaultColors: (initial: boolean) => void
 }

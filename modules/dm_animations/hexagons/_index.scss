@@ -1,0 +1,32 @@
+.hexagon-rows-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+
+  .hexagon-row-container {
+    position: relative;
+    top: 25px;
+    margin-top: -9px;
+
+    .hexagon-container {
+      display: flex;
+      gap: 2px;
+
+      img {
+        transition: all 500ms ease-in;
+        width: 40px;
+        height: 46.15px;
+      }
+
+      &.n2 {
+        margin-top: -9px;
+        margin-left: -21px;
+      }
+    }
+  }
+}

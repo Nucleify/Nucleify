@@ -17,7 +17,10 @@
       :value="panel.index"
       :key="index"
     >
-      <AccordionHeader>{{ panel.content }}</AccordionHeader>
+      <AccordionHeader>
+        <dm-animation-hexagons />
+        {{ panel.content }}
+      </AccordionHeader>
       <AccordionContent>{{ panel.answer }}</AccordionContent>
     </AccordionPanel>
   </Accordion>

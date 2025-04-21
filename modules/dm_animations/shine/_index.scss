@@ -1,4 +1,6 @@
-.shiny-text {
+@import 'keyframes';
+
+.shiny {
   background: linear-gradient(
     to right,
     #1bbd79 20%,
@@ -17,11 +19,5 @@
 
   &:not(.first-text) {
     animation: shine 2s linear infinite;
-  }
-
-  @keyframes shine {
-    to {
-      background-position: 200% center;
-    }
   }
 }
