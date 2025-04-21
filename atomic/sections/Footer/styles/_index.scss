@@ -2,33 +2,17 @@
   position: relative;
   display: flex;
   justify-content: center;
+  height: 100%;
 
   .hexagon-rows-container {
-    overflow: hidden;
-
-    .hexagon-row-container {
-      position: relative;
-      top: 25px;
-      margin-top: -9px;
-
-      .hexagon-container {
-        display: flex;
-        gap: 2px;
-
-        img {
-          transition: all 500ms ease-in;
-        }
-
-        &.n2 {
-          margin-top: -9px;
-          margin-left: -21px;
-        }
-      }
-    }
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 
   .footer-content-container {
-    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -130,7 +114,6 @@
 
   @media (min-width: 768px) {
     .footer-content-container {
-      position: absolute;
       width: 100%;
       max-width: 1300px;
       padding: 80px 45px;
