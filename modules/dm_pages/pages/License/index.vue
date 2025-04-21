@@ -1,6 +1,6 @@
 <template>
   <div class="license-container">
-    <ad-heading tag="1" text="License" class="shiny-text license-heading" />
+    <ad-heading tag="1" text="License" class="shiny license-heading" />
     <div class="license-content">
       <ad-paragraph text="BSD 3-Clause License" />
       <ad-paragraph text="Copyright (c) 2025, SzymCode" />

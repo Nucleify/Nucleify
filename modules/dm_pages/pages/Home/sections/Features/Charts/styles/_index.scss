@@ -3,7 +3,7 @@
 
   .home-charts-container {
     margin: 0 auto;
-    padding: 70px 0 100px;
+    padding: 70px 1rem 100px 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,9 +17,10 @@
       height: 460px;
       width: 100%;
       max-width: 600px;
-      padding: 25px 35px 35px !important;
+      padding: 25px 25px 35px !important;
       margin-bottom: -30px;
       border-radius: 12px;
+      background: $content-background !important;
 
       .p-card-body {
         padding: 0;
@@ -31,7 +32,7 @@
       }
 
       .home-pie-chart {
-        background: black;
+        background: #090909;
         position: absolute;
         bottom: 135px;
         right: 10px;

@@ -6,7 +6,7 @@
       :src="technologiesImgUrl + technology.src"
       :title="technology.label"
       :description="technology.description"
-      class="caterpillar-button"
+      class="caterpillar"
     />
   </div>
 </template>

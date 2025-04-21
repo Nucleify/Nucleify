@@ -14,6 +14,11 @@
       box-shadow 500ms 300ms;
     transform-style: preserve-3d;
     box-shadow: $secondary-card-box-shadow;
+
+    .hexagon-rows-container {
+      overflow: hidden;
+      border-radius: $medium-border-radius;
+    }
   }
 
   .flip-card-front {
