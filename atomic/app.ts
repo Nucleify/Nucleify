@@ -15,11 +15,9 @@ export const app: App = createApp({})
 
 import registerPrimeVue from './primevue'
 import { registerGlobalConstants } from './bosons'
-import { registerGlobalUtils } from './bosons'
 
 registerPrimeVue(app)
 registerGlobalConstants(app)
-registerGlobalUtils(app)
 
 import {
   Avatar,
@@ -204,6 +202,7 @@ import {
   registerDMAuth,
   registerDMEntities,
   registerDMEntitiesStructural,
+  registerDMMedia,
   registerDMPages,
   registerDMScreenLights,
   registerDMScreenLoader,
@@ -214,6 +213,7 @@ registerDMAnimations(app)
 registerDMAuth(app)
 registerDMEntities(app)
 registerDMEntitiesStructural(app)
+registerDMMedia(app)
 registerDMPages(app)
 registerDMScreenLights(app)
 registerDMScreenLoader(app)
