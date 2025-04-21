@@ -1,1 +1,71 @@
-@import 'styles';
+@import 'mixins';
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 0.35em !important;
+  min-width: 150px;
+  padding: 1em;
+  text-decoration: none;
+  background: var(--p-card-background) !important;
+
+  @each $type in main, activity, article, card, contact, feature, link, money,
+    question, technology, user
+  {
+    &[ad-type='#{$type}'] {
+      @include entity-tile-styles(
+        var(--#{$type}-item-color-new) !important,
+        var(--#{$type}-item-highlight-color-new) !important
+      );
+    }
+  }
+
+  &:hover {
+    color: var(--p-card-color);
+  }
+
+  .secondary {
+    display: flex;
+    gap: 0.25em;
+
+    p {
+      margin: 0;
+    }
+
+    .count {
+      color: $primary-color;
+    }
+  }
+
+  .general {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.65em;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+
+      .header {
+        color: $primary-white-text-color;
+        font-size: 0.9em;
+      }
+
+      .count {
+        font-size: 1.1em;
+        font-weight: 500;
+      }
+    }
+
+    .icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 2.2em;
+      height: 2.2em;
+      border-radius: 0.25em;
+      padding: 0.5em;
+    }
+  }
+}
