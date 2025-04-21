@@ -1,1 +1,50 @@
-@import 'styles';
+@import 'mixins';
+
+.p-accordion {
+  overflow: visible;
+
+  @each $type in main, activity, article, card, contact, feature, link, money,
+    question, technology, user
+  {
+    &[ad-type='#{$type}'] {
+      @include entity-styles(
+        var(--#{$type}-item-color) !important,
+        var(--#{$type}-item-focus-color) !important,
+        var(--#{$type}-item-highlight-color) !important
+      );
+    }
+  }
+
+  .p-accordionheader,
+  .p-accordioncontent-content {
+    border: 1px solid $p-card-border !important;
+  }
+
+  .p-accordioncontent-content {
+    border-top: none !important;
+  }
+
+  .p-accordionheader,
+  .p-accordionheader-toggle-icon {
+    transition: color 300ms;
+  }
+
+  .p-accordionheader {
+    position: relative;
+    padding: 0 1em;
+    height: 60px !important;
+    @include caterpillar;
+
+    background: $content-background !important;
+
+    .hexagon-rows-container {
+      overflow: visible;
+      top: -25px;
+    }
+  }
+
+  .p-accordioncontent-content {
+    background: $content-background;
+    backdrop-filter: blur(0.5em);
+  }
+}
