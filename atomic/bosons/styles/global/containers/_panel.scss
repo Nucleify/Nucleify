@@ -30,7 +30,7 @@ body:has(.p-dock.p-dock-bottom) {
   .panel-container {
     padding-bottom: 5em;
 
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: $lg) {
       padding-top: 0.5em;
     }
   }

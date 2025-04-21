@@ -81,12 +81,12 @@
     }
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     height: 540px;
     padding-left: 6rem;
     padding-right: 6rem;
   }
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $lg) {
     height: 650px;
     padding-left: 8rem;
     padding-right: 8rem;

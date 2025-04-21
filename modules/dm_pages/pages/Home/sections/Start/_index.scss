@@ -101,11 +101,11 @@
     }
   }
 
-  @media (min-width: $breakpoint-sm) {
+  @media (min-width: $sm) {
     padding: 0;
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     .header {
       font-size: 52px;
     }
@@ -120,7 +120,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $lg) {
     display: flex;
 
     .header {
@@ -132,13 +132,13 @@
     }
   }
 
-  @media (min-width: $breakpoint-xl) {
+  @media (min-width: $xl) {
     .cta {
       margin-top: 4em;
     }
   }
 
-  @media (min-width: $breakpoint-xxl) {
+  @media (min-width: $xxl) {
     .header {
       font-size: $font-size-xxl;
     }

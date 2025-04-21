@@ -1,12 +1,12 @@
 @import 'variables';
 
-@media (width >= $breakpoint-lg) {
+@media (width >= $lg) {
   .mobile {
     display: none !important;
   }
 }
 
-@media (width < $breakpoint-lg) {
+@media (width < $lg) {
   .desktop {
     display: none !important;
   }

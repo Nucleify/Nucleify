@@ -31,7 +31,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     flex-direction: row;
     gap: 2em;
 
@@ -48,7 +48,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $lg) {
     gap: 3em;
 
     .start {
