@@ -29,7 +29,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-sm) {
+  @media (min-width: $sm) {
     svg {
       max-width: 500px;
     }

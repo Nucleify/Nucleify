@@ -31,7 +31,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $lg) {
     &:not(.tile) {
       margin-right: 2em;
     }

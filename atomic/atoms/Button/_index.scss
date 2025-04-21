@@ -36,7 +36,7 @@
     display: none;
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $lg) {
     &.mobile-button {
       display: none;
     }

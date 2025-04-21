@@ -19,19 +19,19 @@
     }
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     .license-container {
       padding: 8em 6em;
     }
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $lg) {
     .license-container {
       padding: 8em 10em;
     }
   }
 
-  @media (min-width: $breakpoint-xl) {
+  @media (min-width: $xl) {
     .license-container {
       padding: 8em 16em;
     }

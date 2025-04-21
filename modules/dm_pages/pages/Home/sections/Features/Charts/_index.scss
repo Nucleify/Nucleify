@@ -57,7 +57,7 @@
       margin-bottom: 60px;
     }
 
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: $lg) {
       flex-direction: row;
 
       .home-chart-card {

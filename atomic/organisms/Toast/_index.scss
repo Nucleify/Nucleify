@@ -19,12 +19,12 @@
       margin-left: 5px;
     }
 
-    @media (min-width: $breakpoint-sm) {
+    @media (min-width: $sm) {
       width: max-content;
       max-width: max-content;
     }
 
-    @media (max-width: $breakpoint-sm) {
+    @media (max-width: $sm) {
       &.p-toast-message-success {
         background: $success-toast-bg;
       }
