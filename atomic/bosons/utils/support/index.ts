@@ -1,6 +1,5 @@
 export * from './Element'
 export * from './Get'
 export * from './Loading'
-export * from './Media'
 export * from './Throttle'
 export * from './Window'

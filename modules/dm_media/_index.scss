@@ -1,10 +1,12 @@
-@media (min-width: $breakpoint-lg) {
+@import 'variables';
+
+@media (width >= $breakpoint-lg) {
   .mobile {
     display: none !important;
   }
 }
 
-@media (max-width: $breakpoint-lg) {
+@media (width < $breakpoint-lg) {
   .desktop {
     display: none !important;
   }
