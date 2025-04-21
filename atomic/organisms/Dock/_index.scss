@@ -14,7 +14,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $lg) {
     &.p-dock-top,
     &.p-dock-bottom {
       width: 100%;
@@ -99,7 +99,7 @@
               pointer-events: none;
               opacity: 0;
 
-              @media (min-width: $breakpoint-lg) {
+              @media (min-width: $lg) {
                 pointer-events: inherit;
                 opacity: 1;
               }
@@ -117,7 +117,7 @@
         }
       }
 
-      @media (min-width: $breakpoint-lg) {
+      @media (min-width: $lg) {
         gap: 4px;
       }
     }

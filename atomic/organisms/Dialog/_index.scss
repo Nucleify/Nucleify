@@ -67,7 +67,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $lg) {
     .p-dialog {
       &.delete {
         max-width: 350px;

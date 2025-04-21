@@ -66,7 +66,7 @@
     font-size: 16px;
   }
 
-  @media (min-width: $breakpoint-sm) {
+  @media (min-width: $sm) {
     .access-header {
       max-width: 100%;
     }
@@ -76,13 +76,13 @@
     }
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     .access-header {
       font-size: 45px;
     }
   }
 
-  @media (min-width: $breakpoint-xl) {
+  @media (min-width: $xl) {
     .access-header {
       font-size: $font-size-xl;
     }

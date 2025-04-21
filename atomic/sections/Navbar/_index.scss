@@ -32,7 +32,7 @@
       }
     }
 
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: $md) {
       #navbar-supported-content {
         display: flex;
         justify-content: center;
@@ -63,7 +63,7 @@
     background: transparent !important;
     padding: 10px 25px !important;
 
-    @media (max-width: $breakpoint-md) {
+    @media (max-width: $md) {
       position: relative;
       left: 10px;
     }
@@ -85,18 +85,18 @@
       color: $primary-hover-color;
     }
 
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: $md) {
       gap: 10px;
       margin-top: -3px;
       padding: 8px;
     }
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     max-height: 100px;
   }
 
-  @media (max-width: $breakpoint-md) {
+  @media (max-width: $md) {
     &.not-expanded {
       .home-nav-link,
       .login-button {

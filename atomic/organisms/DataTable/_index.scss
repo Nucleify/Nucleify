@@ -194,7 +194,7 @@
       }
     }
 
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: $md) {
       .index-column,
       .id-column {
         width: 10%;
@@ -224,7 +224,7 @@
       }
     }
 
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: $lg) {
       .index-column,
       .id-column {
         width: 10%;
@@ -261,7 +261,7 @@
       }
     }
 
-    @media (min-width: $breakpoint-xl) {
+    @media (min-width: $xl) {
       .index-column,
       .id-column {
         width: 8%;
@@ -290,7 +290,7 @@
       }
     }
 
-    @media (min-width: $breakpoint-xxl) {
+    @media (min-width: $xxl) {
       .index-column,
       .id-column {
         width: 6%;
