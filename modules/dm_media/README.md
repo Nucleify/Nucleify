@@ -1,6 +1,6 @@
-# dm_seo
+# dm_media
 
-Module that contains SEO functions.
+Module that contains medias functions.
 
 <br>
 

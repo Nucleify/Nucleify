@@ -34,7 +34,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     &-content {
       &-description {
         margin: 2em 0;
@@ -42,7 +42,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $lg) {
     &-content {
       &-description {
         margin: 2.5em 0;
