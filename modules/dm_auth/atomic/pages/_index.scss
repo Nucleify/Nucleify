@@ -4,7 +4,7 @@
   position: relative;
   box-shadow: $primary-box-shadow;
 
-  @media (min-width: $breakpoint-sm) {
+  @media (min-width: $sm) {
     max-width: 475px !important;
   }
 
@@ -50,7 +50,7 @@
     }
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     padding-bottom: 0;
 
     .p-card-content,

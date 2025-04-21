@@ -1,1 +1,60 @@
-@import 'styles';
+@import 'mixins';
+
+.p-button {
+  display: flex;
+  justify-content: center;
+  transition: all 0.5s;
+  padding: 5px 15px;
+  font-size: 1.2rem;
+
+  @each $type in main, activity, article, card, contact, feature, link, money,
+    question, technology, user
+  {
+    &[ad-type='#{$type}'] {
+      @include entity-button-styles(
+        var(--#{$type}-item-color-new) !important,
+        var(--#{$type}-item-focus-color-new) !important,
+        var(--#{$type}-item-selected-color-new) !important
+      );
+    }
+  }
+
+  .p-button-label {
+    font-family: Nunito, sans-serif;
+    font-weight: 600;
+  }
+
+  &.p-button-rounded {
+    border-radius: 2em !important;
+  }
+
+  &.mobile-button {
+    display: flex;
+  }
+
+  &.desktop-button {
+    display: none;
+  }
+
+  @media (min-width: $lg) {
+    &.mobile-button {
+      display: none;
+    }
+
+    &.desktop-button {
+      display: flex;
+    }
+  }
+
+  &.primary-button {
+    &:active,
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  &.data-table-button {
+    height: 34px !important;
+    width: 34px !important;
+  }
+}

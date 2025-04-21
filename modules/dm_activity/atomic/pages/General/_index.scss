@@ -1,1 +1,7 @@
-@import 'styles';
+#activity-log {
+  @media (min-width: $xxl) {
+    .created-at-activity-column {
+      width: 22%;
+    }
+  }
+}

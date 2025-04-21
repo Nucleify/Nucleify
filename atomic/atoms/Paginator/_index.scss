@@ -1,1 +1,11 @@
-@import 'styles';
+.p-paginator {
+  font-size: $font-size-small;
+  padding-top: 25px;
+  margin-bottom: -20px;
+
+  .p-paginator-element {
+    max-height: $min-max-width-height-small;
+    max-width: $min-max-width-height-small;
+    min-width: $min-max-width-height-small;
+  }
+}

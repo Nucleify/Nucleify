@@ -1,1 +1,78 @@
-@import 'styles';
+.settings-panel-container {
+  display: flex;
+  flex-flow: wrap;
+
+  .settings-card {
+    margin: 0;
+    padding: 20px;
+    box-shadow: $secondary-card-box-shadow;
+    border: 1px solid $p-card-border;
+    border-radius: 0;
+
+    .refresh-button {
+      width: 32px;
+      height: 32px;
+
+      span {
+        margin-top: -2px;
+        font-size: 19px;
+      }
+    }
+
+    h4 {
+      margin: 0;
+    }
+
+    hr {
+      margin: 1em 0;
+    }
+
+    .p-card-content {
+      padding: 0 1px 0 0;
+    }
+
+    .p-colorpicker-preview {
+      max-width: 22px;
+      max-height: 22px;
+      padding: 0;
+    }
+
+    .settings-card-header-container {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1em;
+    }
+
+    .settings-card-item-list {
+      display: flex;
+      flex-direction: column;
+      padding-left: 0;
+      gap: 0.65em;
+      margin: 0;
+
+      .settings-card-item {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 3px;
+      }
+    }
+  }
+
+  @media (min-width: $sm) {
+    flex-direction: row;
+  }
+
+  .p-selectbutton {
+    .p-togglebutton {
+      font-size: 10px;
+      padding: 5px 10px;
+    }
+  }
+}
+
+.p-colorpicker-panel,
+.p-colorpicker-content {
+  background: white;
+  border: 1px whitesmoke;
+  box-shadow: $my-card-box-shadow;
+}
