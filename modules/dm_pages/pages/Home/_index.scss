@@ -3,7 +3,7 @@
 .home-container {
   padding-top: 140px;
 
-  @media (min-width: $breakpoint-sm) {
+  @media (min-width: $sm) {
     padding-top: 180px;
   }
 }
@@ -26,7 +26,7 @@ div[data-pc-name='deferredcontent'] {
   }
 }
 
-@media (max-width: $breakpoint-md) {
+@media (max-width: $md) {
   div[data-pc-name='deferredcontent'] {
     margin-top: -150px;
     padding-top: 150px;
@@ -37,11 +37,11 @@ div[data-pc-name='deferredcontent'] {
   scroll-margin-top: 350px;
   padding-bottom: 100px;
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     padding-bottom: 150px;
   }
 
-  @media (min-width: $breakpoint-lg) {
+  @media (min-width: $lg) {
     padding-bottom: 230px;
   }
 }
@@ -50,7 +50,7 @@ div[data-pc-name='deferredcontent'] {
   overflow-x: hidden;
   scroll-margin-top: 50px;
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     top: 160px;
   }
 }

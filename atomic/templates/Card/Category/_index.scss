@@ -10,7 +10,7 @@
     color: $white-text-color;
   }
 
-  @media (min-width: $breakpoint-md) {
+  @media (min-width: $md) {
     .categories-container-header {
       font-size: $font-size-xl;
     }
@@ -82,7 +82,7 @@
           font-family: $font-nunito-sans-serif;
         }
 
-        @media (min-width: $breakpoint-lg) {
+        @media (min-width: $lg) {
           &-description {
             font-size: 1em;
           }
@@ -115,11 +115,11 @@
       }
     }
 
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: $md) {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: $lg) {
       grid-template-columns: repeat(3, 1fr);
     }
   }
