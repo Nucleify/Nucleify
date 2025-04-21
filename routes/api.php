@@ -14,8 +14,5 @@
 /**
  *  Modules includes
  */
-require base_path('modules/dm_activity/routes/api.php');
-require base_path('modules/dm_entities/routes/api.php');
-require base_path('modules/dm_entities_structural/routes/api.php');
 require base_path('modules/dm_seo/routes/api.php');
 require base_path('modules/dm_terminal/routes/api.php');

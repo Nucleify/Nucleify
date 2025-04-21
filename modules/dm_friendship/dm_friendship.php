@@ -8,6 +8,6 @@ class dm_friendship extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->loadMigrationsFrom(base_path('modules/dm_friendship/database/migrations'));
+        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
     }
 }

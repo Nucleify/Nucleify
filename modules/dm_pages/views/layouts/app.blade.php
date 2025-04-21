@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="my-app-dark">
 <head>
     <!-- LaravelMetaTags start -->
     @meta_tags
