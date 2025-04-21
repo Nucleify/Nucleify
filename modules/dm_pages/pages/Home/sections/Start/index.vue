@@ -12,9 +12,9 @@
         <div class="left-side">
           <ad-heading :tag="1" class="header">
             One
-            <span class="shiny-text first-text">place</span> <br />
+            <span class="shiny first-text">place</span> <br />
             for all
-            <span class="shiny-text">your data</span>
+            <span class="shiny">your data</span>
           </ad-heading>
 
           <ad-heading
@@ -26,13 +26,13 @@
           <div class="cta">
             <ad-button
               label="Try it out!"
-              class="start-button caterpillar-button"
+              class="start-button caterpillar"
               @click="navigateTo('/register')"
             />
             <ad-button
               label="GitHub"
               :src="technologiesImgUrl + 'github.svg'"
-              class="start-button caterpillar-button"
+              class="start-button caterpillar"
               @click="navigateTo('https://github.com/SzymCode/DataManager')"
             />
           </div>

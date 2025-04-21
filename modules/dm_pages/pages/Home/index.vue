@@ -23,6 +23,7 @@ useViewportChange(
     '#access div',
     '#structure div',
     '#technologies div',
+    '#modules div',
     '#why-us div',
     '#footer div',
   ],

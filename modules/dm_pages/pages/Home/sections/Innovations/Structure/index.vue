@@ -9,7 +9,7 @@
         </div>
         <div class="description-container">
           <ad-heading :tag="5" class="title">
-            <div class="shiny-text">Atomic Design&nbsp;</div>
+            <div class="shiny">Atomic Design&nbsp;</div>
             <span> Approach </span>
           </ad-heading>
           <ad-paragraph
