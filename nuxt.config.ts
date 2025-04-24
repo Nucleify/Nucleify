@@ -46,7 +46,7 @@ export default defineNuxtConfig({
     }
   },
   components: [
-    { path: '~/components', extensions: ['vue'] }
+    { path: '~/nuxtstarter/components', extensions: ['vue'] }
   ],
   htmlValidator: {
     options: {
@@ -54,5 +54,9 @@ export default defineNuxtConfig({
         'element-case': 'off'
       }
     }
-  }
+  },
+  ignore: [
+    'modules/**/*'
+  ],
+  srcDir: 'nuxtstarter'
 })
