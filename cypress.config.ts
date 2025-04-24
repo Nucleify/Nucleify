@@ -1,10 +1,10 @@
-import { defineConfig } from "cypress";
+import { defineConfig } from 'cypress'
 
 export default defineConfig({
   component: {
     devServer: {
-      framework: "vue-cli",
-      bundler: "vite",
+      framework: 'vue-cli',
+      bundler: 'vite',
     },
   },
 
@@ -14,4 +14,4 @@ export default defineConfig({
       // implement node event listeners here
     },
   },
-});
+})

@@ -15,7 +15,7 @@
  * 
  * I've tried all possible solutions and this is the only reasonable solution I could find
  */
-$directory = new RecursiveDirectoryIterator('modules');
+$directory = new RecursiveDirectoryIterator('_modules');
 $iterator = new RecursiveIteratorIterator($directory);
 $regex = new RegexIterator($iterator, '/^.+\/tests\/.+\.php$/i', RecursiveRegexIterator::GET_MATCH);
 $guard = "\n\nif (!defined('PEST_RUNNING')) {\n    return;\n}\n\n";
