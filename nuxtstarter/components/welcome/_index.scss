@@ -1,0 +1,28 @@
+.welcome-container {
+  display: flex;
+  place-content: center;
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: black;
+
+  a {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    text-decoration: none;
+
+    h1 {
+      color: white;
+      font-weight: 200;
+      text-align: center;
+    }
+
+    img {
+      margin: 0 auto;
+    }
+  }
+}
