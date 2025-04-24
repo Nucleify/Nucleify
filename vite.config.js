@@ -1,5 +1,4 @@
 import { defineConfig } from 'vite';
-
 import laravel from 'laravel-vite-plugin';
 import stylelint from "vite-plugin-stylelint";
 import viteCompression from 'vite-plugin-compression';
@@ -15,13 +14,17 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'atomic/bosons/styles/index.scss',
                 'atomic/app.ts',
             ],
             refresh: true,
         }),
         stylelint(),
-        viteCompression(),
+        viteCompression({
+            algorithm: 'gzip',
+            ext: '.gz',
+            threshold: 10240,
+            deleteOriginFile: false
+        }),
         vue({
             template: {
                 transformAssetUrls: {
@@ -42,12 +45,28 @@ export default defineConfig({
     build: {
         chunkSizeWarningLimit: 1600,
         sourcemap: true,
+        minify: 'terser',
+        terserOptions: {
+            compress: {
+                drop_console: true,
+                drop_debugger: true
+            }
+        },
         rollupOptions: {
             output: {
                 sourcemapExcludeSources: true,
                 manualChunks(id) {
                     if (id.includes('node_modules')) {
-                        return id.toString().split('node_modules/')[1].split('/')[0].toString();
+                        const name = id.toString().split('node_modules/')[1].split('/')[0].toString();
+                        return `vendor-${name}`;
+                    }
+                    if (id.includes('/modules/')) {
+                        const path = id.split('/modules/')[1].split('/')[0];
+                        return `module-${path}`;
+                    }
+                    if (id.includes('/atomic/')) {
+                        const path = id.split('/atomic/')[1].split('/')[0];
+                        return `atomic-${path}`;
                     }
                 }
             }
