@@ -14,7 +14,6 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'atomic/bosons/styles/index.scss',
                 'atomic/app.ts',
             ],
             refresh: true,
@@ -48,9 +47,13 @@ export default defineConfig({
                     if (id.includes('node_modules')) {
                         return id.toString().split('node_modules/')[1].split('/')[0].toString();
                     }
-
                     if (id.includes('/modules/')) {
-                        return id.toString().split('/modules/')[1].split('/')[0];
+                        const path = id.split('/modules/')[1].split('/')[0];
+                        return `module-${path}`;
+                    }
+                    if (id.includes('/atomic/')) {
+                        const path = id.split('/atomic/')[1].split('/')[0];
+                        return `atomic-${path}`;
                     }
                 }
             }
