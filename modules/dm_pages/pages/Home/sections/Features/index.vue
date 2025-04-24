@@ -11,4 +11,3 @@
 <script setup lang="ts">
 import { Access, Charts } from './'
 </script>
-2
