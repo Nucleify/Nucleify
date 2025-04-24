@@ -5,3 +5,5 @@
     <ad-section-contact />
   </div>
 </template>
+
+<script setup lang="ts"></script>
