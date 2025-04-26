@@ -27,3 +27,4 @@ storybook-static
 .nitro
 .cache
 dist
+.stylelintcache
