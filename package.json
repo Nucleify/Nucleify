@@ -2,6 +2,9 @@
   "name": "nuxt-app",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -22,7 +25,6 @@
   },
   "dependencies": {
     "@nuxt/image": "1.10.0",
-    "@nuxthub/core": "0.8.24",
     "@nuxtjs/robots": "5.2.9",
     "@nuxtjs/sitemap": "7.2.10",
     "@primevue/forms": "4.3.3",
