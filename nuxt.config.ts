@@ -8,7 +8,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/fonts',
     '@nuxt/test-utils/module',
-    '@nuxthub/core',
     '@nuxtjs/html-validator',
     '@nuxtjs/robots',
     '@nuxtjs/seo',
