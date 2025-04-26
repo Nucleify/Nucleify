@@ -19,33 +19,6 @@ import { registerGlobalConstants } from './bosons'
 registerPrimeVue(app)
 registerGlobalConstants(app)
 
-import {
-  Avatar,
-  Badge,
-  Button,
-  Checkbox,
-  Divider,
-  Heading,
-  Icon,
-  Image,
-  InputMask,
-  InputNumber,
-  InputOtp,
-  InputText,
-  Knob,
-  Label,
-  Paragraph,
-  ProgressBar,
-  ProgressSpinner,
-  RadioButton,
-  Rating,
-  ScrollTop,
-  SelectButton,
-  Skeleton,
-  Slider,
-  Tag,
-  Textarea,
-} from './atoms'
 import { Anchor, FloatLabel, Tile } from './molecules'
 import {
   Accordion,
@@ -100,35 +73,6 @@ import {
 } from './templates'
 
 app
-  /**
-   *  Atoms
-   */
-  .component('ad-avatar', Avatar)
-  .component('ad-badge', Badge)
-  .component('ad-button', Button)
-  .component('ad-checkbox', Checkbox)
-  .component('ad-divider', Divider)
-  .component('ad-heading', Heading)
-  .component('ad-icon', Icon)
-  .component('ad-image', Image)
-  .component('ad-input-mask', InputMask)
-  .component('ad-input-number', InputNumber)
-  .component('ad-input-otp', InputOtp)
-  .component('ad-input-text', InputText)
-  .component('ad-knob', Knob)
-  .component('ad-label', Label)
-  .component('ad-paragraph', Paragraph)
-  .component('ad-progress-bar', ProgressBar)
-  .component('ad-progress-spinner', ProgressSpinner)
-  .component('ad-radio-button', RadioButton)
-  .component('ad-rating', Rating)
-  .component('ad-scroll-top', ScrollTop)
-  .component('ad-select-button', SelectButton)
-  .component('ad-skeleton', Skeleton)
-  .component('ad-slider', Slider)
-  .component('ad-tag', Tag)
-  .component('ad-textarea', Textarea)
-
   /**
    *  Molecules
    */
