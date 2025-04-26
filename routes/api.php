@@ -16,4 +16,3 @@ Route::get('/test', function () {
         'message' => 'Hello World',
     ]);
 });
-

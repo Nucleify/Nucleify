@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# php .pest/guard_check.php
+php .pest/guard_check.php
 
-# echo 'Pint checking...'
-# ./vendor/bin/pint
+echo 'Pint checking...'
+./vendor/bin/pint
 
 # npm run check
 # npm run lint
