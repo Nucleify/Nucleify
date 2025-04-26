@@ -81,8 +81,9 @@
           <StepPanel :value="1">
             <div class="step-panel-container">
               <ad-heading tag="4" class="tech-heading">
-                <span class="tech-text">We've got</span
-                ><span class="tech-text highlight">modules!</span>
+                <span class="tech-text"
+                  >We've got <span class="highlight">modules!</span></span
+                >
               </ad-heading>
               <ad-button
                 label="Get started"
