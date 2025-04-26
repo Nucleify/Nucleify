@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
+import Lara from '@primeuix/themes/lara'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -11,6 +12,7 @@ export default defineNuxtConfig({
     '@nuxtjs/seo',
     '@nuxtjs/sitemap',
     '@nuxtjs/stylelint-module',
+    '@primevue/nuxt-module',
     'nuxt-link-checker',
     'nuxt-og-image',
     'nuxt-schema-org',
@@ -54,7 +56,7 @@ export default defineNuxtConfig({
     }
   },
   components: [
-    { path: '~/nuxt/components', extensions: ['vue'] }
+    { path: '~/components', extensions: ['vue'] }
   ],
   ignore: [
     'modules/**/*'
@@ -64,4 +66,16 @@ export default defineNuxtConfig({
   experimental: {
     appManifest: false,
   },
+  primevue: {
+    options: {
+      theme: {
+        preset: Lara
+      }
+    }
+  },
+  runtimeConfig: {
+    public: {
+      appUrl: process.env.APP_URL
+    }
+  }
 })

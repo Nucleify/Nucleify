@@ -2,8 +2,9 @@
   <section id="welcome">
     <div class="welcome-container">
       <a href="https://github.com/Atomic-IT">
-        <img src="~/public/logo.png" alt="Atomic IT logo" width="150" height="150" />
+        <img src="/logo.png" alt="Atomic IT logo" width="150" height="150" />
         <h1>Nuxt Starter</h1>
+        <atom-button label="Click me" />
       </a>
     </div>
   </section>
@@ -12,7 +13,7 @@
 <script setup>
 const fetchData = async () => {
   try {
-    const response = await fetch('http://localhost/api/test', {
+    const response = await fetch(appUrl() + '/api/test', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
