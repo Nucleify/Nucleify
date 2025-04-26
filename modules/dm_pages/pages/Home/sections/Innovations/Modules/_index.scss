@@ -79,6 +79,7 @@
 }
 
 .tech-heading {
+  text-align: center;
   position: relative;
   z-index: 2;
   transition: all 0.3s ease;
@@ -86,7 +87,7 @@
 
 .tech-text {
   display: inline-block;
-  margin: 0 0.5rem;
+  margin: 0;
   transition: all 0.3s ease;
   font-size: 1.5em;
 
