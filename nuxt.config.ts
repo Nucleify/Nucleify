@@ -6,9 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxt/eslint',
-    '@nuxt/fonts',
     '@nuxt/test-utils/module',
-    '@nuxtjs/html-validator',
     '@nuxtjs/robots',
     '@nuxtjs/seo',
     '@nuxtjs/sitemap',
@@ -23,6 +21,9 @@ export default defineNuxtConfig({
     prerender: {
       routes: ['/'],
       crawlLinks: true
+    },
+    output: {
+      publicDir: './public/build'
     }
   },
   app: {
@@ -35,6 +36,12 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap'
+        }
+      ]
     },
   },
   vite: {
@@ -49,15 +56,12 @@ export default defineNuxtConfig({
   components: [
     { path: '~/nuxt/components', extensions: ['vue'] }
   ],
-  htmlValidator: {
-    options: {
-      rules: {
-        'element-case': 'off'
-      }
-    }
-  },
   ignore: [
     'modules/**/*'
   ],
-  srcDir: 'nuxt'
+  srcDir: 'nuxt',
+  publicDir: './public',
+  experimental: {
+    appManifest: false,
+  },
 })
