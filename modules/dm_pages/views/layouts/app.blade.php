@@ -11,9 +11,6 @@
         media="print"
         onload="this.onload=null; this.removeAttribute('media');"
     >
-
-    <!-- Scripts -->
-    @vite(['atomic/app.ts'])
 </head>
 <body>
     <main id="app">

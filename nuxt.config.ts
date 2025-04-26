@@ -1,3 +1,5 @@
+import { defineNuxtConfig } from 'nuxt/config'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -46,7 +48,7 @@ export default defineNuxtConfig({
     }
   },
   components: [
-    { path: '~/nuxtstarter/components', extensions: ['vue'] }
+    { path: '~/nuxt/components', extensions: ['vue'] }
   ],
   htmlValidator: {
     options: {
@@ -58,5 +60,5 @@ export default defineNuxtConfig({
   ignore: [
     'modules/**/*'
   ],
-  srcDir: 'nuxtstarter'
+  srcDir: 'nuxt'
 })
