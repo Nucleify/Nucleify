@@ -1,14 +1,20 @@
-@import // Bootstrap
+@import 
+  // Bootstrap
   'bootstrap/scss/bootstrap',
-  // Keyframes
-  // 'keyframes',
+
   // Mixins
   'mixins',
+
   // Variables
   'variables',
+
   // Modules
   '../../../modules',
-  //  Styles
+
+  // Styles
   'global',
-  '../../atoms', '../../molecules', '../../organisms', '../../sections',
+  '../../atoms',
+  '../../molecules',
+  '../../organisms',
+  '../../sections',
   '../../templates';
