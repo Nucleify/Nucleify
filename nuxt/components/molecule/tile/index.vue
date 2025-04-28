@@ -2,20 +2,20 @@
   <ad-anchor class="tile my-card" :href="props.href" :ad-type="props.adType">
     <div class="general">
       <div class="info">
-        <ad-paragraph class="header" :text="props.header" />
-        <ad-paragraph class="count" :text="props.count" />
+        <atom-paragraph class="header" :text="props.header" />
+        <atom-paragraph class="count" :text="props.count" />
       </div>
       <ad-icon class="icon" :icon="props.icon" :ad-type="props.adType" />
     </div>
     <div class="secondary">
-      <ad-paragraph class="count" :text="props.countSecondary + ' new'" />
-      <ad-paragraph class="text" :text="props.textSecondary" />
+      <atom-paragraph class="count" :text="props.countSecondary + ' new'" />
+      <atom-paragraph class="text" :text="props.textSecondary" />
     </div>
   </ad-anchor>
 </template>
 
 <script setup lang="ts">
-import { TileInterface } from 'atomic'
+import { TileInterface } from '.'
 
 const props = defineProps<TileInterface>()
 </script>

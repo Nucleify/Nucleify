@@ -8,15 +8,15 @@
   >
     <slot>
       <!-- Example use
-          <ad-input-text :id="" v-model="" />
-          <ad-label label="" for="" />
+          <atom-input-text :id="" v-model="" />
+          <atom-label label="" for="" />
       -->
     </slot>
   </FloatLabel>
 </template>
 
 <script setup lang="ts">
-import { FloatLabelInterface } from 'atomic'
+import { FloatLabelInterface } from '.'
 
 const props = defineProps<FloatLabelInterface>()
 </script>
