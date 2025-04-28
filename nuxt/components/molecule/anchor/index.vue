@@ -6,14 +6,14 @@
     :style="props.style"
   >
     <slot />
-    <ad-icon v-if="props.icon" :icon="props.icon" />
-    <ad-image
+    <atom-icon v-if="props.icon" :icon="props.icon" />
+    <atom-image
       v-if="props.src"
       :src="props.src"
       :alt="props.label"
       :fetchpriority="props.fetchpriority"
     />
-    <ad-label
+    <atom-label
       v-if="props.label"
       :label="props.label"
       :style="{ cursor: 'pointer' }"
@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { AnchorInterface } from 'atomic'
+import { AnchorInterface } from '.'
 
 const props = defineProps<AnchorInterface>()
 </script>

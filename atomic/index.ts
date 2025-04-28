@@ -1,5 +1,4 @@
 export * from './bosons'
-export * from './molecules'
 export * from './organisms'
 export * from './sections'
 export * from './templates'
