@@ -1,16 +1,18 @@
 <template>
   <section id="welcome">
     <div class="welcome-container">
-      <a href="https://github.com/Atomic-IT">
-        <img src="/logo.png" alt="Atomic IT logo" width="150" height="150" />
-        <h1>Nuxt Starter</h1>
-        <atom-button label="Click me" />
-      </a>
+      <ClientOnly>
+        <a href="https://github.com/Atomic-IT">
+          <dm-animation-hexagons />
+        </a>
+      </ClientOnly>
     </div>
   </section>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { onMounted } from 'vue'
+
 const fetchData = async () => {
   try {
     const response = await fetch(appUrl() + '/api/test', {
@@ -34,5 +36,5 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
-@use 'index';
+@import 'index';
 </style>

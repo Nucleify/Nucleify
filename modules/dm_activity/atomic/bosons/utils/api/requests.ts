@@ -15,7 +15,7 @@ import {
   UseLoadingInterface,
   useToast,
   UseToastInterface,
-} from '../../../../../../atomic'
+} from '../../../../../../nuxt/atomic'
 
 export function activityRequests(
   close: CloseDialogFunctionType

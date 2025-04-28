@@ -1,3 +1,3 @@
 export function isMobile(): boolean {
-  return window.screen.width <= 992
+  return process.client ? window.screen.width <= 992 : false
 }

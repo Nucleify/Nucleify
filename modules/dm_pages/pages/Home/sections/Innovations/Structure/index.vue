@@ -8,11 +8,11 @@
           </DeferredContent>
         </div>
         <div class="description-container">
-          <ad-heading :tag="5" class="title">
+          <atom-heading :tag="5" class="title">
             <div class="shiny">Atomic Design&nbsp;</div>
             <span> Approach </span>
-          </ad-heading>
-          <ad-paragraph
+          </atom-heading>
+          <atom-paragraph
             text="
               Utilizing Atomic Design principles to develop dynamic, modular solutions that enhance
               scalability and ensure seamless integration in your development processes.

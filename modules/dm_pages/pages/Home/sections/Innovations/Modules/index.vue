@@ -8,7 +8,6 @@
             :slides-per-group="3"
             :space-between="24"
             :loop="true"
-            :modules="[Autoplay]"
             :autoplay="{
               delay: 10000,
             }"
@@ -80,11 +79,11 @@
 
           <StepPanel :value="1">
             <div class="step-panel-container">
-              <ad-heading tag="4" class="tech-heading">
+              <atom-heading tag="4" class="tech-heading">
                 <span class="tech-text">We've got</span
                 ><span class="tech-text highlight">modules!</span>
-              </ad-heading>
-              <ad-button
+              </atom-heading>
+              <atom-button
                 label="Get started"
                 class="start-button caterpillar"
                 @click="
@@ -120,17 +119,11 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import type { Swiper as SwiperType } from 'swiper'
-import { Autoplay } from 'swiper/modules'
-
 import Stepper from 'primevue/stepper'
 import StepList from 'primevue/steplist'
 import StepPanels from 'primevue/steppanels'
 import Step from 'primevue/step'
 import StepPanel from 'primevue/steppanel'
-
-import { marked } from 'marked'
 
 import { navigateTo } from 'atomic'
 import { modules } from './constants'

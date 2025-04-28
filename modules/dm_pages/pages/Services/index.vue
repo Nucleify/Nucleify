@@ -1,6 +1,6 @@
 <template>
   <div class="services-container">
-    <ad-section-faq site="services" />
-    <ad-section-contact />
+    <section-faq site="services" />
+    <section-contact />
   </div>
 </template>
