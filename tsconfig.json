@@ -13,10 +13,11 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "atomic": ["./atomic"],
-      "atomic/*": ["./atomic/*"],
-      "~/*": ["./*"],
-      "@/*": ["./*"]
+      "atomic": ["nuxt/atomic"],
+      "atomic/*": ["nuxt/atomic/*"],
+      "modules": ["./modules"],
+      "modules/*": ["./modules/*"],
+      "~/*": ["./*"]
     }
   },
   "include": [

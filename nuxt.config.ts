@@ -47,20 +47,37 @@ export default defineNuxtConfig({
     },
   },
   vite: {
+    build: {
+      chunkSizeWarningLimit: 1600
+    },
     css: {
       preprocessorOptions: {
         scss: {
-          api: "modern",
+          silenceDeprecations: [
+            "mixed-decls",
+            "import",
+            "color-functions",
+            "global-builtin",
+          ],
         },
-      }
-    }
+      },
+    },
+  },
+  alias: {
+    'atomic': '~/atomic'
   },
   components: [
-    { path: '~/components', extensions: ['vue'] }
+    { path: '~/components', extensions: ['vue'] },
+    { path: '~/atomic', extensions: ['vue'] },
+    { path: 'modules', extensions: ['vue'], pathPrefix: false }
   ],
-  ignore: [
-    'modules/**/*'
-  ],
+  imports: {
+    dirs: [
+      '~/composables/**',
+      '~/atomic/**',
+      'modules/**'
+    ]
+  },
   srcDir: 'nuxt',
   publicDir: './public',
   experimental: {
@@ -78,4 +95,4 @@ export default defineNuxtConfig({
       appUrl: process.env.APP_URL
     }
   }
-})
+} as any)

@@ -7,14 +7,13 @@
           delay: 2500,
           disableOnInteraction: false,
         }"
-        :modules="modules"
         class="mySwiper"
         :slides-per-view="9"
         :slides-per-group="2"
         :loop="true"
       >
         <swiper-slide v-for="(tech, index) in resultsBySite" :key="index">
-          <ad-anchor
+          <molecule-anchor
             :href="tech.href"
             :src="technologiesImgUrl + tech.src"
             v-tooltip="tech.label"
@@ -26,17 +25,9 @@
 </template>
 
 <script setup lang="ts">
-import { Swiper, SwiperSlide } from 'swiper/vue'
-import { Autoplay } from 'swiper/modules'
-
-import 'swiper/css'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
-
-import { technologyRequests } from 'atomic'
 import { onMounted } from 'vue'
 
-const modules = [Autoplay]
+import { technologyRequests } from 'atomic'
 
 const { getSiteTechnologies, resultsBySite } = technologyRequests()
 

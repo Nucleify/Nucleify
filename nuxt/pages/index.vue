@@ -1,9 +1,7 @@
 <template>
-  <div id="index">
-    <welcome />
+  <div id="home">
+    <dm-home-page />
   </div>
 </template>
 
-<script setup lang="ts">
-import Welcome from '~/components/welcome/index.vue'
-</script>
+<script setup lang="ts"></script>

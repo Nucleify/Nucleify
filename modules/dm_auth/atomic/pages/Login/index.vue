@@ -1,26 +1,26 @@
 <template>
-  <ad-back-link />
-  <ad-card class="login-card">
+  <template-back-link />
+  <organism-card class="login-card">
     <template #header>
       <div class="auth-card-header-container">
         <div class="auth-card-header">
-          <ad-image
+          <atom-image
             :src="imgUrl + 'logo.svg'"
             alt="DataManager logo"
             width="50"
           />
-          <ad-heading :tag="1" text="Welcome Back" />
+          <atom-heading :tag="1" text="Welcome Back" />
 
-          <ad-paragraph class="mb-2" text="Don't have an account?">
-            <ad-anchor href="/register" :label="'Create today!'" />
-          </ad-paragraph>
+          <atom-paragraph class="mb-2" text="Don't have an account?">
+            <molecule-anchor href="/register" :label="'Create today!'" />
+          </atom-paragraph>
         </div>
       </div>
     </template>
     <template #content>
       <form @submit.prevent="submitForm(loginFields)">
-        <ad-float-label v-for="(field, index) in loginInputs" :key="index">
-          <ad-input-text
+        <molecule-float-label v-for="(field, index) in loginInputs" :key="index">
+          <atom-input-text
             v-model="loginFields[field.model]"
             :ad-type="'main'"
             :type="field.type"
@@ -28,10 +28,10 @@
             class="auth-input-text"
             :autofocus="field.autofocus"
           />
-          <ad-label :for="field.id" :label="field.label" />
-        </ad-float-label>
+          <atom-label :for="field.id" :label="field.label" />
+        </molecule-float-label>
 
-        <ad-button
+        <atom-button
           label="Log In"
           type="submit"
           class="-mb-1 mt-2"
@@ -39,7 +39,7 @@
         />
       </form>
     </template>
-  </ad-card>
+  </organism-card>
 
   <dm-test-login-buttons />
 </template>

@@ -7,7 +7,6 @@ export * from './dm_entities'
  *  Folders exports
  */
 export * from './atomic'
-export * from './vitests'
 
 /**
  *  File exports

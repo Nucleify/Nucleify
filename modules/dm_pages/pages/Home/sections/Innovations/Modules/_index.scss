@@ -89,10 +89,6 @@
   margin: 0 0.5rem;
   transition: all 0.3s ease;
   font-size: 1.5em;
-
-  &.highlight {
-    @extend .shiny;
-  }
 }
 
 .readme-content {

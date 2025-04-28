@@ -32,6 +32,7 @@
     "@primevue/themes": "4.3.3",
     "axios": "^1.8.4",
     "chart.js": "4.4.8",
+    "marked": "^15.0.11",
     "nuxt": "3.16.2",
     "nuxt-og-image": "5.1.1",
     "nuxt-schema-org": "5.0.4",
@@ -59,6 +60,7 @@
     "sass": "1.86.3",
     "stylelint": "16.18.0",
     "stylelint-config-standard-scss": "14.0.0",
+    "typescript": "5.8.3",
     "vitest": "3.1.1"
   }
 }
