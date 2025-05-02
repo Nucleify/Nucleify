@@ -3,53 +3,59 @@
     <div class="modules-container container">
       <Stepper v-model:value="activeStep" class="basis-[40rem]">
         <StepList>
-          <swiper-container ref="modulesSwiper" class="modules-swiper">
-            <swiper-slide
-              v-for="module in modules.slice(0, 2)"
-              :key="module.value"
-            >
-              <Step
-                v-slot="{ activateCallback, a11yAttrs }"
-                asChild
-                :value="module.value"
+          <client-only>
+            <swiper-container ref="modulesSwiper" class="modules-swiper">
+              <swiper-slide
+                v-for="module in modules.slice(0, 2)"
+                :key="module.value"
               >
-                <div
-                  class="cube"
-                  :class="module.icon"
-                  v-bind="a11yAttrs.root"
-                  @click="activateCallback"
-                ></div>
-              </Step>
-            </swiper-slide>
-            <swiper-slide>
-              <Step v-slot="{ activateCallback, a11yAttrs }" asChild :value="1">
-                <div
-                  class="cube"
-                  v-bind="a11yAttrs.root"
-                  @click="activateCallback"
+                <Step
+                  v-slot="{ activateCallback, a11yAttrs }"
+                  asChild
+                  :value="module.value"
                 >
-                  <img src="/img/logo.svg" alt="Logo" class="logo-img" />
-                </div>
-              </Step>
-            </swiper-slide>
-            <swiper-slide
-              v-for="module in modules.slice(2)"
-              :key="module.value"
-            >
-              <Step
-                v-slot="{ activateCallback, a11yAttrs }"
-                asChild
-                :value="module.value"
+                  <div
+                    class="cube"
+                    :class="module.icon"
+                    v-bind="a11yAttrs.root"
+                    @click="activateCallback"
+                  ></div>
+                </Step>
+              </swiper-slide>
+              <swiper-slide>
+                <Step
+                  v-slot="{ activateCallback, a11yAttrs }"
+                  asChild
+                  :value="1"
+                >
+                  <div
+                    class="cube"
+                    v-bind="a11yAttrs.root"
+                    @click="activateCallback"
+                  >
+                    <img src="/img/logo.svg" alt="Logo" class="logo-img" />
+                  </div>
+                </Step>
+              </swiper-slide>
+              <swiper-slide
+                v-for="module in modules.slice(2)"
+                :key="module.value"
               >
-                <div
-                  class="cube"
-                  :class="module.icon"
-                  v-bind="a11yAttrs.root"
-                  @click="activateCallback"
-                ></div>
-              </Step>
-            </swiper-slide>
-          </swiper-container>
+                <Step
+                  v-slot="{ activateCallback, a11yAttrs }"
+                  asChild
+                  :value="module.value"
+                >
+                  <div
+                    class="cube"
+                    :class="module.icon"
+                    v-bind="a11yAttrs.root"
+                    @click="activateCallback"
+                  ></div>
+                </Step>
+              </swiper-slide>
+            </swiper-container>
+          </client-only>
         </StepList>
         <StepPanels>
           <dm-animation-hexagons />

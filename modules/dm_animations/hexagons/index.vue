@@ -1,30 +1,32 @@
 <template>
   <div ref="containerRef" class="hexagon-rows-container">
-    <div
-      v-for="(row, rowIndex) in hexagonRows"
-      :key="rowIndex"
-      class="hexagon-row-container"
-    >
+    <client-only>
       <div
-        v-for="(containerClass, containerIndex) in [
-          'hexagon-container n1',
-          'hexagon-container n2',
-        ]"
-        :key="containerIndex"
-        :class="containerClass"
-        :style="{ opacity: 0.05 + 0.012 * rowIndex }"
+        v-for="(row, rowIndex) in hexagonRows"
+        :key="rowIndex"
+        class="hexagon-row-container"
       >
-        <img
-          v-for="(opacity, imgIndex) in row[containerIndex]"
-          :key="imgIndex"
-          :alt="'hexagon-' + imgIndex"
-          :class="'hexagon-' + imgIndex"
-          src="/img/hexagon.svg"
-          width="40"
-          :style="{ opacity: opacity }"
-        />
+        <div
+          v-for="(containerClass, containerIndex) in [
+            'hexagon-container n1',
+            'hexagon-container n2',
+          ]"
+          :key="containerIndex"
+          :class="containerClass"
+          :style="{ opacity: 0.05 + 0.012 * rowIndex }"
+        >
+          <img
+            v-for="(opacity, imgIndex) in row[containerIndex]"
+            :key="imgIndex"
+            :alt="'hexagon-' + imgIndex"
+            :class="'hexagon-' + imgIndex"
+            src="/img/hexagon.svg"
+            width="40"
+            :style="{ opacity: opacity }"
+          />
+        </div>
       </div>
-    </div>
+    </client-only>
   </div>
 </template>
 
