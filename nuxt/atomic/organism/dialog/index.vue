@@ -141,9 +141,7 @@ import {
   isSelectOrDatePicker,
 } from 'atomic'
 
-import {
-  DialogInterface,
-} from '.'
+import { DialogInterface } from '.'
 
 const props = defineProps<DialogInterface>()
 

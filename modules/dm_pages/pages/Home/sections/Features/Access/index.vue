@@ -23,7 +23,11 @@
                 alt="Desktop image"
                 image-class="access-card-image"
               />
-              <atom-heading :tag="3" class="access-card-header" text="Desktop" />
+              <atom-heading
+                :tag="3"
+                class="access-card-header"
+                text="Desktop"
+              />
             </div>
             <div class="flip-card-back">
               <atom-paragraph

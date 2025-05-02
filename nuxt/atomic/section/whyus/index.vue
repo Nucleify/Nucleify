@@ -92,7 +92,7 @@ const handleClickOutside = (event: MouseEvent) => {
 
 onMounted(() => {
   document.addEventListener('mousedown', handleClickOutside)
-  getSiteFeatures(true, props.site!)
+  getSiteFeatures(props.site!, true)
 })
 
 onBeforeUnmount(() => {

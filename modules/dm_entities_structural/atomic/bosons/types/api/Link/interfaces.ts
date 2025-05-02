@@ -1,28 +1,28 @@
-import { Ref } from 'vue'
-
-import {
-  DeleteEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
-  LoadingRefType,
-  StoreEntityRequestFunctionType,
-  GetEntityRequestFunctionType,
-  SiteType,
-  LinkResultsType,
+import type {
+  DeleteEntityRequestType,
+  EditEntityRequestType,
+  EntityCountResultsType,
+  EntityResultsType,
+  GetAllEntitiesRequestType,
+  GetEntitiesByCategoryRequestType,
+  GetEntityRequestType,
+  GetSiteEntitiesRequestType,
   LinkInterface,
+  LoadingRefType,
+  StoreEntityRequestType,
 } from 'atomic'
 
 export interface LinkRequestsInterface {
-  results: LinkResultsType
-  resultsByCategory: LinkResultsType
-  createdLastWeek: Ref<number>
+  results: EntityResultsType<LinkInterface>
+  resultsByCategory: EntityResultsType<LinkInterface>
+  resultsBySite: EntityResultsType<LinkInterface>
+  createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  resultsBySite: Ref<LinkInterface[]>
-  getAllLinks: GetAllEntitiesRequestFunctionType<LinkInterface>
-  getLinksByCategory: (category: string) => void
-  getSiteLinks: (loading: boolean, site: SiteType) => void
-  getCountLinksByCreatedLastWeek: GetEntityRequestFunctionType
-  storeLink: StoreEntityRequestFunctionType<LinkInterface>
-  editLink: EditEntityRequestFunctionType<LinkInterface>
-  deleteLink: DeleteEntityRequestFunctionType
+  getAllLinks: GetAllEntitiesRequestType<LinkInterface>
+  getLinksByCategory: GetEntitiesByCategoryRequestType
+  getSiteLinks: GetSiteEntitiesRequestType
+  getCountLinksByCreatedLastWeek: GetEntityRequestType
+  storeLink: StoreEntityRequestType<LinkInterface>
+  editLink: EditEntityRequestType<LinkInterface>
+  deleteLink: DeleteEntityRequestType
 }

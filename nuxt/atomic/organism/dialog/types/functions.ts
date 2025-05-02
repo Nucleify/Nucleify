@@ -5,7 +5,7 @@ export type OpenDialogFunctionType = (
   object?: ObjectType
 ) => void
 
-export type CloseDialogFunctionType = (action: ActionType) => void
+export type CloseDialogType = (action: ActionType) => void
 
 export type ConfirmDialogFunctionType = (
   id?: number,

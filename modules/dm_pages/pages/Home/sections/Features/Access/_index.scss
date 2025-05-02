@@ -9,6 +9,13 @@
     padding: 60px 10px 0;
     overflow-x: hidden;
 
+    .flip-card-front {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
     .flip-card-front,
     .flip-card-back {
       background: $content-background;
@@ -20,7 +27,7 @@
       display: flex;
       flex-flow: wrap;
       justify-content: center;
-      gap: .5em;
+      gap: 0.5em;
 
       .access-card {
         width: 370px;
@@ -40,6 +47,7 @@
         margin: 15px 0 20px;
         max-height: 100px;
         height: 100px;
+        width: 100%;
       }
 
       .access-card-header {

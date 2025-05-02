@@ -1,112 +1,89 @@
-import { Ref, ref } from 'vue'
-import axios, { AxiosResponse } from 'axios'
+import { ref } from 'vue'
 
 import {
   ArticleInterface,
-  ArticleResultsType,
   ArticleRequestsInterface,
-  CloseDialogFunctionType,
+  CloseDialogType,
   UseLoadingInterface,
-  UseApiErrorsInterface,
-  UseToastInterface,
-  GetAllEntitiesRequestResponseType,
-  apiSuccess,
-  catchErrors,
-  useApiErrors,
+  EntityCountResultsType,
+  EntityResultsType,
+  apiHandle,
+  useApiSuccess,
   useLoading,
-  useToast,
 } from 'atomic'
 
 export function articleRequests(
-  close?: CloseDialogFunctionType
+  close?: CloseDialogType
 ): ArticleRequestsInterface {
-  const results: ArticleResultsType = ref<ArticleInterface[]>([])
-  const createdLastWeek: Ref<number> = ref<number>(0)
+  const results: EntityResultsType<ArticleInterface> = ref([])
+  const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
-  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
-  const { flashToast }: UseToastInterface = useToast()
+  const { apiSuccess } = useApiSuccess()
 
   async function getAllArticles(loading?: boolean): Promise<void> {
-    try {
-      if (loading) {
-        setLoading(true)
-      }
-
-      const response: GetAllEntitiesRequestResponseType<ArticleInterface> =
-        await axios.get('/api/articles')
-
-      results.value = response.data
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    } finally {
-      if (loading) {
-        setLoading(false)
-      }
-    }
+    await apiHandle<ArticleInterface[]>({
+      url: 'articles',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: ArticleInterface[]) => {
+        results.value = response
+      },
+    })
   }
 
-  async function getCountArticlesByCreatedLastWeek(): Promise<void> {
-    try {
-      const response = await axios.get(
-        '/api/articles/count-by-created-last-week'
-      )
-
-      createdLastWeek.value = response.data.count
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+  async function getCountArticlesByCreatedLastWeek(
+    loading?: boolean
+  ): Promise<void> {
+    await apiHandle<number>({
+      url: 'articles/count-by-created-last-week',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: number) => {
+        createdLastWeek.value = response
+      },
+    })
   }
 
   async function storeArticle(
     data: ArticleInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.post('/api/articles', {
-        user_id: window.sessionStorage.getItem('user_id'),
-        title: data.title,
-        description: data.description,
-        category: data.category,
-      })
-
-      await apiSuccess(response, getData, flashToast, close!, 'create')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<ArticleInterface>({
+      url: 'articles',
+      method: 'POST',
+      data,
+      onSuccess: (response: ArticleInterface) => {
+        apiSuccess(response, getData, close, 'create')
+      },
+    })
   }
 
   async function editArticle(
     article: ArticleInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.put(
-        `/api/articles/${article.id}`,
-        {
-          title: article.title,
-          description: article.description,
-          category: article.category,
-        }
-      )
-
-      await apiSuccess(response, getData, flashToast, close!, 'edit')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<ArticleInterface>({
+      url: 'articles',
+      method: 'PUT',
+      data: article,
+      id: article.id,
+      onSuccess: (response: ArticleInterface) => {
+        apiSuccess(response, getData, close, 'edit')
+      },
+    })
   }
 
   async function deleteArticle(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.delete(`/api/articles/${id}`)
-
-      await apiSuccess(response, getData, flashToast, close!, 'delete')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<ArticleInterface>({
+      url: 'articles',
+      method: 'DELETE',
+      id,
+      onSuccess: (response: ArticleInterface) => {
+        apiSuccess(response, getData, close, 'delete')
+      },
+    })
   }
 
   return {

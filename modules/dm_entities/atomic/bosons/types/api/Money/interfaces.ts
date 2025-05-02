@@ -1,23 +1,22 @@
-import { Ref } from 'vue'
-
-import {
-  DeleteEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
-  MoneyInterface,
-  MoneyResultsType,
+import type {
+  DeleteEntityRequestType,
+  EditEntityRequestType,
+  EntityCountResultsType,
+  EntityResultsType,
+  GetAllEntitiesRequestType,
+  GetEntityRequestType,
   LoadingRefType,
-  StoreEntityRequestFunctionType,
-  GetEntityRequestFunctionType,
+  MoneyInterface,
+  StoreEntityRequestType,
 } from 'atomic'
 
 export interface MoneyRequestsInterface {
-  results: MoneyResultsType
-  createdLastWeek: Ref<number>
+  results: EntityResultsType<MoneyInterface>
+  createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllMoney: GetAllEntitiesRequestFunctionType<MoneyInterface>
-  getCountMoneyByCreatedLastWeek: GetEntityRequestFunctionType
-  storeMoney: StoreEntityRequestFunctionType<MoneyInterface>
-  editMoney: EditEntityRequestFunctionType<MoneyInterface>
-  deleteMoney: DeleteEntityRequestFunctionType
+  getAllMoney: GetAllEntitiesRequestType<MoneyInterface>
+  getCountMoneyByCreatedLastWeek: GetEntityRequestType
+  storeMoney: StoreEntityRequestType<MoneyInterface>
+  editMoney: EditEntityRequestType<MoneyInterface>
+  deleteMoney: DeleteEntityRequestType
 }

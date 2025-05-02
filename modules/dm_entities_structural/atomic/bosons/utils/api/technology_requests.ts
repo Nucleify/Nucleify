@@ -1,159 +1,121 @@
 import { Ref, ref } from 'vue'
-import axios, { AxiosResponse } from 'axios'
 
 import {
+  CloseDialogType,
+  EntityCountResultsType,
+  EntityResultsType,
+  SiteType,
   TechnologyInterface,
   TechnologyRequestsInterface,
-  TechnologyResultsType,
-  CloseDialogFunctionType,
   UseLoadingInterface,
-  UseApiErrorsInterface,
-  UseToastInterface,
-  GetAllEntitiesRequestResponseType,
-  apiSuccess,
-  catchErrors,
-  useApiErrors,
+  apiHandle,
+  useApiSuccess,
   useLoading,
-  useToast,
-  SiteType,
 } from 'atomic'
 
 export function technologyRequests(
-  close?: CloseDialogFunctionType
+  close?: CloseDialogType
 ): TechnologyRequestsInterface {
-  const results: TechnologyResultsType = ref<TechnologyInterface[]>([])
-  const resultsByCategory: TechnologyResultsType = ref<TechnologyInterface[]>(
-    []
-  )
-  const resultsBySite: Ref<TechnologyInterface[]> = ref<TechnologyInterface[]>(
-    []
-  )
-  const createdLastWeek: Ref<number> = ref<number>(0)
+  const results: EntityResultsType<TechnologyInterface> = ref([])
+  const resultsByCategory: EntityResultsType<TechnologyInterface> = ref([])
+  const resultsBySite: EntityResultsType<TechnologyInterface> = ref([])
+  const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
-  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
-  const { flashToast }: UseToastInterface = useToast()
+  const { apiSuccess } = useApiSuccess()
 
   async function getAllTechnologies(loading?: boolean): Promise<void> {
-    try {
-      if (loading) {
-        setLoading(true)
-      }
-
-      const response: GetAllEntitiesRequestResponseType<TechnologyInterface> =
-        await axios.get('/api/technologies')
-
-      results.value = response.data
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    } finally {
-      if (loading) {
-        setLoading(false)
-      }
-    }
+    await apiHandle<TechnologyInterface[]>({
+      url: 'technologies',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: TechnologyInterface[]) => {
+        results.value = response
+        apiSuccess(response)
+      },
+    })
   }
 
-  async function getCountTechnologiesByCreatedLastWeek(): Promise<void> {
-    try {
-      const response = await axios.get(
-        '/api/technologies/count-by-created-last-week'
-      )
-
-      createdLastWeek.value = response.data.count
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+  async function getCountTechnologiesByCreatedLastWeek(
+    loading?: boolean
+  ): Promise<void> {
+    await apiHandle<number>({
+      url: 'technologies/count-by-created-last-week',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: number) => {
+        createdLastWeek.value = response
+      },
+    })
   }
 
-  async function getTechnologiesByCategory(category: string): Promise<void> {
-    try {
-      const response = await axios.get(
-        `/api/technologies/get-by-category/${category}`
-      )
-
-      resultsByCategory.value = response.data.count
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+  async function getTechnologiesByCategory(
+    category: string,
+    loading?: boolean
+  ): Promise<void> {
+    await apiHandle<TechnologyInterface[]>({
+      url: `technologies/get-by-category/${category}`,
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: TechnologyInterface[]) => {
+        resultsByCategory.value = response
+        apiSuccess(response)
+      },
+    })
   }
 
   async function getSiteTechnologies(
-    loading: boolean,
-    site: SiteType
+    site: SiteType,
+    loading?: boolean
   ): Promise<void> {
-    try {
-      if (loading) {
-        setLoading(true)
-      }
-
-      const response = await axios.get(
-        `/api/technologies/get-site-technologies/${site}`
-      )
-
-      resultsBySite.value = response.data
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    } finally {
-      setLoading(false)
-    }
+    await apiHandle<TechnologyInterface[]>({
+      url: `technologies/get-site-technologies/${site}`,
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: TechnologyInterface[]) => {
+        resultsBySite.value = response
+        apiSuccess(response)
+      },
+    })
   }
 
   async function storeTechnology(
     data: TechnologyInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.post('/api/technologies', {
-        href: data.href,
-        src: data.src,
-        label: data.label,
-        description: data.description,
-        category: data.category,
-        display: data.display,
-      })
-
-      await apiSuccess(response, getData, flashToast, close!, 'create')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<TechnologyInterface>({
+      url: 'technologies',
+      method: 'POST',
+      data,
+      onSuccess: (response) => {
+        apiSuccess(response, getData, close, 'create')
+      },
+    })
   }
 
   async function editTechnology(
     data: TechnologyInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.put(
-        `/api/technologies/${data.id}`,
-        {
-          href: data.href,
-          src: data.src,
-          label: data.label,
-          description: data.description,
-          category: data.category,
-          display: data.display,
-        }
-      )
-
-      await apiSuccess(response, getData, flashToast, close!, 'edit')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<TechnologyInterface>({
+      url: 'technologies',
+      method: 'PUT',
+      data,
+      id: data.id,
+      onSuccess: (response) => {
+        apiSuccess(response, getData, close, 'edit')
+      },
+    })
   }
 
   async function deleteTechnology(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.delete(
-        `/api/technologies/${id}`
-      )
-
-      await apiSuccess(response, getData, flashToast, close!, 'delete')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<TechnologyInterface>({
+      url: 'technologies',
+      method: 'DELETE',
+      id,
+      onSuccess: (response) => {
+        apiSuccess(response, getData, close, 'delete')
+      },
+    })
   }
 
   return {

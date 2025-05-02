@@ -3,7 +3,7 @@ import { DialogBreakpoints } from 'primevue/dialog'
 
 import {
   ActionType,
-  CloseDialogFunctionType,
+  CloseDialogType,
   ConfirmDialogFunctionType,
   DialogPositionType,
   ElementAppendTo,
@@ -61,7 +61,7 @@ export interface DialogInterface {
   confirmButtonLabel?: string
   confirm?: ConfirmDialogFunctionType
   cancelButtonLabel?: string
-  close?: CloseDialogFunctionType
+  close?: CloseDialogType
   style?: StyleValue
 }
 
@@ -72,5 +72,5 @@ export interface UseDialogInterface {
   visibleDelete: VisibleType
   selectedObject: SelectedObjectType
   openDialog: OpenDialogFunctionType
-  closeDialog: CloseDialogFunctionType
+  closeDialog: CloseDialogType
 }
