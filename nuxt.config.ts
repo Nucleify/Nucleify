@@ -16,7 +16,8 @@ export default defineNuxtConfig({
     'nuxt-link-checker',
     'nuxt-og-image',
     'nuxt-schema-org',
-    'nuxt-seo-utils'
+    'nuxt-seo-utils',
+    'nuxt-swiper'
   ],
   ssr: true,
   nitro: {
@@ -92,7 +93,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      appUrl: process.env.APP_URL
+      appUrl: process.env.APP_URL,
+      apiUrl: process.env.API_URL
     }
   }
 } as any)
