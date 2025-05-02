@@ -1,40 +1,34 @@
 import {
   ErrorResponseInterface,
-  FlashToastFunctionType,
   UseApiErrorsInterface,
   useToast,
+  UseToastInterface,
 } from 'atomic'
 
 export function useApiErrors(): UseApiErrorsInterface {
-  const { flashToast }: { flashToast: FlashToastFunctionType } = useToast()
+  const { flashToast }: UseToastInterface = useToast()
 
-  function apiErrors(error: ErrorResponseInterface): void {
-    if (error.response && error.response.status && error.response.data) {
-      switch (error.response.status) {
-        case 500:
-          flashToast(
-            error.response.data.error || 'HTTP 500: Internal Server Error',
-            'error'
-          )
-          break
-        case 404:
-          flashToast(
-            error.response.data.error || 'HTTP 404: Not Found',
-            'error'
-          )
-          break
-        case 403:
-        case 401:
-          flashToast('Unauthorized access', 'error')
-          break
-        default:
-          flashToast(error.response.data.errors, 'warn')
+  function apiErrors(error: ErrorResponseInterface | Error | unknown): void {
+    if (error && typeof error === 'object' && 'data' in error) {
+      const data = error.data as { error?: string; errors?: string }
+
+      if (data.error) {
+        flashToast(data.error, 'error')
+        return
       }
-    } else {
-      flashToast('An unknown error occurred', 'error')
-      console.log(error)
     }
+
+    flashToast(
+      error instanceof Error
+        ? error.message
+        : typeof error === 'string'
+          ? error
+          : 'An unknown error occurred',
+      'error'
+    )
   }
 
-  return { apiErrors }
+  return {
+    apiErrors,
+  }
 }

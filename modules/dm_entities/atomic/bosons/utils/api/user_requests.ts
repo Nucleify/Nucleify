@@ -1,119 +1,97 @@
-import { Ref, ref } from 'vue'
-import axios, { AxiosResponse } from 'axios'
+import { ref } from 'vue'
 
 import {
-  CloseDialogFunctionType,
-  GetAllEntitiesRequestResponseType,
-  UseApiErrorsInterface,
-  UseLoadingInterface,
+  CloseDialogType,
+  EntityCountResultsType,
+  EntityResultsType,
   UserInterface,
+  UseLoadingInterface,
   UserRequestsInterface,
-  UserResultsType,
-  UseToastInterface,
-  apiSuccess,
-  catchErrors,
-  useApiErrors,
+  apiHandle,
+  useApiSuccess,
   useLoading,
-  useToast,
 } from 'atomic'
 
-export function userRequests(
-  close?: CloseDialogFunctionType
-): UserRequestsInterface {
-  const results: UserResultsType = ref([])
-  const createdLastWeek: Ref<number> = ref<number>(0)
+export function userRequests(close?: CloseDialogType): UserRequestsInterface {
+  const results: EntityResultsType<UserInterface> = ref([])
+  const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
-  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
-  const { flashToast }: UseToastInterface = useToast()
+  const { apiSuccess } = useApiSuccess()
 
   async function getAllUsers(loading?: boolean): Promise<void> {
-    try {
-      if (loading) {
-        setLoading(true)
-      }
-
-      const response: GetAllEntitiesRequestResponseType<UserInterface> =
-        await axios.get('/api/users')
-
-      results.value = response.data
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    } finally {
-      if (loading) {
-        setLoading(false)
-      }
-    }
+    await apiHandle<UserInterface[]>({
+      url: 'users',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: UserInterface[]) => {
+        results.value = response
+      },
+    })
   }
 
-  async function getCountUsersByCreatedLastWeek(): Promise<void> {
-    try {
-      const response = await axios.get('/api/users/count-by-created-last-week')
-
-      createdLastWeek.value = response.data.count
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+  async function getCountUsersByCreatedLastWeek(
+    loading?: boolean
+  ): Promise<void> {
+    await apiHandle<number>({
+      url: 'users/count-by-created-last-week',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: number) => {
+        createdLastWeek.value = response
+      },
+    })
   }
 
-  async function getUser(): Promise<void> {
-    try {
-      const response: GetAllEntitiesRequestResponseType<UserInterface> =
-        await axios.get('/api/user')
-
-      results.value = response.data
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+  async function getUser(loading?: boolean): Promise<void> {
+    await apiHandle<UserInterface>({
+      url: 'user',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: UserInterface) => {
+        results.value = response
+      },
+    })
   }
 
   async function storeUser(
     data: UserInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.post('/api/users', {
-        name: data.name,
-        email: data.email,
-        role: data.role,
-        password: data.password,
-        confirm_password: data.confirm_password,
-      })
-
-      await apiSuccess(response, getData, flashToast, close!, 'create')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<UserInterface>({
+      url: 'users',
+      method: 'POST',
+      data,
+      onSuccess: (response: UserInterface) => {
+        apiSuccess(response, getData, close, 'create')
+      },
+    })
   }
 
   async function editUser(
     data: UserInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.put('/api/users/' + data.id, {
-        name: data.name,
-        email: data.email,
-        role: data.role,
-      })
-
-      await apiSuccess(response, getData, flashToast, close!, 'edit')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<UserInterface>({
+      url: 'users',
+      method: 'PUT',
+      data,
+      id: data.id,
+      onSuccess: (response: UserInterface) => {
+        apiSuccess(response, getData, close, 'edit')
+      },
+    })
   }
 
   async function deleteUser(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.delete(`/api/users/${id}`)
-
-      await apiSuccess(response, getData, flashToast, close!, 'delete')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<UserInterface>({
+      url: 'users',
+      method: 'DELETE',
+      id,
+      onSuccess: (response: UserInterface) => {
+        apiSuccess(response, getData, close, 'delete')
+      },
+    })
   }
 
   return {

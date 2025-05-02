@@ -3,8 +3,16 @@
     <atom-heading :tag="6" text="FAQ" class="faq-section-header" />
 
     <div class="faq-section-questions">
-      <organism-accordion v-if="column1.length" :panels="column1" ad-type="main" />
-      <organism-accordion v-if="column2.length" :panels="column2" ad-type="main" />
+      <organism-accordion
+        v-if="column1.length"
+        :panels="column1"
+        ad-type="main"
+      />
+      <organism-accordion
+        v-if="column2.length"
+        :panels="column2"
+        ad-type="main"
+      />
     </div>
   </div>
 </template>
@@ -29,7 +37,7 @@ const column1 = ref<QuestionInterface[]>([])
 const column2 = ref<QuestionInterface[]>([])
 
 onMounted(() => {
-  getSiteQuestions(true, props.site!)
+  getSiteQuestions(props.site!, true)
 })
 
 watchEffect(() => {

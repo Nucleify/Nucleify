@@ -18,9 +18,9 @@ const fetchData = async () => {
     const response = await fetch(appUrl() + '/api/test', {
       method: 'GET',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     })
     const data = await response.json()
 

@@ -1,5 +1,9 @@
 <template>
-  <molecule-anchor class="tile my-card" :href="props.href" :ad-type="props.adType">
+  <molecule-anchor
+    class="tile my-card"
+    :href="props.href"
+    :ad-type="props.adType"
+  >
     <div class="general">
       <div class="info">
         <atom-paragraph class="header" :text="props.header" />

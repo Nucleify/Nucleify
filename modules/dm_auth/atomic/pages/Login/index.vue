@@ -19,7 +19,10 @@
     </template>
     <template #content>
       <form @submit.prevent="submitForm(loginFields)">
-        <molecule-float-label v-for="(field, index) in loginInputs" :key="index">
+        <molecule-float-label
+          v-for="(field, index) in loginInputs"
+          :key="index"
+        >
           <atom-input-text
             v-model="loginFields[field.model]"
             :ad-type="'main'"

@@ -23,5 +23,5 @@ export default defineNuxtPlugin({
     registerDMPages(nuxtApp.vueApp)
     registerDMScreenLights(nuxtApp.vueApp)
     registerDMScreenLoader(nuxtApp.vueApp)
-  }
+  },
 })

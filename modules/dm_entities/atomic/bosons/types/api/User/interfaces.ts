@@ -1,24 +1,23 @@
-import { Ref } from 'vue'
-
-import {
-  DeleteEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
-  GetEntityRequestFunctionType,
+import type {
+  DeleteEntityRequestType,
+  EditEntityRequestType,
+  EntityResultsType,
+  EntityCountResultsType,
+  GetAllEntitiesRequestType,
+  GetEntityRequestType,
   LoadingRefType,
-  StoreEntityRequestFunctionType,
+  StoreEntityRequestType,
   UserInterface,
-  UserResultsType,
 } from 'atomic'
 
 export interface UserRequestsInterface {
-  results: UserResultsType
-  createdLastWeek: Ref<number>
+  results: EntityResultsType<UserInterface>
+  createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllUsers: GetAllEntitiesRequestFunctionType<UserInterface>
-  getCountUsersByCreatedLastWeek: GetEntityRequestFunctionType
-  getUser: GetEntityRequestFunctionType
-  storeUser: StoreEntityRequestFunctionType<UserInterface>
-  editUser: EditEntityRequestFunctionType<UserInterface>
-  deleteUser: DeleteEntityRequestFunctionType
+  getAllUsers: GetAllEntitiesRequestType<UserInterface>
+  getCountUsersByCreatedLastWeek: GetEntityRequestType
+  getUser: GetEntityRequestType<UserInterface>
+  storeUser: StoreEntityRequestType<UserInterface>
+  editUser: EditEntityRequestType<UserInterface>
+  deleteUser: DeleteEntityRequestType
 }

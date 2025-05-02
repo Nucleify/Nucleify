@@ -9,11 +9,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 
-import {
-  useColors,
-  PolarChartInterface,
-  UseColorsInterface,
-} from 'atomic'
+import { useColors, PolarChartInterface, UseColorsInterface } from 'atomic'
 
 const { colors }: UseColorsInterface = useColors()
 
