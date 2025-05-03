@@ -12,7 +12,7 @@ $amount: 15;
   z-index: -1;
 }
 
-main:has(:not(#home)) .screen-lights-container .screen-light {
+body:has(:not(#home)) .screen-lights-container .screen-light {
   width: $particleSize;
   height: $particleSize;
   border-radius: $particleSize;
@@ -50,7 +50,7 @@ main:has(:not(#home)) .screen-lights-container .screen-light {
   }
 }
 
-main:has(
+body:has(
     #about,
     #blog,
     #error-404,

@@ -20,6 +20,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 
+import { technologiesImgUrl } from '#imports'
+
 import { isMobile, technologyRequests } from 'atomic'
 
 const { getSiteTechnologies, resultsBySite } = technologyRequests()
