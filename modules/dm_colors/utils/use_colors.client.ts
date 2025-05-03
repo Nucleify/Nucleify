@@ -5,7 +5,7 @@ import {
   colorTypes,
   ColorItemColorsInterface,
   UseColorsInterface,
-  isCurrentUrl,
+  isCurrentUrl
 } from 'atomic'
 
 export function useColors(): UseColorsInterface {

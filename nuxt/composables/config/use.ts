@@ -5,3 +5,4 @@ export const useConfig = () => ({
 })
 
 export const apiUrl = () => useConfig().get('apiUrl')
+export const appEnv = () => useConfig().get('appEnv')

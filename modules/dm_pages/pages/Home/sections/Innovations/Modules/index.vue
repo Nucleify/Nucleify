@@ -100,7 +100,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, watch } from 'vue'
 
 import { marked } from 'marked'
 import Stepper from 'primevue/stepper'
@@ -108,6 +108,8 @@ import StepList from 'primevue/steplist'
 import StepPanels from 'primevue/steppanels'
 import Step from 'primevue/step'
 import StepPanel from 'primevue/steppanel'
+
+import { imgUrl } from '#imports'
 
 import { navigateTo, isMobile } from 'atomic'
 import { modules } from './constants'

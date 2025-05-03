@@ -1,7 +1,9 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <NuxtPage />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
 
@@ -15,5 +17,5 @@ defineOgImageComponent('NuxtSeo', {
 </script>
 
 <style lang="scss">
-@import 'styles';
+@import 'atomic/boson/styles';
 </style>

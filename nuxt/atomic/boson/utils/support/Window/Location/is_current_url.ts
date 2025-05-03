@@ -1,3 +1,6 @@
+import { useRoute } from '#imports'
+
 export function isCurrentUrl(url: string): boolean {
-  return window.location.pathname.includes(url)
+  const route = useRoute()
+  return route.path.includes(url)
 }
