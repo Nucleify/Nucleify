@@ -20,7 +20,7 @@
             :key="imgIndex"
             :alt="'hexagon-' + imgIndex"
             :class="'hexagon-' + imgIndex"
-            src="/img/hexagon.svg"
+            :src="imgUrl + 'hexagon.svg'"
             width="40"
             :style="{ opacity: opacity }"
           />

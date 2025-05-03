@@ -17,7 +17,7 @@ const meta = {
     pt: {},
     ptOptions: {},
     unstyled: false,
-    src: '/public/img/logo.svg',
+    src: '/public/build/img/logo.svg',
     alt: 'image',
     width: '',
     height: '',
