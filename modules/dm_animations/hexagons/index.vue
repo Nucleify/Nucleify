@@ -33,8 +33,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-import { imgUrl } from '#imports'
-
 import { updateImagesPerRow } from './utils'
 import { PATTERN_UPDATE_INTERVAL } from './variables'
 
