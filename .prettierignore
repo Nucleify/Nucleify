@@ -6,6 +6,7 @@ README.md
 public
 build
 coverage
+index.scss
 
 # Nuxt dev/build outputs
 .output

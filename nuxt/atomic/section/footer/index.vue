@@ -16,8 +16,8 @@
             :key="columnIndex"
             :class="`column-${columnIndex + 1}`"
           >
-            <molecule-anchor 
-              v-for="(item, itemIndex) in column" 
+            <molecule-anchor
+              v-for="(item, itemIndex) in column"
               :key="itemIndex"
               :href="item.url"
             >
