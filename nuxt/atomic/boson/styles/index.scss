@@ -1,10 +1,19 @@
-@import // Mixins
+@import
+  'primeicons/primeicons.css',
+
+  // Mixins
   'mixins',
+
   // Variables
   'variables',
+
   // Modules
   '../../../../modules',
+
   // Styles
   'global',
-  '../../atom', '../../molecule', '../../organism', '../../section',
+  '../../atom',
+  '../../molecule',
+  '../../organism',
+  '../../section',
   '../../template';
