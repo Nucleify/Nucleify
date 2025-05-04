@@ -16,12 +16,14 @@
             :key="columnIndex"
             :class="`column-${columnIndex + 1}`"
           >
-            <template v-for="(item, itemIndex) in column" :key="itemIndex">
-              <molecule-anchor :href="item.url" v-if="item?.header">
-                <atom-heading :tag="3" :text="item.name" />
-              </molecule-anchor>
-              <molecule-anchor v-else :href="item.url" :text="item.name" />
-            </template>
+            <molecule-anchor 
+              v-for="(item, itemIndex) in column" 
+              :key="itemIndex"
+              :href="item.url"
+            >
+              <atom-heading v-if="item?.header" :tag="3" :text="item.name" />
+              <span v-else>{{ item.name }}</span>
+            </molecule-anchor>
           </div>
         </div>
       </div>
@@ -50,30 +52,30 @@ const columns = [
   // Services
   [
     { name: 'Services', url: '/services', header: true },
-    { name: 'Open Source' },
-    { name: 'Data Storage' },
-    { name: 'Data Migration' },
-    { name: 'Data Integration' },
-    { name: 'Data Analysis' },
-    { name: 'Page Builder' },
+    { name: 'Open Source', url: '/' },
+    { name: 'Data Storage', url: '/' },
+    { name: 'Data Migration', url: '/' },
+    { name: 'Data Integration', url: '/' },
+    { name: 'Data Analysis', url: '/' },
+    { name: 'Page Builder', url: '/' },
   ],
   // About
   [
     { name: 'About', url: '/about', header: true },
-    { name: 'Purpose' },
-    { name: 'Collaboration' },
-    { name: 'Support Us' },
-    { name: 'License' },
-    { name: 'Contact' },
+    { name: 'Purpose', url: '/' },
+    { name: 'Collaboration', url: '/' },
+    { name: 'Support Us', url: '/' },
+    { name: 'License', url: '/' },
+    { name: 'Contact', url: '/' },
   ],
   // Blog
   [
     { name: 'Blog', url: '/blog', header: true },
-    { name: "The Importance of Open Source in Today's World" },
-    { name: 'How to Automate Your Data Pipeline' },
-    { name: 'Maximizing Data Security' },
-    { name: 'Building a Scalable Website' },
-    { name: 'The Best Tools for Every Business' },
+    { name: "The Importance of Open Source in Today's World", url: '/' },
+    { name: 'How to Automate Your Data Pipeline', url: '/' },
+    { name: 'Maximizing Data Security', url: '/' },
+    { name: 'Building a Scalable Website', url: '/' },
+    { name: 'The Best Tools for Every Business', url: '/' },
   ],
 ]
 </script>
