@@ -43,6 +43,10 @@ export default defineNuxtConfig({
         {
           rel: 'stylesheet',
           href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap'
+        },
+        {
+          rel: 'stylesheet',
+          href: '/fonts/primeicons/primeicons.css'
         }
       ]
     },
@@ -91,6 +95,7 @@ export default defineNuxtConfig({
       }
     }
   },
+  css: ["primeicons/primeicons.css"],
   runtimeConfig: {
     public: {
       appUrl: process.env.APP_URL,
