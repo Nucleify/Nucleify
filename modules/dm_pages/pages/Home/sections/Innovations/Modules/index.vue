@@ -113,8 +113,6 @@ import StepPanels from 'primevue/steppanels'
 import Step from 'primevue/step'
 import StepPanel from 'primevue/steppanel'
 
-import { imgUrl } from '#imports'
-
 import { navigateTo, isMobile } from 'atomic'
 import { modules } from './constants'
 
