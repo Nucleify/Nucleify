@@ -67,11 +67,11 @@
           <StepPanel :value="1">
             <div class="step-panel-container">
               <atom-heading :tag="4" class="tech-heading">
-                <span class="tech-text">We've got</span
-                ><span class="tech-text highlight">modules!</span>
+                <span class="tech-text">We've got</span>&nbsp;
+                <span class="tech-text shiny">modules!</span>
               </atom-heading>
               <atom-button
-                label="Get started"
+                label="Read more"
                 class="start-button caterpillar"
                 @click="
                   navigateTo(

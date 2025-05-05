@@ -16,8 +16,12 @@
     margin-top: -3rem;
     opacity: 0;
     padding-top: 50px;
-    font-size: $font-size-lg;
-    font-weight: 700;
+
+    span {
+      font-family: $font-inter-sans-serif;
+      font-size: $font-size-lg;
+      font-weight: 700;
+    }
 
     & > span:last-child {
       color: $primary-color !important;
@@ -94,9 +98,9 @@
 }
 
 .why-us-dialog {
-  max-width: 360px;
-  margin: 4rem;
   width: 100%;
+  max-width: 400px;
+  margin: 4rem;
 
   button {
     display: none !important;
@@ -104,5 +108,25 @@
 
   .p-dialog-content {
     top: -1px;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .p-dialog-header {
+    display: flex;
+    justify-content: start;
+    gap: 2rem;
+    font-family: $font-inter-sans-serif;
+    font-size: $font-size-md;
+
+    h4 {
+      margin: 0;
+    }
+
+    .pi {
+      font-size: $font-size-md;
+    }
   }
 }

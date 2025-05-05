@@ -29,13 +29,11 @@
       class="why-us-dialog"
     >
       <template #header>
-        <div class="flex align-items-center gap-4">
-          <atom-icon :icon="dialogData.icon" class="text-xl" />
-          <atom-heading :tag="4" class="m-0" :text="dialogData.header" />
-        </div>
+        <atom-icon :icon="dialogData.icon" class="text-xl" />
+        <atom-heading :tag="4" :text="dialogData.header" />
       </template>
       <template #default>
-        <atom-paragraph class="m-0 text-sm" :text="dialogData.description" />
+        <atom-paragraph :text="dialogData.description" />
       </template>
     </Dialog>
   </section>
