@@ -11,14 +11,16 @@ import {
 } from 'atomic'
 
 export function registerGlobalConstants(app: App): void {
+  const prefix = runtime.appEnv === 'production' ? '/build' : ''
+
   /**
    *  Images urls
    */
-  app.config.globalProperties.imgUrl = imgUrl
-  app.config.globalProperties.contributorsImgUrl = contributorsImgUrl
-  app.config.globalProperties.storysetImgUrl = storysetImgUrl
-  app.config.globalProperties.storysetAboutImgUrl = storysetAboutImgUrl
-  app.config.globalProperties.storysetServicesImgUrl = storysetServicesImgUrl
-  app.config.globalProperties.storysetBlogImgUrl = storysetBlogImgUrl
-  app.config.globalProperties.technologiesImgUrl = technologiesImgUrl
+  app.config.globalProperties.imgUrl = prefix + imgUrl
+  app.config.globalProperties.contributorsImgUrl = prefix + contributorsImgUrl
+  app.config.globalProperties.storysetImgUrl = prefix + storysetImgUrl
+  app.config.globalProperties.storysetAboutImgUrl = prefix + storysetAboutImgUrl
+  app.config.globalProperties.storysetServicesImgUrl = prefix + storysetServicesImgUrl
+  app.config.globalProperties.storysetBlogImgUrl = prefix + storysetBlogImgUrl
+  app.config.globalProperties.technologiesImgUrl = prefix + technologiesImgUrl
 }

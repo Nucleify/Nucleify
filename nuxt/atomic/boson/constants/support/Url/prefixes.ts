@@ -1,10 +1,8 @@
 
-const prefix: string = process.env.APP_ENV === 'local' ? '' : '/build'
-
-export const imgUrl: string = prefix + '/img/'
-export const contributorsImgUrl: string = prefix + '/img/contributors/'
-export const storysetImgUrl: string = prefix + '/img/storyset/'
-export const storysetAboutImgUrl: string = prefix + '/img/storyset/about/'
-export const storysetServicesImgUrl: string = prefix + '/img/storyset/services/'
-export const storysetBlogImgUrl: string = prefix + '/img/storyset/blog/'
-export const technologiesImgUrl: string = prefix + '/img/technologies/'
+export const imgUrl: string = '/img/'
+export const contributorsImgUrl: string = '/img/contributors/'
+export const storysetImgUrl: string = '/img/storyset/'
+export const storysetAboutImgUrl: string = '/img/storyset/about/'
+export const storysetServicesImgUrl: string = '/img/storyset/services/'
+export const storysetBlogImgUrl: string = '/img/storyset/blog/'
+export const technologiesImgUrl: string = '/img/technologies/'
