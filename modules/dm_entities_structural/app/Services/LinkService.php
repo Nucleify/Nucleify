@@ -55,7 +55,9 @@ class LinkService
 
         $result = $this->model::getByCategory($category)->get();
 
-        $this->logger->logMessage($this->causer->name . ' fetched questions by category: ' . $category . '.');
+        $name = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->logMessage($name . ' fetched questions by category: ' . $category . '.');
 
         return fractal()
             ->collection($result)

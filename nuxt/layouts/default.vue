@@ -1,5 +1,6 @@
 <template>
   <div id="default-layout">
+    <section-navbar v-if="isFrontOffice" />
     <dm-screen-lights :count="8" />
     <dm-screen-loader v-if="isFrontOffice" />
     <slot />

@@ -92,7 +92,8 @@ export default defineNuxtConfig({
     options: {
       theme: {
         preset: Lara
-      }
+      },
+      ripple: true
     }
   },
   css: ["primeicons/primeicons.css"],

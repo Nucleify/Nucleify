@@ -27,30 +27,6 @@
       width: 100%;
       display: flex;
       justify-content: center;
-
-      .authors {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        font-size: 0.8em;
-        color: #fff;
-        margin-left: 1.5rem;
-
-        img {
-          position: relative;
-          top: -2px;
-          margin-left: 0.5em;
-          animation: rotate-right 1s linear infinite;
-          transition: all 500ms;
-          opacity: 0;
-        }
-
-        &:hover {
-          img {
-            opacity: 1;
-          }
-        }
-      }
     }
 
     .top {
