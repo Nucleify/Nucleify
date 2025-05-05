@@ -1,4 +1,5 @@
-const prefix: string = process.env.APP_ENV === 'production' ? '/build' : ''
+
+const prefix: string = process.env.APP_ENV === 'local' ? '' : '/build'
 
 export const imgUrl: string = prefix + '/img/'
 export const contributorsImgUrl: string = prefix + '/img/contributors/'
