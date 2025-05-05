@@ -2,6 +2,10 @@ body {
   background: $bg-dark-green-color;
   margin: 0;
 
+  #__nuxt {
+    overflow-y: hidden;
+  }
+
   &:has(
       #about,
       #blog,

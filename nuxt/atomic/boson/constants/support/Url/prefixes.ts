@@ -1,4 +1,3 @@
-
 export const imgUrl: string = '/img/'
 export const contributorsImgUrl: string = '/img/contributors/'
 export const storysetImgUrl: string = '/img/storyset/'
