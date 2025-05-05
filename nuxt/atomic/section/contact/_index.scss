@@ -15,6 +15,7 @@
     color: $white-text-color;
 
     &-title {
+      font-family: $font-inter-sans-serif;
       font-weight: 600;
       font-size: 2em;
       color: $primary-white-green-text-color;
@@ -27,8 +28,7 @@
     }
 
     &-button {
-      padding: 10px 32px;
-      width: 110px;
+      padding: 10px 3rem;
       font-weight: bold;
       font-size: 18px;
     }
