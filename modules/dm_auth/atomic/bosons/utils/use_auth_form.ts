@@ -6,8 +6,6 @@ import {
   LoginFieldsInterface,
   RegisterFieldsInterface,
   UseAuthFormInterface,
-  useToast,
-  UseToastInterface,
   navigateTo,
   apiHandle,
 } from 'atomic'

@@ -120,4 +120,4 @@ Route::get('/{any}', function () {
         'Pragma' => 'no-cache',
         'Expires' => '0',
     ]);
-})->where('any', '^(?!api/|login|register).*');
+})->where('any', '^(?!api/|home|login|register).*');
