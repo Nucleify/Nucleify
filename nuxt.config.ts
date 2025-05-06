@@ -51,11 +51,6 @@ export default defineNuxtConfig({
       ]
     },
   },
-  routeRules: {
-    '/': {
-      redirect: '/home'
-    }
-  },
   vite: {
     build: {
       chunkSizeWarningLimit: 1600
