@@ -1,7 +1,7 @@
 <template>
   <div id="default-layout">
-    <section-navbar v-if="isFrontOffice" />
     <dm-screen-lights :count="8" />
+    <section-navbar v-if="isFrontOffice" />
     <dm-screen-loader v-if="isFrontOffice" />
     <slot />
     <section-footer v-if="isFrontOffice" />
@@ -11,11 +11,5 @@
 <script setup lang="ts">
 import { isAnyCurrentUrl } from 'atomic'
 
-const isFrontOffice = isAnyCurrentUrl([
-  '/',
-  '/about',
-  '/blog',
-  '/register',
-  '/services',
-])
+let isFrontOffice = isAnyCurrentUrl(['/home', '/about', '/blog', '/services'])
 </script>

@@ -6,38 +6,38 @@ import {
   ColorItemColorsInterface,
   UseColorsInterface,
   isCurrentUrl,
+  localStorageGetItem,
+  localStorageSetItem,
 } from 'atomic'
 
 export function useColors(): UseColorsInterface {
-  if (process.client) {
-    const documentStyle = getComputedStyle(document.documentElement)
+  const getItemColors = (key: string): ColorItemColorsInterface => ({
+    primary: localStorageGetItem(`${key}-item-color`) || '',
+    hover: localStorageGetItem(`${key}-item-hover-color`) || '',
+    secondary: localStorageGetItem(`${key}-item-secondary-color`) || '',
+  })
 
-    const getItemColors = (key: string): ColorItemColorsInterface => ({
-      primary: localStorage.getItem(`${key}-item-color`) || '',
-      hover: localStorage.getItem(`${key}-item-hover-color`) || '',
-      secondary: localStorage.getItem(`${key}-item-secondary-color`) || '',
-    })
+  const colors = Object.fromEntries(
+    colorKeys.map((key) => [key, getItemColors(key)])
+  )
 
-    const colors = Object.fromEntries(
-      colorKeys.map((key) => [key, getItemColors(key)])
-    )
-
-    function setDefaultColors(initial: boolean): void {
-      colorKeys.forEach((key) => {
+  function setDefaultColors(initial?: boolean): void {
+    if (process.client) {
+      colorKeys.forEach((key) =>
         colorTypes.forEach((type) => {
           const property = `${key}-item-${type}`
-          const value = documentStyle.getPropertyValue(`--${property}`).trim()
+          const value = getComputedStyle(document.documentElement)
+            .getPropertyValue(`--${property}`)
+            .trim()
 
-          if (initial && !localStorage.getItem(property)) {
-            localStorage.setItem(property, value)
-          } else if (!initial) {
-            localStorage.setItem(property, value)
-            if (isCurrentUrl('/settings')) location.reload()
+          if ((initial && !localStorageGetItem(property)) || !initial) {
+            localStorageSetItem(property, value)
+            if (!initial && isCurrentUrl('/settings')) location.reload()
           }
         })
-      })
+      )
     }
-
-    return { colors, setDefaultColors }
   }
+
+  return { colors, setDefaultColors }
 }

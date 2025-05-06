@@ -19,5 +19,7 @@
 </template>
 
 <script setup lang="ts">
+import { navigateTo } from 'atomic'
+
 import { navLinks } from '.'
 </script>

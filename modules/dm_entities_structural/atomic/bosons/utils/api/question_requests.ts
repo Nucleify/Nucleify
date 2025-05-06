@@ -26,7 +26,7 @@ export function questionRequests(
 
   async function getAllQuestions(loading?: boolean): Promise<void> {
     await apiHandle<QuestionInterface[]>({
-      url: 'questions',
+      url: runtime.apiUrl + 'questions',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: QuestionInterface[]) => {
         results.value = response
@@ -39,7 +39,7 @@ export function questionRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: 'questions/count-by-created-last-week',
+      url: runtime.apiUrl + 'questions/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -52,7 +52,7 @@ export function questionRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<QuestionInterface[]>({
-      url: `questions/get-by-category/${category}`,
+      url: runtime.apiUrl + `questions/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: QuestionInterface[]) => {
         resultsByCategory.value = response
@@ -66,11 +66,10 @@ export function questionRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<QuestionInterface[]>({
-      url: `questions/get-site-questions/${site}`,
+      url: runtime.apiUrl + `questions/get-site-questions/${site}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (data: QuestionInterface[]) => {
         resultsBySite.value = data
-        apiSuccess(data)
       },
     })
   }
@@ -80,7 +79,7 @@ export function questionRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<QuestionInterface>({
-      url: 'questions',
+      url: runtime.apiUrl + 'questions',
       method: 'POST',
       data,
       onSuccess: (response) => {
@@ -94,9 +93,10 @@ export function questionRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<QuestionInterface>({
-      url: `questions/${data.id}`,
+      url: runtime.apiUrl + 'questions/',
       method: 'PUT',
       data,
+      id: data.id,
       onSuccess: (response) => {
         apiSuccess(response, getData, close, 'edit')
       },
@@ -108,8 +108,9 @@ export function questionRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<QuestionInterface>({
-      url: `questions/${id}`,
+      url: runtime.apiUrl + 'questions/',
       method: 'DELETE',
+      id,
       onSuccess: (response) => {
         apiSuccess(response, getData, close, 'delete')
       },

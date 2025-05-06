@@ -26,7 +26,7 @@ export function technologyRequests(
 
   async function getAllTechnologies(loading?: boolean): Promise<void> {
     await apiHandle<TechnologyInterface[]>({
-      url: 'technologies',
+      url: runtime.apiUrl + 'technologies',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: TechnologyInterface[]) => {
         results.value = response
@@ -39,7 +39,7 @@ export function technologyRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: 'technologies/count-by-created-last-week',
+      url: runtime.apiUrl + 'technologies/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -52,7 +52,7 @@ export function technologyRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<TechnologyInterface[]>({
-      url: `technologies/get-by-category/${category}`,
+      url: runtime.apiUrl + `technologies/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: TechnologyInterface[]) => {
         resultsByCategory.value = response
@@ -66,11 +66,10 @@ export function technologyRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<TechnologyInterface[]>({
-      url: `technologies/get-site-technologies/${site}`,
+      url: runtime.apiUrl + `technologies/get-site-technologies/${site}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: TechnologyInterface[]) => {
         resultsBySite.value = response
-        apiSuccess(response)
       },
     })
   }
@@ -80,7 +79,7 @@ export function technologyRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<TechnologyInterface>({
-      url: 'technologies',
+      url: runtime.apiUrl + 'technologies',
       method: 'POST',
       data,
       onSuccess: (response) => {
@@ -94,7 +93,7 @@ export function technologyRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<TechnologyInterface>({
-      url: 'technologies',
+      url: runtime.apiUrl + 'technologies',
       method: 'PUT',
       data,
       id: data.id,
@@ -109,7 +108,7 @@ export function technologyRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<TechnologyInterface>({
-      url: 'technologies',
+      url: runtime.apiUrl + 'technologies',
       method: 'DELETE',
       id,
       onSuccess: (response) => {

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <organism-toast />
     <NuxtRouteAnnouncer />
     <NuxtLayout>
       <NuxtPage />

@@ -21,7 +21,7 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
 
   async function getAllCards(loading?: boolean): Promise<void> {
     await apiHandle<StructuralCardInterface[]>({
-      url: 'cards',
+      url: runtime.apiUrl + 'cards',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: StructuralCardInterface[]) => {
         results.value = response
@@ -33,7 +33,7 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: 'cards/count-by-created-last-week',
+      url: runtime.apiUrl + 'cards/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -46,7 +46,7 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<StructuralCardInterface>({
-      url: 'cards',
+      url: runtime.apiUrl + 'cards',
       method: 'POST',
       data,
       onSuccess: (response: StructuralCardInterface) => {
@@ -60,9 +60,10 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<StructuralCardInterface>({
-      url: `cards/${data.id}`,
+      url: runtime.apiUrl + 'cards/',
       method: 'PUT',
       data,
+      id: data.id,
       onSuccess: (response: StructuralCardInterface) => {
         apiSuccess(response, getData, close, 'edit')
       },
@@ -74,8 +75,9 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<StructuralCardInterface>({
-      url: `cards/${id}`,
+      url: runtime.apiUrl + 'cards/',
       method: 'DELETE',
+      id,
       onSuccess: (response: StructuralCardInterface) => {
         apiSuccess(response, getData, close, 'delete')
       },

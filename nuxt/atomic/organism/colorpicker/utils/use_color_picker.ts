@@ -3,6 +3,7 @@ import {
   UseColorsInterface,
   UseColorPickerInterface,
   createColorTypes,
+  localStorageSetItem,
   useColors,
 } from 'atomic'
 
@@ -21,7 +22,7 @@ export function useColorPicker(item: string): UseColorPickerInterface {
     const colorSettings = createColorTypes(colorValue)
 
     Object.entries(colorSettings).forEach(([key, value]) =>
-      localStorage.setItem(`${item}-item${key ? `-${key}` : ''}-color`, value)
+      localStorageSetItem(`${item}-item${key ? `-${key}` : ''}-color`, value)
     )
   }
 

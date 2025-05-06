@@ -1,5 +1,4 @@
-import { useToast as usePrimeVueToast } from 'primevue/usetoast'
-import { ToastServiceMethods } from 'primevue/toastservice'
+import { useNuxtApp } from 'nuxt/app'
 
 import {
   MessageOrMessagesType,
@@ -8,14 +7,19 @@ import {
 } from 'atomic'
 
 export function useToast(): UseToastInterface {
-  const toast: ToastServiceMethods = usePrimeVueToast()
+  const nuxtApp = useNuxtApp()
+  const getToast: typeof useToast = () =>
+    nuxtApp.vueApp.config.globalProperties.$toast
+  const toast = getToast()
 
   function closeToast(): void {
-    document
-      .querySelectorAll('.p-toast-message')
-      .forEach((element: Element): void => {
-        element.remove()
-      })
+    if (process.client) {
+      document
+        .querySelectorAll('.p-toast-message')
+        .forEach((element: Element): void => {
+          element.remove()
+        })
+    }
   }
 
   function flashToast(

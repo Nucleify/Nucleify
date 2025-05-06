@@ -90,6 +90,7 @@ import {
   PositionType,
   getUserRole,
   setColorsVariables,
+  localStorageGetItem,
 } from 'atomic'
 
 const LOCAL_STORAGE_KEY = 'dock-position'
@@ -114,7 +115,7 @@ function setDockPositionForScreenSize() {
 onMounted(async () => {
   setColorsVariables()
 
-  const savedPosition = localStorage.getItem(LOCAL_STORAGE_KEY)
+  const savedPosition = localStorageGetItem(LOCAL_STORAGE_KEY)
   if (savedPosition) {
     position.value = savedPosition as PositionType
   }
@@ -127,6 +128,6 @@ onMounted(async () => {
 })
 
 watch(position, (newPosition) => {
-  localStorage.setItem(LOCAL_STORAGE_KEY, newPosition)
+  localStorageSetItem(LOCAL_STORAGE_KEY, newPosition)
 })
 </script>

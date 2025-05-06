@@ -26,7 +26,7 @@ export function featureRequests(
 
   async function getAllFeatures(loading?: boolean): Promise<void> {
     await apiHandle<FeatureInterface[]>({
-      url: 'features',
+      url: runtime.apiUrl + 'features',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (data: FeatureInterface[]) => {
         results.value = data
@@ -38,7 +38,7 @@ export function featureRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: 'features/count-by-created-last-week',
+      url: runtime.apiUrl + 'features/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (data: number) => {
         createdLastWeek.value = data
@@ -51,7 +51,7 @@ export function featureRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<FeatureInterface[]>({
-      url: `features/get-by-category/${category}`,
+      url: runtime.apiUrl + `features/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (data: FeatureInterface[]) => {
         resultsByCategory.value = data
@@ -64,7 +64,7 @@ export function featureRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<FeatureInterface[]>({
-      url: `features/get-site-features/${site}`,
+      url: runtime.apiUrl + `features/get-site-features/${site}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (data: FeatureInterface[]) => {
         resultsBySite.value = data
@@ -77,7 +77,7 @@ export function featureRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FeatureInterface>({
-      url: 'features',
+      url: runtime.apiUrl + 'features',
       method: 'POST',
       data,
       onSuccess: (response: FeatureInterface) => {
@@ -91,9 +91,10 @@ export function featureRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FeatureInterface>({
-      url: `features/${data.id}`,
+      url: runtime.apiUrl + 'features/',
       method: 'PUT',
       data,
+      id: data.id,
       onSuccess: (response: FeatureInterface) => {
         apiSuccess(response, getData, close, 'edit')
       },
@@ -105,8 +106,9 @@ export function featureRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FeatureInterface>({
-      url: `features/${id}`,
+      url: runtime.apiUrl + 'features/',
       method: 'DELETE',
+      id,
       onSuccess: (response: FeatureInterface) => {
         apiSuccess(response, getData, close, 'delete')
       },

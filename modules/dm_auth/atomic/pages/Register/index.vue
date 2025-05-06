@@ -1,5 +1,5 @@
 <template>
-  <template-back-link />
+  <template-anchor-backlink />
   <div class="auth-card-container">
     <organism-card class="register-card">
       <template #header>
@@ -7,7 +7,7 @@
           <div class="auth-card-header">
             <atom-heading :tag="1" text="Register" />
 
-            <atom-paragraph class="mb-2" text="Already have an account?">
+            <atom-paragraph text="Already have an account?">
               <molecule-anchor href="/login" :label="'Log in!'" />
             </atom-paragraph>
           </div>
@@ -15,11 +15,11 @@
       </template>
       <template #content>
         <form @submit.prevent="submitForm(registerFields)">
-          <molecule-float-label
+          <molecule-floatlabel
             v-for="(field, index) in registerInputs"
             :key="index"
           >
-            <atom-input-text
+            <atom-inputtext
               v-if="field.type !== 'password'"
               v-model="registerFields[field.model]"
               ad-type="main"
@@ -53,12 +53,12 @@
             />
 
             <atom-label :for="field.id" :label="field.label" />
-          </molecule-float-label>
+          </molecule-floatlabel>
 
           <atom-button
             label="Register"
             type="submit"
-            class="primary-button -mb-1 mt-2"
+            class="primary-button"
             padding="10px 10px"
           />
         </form>
