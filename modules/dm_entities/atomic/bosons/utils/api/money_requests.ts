@@ -21,7 +21,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
 
   async function getAllMoney(loading?: boolean): Promise<void> {
     await apiHandle<MoneyInterface[]>({
-      url: 'money',
+      url: runtime.apiUrl + 'money',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: MoneyInterface[]) => {
         results.value = response
@@ -33,7 +33,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: 'money/count-by-created-last-week',
+      url: runtime.apiUrl + 'money/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -46,7 +46,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<MoneyInterface>({
-      url: 'money',
+      url: runtime.apiUrl + 'money',
       method: 'POST',
       data: {
         user_id: window.sessionStorage.getItem('user_id'),
@@ -63,7 +63,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<MoneyInterface>({
-      url: 'money',
+      url: runtime.apiUrl + 'money',
       method: 'PUT',
       data,
       id: data.id,
@@ -78,7 +78,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<MoneyInterface>({
-      url: 'money',
+      url: runtime.apiUrl + 'money',
       method: 'DELETE',
       id,
       onSuccess: (response: MoneyInterface) => {

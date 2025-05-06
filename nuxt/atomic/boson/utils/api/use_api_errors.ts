@@ -12,20 +12,25 @@ export function useApiErrors(): UseApiErrorsInterface {
     if (error && typeof error === 'object' && 'data' in error) {
       const data = error.data as { error?: string; errors?: string }
 
-      if (data.error) {
+      if (data?.error) {
         flashToast(data.error, 'error')
-        return
+      } else if (data?.errors) {
+        flashToast(data.errors, 'error')
+        setTimeout(() => {
+          document.querySelector('.p-toast-summary')?.classList.add('validation-errors');
+        })
+      } else if (error) {
+        if (error instanceof Error) {
+          flashToast(error.message, 'error')
+        } else if (typeof error === 'string') {
+          flashToast(error, 'error')
+        } else {
+          flashToast('An unknown error occurred', 'error')
+        }
+      } else {
+        flashToast('An unknown error occurred', 'error')
       }
     }
-
-    flashToast(
-      error instanceof Error
-        ? error.message
-        : typeof error === 'string'
-          ? error
-          : 'An unknown error occurred',
-      'error'
-    )
   }
 
   return {

@@ -39,3 +39,17 @@
     }
   }
 }
+
+body:has(#login, #register) {
+  .p-toast {
+    .p-toast-message {
+      .p-toast-message-content {
+        gap: 1rem;
+
+        .p-toast-summary.validation-errors {
+          margin-top: -1.35rem;
+        }
+      }
+    }
+  }
+}

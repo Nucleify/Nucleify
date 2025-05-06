@@ -1,6 +1,4 @@
-import axios from 'axios'
-
-import { LoginFieldsInterface, UserRoleType, navigateTo } from 'atomic'
+import { LoginFieldsInterface, UserRoleType, apiHandle, navigateTo } from 'atomic'
 
 export async function testLogin(role: UserRoleType): Promise<void> {
   const credentials: Record<UserRoleType, LoginFieldsInterface | undefined> = {
@@ -19,10 +17,12 @@ export async function testLogin(role: UserRoleType): Promise<void> {
     return
   }
 
-  try {
-    await axios.post('/login', userCredentials)
-    navigateTo('/dashboard')
-  } catch (error) {
-    console.error('Error during login:', error)
-  }
+    await apiHandle({
+      url: runtime.appUrl + 'login',
+      method: 'POST',
+      data: userCredentials,
+      onSuccess: () => {
+        navigateTo('/dashboard')
+      }
+    })
 }

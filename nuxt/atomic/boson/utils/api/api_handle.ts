@@ -21,8 +21,11 @@ export async function apiHandle<T>({
 
     const response = await apiRequest(url, method, data, id)
 
-    console.log(response)
-    onSuccess(response as T)
+    if (response?.data) {
+      onSuccess(response.data as T)
+    } else {
+      onSuccess(response as T)
+    }
   } catch (error) {
     apiErrors(error)
   } finally {

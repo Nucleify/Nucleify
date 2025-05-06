@@ -23,7 +23,7 @@ export function contactRequests(
 
   async function getAllContacts(loading?: boolean): Promise<void> {
     await apiHandle<ContactInterface[]>({
-      url: 'contacts',
+      url: runtime.apiUrl + 'contacts',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: ContactInterface[]) => {
         results.value = response
@@ -35,7 +35,7 @@ export function contactRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: 'contacts/count-by-created-last-week',
+      url: runtime.apiUrl + 'contacts/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -48,7 +48,7 @@ export function contactRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ContactInterface>({
-      url: 'contacts',
+      url: runtime.apiUrl + 'contacts',
       method: 'POST',
       data: {
         user_id: window.sessionStorage.getItem('user_id'),
@@ -65,7 +65,7 @@ export function contactRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ContactInterface>({
-      url: 'contacts',
+      url: runtime.apiUrl + 'contacts',
       method: 'PUT',
       data,
       id: data.id,
@@ -80,7 +80,7 @@ export function contactRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ContactInterface>({
-      url: 'contacts',
+      url: runtime.apiUrl + 'contacts',
       method: 'DELETE',
       id,
       onSuccess: (response: ContactInterface) => {

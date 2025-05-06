@@ -1,5 +1,5 @@
 <template>
-  <template-back-link />
+  <template-anchor-backlink />
   <organism-card class="login-card">
     <template #header>
       <div class="auth-card-header-container">
@@ -19,11 +19,8 @@
     </template>
     <template #content>
       <form @submit.prevent="submitForm(loginFields)">
-        <molecule-float-label
-          v-for="(field, index) in loginInputs"
-          :key="index"
-        >
-          <atom-input-text
+        <molecule-floatlabel v-for="(field, index) in loginInputs" :key="index">
+          <atom-inputtext
             v-model="loginFields[field.model]"
             :ad-type="'main'"
             :type="field.type"
@@ -32,12 +29,11 @@
             :autofocus="field.autofocus"
           />
           <atom-label :for="field.id" :label="field.label" />
-        </molecule-float-label>
+        </molecule-floatlabel>
 
         <atom-button
           label="Log In"
           type="submit"
-          class="-mb-1 mt-2"
           padding="10px 10px"
         />
       </form>

@@ -22,7 +22,7 @@ export default defineNuxtConfig({
   ssr: true,
   nitro: {
     prerender: {
-      routes: ['/'],
+      routes: ['/home'],
       crawlLinks: true
     },
     output: {
@@ -50,6 +50,11 @@ export default defineNuxtConfig({
         }
       ]
     },
+  },
+  routeRules: {
+    '/': {
+      redirect: '/home'
+    }
   },
   vite: {
     build: {
@@ -89,6 +94,7 @@ export default defineNuxtConfig({
     appManifest: false,
   },
   primevue: {
+    autoImport: true,
     options: {
       theme: {
         preset: Lara

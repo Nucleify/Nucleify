@@ -24,7 +24,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
 
   async function getAllLinks(loading?: boolean): Promise<void> {
     await apiHandle<LinkInterface[]>({
-      url: 'links',
+      url: runtime.apiUrl + 'links',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: LinkInterface[]) => {
         results.value = response
@@ -36,7 +36,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: 'links/count-by-created-last-week',
+      url: runtime.apiUrl + 'links/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -49,7 +49,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<LinkInterface[]>({
-      url: `links/get-by-category/${category}`,
+      url: runtime.apiUrl + `links/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: LinkInterface[]) => {
         resultsByCategory.value = response
@@ -62,7 +62,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<LinkInterface[]>({
-      url: `links/get-site-links/${site}`,
+      url: runtime.apiUrl + `links/get-site-links/${site}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: LinkInterface[]) => {
         resultsBySite.value = response
@@ -75,7 +75,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<LinkInterface>({
-      url: 'links',
+      url: runtime.apiUrl + 'links',
       method: 'POST',
       data,
       onSuccess: (response) => {
@@ -89,9 +89,10 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<LinkInterface>({
-      url: `links/${data.id}`,
+      url: runtime.apiUrl + 'links/',
       method: 'PUT',
       data,
+      id: data.id,
       onSuccess: (response) => {
         apiSuccess(response, getData, close, 'edit')
       },
@@ -103,8 +104,9 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<LinkInterface>({
-      url: `links/${id}`,
+      url: runtime.apiUrl + 'links/',
       method: 'DELETE',
+      id,
       onSuccess: (response) => {
         apiSuccess(response, getData, close, 'delete')
       },

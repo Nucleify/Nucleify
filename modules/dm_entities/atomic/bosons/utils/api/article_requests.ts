@@ -23,7 +23,7 @@ export function articleRequests(
 
   async function getAllArticles(loading?: boolean): Promise<void> {
     await apiHandle<ArticleInterface[]>({
-      url: 'articles',
+      url: runtime.apiUrl + 'articles',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: ArticleInterface[]) => {
         results.value = response
@@ -35,7 +35,7 @@ export function articleRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: 'articles/count-by-created-last-week',
+      url: runtime.apiUrl + 'articles/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -48,7 +48,7 @@ export function articleRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ArticleInterface>({
-      url: 'articles',
+      url: runtime.apiUrl + 'articles',
       method: 'POST',
       data,
       onSuccess: (response: ArticleInterface) => {
@@ -62,7 +62,7 @@ export function articleRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ArticleInterface>({
-      url: 'articles',
+      url: runtime.apiUrl + 'articles',
       method: 'PUT',
       data: article,
       id: article.id,
@@ -77,7 +77,7 @@ export function articleRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ArticleInterface>({
-      url: 'articles',
+      url: runtime.apiUrl + 'articles',
       method: 'DELETE',
       id,
       onSuccess: (response: ArticleInterface) => {

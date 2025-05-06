@@ -7,8 +7,7 @@ export async function apiRequest(
   id: string | number | null = null,
   params: Record<string, any> = {}
 ) {
-  const baseUrl = runtime.apiUrl as string
-  const finalUrl = id ? `${baseUrl}/${url}/${id}` : `${baseUrl}/${url}`
+  const finalUrl = id ? `${url}/${id}` : url
 
   try {
     const response = await $fetch(finalUrl, {

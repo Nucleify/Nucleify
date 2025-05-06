@@ -3,23 +3,23 @@ import type { NavLinkInterface } from '.'
 export const navLinks: NavLinkInterface[] = [
   {
     label: 'Home',
-    href: '/',
+    href: '/home',
   },
   {
     label: 'Services',
-    href: '/',
+    href: '/home',
   },
   {
     label: 'About',
-    href: '/',
+    href: '/home',
   },
   {
     label: 'Blog',
-    href: '/',
+    href: '/home',
   },
   {
     label: 'Login',
-    href: '/',
+    href: '/login',
     isButton: true,
     class: 'login-button',
   },
