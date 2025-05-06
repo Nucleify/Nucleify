@@ -2,7 +2,7 @@
 <template>
   <nav class="navbar">
     <div class="container">
-      <molecule-anchor class="application-header" href="/">
+      <molecule-anchor class="application-header" href="/home">
         <atom-image
           :src="imgUrl + 'logo.svg'"
           alt="DataManager logo"
@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import { NavbarLinks, NavbarDrawer } from './components'
 
-import { navigateTo, useNavbar } from 'atomic'
+import { useNavbar } from 'atomic'
 
 const { navbarExpanded, toggleNavbar } = useNavbar()
 </script>
