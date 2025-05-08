@@ -1,11 +1,10 @@
-import axios from 'axios'
-
 export async function sendArtisanCommand(artisanCommand: string) {
   try {
-    const res = await axios.post('/api/artisan', {
-      command: artisanCommand,
+    const res = await $fetch('/api/artisan', {
+      method: 'POST',
+      body: { command: artisanCommand },
     })
-    return res.data.output
+    return (res as any).output
   } catch (error) {
     return 'Error: Could not execute artisan command'
   }
