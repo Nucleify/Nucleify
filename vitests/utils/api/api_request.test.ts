@@ -6,7 +6,7 @@ describe('apiRequest', () => {
 
   it('calls $fetch with all HTTP methods and returns response', async () => {
     for (const method of atomic.httpMethods) {
-      atomic.mockGlobalFetch({ ok: method })
+      atomic.mockGlobalFetch(vi, { ok: method })
       const res = await atomic.apiRequest('/api/test', method, { a: 1 })
       expect((globalThis as any).$fetch).toHaveBeenCalledWith(
         '/api/test',
@@ -17,7 +17,7 @@ describe('apiRequest', () => {
   })
 
   it('calls $fetch with id in url', async () => {
-    atomic.mockGlobalFetch({ id: 2 })
+    atomic.mockGlobalFetch(vi, { id: 2 })
     await atomic.apiRequest('/api/test', 'GET', null, 2)
     expect((globalThis as any).$fetch).toHaveBeenCalledWith('/api/test/2', expect.anything())
   })

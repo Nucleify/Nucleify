@@ -8,7 +8,7 @@ describe('contactRequests', (): void => {
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    atomic.mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllContacts', async (): Promise<void> => {
