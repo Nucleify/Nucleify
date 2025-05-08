@@ -4,7 +4,7 @@ import {
   CloseDialogType,
   EntityCountResultsType,
   EntityResultsType,
-  UserInterface,
+  UserObjectInterface,
   UseLoadingInterface,
   UserRequestsInterface,
   apiHandle,
@@ -13,17 +13,17 @@ import {
 } from 'atomic'
 
 export function userRequests(close?: CloseDialogType): UserRequestsInterface {
-  const results: EntityResultsType<UserInterface> = ref([])
+  const results: EntityResultsType<UserObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllUsers(loading?: boolean): Promise<void> {
-    await apiHandle<UserInterface[]>({
+    await apiHandle<UserObjectInterface[]>({
       url: runtime.apiUrl + 'users',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: UserInterface[]) => {
+      onSuccess: (response: UserObjectInterface[]) => {
         results.value = response
       },
     })
@@ -42,39 +42,39 @@ export function userRequests(close?: CloseDialogType): UserRequestsInterface {
   }
 
   async function getUser(loading?: boolean): Promise<void> {
-    await apiHandle<UserInterface>({
+    await apiHandle<UserObjectInterface>({
       url: runtime.apiUrl + 'user',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: UserInterface) => {
+      onSuccess: (response: UserObjectInterface) => {
         results.value = response
       },
     })
   }
 
   async function storeUser(
-    data: UserInterface,
+    data: UserObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<UserInterface>({
+    await apiHandle<UserObjectInterface>({
       url: runtime.apiUrl + 'users',
       method: 'POST',
       data,
-      onSuccess: (response: UserInterface) => {
+      onSuccess: (response: UserObjectInterface) => {
         apiSuccess(response, getData, close, 'create')
       },
     })
   }
 
   async function editUser(
-    data: UserInterface,
+    data: UserObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<UserInterface>({
+    await apiHandle<UserObjectInterface>({
       url: runtime.apiUrl + 'users',
       method: 'PUT',
       data,
       id: data.id,
-      onSuccess: (response: UserInterface) => {
+      onSuccess: (response: UserObjectInterface) => {
         apiSuccess(response, getData, close, 'edit')
       },
     })
@@ -84,11 +84,11 @@ export function userRequests(close?: CloseDialogType): UserRequestsInterface {
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<UserInterface>({
+    await apiHandle<UserObjectInterface>({
       url: runtime.apiUrl + 'users',
       method: 'DELETE',
       id,
-      onSuccess: (response: UserInterface) => {
+      onSuccess: (response: UserObjectInterface) => {
         apiSuccess(response, getData, close, 'delete')
       },
     })

@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
 import {
-  ActivityLogInterface,
+  ActivityLogObjectInterface,
   ActivityLogRequestsInterface,
   CloseDialogType,
   EntityCountResultsType,
@@ -15,18 +15,18 @@ import {
 export function activityRequests(
   close: CloseDialogType
 ): ActivityLogRequestsInterface {
-  const results: EntityResultsType<ActivityLogInterface> = ref([])
+  const results: EntityResultsType<ActivityLogObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllActivities(loading?: boolean): Promise<void> {
-    await apiHandle<ActivityLogInterface[]>({
+    await apiHandle<ActivityLogObjectInterface[]>({
       url: runtime.apiUrl + 'activity-log',
       method: 'GET',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: ActivityLogInterface[]) => {
+      onSuccess: (response: ActivityLogObjectInterface[]) => {
         results.value = response
       },
     })
@@ -49,10 +49,10 @@ export function activityRequests(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<ActivityLogInterface>({
+    await apiHandle<ActivityLogObjectInterface>({
       url: runtime.apiUrl + `activity-log/` + id,
       method: 'DELETE',
-      onSuccess: (response: ActivityLogInterface) => {
+      onSuccess: (response: ActivityLogObjectInterface) => {
         apiSuccess(response, getData, close, 'delete')
       },
     })

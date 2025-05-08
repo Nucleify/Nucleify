@@ -4,7 +4,7 @@ import {
   CloseDialogType,
   EntityCountResultsType,
   EntityResultsType,
-  FeatureInterface,
+  FeatureObjectInterface,
   FeatureRequestsInterface,
   SiteType,
   UseLoadingInterface,
@@ -16,19 +16,19 @@ import {
 export function featureRequests(
   close?: CloseDialogType
 ): FeatureRequestsInterface {
-  const results: EntityResultsType<FeatureInterface> = ref([])
-  const resultsByCategory: EntityResultsType<FeatureInterface> = ref([])
-  const resultsBySite: EntityResultsType<FeatureInterface> = ref([])
+  const results: EntityResultsType<FeatureObjectInterface> = ref([])
+  const resultsByCategory: EntityResultsType<FeatureObjectInterface> = ref([])
+  const resultsBySite: EntityResultsType<FeatureObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllFeatures(loading?: boolean): Promise<void> {
-    await apiHandle<FeatureInterface[]>({
+    await apiHandle<FeatureObjectInterface[]>({
       url: runtime.apiUrl + 'features',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (data: FeatureInterface[]) => {
+      onSuccess: (data: FeatureObjectInterface[]) => {
         results.value = data
       },
     })
@@ -50,10 +50,10 @@ export function featureRequests(
     category: string,
     loading?: boolean
   ): Promise<void> {
-    await apiHandle<FeatureInterface[]>({
+    await apiHandle<FeatureObjectInterface[]>({
       url: runtime.apiUrl + `features/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (data: FeatureInterface[]) => {
+      onSuccess: (data: FeatureObjectInterface[]) => {
         resultsByCategory.value = data
       },
     })
@@ -63,39 +63,39 @@ export function featureRequests(
     site: SiteType,
     loading?: boolean
   ): Promise<void> {
-    await apiHandle<FeatureInterface[]>({
+    await apiHandle<FeatureObjectInterface[]>({
       url: runtime.apiUrl + `features/get-site-features/${site}`,
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (data: FeatureInterface[]) => {
+      onSuccess: (data: FeatureObjectInterface[]) => {
         resultsBySite.value = data
       },
     })
   }
 
   async function storeFeature(
-    data: FeatureInterface,
+    data: FeatureObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<FeatureInterface>({
+    await apiHandle<FeatureObjectInterface>({
       url: runtime.apiUrl + 'features',
       method: 'POST',
       data,
-      onSuccess: (response: FeatureInterface) => {
+      onSuccess: (response: FeatureObjectInterface) => {
         apiSuccess(response, getData, close, 'create')
       },
     })
   }
 
   async function editFeature(
-    data: FeatureInterface,
+    data: FeatureObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<FeatureInterface>({
+    await apiHandle<FeatureObjectInterface>({
       url: runtime.apiUrl + 'features/',
       method: 'PUT',
       data,
       id: data.id,
-      onSuccess: (response: FeatureInterface) => {
+      onSuccess: (response: FeatureObjectInterface) => {
         apiSuccess(response, getData, close, 'edit')
       },
     })
@@ -105,11 +105,11 @@ export function featureRequests(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<FeatureInterface>({
+    await apiHandle<FeatureObjectInterface>({
       url: runtime.apiUrl + 'features/',
       method: 'DELETE',
       id,
-      onSuccess: (response: FeatureInterface) => {
+      onSuccess: (response: FeatureObjectInterface) => {
         apiSuccess(response, getData, close, 'delete')
       },
     })

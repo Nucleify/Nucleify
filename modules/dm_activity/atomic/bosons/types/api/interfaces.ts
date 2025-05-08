@@ -1,5 +1,5 @@
 import {
-  ActivityLogInterface,
+  ActivityLogObjectInterface,
   DeleteEntityRequestType,
   EntityCountResultsType,
   EntityResultsType,
@@ -9,10 +9,10 @@ import {
 } from 'atomic'
 
 export interface ActivityLogRequestsInterface {
-  results: EntityResultsType<ActivityLogInterface>
+  results: EntityResultsType<ActivityLogObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllActivities: GetAllEntitiesRequestType<ActivityLogInterface>
+  getAllActivities: GetAllEntitiesRequestType<ActivityLogObjectInterface>
   getCountActivitiesByCreatedLastWeek: GetEntityRequestType
   deleteActivity: DeleteEntityRequestType
 }

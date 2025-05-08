@@ -1,6 +1,6 @@
-import { LinkInterface } from 'atomic'
+import { LinkObjectInterface } from 'atomic'
 
-export const mockLink: LinkInterface = {
+export const mockLink: LinkObjectInterface = {
   id: 999,
   download: 'download',
   href: 'https://www.example.com',

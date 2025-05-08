@@ -1,5 +1,5 @@
 import type {
-  ContactInterface,
+  ContactObjectInterface,
   DeleteEntityRequestType,
   EditEntityRequestType,
   EntityCountResultsType,
@@ -11,12 +11,12 @@ import type {
 } from 'atomic'
 
 export interface ContactRequestsInterface {
-  results: EntityResultsType<ContactInterface>
+  results: EntityResultsType<ContactObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllContacts: GetAllEntitiesRequestType<ContactInterface>
+  getAllContacts: GetAllEntitiesRequestType<ContactObjectInterface>
   getCountContactsByCreatedLastWeek: GetEntityRequestType
-  storeContact: StoreEntityRequestType<ContactInterface>
-  editContact: EditEntityRequestType<ContactInterface>
+  storeContact: StoreEntityRequestType<ContactObjectInterface>
+  editContact: EditEntityRequestType<ContactObjectInterface>
   deleteContact: DeleteEntityRequestType
 }

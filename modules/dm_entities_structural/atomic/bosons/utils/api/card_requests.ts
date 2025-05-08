@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
 import {
-  StructuralCardInterface,
+  CardObjectInterface,
   CardRequestsInterface,
   CloseDialogType,
   UseLoadingInterface,
@@ -13,17 +13,17 @@ import {
 } from 'atomic'
 
 export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
-  const results: EntityResultsType<StructuralCardInterface> = ref([])
+  const results: EntityResultsType<CardObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllCards(loading?: boolean): Promise<void> {
-    await apiHandle<StructuralCardInterface[]>({
+    await apiHandle<CardObjectInterface[]>({
       url: runtime.apiUrl + 'cards',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: StructuralCardInterface[]) => {
+      onSuccess: (response: CardObjectInterface[]) => {
         results.value = response
       },
     })
@@ -42,29 +42,29 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
   }
 
   async function storeCard(
-    data: StructuralCardInterface,
+    data: CardObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<StructuralCardInterface>({
+    await apiHandle<CardObjectInterface>({
       url: runtime.apiUrl + 'cards',
       method: 'POST',
       data,
-      onSuccess: (response: StructuralCardInterface) => {
+      onSuccess: (response: CardObjectInterface) => {
         apiSuccess(response, getData, close, 'create')
       },
     })
   }
 
   async function editCard(
-    data: StructuralCardInterface,
+    data: CardObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<StructuralCardInterface>({
+    await apiHandle<CardObjectInterface>({
       url: runtime.apiUrl + 'cards/',
       method: 'PUT',
       data,
       id: data.id,
-      onSuccess: (response: StructuralCardInterface) => {
+      onSuccess: (response: CardObjectInterface) => {
         apiSuccess(response, getData, close, 'edit')
       },
     })
@@ -74,11 +74,11 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<StructuralCardInterface>({
+    await apiHandle<CardObjectInterface>({
       url: runtime.apiUrl + 'cards/',
       method: 'DELETE',
       id,
-      onSuccess: (response: StructuralCardInterface) => {
+      onSuccess: (response: CardObjectInterface) => {
         apiSuccess(response, getData, close, 'delete')
       },
     })

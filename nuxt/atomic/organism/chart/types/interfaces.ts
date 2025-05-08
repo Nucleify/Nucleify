@@ -1,18 +1,18 @@
 import { CanvasHTMLAttributes } from 'vue'
 
 import {
-  ActivityLogInterface,
-  ArticleInterface,
-  ContactInterface,
+  ActivityLogObjectInterface,
+  ArticleObjectInterface,
+  ContactObjectInterface,
   ChartType,
   ChartMethodType,
-  MoneyInterface,
-  QuestionInterface,
-  TechnologyInterface,
-  UserInterface,
-  StructuralCardInterface,
-  LinkInterface,
-  FeatureInterface,
+  MoneyObjectInterface,
+  QuestionObjectInterface,
+  TechnologyObjectInterface,
+  UserObjectInterface,
+  CardObjectInterface,
+  LinkObjectInterface,
+  FeatureObjectInterface,
 } from 'atomic'
 
 export interface ChartInterface {
@@ -28,16 +28,16 @@ export interface ChartInterface {
   ptOptions?: any // eslint-disable-line
   direction?: string
   chartMethodType: ChartMethodType
-  activityLogData?: ActivityLogInterface[]
-  articleData?: ArticleInterface[]
-  cardData?: StructuralCardInterface[]
-  contactData?: ContactInterface[]
-  featureData?: FeatureInterface[]
-  linkData?: LinkInterface[]
-  moneyData?: MoneyInterface[]
-  questionData?: QuestionInterface[]
-  technologyData?: TechnologyInterface[]
-  userData?: UserInterface[]
+  activityLogData?: ActivityLogObjectInterface[]
+  articleData?: ArticleObjectInterface[]
+  cardData?: CardObjectInterface[]
+  contactData?: ContactObjectInterface[]
+  featureData?: FeatureObjectInterface[]
+  linkData?: LinkObjectInterface[]
+  moneyData?: MoneyObjectInterface[]
+  questionData?: QuestionObjectInterface[]
+  technologyData?: TechnologyObjectInterface[]
+  userData?: UserObjectInterface[]
   chartClass?: string
   example?: boolean
 }

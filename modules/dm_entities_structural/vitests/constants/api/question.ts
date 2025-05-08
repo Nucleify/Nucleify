@@ -1,6 +1,6 @@
-import { QuestionInterface } from 'atomic'
+import { QuestionObjectInterface } from 'atomic'
 
-export const mockQuestion: QuestionInterface = {
+export const mockQuestion: QuestionObjectInterface = {
   id: 999,
   index: Math.floor(Math.random() * 999),
   content: 'Example question?',

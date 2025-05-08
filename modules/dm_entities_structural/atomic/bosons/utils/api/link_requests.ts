@@ -7,26 +7,26 @@ import {
   useLoading,
   SiteType,
   LinkRequestsInterface,
-  LinkInterface,
+  LinkObjectInterface,
   apiHandle,
   EntityResultsType,
   EntityCountResultsType,
 } from 'atomic'
 
 export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
-  const results: EntityResultsType<LinkInterface> = ref([])
-  const resultsByCategory: EntityResultsType<LinkInterface> = ref([])
-  const resultsBySite: EntityResultsType<LinkInterface> = ref([])
+  const results: EntityResultsType<LinkObjectInterface> = ref([])
+  const resultsByCategory: EntityResultsType<LinkObjectInterface> = ref([])
+  const resultsBySite: EntityResultsType<LinkObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllLinks(loading?: boolean): Promise<void> {
-    await apiHandle<LinkInterface[]>({
+    await apiHandle<LinkObjectInterface[]>({
       url: runtime.apiUrl + 'links',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: LinkInterface[]) => {
+      onSuccess: (response: LinkObjectInterface[]) => {
         results.value = response
       },
     })
@@ -48,10 +48,10 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     category: string,
     loading?: boolean
   ): Promise<void> {
-    await apiHandle<LinkInterface[]>({
+    await apiHandle<LinkObjectInterface[]>({
       url: runtime.apiUrl + `links/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: LinkInterface[]) => {
+      onSuccess: (response: LinkObjectInterface[]) => {
         resultsByCategory.value = response
       },
     })
@@ -61,20 +61,20 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     site: SiteType,
     loading?: boolean
   ): Promise<void> {
-    await apiHandle<LinkInterface[]>({
+    await apiHandle<LinkObjectInterface[]>({
       url: runtime.apiUrl + `links/get-site-links/${site}`,
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: LinkInterface[]) => {
+      onSuccess: (response: LinkObjectInterface[]) => {
         resultsBySite.value = response
       },
     })
   }
 
   async function storeLink(
-    data: LinkInterface,
+    data: LinkObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<LinkInterface>({
+    await apiHandle<LinkObjectInterface>({
       url: runtime.apiUrl + 'links',
       method: 'POST',
       data,
@@ -85,10 +85,10 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
   }
 
   async function editLink(
-    data: LinkInterface,
+    data: LinkObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<LinkInterface>({
+    await apiHandle<LinkObjectInterface>({
       url: runtime.apiUrl + 'links/',
       method: 'PUT',
       data,
@@ -103,7 +103,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<LinkInterface>({
+    await apiHandle<LinkObjectInterface>({
       url: runtime.apiUrl + 'links/',
       method: 'DELETE',
       id,

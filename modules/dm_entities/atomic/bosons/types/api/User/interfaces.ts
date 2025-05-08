@@ -7,17 +7,17 @@ import type {
   GetEntityRequestType,
   LoadingRefType,
   StoreEntityRequestType,
-  UserInterface,
+  UserObjectInterface,
 } from 'atomic'
 
 export interface UserRequestsInterface {
-  results: EntityResultsType<UserInterface>
+  results: EntityResultsType<UserObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllUsers: GetAllEntitiesRequestType<UserInterface>
+  getAllUsers: GetAllEntitiesRequestType<UserObjectInterface>
   getCountUsersByCreatedLastWeek: GetEntityRequestType
-  getUser: GetEntityRequestType<UserInterface>
-  storeUser: StoreEntityRequestType<UserInterface>
-  editUser: EditEntityRequestType<UserInterface>
+  getUser: GetEntityRequestType<UserObjectInterface>
+  storeUser: StoreEntityRequestType<UserObjectInterface>
+  editUser: EditEntityRequestType<UserObjectInterface>
   deleteUser: DeleteEntityRequestType
 }
