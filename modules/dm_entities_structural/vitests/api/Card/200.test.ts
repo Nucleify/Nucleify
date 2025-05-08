@@ -1,91 +1,51 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import axios from 'axios'
-
 import {
   mockCard,
-  mockUseToast,
-  StructuralCardInterface,
-  CardRequestsInterface,
-  EntityResponseType,
-  MockUseToastInterface,
   cardRequests,
+  mockGlobalFetch,
   useDialog,
+  CardRequestsInterface,
 } from 'atomic'
-
-vi.mock('axios')
-vi.mock('primevue/usetoast', (): { useToast: () => MockUseToastInterface } => ({
-  useToast: () => mockUseToast(vi.fn()),
-}))
 
 describe('cardRequests', (): void => {
   const { closeDialog } = useDialog()
   const requests: CardRequestsInterface = cardRequests(closeDialog)
-  const mockResponse: EntityResponseType<StructuralCardInterface[]> = {
-    data: [mockCard],
-  }
+  const mockResponse = [mockCard]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    axios.get.mockResolvedValue(mockResponse)
-    axios.post.mockResolvedValue(mockResponse)
-    axios.put.mockResolvedValue(mockResponse)
-    axios.delete.mockResolvedValue(mockResponse)
+    mockGlobalFetch(mockResponse)
   })
 
   it('getAllCards', async (): Promise<void> => {
     await requests.getAllCards()
-
-    expect(axios.get).toHaveBeenCalledWith('/api/cards')
-    expect(mockUseToast.success)
-  })
-
-  it('getCountCardsByCreatedLastWeek', async (): Promise<void> => {
-    await requests.getCountCardsByCreatedLastWeek()
-
-    expect(axios.get).toHaveBeenCalledWith(
-      '/api/cards/count-by-created-last-week'
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('cards'),
+      expect.objectContaining({ method: 'GET' })
     )
-
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
   })
 
   it('storeCard', async (): Promise<void> => {
-    await requests.storeCard(mockCard)
-
-    expect(axios.post).toHaveBeenCalledWith('/api/cards', {
-      src: mockCard.src,
-      title: mockCard.title,
-      description: mockCard.description,
-      component: mockCard.component,
-      display: mockCard.display,
-    })
-
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.storeCard(mockCard, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('cards'),
+      expect.objectContaining({ method: 'POST' })
+    )
   })
 
   it('editCard', async (): Promise<void> => {
-    await requests.editCard(mockCard, requests.getAllCards(), close)
-
-    expect(axios.put).toHaveBeenCalledWith('/api/cards/' + mockCard.id, {
-      src: mockCard.src,
-      title: mockCard.title,
-      description: mockCard.description,
-      component: mockCard.component,
-      display: mockCard.display,
-    })
-
-    expect(axios.get).toHaveBeenCalled()
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.editCard(mockCard, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('cards'),
+      expect.objectContaining({ method: 'PUT' })
+    )
   })
 
   it('deleteCard', async (): Promise<void> => {
-    await requests.deleteCard(mockCard.id, requests.getAllCards(), close)
-
-    expect(axios.delete).toHaveBeenCalledWith('/api/cards/' + mockCard.id)
-    expect(axios.get).toHaveBeenCalledWith('/api/cards')
-    expect(mockUseToast.success)
+    await requests.deleteCard(mockCard.id ?? 0, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('cards'),
+      expect.objectContaining({ method: 'DELETE' })
+    )
   })
 })

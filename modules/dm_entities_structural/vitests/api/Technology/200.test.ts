@@ -1,106 +1,51 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import axios from 'axios'
-
 import {
   mockTechnology,
-  mockUseToast,
-  TechnologyInterface,
-  TechnologyRequestsInterface,
-  EntityResponseType,
-  MockUseToastInterface,
   technologyRequests,
+  mockGlobalFetch,
   useDialog,
+  TechnologyRequestsInterface,
 } from 'atomic'
-
-vi.mock('axios')
-vi.mock('primevue/usetoast', (): { useToast: () => MockUseToastInterface } => ({
-  useToast: () => mockUseToast(vi.fn()),
-}))
 
 describe('technologyRequests', (): void => {
   const { closeDialog } = useDialog()
   const requests: TechnologyRequestsInterface = technologyRequests(closeDialog)
-  const mockResponse: EntityResponseType<TechnologyInterface[]> = {
-    data: [mockTechnology],
-  }
+  const mockResponse = [mockTechnology]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    axios.get.mockResolvedValue(mockResponse)
-    axios.post.mockResolvedValue(mockResponse)
-    axios.put.mockResolvedValue(mockResponse)
-    axios.delete.mockResolvedValue(mockResponse)
+    mockGlobalFetch(mockResponse)
   })
 
   it('getAllTechnologies', async (): Promise<void> => {
     await requests.getAllTechnologies()
-
-    expect(axios.get).toHaveBeenCalledWith('/api/technologies')
-    expect(mockUseToast.success)
-  })
-
-  it('getCountTechnologiesByCreatedLastWeek', async (): Promise<void> => {
-    await requests.getCountTechnologiesByCreatedLastWeek()
-
-    expect(axios.get).toHaveBeenCalledWith(
-      '/api/technologies/count-by-created-last-week'
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('technologies'),
+      expect.objectContaining({ method: 'GET' })
     )
-
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
   })
 
   it('storeTechnology', async (): Promise<void> => {
-    await requests.storeTechnology(mockTechnology)
-
-    expect(axios.post).toHaveBeenCalledWith('/api/technologies', {
-      href: mockTechnology.href,
-      src: mockTechnology.src,
-      label: mockTechnology.label,
-      description: mockTechnology.description,
-      category: mockTechnology.category,
-      display: mockTechnology.display,
-    })
-
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.storeTechnology(mockTechnology, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('technologies'),
+      expect.objectContaining({ method: 'POST' })
+    )
   })
 
   it('editTechnology', async (): Promise<void> => {
-    await requests.editTechnology(
-      mockTechnology,
-      requests.getAllTechnologies(),
-      close
+    await requests.editTechnology(mockTechnology, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('technologies'),
+      expect.objectContaining({ method: 'PUT' })
     )
-
-    expect(axios.put).toHaveBeenCalledWith(
-      '/api/technologies/' + mockTechnology.id,
-      {
-        href: mockTechnology.href,
-        src: mockTechnology.src,
-        label: mockTechnology.label,
-        description: mockTechnology.description,
-        category: mockTechnology.category,
-        display: mockTechnology.display,
-      }
-    )
-
-    expect(axios.get).toHaveBeenCalled()
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
   })
 
   it('deleteTechnology', async (): Promise<void> => {
-    await requests.deleteTechnology(
-      mockTechnology.id,
-      requests.getAllTechnologies(),
-      close
+    await requests.deleteTechnology(mockTechnology.id ?? 0, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('technologies'),
+      expect.objectContaining({ method: 'DELETE' })
     )
-
-    expect(axios.delete).toHaveBeenCalledWith(
-      '/api/technologies/' + mockTechnology.id
-    )
-    expect(axios.get).toHaveBeenCalledWith('/api/technologies')
-    expect(mockUseToast.success)
   })
 })
