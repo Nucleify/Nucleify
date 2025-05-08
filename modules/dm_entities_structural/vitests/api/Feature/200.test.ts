@@ -8,7 +8,7 @@ describe('featureRequests', (): void => {
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    atomic.mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllFeatures', async (): Promise<void> => {

@@ -8,7 +8,7 @@ describe('moneyRequests', (): void => {
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    atomic.mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllMoney', async (): Promise<void> => {

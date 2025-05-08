@@ -8,7 +8,7 @@ describe('activityRequests', (): void => {
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    atomic.mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(vi,mockResponse)
   })
 
   it('getAllActivities', async (): Promise<void> => {

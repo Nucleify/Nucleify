@@ -8,7 +8,7 @@ describe('cardRequests', (): void => {
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    atomic.mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllCards', async (): Promise<void> => {
