@@ -23,6 +23,7 @@ describe('moneyRequests', (): void => {
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'GET' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('storeMoney', async (): Promise<void> => {
@@ -31,6 +32,7 @@ describe('moneyRequests', (): void => {
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'POST' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('editMoney', async (): Promise<void> => {
@@ -39,6 +41,7 @@ describe('moneyRequests', (): void => {
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'PUT' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('deleteMoney', async (): Promise<void> => {
@@ -47,5 +50,6 @@ describe('moneyRequests', (): void => {
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'DELETE' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 })

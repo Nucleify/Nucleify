@@ -23,6 +23,7 @@ describe('articleRequests', (): void => {
       expect.stringContaining('articles'),
       expect.objectContaining({ method: 'GET' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('storeArticle', async (): Promise<void> => {
@@ -31,6 +32,7 @@ describe('articleRequests', (): void => {
       expect.stringContaining('articles'),
       expect.objectContaining({ method: 'POST' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('editArticle', async (): Promise<void> => {
@@ -39,6 +41,7 @@ describe('articleRequests', (): void => {
       expect.stringContaining('articles'),
       expect.objectContaining({ method: 'PUT' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('deleteArticle', async (): Promise<void> => {
@@ -47,5 +50,6 @@ describe('articleRequests', (): void => {
       expect.stringContaining('articles'),
       expect.objectContaining({ method: 'DELETE' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 })
