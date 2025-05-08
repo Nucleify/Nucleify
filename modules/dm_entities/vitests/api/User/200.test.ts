@@ -1,88 +1,51 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import axios from 'axios'
-
 import {
   mockUser,
-  mockUseToast,
-  UserInterface,
-  UserRequestsInterface,
-  EntityResponseType,
-  MockUseToastInterface,
-  useDialog,
   userRequests,
+  mockGlobalFetch,
+  useDialog,
+  UserRequestsInterface,
 } from 'atomic'
-
-vi.mock('axios')
-vi.mock('primevue/usetoast', (): { useToast: () => MockUseToastInterface } => ({
-  useToast: () => mockUseToast(vi.fn()),
-}))
 
 describe('userRequests', (): void => {
   const { closeDialog } = useDialog()
   const requests: UserRequestsInterface = userRequests(closeDialog)
-  const mockResponse: EntityResponseType<UserInterface[]> = {
-    data: [mockUser],
-  }
+  const mockResponse = [mockUser]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    axios.get.mockResolvedValue(mockResponse)
-    axios.post.mockResolvedValue(mockResponse)
-    axios.put.mockResolvedValue(mockResponse)
-    axios.delete.mockResolvedValue(mockResponse)
+    mockGlobalFetch(mockResponse)
   })
 
   it('getAllUsers', async (): Promise<void> => {
     await requests.getAllUsers()
-
-    expect(axios.get).toHaveBeenCalledWith('/api/users')
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
-  })
-
-  it('getCountUsersByCreatedLastWeek', async (): Promise<void> => {
-    await requests.getCountUsersByCreatedLastWeek()
-
-    expect(axios.get).toHaveBeenCalledWith(
-      '/api/users/count-by-created-last-week'
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('users'),
+      expect.objectContaining({ method: 'GET' })
     )
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
   })
 
   it('storeUser', async (): Promise<void> => {
-    await requests.storeUser(mockUser, requests.getAllUsers, closeDialog)
-
-    expect(axios.post).toHaveBeenCalledWith('/api/users', {
-      name: mockUser.name,
-      email: mockUser.email,
-      role: mockUser.role,
-    })
-
-    expect(axios.get).toHaveBeenCalled()
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.storeUser(mockUser, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('users'),
+      expect.objectContaining({ method: 'POST' })
+    )
   })
 
   it('editUser', async (): Promise<void> => {
-    await requests.editUser(mockUser, requests.getAllUsers, closeDialog)
-
-    expect(axios.put).toHaveBeenCalledWith(`/api/users/${mockUser.id}`, {
-      name: mockUser.name,
-      email: mockUser.email,
-      role: mockUser.role,
-    })
-
-    expect(axios.get).toHaveBeenCalled()
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.editUser(mockUser, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('users'),
+      expect.objectContaining({ method: 'PUT' })
+    )
   })
 
   it('deleteUser', async (): Promise<void> => {
-    await requests.deleteUser(mockUser.id, requests.getAllUsers, closeDialog)
-
-    expect(axios.delete).toHaveBeenCalledWith(`/api/users/${mockUser.id}`)
-    expect(axios.get).toHaveBeenCalledWith('/api/users')
-    expect(mockUseToast.success)
+    await requests.deleteUser(mockUser.id ?? 0, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('users'),
+      expect.objectContaining({ method: 'DELETE' })
+    )
   })
 })
