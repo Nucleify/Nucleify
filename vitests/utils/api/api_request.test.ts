@@ -19,6 +19,9 @@ describe('apiRequest', () => {
   it('calls $fetch with id in url', async () => {
     atomic.mockGlobalFetch(vi, { id: 2 })
     await atomic.apiRequest('/api/test', 'GET', null, 2)
-    expect((globalThis as any).$fetch).toHaveBeenCalledWith('/api/test/2', expect.anything())
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      '/api/test/2',
+      expect.anything()
+    )
   })
-}) 
+})

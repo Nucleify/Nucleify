@@ -3,7 +3,8 @@ import * as atomic from 'atomic'
 
 describe('contactRequests', (): void => {
   const { closeDialog } = atomic.useDialog()
-  const requests: atomic.ContactRequestsInterface = atomic.contactRequests(closeDialog)
+  const requests: atomic.ContactRequestsInterface =
+    atomic.contactRequests(closeDialog)
   const mockResponse = [atomic.mockContact]
 
   beforeEach((): void => {

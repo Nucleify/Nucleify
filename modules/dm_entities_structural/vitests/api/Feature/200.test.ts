@@ -3,7 +3,8 @@ import * as atomic from 'atomic'
 
 describe('featureRequests', (): void => {
   const { closeDialog } = atomic.useDialog()
-  const requests: atomic.FeatureRequestsInterface = atomic.featureRequests(closeDialog)
+  const requests: atomic.FeatureRequestsInterface =
+    atomic.featureRequests(closeDialog)
   const mockResponse = [atomic.mockFeature]
 
   beforeEach((): void => {

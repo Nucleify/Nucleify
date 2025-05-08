@@ -3,7 +3,8 @@ import * as atomic from 'atomic'
 
 describe('moneyRequests', (): void => {
   const { closeDialog } = atomic.useDialog()
-  const requests: atomic.MoneyRequestsInterface = atomic.moneyRequests(closeDialog)
+  const requests: atomic.MoneyRequestsInterface =
+    atomic.moneyRequests(closeDialog)
   const mockResponse = [atomic.mockMoney]
 
   beforeEach((): void => {

@@ -3,12 +3,13 @@ import * as atomic from 'atomic'
 
 describe('activityRequests', (): void => {
   const { closeDialog } = atomic.useDialog()
-  const requests: atomic.ActivityLogRequestsInterface = atomic.activityRequests(closeDialog)
+  const requests: atomic.ActivityLogRequestsInterface =
+    atomic.activityRequests(closeDialog)
   const mockResponse = [atomic.mockActivity]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    atomic.mockGlobalFetch(vi,mockResponse)
+    atomic.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllActivities', async (): Promise<void> => {

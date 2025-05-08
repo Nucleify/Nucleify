@@ -2,11 +2,15 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import * as atomic from 'atomic'
 
 describe('useApiSuccess', () => {
-  let apiSuccess: ReturnType<typeof atomic.useApiSuccess>['apiSuccess'], flashToast: ReturnType<typeof vi.fn>
+  let apiSuccess: ReturnType<typeof atomic.useApiSuccess>['apiSuccess'],
+    flashToast: ReturnType<typeof vi.fn>
 
   beforeEach(() => {
     flashToast = vi.fn()
-    vi.spyOn(atomic, 'useToast').mockReturnValue({ flashToast, closeToast: vi.fn() })
+    vi.spyOn(atomic, 'useToast').mockReturnValue({
+      flashToast,
+      closeToast: vi.fn(),
+    })
     apiSuccess = atomic.useApiSuccess().apiSuccess
   })
 
@@ -17,7 +21,10 @@ describe('useApiSuccess', () => {
 
   it('calls flashToast with default message', async () => {
     await apiSuccess()
-    expect(flashToast).toHaveBeenCalledWith('Operation completed successfully', 'success')
+    expect(flashToast).toHaveBeenCalledWith(
+      'Operation completed successfully',
+      'success'
+    )
   })
 
   it('calls getData if provided', async () => {
@@ -31,4 +38,4 @@ describe('useApiSuccess', () => {
     await apiSuccess({}, undefined, close, 'edit')
     expect(close).toHaveBeenCalledWith('edit')
   })
-}) 
+})

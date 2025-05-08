@@ -17,7 +17,9 @@ export function technologyRequests(
   close?: CloseDialogType
 ): TechnologyRequestsInterface {
   const results: EntityResultsType<TechnologyObjectInterface> = ref([])
-  const resultsByCategory: EntityResultsType<TechnologyObjectInterface> = ref([])
+  const resultsByCategory: EntityResultsType<TechnologyObjectInterface> = ref(
+    []
+  )
   const resultsBySite: EntityResultsType<TechnologyObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 

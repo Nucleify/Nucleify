@@ -12,7 +12,10 @@ export function setUserToSessionStorage(user: UserObjectInterface): void {
   }
 
   Object.entries(sanitizedUser).forEach(
-    ([key, value]: [string, UserObjectInterface[keyof UserObjectInterface]]): void => {
+    ([key, value]: [
+      string,
+      UserObjectInterface[keyof UserObjectInterface],
+    ]): void => {
       window.sessionStorage.setItem(
         `user_${key}`,
         JSON.stringify(value).replace(/^"|"$/g, '')
