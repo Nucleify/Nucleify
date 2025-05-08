@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 
 import {
-  ArticleInterface,
+  ArticleObjectInterface,
   ArticleRequestsInterface,
   CloseDialogType,
   UseLoadingInterface,
@@ -15,17 +15,17 @@ import {
 export function articleRequests(
   close?: CloseDialogType
 ): ArticleRequestsInterface {
-  const results: EntityResultsType<ArticleInterface> = ref([])
+  const results: EntityResultsType<ArticleObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllArticles(loading?: boolean): Promise<void> {
-    await apiHandle<ArticleInterface[]>({
+    await apiHandle<ArticleObjectInterface[]>({
       url: runtime.apiUrl + 'articles',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: ArticleInterface[]) => {
+      onSuccess: (response: ArticleObjectInterface[]) => {
         results.value = response
       },
     })
@@ -44,29 +44,29 @@ export function articleRequests(
   }
 
   async function storeArticle(
-    data: ArticleInterface,
+    data: ArticleObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<ArticleInterface>({
+    await apiHandle<ArticleObjectInterface>({
       url: runtime.apiUrl + 'articles',
       method: 'POST',
       data,
-      onSuccess: (response: ArticleInterface) => {
+      onSuccess: (response: ArticleObjectInterface) => {
         apiSuccess(response, getData, close, 'create')
       },
     })
   }
 
   async function editArticle(
-    article: ArticleInterface,
+    article: ArticleObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<ArticleInterface>({
+    await apiHandle<ArticleObjectInterface>({
       url: runtime.apiUrl + 'articles',
       method: 'PUT',
       data: article,
       id: article.id,
-      onSuccess: (response: ArticleInterface) => {
+      onSuccess: (response: ArticleObjectInterface) => {
         apiSuccess(response, getData, close, 'edit')
       },
     })
@@ -76,11 +76,11 @@ export function articleRequests(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<ArticleInterface>({
+    await apiHandle<ArticleObjectInterface>({
       url: runtime.apiUrl + 'articles',
       method: 'DELETE',
       id,
-      onSuccess: (response: ArticleInterface) => {
+      onSuccess: (response: ArticleObjectInterface) => {
         apiSuccess(response, getData, close, 'delete')
       },
     })

@@ -1,4 +1,4 @@
-export interface FeatureInterface {
+export interface FeatureObjectInterface {
   id?: number
   icon?: string
   header?: string

@@ -1,5 +1,5 @@
 import type {
-  ArticleInterface,
+  ArticleObjectInterface,
   DeleteEntityRequestType,
   EditEntityRequestType,
   EntityCountResultsType,
@@ -11,12 +11,12 @@ import type {
 } from 'atomic'
 
 export interface ArticleRequestsInterface {
-  results: EntityResultsType<ArticleInterface>
+  results: EntityResultsType<ArticleObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllArticles: GetAllEntitiesRequestType<ArticleInterface>
+  getAllArticles: GetAllEntitiesRequestType<ArticleObjectInterface>
   getCountArticlesByCreatedLastWeek: GetEntityRequestType
-  storeArticle: StoreEntityRequestType<ArticleInterface>
-  editArticle: EditEntityRequestType<ArticleInterface>
+  storeArticle: StoreEntityRequestType<ArticleObjectInterface>
+  editArticle: EditEntityRequestType<ArticleObjectInterface>
   deleteArticle: DeleteEntityRequestType
 }

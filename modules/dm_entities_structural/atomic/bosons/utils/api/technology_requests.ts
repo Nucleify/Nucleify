@@ -5,7 +5,7 @@ import {
   EntityCountResultsType,
   EntityResultsType,
   SiteType,
-  TechnologyInterface,
+  TechnologyObjectInterface,
   TechnologyRequestsInterface,
   UseLoadingInterface,
   apiHandle,
@@ -16,19 +16,19 @@ import {
 export function technologyRequests(
   close?: CloseDialogType
 ): TechnologyRequestsInterface {
-  const results: EntityResultsType<TechnologyInterface> = ref([])
-  const resultsByCategory: EntityResultsType<TechnologyInterface> = ref([])
-  const resultsBySite: EntityResultsType<TechnologyInterface> = ref([])
+  const results: EntityResultsType<TechnologyObjectInterface> = ref([])
+  const resultsByCategory: EntityResultsType<TechnologyObjectInterface> = ref([])
+  const resultsBySite: EntityResultsType<TechnologyObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllTechnologies(loading?: boolean): Promise<void> {
-    await apiHandle<TechnologyInterface[]>({
+    await apiHandle<TechnologyObjectInterface[]>({
       url: runtime.apiUrl + 'technologies',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: TechnologyInterface[]) => {
+      onSuccess: (response: TechnologyObjectInterface[]) => {
         results.value = response
         apiSuccess(response)
       },
@@ -51,10 +51,10 @@ export function technologyRequests(
     category: string,
     loading?: boolean
   ): Promise<void> {
-    await apiHandle<TechnologyInterface[]>({
+    await apiHandle<TechnologyObjectInterface[]>({
       url: runtime.apiUrl + `technologies/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: TechnologyInterface[]) => {
+      onSuccess: (response: TechnologyObjectInterface[]) => {
         resultsByCategory.value = response
         apiSuccess(response)
       },
@@ -65,20 +65,20 @@ export function technologyRequests(
     site: SiteType,
     loading?: boolean
   ): Promise<void> {
-    await apiHandle<TechnologyInterface[]>({
+    await apiHandle<TechnologyObjectInterface[]>({
       url: runtime.apiUrl + `technologies/get-site-technologies/${site}`,
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: TechnologyInterface[]) => {
+      onSuccess: (response: TechnologyObjectInterface[]) => {
         resultsBySite.value = response
       },
     })
   }
 
   async function storeTechnology(
-    data: TechnologyInterface,
+    data: TechnologyObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<TechnologyInterface>({
+    await apiHandle<TechnologyObjectInterface>({
       url: runtime.apiUrl + 'technologies',
       method: 'POST',
       data,
@@ -89,10 +89,10 @@ export function technologyRequests(
   }
 
   async function editTechnology(
-    data: TechnologyInterface,
+    data: TechnologyObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<TechnologyInterface>({
+    await apiHandle<TechnologyObjectInterface>({
       url: runtime.apiUrl + 'technologies',
       method: 'PUT',
       data,
@@ -107,7 +107,7 @@ export function technologyRequests(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<TechnologyInterface>({
+    await apiHandle<TechnologyObjectInterface>({
       url: runtime.apiUrl + 'technologies',
       method: 'DELETE',
       id,

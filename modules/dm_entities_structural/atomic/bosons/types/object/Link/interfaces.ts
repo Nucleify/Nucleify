@@ -1,4 +1,4 @@
-export interface LinkInterface {
+export interface LinkObjectInterface {
   id?: number
   download?: string
   href?: string

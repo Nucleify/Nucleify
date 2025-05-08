@@ -5,7 +5,7 @@ import {
   EntityResultsType,
   EntityCountResultsType,
   MoneyRequestsInterface,
-  MoneyInterface,
+  MoneyObjectInterface,
   UseLoadingInterface,
   apiHandle,
   useApiSuccess,
@@ -13,17 +13,17 @@ import {
 } from 'atomic'
 
 export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
-  const results: EntityResultsType<MoneyInterface> = ref([])
+  const results: EntityResultsType<MoneyObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllMoney(loading?: boolean): Promise<void> {
-    await apiHandle<MoneyInterface[]>({
+    await apiHandle<MoneyObjectInterface[]>({
       url: runtime.apiUrl + 'money',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: MoneyInterface[]) => {
+      onSuccess: (response: MoneyObjectInterface[]) => {
         results.value = response
       },
     })
@@ -42,32 +42,32 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
   }
 
   async function storeMoney(
-    data: MoneyInterface,
+    data: MoneyObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<MoneyInterface>({
+    await apiHandle<MoneyObjectInterface>({
       url: runtime.apiUrl + 'money',
       method: 'POST',
       data: {
         user_id: window.sessionStorage.getItem('user_id'),
         ...data,
       },
-      onSuccess: (response: MoneyInterface) => {
+      onSuccess: (response: MoneyObjectInterface) => {
         apiSuccess(response, getData, close, 'create')
       },
     })
   }
 
   async function editMoney(
-    data: MoneyInterface,
+    data: MoneyObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<MoneyInterface>({
+    await apiHandle<MoneyObjectInterface>({
       url: runtime.apiUrl + 'money',
       method: 'PUT',
       data,
       id: data.id,
-      onSuccess: (response: MoneyInterface) => {
+      onSuccess: (response: MoneyObjectInterface) => {
         apiSuccess(response, getData, close, 'edit')
       },
     })
@@ -77,11 +77,11 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<MoneyInterface>({
+    await apiHandle<MoneyObjectInterface>({
       url: runtime.apiUrl + 'money',
       method: 'DELETE',
       id,
-      onSuccess: (response: MoneyInterface) => {
+      onSuccess: (response: MoneyObjectInterface) => {
         apiSuccess(response, getData, close, 'delete')
       },
     })

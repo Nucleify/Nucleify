@@ -6,17 +6,17 @@ import type {
   GetAllEntitiesRequestType,
   GetEntityRequestType,
   LoadingRefType,
-  MoneyInterface,
+  MoneyObjectInterface,
   StoreEntityRequestType,
 } from 'atomic'
 
 export interface MoneyRequestsInterface {
-  results: EntityResultsType<MoneyInterface>
+  results: EntityResultsType<MoneyObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllMoney: GetAllEntitiesRequestType<MoneyInterface>
+  getAllMoney: GetAllEntitiesRequestType<MoneyObjectInterface>
   getCountMoneyByCreatedLastWeek: GetEntityRequestType
-  storeMoney: StoreEntityRequestType<MoneyInterface>
-  editMoney: EditEntityRequestType<MoneyInterface>
+  storeMoney: StoreEntityRequestType<MoneyObjectInterface>
+  editMoney: EditEntityRequestType<MoneyObjectInterface>
   deleteMoney: DeleteEntityRequestType
 }
