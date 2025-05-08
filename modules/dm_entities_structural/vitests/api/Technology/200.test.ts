@@ -1,20 +1,14 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import {
-  mockTechnology,
-  technologyRequests,
-  mockGlobalFetch,
-  useDialog,
-  TechnologyRequestsInterface,
-} from 'atomic'
+import * as atomic from 'atomic'
 
 describe('technologyRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: TechnologyRequestsInterface = technologyRequests(closeDialog)
-  const mockResponse = [mockTechnology]
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.TechnologyRequestsInterface = atomic.technologyRequests(closeDialog)
+  const mockResponse = [atomic.mockTechnology]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(mockResponse)
   })
 
   it('getAllTechnologies', async (): Promise<void> => {
@@ -27,7 +21,7 @@ describe('technologyRequests', (): void => {
   })
 
   it('storeTechnology', async (): Promise<void> => {
-    await requests.storeTechnology(mockTechnology, async () => {})
+    await requests.storeTechnology(atomic.mockTechnology, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'POST' })
@@ -36,7 +30,7 @@ describe('technologyRequests', (): void => {
   })
 
   it('editTechnology', async (): Promise<void> => {
-    await requests.editTechnology(mockTechnology, async () => {})
+    await requests.editTechnology(atomic.mockTechnology, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'PUT' })
@@ -45,7 +39,7 @@ describe('technologyRequests', (): void => {
   })
 
   it('deleteTechnology', async (): Promise<void> => {
-    await requests.deleteTechnology(mockTechnology.id ?? 0, async () => {})
+    await requests.deleteTechnology(atomic.mockTechnology.id ?? 0, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'DELETE' })

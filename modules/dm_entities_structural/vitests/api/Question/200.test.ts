@@ -1,20 +1,14 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import {
-  mockQuestion,
-  questionRequests,
-  mockGlobalFetch,
-  useDialog,
-  QuestionRequestsInterface,
-} from 'atomic'
+import * as atomic from 'atomic'
 
 describe('questionRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: QuestionRequestsInterface = questionRequests(closeDialog)
-  const mockResponse = [mockQuestion]
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.QuestionRequestsInterface = atomic.questionRequests(closeDialog)
+  const mockResponse = [atomic.mockQuestion]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(mockResponse)
   })
 
   it('getAllQuestions', async (): Promise<void> => {
@@ -36,7 +30,7 @@ describe('questionRequests', (): void => {
   })
 
   it('storeQuestion', async (): Promise<void> => {
-    await requests.storeQuestion(mockQuestion, async () => {})
+    await requests.storeQuestion(atomic.mockQuestion, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'POST' })
@@ -45,7 +39,7 @@ describe('questionRequests', (): void => {
   })
 
   it('editQuestion', async (): Promise<void> => {
-    await requests.editQuestion(mockQuestion, async () => {})
+    await requests.editQuestion(atomic.mockQuestion, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'PUT' })
@@ -54,7 +48,7 @@ describe('questionRequests', (): void => {
   })
 
   it('deleteQuestion', async (): Promise<void> => {
-    await requests.deleteQuestion(mockQuestion.id ?? 0, async () => {})
+    await requests.deleteQuestion(atomic.mockQuestion.id ?? 0, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'DELETE' })

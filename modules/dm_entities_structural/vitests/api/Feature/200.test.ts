@@ -1,20 +1,14 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import {
-  mockFeature,
-  featureRequests,
-  mockGlobalFetch,
-  useDialog,
-  FeatureRequestsInterface,
-} from 'atomic'
+import * as atomic from 'atomic'
 
 describe('featureRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: FeatureRequestsInterface = featureRequests(closeDialog)
-  const mockResponse = [mockFeature]
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.FeatureRequestsInterface = atomic.featureRequests(closeDialog)
+  const mockResponse = [atomic.mockFeature]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(mockResponse)
   })
 
   it('getAllFeatures', async (): Promise<void> => {
@@ -36,7 +30,7 @@ describe('featureRequests', (): void => {
   })
 
   it('storeFeature', async (): Promise<void> => {
-    await requests.storeFeature(mockFeature, async () => {})
+    await requests.storeFeature(atomic.mockFeature, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('features'),
       expect.objectContaining({ method: 'POST' })
@@ -45,7 +39,7 @@ describe('featureRequests', (): void => {
   })
 
   it('editFeature', async (): Promise<void> => {
-    await requests.editFeature(mockFeature, async () => {})
+    await requests.editFeature(atomic.mockFeature, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('features'),
       expect.objectContaining({ method: 'PUT' })
@@ -54,7 +48,7 @@ describe('featureRequests', (): void => {
   })
 
   it('deleteFeature', async (): Promise<void> => {
-    await requests.deleteFeature(mockFeature.id ?? 0, async () => {})
+    await requests.deleteFeature(atomic.mockFeature.id ?? 0, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('features'),
       expect.objectContaining({ method: 'DELETE' })

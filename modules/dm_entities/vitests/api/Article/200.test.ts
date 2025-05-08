@@ -1,20 +1,14 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import {
-  mockArticle,
-  articleRequests,
-  mockGlobalFetch,
-  useDialog,
-  ArticleRequestsInterface,
-} from 'atomic'
+import * as atomic from 'atomic'
 
 describe('articleRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: ArticleRequestsInterface = articleRequests(closeDialog)
-  const mockResponse = [mockArticle]
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.ArticleRequestsInterface = atomic.articleRequests(closeDialog)
+  const mockResponse = [atomic.mockArticle]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(mockResponse)
   })
 
   it('getAllArticles', async (): Promise<void> => {
@@ -27,7 +21,7 @@ describe('articleRequests', (): void => {
   })
 
   it('storeArticle', async (): Promise<void> => {
-    await requests.storeArticle(mockArticle, async () => {})
+    await requests.storeArticle(atomic.mockArticle, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('articles'),
       expect.objectContaining({ method: 'POST' })
@@ -36,7 +30,7 @@ describe('articleRequests', (): void => {
   })
 
   it('editArticle', async (): Promise<void> => {
-    await requests.editArticle(mockArticle, async () => {})
+    await requests.editArticle(atomic.mockArticle, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('articles'),
       expect.objectContaining({ method: 'PUT' })
@@ -45,7 +39,7 @@ describe('articleRequests', (): void => {
   })
 
   it('deleteArticle', async (): Promise<void> => {
-    await requests.deleteArticle(mockArticle.id ?? 0, async () => {})
+    await requests.deleteArticle(atomic.mockArticle.id ?? 0, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('articles'),
       expect.objectContaining({ method: 'DELETE' })

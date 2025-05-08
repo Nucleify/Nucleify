@@ -1,20 +1,14 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import {
-  mockMoney,
-  moneyRequests,
-  mockGlobalFetch,
-  useDialog,
-  MoneyRequestsInterface,
-} from 'atomic'
+import * as atomic from 'atomic'
 
 describe('moneyRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: MoneyRequestsInterface = moneyRequests(closeDialog)
-  const mockResponse = [mockMoney]
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.MoneyRequestsInterface = atomic.moneyRequests(closeDialog)
+  const mockResponse = [atomic.mockMoney]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(mockResponse)
   })
 
   it('getAllMoney', async (): Promise<void> => {
@@ -27,7 +21,7 @@ describe('moneyRequests', (): void => {
   })
 
   it('storeMoney', async (): Promise<void> => {
-    await requests.storeMoney(mockMoney, async () => {})
+    await requests.storeMoney(atomic.mockMoney, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'POST' })
@@ -36,7 +30,7 @@ describe('moneyRequests', (): void => {
   })
 
   it('editMoney', async (): Promise<void> => {
-    await requests.editMoney(mockMoney, async () => {})
+    await requests.editMoney(atomic.mockMoney, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'PUT' })
@@ -45,7 +39,7 @@ describe('moneyRequests', (): void => {
   })
 
   it('deleteMoney', async (): Promise<void> => {
-    await requests.deleteMoney(mockMoney.id ?? 0, async () => {})
+    await requests.deleteMoney(atomic.mockMoney.id ?? 0, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'DELETE' })
