@@ -1,20 +1,14 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import {
-  mockActivity,
-  activityRequests,
-  mockGlobalFetch,
-  useDialog,
-  ActivityLogRequestsInterface,
-} from 'atomic'
+import { describe, expect, it, beforeEach, vi } from 'vitest'
+import * as atomic from 'atomic'
 
 describe('activityRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: ActivityLogRequestsInterface = activityRequests(closeDialog)
-  const mockResponse = [mockActivity]
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.ActivityLogRequestsInterface = atomic.activityRequests(closeDialog)
+  const mockResponse = [atomic.mockActivity]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(mockResponse)
   })
 
   it('getAllActivities', async (): Promise<void> => {
@@ -36,7 +30,7 @@ describe('activityRequests', (): void => {
   })
 
   it('deleteActivity', async (): Promise<void> => {
-    await requests.deleteActivity(mockActivity.id ?? 0, async () => {})
+    await requests.deleteActivity(atomic.mockActivity.id ?? 0, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('activity-log'),
       expect.objectContaining({ method: 'DELETE' })

@@ -1,20 +1,14 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import {
-  mockLink,
-  linkRequests,
-  mockGlobalFetch,
-  useDialog,
-  LinkRequestsInterface,
-} from 'atomic'
+import * as atomic from 'atomic'
 
 describe('linkRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: LinkRequestsInterface = linkRequests(closeDialog)
-  const mockResponse = [mockLink]
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.LinkRequestsInterface = atomic.linkRequests(closeDialog)
+  const mockResponse = [atomic.mockLink]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(mockResponse)
   })
 
   it('getAllLinks', async (): Promise<void> => {
@@ -27,7 +21,7 @@ describe('linkRequests', (): void => {
   })
 
   it('storeLink', async (): Promise<void> => {
-    await requests.storeLink(mockLink, async () => {})
+    await requests.storeLink(atomic.mockLink, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('links'),
       expect.objectContaining({ method: 'POST' })
@@ -36,7 +30,7 @@ describe('linkRequests', (): void => {
   })
 
   it('editLink', async (): Promise<void> => {
-    await requests.editLink(mockLink, async () => {})
+    await requests.editLink(atomic.mockLink, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('links'),
       expect.objectContaining({ method: 'PUT' })
@@ -45,7 +39,7 @@ describe('linkRequests', (): void => {
   })
 
   it('deleteLink', async (): Promise<void> => {
-    await requests.deleteLink(mockLink.id ?? 0, async () => {})
+    await requests.deleteLink(atomic.mockLink.id ?? 0, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('links'),
       expect.objectContaining({ method: 'DELETE' })

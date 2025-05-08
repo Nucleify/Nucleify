@@ -1,20 +1,14 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import {
-  mockContact,
-  contactRequests,
-  mockGlobalFetch,
-  useDialog,
-  ContactRequestsInterface,
-} from 'atomic'
+import * as atomic from 'atomic'
 
 describe('contactRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: ContactRequestsInterface = contactRequests(closeDialog)
-  const mockResponse = [mockContact]
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.ContactRequestsInterface = atomic.contactRequests(closeDialog)
+  const mockResponse = [atomic.mockContact]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    mockGlobalFetch(mockResponse)
+    atomic.mockGlobalFetch(mockResponse)
   })
 
   it('getAllContacts', async (): Promise<void> => {
@@ -27,7 +21,7 @@ describe('contactRequests', (): void => {
   })
 
   it('storeContact', async (): Promise<void> => {
-    await requests.storeContact(mockContact, async () => {})
+    await requests.storeContact(atomic.mockContact, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('contacts'),
       expect.objectContaining({ method: 'POST' })
@@ -36,7 +30,7 @@ describe('contactRequests', (): void => {
   })
 
   it('editContact', async (): Promise<void> => {
-    await requests.editContact(mockContact, async () => {})
+    await requests.editContact(atomic.mockContact, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('contacts'),
       expect.objectContaining({ method: 'PUT' })
@@ -45,7 +39,7 @@ describe('contactRequests', (): void => {
   })
 
   it('deleteContact', async (): Promise<void> => {
-    await requests.deleteContact(mockContact.id ?? 0, async () => {})
+    await requests.deleteContact(atomic.mockContact.id ?? 0, async () => {})
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('contacts'),
       expect.objectContaining({ method: 'DELETE' })
