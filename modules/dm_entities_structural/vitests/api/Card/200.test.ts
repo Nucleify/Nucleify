@@ -3,7 +3,8 @@ import * as atomic from 'atomic'
 
 describe('cardRequests', (): void => {
   const { closeDialog } = atomic.useDialog()
-  const requests: atomic.CardRequestsInterface = atomic.cardRequests(closeDialog)
+  const requests: atomic.CardRequestsInterface =
+    atomic.cardRequests(closeDialog)
   const mockResponse = [atomic.mockCard]
 
   beforeEach((): void => {

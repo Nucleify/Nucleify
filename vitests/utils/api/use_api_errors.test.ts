@@ -2,11 +2,15 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import * as atomic from 'atomic'
 
 describe('useApiErrors', () => {
-  let apiErrors: ReturnType<typeof atomic.useApiErrors>['apiErrors'], flashToast: ReturnType<typeof vi.fn>
+  let apiErrors: ReturnType<typeof atomic.useApiErrors>['apiErrors'],
+    flashToast: ReturnType<typeof vi.fn>
 
   beforeEach(() => {
     flashToast = vi.fn()
-    vi.spyOn(atomic, 'useToast').mockReturnValue({ flashToast, closeToast: vi.fn() })
+    vi.spyOn(atomic, 'useToast').mockReturnValue({
+      flashToast,
+      closeToast: vi.fn(),
+    })
     vi.spyOn(atomic, 'useApiErrors').mockReturnValue({ apiErrors: flashToast })
     ;(globalThis as any).process = { client: true }
     ;(globalThis as any).document = {
@@ -24,4 +28,4 @@ describe('useApiErrors', () => {
     apiErrors({ data: {} })
     expect(flashToast).toHaveBeenCalled()
   })
-}) 
+})

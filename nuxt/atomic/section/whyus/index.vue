@@ -55,11 +55,17 @@ const { getSiteFeatures, resultsBySite } = featureRequests(closeDialog)
 
 const props = defineProps<WhyUsInterface>()
 
-const whyUsGroups = computed<[FeatureObjectInterface, FeatureObjectInterface?][]>(() => {
+const whyUsGroups = computed<
+  [FeatureObjectInterface, FeatureObjectInterface?][]
+>(() => {
   if (!resultsBySite.value.length) return []
 
   return resultsBySite.value.reduce(
-    (result: [FeatureObjectInterface, FeatureObjectInterface?][], item, index) => {
+    (
+      result: [FeatureObjectInterface, FeatureObjectInterface?][],
+      item,
+      index
+    ) => {
       if (index % 2 === 0) {
         if (!resultsBySite.value[index + 1]) result.push([item])
         else result.push([item, resultsBySite.value[index + 1]])

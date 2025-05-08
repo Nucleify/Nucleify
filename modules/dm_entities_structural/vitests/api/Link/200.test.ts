@@ -3,7 +3,8 @@ import * as atomic from 'atomic'
 
 describe('linkRequests', (): void => {
   const { closeDialog } = atomic.useDialog()
-  const requests: atomic.LinkRequestsInterface = atomic.linkRequests(closeDialog)
+  const requests: atomic.LinkRequestsInterface =
+    atomic.linkRequests(closeDialog)
   const mockResponse = [atomic.mockLink]
 
   beforeEach((): void => {

@@ -2,7 +2,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import * as atomic from 'atomic'
 
 describe('apiHandle', () => {
-  let onSuccess: ReturnType<typeof vi.fn>, setLoading: ReturnType<typeof vi.fn>, apiHandle: typeof apiUtils.apiHandle, apiErrors: ReturnType<typeof vi.fn>
+  let onSuccess: ReturnType<typeof vi.fn>,
+    setLoading: ReturnType<typeof vi.fn>,
+    apiHandle: typeof apiUtils.apiHandle,
+    apiErrors: ReturnType<typeof vi.fn>
 
   beforeEach(async () => {
     onSuccess = vi.fn()
@@ -30,4 +33,4 @@ describe('apiHandle', () => {
     await apiHandle({ url: '/api/test', onSuccess, setLoading })
     expect(apiErrors).toHaveBeenCalled()
   })
-}) 
+})

@@ -3,7 +3,8 @@ import * as atomic from 'atomic'
 
 describe('technologyRequests', (): void => {
   const { closeDialog } = atomic.useDialog()
-  const requests: atomic.TechnologyRequestsInterface = atomic.technologyRequests(closeDialog)
+  const requests: atomic.TechnologyRequestsInterface =
+    atomic.technologyRequests(closeDialog)
   const mockResponse = [atomic.mockTechnology]
 
   beforeEach((): void => {
@@ -39,7 +40,10 @@ describe('technologyRequests', (): void => {
   })
 
   it('deleteTechnology', async (): Promise<void> => {
-    await requests.deleteTechnology(atomic.mockTechnology.id ?? 0, async () => {})
+    await requests.deleteTechnology(
+      atomic.mockTechnology.id ?? 0,
+      async () => {}
+    )
     expect((globalThis as any).$fetch).toHaveBeenCalledWith(
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'DELETE' })

@@ -31,11 +31,7 @@
           <atom-label :for="field.id" :label="field.label" />
         </molecule-floatlabel>
 
-        <atom-button
-          label="Log In"
-          type="submit"
-          padding="10px 10px"
-        />
+        <atom-button label="Log In" type="submit" padding="10px 10px" />
       </form>
     </template>
   </organism-card>
