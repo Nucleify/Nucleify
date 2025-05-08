@@ -23,6 +23,7 @@ describe('technologyRequests', (): void => {
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'GET' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('storeTechnology', async (): Promise<void> => {
@@ -31,6 +32,7 @@ describe('technologyRequests', (): void => {
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'POST' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('editTechnology', async (): Promise<void> => {
@@ -39,6 +41,7 @@ describe('technologyRequests', (): void => {
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'PUT' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('deleteTechnology', async (): Promise<void> => {
@@ -47,5 +50,6 @@ describe('technologyRequests', (): void => {
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'DELETE' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 })

@@ -23,6 +23,7 @@ describe('activityRequests', (): void => {
       expect.stringContaining('activity-log'),
       expect.objectContaining({ method: 'GET' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('getCountActivitiesByCreatedLastWeek', async (): Promise<void> => {
@@ -31,6 +32,7 @@ describe('activityRequests', (): void => {
       expect.stringContaining('activity-log/count-by-created-last-week'),
       expect.objectContaining({ method: 'GET' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('deleteActivity', async (): Promise<void> => {
@@ -39,5 +41,6 @@ describe('activityRequests', (): void => {
       expect.stringContaining('activity-log'),
       expect.objectContaining({ method: 'DELETE' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 })

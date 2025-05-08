@@ -23,6 +23,7 @@ describe('questionRequests', (): void => {
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'GET' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('getCountQuestionsByCreatedLastWeek', async (): Promise<void> => {
@@ -31,6 +32,7 @@ describe('questionRequests', (): void => {
       expect.stringContaining('questions/count-by-created-last-week'),
       expect.objectContaining({ method: 'GET' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('storeQuestion', async (): Promise<void> => {
@@ -39,6 +41,7 @@ describe('questionRequests', (): void => {
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'POST' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('editQuestion', async (): Promise<void> => {
@@ -47,6 +50,7 @@ describe('questionRequests', (): void => {
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'PUT' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('deleteQuestion', async (): Promise<void> => {
@@ -55,5 +59,6 @@ describe('questionRequests', (): void => {
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'DELETE' })
     )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 })
