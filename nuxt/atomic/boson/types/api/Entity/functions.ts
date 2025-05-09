@@ -1,5 +1,3 @@
-import { AxiosResponse } from 'axios'
-
 import { SiteType } from 'atomic'
 
 export type DeleteEntityRequestType = (
@@ -10,8 +8,6 @@ export type DeleteEntityRequestType = (
 export type GetAllEntitiesRequestType<T> = (
   loading?: boolean
 ) => Promise<void | T[]>
-
-export type GetAllEntitiesRequestResponseType<T> = AxiosResponse<T[]>
 
 export type GetEntitiesByCategoryRequestType = (
   category: string,

@@ -2,7 +2,7 @@ import { ref } from 'vue'
 
 import {
   CloseDialogType,
-  ContactInterface,
+  ContactObjectInterface,
   ContactRequestsInterface,
   EntityCountResultsType,
   EntityResultsType,
@@ -15,17 +15,17 @@ import {
 export function contactRequests(
   close?: CloseDialogType
 ): ContactRequestsInterface {
-  const results: EntityResultsType<ContactInterface> = ref([])
+  const results: EntityResultsType<ContactObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllContacts(loading?: boolean): Promise<void> {
-    await apiHandle<ContactInterface[]>({
+    await apiHandle<ContactObjectInterface[]>({
       url: runtime.apiUrl + 'contacts',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: ContactInterface[]) => {
+      onSuccess: (response: ContactObjectInterface[]) => {
         results.value = response
       },
     })
@@ -44,32 +44,32 @@ export function contactRequests(
   }
 
   async function storeContact(
-    data: ContactInterface,
+    data: ContactObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<ContactInterface>({
+    await apiHandle<ContactObjectInterface>({
       url: runtime.apiUrl + 'contacts',
       method: 'POST',
       data: {
         user_id: window.sessionStorage.getItem('user_id'),
         ...data,
       },
-      onSuccess: (response: ContactInterface) => {
+      onSuccess: (response: ContactObjectInterface) => {
         apiSuccess(response, getData, close, 'create')
       },
     })
   }
 
   async function editContact(
-    data: ContactInterface,
+    data: ContactObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<ContactInterface>({
+    await apiHandle<ContactObjectInterface>({
       url: runtime.apiUrl + 'contacts',
       method: 'PUT',
       data,
       id: data.id,
-      onSuccess: (response: ContactInterface) => {
+      onSuccess: (response: ContactObjectInterface) => {
         apiSuccess(response, getData, close, 'edit')
       },
     })
@@ -79,11 +79,11 @@ export function contactRequests(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<ContactInterface>({
+    await apiHandle<ContactObjectInterface>({
       url: runtime.apiUrl + 'contacts',
       method: 'DELETE',
       id,
-      onSuccess: (response: ContactInterface) => {
+      onSuccess: (response: ContactObjectInterface) => {
         apiSuccess(response, getData, close, 'delete')
       },
     })

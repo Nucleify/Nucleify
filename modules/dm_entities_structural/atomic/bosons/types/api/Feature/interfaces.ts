@@ -3,7 +3,7 @@ import {
   EditEntityRequestType,
   EntityCountResultsType,
   EntityResultsType,
-  FeatureInterface,
+  FeatureObjectInterface,
   GetAllEntitiesRequestType,
   GetEntitiesByCategoryRequestType,
   GetEntityRequestType,
@@ -13,16 +13,16 @@ import {
 } from 'atomic'
 
 export interface FeatureRequestsInterface {
-  results: EntityResultsType<FeatureInterface>
-  resultsByCategory: EntityResultsType<FeatureInterface>
-  resultsBySite: EntityResultsType<FeatureInterface>
+  results: EntityResultsType<FeatureObjectInterface>
+  resultsByCategory: EntityResultsType<FeatureObjectInterface>
+  resultsBySite: EntityResultsType<FeatureObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllFeatures: GetAllEntitiesRequestType<FeatureInterface>
+  getAllFeatures: GetAllEntitiesRequestType<FeatureObjectInterface>
   getFeaturesByCategory: GetEntitiesByCategoryRequestType
   getSiteFeatures: GetSiteEntitiesRequestType
   getCountFeaturesByCreatedLastWeek: GetEntityRequestType
-  storeFeature: StoreEntityRequestType<FeatureInterface>
-  editFeature: EditEntityRequestType<FeatureInterface>
+  storeFeature: StoreEntityRequestType<FeatureObjectInterface>
+  editFeature: EditEntityRequestType<FeatureObjectInterface>
   deleteFeature: DeleteEntityRequestType
 }

@@ -1,6 +1,6 @@
-import { UserInterface } from 'atomic'
+import { UserObjectInterface } from 'atomic'
 
-export const mockUser: UserInterface = {
+export const mockUser: UserObjectInterface = {
   id: 999999,
   name: 'Example',
   email: 'example@data-manager.com',

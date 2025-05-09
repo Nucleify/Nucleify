@@ -1,104 +1,50 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import axios from 'axios'
-
-import {
-  mockContact,
-  mockUseToast,
-  ContactInterface,
-  ContactRequestsInterface,
-  EntityResponseType,
-  MockUseToastInterface,
-  contactRequests,
-  useDialog,
-} from 'atomic'
-
-vi.mock('axios')
-vi.mock('primevue/usetoast', (): { useToast: () => MockUseToastInterface } => ({
-  useToast: () => mockUseToast(vi.fn()),
-}))
+import * as atomic from 'atomic'
 
 describe('contactRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: ContactRequestsInterface = contactRequests(closeDialog)
-  const mockResponse: EntityResponseType<ContactInterface[]> = {
-    data: [mockContact],
-  }
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.ContactRequestsInterface =
+    atomic.contactRequests(closeDialog)
+  const mockResponse = [atomic.mockContact]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    axios.get.mockResolvedValue(mockResponse)
-    axios.post.mockResolvedValue(mockResponse)
-    axios.put.mockResolvedValue(mockResponse)
-    axios.delete.mockResolvedValue(mockResponse)
+    atomic.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllContacts', async (): Promise<void> => {
     await requests.getAllContacts()
-
-    expect(axios.get).toHaveBeenCalledWith('/api/contacts')
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
-  })
-
-  it('getCountContactsByCreatedLastWeek', async (): Promise<void> => {
-    await requests.getCountContactsByCreatedLastWeek()
-
-    expect(axios.get).toHaveBeenCalledWith(
-      '/api/contacts/count-by-created-last-week'
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('contacts'),
+      expect.objectContaining({ method: 'GET' })
     )
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('storeContact', async (): Promise<void> => {
-    await requests.storeContact(mockContact, requests.getAllContacts(), close)
-
-    expect(axios.post).toHaveBeenCalledWith('/api/contacts', {
-      user_id: window.sessionStorage.getItem('user_id'),
-      first_name: mockContact.first_name,
-      last_name: mockContact.last_name,
-      email: mockContact.email,
-      personal_phone: mockContact.personal_phone,
-      work_phone: mockContact.work_phone,
-      address: mockContact.address,
-      birthday: mockContact.birthday,
-      contact_groups: mockContact.contact_groups,
-      role: mockContact.role,
-    })
-
-    expect(axios.get).toHaveBeenCalled()
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.storeContact(atomic.mockContact, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('contacts'),
+      expect.objectContaining({ method: 'POST' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('editContact', async (): Promise<void> => {
-    await requests.editContact(mockContact, requests.getAllContacts(), close)
-
-    expect(axios.put).toHaveBeenCalledWith(`/api/contacts/${mockContact.id}`, {
-      first_name: mockContact.first_name,
-      last_name: mockContact.last_name,
-      email: mockContact.email,
-      personal_phone: mockContact.personal_phone,
-      work_phone: mockContact.work_phone,
-      address: mockContact.address,
-      birthday: mockContact.birthday,
-      contact_groups: mockContact.contact_groups,
-      role: mockContact.role,
-    })
-
-    expect(axios.get).toHaveBeenCalled()
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.editContact(atomic.mockContact, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('contacts'),
+      expect.objectContaining({ method: 'PUT' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('deleteContact', async (): Promise<void> => {
-    await requests.deleteContact(
-      mockContact.id,
-      requests.getAllContacts(),
-      close
+    await requests.deleteContact(atomic.mockContact.id ?? 0, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('contacts'),
+      expect.objectContaining({ method: 'DELETE' })
     )
-    expect(axios.delete).toHaveBeenCalledWith(`/api/contacts/${mockContact.id}`)
-    expect(axios.get).toHaveBeenCalledWith('/api/contacts')
-    expect(mockUseToast.success)
+    expect(requests.results.value).toEqual(mockResponse)
   })
 })

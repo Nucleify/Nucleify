@@ -1,5 +1,5 @@
 import {
-  StructuralCardInterface,
+  CardObjectInterface,
   DeleteEntityRequestType,
   EditEntityRequestType,
   GetAllEntitiesRequestType,
@@ -11,12 +11,12 @@ import {
 } from 'atomic'
 
 export interface CardRequestsInterface {
-  results: EntityResultsType<StructuralCardInterface>
+  results: EntityResultsType<CardObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllCards: GetAllEntitiesRequestType<StructuralCardInterface>
+  getAllCards: GetAllEntitiesRequestType<CardObjectInterface>
   getCountCardsByCreatedLastWeek: GetEntityRequestType
-  storeCard: StoreEntityRequestType<StructuralCardInterface>
-  editCard: EditEntityRequestType<StructuralCardInterface>
+  storeCard: StoreEntityRequestType<CardObjectInterface>
+  editCard: EditEntityRequestType<CardObjectInterface>
   deleteCard: DeleteEntityRequestType
 }

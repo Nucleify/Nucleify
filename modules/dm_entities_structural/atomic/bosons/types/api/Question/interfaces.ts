@@ -8,21 +8,21 @@ import type {
   GetEntityRequestType,
   GetSiteEntitiesRequestType,
   LoadingRefType,
-  QuestionInterface,
+  QuestionObjectInterface,
   StoreEntityRequestType,
 } from 'atomic'
 
 export interface QuestionRequestsInterface {
-  results: EntityResultsType<QuestionInterface>
-  resultsByCategory: EntityResultsType<QuestionInterface>
-  resultsBySite: EntityResultsType<QuestionInterface>
+  results: EntityResultsType<QuestionObjectInterface>
+  resultsByCategory: EntityResultsType<QuestionObjectInterface>
+  resultsBySite: EntityResultsType<QuestionObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllQuestions: GetAllEntitiesRequestType<QuestionInterface>
+  getAllQuestions: GetAllEntitiesRequestType<QuestionObjectInterface>
   getQuestionsByCategory: GetEntitiesByCategoryRequestType
   getSiteQuestions: GetSiteEntitiesRequestType
   getCountQuestionsByCreatedLastWeek: GetEntityRequestType
-  storeQuestion: StoreEntityRequestType<QuestionInterface>
-  editQuestion: EditEntityRequestType<QuestionInterface>
+  storeQuestion: StoreEntityRequestType<QuestionObjectInterface>
+  editQuestion: EditEntityRequestType<QuestionObjectInterface>
   deleteQuestion: DeleteEntityRequestType
 }

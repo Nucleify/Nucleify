@@ -1,4 +1,4 @@
-export interface TechnologyInterface {
+export interface TechnologyObjectInterface {
   id?: number
   href?: string
   src?: string

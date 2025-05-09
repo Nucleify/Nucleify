@@ -1,29 +1,29 @@
 import { Ref } from 'vue'
 
 import {
-  ActivityLogInterface,
-  ArticleInterface,
-  StructuralCardInterface,
-  ContactInterface,
-  FeatureInterface,
-  LinkInterface,
-  MoneyInterface,
-  QuestionInterface,
-  TechnologyInterface,
-  UserInterface,
+  ActivityLogObjectInterface,
+  ArticleObjectInterface,
+  CardObjectInterface,
+  ContactObjectInterface,
+  FeatureObjectInterface,
+  LinkObjectInterface,
+  MoneyObjectInterface,
+  QuestionObjectInterface,
+  TechnologyObjectInterface,
+  UserObjectInterface,
 } from 'atomic'
 
 export type ObjectType =
-  | ActivityLogInterface
-  | ArticleInterface
-  | StructuralCardInterface
-  | ContactInterface
-  | FeatureInterface
-  | LinkInterface
-  | MoneyInterface
-  | QuestionInterface
-  | TechnologyInterface
-  | UserInterface
+  | ActivityLogObjectInterface
+  | ArticleObjectInterface
+  | CardObjectInterface
+  | ContactObjectInterface
+  | FeatureObjectInterface
+  | LinkObjectInterface
+  | MoneyObjectInterface
+  | QuestionObjectInterface
+  | TechnologyObjectInterface
+  | UserObjectInterface
   | undefined
 
 export type ObjectNameType =

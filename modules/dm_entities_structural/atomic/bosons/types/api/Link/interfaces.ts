@@ -7,22 +7,22 @@ import type {
   GetEntitiesByCategoryRequestType,
   GetEntityRequestType,
   GetSiteEntitiesRequestType,
-  LinkInterface,
+  LinkObjectInterface,
   LoadingRefType,
   StoreEntityRequestType,
 } from 'atomic'
 
 export interface LinkRequestsInterface {
-  results: EntityResultsType<LinkInterface>
-  resultsByCategory: EntityResultsType<LinkInterface>
-  resultsBySite: EntityResultsType<LinkInterface>
+  results: EntityResultsType<LinkObjectInterface>
+  resultsByCategory: EntityResultsType<LinkObjectInterface>
+  resultsBySite: EntityResultsType<LinkObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllLinks: GetAllEntitiesRequestType<LinkInterface>
+  getAllLinks: GetAllEntitiesRequestType<LinkObjectInterface>
   getLinksByCategory: GetEntitiesByCategoryRequestType
   getSiteLinks: GetSiteEntitiesRequestType
   getCountLinksByCreatedLastWeek: GetEntityRequestType
-  storeLink: StoreEntityRequestType<LinkInterface>
-  editLink: EditEntityRequestType<LinkInterface>
+  storeLink: StoreEntityRequestType<LinkObjectInterface>
+  editLink: EditEntityRequestType<LinkObjectInterface>
   deleteLink: DeleteEntityRequestType
 }
