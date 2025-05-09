@@ -1,16 +1,22 @@
-import { QuestionInterface, UseSplitQuestionsInterface } from 'atomic'
+import { QuestionObjectInterface, UseSplitQuestionsInterface } from 'atomic'
 
 export function useSplitQuestions(
-  questions: QuestionInterface | QuestionInterface[]
+  questions: QuestionObjectInterface | QuestionObjectInterface[]
 ): UseSplitQuestionsInterface {
-  const normalizedQuestions: QuestionInterface[] = Array.isArray(questions)
+  const normalizedQuestions: QuestionObjectInterface[] = Array.isArray(
+    questions
+  )
     ? questions
     : [questions]
 
   const middleIndex: number = Math.ceil(normalizedQuestions.length / 2)
 
-  const column1: QuestionInterface[] = normalizedQuestions.slice(0, middleIndex)
-  const column2: QuestionInterface[] = normalizedQuestions.slice(middleIndex)
+  const column1: QuestionObjectInterface[] = normalizedQuestions.slice(
+    0,
+    middleIndex
+  )
+  const column2: QuestionObjectInterface[] =
+    normalizedQuestions.slice(middleIndex)
 
   return { column1, column2 }
 }

@@ -21,7 +21,7 @@
 import {
   questionRequests,
   SectionFaqInterface,
-  QuestionInterface,
+  QuestionObjectInterface,
   useSplitQuestions,
   useDialog,
 } from 'atomic'
@@ -33,8 +33,8 @@ const props = defineProps<SectionFaqInterface>()
 
 const { getSiteQuestions, resultsBySite } = questionRequests(closeDialog)
 
-const column1 = ref<QuestionInterface[]>([])
-const column2 = ref<QuestionInterface[]>([])
+const column1 = ref<QuestionObjectInterface[]>([])
+const column2 = ref<QuestionObjectInterface[]>([])
 
 onMounted(() => {
   getSiteQuestions(props.site!, true)

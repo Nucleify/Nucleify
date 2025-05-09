@@ -22,27 +22,33 @@ use Illuminate\Support\Facades\Route;
 /**
  *  Serve Nuxt payload
  */
-function serveNuxtFile($path, $contentType = 'text/html') {
-    if (!file_exists($path)) {
-        return response()->json(['error' => 'File not found'], 404);
+if (!function_exists('serveNuxtFile')) {
+    function serveNuxtFile($path, $contentType = 'text/html')
+    {
+        if (!file_exists($path)) {
+            return response()->json(['error' => 'File not found'], 404);
+        }
+
+        return response()->file($path, [
+            'Content-Type' => $contentType,
+            'Cache-Control' => $contentType === 'text/html' ? 'no-cache, no-store, must-revalidate' : 'public, max-age=31536000',
+            'Pragma' => 'no-cache',
+            'Expires' => '0',
+            'Access-Control-Allow-Origin' => '*',
+            'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With',
+        ]);
     }
-
-    return response()->file($path, [
-        'Content-Type' => $contentType,
-        'Cache-Control' => $contentType === 'text/html' ? 'no-cache, no-store, must-revalidate' : 'public, max-age=31536000',
-        'Pragma' => 'no-cache',
-        'Expires' => '0',
-        'Access-Control-Allow-Origin' => '*',
-        'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
-        'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With',
-    ]);
 }
 
-function serveNuxtPage($page) {
-    return serveNuxtFile(base_path("public/build/{$page}/index.html"));
+if (!function_exists('serveNuxtPage')) {
+    function serveNuxtPage($page)
+    {
+        return serveNuxtFile(base_path("public/build/{$page}/index.html"));
+    }
 }
 
-Route::get('/_payload.json', fn() => serveNuxtFile(base_path('public/build/_payload.json'), 'application/json'));
+Route::get('/_payload.json', fn () => serveNuxtFile(base_path('public/build/_payload.json'), 'application/json'));
 
 /**
  *  Serve Nuxt static assets
@@ -63,6 +69,7 @@ Route::get('/_nuxt/{path}', function ($path) {
         'ico' => 'image/x-icon',
     ];
     $extension = pathinfo($path, PATHINFO_EXTENSION);
+
     return serveNuxtFile(base_path('public/build/_nuxt/' . $path), $mimeTypes[$extension] ?? 'application/octet-stream');
 })->where('path', '.*');
 
@@ -78,20 +85,18 @@ Route::get('/_fonts/{path}', function ($path) {
         'eot' => 'application/vnd.ms-fontobject',
         default => 'application/octet-stream'
     };
+
     return serveNuxtFile(base_path('public/build/_fonts/' . $path), $mimeType);
 })->where('path', '.*');
 
 /**
  *  Serve Nuxt application for all other routes
  */
-Route::get('/{any}', fn() => 
-    serveNuxtFile(base_path('public/build/index.html'))
+Route::get('/{any}', fn () => serveNuxtFile(base_path('public/build/index.html'))
 )->where('any', '^(?!api/|home|login|register).+');
 
-Route::get('/', fn() => 
-    redirect()->route('home')
+Route::get('/', fn () => redirect()->route('home')
 );
 
-Route::get('/home', fn() => 
-    serveNuxtPage('home')
+Route::get('/home', fn () => serveNuxtPage('home')
 )->name('home');

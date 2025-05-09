@@ -9,20 +9,20 @@ import type {
   GetSiteEntitiesRequestType,
   LoadingRefType,
   StoreEntityRequestType,
-  TechnologyInterface,
+  TechnologyObjectInterface,
 } from 'atomic'
 
 export interface TechnologyRequestsInterface {
-  results: EntityResultsType<TechnologyInterface>
-  resultsByCategory: EntityResultsType<TechnologyInterface>
-  resultsBySite: EntityResultsType<TechnologyInterface>
+  results: EntityResultsType<TechnologyObjectInterface>
+  resultsByCategory: EntityResultsType<TechnologyObjectInterface>
+  resultsBySite: EntityResultsType<TechnologyObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllTechnologies: GetAllEntitiesRequestType<TechnologyInterface>
+  getAllTechnologies: GetAllEntitiesRequestType<TechnologyObjectInterface>
   getTechnologiesByCategory: GetEntitiesByCategoryRequestType
   getSiteTechnologies: GetSiteEntitiesRequestType
   getCountTechnologiesByCreatedLastWeek: GetEntityRequestType
-  storeTechnology: StoreEntityRequestType<TechnologyInterface>
-  editTechnology: EditEntityRequestType<TechnologyInterface>
+  storeTechnology: StoreEntityRequestType<TechnologyObjectInterface>
+  editTechnology: EditEntityRequestType<TechnologyObjectInterface>
   deleteTechnology: DeleteEntityRequestType
 }

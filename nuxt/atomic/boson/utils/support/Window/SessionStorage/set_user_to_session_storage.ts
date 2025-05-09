@@ -1,7 +1,7 @@
-import { UserInterface } from 'atomic'
+import { UserObjectInterface } from 'atomic'
 
-export function setUserToSessionStorage(user: UserInterface): void {
-  const sanitizedUser: UserInterface = {
+export function setUserToSessionStorage(user: UserObjectInterface): void {
+  const sanitizedUser: UserObjectInterface = {
     id: user.id,
     name: user.name,
     email: user.email,
@@ -12,7 +12,10 @@ export function setUserToSessionStorage(user: UserInterface): void {
   }
 
   Object.entries(sanitizedUser).forEach(
-    ([key, value]: [string, UserInterface[keyof UserInterface]]): void => {
+    ([key, value]: [
+      string,
+      UserObjectInterface[keyof UserObjectInterface],
+    ]): void => {
       window.sessionStorage.setItem(
         `user_${key}`,
         JSON.stringify(value).replace(/^"|"$/g, '')

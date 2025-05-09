@@ -4,7 +4,7 @@ import {
   CloseDialogType,
   EntityCountResultsType,
   EntityResultsType,
-  QuestionInterface,
+  QuestionObjectInterface,
   QuestionRequestsInterface,
   SiteType,
   UseLoadingInterface,
@@ -16,19 +16,19 @@ import {
 export function questionRequests(
   close?: CloseDialogType
 ): QuestionRequestsInterface {
-  const results: EntityResultsType<QuestionInterface> = ref([])
-  const resultsByCategory: EntityResultsType<QuestionInterface> = ref([])
-  const resultsBySite: EntityResultsType<QuestionInterface> = ref([])
+  const results: EntityResultsType<QuestionObjectInterface> = ref([])
+  const resultsByCategory: EntityResultsType<QuestionObjectInterface> = ref([])
+  const resultsBySite: EntityResultsType<QuestionObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllQuestions(loading?: boolean): Promise<void> {
-    await apiHandle<QuestionInterface[]>({
+    await apiHandle<QuestionObjectInterface[]>({
       url: runtime.apiUrl + 'questions',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: QuestionInterface[]) => {
+      onSuccess: (response: QuestionObjectInterface[]) => {
         results.value = response
         apiSuccess(response)
       },
@@ -51,10 +51,10 @@ export function questionRequests(
     category: string,
     loading?: boolean
   ): Promise<void> {
-    await apiHandle<QuestionInterface[]>({
+    await apiHandle<QuestionObjectInterface[]>({
       url: runtime.apiUrl + `questions/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: QuestionInterface[]) => {
+      onSuccess: (response: QuestionObjectInterface[]) => {
         resultsByCategory.value = response
         apiSuccess(response)
       },
@@ -65,20 +65,20 @@ export function questionRequests(
     site: SiteType,
     loading?: boolean
   ): Promise<void> {
-    await apiHandle<QuestionInterface[]>({
+    await apiHandle<QuestionObjectInterface[]>({
       url: runtime.apiUrl + `questions/get-site-questions/${site}`,
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (data: QuestionInterface[]) => {
+      onSuccess: (data: QuestionObjectInterface[]) => {
         resultsBySite.value = data
       },
     })
   }
 
   async function storeQuestion(
-    data: QuestionInterface,
+    data: QuestionObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<QuestionInterface>({
+    await apiHandle<QuestionObjectInterface>({
       url: runtime.apiUrl + 'questions',
       method: 'POST',
       data,
@@ -89,10 +89,10 @@ export function questionRequests(
   }
 
   async function editQuestion(
-    data: QuestionInterface,
+    data: QuestionObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<QuestionInterface>({
+    await apiHandle<QuestionObjectInterface>({
       url: runtime.apiUrl + 'questions/',
       method: 'PUT',
       data,
@@ -107,7 +107,7 @@ export function questionRequests(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<QuestionInterface>({
+    await apiHandle<QuestionObjectInterface>({
       url: runtime.apiUrl + 'questions/',
       method: 'DELETE',
       id,

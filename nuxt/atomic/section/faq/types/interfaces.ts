@@ -1,11 +1,11 @@
-import { QuestionInterface, SiteType } from 'atomic'
+import { QuestionObjectInterface, SiteType } from 'atomic'
 
 export interface SectionFaqInterface {
-  questions?: QuestionInterface | QuestionInterface[]
+  questions?: QuestionObjectInterface | QuestionObjectInterface[]
   site?: SiteType
 }
 
 export interface UseSplitQuestionsInterface {
-  column1: QuestionInterface[]
-  column2: QuestionInterface[]
+  column1: QuestionObjectInterface[]
+  column2: QuestionObjectInterface[]
 }

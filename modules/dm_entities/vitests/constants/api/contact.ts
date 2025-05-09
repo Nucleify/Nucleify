@@ -1,8 +1,8 @@
-import { ContactInterface } from 'atomic'
+import { ContactObjectInterface } from 'atomic'
 
-export const mockContact: ContactInterface = {
+export const mockContact: ContactObjectInterface = {
   id: 999999,
-  user_id: Number(window.sessionStorage.getItem('user_id')),
+  user_id: 1,
   first_name: 'Example',
   last_name: 'Example',
   email: 'example@example.com',

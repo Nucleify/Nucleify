@@ -17,7 +17,9 @@ export function useApiErrors(): UseApiErrorsInterface {
       } else if (data?.errors) {
         flashToast(data.errors, 'error')
         setTimeout(() => {
-          document.querySelector('.p-toast-summary')?.classList.add('validation-errors');
+          document
+            .querySelector('.p-toast-summary')
+            ?.classList.add('validation-errors')
         })
       } else if (error) {
         if (error instanceof Error) {
