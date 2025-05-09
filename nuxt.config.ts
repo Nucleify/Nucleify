@@ -17,8 +17,12 @@ export default defineNuxtConfig({
     'nuxt-og-image',
     'nuxt-schema-org',
     'nuxt-seo-utils',
-    'nuxt-swiper'
+    'nuxt-swiper',
+    '@qirolab/nuxt-sanctum-authentication'
   ],
+  laravelSanctum: {
+    apiUrl: process.env.APP_URL,
+  },
   ssr: true,
   nitro: {
     prerender: {
