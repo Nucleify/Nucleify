@@ -18,9 +18,9 @@
     "lint": "eslint \"**/**/*.{js,ts,vue}\"",
     "lint --fix": "eslint \"**/**/*.{js,ts,vue}\" --fix,",
     "slint": "npx stylelint \"**/**/*.scss\"",
-    "tests": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:watch": "vitest",
+    "tests": "npx vitest run",
+    "test:coverage": "npx vitest run --coverage",
+    "test:watch": "npx vitest",
     "typeslint": "tsc --noemit"
   },
   "dependencies": {
@@ -59,6 +59,7 @@
     "sass": "1.87.0",
     "stylelint": "16.19.1",
     "stylelint-config-standard-scss": "14.0.0",
-    "typescript": "5.8.3"
+    "typescript": "5.8.3",
+    "vitest": "3.1.3"
   }
 }
