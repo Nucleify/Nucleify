@@ -30,6 +30,7 @@
     "@primeuix/themes": "1.1.1",
     "@primevue/forms": "4.3.4",
     "@primevue/themes": "4.3.4",
+    "@qirolab/nuxt-sanctum-authentication": "^0.1.15",
     "chart.js": "4.4.9",
     "marked": "15.0.11",
     "nuxt": "3.17.2",
