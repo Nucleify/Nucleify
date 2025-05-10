@@ -12,7 +12,16 @@ $amount: 15;
   z-index: -1;
 }
 
-body:has(:not(#home)) .screen-lights-container .screen-light {
+body:has(:not(    
+  #about,
+  #blog,
+  #error-404,
+  #home,
+  #license,
+  #login,
+  #register,
+  #services
+)) .screen-lights-container .screen-light {
   width: $particleSize;
   height: $particleSize;
   border-radius: $particleSize;

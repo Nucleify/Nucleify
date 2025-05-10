@@ -8,6 +8,7 @@ import {
   MoneyObjectInterface,
   UseLoadingInterface,
   apiHandle,
+  sessionStorageGetItem,
   useApiSuccess,
   useLoading,
 } from 'atomic'
@@ -49,7 +50,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
       url: runtime.apiUrl + 'money',
       method: 'POST',
       data: {
-        user_id: window.sessionStorage.getItem('user_id'),
+        user_id: sessionStorageGetItem('user_id'),
         ...data,
       },
       onSuccess: (response: MoneyObjectInterface) => {

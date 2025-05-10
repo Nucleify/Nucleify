@@ -5,11 +5,19 @@
     <dm-screen-loader v-if="isFrontOffice" />
     <slot />
     <section-footer v-if="isFrontOffice" />
+    <organism-dock v-if="isBackOffice" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { isAnyCurrentUrl } from 'atomic'
+import { isAnyCurrentUrl, useColors } from 'atomic'
+import { onMounted } from 'vue'
 
-let isFrontOffice = isAnyCurrentUrl(['/home', '/about', '/blog', '/services'])
+onMounted(() => {
+  const { setDefaultColors } = useColors()
+
+  setDefaultColors(false)
+})
+const isFrontOffice = isAnyCurrentUrl(['/home', '/about', '/blog', '/services'])
+const isBackOffice = isAnyCurrentUrl(['/admin', '/dashboard', '/settings'])
 </script>

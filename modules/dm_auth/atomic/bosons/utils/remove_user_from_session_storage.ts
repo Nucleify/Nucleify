@@ -1,3 +1,5 @@
+import { sessionStorageSetItem } from "atomic"
+
 export function removeUserFromSessionStorage(): void {
   const userKeys: string[] = [
     'id',
@@ -10,6 +12,6 @@ export function removeUserFromSessionStorage(): void {
   ]
 
   userKeys.forEach((key: string): void => {
-    window.sessionStorage.removeItem(`user_${key}`)
+    sessionStorageSetItem(`user_${key}`, '')
   })
 }

@@ -5,7 +5,10 @@ export function setColorsVariables(): void {
     colorTypes.forEach((state: string): void => {
       const key = `${item}-item-${state}`
       const value = localStorageGetItem(key)
-      if (value) document.documentElement.style.setProperty(`--${key}`, value)
+      if (value) {
+        document.documentElement.style.setProperty(`--${key}`, value)
+        document.documentElement.style.setProperty(`--${key}-new`, value)
+      }
     })
   )
 }
