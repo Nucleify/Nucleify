@@ -8,6 +8,7 @@ import {
   EntityResultsType,
   UseLoadingInterface,
   apiHandle,
+  sessionStorageGetItem,
   useApiSuccess,
   useLoading,
 } from 'atomic'
@@ -51,7 +52,7 @@ export function contactRequests(
       url: runtime.apiUrl + 'contacts',
       method: 'POST',
       data: {
-        user_id: window.sessionStorage.getItem('user_id'),
+        user_id: sessionStorageGetItem('user_id'),
         ...data,
       },
       onSuccess: (response: ContactObjectInterface) => {

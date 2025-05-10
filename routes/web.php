@@ -93,7 +93,7 @@ Route::get('/_fonts/{path}', function ($path) {
  *  Serve Nuxt application for all other routes
  */
 Route::get('/{any}', fn () => serveNuxtFile(base_path('public/build/index.html'))
-)->where('any', '^(?!api/|home|login|register).+');
+)->where('any', '^(?!api/|dashboard|home|login|logout|register).+');
 
 Route::get('/', fn () => redirect()->route('home')
 );
