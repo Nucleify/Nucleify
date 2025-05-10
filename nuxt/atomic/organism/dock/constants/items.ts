@@ -29,7 +29,7 @@ const dockData: readonly DockItemInterface[] = [
   ['pi pi-sitemap', 'Structural', '/structural', undefined, 'structural'],
   ['pi pi-chart-line', 'Dashboard', '/home', undefined, 'dashboard'],
   ['pi pi-box', 'Entities', '/entities', undefined, 'entities'],
-  ['pi pi-history', 'Activities', '/home', undefined, 'activity-log'],
+  ['pi pi-history', 'Activities', '/activity-log', undefined, 'activity-log'],
   ['pi pi-envelope disabled-item', 'Messages'],
   ['pi pi-calendar disabled-item', 'Calendar'],
   ['pi pi-user disabled-item', 'Profile'],
