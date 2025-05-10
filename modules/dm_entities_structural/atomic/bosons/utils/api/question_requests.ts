@@ -30,7 +30,6 @@ export function questionRequests(
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: QuestionObjectInterface[]) => {
         results.value = response
-        apiSuccess(response)
       },
     })
   }
@@ -42,7 +41,7 @@ export function questionRequests(
       url: runtime.apiUrl + 'questions/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
-        createdLastWeek = response
+        createdLastWeek.value = response
       },
     })
   }

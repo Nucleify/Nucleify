@@ -44,6 +44,7 @@ class LinkService
 
         $result = $this->model->whereDate('created_at', '>=', $this->lastWeek)
             ->count();
+
         $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererStructural);
 
         return $result;
@@ -83,7 +84,6 @@ class LinkService
 
     public function show($id): array
     {
-
         $result = $this->model::findOrFail($id);
 
         return fractal()
