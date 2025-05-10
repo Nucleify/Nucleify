@@ -46,7 +46,7 @@ class TechnologyService
     /**
      * @throws Exception
      */
-    public function countByCreatedLastWeek(Request $request): array
+    public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
         $this->defineTimeData();
@@ -57,7 +57,7 @@ class TechnologyService
 
         $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, true);
 
-        return ['count' => $result];
+        return $result;
     }
 
     /**

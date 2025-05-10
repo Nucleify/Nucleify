@@ -38,7 +38,7 @@ class FeatureService
             ->toArray()['data'];
     }
 
-    public function countByCreatedLastWeek(Request $request): array
+    public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
         $this->defineTimeData();
@@ -48,7 +48,7 @@ class FeatureService
             ->count();
         $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererStructural);
 
-        return ['count' => $result];
+        return $result;
     }
 
     public function getByCategory(string $category): array
