@@ -1,7 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
+<template>
     <div id="technologies">
         <dm-technology-page></dm-technology-page>
     </div>
-@endsection
+</template>

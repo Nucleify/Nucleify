@@ -1,7 +1,5 @@
-@extends('layouts.app')
-
-@section('content')
+<template>
     <div id="cards">
         <dm-card-page></dm-card-page>
     </div>
-@endsection
+</template>
