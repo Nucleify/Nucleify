@@ -28,8 +28,8 @@ export function featureRequests(
     await apiHandle<FeatureObjectInterface[]>({
       url: runtime.apiUrl + 'features',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (data: FeatureObjectInterface[]) => {
-        results.value = data
+      onSuccess: (response: FeatureObjectInterface[]) => {
+        results.value = response
       },
     })
   }
@@ -40,8 +40,8 @@ export function featureRequests(
     await apiHandle<number>({
       url: runtime.apiUrl + 'features/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (data: number) => {
-        createdLastWeek.value = data
+      onSuccess: (response: number) => {
+        createdLastWeek.value = response
       },
     })
   }
@@ -53,8 +53,8 @@ export function featureRequests(
     await apiHandle<FeatureObjectInterface[]>({
       url: runtime.apiUrl + `features/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (data: FeatureObjectInterface[]) => {
-        resultsByCategory.value = data
+      onSuccess: (response: FeatureObjectInterface[]) => {
+        resultsByCategory.value = response
       },
     })
   }
@@ -66,8 +66,8 @@ export function featureRequests(
     await apiHandle<FeatureObjectInterface[]>({
       url: runtime.apiUrl + `features/get-site-features/${site}`,
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (data: FeatureObjectInterface[]) => {
-        resultsBySite.value = data
+      onSuccess: (response: FeatureObjectInterface[]) => {
+        resultsBySite.value = response
       },
     })
   }

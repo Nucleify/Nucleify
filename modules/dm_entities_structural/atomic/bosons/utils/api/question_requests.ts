@@ -42,7 +42,7 @@ export function questionRequests(
       url: runtime.apiUrl + 'questions/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
-        createdLastWeek.value = response
+        createdLastWeek = response
       },
     })
   }

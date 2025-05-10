@@ -1,8 +1,9 @@
 import { useCookie, useRequestHeaders, useRuntimeConfig } from 'nuxt/app'
+import { HttpMethodType } from 'atomic'
 
 export async function apiRequest(
   url: string,
-  method: string = 'GET',
+  method: HttpMethodType = 'GET',
   data: Record<string, any> | null = null,
   id: string | number | null = null,
   params: Record<string, any> = {}
