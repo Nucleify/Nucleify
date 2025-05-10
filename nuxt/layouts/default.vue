@@ -18,6 +18,6 @@ onMounted(() => {
 
   setDefaultColors(false)
 })
-const isFrontOffice = isAnyCurrentUrl(['/home', '/about', '/blog', '/services'])
-const isBackOffice = isAnyCurrentUrl(['/admin', '/dashboard', '/entities', '/settings', '/structural'])
+const isFrontOffice = isAnyCurrentUrl(['home', 'about', 'blog', 'license', 'services'])
+const isBackOffice = isAnyCurrentUrl(['activity-log', 'admin', 'dashboard', 'entities', 'settings', 'structural'])
 </script>
