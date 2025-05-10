@@ -3,7 +3,7 @@
     <start />
     <features />
     <innovations />
-    <section-whyus site="home" />
+    <section-why-us site="home" />
     <section-faq site="home" />
     <section-contact />
   </div>

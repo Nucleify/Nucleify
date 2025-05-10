@@ -1,3 +1,3 @@
 export * from './anchor'
-export * from './floatlabel'
+export * from './float-label'
 export * from './tile'
