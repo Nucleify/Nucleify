@@ -15,11 +15,11 @@
       </template>
       <template #content>
         <form @submit.prevent="submitForm(registerFields)">
-          <molecule-floatlabel
+          <molecule-float-label
             v-for="(field, index) in registerInputs"
             :key="index"
           >
-            <atom-inputtext
+            <atom-input-text
               v-if="field.type !== 'password'"
               v-model="registerFields[field.model]"
               ad-type="main"
@@ -53,7 +53,7 @@
             />
 
             <atom-label :for="field.id" :label="field.label" />
-          </molecule-floatlabel>
+          </molecule-float-label>
 
           <atom-button
             label="Register"

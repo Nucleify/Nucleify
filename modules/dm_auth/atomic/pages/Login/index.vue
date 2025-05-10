@@ -19,8 +19,8 @@
     </template>
     <template #content>
       <form @submit.prevent="submitForm(loginFields)">
-        <molecule-floatlabel v-for="(field, index) in loginInputs" :key="index">
-          <atom-inputtext
+        <molecule-float-label v-for="(field, index) in loginInputs" :key="index">
+          <atom-input-text
             v-model="loginFields[field.model]"
             :ad-type="'main'"
             :type="field.type"
@@ -29,7 +29,7 @@
             :autofocus="field.autofocus"
           />
           <atom-label :for="field.id" :label="field.label" />
-        </molecule-floatlabel>
+        </molecule-float-label>
 
         <atom-button label="Log In" type="submit" padding="10px 10px" />
       </form>
