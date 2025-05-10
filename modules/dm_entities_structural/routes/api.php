@@ -21,6 +21,8 @@ Route::prefix('api')->group(function (): void {
     Route::get('/links/get-site-links/{site}', [LinkController::class, 'getSiteLinks'])
         ->name('links.getSiteLinks');
 
+    Route::middleware(['web', 'auth'])->group(function (): void {
+
     /**
      *  Cards
      */
@@ -139,7 +141,8 @@ Route::prefix('api')->group(function (): void {
             ->name('technologies.store');
         Route::put('/{id}', 'update')
             ->name('technologies.update');
-        Route::delete('/{id}', 'destroy')
-            ->name('technologies.destroy');
+            Route::delete('/{id}', 'destroy')
+                ->name('technologies.destroy');
+        });
     });
 });

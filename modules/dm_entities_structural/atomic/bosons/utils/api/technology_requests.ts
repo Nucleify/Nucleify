@@ -32,7 +32,6 @@ export function technologyRequests(
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: TechnologyObjectInterface[]) => {
         results.value = response
-        apiSuccess(response)
       },
     })
   }
@@ -58,7 +57,6 @@ export function technologyRequests(
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: TechnologyObjectInterface[]) => {
         resultsByCategory.value = response
-        apiSuccess(response)
       },
     })
   }

@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Feature;
-use App\Traits\Runners\Api\AuthRunnerTrait;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
@@ -12,7 +11,6 @@ use Illuminate\Http\Request;
 
 class FeatureService
 {
-    use AuthRunnerTrait;
     use RequestSetterTrait;
     use TimeSetterTrait;
     use UserSetterTrait;
@@ -46,6 +44,7 @@ class FeatureService
 
         $result = $this->model->whereDate('created_at', '>=', $this->lastWeek)
             ->count();
+
         $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererStructural);
 
         return $result;
@@ -83,7 +82,6 @@ class FeatureService
 
     public function show($id): array
     {
-
         $result = $this->model::findOrFail($id);
 
         return fractal()
@@ -98,7 +96,6 @@ class FeatureService
     public function create(array $data): array
     {
         $this->defineUserData();
-        $this->checkPermissions('create');
 
         $result = $this->model::create($data);
 
