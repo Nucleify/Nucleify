@@ -26,7 +26,7 @@ const createDockItem = (
 const dockData: readonly DockItemInterface[] = [
   [undefined, undefined, '/home', 'logo', undefined, undefined, true],
   ['pi pi-crown', 'Admin Panel', '/home', undefined, 'admin'],
-  ['pi pi-sitemap', 'Structural', '/home', undefined, 'structural'],
+  ['pi pi-sitemap', 'Structural', '/structural', undefined, 'structural'],
   ['pi pi-chart-line', 'Dashboard', '/home', undefined, 'dashboard'],
   ['pi pi-box', 'Entities', '/entities', undefined, 'entities'],
   ['pi pi-history', 'Activities', '/home', undefined, 'activity-log'],
