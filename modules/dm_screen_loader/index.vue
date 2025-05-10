@@ -8,7 +8,7 @@
         height="150px"
         fetchpriority="high"
       />
-      <atom-progressbar mode="indeterminate" width="100px" height="10px" />
+      <atom-progress-bar mode="indeterminate" width="100px" height="10px" />
     </div>
   </div>
 </template>

@@ -12,6 +12,6 @@ import { technologyRequests } from 'atomic'
 const { getSiteTechnologies, resultsBySite } = technologyRequests()
 
 onMounted(() => {
-  getSiteTechnologies(true, 'general')
+  getSiteTechnologies('general', true)
 })
 </script>

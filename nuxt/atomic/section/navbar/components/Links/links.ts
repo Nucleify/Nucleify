@@ -7,15 +7,15 @@ export const navLinks: NavLinkObjectInterface[] = [
   },
   {
     label: 'Services',
-    href: '/home',
+    href: '/services',
   },
   {
     label: 'About',
-    href: '/home',
+    href: '/about',
   },
   {
     label: 'Blog',
-    href: '/home',
+    href: '/blog',
   },
   {
     label: 'Login',
