@@ -6,11 +6,13 @@ export function setColorsVariables(): void {
       const key = `${item}-item-${state}`
       const value = localStorageGetItem(key)
 
-      if (
-        document.documentElement.style.getPropertyValue(`--${key}`) !== value
-      ) {
-        if (value) {
-          document.documentElement.style.setProperty(`--${key}-new`, value)
+      if (process.client) {
+        if (
+          document.documentElement.style.getPropertyValue(`--${key}`) !== value
+        ) {
+          if (value) {
+            document.documentElement.style.setProperty(`--${key}-new`, value)
+          }
         }
       }
     })
