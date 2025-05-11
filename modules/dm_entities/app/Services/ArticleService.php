@@ -53,7 +53,7 @@ class ArticleService
 
         $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererAdmin);
 
-        return $result;
+        return $this->isRefererAdmin;
     }
 
     public function show($id): array
