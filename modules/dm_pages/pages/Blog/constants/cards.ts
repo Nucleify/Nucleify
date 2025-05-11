@@ -10,7 +10,7 @@ export const blogCategoriesCards: Ref<UnwrapRef<CardCategoryInterface[]>> = ref(
       title: "Open Source in Today's World",
       description:
         'Explore why open-source solutions are essential for innovation, transparency, and control in modern tech.',
-      url: '/open-source-world',
+      url: '/home',
     },
     {
       image: 'automate.svg',
@@ -18,7 +18,7 @@ export const blogCategoriesCards: Ref<UnwrapRef<CardCategoryInterface[]>> = ref(
       title: 'How to Automate Your Data Pipeline',
       description:
         'A guide to streamlining your data processes, reducing manual work, and improving efficiency.',
-      url: '/automate-data',
+      url: '/home',
     },
 
     {
@@ -27,7 +27,7 @@ export const blogCategoriesCards: Ref<UnwrapRef<CardCategoryInterface[]>> = ref(
       title: 'Data Security',
       description:
         'Key strategies and tools to protect your data from evolving threats and ensure privacy compliance.',
-      url: '/data-security',
+      url: '/home',
     },
     {
       image: 'scalable_website.svg',
@@ -35,7 +35,7 @@ export const blogCategoriesCards: Ref<UnwrapRef<CardCategoryInterface[]>> = ref(
       title: 'Building a Scalable Website',
       description:
         'Learn the fundamentals of creating a website that can grow and adapt with your business needs.',
-      url: '/scalable-website',
+      url: '/home',
     },
     {
       image: 'tools.svg',
@@ -43,7 +43,7 @@ export const blogCategoriesCards: Ref<UnwrapRef<CardCategoryInterface[]>> = ref(
       title: 'The Best Tools for Every Business',
       description:
         'Discover top tools for productivity, data management, and growth, tailored to any business size.',
-      url: '/tools-business',
+      url: '/home',
     },
   ]
 )
