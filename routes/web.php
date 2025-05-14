@@ -92,8 +92,14 @@ Route::get('/_fonts/{path}', function ($path) {
 /**
  *  Serve Nuxt application for all other routes
  */
-Route::get('/{any}', fn () => serveNuxtFile(base_path('public/build/index.html'))
-)->where('any', '^(?!api/|dashboard|home|login|logout|register).+');
+Route::get('/{any}', function ($any) {
+    $page = trim($any, '/');
+    $htmlPath = base_path("public/build/{$page}/index.html");
+    if (file_exists($htmlPath)) {
+        return serveNuxtFile($htmlPath);
+    }
+    return response()->json(['error' => 'Page not found'], 404);
+})->where('any', '^(?!api/|logout).+');
 
 Route::get('/', fn () => redirect()->route('home')
 );
