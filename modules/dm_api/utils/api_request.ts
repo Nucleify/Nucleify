@@ -30,8 +30,9 @@ export async function apiRequest(
     headers['X-XSRF-TOKEN'] = xsrfTokenValue
   }
 
-  const route = useRoute()
-  headers['Referer-Slug'] = route.fullPath
+  if (process.client) {
+    headers['Referer-Slug'] = window.location.pathname
+  }
 
   if (process.server) {
     headers = {
