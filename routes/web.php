@@ -35,6 +35,8 @@ if (!function_exists('serveNuxtFile')) {
             'Access-Control-Allow-Origin' => '*',
             'Access-Control-Allow-Methods' => 'GET, POST, PUT, DELETE, OPTIONS',
             'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With, X-XSRF-TOKEN, Referer-Slug',
+            'Access-Control-Allow-Credentials' => 'true',
+            'Access-Control-Expose-Headers' => '*',
         ]);
     }
 }
