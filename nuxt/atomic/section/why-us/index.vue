@@ -62,7 +62,7 @@ const { data } = await useFetch(runtime.apiUrl + 'features/get-site-features/' +
 const whyUsGroups = computed<
   [FeatureObjectInterface, FeatureObjectInterface?][]
 >(() => {
-  if (!data) return []
+  if (!data.value) return []
 
   return data.value.reduce(
     (

@@ -4,12 +4,12 @@
 
     <div class="faq-section-questions">
       <organism-accordion
-        v-if="column1.length"
+        v-if="column1"
         :panels="column1"
         ad-type="main"
       />
       <organism-accordion
-        v-if="column2.length"
+        v-if="column2"
         :panels="column2"
         ad-type="main"
       />
