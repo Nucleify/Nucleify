@@ -46,29 +46,33 @@ import {
   FeatureObjectInterface,
   WhyUsInterface,
   WhyUsItemInterface,
-  featureRequests,
-  useDialog,
 } from 'atomic'
 
-const { closeDialog } = useDialog()
-const { getSiteFeatures, resultsBySite } = featureRequests(closeDialog)
-
 const props = defineProps<WhyUsInterface>()
+
+const { data } = await useFetch(runtime.apiUrl + 'features/get-site-features/' + props.site, {
+  method: 'GET',
+  immediate: true,
+  watch: false,
+  onResponse({ response }) {
+    console.log(response)
+  },
+})
 
 const whyUsGroups = computed<
   [FeatureObjectInterface, FeatureObjectInterface?][]
 >(() => {
-  if (!resultsBySite.value.length) return []
+  if (!data.value.length) return []
 
-  return resultsBySite.value.reduce(
+  return data.value.reduce(
     (
       result: [FeatureObjectInterface, FeatureObjectInterface?][],
       item,
       index
     ) => {
       if (index % 2 === 0) {
-        if (!resultsBySite.value[index + 1]) result.push([item])
-        else result.push([item, resultsBySite.value[index + 1]])
+        if (!data.value[index + 1]) result.push([item])
+        else result.push([item, data.value[index + 1]])
       }
       return result
     },
@@ -96,7 +100,6 @@ const handleClickOutside = (event: MouseEvent) => {
 
 onMounted(() => {
   document.addEventListener('mousedown', handleClickOutside)
-  getSiteFeatures(props.site!, true)
 })
 
 onBeforeUnmount(() => {

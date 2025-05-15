@@ -19,29 +19,26 @@
 
 <script setup lang="ts">
 import {
-  questionRequests,
   SectionFaqInterface,
   QuestionObjectInterface,
   useSplitQuestions,
-  useDialog,
 } from 'atomic'
 
-import { onMounted, ref, watchEffect } from 'vue'
+import { ref, watchEffect } from 'vue'
 
-const { closeDialog } = useDialog()
 const props = defineProps<SectionFaqInterface>()
 
-const { getSiteQuestions, resultsBySite } = questionRequests(closeDialog)
+const { data } = await useFetch(runtime.apiUrl + 'questions/get-site-questions/' + props.site, {
+  method: 'GET',
+  immediate: true,
+  watch: false,
+})
 
 const column1 = ref<QuestionObjectInterface[]>([])
 const column2 = ref<QuestionObjectInterface[]>([])
 
-onMounted(() => {
-  getSiteQuestions(props.site!, true)
-})
-
 watchEffect(() => {
-  const questions = resultsBySite.value || props.questions
+  const questions = props.questions || data.value
   if (!questions) return
   ;({ column1: column1.value, column2: column2.value } =
     useSplitQuestions(questions))
