@@ -1,17 +1,13 @@
 <template>
   <div class="container">
-    <template-card-boxes :boxes="resultsBySite" />
+    <template-card-boxes :boxes="data" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-
-import { technologyRequests } from 'atomic'
-
-const { getSiteTechnologies, resultsBySite } = technologyRequests()
-
-onMounted(() => {
-  getSiteTechnologies('general', true)
+const { data } = await useFetch(runtime.apiUrl + 'technologies/get-site-technologies/general', {
+  method: 'GET',
+  immediate: true,
+  watch: false,
 })
 </script>
