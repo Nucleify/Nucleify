@@ -91,6 +91,7 @@ import {
   getUserRole,
   setColorsVariables,
   localStorageGetItem,
+  localStorageSetItem
 } from 'atomic'
 
 const LOCAL_STORAGE_KEY = 'dock-position'

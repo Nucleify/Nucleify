@@ -82,39 +82,6 @@
           &:hover:not(:has(.dock-position-buttons)) {
             transform: scale(1.15);
           }
-
-          .dock-position-buttons {
-            flex-wrap: wrap;
-            gap: 0.25rem;
-            max-width: 36px;
-            max-height: 36px;
-            transform: rotate(45deg);
-            @include center-content;
-
-            &:hover {
-              transform: rotate(45deg);
-            }
-
-            .left,
-            .right {
-              pointer-events: none;
-              opacity: 0;
-
-              @media (min-width: $lg) {
-                pointer-events: inherit;
-                opacity: 1;
-              }
-            }
-
-            input[type='radio'] {
-              box-sizing: border-box;
-              appearance: none;
-              background: rgb(69 69 69 / 10%);
-              width: 10px;
-              height: 10px;
-              cursor: pointer;
-            }
-          }
         }
       }
 
@@ -124,10 +91,57 @@
     }
   }
 
+  .dock-position-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    max-width: 36px;
+    max-height: 36px;
+    transform: rotate(45deg);
+
+    &:hover {
+      transform: rotate(45deg);
+    }
+
+    .top,
+    .bottom,
+    .left,
+    .right {
+      margin: 0;
+      width: 11px;
+      height: 11px;
+    }
+
+    .left,
+    .right {
+      pointer-events: none;
+      opacity: 0;
+
+      @media (min-width: $lg) {
+        pointer-events: inherit;
+        opacity: 1;
+      }
+    }
+
+    input[type='radio'] {
+      box-sizing: border-box;
+      appearance: none;
+      background: rgb(69 69 69 / 10%);
+      width: 10px;
+      height: 10px;
+      margin: 0;
+      cursor: pointer;
+    }
+  }
+
   &.p-dock-left,
   &.p-dock-right {
     height: 100%;
 
+    .dock-position-buttons {
+      @include center-content;
+      margin-left: .25em;
+    }
     .p-dock-list-container {
       height: 100%;
 
