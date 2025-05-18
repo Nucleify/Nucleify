@@ -105,10 +105,57 @@
     align-items: center;
     justify-content: center;
     gap: 2em;
+  }
+}
+.tech-heading {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
 
-    .tech-heading {
-      position: relative;
-      z-index: 2;
+.tech-text {
+  display: inline-block;
+  margin: 0;
+  transition: all 0.3s ease;
+  font-size: 1.5em;
+
+  .highlight {
+    @extend .shiny;
+  }
+}
+
+.readme-content {
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.cube {
+  height: 52px !important;
+  width: 52px !important;
+  transition: all 0.3s ease;
+
+  &:has(.logo-img) {
+    padding: 0.35em;
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
       transition: all 0.3s ease;
 
       .tech-text {
