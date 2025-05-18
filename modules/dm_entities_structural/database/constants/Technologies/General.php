@@ -20,6 +20,12 @@ return [
         'src' => 'typescript.svg',
     ],
     [
+        'label' => 'Nuxt',
+        'description' => 'It provides a number of features that make it easy to build fast, SEO-friendly, and scalable web applications.',
+        'href' => 'https://nuxt.com/',
+        'src' => 'nuxt.svg',
+    ],
+    [
         'label' => 'Vue',
         'description' => 'A progressive JavaScript framework for building user interfaces, known for its simplicity and performance.',
         'href' => 'https://vuejs.org/',

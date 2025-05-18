@@ -1,7 +1,0 @@
-export * from './atoms'
-export * from './bosons'
-export * from './molecules'
-export * from './organisms'
-export * from './sections'
-export * from './templates'
-export * from '../modules'

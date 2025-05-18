@@ -1,4 +1,4 @@
-export interface UserInterface {
+export interface UserObjectInterface {
   id?: number
   name: string
   email: string

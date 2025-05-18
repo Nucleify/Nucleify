@@ -3,7 +3,7 @@
 return [
     // 'about',
     // 'blog',
-    'home',
+    // 'home',
     'license',
     // 'services',
 ];

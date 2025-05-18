@@ -44,7 +44,7 @@ class UserService
             ->toArray()['data'];
     }
 
-    public function countByCreatedLastWeek(Request $request): array
+    public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
         $this->defineTimeData();
@@ -57,11 +57,11 @@ class UserService
             );
         }
 
-        $data = $this->model->whereDate('created_at', '>=', $this->lastWeek)->count();
+        $result = $this->model->whereDate('created_at', '>=', $this->lastWeek)->count();
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererAdmin);
 
-        return ['count' => $data];
+        return $result;
     }
 
     /**

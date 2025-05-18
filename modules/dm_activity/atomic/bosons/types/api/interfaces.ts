@@ -1,19 +1,18 @@
-import { Ref } from 'vue'
-
 import {
-  ActivityLogInterface,
-  ActivityResultsType,
-  DeleteEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
-  GetEntityRequestFunctionType,
+  ActivityLogObjectInterface,
+  DeleteEntityRequestType,
+  EntityCountResultsType,
+  EntityResultsType,
+  GetAllEntitiesRequestType,
+  GetEntityRequestType,
   LoadingRefType,
 } from 'atomic'
 
 export interface ActivityLogRequestsInterface {
-  results: ActivityResultsType
-  createdLastWeek: Ref<number>
+  results: EntityResultsType<ActivityLogObjectInterface>
+  createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllActivities: GetAllEntitiesRequestFunctionType<ActivityLogInterface>
-  getCountActivitiesByCreatedLastWeek: GetEntityRequestFunctionType
-  deleteActivity: DeleteEntityRequestFunctionType
+  getAllActivities: GetAllEntitiesRequestType<ActivityLogObjectInterface>
+  getCountActivitiesByCreatedLastWeek: GetEntityRequestType
+  deleteActivity: DeleteEntityRequestType
 }

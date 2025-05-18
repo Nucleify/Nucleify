@@ -1,131 +1,116 @@
-import { Ref, ref } from 'vue'
-import axios, { AxiosResponse } from 'axios'
+import { ref } from 'vue'
 
 import {
-  CloseDialogFunctionType,
+  CloseDialogType,
   UseLoadingInterface,
-  UseApiErrorsInterface,
-  UseToastInterface,
-  GetAllEntitiesRequestResponseType,
-  apiSuccess,
-  catchErrors,
-  useApiErrors,
+  useApiSuccess,
   useLoading,
-  useToast,
   SiteType,
-  LinkResultsType,
   LinkRequestsInterface,
-  LinkInterface,
+  LinkObjectInterface,
+  apiHandle,
+  EntityResultsType,
+  EntityCountResultsType,
 } from 'atomic'
 
-export function linkRequests(
-  close?: CloseDialogFunctionType
-): LinkRequestsInterface {
-  const results: LinkResultsType = ref<LinkInterface[]>([])
-  const resultsByCategory: LinkResultsType = ref<LinkInterface[]>([])
-  const resultsBySite: Ref<LinkInterface[]> = ref<LinkInterface[]>([])
-  const createdLastWeek: Ref<number> = ref<number>(0)
+export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
+  const results: EntityResultsType<LinkObjectInterface> = ref([])
+  const resultsByCategory: EntityResultsType<LinkObjectInterface> = ref([])
+  const resultsBySite: EntityResultsType<LinkObjectInterface> = ref([])
+  const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
-  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
-  const { flashToast }: UseToastInterface = useToast()
+  const { apiSuccess } = useApiSuccess()
 
   async function getAllLinks(loading?: boolean): Promise<void> {
-    try {
-      if (loading) {
-        setLoading(true)
-      }
-
-      const response: GetAllEntitiesRequestResponseType<LinkInterface> =
-        await axios.get('/api/links')
-
-      results.value = response.data
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    } finally {
-      if (loading) {
-        setLoading(false)
-      }
-    }
+    await apiHandle<LinkObjectInterface[]>({
+      url: apiUrl() + 'links',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: LinkObjectInterface[]) => {
+        results.value = response
+      },
+    })
   }
 
-  async function getCountLinksByCreatedLastWeek(): Promise<void> {
-    try {
-      const response = await axios.get('/api/links/count-by-created-last-week')
-
-      createdLastWeek.value = response.data.count
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+  async function getCountLinksByCreatedLastWeek(
+    loading?: boolean
+  ): Promise<void> {
+    await apiHandle<number>({
+      url: apiUrl() + 'links/count-by-created-last-week',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: number) => {
+        createdLastWeek.value = response
+      },
+    })
   }
 
-  async function getLinksByCategory(category: string): Promise<void> {
-    try {
-      const response = await axios.get(`/api/links/get-by-category/${category}`)
-
-      resultsByCategory.value = response.data.count
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+  async function getLinksByCategory(
+    category: string,
+    loading?: boolean
+  ): Promise<void> {
+    await apiHandle<LinkObjectInterface[]>({
+      url: apiUrl() + `links/get-by-category/${category}`,
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: LinkObjectInterface[]) => {
+        resultsByCategory.value = response
+      },
+    })
   }
 
-  async function getSiteLinks(loading: boolean, site: SiteType): Promise<void> {
-    try {
-      if (loading) {
-        setLoading(true)
-      }
-
-      const response = await axios.get(`/api/links/get-site-links/${site}`)
-
-      resultsBySite.value = response.data
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    } finally {
-      setLoading(false)
-    }
+  async function getSiteLinks(
+    site: SiteType,
+    loading?: boolean
+  ): Promise<void> {
+    await apiHandle<LinkObjectInterface[]>({
+      url: apiUrl() + `links/get-site-links/${site}`,
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: LinkObjectInterface[]) => {
+        resultsBySite.value = response
+      },
+    })
   }
 
   async function storeLink(
-    data: LinkInterface,
+    data: LinkObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.post('/api/links', {
-        ...data,
-      })
-
-      await apiSuccess(response, getData, flashToast, close!, 'create')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<LinkObjectInterface>({
+      url: apiUrl() + 'links',
+      method: 'POST',
+      data,
+      onSuccess: (response) => {
+        apiSuccess(response, getData, close, 'create')
+      },
+    })
   }
 
   async function editLink(
-    data: LinkInterface,
+    data: LinkObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.put(`/api/links/${data.id}`, {
-        ...data,
-      })
-
-      await apiSuccess(response, getData, flashToast, close!, 'edit')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<LinkObjectInterface>({
+      url: apiUrl() + 'links/',
+      method: 'PUT',
+      data,
+      id: data.id,
+      onSuccess: (response) => {
+        apiSuccess(response, getData, close, 'edit')
+      },
+    })
   }
 
   async function deleteLink(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.delete(`/api/links/${id}`)
-
-      await apiSuccess(response, getData, flashToast, close!, 'delete')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<LinkObjectInterface>({
+      url: apiUrl() + 'links/',
+      method: 'DELETE',
+      id,
+      onSuccess: (response) => {
+        apiSuccess(response, getData, close, 'delete')
+      },
+    })
   }
 
   return {

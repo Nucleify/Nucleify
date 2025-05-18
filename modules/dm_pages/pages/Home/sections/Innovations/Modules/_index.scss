@@ -1,63 +1,93 @@
-#modules > .modules-container {
-  max-width: 800px;
-  padding: 2em 1em;
+#modules {
+  display: flex;
+  justify-content: center;
 
-  .p-stepper {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-
-    .p-steplist {
-      display: flex;
-      gap: 1em;
-      overflow: visible;
-
-      .main-item {
-        border: none !important;
-        background: transparent !important;
-      }
-
-      .swiper-slide {
-        height: 52px !important;
-        width: 52px !important;
-      }
-
-      .modules-swiper {
-        max-height: 432px;
-      }
-    }
-
-    .p-steppanels {
-      position: relative;
-      display: flex;
-      gap: 1.5em;
-      width: 100%;
-      height: 100%;
-      padding: 0;
-      min-height: 432px;
-
-      .p-steppanel {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        min-height: 432px;
-        background: $content-background;
-        border: 1px solid $p-card-border !important;
-        border-radius: 0.5rem;
-        padding: 0;
-      }
-    }
-  }
-
-  @media (width >= $lg) {
-    padding: 4em 2em;
+  & > .modules-container {
+    width: 100%;
+    max-width: 800px;
+    padding: 2em 1em;
 
     .p-stepper {
-      flex-direction: row;
-      gap: 2em;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
 
       .p-steplist {
-        gap: 3em;
+        display: flex;
+        gap: 1em;
+        overflow: visible;
+
+        .main-item {
+          border: none !important;
+          background: transparent !important;
+        }
+
+        .modules-swiper {
+          width: 100%;
+          height: 52px;
+
+          swiper-slide {
+            height: 52px !important;
+            width: 52px !important;
+
+            .cube {
+              height: 52px !important;
+              width: 52px !important;
+              transition: all 0.3s ease;
+
+              &:has(.logo-img) {
+                padding: 0.35em;
+
+                .logo-img {
+                  width: 100%;
+                  height: 100%;
+                  object-fit: contain;
+                  transition: all 0.3s ease;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .p-steppanels {
+        position: relative;
+        display: flex;
+        gap: 1.5em;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        min-height: 432px;
+
+        .p-steppanel {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          min-height: 432px;
+          background: $content-background;
+          border: 1px solid $p-card-border !important;
+          border-radius: 0.5rem;
+          padding: 0;
+        }
+      }
+    }
+
+    @media (width >= $lg) {
+      padding: 4em 2em;
+
+      .p-stepper {
+        flex-direction: row;
+        gap: 2em;
+
+        .p-steplist {
+          gap: 3em;
+
+          .modules-swiper {
+            width: 52px;
+            height: 100%;
+            max-height: 432px;
+          }
+        }
       }
     }
   }
@@ -77,7 +107,6 @@
     gap: 2em;
   }
 }
-
 .tech-heading {
   text-align: center;
   position: relative;
@@ -128,6 +157,48 @@
       height: 100%;
       object-fit: contain;
       transition: all 0.3s ease;
+
+      .tech-text {
+        font-family: $font-inter-sans-serif;
+        display: inline-block;
+        margin: 0;
+        transition: all 0.3s ease;
+        font-size: 1.5em;
+      }
+    }
+
+    .start-button {
+      font-size: $font-size-sm;
+      padding: 10px 2rem !important;
+    }
+  }
+
+  .readme-content {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+
+    &.fade-enter-active,
+    &.fade-leave-active {
+      transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+    }
+
+    &.fade-enter-from,
+    &.fade-leave-to {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  @media (width >= $lg) {
+    &:has(.tech-heading) {
+      .tech-heading {
+        .tech-text {
+          font-size: $font-size-lg;
+        }
+      }
     }
   }
 }

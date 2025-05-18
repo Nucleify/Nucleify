@@ -1,6 +1,6 @@
 <template>
   <section id="features">
-    <ad-card-data-table
+    <template-card-data-table
       :value="data"
       :loading="loading"
       :open-dialog="openDialog"
@@ -10,7 +10,7 @@
       buttonText="New Feature"
     />
 
-    <ad-dialog
+    <organism-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"

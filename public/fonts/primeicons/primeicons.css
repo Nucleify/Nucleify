@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'PrimeIcons';
+    src: url('./primeicons.woff2') format('woff2'),
+         url('./primeicons.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.pi {
+    font-family: 'PrimeIcons' !important;
+}
