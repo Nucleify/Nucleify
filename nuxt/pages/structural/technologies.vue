@@ -1,5 +1,5 @@
 <template>
-    <div id="technologies">
-        <dm-technology-page></dm-technology-page>
-    </div>
+  <div id="technologies">
+    <dm-technology-page></dm-technology-page>
+  </div>
 </template>

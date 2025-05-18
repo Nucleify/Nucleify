@@ -4,10 +4,10 @@
       <div class="card-box-heading">
         <atom-image
           :src="props.src"
-          :alt="props.title"
+          :alt="props.label"
           class="card-box-heading-image"
         />
-        <atom-paragraph :text="props.title" class="card-box-heading-title" />
+        <atom-paragraph :text="props.label" class="card-box-heading-text" />
       </div>
     </template>
     <template #content>

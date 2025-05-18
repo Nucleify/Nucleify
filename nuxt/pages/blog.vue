@@ -1,5 +1,5 @@
 <template>
-    <div id="blog">
-        <dm-blog-page></dm-blog-page>
-    </div>
+  <div id="blog">
+    <dm-blog-page></dm-blog-page>
+  </div>
 </template>

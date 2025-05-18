@@ -1,4 +1,5 @@
 .boxes-container {
+  padding: 0 0.75em;
   display: grid;
   gap: 1em;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -12,21 +13,24 @@
 
     &-heading {
       display: flex;
-      flex-direction: row;
       gap: 0.5em;
-      color: $primary-white-text-color;
-      font-weight: 600;
-      font-size: $font-size-md;
-      padding: 0;
+
+      img {
+        width: 35px;
+        height: 35px;
+      }
+
+      &-text {
+        color: $primary-white-text-color;
+        font-weight: 600;
+        font-size: $font-size-md;
+        padding: 0;
+        margin: 0;
+      }
     }
 
     &-description {
       color: $primary-white-green-text-color;
-    }
-
-    img {
-      width: 35px;
-      height: 35px;
     }
 
     .p-card-body {

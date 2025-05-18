@@ -1,11 +1,11 @@
 <template>
   <div class="boxes-container">
     <card-box
-      v-for="(technology, index) in props.boxes"
+      v-for="(box, index) in props.boxes"
       :key="index"
-      :src="technologiesImgUrl + technology.src"
-      :title="technology.label"
-      :description="technology.description"
+      :src="technologiesImgUrl + box.src"
+      :label="box.label"
+      :description="box.description"
       class="caterpillar"
     />
   </div>
