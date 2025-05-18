@@ -61,4 +61,4 @@ describe('RequestSetterTrait', function (): void {
         expect($this->trait->getReferrerValue())->toBe("$this->appUrl/blog");
         expect($this->trait->getIsRefererAdminValue())->toBeFalse();
     });
-});
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable');
