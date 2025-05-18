@@ -21,7 +21,7 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
 
   async function getAllCards(loading?: boolean): Promise<void> {
     await apiHandle<CardObjectInterface[]>({
-      url: runtime.apiUrl + 'cards',
+      url: apiUrl() + 'cards',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: CardObjectInterface[]) => {
         results.value = response
@@ -33,7 +33,7 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: runtime.apiUrl + 'cards/count-by-created-last-week',
+      url: apiUrl() + 'cards/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -46,7 +46,7 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<CardObjectInterface>({
-      url: runtime.apiUrl + 'cards',
+      url: apiUrl() + 'cards',
       method: 'POST',
       data,
       onSuccess: (response: CardObjectInterface) => {
@@ -60,7 +60,7 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<CardObjectInterface>({
-      url: runtime.apiUrl + 'cards/',
+      url: apiUrl() + 'cards/',
       method: 'PUT',
       data,
       id: data.id,
@@ -75,7 +75,7 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<CardObjectInterface>({
-      url: runtime.apiUrl + 'cards/',
+      url: apiUrl() + 'cards/',
       method: 'DELETE',
       id,
       onSuccess: (response: CardObjectInterface) => {

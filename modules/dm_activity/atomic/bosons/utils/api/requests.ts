@@ -23,7 +23,7 @@ export function activityRequests(
 
   async function getAllActivities(loading?: boolean): Promise<void> {
     await apiHandle<ActivityLogObjectInterface[]>({
-      url: runtime.apiUrl + 'activity-log',
+      url: apiUrl() + 'activity-log',
       method: 'GET',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: ActivityLogObjectInterface[]) => {
@@ -36,7 +36,7 @@ export function activityRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: runtime.apiUrl + 'activity-log/count-by-created-last-week',
+      url: apiUrl() + 'activity-log/count-by-created-last-week',
       method: 'GET',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
@@ -50,7 +50,7 @@ export function activityRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ActivityLogObjectInterface>({
-      url: runtime.apiUrl + `activity-log/` + id,
+      url: apiUrl() + `activity-log/` + id,
       method: 'DELETE',
       onSuccess: (response: ActivityLogObjectInterface) => {
         apiSuccess(response, getData, close, 'delete')

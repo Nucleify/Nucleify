@@ -22,14 +22,14 @@ import { isMobile, technologyRequests } from 'atomic'
 
 let data
 
-if (runtime.appEnv !== 'production') {
+if (appEnv() !== 'production') {
   const { getSiteTechnologies, resultsBySite } = technologyRequests()
 
   onMounted(() => getSiteTechnologies('general', false))
   watchEffect(() => data = resultsBySite)
 } else {
   ;({ data } = await useFetch(
-    `${runtime.apiUrl}technologies/get-site-technologies/general`,
+    apiUrl() + 'technologies/get-site-technologies/general',
     {
       method: 'GET',
       immediate: true,
