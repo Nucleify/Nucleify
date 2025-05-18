@@ -11,7 +11,7 @@ import {
 } from 'atomic'
 
 export function registerGlobalConstants(app: App): void {
-  const prefix = runtime.appEnv === 'production' ? '/build' : ''
+  const prefix = appEnv() === 'production' ? '/build' : ''
 
   /**
    *  Images urls

@@ -54,14 +54,14 @@ const props = defineProps<WhyUsInterface>()
 
 let data
 
-if (runtime.appEnv !== 'production') {
+if (appEnv() !== 'production') {
   const { getSiteFeatures, resultsBySite } = featureRequests()
 
   onMounted(() => getSiteFeatures(props.site, false))
   watchEffect(() => data = resultsBySite)
 } else {
   ;({ data } = await useFetch(
-    `${runtime.apiUrl}features/get-site-features/${props.site}`,
+    apiUrl() + `features/get-site-features/${props.site}`,
     {
       method: 'GET',
       immediate: true,
