@@ -21,7 +21,7 @@ const props = defineProps<SectionFaqInterface>()
 
 let data
 
-if (runtime.appEnv !== 'production') {
+if (appEnv() !== 'production') {
   const { getSiteQuestions, resultsBySite } = questionRequests()
 
   onMounted(() => getSiteQuestions(props.site, false))

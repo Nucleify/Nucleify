@@ -7,7 +7,7 @@ export async function apiRequest(
   method: HttpMethodType = 'GET',
   data: Record<string, any> | null = null,
   id: string | number | null = null,
-  params: Record<string, any> = {},
+  params: Record<string, any> = {}
 ) {
   const finalUrl = id ? `${url}/${id}` : url
   let xsrfTokenValue: string | undefined

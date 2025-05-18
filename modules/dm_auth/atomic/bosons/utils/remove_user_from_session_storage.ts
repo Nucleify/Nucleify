@@ -1,4 +1,4 @@
-import { sessionStorageSetItem } from "atomic"
+import { sessionStorageSetItem } from 'atomic'
 
 export function removeUserFromSessionStorage(): void {
   const userKeys: string[] = [
