@@ -16,7 +16,7 @@ import { onMounted } from 'vue'
 onMounted(() => {
   const { setDefaultColors } = useColors()
 
-  setDefaultColors(false)
+  setDefaultColors(true)
 })
 const isFrontOffice = isAnyCurrentUrl([
   'home',
