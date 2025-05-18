@@ -8,7 +8,7 @@ trait RequestGetterTrait
 {
     public function getReferrer(Request $request): ?string
     {
-        return $request->header('referer');
+        return $request->header('referer-slug');
     }
 
     public function getRefererIsAdmin(?string $referer): bool

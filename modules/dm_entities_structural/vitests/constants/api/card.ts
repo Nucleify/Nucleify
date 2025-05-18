@@ -1,6 +1,6 @@
-import { StructuralCardInterface } from 'atomic'
+import { CardObjectInterface } from 'atomic'
 
-export const mockCard: StructuralCardInterface = {
+export const mockCard: CardObjectInterface = {
   id: 99,
   src: 'test src',
   title: 'test title',

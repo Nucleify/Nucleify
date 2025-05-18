@@ -1,0 +1,52 @@
+@import './components';
+
+.navbar {
+  width: 100%;
+  z-index: 9999;
+  position: fixed;
+  top: -1px;
+  background: $content-background;
+  backdrop-filter: blur(1em);
+  box-shadow: $box-shadow-none;
+  border: $border-none;
+  border-radius: $border-radius-none;
+  padding: 1em;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1230px;
+
+    .application-header {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      text-decoration: none;
+      z-index: 999;
+
+      h1 {
+        color: $white-text-color;
+        font-size: 1.5em;
+        margin: 0;
+      }
+
+      .p-image {
+        display: flex;
+
+        img {
+          height: 44px;
+          width: 44px;
+        }
+      }
+    }
+  }
+
+  .pi {
+    color: $white-text-color !important;
+  }
+
+  @media (min-width: $md) {
+    max-height: 100px;
+  }
+}

@@ -1,28 +1,28 @@
-import { Ref } from 'vue'
-
 import {
-  FeatureInterface,
-  FeatureResultsType,
-  DeleteEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
+  DeleteEntityRequestType,
+  EditEntityRequestType,
+  EntityCountResultsType,
+  EntityResultsType,
+  FeatureObjectInterface,
+  GetAllEntitiesRequestType,
+  GetEntitiesByCategoryRequestType,
+  GetEntityRequestType,
+  GetSiteEntitiesRequestType,
   LoadingRefType,
-  StoreEntityRequestFunctionType,
-  GetEntityRequestFunctionType,
-  SiteType,
+  StoreEntityRequestType,
 } from 'atomic'
 
 export interface FeatureRequestsInterface {
-  results: FeatureResultsType
-  resultsByCategory: FeatureResultsType
-  createdLastWeek: Ref<number>
+  results: EntityResultsType<FeatureObjectInterface>
+  resultsByCategory: EntityResultsType<FeatureObjectInterface>
+  resultsBySite: EntityResultsType<FeatureObjectInterface>
+  createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  resultsBySite: Ref<FeatureInterface[]>
-  getAllFeatures: GetAllEntitiesRequestFunctionType<FeatureInterface>
-  getFeaturesByCategory: (category: string) => void
-  getSiteFeatures: (loading: boolean, site: SiteType) => void
-  getCountFeaturesByCreatedLastWeek: GetEntityRequestFunctionType
-  storeFeature: StoreEntityRequestFunctionType<FeatureInterface>
-  editFeature: EditEntityRequestFunctionType<FeatureInterface>
-  deleteFeature: DeleteEntityRequestFunctionType
+  getAllFeatures: GetAllEntitiesRequestType<FeatureObjectInterface>
+  getFeaturesByCategory: GetEntitiesByCategoryRequestType
+  getSiteFeatures: GetSiteEntitiesRequestType
+  getCountFeaturesByCreatedLastWeek: GetEntityRequestType
+  storeFeature: StoreEntityRequestType<FeatureObjectInterface>
+  editFeature: EditEntityRequestType<FeatureObjectInterface>
+  deleteFeature: DeleteEntityRequestType
 }

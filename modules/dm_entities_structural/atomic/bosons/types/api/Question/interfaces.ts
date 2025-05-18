@@ -1,28 +1,28 @@
-import { Ref } from 'vue'
-
-import {
-  QuestionInterface,
-  QuestionResultsType,
-  DeleteEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
+import type {
+  DeleteEntityRequestType,
+  EditEntityRequestType,
+  EntityCountResultsType,
+  EntityResultsType,
+  GetAllEntitiesRequestType,
+  GetEntitiesByCategoryRequestType,
+  GetEntityRequestType,
+  GetSiteEntitiesRequestType,
   LoadingRefType,
-  StoreEntityRequestFunctionType,
-  GetEntityRequestFunctionType,
-  SiteType,
+  QuestionObjectInterface,
+  StoreEntityRequestType,
 } from 'atomic'
 
 export interface QuestionRequestsInterface {
-  results: QuestionResultsType
-  resultsByCategory: QuestionResultsType
-  createdLastWeek: Ref<number>
+  results: EntityResultsType<QuestionObjectInterface>
+  resultsByCategory: EntityResultsType<QuestionObjectInterface>
+  resultsBySite: EntityResultsType<QuestionObjectInterface>
+  createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  resultsBySite: Ref<QuestionInterface[]>
-  getAllQuestions: GetAllEntitiesRequestFunctionType<QuestionInterface>
-  getQuestionsByCategory: (category: string) => void
-  getSiteQuestions: (loading: boolean, site: SiteType) => void
-  getCountQuestionsByCreatedLastWeek: GetEntityRequestFunctionType
-  storeQuestion: StoreEntityRequestFunctionType<QuestionInterface>
-  editQuestion: EditEntityRequestFunctionType<QuestionInterface>
-  deleteQuestion: DeleteEntityRequestFunctionType
+  getAllQuestions: GetAllEntitiesRequestType<QuestionObjectInterface>
+  getQuestionsByCategory: GetEntitiesByCategoryRequestType
+  getSiteQuestions: GetSiteEntitiesRequestType
+  getCountQuestionsByCreatedLastWeek: GetEntityRequestType
+  storeQuestion: StoreEntityRequestType<QuestionObjectInterface>
+  editQuestion: EditEntityRequestType<QuestionObjectInterface>
+  deleteQuestion: DeleteEntityRequestType
 }

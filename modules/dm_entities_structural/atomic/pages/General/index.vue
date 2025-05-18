@@ -2,7 +2,7 @@
 <template>
   <div class="panel-container">
     <div class="tiles grid col-12">
-      <ad-tile
+      <molecule-tile
         href="/structural/cards"
         header="Cards"
         :count="cards?.length"
@@ -11,7 +11,7 @@
         text-secondary="this week"
         ad-type="card"
       />
-      <ad-tile
+      <molecule-tile
         href="/structural/features"
         header="Features"
         :count="features?.length"
@@ -20,7 +20,7 @@
         text-secondary="this week"
         ad-type="feature"
       />
-      <ad-tile
+      <molecule-tile
         href="/structural/questions"
         header="Questions"
         :count="questions?.length"
@@ -29,7 +29,7 @@
         text-secondary="this week"
         ad-type="question"
       />
-      <ad-tile
+      <molecule-tile
         href="/structural/technologies"
         header="Technologies"
         :count="technologies?.length"
@@ -38,7 +38,7 @@
         text-secondary="this week"
         ad-type="technology"
       />
-      <ad-tile
+      <molecule-tile
         href="/structural/links"
         header="Links"
         :count="links?.length"
@@ -49,7 +49,7 @@
       />
     </div>
 
-    <ad-card-chart
+    <template-card-chart
       v-if="display.Structural"
       class="annual-chart-card"
       :chart-method-type="'annual'"

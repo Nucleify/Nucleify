@@ -36,7 +36,7 @@ class LinkService
             ->toArray()['data'];
     }
 
-    public function countByCreatedLastWeek(Request $request): array
+    public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
         $this->defineTimeData();
@@ -44,9 +44,10 @@ class LinkService
 
         $result = $this->model->whereDate('created_at', '>=', $this->lastWeek)
             ->count();
+
         $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererStructural);
 
-        return ['count' => $result];
+        return $result;
     }
 
     public function getByCategory(string $category): array
@@ -55,7 +56,9 @@ class LinkService
 
         $result = $this->model::getByCategory($category)->get();
 
-        $this->logger->logMessage($this->causer->name . ' fetched questions by category: ' . $category . '.');
+        $name = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->logMessage($name . ' fetched questions by category: ' . $category . '.');
 
         return fractal()
             ->collection($result)
@@ -81,7 +84,6 @@ class LinkService
 
     public function show($id): array
     {
-
         $result = $this->model::findOrFail($id);
 
         return fractal()

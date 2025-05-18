@@ -1,23 +1,22 @@
-import { Ref } from 'vue'
-
 import {
-  StructuralCardInterface,
-  CardResultsType,
-  DeleteEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
+  CardObjectInterface,
+  DeleteEntityRequestType,
+  EditEntityRequestType,
+  GetAllEntitiesRequestType,
   LoadingRefType,
-  StoreEntityRequestFunctionType,
-  GetEntityRequestFunctionType,
+  StoreEntityRequestType,
+  GetEntityRequestType,
+  EntityCountResultsType,
+  EntityResultsType,
 } from 'atomic'
 
 export interface CardRequestsInterface {
-  results: CardResultsType
-  createdLastWeek: Ref<number>
+  results: EntityResultsType<CardObjectInterface>
+  createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllCards: GetAllEntitiesRequestFunctionType<StructuralCardInterface>
-  getCountCardsByCreatedLastWeek: GetEntityRequestFunctionType
-  storeCard: StoreEntityRequestFunctionType<StructuralCardInterface>
-  editCard: EditEntityRequestFunctionType<StructuralCardInterface>
-  deleteCard: DeleteEntityRequestFunctionType
+  getAllCards: GetAllEntitiesRequestType<CardObjectInterface>
+  getCountCardsByCreatedLastWeek: GetEntityRequestType
+  storeCard: StoreEntityRequestType<CardObjectInterface>
+  editCard: EditEntityRequestType<CardObjectInterface>
+  deleteCard: DeleteEntityRequestType
 }

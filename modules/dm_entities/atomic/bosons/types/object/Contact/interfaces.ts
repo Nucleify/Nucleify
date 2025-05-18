@@ -1,4 +1,4 @@
-export interface ContactInterface {
+export interface ContactObjectInterface {
   id?: number
   user_id?: number
   first_name: string

@@ -1,0 +1,55 @@
+@import 'variables';
+
+.p-toast {
+  z-index: 99999;
+
+  .p-toast-message {
+    position: fixed;
+    font-size: $font-size-sm;
+    top: 10px;
+    right: 10px;
+    width: 95vw;
+
+    .p-toast-message-content {
+      display: flex;
+      gap: 5px;
+    }
+
+    .p-toast-icon-close {
+      margin-left: 5px;
+    }
+
+    @media (min-width: $sm) {
+      width: max-content;
+      max-width: max-content;
+    }
+
+    @media (max-width: $sm) {
+      &.p-toast-message-success {
+        background: $success-toast-bg;
+      }
+
+      &.p-toast-message-warn {
+        background: $warn-toast-bg;
+      }
+
+      &.p-toast-message-error {
+        background: $error-toast-bg;
+      }
+    }
+  }
+}
+
+body:has(#login, #register) {
+  .p-toast {
+    .p-toast-message {
+      .p-toast-message-content {
+        gap: 1rem;
+
+        .p-toast-summary.validation-errors {
+          margin-top: -1.35rem;
+        }
+      }
+    }
+  }
+}

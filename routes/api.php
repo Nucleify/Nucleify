@@ -10,3 +10,9 @@
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::get('/test', function () {
+    return response()->json([
+        'message' => 'Hello World',
+    ]);
+});

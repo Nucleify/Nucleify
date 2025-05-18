@@ -3,9 +3,9 @@
     <start />
     <features />
     <innovations />
-    <ad-section-why-us site="home" />
-    <ad-section-faq site="home" />
-    <ad-section-contact />
+    <section-why-us site="home" />
+    <section-faq site="home" />
+    <section-contact />
   </div>
 </template>
 
@@ -14,9 +14,7 @@ import { onBeforeMount, onMounted } from 'vue'
 
 import { useColors, useViewportChange } from 'atomic'
 
-import { Features, Innovations, Start } from './'
-
-const { setDefaultColors } = useColors()
+import { Features, Innovations, Start } from './sections'
 
 useViewportChange(
   [
@@ -35,6 +33,8 @@ useViewportChange(['.home-chart-card div[data-pc-section="body"]'], 50)
 onBeforeMount(() => window.scrollTo(0, 0))
 
 onMounted(() => {
+  const { setDefaultColors } = useColors()
+
   setDefaultColors(true)
 })
 </script>
