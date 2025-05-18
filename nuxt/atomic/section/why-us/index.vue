@@ -58,7 +58,7 @@ if (appEnv() !== 'production') {
   const { getSiteFeatures, resultsBySite } = featureRequests()
 
   onMounted(() => getSiteFeatures(props.site, false))
-  watchEffect(() => data = resultsBySite)
+  watchEffect(() => (data = resultsBySite))
 } else {
   ;({ data } = await useFetch(
     apiUrl() + `features/get-site-features/${props.site}`,

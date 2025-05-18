@@ -26,7 +26,7 @@ if (appEnv() !== 'production') {
   const { getSiteTechnologies, resultsBySite } = technologyRequests()
 
   onMounted(() => getSiteTechnologies('general', false))
-  watchEffect(() => data = resultsBySite)
+  watchEffect(() => (data = resultsBySite))
 } else {
   ;({ data } = await useFetch(
     apiUrl() + 'technologies/get-site-technologies/general',

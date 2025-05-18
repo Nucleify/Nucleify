@@ -25,7 +25,7 @@ if (appEnv() !== 'production') {
   const { getSiteQuestions, resultsBySite } = questionRequests()
 
   onMounted(() => getSiteQuestions(props.site, false))
-  watchEffect(() => data = resultsBySite)
+  watchEffect(() => (data = resultsBySite))
 } else {
   ;({ data } = await useFetch(
     apiUrl() + `questions/get-site-questions/${props.site}`,
