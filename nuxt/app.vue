@@ -10,9 +10,9 @@
 
 <script setup lang="ts">
 defineOgImageComponent('NuxtSeo', {
-  title: 'NuxtStarter by Atomic IT',
+  title: 'Data Manager by Atomic IT',
   description:
-    'This template offers a fully integrated development workflow, designed to streamline your project setup and enhance code quality.',
+    'Manage various data types from a single place with this development template.',
   colorMode: 'dark',
 })
 </script>
