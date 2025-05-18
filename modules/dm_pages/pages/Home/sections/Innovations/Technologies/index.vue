@@ -3,7 +3,7 @@
     <div class="swiper-container">
       <client-only>
         <swiper-container ref="technologiesSwiper" class="mySwiper">
-          <swiper-slide v-for="(tech, index) in resultsBySite" :key="index">
+          <swiper-slide v-for="(tech, index) in data" :key="index">
             <molecule-anchor
               v-if="tech"
               :href="tech.href"
@@ -18,11 +18,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
 import { isMobile, technologyRequests } from 'atomic'
 
-const { getSiteTechnologies, resultsBySite } = technologyRequests()
+let data
+
+if (runtime.appEnv !== 'production') {
+  const { getSiteTechnologies, resultsBySite } = technologyRequests()
+
+  onMounted(() => getSiteTechnologies('general', false))
+  watchEffect(() => data = resultsBySite)
+} else {
+  ;({ data } = await useFetch(
+    `${runtime.apiUrl}technologies/get-site-technologies/general`,
+    {
+      method: 'GET',
+      immediate: true,
+      watch: false,
+    }
+  ))
+}
 
 const technologiesSwiper = ref(null)
 
@@ -36,9 +50,5 @@ useSwiper(technologiesSwiper, {
   slidesPerView: 12,
   slidesPerGroup: 2,
   loop: true,
-})
-
-onMounted(() => {
-  getSiteTechnologies('general', false)
 })
 </script>

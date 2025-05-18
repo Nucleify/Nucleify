@@ -5,9 +5,23 @@
 </template>
 
 <script setup lang="ts">
-const { data } = await useFetch(runtime.apiUrl + 'technologies/get-site-technologies/general', {
-  method: 'GET',
-  immediate: true,
-  watch: false,
-})
+import { technologyRequests } from 'atomic'
+
+let data
+
+if (runtime.appEnv !== 'production') {
+  const { getSiteTechnologies, resultsBySite } = technologyRequests()
+
+  onMounted(() => getSiteTechnologies('general', false))
+  watchEffect(() => data = resultsBySite)
+} else {
+  ;({ data } = await useFetch(
+    `${runtime.apiUrl}technologies/get-site-technologies/general`,
+    {
+      method: 'GET',
+      immediate: true,
+      watch: false,
+    }
+  ))
+}
 </script>
