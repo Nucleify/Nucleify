@@ -25,6 +25,7 @@
       v-model:visible="dialogVisible"
       :data="dialogData"
       @close="dialogVisible = false"
+      :dismissable-mask="true"
       modal
       class="why-us-dialog"
     >
@@ -46,18 +47,28 @@ import {
   FeatureObjectInterface,
   WhyUsInterface,
   WhyUsItemInterface,
+  featureRequests,
 } from 'atomic'
 
 const props = defineProps<WhyUsInterface>()
 
-const { data } = await useFetch(runtime.apiUrl + 'features/get-site-features/' + props.site, {
-  method: 'GET',
-  immediate: true,
-  watch: false,
-  onResponse({ response }) {
-    console.log(response)
-  },
-})
+let data
+
+if (runtime.appEnv !== 'production') {
+  const { getSiteFeatures, resultsBySite } = featureRequests()
+
+  onMounted(() => getSiteFeatures(props.site, false))
+  watchEffect(() => data = resultsBySite)
+} else {
+  ;({ data } = await useFetch(
+    `${runtime.apiUrl}features/get-site-features/${props.site}`,
+    {
+      method: 'GET',
+      immediate: true,
+      watch: false,
+    }
+  ))
+}
 
 const whyUsGroups = computed<
   [FeatureObjectInterface, FeatureObjectInterface?][]
@@ -87,22 +98,4 @@ const openDialog = (item: WhyUsItemInterface) => {
   dialogData.value = item
   dialogVisible.value = true
 }
-
-const handleClickOutside = (event: MouseEvent) => {
-  if (!dialogVisible.value) return
-
-  const dialogElement = document.querySelector('.why-us-dialog')
-
-  if (dialogElement && !dialogElement.contains(event.target as Node)) {
-    dialogVisible.value = false
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('mousedown', handleClickOutside)
-})
-
-onBeforeUnmount(() => {
-  document.removeEventListener('mousedown', handleClickOutside)
-})
 </script>
