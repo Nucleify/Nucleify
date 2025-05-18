@@ -1,21 +1,17 @@
 <template>
-  <ad-card class="polar-area-chart-card">
+  <organism-card class="polar-area-chart-card">
     <template #content>
       <Chart type="polarArea" :data="chartData" :options="chartOptions" />
     </template>
-  </ad-card>
+  </organism-card>
 </template>
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 
-import {
-  useColors,
-  PolarChartInterface,
-  UseColorsReturnInterface,
-} from 'atomic'
+import { useColors, PolarChartInterface, UseColorsInterface } from 'atomic'
 
-const { colors }: UseColorsReturnInterface = useColors()
+const { colors }: UseColorsInterface = useColors()
 
 const props = defineProps<PolarChartInterface>()
 

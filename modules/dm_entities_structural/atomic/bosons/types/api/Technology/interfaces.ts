@@ -1,28 +1,28 @@
-import { Ref } from 'vue'
-
-import {
-  TechnologyInterface,
-  TechnologyResultsType,
-  DeleteEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
+import type {
+  DeleteEntityRequestType,
+  EditEntityRequestType,
+  EntityCountResultsType,
+  EntityResultsType,
+  GetAllEntitiesRequestType,
+  GetEntitiesByCategoryRequestType,
+  GetEntityRequestType,
+  GetSiteEntitiesRequestType,
   LoadingRefType,
-  StoreEntityRequestFunctionType,
-  GetEntityRequestFunctionType,
-  SiteType,
+  StoreEntityRequestType,
+  TechnologyObjectInterface,
 } from 'atomic'
 
 export interface TechnologyRequestsInterface {
-  results: TechnologyResultsType
-  resultsByCategory: TechnologyResultsType
-  createdLastWeek: Ref<number>
+  results: EntityResultsType<TechnologyObjectInterface>
+  resultsByCategory: EntityResultsType<TechnologyObjectInterface>
+  resultsBySite: EntityResultsType<TechnologyObjectInterface>
+  createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  resultsBySite: Ref<TechnologyInterface[]>
-  getAllTechnologies: GetAllEntitiesRequestFunctionType<TechnologyInterface>
-  getTechnologiesByCategory: (category: string) => void
-  getSiteTechnologies: (loading: boolean, site: SiteType) => void
-  getCountTechnologiesByCreatedLastWeek: GetEntityRequestFunctionType
-  storeTechnology: StoreEntityRequestFunctionType<TechnologyInterface>
-  editTechnology: EditEntityRequestFunctionType<TechnologyInterface>
-  deleteTechnology: DeleteEntityRequestFunctionType
+  getAllTechnologies: GetAllEntitiesRequestType<TechnologyObjectInterface>
+  getTechnologiesByCategory: GetEntitiesByCategoryRequestType
+  getSiteTechnologies: GetSiteEntitiesRequestType
+  getCountTechnologiesByCreatedLastWeek: GetEntityRequestType
+  storeTechnology: StoreEntityRequestType<TechnologyObjectInterface>
+  editTechnology: EditEntityRequestType<TechnologyObjectInterface>
+  deleteTechnology: DeleteEntityRequestType
 }

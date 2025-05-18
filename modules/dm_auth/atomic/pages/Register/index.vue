@@ -1,22 +1,25 @@
 <template>
-  <ad-back-link />
+  <template-anchor-backlink />
   <div class="auth-card-container">
-    <ad-card class="register-card">
+    <organism-card class="register-card">
       <template #header>
         <div class="auth-card-header-container">
           <div class="auth-card-header">
-            <ad-heading :tag="1" text="Register" />
+            <atom-heading :tag="1" text="Register" />
 
-            <ad-paragraph class="mb-2" text="Already have an account?">
-              <ad-anchor href="/login" :label="'Log in!'" />
-            </ad-paragraph>
+            <atom-paragraph text="Already have an account?">
+              <molecule-anchor href="/login" :label="'Log in!'" />
+            </atom-paragraph>
           </div>
         </div>
       </template>
       <template #content>
         <form @submit.prevent="submitForm(registerFields)">
-          <ad-float-label v-for="(field, index) in registerInputs" :key="index">
-            <ad-input-text
+          <molecule-float-label
+            v-for="(field, index) in registerInputs"
+            :key="index"
+          >
+            <atom-input-text
               v-if="field.type !== 'password'"
               v-model="registerFields[field.model]"
               ad-type="main"
@@ -26,7 +29,7 @@
               :autofocus="field.autofocus"
             />
 
-            <ad-password
+            <organism-password
               v-else
               v-model="registerFields[field.model]"
               ad-type="main"
@@ -49,18 +52,18 @@
               "
             />
 
-            <ad-label :for="field.id" :label="field.label" />
-          </ad-float-label>
+            <atom-label :for="field.id" :label="field.label" />
+          </molecule-float-label>
 
-          <ad-button
+          <atom-button
             label="Register"
             type="submit"
-            class="primary-button -mb-1 mt-2"
+            class="primary-button"
             padding="10px 10px"
           />
         </form>
       </template>
-    </ad-card>
+    </organism-card>
   </div>
 </template>
 

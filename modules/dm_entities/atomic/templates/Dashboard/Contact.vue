@@ -1,6 +1,6 @@
 <template>
   <section id="contacts">
-    <ad-card-data-table
+    <template-card-data-table
       ad-type="contact"
       :value="data"
       :loading="loading"
@@ -10,7 +10,7 @@
       buttonText="New Contact"
     />
 
-    <ad-dialog
+    <organism-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"

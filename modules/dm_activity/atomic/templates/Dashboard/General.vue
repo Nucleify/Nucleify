@@ -1,6 +1,6 @@
 <template>
   <section id="activity-log">
-    <ad-card-data-table
+    <template-card-data-table
       ad-type="activity"
       :value="data"
       :loading="loading"
@@ -9,7 +9,7 @@
       headerText="Manage Activities"
     />
 
-    <ad-dialog
+    <organism-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"

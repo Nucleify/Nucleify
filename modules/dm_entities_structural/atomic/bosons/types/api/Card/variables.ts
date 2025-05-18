@@ -1,5 +1,5 @@
 import { Ref } from 'vue'
 
-import { StructuralCardInterface } from 'atomic'
+import { CardObjectInterface } from 'atomic'
 
-export type CardResultsType = Ref<StructuralCardInterface[] | undefined>
+export type CardResultsType = Ref<CardObjectInterface[] | undefined>

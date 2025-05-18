@@ -1,4 +1,4 @@
-export interface ArticleInterface {
+export interface ArticleObjectInterface {
   id?: number
   user_id?: number
   title: string

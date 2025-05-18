@@ -1,6 +1,6 @@
 <template>
   <div class="blog-container">
-    <ad-section-category
+    <section-category
       :cards="blogCategoriesCards"
       :prefix="storysetBlogImgUrl"
     />

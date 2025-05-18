@@ -1,6 +1,6 @@
 <template>
   <div class="panel-container">
-    <ad-card-chart
+    <template-card-chart
       v-if="display.Card"
       class="annual-chart-card"
       :chart-method-type="'annual'"

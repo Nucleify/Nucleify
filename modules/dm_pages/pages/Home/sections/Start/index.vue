@@ -2,7 +2,7 @@
   <section id="start">
     <div class="container">
       <div class="container start-container">
-        <ad-image
+        <atom-image
           :src="imgUrl + 'logo.svg'"
           alt="DataManager logo"
           class="start-image"
@@ -10,26 +10,26 @@
         />
 
         <div class="left-side">
-          <ad-heading :tag="1" class="header">
+          <atom-heading :tag="1" class="header">
             One
             <span class="shiny first-text">place</span> <br />
             for all
             <span class="shiny">your data</span>
-          </ad-heading>
+          </atom-heading>
 
-          <ad-heading
+          <atom-heading
             :tag="2"
             text="Manage various data types from a single place with this development template."
             class="start-description"
           />
 
           <div class="cta">
-            <ad-button
+            <atom-button
               label="Try it out!"
               class="start-button caterpillar"
               @click="navigateTo('/register')"
             />
-            <ad-button
+            <atom-button
               label="GitHub"
               :src="technologiesImgUrl + 'github.svg'"
               class="start-button caterpillar"

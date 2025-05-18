@@ -1,6 +1,6 @@
-import { TechnologyInterface } from 'atomic'
+import { TechnologyObjectInterface } from 'atomic'
 
-export const mockTechnology: TechnologyInterface = {
+export const mockTechnology: TechnologyObjectInterface = {
   id: 999,
   href: 'Example href',
   src: 'Example src',

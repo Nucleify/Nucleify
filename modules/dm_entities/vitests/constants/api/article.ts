@@ -1,8 +1,8 @@
-import { ArticleInterface } from 'atomic'
+import { ArticleObjectInterface } from 'atomic'
 
-export const mockArticle: ArticleInterface = {
+export const mockArticle: ArticleObjectInterface = {
   id: 999999,
-  user_id: Number(window.sessionStorage.getItem('user_id')),
+  user_id: 1,
   title: 'Example Article',
   description: 'Example Description',
   category: 'example',

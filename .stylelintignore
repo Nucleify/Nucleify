@@ -1,6 +1,40 @@
-// Temporary ignored files
+build
+coverage
 
-atomic/bosons/styles/organisms/DatePicker/_index.scss
-atomic/bosons/styles/organisms/Select/_index.scss
-atomic/bosons/styles/pages/Home/WhyUs/_index.scss
-atomic/bosons/styles/templates/Screen/Lights/_index.scss
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+
+# Node dependencies
+node_modules
+
+# Logs
+logs
+*.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+.prettierrc
+eslint.config.mjs
+nuxt.config.ts
+package*.json
+README.md
+tsconfig.json
+
+*.vue
+
+vendor
+_modules
+atomic
