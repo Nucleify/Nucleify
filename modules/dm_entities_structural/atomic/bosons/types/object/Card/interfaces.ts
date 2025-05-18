@@ -1,4 +1,4 @@
-export interface StructuralCardInterface {
+export interface CardObjectInterface {
   id?: number
   src: string
   title: string

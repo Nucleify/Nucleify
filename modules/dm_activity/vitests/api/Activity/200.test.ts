@@ -1,66 +1,41 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
-import axios from 'axios'
-
-import {
-  mockActivity,
-  mockUseToast,
-  ActivityLogInterface,
-  ActivityLogRequestsInterface,
-  EntityResponseType,
-  MockUseToastInterface,
-  activityRequests,
-  useDialog,
-} from 'atomic'
-
-vi.mock('axios')
-vi.mock('primevue/usetoast', (): { useToast: () => MockUseToastInterface } => ({
-  useToast: () => mockUseToast(vi.fn()),
-}))
+import { describe, expect, it, beforeEach, vi } from 'vitest'
+import * as atomic from 'atomic'
 
 describe('activityRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: ActivityLogRequestsInterface = activityRequests(closeDialog)
-  const mockResponse: EntityResponseType<ActivityLogInterface[]> = {
-    data: [mockActivity],
-  }
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.ActivityLogRequestsInterface =
+    atomic.activityRequests(closeDialog)
+  const mockResponse = [atomic.mockActivity]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    axios.get.mockResolvedValue(mockResponse)
-    axios.post.mockResolvedValue(mockResponse)
-    axios.put.mockResolvedValue(mockResponse)
-    axios.delete.mockResolvedValue(mockResponse)
+    atomic.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllActivities', async (): Promise<void> => {
     await requests.getAllActivities()
-
-    expect(axios.get).toHaveBeenCalledWith('/api/activity-log')
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('activity-log'),
+      expect.objectContaining({ method: 'GET' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('getCountActivitiesByCreatedLastWeek', async (): Promise<void> => {
     await requests.getCountActivitiesByCreatedLastWeek()
-
-    expect(axios.get).toHaveBeenCalledWith(
-      '/api/activity-log/count-by-created-last-week'
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('activity-log/count-by-created-last-week'),
+      expect.objectContaining({ method: 'GET' })
     )
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('deleteActivity', async (): Promise<void> => {
-    await requests.deleteActivity(
-      mockActivity.id,
-      requests.getAllActivities(),
-      close
+    await requests.deleteActivity(atomic.mockActivity.id ?? 0, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('activity-log'),
+      expect.objectContaining({ method: 'DELETE' })
     )
-
-    expect(axios.delete).toHaveBeenCalledWith(
-      '/api/activity-log/' + mockActivity.id
-    )
-    expect(axios.get).toHaveBeenCalledWith('/api/activity-log')
-    expect(mockUseToast.success)
+    expect(requests.results.value).toEqual(mockResponse)
   })
 })

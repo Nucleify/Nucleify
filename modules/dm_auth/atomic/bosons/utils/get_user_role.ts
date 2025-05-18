@@ -3,8 +3,9 @@
 import {
   UserIdType,
   UserRequestsInterface,
-  userRequests,
+  sessionStorageGetItem,
   setUserToSessionStorage,
+  userRequests,
 } from 'atomic'
 
 export async function getUserRole(): Promise<{
@@ -12,14 +13,14 @@ export async function getUserRole(): Promise<{
   isStaff: () => boolean
 }> {
   const { results, getUser }: UserRequestsInterface = userRequests()
-  const userId: UserIdType = window.sessionStorage.getItem('user_id')
+  const userId: UserIdType = sessionStorageGetItem('user_id')
 
   if (!userId) {
     await getUser()
     setUserToSessionStorage(results.value)
   }
 
-  const userRole: string = window.sessionStorage.getItem('user_role')!
+  const userRole: string = sessionStorageGetItem('user_role')!
 
   const isAdmin: () => boolean = () => {
     return ['admin', 'test_admin', 'super_admin'].includes(userRole)

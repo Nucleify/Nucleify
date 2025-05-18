@@ -26,19 +26,23 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        gap: 1em;
         color: $primary-white-green-text-color;
 
         .title {
           width: 100%;
           display: flex;
           flex-wrap: wrap;
-          font-weight: 800;
-          font-size: 2.2em;
-          line-height: 1.3em;
+          margin: 0;
 
           .shiny {
             min-width: max-content;
+          }
+
+          span,
+          div {
+            font-weight: 800;
+            font-size: 1em;
+            font-family: $font-inter-sans-serif !important;
           }
         }
 

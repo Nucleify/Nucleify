@@ -1,76 +1,61 @@
-import { Ref, ref } from 'vue'
-import axios, { AxiosResponse } from 'axios'
+import { ref } from 'vue'
 
 import {
-  ActivityLogInterface,
+  ActivityLogObjectInterface,
   ActivityLogRequestsInterface,
-  ActivityResultsType,
-  apiSuccess,
-  catchErrors,
-  CloseDialogFunctionType,
-  GetAllEntitiesRequestResponseType,
-  useApiErrors,
-  UseApiErrorsInterface,
-  useLoading,
+  CloseDialogType,
+  EntityCountResultsType,
+  EntityResultsType,
   UseLoadingInterface,
-  useToast,
-  UseToastInterface,
+  apiHandle,
+  useApiSuccess,
+  useLoading,
 } from 'atomic'
 
 export function activityRequests(
-  close: CloseDialogFunctionType
+  close: CloseDialogType
 ): ActivityLogRequestsInterface {
-  const results: ActivityResultsType = ref<ActivityLogInterface[]>([])
-  const createdLastWeek: Ref<number> = ref<number>(0)
+  const results: EntityResultsType<ActivityLogObjectInterface> = ref([])
+  const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
-  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
-  const { flashToast }: UseToastInterface = useToast()
+  const { apiSuccess } = useApiSuccess()
 
   async function getAllActivities(loading?: boolean): Promise<void> {
-    try {
-      if (loading) {
-        setLoading(true)
-      }
-
-      const response: GetAllEntitiesRequestResponseType<ActivityLogInterface> =
-        await axios.get('/api/activity-log')
-
-      results.value = response.data
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    } finally {
-      if (loading) {
-        setLoading(false)
-      }
-    }
+    await apiHandle<ActivityLogObjectInterface[]>({
+      url: apiUrl() + 'activity-log',
+      method: 'GET',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: ActivityLogObjectInterface[]) => {
+        results.value = response
+      },
+    })
   }
 
-  async function getCountActivitiesByCreatedLastWeek(): Promise<void> {
-    try {
-      const response = await axios.get(
-        '/api/activity-log/count-by-created-last-week'
-      )
-
-      createdLastWeek.value = response.data.count
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+  async function getCountActivitiesByCreatedLastWeek(
+    loading?: boolean
+  ): Promise<void> {
+    await apiHandle<number>({
+      url: apiUrl() + 'activity-log/count-by-created-last-week',
+      method: 'GET',
+      setLoading: loading ? setLoading : undefined,
+      onSuccess: (response: number) => {
+        createdLastWeek.value = response
+      },
+    })
   }
 
   async function deleteActivity(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    try {
-      const response: AxiosResponse = await axios.delete(
-        `/api/activity-log/${id}`
-      )
-
-      await apiSuccess(response, getData, flashToast, close, 'delete')
-    } catch (error) {
-      catchErrors(error, apiErrors)
-    }
+    await apiHandle<ActivityLogObjectInterface>({
+      url: apiUrl() + `activity-log/` + id,
+      method: 'DELETE',
+      onSuccess: (response: ActivityLogObjectInterface) => {
+        apiSuccess(response, getData, close, 'delete')
+      },
+    })
   }
 
   return {

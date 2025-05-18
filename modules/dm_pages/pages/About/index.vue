@@ -1,8 +1,8 @@
 <template>
   <div class="about-container">
-    <ad-section-stack />
-    <ad-section-faq site="about" />
-    <ad-section-contact />
+    <section-stack />
+    <section-faq site="about" />
+    <section-contact />
   </div>
 </template>
 

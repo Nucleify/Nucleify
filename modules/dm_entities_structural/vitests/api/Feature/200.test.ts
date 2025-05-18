@@ -1,91 +1,59 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import axios from 'axios'
-
-import {
-  mockFeature,
-  mockUseToast,
-  FeatureInterface,
-  FeatureRequestsInterface,
-  EntityResponseType,
-  MockUseToastInterface,
-  featureRequests,
-  useDialog,
-} from 'atomic'
-
-vi.mock('axios')
-vi.mock('primevue/usetoast', (): { useToast: () => MockUseToastInterface } => ({
-  useToast: () => mockUseToast(vi.fn()),
-}))
+import * as atomic from 'atomic'
 
 describe('featureRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: FeatureRequestsInterface = featureRequests(closeDialog)
-  const mockResponse: EntityResponseType<FeatureInterface[]> = {
-    data: [mockFeature],
-  }
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.FeatureRequestsInterface =
+    atomic.featureRequests(closeDialog)
+  const mockResponse = [atomic.mockFeature]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    axios.get.mockResolvedValue(mockResponse)
-    axios.post.mockResolvedValue(mockResponse)
-    axios.put.mockResolvedValue(mockResponse)
-    axios.delete.mockResolvedValue(mockResponse)
+    atomic.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllFeatures', async (): Promise<void> => {
     await requests.getAllFeatures()
-
-    expect(axios.get).toHaveBeenCalledWith('/api/features')
-    expect(mockUseToast.success)
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('features'),
+      expect.objectContaining({ method: 'GET' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('getCountFeaturesByCreatedLastWeek', async (): Promise<void> => {
     await requests.getCountFeaturesByCreatedLastWeek()
-
-    expect(axios.get).toHaveBeenCalledWith(
-      '/api/features/count-by-created-last-week'
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('features/count-by-created-last-week'),
+      expect.objectContaining({ method: 'GET' })
     )
-
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('storeFeature', async (): Promise<void> => {
-    await requests.storeFeature(mockFeature)
-
-    expect(axios.post).toHaveBeenCalledWith('/api/features', {
-      header: mockFeature.header,
-      description: mockFeature.description,
-      category: mockFeature.category,
-    })
-
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.storeFeature(atomic.mockFeature, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('features'),
+      expect.objectContaining({ method: 'POST' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('editFeature', async (): Promise<void> => {
-    await requests.editFeature(mockFeature, requests.getAllFeatures(), close)
-
-    expect(axios.put).toHaveBeenCalledWith('/api/features/' + mockFeature.id, {
-      header: mockFeature.header,
-      description: mockFeature.description,
-      category: mockFeature.category,
-    })
-
-    expect(axios.get).toHaveBeenCalled()
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.editFeature(atomic.mockFeature, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('features'),
+      expect.objectContaining({ method: 'PUT' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('deleteFeature', async (): Promise<void> => {
-    await requests.deleteFeature(
-      mockFeature.id,
-      requests.getAllFeatures(),
-      close
+    await requests.deleteFeature(atomic.mockFeature.id ?? 0, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('features'),
+      expect.objectContaining({ method: 'DELETE' })
     )
-
-    expect(axios.delete).toHaveBeenCalledWith('/api/features/' + mockFeature.id)
-    expect(axios.get).toHaveBeenCalledWith('/api/features')
-    expect(mockUseToast.success)
+    expect(requests.results.value).toEqual(mockResponse)
   })
 })

@@ -1,71 +1,80 @@
-.login-card,
-.register-card {
-  width: 95vw !important;
-  position: relative;
-  box-shadow: $primary-box-shadow;
+#login,
+#register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 
-  @media (min-width: $sm) {
-    max-width: 475px !important;
-  }
+  .login-card,
+  .register-card {
+    width: 95vw !important;
+    position: relative;
+    box-shadow: $primary-box-shadow;
 
-  .auth-card-header-container {
-    display: flex;
-    justify-content: center;
+    @media (min-width: $sm) {
+      max-width: 475px !important;
+    }
 
-    .auth-card-header {
+    .auth-card-header-container {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1em;
-      margin-top: 2em;
+      justify-content: center;
 
-      h1 {
-        font-size: 1.75em;
-      }
+      .auth-card-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+        margin-top: 2em;
 
-      p {
-        text-align: center;
-        font-size: 1em;
-        padding: 0 4px;
+        h1 {
+          font-size: 1.75em;
+        }
 
-        a {
-          text-decoration: none;
-          color: $primary-color !important;
+        p {
+          text-align: center;
+          font-size: 1em;
+          padding: 0 4px;
+          margin: 0;
+
+          a {
+            text-decoration: none;
+            color: $primary-color !important;
+          }
         }
       }
     }
-  }
 
-  .p-card-body {
-    padding: 10px 10px 15px;
+    .p-card-body {
+      padding: 10px 10px 15px;
 
-    .p-card-content {
-      padding: 20px;
+      .p-card-content {
+        padding: 20px;
 
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: 2.2em;
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 2.2em;
+        }
       }
     }
-  }
 
-  @media (min-width: $md) {
-    padding-bottom: 0;
+    @media (min-width: $md) {
+      padding-bottom: 0;
 
-    .p-card-content,
-    .p-card-body {
-      padding: 20px;
+      .p-card-content,
+      .p-card-body {
+        padding: 20px;
+      }
     }
-  }
 
-  .auth-input-text {
-    height: 40px;
-    width: 100%;
-    max-width: 100%;
-
-    .p-inputtext {
+    .auth-input-text {
+      height: 40px;
       width: 100%;
+      max-width: 100%;
+
+      .p-inputtext {
+        width: 100%;
+      }
     }
   }
 }

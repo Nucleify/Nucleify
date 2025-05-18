@@ -38,7 +38,7 @@ class MoneyService
             ->toArray()['data'];
     }
 
-    public function countByCreatedLastWeek(Request $request): array
+    public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
         $this->defineTimeData();
@@ -53,7 +53,7 @@ class MoneyService
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererAdmin);
 
-        return ['count' => $result];
+        return $result;
     }
 
     public function show($id): array

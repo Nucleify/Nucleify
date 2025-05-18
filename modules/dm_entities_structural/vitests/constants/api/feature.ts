@@ -1,6 +1,6 @@
-import { FeatureInterface } from 'atomic'
+import { FeatureObjectInterface } from 'atomic'
 
-export const mockFeature: FeatureInterface = {
+export const mockFeature: FeatureObjectInterface = {
   id: 999,
   header: 'Example Header',
   description: 'Example Descreiption',

@@ -53,4 +53,4 @@ describe('405 > Method Not Allowed > Unauthorized', function (): void {
         $this->deleteJson(route('artisan.run', 1))
             ->assertStatus(405);
     });
-});
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable');

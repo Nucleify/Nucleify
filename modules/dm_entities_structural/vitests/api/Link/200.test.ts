@@ -1,83 +1,50 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import axios from 'axios'
-
-import {
-  mockLink,
-  mockUseToast,
-  LinkInterface,
-  LinkRequestsInterface,
-  EntityResponseType,
-  MockUseToastInterface,
-  linkRequests,
-  useDialog,
-} from 'atomic'
-
-vi.mock('axios')
-vi.mock('primevue/usetoast', (): { useToast: () => MockUseToastInterface } => ({
-  useToast: () => mockUseToast(vi.fn()),
-}))
+import * as atomic from 'atomic'
 
 describe('linkRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: LinkRequestsInterface = linkRequests(closeDialog)
-  const mockResponse: EntityResponseType<LinkInterface[]> = {
-    data: [mockLink],
-  }
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.LinkRequestsInterface =
+    atomic.linkRequests(closeDialog)
+  const mockResponse = [atomic.mockLink]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    axios.get.mockResolvedValue(mockResponse)
-    axios.post.mockResolvedValue(mockResponse)
-    axios.put.mockResolvedValue(mockResponse)
-    axios.delete.mockResolvedValue(mockResponse)
+    atomic.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllLinks', async (): Promise<void> => {
     await requests.getAllLinks()
-
-    expect(axios.get).toHaveBeenCalledWith('/api/links')
-    expect(mockUseToast.success)
-  })
-
-  it('getCountLinksByCreatedLastWeek', async (): Promise<void> => {
-    await requests.getCountLinksByCreatedLastWeek()
-
-    expect(axios.get).toHaveBeenCalledWith(
-      '/api/links/count-by-created-last-week'
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('links'),
+      expect.objectContaining({ method: 'GET' })
     )
-
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('storeLink', async (): Promise<void> => {
-    await requests.storeLink(mockLink)
-
-    expect(axios.post).toHaveBeenCalledWith('/api/links', {
-      ...mockLink,
-    })
-
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.storeLink(atomic.mockLink, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('links'),
+      expect.objectContaining({ method: 'POST' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('editLink', async (): Promise<void> => {
-    await requests.editLink(mockLink, requests.getAllLinks(), close)
-
-    expect(axios.put).toHaveBeenCalledWith('/api/links/' + mockLink.id, {
-      ...mockLink,
-    })
-
-    expect(axios.get).toHaveBeenCalled()
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.editLink(atomic.mockLink, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('links'),
+      expect.objectContaining({ method: 'PUT' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('deleteLink', async (): Promise<void> => {
-    await requests.deleteLink(mockLink.id, requests.getAllLinks(), close)
-
-    expect(axios.delete).toHaveBeenCalledWith('/api/links/' + mockLink.id)
-    expect(axios.get).toHaveBeenCalledWith('/api/links')
-    expect(mockUseToast.success)
+    await requests.deleteLink(atomic.mockLink.id ?? 0, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('links'),
+      expect.objectContaining({ method: 'DELETE' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 })

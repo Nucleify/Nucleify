@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Question;
-use App\Traits\Runners\Api\AuthRunnerTrait;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
@@ -13,7 +12,6 @@ use Illuminate\Http\Request;
 
 class QuestionService
 {
-    use AuthRunnerTrait;
     use RequestSetterTrait;
     use TimeSetterTrait;
     use UserSetterTrait;
@@ -31,7 +29,6 @@ class QuestionService
     {
         $this->defineRequestData($request);
         $this->defineUserData();
-        $this->checkPermissions('index');
 
         $result = $this->model->all();
 
@@ -46,18 +43,17 @@ class QuestionService
     /**
      * @throws Exception
      */
-    public function countByCreatedLastWeek(Request $request): array
+    public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
         $this->defineTimeData();
         $this->defineUserData();
-        $this->checkPermissions('countByCreatedLastWeek');
 
         $result = $this->model->whereDate('created_at', '>=', $this->lastWeek)->count();
 
         $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererStructural);
 
-        return ['count' => $result];
+        return $result;
     }
 
     /**
@@ -66,7 +62,6 @@ class QuestionService
     public function getByCategory(string $category): array
     {
         $this->defineUserData();
-        $this->checkPermissions('getByCategory');
 
         $result = $this->model::getByCategory($category)->get();
 
@@ -100,7 +95,6 @@ class QuestionService
     public function show($id): array
     {
         $this->defineUserData();
-        $this->checkPermissions('show');
 
         $result = $this->model::findOrFail($id);
 
@@ -118,7 +112,6 @@ class QuestionService
     public function create(array $data): array
     {
         $this->defineUserData();
-        $this->checkPermissions('create');
 
         $result = $this->model::create($data);
 
@@ -136,7 +129,6 @@ class QuestionService
     public function update($id, array $data): array
     {
         $this->defineUserData();
-        $this->checkPermissions('update');
 
         $result = $this->model::findOrFail($id);
 
@@ -156,7 +148,6 @@ class QuestionService
     public function delete($id): void
     {
         $this->defineUserData();
-        $this->checkPermissions('delete');
 
         $model = $this->model::findOrFail($id);
 

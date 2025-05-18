@@ -38,7 +38,7 @@ class ArticleService
             ->toArray()['data'];
     }
 
-    public function countByCreatedLastWeek(Request $request): array
+    public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
         $this->defineTimeData();
@@ -53,7 +53,7 @@ class ArticleService
 
         $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererAdmin);
 
-        return ['count' => $result];
+        return $this->isRefererAdmin;
     }
 
     public function show($id): array

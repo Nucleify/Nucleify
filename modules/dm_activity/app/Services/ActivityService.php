@@ -36,7 +36,7 @@ class ActivityService
             ->toArray()['data'];
     }
 
-    public function countByCreatedLastWeek(Request $request): array
+    public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
         $this->defineTimeData();
@@ -49,7 +49,7 @@ class ActivityService
                 ->where('user_id', $this->causer->id)
                 ->count();
 
-        return ['count' => $result];
+        return $result;
     }
 
     /**

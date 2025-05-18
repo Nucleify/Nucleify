@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import {
   loginFields,
   loginInputs,
@@ -7,39 +5,35 @@ import {
   registerInputs,
   LoginFieldsInterface,
   RegisterFieldsInterface,
-  UseApiErrorsInterface,
   UseAuthFormInterface,
-  useApiErrors,
   navigateTo,
+  apiHandle,
 } from 'atomic'
 
 export function useAuthForm(): UseAuthFormInterface {
-  const { apiErrors }: UseApiErrorsInterface = useApiErrors()
-  let url
-
+  let url: string
   async function submitForm(
     data: LoginFieldsInterface | RegisterFieldsInterface
   ): Promise<void> {
     switch (true) {
       case !('password_confirmation' in data):
-        url = '/login'
+        url = appUrl() + 'login'
         break
       case 'password_confirmation' in data:
-        url = '/register'
+        url = appUrl() + 'register'
         break
       default:
         throw Error
     }
 
-    await axios
-      .post(url, data)
-      .then((): void => {
+    await apiHandle({
+      url,
+      method: 'POST',
+      data,
+      onSuccess: (): void => {
         navigateTo('/dashboard')
-      })
-      .catch((error): void => {
-        apiErrors(error)
-        throw error
-      })
+      },
+    })
   }
   return {
     submitForm,

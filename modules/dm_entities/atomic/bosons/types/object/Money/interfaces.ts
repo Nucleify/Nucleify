@@ -1,6 +1,6 @@
-export interface MoneyInterface {
+export interface MoneyObjectInterface {
   id?: number
-  user_id: number
+  user_id?: number
   sender: string
   receiver: string
   count: number

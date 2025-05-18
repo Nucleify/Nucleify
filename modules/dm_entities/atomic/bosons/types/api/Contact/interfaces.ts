@@ -1,23 +1,22 @@
-import { Ref } from 'vue'
-
-import {
-  ContactInterface,
-  ContactResultsType,
-  DeleteEntityRequestFunctionType,
-  EditEntityRequestFunctionType,
-  GetAllEntitiesRequestFunctionType,
-  GetEntityRequestFunctionType,
+import type {
+  ContactObjectInterface,
+  DeleteEntityRequestType,
+  EditEntityRequestType,
+  EntityCountResultsType,
+  EntityResultsType,
+  GetAllEntitiesRequestType,
+  GetEntityRequestType,
   LoadingRefType,
-  StoreEntityRequestFunctionType,
+  StoreEntityRequestType,
 } from 'atomic'
 
 export interface ContactRequestsInterface {
-  results: ContactResultsType
-  createdLastWeek: Ref<number>
+  results: EntityResultsType<ContactObjectInterface>
+  createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllContacts: GetAllEntitiesRequestFunctionType<ContactInterface>
-  getCountContactsByCreatedLastWeek: GetEntityRequestFunctionType
-  storeContact: StoreEntityRequestFunctionType<ContactInterface>
-  editContact: EditEntityRequestFunctionType<ContactInterface>
-  deleteContact: DeleteEntityRequestFunctionType
+  getAllContacts: GetAllEntitiesRequestType<ContactObjectInterface>
+  getCountContactsByCreatedLastWeek: GetEntityRequestType
+  storeContact: StoreEntityRequestType<ContactObjectInterface>
+  editContact: EditEntityRequestType<ContactObjectInterface>
+  deleteContact: DeleteEntityRequestType
 }

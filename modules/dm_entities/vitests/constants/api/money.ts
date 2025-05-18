@@ -1,8 +1,8 @@
-import { MoneyInterface } from 'atomic'
+import { MoneyObjectInterface } from 'atomic'
 
-export const mockMoney: MoneyInterface = {
+export const mockMoney: MoneyObjectInterface = {
   id: 999999,
-  user_id: Number(window.sessionStorage.getItem('user_id')),
+  user_id: 1,
   sender: 'Example',
   receiver: 'Example',
   count: 1000000,

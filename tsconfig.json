@@ -1,49 +1,35 @@
 {
+  // https://nuxt.com/docs/guide/concepts/typescript
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "strict": true,
     "jsx": "preserve",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "allowJs": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true,
-    "skipLibCheck": true,
     "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
     "baseUrl": ".",
-    "types": [
-      "cypress"
-    ],
     "paths": {
-      "sass/*": [
-        "atomic/bosons/styles/*"
-      ]
-    },
-    "lib": [
-      "es2015",
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+      "atomic": ["nuxt/atomic"],
+      "atomic/*": ["nuxt/atomic/*"],
+      "modules": ["./modules"],
+      "modules/*": ["./modules/*"],
+      "~/*": ["./*"]
+    }
   },
   "include": [
-    "atomic/**/*.ts",
-    "atomic/**/*.tsx",
-    "atomic/**/*.vue",
-    "cypress/**/*.ts",
-    "cypress/**/*.tsx",
-    "storybook/**/*.ts",
-    "storybook/**/*.tsx",
-    "storybook/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx"
-, "modules/dm_activity/vitests/constants/api/activity.ts"  ],
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.vue",
+    "**/*.js",
+    "**/*.jsx"
+  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".nuxt",
+    "dist"
   ]
 }

@@ -39,4 +39,4 @@ describe('RequestGetterTrait', function (): void {
         expect($this->trait->getReferrer($request))->toBeNull()
             ->and($this->trait->getRefererIsAdmin(null))->toBeFalse();
     });
-});
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable');

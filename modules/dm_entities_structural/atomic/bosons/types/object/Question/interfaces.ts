@@ -1,4 +1,4 @@
-export interface QuestionInterface {
+export interface QuestionObjectInterface {
   id?: number
   index: number
   content: string

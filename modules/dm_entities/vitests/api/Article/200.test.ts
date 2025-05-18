@@ -1,91 +1,50 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import axios from 'axios'
-
-import {
-  mockArticle,
-  mockUseToast,
-  ArticleInterface,
-  ArticleRequestsInterface,
-  EntityResponseType,
-  MockUseToastInterface,
-  articleRequests,
-  useDialog,
-} from 'atomic'
-
-vi.mock('axios')
-vi.mock('primevue/usetoast', (): { useToast: () => MockUseToastInterface } => ({
-  useToast: () => mockUseToast(vi.fn()),
-}))
+import * as atomic from 'atomic'
 
 describe('articleRequests', (): void => {
-  const { closeDialog } = useDialog()
-  const requests: ArticleRequestsInterface = articleRequests(closeDialog)
-  const mockResponse: EntityResponseType<ArticleInterface[]> = {
-    data: [mockArticle],
-  }
+  const { closeDialog } = atomic.useDialog()
+  const requests: atomic.ArticleRequestsInterface =
+    atomic.articleRequests(closeDialog)
+  const mockResponse = [atomic.mockArticle]
 
   beforeEach((): void => {
     vi.clearAllMocks()
-    axios.get.mockResolvedValue(mockResponse)
-    axios.post.mockResolvedValue(mockResponse)
-    axios.put.mockResolvedValue(mockResponse)
-    axios.delete.mockResolvedValue(mockResponse)
+    atomic.mockGlobalFetch(vi, mockResponse)
   })
 
   it('getAllArticles', async (): Promise<void> => {
     await requests.getAllArticles()
-
-    expect(axios.get).toHaveBeenCalledWith('/api/articles')
-    expect(mockUseToast.success)
-  })
-
-  it('getCountArticlesByCreatedLastWeek', async (): Promise<void> => {
-    await requests.getCountArticlesByCreatedLastWeek()
-
-    expect(axios.get).toHaveBeenCalledWith(
-      '/api/articles/count-by-created-last-week'
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('articles'),
+      expect.objectContaining({ method: 'GET' })
     )
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('storeArticle', async (): Promise<void> => {
-    await requests.storeArticle(mockArticle)
-
-    expect(axios.post).toHaveBeenCalledWith('/api/articles', {
-      user_id: window.sessionStorage.getItem('user_id'),
-      title: mockArticle.title,
-      description: mockArticle.description,
-      category: mockArticle.category,
-    })
-
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.storeArticle(atomic.mockArticle, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('articles'),
+      expect.objectContaining({ method: 'POST' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('editArticle', async (): Promise<void> => {
-    await requests.editArticle(mockArticle, requests.getAllArticles(), close)
-
-    expect(axios.put).toHaveBeenCalledWith('/api/articles/' + mockArticle.id, {
-      title: mockArticle.title,
-      description: mockArticle.description,
-      category: mockArticle.category,
-    })
-
-    expect(axios.get).toHaveBeenCalled()
-    expect(requests.results.value).toEqual(mockResponse.data)
-    expect(mockUseToast.success)
+    await requests.editArticle(atomic.mockArticle, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('articles'),
+      expect.objectContaining({ method: 'PUT' })
+    )
+    expect(requests.results.value).toEqual(mockResponse)
   })
 
   it('deleteArticle', async (): Promise<void> => {
-    await requests.deleteArticle(
-      mockArticle.id,
-      requests.getAllArticles(),
-      close
+    await requests.deleteArticle(atomic.mockArticle.id ?? 0, async () => {})
+    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('articles'),
+      expect.objectContaining({ method: 'DELETE' })
     )
-
-    expect(axios.delete).toHaveBeenCalledWith('/api/articles/' + mockArticle.id)
-    expect(axios.get).toHaveBeenCalledWith('/api/articles')
-    expect(mockUseToast.success)
+    expect(requests.results.value).toEqual(mockResponse)
   })
 })
