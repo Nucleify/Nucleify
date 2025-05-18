@@ -38,7 +38,8 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      title: 'NuxtStarter',
+      title: 'Data Manager - ERP & Design Management',
+      titleTemplate: '%s',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
