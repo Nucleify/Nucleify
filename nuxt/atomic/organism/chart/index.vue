@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, onUnmounted } from 'vue'
 
 import { ChartInterface, useChart } from 'atomic'
 
@@ -26,7 +26,7 @@ const { chartData, setChartData, setChartOptions } = useChart()
 const chartOptions = ref(setChartOptions(props.type, props.direction))
 
 onMounted(() => {
-  chartData.value = setChartData(
+  const initialData = setChartData(
     props.chartMethodType,
     props?.activityLogData,
     props?.articleData,
@@ -40,6 +40,31 @@ onMounted(() => {
     props?.userData,
     props?.example
   )
+  if (initialData) chartData.value = initialData
+
+  let intervalId: ReturnType<typeof setInterval> | undefined
+  if (props.example) {
+    intervalId = setInterval(() => {
+      const randomizedData = setChartData(
+        props.chartMethodType,
+        props?.activityLogData,
+        props?.articleData,
+        props?.cardData,
+        props?.contactData,
+        props?.featureData,
+        props?.linkData,
+        props?.moneyData,
+        props?.questionData,
+        props?.technologyData,
+        props?.userData,
+        true
+      )
+      if (randomizedData) chartData.value = randomizedData
+    }, 3000)
+  }
+  onUnmounted(() => {
+    if (intervalId) clearInterval(intervalId)
+  })
 })
 
 watch(
@@ -57,7 +82,7 @@ watch(
     props?.userData,
   ],
   () => {
-    chartData.value = setChartData(
+    const watchedData = setChartData(
       props.chartMethodType,
       props?.activityLogData,
       props?.articleData,
@@ -71,6 +96,7 @@ watch(
       props?.userData,
       props?.example
     )
+    if (watchedData) chartData.value = watchedData
   }
 )
 </script>
