@@ -118,6 +118,13 @@ watchEffect(() => {
       return elements
     }
 
+    function counterRotateItems(elements: HTMLElement[], angle: number) {
+  elements.forEach((el) => {
+    gsap.set(el, {
+      rotation: -angle,
+    })
+  })
+}
     const elements = placeItems(items)
     let spin = gsap
       .timeline({ repeat: -1, defaults: { duration: 30, ease: 'none' } })
@@ -127,7 +134,7 @@ watchEffect(() => {
     Draggable.create(circle, {
       type: 'rotation',
       inertia: true,
-
+      
       onPressInit() {
         spin.pause()
       },
@@ -137,13 +144,15 @@ watchEffect(() => {
       },
 
       onDrag() {
-        const angle = this.rotation % 360
+        const angle = this.rotation % 360 + 360
         spin.progress(angle / 360)
+        counterRotateItems(elements, angle)
       },
 
       onThrowUpdate() {
-        const angle = this.rotation % 360
+        const angle = this.rotation % 360 + 360
         spin.progress(angle / 360)
+        counterRotateItems(elements, angle)
       },
 
       onThrowComplete() {

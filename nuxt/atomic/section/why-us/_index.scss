@@ -91,7 +91,8 @@
   color: $primary-white-green-text-color;
   cursor: pointer;
   opacity: 1;
-
+  transition: all 0.3s ease;
+  
   &:hover {
     color: $primary-color;
     border-color: $primary-color !important;
