@@ -167,7 +167,7 @@ watchEffect(() => {
       const scrollProgress = window.scrollY / scrollHeight
       const currentProgress = spin.progress()
 
-      let targetProgress = (currentProgress + scrollProgress) / 2
+      let targetProgress = (currentProgress / 0.4 + scrollProgress) / 4
 
       gsap.to(spin, {
         progress: targetProgress,

@@ -3,14 +3,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  padding: 0 10px;
+  text-align: start;
+  padding: 0 1.5em;
   gap: 5em;
-  margin-top: -20px;
+  margin-top: 20px;
 
   .header,
   .header span {
-    font-size: 35px;
+    font-size: 38px;
     font-weight: bold !important;
     font-family: $font-inter-sans-serif !important;
     color: $primary-white-text-color;
@@ -18,7 +18,7 @@
   }
 
   .start-image {
-    display: flex;
+    display: none;
     align-items: center;
     position: relative;
     top: 50px;
@@ -43,8 +43,8 @@
 
   .start-description {
     margin: 2em 0;
-    max-width: 600px;
-    font-size: 1.375em;
+    max-width: 500px;
+    font-size: 1.25em;
     color: $white-text-color;
     font-weight: 300;
   }
@@ -52,7 +52,7 @@
   .cta {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     margin-top: 1.5em;
     gap: 1em;
@@ -78,23 +78,37 @@
   }
 
   @media (min-width: 370px) {
+    .header,
+    .header span {
+      font-size: 40px;
+    }
+
     .cta {
-      gap: 2em;
+      gap: 1.5em;
     }
   }
 
-  @media (min-width: $sm) {
-    padding: 0;
-  }
-
   @media (min-width: $md) {
+    flex-direction: row;
+    justify-content: center;
+
     .header,
     .header span {
       font-size: $font-size-xl !important;
     }
 
+    .start-image {
+      display: flex;
+      margin-top: -2em;
+
+      img {
+        max-width: 100px;
+      }
+    }
+
     .cta {
       margin-top: 2em;
+      gap: 2em;
 
       .start-button {
         padding: 10px 2rem !important;
@@ -110,15 +124,23 @@
 
   @media (min-width: $lg) {
     display: flex;
-    margin-top: -30px;
+    gap: 8rem;
+    margin-top: 3rem;
 
     .header,
     .header span {
       font-size: $font-size-xxl !important;
     }
 
+    .start-image {
+      img {
+        max-width: 150px;
+      }
+    }
+
     .start-description {
-      max-width: 500px;
+      max-width: 570px;
+      font-size: 1.75em;
     }
   }
 
@@ -129,8 +151,6 @@
   }
 
   @media (min-width: $xxl) {
-    .start-description {
-      font-size: $font-size-md;
-    }
+
   }
 }
