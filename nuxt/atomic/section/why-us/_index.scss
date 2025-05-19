@@ -1,99 +1,110 @@
 @import 'keyframes';
 
-.why-us-container {
-  align-items: center;
+#why-us {
+  position: relative;
   display: flex;
-  height: 450px;
   justify-content: center;
-  margin: 0 auto;
-  padding: 8rem 4rem;
-  text-align: center;
+  align-items: center;
+  margin-top: 10rem;
+}
 
-  .why-us-header {
-    position: absolute;
-    animation: fade-in 1s forwards;
-    color: $primary-white-green-text-color;
-    margin-top: -3rem;
-    opacity: 0;
-    padding-top: 50px;
+.section-header {
+  position: absolute;
+  animation: fade-in 1s forwards;
+  color: $primary-white-green-text-color;
+  margin-top: -3.5rem;
+  opacity: 0;
+  padding-top: 50px;
 
-    span {
-      font-family: $font-inter-sans-serif;
-      font-size: $font-size-lg;
-      font-weight: 700;
-    }
-
-    & > span:last-child {
-      color: $primary-color !important;
-    }
+  span {
+    font-family: $font-inter-sans-serif;
+    font-size: $font-size-lg;
+    font-weight: 700;
   }
 
-  .why-us-item {
-    height: min-content;
-    width: min-content;
-    padding: 10px;
-    background: $content-background;
-    font-size: 15px;
-    box-shadow:
-      0 4px 10px rgba(0, 0, 0, 0.03),
-      0 0 2px rgba(0, 0, 0, 0.06),
-      0 2px 6px rgba(0, 0, 0, 0.12);
-    border: 1px solid $p-card-border !important;
-    border-radius: 8px;
-    color: $primary-white-green-text-color;
-    transition: all 300ms;
-    cursor: pointer;
-    opacity: 0;
+  & > span:last-child {
+    color: $primary-color !important;
+  }
+}
 
-    &:hover {
-      color: $primary-color;
-      border-color: $primary-color !important;
-    }
+.viewport-box {
+  width: 100%;
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    @media (min-width: 768px) {
-      padding: 12px;
-      font-size: 20px;
-    }
+.main-circle {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  position: relative;
+  user-select: none;
+}
 
-    @media (min-width: 992px) {
-      padding: 15px;
-      font-size: 25px;
-    }
+@media (min-width: 400px) {
+  .viewport-box {
+    min-width: 300px;
+  }
+  .main-circle {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .viewport-box {
+    min-width: 400px;
+  }
+  .main-circle {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media (min-width: 992px) {
+  .viewport-box {
+    min-width: 450px;
+  }
+  .main-circle {
+    width: 450px;
+    height: 450px;
+  }
+}
+
+.circle-item i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: min-content;
+  width: min-content;
+  padding: 10px;
+  background: $content-background;
+  font-size: 15px;
+  box-shadow:
+    0 4px 10px rgba(0, 0, 0, 0.03),
+    0 0 2px rgba(0, 0, 0, 0.06),
+    0 2px 6px rgba(0, 0, 0, 0.12);
+  border: 1px solid $p-card-border !important;
+  border-radius: 8px;
+  color: $primary-white-green-text-color;
+  cursor: pointer;
+  opacity: 1;
+
+  &:hover {
+    color: $primary-color;
+    border-color: $primary-color !important;
   }
 
-  @for $i from 0 through 5 {
-    .why-us-#{$i} {
-      animation: rotate-container-#{$i} 60s linear infinite;
-      display: flex;
-      justify-content: space-between;
-      position: absolute;
-
-      width: if($i % 2 == 0, 310px, 280px);
-
-      @media (min-width: 768px) {
-        width: if($i % 2 == 0, 450px, 400px);
-      }
-      @media (min-width: 992px) {
-        width: if($i % 2 == 0, 500px, 450px);
-      }
-
-      .why-us-item {
-        animation:
-          rotate-items-#{$i} 60s linear infinite,
-          fade-in 1s #{$i * 0.1}s forwards;
-      }
-    }
+  @media (min-width: 768px) {
+    padding: 12px;
+    font-size: 20px;
   }
 
-  @media (min-width: $md) {
-    height: 540px;
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
-  @media (min-width: $lg) {
-    height: 650px;
-    padding-left: 8rem;
-    padding-right: 8rem;
+  @media (min-width: 992px) {
+    padding: 1rem;
+    font-size: 25px;
   }
 }
 
