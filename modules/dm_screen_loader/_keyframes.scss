@@ -1,0 +1,37 @@
+@keyframes change-lighter-color {
+  0% {
+    fill: var(--article-item-color);
+  }
+  100% {
+    fill: var(--main-item-color);
+  }
+}
+
+@keyframes change-darker-color {
+  0% {
+    fill: var(--article-item-color);
+    filter: brightness(0.3);
+  }
+  100% {
+    fill: var(--main-item-color);
+    filter: brightness(0.3);
+  }
+}
+
+@keyframes change-background-color {
+  0% {
+    background: var(--article-item-secondary-color);
+  }
+  100% {
+    background: var(--main-item-secondary-color);
+  }
+}
+
+@keyframes change-border-color {
+  0% {
+    border: 1px solid var(--article-item-color);
+  }
+  100% {
+    border: 1px solid var(--main-item-color);
+  }
+}
