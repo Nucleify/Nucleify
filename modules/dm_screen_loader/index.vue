@@ -9,4 +9,8 @@
 
 <script setup lang="ts">
 import { DMScreenLoaderLogo, hideLoader } from '.'
+
+onMounted(() => {
+  hideLoader()
+})
 </script>

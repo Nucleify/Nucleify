@@ -2,13 +2,7 @@
   <section id="start">
     <div class="container">
       <div class="container start-container">
-        <atom-image
-          :src="imgUrl + 'logo.svg'"
-          alt="DataManager logo"
-          class="start-image"
-          fetchpriority="high"
-        />
-
+        <dm-animation-bounce />
         <div class="left-side">
           <atom-heading :tag="1" class="header">
             One
