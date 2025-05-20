@@ -6,7 +6,7 @@
   text-align: start;
   padding: 0 1.5em;
   gap: 5em;
-  margin-top: 20px;
+  margin: 3em 0;
 
   .header,
   .header span {
@@ -17,28 +17,10 @@
     white-space: nowrap;
   }
 
-  .start-image {
+  .ball {
     display: none;
-    align-items: center;
-    position: relative;
-    top: 50px;
-
-    img {
-      width: 100%;
-      max-width: 60px;
-      animation: levitate 3s ease-in-out infinite;
-    }
-  }
-
-  @keyframes levitate {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-
-    50% {
-      transform: translateY(-20px);
-    }
+    width: 100%;
+    max-width: 60px;
   }
 
   .start-description {
@@ -97,13 +79,10 @@
       font-size: $font-size-xl !important;
     }
 
-    .start-image {
+    .ball {
       display: flex;
       margin-top: -2em;
-
-      img {
-        max-width: 100px;
-      }
+      max-width: 100px;
     }
 
     .cta {
@@ -132,10 +111,8 @@
       font-size: $font-size-xxl !important;
     }
 
-    .start-image {
-      img {
-        max-width: 150px;
-      }
+    .ball {
+      max-width: 150px;
     }
 
     .start-description {
@@ -151,6 +128,5 @@
   }
 
   @media (min-width: $xxl) {
-
   }
 }
