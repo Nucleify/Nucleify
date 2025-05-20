@@ -12,3 +12,4 @@ export * from './utils'
  *  Files exports
  */
 export { default as DMScreenLoader } from './index.vue'
+export { default as DMScreenLoaderLogo } from './logo.vue'

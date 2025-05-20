@@ -1,3 +1,5 @@
+@use 'keyframes' as *;
+
 .screen-loader-container {
   background: $bg-dark-green-color;
   width: 100%;
@@ -26,9 +28,13 @@
 
       &-value {
         background: var(--main-item-secondary-color) !important;
+        animation: change-background-color 1s ease-out forwards !important;
 
         &::before {
-          border: 1px solid var(--main-item-color) !important;
+          animation:
+            change-border-color 1s ease-out forwards,
+            p-progressbar-indeterminate-anim 2.1s
+              cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite !important;
           border-radius: 0.25em;
           margin: 0.125em;
         }
@@ -36,6 +42,19 @@
         &::after {
           display: none;
         }
+      }
+    }
+
+    .loader-image {
+      width: 150px;
+      height: 150px;
+
+      .lighter-color {
+        animation: change-lighter-color 1s ease-out forwards;
+      }
+
+      .darker-color {
+        animation: change-darker-color 1s ease-out forwards;
       }
     }
   }
