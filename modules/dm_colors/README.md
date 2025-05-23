@@ -1,6 +1,6 @@
-# dm_colors
+# <img src="/public/favicon.ico" width="16" height="16" /> &nbsp; dm_colors
 
-Module that contains color related CSS/SCSS variables and utils/
+Module that contains color related CSS/SCSS variables and utils.
 
 <br>
 
