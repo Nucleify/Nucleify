@@ -92,7 +92,7 @@ export function questionRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<QuestionObjectInterface>({
-      url: apiUrl() + 'questions/',
+      url: apiUrl() + 'questions',
       method: 'PUT',
       data,
       id: data.id,
@@ -107,7 +107,7 @@ export function questionRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<QuestionObjectInterface>({
-      url: apiUrl() + 'questions/',
+      url: apiUrl() + 'questions',
       method: 'DELETE',
       id,
       onSuccess: (response) => {
