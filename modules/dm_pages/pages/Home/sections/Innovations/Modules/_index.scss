@@ -99,6 +99,10 @@
   min-height: 432px;
   transition: all 0.3s ease;
 
+  h2, p, a, li, span {
+    color: $white-text-color;
+  }
+
   &:has(.tech-heading) {
     display: flex;
     flex-direction: column;
@@ -129,6 +133,14 @@
   position: relative;
   z-index: 1;
   transition: all 0.3s ease;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  h2 {
+    margin-bottom: -.5em;
+  }
 }
 
 .fade-enter-active,
