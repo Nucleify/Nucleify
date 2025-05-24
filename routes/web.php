@@ -6,9 +6,7 @@ use Illuminate\Support\Facades\Route;
 /**
  *  Modules includes
  */
-require base_path('modules/dm_activity/routes/web.php');
 require base_path('modules/dm_auth/routes/web.php');
-require base_path('modules/dm_pages/routes/web.php');
 
 /**
  *  Logout
@@ -101,8 +99,7 @@ Route::get('/{any}', function ($any) {
     return response()->json(['error' => 'Page not found'], 404);
 })->where('any', '^(?!api/|logout).+');
 
-Route::get('/', fn () => redirect()->route('home')
-);
-
-Route::get('/home', fn () => serveNuxtPage('home')
-)->name('home');
+Route::prefix('/')->group(function () {
+    Route::get('', fn () => redirect()->route('home'));
+    Route::get('home', fn () => serveNuxtPage('home'))->name('home');
+});
