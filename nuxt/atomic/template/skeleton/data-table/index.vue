@@ -11,20 +11,20 @@
       :class="col.class"
     >
       <template #header>
-        <atom-skeleton
+        <ad-skeleton
           :loading="loading"
           class="data-table-header-skeleton"
           height="22px"
         />
       </template>
       <template #body>
-        <atom-skeleton :loading="loading" />
+        <ad-skeleton :loading="loading" />
       </template>
     </Column>
     <Column class="action-column">
       <template #body>
         <div class="action-column-content">
-          <atom-skeleton
+          <ad-skeleton
             v-for="index in 3"
             :key="index"
             :loading="loading"
@@ -33,7 +33,7 @@
             width="30px"
             height="30px"
           />
-          <atom-skeleton
+          <ad-skeleton
             :loading="loading"
             class="data-table-button-skeleton mobile"
             shape="circle"

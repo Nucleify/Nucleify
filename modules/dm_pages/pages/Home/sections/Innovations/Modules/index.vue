@@ -66,11 +66,11 @@
 
           <StepPanel :value="1">
             <div class="step-panel-container">
-              <atom-heading :tag="4" class="tech-heading">
+              <ad-heading :tag="4" class="tech-heading">
                 <span class="tech-text">We've got</span>&nbsp;
                 <span class="tech-text shiny">modules!</span>
-              </atom-heading>
-              <atom-button
+              </ad-heading>
+              <ad-button
                 label="Read more"
                 class="start-button caterpillar"
                 @click="

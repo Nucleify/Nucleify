@@ -16,11 +16,11 @@
       class="why-us-dialog"
     >
       <template #header>
-        <atom-icon :icon="dialogData.icon" class="text-xl" />
-        <atom-heading :tag="4" :text="dialogData.header" />
+        <ad-icon :icon="dialogData.icon" class="text-xl" />
+        <ad-heading :tag="4" :text="dialogData.header" />
       </template>
       <template #default>
-        <atom-paragraph :text="dialogData.description" />
+        <ad-paragraph :text="dialogData.description" />
       </template>
     </Dialog>
   </section>
@@ -48,14 +48,14 @@ if (appEnv() !== 'production') {
     data = resultsBySite
   })
 } else {
-  ;({ data } = await useFetch(
+  data = await useFetch(
     apiUrl() + `features/get-site-features/${props.site}`,
     {
       method: 'GET',
       immediate: true,
       watch: false,
     }
-  ))
+  )
 }
 
 const dialogVisible = ref(false)
@@ -119,12 +119,12 @@ watchEffect(() => {
     }
 
     function counterRotateItems(elements: HTMLElement[], angle: number) {
-  elements.forEach((el) => {
-    gsap.set(el, {
-      rotation: -angle,
-    })
-  })
-}
+      elements.forEach((el) => {
+        gsap.set(el, {
+          rotation: -angle,
+        })
+      })
+    }
     const elements = placeItems(items)
     let spin = gsap
       .timeline({ repeat: -1, defaults: { duration: 30, ease: 'none' } })
@@ -134,7 +134,7 @@ watchEffect(() => {
     Draggable.create(circle, {
       type: 'rotation',
       inertia: true,
-      
+
       onPressInit() {
         spin.pause()
       },
@@ -144,13 +144,13 @@ watchEffect(() => {
       },
 
       onDrag() {
-        const angle = this.rotation % 360 + 360
+        const angle = (this.rotation % 360) + 360
         spin.progress(angle / 360)
         counterRotateItems(elements, angle)
       },
 
       onThrowUpdate() {
-        const angle = this.rotation % 360 + 360
+        const angle = (this.rotation % 360) + 360
         spin.progress(angle / 360)
         counterRotateItems(elements, angle)
       },

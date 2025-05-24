@@ -1,13 +1,13 @@
 <template>
   <div class="nav-links-container">
     <template v-for="link in navLinks" :key="link.label">
-      <molecule-anchor
+      <ad-anchor
         v-if="!link.isButton"
         class="nav-link"
         :href="link.href"
         :label="link.label"
       />
-      <atom-button
+      <ad-button
         v-else
         :class="link.class"
         :label="link.label"

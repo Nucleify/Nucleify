@@ -4,7 +4,7 @@
       <client-only>
         <swiper-container ref="technologiesSwiper" class="mySwiper">
           <swiper-slide v-for="(tech, index) in data" :key="index">
-            <molecule-anchor
+            <ad-anchor
               v-if="tech"
               :href="tech.href"
               :src="technologiesImgUrl + tech.src"

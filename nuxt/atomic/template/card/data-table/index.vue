@@ -1,16 +1,16 @@
 <template>
-  <organism-card class="my-card">
+  <ad-card class="my-card">
     <template #title>
       <div class="my-card-header-container">
         <template v-if="loading">
-          <atom-skeleton
+          <ad-skeleton
             :loading="loading"
             width="180px"
             height="30px"
             border-radius="10px"
             class="heading-skeleton"
           />
-          <atom-skeleton
+          <ad-skeleton
             :loading="loading"
             width="30px"
             height="30px"
@@ -18,9 +18,9 @@
           />
         </template>
         <template v-else>
-          <atom-heading :tag="tag" :text="headerText" />
+          <ad-heading :tag="tag" :text="headerText" />
 
-          <atom-button
+          <ad-button
             v-if="adType !== 'activity'"
             :ad-type="adType"
             icon="pi pi-plus"
@@ -33,7 +33,7 @@
       </div>
     </template>
     <template #content>
-      <organism-data-table
+      <ad-data-table
         v-if="value"
         :value="value"
         :rows="10"
@@ -45,7 +45,7 @@
         current-page-report-template="{first} to {last} of {totalRecords}"
       />
     </template>
-  </organism-card>
+  </ad-card>
 </template>
 
 <script setup lang="ts">
