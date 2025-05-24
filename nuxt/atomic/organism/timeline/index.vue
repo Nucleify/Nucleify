@@ -11,7 +11,7 @@
   >
     <template #event="event">
       <div :style="{ color: event.color }">
-        <atom-icon :icon="event.icon" />
+        <ad-icon :icon="event.icon" />
         <strong>{{ event.status }}</strong> - {{ event.date }}
       </div>
     </template>

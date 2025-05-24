@@ -1,11 +1,11 @@
 <template>
   <div id="default-layout">
     <dm-screen-lights :count="8" />
-    <section-navbar v-if="isFrontOffice" />
+    <ad-section-navbar v-if="isFrontOffice" />
     <dm-screen-loader v-if="isFrontOffice" />
     <slot />
-    <section-footer v-if="isFrontOffice" />
-    <organism-dock v-if="isBackOffice" />
+    <ad-section-footer v-if="isFrontOffice" />
+    <ad-dock v-if="isBackOffice" />
   </div>
 </template>
 

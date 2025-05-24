@@ -1,18 +1,15 @@
-import { ComponentType } from 'atomic'
+import { ComponentType } from "atomic"
+import { AdDatePicker, AdSelect, AdInputMask, AdInputText, AdPassword, AdTextarea } from "atomic"
 
-export function getComponent(type: ComponentType): string {
-  const componentMap: ComponentType[] = [
-    'date-picker',
-    'select',
-    'input-mask',
-    'input-text',
-    'password',
-    'textarea',
-  ]
-
-  if (componentMap.includes(type)) {
-    return `ad-${type}`
-  } else {
-    return 'ad-input-text'
+export function getComponent(type: ComponentType) {
+  const componentMap = {
+    'date-picker': AdDatePicker,
+    'select': AdSelect,
+    'input-mask': AdInputMask,
+    'input-text': AdInputText,
+    'password': AdPassword,
+    'textarea': AdTextarea,
   }
+
+  return componentMap[type] || AdInputText
 }

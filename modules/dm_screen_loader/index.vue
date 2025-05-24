@@ -2,7 +2,7 @@
   <div class="screen-loader-container">
     <div class="screen-loader-content">
       <DMScreenLoaderLogo />
-      <atom-progress-bar mode="indeterminate" width="100px" height="10px" />
+      <ad-progress-bar mode="indeterminate" width="100px" height="10px" />
     </div>
   </div>
 </template>

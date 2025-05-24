@@ -1,7 +1,7 @@
 <template>
   <div class="error-404-container container">
     <error404-animation-second />
-    <molecule-anchor href="/" label="Got lost?" class="mt-4" />
+    <ad-anchor href="/" label="Got lost?" class="mt-4" />
   </div>
 </template>
 

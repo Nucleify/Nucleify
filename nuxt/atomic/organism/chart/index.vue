@@ -97,6 +97,7 @@ watch(
       props?.example
     )
     if (watchedData) chartData.value = watchedData
-  }
+  },
+  { immediate: true }
 )
 </script>
