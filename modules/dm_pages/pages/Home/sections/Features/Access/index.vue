@@ -23,11 +23,7 @@
                 alt="Desktop image"
                 image-class="access-card-image"
               />
-              <ad-heading
-                :tag="3"
-                class="access-card-header"
-                text="Desktop"
-              />
+              <ad-heading :tag="3" class="access-card-header" text="Desktop" />
             </div>
             <div class="flip-card-back">
               <ad-paragraph

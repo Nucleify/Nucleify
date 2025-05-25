@@ -15,10 +15,7 @@
       </template>
       <template #content>
         <form @submit.prevent="submitForm(registerFields)">
-          <ad-float-label
-            v-for="(field, index) in registerInputs"
-            :key="index"
-          >
+          <ad-float-label v-for="(field, index) in registerInputs" :key="index">
             <ad-input-text
               v-if="field.type !== 'password'"
               v-model="registerFields[field.model]"

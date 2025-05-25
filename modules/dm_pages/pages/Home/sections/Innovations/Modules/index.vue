@@ -121,7 +121,10 @@ const loadReadme = async (modulePath: string, value: number) => {
       onSuccess: (data) => {
         const html = marked.parse(data)
         readmeContents.value[value] = html
-        readmeContents.value[value] = readmeContents.value[value].replaceAll('/public', '')
+        readmeContents.value[value] = readmeContents.value[value].replaceAll(
+          '/public',
+          ''
+        )
       },
     })
   } catch (error) {

@@ -48,14 +48,11 @@ if (appEnv() !== 'production') {
     data = resultsBySite
   })
 } else {
-  data = await useFetch(
-    apiUrl() + `features/get-site-features/${props.site}`,
-    {
-      method: 'GET',
-      immediate: true,
-      watch: false,
-    }
-  )
+  data = await useFetch(apiUrl() + `features/get-site-features/${props.site}`, {
+    method: 'GET',
+    immediate: true,
+    watch: false,
+  })
 }
 
 const dialogVisible = ref(false)
