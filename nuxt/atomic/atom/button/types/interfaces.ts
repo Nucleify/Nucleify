@@ -13,6 +13,7 @@ import {
 
 export interface ButtonInterface {
   adType?: AdTypeType
+  alt?: string
   label?: string
   icon?: string
   iconPos?: PositionType

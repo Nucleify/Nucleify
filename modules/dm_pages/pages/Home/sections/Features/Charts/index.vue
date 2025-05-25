@@ -1,8 +1,7 @@
 <template>
   <section id="charts">
     <div class="home-charts-container">
-      <ad-heading
-        :tag="5"
+      <ad-paragraph
         class="home-charts-header"
         text="Choose from bar charts, line graphs, pie charts and more to best represent your data."
       />

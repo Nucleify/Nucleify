@@ -2,15 +2,15 @@
   <section id="access">
     <div class="access-container">
       <ad-heading
-        :tag="1"
+        :tag="2"
         class="access-header"
         text="Access your data everywhere"
       />
-      <ad-heading :tag="2" class="access-description">
+      <ad-paragraph class="access-description">
         Use <span class="shiny">DataManager</span> application on your phone,
         tablet and desktop. You can now manage all data in one place and take a
         step ahead in your management process
-      </ad-heading>
+      </ad-paragraph>
       <div class="access-card-container">
         <div class="access-card flip-card col-12 md:col-6 xl:col-4">
           <div class="flip-card-inner">

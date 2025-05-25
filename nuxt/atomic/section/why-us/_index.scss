@@ -21,7 +21,7 @@
   }
 
   & > span:last-child {
-    color: $primary-color !important;
+    @extend .shiny;
   }
 }
 

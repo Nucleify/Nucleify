@@ -79,6 +79,12 @@
             max-width: max-content;
             transition: all 150ms;
 
+            p.header {
+              font-size: 1.4em;
+              font-weight: 600;
+              font-family: $font-inter-sans-serif;
+            }
+
             &:hover {
               color: $primary-color;
             }
