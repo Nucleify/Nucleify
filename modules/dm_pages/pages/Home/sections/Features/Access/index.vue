@@ -18,8 +18,8 @@
             <div class="flip-card-front">
               <ad-image
                 :src="imgUrl + 'desktop.png'"
-                width="120px"
-                height="100px"
+                width="122px"
+                height="92px"
                 alt="Desktop image"
                 image-class="access-card-image"
               />
