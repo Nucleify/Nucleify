@@ -6,6 +6,6 @@ export function hideLoader(): void {
   if (loadContainer) {
     setTimeout((): void => {
       loadContainer.style.display = 'none'
-    }, 1150)
+    }, 1500)
   }
 }
