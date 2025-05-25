@@ -1,9 +1,9 @@
 <template>
-  <organism-card class="polar-area-chart-card">
+  <ad-card class="polar-area-chart-card">
     <template #content>
       <Chart type="polarArea" :data="chartData" :options="chartOptions" />
     </template>
-  </organism-card>
+  </ad-card>
 </template>
 
 <script setup lang="ts">

@@ -1,4 +1,4 @@
-# dm_api
+# <img src="/public/favicon.ico" width="16" height="16" /> &nbsp; dm_api
 
 Module that contains API functions.
 

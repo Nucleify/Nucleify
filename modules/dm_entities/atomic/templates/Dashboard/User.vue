@@ -1,6 +1,6 @@
 <template>
   <section id="users">
-    <template-card-data-table
+    <ad-card-data-table
       ad-type="user"
       :value="data"
       :loading="loading"
@@ -10,7 +10,7 @@
       buttonText="New User"
     />
 
-    <organism-dialog
+    <ad-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"

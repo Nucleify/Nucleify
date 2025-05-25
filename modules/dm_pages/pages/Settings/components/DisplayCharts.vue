@@ -1,10 +1,10 @@
 <template>
-  <organism-card class="settings-card settings-small-card">
+  <ad-card class="settings-card settings-small-card">
     <template #header>
       <div class="settings-card-header-container">
-        <atom-heading :tag="4" text="Charts" />
+        <ad-heading :tag="4" text="Charts" />
 
-        <atom-button
+        <ad-button
           icon="pi pi-refresh"
           ad-type="main"
           class="refresh-button"
@@ -21,9 +21,9 @@
           v-for="item in displayChartList"
           :key="item"
         >
-          <atom-label :label="item" :for="item" />
+          <ad-label :label="item" :for="item" />
 
-          <atom-select-button
+          <ad-select-button
             ad-type="main"
             :model-value="display[item] ? 'On' : 'Off'"
             :options="options"
@@ -32,7 +32,7 @@
         </li>
       </ul>
     </template>
-  </organism-card>
+  </ad-card>
 </template>
 
 <script setup lang="ts">

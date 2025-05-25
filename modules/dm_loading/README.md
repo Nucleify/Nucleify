@@ -1,4 +1,4 @@
-# dm_loading
+# <img src="/public/favicon.ico" width="16" height="16" /> &nbsp; dm_loading
 
 Module that contains loading functions.
 

@@ -1,7 +1,7 @@
 <template>
-  <organism-card class="my-card chart-card">
+  <ad-card class="my-card chart-card">
     <template #content>
-      <organism-chart
+      <ad-chart
         :chart-method-type="chartMethodType"
         :type="type"
         :direction="direction"
@@ -19,7 +19,7 @@
         :class="loading ? 'chart-loading' : 'chart-loaded'"
       />
     </template>
-  </organism-card>
+  </ad-card>
 </template>
 
 <script setup lang="ts">

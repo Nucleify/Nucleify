@@ -33,12 +33,12 @@
     :class="props.action"
   >
     <template #header>
-      <atom-heading
+      <ad-heading
         :tag="2"
         :text="getTitle(props.selectedObject)"
         v-if="props.action === 'show' && props.selectedObject"
       />
-      <atom-heading :tag="2" :text="props.title" v-else />
+      <ad-heading :tag="2" :text="props.title" v-else />
     </template>
 
     <form
@@ -49,7 +49,7 @@
       <div v-for="(field, index) in props.fields" :key="index" class="form-div">
         <label :for="field.name">{{ field.label }}</label>
         <component
-          :is="getComponent(field.type)"
+          :is="getComponent(field.type as ComponentType)"
           v-model="formData[field.name]"
           v-bind="field.props"
           :id="field.name"
@@ -87,14 +87,14 @@
       class="show-data-container"
     >
       <div v-for="(item, key) in props.fields" :key="key">
-        <atom-heading :tag="5" class="show-data-header" :text="item.label" />
+        <ad-heading :tag="5" class="show-data-header" :text="item.label" />
         <div>{{ (props.selectedObject as any)[item.key] }}</div>
       </div>
     </div>
 
     <template #footer>
       <div class="dialog-buttons-container">
-        <atom-button
+        <ad-button
           :label="props.cancelButtonLabel"
           icon="pi pi-times"
           severity="secondary"
@@ -102,7 +102,7 @@
           rounded
           text
         />
-        <atom-button
+        <ad-button
           v-if="props.fields && props.confirm"
           :ad-type="props.entity"
           :label="props.confirmButtonLabel"
@@ -111,7 +111,7 @@
           rounded
           text
         />
-        <atom-button
+        <ad-button
           v-if="
             props.action === 'delete' && props.confirm && props.selectedObject
           "

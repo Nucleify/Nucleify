@@ -89,7 +89,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<LinkObjectInterface>({
-      url: apiUrl() + 'links/',
+      url: apiUrl() + 'links',
       method: 'PUT',
       data,
       id: data.id,
@@ -104,7 +104,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<LinkObjectInterface>({
-      url: apiUrl() + 'links/',
+      url: apiUrl() + 'links',
       method: 'DELETE',
       id,
       onSuccess: (response) => {

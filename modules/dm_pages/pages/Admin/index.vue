@@ -2,7 +2,7 @@
 <template>
   <div class="panel-container">
     <div class="admin-tiles grid col-12">
-      <molecule-tile
+      <ad-tile
         href="#articles"
         header="Articles"
         :count="articles?.length"
@@ -11,7 +11,7 @@
         text-secondary="this week"
         ad-type="article"
       />
-      <molecule-tile
+      <ad-tile
         href="#contacts"
         header="Contacts"
         :count="contacts?.length"
@@ -20,7 +20,7 @@
         text-secondary="this week"
         ad-type="contact"
       />
-      <molecule-tile
+      <ad-tile
         href="#money"
         header="Money"
         :count="money?.length"
@@ -29,7 +29,7 @@
         text-secondary="this week"
         ad-type="money"
       />
-      <molecule-tile
+      <ad-tile
         href="#users"
         header="Users"
         :count="users?.length"
@@ -40,7 +40,7 @@
       />
     </div>
 
-    <template-card-chart
+    <ad-card-chart
       v-if="display.Admin"
       class="annual-chart-card"
       :chart-method-type="'annual'"

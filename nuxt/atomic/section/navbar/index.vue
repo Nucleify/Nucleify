@@ -2,18 +2,18 @@
 <template>
   <nav class="navbar">
     <div class="container">
-      <molecule-anchor class="application-header" href="/home">
-        <atom-image
+      <ad-anchor class="application-header" href="/home">
+        <ad-image
           :src="imgUrl + 'logo.svg'"
           alt="DataManager logo"
           fetchpriority="high"
         />
 
-        <atom-heading :tag="1" text="DataManager" />
-      </molecule-anchor>
+        <ad-heading :tag="1" text="DataManager" />
+      </ad-anchor>
 
       <navbar-links />
-      <atom-button
+      <ad-button
         class="navbar-drawer-toggler"
         :icon="navbarExpanded ? 'hidden' : 'pi pi-align-justify'"
         @click="toggleNavbar()"

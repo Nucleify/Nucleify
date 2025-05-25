@@ -77,7 +77,11 @@ export default defineNuxtConfig({
     'atomic': '~/atomic'
   },
   components: [
-    { path: '~/components', extensions: ['vue'] },
+    { path: '~/atomic/atom', prefix: 'ad', extensions: ['vue'] },
+    { path: '~/atomic/molecule', prefix: 'ad', extensions: ['vue'] },
+    { path: '~/atomic/organism', prefix: 'ad', extensions: ['vue'] },
+    { path: '~/atomic/section', prefix: 'ad-section', extensions: ['vue'] },
+    { path: '~/atomic/template', prefix: 'ad', extensions: ['vue'] },
     { path: '~/atomic', extensions: ['vue'] },
     { path: 'modules', extensions: ['vue'], pathPrefix: false }
   ],

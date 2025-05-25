@@ -1,4 +1,4 @@
-# dm_auth
+# <img src="/public/favicon.ico" width="16" height="16" /> &nbsp; dm_auth
 
 Module that contains auth functions.
 

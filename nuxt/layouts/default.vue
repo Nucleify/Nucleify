@@ -1,36 +1,42 @@
 <template>
   <div id="default-layout">
     <dm-screen-lights :count="8" />
-    <section-navbar v-if="isFrontOffice" />
-    <dm-screen-loader v-if="isFrontOffice" />
-    <slot />
-    <section-footer v-if="isFrontOffice" />
-    <organism-dock v-if="isBackOffice" />
+    <front-office v-if="officeType === 'front'">
+      <slot />
+    </front-office>
+    <back-office v-if="officeType === 'back'">
+      <slot />
+    </back-office>
   </div>
 </template>
 
 <script setup lang="ts">
 import { isAnyCurrentUrl, useColors } from 'atomic'
-import { onMounted } from 'vue'
+
+import FrontOffice from './front-office.vue'
+import BackOffice from './back-office.vue'
 
 onMounted(() => {
   const { setDefaultColors } = useColors()
 
   setDefaultColors(true)
 })
-const isFrontOffice = isAnyCurrentUrl([
-  'home',
-  'about',
-  'blog',
-  'license',
-  'services',
-])
-const isBackOffice = isAnyCurrentUrl([
-  'activity-log',
-  'admin',
-  'dashboard',
-  'entities',
-  'settings',
-  'structural',
-])
+
+const officeRoutes = {
+  front: ['home', 'about', 'blog', 'license', 'services'],
+  back: [
+    'activity-log',
+    'admin',
+    'dashboard',
+    'entities',
+    'settings',
+    'structural',
+  ],
+}
+
+const officeType = isAnyCurrentUrl(officeRoutes.front)
+  ? 'front'
+  : isAnyCurrentUrl(officeRoutes.back)
+    ? 'back'
+    : null
 </script>

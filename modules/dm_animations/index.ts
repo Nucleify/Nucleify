@@ -6,6 +6,7 @@ export * from './dm_animations'
 /**
  *  Folders exports
  */
+export * from './bounce'
 export * from './hexagons'
 
 /**
