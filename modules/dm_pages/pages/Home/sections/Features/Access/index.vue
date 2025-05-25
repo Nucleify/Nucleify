@@ -1,36 +1,32 @@
 <template>
   <section id="access">
     <div class="access-container">
-      <atom-heading
+      <ad-heading
         :tag="1"
         class="access-header"
         text="Access your data everywhere"
       />
-      <atom-heading :tag="2" class="access-description">
+      <ad-heading :tag="2" class="access-description">
         Use <span class="shiny">DataManager</span> application on your phone,
         tablet and desktop. You can now manage all data in one place and take a
         step ahead in your management process
-      </atom-heading>
+      </ad-heading>
       <div class="access-card-container">
         <div class="access-card flip-card col-12 md:col-6 xl:col-4">
           <div class="flip-card-inner">
             <dm-animation-hexagons />
             <div class="flip-card-front">
-              <atom-image
+              <ad-image
                 :src="imgUrl + 'desktop.png'"
                 width="120px"
                 height="100px"
                 alt="Desktop image"
                 image-class="access-card-image"
               />
-              <atom-heading
-                :tag="3"
-                class="access-card-header"
-                text="Desktop"
-              />
+              <ad-heading :tag="3" class="access-card-header" text="Desktop" />
             </div>
             <div class="flip-card-back">
-              <atom-paragraph
+              <ad-paragraph
                 class="mt-2"
                 text="Responsive web design was coined in 2010 by Ethan
                                 Marcotte, optimizing layouts for desktops with
@@ -43,17 +39,17 @@
           <div class="flip-card-inner">
             <dm-animation-hexagons />
             <div class="flip-card-front">
-              <atom-image
+              <ad-image
                 :src="imgUrl + 'tablet.png'"
                 width="75px"
                 height="100px"
                 alt="Tablet image"
                 image-class="access-card-image"
               />
-              <atom-heading :tag="3" class="access-card-header" text="Tablet" />
+              <ad-heading :tag="3" class="access-card-header" text="Tablet" />
             </div>
             <div class="flip-card-back">
-              <atom-paragraph
+              <ad-paragraph
                 text="Over 53% of internet users worldwide access the web
                                 through mobile devices, highlighting the significant
                                 shift towards mobile browsing in recent years."
@@ -65,17 +61,17 @@
           <div class="flip-card-inner">
             <dm-animation-hexagons />
             <div class="flip-card-front">
-              <atom-image
+              <ad-image
                 :src="imgUrl + 'phone.png'"
                 width="54px"
                 height="100px"
                 alt="Phone image"
                 image-class="access-card-image"
               />
-              <atom-heading :tag="3" class="access-card-header" text="Phone" />
+              <ad-heading :tag="3" class="access-card-header" text="Phone" />
             </div>
             <div class="flip-card-back">
-              <atom-paragraph
+              <ad-paragraph
                 class="flip-card-back-text"
                 text="Google's implementation of mobile-first indexing in
                                 2018 underscored the importance of mobile-responsive design,

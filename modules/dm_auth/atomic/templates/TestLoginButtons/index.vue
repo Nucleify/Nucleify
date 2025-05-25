@@ -1,12 +1,12 @@
 <template>
   <div class="test-login-buttons-container">
-    <atom-button
+    <ad-button
       icon="pi pi-crown"
       @click="testLogin('admin')"
       class="primary-button text-sm"
       :rounded="true"
     />
-    <atom-button
+    <ad-button
       icon="pi pi-user"
       severity="secondary"
       @click="testLogin('user')"

@@ -1,10 +1,10 @@
 <template>
   <div class="faq-section container">
-    <atom-heading :tag="6" text="FAQ" class="faq-section-header" />
+    <ad-heading :tag="6" text="FAQ" class="faq-section-header" />
 
     <div class="faq-section-questions">
-      <organism-accordion v-if="column1" :panels="column1" ad-type="main" />
-      <organism-accordion v-if="column2" :panels="column2" ad-type="main" />
+      <ad-accordion v-if="column1" :panels="column1" ad-type="main" />
+      <ad-accordion v-if="column2" :panels="column2" ad-type="main" />
     </div>
   </div>
 </template>

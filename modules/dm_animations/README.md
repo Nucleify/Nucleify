@@ -1,4 +1,4 @@
-# dm_animations
+# <img src="/public/favicon.ico" width="16" height="16" /> &nbsp; dm_animations
 
 Module that contains animations functions.
 

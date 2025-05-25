@@ -1,5 +1,5 @@
 <template>
-  <molecule-anchor
+  <ad-anchor
     href="/home"
     class="back-link"
     icon="pi pi-chevron-left"

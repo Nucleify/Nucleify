@@ -6,14 +6,14 @@
     :style="props.style"
   >
     <slot />
-    <atom-icon v-if="props.icon" :icon="props.icon" />
-    <atom-image
+    <ad-icon v-if="props.icon" :icon="props.icon" />
+    <ad-image
       v-if="props.src"
       :src="props.src"
       :alt="props.label"
       :fetchpriority="props.fetchpriority"
     />
-    <atom-label
+    <ad-label
       v-if="props.label"
       :label="props.label"
       :style="{ cursor: 'pointer' }"

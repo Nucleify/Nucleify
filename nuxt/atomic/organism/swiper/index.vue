@@ -119,7 +119,7 @@
       :zoom="props.zoom"
     >
       <swiper-slide v-for="(slide, index) in props.slides" :key="index">
-        <molecule-anchor
+        <ad-anchor
           v-if="slide.url && slide.prefix && slide.image"
           :href="slide.url"
           :src="slide.prefix + slide.image"
