@@ -10,7 +10,7 @@
     <ad-image
       v-if="props.src"
       :src="props.src"
-      :alt="props.label"
+      :alt="props.alt"
       :fetchpriority="props.fetchpriority"
     />
     <ad-label

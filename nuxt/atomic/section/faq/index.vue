@@ -1,6 +1,6 @@
 <template>
   <div class="faq-section container">
-    <ad-heading :tag="6" text="FAQ" class="faq-section-header" />
+    <ad-paragraph text="FAQ" class="faq-section-header" />
 
     <div class="faq-section-questions">
       <ad-accordion v-if="column1" :panels="column1" ad-type="main" />
