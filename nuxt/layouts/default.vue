@@ -7,9 +7,6 @@
     <back-office v-if="officeType === 'back'">
       <slot />
     </back-office>
-    <div v-else id="default-layout-content">
-      <slot />
-    </div>
   </div>
 </template>
 
