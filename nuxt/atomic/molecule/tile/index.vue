@@ -1,9 +1,5 @@
 <template>
-  <ad-anchor
-    class="tile my-card"
-    :href="props.href"
-    :ad-type="props.adType"
-  >
+  <ad-anchor class="tile my-card" :href="props.href" :ad-type="props.adType">
     <div class="general">
       <div class="info">
         <ad-paragraph class="header" :text="props.header" />

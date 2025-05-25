@@ -19,10 +19,7 @@
     </template>
     <template #content>
       <form @submit.prevent="submitForm(loginFields)">
-        <ad-float-label
-          v-for="(field, index) in loginInputs"
-          :key="index"
-        >
+        <ad-float-label v-for="(field, index) in loginInputs" :key="index">
           <ad-input-text
             v-model="loginFields[field.model]"
             :ad-type="'main'"

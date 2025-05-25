@@ -2,7 +2,7 @@ import gsap from 'gsap'
 
 export function useBounceClick(ballBounce: gsap.core.Tween | null) {
   const startContainer = document.querySelector('.start-container')
-  
+
   if (startContainer && ballBounce) {
     startContainer.addEventListener('click', () => {
       gsap.to(ballBounce, {

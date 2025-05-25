@@ -20,6 +20,6 @@ export function useBounceAnimation() {
     repeat: -1,
     transformOrigin: 'center bottom',
   })
-  
+
   return { ballBounce }
 }
