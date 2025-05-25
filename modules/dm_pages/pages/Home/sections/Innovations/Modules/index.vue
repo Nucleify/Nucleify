@@ -66,11 +66,11 @@
 
           <StepPanel :value="1">
             <div class="step-panel-container">
-              <atom-heading :tag="4" class="tech-heading">
+              <ad-heading :tag="4" class="tech-heading">
                 <span class="tech-text">We've got</span>&nbsp;
                 <span class="tech-text shiny">modules!</span>
-              </atom-heading>
-              <atom-button
+              </ad-heading>
+              <ad-button
                 label="Read more"
                 class="start-button caterpillar"
                 @click="
@@ -104,16 +104,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-
 import { marked } from 'marked'
-import Stepper from 'primevue/stepper'
-import StepList from 'primevue/steplist'
-import StepPanels from 'primevue/steppanels'
-import Step from 'primevue/step'
-import StepPanel from 'primevue/steppanel'
 
-import { navigateTo, isMobile } from 'atomic'
+import { navigateTo, isMobile, apiHandle } from 'atomic'
 import { modules } from './constants'
 
 const activeStep = ref(1)
@@ -122,13 +115,18 @@ const modulesSwiper = ref(null)
 
 const loadReadme = async (modulePath: string, value: number) => {
   try {
-    const response = await fetch(`/modules/${modulePath}/README.md`)
-    if (!response.ok) {
-      throw new Error('README not found')
-    }
-    const text = await response.text()
-    const html = await marked.parse(text)
-    readmeContents.value[value] = html
+    await apiHandle({
+      url: appUrl() + `modules/${modulePath}/README.md`,
+      method: 'GET',
+      onSuccess: (data) => {
+        const html = marked.parse(data)
+        readmeContents.value[value] = html
+        readmeContents.value[value] = readmeContents.value[value].replaceAll(
+          '/public',
+          ''
+        )
+      },
+    })
   } catch (error) {
     console.error(`Error loading README for ${modulePath}:`, error)
   }

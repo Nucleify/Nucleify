@@ -1,7 +1,9 @@
 import { App } from 'vue'
 
-import { AnimationHexagons } from './hexagons'
+import { AnimationBounce, AnimationHexagons } from '.'
 
 export function registerDMAnimations(app: App<Element>): void {
-  app.component('dm-animation-hexagons', AnimationHexagons)
+  app
+    .component('dm-animation-bounce', AnimationBounce)
+    .component('dm-animation-hexagons', AnimationHexagons)
 }

@@ -91,7 +91,7 @@ export function featureRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FeatureObjectInterface>({
-      url: apiUrl() + 'features/',
+      url: apiUrl() + 'features',
       method: 'PUT',
       data,
       id: data.id,
@@ -106,7 +106,7 @@ export function featureRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FeatureObjectInterface>({
-      url: apiUrl() + 'features/',
+      url: apiUrl() + 'features',
       method: 'DELETE',
       id,
       onSuccess: (response: FeatureObjectInterface) => {

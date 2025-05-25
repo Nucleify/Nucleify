@@ -50,7 +50,8 @@ export function activityRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ActivityLogObjectInterface>({
-      url: apiUrl() + `activity-log/` + id,
+      url: apiUrl() + 'activity-log',
+      id,
       method: 'DELETE',
       onSuccess: (response: ActivityLogObjectInterface) => {
         apiSuccess(response, getData, close, 'delete')

@@ -17,7 +17,7 @@
         :value="list.value"
         :key="index"
       >
-        <atom-heading :tag="4" :text="list.header" />
+        <ad-heading :tag="4" :text="list.header" />
       </Tab>
     </TabList>
     <TabPanels>
@@ -26,7 +26,7 @@
         :value="panel.value"
         :key="index"
       >
-        <atom-paragraph :text="panel.content" />
+        <ad-paragraph :text="panel.content" />
       </TabPanel>
     </TabPanels>
   </Tabs>

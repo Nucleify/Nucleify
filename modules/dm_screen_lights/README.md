@@ -1,4 +1,4 @@
-# dm_screen_lights
+# <img src="/public/favicon.ico" width="16" height="16" /> &nbsp; dm_screen_lights
 
 Module that displays background lights.
 

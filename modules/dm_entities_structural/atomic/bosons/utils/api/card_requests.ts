@@ -60,7 +60,7 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<CardObjectInterface>({
-      url: apiUrl() + 'cards/',
+      url: apiUrl() + 'cards',
       method: 'PUT',
       data,
       id: data.id,
@@ -75,7 +75,7 @@ export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<CardObjectInterface>({
-      url: apiUrl() + 'cards/',
+      url: apiUrl() + 'cards',
       method: 'DELETE',
       id,
       onSuccess: (response: CardObjectInterface) => {

@@ -1,25 +1,22 @@
 <template>
-  <template-anchor-backlink />
+  <ad-anchor-backlink />
   <div class="auth-card-container">
-    <organism-card class="register-card">
+    <ad-card class="register-card">
       <template #header>
         <div class="auth-card-header-container">
           <div class="auth-card-header">
-            <atom-heading :tag="1" text="Register" />
+            <ad-heading :tag="1" text="Register" />
 
-            <atom-paragraph text="Already have an account?">
-              <molecule-anchor href="/login" :label="'Log in!'" />
-            </atom-paragraph>
+            <ad-paragraph text="Already have an account?">
+              <ad-anchor href="/login" :label="'Log in!'" />
+            </ad-paragraph>
           </div>
         </div>
       </template>
       <template #content>
         <form @submit.prevent="submitForm(registerFields)">
-          <molecule-float-label
-            v-for="(field, index) in registerInputs"
-            :key="index"
-          >
-            <atom-input-text
+          <ad-float-label v-for="(field, index) in registerInputs" :key="index">
+            <ad-input-text
               v-if="field.type !== 'password'"
               v-model="registerFields[field.model]"
               ad-type="main"
@@ -29,7 +26,7 @@
               :autofocus="field.autofocus"
             />
 
-            <organism-password
+            <ad-password
               v-else
               v-model="registerFields[field.model]"
               ad-type="main"
@@ -52,10 +49,10 @@
               "
             />
 
-            <atom-label :for="field.id" :label="field.label" />
-          </molecule-float-label>
+            <ad-label :for="field.id" :label="field.label" />
+          </ad-float-label>
 
-          <atom-button
+          <ad-button
             label="Register"
             type="submit"
             class="primary-button"
@@ -63,7 +60,7 @@
           />
         </form>
       </template>
-    </organism-card>
+    </ad-card>
   </div>
 </template>
 

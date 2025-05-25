@@ -1,14 +1,14 @@
 <template>
-  <organism-popover
+  <ad-popover
     dismissable
     :button-class="'popover-toggle ' + positionClass"
     :popover-class="'terminal ' + positionClass"
   >
-    <organism-terminal
+    <ad-terminal
       prompt="artisan >"
       welcome-message="The ''help'' command displays help"
     />
-  </organism-popover>
+  </ad-popover>
 
   <Dock
     :v-model="props.modelValue"
@@ -55,7 +55,7 @@
           />
         </svg>
       </div>
-      <atom-icon
+      <ad-icon
         v-if="item.icon || item.url"
         :icon="item.icon"
         class="item"
@@ -65,7 +65,7 @@
         v-tooltip="item.label"
       />
       <div class="dock-position-buttons" v-if="item.label === 'position'">
-        <atom-radio-button
+        <ad-radio-button
           v-for="pos of positions"
           v-model="position"
           :key="pos.value"
