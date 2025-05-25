@@ -2,33 +2,33 @@
   <section id="footer">
     <div class="footer-content-container">
       <div class="top">
-        <molecule-anchor href="#start" class="header">
-          <atom-image
+        <ad-anchor href="#start" class="header">
+          <ad-image
             :src="imgUrl + 'logo.svg'"
             alt="DataManager logo"
             class="logo"
           />
-          <atom-heading :tag="1" text="DataManager" class="name" />
-        </molecule-anchor>
+          <ad-heading :tag="1" text="DataManager" class="name" />
+        </ad-anchor>
         <div class="content">
           <div
             v-for="(column, columnIndex) in columns"
             :key="columnIndex"
             :class="`column-${columnIndex + 1}`"
           >
-            <molecule-anchor
+            <ad-anchor
               v-for="(item, itemIndex) in column"
               :key="itemIndex"
               :href="item.url"
             >
-              <atom-heading v-if="item?.header" :tag="3" :text="item.name" />
+              <ad-heading v-if="item?.header" :tag="3" :text="item.name" />
               <span v-else>{{ item.name }}</span>
-            </molecule-anchor>
+            </ad-anchor>
           </div>
         </div>
       </div>
       <div class="bottom">
-        <template-anchor-authors />
+        <ad-anchor-authors />
       </div>
     </div>
     <dm-animation-hexagons />

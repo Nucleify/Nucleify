@@ -8,6 +8,5 @@ export const modules = [
   { value: 8, icon: 'pi pi-users', path: 'dm_friendship' },
   { value: 9, icon: 'pi pi-link', path: 'dm_pages' },
   { value: 10, icon: 'pi pi-spinner-dotted', path: 'dm_screen_loader' },
-  { value: 11, icon: 'pi pi-globe', path: 'dm_seo' },
-  { value: 12, icon: 'pi pi-code', path: 'dm_terminal' },
+  { value: 11, icon: 'pi pi-code', path: 'dm_terminal' },
 ]

@@ -1,4 +1,4 @@
-# dm_pages
+# <img src="/public/favicon.ico" width="16" height="16" /> &nbsp; dm_pages
 
 Module that contains pages functions.
 

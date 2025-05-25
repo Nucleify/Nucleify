@@ -1,5 +1,5 @@
 <template>
-  <atom-button
+  <ad-button
     @click="toggle"
     :icon="props.popoverClass!.includes('terminal') ? 'pi pi-code' : props.icon"
     :src="props.src"

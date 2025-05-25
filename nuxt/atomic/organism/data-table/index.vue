@@ -87,7 +87,7 @@
     <Column class="action-column">
       <template #body="row">
         <div class="action-column-content">
-          <atom-button
+          <ad-button
             v-if="props.adType === 'activity'"
             :ad-type="props.adType"
             class="data-table-button"
@@ -98,7 +98,7 @@
             :loading="props.loading"
           />
           <template v-else>
-            <atom-button
+            <ad-button
               v-for="action in actions"
               :ad-type="props.adType"
               :key="action.icon"
@@ -109,7 +109,7 @@
               text
               :loading="props.loading"
             />
-            <atom-button
+            <ad-button
               :ad-type="props.adType"
               class="mobile-button data-table-button"
               icon="pi pi-bars"
@@ -124,7 +124,7 @@
       </template>
     </Column>
   </DataTable>
-  <template-skeleton-data-table
+  <ad-skeleton-data-table
     :rows="skeleton"
     :loading="props.loading"
     :specific-columns="specificColumns"

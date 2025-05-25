@@ -3,9 +3,9 @@
     <start />
     <features />
     <innovations />
-    <section-why-us site="home" />
-    <section-faq site="home" />
-    <section-contact />
+    <ad-section-why-us site="home" />
+    <ad-section-faq site="home" />
+    <ad-section-contact />
   </div>
 </template>
 

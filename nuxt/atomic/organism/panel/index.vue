@@ -9,7 +9,7 @@
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   >
-    <atom-paragraph :text="props.content" />
+    <ad-paragraph :text="props.content" />
   </Panel>
 </template>
 

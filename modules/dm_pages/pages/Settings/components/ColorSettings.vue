@@ -1,10 +1,10 @@
 <template>
-  <organism-card class="settings-card settings-small-card">
+  <ad-card class="settings-card settings-small-card">
     <template #header>
       <div class="settings-card-header-container">
-        <atom-heading :tag="4" text="Colors" />
+        <ad-heading :tag="4" text="Colors" />
 
-        <atom-button
+        <ad-button
           icon="pi pi-refresh"
           ad-type="main"
           class="refresh-button"
@@ -17,12 +17,12 @@
     <template #content>
       <ul class="settings-card-item-list">
         <li v-for="item in colorList" :key="item" class="settings-card-item">
-          <atom-label :label="item" :for="item" />
-          <organism-color-picker :ad-type="item.toLowerCase()" />
+          <ad-label :label="item" :for="item" />
+          <ad-color-picker :ad-type="item.toLowerCase()" />
         </li>
       </ul>
     </template>
-  </organism-card>
+  </ad-card>
 </template>
 
 <script setup lang="ts">

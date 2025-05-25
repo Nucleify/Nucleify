@@ -1,21 +1,21 @@
 <template>
-  <organism-card class="card-box">
+  <ad-card class="card-box">
     <template #title>
       <div class="card-box-heading">
-        <atom-image
+        <ad-image
           :src="props.src"
           :alt="props.label"
           class="card-box-heading-image"
         />
-        <atom-paragraph :text="props.label" class="card-box-heading-text" />
+        <ad-paragraph :text="props.label" class="card-box-heading-text" />
       </div>
     </template>
     <template #content>
       <div class="card-box-description">
-        <atom-paragraph :text="props.description" />
+        <ad-paragraph :text="props.description" />
       </div>
     </template>
-  </organism-card>
+  </ad-card>
 </template>
 
 <script setup lang="ts">

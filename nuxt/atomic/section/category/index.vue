@@ -1,13 +1,13 @@
 <template>
   <div class="categories-container">
-    <atom-heading
+    <ad-heading
       :tag="2"
       text="Categories"
       class="categories-container-header"
     />
 
     <div class="cards-container container">
-      <template-card-category
+      <ad-card-category
         v-for="(card, index) in props.cards"
         :key="index"
         :image="props.prefix + card.image"

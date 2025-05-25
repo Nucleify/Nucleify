@@ -1,4 +1,4 @@
-# dm_media
+# <img src="/public/favicon.ico" width="16" height="16" /> &nbsp; dm_media
 
 Module that contains medias functions.
 
