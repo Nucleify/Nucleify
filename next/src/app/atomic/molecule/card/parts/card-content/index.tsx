@@ -1,5 +1,8 @@
 import { JSX } from 'react'
 
-export default function CardContentPart(): JSX.Element {
-  return <div>content</div>
+import { CardContent } from '@mui/material'
+import { AdCardContentProps } from './types'
+
+export default function AdCardContent(props: AdCardContentProps): JSX.Element {
+  return <CardContent {...props} />
 }

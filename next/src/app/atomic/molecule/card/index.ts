@@ -1,4 +1,4 @@
-export * from './parts'
-export * from './types'
+export * from './parts';
+export * from './types';
 
-export * from './index.tsx'
+export { default as AdCard } from './index.tsx';
