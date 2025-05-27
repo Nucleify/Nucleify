@@ -1,1 +1,2 @@
-export { default as AtomCard } from './index.tsx'
+export * from './types';
+export { default as AdCardActionMedia } from './index.tsx';

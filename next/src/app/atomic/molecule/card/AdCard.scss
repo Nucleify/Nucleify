@@ -1,0 +1,57 @@
+.ad-card {
+  background-color: #d1d5db;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1rem;
+  min-height: 200px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .ad-card-icon {
+    font-size: 2rem;
+    color: #ec008c;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ad-card-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    line-height: 1.4;
+
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.1rem;
+    }
+  }
+
+  .ad-card-description {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #334155;
+    margin: 0;
+    line-height: 1.5;
+
+    @media (max-width: 768px) {
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
+  }
+}
+
