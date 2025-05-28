@@ -1,0 +1,39 @@
+.cards-section {
+  background: #a6a8ab;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 2rem 0;
+  margin: 0
+}
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.ad-card-boxes {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, auto);
+  padding: 0.5rem;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    max-width: 700px;
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    max-width: 400px;
+  }
+}
+
