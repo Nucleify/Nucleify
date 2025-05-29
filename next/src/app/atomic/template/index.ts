@@ -1,1 +1,1 @@
-export * from './card-boxes'
+export * from './card'
