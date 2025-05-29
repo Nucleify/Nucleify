@@ -19,7 +19,11 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "atomic": ["./src/app/atomic/*"],
+      "boson/*": ["./src/app/atomic/boson/*"],
+      "molecule/*": ["./src/app/atomic/molecule/*"],
+      "template/*": ["./src/app/atomic/template/*"]
     },
     "allowImportingTsExtensions": true
   },
