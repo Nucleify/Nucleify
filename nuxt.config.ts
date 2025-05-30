@@ -38,7 +38,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      title: 'Data Manager - ERP & Design Management',
+      title: 'DataManager – Laravel/Nuxt ERP with Modular Design and Next-gen Architecture',
       titleTemplate: '%s',
       meta: [
         { charset: 'utf-8' },

@@ -8,6 +8,8 @@
               v-if="tech"
               :href="tech.href"
               :src="technologiesImgUrl + tech.src"
+              :alt="tech.label"
+              :aria-label="tech.label"
               v-tooltip="tech.label"
             />
           </swiper-slide>

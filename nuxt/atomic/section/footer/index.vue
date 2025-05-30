@@ -21,7 +21,7 @@
               :key="itemIndex"
               :href="item.url"
             >
-              <ad-heading v-if="item?.header" :tag="3" :text="item.name" />
+              <ad-paragraph class="header" v-if="item?.header" :text="item.name" />
               <span v-else>{{ item.name }}</span>
             </ad-anchor>
           </div>
@@ -39,40 +39,40 @@
 const columns = [
   // Entities
   [
-    { name: 'Entities', header: true },
-    { name: 'Activities' },
-    { name: 'Articles' },
-    { name: 'Contacts' },
-    { name: 'Money' },
-    { name: 'Users' },
+    { name: 'Entities', header: true, url: '/entities' },
+    { name: 'Activities', url: '/activity-log' },
+    { name: 'Articles', url: '/entities/articles' },
+    { name: 'Contacts', url: '/entities/contacts' },
+    { name: 'Money', url: '/entities/money' },
+    { name: 'Users', url: '/admin' },
   ],
   // Services
   [
-    { name: 'Services', header: true },
-    { name: 'Open Source' },
-    { name: 'Data Storage' },
-    { name: 'Data Migration' },
-    { name: 'Data Integration' },
-    { name: 'Data Analysis' },
-    { name: 'Page Builder' },
+    { name: 'Services', header: true, url: '/services' },
+    { name: 'Open Source', url: '/services' },
+    { name: 'Data Storage', url: '/services' },
+    { name: 'Data Migration', url: '/services' },
+    { name: 'Data Integration', url: '/services' },
+    { name: 'Data Analysis', url: '/services' },
+    { name: 'Page Builder', url: '/services' },
   ],
   // About
   [
-    { name: 'About', header: true },
-    { name: 'Purpose' },
-    { name: 'Collaboration' },
-    { name: 'Support Us' },
-    { name: 'License' },
-    { name: 'Contact' },
+    { name: 'About', header: true, url: '/about' },
+    { name: 'Purpose', url: '/about' },
+    { name: 'Collaboration', url: '/about' },
+    { name: 'Support Us', url: '/about' },
+    { name: 'License', url: '/about' },
+    { name: 'Contact', url: '/about' },
   ],
   // Blog
   [
-    { name: 'Blog', header: true },
-    { name: "The Importance of Open Source in Today's World" },
-    { name: 'How to Automate Your Data Pipeline' },
-    { name: 'Maximizing Data Security' },
-    { name: 'Building a Scalable Website' },
-    { name: 'The Best Tools for Every Business' },
+    { name: 'Blog', header: true, url: '/blog' },
+    { name: "The Importance of Open Source in Today's World", url: '/blog' },
+    { name: 'How to Automate Your Data Pipeline', url: '/blog' },
+    { name: 'Maximizing Data Security', url: '/blog' },
+    { name: 'Building a Scalable Website', url: '/blog' },
+    { name: 'The Best Tools for Every Business', url: '/blog' },
   ],
 ]
 </script>

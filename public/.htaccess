@@ -21,30 +21,21 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Gzip Handling for Pre-compressed Files
-    # Serve .gz files if they exist and client accepts gzip encoding
-    RewriteCond %{HTTP:Accept-Encoding} gzip
-    RewriteCond %{REQUEST_FILENAME}.gz -f
-    RewriteRule ^(.+)\.(css|js)$ $1.$2.gz [QSA]
-
-    # Set Headers for Gzipped Files with Correct MIME Types
-    <FilesMatch "\.css\.gz$">
-        Header set Content-Encoding gzip
-        Header set Content-Type "text/css"
-        Header set Cache-Control "max-age=31536000, public"
-        Header set Vary "Accept-Encoding"
-    </FilesMatch>
-
-    <FilesMatch "\.js\.gz$">
-        Header set Content-Encoding gzip
-        Header set Content-Type "application/javascript"
-        Header set Cache-Control "max-age=31536000, public"
-        Header set Vary "Accept-Encoding"
-    </FilesMatch>
-
+    # Allow cross-origin font loading
     <FilesMatch "\.(ttf|otf|eot|woff|woff2)$">
         Header set Access-Control-Allow-Origin "*"
     </FilesMatch>
+
+    # Leverage browser caching
+    <IfModule mod_expires.c>
+        ExpiresActive On
+        ExpiresByType text/css "access plus 1 year"
+        ExpiresByType application/javascript "access plus 1 year"
+        ExpiresByType application/font-woff2 "access plus 1 year"
+        ExpiresByType image/svg+xml "access plus 1 year"
+        ExpiresByType image/png "access plus 1 year"
+        ExpiresByType image/jpeg "access plus 1 year"
+    </IfModule>
 
     # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d

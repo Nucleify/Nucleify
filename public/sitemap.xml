@@ -1,127 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
-        <loc>https://data-manager.szymco.de/admin</loc>
+        <loc>https://datamanager.atomic-it.org/admin</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/modules/{module}/{file}</loc>
+        <loc>https://datamanager.atomic-it.org/modules/{module}/{file}</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/activity-log</loc>
+        <loc>https://datamanager.atomic-it.org/activity-log</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/login</loc>
+        <loc>https://datamanager.atomic-it.org/login</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/logout</loc>
+        <loc>https://datamanager.atomic-it.org/logout</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/register</loc>
+        <loc>https://datamanager.atomic-it.org/register</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/password/reset</loc>
+        <loc>https://datamanager.atomic-it.org/password/reset</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/password/email</loc>
+        <loc>https://datamanager.atomic-it.org/password/email</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/password/reset/{token}</loc>
+        <loc>https://datamanager.atomic-it.org/password/reset/{token}</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/password/confirm</loc>
+        <loc>https://datamanager.atomic-it.org/password/confirm</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/entities</loc>
+        <loc>https://datamanager.atomic-it.org/entities</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/entities/articles</loc>
+        <loc>https://datamanager.atomic-it.org/entities/articles</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/entities/contacts</loc>
+        <loc>https://datamanager.atomic-it.org/entities/contacts</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/entities/money</loc>
+        <loc>https://datamanager.atomic-it.org/entities/money</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/structural</loc>
+        <loc>https://datamanager.atomic-it.org/structural</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/structural/cards</loc>
+        <loc>https://datamanager.atomic-it.org/structural/cards</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/structural/features</loc>
+        <loc>https://datamanager.atomic-it.org/structural/features</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/structural/links</loc>
+        <loc>https://datamanager.atomic-it.org/structural/links</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/structural/questions</loc>
+        <loc>https://datamanager.atomic-it.org/structural/questions</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/structural/technologies</loc>
+        <loc>https://datamanager.atomic-it.org/structural/technologies</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/</loc>
+        <loc>https://datamanager.atomic-it.org/</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/home</loc>
+        <loc>https://datamanager.atomic-it.org/home</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/license</loc>
+        <loc>https://datamanager.atomic-it.org/license</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/dashboard</loc>
+        <loc>https://datamanager.atomic-it.org/dashboard</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>
     <url>
-        <loc>https://data-manager.szymco.de/settings</loc>
+        <loc>https://datamanager.atomic-it.org/settings</loc>
         <lastmod>2025-04-15T07:58:17+02:00</lastmod>
 
             </url>

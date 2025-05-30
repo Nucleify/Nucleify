@@ -33,7 +33,7 @@
     }"
     :ad-type="props.adType"
   >
-    <ad-image v-if="props.src" :src="props.src" :alt="props.label" />
+    <ad-image v-if="props.src" :src="props.src" :alt="props.alt" />
     <template v-if="props.label">{{ props.label }}</template>
     <slot />
   </Button>

@@ -25,6 +25,7 @@
             />
             <ad-button
               label="GitHub"
+              alt="GitHub logo"
               :src="technologiesImgUrl + 'github.svg'"
               class="start-button caterpillar"
               @click="navigateTo('https://github.com/SzymCode/DataManager')"
