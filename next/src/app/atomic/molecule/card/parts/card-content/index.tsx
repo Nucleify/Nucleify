@@ -1,7 +1,6 @@
 import { JSX } from 'react'
 import { CardContent } from '@mui/material'
 import { AdCardContentProps } from './types'
-import './AdCardContent.scss'
 
 export default function AdCardContent({
   children,
