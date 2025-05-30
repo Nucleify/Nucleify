@@ -5,7 +5,7 @@ This website helps to storage various data types and share it with others. My ta
 
 <b>Join my project and become part of building something incredible!</b>
 
-<br><a href="https://data-manager.szymco.de">Live preview</a><br><br>
+<br><a href="https://data-manager.atomic-it.org">Live preview</a><br><br>
 
 <details><summary> <h2> &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=25/> &nbsp; XAMPP </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary>
