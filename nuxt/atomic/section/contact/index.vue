@@ -1,7 +1,7 @@
 <template>
   <div id="contact">
     <div class="contact-content container">
-      <ad-heading :tag="3" text="Contact Us" class="contact-content-title" />
+      <ad-paragraph text="Contact Us" class="contact-content-title" />
       <ad-paragraph
         text="
           If you have any questions, need assistance, or would like to learn more

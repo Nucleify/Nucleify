@@ -17,6 +17,7 @@
         class="navbar-drawer-toggler"
         :icon="navbarExpanded ? 'hidden' : 'pi pi-align-justify'"
         @click="toggleNavbar()"
+        aria-label="Menu"
       />
     </div>
     <navbar-drawer v-model:visible="navbarExpanded">
