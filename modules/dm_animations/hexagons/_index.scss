@@ -11,21 +11,23 @@
   .hexagon-row-container {
     position: relative;
     top: 25px;
-    margin-top: -9px;
+    margin-top: -11px;
 
     .hexagon-container {
       display: flex;
       gap: 2px;
 
-      img {
-        transition: all 500ms ease-in;
-        width: 40px;
+      svg {
         height: 46.15px;
+
+        polygon {
+          transition: all 500ms ease-in;
+        }
       }
 
       &.n2 {
-        margin-top: -9px;
-        margin-left: -21px;
+        margin-top: -11px;
+        margin-left: -20px;
       }
     }
   }
