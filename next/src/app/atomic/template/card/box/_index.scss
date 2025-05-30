@@ -1,3 +1,30 @@
-.card {
-    color: red;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap');
+
+.ad-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
+
+.ad-card-content {
+    display: flex;
+    flex-direction: column;
+
+    .ad-card-text {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    }
+
+    .ad-card-title {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .ad-card-description {
+        font-family: 'Poppins', sans-serif;
+    }
+}
+

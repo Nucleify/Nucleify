@@ -1,38 +1,190 @@
-#card-boxes-template {
+#card-boxes-section {
   background: #a6a8ab;
-  height: 100%;
-  width: 100%;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 2rem 0;
-  margin: 0;
-  
+  overflow: hidden;
+
+  min-height: 60vh;
+  padding: 1rem 0;
+
+  .title {
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #112232;
+    font-family: 'Poppins', sans-serif;
+  }
+
   .ad-card-boxes {
-    display: grid;
+    display: none;
     gap: 1rem;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(4, auto);
-    padding: 0.5rem;
+    padding: 1rem;
     max-width: 1300px;
     width: 100%;
     margin: 0 auto;
-  }
 
-  @media (max-width: 1200px) {
-    .ad-card-boxes {
+    @media (min-width: 701px) {
+      display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(4, 1fr);
       max-width: 700px;
     }
+    @media (min-width: 1201px) {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, auto);
+      max-width: 1300px;
+    }
   }
 
-  @media (max-width: 700px) {
-    .ad-card-boxes {
-      grid-template-columns: 1fr;
-      grid-template-rows: none;
-      max-width: 400px;
+  .ad-card-carousel {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+
+    @media (min-width: 701px) {
+      display: none;
     }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+      will-change: transform;
+      touch-action: pan-x;
+      gap: 0;
+      padding: 0;
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      max-width: 100%;
+      flex: 0 0 100%;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 1rem;
+      gap: 0.5rem;
+
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: none;
+        background: #B1C2D2;
+        opacity: 0.4;
+        cursor: pointer;
+        transition: opacity 0.2s;
+
+        &.active {
+          background: #FF0A71;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .ad-card {
+    background-color: #bec0c5 !important;
+    border-radius: 0.5rem;
+    justify-content: flex-start;
+    gap: 0.6rem;
+    box-sizing: border-box;
+    height: 95%;
+
+    min-height: 90px;
+    padding: 0.7rem;
+    gap: 0.6rem;
+    max-width: 250px;
+    width: 90vw;
+    margin: 0 auto;
+
+    @media (min-width: 701px) {
+      min-height: 100px;
+      padding: 0.8rem;
+      gap: 0.7rem;
+      max-width: unset;
+      width: unset;
+      margin: unset;
+    }
+    @media (min-width: 1201px) {
+      min-height: unset;
+      padding: unset;
+      gap: unset;
+    }
+  }
+
+  .ad-card-content {
+    align-items: flex-start;
+
+    .ad-card-icon {
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 1rem;
+      flex-shrink: 0;
+    }
+
+    .ad-card-text {
+      gap: 0.5rem;
+    }
+
+    .ad-card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin: 0 0 0.2rem 0;
+      line-height: 1.3;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: 'Poppins', sans-serif;
+
+      @media (min-width: 701px) {
+        font-size: 1.2rem;
+      }
+      @media (min-width: 1201px) {
+        font-size: 22px;
+      }
+    }
+
+    .ad-card-description {
+      font-size: 0.9rem;
+      color: #334155;
+      margin: 0;
+      line-height: 1.5;
+      font-family: 'Poppins', sans-serif;
+
+      @media (min-width: 701px) {
+        font-size: 0.95rem;
+      }
+      @media (min-width: 1201px) {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (min-width: 701px) {
+  #card-boxes-section {
+    min-height: unset;
+    padding: unset;
   }
 }
