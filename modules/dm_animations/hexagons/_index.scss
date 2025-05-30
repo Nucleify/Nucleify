@@ -10,15 +10,16 @@
 
   .hexagon-row-container {
     position: relative;
-    top: 25px;
-    margin-top: -11px;
-
+    top: 30px;
+    margin-top: -13px;
+    
     .hexagon-container {
       display: flex;
       gap: 2px;
 
       svg {
-        height: 46.15px;
+        height: 48px;
+        overflow: visible;
 
         polygon {
           transition: all 500ms ease-in;
@@ -26,9 +27,20 @@
       }
 
       &.n2 {
-        margin-top: -11px;
+        margin-top: -13px;
         margin-left: -20px;
       }
+    }
+  }
+}
+
+
+
+#footer {
+
+  .hexagon-rows-container {
+    .hexagon-row-container {
+      top: 50px;
     }
   }
 }
