@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     'nuxt-schema-org',
     'nuxt-seo-utils',
     'nuxt-swiper',
+    'nuxt-vitalizer',
     '@qirolab/nuxt-sanctum-authentication'
   ],
   laravelSanctum: {
@@ -111,5 +112,8 @@ export default defineNuxtConfig({
       apiUrl: process.env.API_URL,
       appEnv: process.env.APP_ENV
     }
+  },
+  vitalizer: {
+    disableStylesheets: 'entry'
   }
 } as any)
