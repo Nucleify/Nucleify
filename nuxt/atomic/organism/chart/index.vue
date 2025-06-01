@@ -18,7 +18,8 @@
 <script setup lang="ts">
 import { ref, onMounted, watch, onUnmounted } from 'vue'
 
-import { ChartInterface, useChart } from 'atomic'
+import type { ChartInterface } from 'atomic'
+import { useChart } from 'atomic'
 
 const props = defineProps<ChartInterface>()
 

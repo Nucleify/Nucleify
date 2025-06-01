@@ -12,7 +12,7 @@
     />
     <dm-contact-dashboard
       :data="results"
-      :getData="getAllContacts"
+      :get-data="getAllContacts"
       :loading="loading"
     />
   </div>

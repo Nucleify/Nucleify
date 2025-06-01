@@ -1,7 +1,7 @@
-import { MenuItem } from 'primevue/menuitem'
-import { DockTooltipOptions } from 'primevue'
+import type { MenuItem } from 'primevue/menuitem'
+import type { DockTooltipOptions } from 'primevue'
 
-import { PositionType } from 'atomic'
+import type { PositionType } from 'atomic'
 
 export interface DockInterface {
   modelValue?: MenuItem[]
@@ -12,9 +12,9 @@ export interface DockInterface {
   tabindex?: string | number
   ariaLabelledby?: string
   ariaLabel?: string
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }
 export interface DockItemInterface {

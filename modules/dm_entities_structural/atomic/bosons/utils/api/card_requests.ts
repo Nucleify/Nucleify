@@ -1,16 +1,14 @@
 import { ref } from 'vue'
 
-import {
+import type {
   CardObjectInterface,
   CardRequestsInterface,
   CloseDialogType,
   UseLoadingInterface,
-  useApiSuccess,
-  useLoading,
-  apiHandle,
   EntityCountResultsType,
   EntityResultsType,
 } from 'atomic'
+import { useApiSuccess, useLoading, apiHandle } from 'atomic'
 
 export function cardRequests(close?: CloseDialogType): CardRequestsInterface {
   const results: EntityResultsType<CardObjectInterface> = ref([])

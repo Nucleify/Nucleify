@@ -6,7 +6,7 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      headerText="Manage Activities"
+      header-text="Manage Activities"
     />
 
     <ad-dialog
@@ -29,7 +29,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { DashboardInterface, activityRequests, useDialog } from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { activityRequests, useDialog } from 'atomic'
 
 defineProps<DashboardInterface>()
 

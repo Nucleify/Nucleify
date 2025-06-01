@@ -12,7 +12,7 @@
     />
     <dm-article-dashboard
       :data="results"
-      :getData="getAllArticles"
+      :get-data="getAllArticles"
       :loading="loading"
     />
   </div>

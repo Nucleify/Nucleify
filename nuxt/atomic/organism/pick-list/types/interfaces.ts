@@ -1,11 +1,11 @@
 export interface PickListInterface {
-  modelValue?: any[][] // eslint-disable-line
-  selection?: any[][] // eslint-disable-line
+  modelValue?: unknown[][]
+  selection?: unknown[][]
   dataKey?: string
   metaKeySelection?: boolean
   autoOptionFocus?: boolean
   focusOnHover?: boolean
-  listStyle?: any // eslint-disable-line
+  listStyle?: object
   responsive?: boolean
   breakpoint?: string
   scrollHeight?: string
@@ -22,8 +22,8 @@ export interface PickListInterface {
   moveToSourceProps?: object
   moveAllToSourceProps?: object
   tabindex?: string | number
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

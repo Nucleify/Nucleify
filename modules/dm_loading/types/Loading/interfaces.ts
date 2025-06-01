@@ -1,4 +1,4 @@
-import { LoadingRefType } from 'atomic'
+import type { LoadingRefType } from 'atomic'
 
 export interface UseLoadingInterface {
   loading: LoadingRefType

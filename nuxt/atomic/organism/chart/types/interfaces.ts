@@ -1,6 +1,6 @@
-import { CanvasHTMLAttributes } from 'vue'
+import type { CanvasHTMLAttributes } from 'vue'
 
-import {
+import type {
   ActivityLogObjectInterface,
   ArticleObjectInterface,
   ContactObjectInterface,
@@ -19,13 +19,13 @@ export interface ChartInterface {
   type: ChartType
   data?: object
   options?: object
-  plugins?: any // eslint-disable-line
+  plugins?: object
   width?: number
   height?: number
   canvasProps?: CanvasHTMLAttributes
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   direction?: string
   chartMethodType: ChartMethodType
   activityLogData?: ActivityLogObjectInterface[]

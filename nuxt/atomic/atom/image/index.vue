@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ImageInterface } from 'atomic'
+import type { ImageInterface } from 'atomic'
 
 const props = defineProps<ImageInterface>()
 </script>

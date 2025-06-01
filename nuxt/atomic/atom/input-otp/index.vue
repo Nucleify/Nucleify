@@ -21,7 +21,7 @@
   />
 </template>
 <script setup lang="ts">
-import { InputOtpInterface } from 'atomic'
+import type { InputOtpInterface } from 'atomic'
 
 const props = defineProps<InputOtpInterface>()
 </script>

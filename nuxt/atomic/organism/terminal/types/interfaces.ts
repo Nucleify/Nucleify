@@ -1,8 +1,12 @@
 export interface TerminalInterface {
   welcomeMessage?: string
   prompt?: string
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
+}
+
+export interface ArtisanResponseInterface {
+  output: string
 }

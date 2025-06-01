@@ -121,4 +121,4 @@ export default defineNuxtConfig({
     display: 'swap',
     subsets: ['latin'],
   },
-} as any)
+})

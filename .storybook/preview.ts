@@ -7,7 +7,6 @@ import '../atomic/bosons/styles/index.scss'
  *  App mount
  */
 import { createApp } from 'vue'
-export const app = createApp({})
 
 /**
  *  PrimeVue
@@ -16,6 +15,10 @@ import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css'
 
 import PrimeVue from 'primevue/config'
+
+import { DataManagerPreset } from '../atomic/primevue_preset'
+import type { Preview } from '@storybook/vue3'
+export const app = createApp({})
 
 app.use(PrimeVue, {
   theme: {
@@ -26,9 +29,6 @@ app.use(PrimeVue, {
   },
   ripple: true,
 })
-
-import { DataManagerPreset } from '../atomic/primevue_preset'
-import type { Preview } from '@storybook/vue3'
 
 const preview: Preview = {
   parameters: {

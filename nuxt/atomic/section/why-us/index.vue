@@ -10,10 +10,10 @@
     <Dialog
       v-model:visible="dialogVisible"
       :data="dialogData"
-      @close="dialogVisible = false"
       :dismissable-mask="true"
       modal
       class="why-us-dialog"
+      @close="dialogVisible = false"
     >
       <template #header>
         <ad-icon :icon="dialogData.icon" class="text-xl" />
@@ -28,7 +28,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch, watchEffect } from 'vue'
-import { WhyUsInterface, WhyUsItemInterface, featureRequests } from 'atomic'
+import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
+import { featureRequests } from 'atomic'
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
@@ -39,7 +40,7 @@ gsap.registerPlugin(InertiaPlugin)
 const props = defineProps<WhyUsInterface>()
 
 let data
-let clickOutsideHandler: ((event: MouseEvent) => void) | null = null
+const clickOutsideHandler: ((event: MouseEvent) => void) | null = null
 
 if (appEnv() !== 'production') {
   const { getSiteFeatures, resultsBySite } = featureRequests()
@@ -67,7 +68,7 @@ const openDialog = (item: WhyUsItemInterface) => {
 }
 
 watchEffect(() => {
-  if (process.client) {
+  if (import.meta.client) {
     const circle = document.querySelector('.main-circle')
     if (!circle || !data?.value?.length) return
 
@@ -126,7 +127,7 @@ watchEffect(() => {
       })
     }
     const elements = placeItems(items)
-    let spin = gsap
+    const spin = gsap
       .timeline({ repeat: -1, defaults: { duration: 30, ease: 'none' } })
       .to(circle, { rotation: 360 })
       .to(elements, { rotation: -360 }, 0)
@@ -167,7 +168,7 @@ watchEffect(() => {
       const scrollProgress = window.scrollY / scrollHeight
       const currentProgress = spin.progress()
 
-      let targetProgress = (currentProgress / 0.4 + scrollProgress) / 4
+      const targetProgress = (currentProgress / 0.4 + scrollProgress) / 4
 
       gsap.to(spin, {
         progress: targetProgress,
@@ -185,7 +186,7 @@ watchEffect(() => {
 })
 
 onBeforeUnmount(() => {
-  if (process.client) {
+  if (import.meta.client) {
     const draggable = Draggable.get('.main-circle')
     draggable?.kill()
     gsap.killTweensOf('.main-circle')

@@ -1,4 +1,5 @@
-import { NuxtApp, defineNuxtPlugin } from 'nuxt/app'
+import type { NuxtApp } from 'nuxt/app'
+import { defineNuxtPlugin } from 'nuxt/app'
 
 import { registerDMActivity } from '../modules/dm_activity'
 import { registerDMAnimations } from '../modules/dm_animations'

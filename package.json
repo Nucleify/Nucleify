@@ -16,7 +16,7 @@
     "check": "npx prettier . --check",
     "write": "npx prettier . --write",
     "lint": "eslint \"**/**/*.{js,ts,vue}\"",
-    "lint --fix": "eslint \"**/**/*.{js,ts,vue}\" --fix,",
+    "lint:fix": "eslint \"**/**/*.{js,ts,vue}\" --fix",
     "slint": "npx stylelint \"**/**/*.scss\"",
     "tests": "npx vitest run",
     "test:coverage": "npx vitest run --coverage",

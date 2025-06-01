@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { AvatarInterface } from 'atomic'
+import type { AvatarInterface } from 'atomic'
 
 const props = defineProps<AvatarInterface>()
 </script>

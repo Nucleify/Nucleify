@@ -18,19 +18,19 @@
           <ad-float-label v-for="(field, index) in registerInputs" :key="index">
             <ad-input-text
               v-if="field.type !== 'password'"
+              :id="field.id"
               v-model="registerFields[field.model]"
               ad-type="main"
               :type="field.type"
-              :id="field.id"
               class="auth-input-text"
               :autofocus="field.autofocus"
             />
 
             <ad-password
               v-else
+              :id="field.id"
               v-model="registerFields[field.model]"
               ad-type="main"
-              :id="field.id"
               class="auth-input-text"
               :autofocus="field.autofocus"
               :passwords-match="

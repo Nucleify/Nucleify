@@ -1,5 +1,5 @@
 export function sessionStorageSetItem(item: string, value: string): void {
-  if (process.client) {
+  if (import.meta.client) {
     sessionStorage.setItem(item, value)
   }
 }

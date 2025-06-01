@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { CarouselInterface } from 'atomic'
+import type { CarouselInterface } from 'atomic'
 
 const props = defineProps<CarouselInterface>()
 </script>

@@ -28,7 +28,7 @@
   />
 </template>
 <script setup lang="ts">
-import { KnobInterface } from 'atomic'
+import type { KnobInterface } from 'atomic'
 
 const props = defineProps<KnobInterface>()
 </script>

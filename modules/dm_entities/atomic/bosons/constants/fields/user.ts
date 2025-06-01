@@ -1,4 +1,5 @@
-import { roles, EntityFieldInterface, UseFieldsInterface } from 'atomic'
+import type { EntityFieldInterface, UseFieldsInterface } from 'atomic'
+import { roles } from 'atomic'
 
 export function useUserFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: [string, string, string][] = [

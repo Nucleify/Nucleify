@@ -1,18 +1,18 @@
 import { useCookie, useRequestHeaders } from 'nuxt/app'
-import { HttpMethodType } from 'atomic'
-import { useRoute } from 'vue-router'
+
+import type { HttpMethodType } from 'atomic'
 
 export async function apiRequest(
   url: string,
   method: HttpMethodType = 'GET',
-  data: Record<string, any> | null = null,
+  data: Record<string, unknown> | null = null,
   id: string | number | null = null,
-  params: Record<string, any> = {}
+  params: Record<string, unknown> = {}
 ) {
   const finalUrl = id ? `${url}/${id}` : url
   let xsrfTokenValue: string | undefined
 
-  if (process.server) {
+  if (import.meta.server) {
     const cookies = useRequestHeaders(['cookie']).cookie
     if (cookies) {
       const match = cookies.match(/XSRF-TOKEN=([^;]+)/)
@@ -22,7 +22,7 @@ export async function apiRequest(
     const xsrfToken = useCookie('XSRF-TOKEN')
     xsrfTokenValue = xsrfToken.value ?? undefined
   }
-  let headers: Record<string, any> = {
+  let headers: Record<string, string> = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
   }
@@ -30,27 +30,22 @@ export async function apiRequest(
     headers['X-XSRF-TOKEN'] = xsrfTokenValue
   }
 
-  if (process.client) {
+  if (import.meta.client) {
     headers['Referer-Slug'] = window.location.pathname
   }
 
-  if (process.server) {
+  if (import.meta.server) {
     headers = {
       ...headers,
       ...useRequestHeaders(['cookie']),
     }
   }
 
-  try {
-    const response = await $fetch(finalUrl, {
-      method,
-      params,
-      body: data,
-      headers,
-      credentials: 'include',
-    })
-    return response
-  } catch (error: any) {
-    throw error
-  }
+  return await $fetch(finalUrl, {
+    method,
+    params,
+    body: data,
+    headers,
+    credentials: 'include',
+  })
 }

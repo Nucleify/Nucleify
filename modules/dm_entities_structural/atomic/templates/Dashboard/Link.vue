@@ -6,8 +6,8 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="link"
-      headerText="Manage Links"
-      buttonText="New Link"
+      header-text="Manage Links"
+      button-text="New Link"
     />
 
     <ad-dialog
@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  DashboardInterface,
-  useLinkFields,
-  useDialog,
-  linkRequests,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { useLinkFields, useDialog, linkRequests } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

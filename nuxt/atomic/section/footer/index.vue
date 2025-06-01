@@ -22,8 +22,8 @@
               :href="item.url"
             >
               <ad-paragraph
-                class="header"
                 v-if="item?.header"
+                class="header"
                 :text="item.name"
               />
               <span v-else>{{ item.name }}</span>

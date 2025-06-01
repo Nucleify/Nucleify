@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { InputNumberInterface } from 'atomic'
+import type { InputNumberInterface } from 'atomic'
 
 const props = defineProps<InputNumberInterface>()
 </script>

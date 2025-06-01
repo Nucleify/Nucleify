@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { TileInterface } from '.'
+import type { TileInterface } from 'atomic'
 
 const props = defineProps<TileInterface>()
 </script>
