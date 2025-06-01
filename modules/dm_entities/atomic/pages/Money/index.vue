@@ -12,7 +12,7 @@
     />
     <dm-money-dashboard
       :data="results"
-      :getData="getAllMoney"
+      :get-data="getAllMoney"
       :loading="loading"
     />
   </div>

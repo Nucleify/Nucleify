@@ -8,9 +8,9 @@
           icon="pi pi-refresh"
           ad-type="main"
           class="refresh-button"
-          @click="setDefaultColors(false)"
           rounded
           text
+          @click="setDefaultColors(false)"
         />
       </div>
     </template>

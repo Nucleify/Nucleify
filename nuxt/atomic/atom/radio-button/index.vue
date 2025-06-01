@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { RadioButtonInterface } from 'atomic'
+import type { RadioButtonInterface } from 'atomic'
 
 const props = defineProps<RadioButtonInterface>()
 </script>

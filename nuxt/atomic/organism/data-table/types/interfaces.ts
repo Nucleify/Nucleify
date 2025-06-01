@@ -1,5 +1,5 @@
-import { InputHTMLAttributes, TableHTMLAttributes } from 'vue'
-import {
+import type { InputHTMLAttributes, TableHTMLAttributes } from 'vue'
+import type {
   DataTableEditButtonPropsOptions,
   DataTableEditingRows,
   DataTableExpandedRows,
@@ -7,9 +7,9 @@ import {
   DataTableFilterMeta,
   DataTableSortMeta,
 } from 'primevue/datatable'
-import { VirtualScrollerProps } from 'primevue/virtualscroller'
+import type { VirtualScrollerProps } from 'primevue/virtualscroller'
 
-import {
+import type {
   ActionInterface,
   ColorItemStyleInterface,
   LoadingType,
@@ -17,11 +17,12 @@ import {
   SelectedObjectType,
   OpenDialogFunctionType,
   ElementSizeType,
+  ElementVariantType,
 } from 'atomic'
 
 export interface DataTableInterface {
   adType: ObjectNameType
-  value: any[] // eslint-disable-line
+  value: unknown[]
   dataKey?: string
   rows?: number
   first?: number
@@ -29,7 +30,7 @@ export interface DataTableInterface {
   paginator?: boolean
   paginatorPosition?: 'both' | 'top' | 'bottom'
   alwaysShowPaginator?: boolean
-  paginatorTemplate?: any // eslint-disable-line
+  paginatorTemplate?: object
   pageLinkSize?: number
   rowsPerPageOptions?: number[]
   currentPageReportTemplate?: string
@@ -45,54 +46,65 @@ export interface DataTableInterface {
   removableSort?: boolean
   filters?: DataTableFilterMeta
   filterDisplay?: 'menu' | 'row'
-  globalFilterFields?: (string | void)[]
+  globalFilterFields?: (string | undefined)[]
   filterLocale?: string
-  selection?: any // eslint-disable-line
-  selectionMode?: 'multiple' | 'single'
-  compareSelectionBy?: 'equals' | 'deepEquals'
-  metaKeySelection?: boolean
-  contextMenu?: boolean
-  contextMenuSelection?: any // eslint-disable-line
-  selectAll?: boolean
+  filterMatchMode?: 'endsWith' | 'startsWith' | 'contains'
+  filterFields?: string[]
+  editable?: boolean
+  placeholder?: string
+  size?: ElementSizeType
+  invalid?: boolean
+  disabled?: boolean
+  variant?: ElementVariantType
   rowHover?: boolean
   csvSeparator?: string
   exportFilename?: string
-  exportFunction?: void
+  exportFunction?: () => void
   resizableColumns?: boolean
   columnResizeMode?: 'expand' | 'fit'
   reorderableColumns?: boolean
-  expandedRows?: any[] | DataTableExpandedRows // eslint-disable-line
+  expandedRows?: unknown[] | DataTableExpandedRows
   expandedRowIcon?: string
   collaspeRowIcon?: string
   rowGroupMode?: 'rowspan' | 'subheader'
-  groupRowsBy?: string | string[] | void
+  groupRowsBy?:
+    | string
+    | number
+    | symbol
+    | ((field: unknown) => object)
+    | undefined
   expandableRowGroups?: boolean
-  expandedRowGroups?: any[] | DataTableExpandedRows // eslint-disable-line
+  expandedRowGroups?: unknown[] | DataTableExpandedRows
   stateStorage?: 'local' | 'session'
   stateKey?: string
   editMode?: 'cell' | 'row'
-  editingRows?: any[] | DataTableEditingRows // eslint-disable-line
-  rowClass?: string
-  rowStyle?: object
+  editingRows?: unknown[] | DataTableEditingRows
+  rowClass?: ((data: unknown) => string | object | undefined) | undefined
+  rowStyle?: ((data: unknown) => object | object[] | undefined) | undefined
   scrollable?: boolean
   scrollHeight?: 'flex'
   virtualScrollerOptions?: VirtualScrollerProps
-  frozenValue?: null | any[] // eslint-disable-line
+  frozenValue?: null | unknown[]
   breakpoint?: string
   showHeaders?: boolean
   showGridlines?: boolean
   stripedRows?: boolean
   highlightOnSelect?: boolean
-  size?: ElementSizeType
+  selectionMode?: 'multiple' | 'single'
+  compareSelectionBy?: 'equals' | 'deepEquals'
+  metaKeySelection?: boolean
+  contextMenu?: boolean
+  contextMenuSelection?: unknown
+  selectAll?: boolean
   tableStyle?: string | object
   tableClass?: string | object
   tableProps?: TableHTMLAttributes
   filterInputProps?: InputHTMLAttributes
   filterButtonProps?: DataTableFilterButtonPropsOptions
   editButtonProps?: DataTableEditButtonPropsOptions
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
   actions?: ActionInterface
   styles?: ColorItemStyleInterface

@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { TagInterface } from 'atomic'
+import type { TagInterface } from 'atomic'
 
 const props = defineProps<TagInterface>()
 </script>

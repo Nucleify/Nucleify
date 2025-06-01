@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { SelectButtonInterface } from 'atomic'
+import type { SelectButtonInterface } from 'atomic'
 
 const props = defineProps<SelectButtonInterface>()
 </script>

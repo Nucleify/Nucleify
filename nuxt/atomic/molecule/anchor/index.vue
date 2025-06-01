@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { AnchorInterface } from '.'
+import type { AnchorInterface } from 'atomic'
 
 const props = defineProps<AnchorInterface>()
 </script>

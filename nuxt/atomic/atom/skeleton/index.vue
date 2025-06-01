@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { SkeletonInterface } from 'atomic'
+import type { SkeletonInterface } from 'atomic'
 
 const props = defineProps<SkeletonInterface>()
 </script>

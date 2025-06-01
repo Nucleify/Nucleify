@@ -1,4 +1,4 @@
-import { ElementShapeType } from 'atomic'
+import type { ElementShapeType } from 'atomic'
 
 export interface AvatarInterface {
   label?: string
@@ -8,8 +8,8 @@ export interface AvatarInterface {
   shape?: ElementShapeType
   ariaLabel?: string
   ariaLabelledby?: string
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

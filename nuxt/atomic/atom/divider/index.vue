@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { DividerInterface } from 'atomic'
+import type { DividerInterface } from 'atomic'
 
 const props = defineProps<DividerInterface>()
 </script>

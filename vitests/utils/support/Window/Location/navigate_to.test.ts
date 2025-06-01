@@ -2,7 +2,7 @@ import { it, expect, beforeEach } from 'vitest'
 
 import { navigateTo } from 'atomic'
 
-import { MockLocation } from 'vitests/interfaces'
+import type { MockLocation } from 'vitests'
 
 beforeEach((): void => {
   delete window.location

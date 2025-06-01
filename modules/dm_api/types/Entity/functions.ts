@@ -1,4 +1,4 @@
-import { SiteType } from 'atomic'
+import type { SiteType } from 'atomic'
 
 export type DeleteEntityRequestType = (
   id: number,
@@ -7,7 +7,7 @@ export type DeleteEntityRequestType = (
 
 export type GetAllEntitiesRequestType<T> = (
   loading?: boolean
-) => Promise<void | T[]>
+) => Promise<T[] | undefined>
 
 export type GetEntitiesByCategoryRequestType = (
   category: string,

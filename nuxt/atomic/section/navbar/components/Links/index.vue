@@ -11,8 +11,8 @@
         v-else
         :class="link.class"
         :label="link.label"
-        @click="navigateTo(link.href)"
         text
+        @click="navigateTo(link.href)"
       />
     </template>
   </div>

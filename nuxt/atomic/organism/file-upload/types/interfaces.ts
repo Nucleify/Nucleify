@@ -25,8 +25,8 @@ export interface FileUploadInterface {
   chooseButtonProps?: object
   uploadButtonProps?: object
   cancelButtonProps?: object
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

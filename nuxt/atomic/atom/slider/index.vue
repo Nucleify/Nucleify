@@ -21,7 +21,7 @@
   />
 </template>
 <script setup lang="ts">
-import { SliderInterface } from 'atomic'
+import type { SliderInterface } from 'atomic'
 
 const props = defineProps<SliderInterface>()
 </script>

@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { CardInterface } from 'atomic'
+import type { CardInterface } from 'atomic'
 
 const props = defineProps<CardInterface>()
 </script>

@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ProgressBarInterface } from 'atomic'
+import type { ProgressBarInterface } from 'atomic'
 
 const props = defineProps<ProgressBarInterface>()
 </script>

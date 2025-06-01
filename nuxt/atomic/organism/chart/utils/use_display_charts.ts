@@ -1,11 +1,7 @@
 import { reactive } from 'vue'
 
-import {
-  DisplayChartsInterface,
-  UseDisplayChartsInterface,
-  localStorageGetItem,
-  localStorageSetItem,
-} from 'atomic'
+import type { DisplayChartsInterface, UseDisplayChartsInterface } from 'atomic'
+import { localStorageGetItem, localStorageSetItem } from 'atomic'
 
 export function useDisplayCharts(): UseDisplayChartsInterface {
   const display: DisplayChartsInterface = reactive({

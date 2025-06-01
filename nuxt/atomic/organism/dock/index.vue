@@ -57,18 +57,18 @@
       </div>
       <ad-icon
         v-if="item.icon || item.url"
+        v-tooltip="item.label"
         :icon="item.icon"
         class="item"
-        @click="item.click"
         :url="item.url"
         :ad-type="item.adType"
-        v-tooltip="item.label"
+        @click="item.click"
       />
-      <div class="dock-position-buttons" v-if="item.label === 'position'">
+      <div v-if="item.label === 'position'" class="dock-position-buttons">
         <ad-radio-button
           v-for="pos of positions"
-          v-model="position"
           :key="pos.value"
+          v-model="position"
           :value="pos.value"
           :class="pos.value"
           ad-type="main"
@@ -81,13 +81,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch, computed } from 'vue'
-
+import type { DockInterface, PositionType } from 'atomic'
 import {
   dockItems,
   positions,
-  DockInterface,
-  PositionType,
   getUserRole,
   setColorsVariables,
   localStorageGetItem,

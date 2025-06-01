@@ -1,7 +1,7 @@
 <template>
   <ColorPicker
-    :ad-type="props.adType"
     v-model="itemColor"
+    :ad-type="props.adType"
     :default-color="props.defaultColor"
     :default-value="props.defaultValue"
     :name="props.name"
@@ -24,13 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { watchEffect } from 'vue'
-
-import {
-  ColorPickerInterface,
-  setColorsVariables,
-  useColorPicker,
-} from 'atomic'
+import type { ColorPickerInterface } from 'atomic'
+import { setColorsVariables, useColorPicker } from 'atomic'
 
 const props = defineProps<ColorPickerInterface>()
 

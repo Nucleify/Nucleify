@@ -6,8 +6,8 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="technology"
-      headerText="Manage Technologies"
-      buttonText="New Technology"
+      header-text="Manage Technologies"
+      button-text="New Technology"
     />
 
     <ad-dialog
@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  useTechnologyFields,
-  DashboardInterface,
-  technologyRequests,
-  useDialog,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { useTechnologyFields, technologyRequests, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

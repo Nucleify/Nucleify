@@ -1,11 +1,7 @@
-import { Ref, ref } from 'vue'
-import {
-  UseColorsInterface,
-  UseColorPickerInterface,
-  createColorTypes,
-  localStorageSetItem,
-  useColors,
-} from 'atomic'
+import type { Ref } from 'vue'
+import { ref } from 'vue'
+import type { UseColorsInterface, UseColorPickerInterface } from 'atomic'
+import { createColorTypes, localStorageSetItem, useColors } from 'atomic'
 
 export function useColorPicker(item: string): UseColorPickerInterface {
   const { colors }: UseColorsInterface = useColors()

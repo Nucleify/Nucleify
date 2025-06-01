@@ -1,6 +1,7 @@
-import { Ref, ref } from 'vue'
+import type { Ref } from 'vue'
+import { ref } from 'vue'
 
-import { PositionType } from 'atomic'
+import type { PositionType } from 'atomic'
 
 export const positions: Ref<{ value: PositionType }[]> = ref([
   {

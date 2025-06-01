@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { TimelineInterface } from 'atomic'
+import type { TimelineInterface } from 'atomic'
 
 const props = defineProps<TimelineInterface>()
 </script>

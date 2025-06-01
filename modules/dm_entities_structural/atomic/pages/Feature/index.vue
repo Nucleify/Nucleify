@@ -12,7 +12,7 @@
     />
     <dm-feature-dashboard
       :data="results"
-      :getData="getAllFeatures"
+      :get-data="getAllFeatures"
       :loading="loading"
     />
   </div>

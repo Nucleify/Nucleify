@@ -1,17 +1,15 @@
 import { ref } from 'vue'
 
-import {
+import type {
   CloseDialogType,
   UseLoadingInterface,
-  useApiSuccess,
-  useLoading,
   SiteType,
   LinkRequestsInterface,
   LinkObjectInterface,
-  apiHandle,
   EntityResultsType,
   EntityCountResultsType,
 } from 'atomic'
+import { useApiSuccess, useLoading, apiHandle } from 'atomic'
 
 export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
   const results: EntityResultsType<LinkObjectInterface> = ref([])

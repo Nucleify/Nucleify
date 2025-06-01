@@ -14,8 +14,8 @@
   >
     <AccordionPanel
       v-for="(panel, index) in props.panels"
-      :value="panel.index"
       :key="index"
+      :value="panel.index"
     >
       <AccordionHeader>
         <dm-animation-hexagons />
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { AccordionInterface } from 'atomic'
+import type { AccordionInterface } from 'atomic'
 
 const props = defineProps<AccordionInterface>()
 </script>

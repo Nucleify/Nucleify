@@ -1,6 +1,8 @@
 import { it, expect } from 'vitest'
 
-import { ObjectType, getTitle } from 'atomic'
+import type { ObjectType } from 'atomic'
+
+import { getTitle } from 'atomic'
 
 it('returns undefined for undefined input', (): void => {
   expect(getTitle(undefined)).toBe('Unknown Entity')

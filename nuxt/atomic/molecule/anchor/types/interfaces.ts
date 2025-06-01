@@ -1,6 +1,6 @@
-import { StyleValue } from 'vue'
+import type { StyleValue } from 'vue'
 
-import { AnchorRelType, AnchorTargetType } from 'atomic'
+import type { AnchorRelType, AnchorTargetType } from 'atomic'
 
 export interface AnchorInterface {
   href?: string

@@ -1,4 +1,4 @@
-import { UserObjectInterface } from 'atomic'
+import type { UserObjectInterface } from 'atomic'
 
 export const mockUser: UserObjectInterface = {
   id: 999999,

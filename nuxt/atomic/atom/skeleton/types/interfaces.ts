@@ -1,4 +1,4 @@
-import { LoadingType } from 'atomic'
+import type { LoadingType } from 'atomic'
 
 export interface SkeletonInterface {
   shape?: 'circle' | 'rectangle'
@@ -7,9 +7,9 @@ export interface SkeletonInterface {
   height?: string
   borderRadius?: string
   animation?: 'none' | 'wave'
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
   loading?: LoadingType
 }

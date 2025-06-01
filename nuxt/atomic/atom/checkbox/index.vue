@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { CheckboxInterface } from 'atomic'
+import type { CheckboxInterface } from 'atomic'
 
 const props = defineProps<CheckboxInterface>()
 </script>

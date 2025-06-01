@@ -1,6 +1,7 @@
-import { ref, Ref, UnwrapRef } from 'vue'
+import type { Ref, UnwrapRef } from 'vue'
+import { ref } from 'vue'
 
-import { CardCategoryInterface } from 'atomic'
+import type { CardCategoryInterface } from 'atomic'
 
 export const blogCategoriesCards: Ref<UnwrapRef<CardCategoryInterface[]>> = ref(
   [

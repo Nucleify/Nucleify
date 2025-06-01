@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { ProgressSpinnerInterface } from 'atomic'
+import type { ProgressSpinnerInterface } from 'atomic'
 
 const props = defineProps<ProgressSpinnerInterface>()
 </script>

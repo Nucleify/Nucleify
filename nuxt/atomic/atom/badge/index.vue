@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { BadgeInterface } from 'atomic'
+import type { BadgeInterface } from 'atomic'
 
 const props = defineProps<BadgeInterface>()
 </script>

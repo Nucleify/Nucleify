@@ -11,7 +11,7 @@
               >
                 <Step
                   v-slot="{ activateCallback, a11yAttrs }"
-                  asChild
+                  as-child
                   :value="module.value"
                 >
                   <div
@@ -25,7 +25,7 @@
               <swiper-slide>
                 <Step
                   v-slot="{ activateCallback, a11yAttrs }"
-                  asChild
+                  as-child
                   :value="1"
                 >
                   <div
@@ -47,7 +47,7 @@
               >
                 <Step
                   v-slot="{ activateCallback, a11yAttrs }"
-                  asChild
+                  as-child
                   :value="module.value"
                 >
                   <div

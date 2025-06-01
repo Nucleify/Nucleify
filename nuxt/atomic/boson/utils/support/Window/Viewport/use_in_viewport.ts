@@ -1,6 +1,6 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
-import {
+import type {
   ElementType,
   ElementsType,
   ViewportStatusType,
