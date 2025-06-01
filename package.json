@@ -25,8 +25,10 @@
   },
   "dependencies": {
     "@nuxt/image": "1.10.0",
+    "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/robots": "5.2.10",
     "@nuxtjs/sitemap": "7.2.10",
+    "@nuxtjs/web-vitals": "^0.2.7",
     "@primeuix/themes": "1.1.1",
     "@primevue/forms": "4.3.4",
     "@primevue/themes": "4.3.4",

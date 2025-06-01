@@ -17,7 +17,8 @@ export default defineNuxtConfig({
     'nuxt-seo-utils',
     'nuxt-swiper',
     'nuxt-vitalizer',
-    '@qirolab/nuxt-sanctum-authentication'
+    '@qirolab/nuxt-sanctum-authentication',
+    '@nuxtjs/google-fonts'
   ],
   laravelSanctum: {
     apiUrl: process.env.APP_URL,
@@ -44,10 +45,6 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
       link: [
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap'
-        },
         {
           rel: 'stylesheet',
           href: '/fonts/primeicons/primeicons.css'
@@ -115,5 +112,13 @@ export default defineNuxtConfig({
   },
   vitalizer: {
     disableStylesheets: 'entry'
-  }
+  },
+  googleFonts: {
+    families: {
+      Inter: '300..700',
+      Nunito: '300..700',
+    },
+    display: 'swap',
+    subsets: ['latin'],
+  },
 } as any)
