@@ -70,8 +70,6 @@ onMounted(() => {
     clearInterval(interval)
   })
 })
-
-
 </script>
 
 <style lang="scss">
