@@ -1,0 +1,115 @@
+#card-boxes-section-security {
+    background: #1B2C3C;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 5rem;
+    
+
+    .security-columns {
+    display: flex;
+    flex-direction: column;
+    gap: 10rem !important;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+
+    @media (min-width: 900px) {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 4rem;
+    }
+  }
+
+  .ad-card-boxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    width: 100%;
+    max-width: 500px;
+    height: 80%;
+    max-height: 575px;
+    margin: 0 auto;
+  }
+
+  .security-info {
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    flex: 1 1 0;
+
+    h2 {
+      font-size: 37px;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #e1e1e1;
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 500;
+      color: #FF0A71;
+      margin-top: 0px;
+      
+    }
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 22px;
+      line-height: 1.5;
+      color: #e1e1e1;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      li {
+        margin-bottom: 1rem;
+        font-size: 20px;
+        color: #e1e1e1;
+        strong {
+          color: #FF0A71;
+          font-size: 25px;
+        }
+      }
+    }
+  }
+
+  .ad-card {
+    background-color: #1B2C3C;
+    height: 100%;
+    width: 100%;
+    border: rgba(177,194,210,.6) solid 1px;
+    border-radius: 0.5rem;
+  }
+
+  .ad-card-content {
+    align-items: center;
+    text-align: center;
+
+    .ad-card-text {
+        color: #e1e1e1;
+        font-size: 14px;
+    }
+
+    .ad-card-title {
+        font-size: 18px;
+        margin-bottom: 0.7rem;
+        color: #e1e1e1;
+        font-weight: 300;
+    }
+
+    .ad-card-icon img {
+      height: 64px;
+      width: 64px;
+    }
+}
+}
