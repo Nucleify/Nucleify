@@ -14,7 +14,9 @@ describe('activityRequests', (): void => {
 
   it('getAllActivities', async (): Promise<void> => {
     await requests.getAllActivities()
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('activity-log'),
       expect.objectContaining({ method: 'GET' })
     )
@@ -23,7 +25,9 @@ describe('activityRequests', (): void => {
 
   it('getCountActivitiesByCreatedLastWeek', async (): Promise<void> => {
     await requests.getCountActivitiesByCreatedLastWeek()
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('activity-log/count-by-created-last-week'),
       expect.objectContaining({ method: 'GET' })
     )
@@ -32,7 +36,9 @@ describe('activityRequests', (): void => {
 
   it('deleteActivity', async (): Promise<void> => {
     await requests.deleteActivity(atomic.mockActivity.id ?? 0, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('activity-log'),
       expect.objectContaining({ method: 'DELETE' })
     )

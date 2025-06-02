@@ -14,7 +14,9 @@ describe('userRequests', (): void => {
 
   it('getAllUsers', async (): Promise<void> => {
     await requests.getAllUsers()
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('users'),
       expect.objectContaining({ method: 'GET' })
     )
@@ -23,7 +25,9 @@ describe('userRequests', (): void => {
 
   it('storeUser', async (): Promise<void> => {
     await requests.storeUser(atomic.mockUser, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('users'),
       expect.objectContaining({ method: 'POST' })
     )
@@ -32,7 +36,9 @@ describe('userRequests', (): void => {
 
   it('editUser', async (): Promise<void> => {
     await requests.editUser(atomic.mockUser, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('users'),
       expect.objectContaining({ method: 'PUT' })
     )
@@ -41,7 +47,9 @@ describe('userRequests', (): void => {
 
   it('deleteUser', async (): Promise<void> => {
     await requests.deleteUser(atomic.mockUser.id ?? 0, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('users'),
       expect.objectContaining({ method: 'DELETE' })
     )
