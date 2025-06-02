@@ -1,15 +1,17 @@
 import type { NuxtApp } from 'nuxt/app'
 import { defineNuxtPlugin } from 'nuxt/app'
 
-import { registerDMActivity } from '../modules/dm_activity'
-import { registerDMAnimations } from '../modules/dm_animations'
-import { registerDMAuth } from '../modules/dm_auth'
-import { registerDMEntities } from '../modules/dm_entities'
-import { registerDMEntitiesStructural } from '../modules/dm_entities_structural'
-import { registerDMMedia } from '../modules/dm_media'
-import { registerDMPages } from '../modules/dm_pages'
-import { registerDMScreenLights } from '../modules/dm_screen_lights'
-import { registerDMScreenLoader } from '../modules/dm_screen_loader'
+import {
+  registerDMActivity,
+  registerDMAnimations,
+  registerDMAuth,
+  registerDMEntities,
+  registerDMEntitiesStructural,
+  registerDMMedia,
+  registerDMPages,
+  registerDMScreenLights,
+  registerDMScreenLoader,
+} from '../../modules'
 
 export default defineNuxtPlugin({
   name: 'modules-registration',
