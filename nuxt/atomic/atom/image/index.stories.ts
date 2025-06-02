@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Image as AdImage } from './'
+import { AdImage } from '.'
 
 const meta = {
   title: 'Atoms/Image',
   component: AdImage,
-  tags: ['autodocs'],
   args: {
     preview: false,
     imageStyle: {},
@@ -17,7 +16,7 @@ const meta = {
     pt: {},
     ptOptions: {},
     unstyled: false,
-    src: '/public/build/img/logo.svg',
+    src: '/img/logo.svg',
     alt: 'image',
     width: '',
     height: '',

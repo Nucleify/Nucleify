@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { ProgressBar as AdProgressBar } from './'
+import { AdProgressBar } from '.'
 
 const meta = {
   title: 'Atoms/ProgressBar',
   component: AdProgressBar,
-  tags: ['autodocs'],
   args: {
     adType: 'main',
     value: 50,

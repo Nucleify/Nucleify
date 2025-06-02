@@ -22,6 +22,8 @@
 </template>
 
 <script setup lang="ts">
+import { AdIcon, AdImage, AdLabel } from '../../atom' // Import for Storybook
+
 import type { AnchorInterface } from 'atomic'
 
 const props = defineProps<AnchorInterface>()

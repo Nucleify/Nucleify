@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Avatar as AdAvatar } from './'
+import { AdAvatar } from '.'
 
 const meta = {
   title: 'Atoms/Avatar',
   component: AdAvatar,
-  tags: ['autodocs'],
   args: {
     label: 'A',
     icon: '',

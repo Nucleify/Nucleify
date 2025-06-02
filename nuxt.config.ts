@@ -8,8 +8,10 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/test-utils/module',
+    '@nuxtjs/google-fonts',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
+    '@nuxtjs/storybook',
     '@nuxtjs/stylelint-module',
     '@primevue/nuxt-module',
     'nuxt-link-checker',
@@ -17,8 +19,7 @@ export default defineNuxtConfig({
     'nuxt-seo-utils',
     'nuxt-swiper',
     'nuxt-vitalizer',
-    '@qirolab/nuxt-sanctum-authentication',
-    '@nuxtjs/google-fonts'
+    '@qirolab/nuxt-sanctum-authentication'
   ],
   laravelSanctum: {
     apiUrl: process.env.APP_URL,
@@ -78,8 +79,7 @@ export default defineNuxtConfig({
     { path: '~/atomic/organism', prefix: 'ad', extensions: ['vue'] },
     { path: '~/atomic/section', prefix: 'ad-section', extensions: ['vue'] },
     { path: '~/atomic/template', prefix: 'ad', extensions: ['vue'] },
-    { path: '~/atomic', extensions: ['vue'] },
-    { path: 'modules', extensions: ['vue'], pathPrefix: false }
+    { path: '~/atomic', extensions: ['vue'] }
   ],
   imports: {
     dirs: [
@@ -120,5 +120,9 @@ export default defineNuxtConfig({
     },
     display: 'swap',
     subsets: ['latin'],
+  },
+  storybook: {
+    url: 'http://localhost',
+    port: 6006
   },
 })
