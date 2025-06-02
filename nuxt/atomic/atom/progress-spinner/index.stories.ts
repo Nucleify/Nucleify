@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { ProgressSpinner as AdProgressSpinner } from './'
+import { AdProgressSpinner } from '.'
 
 const meta = {
   title: 'Atoms/ProgressSpinner',
   component: AdProgressSpinner,
-  tags: ['autodocs'],
   args: {
     adType: undefined,
     strokeWidth: '3',

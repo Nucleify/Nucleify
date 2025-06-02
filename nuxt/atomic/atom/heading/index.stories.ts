@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Heading as AdHeading } from './'
+import { AdHeading } from '.'
 
 const meta = {
   title: 'Atoms/Heading',
   component: AdHeading,
-  tags: ['autodocs'],
   args: {
     tag: 1,
     text: 'Heading',

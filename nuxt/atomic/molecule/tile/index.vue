@@ -15,6 +15,9 @@
 </template>
 
 <script setup lang="ts">
+import { AdIcon, AdParagraph } from '../../atom' // Import for Storybook
+import { AdAnchor } from '../../molecule' // Import for Storybook
+
 import type { TileInterface } from 'atomic'
 
 const props = defineProps<TileInterface>()

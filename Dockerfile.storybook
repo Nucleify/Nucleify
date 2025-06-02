@@ -8,8 +8,6 @@ RUN npm install
 
 COPY . .
 
-WORKDIR /app/.storybook
-
 EXPOSE 6006
 
-CMD ["npm", "run", "storybook"]
+CMD ["npm", "run", "dev"]

@@ -12,6 +12,8 @@
 </template>
 
 <script setup lang="ts">
+import Tag from 'primevue/tag' // Import for Storybook
+
 import type { TagInterface } from 'atomic'
 
 const props = defineProps<TagInterface>()

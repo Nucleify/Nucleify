@@ -20,6 +20,8 @@
 </template>
 
 <script setup lang="ts">
+import Card from 'primevue/card' // Import for Storybook
+
 import type { CardInterface } from 'atomic'
 
 const props = defineProps<CardInterface>()
