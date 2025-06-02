@@ -8,8 +8,7 @@ import type {
 
 export function useToast(): UseToastInterface {
   const nuxtApp = useNuxtApp()
-  const getToast: typeof useToast = () =>
-    nuxtApp.vueApp.config.globalProperties.$toast
+  const getToast = () => nuxtApp.vueApp.config.globalProperties.$toast
   const toast = getToast()
 
   function closeToast(): void {

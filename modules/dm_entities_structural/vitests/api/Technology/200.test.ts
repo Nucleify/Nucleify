@@ -14,7 +14,9 @@ describe('technologyRequests', (): void => {
 
   it('getAllTechnologies', async (): Promise<void> => {
     await requests.getAllTechnologies()
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'GET' })
     )
@@ -23,7 +25,9 @@ describe('technologyRequests', (): void => {
 
   it('storeTechnology', async (): Promise<void> => {
     await requests.storeTechnology(atomic.mockTechnology, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'POST' })
     )
@@ -32,7 +36,9 @@ describe('technologyRequests', (): void => {
 
   it('editTechnology', async (): Promise<void> => {
     await requests.editTechnology(atomic.mockTechnology, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'PUT' })
     )
@@ -44,7 +50,9 @@ describe('technologyRequests', (): void => {
       atomic.mockTechnology.id ?? 0,
       async () => {}
     )
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('technologies'),
       expect.objectContaining({ method: 'DELETE' })
     )

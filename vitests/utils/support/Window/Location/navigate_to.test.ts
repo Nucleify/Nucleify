@@ -1,20 +1,18 @@
 import { it, expect, beforeEach } from 'vitest'
-
-import { navigateTo } from 'atomic'
-
-import type { MockLocation } from 'vitests'
+import * as atomic from 'atomic'
 
 beforeEach((): void => {
-  delete window.location
-  window.location = {
-    href: '',
-  } as MockLocation
+  Object.defineProperty(window, 'location', {
+    value: { href: '' },
+    writable: true,
+    configurable: true,
+  })
 })
 
 it('navigates to specified URL', (): void => {
   const testUrl: string = '/home'
 
-  navigateTo(testUrl)
+  atomic.navigateTo(testUrl)
 
   expect(window.location.href).toBe(testUrl)
 })

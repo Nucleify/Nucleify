@@ -14,7 +14,9 @@ describe('moneyRequests', (): void => {
 
   it('getAllMoney', async (): Promise<void> => {
     await requests.getAllMoney()
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'GET' })
     )
@@ -23,7 +25,9 @@ describe('moneyRequests', (): void => {
 
   it('storeMoney', async (): Promise<void> => {
     await requests.storeMoney(atomic.mockMoney, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'POST' })
     )
@@ -32,7 +36,9 @@ describe('moneyRequests', (): void => {
 
   it('editMoney', async (): Promise<void> => {
     await requests.editMoney(atomic.mockMoney, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'PUT' })
     )
@@ -41,7 +47,9 @@ describe('moneyRequests', (): void => {
 
   it('deleteMoney', async (): Promise<void> => {
     await requests.deleteMoney(atomic.mockMoney.id ?? 0, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('money'),
       expect.objectContaining({ method: 'DELETE' })
     )

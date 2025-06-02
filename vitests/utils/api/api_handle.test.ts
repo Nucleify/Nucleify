@@ -4,7 +4,7 @@ import * as atomic from 'atomic'
 describe('apiHandle', () => {
   let onSuccess: ReturnType<typeof vi.fn>,
     setLoading: ReturnType<typeof vi.fn>,
-    apiHandle: typeof apiUtils.apiHandle,
+    apiHandle: typeof atomic.apiHandle,
     apiErrors: ReturnType<typeof vi.fn>
 
   beforeEach(async () => {
@@ -12,7 +12,7 @@ describe('apiHandle', () => {
     setLoading = vi.fn()
     apiErrors = vi.fn()
     vi.spyOn(atomic, 'useApiErrors').mockReturnValue({ apiErrors })
-    apiHandle = (await import('atomic')).apiHandle
+    apiHandle = atomic.apiHandle
   })
 
   it('calls onSuccess with response data', async () => {

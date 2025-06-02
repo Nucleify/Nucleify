@@ -14,7 +14,9 @@ describe('questionRequests', (): void => {
 
   it('getAllQuestions', async (): Promise<void> => {
     await requests.getAllQuestions()
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'GET' })
     )
@@ -23,7 +25,9 @@ describe('questionRequests', (): void => {
 
   it('getCountQuestionsByCreatedLastWeek', async (): Promise<void> => {
     await requests.getCountQuestionsByCreatedLastWeek()
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('questions/count-by-created-last-week'),
       expect.objectContaining({ method: 'GET' })
     )
@@ -32,7 +36,9 @@ describe('questionRequests', (): void => {
 
   it('storeQuestion', async (): Promise<void> => {
     await requests.storeQuestion(atomic.mockQuestion, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'POST' })
     )
@@ -41,7 +47,9 @@ describe('questionRequests', (): void => {
 
   it('editQuestion', async (): Promise<void> => {
     await requests.editQuestion(atomic.mockQuestion, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'PUT' })
     )
@@ -50,7 +58,9 @@ describe('questionRequests', (): void => {
 
   it('deleteQuestion', async (): Promise<void> => {
     await requests.deleteQuestion(atomic.mockQuestion.id ?? 0, async () => {})
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('questions'),
       expect.objectContaining({ method: 'DELETE' })
     )
