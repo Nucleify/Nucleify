@@ -18,6 +18,7 @@
       :value="panel.index"
     >
       <AccordionHeader>
+        <dm-animation-hexagons v-if="props.hexagons" />
         {{ panel.content }}
       </AccordionHeader>
       <AccordionContent>{{ panel.answer }}</AccordionContent>

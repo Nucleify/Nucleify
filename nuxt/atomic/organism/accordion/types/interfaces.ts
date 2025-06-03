@@ -11,7 +11,9 @@ export interface AccordionInterface {
   pt?: object
   ptOptions?: object
   unstyled?: boolean
+  hexagons?: boolean
 }
+
 export interface AccordionPanelInterface {
   index: number
   content: string
