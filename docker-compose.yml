@@ -1,5 +1,5 @@
 services:
-  laravel:
+  laravel.test:
     build:
       context: .
       dockerfile: .docker/Dockerfile.backend
