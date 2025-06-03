@@ -1,7 +1,0 @@
-FROM sail-8.3/app
-
-WORKDIR /var/www/html
-
-COPY . .
-
-RUN chown -R sail:sail /var/www/html
