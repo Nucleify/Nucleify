@@ -1,7 +1,8 @@
 @use 'sass:math';
+@use 'sass:list';
 
-$particleSize: 22vmin;
-$animationDuration: 7s;
+$particle-size: 22vmin;
+$animation-duration: 7s;
 $amount: 15;
 
 .screen-lights-container {
@@ -26,13 +27,13 @@ body:has(
   )
   .screen-lights-container
   .screen-light {
-  width: $particleSize;
-  height: $particleSize;
-  border-radius: $particleSize;
+  width: $particle-size;
+  height: $particle-size;
+  border-radius: $particle-size;
   backface-visibility: hidden;
   position: absolute;
   animation-name: move;
-  animation-duration: $animationDuration;
+  animation-duration: $animation-duration;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 
@@ -45,20 +46,14 @@ body:has(
       );
       top: math.random(100) * 1%;
       left: math.random(100) * 1%;
-      animation-duration: math.random(math.div($animationDuration, 1s)) *
-        1s +
-        10s;
-      animation-delay: math.div(
-        math.random(math.div($animationDuration, 1s)),
-        10
-      );
-      transform-origin: (math.random(50) - 25) *
-        1vw
-        (math.random(50) - 25) *
-        1vh;
-      $blurRadius: (math.random() + 0.5) * $particleSize * 0.5;
+      animation-duration: math.random(math.div($animation-duration, 1s)) * 1s + 10s;
+      animation-delay: math.div(math.random(math.div($animation-duration, 1s)), 10);
+      transform-origin: (math.random(50) - 25) * 1vw (math.random(50) - 25) * 1vh;
+
+      $blur-radius: (math.random() + 0.5) * $particle-size * 0.5;
       $x: if(math.random() > 0.5, -1, 1);
-      box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+
+      box-shadow: ($particle-size * 2 * $x) 0 $blur-radius currentcolor;
     }
   }
 }
@@ -75,13 +70,13 @@ body:has(
   )
   .screen-lights-container
   .screen-light {
-  width: $particleSize;
-  height: $particleSize;
-  border-radius: $particleSize;
+  width: $particle-size;
+  height: $particle-size;
+  border-radius: $particle-size;
   backface-visibility: hidden;
   position: absolute;
   animation-name: move;
-  animation-duration: $animationDuration;
+  animation-duration: $animation-duration;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 
@@ -89,23 +84,17 @@ body:has(
 
   @for $i from 1 through $amount {
     &:nth-child(#{$i}) {
-      color: nth($colors, math.random(length($colors))) !important;
+      color: list.nth($colors, math.random(list.length($colors))) !important;
       top: math.random(100) * 1%;
       left: math.random(100) * 1%;
-      animation-duration: math.random(math.div($animationDuration, 1s)) *
-        1s +
-        10s;
-      animation-delay: math.div(
-        math.random(math.div($animationDuration, 1s)),
-        10
-      );
-      transform-origin: (math.random(50) - 25) *
-        1vw
-        (math.random(50) - 25) *
-        1vh;
-      $blurRadius: (math.random() + 0.5) * $particleSize * 0.5;
+      animation-duration: math.random(math.div($animation-duration, 1s)) * 1s + 10s;
+      animation-delay: math.div(math.random(math.div($animation-duration, 1s)), 10);
+      transform-origin: (math.random(50) - 25) * 1vw (math.random(50) - 25) * 1vh;
+
+      $blur-radius: (math.random() + 0.5) * $particle-size * 0.5;
       $x: if(math.random() > 0.5, -1, 1);
-      box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+
+      box-shadow: ($particle-size * 2 * $x) 0 $blur-radius currentcolor;
     }
   }
 }
