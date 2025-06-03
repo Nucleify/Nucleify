@@ -22,6 +22,7 @@ services:
     depends_on:
       - mysql
   nuxt:
+    platform: linux/amd64
     build:
       context: .
       dockerfile: .docker/Dockerfile.frontend
