@@ -93,6 +93,9 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
 
+      - name: Copy .env
+        run: cp .env.ci.example .env
+
       - name: Build Assets
         run: npm run build
 
