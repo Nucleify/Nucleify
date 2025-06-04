@@ -91,7 +91,7 @@
                 <div v-if="activeStep === module.value" class="readme-content">
                   <div
                     v-if="readmeContents[module.value]"
-                    v-html="readmeContents[module.value]"
+                    v-sanitize-html="readmeContents[module.value]"
                   ></div>
                 </div>
               </transition>

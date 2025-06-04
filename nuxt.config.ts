@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@nuxtjs/storybook',
     '@nuxtjs/stylelint-module',
     '@primevue/nuxt-module',
+    '@radya/nuxt-dompurify',
     'nuxt-link-checker',
     'nuxt-schema-org',
     'nuxt-seo-utils',
