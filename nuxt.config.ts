@@ -27,7 +27,9 @@ export default defineNuxtConfig({
   },
   ssr: true,
   nitro: {
-    prerender: {
+    prerender: process.env.CI ? {
+      enabled: false
+    } : {
       routes: ['/home'],
       crawlLinks: true
     },
