@@ -38,14 +38,14 @@ logs
 .prettierrc
 .stylelintrc.json
 eslint.config.mjs
-nuxt.config.ts
 package*.json
+yarn.lock
 README.md
 tsconfig.json
-yarn.lock
+nuxt.config.ts
 vite.config.ts
-dist/
+vue-shims.d.ts 
 
+modules/dm_screen_lights/_index.scss
 atomic/bosons/styles/index.scss
 atomic/bosons/styles/variables
-vue-shims.d.ts 
