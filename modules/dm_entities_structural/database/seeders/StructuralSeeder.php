@@ -15,6 +15,7 @@ class StructuralSeeder extends Seeder
             QuestionSeeder::class,
             LinkSeeder::class,
             TechnologySeeder::class,
+            ModuleSeeder::class,
         ]);
     }
 }
