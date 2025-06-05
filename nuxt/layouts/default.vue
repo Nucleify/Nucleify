@@ -32,6 +32,7 @@ const officeRoutes = {
     'admin',
     'dashboard',
     'entities',
+    'profile',
     'settings',
     'structural',
   ],
