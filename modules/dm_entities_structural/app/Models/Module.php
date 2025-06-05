@@ -88,43 +88,43 @@ class Module extends Model implements ModuleContract
     /**
      *  Scope methods
      */
-    public function scopeGetById(Builder $query, string $id): Builder
+    public function scopeGetById(Builder $query, string $parameter): Builder
     {
-        return $query->where('id', $id);
+        return $query->where('id', $parameter);
     }
 
-    public function scopeGetByName(Builder $query, string $name): Builder
+    public function scopeGetByName(Builder $query, string $parameter): Builder
     {
-        return $query->where('name', $name);
+        return $query->where('name', $parameter);
     }
 
-    public function scopeGetByDescription(Builder $query, string $description): Builder
+    public function scopeGetByDescription(Builder $query, string $parameter): Builder
     {
-        return $query->where('description', $description);
+        return $query->where('description', $parameter);
     }
 
-    public function scopeGetByCategory(Builder $query, string $category): Builder
+    public function scopeGetByCategory(Builder $query, string $parameter): Builder
     {
-        return $query->where('category', $category);
+        return $query->where('category', $parameter);
     }
 
-    public function scopeGetByVersion(Builder $query, string $version): Builder
+    public function scopeGetByVersion(Builder $query, string $parameter): Builder
     {
-        return $query->where('version', $version);
+        return $query->where('version', $parameter);
     }
 
-    public function scopeGetByEnabled(Builder $query, bool $enabled): Builder
+    public function scopeGetByEnabled(Builder $query, bool $parameter): Builder
     {
-        return $query->where('enabled', $enabled);
+        return $query->where('enabled', $parameter);
     }
 
-    public function scopeGetByCreatedAt(Builder $query, string $createdAt): Builder
+    public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->where('created_at', $createdAt);
+        return $query->whereDate('created_at', $parameter);
     }
 
-    public function scopeGetByUpdatedAt(Builder $query, string $updatedAt): Builder
+    public function scopeGetByUpdatedAt(Builder $query, string $parameter): Builder
     {
-        return $query->where('updated_at', $updatedAt);
+        return $query->whereDate('updated_at', $parameter);
     }
 }
