@@ -1,3 +1,7 @@
 <template>
-  <ad-card> </ad-card>
+  <ad-card>
+    <template #content>
+      <dm-friends-list />
+    </template>
+  </ad-card>
 </template>
