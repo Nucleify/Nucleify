@@ -16,6 +16,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool enabled
  * @property string created_at
  * @property string updated_at
+ * @property string getId
+ * @property string getName
+ * @property string getDescription
+ * @property string getCategory
+ * @property string getVersion
+ * @property bool getEnabled
+ * @property string getCreatedAt
+ * @property string getUpdatedAt
  * @property Builder scopeGetById
  * @property Builder scopeGetByName
  * @property Builder scopeGetByDescription

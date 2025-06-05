@@ -115,12 +115,16 @@ describe('Scope', function (): void {
     });
 
     test('can filter by created_at using scopeGetByCreatedAt', function (): void {
+        $this->model = Module::factory()->create();
+
         $foundModel = Module::getByCreatedAt($this->model->created_at->toDateString())->first();
 
         expect($foundModel->created_at->toDateString())->toBe($this->model->created_at->toDateString());
     });
 
     test('can filter by updated_at using scopeGetByUpdatedAt', function (): void {
+        $this->model = Module::factory()->create();
+
         $foundModel = Module::getByUpdatedAt($this->model->updated_at->toDateString())->first();
 
         expect($foundModel->updated_at->toDateString())->toBe($this->model->updated_at->toDateString());
