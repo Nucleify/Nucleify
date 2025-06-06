@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@nuxt/image": "1.10.0",
+    "@nuxtjs/i18n": "^9.5.5",
     "@nuxtjs/robots": "5.2.10",
     "@nuxtjs/sitemap": "7.2.10",
     "@primeuix/themes": "1.1.1",

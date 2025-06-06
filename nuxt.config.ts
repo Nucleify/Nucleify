@@ -18,7 +18,8 @@ export default defineNuxtConfig({
     'nuxt-schema-org',
     'nuxt-seo-utils',
     'nuxt-swiper',
-    '@qirolab/nuxt-sanctum-authentication'
+    '@qirolab/nuxt-sanctum-authentication',
+    '@nuxtjs/i18n'
   ],
   laravelSanctum: {
     apiUrl: process.env.APP_URL,
