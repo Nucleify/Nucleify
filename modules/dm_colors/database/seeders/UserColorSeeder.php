@@ -7,17 +7,21 @@ use Illuminate\Database\Seeder;
 
 class UserColorSeeder extends Seeder
 {
+    protected string $path = 'modules/dm_colors/database/constants/';
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $count = (env('APP_ENV') === 'production') ? 100 : 40;
+        $colors = include $this->path . 'Colors.php';
 
         for ($i = 1; $i <= 6; $i++) {
-            UserColor::factory($count)->create([
-                'user_id' => $i,
-            ]);
+            foreach ($colors as $color) {
+                UserColor::factory()->create(array_merge($color, [
+                    'user_id' => $i,
+                ]));
+            }
         }
     }
 }

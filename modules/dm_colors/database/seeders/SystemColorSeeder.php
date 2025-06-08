@@ -7,13 +7,17 @@ use Illuminate\Database\Seeder;
 
 class SystemColorSeeder extends Seeder
 {
+    protected string $path = 'modules/dm_colors/database/constants/';
+
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $count = (env('APP_ENV') === 'production') ? 100 : 40;
+        $colors = include $this->path . 'Colors.php';
 
-        SystemColor::factory($count)->create();
+        foreach ($colors as $color) {
+            SystemColor::factory()->create($color);
+        }
     }
 }
