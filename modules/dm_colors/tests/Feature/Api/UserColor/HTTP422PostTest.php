@@ -67,7 +67,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     $userColorData['user_id'] = userColorData['user_id'];
 
     /**
-     * ENTITY TESTS
+     * NAME TESTS
      */
     $userColorData['name'] = '';
     test('invalid name > empty', apiTest(

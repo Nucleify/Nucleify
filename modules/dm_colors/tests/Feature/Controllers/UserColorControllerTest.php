@@ -4,14 +4,14 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-color-controller');
+
 use App\Http\Controllers\UserColorController;
 use App\Http\Requests\UserColor\PostRequest;
 use App\Http\Requests\UserColor\PutRequest;
 use App\Models\UserColor;
 use App\Services\UserColorService;
 use Illuminate\Http\Request;
-
-uses()->group('user-color-controller');
 
 beforeEach(function (): void {
     $this->createUsers();
