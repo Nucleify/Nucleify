@@ -5,7 +5,24 @@ if (!defined('PEST_RUNNING')) {
 }
 
 /**
- *  Color
+ *  System Color
+ */
+const systemColorData = [
+    'id' => 1,
+    'name' => 'article',
+    'value' => '#6d7c75',
+    'new' => true,
+];
+
+const updatedSystemColorData = [
+    'id' => 1,
+    'name' => 'contact',
+    'value' => '#39965b',
+    'new' => false,
+];
+
+/**
+ *  User Color
  */
 const userColorData = [
     'id' => 1,
