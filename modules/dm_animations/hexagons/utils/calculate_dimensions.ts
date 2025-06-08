@@ -1,4 +1,4 @@
-import { HexagonConfigInterface } from '../types'
+import type { HexagonConfigInterface } from '../types'
 import {
   HEXAGON_WIDTH,
   HEXAGON_HEIGHT,

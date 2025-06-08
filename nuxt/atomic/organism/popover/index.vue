@@ -1,12 +1,12 @@
 <template>
   <ad-button
-    @click="toggle"
     :icon="props.popoverClass!.includes('terminal') ? 'pi pi-code' : props.icon"
     :src="props.src"
     :class="props.buttonClass"
     :style="props.buttonStyle"
     ad-type="main"
     rounded
+    @click="toggle"
   />
 
   <Popover
@@ -20,7 +20,7 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
-    :closeOnEscape="props.closeOnEscape"
+    :close-on-escape="props.closeOnEscape"
     :class="props.popoverClass"
   >
     <slot />
@@ -28,16 +28,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-import { PopoverInterface } from 'atomic'
+import type { PopoverInterface } from 'atomic'
 
 const props = defineProps<PopoverInterface>()
 
 const pop = ref()
 
-// eslint-disable-next-line
-const toggle = (event: any) => {
+const toggle = (event: unknown) => {
   pop.value.toggle(event)
 }
 </script>

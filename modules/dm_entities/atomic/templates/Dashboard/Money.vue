@@ -6,8 +6,8 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="money"
-      headerText="Manage Money"
-      buttonText="New Transaction"
+      header-text="Manage Money"
+      button-text="New Transaction"
     />
 
     <ad-dialog
@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  useMoneyFields,
-  DashboardInterface,
-  moneyRequests,
-  useDialog,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { useMoneyFields, moneyRequests, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

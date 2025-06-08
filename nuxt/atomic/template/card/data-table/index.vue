@@ -24,10 +24,10 @@
             v-if="adType !== 'activity'"
             :ad-type="adType"
             icon="pi pi-plus"
-            @click="openDialog('create')"
             class=""
             rounded
             text
+            @click="openDialog('create')"
           />
         </template>
       </div>
@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { CardDataTableInterface } from 'atomic'
+import type { CardDataTableInterface } from 'atomic'
 
 defineProps<CardDataTableInterface>()
 </script>

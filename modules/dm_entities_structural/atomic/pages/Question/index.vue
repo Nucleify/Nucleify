@@ -12,7 +12,7 @@
     />
     <dm-question-dashboard
       :data="results"
-      :getData="getAllQuestions"
+      :get-data="getAllQuestions"
       :loading="loading"
     />
   </div>

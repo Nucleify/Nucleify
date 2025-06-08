@@ -10,10 +10,10 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount } from 'vue'
 import TerminalService from 'primevue/terminalservice'
 
-import { TerminalInterface, handleCommands } from 'atomic'
+import type { TerminalInterface } from 'atomic'
+import { handleCommands } from 'atomic'
 
 const props = defineProps<TerminalInterface>()
 

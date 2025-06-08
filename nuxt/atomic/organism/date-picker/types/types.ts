@@ -1,9 +1,9 @@
 export type DatePickerModelValueType =
-  | null
-  | string
   | Date
   | Date[]
-  | (null | Date)[]
+  | (Date | null)[]
+  | null
+  | undefined
 export type DatePickerVariant = 'filled' | 'outlined'
 export type DateSelectionModeType = 'multiple' | 'range' | 'single'
 export type HourFormatType = '12' | '24'

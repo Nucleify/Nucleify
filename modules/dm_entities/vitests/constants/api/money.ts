@@ -1,4 +1,4 @@
-import { MoneyObjectInterface } from 'atomic'
+import type { MoneyObjectInterface } from 'atomic'
 
 export const mockMoney: MoneyObjectInterface = {
   id: 999999,

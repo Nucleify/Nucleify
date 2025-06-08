@@ -1,6 +1,6 @@
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 
-import {
+import type {
   LoginFieldsInterface,
   LoginInputInterface,
   RegisterFieldsInterface,

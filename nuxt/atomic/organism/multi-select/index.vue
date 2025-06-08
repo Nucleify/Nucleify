@@ -62,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import { MultiSelectInterface } from 'atomic'
+import type { MultiSelectInterface } from 'atomic'
 
 const props = defineProps<MultiSelectInterface>()
 </script>

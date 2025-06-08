@@ -1,5 +1,6 @@
 <template>
   <InputText
+    :id="props.id"
     :ad-type="props.adType"
     :v-model="props.value"
     :default-value="props.defaultValue"
@@ -15,13 +16,14 @@
     :unstyled="props.unstyled"
     :disabled="props.disabled"
     :class="[{ 'p-invalid': props.invalid }]"
-    :id="props.id"
     :placeholder="props.placeholder"
   />
 </template>
 
 <script setup lang="ts">
-import { InputTextInterface } from 'atomic'
+import InputText from 'primevue/inputtext' // Import for Storybook
+
+import type { InputTextInterface } from 'atomic'
 
 const props = defineProps<InputTextInterface>()
 </script>

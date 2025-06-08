@@ -1,31 +1,34 @@
 import { it, expect } from 'vitest'
+import * as atomic from 'atomic'
 
-import { getComponent } from 'atomic'
-
-it('returns "ad-textarea" for "textarea"', (): void => {
-  expect(getComponent('textarea')).toBe('ad-textarea')
+it('returns AdTextarea for "textarea"', (): void => {
+  expect(atomic.getComponent('textarea')).toBe(atomic.AdTextarea)
 })
 
-it('returns "ad-input-text" for "input-text"', (): void => {
-  expect(getComponent('input-text')).toBe('ad-input-text')
+it('returns AdInputText for "input-text"', (): void => {
+  expect(atomic.getComponent('input-text')).toBe(atomic.AdInputText)
 })
 
-it('returns "ad-date-picker" for "date-picker"', (): void => {
-  expect(getComponent('date-picker')).toBe('ad-date-picker')
+it('returns AdDatePicker for "date-picker"', (): void => {
+  expect(atomic.getComponent('date-picker')).toBe(atomic.AdDatePicker)
 })
 
-it('returns "ad-select" for "select"', (): void => {
-  expect(getComponent('select')).toBe('ad-select')
+it('returns AdSelect for "select"', (): void => {
+  expect(atomic.getComponent('select')).toBe(atomic.AdSelect)
 })
 
-it('returns "ad-password" for "password"', (): void => {
-  expect(getComponent('password')).toBe('ad-password')
+it('returns AdPassword for "password"', (): void => {
+  expect(atomic.getComponent('password')).toBe(atomic.AdPassword)
 })
 
-it('returns "ad-input-text" for unknown types', (): void => {
-  expect(getComponent('unknown-type')).toBe('ad-input-text')
+it('returns AdInputText for unknown types', (): void => {
+  expect(
+    atomic.getComponent('unknown-type' as unknown as atomic.ComponentType)
+  ).toBe(atomic.AdInputText)
 })
 
-it('returns "ad-input-text" for empty string', (): void => {
-  expect(getComponent('')).toBe('ad-input-text')
+it('returns AdInputText for empty string', (): void => {
+  expect(atomic.getComponent('' as unknown as atomic.ComponentType)).toBe(
+    atomic.AdInputText
+  )
 })

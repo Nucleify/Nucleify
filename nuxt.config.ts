@@ -8,16 +8,18 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
     '@nuxt/test-utils/module',
+    '@nuxtjs/google-fonts',
     '@nuxtjs/robots',
-    '@nuxtjs/seo',
     '@nuxtjs/sitemap',
+    '@nuxtjs/storybook',
     '@nuxtjs/stylelint-module',
     '@primevue/nuxt-module',
+    '@radya/nuxt-dompurify',
     'nuxt-link-checker',
-    'nuxt-og-image',
     'nuxt-schema-org',
     'nuxt-seo-utils',
     'nuxt-swiper',
+    'nuxt-vitalizer',
     '@qirolab/nuxt-sanctum-authentication'
   ],
   laravelSanctum: {
@@ -25,7 +27,9 @@ export default defineNuxtConfig({
   },
   ssr: true,
   nitro: {
-    prerender: {
+    prerender: process.env.CI ? {
+      enabled: false
+    } : {
       routes: ['/home'],
       crawlLinks: true
     },
@@ -45,10 +49,6 @@ export default defineNuxtConfig({
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
       link: [
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;600&display=swap'
-        },
         {
           rel: 'stylesheet',
           href: '/fonts/primeicons/primeicons.css'
@@ -82,8 +82,7 @@ export default defineNuxtConfig({
     { path: '~/atomic/organism', prefix: 'ad', extensions: ['vue'] },
     { path: '~/atomic/section', prefix: 'ad-section', extensions: ['vue'] },
     { path: '~/atomic/template', prefix: 'ad', extensions: ['vue'] },
-    { path: '~/atomic', extensions: ['vue'] },
-    { path: 'modules', extensions: ['vue'], pathPrefix: false }
+    { path: '~/atomic', extensions: ['vue'] }
   ],
   imports: {
     dirs: [
@@ -113,5 +112,20 @@ export default defineNuxtConfig({
       apiUrl: process.env.API_URL,
       appEnv: process.env.APP_ENV
     }
-  }
-} as any)
+  },
+  vitalizer: {
+    disableStylesheets: 'entry'
+  },
+  googleFonts: {
+    families: {
+      Inter: '300..700',
+      Nunito: '300..700',
+    },
+    display: 'swap',
+    subsets: ['latin'],
+  },
+  storybook: {
+    url: 'http://localhost',
+    port: 6006
+  },
+})

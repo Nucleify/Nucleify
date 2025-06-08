@@ -1,4 +1,4 @@
-import { MockUseToastInterface } from 'atomic'
+import type { MockUseToastInterface } from 'atomic'
 
 // eslint-disable-next-line
 export const mockUseToast = (fn: any): MockUseToastInterface => {

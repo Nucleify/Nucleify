@@ -11,7 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import { BadgeInterface } from 'atomic'
+import Badge from 'primevue/badge' // Import for Storybook
+
+import type { BadgeInterface } from 'atomic'
 
 const props = defineProps<BadgeInterface>()
 </script>

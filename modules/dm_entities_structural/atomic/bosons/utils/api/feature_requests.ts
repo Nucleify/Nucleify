@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-import {
+import type {
   CloseDialogType,
   EntityCountResultsType,
   EntityResultsType,
@@ -8,10 +8,8 @@ import {
   FeatureRequestsInterface,
   SiteType,
   UseLoadingInterface,
-  apiHandle,
-  useApiSuccess,
-  useLoading,
 } from 'atomic'
+import { apiHandle, useApiSuccess, useLoading } from 'atomic'
 
 export function featureRequests(
   close?: CloseDialogType

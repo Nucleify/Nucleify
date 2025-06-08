@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { BoxInterface } from 'atomic'
+import type { BoxInterface } from 'atomic'
 
 const props = defineProps<BoxInterface>()
 </script>

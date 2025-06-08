@@ -1,7 +1,7 @@
 <template>
   <Password
+    :id="props.id"
     :model-value="props.modelValue"
-    @update:model-value="updateValue"
     :default-value="props.defaultValue"
     :name="props.name"
     :prompt-label="props.promptLabel"
@@ -42,13 +42,13 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
-    :id="props.id"
     :passwords-match="passwordsMatch"
     :empty-password="emptyPassword"
     :empty-confirm-password="emptyConfirmPassword"
     :ad-type="props.type"
+    @update:model-value="updateValue"
   >
-    <template #footer v-if="id !== 'password_confirmation'">
+    <template v-if="id !== 'password_confirmation'" #footer>
       <Divider />
       <ul class="password-criteria -mb-1">
         <li
@@ -60,7 +60,7 @@
         </li>
       </ul>
     </template>
-    <template #footer v-else-if="!emptyPassword">
+    <template v-else-if="!emptyPassword" #footer>
       <ul class="password-criteria -mb-1">
         <li :class="passwordsMatch ? 'valid' : 'invalid'">
           {{ passwordsMatch ? 'Passwords match' : 'Passwords do not match' }}
@@ -71,10 +71,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-
+import type { PasswordInterface } from 'atomic'
 import {
-  PasswordInterface,
   checkLowercase,
   checkMinLength,
   checkNumeric,

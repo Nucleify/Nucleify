@@ -1,9 +1,5 @@
-import {
-  LoginFieldsInterface,
-  UserRoleType,
-  apiHandle,
-  navigateTo,
-} from 'atomic'
+import type { LoginFieldsInterface, UserRoleType } from 'atomic'
+import { apiHandle, navigateTo } from 'atomic'
 
 export async function testLogin(role: UserRoleType): Promise<void> {
   const credentials: Record<UserRoleType, LoginFieldsInterface | undefined> = {

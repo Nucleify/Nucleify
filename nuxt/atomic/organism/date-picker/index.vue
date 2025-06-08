@@ -1,8 +1,8 @@
 <template>
   <DatePicker
+    :id="props.id"
     :model-value="props.modelValue"
-    @update:model-value="onUpdateModelValue"
-    :defaultValue="props.defaultValue"
+    :default-value="props.defaultValue"
     :name="props.name"
     :selection-mode="props.selectionMode"
     :date-format="props.dateFormat"
@@ -49,7 +49,6 @@
     :readonly="props.readonly"
     :placeholder="props.placeholder"
     :append-to="props.appendTo"
-    :id="props.id"
     :input-id="props.inputId"
     :input-style="props.inputStyle"
     :input-class="props.inputClass"
@@ -67,15 +66,13 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
+    @update:model-value="onUpdateModelValue"
   />
 </template>
 
 <script setup lang="ts">
-import {
-  DatePickerInterface,
-  DatePickerModelValueType,
-  formatDate,
-} from 'atomic'
+import type { DatePickerInterface, DatePickerModelValueType } from 'atomic'
+import { formatDate } from 'atomic'
 
 const props = defineProps<DatePickerInterface>()
 

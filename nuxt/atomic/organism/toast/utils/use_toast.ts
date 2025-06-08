@@ -1,6 +1,6 @@
 import { useNuxtApp } from 'nuxt/app'
 
-import {
+import type {
   MessageOrMessagesType,
   ToastSeverityType,
   UseToastInterface,
@@ -8,12 +8,11 @@ import {
 
 export function useToast(): UseToastInterface {
   const nuxtApp = useNuxtApp()
-  const getToast: typeof useToast = () =>
-    nuxtApp.vueApp.config.globalProperties.$toast
+  const getToast = () => nuxtApp.vueApp.config.globalProperties.$toast
   const toast = getToast()
 
   function closeToast(): void {
-    if (process.client) {
+    if (import.meta.client) {
       document
         .querySelectorAll('.p-toast-message')
         .forEach((element: Element): void => {

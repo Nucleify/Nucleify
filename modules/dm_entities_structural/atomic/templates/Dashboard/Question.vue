@@ -6,8 +6,8 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="question"
-      headerText="Manage Questions"
-      buttonText="New Question"
+      header-text="Manage Questions"
+      button-text="New Question"
     />
 
     <ad-dialog
@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  useQuestionFields,
-  DashboardInterface,
-  questionRequests,
-  useDialog,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { useQuestionFields, questionRequests, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

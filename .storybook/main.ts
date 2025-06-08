@@ -1,16 +1,23 @@
-import type { StorybookConfig } from '@storybook/vue3-vite'
+import { mergeConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
 
-const config: StorybookConfig = {
-  stories: ['./*.mdx', '../atomic/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+const config = {
+  stories: ['./*.mdx', '../nuxt/atomic/**/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
   addons: [
-    '@storybook/addon-onboarding',
     '@storybook/addon-essentials',
-    '@chromatic-com/storybook',
     '@storybook/addon-interactions',
   ],
   framework: {
     name: '@storybook/vue3-vite',
     options: {},
   },
+  docs: {
+    autodocs: false
+  },
+  viteFinal: async (config) => {
+    return mergeConfig(config, {
+      plugins: [vue()]
+    });
+  }
 }
 export default config

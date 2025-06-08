@@ -1,4 +1,4 @@
-import { CardObjectInterface } from 'atomic'
+import type { CardObjectInterface } from 'atomic'
 
 export const mockCard: CardObjectInterface = {
   id: 99,
