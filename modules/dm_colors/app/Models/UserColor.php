@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Contracts\ColorContract;
+use App\Contracts\UserColorContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -11,14 +11,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int id
  * @property int user_id
- * @property string entity
+ * @property string name
  * @property string value
  * @property bool new
  * @property string created_at
  * @property string updated_at
  * @property int getId
  * @property int getUserId
- * @property int getEntity
+ * @property int getName
  * @property string getValue
  * @property string getNew
  * @property string getCreatedAt
@@ -26,19 +26,19 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property BelongsTo user
  * @property Builder scopeGetById
  * @property Builder scopeGetByUserId
- * @property Builder scopeGetByEntity
+ * @property Builder scopeGetByName
  * @property Builder scopeGetByValue
  * @property Builder scopeGetByNew
  * @property Builder scopeGetByCreatedAt
  * @property Builder scopeGetByUpdatedAt
  */
-class Color extends Model implements ColorContract
+class UserColor extends Model implements UserColorContract
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'entity',
+        'name',
         'value',
         'new',
     ];
@@ -56,9 +56,9 @@ class Color extends Model implements ColorContract
         return $this->user_id;
     }
 
-    public function getEntity(): string
+    public function getName(): string
     {
-        return $this->entity;
+        return $this->name;
     }
 
     public function getValue(): string
@@ -94,9 +94,9 @@ class Color extends Model implements ColorContract
         return $query->where('user_id', $parameter);
     }
 
-    public function scopeGetByEntity(Builder $query, string $parameter): Builder
+    public function scopeGetByName(Builder $query, string $parameter): Builder
     {
-        return $query->where('entity', $parameter);
+        return $query->where('name', $parameter);
     }
 
     public function scopeGetByValue(Builder $query, string $parameter): Builder
