@@ -58,6 +58,10 @@ uses()
     ->in('Feature/Api/Feature');
 
 uses()
+    ->group('module-api')
+    ->in('Feature/Api/Module');
+
+uses()
     ->group('question-api')
     ->in('Feature/Api/Question');
 
