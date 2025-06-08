@@ -2,17 +2,17 @@
 
 namespace App\Transformers;
 
-use App\Contracts\ColorContract;
+use App\Contracts\UserColorContract;
 use League\Fractal\TransformerAbstract;
 
-class ColorTransformer extends TransformerAbstract
+class UserColorTransformer extends TransformerAbstract
 {
-    public function transform(ColorContract $model): array
+    public function transform(UserColorContract $model): array
     {
         return [
             'id' => $model->getId(),
             'user_id' => $model->getUserId(),
-            'entity' => $model->getEntity(),
+            'name' => $model->getName(),
             'value' => $model->getValue(),
             'new' => $model->getNew(),
             'created_at' => $model->getCreatedAt(),

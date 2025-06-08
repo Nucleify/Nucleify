@@ -4,15 +4,17 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-use App\Models\Color;
-use App\Services\ColorService;
+uses()->group('user-color-api-500');
+
+use App\Models\UserColor;
+use App\Services\UserColorService;
 
 use function Pest\Laravel\mock;
 
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
-    $this->service = mock(ColorService::class);
+    $this->service = mock(UserColorService::class);
 });
 
 describe('500 > Internal Server Error', function (): void {
@@ -22,7 +24,7 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('colors.index'));
+        $response = $this->getJson(route('user-colors.index'));
 
         $response->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
@@ -35,7 +37,7 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('colors.show', ['id' => 1]));
+        $response = $this->getJson(route('user-colors.show', ['id' => 1]));
 
         $response->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
@@ -47,7 +49,7 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->postJson(route('colors.store'), colorData);
+        $response = $this->postJson(route('user-colors.store'), userColorData);
 
         $response->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
@@ -60,21 +62,21 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->putJson(route('colors.update', colorData['id']), updatedColorData);
+        $response = $this->putJson(route('user-colors.update', userColorData['id']), updatedUserColorData);
 
         $response->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
     test('destroy api', function (): void {
-        $color = Color::factory()->create();
+        $color = UserColor::factory()->create();
 
         $this->service
             ->shouldReceive('delete')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->deleteJson(route('colors.destroy', ['id' => $color->id]));
+        $response = $this->deleteJson(route('user-colors.destroy', ['id' => $color->id]));
 
         $response->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);

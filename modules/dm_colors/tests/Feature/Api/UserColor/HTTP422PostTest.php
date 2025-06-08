@@ -4,233 +4,236 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-color-api-422');
+uses()->group('user-color-api-422-post');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function ($colorData = colorData) {
+describe('422 > Unprocessable Content > POST', function ($userColorData = userColorData) {
     /**
      * USER ID TESTS
      */
-    $colorData['user_id'] = '';
+    $userColorData['user_id'] = '';
     test('invalid user_id > empty', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['user_id']],
         ['errors' => [
             'user_id' => ['The user id field is required.'],
         ]]
     ));
 
-    $colorData['user_id'] = 'user_id';
+    $userColorData['user_id'] = 'user_id';
     test('invalid user_id > string', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['user_id']],
         ['errors' => [
             'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
-    $colorData['user_id'] = false;
+    $userColorData['user_id'] = false;
     test('invalid user_id > false', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['user_id']],
         ['errors' => [
             'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
-    $colorData['user_id'] = [];
+    $userColorData['user_id'] = [];
     test('invalid user_id > empty array', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['user_id']],
         ['errors' => [
             'user_id' => ['The user id field is required.'],
         ]]
     ));
 
-    $colorData['user_id'] = colorData['user_id'];
+    $userColorData['user_id'] = userColorData['user_id'];
 
     /**
      * ENTITY TESTS
      */
-    $colorData['entity'] = '';
-    test('invalid entity > empty', apiTest(
+    $userColorData['name'] = '';
+    test('invalid name > empty', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
-        ['errors' => ['entity']],
+        $userColorData,
+        ['errors' => ['name']],
         ['errors' => [
-            'entity' => ['The entity field is required.'],
+            'name' => ['The name field is required.'],
         ]]
     ));
 
-    $colorData['entity'] = 1;
-    test('invalid entity > integer', apiTest(
+    $userColorData['name'] = 1;
+    test('invalid name > integer', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
-        ['errors' => ['entity']],
+        $userColorData,
+        ['errors' => ['name']],
         ['errors' => [
-            'entity' => ['The entity field must be a string.'],
+            'name' => ['The name field must be a string.'],
         ]]
     ));
 
-    $colorData['entity'] = false;
-    test('invalid entity > false', apiTest(
+    $userColorData['name'] = false;
+    test('invalid name > false', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
-        ['errors' => ['entity']],
+        $userColorData,
+        ['errors' => ['name']],
         ['errors' => [
-            'entity' => ['The entity field must be a string.'],
+            'name' => ['The name field must be a string.'],
         ]]
     ));
 
-    $colorData['entity'] = true;
-    test('invalid entity > true', apiTest(
+    $userColorData['name'] = true;
+    test('invalid name > true', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
-        ['errors' => ['entity']],
+        $userColorData,
+        ['errors' => ['name']],
         ['errors' => [
-            'entity' => ['The entity field must be a string.'],
+            'name' => ['The name field must be a string.'],
         ]]
     ));
 
-    $colorData['entity'] = [];
-    test('invalid entity > empty array', apiTest(
+    $userColorData['name'] = [];
+    test('invalid name > empty array', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
-        ['errors' => ['entity']],
+        $userColorData,
+        ['errors' => ['name']],
         ['errors' => [
-            'entity' => ['The entity field is required.'],
+            'name' => ['The name field is required.'],
         ]]
     ));
 
-    $colorData['entity'] = colorData['entity'];
+    $userColorData['name'] = userColorData['name'];
 
     /**
      * VALUE TESTS
      */
-    $colorData['value'] = '';
+    $userColorData['value'] = '';
     test('invalid value > empty', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['value']],
         ['errors' => [
             'value' => ['The value field is required.'],
         ]]
     ));
 
-    $colorData['value'] = 1;
+    $userColorData['value'] = 1;
     test('invalid value > integer', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['value']],
         ['errors' => [
             'value' => ['The value field must be a string.'],
         ]]
     ));
 
-    $colorData['value'] = false;
+    $userColorData['value'] = false;
     test('invalid value > false', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['value']],
         ['errors' => [
             'value' => ['The value field must be a string.'],
         ]]
     ));
 
-    $colorData['value'] = true;
+    $userColorData['value'] = true;
     test('invalid value > true', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['value']],
         ['errors' => [
             'value' => ['The value field must be a string.'],
         ]]
     ));
 
-    $colorData['value'] = [];
+    $userColorData['value'] = [];
     test('invalid value > empty array', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['value']],
         ['errors' => [
             'value' => ['The value field is required.'],
         ]]
     ));
 
-    $colorData['value'] = colorData['value'];
+    $userColorData['value'] = userColorData['value'];
 
     /**
      * NEW TESTS
      */
-    $colorData['new'] = '';
+    $userColorData['new'] = '';
     test('invalid new > empty', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['new']],
         ['errors' => [
             'new' => ['The new field is required.'],
         ]]
     ));
 
-    $colorData['new'] = 'not_a_boolean';
+    $userColorData['new'] = 'not_a_boolean';
     test('invalid new > string', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['new']],
         ['errors' => [
             'new' => ['The new field must be true or false.'],
         ]]
     ));
 
-    $colorData['new'] = [];
+    $userColorData['new'] = [];
     test('invalid new > empty array', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         422,
-        $colorData,
+        $userColorData,
         ['errors' => ['new']],
         ['errors' => [
             'new' => ['The new field is required.'],
         ]]
     ));
 
-    $colorData['new'] = colorData['new'];
+    $userColorData['new'] = userColorData['new'];
 });

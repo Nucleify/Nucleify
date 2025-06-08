@@ -4,12 +4,12 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-uses()->group('colors-api-302');
+uses()->group('user-color-api-401');
 
 describe('401 > Unauthorized', function (): void {
     test('index api', apiTest(
         'GET',
-        'colors.index',
+        'user-colors.index',
         401,
         null,
         ['message'],
@@ -18,7 +18,7 @@ describe('401 > Unauthorized', function (): void {
 
     test('countByCreatedLastWeek api', apiTest(
         'GET',
-        'colors.countByCreatedLastWeek',
+        'user-colors.countByCreatedLastWeek',
         401,
         null,
         ['message'],
@@ -27,7 +27,7 @@ describe('401 > Unauthorized', function (): void {
 
     test('show api', apiTest(
         'SHOW',
-        'colors.show',
+        'user-colors.show',
         401,
         1,
         ['message'],
@@ -36,7 +36,7 @@ describe('401 > Unauthorized', function (): void {
 
     test('store api with data', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         401,
         technologyData,
         ['message'],
@@ -45,7 +45,7 @@ describe('401 > Unauthorized', function (): void {
 
     test('store api empty json', apiTest(
         'POST',
-        'colors.store',
+        'user-colors.store',
         401,
         [],
         ['message'],
@@ -54,7 +54,7 @@ describe('401 > Unauthorized', function (): void {
 
     test('update api with data', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         401,
         colorData,
         ['message'],
@@ -63,7 +63,7 @@ describe('401 > Unauthorized', function (): void {
 
     test('update api empty json', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         401,
         [],
         ['message'],
@@ -72,7 +72,7 @@ describe('401 > Unauthorized', function (): void {
 
     test('destroy api', apiTest(
         'DELETE',
-        'colors.destroy',
+        'user-colors.destroy',
         401,
         null,
         ['message'],
