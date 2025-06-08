@@ -1,16 +1,29 @@
 # <div align="center"> <img src="https://github.com/SzymCode/DataManager/assets/107359025/652cd065-7449-4e9a-9564-3916fa3baedc" width="70"> <br> DataManager <br> </div>
 <br>
 
-This website helps to storage various data types and share it with others. My target is to create fully responsive, functional and scalable [ERP](https://en.wikipedia.org/wiki/Enterprise_resource_planning)-like website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development) and [FDD](https://en.wikipedia.org/wiki/Feature-driven_development) principles. Serves as my coding sandbox, where I can experiment with different coding techniques, implement new features, and refine my skills.
+Streamline ERP and design management with a powerful system built using Laravel and Nuxt. Easily organize, manage, and access all your data types in one powerful, user-friendly platform - perfect for CRM, ERP and E-commerce solutions.
+Our target is to create fully responsive, functional and scalable website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development), [FSD](https://medium.com/@dtgasparyan/feature-sliced-design-the-ideal-frontend-architecture-84d701ad44ba) and [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/) principles.
 
-<b>Join my project and become part of building something incredible!</b>
 
-<br><a href="https://data-manager.atomic-it.org">Live preview</a><br><br>
+<b>Join our project and become part of building something incredible!</b>
+
+<br><a href="https://datamanager.atomic-it.org">Live preview</a><br><br>
+
+⭐ **Unique Laravel/Nuxt modules functionality** <br>
+⭐ Atomic Design + [Storybook](https://storybook.js.org/) tests for most components <br>
+⭐ Futuristic UI made with [PrimeVue](https://primevue.org/) + [Chart.js](https://www.chartjs.org/) + [GSAP](https://gsap.com/) + [SCSS](https://sass-lang.com/) <br>
+⭐ Over 1500 backend tests with ~80% code coverage <br>
+⭐ First at phrase ```datamanager laravel nuxt``` in [Google Search](https://www.google.com/search?client=firefox-b-d&q=datamanager+laravel+nuxt&sei=pbVFaJPGJ8-Sxc8P-7eTqA8) <br>
+
+<br>
+<hr>
+<br>
+
 
 <details><summary> <h2> &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=25/> &nbsp; XAMPP </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary>
 
-- First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
+- First make sure u have installed latest versions of [PHP](https://www.php.net), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
 
 - I recommend use [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) for install latest supported versions of [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com),
 
@@ -21,7 +34,7 @@ nvm use --lts
 - Clone this repository
 
 ```
-git clone https://github.com/SzymCode/DataManager.git
+git clone https://github.com/Atomic-IT/DataManager.git
 ```
 
 - Change *.env.example* file to *.env* in root directory
@@ -37,11 +50,6 @@ php artisan key:generate
 ```bash
 npm install
 composer install
-
-# if you want use storybook
-cd storybook
-npm install
-```
 
 ### **Make sure u have installed all modules!**
 
@@ -119,21 +127,17 @@ npm run open
 
 <img src="https://vitest.dev/logo-shadow.svg" height="15" /> &nbsp;Vitest tests:
 ```bash
-npm run test
+npm run tests
 ```
 
-<img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook:
-```bash
-cd storybook
-yarn storybook
-```
+<img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```npm run dev```
 
 <br></details>
 
 <details><summary> npm </summary><br>
 
 1. Install packages - ```npm install```
-2. Vite build - ```npm run build```
+2. Nuxt build - ```npm run build```
 3. Run Prettier - ```npm run write```
 4. Run Eslint - ```npm run lint```
 5. Run Stylelint - ```npm run slint```
@@ -157,21 +161,15 @@ php artisan sitemap:generate
 <details><summary> <h2> &nbsp; <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=25/> &nbsp; Docker </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary> <br>
 
-- First make sure u have installed latest versions of [PHP](https://www.php.net), [Laravel](https://laravel.com/), [Vue.js](https://vuejs.org/), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [Composer](https://getcomposer.org/) and [Docker](https://www.docker.com)
-
-- I recommend use [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) for install latest supported versions of [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com),
-
-```
-nvm use --lts
-```
-
+- First make sure u have installed latest versions of [Composer](https://getcomposer.org/) and [Docker](https://www.docker.com)
+  
 - Clone this repository
 
 ```
-git clone https://github.com/SzymCode/DataManager.git
+git clone https://github.com/Atomic-IT/DataManager.git
 ```
 
-- Change .env.example file to .env in root directory
+- Change .env.docker.example file to .env in root directory
 
 - Generate APP_KEY
 
@@ -184,11 +182,8 @@ php artisan key:generate
 ```bash
 composer install
 php artisan sail:install
-sail npm install
 
-# if you want use storybook
-cd storybook
-npm install
+sail up --build -d
 ```
 
 ### **Make sure u have installed all modules!**
@@ -196,6 +191,7 @@ npm install
 <br>
 
 Possible problems:
+- Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
 - Error: EACCES: permission denied, mkdir '/var/www/html/node_modules': ```sudo chmod 777 -R DataManager``` or [Solution](https://stackoverflow.com/questions/49679808/error-eacces-permission-denied-mkdir-usr-local-lib-node-modules-node-sass-b)
 
 <br></details>
@@ -205,17 +201,13 @@ Possible problems:
 Root directory:
 
 ```bash
-# run Docker containers in the background
-sail start
-
-# run command inside laravel.test container bash
-sail npm run dev
+# run all Docker containers in the background
+sail up -d
 ```
 
 **Remember to shutdown all XAMPP processes!**
 
 Possible problems:
-- Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
 - Error starting userland proxy: listen tcp4 0.0.0.0:3306: bind: address already in use: ```sudo service mysql stop```
 
 <br></details>
@@ -278,17 +270,17 @@ npm run open  # For now I've not configured Cypress with Docker
 
 <img src="https://vitest.dev/logo-shadow.svg" height="15" /> &nbsp;Vitest tests:
 ```bash
-sail npm run test
+sail npm run tests
 ```
 
-<img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail start```
+<img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail up -d```
 
 <br></details>
 
 <details><summary> npm </summary><br>
 
 1. Install packages - ```sail npm install```
-2. Vite build - ```sail npm run build```
+2. Nuxt build - ```sail npm run build```
 3. Run Prettier - ```sail npm run write```
 4. Run Eslint - ```sail npm run lint```
 5. Run Stylelint - ```sail npm run slint```
@@ -309,8 +301,9 @@ sail artisan sitemap:generate
 <details><summary> <h2> &nbsp;🛠️&nbsp;&nbsp; Tech Stack </h2> </summary> <br>
 <div align="center">
   <img src="https://skillicons.dev/icons?i=php" height="35" />
-  <img src="https://skillicons.dev/icons?i=ts" height="35" />
   <img src="https://skillicons.dev/icons?i=laravel" height="35" />
+  <img src="https://skillicons.dev/icons?i=ts" height="35" />
+  <img src="https://skillicons.dev/icons?i=nuxt" height="35" />
   <img src="https://skillicons.dev/icons?i=vue" height="35" />
   <img src="https://www.primefaces.org/wp-content/uploads/2019/12/primevue-logo.png" height="35" />
   <img src="https://skillicons.dev/icons?i=html" height="35" />
@@ -338,6 +331,7 @@ Your skills and expertise will directly contribute to the success of our project
 
 <br></details>
 
+<br>
 <hr>
 
 <div align="center">
