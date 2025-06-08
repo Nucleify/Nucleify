@@ -18,7 +18,7 @@
   />
 </template>
 <script setup lang="ts">
-import { RatingInterface } from 'atomic'
+import type { RatingInterface } from 'atomic'
 
 const props = defineProps<RatingInterface>()
 </script>

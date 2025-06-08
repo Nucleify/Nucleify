@@ -1,4 +1,7 @@
-import { QuestionObjectInterface, UseSplitQuestionsInterface } from 'atomic'
+import type {
+  QuestionObjectInterface,
+  UseSplitQuestionsInterface,
+} from 'atomic'
 
 export function useSplitQuestions(
   questions: QuestionObjectInterface | QuestionObjectInterface[]

@@ -1,9 +1,9 @@
-import { AdTypeType } from 'atomic'
+import type { AdTypeType } from 'atomic'
 
 export interface KnobInterface {
   adType?: AdTypeType
   modelValue?: number
-  defaultValue?: any // eslint-disable-line
+  defaultValue?: unknown
   name?: string
   size?: number
   invalid?: boolean
@@ -17,13 +17,13 @@ export interface KnobInterface {
   textColor?: string
   strokeWidth?: number
   showValue?: boolean
-  valueTemplate?: string | void
+  valueTemplate?: string
   tabindex?: number
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

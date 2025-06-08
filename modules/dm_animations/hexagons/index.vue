@@ -13,17 +13,23 @@
           ]"
           :key="containerIndex"
           :class="containerClass"
-          :style="{ opacity: 0.05 + 0.012 * rowIndex }"
+          :style="{ opacity: 0.125 + 0.012 * rowIndex }"
         >
-          <img
-            v-for="(opacity, imgIndex) in row[containerIndex]"
-            :key="imgIndex"
-            :alt="'hexagon-' + imgIndex"
-            :class="'hexagon-' + imgIndex"
-            :src="imgUrl + 'hexagon.svg'"
-            width="40"
-            :style="{ opacity: opacity }"
-          />
+          <svg
+            :width="row[containerIndex].length * 40"
+            height="40"
+            style="display: block"
+          >
+            <polygon
+              v-for="(opacity, imgIndex) in row[containerIndex]"
+              :key="imgIndex"
+              :class="'hexagon-' + imgIndex"
+              :style="{ opacity: opacity }"
+              :points="getHexagonPoints(20 + imgIndex * 40, 20, 20)"
+              stroke="#10b981"
+              stroke-width="2"
+            />
+          </svg>
         </div>
       </div>
     </client-only>
@@ -33,7 +39,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-import { updateImagesPerRow } from './utils'
+import { updateImagesPerRow, getHexagonPoints } from './utils'
 import { PATTERN_UPDATE_INTERVAL } from './variables'
 
 const containerRef = ref<HTMLElement | null>(null)

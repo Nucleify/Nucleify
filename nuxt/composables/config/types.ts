@@ -1,4 +1,4 @@
-import { useRuntimeConfig } from 'nuxt/app'
+import type { useRuntimeConfig } from 'nuxt/app'
 
 export type ConfigValueType = string | number | boolean | object | null
 export type ConfigGetterType = () => ConfigValueType

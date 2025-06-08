@@ -6,7 +6,7 @@ export function setColorsVariables(): void {
       const key = `${item}-item-${state}`
       const value = localStorageGetItem(key)
 
-      if (process.client) {
+      if (import.meta.client) {
         if (
           document.documentElement.style.getPropertyValue(`--${key}`) !== value
         ) {

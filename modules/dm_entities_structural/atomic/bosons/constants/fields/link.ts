@@ -1,4 +1,5 @@
-import { EntityFieldInterface, UseFieldsInterface, languageCodes } from 'atomic'
+import type { EntityFieldInterface, UseFieldsInterface } from 'atomic'
+import { languageCodes } from 'atomic'
 
 export function useLinkFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: readonly [string, string, string][] = [

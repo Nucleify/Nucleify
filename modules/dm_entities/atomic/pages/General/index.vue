@@ -46,24 +46,25 @@
 
     <dm-article-dashboard
       :data="articles"
-      :getData="getAllArticles"
+      :get-data="getAllArticles"
       :loading="!allLoaded"
     />
     <dm-contact-dashboard
       :data="contacts"
-      :getData="getAllContacts"
+      :get-data="getAllContacts"
       :loading="!allLoaded"
     />
     <dm-money-dashboard
       :data="money"
-      :getData="getAllMoney"
+      :get-data="getAllMoney"
       :loading="!allLoaded"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, Ref, watch } from 'vue'
+import type { Ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 import {
   articleRequests,

@@ -1,4 +1,4 @@
-import { ColumnInterface, LoadingType } from 'atomic'
+import type { ColumnInterface, LoadingType } from 'atomic'
 
 export interface SkeletonDataTableInterface {
   rows: []

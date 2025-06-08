@@ -1,4 +1,4 @@
-import { AdTypeType } from 'atomic'
+import type { AdTypeType } from 'atomic'
 
 export interface RatingInterface {
   adType?: AdTypeType
@@ -11,9 +11,9 @@ export interface RatingInterface {
   stars?: number
   onIcon?: string
   offIcon?: string
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

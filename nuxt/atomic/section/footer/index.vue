@@ -21,7 +21,11 @@
               :key="itemIndex"
               :href="item.url"
             >
-              <ad-paragraph class="header" v-if="item?.header" :text="item.name" />
+              <ad-paragraph
+                v-if="item?.header"
+                class="header"
+                :text="item.name"
+              />
               <span v-else>{{ item.name }}</span>
             </ad-anchor>
           </div>

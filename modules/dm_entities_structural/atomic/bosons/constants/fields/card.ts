@@ -1,4 +1,4 @@
-import { EntityFieldInterface, UseFieldsInterface } from 'atomic'
+import type { EntityFieldInterface, UseFieldsInterface } from 'atomic'
 
 export function useCardFields(): UseFieldsInterface<EntityFieldInterface> {
   const fieldData: readonly [string, string, string][] = [

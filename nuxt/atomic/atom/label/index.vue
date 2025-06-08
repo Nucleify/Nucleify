@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { LabelInterface } from 'atomic'
+import type { LabelInterface } from 'atomic'
 
 const props = defineProps<LabelInterface>()
 </script>

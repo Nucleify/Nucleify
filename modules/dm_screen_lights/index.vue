@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { ScreenLightsInterface } from '.'
+import type { ScreenLightsInterface } from '.'
 
 const props = defineProps<ScreenLightsInterface>()
 </script>

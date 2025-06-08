@@ -1,15 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Anchor as AdAnchor } from './'
+import { AdAnchor } from '.'
 
 const meta = {
   title: 'Molecules/Anchor',
   component: AdAnchor,
-  tags: ['autodocs'],
   args: {
     href: '',
     src: '',
-    icon: '',
+    icon: 'pi pi-star',
     label: '',
     rel: undefined,
     target: undefined,

@@ -1,6 +1,6 @@
-import { DatePickerResponsiveOptions } from 'primevue/datepicker'
+import type { DatePickerResponsiveOptions } from 'primevue/datepicker'
 
-import {
+import type {
   DatePickerModelValueType,
   DatePickerVariant,
   DateSelectionModeType,
@@ -73,9 +73,9 @@ export interface DatePickerInterface {
   fluid?: boolean
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

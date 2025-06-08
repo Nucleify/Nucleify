@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { PickListInterface } from 'atomic'
+import type { PickListInterface } from 'atomic'
 
 const props = defineProps<PickListInterface>()
 </script>

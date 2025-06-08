@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Checkbox as AdCheckbox } from './'
+import { AdCheckbox } from '.'
 
 const meta = {
   title: 'Atoms/Checkbox',
   component: AdCheckbox,
-  tags: ['autodocs'],
   args: {
     adType: undefined,
     value: undefined,

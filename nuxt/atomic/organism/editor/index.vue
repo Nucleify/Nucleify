@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { EditorInterface } from 'atomic'
+import type { EditorInterface } from 'atomic'
 
 const props = defineProps<EditorInterface>()
 </script>

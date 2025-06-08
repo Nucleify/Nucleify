@@ -1,4 +1,4 @@
-import { TechnologyObjectInterface } from 'atomic'
+import type { TechnologyObjectInterface } from 'atomic'
 
 export const mockTechnology: TechnologyObjectInterface = {
   id: 999,

@@ -1,11 +1,11 @@
 import { ref, onMounted, watch } from 'vue'
 
-import {
+import type {
   UseInViewportInterface,
   ViewportStatusType,
   ViewportStatusesType,
-  useInViewport,
 } from 'atomic'
+import { useInViewport } from 'atomic'
 
 export function useViewportChange(selectors: string[], offset?: number): void {
   const { viewportStatuses }: UseInViewportInterface = useInViewport(

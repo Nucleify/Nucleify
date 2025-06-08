@@ -1,16 +1,20 @@
-import { VirtualScrollerProps } from 'primevue/virtualscroller'
+import type { VirtualScrollerProps } from 'primevue/virtualscroller'
 
-import { ElementAppendTo, ElementSizeType, ElementVariantType } from 'atomic'
+import type {
+  ElementAppendTo,
+  ElementSizeType,
+  ElementVariantType,
+} from 'atomic'
 
 export interface SelectInterface {
-  modelValue?: any // eslint-disable-line
-  defaultValue?: any // eslint-disable-line
+  modelValue?: unknown
+  defaultValue?: unknown
   name?: string
-  option?: any[] // eslint-disable-line
-  optionLabel?: string | void
-  optionValue?: string | void
-  optionDisabled?: string | void
-  optionGroupChildren?: string | void
+  option?: unknown[]
+  optionLabel?: string
+  optionValue?: string
+  optionDisabled?: string
+  optionGroupChildren?: string
   scrollHeight?: string
   filter?: boolean
   filterPlaceholder?: string
@@ -27,10 +31,10 @@ export interface SelectInterface {
   showClear?: boolean
   fluid?: boolean
   labelId?: string
-  labelStyle?: string
-  labelClass?: string | object
+  labelStyle?: object
+  labelClass?: object
   overlayStyle?: object
-  overlayClass?: string | object
+  overlayClass?: object
   appendTo?: ElementAppendTo
   loading?: boolean
   clearIcon?: string
@@ -53,9 +57,9 @@ export interface SelectInterface {
   tabindex?: string | number
   ariaLabel?: string
   ariaLabelledby?: string
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

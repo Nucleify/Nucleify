@@ -1,4 +1,4 @@
-import { QuestionObjectInterface, SiteType } from 'atomic'
+import type { QuestionObjectInterface, SiteType } from 'atomic'
 
 export interface SectionFaqInterface {
   questions?: QuestionObjectInterface | QuestionObjectInterface[]

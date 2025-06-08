@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { OrganizationChartInterface } from 'atomic'
+import type { OrganizationChartInterface } from 'atomic'
 
 const props = defineProps<OrganizationChartInterface>()
 </script>

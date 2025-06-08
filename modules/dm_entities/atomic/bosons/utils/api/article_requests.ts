@@ -1,16 +1,14 @@
 import { ref } from 'vue'
 
-import {
+import type {
   ArticleObjectInterface,
   ArticleRequestsInterface,
   CloseDialogType,
   UseLoadingInterface,
   EntityCountResultsType,
   EntityResultsType,
-  apiHandle,
-  useApiSuccess,
-  useLoading,
 } from 'atomic'
+import { apiHandle, useApiSuccess, useLoading } from 'atomic'
 
 export function articleRequests(
   close?: CloseDialogType

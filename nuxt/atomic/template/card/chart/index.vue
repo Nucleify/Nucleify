@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { CardChartInterface } from 'atomic'
+import type { CardChartInterface } from 'atomic'
 
 defineProps<CardChartInterface>()
 </script>
