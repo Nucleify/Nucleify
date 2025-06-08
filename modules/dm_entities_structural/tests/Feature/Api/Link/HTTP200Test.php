@@ -46,24 +46,24 @@ describe('200 > Authorized', function (): void {
     });
 
     test('show api', function (): void {
-        $Link = Link::factory()->create();
+        $link = Link::factory()->create();
 
-        $this->getJson(route('links.show', $Link->id))
+        $this->getJson(route('links.show', $link->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $Link = Link::factory()->create();
+        $link = Link::factory()->create();
 
-        $this->putJson(route('links.update', $Link->id), linkData)
+        $this->putJson(route('links.update', $link->id), linkData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $Link = Link::factory()->create();
+        $link = Link::factory()->create();
 
-        $this->deleteJson(route('links.destroy', $Link->id))
+        $this->deleteJson(route('links.destroy', $link->id))
             ->assertOk();
-        $this->assertDatabaseMissing('links', ['id' => $Link->id]);
+        $this->assertDatabaseMissing('links', ['id' => $link->id]);
     });
 });
