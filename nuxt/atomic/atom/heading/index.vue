@@ -6,7 +6,8 @@
 </template>
 
 <script setup lang="ts">
-import { HeadingInterface, chooseHeading } from 'atomic'
+import type { HeadingInterface } from 'atomic'
+import { chooseHeading } from '.'
 
 const props = defineProps<HeadingInterface>()
 </script>

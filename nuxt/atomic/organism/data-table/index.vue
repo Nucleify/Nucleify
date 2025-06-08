@@ -92,31 +92,31 @@
             :ad-type="props.adType"
             class="data-table-button"
             icon="pi pi-trash"
-            @click="openDialog!('delete', row.data)"
             rounded
             text
             :loading="props.loading"
+            @click="openDialog!('delete', row.data)"
           />
           <template v-else>
             <ad-button
               v-for="action in actions"
-              :ad-type="props.adType"
               :key="action.icon"
+              :ad-type="props.adType"
               class="desktop-button data-table-button"
               :icon="action.icon"
-              @click="action.click(row.data)"
               rounded
               text
               :loading="props.loading"
+              @click="action.click(row.data)"
             />
             <ad-button
               :ad-type="props.adType"
               class="mobile-button data-table-button"
               icon="pi pi-bars"
-              @click="openMenu(menu, $event, row.data)"
               rounded
               text
               :loading="props.loading"
+              @click="openMenu(menu, $event, row.data)"
             />
             <Menu ref="menu" :model="selectItems" :popup="true" />
           </template>
@@ -132,15 +132,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-import {
-  actions as actionsList,
-  columns,
-  DataTableInterface,
-  useSelect,
-  useMenu,
-} from 'atomic'
+import type { DataTableInterface } from 'atomic'
+import { actions as actionsList, columns, useSelect, useMenu } from 'atomic'
 
 const props = defineProps<DataTableInterface>()
 

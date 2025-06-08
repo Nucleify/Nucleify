@@ -26,7 +26,7 @@
   />
 </template>
 <script setup lang="ts">
-import { SpeedDialInterface } from 'atomic'
+import type { SpeedDialInterface } from 'atomic'
 
 const props = defineProps<SpeedDialInterface>()
 </script>

@@ -1,4 +1,4 @@
-import { QuestionObjectInterface } from 'atomic'
+import type { QuestionObjectInterface } from 'atomic'
 
 export const mockQuestion: QuestionObjectInterface = {
   id: 999,

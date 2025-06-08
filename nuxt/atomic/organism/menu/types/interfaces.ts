@@ -1,6 +1,6 @@
-import { MenuItem } from 'primevue/menuitem'
+import type { MenuItem } from 'primevue/menuitem'
 
-import {
+import type {
   ElementAppendTo,
   ObjectType,
   OpenMenuFunctionType,

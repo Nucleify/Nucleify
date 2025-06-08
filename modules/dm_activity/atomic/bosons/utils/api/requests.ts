@@ -1,16 +1,14 @@
 import { ref } from 'vue'
 
-import {
+import type {
   ActivityLogObjectInterface,
   ActivityLogRequestsInterface,
   CloseDialogType,
   EntityCountResultsType,
   EntityResultsType,
   UseLoadingInterface,
-  apiHandle,
-  useApiSuccess,
-  useLoading,
 } from 'atomic'
+import { apiHandle, useApiSuccess, useLoading } from 'atomic'
 
 export function activityRequests(
   close: CloseDialogType

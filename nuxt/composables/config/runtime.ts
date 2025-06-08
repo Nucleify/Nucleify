@@ -17,7 +17,7 @@ class RuntimeConfig {
     }
   }
 
-  private registerAll(obj: Record<string, any>, prefix: string): void {
+  private registerAll(obj: Record<string, unknown>, prefix: string): void {
     for (const [key, value] of Object.entries(obj)) {
       const path = prefix === 'public' ? key : `${prefix}.${key}`
       this.config[path] = () => value as ConfigValueType
@@ -27,7 +27,7 @@ class RuntimeConfig {
         value !== null &&
         !Array.isArray(value)
       ) {
-        this.registerAll(value, path)
+        this.registerAll(value as Record<string, unknown>, path)
       }
     }
   }
@@ -51,8 +51,11 @@ class RuntimeConfig {
 }
 
 export const runtime = new Proxy(RuntimeConfig.getInstance(), {
-  get(target, prop: string): any {
-    if (prop in target) return (target as any)[prop]
+  get(
+    target,
+    prop: string
+  ): ConfigValueType | null | RuntimeConfig[keyof RuntimeConfig] {
+    if (prop in target) return target[prop as keyof typeof target]
     return target.get(prop)
   },
-}) as RuntimeConfig
+})

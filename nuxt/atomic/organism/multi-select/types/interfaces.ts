@@ -1,14 +1,18 @@
-import { ElementAppendTo, ElementSizeType, ElementVariantType } from 'atomic'
+import type {
+  ElementAppendTo,
+  ElementSizeType,
+  ElementVariantType,
+} from 'atomic'
 
 export interface MultiSelectInterface {
-  modelValue?: any // eslint-disable-line
-  defaultValue?: any // eslint-disable-line
+  modelValue?: unknown
+  defaultValue?: unknown
   name?: string
-  options?: any[] // eslint-disable-line
-  optionLabel?: string | void
-  optionDisabled?: string | void
-  optionGroupLabel?: string | void
-  optionGroupChildren?: string | void
+  options?: unknown[]
+  optionLabel?: string
+  optionDisabled?: string
+  optionGroupLabel?: string
+  optionGroupChildren?: string
   scrollHeight?: string
   placeholder?: string
   size?: ElementSizeType
@@ -17,12 +21,12 @@ export interface MultiSelectInterface {
   variant?: ElementVariantType
   fluid?: boolean
   inputId?: string
-  overlayStyle?: any // eslint-disable-line
-  overlayClass?: any // eslint-disable-line
+  overlayStyle?: object
+  overlayClass?: object
   dataKey?: string
   showClear?: boolean
   clearIcon?: string
-  resetFilterOnClear?: string
+  resetFilterOnClear?: boolean
   filterLocale?: string
   filterMatchMode?: 'startsWith' | 'contains' | 'endsWith'
   filterFields?: string[]
@@ -41,7 +45,7 @@ export interface MultiSelectInterface {
   chipIcon?: string
   selectAll?: boolean
   resetFilterOnHide?: boolean
-  virtualScrollerOptions?: any // eslint-disable-line
+  virtualScrollerOptions?: object
   autoOptionFocus?: boolean
   autoFilterFocus?: boolean
   focusOnHover?: boolean
@@ -54,9 +58,9 @@ export interface MultiSelectInterface {
   tabindex?: string | number
   ariaLabel?: string
   ariaLabelledby?: string
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

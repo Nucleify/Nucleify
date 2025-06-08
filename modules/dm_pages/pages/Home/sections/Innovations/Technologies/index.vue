@@ -6,11 +6,11 @@
           <swiper-slide v-for="(tech, index) in data" :key="index">
             <ad-anchor
               v-if="tech"
+              v-tooltip="tech.label"
               :href="tech.href"
               :src="technologiesImgUrl + tech.src"
               :alt="tech.label"
               :aria-label="tech.label"
-              v-tooltip="tech.label"
             />
           </swiper-slide>
         </swiper-container>

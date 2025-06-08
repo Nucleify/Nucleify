@@ -1,4 +1,4 @@
-import { DataTableInterface, HeadingInterface } from 'atomic'
+import type { DataTableInterface, HeadingInterface } from 'atomic'
 
 export interface CardDataTableInterface
   extends DataTableInterface,

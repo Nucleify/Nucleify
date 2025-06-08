@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { ParagraphInterface } from 'atomic'
+import type { ParagraphInterface } from 'atomic'
 
 const props = defineProps<ParagraphInterface>()
 </script>

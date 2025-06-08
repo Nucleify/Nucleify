@@ -1,4 +1,4 @@
-import { AdTypeType, ElementDirectionType } from 'atomic'
+import type { AdTypeType, ElementDirectionType } from 'atomic'
 
 export interface SliderInterface {
   adType?: AdTypeType
@@ -14,9 +14,9 @@ export interface SliderInterface {
   tabindex?: number
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

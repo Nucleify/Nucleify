@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { MeterGroupInterface } from 'atomic'
+import type { MeterGroupInterface } from 'atomic'
 
 const props = defineProps<MeterGroupInterface>()
 </script>

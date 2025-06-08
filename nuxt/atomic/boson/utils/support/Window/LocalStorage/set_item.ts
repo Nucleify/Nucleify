@@ -1,5 +1,5 @@
 export function localStorageSetItem(item: string, value: string): void {
-  if (process.client) {
+  if (import.meta.client) {
     localStorage.setItem(item, value)
   }
 }

@@ -15,7 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { AvatarInterface } from 'atomic'
+import Avatar from 'primevue/avatar' // Import for Storybook
+
+import type { AvatarInterface } from 'atomic'
 
 const props = defineProps<AvatarInterface>()
 </script>

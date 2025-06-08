@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { IconInterface } from 'atomic'
+import type { IconInterface } from 'atomic'
 
 const props = defineProps<IconInterface>()
 </script>

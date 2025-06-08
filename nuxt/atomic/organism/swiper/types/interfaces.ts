@@ -1,4 +1,4 @@
-import { ElementDirectionType } from 'atomic'
+import type { ElementDirectionType } from 'atomic'
 
 export interface SwiperInterface {
   slides?: SwiperSlideInterface[]
@@ -6,48 +6,48 @@ export interface SwiperInterface {
   slidesPerGroup?: number
   spaceBetween?: number
   speed?: number
-  modules?: any[] // eslint-disable-line
+  modules?: unknown[]
   navigation?: boolean
-  pagination?: any // eslint-disable-line
-  scrollbar?: any // eslint-disable-line
+  pagination?: unknown
+  scrollbar?: unknown
   allowSlideNext?: boolean
   allowSlidePrev?: boolean
   allowTouchMove?: boolean
   autoHeight?: boolean
-  autoplay?: any // eslint-disable-line
-  breakpoints?: any // eslint-disable-line
+  autoplay?: unknown
+  breakpoints?: unknown
   breakpointsBase?: 'container' | 'window'
-  cardsEffect?: any // eslint-disable-line
+  cardsEffect?: unknown
   centerInsufficientSlides?: boolean
   centeredSlides?: boolean
   centeredSlidesBounds?: boolean
   containerModifierClass?: string
-  controller?: any // eslint-disable-line
-  coverflowEffect?: any // eslint-disable-line
+  controller?: unknown
+  coverflowEffect?: unknown
   createElements?: boolean
-  creativeEffect?: any // eslint-disable-line
+  creativeEffect?: unknown
   cssMode?: boolean
-  cubeEffect?: any // eslint-disable-line
+  cubeEffect?: unknown
   direction?: ElementDirectionType
   edgeSwipeDetection?: string | boolean
   edgeSwipeThreshold?: number
   effect?: string
   enabled?: boolean
   eventsPrefix?: string
-  fadeEffect?: any // eslint-disable-line
-  flipEffect?: any // eslint-disable-line
+  fadeEffect?: unknown
+  flipEffect?: unknown
   focusableElements?: string
   followFinger?: boolean
-  freeMode?: any // eslint-disable-line
-  grid?: any // eslint-disable-line
-  hashNavigation?: any // eslint-disable-line
+  freeMode?: unknown
+  grid?: unknown
+  hashNavigation?: unknown
   height?: number
-  history?: any // eslint-disable-line
+  history?: unknown
   init?: boolean
   initialSlide?: number
   injectStyles?: string[]
   injectStylesUrls?: string[]
-  keyboard?: any // eslint-disable-line
+  keyboard?: unknown
   lazyPreloadPrevNext?: number
   lazyPreloaderClass?: string
   longSwipes?: boolean
@@ -58,7 +58,7 @@ export interface SwiperInterface {
   loopAdditionalSlides?: number
   loopPreventsSliding?: boolean
   maxBackfaceHiddenSlides?: number
-  mousewheel?: any // eslint-disable-line
+  mousewheel?: unknown
   nested?: boolean
   noSwiping?: boolean
   noSwipingClass?: string
@@ -68,9 +68,9 @@ export interface SwiperInterface {
   observeSlideChildren?: boolean
   observer?: boolean
   on?: object
-  onAny?: any // eslint-disable-line
+  onAny?: unknown
   oneWayMovement?: boolean
-  parallax?: any // eslint-disable-line
+  parallax?: unknown
   passiveListeners?: boolean
   preventClicks?: boolean
   preventClicksPropagation?: boolean
@@ -96,10 +96,10 @@ export interface SwiperInterface {
   slidesOffsetBefore?: number
   slidesPerGroupAuto?: boolean
   slidesPerGroupSkip?: number
-  swipeHandler?: any // eslint-disable-line
+  swipeHandler?: unknown
   swiperElementNodeName?: string
   threshold?: number
-  thumbs?: any // eslint-disable-line
+  thumbs?: unknown
   touchAngle?: number
   touchEventsTarget?: 'container' | 'wrapper'
   touchMoveStopPropagation?: boolean
@@ -111,13 +111,13 @@ export interface SwiperInterface {
   updateOnWindowResize?: boolean
   url?: string
   userAgent?: string
-  virtual?: any // eslint-disable-line
+  virtual?: unknown
   virtualTranslate?: boolean
   watchOverflow?: boolean
   watchSlidesProgress?: boolean
   width?: number
   wrapperClass?: string
-  zoom?: any // eslint-disable-line
+  zoom?: unknown
 }
 
 export interface SwiperSlideInterface {

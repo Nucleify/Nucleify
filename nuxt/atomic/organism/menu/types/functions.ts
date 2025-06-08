@@ -1,4 +1,4 @@
-import { ObjectType } from 'atomic'
+import type { ObjectType } from 'atomic'
 
 export type OpenMenuFunctionType = (
   menu: any, // eslint-disable-line

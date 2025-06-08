@@ -1,4 +1,4 @@
-import { CardCategoryInterface } from 'atomic'
+import type { CardCategoryInterface } from 'atomic'
 
 export interface SectionCategoryInterface {
   cards: CardCategoryInterface[]

@@ -6,8 +6,8 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      headerText="Manage Users"
-      buttonText="New User"
+      header-text="Manage Users"
+      button-text="New User"
     />
 
     <ad-dialog
@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  useUserFields,
-  DashboardInterface,
-  userRequests,
-  useDialog,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { useUserFields, userRequests, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

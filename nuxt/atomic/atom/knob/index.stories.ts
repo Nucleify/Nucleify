@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Knob as AdKnob } from './'
+import { AdKnob } from '.'
 
 const meta = {
   title: 'Atoms/Knob',
   component: AdKnob,
-  tags: ['autodocs'],
   args: {
     adType: 'main',
     modelValue: 3,
