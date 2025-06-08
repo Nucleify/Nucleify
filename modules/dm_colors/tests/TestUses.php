@@ -22,6 +22,8 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         RefreshDatabase::class
     )
         ->in(
+            // User Color API
+            'Feature/Api/UserColor/HTTP302Test.php',
             'Database/Models'
         );
 
@@ -29,7 +31,15 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         DatabaseMigrations::class
     )
         ->in(
+            // User Color API
+            'Feature/Api/UserColor/HTTP200Test.php',
+            'Feature/Api/UserColor/HTTP500Test.php',
+            'Feature/Api/UserColor/HTTP422PostTest.php',
+            'Feature/Api/UserColor/HTTP422PutTest.php',
+
             'Database/Factories',
             'Database/Migrations',
+
+            'Feature/Controllers',
         );
 }

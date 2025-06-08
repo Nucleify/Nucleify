@@ -2,23 +2,23 @@
 
 namespace App\Services;
 
-use App\Models\Color;
+use App\Models\UserColor;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\ColorTransformer;
+use App\Transformers\UserColorTransformer;
 use Exception;
 use Illuminate\Http\Request;
 
-class ColorService
+class UserColorService
 {
     use RequestSetterTrait;
     use TimeSetterTrait;
     use UserSetterTrait;
 
     public function __construct(
-        private readonly Color $model,
-        protected string $entity = 'color',
+        private readonly UserColor $model,
+        protected string $entity = 'user color',
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
@@ -36,7 +36,7 @@ class ColorService
 
         return fractal()
             ->collection($result)
-            ->transformWith(new ColorTransformer)
+            ->transformWith(new UserColorTransformer)
             ->toArray()['data'];
     }
 
@@ -59,56 +59,17 @@ class ColorService
     /**
      * @throws Exception
      */
-    public function getByValue(string $value): array
+    public function getByName(string $name): array
     {
         $this->defineUserData();
 
-        $result = $this->model::getByValue($value)->get();
+        $result = $this->model::getByName($name)->get();
 
-        $this->logger->logMessage($this->causer->name . ' fetched colors by value: ' . $value . '.');
-
-        return fractal()
-            ->collection($result)
-            ->transformWith(new ColorTransformer)
-            ->toArray()['data'];
-    }
-
-    public function getSiteColors(string $site): array
-    {
-        $this->defineUserData();
-
-        $result = $this->model::getByEntity($site)->get();
-
-        $name = $this->causer ? $this->causer->name : 'Guest';
-
-        $this->logger->logMessage($name . ' fetched colors by site: ' . $site . '.');
+        $this->logger->logMessage($this->causer->name . ' fetched user colors by name: ' . $name . '.');
 
         return fractal()
             ->collection($result)
-            ->transformWith(new ColorTransformer)
-            ->toArray()['data'];
-    }
-
-    /**
-     * @param  $id
-     *
-     * @throws Exception
-     */
-
-    /**
-     * @throws Exception
-     */
-    public function getByEntity(string $entity): array
-    {
-        $this->defineUserData();
-
-        $result = $this->model::getByEntity($entity)->get();
-
-        $this->logger->logMessage($this->causer->name . ' fetched colors by entity: ' . $entity . '.');
-
-        return fractal()
-            ->collection($result)
-            ->transformWith(new ColorTransformer)
+            ->transformWith(new UserColorTransformer)
             ->toArray()['data'];
     }
 
@@ -125,7 +86,7 @@ class ColorService
 
         return fractal()
             ->item($result)
-            ->transformWith(new ColorTransformer)
+            ->transformWith(new UserColorTransformer)
             ->toArray()['data'];
     }
 
@@ -138,11 +99,11 @@ class ColorService
 
         $result = $this->model::create($data);
 
-        $this->logger->log($this->causer->name, $result->getValue(), $this->entity, 'created');
+        $this->logger->log($this->causer->name, $result->getName(), $this->entity, 'created');
 
         return fractal()
             ->item($result)
-            ->transformWith(new ColorTransformer)
+            ->transformWith(new UserColorTransformer)
             ->toArray()['data'];
     }
 
@@ -157,11 +118,11 @@ class ColorService
 
         $result->update($data);
 
-        $this->logger->log($this->causer->name, $result->getValue(), $this->entity, 'updated');
+        $this->logger->log($this->causer->name, $result->getName(), $this->entity, 'updated');
 
         return fractal()
             ->item($result->fresh())
-            ->transformWith(new ColorTransformer)
+            ->transformWith(new UserColorTransformer)
             ->toArray()['data'];
 
     }
@@ -177,6 +138,6 @@ class ColorService
 
         $model->delete();
 
-        $this->logger->log($this->causer->name, $model->getValue(), $this->entity, 'deleted');
+        $this->logger->log($this->causer->name, $model->getName(), $this->entity, 'deleted');
     }
 }

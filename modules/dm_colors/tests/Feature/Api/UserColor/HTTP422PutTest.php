@@ -4,232 +4,235 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-color-api-422');
+uses()->group('user-color-api-422-put');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedColorData = updatedColorData) {
+describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = updatedUserColorData) {
     /**
      * USER ID TESTS
      */
-    $updatedColorData['user_id'] = '';
+    $updatedUserColorData['user_id'] = '';
     test('invalid user_id > empty', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['user_id']],
         ['errors' => [
             'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
-    $updatedColorData['user_id'] = 'user_id';
+    $updatedUserColorData['user_id'] = 'user_id';
     test('invalid user_id > string', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['user_id']],
         ['errors' => [
             'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
-    $updatedColorData['user_id'] = false;
+    $updatedUserColorData['user_id'] = false;
     test('invalid user_id > false', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['user_id']],
         ['errors' => [
             'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
-    $updatedColorData['user_id'] = [];
+    $updatedUserColorData['user_id'] = [];
     test('invalid user_id > empty array', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['user_id']],
         ['errors' => [
             'user_id' => ['The user id field must be an integer.'],
         ]]
     ));
 
-    $updatedColorData['user_id'] = updatedColorData['user_id'];
+    $updatedUserColorData['user_id'] = updatedUserColorData['user_id'];
 
     /**
-     * ENTITY TESTS
+     * NAME TESTS
      */
-    $updatedColorData['entity'] = '';
-    test('invalid entity > empty', apiTest(
+    $updatedUserColorData['name'] = '';
+    test('invalid name > empty', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
-        ['errors' => ['entity']],
+        $updatedUserColorData,
+        ['errors' => ['name']],
         ['errors' => [
-            'entity' => ['The entity field is required.'],
+            'name' => ['The name field is required.'],
         ]]
     ));
 
-    $updatedColorData['entity'] = 1;
-    test('invalid entity > integer', apiTest(
+    $updatedUserColorData['name'] = 1;
+    test('invalid name > integer', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
-        ['errors' => ['entity']],
+        $updatedUserColorData,
+        ['errors' => ['name']],
         ['errors' => [
-            'entity' => ['The entity field must be a string.'],
+            'name' => ['The name field must be a string.'],
         ]]
     ));
 
-    $updatedColorData['entity'] = false;
-    test('invalid entity > false', apiTest(
+    $updatedUserColorData['name'] = false;
+    test('invalid name > false', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
-        ['errors' => ['entity']],
+        $updatedUserColorData,
+        ['errors' => ['name']],
         ['errors' => [
-            'entity' => ['The entity field must be a string.'],
+            'name' => ['The name field must be a string.'],
         ]]
     ));
 
-    $updatedColorData['entity'] = true;
-    test('invalid entity > true', apiTest(
+    $updatedUserColorData['name'] = true;
+    test('invalid name > true', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
-        ['errors' => ['entity']],
+        $updatedUserColorData,
+        ['errors' => ['name']],
         ['errors' => [
-            'entity' => ['The entity field must be a string.'],
+            'name' => ['The name field must be a string.'],
         ]]
     ));
 
-    $updatedColorData['entity'] = [];
-    test('invalid entity > empty array', apiTest(
+    $updatedUserColorData['name'] = [];
+    test('invalid name > empty array', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
-        ['errors' => ['entity']],
+        $updatedUserColorData,
+        ['errors' => ['name']],
         ['errors' => [
-            'entity' => ['The entity field is required.'],
+            'name' => ['The name field is required.'],
         ]]
     ));
 
-    $updatedColorData['entity'] = updatedColorData['entity'];
+    $updatedUserColorData['name'] = updatedUserColorData['name'];
 
     /**
      * VALUE TESTS
      */
-    $updatedColorData['value'] = '';
+    $updatedUserColorData['value'] = '';
     test('invalid value > empty', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['value']],
         ['errors' => [
             'value' => ['The value field is required.'],
         ]]
     ));
 
-    $updatedColorData['value'] = 1;
+    $updatedUserColorData['value'] = 1;
     test('invalid value > integer', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['value']],
         ['errors' => [
             'value' => ['The value field must be a string.'],
         ]]
     ));
 
-    $updatedColorData['value'] = false;
+    $updatedUserColorData['value'] = false;
     test('invalid value > false', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['value']],
         ['errors' => [
             'value' => ['The value field must be a string.'],
         ]]
     ));
 
-    $updatedColorData['value'] = true;
+    $updatedUserColorData['value'] = true;
     test('invalid value > true', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['value']],
         ['errors' => [
             'value' => ['The value field must be a string.'],
         ]]
     ));
 
-    $updatedColorData['value'] = [];
+    $updatedUserColorData['value'] = [];
     test('invalid value > empty array', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['value']],
         ['errors' => [
             'value' => ['The value field is required.'],
         ]]
     ));
 
-    $updatedColorData['value'] = updatedColorData['value'];
+    $updatedUserColorData['value'] = updatedUserColorData['value'];
 
     /**
      * NEW TESTS
      */
-    $updatedColorData['new'] = '';
+    $updatedUserColorData['new'] = '';
     test('invalid new > empty', apiTest(
         'PUT',
-        'colors.update',
-        422, $updatedColorData,
+        'user-colors.update',
+        422, $updatedUserColorData,
         ['errors' => ['new']],
         ['errors' => [
             'new' => ['The new field is required.'],
         ]]
     ));
 
-    $updatedColorData['new'] = 'not_a_boolean';
+    $updatedUserColorData['new'] = 'not_a_boolean';
     test('invalid new > string', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['new']],
         ['errors' => [
             'new' => ['The new field must be true or false.'],
         ]]
     ));
 
-    $updatedColorData['new'] = [];
+    $updatedUserColorData['new'] = [];
     test('invalid new > empty array', apiTest(
         'PUT',
-        'colors.update',
+        'user-colors.update',
         422,
-        $updatedColorData,
+        $updatedUserColorData,
         ['errors' => ['new']],
         ['errors' => [
             'new' => ['The new field is required.'],
         ]]
     ));
 
-    $updatedColorData['new'] = updatedColorData['new'];
+    $updatedUserColorData['new'] = updatedUserColorData['new'];
 });

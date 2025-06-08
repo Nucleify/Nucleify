@@ -4,21 +4,23 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-use App\Http\Controllers\ColorController;
-use App\Http\Requests\Color\PostRequest;
-use App\Http\Requests\Color\PutRequest;
-use App\Models\Color;
-use App\Services\ColorService;
+use App\Http\Controllers\UserColorController;
+use App\Http\Requests\UserColor\PostRequest;
+use App\Http\Requests\UserColor\PutRequest;
+use App\Models\UserColor;
+use App\Services\UserColorService;
 use Illuminate\Http\Request;
+
+uses()->group('user-color-controller');
 
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
-    $this->controller = app()->makeWith(ColorController::class, ['colorService' => app()->make(ColorService::class)]);
+    $this->controller = app()->makeWith(UserColorController::class, ['userColorService' => app()->make(UserColorService::class)]);
 });
 
 test('index > success', function (): void {
-    Color::factory()->count(3)->create();
+    UserColor::factory()->count(3)->create();
 
     $request = new Request;
 
@@ -36,48 +38,27 @@ test('countByCreatedLastWeek > success', function (): void {
     expect($response->getStatusCode())->toEqual(200);
 });
 
-test('getByEntity > success', function (): void {
-    $entity = 'article';
-    $entities = ['other', 'science', $entity];
+test('getByName > success', function (): void {
+    $names = ['other', 'science', 'article'];
 
-    foreach ($entities as $ent) {
-        Color::factory()->create(['entity' => $ent]);
+    foreach ($names as $name) {
+        UserColor::factory()->create(['name' => $name]);
     }
 
-    $response = $this->controller->getByEntity($entity);
+    $response = $this->controller->getByName($name);
     $data = $response->getData(true);
 
     expect($response->getStatusCode())->toEqual(200);
 
-    foreach ($data as $color) {
-        expect($color['entity'])->toEqual($entity);
+    foreach ($data as $userColor) {
+        expect($userColor['name'])->toEqual($name);
     }
 
-    expect(count($data))->toEqual(Color::where('entity', $entity)->count());
-});
-
-test('getSiteColors > success', function (): void {
-    $entity = 'article';
-    $entities = ['other', 'science', $entity];
-
-    foreach ($entities as $ent) {
-        Color::factory()->create(['entity' => $ent]);
-    }
-
-    $response = $this->controller->getSiteColors($entity);
-    $data = $response->getData(true);
-
-    expect($response->getStatusCode())->toEqual(200);
-
-    foreach ($data as $color) {
-        expect($color['entity'])->toEqual($entity);
-    }
-
-    expect(count($data))->toEqual(Color::where('entity', $entity)->count());
+    expect(count($data))->toEqual(UserColor::where('name', $name)->count());
 });
 
 test('show > success', function (): void {
-    $color = Color::factory()->create();
+    $color = UserColor::factory()->create();
 
     $response = $this->controller->show($color->id);
 
@@ -88,7 +69,7 @@ test('show > success', function (): void {
 test('store > success', function (): void {
     $request = Mockery::mock(PostRequest::class);
     $request->shouldReceive('validated')
-        ->andReturn(colorData);
+        ->andReturn(userColorData);
 
     $response = $this->controller->store($request);
 
@@ -97,11 +78,11 @@ test('store > success', function (): void {
 });
 
 test('update > success', function (): void {
-    $color = Color::factory()->create();
+    $color = UserColor::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
     $request->shouldReceive('validated')
-        ->andReturn(updatedColorData);
+        ->andReturn(updatedUserColorData);
 
     $response = $this->controller->update($request, $color->id);
 
@@ -110,10 +91,10 @@ test('update > success', function (): void {
 });
 
 test('delete > success', function (): void {
-    $color = Color::factory()->create();
+    $color = UserColor::factory()->create();
 
     $response = $this->controller->destroy($color->id);
 
     expect($response->getStatusCode())->toEqual(200);
-    $this->assertDatabaseMissing('colors', ['id' => $color->id]);
+    $this->assertDatabaseMissing('user_colors', ['id' => $color->id]);
 });
