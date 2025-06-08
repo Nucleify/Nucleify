@@ -4,23 +4,23 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-uses()->group('user-color-controller');
+uses()->group('system-color-controller');
 
-use App\Http\Controllers\UserColorController;
-use App\Http\Requests\UserColor\PostRequest;
-use App\Http\Requests\UserColor\PutRequest;
-use App\Models\UserColor;
-use App\Services\UserColorService;
+use App\Http\Controllers\SystemColorController;
+use App\Http\Requests\SystemColor\PostRequest;
+use App\Http\Requests\SystemColor\PutRequest;
+use App\Models\SystemColor;
+use App\Services\SystemColorService;
 use Illuminate\Http\Request;
 
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
-    $this->controller = app()->makeWith(UserColorController::class, ['userColorService' => app()->make(UserColorService::class)]);
+    $this->controller = app()->makeWith(SystemColorController::class, ['systemColorService' => app()->make(SystemColorService::class)]);
 });
 
 test('index > success', function (): void {
-    UserColor::factory()->count(3)->create();
+    SystemColor::factory()->count(3)->create();
 
     $request = new Request;
 
@@ -42,7 +42,7 @@ test('getByName > success', function (): void {
     $names = ['other', 'science', 'article'];
 
     foreach ($names as $name) {
-        UserColor::factory()->create(['name' => $name]);
+        SystemColor::factory()->create(['name' => $name]);
     }
 
     $response = $this->controller->getByName($name);
@@ -54,11 +54,11 @@ test('getByName > success', function (): void {
         expect($userColor['name'])->toEqual($name);
     }
 
-    expect(count($data))->toEqual(UserColor::where('name', $name)->count());
+    expect(count($data))->toEqual(SystemColor::where('name', $name)->count());
 });
 
 test('show > success', function (): void {
-    $color = UserColor::factory()->create();
+    $color = SystemColor::factory()->create();
 
     $response = $this->controller->show($color->id);
 
@@ -69,7 +69,7 @@ test('show > success', function (): void {
 test('store > success', function (): void {
     $request = Mockery::mock(PostRequest::class);
     $request->shouldReceive('validated')
-        ->andReturn(userColorData);
+        ->andReturn(systemColorData);
 
     $response = $this->controller->store($request);
 
@@ -78,11 +78,11 @@ test('store > success', function (): void {
 });
 
 test('update > success', function (): void {
-    $color = UserColor::factory()->create();
+    $color = SystemColor::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
     $request->shouldReceive('validated')
-        ->andReturn(updatedUserColorData);
+        ->andReturn(updatedSystemColorData);
 
     $response = $this->controller->update($request, $color->id);
 
@@ -91,10 +91,10 @@ test('update > success', function (): void {
 });
 
 test('delete > success', function (): void {
-    $color = UserColor::factory()->create();
+    $color = SystemColor::factory()->create();
 
     $response = $this->controller->destroy($color->id);
 
     expect($response->getStatusCode())->toEqual(200);
-    $this->assertDatabaseMissing('user_colors', ['id' => $color->id]);
+    $this->assertDatabaseMissing('system_colors', ['id' => $color->id]);
 });
