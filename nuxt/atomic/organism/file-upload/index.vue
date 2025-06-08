@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-import { FileUploadInterface } from 'atomic'
+import type { FileUploadInterface } from 'atomic'
 
 const props = defineProps<FileUploadInterface>()
 </script>

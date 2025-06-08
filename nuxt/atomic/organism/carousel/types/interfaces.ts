@@ -1,25 +1,25 @@
-import { CarouselResponsiveOptions } from 'primevue'
+import type { CarouselResponsiveOptions } from 'primevue'
 
-import { ElementDirectionType } from 'atomic'
+import type { ElementDirectionType } from 'atomic'
 
 export interface CarouselInterface {
-  value?: any // eslint-disable-line
+  value?: unknown[]
   page?: number
   numVisible?: number
   numScroll?: number
   responsiveOptions?: CarouselResponsiveOptions[]
   orientation?: ElementDirectionType
   verticalViewPortHeight?: string
-  containerClass?: any // eslint-disable-line
-  contentClass?: any // eslint-disable-line
-  indicatorsContentClass?: any // eslint-disable-line
+  containerClass?: string
+  contentClass?: string
+  indicatorsContentClass?: string
   circular?: boolean
   autoplayInterval?: number
   showNavigators?: boolean
   showIndicators?: boolean
   prevButtonProps?: object
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

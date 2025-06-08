@@ -1,5 +1,5 @@
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 
-import { CardObjectInterface } from 'atomic'
+import type { CardObjectInterface } from 'atomic'
 
 export type CardResultsType = Ref<CardObjectInterface[] | undefined>

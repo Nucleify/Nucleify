@@ -131,7 +131,7 @@
 </template>
 
 <script setup lang="ts">
-import { SwiperInterface } from '.'
+import type { SwiperInterface } from 'atomic'
 
 const props = defineProps<SwiperInterface>()
 </script>

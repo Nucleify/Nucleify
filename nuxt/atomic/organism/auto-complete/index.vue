@@ -59,7 +59,7 @@
 </template>
 
 <script setup lang="ts">
-import { AutoCompleteInterface } from 'atomic'
+import type { AutoCompleteInterface } from 'atomic'
 
 const props = defineProps<AutoCompleteInterface>()
 </script>

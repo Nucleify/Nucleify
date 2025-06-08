@@ -66,34 +66,35 @@
 
     <dm-card-dashboard
       :data="cards"
-      :getData="getAllCards"
+      :get-data="getAllCards"
       :loading="!allLoaded"
     />
     <dm-feature-dashboard
       :data="features"
-      :getData="getAllFeatures"
+      :get-data="getAllFeatures"
       :loading="!allLoaded"
     />
     <dm-link-dashboard
       :data="links"
-      :getData="getAllLinks"
+      :get-data="getAllLinks"
       :loading="!allLoaded"
     />
     <dm-question-dashboard
       :data="questions"
-      :getData="getAllQuestions"
+      :get-data="getAllQuestions"
       :loading="!allLoaded"
     />
     <dm-technology-dashboard
       :data="technologies"
-      :getData="getAllTechnologies"
+      :get-data="getAllTechnologies"
       :loading="!allLoaded"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, Ref, watch } from 'vue'
+import type { Ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 import {
   cardRequests,

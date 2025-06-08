@@ -1,4 +1,4 @@
-import { VisibleType } from 'atomic'
+import type { VisibleType } from 'atomic'
 
 export interface VisibleInterface {
   create: VisibleType

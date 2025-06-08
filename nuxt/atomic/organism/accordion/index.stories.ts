@@ -1,18 +1,17 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Accordion as AdAccordion } from './'
+import { AdAccordion } from '.'
 
 const meta = {
   title: 'Organisms/Accordion',
   component: AdAccordion,
-  tags: ['autodocs'],
   args: {
     panels: [
-      { value: 1, header: 'Header 1', content: 'Content header 1' },
-      { value: 2, header: 'Header 2', content: 'Content header 2' },
-      { value: 3, header: 'Header 3', content: 'Content header 3' },
+      { index: 0, header: 'Header 1', content: 'Content header 1' },
+      { index: 1, header: 'Header 2', content: 'Content header 2' },
+      { index: 2, header: 'Header 3', content: 'Content header 3' },
     ],
-    value: 1,
+    value: 0,
     multiple: false,
     lazy: false,
     expandIcon: undefined,

@@ -1,9 +1,9 @@
-import { FlashToastFunctionType, HttpMethodType } from 'atomic'
+import type { HttpMethodType } from 'atomic'
 
 export interface ApiHandleOptionsInterface<T> {
   url: string
   method?: HttpMethodType
-  data?: Record<string, any> | null
+  data?: Record<string, unknown> | null
   id?: string | number | null
   loading?: boolean
   setLoading?: (value: boolean) => void
@@ -13,7 +13,7 @@ export interface ApiHandleOptionsInterface<T> {
 export interface ApiRequestOptions {
   url: string
   method?: HttpMethodType
-  data?: Record<string, any> | null
+  data?: Record<string, unknown> | null
   id?: string | number | null
-  params?: Record<string, any>
+  params?: Record<string, unknown>
 }

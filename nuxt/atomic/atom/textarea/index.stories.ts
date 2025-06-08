@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Textarea as AdTextarea } from './'
+import { AdTextarea } from '.'
 
 const meta = {
   title: 'Atoms/Textarea',
   component: AdTextarea,
-  tags: ['autodocs'],
   args: {
     adType: undefined,
     value: [],

@@ -1,4 +1,4 @@
-import { LinkObjectInterface } from 'atomic'
+import type { LinkObjectInterface } from 'atomic'
 
 export const mockLink: LinkObjectInterface = {
   id: 999,

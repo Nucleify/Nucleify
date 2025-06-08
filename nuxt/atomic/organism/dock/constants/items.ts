@@ -2,7 +2,8 @@
 // @ts-nocheck
 import { ref } from 'vue'
 
-import { DockItemInterface, logout } from 'atomic'
+import type { DockItemInterface } from 'atomic'
+import { logout } from 'atomic'
 
 const createDockItem = (
   icon?: string,

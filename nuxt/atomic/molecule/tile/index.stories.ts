@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Tile as AdTile } from './'
+import { AdTile } from '.'
 
 const meta = {
   title: 'Molecules/Tile',
   component: AdTile,
-  tags: ['autodocs'],
   args: {
     adType: 'main',
     header: '',

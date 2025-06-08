@@ -1,12 +1,14 @@
 import { ref } from 'vue'
 
-import {
+import type {
   CloseDialogType,
   ContactObjectInterface,
   ContactRequestsInterface,
   EntityCountResultsType,
   EntityResultsType,
   UseLoadingInterface,
+} from 'atomic'
+import {
   apiHandle,
   sessionStorageGetItem,
   useApiSuccess,

@@ -1,4 +1,4 @@
-import { ArticleObjectInterface } from 'atomic'
+import type { ArticleObjectInterface } from 'atomic'
 
 export const mockArticle: ArticleObjectInterface = {
   id: 999999,

@@ -6,8 +6,8 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="card"
-      headerText="Manage Cards"
-      buttonText="New Card"
+      header-text="Manage Cards"
+      button-text="New Card"
     />
 
     <ad-dialog
@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  useCardFields,
-  DashboardInterface,
-  cardRequests,
-  useDialog,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { useCardFields, cardRequests, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

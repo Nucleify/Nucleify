@@ -48,7 +48,9 @@
 </template>
 
 <script setup lang="ts">
-import { InputNumberInterface } from 'atomic'
+import InputNumber from 'primevue/inputnumber' // Import for Storybook
+
+import type { InputNumberInterface } from 'atomic'
 
 const props = defineProps<InputNumberInterface>()
 </script>

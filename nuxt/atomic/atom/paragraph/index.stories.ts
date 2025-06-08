@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Paragraph as AdParagraph } from './'
+import { AdParagraph } from '.'
 
 const meta = {
   title: 'Atoms/Paragraph',
   component: AdParagraph,
-  tags: ['autodocs'],
   args: {
     text: 'Paragraph',
   },
