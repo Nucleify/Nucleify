@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Color;
+use App\Models\UserColor;
 use Illuminate\Database\Seeder;
 
-class ColorSeeder extends Seeder
+class UserColorSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class ColorSeeder extends Seeder
         $count = (env('APP_ENV') === 'production') ? 100 : 40;
 
         for ($i = 1; $i <= 6; $i++) {
-            Color::factory($count)->create([
+            UserColor::factory($count)->create([
                 'user_id' => $i,
             ]);
         }

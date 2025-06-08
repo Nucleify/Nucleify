@@ -2,13 +2,13 @@
 
 namespace App\Contracts;
 
-interface ColorContract
+interface UserColorContract
 {
     public function getId(): int;
 
     public function getUserId(): int;
 
-    public function getEntity(): string;
+    public function getName(): string;
 
     public function getValue(): string;
 

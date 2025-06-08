@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('colors', function (Blueprint $table) {
+        Schema::create('user_colors', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->string('entity');
+            $table->string('name');
             $table->string('value');
             $table->boolean('new');
             $table->timestamps();
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('colors');
+        Schema::dropIfExists('user_colors');
     }
 };
