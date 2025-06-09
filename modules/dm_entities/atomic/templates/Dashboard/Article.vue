@@ -6,8 +6,8 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      headerText="Manage Articles"
-      buttonText="New Article"
+      header-text="Manage Articles"
+      button-text="New Article"
     />
 
     <ad-dialog
@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  useArticleFields,
-  DashboardInterface,
-  articleRequests,
-  useDialog,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { useArticleFields, articleRequests, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

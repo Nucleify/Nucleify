@@ -6,8 +6,8 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      headerText="Manage Contacts"
-      buttonText="New Contact"
+      header-text="Manage Contacts"
+      button-text="New Contact"
     />
 
     <ad-dialog
@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  useContactFields,
-  DashboardInterface,
-  contactRequests,
-  useDialog,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { useContactFields, contactRequests, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

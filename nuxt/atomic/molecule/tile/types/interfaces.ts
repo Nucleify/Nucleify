@@ -1,4 +1,4 @@
-import { AdTypeType } from 'atomic'
+import type { AdTypeType } from 'atomic'
 
 export interface TileInterface {
   adType?: AdTypeType

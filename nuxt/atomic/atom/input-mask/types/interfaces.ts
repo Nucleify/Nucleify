@@ -1,4 +1,4 @@
-import { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
+import type { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
 
 export interface InputMaskInterface {
   adType?: AdTypeType
@@ -17,8 +17,8 @@ export interface InputMaskInterface {
   variant?: ElementVariantType
   fluid?: boolean
   disabled?: boolean
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

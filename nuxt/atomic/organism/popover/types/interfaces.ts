@@ -1,6 +1,6 @@
-import { PopoverBreakpoints } from 'primevue/popover'
+import type { PopoverBreakpoints } from 'primevue/popover'
 
-import { ElementAppendTo } from 'atomic'
+import type { ElementAppendTo } from 'atomic'
 
 export interface PopoverInterface {
   dismissable?: boolean
@@ -8,9 +8,9 @@ export interface PopoverInterface {
   baseZIndex?: number
   autoZIndex?: boolean
   breakpoints?: PopoverBreakpoints
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
   closeOnEscape?: boolean
   src?: string

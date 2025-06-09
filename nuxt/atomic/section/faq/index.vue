@@ -1,21 +1,27 @@
 <template>
   <div class="faq-section container">
-    <ad-heading :tag="6" text="FAQ" class="faq-section-header" />
+    <ad-paragraph text="FAQ" class="faq-section-header" />
 
     <div class="faq-section-questions">
-      <ad-accordion v-if="column1" :panels="column1" ad-type="main" />
-      <ad-accordion v-if="column2" :panels="column2" ad-type="main" />
+      <ad-accordion
+        v-if="column1"
+        :panels="column1"
+        ad-type="main"
+        :hexagons="true"
+      />
+      <ad-accordion
+        v-if="column2"
+        :panels="column2"
+        ad-type="main"
+        :hexagons="true"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  SectionFaqInterface,
-  QuestionObjectInterface,
-  questionRequests,
-  useSplitQuestions,
-} from 'atomic'
+import type { SectionFaqInterface, QuestionObjectInterface } from 'atomic'
+import { questionRequests, useSplitQuestions } from 'atomic'
 
 const props = defineProps<SectionFaqInterface>()
 

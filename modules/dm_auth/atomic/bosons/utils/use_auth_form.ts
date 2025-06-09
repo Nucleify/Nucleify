@@ -1,11 +1,13 @@
+import type {
+  LoginFieldsInterface,
+  RegisterFieldsInterface,
+  UseAuthFormInterface,
+} from 'atomic'
 import {
   loginFields,
   loginInputs,
   registerFields,
   registerInputs,
-  LoginFieldsInterface,
-  RegisterFieldsInterface,
-  UseAuthFormInterface,
   navigateTo,
   apiHandle,
 } from 'atomic'

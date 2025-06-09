@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, type Mock } from 'vitest'
 import * as atomic from 'atomic'
 
 describe('apiRequest', () => {
@@ -8,7 +8,9 @@ describe('apiRequest', () => {
     for (const method of atomic.httpMethods) {
       atomic.mockGlobalFetch(vi, { ok: method })
       const res = await atomic.apiRequest('/api/test', method, { a: 1 })
-      expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+      expect(
+        (globalThis as unknown as { $fetch: Mock }).$fetch
+      ).toHaveBeenCalledWith(
         '/api/test',
         expect.objectContaining({ method, body: { a: 1 } })
       )
@@ -19,9 +21,8 @@ describe('apiRequest', () => {
   it('calls $fetch with id in url', async () => {
     atomic.mockGlobalFetch(vi, { id: 2 })
     await atomic.apiRequest('/api/test', 'GET', null, 2)
-    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
-      '/api/test/2',
-      expect.anything()
-    )
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith('/api/test/2', expect.anything())
   })
 })

@@ -1,4 +1,4 @@
-import { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
+import type { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
 
 export interface InputOtpInterface {
   adType?: AdTypeType
@@ -14,9 +14,9 @@ export interface InputOtpInterface {
   length?: number
   mask?: boolean
   integerOnly?: boolean
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

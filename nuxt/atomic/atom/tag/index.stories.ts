@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Tag as AdTag } from './'
+import { AdTag } from '.'
 
 const meta = {
   title: 'Atoms/Tag',
   component: AdTag,
-  tags: ['autodocs'],
   args: {
     value: 'Text',
     severity: 'success',

@@ -21,10 +21,10 @@
       <form @submit.prevent="submitForm(loginFields)">
         <ad-float-label v-for="(field, index) in loginInputs" :key="index">
           <ad-input-text
+            :id="field.id"
             v-model="loginFields[field.model]"
             :ad-type="'main'"
             :type="field.type"
-            :id="field.id"
             class="auth-input-text"
             :autofocus="field.autofocus"
           />

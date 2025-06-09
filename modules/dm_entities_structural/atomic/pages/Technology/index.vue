@@ -12,7 +12,7 @@
     />
     <dm-technology-dashboard
       :data="results"
-      :getData="getAllTechnologies"
+      :get-data="getAllTechnologies"
       :loading="loading"
     />
   </div>

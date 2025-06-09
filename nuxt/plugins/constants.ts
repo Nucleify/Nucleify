@@ -1,4 +1,5 @@
-import { NuxtApp, defineNuxtPlugin } from 'nuxt/app'
+import type { NuxtApp } from 'nuxt/app'
+import { defineNuxtPlugin } from 'nuxt/app'
 
 import { registerGlobalConstants } from 'atomic'
 

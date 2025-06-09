@@ -10,6 +10,10 @@
     left: 0;
     right: 0;
     bottom: 0;
+
+    .hexagon-row-container {
+      top: 80px;
+    }
   }
 
   .footer-content-container {
@@ -78,6 +82,12 @@
             font-weight: 300;
             max-width: max-content;
             transition: all 150ms;
+
+            p.header {
+              font-size: 1.4em;
+              font-weight: 600;
+              font-family: $font-inter-sans-serif;
+            }
 
             &:hover {
               color: $primary-color;

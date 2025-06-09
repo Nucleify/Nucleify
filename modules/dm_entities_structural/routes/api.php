@@ -23,124 +23,124 @@ Route::prefix('api')->group(function (): void {
 
     Route::middleware(['web', 'auth'])->group(function (): void {
 
-    /**
-     *  Cards
-     */
-    Route::prefix('cards')->controller(CardController::class)->group(function (): void {
-        Route::get('/', 'index')
-            ->name('cards.index');
-        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
-            ->name('cards.countByCreatedLastWeek');
-        Route::get('/get-by-category/{category}', 'getByCategory')
-            ->name('cards.getByCategory');
-        Route::get('/{id}', 'show')
-            ->name('cards.show');
-        Route::post('/', 'store')
-            ->name('cards.store');
-        Route::put('/{id}', 'update')
-            ->name('cards.update');
-        Route::delete('/{id}', 'destroy')
-            ->name('cards.destroy');
-    });
+        /**
+         *  Cards
+         */
+        Route::prefix('cards')->controller(CardController::class)->group(function (): void {
+            Route::get('/', 'index')
+                ->name('cards.index');
+            Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+                ->name('cards.countByCreatedLastWeek');
+            Route::get('/get-by-category/{category}', 'getByCategory')
+                ->name('cards.getByCategory');
+            Route::get('/{id}', 'show')
+                ->name('cards.show');
+            Route::post('/', 'store')
+                ->name('cards.store');
+            Route::put('/{id}', 'update')
+                ->name('cards.update');
+            Route::delete('/{id}', 'destroy')
+                ->name('cards.destroy');
+        });
 
-    /**
-     *  Colors
-     */
-    Route::prefix('colors')->controller(ColorController::class)->group(function (): void {
-        Route::get('/', 'index')
-            ->name('colors.index');
-        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
-            ->name('colors.countByCreatedLastWeek');
-        Route::get('/get-by-entity/{entity}', 'getByEntity')
-            ->name('colors.getByEntity');
-        Route::get('/get-site-colors/{site}', 'getSiteColors')
-            ->name('colors.getSiteColors');
-        Route::get('/{id}', 'show')
-            ->name('colors.show');
-        Route::post('/', 'store')
-            ->name('colors.store');
-        Route::put('/{id}', 'update')
-            ->name('colors.update');
-        Route::delete('/{id}', 'destroy')
-            ->name('colors.destroy');
-    });
+        /**
+         *  Colors
+         */
+        Route::prefix('colors')->controller(ColorController::class)->group(function (): void {
+            Route::get('/', 'index')
+                ->name('colors.index');
+            Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+                ->name('colors.countByCreatedLastWeek');
+            Route::get('/get-by-entity/{entity}', 'getByEntity')
+                ->name('colors.getByEntity');
+            Route::get('/get-site-colors/{site}', 'getSiteColors')
+                ->name('colors.getSiteColors');
+            Route::get('/{id}', 'show')
+                ->name('colors.show');
+            Route::post('/', 'store')
+                ->name('colors.store');
+            Route::put('/{id}', 'update')
+                ->name('colors.update');
+            Route::delete('/{id}', 'destroy')
+                ->name('colors.destroy');
+        });
 
-    /**
-     *  Features
-     */
-    Route::prefix('features')->controller(FeatureController::class)->group(function (): void {
-        Route::get('/', 'index')
-            ->name('features.index');
-        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
-            ->name('features.countByCreatedLastWeek');
-        Route::get('/get-by-category/{category}', 'getByCategory')
-            ->name('features.getByCategory');
-        Route::get('/{id}', 'show')
-            ->name('features.show');
-        Route::post('/', 'store')
-            ->name('features.store');
-        Route::put('/{id}', 'update')
-            ->name('features.update');
-        Route::delete('/{id}', 'destroy')
-            ->name('features.destroy');
-    });
+        /**
+         *  Features
+         */
+        Route::prefix('features')->controller(FeatureController::class)->group(function (): void {
+            Route::get('/', 'index')
+                ->name('features.index');
+            Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+                ->name('features.countByCreatedLastWeek');
+            Route::get('/get-by-category/{category}', 'getByCategory')
+                ->name('features.getByCategory');
+            Route::get('/{id}', 'show')
+                ->name('features.show');
+            Route::post('/', 'store')
+                ->name('features.store');
+            Route::put('/{id}', 'update')
+                ->name('features.update');
+            Route::delete('/{id}', 'destroy')
+                ->name('features.destroy');
+        });
 
-    /**
-     *  Links
-     */
-    Route::prefix('links')->controller(LinkController::class)->group(function (): void {
-        Route::get('/', 'index')
-            ->name('links.index');
-        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
-            ->name('links.countByCreatedLastWeek');
-        Route::get('/get-by-category/{category}', 'getByCategory')
-            ->name('links.getByCategory');
-        Route::get('/{id}', 'show')
-            ->name('links.show');
-        Route::post('/', 'store')
-            ->name('links.store');
-        Route::put('/{id}', 'update')
-            ->name('links.update');
-        Route::delete('/{id}', 'destroy')
-            ->name('links.destroy');
-    });
+        /**
+         *  Links
+         */
+        Route::prefix('links')->controller(LinkController::class)->group(function (): void {
+            Route::get('/', 'index')
+                ->name('links.index');
+            Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+                ->name('links.countByCreatedLastWeek');
+            Route::get('/get-by-category/{category}', 'getByCategory')
+                ->name('links.getByCategory');
+            Route::get('/{id}', 'show')
+                ->name('links.show');
+            Route::post('/', 'store')
+                ->name('links.store');
+            Route::put('/{id}', 'update')
+                ->name('links.update');
+            Route::delete('/{id}', 'destroy')
+                ->name('links.destroy');
+        });
 
-    /**
-     *  Questions
-     */
-    Route::prefix('questions')->controller(QuestionController::class)->group(function (): void {
-        Route::get('/', 'index')
-            ->name('questions.index');
-        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
-            ->name('questions.countByCreatedLastWeek');
-        Route::get('/get-by-category/{category}', 'getByCategory')
-            ->name('questions.getByCategory');
-        Route::get('/{id}', 'show')
-            ->name('questions.show');
-        Route::post('/', 'store')
-            ->name('questions.store');
-        Route::put('/{id}', 'update')
-            ->name('questions.update');
-        Route::delete('/{id}', 'destroy')
-            ->name('questions.destroy');
-    });
+        /**
+         *  Questions
+         */
+        Route::prefix('questions')->controller(QuestionController::class)->group(function (): void {
+            Route::get('/', 'index')
+                ->name('questions.index');
+            Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+                ->name('questions.countByCreatedLastWeek');
+            Route::get('/get-by-category/{category}', 'getByCategory')
+                ->name('questions.getByCategory');
+            Route::get('/{id}', 'show')
+                ->name('questions.show');
+            Route::post('/', 'store')
+                ->name('questions.store');
+            Route::put('/{id}', 'update')
+                ->name('questions.update');
+            Route::delete('/{id}', 'destroy')
+                ->name('questions.destroy');
+        });
 
-    /**
-     *  Technologies
-     */
-    Route::prefix('technologies')->controller(TechnologyController::class)->group(function (): void {
-        Route::get('/', 'index')
-            ->name('technologies.index');
-        Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
-            ->name('technologies.countByCreatedLastWeek');
-        Route::get('/get-by-category/{category}', 'getByCategory')
-            ->name('technologies.getByCategory');
-        Route::get('/{id}', 'show')
-            ->name('technologies.show');
-        Route::post('/', 'store')
-            ->name('technologies.store');
-        Route::put('/{id}', 'update')
-            ->name('technologies.update');
+        /**
+         *  Technologies
+         */
+        Route::prefix('technologies')->controller(TechnologyController::class)->group(function (): void {
+            Route::get('/', 'index')
+                ->name('technologies.index');
+            Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
+                ->name('technologies.countByCreatedLastWeek');
+            Route::get('/get-by-category/{category}', 'getByCategory')
+                ->name('technologies.getByCategory');
+            Route::get('/{id}', 'show')
+                ->name('technologies.show');
+            Route::post('/', 'store')
+                ->name('technologies.store');
+            Route::put('/{id}', 'update')
+                ->name('technologies.update');
             Route::delete('/{id}', 'destroy')
                 ->name('technologies.destroy');
         });

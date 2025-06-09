@@ -12,7 +12,7 @@
     />
     <dm-activity-dashboard
       :data="results"
-      :getData="getAllActivities"
+      :get-data="getAllActivities"
       :loading="loading"
     />
   </div>

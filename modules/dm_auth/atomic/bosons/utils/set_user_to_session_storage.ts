@@ -1,4 +1,5 @@
-import { sessionStorageSetItem, UserObjectInterface } from 'atomic'
+import type { UserObjectInterface } from 'atomic'
+import { sessionStorageSetItem } from 'atomic'
 
 export function setUserToSessionStorage(user: UserObjectInterface): void {
   const sanitizedUser: UserObjectInterface = {

@@ -8,7 +8,7 @@
           </DeferredContent>
         </div>
         <div class="description-container">
-          <ad-heading :tag="5" class="title">
+          <ad-heading :tag="3" class="title">
             <div class="shiny">Atomic Design&nbsp;</div>
             <span> Approach </span>
           </ad-heading>

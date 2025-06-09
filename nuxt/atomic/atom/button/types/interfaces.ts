@@ -1,6 +1,6 @@
-import { Component } from 'vue'
+import type { Component } from 'vue'
 
-import {
+import type {
   AdTypeType,
   ButtonBadgeSeverityType,
   ButtonOnClickType,
@@ -13,6 +13,7 @@ import {
 
 export interface ButtonInterface {
   adType?: AdTypeType
+  alt?: string
   label?: string
   icon?: string
   iconPos?: PositionType
@@ -24,7 +25,7 @@ export interface ButtonInterface {
   loadingIcon?: string
   as?: string | Component
   asChild?: boolean
-  link?: string
+  link?: boolean
   severity?: ButtonSeverityType
   raised?: boolean
   rounded?: boolean
@@ -33,9 +34,9 @@ export interface ButtonInterface {
   size?: ElementSizeType
   variant?: 'outlined' | 'text' | 'link'
   fluid?: boolean
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
   disabled?: boolean
   onclick?: ButtonOnClickType

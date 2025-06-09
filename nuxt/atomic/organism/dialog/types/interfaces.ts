@@ -1,7 +1,7 @@
-import { HTMLAttributes, StyleValue } from 'vue'
-import { DialogBreakpoints } from 'primevue/dialog'
+import type { HTMLAttributes, StyleValue } from 'vue'
+import type { DialogBreakpoints } from 'primevue/dialog'
 
-import {
+import type {
   ActionType,
   CloseDialogType,
   ConfirmDialogFunctionType,
@@ -18,7 +18,7 @@ export interface DialogInterface {
   footer?: string
   visible: boolean
   modal?: boolean
-  contentStyle?: any // eslint-disable-line
+  contentStyle?: object
   contentClass?: string
   contentProps?: HTMLAttributes
   closable?: boolean
@@ -41,9 +41,9 @@ export interface DialogInterface {
   minimizeIcon?: string
   closeButtonProps?: object
   maximizeButtonProps?: object
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
   entity?: ObjectType
   action?: ActionType
@@ -53,7 +53,7 @@ export interface DialogInterface {
     label: string
     type: string
     key: string
-    props?: Record<string, any> // eslint-disable-line
+    props?: Record<string, unknown>
   }>
   selectedObject?: ObjectType
   data?: ObjectType[]

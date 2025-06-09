@@ -1,10 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+import type { ColorItemColorsInterface, UseColorsInterface } from 'atomic'
 import {
   colorKeys,
   colorTypes,
-  ColorItemColorsInterface,
-  UseColorsInterface,
   isCurrentUrl,
   localStorageGetItem,
   localStorageSetItem,
@@ -22,7 +21,7 @@ export function useColors(): UseColorsInterface {
   )
 
   function setDefaultColors(initial?: boolean): void {
-    if (process.client) {
+    if (import.meta.client) {
       colorKeys.forEach((key) =>
         colorTypes.forEach((type) => {
           const property = `${key}-item-${type}`

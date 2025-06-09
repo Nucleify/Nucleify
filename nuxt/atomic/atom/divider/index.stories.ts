@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Divider as AdDivider } from './'
+import { AdDivider } from '.'
 
 const meta = {
   title: 'Atoms/Divider',
   component: AdDivider,
-  tags: ['autodocs'],
   args: {
     align: 'center',
     layout: 'horizontal',

@@ -1,2 +1,17 @@
 User-agent: *
-Disallow:
+
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/
+Disallow: /admin/
+Disallow: /login/
+Disallow: /register/
+Disallow: /logout/
+Disallow: /search
+Disallow: /*?*
+
+Allow: /*.css$
+Allow: /*.js$
+Allow: /search$
+
+Sitemap: https://datamanager.atomic-it.org/sitemap.xml

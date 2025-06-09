@@ -12,7 +12,7 @@
     />
     <dm-card-dashboard
       :data="results"
-      :getData="getAllCards"
+      :get-data="getAllCards"
       :loading="loading"
     />
   </div>

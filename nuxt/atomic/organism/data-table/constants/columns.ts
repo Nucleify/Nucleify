@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import { ColumnInterface, ColumnsInterface } from 'atomic'
+import type { ColumnInterface, ColumnsInterface } from 'atomic'
 
 const createColumn = (
   field: string,

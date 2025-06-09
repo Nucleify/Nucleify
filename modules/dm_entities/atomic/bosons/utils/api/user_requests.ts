@@ -1,16 +1,14 @@
 import { ref } from 'vue'
 
-import {
+import type {
   CloseDialogType,
   EntityCountResultsType,
   EntityResultsType,
   UserObjectInterface,
   UseLoadingInterface,
   UserRequestsInterface,
-  apiHandle,
-  useApiSuccess,
-  useLoading,
 } from 'atomic'
+import { apiHandle, useApiSuccess, useLoading } from 'atomic'
 
 export function userRequests(close?: CloseDialogType): UserRequestsInterface {
   const results: EntityResultsType<UserObjectInterface> = ref([])

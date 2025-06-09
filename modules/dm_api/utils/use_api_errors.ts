@@ -1,9 +1,9 @@
-import {
+import type {
   ErrorResponseInterface,
   UseApiErrorsInterface,
-  useToast,
   UseToastInterface,
 } from 'atomic'
+import { useToast } from 'atomic'
 
 export function useApiErrors(): UseApiErrorsInterface {
   const { flashToast }: UseToastInterface = useToast()

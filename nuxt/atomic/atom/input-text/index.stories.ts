@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { InputText as AdInputText } from './'
+import { AdInputText } from '.'
 
 const meta = {
   title: 'Atoms/InputText',
   component: AdInputText,
-  tags: ['autodocs'],
   args: {
     adType: undefined,
     value: '3',
