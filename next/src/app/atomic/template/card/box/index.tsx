@@ -4,6 +4,8 @@ import { AdCardBoxInterface } from './types'
 import AdCard from 'molecule/card/index.tsx'
 import AdCardContent from 'molecule/card/parts/card-content/index.tsx'
 
+import './_index.scss'
+
 export function AdCardBox({
   icon,
   title,
