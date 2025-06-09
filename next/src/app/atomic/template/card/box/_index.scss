@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap');
-
 .ad-card {
   display: flex;
   flex-direction: column;
@@ -17,13 +15,5 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-  }
-
-  .ad-card-title {
-    font-family: 'Poppins', sans-serif;
-  }
-
-  .ad-card-description {
-    font-family: 'Poppins', sans-serif;
   }
 }
