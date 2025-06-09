@@ -32,7 +32,9 @@ class SystemColorService
 
         $result = $this->model->all();
 
-        $this->logger->logIndex($this->causer->name, $this->entity, true);
+        $name = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->logIndex($name, $this->entity, true);
 
         return fractal()
             ->collection($result)
@@ -51,7 +53,9 @@ class SystemColorService
 
         $result = $this->model->whereDate('created_at', '>=', $this->lastWeek)->count();
 
-        $this->logger->logCountByCreatedLastWeek($this->causer->name, $this->entity, $this->isRefererStructural);
+        $name = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->logCountByCreatedLastWeek($name, $this->entity, $this->isRefererStructural);
 
         return $result;
     }
@@ -65,7 +69,9 @@ class SystemColorService
 
         $result = $this->model::getByName($name)->get();
 
-        $this->logger->logMessage($this->causer->name . ' fetched system colors by name: ' . $name . '.');
+        $name = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->logMessage($name . ' fetched system colors by name: ' . $name . '.');
 
         return fractal()
             ->collection($result)
@@ -82,7 +88,9 @@ class SystemColorService
 
         $result = $this->model::findOrFail($id);
 
-        $this->logger->log($this->causer->name, $result->getValue(), $this->entity, 'showed');
+        $name = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->log($name, $result->getValue(), $this->entity, 'showed');
 
         return fractal()
             ->item($result)
@@ -99,7 +107,9 @@ class SystemColorService
 
         $result = $this->model::create($data);
 
-        $this->logger->log($this->causer->name, $result->getName(), $this->entity, 'created');
+        $name = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->log($name, $result->getName(), $this->entity, 'created');
 
         return fractal()
             ->item($result)
@@ -118,7 +128,9 @@ class SystemColorService
 
         $result->update($data);
 
-        $this->logger->log($this->causer->name, $result->getName(), $this->entity, 'updated');
+        $name = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->log($name, $result->getName(), $this->entity, 'updated');
 
         return fractal()
             ->item($result->fresh())
@@ -138,6 +150,8 @@ class SystemColorService
 
         $model->delete();
 
-        $this->logger->log($this->causer->name, $model->getName(), $this->entity, 'deleted');
+        $name = $this->causer ? $this->causer->name : 'Guest';
+
+        $this->logger->log($name, $model->getName(), $this->entity, 'deleted');
     }
 }
