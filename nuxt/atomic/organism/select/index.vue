@@ -1,7 +1,6 @@
 <template>
   <Select
     :model-value="props.modelValue"
-    @update:model-value="onUpdateModelValue"
     :default-value="props.defaultValue"
     :name="props.name"
     :option="props.option"
@@ -56,17 +55,17 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
+    @update:model-value="onUpdateModelValue"
   />
 </template>
 
 <script setup lang="ts">
-import { SelectInterface } from 'atomic'
+import type { SelectInterface } from 'atomic'
 
 const props = defineProps<SelectInterface>()
 const emit = defineEmits(['update:modelValue'])
 
-// eslint-disable-next-line
-function onUpdateModelValue(value: any) {
+function onUpdateModelValue(value: unknown) {
   emit('update:modelValue', value)
 }
 </script>

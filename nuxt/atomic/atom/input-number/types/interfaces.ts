@@ -1,6 +1,6 @@
-import { RoundingMode } from 'primevue/inputnumber'
+import type { RoundingMode } from 'primevue/inputnumber'
 
-import {
+import type {
   AdTypeType,
   ElementDirectionType,
   ElementSizeType,
@@ -47,9 +47,9 @@ export interface InputNumberInterface {
   inputStyle?: object
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

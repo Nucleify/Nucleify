@@ -1,8 +1,8 @@
 <template>
   <DataTable
+    v-if="loading"
     class="skeleton-data-table"
     :value="rows"
-    v-if="loading"
     :size="'small'"
   >
     <Column
@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { SkeletonDataTableInterface } from 'atomic'
+import type { SkeletonDataTableInterface } from 'atomic'
 
 defineProps<SkeletonDataTableInterface>()
 </script>

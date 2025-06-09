@@ -1,15 +1,11 @@
-import {
-  ActionType,
-  CloseDialogType,
-  useToast,
-  UseToastInterface,
-} from 'atomic'
+import type { ActionType, CloseDialogType, UseToastInterface } from 'atomic'
+import { useToast } from 'atomic'
 
 export function useApiSuccess() {
   const { flashToast }: UseToastInterface = useToast()
 
   async function apiSuccess(
-    response?: any,
+    response?: unknown,
     getData?: () => Promise<void>,
     close?: CloseDialogType,
     action?: ActionType

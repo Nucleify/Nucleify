@@ -28,7 +28,9 @@
   />
 </template>
 <script setup lang="ts">
-import { KnobInterface } from 'atomic'
+import Knob from 'primevue/knob' // Import for Storybook
+
+import type { KnobInterface } from 'atomic'
 
 const props = defineProps<KnobInterface>()
 </script>

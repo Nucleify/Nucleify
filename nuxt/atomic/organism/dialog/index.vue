@@ -34,11 +34,11 @@
   >
     <template #header>
       <ad-heading
+        v-if="props.action === 'show' && props.selectedObject"
         :tag="2"
         :text="getTitle(props.selectedObject)"
-        v-if="props.action === 'show' && props.selectedObject"
       />
-      <ad-heading :tag="2" :text="props.title" v-else />
+      <ad-heading v-else :tag="2" :text="props.title" />
     </template>
 
     <form
@@ -50,9 +50,9 @@
         <label :for="field.name">{{ field.label }}</label>
         <component
           :is="getComponent(field.type as ComponentType)"
-          v-model="formData[field.name]"
           v-bind="field.props"
           :id="field.name"
+          v-model="formData[field.name]"
           :ad-type="props.entity"
           :panel-class="isSelectOrDatePicker(field.type) ? props.entity : null"
           :date-format="field.type === 'date-picker' ? 'yy-mm-dd' : null"
@@ -98,18 +98,18 @@
           :label="props.cancelButtonLabel"
           icon="pi pi-times"
           severity="secondary"
-          @click="close!(props.action!)"
           rounded
           text
+          @click="close!(props.action!)"
         />
         <ad-button
           v-if="props.fields && props.confirm"
           :ad-type="props.entity"
           :label="props.confirmButtonLabel"
           icon="pi pi-check"
-          @click="props.confirm(formData, props.getData)"
           rounded
           text
+          @click="props.confirm(formData, props.getData)"
         />
         <ad-button
           v-if="
@@ -118,9 +118,9 @@
           :ad-type="props.entity"
           :label="props.confirmButtonLabel"
           icon="pi pi-check"
-          @click="props.confirm(props.selectedObject.id, props.getData)"
           rounded
           text
+          @click="props.confirm(props.selectedObject.id, props.getData)"
         />
       </div>
     </template>
@@ -128,10 +128,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
-
+import type { ComponentType, DialogInterface, FormDataInterface } from 'atomic'
 import {
-  FormDataInterface,
   getComponent,
   getTitle,
   isEmptyConfirmPassword,
@@ -140,8 +138,6 @@ import {
   isPhoneField,
   isSelectOrDatePicker,
 } from 'atomic'
-
-import { DialogInterface } from '.'
 
 const props = defineProps<DialogInterface>()
 

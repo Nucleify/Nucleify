@@ -1,12 +1,12 @@
-import { GalleriaResponsiveOptions } from 'primevue'
-import { ButtonHTMLAttributes, HTMLAttributes } from 'vue'
+import type { GalleriaResponsiveOptions } from 'primevue'
+import type { ButtonHTMLAttributes, HTMLAttributes } from 'vue'
 
-import { PositionType } from 'atomic'
+import type { PositionType } from 'atomic'
 
 export interface GalleriaInterface {
   item?: GalleriaImageItem[]
   id?: string
-  value?: any[] // eslint-disable-line
+  value?: unknown[]
   activeIndex?: number
   fullScreen?: boolean
   visible?: boolean
@@ -27,16 +27,16 @@ export interface GalleriaInterface {
   indicatorsPosition?: PositionType
   baseZIndex?: number
   maskClass?: string
-  containerStyle?: any // eslint-disable-line
-  containerClass?: any // eslint-disable-line
+  containerStyle?: object
+  containerClass?: string
   containerProps?: HTMLAttributes
   prevButtonProps?: ButtonHTMLAttributes
   nextButtonProps?: ButtonHTMLAttributes
   ariaLabel?: string
   ariaRoledescription?: string
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }
 

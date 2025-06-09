@@ -1,4 +1,4 @@
-import { ActivityLogObjectInterface } from 'atomic'
+import type { ActivityLogObjectInterface } from 'atomic'
 
 export const mockActivity: ActivityLogObjectInterface = {
   id: 999999,

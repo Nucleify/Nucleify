@@ -10,7 +10,7 @@
     <ad-image
       v-if="props.src"
       :src="props.src"
-      :alt="props.label"
+      :alt="props.alt"
       :fetchpriority="props.fetchpriority"
     />
     <ad-label
@@ -22,7 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import { AnchorInterface } from '.'
+import { AdIcon, AdImage, AdLabel } from '../../atom' // Import for Storybook
+
+import type { AnchorInterface } from 'atomic'
 
 const props = defineProps<AnchorInterface>()
 </script>

@@ -1,10 +1,10 @@
-import { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
+import type { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
 
 export interface CheckboxInterface {
   adType?: AdTypeType
-  value?: any[] // eslint-disable-line
-  modelValue?: any[] // eslint-disable-line
-  defaultValue?: any[] // eslint-disable-line
+  value?: unknown[]
+  modelValue?: unknown[]
+  defaultValue?: unknown[]
   name?: string
   binary?: boolean
   indeterminate?: boolean
@@ -15,16 +15,16 @@ export interface CheckboxInterface {
   readonly?: boolean
   required?: boolean
   tabindex?: number
-  trueValue?: any // eslint-disable-line
-  falseValue?: any // eslint-disable-line
+  trueValue?: unknown
+  falseValue?: unknown
   inputId?: string
   inputClass?: object
   inputStyle?: string | object
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

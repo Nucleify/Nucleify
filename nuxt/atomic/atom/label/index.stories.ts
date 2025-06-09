@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
-import { Label as AdLabel } from './'
+import { AdLabel } from '.'
 
 const meta = {
   title: 'Atoms/Label',
   component: AdLabel,
-  tags: ['autodocs'],
   args: {
     label: 'Label',
     forInput: '',

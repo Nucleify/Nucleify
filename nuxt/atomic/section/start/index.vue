@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { SectionStartInterface } from 'atomic'
+import type { SectionStartInterface } from 'atomic'
 
 const props = defineProps<SectionStartInterface>()
 </script>

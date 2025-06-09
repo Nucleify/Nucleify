@@ -6,8 +6,8 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="feature"
-      headerText="Manage Features"
-      buttonText="New Feature"
+      header-text="Manage Features"
+      button-text="New Feature"
     />
 
     <ad-dialog
@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  DashboardInterface,
-  useDialog,
-  useFeatureFields,
-  featureRequests,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { useDialog, useFeatureFields, featureRequests } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

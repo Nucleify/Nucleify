@@ -1,14 +1,14 @@
-import { ElementDirectionType } from 'atomic'
+import type { ElementDirectionType } from 'atomic'
 
 export interface TimelineInterface {
   events?: TimelineEventInterface[]
-  value?: any[] // eslint-disable-line
+  value?: unknown[]
   align?: 'left' | 'right' | 'top' | 'bottom' | 'alternate'
   layout?: ElementDirectionType
   dataKey?: string
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }
 

@@ -16,6 +16,7 @@
       <ad-button
         class="navbar-drawer-toggler"
         :icon="navbarExpanded ? 'hidden' : 'pi pi-align-justify'"
+        aria-label="Menu"
         @click="toggleNavbar()"
       />
     </div>

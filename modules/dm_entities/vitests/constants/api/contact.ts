@@ -1,4 +1,4 @@
-import { ContactObjectInterface } from 'atomic'
+import type { ContactObjectInterface } from 'atomic'
 
 export const mockContact: ContactObjectInterface = {
   id: 999999,

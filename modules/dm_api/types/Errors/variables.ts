@@ -1,4 +1,4 @@
-import { MessageOrMessagesType } from 'atomic'
+import type { MessageOrMessagesType } from 'atomic'
 
 export interface ErrorResponseInterface {
   response: {

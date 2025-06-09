@@ -14,8 +14,8 @@
     <TabList>
       <Tab
         v-for="(list, index) in props.lists"
-        :value="list.value"
         :key="index"
+        :value="list.value"
       >
         <ad-heading :tag="4" :text="list.header" />
       </Tab>
@@ -23,8 +23,8 @@
     <TabPanels>
       <TabPanel
         v-for="(panel, index) in props.panels"
-        :value="panel.value"
         :key="index"
+        :value="panel.value"
       >
         <ad-paragraph :text="panel.content" />
       </TabPanel>
@@ -33,9 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-import { TabsInterface } from 'atomic'
+import type { TabsInterface } from 'atomic'
 
 const activeTab = ref(0)
 const props = defineProps<TabsInterface>()

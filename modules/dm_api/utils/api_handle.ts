@@ -1,10 +1,9 @@
-import {
+import type {
   ApiHandleOptionsInterface,
   HttpMethodType,
   UseApiErrorsInterface,
-  apiRequest,
-  useApiErrors,
 } from 'atomic'
+import { apiRequest, useApiErrors } from 'atomic'
 
 export async function apiHandle<T>({
   url,

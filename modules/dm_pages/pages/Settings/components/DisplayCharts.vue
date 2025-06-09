@@ -8,18 +8,18 @@
           icon="pi pi-refresh"
           ad-type="main"
           class="refresh-button"
-          @click="setDefaultChartsDisplay(false, true)"
           rounded
           text
+          @click="setDefaultChartsDisplay(false, true)"
         />
       </div>
     </template>
     <template #content>
       <ul class="settings-card-item-list">
         <li
-          class="settings-card-item"
           v-for="item in displayChartList"
           :key="item"
+          class="settings-card-item"
         >
           <ad-label :label="item" :for="item" />
 

@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import { FloatLabelInterface } from '.'
+import type { FloatLabelInterface } from 'atomic'
 
 const props = defineProps<FloatLabelInterface>()
 </script>

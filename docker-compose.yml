@@ -2,7 +2,9 @@ services:
   laravel.test:
     build:
       context: .
-      dockerfile: Dockerfile.laravel
+      dockerfile: .docker/Dockerfile.backend
+      args:
+        WWWGROUP: '${WWWGROUP}'
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     ports:
@@ -19,6 +21,21 @@ services:
       - sail
     depends_on:
       - mysql
+  nuxt:
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile.frontend
+    ports:
+      - '3000:3000'
+      - '6006:6006'
+    volumes:
+      - '.:/app'
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+    networks:
+      - sail
   mysql:
     image: 'mysql/mysql-server:8.0'
     ports:
@@ -54,32 +71,6 @@ services:
       - sail
     ports:
       - 8050:80
-  storybook:
-    build:
-      context: .
-      dockerfile: Dockerfile.storybook
-    ports:
-      - '6006:6006'
-    volumes:
-      - '.:/app'
-      - /app/node_modules
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-    networks:
-      - sail
-  nuxt:
-    build:
-      context: .
-      dockerfile: Dockerfile.nuxt
-    ports:
-      - '3000:3000'
-    volumes:
-      - '.:/app'
-      - /app/node_modules
-    environment:
-      - NODE_ENV=production
-    networks:
-      - sail
 networks:
   sail:
     driver: bridge

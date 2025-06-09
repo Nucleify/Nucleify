@@ -12,7 +12,7 @@
     />
     <dm-link-dashboard
       :data="results"
-      :getData="getAllLinks"
+      :get-data="getAllLinks"
       :loading="loading"
     />
   </div>

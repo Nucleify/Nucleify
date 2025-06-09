@@ -1,4 +1,4 @@
-import { HexagonRowType } from '../types'
+import type { HexagonRowType } from '../types'
 
 export function generateRowPattern(
   rowIndex: number,

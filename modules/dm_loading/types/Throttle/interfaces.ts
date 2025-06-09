@@ -1,4 +1,4 @@
-import { IsThrottledType } from 'atomic'
+import type { IsThrottledType } from 'atomic'
 
 export interface UseThrottleInterface {
   isThrottled: IsThrottledType
