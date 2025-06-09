@@ -1,18 +1,20 @@
-import React from 'react';
-import { SxProps, Theme } from '@mui/material';
+import React from 'react'
+import { SxProps, Theme } from '@mui/material'
 
-type GenericSlotProps = Record<string, unknown> | ((ownerState: unknown) => Record<string, unknown>);
+type GenericSlotProps =
+  | Record<string, unknown>
+  | ((ownerState: unknown) => Record<string, unknown>)
 
 export interface AdCardActionAreaProps {
-    children?: React.ReactNode;
-    className?: string;
-    slotProps?: {
-        focusHighlight?: GenericSlotProps;
-        root?: GenericSlotProps;
-    };
-    slots?: {
-        focusHighlight?: React.ElementType;
-        root?: React.ElementType;
-    };
-    sx?: SxProps<Theme>;
-};
+  children?: React.ReactNode
+  className?: string
+  slotProps?: {
+    focusHighlight?: GenericSlotProps
+    root?: GenericSlotProps
+  }
+  slots?: {
+    focusHighlight?: React.ElementType
+    root?: React.ElementType
+  }
+  sx?: SxProps<Theme>
+}

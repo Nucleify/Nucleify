@@ -4,4 +4,3 @@ export interface AdCardBoxInterface {
   icon: string
   iconBelowTitle?: boolean
 }
-

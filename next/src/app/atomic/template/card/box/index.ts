@@ -1,3 +1,3 @@
-export * from './types';
+export * from './types'
 
-export * from './index.tsx';
+export * from './index.tsx'
