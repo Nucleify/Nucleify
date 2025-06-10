@@ -10,7 +10,7 @@
           class="refresh-button"
           rounded
           text
-          @click="setDefaultColors(false)"
+          @click="resetColorsToDefault"
         />
       </div>
     </template>
@@ -26,7 +26,5 @@
 </template>
 
 <script setup lang="ts">
-import { colorList, useColors } from 'atomic'
-
-const { setDefaultColors } = useColors()
+import { colorList, resetColorsToDefault } from 'atomic'
 </script>
