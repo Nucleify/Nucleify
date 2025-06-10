@@ -1,8 +1,8 @@
 import { JSX } from 'react'
 
 import { CardActions } from '@mui/material'
-import { AdCardActionsProps } from './types'
+import { AdCardActionsInterface } from './types'
 
-export default function AdCardActions(props: AdCardActionsProps): JSX.Element {
+export default function AdCardActions(props: AdCardActionsInterface): JSX.Element {
   return <CardActions {...props} />
 }

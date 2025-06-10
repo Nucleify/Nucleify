@@ -1,6 +1,6 @@
 import { SxProps, Theme } from '@mui/material'
 
-export interface AdCardActionsProps {
+export interface AdCardActionsInterface {
   children: React.ReactNode
   className?: string
   disableSpacing?: boolean

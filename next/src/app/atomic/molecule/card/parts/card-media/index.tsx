@@ -1,8 +1,8 @@
 import { JSX } from 'react'
 
 import { CardMedia } from '@mui/material'
-import { AdCardMediaProps } from './types'
+import { AdCardMediaInterface } from './types'
 
-export default function AdCardMedia(props: AdCardMediaProps): JSX.Element {
+export default function AdCardMedia(props: AdCardMediaInterface): JSX.Element {
   return <CardMedia {...props} />
 }

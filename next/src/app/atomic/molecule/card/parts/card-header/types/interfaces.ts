@@ -1,4 +1,4 @@
-export interface AdCardHeaderProps {
+export interface AdCardHeaderInterface {
   action: React.ReactNode
   avatar: React.ReactNode
   className?: string

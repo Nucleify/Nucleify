@@ -5,7 +5,7 @@ type GenericSlotProps =
   | Record<string, unknown>
   | ((ownerState: unknown) => Record<string, unknown>)
 
-export interface AdCardActionAreaProps {
+export interface AdCardActionAreaInterface {
   children?: React.ReactNode
   className?: string
   slotProps?: {
