@@ -67,18 +67,11 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import {
-  checkIsEmpty,
-  checkPasswordsMatch,
-  useAuthForm,
-  useColors,
-} from 'atomic'
+import { checkIsEmpty, checkPasswordsMatch, useAuthForm } from 'atomic'
 
 const { submitForm, registerFields, registerInputs } = useAuthForm()
-const { setDefaultColors } = useColors()
 
 onMounted(() => {
-  setDefaultColors(true)
   checkPasswordsMatch(
     registerFields.value.password,
     registerFields.value.password_confirmation
