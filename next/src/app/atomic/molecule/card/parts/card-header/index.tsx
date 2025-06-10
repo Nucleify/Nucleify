@@ -1,8 +1,8 @@
 import { JSX } from 'react'
 
 import { CardHeader } from '@mui/material'
-import { AdCardHeaderProps } from './types'
+import { AdCardHeaderInterface } from './types'
 
-export default function AdCardHeader(props: AdCardHeaderProps): JSX.Element {
+export default function AdCardHeader(props: AdCardHeaderInterface): JSX.Element {
   return <CardHeader {...props} />
 }

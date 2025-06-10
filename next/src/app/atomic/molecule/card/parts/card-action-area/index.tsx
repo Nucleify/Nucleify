@@ -1,10 +1,10 @@
 import { JSX } from 'react'
 
 import { CardActionArea } from '@mui/material'
-import { AdCardActionAreaProps } from './types'
+import { AdCardActionAreaInterface } from './types'
 
 export default function AdCardActionArea(
-  props: AdCardActionAreaProps
+  props: AdCardActionAreaInterface
 ): JSX.Element {
   return <CardActionArea {...props} />
 }
