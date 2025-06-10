@@ -114,5 +114,19 @@ export default defineNuxtConfig({
       apiUrl: process.env.API_URL,
       appEnv: process.env.APP_ENV
     }
+  },
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-US', name: 'English' },
+      { code: 'pl', iso: 'pl-PL', name: 'Polski' }
+    ],
+    defaultLocale: 'en',
+    lazy: true,
+    strategy: 'prefix_except_default',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root'
+    }
   }
 } as any)
