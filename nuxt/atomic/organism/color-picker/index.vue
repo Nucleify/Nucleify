@@ -25,7 +25,7 @@
 
 <script setup lang="ts">
 import type { ColorPickerInterface } from 'atomic'
-import { setColorsVariables, useColorPicker } from 'atomic'
+import { useColorPicker } from 'atomic'
 
 const props = defineProps<ColorPickerInterface>()
 
@@ -33,6 +33,5 @@ const { itemColor, setColorValues } = useColorPicker(props.adType!)
 
 watchEffect(() => {
   setColorValues()
-  setColorsVariables()
 })
 </script>

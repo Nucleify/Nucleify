@@ -14,16 +14,10 @@
 </template>
 
 <script setup lang="ts">
-import { isAnyCurrentUrl, useColors } from 'atomic'
+import { isAnyCurrentUrl, resetColorsIfEmpty } from 'atomic'
 
 import FrontOffice from './front-office.vue'
 import BackOffice from './back-office.vue'
-
-onMounted(() => {
-  const { setDefaultColors } = useColors()
-
-  setDefaultColors(true)
-})
 
 const officeRoutes = {
   front: ['home', 'about', 'blog', 'license', 'services'],
@@ -42,4 +36,8 @@ const officeType = isAnyCurrentUrl(officeRoutes.front)
   : isAnyCurrentUrl(officeRoutes.back)
     ? 'back'
     : null
+
+onMounted(() => {
+  resetColorsIfEmpty()
+})
 </script>
