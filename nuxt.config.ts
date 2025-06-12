@@ -124,9 +124,7 @@ export default defineNuxtConfig({
   srcDir: 'nuxt',
   publicDir: './public',
   experimental: {
-    appManifest: false,
     payloadExtraction: true,
-    inlineSSRStyles: false,
     renderJsonPayloads: true
   },
   primevue: {
