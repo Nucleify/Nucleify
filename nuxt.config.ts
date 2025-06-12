@@ -37,6 +37,11 @@ export default defineNuxtConfig({
     output: {
       publicDir: './public/build'
     },
+    minify: true,
+    compressPublicAssets: true,
+    experimental: {
+      wasm: true
+    }
   },
   app: {
     head: {
@@ -70,7 +75,15 @@ export default defineNuxtConfig({
   },
   vite: {
     build: {
-      chunkSizeWarningLimit: 1600
+      chunkSizeWarningLimit: 1600,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'primevue': ['primevue'],
+            'vue': ['vue', 'vue-router'],
+          }
+        }
+      }
     },
     css: {
       preprocessorOptions: {
@@ -84,6 +97,9 @@ export default defineNuxtConfig({
         },
       },
     },
+    optimizeDeps: {
+      include: ['vue', 'vue-router', 'primevue']
+    }
   },
   alias: {
     'atomic': '~/atomic'
@@ -107,6 +123,9 @@ export default defineNuxtConfig({
   publicDir: './public',
   experimental: {
     appManifest: false,
+    payloadExtraction: true,
+    inlineSSRStyles: false,
+    renderJsonPayloads: true
   },
   primevue: {
     autoImport: true,
