@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
+import { definePerson } from 'nuxt-schema-org/schema'
 import Lara from '@primeuix/themes/lara'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -36,6 +37,11 @@ export default defineNuxtConfig({
     output: {
       publicDir: './public/build'
     },
+    minify: true,
+    compressPublicAssets: true,
+    experimental: {
+      wasm: true
+    }
   },
   app: {
     head: {
@@ -50,15 +56,36 @@ export default defineNuxtConfig({
       ],
       link: [
         {
-          rel: 'stylesheet',
-          href: '/fonts/primeicons/primeicons.css'
+          rel: 'preload',
+          href: '/fonts/primeicons/primeicons.css',
+          as: 'style',
+          onload: "this.onload=null;this.rel='stylesheet'",
         }
       ]
     },
   },
+  schemaOrg: {
+    identity: definePerson({
+      name: 'Szymon Radomski',
+      alternateName: 'SzymCode',
+      image: '/img/contributors/szymcode.svg',
+      url: 'https://github.com/SzymCode',
+      sameAs: [
+        'https://github.com/SzymCode'
+      ],
+    }),
+  },
   vite: {
     build: {
-      chunkSizeWarningLimit: 1600
+      chunkSizeWarningLimit: 1600,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            'primevue': ['primevue'],
+            'vue': ['vue', 'vue-router'],
+          }
+        }
+      }
     },
     css: {
       preprocessorOptions: {
@@ -72,6 +99,9 @@ export default defineNuxtConfig({
         },
       },
     },
+    optimizeDeps: {
+      include: ['vue', 'vue-router', 'primevue']
+    }
   },
   alias: {
     'atomic': '~/atomic'
@@ -94,7 +124,8 @@ export default defineNuxtConfig({
   srcDir: 'nuxt',
   publicDir: './public',
   experimental: {
-    appManifest: false,
+    payloadExtraction: true,
+    renderJsonPayloads: true
   },
   primevue: {
     autoImport: true,

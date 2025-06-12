@@ -22,6 +22,10 @@ useHead(() => ({
       content:
         'Streamline ERP and design management with a powerful data manager built using Laravel and Nuxt. Easily organize, manage, and access all your data types in one powerful, user-friendly platform - perfect for CRM, ERP and E-commerce solutions.',
     },
+    {
+      name: 'author',
+      content: 'Szymon Radomski (SzymCode)',
+    },
   ],
   link: [
     {
