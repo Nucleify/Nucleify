@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from 'nuxt/config'
+import { definePerson } from 'nuxt-schema-org/schema'
 import Lara from '@primeuix/themes/lara'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -55,6 +56,17 @@ export default defineNuxtConfig({
         }
       ]
     },
+  },
+  schemaOrg: {
+    identity: definePerson({
+      name: 'Szymon Radomski',
+      alternateName: 'SzymCode',
+      image: '/img/contributors/szymcode.svg',
+      url: 'https://github.com/SzymCode',
+      sameAs: [
+        'https://github.com/SzymCode'
+      ],
+    }),
   },
   vite: {
     build: {
