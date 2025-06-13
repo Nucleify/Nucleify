@@ -1,4 +1,5 @@
 import { SxProps, Theme } from '@mui/material'
+
 export interface AdCardInterface {
   children?: React.ReactNode
   className?: string

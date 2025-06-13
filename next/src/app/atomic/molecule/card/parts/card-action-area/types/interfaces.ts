@@ -1,4 +1,3 @@
-import React from 'react'
 import { SxProps, Theme } from '@mui/material'
 
 type GenericSlotProps =

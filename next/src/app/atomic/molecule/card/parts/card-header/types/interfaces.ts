@@ -5,12 +5,12 @@ export interface AdCardHeaderInterface {
   component?: React.ElementType
   disableTypography?: boolean
   slotProps?: {
-    action?: () => void | object
-    avatar?: () => void | object
-    content?: () => void | object
-    root?: () => void | object
-    subheader?: () => void | object
-    title?: () => void | object
+    action?: (() => void) | object
+    avatar?: (() => void) | object
+    content?: (() => void) | object
+    root?: (() => void) | object
+    subheader?: (() => void) | object
+    title?: (() => void) | object
   }
   slots?: {
     action?: React.ElementType
