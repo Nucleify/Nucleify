@@ -1,12 +1,12 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import Backdrop from "@mui/material/Backdrop";
+import Backdrop from '@mui/material/Backdrop'
 
-import { AdBackdropInterface } from "./types";
+import { AdBackdropInterface } from './types'
 
 export default function AdBackdrop({
   children,
-  className = "",
+  className = '',
   sx,
   ...rest
 }: AdBackdropInterface): JSX.Element {
@@ -14,5 +14,5 @@ export default function AdBackdrop({
     <Backdrop className={`ad-backdrop ${className}`} sx={sx} {...rest}>
       {children}
     </Backdrop>
-  );
+  )
 }

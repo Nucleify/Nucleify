@@ -1,17 +1,17 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionDetails from '@mui/material/AccordionDetails'
 
-import { AdAccordionDetailsInterface } from "./types";
+import { AdAccordionDetailsInterface } from './types'
 
 export default function AdAccordionDetails({
-    children,
-    className = "",
-    sx,
+  children,
+  className = '',
+  sx,
 }: AdAccordionDetailsInterface): JSX.Element {
   return (
     <AccordionDetails className={`ad-accordion-details ${className}`} sx={sx}>
       {children}
     </AccordionDetails>
-  );
+  )
 }
