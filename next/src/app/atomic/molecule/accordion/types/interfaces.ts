@@ -1,5 +1,5 @@
-import { AccordionProps } from '@mui/material/Accordion';
+import { AccordionProps } from '@mui/material/Accordion'
 
 export interface AdAccordionInterface extends AccordionProps {
-    className?: string;
+  className?: string
 }

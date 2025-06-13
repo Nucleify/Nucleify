@@ -1,19 +1,13 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import Avatar from '@mui/material/Avatar';
+import Avatar from '@mui/material/Avatar'
 
-import { AdAvatarInterface } from "./types";
+import { AdAvatarInterface } from './types'
 
 export default function AdAvatar({
-  className = "",
+  className = '',
   sx,
   ...rest
 }: AdAvatarInterface): JSX.Element {
-  return (
-    <Avatar
-      className={`ad-avatar ${className}`}
-      sx={sx}
-      {...rest}
-    />
-  );
+  return <Avatar className={`ad-avatar ${className}`} sx={sx} {...rest} />
 }

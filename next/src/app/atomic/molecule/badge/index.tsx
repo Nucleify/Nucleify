@@ -1,18 +1,18 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import { Badge } from "@mui/material";
+import { Badge } from '@mui/material'
 
-import { AdBadgeInterface } from "./types";
+import { AdBadgeInterface } from './types'
 
 export default function AdBadge({
-    children,
-    className = "",
-    sx,
-    ...rest
+  children,
+  className = '',
+  sx,
+  ...rest
 }: AdBadgeInterface): JSX.Element {
   return (
     <Badge className={`ad-badge ${className}`} sx={sx} {...rest}>
       {children}
     </Badge>
-  );
+  )
 }

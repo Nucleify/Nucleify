@@ -1,11 +1,11 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import Autocomplete from "@mui/material/Autocomplete";
+import Autocomplete from '@mui/material/Autocomplete'
 
-import { AdAutocompleteInterface } from "./types";
+import { AdAutocompleteInterface } from './types'
 
 export default function AdAutocomplete({
-  className = "",
+  className = '',
   sx,
   ...rest
 }: AdAutocompleteInterface): JSX.Element {
@@ -15,5 +15,5 @@ export default function AdAutocomplete({
       sx={sx}
       {...rest}
     />
-  );
+  )
 }
