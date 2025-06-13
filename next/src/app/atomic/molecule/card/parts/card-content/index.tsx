@@ -1,5 +1,7 @@
 import { JSX } from 'react'
+
 import { CardContent } from '@mui/material'
+
 import { AdCardContentInterface } from './types'
 
 export default function AdCardContent({
