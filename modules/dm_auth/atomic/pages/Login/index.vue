@@ -40,12 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-
-import { useAuthForm, useColors } from 'atomic'
+import { useAuthForm } from 'atomic'
 
 const { submitForm, loginFields, loginInputs } = useAuthForm()
-const { setDefaultColors } = useColors()
-
-onMounted(() => setDefaultColors(true))
 </script>

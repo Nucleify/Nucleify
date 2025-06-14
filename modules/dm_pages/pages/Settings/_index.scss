@@ -1,6 +1,7 @@
-.settings-panel-container {
-  display: flex;
-  flex-flow: wrap;
+.settings-panel-container.panel-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0.5em;
 
   .settings-card {
     margin: 0;
@@ -58,15 +59,15 @@
     }
   }
 
-  @media (min-width: $sm) {
-    flex-direction: row;
-  }
-
   .p-selectbutton {
     .p-togglebutton {
       font-size: 10px;
       padding: 5px 10px;
     }
+  }
+
+  @media (min-width: $lg) {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   }
 }
 
