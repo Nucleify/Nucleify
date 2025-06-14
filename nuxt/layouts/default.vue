@@ -1,11 +1,12 @@
 <template>
   <div id="default-layout">
+    <dm-screen-loader />
     <client-only>
       <dm-screen-lights :count="8" />
-      <back-office v-if="officeType === 'back'">
-        <slot />
-      </back-office>
     </client-only>
+    <back-office v-if="officeType === 'back'">
+      <slot />
+    </back-office>
     <front-office v-if="officeType === 'front'">
       <slot />
     </front-office>
