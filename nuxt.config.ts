@@ -31,8 +31,14 @@ export default defineNuxtConfig({
     prerender: process.env.CI ? {
       enabled: false
     } : {
-      routes: ['/home'],
-      crawlLinks: true
+      routes: [
+        '/home',
+        '/about', 
+        '/blog',
+        '/license',
+        '/services'
+      ],
+      crawlLinks: false
     },
     output: {
       publicDir: './public/build'
