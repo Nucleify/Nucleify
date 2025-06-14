@@ -87,17 +87,23 @@ Route::get('/_fonts/{path}', function ($path) {
     return serveNuxtFile(base_path('public/build/_fonts/' . $path), $mimeType);
 })->where('path', '.*');
 
-/**
- *  Serve Nuxt application for all other routes
- */
-Route::get('/{any}', function ($any) {
-    $page = trim($any, '/');
-    $htmlPath = base_path("public/build/{$page}/index.html");
-    if (file_exists($htmlPath)) {
-        return serveNuxtFile($htmlPath);
-    }
+$frontRoutes = [
+    'home',
+    'about',
+    'blog',
+    'license',
+    'services',
+];
 
-    return response()->json(['error' => 'Page not found'], 404);
+Route::get('/{any}', function ($any) use ($frontRoutes) {
+    $page = trim($any, '/');
+
+    if (in_array($page, $frontRoutes)) {
+        $htmlPath = base_path("public/build/{$page}/index.html");
+        if (file_exists($htmlPath)) {
+            return serveNuxtFile($htmlPath);
+        }
+    }
 })->where('any', '^(?!api/|logout).+');
 
 Route::prefix('/')->group(function () {
