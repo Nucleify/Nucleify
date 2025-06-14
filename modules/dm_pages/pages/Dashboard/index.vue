@@ -19,15 +19,12 @@ import {
   articleRequests,
   contactRequests,
   moneyRequests,
-  useColors,
   useDisplayCharts,
 } from 'atomic'
 
-const { setDefaultColors } = useColors()
 const { setDefaultChartsDisplay } = useDisplayCharts()
 
 onMounted(() => {
-  setDefaultColors(true)
   setDefaultChartsDisplay(true)
 })
 
