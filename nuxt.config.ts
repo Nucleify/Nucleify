@@ -31,14 +31,8 @@ export default defineNuxtConfig({
     prerender: process.env.CI ? {
       enabled: false
     } : {
-      routes: [
-        '/home',
-        '/about', 
-        '/blog',
-        '/license',
-        '/services'
-      ],
-      crawlLinks: false
+      routes: ['/home'],
+      crawlLinks: true
     },
     output: {
       publicDir: './public/build'
@@ -47,7 +41,7 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     experimental: {
       wasm: true
-    }
+    },
   },
   app: {
     head: {
