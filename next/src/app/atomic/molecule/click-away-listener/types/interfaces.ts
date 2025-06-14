@@ -1,7 +1,7 @@
 export interface AdClickAwayListenerInterface {
-    children: React.ReactElement;
-    onClickAway: (event: MouseEvent | TouchEvent) => void;
-    disableReactTree?: boolean;
+    children: React.ReactElement
+    onClickAway: (event: MouseEvent | TouchEvent) => void
+    disableReactTree?: boolean
     mouseEvent?: 'onClick'
     | 'onMouseDown'
     | 'onMouseUp'
@@ -10,5 +10,5 @@ export interface AdClickAwayListenerInterface {
     | false;
     touchEvent?: 'onTouchEnd'
     | 'onTouchStart'
-    | false;
+    | false
 }
