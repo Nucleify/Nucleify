@@ -1,6 +1,6 @@
-import type { SxProps, Theme } from "@mui/material";
-import type { OverridableStringUnion } from "@mui/types";
-import type { CheckboxPropsColorOverrides, CheckboxPropsSizeOverrides } from "@mui/material/Checkbox";
+import { SxProps, Theme } from "@mui/material";
+import { OverridableStringUnion } from "@mui/types";
+import { CheckboxPropsColorOverrides, CheckboxPropsSizeOverrides } from "@mui/material/Checkbox";
 
 export interface AdCheckboxInterface {
     checked?: boolean
