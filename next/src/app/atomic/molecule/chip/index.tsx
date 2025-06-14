@@ -1,0 +1,19 @@
+import { JSX } from "react";
+
+import { Chip } from "@mui/material";
+
+import { AdChipInterface } from "./types";
+
+export default function AdChip({
+    className = "",
+    sx,
+    ...rest
+}: AdChipInterface): JSX.Element {
+    return (
+        <Chip
+            className={`ad-chip ${className}`}
+            sx={sx}
+            {...rest}
+        />
+    );
+}
