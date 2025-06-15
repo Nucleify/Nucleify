@@ -55,15 +55,17 @@
           />
         </svg>
       </div>
-      <ad-icon
-        v-if="item.icon || item.url"
-        v-tooltip="item.label"
-        :icon="item.icon"
-        class="item"
-        :url="item.url"
-        :ad-type="item.adType"
-        @click="item.click"
-      />
+      <NuxtLink :to="item.url">
+        <ad-icon
+          v-if="item.icon || item.url"
+          v-tooltip="item.label"
+          :icon="item.icon"
+          class="item"
+          :ad-type="item.adType"
+          @click="item.click"
+        />
+      </NuxtLink>
+
       <div v-if="item.label === 'position'" class="dock-position-buttons">
         <ad-radio-button
           v-for="pos of positions"
