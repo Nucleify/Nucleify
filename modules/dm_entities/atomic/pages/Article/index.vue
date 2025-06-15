@@ -1,7 +1,7 @@
 <template>
   <div class="panel-container">
     <ad-card-chart
-      v-if="display.Article"
+      v-if="displayCharts.Article"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -21,10 +21,10 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { articleRequests, useDialog, useDisplayCharts } from 'atomic'
+import { articleRequests, useDialog, useDisplayChartsStore } from 'atomic'
 
 const { closeDialog } = useDialog()
-const { display } = useDisplayCharts()
+const displayCharts = useDisplayChartsStore()
 
 const { results, loading, getAllArticles } = articleRequests(closeDialog)
 

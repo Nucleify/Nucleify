@@ -32,7 +32,7 @@
     </div>
 
     <ad-card-chart
-      v-if="display.Admin"
+      v-if="displayCharts.Admin"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -70,10 +70,10 @@ import {
   articleRequests,
   contactRequests,
   moneyRequests,
-  useDisplayCharts,
+  useDisplayChartsStore,
 } from 'atomic'
 
-const { display } = useDisplayCharts()
+const displayCharts = useDisplayChartsStore()
 
 const {
   results: articles,

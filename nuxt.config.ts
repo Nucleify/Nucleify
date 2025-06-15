@@ -14,14 +14,16 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxtjs/storybook',
     '@nuxtjs/stylelint-module',
+    '@pinia/nuxt',
     '@primevue/nuxt-module',
     '@radya/nuxt-dompurify',
+    '@qirolab/nuxt-sanctum-authentication',
     'nuxt-link-checker',
     'nuxt-schema-org',
     'nuxt-seo-utils',
     'nuxt-swiper',
     'nuxt-vitalizer',
-    '@qirolab/nuxt-sanctum-authentication'
+    'pinia-plugin-persistedstate/nuxt',
   ],
   laravelSanctum: {
     apiUrl: process.env.APP_URL,
