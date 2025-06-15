@@ -1,12 +1,9 @@
 <template>
   <div class="nav-links-container">
     <template v-for="link in navLinks" :key="link.label">
-      <ad-anchor
-        v-if="!link.isButton"
-        class="nav-link"
-        :href="link.href"
-        :label="link.label"
-      />
+      <nuxt-link v-if="!link.isButton" class="nav-link" :to="link.href">
+        {{ link.label }}
+      </nuxt-link>
       <ad-button
         v-else
         :class="link.class"

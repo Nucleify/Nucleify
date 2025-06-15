@@ -16,10 +16,10 @@
             :key="columnIndex"
             :class="`column-${columnIndex + 1}`"
           >
-            <ad-anchor
+            <nuxt-link
               v-for="(item, itemIndex) in column"
               :key="itemIndex"
-              :href="item.url"
+              :to="item.url"
             >
               <ad-paragraph
                 v-if="item?.header"
@@ -27,7 +27,7 @@
                 :text="item.name"
               />
               <span v-else>{{ item.name }}</span>
-            </ad-anchor>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -41,14 +41,14 @@
 
 <script setup lang="ts">
 const columns = [
-  // Entities
+  // About
   [
-    { name: 'Entities', header: true, url: '/entities' },
-    { name: 'Activities', url: '/activity-log' },
-    { name: 'Articles', url: '/entities/articles' },
-    { name: 'Contacts', url: '/entities/contacts' },
-    { name: 'Money', url: '/entities/money' },
-    { name: 'Users', url: '/admin' },
+    { name: 'About', header: true, url: '/about' },
+    { name: 'Purpose', url: '/about' },
+    { name: 'Collaboration', url: '/about' },
+    { name: 'Support Us', url: '/about' },
+    { name: 'License', url: '/about' },
+    { name: 'Contact', url: '/about' },
   ],
   // Services
   [
@@ -60,14 +60,14 @@ const columns = [
     { name: 'Data Analysis', url: '/services' },
     { name: 'Page Builder', url: '/services' },
   ],
-  // About
+  // Modules
   [
-    { name: 'About', header: true, url: '/about' },
-    { name: 'Purpose', url: '/about' },
-    { name: 'Collaboration', url: '/about' },
-    { name: 'Support Us', url: '/about' },
-    { name: 'License', url: '/about' },
-    { name: 'Contact', url: '/about' },
+    { name: 'Modules', header: true },
+    { name: 'dm_entities_structural' },
+    { name: 'dm_entities' },
+    { name: 'dm_colors' },
+    { name: 'dm_activity' },
+    { name: 'dm_auth' },
   ],
   // Blog
   [
