@@ -29,10 +29,10 @@ export const useDisplayChartsStore = defineStore('displayCharts', {
     Technology: true,
   }),
   actions: {
-    toggle(this: DisplayChartsState, key: keyof DisplayChartsState) {
+    toggle(key: keyof DisplayChartsState) {
       this[key] = !this[key]
     },
-    setAllTrue(this: DisplayChartsState) {
+    setAllTrue() {
       ;(Object.keys(this) as (keyof DisplayChartsState)[]).forEach((k) => {
         this[k] = true
       })
