@@ -33,7 +33,7 @@ export default defineNuxtConfig({
     prerender: process.env.CI ? {
       enabled: false
     } : {
-      routes: ['/home'],
+      routes: ['/home', '/settings'],
       crawlLinks: true
     },
     output: {

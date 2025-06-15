@@ -50,7 +50,7 @@
     </div>
 
     <ad-card-chart
-      v-if="displayCharts.Structural"
+      entity="Structural"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -102,10 +102,7 @@ import {
   linkRequests,
   questionRequests,
   technologyRequests,
-  useDisplayChartsStore,
 } from 'atomic'
-
-const displayCharts = useDisplayChartsStore()
 
 const {
   results: cards,

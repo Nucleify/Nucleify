@@ -32,7 +32,7 @@
     </div>
 
     <ad-card-chart
-      v-if="displayCharts.Admin"
+      entity="Entities"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -66,14 +66,7 @@
 import type { Ref } from 'vue'
 import { onMounted, ref, watch } from 'vue'
 
-import {
-  articleRequests,
-  contactRequests,
-  moneyRequests,
-  useDisplayChartsStore,
-} from 'atomic'
-
-const displayCharts = useDisplayChartsStore()
+import { articleRequests, contactRequests, moneyRequests } from 'atomic'
 
 const {
   results: articles,
