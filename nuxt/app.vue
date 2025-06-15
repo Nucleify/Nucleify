@@ -39,10 +39,14 @@ useHead(() => ({
 <style lang="scss">
 @import 'atomic/boson/styles';
 
+.layout-enter-active,
+.layout-leave-active,
 .page-enter-active,
 .page-leave-active {
   transition: all 0.3s;
 }
+.layout-enter-active,
+.layout-leave-active,
 .page-enter-from,
 .page-leave-to {
   opacity: 0;
