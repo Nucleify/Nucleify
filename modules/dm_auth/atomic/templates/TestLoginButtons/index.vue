@@ -4,18 +4,26 @@
       icon="pi pi-crown"
       class="primary-button text-sm"
       :rounded="true"
-      @click="testLogin('admin')"
+      @click="loginAndGo('admin')"
     />
     <ad-button
       icon="pi pi-user"
       severity="secondary"
       class="primary-button text-sm"
       :rounded="true"
-      @click="testLogin('user')"
+      @click="loginAndGo('user')"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+import { useRouter } from '#app'
 import { testLogin } from 'atomic'
+
+const router = useRouter()
+
+async function loginAndGo(role: string) {
+  await testLogin(role)
+  router.push('/dashboard')
+}
 </script>

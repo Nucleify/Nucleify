@@ -1,14 +1,17 @@
 <template>
   <div>
+    <dm-screen-lights :count="8" />
     <ad-toast />
     <NuxtRouteAnnouncer />
-    <NuxtLayout>
+    <NuxtLayout :name="officeType">
       <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
 
 <script setup lang="ts">
+import { resetColorsIfEmpty, useOfficeType } from 'atomic'
+
 const route = useRoute()
 
 useHead(() => ({
@@ -34,21 +37,18 @@ useHead(() => ({
     },
   ],
 }))
+
+const { officeType, getOfficeType } = useOfficeType()
+
+watchEffect(() => {
+  officeType.value = getOfficeType()
+})
+
+onMounted(() => {
+  resetColorsIfEmpty()
+})
 </script>
 
 <style lang="scss">
 @import 'atomic/boson/styles';
-
-.layout-enter-active,
-.layout-leave-active,
-.page-enter-active,
-.page-leave-active {
-  transition: all 0.3s;
-}
-.layout-enter-active,
-.layout-leave-active,
-.page-enter-from,
-.page-leave-to {
-  opacity: 0;
-}
 </style>

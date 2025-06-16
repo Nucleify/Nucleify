@@ -1,7 +1,12 @@
-import type { LoginFieldsInterface, UserRoleType } from 'atomic'
-import { apiHandle, navigateTo } from 'atomic'
+import type { RouteLocationNormalized } from 'vue-router'
 
-export async function testLogin(role: UserRoleType): Promise<void> {
+import type { LoginFieldsInterface, UserRoleType } from 'atomic'
+import { apiHandle } from 'atomic'
+
+export async function testLogin(
+  role: UserRoleType,
+  route: RouteLocationNormalized
+): Promise<void> {
   const credentials: Record<UserRoleType, LoginFieldsInterface | undefined> = {
     user: { email: 'test_user@datamanager.com', password: 'test_user123' },
     admin: { email: 'test_admin@datamanager.com', password: 'test_admin123' },
@@ -22,8 +27,5 @@ export async function testLogin(role: UserRoleType): Promise<void> {
     url: appUrl() + 'login',
     method: 'POST',
     data: userCredentials,
-    onSuccess: () => {
-      navigateTo('/dashboard')
-    },
   })
 }
