@@ -5,7 +5,7 @@
   position: fixed;
   z-index: 98;
   opacity: 0;
-  @extend .fade-in;
+  @extend %fade-in;
 
   .logo[type='main'] {
     .lighter-color {
