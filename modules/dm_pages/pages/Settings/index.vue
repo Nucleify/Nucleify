@@ -1,6 +1,8 @@
 <template>
   <div class="panel-container settings-panel-container">
-    <skeleton-settings-card v-for="i in 2" :key="i" v-if="!isClient" />
+    <template v-if="!isClient">
+      <skeleton-settings-card v-for="i in 2" :key="i" />
+    </template>
     <client-only>
       <color-settings />
       <display-charts />

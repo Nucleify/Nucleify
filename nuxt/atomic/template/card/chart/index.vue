@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <ad-card class="my-card chart-card" v-if="displayCharts[props.entity]">
+    <ad-card v-if="displayCharts[props.entity]" class="my-card chart-card">
       <template #content>
         <ad-chart
           :chart-method-type="props.chartMethodType"

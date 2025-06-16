@@ -1,12 +1,7 @@
-import type { RouteLocationNormalized } from 'vue-router'
-
 import type { LoginFieldsInterface, UserRoleType } from 'atomic'
 import { apiHandle } from 'atomic'
 
-export async function testLogin(
-  role: UserRoleType,
-  route: RouteLocationNormalized
-): Promise<void> {
+export async function testLogin(role: UserRoleType): Promise<void> {
   const credentials: Record<UserRoleType, LoginFieldsInterface | undefined> = {
     user: { email: 'test_user@datamanager.com', password: 'test_user123' },
     admin: { email: 'test_admin@datamanager.com', password: 'test_admin123' },
