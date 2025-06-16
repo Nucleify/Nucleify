@@ -4,19 +4,13 @@
       <nuxt-link v-if="!link.isButton" class="nav-link" :to="link.href">
         {{ link.label }}
       </nuxt-link>
-      <ad-button
-        v-else
-        :class="link.class"
-        :label="link.label"
-        text
-        @click="navigateTo(link.href)"
-      />
+      <nuxt-link v-else :to="link.href" :class="link.class">
+        {{ link.label }}
+      </nuxt-link>
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { navigateTo } from 'atomic'
-
 import { navLinks } from '.'
 </script>

@@ -14,6 +14,8 @@ import {
 
 export function useAuthForm(): UseAuthFormInterface {
   let url: string
+  const router = useRouter()
+
   async function submitForm(
     data: LoginFieldsInterface | RegisterFieldsInterface
   ): Promise<void> {
@@ -37,8 +39,17 @@ export function useAuthForm(): UseAuthFormInterface {
       },
     })
   }
+
+  async function submitAndGo(
+    data: LoginFieldsInterface | RegisterFieldsInterface
+  ) {
+    await submitForm(data)
+    router.push('/dashboard')
+  }
+
   return {
     submitForm,
+    submitAndGo,
     loginFields,
     loginInputs,
     registerFields,
