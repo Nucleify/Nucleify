@@ -17,7 +17,7 @@
             <dm-animation-hexagons />
             <div class="flip-card-front">
               <ad-image
-                :src="imgUrl + 'desktop.png'"
+                :src="imgUrl + 'desktop.webp'"
                 width="122px"
                 height="92px"
                 alt="Desktop image"
@@ -40,7 +40,7 @@
             <dm-animation-hexagons />
             <div class="flip-card-front">
               <ad-image
-                :src="imgUrl + 'tablet.png'"
+                :src="imgUrl + 'tablet.webp'"
                 width="75px"
                 height="100px"
                 alt="Tablet image"
@@ -62,7 +62,7 @@
             <dm-animation-hexagons />
             <div class="flip-card-front">
               <ad-image
-                :src="imgUrl + 'phone.png'"
+                :src="imgUrl + 'phone.webp'"
                 width="54px"
                 height="100px"
                 alt="Phone image"
