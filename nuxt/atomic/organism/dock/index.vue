@@ -66,9 +66,10 @@ import type { DockInterface, PositionType } from 'atomic'
 import {
   dockItems,
   positions,
-  getUserRole,
   localStorageGetItem,
   localStorageSetItem,
+  checkIsStaff,
+  sessionStorageGetItem,
 } from 'atomic'
 
 const LOCAL_STORAGE_KEY = 'dock-position'
@@ -96,9 +97,7 @@ onMounted(async () => {
     position.value = savedPosition as PositionType
   }
 
-  getUserRole().then(({ isStaff: staffStatus }) => {
-    isStaff.value = staffStatus()
-  })
+  isStaff.value = checkIsStaff(sessionStorageGetItem('user_role')!)
 
   window.addEventListener('resize', setDockPositionForScreenSize)
 })
