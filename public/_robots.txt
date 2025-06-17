@@ -1,11 +1,12 @@
 User-agent: *
 
-Disallow: /cgi-bin/
-Disallow: /tmp/
-Disallow: /private/
-Disallow: /login/
-Disallow: /register/
-Disallow: /logout/
+Disallow: /cgi-bin
+Disallow: /cdn-cgi
+Disallow: /tmp
+Disallow: /private
+Disallow: /login
+Disallow: /register
+Disallow: /logout
 Disallow: /search
 Disallow: /*?*
 Disallow: /sanctum
@@ -18,6 +19,7 @@ Disallow: /password
 Disallow: /modules
 Disallow: /settings
 Disallow: /_nuxt
+Noindex: /cdn-cgi
 Noindex: /sanctum
 Noindex: /api
 Noindex: /entities

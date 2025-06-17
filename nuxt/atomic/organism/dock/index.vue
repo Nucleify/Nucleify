@@ -96,9 +96,7 @@ onMounted(async () => {
     position.value = savedPosition as PositionType
   }
 
-  getUserRole().then(({ isStaff: staffStatus }) => {
-    isStaff.value = staffStatus()
-  })
+  console.log(sessionStorage.getItem('user_role'))
 
   window.addEventListener('resize', setDockPositionForScreenSize)
 })
