@@ -10,11 +10,9 @@
               :href="tech.href"
               :aria-label="tech.label"
             >
-              <nuxt-img
-                :src="technologiesImgUrl + tech.src"
-                :alt="tech.label"
-                loading="lazy"
-              />
+              <deferred-content>
+                <img :src="technologiesImgUrl + tech.src" :alt="tech.label" />
+              </deferred-content>
             </ad-anchor>
           </swiper-slide>
         </swiper-container>

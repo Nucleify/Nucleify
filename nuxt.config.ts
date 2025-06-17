@@ -8,7 +8,6 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxt/eslint',
-    '@nuxt/image',
     '@nuxt/test-utils/module',
     '@nuxtjs/google-fonts',
     '@nuxtjs/robots',
