@@ -19,17 +19,6 @@ Disallow: /password
 Disallow: /modules
 Disallow: /settings
 Disallow: /_nuxt
-Noindex: /cdn-cgi
-Noindex: /sanctum
-Noindex: /api
-Noindex: /entities
-Noindex: /structural
-Noindex: /admin
-Noindex: /dashboard
-Noindex: /password
-Noindex: /modules
-Noindex: /settings
-Noindex: /_nuxt
 
 Allow: /*.css$
 Allow: /*.js$
