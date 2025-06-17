@@ -8,10 +8,14 @@
               v-if="tech"
               v-tooltip="tech.label"
               :href="tech.href"
-              :src="technologiesImgUrl + tech.src"
-              :alt="tech.label"
               :aria-label="tech.label"
-            />
+            >
+              <nuxt-img
+                :src="technologiesImgUrl + tech.src"
+                :alt="tech.label"
+                loading="lazy"
+              />
+            </ad-anchor>
           </swiper-slide>
         </swiper-container>
       </client-only>
