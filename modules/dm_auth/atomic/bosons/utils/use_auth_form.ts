@@ -8,8 +8,8 @@ import {
   loginInputs,
   registerFields,
   registerInputs,
-  navigateTo,
   apiHandle,
+  getAndSetUser,
 } from 'atomic'
 
 export function useAuthForm(): UseAuthFormInterface {
@@ -34,8 +34,8 @@ export function useAuthForm(): UseAuthFormInterface {
       url,
       method: 'POST',
       data,
-      onSuccess: (): void => {
-        navigateTo('/dashboard')
+      onSuccess: async (): Promise<void> => {
+        await getAndSetUser()
       },
     })
   }

@@ -1,5 +1,5 @@
 import type { LoginFieldsInterface, UserRoleType } from 'atomic'
-import { apiHandle } from 'atomic'
+import { apiHandle, getAndSetUser } from 'atomic'
 
 export async function testLogin(role: UserRoleType): Promise<void> {
   const credentials: Record<UserRoleType, LoginFieldsInterface | undefined> = {
@@ -22,5 +22,8 @@ export async function testLogin(role: UserRoleType): Promise<void> {
     url: appUrl() + 'login',
     method: 'POST',
     data: userCredentials,
+    onSuccess: async (): Promise<void> => {
+      await getAndSetUser()
+    },
   })
 }
