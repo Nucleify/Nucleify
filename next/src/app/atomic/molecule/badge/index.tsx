@@ -1,6 +1,6 @@
 import { JSX } from 'react'
 
-import { Badge } from '@mui/material'
+import Badge from '@mui/material/Badge'
 
 import { AdBadgeInterface } from './types'
 

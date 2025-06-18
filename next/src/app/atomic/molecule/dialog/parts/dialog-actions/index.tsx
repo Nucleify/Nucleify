@@ -1,18 +1,22 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import { DialogActions } from "@mui/material";
+import DialogActions from '@mui/material/DialogActions'
 
-import { AdDialogActionsInterface } from "./types";
+import { AdDialogActionsInterface } from './types'
 
 export default function AdDialogActions({
-    children,
-    className = "",
-    sx,
-    ...rest
+  children,
+  className = '',
+  sx,
+  ...rest
 }: AdDialogActionsInterface): JSX.Element {
-    return (
-        <DialogActions className={`ad-dialog-actions ${className}`} sx={sx} {...rest}>
-            {children}
-        </DialogActions>
-    );
+  return (
+    <DialogActions
+      className={`ad-dialog-actions ${className}`}
+      sx={sx}
+      {...rest}
+    >
+      {children}
+    </DialogActions>
+  )
 }

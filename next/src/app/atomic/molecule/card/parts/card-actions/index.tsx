@@ -1,6 +1,6 @@
 import { JSX } from 'react'
 
-import { CardActions } from '@mui/material'
+import CardActions from '@mui/material/CardActions'
 
 import { AdCardActionsInterface } from './types'
 

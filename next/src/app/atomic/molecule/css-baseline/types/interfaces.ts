@@ -1,4 +1,4 @@
 export interface AdCssBaselineInterface {
-    children: React.ReactNode
-    enableColorScheme?: boolean
+  children: React.ReactNode
+  enableColorScheme?: boolean
 }

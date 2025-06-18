@@ -1,6 +1,6 @@
 import { JSX } from 'react'
 
-import { AccordionSummary } from '@mui/material'
+import AccordionSummary from '@mui/material/AccordionSummary'
 
 import { AdAccordionSummaryInterface } from './types'
 

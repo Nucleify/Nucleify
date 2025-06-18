@@ -1,8 +1,8 @@
-import { SxProps, Theme } from "@mui/material";
+import { SxProps, Theme } from '@mui/material'
 
 export interface AdDialogContentInterface {
-    children?: React.ReactNode
-    className?: string
-    dividers?: boolean
-    sx?: SxProps<Theme>
+  children?: React.ReactNode
+  className?: string
+  dividers?: boolean
+  sx?: SxProps<Theme>
 }
