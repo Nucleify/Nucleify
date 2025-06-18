@@ -1,6 +1,6 @@
 import { JSX } from 'react'
 
-import { ButtonGroup } from '@mui/material'
+import ButtonGroup from '@mui/material/ButtonGroup'
 
 import { AdButtonGroupInterface } from './types'
 

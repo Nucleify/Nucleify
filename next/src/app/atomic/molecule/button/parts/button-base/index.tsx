@@ -1,6 +1,6 @@
 import { JSX } from 'react'
 
-import { ButtonBase } from '@mui/material'
+import ButtonBase from '@mui/material/ButtonBase'
 
 import { AdButtonBaseInterface } from './types'
 

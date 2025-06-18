@@ -1,8 +1,8 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import { Divider } from "@mui/material";
+import Divider from '@mui/material/Divider'
 
-import { AdDividerInterface } from "./types";
+import { AdDividerInterface } from './types'
 
 export default function AdDivider({
   children,
@@ -10,9 +10,9 @@ export default function AdDivider({
   sx,
   ...rest
 }: AdDividerInterface): JSX.Element {
-    return (
-        <Divider className={`ad-divider ${className}`} sx={sx} {...rest}>
-        {children}
-        </Divider>
-    );
+  return (
+    <Divider className={`ad-divider ${className}`} sx={sx} {...rest}>
+      {children}
+    </Divider>
+  )
 }

@@ -1,6 +1,6 @@
 import { JSX } from 'react'
 
-import { CardMedia } from '@mui/material'
+import CardMedia from '@mui/material/CardMedia'
 
 import { AdCardMediaInterface } from './types'
 

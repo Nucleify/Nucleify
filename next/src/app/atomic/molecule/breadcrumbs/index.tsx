@@ -1,6 +1,6 @@
 import { JSX } from 'react'
 
-import { Breadcrumbs } from '@mui/material'
+import Breadcrumbs from '@mui/material/Breadcrumbs'
 
 import { AdBreadcrumbsInterface } from './types'
 

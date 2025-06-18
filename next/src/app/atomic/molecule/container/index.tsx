@@ -1,19 +1,13 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import { Container } from "@mui/material";
+import Container from '@mui/material/Container'
 
-import { AdContainerInterface } from "./types";
+import { AdContainerInterface } from './types'
 
 export default function AdContainer({
-    className = "",
-    sx,
-    ...rest
+  className = '',
+  sx,
+  ...rest
 }: AdContainerInterface): JSX.Element {
-    return (
-        <Container
-            className={`ad-container ${className}`}
-            sx={sx}
-            {...rest}
-        />
-    );
+  return <Container className={`ad-container ${className}`} sx={sx} {...rest} />
 }

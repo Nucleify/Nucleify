@@ -1,18 +1,18 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import Dialog from "@mui/material/Dialog";
+import Dialog from '@mui/material/Dialog'
 
-import { AdDialogInterface } from "./types";
+import { AdDialogInterface } from './types'
 
 export default function AdDialog({
-    children,
-    className = "",
-    sx,
-    ...rest
+  children,
+  className = '',
+  sx,
+  ...rest
 }: AdDialogInterface): JSX.Element {
-    return (
-        <Dialog className={`ad-dialog ${className}`} sx={sx} {...rest}>
-            {children}
-        </Dialog>
-    );
+  return (
+    <Dialog className={`ad-dialog ${className}`} sx={sx} {...rest}>
+      {children}
+    </Dialog>
+  )
 }

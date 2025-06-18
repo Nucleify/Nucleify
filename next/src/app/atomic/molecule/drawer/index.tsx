@@ -1,11 +1,11 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import Drawer from '@mui/material/Drawer';
+import Drawer from '@mui/material/Drawer'
 
-import { AdDrawerInterface } from "./types";
+import { AdDrawerInterface } from './types'
 
 export default function AdDrawer({
-    children,
+  children,
   className = '',
   ...rest
 }: AdDrawerInterface): JSX.Element {
@@ -13,5 +13,5 @@ export default function AdDrawer({
     <Drawer className={`ad-drawer ${className}`} {...rest}>
       {children}
     </Drawer>
-  );
+  )
 }

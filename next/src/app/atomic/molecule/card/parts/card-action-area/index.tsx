@@ -1,6 +1,7 @@
 import { JSX } from 'react'
 
-import { CardActionArea } from '@mui/material'
+import CardActionArea from '@mui/material/CardActionArea'
+
 import { AdCardActionAreaInterface } from './types'
 
 export default function AdCardActionArea(
