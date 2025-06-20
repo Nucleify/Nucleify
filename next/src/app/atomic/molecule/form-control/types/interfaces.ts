@@ -1,0 +1,23 @@
+import { SxProps, Theme } from '@mui/material'
+import { OverridableStringUnion } from '@mui/types'
+import { FormControlPropsColorOverrides } from '@mui/material/FormControl'
+
+export interface AdFormControlInterface {
+  children?: React.ReactNode
+  className?: string
+  color?: OverridableStringUnion<
+    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    FormControlPropsColorOverrides
+  >
+  component?: React.ElementType
+  disabled?: boolean
+  error?: boolean
+  focused?: boolean
+  fullWidth?: boolean
+  hiddenLabel?: boolean
+  margin?: 'dense' | 'none' | 'normal'
+  required?: boolean
+  size?: 'medium' | 'small'
+  sx?: SxProps<Theme>
+  variant?: 'filled' | 'outlined' | 'standard'
+}

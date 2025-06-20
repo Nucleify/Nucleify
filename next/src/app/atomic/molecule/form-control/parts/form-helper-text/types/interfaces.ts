@@ -1,0 +1,20 @@
+import { SxProps, Theme } from '@mui/material'
+import { OverridableStringUnion } from '@mui/types'
+import { FormHelperTextPropsVariantOverrides } from '@mui/material/FormHelperText'
+
+export interface AdFormHelperTextInterface {
+  children?: React.ReactNode
+  className?: string
+  component?: React.ElementType
+  disabled?: boolean
+  error?: boolean
+  filled?: boolean
+  focused?: boolean
+  margin?: 'dense'
+  required?: boolean
+  sx?: SxProps<Theme>
+  variant?: OverridableStringUnion<
+    'filled' | 'outlined' | 'standard',
+    FormHelperTextPropsVariantOverrides
+  >
+}
