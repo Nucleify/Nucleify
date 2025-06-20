@@ -1,16 +1,16 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import Fade from '@mui/material/Fade';
+import Fade from '@mui/material/Fade'
 
-import { AdFadeInterface } from './types';
+import { AdFadeInterface } from './types'
 
 export default function AdFade({
-    children,
-    ...rest
+  children,
+  ...rest
 }: AdFadeInterface): JSX.Element {
-    return (
-        <Fade className={`ad-fade`} {...rest}>
-            {children}
-        </Fade>
-    );
+  return (
+    <Fade className={`ad-fade`} {...rest}>
+      {children}
+    </Fade>
+  )
 }

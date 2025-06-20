@@ -1,15 +1,15 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import FilledInput from '@mui/material/FilledInput';
+import FilledInput from '@mui/material/FilledInput'
 
-import { AdFilledInputInterface } from './types';
+import { AdFilledInputInterface } from './types'
 
 export default function AdFilledInput({
-    className = '',
-    sx,
-    ...rest
+  className = '',
+  sx,
+  ...rest
 }: AdFilledInputInterface): JSX.Element {
-    return (
-        <FilledInput className={`ad-filled-input ${className}`} sx={sx} {...rest} />
-    );
+  return (
+    <FilledInput className={`ad-filled-input ${className}`} sx={sx} {...rest} />
+  )
 }
