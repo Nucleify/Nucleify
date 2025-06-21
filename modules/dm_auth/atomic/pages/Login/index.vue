@@ -18,7 +18,7 @@
       </div>
     </template>
     <template #content>
-      <form @submit.prevent="submitForm(loginFields)">
+      <form @submit.prevent="submitAndGo(loginFields)">
         <ad-float-label v-for="(field, index) in loginInputs" :key="index">
           <ad-input-text
             :id="field.id"
@@ -42,5 +42,5 @@
 <script setup lang="ts">
 import { useAuthForm } from 'atomic'
 
-const { submitForm, loginFields, loginInputs } = useAuthForm()
+const { submitAndGo, loginFields, loginInputs } = useAuthForm()
 </script>

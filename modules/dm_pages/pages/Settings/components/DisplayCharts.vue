@@ -10,7 +10,7 @@
           class="refresh-button"
           rounded
           text
-          @click="setDefaultChartsDisplay(false, true)"
+          @click="displayChartsStore.setAllTrue()"
         />
       </div>
     </template>
@@ -25,9 +25,9 @@
 
           <ad-select-button
             ad-type="main"
-            :model-value="display[item] ? 'On' : 'Off'"
+            :model-value="displayCharts[item].value ? 'On' : 'Off'"
             :options="options"
-            @click="displayChartsToggle(item)"
+            @click="displayChartsStore.toggle(item)"
           />
         </li>
       </ul>
@@ -37,11 +37,12 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 
-import { displayChartList, useDisplayCharts } from 'atomic'
+import { displayChartList } from 'atomic'
+import { useDisplayChartsStore } from '~/stores/display_charts'
 
-const { display, setDefaultChartsDisplay, displayChartsToggle } =
-  useDisplayCharts()
-
+const displayChartsStore = useDisplayChartsStore()
+const displayCharts = storeToRefs(displayChartsStore)
 const options = ref(['On', 'Off'])
 </script>

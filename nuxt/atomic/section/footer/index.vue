@@ -16,10 +16,10 @@
             :key="columnIndex"
             :class="`column-${columnIndex + 1}`"
           >
-            <ad-anchor
+            <nuxt-link
               v-for="(item, itemIndex) in column"
               :key="itemIndex"
-              :href="item.url"
+              :to="item.url"
             >
               <ad-paragraph
                 v-if="item?.header"
@@ -27,7 +27,7 @@
                 :text="item.name"
               />
               <span v-else>{{ item.name }}</span>
-            </ad-anchor>
+            </nuxt-link>
           </div>
         </div>
       </div>
