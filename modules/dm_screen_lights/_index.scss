@@ -11,6 +11,9 @@ $amount: 15;
   width: 100vw;
   height: 100vh;
   z-index: -1;
+  opacity: 0;
+
+  @extend %fade-in;
 }
 
 body:has(

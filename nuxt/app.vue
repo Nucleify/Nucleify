@@ -1,14 +1,19 @@
 <template>
   <div>
+    <client-only>
+      <dm-screen-lights :count="8" />
+    </client-only>
     <ad-toast />
     <NuxtRouteAnnouncer />
-    <NuxtLayout>
+    <NuxtLayout :name="officeType">
       <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
 
 <script setup lang="ts">
+import { resetColorsIfEmpty, useOfficeType } from 'atomic'
+
 const route = useRoute()
 
 useHead(() => ({
@@ -34,6 +39,16 @@ useHead(() => ({
     },
   ],
 }))
+
+const { officeType, getOfficeType } = useOfficeType()
+
+watchEffect(() => {
+  officeType.value = getOfficeType()
+})
+
+onMounted(() => {
+  resetColorsIfEmpty()
+})
 </script>
 
 <style lang="scss">
