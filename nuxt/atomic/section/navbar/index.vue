@@ -2,7 +2,7 @@
 <template>
   <nav class="navbar">
     <div class="container">
-      <ad-anchor class="application-header" href="/home">
+      <nuxt-link class="application-header" to="/home">
         <ad-image
           :src="imgUrl + 'logo.svg'"
           alt="DataManager logo"
@@ -10,7 +10,7 @@
         />
 
         <ad-heading :tag="1" text="DataManager" />
-      </ad-anchor>
+      </nuxt-link>
 
       <navbar-links />
       <ad-button
