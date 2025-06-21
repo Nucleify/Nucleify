@@ -41,7 +41,7 @@
     </div>
 
     <ad-card-chart
-      v-if="display.Admin"
+      entity="Admin"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -53,7 +53,6 @@
       :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />
-
     <dm-article-dashboard
       :data="articles"
       :get-data="getAllArticles"
@@ -86,10 +85,7 @@ import {
   contactRequests,
   moneyRequests,
   userRequests,
-  useDisplayCharts,
 } from 'atomic'
-
-const { display } = useDisplayCharts()
 
 const {
   results: articles,
