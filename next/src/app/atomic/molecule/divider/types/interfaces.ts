@@ -1,6 +1,6 @@
-import { SxProps, Theme } from '@mui/material'
-import { OverridableStringUnion } from '@mui/types'
-import { DividerPropsVariantOverrides } from '@mui/material/Divider'
+import type { SxProps, Theme } from '@mui/material'
+import type { OverridableStringUnion } from '@mui/types'
+import type { DividerPropsVariantOverrides } from '@mui/material/Divider'
 
 export interface AdDividerInterface {
   absolute?: boolean

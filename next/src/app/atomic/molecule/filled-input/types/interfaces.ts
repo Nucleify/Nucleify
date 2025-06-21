@@ -1,10 +1,10 @@
-import { SxProps, Theme } from '@mui/material'
-import { OverridableStringUnion } from '@mui/types'
-import {
+import type { SxProps, Theme } from '@mui/material'
+import type { OverridableStringUnion } from '@mui/types'
+import type {
   InputBasePropsColorOverrides,
   InputBaseComponentProps,
 } from '@mui/material/InputBase'
-import { ElementType } from 'react'
+import type { ElementType } from 'react'
 
 export interface AdFilledInputInterface {
   autoComplete?: string

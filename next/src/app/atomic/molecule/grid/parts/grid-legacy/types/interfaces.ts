@@ -1,5 +1,5 @@
-import { ResponsiveStyleValue, SxProps } from '@mui/system'
-import { Theme } from '@mui/material'
+import type { ResponsiveStyleValue, SxProps } from '@mui/system'
+import type { Theme } from '@mui/material'
 
 export interface AdGridLegacyInterface {
   children?: React.ReactNode
