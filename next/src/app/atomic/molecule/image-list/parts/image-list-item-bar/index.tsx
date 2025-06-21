@@ -1,16 +1,19 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import ImageListItemBar from '@mui/material/ImageListItemBar';
+import ImageListItemBar from '@mui/material/ImageListItemBar'
 
-import { AdImageListItemBarInterface } from './types/interfaces';
+import { AdImageListItemBarInterface } from './types/interfaces'
 
 export default function AdImageListItemBar({
-    className = '',
-    sx,
-    ...rest
+  className = '',
+  sx,
+  ...rest
 }: AdImageListItemBarInterface): JSX.Element {
-    return (
-        <ImageListItemBar className={`ad-image-list-item-bar ${className}`} sx={sx} {...rest}>
-        </ImageListItemBar>
-    );
+  return (
+    <ImageListItemBar
+      className={`ad-image-list-item-bar ${className}`}
+      sx={sx}
+      {...rest}
+    ></ImageListItemBar>
+  )
 }

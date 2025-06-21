@@ -1,6 +1,6 @@
-import { SxProps, Theme } from '@mui/material'
-import { OverridableStringUnion } from '@mui/types'
-import { FormControlPropsColorOverrides } from '@mui/material/FormControl'
+import type { SxProps, Theme } from '@mui/material'
+import type { OverridableStringUnion } from '@mui/types'
+import type { FormControlPropsColorOverrides } from '@mui/material/FormControl'
 
 export interface AdFormControlInterface {
   children?: React.ReactNode

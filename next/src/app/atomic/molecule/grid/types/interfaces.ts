@@ -1,4 +1,4 @@
-import { ResponsiveStyleValue } from '@mui/system'
+import type { ResponsiveStyleValue } from '@mui/system'
 
 export interface AdGridInterface {
   children?: React.ReactNode

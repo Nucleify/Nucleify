@@ -1,8 +1,8 @@
-import { JSXElementConstructor, HTMLAttributes } from 'react'
+import type { JSXElementConstructor, HTMLAttributes } from 'react'
 
-import { SxProps, Theme } from '@mui/material'
-import { PopperProps } from '@mui/material/Popper'
-import { AutocompleteRenderGroupParams } from '@mui/material/Autocomplete'
+import type { SxProps, Theme } from '@mui/material'
+import type { PopperProps } from '@mui/material/Popper'
+import type { AutocompleteRenderGroupParams } from '@mui/material/Autocomplete'
 
 export interface AdAutocompleteInterface {
   options: any[]

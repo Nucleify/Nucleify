@@ -1,18 +1,22 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItem from '@mui/material/ImageListItem'
 
-import { AdImageListItemInterface } from './types/interfaces';
+import { AdImageListItemInterface } from './types/interfaces'
 
 export default function AdImageListItem({
-    children,
-    className,
-    sx,
-    ...rest
+  children,
+  className,
+  sx,
+  ...rest
 }: AdImageListItemInterface): JSX.Element {
-    return (
-        <ImageListItem className={`ad-image-list-item ${className}`} sx={sx} {...rest}>
-            {children}
-        </ImageListItem>
-    );
+  return (
+    <ImageListItem
+      className={`ad-image-list-item ${className}`}
+      sx={sx}
+      {...rest}
+    >
+      {children}
+    </ImageListItem>
+  )
 }

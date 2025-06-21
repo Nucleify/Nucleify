@@ -1,9 +1,9 @@
-import { SxProps, Theme } from '@mui/material'
-import {
+import type { SxProps, Theme } from '@mui/material'
+import type {
   AlertPropsColorOverrides,
   AlertPropsVariantOverrides,
 } from '@mui/material/Alert'
-import { OverridableStringUnion } from '@mui/types'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdAlertInterface {
   actions?: React.ReactNode

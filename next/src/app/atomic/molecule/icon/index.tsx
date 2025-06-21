@@ -1,18 +1,18 @@
-import { JSX } from "react";
+import { JSX } from 'react'
 
-import Icon from '@mui/material/Icon';
+import Icon from '@mui/material/Icon'
 
-import { AdIconInterface } from './types';
+import { AdIconInterface } from './types'
 
 export default function AdIcon({
-    children,
-    className,
-    sx,
-    ...rest
+  children,
+  className,
+  sx,
+  ...rest
 }: AdIconInterface): JSX.Element {
-    return (
-        <Icon className={`ad-icon ${className || ''}`} sx={sx} {...rest}>
-            {children}
-        </Icon>
-    );
+  return (
+    <Icon className={`ad-icon ${className || ''}`} sx={sx} {...rest}>
+      {children}
+    </Icon>
+  )
 }

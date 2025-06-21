@@ -1,6 +1,6 @@
-import { SxProps, Theme } from '@mui/material'
-import { JSXElementConstructor } from 'react'
-import { TransitionProps } from '@mui/material/transitions'
+import type { SxProps, Theme } from '@mui/material'
+import type { JSXElementConstructor } from 'react'
+import type { TransitionProps } from '@mui/material/transitions'
 
 export interface AdAccordionInterface {
   children: NonNullable<React.ReactNode>

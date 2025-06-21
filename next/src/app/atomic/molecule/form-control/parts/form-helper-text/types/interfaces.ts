@@ -1,6 +1,6 @@
-import { SxProps, Theme } from '@mui/material'
-import { OverridableStringUnion } from '@mui/types'
-import { FormHelperTextPropsVariantOverrides } from '@mui/material/FormHelperText'
+import type { SxProps, Theme } from '@mui/material'
+import type { OverridableStringUnion } from '@mui/types'
+import type { FormHelperTextPropsVariantOverrides } from '@mui/material/FormHelperText'
 
 export interface AdFormHelperTextInterface {
   children?: React.ReactNode
