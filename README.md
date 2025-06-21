@@ -13,7 +13,34 @@ Our target is to create fully responsive, functional and scalable website based 
 ⭐ Atomic Design + [Storybook](https://storybook.js.org/) tests for most components <br>
 ⭐ Futuristic UI made with [PrimeVue](https://primevue.org/) + [Chart.js](https://www.chartjs.org/) + [GSAP](https://gsap.com/) + [SCSS](https://sass-lang.com/) <br>
 ⭐ Over 1500 backend tests with ~80% code coverage <br>
-⭐ First at phrase ```datamanager laravel nuxt``` in [Google Search](https://www.google.com/search?client=firefox-b-d&q=datamanager+laravel+nuxt&sei=pbVFaJPGJ8-Sxc8P-7eTqA8) <br>
+
+<br>
+
+<details><summary>✅ 94/96 Performance</summary>
+<br>
+
+I'm sure I could optimize it further, but it's good enough for now.
+<br>
+
+#### Introduced many optimizations:
+- SSR & Prerendering
+- Nuxt building with Atomic Design gives nicely separated chunks, able to defer as you wish
+- Preloading icons, font-display: swap + defer non-critical CSS + JS
+- Fetching website's content like questions, or technologies from database on prerender, making them editable and accessible instantly without load time
+- [nuxt-vitalizer](https://nuxt.com/modules/vitalizer) - this module is just perfect
+- [@nuxtjs/google-fonts](https://nuxt.com/modules/google-fonts) - downloading fonts on building & serving them on prerender, reducing third-party sources
+- I also recommend ```<deferred-content>``` tag from PrimeVue - it impacts performance extremely well
+- and some other magic tricks that I keep secret :D
+
+<br>
+    
+[PageSpeed Test](https://pagespeed.web.dev/analysis/https-datamanager-atomic-it-org/36uql7apub?form_factor=mobile)
+
+![Image](https://github.com/user-attachments/assets/690bf666-17de-4d7e-bd1e-7fd9cac2466c)
+![Image](https://github.com/user-attachments/assets/c25bfe19-9a8f-4e9a-9d52-a0dc136c830d)
+
+</details>
+
 
 <br>
 <hr>
