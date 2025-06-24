@@ -11,7 +11,7 @@ export default function AdIcon({
   ...rest
 }: AdIconInterface): JSX.Element {
   return (
-    <Icon className={`ad-icon ${className || ''}`} sx={sx} {...rest}>
+    <Icon className={`ad-icon ${className}`} sx={sx} {...rest}>
       {children}
     </Icon>
   )
