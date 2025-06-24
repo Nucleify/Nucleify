@@ -7,5 +7,5 @@ export interface AdBottomNavigationInterface {
   onChange?: () => void
   showLabels?: boolean
   sx?: SxProps<Theme>
-  value?: any
+  value?: unknown
 }

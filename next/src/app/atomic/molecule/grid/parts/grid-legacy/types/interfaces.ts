@@ -1,5 +1,6 @@
-import type { ResponsiveStyleValue, SxProps } from '@mui/system'
-import type { Theme } from '@mui/material'
+import type { ResponsiveStyleValue, SxProps, Theme } from '@mui/system'
+
+export type BreakpointType = 'auto' | number | boolean
 
 export interface AdGridLegacyInterface {
   children?: React.ReactNode
@@ -12,14 +13,14 @@ export interface AdGridLegacyInterface {
     'row' | 'row-reverse' | 'column' | 'column-reverse'
   >
   item?: boolean
-  lg?: 'auto' | number | boolean
-  md?: 'auto' | number | boolean
+  lg?: BreakpointType
+  md?: BreakpointType
   rowSpacing?: ResponsiveStyleValue<number | string>
-  sm?: 'auto' | number | boolean
+  sm?: BreakpointType
   spacing?: ResponsiveStyleValue<number | string>
   sx?: SxProps<Theme>
   wrap?: 'nowrap' | 'wrap-reverse' | 'wrap'
-  xl?: 'auto' | number | boolean
-  xs?: 'auto' | number | boolean
+  xl?: BreakpointType
+  xs?: BreakpointType
   zeroMinWidth?: boolean
 }

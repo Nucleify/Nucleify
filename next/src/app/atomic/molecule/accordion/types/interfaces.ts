@@ -1,6 +1,9 @@
 import type { SxProps, Theme } from '@mui/material'
 import type { JSXElementConstructor } from 'react'
 import type { TransitionProps } from '@mui/material/transitions'
+import type Accordion from '@mui/material/Accordion'
+
+type AccordionOwnerState = React.ComponentProps<typeof Accordion>
 
 export interface AdAccordionInterface {
   children: NonNullable<React.ReactNode>
@@ -11,9 +14,9 @@ export interface AdAccordionInterface {
   expanded?: boolean
   onChange?: (event: React.SyntheticEvent, expanded: boolean) => void
   slotProps?: {
-    heading?: object | ((ownerState: any) => object)
-    root?: object | ((ownerState: any) => object)
-    transition?: object | ((ownerState: any) => object)
+    heading?: object | ((ownerState: AccordionOwnerState) => object)
+    root?: object | ((ownerState: AccordionOwnerState) => object)
+    transition?: object | ((ownerState: AccordionOwnerState) => object)
   }
   slots?: {
     heading?: React.ElementType

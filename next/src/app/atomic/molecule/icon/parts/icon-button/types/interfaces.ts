@@ -2,18 +2,21 @@ import type { SxProps, Theme } from '@mui/material'
 import type { OverridableStringUnion } from '@mui/types'
 import type { IconButtonPropsColorOverrides } from '@mui/material/IconButton'
 
+export type IconButtonColorType =
+  | 'inherit'
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'error'
+  | 'info'
+  | 'success'
+  | 'warning'
+
 export interface AdIconButtonInterface {
   children?: React.ReactNode
   className?: string
   color?: OverridableStringUnion<
-    | 'inherit'
-    | 'default'
-    | 'primary'
-    | 'secondary'
-    | 'error'
-    | 'info'
-    | 'success'
-    | 'warning',
+    IconButtonColorType,
     IconButtonPropsColorOverrides
   >
   disabled?: boolean

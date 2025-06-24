@@ -4,7 +4,7 @@ import type {
   InputBasePropsColorOverrides,
   InputBaseComponentProps,
 } from '@mui/material/InputBase'
-import type { ElementType } from 'react'
+import type { ElementType, Ref } from 'react'
 
 export interface AdInputBaseInterface {
   autoComplete?: string
@@ -16,7 +16,7 @@ export interface AdInputBaseInterface {
   >
   components?: { Input?: React.ElementType; Root?: React.ElementType }
   componentsProps?: { input?: object; root?: object }
-  defaultValue?: any
+  defaultValue?: unknown
   disabled?: boolean
   disableInjectingGlobalStyles?: boolean
   endAdornment?: React.ReactNode
@@ -25,7 +25,7 @@ export interface AdInputBaseInterface {
   id?: string
   inputComponent?: ElementType<InputBaseComponentProps>
   inputProps?: object
-  inputRef?: React.Ref<any>
+  inputRef?: Ref<HTMLInputElement>
   margin?: 'dense' | 'none'
   maxRows?: number | string
   minRows?: number | string
@@ -44,5 +44,5 @@ export interface AdInputBaseInterface {
   startAdornment?: React.ReactNode
   sx?: SxProps<Theme>
   type?: string
-  value?: any
+  value?: unknown
 }
