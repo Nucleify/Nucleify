@@ -11,7 +11,7 @@ export default function AdLink({
   ...rest
 }: AdLinkInterface): JSX.Element {
   return (
-    <Link className={className} sx={sx} {...rest}>
+    <Link className={`ad-link ${className}`} sx={sx} {...rest}>
       {children}
     </Link>
   )

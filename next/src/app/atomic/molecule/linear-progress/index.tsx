@@ -9,5 +9,11 @@ export default function AdLinearProgress({
   sx,
   ...rest
 }: AdLinearProgressInterface): JSX.Element {
-  return <LinearProgress className={className} sx={sx} {...rest} />
+  return (
+    <LinearProgress
+      className={`ad-linear-progress ${className}`}
+      sx={sx}
+      {...rest}
+    />
+  )
 }
