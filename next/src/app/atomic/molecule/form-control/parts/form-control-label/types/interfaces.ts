@@ -8,7 +8,7 @@ export interface AdFormControlLabelInterface {
   componentsProps?: { typography?: object }
   disabled?: boolean
   disableTypography?: boolean
-  inputRef?: React.Ref<any>
+  inputRef?: React.Ref<HTMLInputElement>
   label: React.ReactNode
   labelPlacement?: 'bottom' | 'end' | 'start' | 'top'
   onChange?: () => void
@@ -18,5 +18,5 @@ export interface AdFormControlLabelInterface {
   }
   slots?: { typography?: React.ElementType }
   sx?: SxProps<Theme>
-  value?: any
+  value?: unknown
 }

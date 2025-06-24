@@ -1,8 +1,11 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { TouchRippleActions } from '@mui/material/ButtonBase'
+import type {
+  TouchRippleActions,
+  ButtonBaseActions,
+} from '@mui/material/ButtonBase'
 
 export interface AdButtonBaseInterface {
-  action?: React.Ref<any>
+  action?: React.Ref<ButtonBaseActions>
   centerRipple?: boolean
   children?: React.ReactNode
   className?: string

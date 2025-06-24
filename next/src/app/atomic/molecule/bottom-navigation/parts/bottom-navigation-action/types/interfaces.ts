@@ -1,7 +1,6 @@
-import type { SxProps, Theme } from '@mui/material'
+import type { SxProps, Theme, SlotProps } from '@mui/material'
 import type { BottomNavigationActionOwnerState } from '@mui/material/BottomNavigationAction'
 import type { ButtonBaseProps } from '@mui/material/ButtonBase'
-import type { SlotProps } from '@mui/material'
 
 export interface AdBottomNavigationActionInterface {
   className?: string
@@ -9,10 +8,14 @@ export interface AdBottomNavigationActionInterface {
   label?: React.ReactNode
   showLabel?: boolean
   slotProps?: {
-    label?: SlotProps<React.ElementType, {}, BottomNavigationActionOwnerState>
+    label?: SlotProps<
+      React.ElementType,
+      object,
+      BottomNavigationActionOwnerState
+    >
     root?: SlotProps<
       React.ElementType<ButtonBaseProps>,
-      {},
+      object,
       BottomNavigationActionOwnerState
     >
   }
@@ -21,5 +24,5 @@ export interface AdBottomNavigationActionInterface {
     root?: React.ElementType
   }
   sx?: SxProps<Theme>
-  value?: any
+  value?: unknown
 }

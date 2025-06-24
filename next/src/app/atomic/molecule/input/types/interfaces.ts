@@ -12,7 +12,7 @@ export interface AdInputInterface {
   >
   components?: { Input?: React.ElementType; Root?: React.ElementType }
   componentsProps?: { input?: object; root?: object }
-  defaultValue?: any
+  defaultValue?: unknown
   disabled?: boolean
   disableUnderline?: boolean
   endAdornment?: React.ReactNode
@@ -20,7 +20,7 @@ export interface AdInputInterface {
   fullWidth?: boolean
   id?: string
   inputProps?: object
-  inputRef?: React.Ref<any>
+  inputRef?: React.Ref<HTMLInputElement>
   margin?: 'dense' | 'none'
   maxRows?: number | string
   minRows?: number | string
@@ -36,5 +36,5 @@ export interface AdInputInterface {
   startAdornment?: React.ReactNode
   sx?: SxProps<Theme>
   type?: string
-  value?: any
+  value?: unknown
 }

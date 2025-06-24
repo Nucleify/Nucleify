@@ -1,12 +1,15 @@
 import type { JSXElementConstructor, HTMLAttributes } from 'react'
-
 import type { SxProps, Theme } from '@mui/material'
 import type { PopperProps } from '@mui/material/Popper'
 import type { AutocompleteRenderGroupParams } from '@mui/material/Autocomplete'
 
-export interface AdAutocompleteInterface {
-  options: any[]
-  renderInput: (params: any) => React.ReactNode
+export interface AdAutocompleteInterface<
+  Option = unknown,
+  Value = Option,
+  State = object,
+> {
+  options: Option[]
+  renderInput: (params: object) => React.ReactNode
   autoComplete?: boolean
   autoHighlight?: boolean
   autoSelect?: boolean
@@ -24,28 +27,28 @@ export interface AdAutocompleteInterface {
     popper?: object
     popupIndicator?: object
   }
-  defaultValue?: any
+  defaultValue?: Value
   disableClearable?: boolean
   disableCloseOnSelect?: boolean
   disabled?: boolean
   disabledItemsFocusable?: boolean
   disableListWrap?: boolean
   disablePortal?: boolean
-  filterOptions?: (options: any[], state: object) => any[]
+  filterOptions?: (options: Option[], state: State) => Option[]
   filterSelectedOptions?: boolean
   forcePopupIcon?: 'auto' | boolean
   freeSolo?: boolean
   fullWidth?: boolean
   getLimitTagsText?: (more: number) => React.ReactNode
-  getOptionDisabled?: (option: any) => boolean
-  getOptionKey?: (option: any) => string | number
-  getOptionLabel?: (option: any) => string
-  groupBy?: (option: any) => string
+  getOptionDisabled?: (option: Option) => boolean
+  getOptionKey?: (option: Option) => string | number
+  getOptionLabel?: (option: Option) => string
+  groupBy?: (option: Option) => string
   handleHomeEndKeys?: boolean
   id?: string
   includeInputInList?: boolean
   inputValue?: string
-  isOptionEqualToValue?: (option: any, value: any) => boolean
+  isOptionEqualToValue?: (option: Option, value: Value) => boolean
   limitTags?: number
   ListboxComponent?: JSXElementConstructor<HTMLAttributes<HTMLElement>>
   ListboxProps?: object
@@ -55,14 +58,14 @@ export interface AdAutocompleteInterface {
   noOptionsText?: React.ReactNode
   onChange?: (
     event: React.SyntheticEvent,
-    value: any,
+    value: Value,
     reason: string,
-    details?: any
+    details?: object
   ) => void
-  onClose?: (event: React.ChangeEvent<{}>, reason: string) => void
+  onClose?: (event: React.ChangeEvent<unknown>, reason: string) => void
   onHighlightChange?: (
     event: React.SyntheticEvent,
-    option: any | null,
+    option: Option | null,
     reason: string
   ) => void
   onInputChange?: (
@@ -81,14 +84,14 @@ export interface AdAutocompleteInterface {
   renderGroup?: (params: AutocompleteRenderGroupParams) => React.ReactNode
   renderOption?: (
     props: React.HTMLAttributes<HTMLLIElement>,
-    option: any,
-    state: object
+    option: Option,
+    state: State
   ) => React.ReactNode
   renderTags?: (
-    value: any[],
+    value: Option[],
     getTagProps: (params: { index: number }) => object
   ) => React.ReactNode
-  renderValue?: (value: any) => React.ReactNode
+  renderValue?: (value: Value) => React.ReactNode
   selectOnFocus?: boolean
   size?: 'small' | 'medium'
   slotProps?: {
@@ -105,5 +108,5 @@ export interface AdAutocompleteInterface {
     popper?: JSXElementConstructor<PopperProps>
   }
   sx?: SxProps<Theme>
-  value?: any
+  value?: Value
 }
