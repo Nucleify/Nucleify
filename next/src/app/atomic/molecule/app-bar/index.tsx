@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import AppBar from '@mui/material/AppBar'
+import type { JSX } from 'react'
 
-import { AdAppBarInterface } from './types'
+import type { AdAppBarInterface } from './types'
 
 export default function AdAppBar({
   children,

@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Link from '@mui/material/Link'
+import type { JSX } from 'react'
 
-import { AdLinkInterface } from './types/interfaces'
+import type { AdLinkInterface } from './types/interfaces'
 
 export default function AdLink({
   children,

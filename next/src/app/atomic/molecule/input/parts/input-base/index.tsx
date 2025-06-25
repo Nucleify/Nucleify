@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import InputBase from '@mui/material/InputBase'
+import type { JSX } from 'react'
 
-import { AdInputBaseInterface } from './types'
+import type { AdInputBaseInterface } from './types'
 
 export default function AdInputBase({
   className = '',

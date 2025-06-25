@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import DialogActions from '@mui/material/DialogActions'
+import type { JSX } from 'react'
 
-import { AdDialogActionsInterface } from './types'
+import type { AdDialogActionsInterface } from './types'
 
 export default function AdDialogActions({
   children,

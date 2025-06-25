@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Grow from '@mui/material/Grow'
+import type { JSX } from 'react'
 
-import { AdGrowInterface } from './types'
+import type { AdGrowInterface } from './types'
 
 export default function AdGrow({
   children,

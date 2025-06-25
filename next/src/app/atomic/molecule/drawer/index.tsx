@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Drawer from '@mui/material/Drawer'
+import type { JSX } from 'react'
 
-import { AdDrawerInterface } from './types'
+import type { AdDrawerInterface } from './types'
 
 export default function AdDrawer({
   children,

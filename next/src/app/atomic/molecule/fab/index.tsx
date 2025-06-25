@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Fab from '@mui/material/Fab'
+import type { JSX } from 'react'
 
-import { AdFabInterface } from './types'
+import type { AdFabInterface } from './types'
 
 export default function AdFab({
   children,

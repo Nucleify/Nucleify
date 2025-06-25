@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import CircularProgress from '@mui/material/CircularProgress'
+import type { JSX } from 'react'
 
-import { AdCircularProgressInterface } from './types'
+import type { AdCircularProgressInterface } from './types'
 
 export default function AdCircularProgress({
   className = '',

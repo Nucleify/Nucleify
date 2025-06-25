@@ -1,6 +1,6 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type { IconButtonPropsColorOverrides } from '@mui/material/IconButton'
+import type { OverridableStringUnion } from '@mui/types'
 
 export type IconButtonColorType =
   | 'inherit'

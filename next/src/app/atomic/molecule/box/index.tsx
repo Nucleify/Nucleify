@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Box from '@mui/material/Box'
+import type { JSX } from 'react'
 
-import { AdBoxInterface } from './types'
+import type { AdBoxInterface } from './types'
 
 export default function AdBox({
   children,

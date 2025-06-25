@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import ListItemText from '@mui/material/ListItemText'
+import type { JSX } from 'react'
 
-import { AdListItemTextInterface } from './types/interfaces'
+import type { AdListItemTextInterface } from './types/interfaces'
 
 export default function AdListItemText({
   children,

@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Icon from '@mui/material/Icon'
+import type { JSX } from 'react'
 
-import { AdIconInterface } from './types'
+import type { AdIconInterface } from './types'
 
 export default function AdIcon({
   children,

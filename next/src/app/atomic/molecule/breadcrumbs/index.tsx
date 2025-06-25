@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Breadcrumbs from '@mui/material/Breadcrumbs'
+import type { JSX } from 'react'
 
-import { AdBreadcrumbsInterface } from './types'
+import type { AdBreadcrumbsInterface } from './types'
 
 export default function AdBreadcrumbs({
   children,

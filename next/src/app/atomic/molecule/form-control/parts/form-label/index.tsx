@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import FormLabel from '@mui/material/FormLabel'
+import type { JSX } from 'react'
 
-import { AdFormLabelInterface } from './types'
+import type { AdFormLabelInterface } from './types'
 
 export default function AdFormLabel({
   children,

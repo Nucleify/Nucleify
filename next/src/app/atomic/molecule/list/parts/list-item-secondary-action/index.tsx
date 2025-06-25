@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction'
+import type { JSX } from 'react'
 
-import { AdListItemSecondaryActionInterface } from './types/interfaces'
+import type { AdListItemSecondaryActionInterface } from './types/interfaces'
 
 export default function AdListItemSecondaryAction({
   children,

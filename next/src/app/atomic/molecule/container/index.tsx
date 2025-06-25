@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Container from '@mui/material/Container'
+import type { JSX } from 'react'
 
-import { AdContainerInterface } from './types'
+import type { AdContainerInterface } from './types'
 
 export default function AdContainer({
   className = '',

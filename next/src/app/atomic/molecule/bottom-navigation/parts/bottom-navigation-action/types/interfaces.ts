@@ -1,4 +1,4 @@
-import type { SxProps, Theme, SlotProps } from '@mui/material'
+import type { SlotProps, SxProps, Theme } from '@mui/material'
 import type { BottomNavigationActionOwnerState } from '@mui/material/BottomNavigationAction'
 import type { ButtonBaseProps } from '@mui/material/ButtonBase'
 

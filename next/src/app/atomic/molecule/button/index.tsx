@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Button from '@mui/material/Button'
+import type { JSX } from 'react'
 
-import { AdButtonInterface } from './types'
+import type { AdButtonInterface } from './types'
 
 export default function AdButton({
   children,

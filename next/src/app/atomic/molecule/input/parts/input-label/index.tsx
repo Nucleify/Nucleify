@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import InputLabel from '@mui/material/InputLabel'
+import type { JSX } from 'react'
 
-import { AdInputLabelInterface } from './types'
+import type { AdInputLabelInterface } from './types'
 
 export default function AdInputLabel({
   children,
