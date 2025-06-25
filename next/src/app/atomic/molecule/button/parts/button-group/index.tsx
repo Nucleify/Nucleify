@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import ButtonGroup from '@mui/material/ButtonGroup'
+import type { JSX } from 'react'
 
-import { AdButtonGroupInterface } from './types'
+import type { AdButtonGroupInterface } from './types'
 
 export default function AdButtonGroup({
   children,

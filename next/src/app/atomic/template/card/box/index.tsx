@@ -1,11 +1,8 @@
-import { JSX } from 'react'
-
-import Image from 'next/image'
-
-import { AdCardBoxInterface } from './types'
-
 import AdCard from 'molecule/card/index.tsx'
 import AdCardContent from 'molecule/card/parts/card-content/index.tsx'
+import Image from 'next/image'
+import type { JSX } from 'react'
+import type { AdCardBoxInterface } from './types'
 
 import './_index.scss'
 

@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import GlobalStyles from '@mui/material/GlobalStyles'
+import type { JSX } from 'react'
 
-import { AdGlobalStylesInterface } from './types'
+import type { AdGlobalStylesInterface } from './types'
 
 export default function AdGlobalStyles({
   styles,

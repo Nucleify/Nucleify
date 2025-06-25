@@ -1,10 +1,10 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type {
   ChipPropsColorOverrides,
   ChipPropsSizeOverrides,
   ChipPropsVariantOverrides,
 } from '@mui/material/Chip'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdChipInterface {
   avatar?: React.ReactElement

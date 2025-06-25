@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import ListSubheader from '@mui/material/ListSubheader'
+import type { JSX } from 'react'
 
-import { AdListSubheaderInterface } from './types/interfaces'
+import type { AdListSubheaderInterface } from './types/interfaces'
 
 export default function AdListSubheader({
   children,

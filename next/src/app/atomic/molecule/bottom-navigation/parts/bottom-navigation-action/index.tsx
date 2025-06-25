@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
+import type { JSX } from 'react'
 
-import { AdBottomNavigationActionInterface } from './types'
+import type { AdBottomNavigationActionInterface } from './types'
 
 export default function AdBottomNavigationAction({
   className = '',

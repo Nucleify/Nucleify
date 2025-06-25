@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Grid from '@mui/material/Grid'
+import type { JSX } from 'react'
 
-import { AdGridInterface } from './types'
+import type { AdGridInterface } from './types'
 
 export default function AdGrid({
   children,

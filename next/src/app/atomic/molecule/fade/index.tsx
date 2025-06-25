@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Fade from '@mui/material/Fade'
+import type { JSX } from 'react'
 
-import { AdFadeInterface } from './types'
+import type { AdFadeInterface } from './types'
 
 export default function AdFade({
   children,

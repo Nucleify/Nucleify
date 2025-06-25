@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Backdrop from '@mui/material/Backdrop'
+import type { JSX } from 'react'
 
-import { AdBackdropInterface } from './types'
+import type { AdBackdropInterface } from './types'
 
 export default function AdBackdrop({
   children,

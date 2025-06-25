@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Autocomplete from '@mui/material/Autocomplete'
+import type { JSX } from 'react'
 
-import { AdAutocompleteInterface } from './types'
+import type { AdAutocompleteInterface } from './types'
 
 export default function AdAutocomplete({
   className = '',

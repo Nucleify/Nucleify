@@ -1,6 +1,6 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type { InputBasePropsColorOverrides } from '@mui/material/InputBase'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdInputInterface {
   autoComplete?: string

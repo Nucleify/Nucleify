@@ -1,9 +1,9 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type {
   BadgePropsColorOverrides,
   BadgePropsVariantOverrides,
 } from '@mui/material/Badge'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdBadgeInterface {
   anchorOrigin?: {

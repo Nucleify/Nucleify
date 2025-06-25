@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import CssBaseline from '@mui/material/CssBaseline'
+import type { JSX } from 'react'
 
-import { AdCssBaselineInterface } from './types'
+import type { AdCssBaselineInterface } from './types'
 
 export default function AdCssBaseline(
   rest: AdCssBaselineInterface

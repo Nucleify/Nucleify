@@ -1,6 +1,6 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type { CircularProgressPropsColorOverrides } from '@mui/material/CircularProgress'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdCircularProgressInterface {
   className?: string

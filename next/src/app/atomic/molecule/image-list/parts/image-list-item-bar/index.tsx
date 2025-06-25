@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import ImageListItemBar from '@mui/material/ImageListItemBar'
+import type { JSX } from 'react'
 
-import { AdImageListItemBarInterface } from './types/interfaces'
+import type { AdImageListItemBarInterface } from './types/interfaces'
 
 export default function AdImageListItemBar({
   className = '',

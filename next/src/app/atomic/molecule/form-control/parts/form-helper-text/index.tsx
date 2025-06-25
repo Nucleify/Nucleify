@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import FormHelperText from '@mui/material/FormHelperText'
+import type { JSX } from 'react'
 
-import { AdFormHelperTextInterface } from './types'
+import type { AdFormHelperTextInterface } from './types'
 
 export default function AdFormHelperText({
   children,
