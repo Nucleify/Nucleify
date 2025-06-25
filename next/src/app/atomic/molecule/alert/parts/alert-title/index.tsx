@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import AlertTitle from '@mui/material/AlertTitle'
+import type { JSX } from 'react'
 
-import { AdAlertTitleInterface } from './types'
+import type { AdAlertTitleInterface } from './types'
 
 export default function AdAlertTitle({
   children,

@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import FormControl from '@mui/material/FormControl'
+import type { JSX } from 'react'
 
-import { AdFormControlInterface } from './types'
+import type { AdFormControlInterface } from './types'
 
 export default function AdFormControl({
   children,

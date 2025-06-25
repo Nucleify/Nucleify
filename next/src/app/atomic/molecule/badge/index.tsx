@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Badge from '@mui/material/Badge'
+import type { JSX } from 'react'
 
-import { AdBadgeInterface } from './types'
+import type { AdBadgeInterface } from './types'
 
 export default function AdBadge({
   children,

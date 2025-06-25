@@ -1,8 +1,8 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { JSXElementConstructor, ElementType } from 'react'
+import type { BackdropProps } from '@mui/material/Backdrop'
 import type { PaperProps } from '@mui/material/Paper'
 import type { TransitionProps } from '@mui/material/transitions'
-import type { BackdropProps } from '@mui/material/Backdrop'
+import type { ElementType, JSXElementConstructor } from 'react'
 
 export interface AdDialogInterface {
   open: boolean

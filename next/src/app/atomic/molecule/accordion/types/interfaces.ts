@@ -1,7 +1,7 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { JSXElementConstructor } from 'react'
-import type { TransitionProps } from '@mui/material/transitions'
 import type Accordion from '@mui/material/Accordion'
+import type { TransitionProps } from '@mui/material/transitions'
+import type { JSXElementConstructor } from 'react'
 
 type AccordionOwnerState = React.ComponentProps<typeof Accordion>
 

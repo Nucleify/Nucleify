@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import FilledInput from '@mui/material/FilledInput'
+import type { JSX } from 'react'
 
-import { AdFilledInputInterface } from './types'
+import type { AdFilledInputInterface } from './types'
 
 export default function AdFilledInput({
   className = '',

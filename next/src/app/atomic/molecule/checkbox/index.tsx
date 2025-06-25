@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Checkbox from '@mui/material/Checkbox'
+import type { JSX } from 'react'
 
-import { AdCheckboxInterface } from './types'
+import type { AdCheckboxInterface } from './types'
 
 export default function AdCheckbox({
   className = '',

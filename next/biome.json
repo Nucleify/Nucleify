@@ -70,7 +70,14 @@
         "noCommonJs": "error",
         "noNamespace": "error",
         "useArrayLiterals": "error",
-        "useAsConstAssertion": "error"
+        "useAsConstAssertion": "error",
+        "useConst": "error",
+        "useImportType": {
+          "level": "error",
+          "options": {
+            "style": "separatedType"
+          }
+        }
       },
       "suspicious": {
         "noDoubleEquals": "error",
@@ -116,9 +123,13 @@
             "noSetterReturn": "off",
             "noUndeclaredVariables": "off",
             "noUnreachable": "off",
-            "noUnreachableSuper": "off"
+            "noUnreachableSuper": "off",
+            "noUnusedImports": "error"
           },
-          "style": { "useConst": "error" },
+          "style": {
+            "useConst": "error",
+            "useImportType": "error"
+          },
           "suspicious": {
             "noClassAssign": "off",
             "noDuplicateClassMembers": "off",
@@ -131,6 +142,9 @@
             "noVar": "error",
             "noWith": "off",
             "useGetterReturn": "off"
+          },
+          "nursery": {
+            "useExplicitType": "error"
           }
         }
       }

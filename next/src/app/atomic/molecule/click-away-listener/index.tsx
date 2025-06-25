@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import ClickAwayListener from '@mui/material/ClickAwayListener'
+import type { JSX } from 'react'
 
-import { AdClickAwayListenerInterface } from './types'
+import type { AdClickAwayListenerInterface } from './types'
 
 export default function AdClickAwayListener({
   children,

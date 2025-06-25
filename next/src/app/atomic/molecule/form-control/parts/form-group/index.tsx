@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import FormGroup from '@mui/material/FormGroup'
+import type { JSX } from 'react'
 
-import { AdFormGroupInterface } from './types/interfaces'
+import type { AdFormGroupInterface } from './types/interfaces'
 
 export default function AdFormGroup({
   children,

@@ -1,6 +1,6 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type { LinearProgressPropsColorOverrides } from '@mui/material/LinearProgress'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdLinearProgressInterface {
   className?: string

@@ -6,8 +6,9 @@
     "dev": "npx next dev",
     "build": "npx next build",
     "start": "npx next start",
-    "lint": "npx next lint",
-    "write": "npx prettier . --write"
+    "lint": "npx biome lint .",
+    "check": "npx biome check .",
+    "write": "npx biome check . --write"
   },
   "dependencies": {
     "@emotion/cache": "11.14.0",

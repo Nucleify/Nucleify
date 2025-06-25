@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import AvatarGroup from '@mui/material/AvatarGroup'
+import type { JSX } from 'react'
 
-import { AdAvatarGroupInterface } from './types'
+import type { AdAvatarGroupInterface } from './types'
 
 export default function AdAvatarGroup({
   className = '',

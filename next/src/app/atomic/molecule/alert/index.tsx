@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Alert from '@mui/material/Alert'
+import type { JSX } from 'react'
 
-import { AdAlertInterface } from './types'
+import type { AdAlertInterface } from './types'
 
 export default function AdAlert({
   children,

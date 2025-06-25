@@ -1,6 +1,6 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type { FormLabelPropsColorOverrides } from '@mui/material/FormLabel'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdFormLabelInterface {
   children?: React.ReactNode

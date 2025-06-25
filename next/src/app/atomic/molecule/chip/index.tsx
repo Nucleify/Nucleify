@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Chip from '@mui/material/Chip'
+import type { JSX } from 'react'
 
-import { AdChipInterface } from './types'
+import type { AdChipInterface } from './types'
 
 export default function AdChip({
   className = '',

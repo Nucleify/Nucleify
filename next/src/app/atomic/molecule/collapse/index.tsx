@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Collapse from '@mui/material/Collapse'
+import type { JSX } from 'react'
 
-import { AdCollapseInterface } from './types'
+import type { AdCollapseInterface } from './types'
 
 export default function AdCollapse({
   children,

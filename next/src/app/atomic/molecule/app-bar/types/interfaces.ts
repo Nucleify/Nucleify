@@ -1,6 +1,6 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type { AppBarPropsColorOverrides } from '@mui/material/AppBar'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdAppBarInterface {
   children?: React.ReactNode
