@@ -1,34 +1,79 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.0.5/schema.json",
-  "vcs": {
-    "enabled": false,
-    "clientKind": "git",
-    "useIgnoreFile": false
-  },
-  "files": {
-    "ignoreUnknown": false
-  },
+  "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
+  "files": { "ignoreUnknown": false },
   "formatter": {
     "enabled": true,
-    "indentStyle": "tab"
+    "formatWithErrors": false,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineEnding": "lf",
+    "lineWidth": 80,
+    "attributePosition": "auto",
+    "bracketSameLine": false,
+    "bracketSpacing": true,
+    "expand": "auto",
+    "useEditorconfig": true,
+    "includes": [
+      "**",
+      "!**/bootstrap.ts",
+      "!**/main.ts",
+      "!**/preview.ts",
+      "!**/index.html",
+      "!**/README.md",
+      "!**/public",
+      "!**/build",
+      "!**/coverage",
+      "!**/index.scss",
+      "!**/.output",
+      "!**/.data",
+      "!**/.nuxt",
+      "!**/.nitro",
+      "!**/.cache",
+      "!**/dist",
+      "!**/node_modules",
+      "!**/logs",
+      "!**/*.log",
+      "!**/.DS_Store",
+      "!**/.fleet",
+      "!**/.idea",
+      "!**/.env",
+      "!**/.env.*",
+      "**/.env.example",
+      "!**/.github",
+      "!**/.husky",
+      "!**/.prettierrc",
+      "!**/.stylelintrc.json",
+      "!**/eslint.config.mjs",
+      "!**/nuxt.config.ts",
+      "!**/package*.json",
+      "!**/README.md",
+      "!**/tsconfig.json",
+      "!**/yarn.lock",
+      "!**/vite.config.ts",
+      "!**/dist/",
+      "!atomic/bosons/styles/index.scss",
+      "!atomic/bosons/styles/variables",
+      "!**/vue-shims.d.ts"
+    ]
   },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true
-    }
-  },
+  "linter": { "enabled": true, "rules": { "recommended": true } },
   "javascript": {
     "formatter": {
-      "quoteStyle": "double"
+      "jsxQuoteStyle": "double",
+      "quoteProperties": "asNeeded",
+      "trailingCommas": "es5",
+      "semicolons": "asNeeded",
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "quoteStyle": "single",
+      "attributePosition": "auto",
+      "bracketSpacing": true
     }
   },
+  "html": { "formatter": { "selfCloseVoidElements": "always" } },
   "assist": {
     "enabled": true,
-    "actions": {
-      "source": {
-        "organizeImports": "on"
-      }
-    }
+    "actions": { "source": { "organizeImports": "on" } }
   }
 }
