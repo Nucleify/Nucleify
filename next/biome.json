@@ -57,7 +57,32 @@
       "!**/vue-shims.d.ts"
     ]
   },
-  "linter": { "enabled": true, "rules": { "recommended": true } },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": false,
+      "complexity": {
+        "noUselessThisAlias": "error",
+        "noUselessTypeConstraint": "error"
+      },
+      "correctness": { "noUnusedVariables": "error" },
+      "style": {
+        "noCommonJs": "error",
+        "noNamespace": "error",
+        "useArrayLiterals": "error",
+        "useAsConstAssertion": "error"
+      },
+      "suspicious": {
+        "noDoubleEquals": "error",
+        "noExplicitAny": "error",
+        "noExtraNonNullAssertion": "error",
+        "noMisleadingInstantiator": "error",
+        "noUnsafeDeclarationMerging": "error",
+        "useNamespaceKeyword": "error"
+      }
+    },
+    "includes": ["**", "dist/**"]
+  },
   "javascript": {
     "formatter": {
       "jsxQuoteStyle": "double",
@@ -69,9 +94,48 @@
       "quoteStyle": "single",
       "attributePosition": "auto",
       "bracketSpacing": true
-    }
+    },
+    "globals": ["Global1"]
   },
   "html": { "formatter": { "selfCloseVoidElements": "always" } },
+  "overrides": [
+    {
+      "includes": ["tests/**"],
+      "linter": { "rules": { "suspicious": { "noDoubleEquals": "off" } } }
+    },
+    {
+      "includes": ["*.ts", "*.tsx", "*.mts", "*.cts"],
+      "linter": {
+        "rules": {
+          "complexity": { "noArguments": "error" },
+          "correctness": {
+            "noConstAssign": "off",
+            "noGlobalObjectCalls": "off",
+            "noInvalidBuiltinInstantiation": "off",
+            "noInvalidConstructorSuper": "off",
+            "noSetterReturn": "off",
+            "noUndeclaredVariables": "off",
+            "noUnreachable": "off",
+            "noUnreachableSuper": "off"
+          },
+          "style": { "useConst": "error" },
+          "suspicious": {
+            "noClassAssign": "off",
+            "noDuplicateClassMembers": "off",
+            "noDuplicateObjectKeys": "off",
+            "noDuplicateParameters": "off",
+            "noFunctionAssign": "off",
+            "noImportAssign": "off",
+            "noRedeclare": "off",
+            "noUnsafeNegation": "off",
+            "noVar": "error",
+            "noWith": "off",
+            "useGetterReturn": "off"
+          }
+        }
+      }
+    }
+  ],
   "assist": {
     "enabled": true,
     "actions": { "source": { "organizeImports": "on" } }

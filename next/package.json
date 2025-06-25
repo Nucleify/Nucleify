@@ -24,12 +24,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.5",
-    "@eslint/eslintrc": "3",
     "@types/node": "20",
     "@types/react": "19",
     "@types/react-dom": "19",
-    "eslint": "^9.29.0",
-    "eslint-config-next": "15.3.2",
     "typescript": "5"
   }
 }
