@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Card from '@mui/material/Card'
+import type { JSX } from 'react'
 
-import { AdCardInterface } from './types'
+import type { AdCardInterface } from './types'
 
 export default function AdCard({
   children,

@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import DialogTitle from '@mui/material/DialogTitle'
+import type { JSX } from 'react'
 
-import { AdDialogTitleInterface } from './types'
+import type { AdDialogTitleInterface } from './types'
 
 export default function AdDialogTitle({
   children,

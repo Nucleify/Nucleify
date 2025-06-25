@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Divider from '@mui/material/Divider'
+import type { JSX } from 'react'
 
-import { AdDividerInterface } from './types'
+import type { AdDividerInterface } from './types'
 
 export default function AdDivider({
   children,

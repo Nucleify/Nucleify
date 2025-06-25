@@ -1,9 +1,9 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type {
   ButtonPropsColorOverrides,
   ButtonPropsVariantOverrides,
 } from '@mui/material/Button'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdButtonInterface {
   children?: React.ReactNode

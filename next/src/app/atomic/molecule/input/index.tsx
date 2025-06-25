@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Input from '@mui/material/Input'
+import type { JSX } from 'react'
 
-import { AdInputInterface } from './types'
+import type { AdInputInterface } from './types'
 
 export default function AdInput({
   className = '',

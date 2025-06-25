@@ -1,9 +1,9 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type {
   IconPropsColorOverrides,
   IconPropsSizeOverrides,
 } from '@mui/material/Icon'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdIconInterface {
   baseClassName?: string

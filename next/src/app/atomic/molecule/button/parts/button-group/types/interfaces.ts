@@ -1,10 +1,10 @@
 import type { SxProps, Theme } from '@mui/material'
-import type { OverridableStringUnion } from '@mui/types'
 import type {
   ButtonGroupPropsColorOverrides,
   ButtonGroupPropsSizeOverrides,
   ButtonGroupPropsVariantOverrides,
 } from '@mui/material/ButtonGroup'
+import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdButtonGroupInterface {
   children: React.ReactNode

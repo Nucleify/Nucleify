@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import InputAdornment from '@mui/material/InputAdornment'
+import type { JSX } from 'react'
 
-import { AdInputAdornmentInterface } from './types'
+import type { AdInputAdornmentInterface } from './types'
 
 export default function AdInputAdornment({
   className = '',

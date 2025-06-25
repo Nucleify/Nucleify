@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import ListItemIcon from '@mui/material/ListItemIcon'
+import type { JSX } from 'react'
 
-import { AdListItemIconInterface } from './types/interfaces'
+import type { AdListItemIconInterface } from './types/interfaces'
 
 export default function AdListItemIcon({
   children,

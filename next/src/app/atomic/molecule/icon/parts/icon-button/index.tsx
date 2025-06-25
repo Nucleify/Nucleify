@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import IconButton from '@mui/material/IconButton'
+import type { JSX } from 'react'
 
-import { AdIconButtonInterface } from './types'
+import type { AdIconButtonInterface } from './types'
 
 export default function AdIconButton({
   children,

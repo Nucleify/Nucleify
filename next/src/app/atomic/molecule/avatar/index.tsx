@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import Avatar from '@mui/material/Avatar'
+import type { JSX } from 'react'
 
-import { AdAvatarInterface } from './types'
+import type { AdAvatarInterface } from './types'
 
 export default function AdAvatar({
   className = '',

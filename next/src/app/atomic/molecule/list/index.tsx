@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import List from '@mui/material/List'
+import type { JSX } from 'react'
 
-import { AdListInterface } from './types'
+import type { AdListInterface } from './types'
 
 export default function AdList({
   children,

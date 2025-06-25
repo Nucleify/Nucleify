@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import LinearProgress from '@mui/material/LinearProgress'
+import type { JSX } from 'react'
 
-import { AdLinearProgressInterface } from './types'
+import type { AdLinearProgressInterface } from './types'
 
 export default function AdLinearProgress({
   className = '',

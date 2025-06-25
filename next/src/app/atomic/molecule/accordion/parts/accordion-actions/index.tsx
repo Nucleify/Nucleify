@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import AccordionActions from '@mui/material/AccordionActions'
+import type { JSX } from 'react'
 
-import { AdAccordionActionsInterface } from './types'
+import type { AdAccordionActionsInterface } from './types'
 
 export default function AdAccordionActions({
   children,

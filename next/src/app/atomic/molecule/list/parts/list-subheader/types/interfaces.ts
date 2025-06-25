@@ -1,4 +1,4 @@
-import { SxProps, Theme } from '@mui/material/styles'
+import type { SxProps, Theme } from '@mui/material/styles'
 
 export interface AdListSubheaderInterface {
   children?: React.ReactNode

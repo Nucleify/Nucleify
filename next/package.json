@@ -6,8 +6,9 @@
     "dev": "npx next dev",
     "build": "npx next build",
     "start": "npx next start",
-    "lint": "npx next lint",
-    "write": "npx prettier . --write"
+    "lint": "npx biome lint .",
+    "check": "npx biome check .",
+    "write": "npx biome check . --write"
   },
   "dependencies": {
     "@emotion/cache": "11.14.0",
@@ -23,13 +24,10 @@
     "sass": "1.89.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "3",
+    "@biomejs/biome": "2.0.5",
     "@types/node": "20",
     "@types/react": "19",
     "@types/react-dom": "19",
-    "eslint": "^9.29.0",
-    "eslint-config-next": "15.3.2",
-    "prettier": "3.5.3",
     "typescript": "5"
   }
 }

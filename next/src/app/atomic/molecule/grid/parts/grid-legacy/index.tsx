@@ -1,8 +1,7 @@
-import { JSX } from 'react'
-
 import GridLegacy from '@mui/material/GridLegacy'
+import type { JSX } from 'react'
 
-import { AdGridLegacyInterface } from './types'
+import type { AdGridLegacyInterface } from './types'
 
 export default function AdGridLegacy({
   children,
