@@ -12,7 +12,6 @@ Our target is to create fully responsive, functional and scalable website based 
 ⭐ **Unique Laravel/Nuxt modules functionality** <br>
 ⭐ Atomic Design + [Storybook](https://storybook.js.org/) tests for most components <br>
 ⭐ Futuristic UI made with [PrimeVue](https://primevue.org/) + [Chart.js](https://www.chartjs.org/) + [GSAP](https://gsap.com/) + [SCSS](https://sass-lang.com/) <br>
-⭐ Over 1500 backend tests with ~80% code coverage <br>
 
 <br>
 
