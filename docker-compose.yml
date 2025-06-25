@@ -21,11 +21,11 @@ services:
       - sail
     depends_on:
       - mysql
-  nuxt:
+  frontend:
     platform: linux/amd64
     build:
       context: .
-      dockerfile: .docker/Dockerfile.frontend
+      dockerfile: .docker/Dockerfile.$APP_FRONTEND
     ports:
       - '3000:3000'
       - '6006:6006'
