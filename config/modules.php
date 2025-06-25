@@ -6,6 +6,7 @@ return [
     Modules\dm_colors\dm_colors::class,
     Modules\dm_entities\dm_entities::class,
     Modules\dm_entities_structural\dm_entities_structural::class,
+    Modules\dm_files\dm_files::class,
     Modules\dm_friendship\dm_friendship::class,
     Modules\dm_modules\dm_modules::class,
     Modules\dm_pages\dm_pages::class,
