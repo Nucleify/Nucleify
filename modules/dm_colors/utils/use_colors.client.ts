@@ -1,42 +1,26 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 import type { ColorItemColorsInterface, UseColorsInterface } from 'atomic'
-import {
-  colorKeys,
-  colorTypes,
-  isCurrentUrl,
-  localStorageGetItem,
-  localStorageSetItem,
-} from 'atomic'
+import { colorKeys, getColorValue } from 'atomic'
 
 export function useColors(): UseColorsInterface {
-  const getItemColors = (key: string): ColorItemColorsInterface => ({
-    primary: localStorageGetItem(`${key}-item-color`) || '',
-    hover: localStorageGetItem(`${key}-item-hover-color`) || '',
-    secondary: localStorageGetItem(`${key}-item-secondary-color`) || '',
-  })
+  const getItemColors = (key: string): ColorItemColorsInterface => {
+    const primary =
+      getColorValue(`${key}-item-color-new`) ||
+      getColorValue(`${key}-item-color`)
+    const hover =
+      getColorValue(`${key}-item-hover-color-new`) ||
+      getColorValue(`${key}-item-hover-color`)
+    const secondary =
+      getColorValue(`${key}-item-secondary-color-new`) ||
+      getColorValue(`${key}-item-secondary-color`)
+
+    return { primary, hover, secondary }
+  }
 
   const colors = Object.fromEntries(
     colorKeys.map((key) => [key, getItemColors(key)])
   )
 
-  function setDefaultColors(initial?: boolean): void {
-    if (import.meta.client) {
-      colorKeys.forEach((key) =>
-        colorTypes.forEach((type) => {
-          const property = `${key}-item-${type}`
-          const value = getComputedStyle(document.documentElement)
-            .getPropertyValue(`--${property}`)
-            .trim()
-
-          if ((initial && !localStorageGetItem(property)) || !initial) {
-            localStorageSetItem(property, value)
-            if (!initial && isCurrentUrl('/settings')) location.reload()
-          }
-        })
-      )
-    }
+  return {
+    colors,
   }
-
-  return { colors, setDefaultColors }
 }

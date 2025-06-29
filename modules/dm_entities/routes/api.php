@@ -87,4 +87,3 @@ Route::middleware(['web'])->prefix('api')->group(function (): void {
         });
     });
 });
-

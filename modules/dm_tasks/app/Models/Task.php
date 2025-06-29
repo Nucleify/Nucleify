@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Modules\DmTasks\App\Contracts\TaskContract;
 
 /**
  * @property int id
@@ -18,7 +17,6 @@ use Modules\DmTasks\App\Contracts\TaskContract;
  * @property string end_date
  * @property string created_at
  * @property string updated_at
- * 
  * @property int getId
  * @property int getUserId
  * @property int getAssigneeId
@@ -29,7 +27,6 @@ use Modules\DmTasks\App\Contracts\TaskContract;
  * @property string getEndDate
  * @property string getCreatedAt
  * @property string getUpdatedAt
- * 
  * @property Builder scopeGetById
  * @property Builder scopeGetByUserId
  * @property Builder scopeGetByAssigneeId
@@ -37,7 +34,7 @@ use Modules\DmTasks\App\Contracts\TaskContract;
  * @property Builder scopeGetByStartDate
  * @property Builder scopeGetByEndDate
  */
-class Task extends Model 
+class Task extends Model
 {
     use HasFactory;
 
@@ -141,10 +138,8 @@ class Task extends Model
         return $query->whereDate('end_date', $parameter);
     }
 
-
     protected static function newFactory()
     {
         return \Database\Factories\Structural\TaskFactory::new();
     }
-
 }

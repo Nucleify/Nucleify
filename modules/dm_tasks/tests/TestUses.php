@@ -19,9 +19,8 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
 
     uses(RefreshDatabase::class)
         ->in(
-            'Database/Models'
-            , 'Database/Factories', 
-        
+            'Database/Models', 'Database/Factories',
+
         );
 
     uses(DatabaseMigrations::class)

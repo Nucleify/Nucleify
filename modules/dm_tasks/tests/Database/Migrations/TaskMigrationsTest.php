@@ -7,12 +7,12 @@ if (!defined('PEST_RUNNING')) {
 use Illuminate\Support\Facades\Schema;
 
 it('can create table', function (): void {
-    
+
     expect(Schema::hasTable('tasks'))->toBeTrue()
         ->and(Schema::hasColumns('tasks', [
             'id',
             'user_id',
-            'assignee_id', 
+            'assignee_id',
             'collaborator_ids',
             'title',
             'description',
@@ -25,6 +25,6 @@ it('can create table', function (): void {
 
 it('can be rolled back', function (): void {
     $this->artisan('migrate:rollback');
-    
+
     expect(Schema::hasTable('tasks'))->toBeFalse();
 });

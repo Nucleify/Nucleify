@@ -96,6 +96,7 @@ Route::get('/{any}', function ($any) {
     if (file_exists($htmlPath)) {
         return serveNuxtFile($htmlPath);
     }
+
     return response()->json(['error' => 'Page not found'], 404);
 })->where('any', '^(?!api/|logout).+');
 

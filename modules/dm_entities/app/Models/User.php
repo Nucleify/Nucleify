@@ -249,4 +249,9 @@ class User extends Authenticatable implements UserContract
     {
         return $this->hasMany(Question::class);
     }
+
+    public function userColors(): HasMany
+    {
+        return $this->hasMany(UserColor::class);
+    }
 }
