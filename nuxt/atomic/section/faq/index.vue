@@ -3,8 +3,18 @@
     <ad-paragraph text="FAQ" class="faq-section-header" />
 
     <div class="faq-section-questions">
-      <ad-accordion v-if="column1" :panels="column1" ad-type="main" :hexagons="true" />
-      <ad-accordion v-if="column2" :panels="column2" ad-type="main" :hexagons="true" />
+      <ad-accordion
+        v-if="column1"
+        :panels="column1"
+        ad-type="main"
+        :hexagons="true"
+      />
+      <ad-accordion
+        v-if="column2"
+        :panels="column2"
+        ad-type="main"
+        :hexagons="true"
+      />
     </div>
   </div>
 </template>

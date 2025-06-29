@@ -8,12 +8,14 @@ import {
   loginInputs,
   registerFields,
   registerInputs,
-  navigateTo,
   apiHandle,
+  getAndSetUser,
 } from 'atomic'
 
 export function useAuthForm(): UseAuthFormInterface {
   let url: string
+  const router = useRouter()
+
   async function submitForm(
     data: LoginFieldsInterface | RegisterFieldsInterface
   ): Promise<void> {
@@ -32,13 +34,22 @@ export function useAuthForm(): UseAuthFormInterface {
       url,
       method: 'POST',
       data,
-      onSuccess: (): void => {
-        navigateTo('/dashboard')
+      onSuccess: async (): Promise<void> => {
+        await getAndSetUser()
       },
     })
   }
+
+  async function submitAndGo(
+    data: LoginFieldsInterface | RegisterFieldsInterface
+  ) {
+    await submitForm(data)
+    router.push('/dashboard')
+  }
+
   return {
     submitForm,
+    submitAndGo,
     loginFields,
     loginInputs,
     registerFields,

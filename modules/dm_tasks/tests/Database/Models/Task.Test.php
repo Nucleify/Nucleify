@@ -5,7 +5,6 @@ if (!defined('PEST_RUNNING')) {
 }
 
 use App\Models\Task;
-use Illuminate\Database\Eloquent\Builder;
 
 beforeEach(function (): void {
     $this->model = Task::create([

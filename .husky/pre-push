@@ -1,17 +1,18 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+export $(grep -v '^#' .env | xargs)
+
 php .pest/guard_check.php
 
 echo 'Pint checking...'
 ./vendor/bin/pint
 
-# npm run check
-# npm run lint
-# npm run typeslint
-# npm run slint
-# npm run build
-# npm run storybook:build
-# npm run test
-
-# ./vendor/bin/pest - I'm testing before commit manually
+if [ "$APP_FRONTEND" = "next" ]; then
+  cd next && npm run check
+elif [ "$APP_FRONTEND" = "nuxt" ]; then
+  npm run check
+else
+  echo "APP_FRONTEND is not set, running both checks"
+  npm run check && cd next && npm run check
+fi

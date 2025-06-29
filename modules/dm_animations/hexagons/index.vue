@@ -1,37 +1,39 @@
 <template>
   <div ref="containerRef" class="hexagon-rows-container">
     <client-only>
-      <div
-        v-for="(row, rowIndex) in hexagonRows"
-        :key="rowIndex"
-        class="hexagon-row-container"
-      >
+      <deferred-content>
         <div
-          v-for="(containerClass, containerIndex) in [
-            'hexagon-container n1',
-            'hexagon-container n2',
-          ]"
-          :key="containerIndex"
-          :class="containerClass"
-          :style="{ opacity: 0.125 + 0.012 * rowIndex }"
+          v-for="(row, rowIndex) in hexagonRows"
+          :key="rowIndex"
+          class="hexagon-row-container"
         >
-          <svg
-            :width="row[containerIndex].length * 40"
-            height="40"
-            style="display: block"
+          <div
+            v-for="(containerClass, containerIndex) in [
+              'hexagon-container n1',
+              'hexagon-container n2',
+            ]"
+            :key="containerIndex"
+            :class="containerClass"
+            :style="{ opacity: 0.125 + 0.012 * rowIndex }"
           >
-            <polygon
-              v-for="(opacity, imgIndex) in row[containerIndex]"
-              :key="imgIndex"
-              :class="'hexagon-' + imgIndex"
-              :style="{ opacity: opacity }"
-              :points="getHexagonPoints(20 + imgIndex * 40, 20, 20)"
-              stroke="#10b981"
-              stroke-width="2"
-            />
-          </svg>
+            <svg
+              :width="row[containerIndex].length * 40"
+              height="40"
+              style="display: block"
+            >
+              <polygon
+                v-for="(opacity, imgIndex) in row[containerIndex]"
+                :key="imgIndex"
+                :class="'hexagon-' + imgIndex"
+                :style="{ opacity: opacity }"
+                :points="getHexagonPoints(20 + imgIndex * 40, 20, 20)"
+                stroke="#10b981"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
         </div>
-      </div>
+      </deferred-content>
     </client-only>
   </div>
 </template>

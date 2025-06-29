@@ -3,6 +3,7 @@
 if (!defined('PEST_RUNNING')) {
     return;
 }
+
 /**
  *  Main tests group
  */
@@ -18,20 +19,17 @@ uses()
     ->group('dm-tasks-migrations')
     ->in('Database/Migrations');
 
-
 /**
- *  database groups
+ *  Database groups
  */
-
 uses()
     ->group('migrations')
     ->in('Database/Migrations');
 
 uses()
     ->group('models')
-    ->in('Database/Models'); 
+    ->in('Database/Models');
 
 uses()
     ->group('factories')
     ->in('Database/Factories');
-

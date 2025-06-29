@@ -1,12 +1,17 @@
 <template>
   <div class="panel-container settings-panel-container">
-    <color-settings class="col-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2" />
-    <display-charts class="col-12 col-sm-6 col-md-4 col-lg-3 col-xxl-2" />
+    <template v-if="!isClient">
+      <skeleton-settings-card v-for="i in 2" :key="i" />
+    </template>
+    <client-only>
+      <color-settings />
+      <display-charts />
+    </client-only>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ColorSettings, DisplayCharts } from 'atomic'
+import { ColorSettings, DisplayCharts, SkeletonSettingsCard } from 'atomic'
 </script>
 
 <style scoped>

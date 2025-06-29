@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'PrimeIcons';
+    font-family: PrimeIcons, sans-serif;
     src: url('./primeicons.woff2') format('woff2'),
          url('./primeicons.woff') format('woff');
     font-weight: normal;
@@ -7,5 +7,5 @@
 }
 
 .pi {
-    font-family: 'PrimeIcons' !important;
+    font-family: PrimeIcons, sans-serif !important;
 }

@@ -27,21 +27,23 @@ it("can't create record", function (): void {
         Task::factory()->create(['id' => 'invalid_id']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
+
         return;
     }
 
     $this->fail('Expected exception not thrown.');
 })->group('factories')
-  ->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable for git workflow tests');
+    ->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable for git workflow tests');
 
 it("can't create multiple records", function (): void {
     try {
         Task::factory()->count(2)->create(['id' => 'invalid_id']);
     } catch (Exception $e) {
         $this->assertStringContainsString('Incorrect integer value', $e->getMessage());
+
         return;
     }
 
     $this->fail('Expected exception not thrown.');
 })->group('factories')
-  ->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable for git workflow tests');
+    ->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable for git workflow tests');

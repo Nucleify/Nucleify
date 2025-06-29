@@ -1,14 +1,19 @@
 <template>
   <div>
+    <client-only>
+      <dm-screen-lights :count="8" />
+    </client-only>
     <ad-toast />
     <NuxtRouteAnnouncer />
-    <NuxtLayout>
+    <NuxtLayout :name="officeType">
       <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
 
 <script setup lang="ts">
+import { resetColorsIfEmpty, useOfficeType } from 'atomic'
+
 const route = useRoute()
 
 useHead(() => ({
@@ -22,6 +27,10 @@ useHead(() => ({
       content:
         'Streamline ERP and design management with a powerful data manager built using Laravel and Nuxt. Easily organize, manage, and access all your data types in one powerful, user-friendly platform - perfect for CRM, ERP and E-commerce solutions.',
     },
+    {
+      name: 'author',
+      content: 'Szymon Radomski (SzymCode)',
+    },
   ],
   link: [
     {
@@ -30,6 +39,16 @@ useHead(() => ({
     },
   ],
 }))
+
+const { officeType, getOfficeType } = useOfficeType()
+
+watchEffect(() => {
+  officeType.value = getOfficeType()
+})
+
+onMounted(() => {
+  resetColorsIfEmpty()
+})
 </script>
 
 <style lang="scss">

@@ -4,6 +4,8 @@
 .p-dock.dock {
   position: fixed;
   z-index: 98;
+  opacity: 0;
+  animation: fade-in 0.3s 0.5s ease-in forwards;
 
   .logo[type='main'] {
     .lighter-color {
