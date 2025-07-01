@@ -1,0 +1,132 @@
+{
+  "links": {
+    "home": {
+      "label": "Home",
+      "href": "/home"
+    },
+    "services": {
+      "label": "Services",
+      "href": "/services"
+    },
+    "about": {
+      "label": "About",
+      "href": "/about"
+    },
+    "blog": {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    "login": {
+      "label": "Login",
+      "href": "/login"
+    }
+  },
+  "home": {
+    "start": {
+      "title": {
+        "text1": "One",
+        "highlight1": "place",
+        "text2": "for all",
+        "highlight2": "your data"
+      },
+      "subtitle": "Manage various data types from a single place with this development template.",
+      "tryButton": "Try it out!"
+    },
+    "charts": {
+      "paragraph": "Choose from bar charts, line graphs, pie charts and more to best represent your data."
+    },
+    "access": {
+      "title": "Access your data everywhere",
+      "description": {
+        "text1": "Use ",
+        "highlight": "DataManager",
+        "text2": " application on your phone, tablet and desktop. You can now manage all data in one place and take a step ahead in your management process"
+      },
+      "desktop": {
+        "title": "Desktop",
+        "description": "Responsive web design was coined in 2010 by Ethan Marcotte, optimizing layouts for desktops with flexible grids and layouts."
+      },
+      "tablet": {
+        "title": "Tablet",
+        "description": "Over 53% of internet users worldwide access the web through mobile devices, highlighting the significant shift towards mobile browsing in recent years."
+      },
+      "phone": {
+        "title": "Phone",
+        "description": "Google's implementation of mobile-first indexing in 2018 underscored the importance of mobile-responsive design, prioritizing mobile versions for indexing and ranking."
+      }
+    },
+    "structure": {
+      "title": {
+        "highlight": "Atomic Design",
+        "text": "Approach"
+      },
+      "description": "Utilizing Atomic Design principles to develop dynamic, modular solutions that enhance scalability and ensure seamless integration in your development processes."
+    },
+    "modules": {
+      "main": {
+        "text": "We've got",
+        "highlight": "modules!"
+      },
+      "label": "Read more"
+    },
+    "whyUs": {
+      "title": {
+        "text": "Why ",
+        "highlight": "Us?"
+      }
+    },
+    "contact": {
+      "title": "Contact Us",
+      "description": "If you have any questions, need assistance, or would like to learn more about our project, don’t hesitate to reach out. We’re here to help!"
+    }
+  },
+  "footer": {
+    "columns": {
+      "entities": {
+        "title": "Entities",
+        "activities": "Activities",
+        "articles": "Articles",
+        "contacts": "Contacts",
+        "money": "Money",
+        "users": "Users"
+      },
+      "services": {
+        "title": "Services",
+        "openSource": "Open Source",
+        "storage": "Data Storage",
+        "migration": "Data Migration",
+        "integration": "Data Integration",
+        "analysis": "Data Analysis",
+        "pageBuilder": "Page Builder"
+      },
+      "about": {
+        "title": "About",
+        "purpose": "Purpose",
+        "collaboration": "Collaboration",
+        "support": "Support Us",
+        "license": "License",
+        "contact": "Contact"
+      },
+      "blog": {
+        "title": "Blog",
+        "openSourceImpact": "The Importance of Open Source in Today's World",
+        "automation": "How to Automate Your Data Pipeline",
+        "security": "Maximizing Data Security",
+        "scalability": "Building a Scalable Website",
+        "tools": "The Best Tools for Every Business"
+      }
+    }
+  },
+  "auth": {
+    "register": {
+      "title": "Register",
+      "subtitle": "Already have an account? ",
+      "highlight": "Log in!"
+    },
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Don't have an account?",
+      "highlight": "Create today!"
+    }
+  }
+}

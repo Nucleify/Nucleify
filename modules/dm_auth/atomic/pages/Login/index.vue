@@ -9,10 +9,10 @@
             alt="DataManager logo"
             width="50"
           />
-          <ad-heading :tag="1" text="Welcome Back" />
+          <ad-heading :tag="1" :text="t('auth.login.title')" />
 
-          <ad-paragraph class="mb-2" text="Don't have an account?">
-            <ad-anchor href="/register" :label="'Create today!'" />
+          <ad-paragraph class="mb-2" :text="t('auth.login.subtitle')">
+            <ad-anchor :href="localePath('/register')" :label="t('auth.login.highlight')" />
           </ad-paragraph>
         </div>
       </div>
@@ -43,6 +43,10 @@
 import { onMounted } from 'vue'
 
 import { useAuthForm, useColors } from 'atomic'
+
+const { t } = useI18n()
+
+const localePath = useLocalePath()
 
 const { submitForm, loginFields, loginInputs } = useAuthForm()
 const { setDefaultColors } = useColors()

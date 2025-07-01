@@ -8,6 +8,14 @@
   gap: 5em;
   margin: 3em 0;
 
+  .left-side {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .shiny:last-child {
+    display: block;
+  }
+
   .header,
   .header span {
     font-size: 38px;

@@ -5,23 +5,23 @@
         <dm-animation-bounce />
         <div class="left-side">
           <ad-heading :tag="1" class="header">
-            One
-            <span class="shiny first-text">place</span> <br />
-            for all
-            <span class="shiny">your data</span>
+            {{ t('home.start.title.text1') }} 
+            <span class="shiny first-text">{{ t('home.start.title.highlight1') }}</span>
+            <br/>
+             {{ t('home.start.title.text2') }} <span class="shiny">{{ t('home.start.title.highlight2') }}</span>
           </ad-heading>
 
           <ad-heading
             :tag="2"
-            text="Manage various data types from a single place with this development template."
+            :text="t('home.start.subtitle')"
             class="start-description"
           />
 
           <div class="cta">
             <ad-button
-              label="Try it out!"
+              :label="t('home.start.tryButton')"
               class="start-button caterpillar"
-              @click="navigateTo('/register')"
+              @click="navigateTo(localePath('/register'))"
             />
             <ad-button
               label="GitHub"
@@ -39,4 +39,7 @@
 
 <script setup lang="ts">
 import { navigateTo } from 'atomic'
+
+const { t } = useI18n()
+const localePath = useLocalePath()
 </script>

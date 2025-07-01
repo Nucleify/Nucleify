@@ -1,8 +1,8 @@
 <template>
   <section id="why-us">
     <div class="section-header">
-      <span>Why </span>
-      <span>Us?</span>
+      <span>{{ t('home.whyUs.title.text') }}</span>
+      <span>{{ t('home.whyUs.title.highlight') }}</span>
     </div>
     <div class="viewport-box">
       <div class="main-circle"></div>
@@ -27,11 +27,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch, watchEffect } from 'vue'
 import { WhyUsInterface, WhyUsItemInterface, featureRequests } from 'atomic'
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
+
+const { t } = useI18n()
 
 gsap.registerPlugin(Draggable)
 gsap.registerPlugin(InertiaPlugin)

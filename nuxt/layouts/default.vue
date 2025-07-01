@@ -19,27 +19,31 @@ import { isAnyCurrentUrl, useColors } from 'atomic'
 import FrontOffice from './front-office.vue'
 import BackOffice from './back-office.vue'
 
+const route = useRoute()
+
 onMounted(() => {
   const { setDefaultColors } = useColors()
 
   setDefaultColors(true)
 })
 
-const officeRoutes = {
-  front: ['home', 'about', 'blog', 'license', 'services'],
-  back: [
-    'activity-log',
-    'admin',
-    'dashboard',
-    'entities',
-    'settings',
-    'structural',
-  ],
-}
+const { locale } = useI18n()
 
-const officeType = isAnyCurrentUrl(officeRoutes.front)
-  ? 'front'
-  : isAnyCurrentUrl(officeRoutes.back)
-    ? 'back'
-    : null
+const FRONT_EN = ['home', 'about', 'blog', 'license', 'services']
+const FRONT_PL = ['strona-glowna', 'o-nas', 'blog', 'license', 'uslugi']
+
+const BACK = ['activity-log', 'admin', 'dashboard', 'entities', 'settings', 'structural']
+
+const officeRoutes = computed(() => ({
+  front: locale.value === 'pl' ? FRONT_PL : FRONT_EN,
+  back: BACK
+}))
+
+const officeType = computed(() => {
+  const path = route.path           
+  return officeRoutes.value.front.some(s => path.includes(s)) ? 'front'
+       : officeRoutes.value.back.some (s => path.includes(s)) ? 'back'
+       : null
+})
+
 </script>

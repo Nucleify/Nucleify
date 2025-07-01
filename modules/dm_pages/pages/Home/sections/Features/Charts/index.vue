@@ -3,7 +3,7 @@
     <div class="home-charts-container">
       <ad-paragraph
         class="home-charts-header"
-        text="Choose from bar charts, line graphs, pie charts and more to best represent your data."
+        :text="t('home.charts.paragraph')"
       />
       <ad-card class="my-card home-chart-card">
         <template #content>
@@ -29,4 +29,8 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+
+const { t } = useI18n()
+
+</script>

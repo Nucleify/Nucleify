@@ -36,43 +36,42 @@
 </template>
 
 <script setup lang="ts">
-const columns = [
-  // Entities
+const { t } = useI18n()
+const localePath = useLocalePath()
+
+const columns = computed(() => [
   [
-    { name: 'Entities', header: true, url: '/entities' },
-    { name: 'Activities', url: '/activity-log' },
-    { name: 'Articles', url: '/entities/articles' },
-    { name: 'Contacts', url: '/entities/contacts' },
-    { name: 'Money', url: '/entities/money' },
-    { name: 'Users', url: '/admin' },
+    { name: t('footer.columns.entities.title'), header: true, url: '/entities' },
+    { name: t('footer.columns.entities.activities'), url: '/activity-log' },
+    { name: t('footer.columns.entities.articles'), url: '/entities/articles' },
+    { name: t('footer.columns.entities.contacts'), url: '/entities/contacts' },
+    { name: t('footer.columns.entities.money'), url: '/entities/money' },
+    { name: t('footer.columns.entities.users'), url: '/admin' },
   ],
-  // Services
   [
-    { name: 'Services', header: true, url: '/services' },
-    { name: 'Open Source', url: '/services' },
-    { name: 'Data Storage', url: '/services' },
-    { name: 'Data Migration', url: '/services' },
-    { name: 'Data Integration', url: '/services' },
-    { name: 'Data Analysis', url: '/services' },
-    { name: 'Page Builder', url: '/services' },
+    { name: t('footer.columns.services.title'), header: true, url: t('links.services.href') },
+    { name: t('footer.columns.services.openSource'), url: t('links.services.href')},
+    { name: t('footer.columns.services.storage'), url: t('links.services.href') },
+    { name: t('footer.columns.services.migration'), url: t('links.services.href') },
+    { name: t('footer.columns.services.integration'), url: t('links.services.href') },
+    { name: t('footer.columns.services.analysis'), url: t('links.services.href')},
+    { name: t('footer.columns.services.pageBuilder'), url: t('links.services.href') },
   ],
-  // About
   [
-    { name: 'About', header: true, url: '/about' },
-    { name: 'Purpose', url: '/about' },
-    { name: 'Collaboration', url: '/about' },
-    { name: 'Support Us', url: '/about' },
-    { name: 'License', url: '/about' },
-    { name: 'Contact', url: '/about' },
+    { name: t('footer.columns.about.title'), header: true, url: t('links.about.href') },
+    { name: t('footer.columns.about.purpose'), url: t('links.about.href') },
+    { name: t('footer.columns.about.collaboration'), url: t('links.about.href') },
+    { name: t('footer.columns.about.support'), url: t('links.about.href') },
+    { name: t('footer.columns.about.license'), url: t('links.about.href') },
+    { name: t('footer.columns.about.contact'), url: t('links.about.href') },
   ],
-  // Blog
   [
-    { name: 'Blog', header: true, url: '/blog' },
-    { name: "The Importance of Open Source in Today's World", url: '/blog' },
-    { name: 'How to Automate Your Data Pipeline', url: '/blog' },
-    { name: 'Maximizing Data Security', url: '/blog' },
-    { name: 'Building a Scalable Website', url: '/blog' },
-    { name: 'The Best Tools for Every Business', url: '/blog' },
-  ],
-]
+    { name: t('footer.columns.blog.title'), header: true, url: localePath('blog') },
+    { name: t('footer.columns.blog.openSourceImpact'), url: localePath('blog') },
+    { name: t('footer.columns.blog.automation'), url: localePath('blog') },
+    { name: t('footer.columns.blog.security'), url: localePath('blog') },
+    { name: t('footer.columns.blog.scalability'), url: localePath('blog') },
+    { name: t('footer.columns.blog.tools'), url: localePath('blog') },
+  ]
+])
 </script>

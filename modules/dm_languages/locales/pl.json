@@ -1,0 +1,132 @@
+{
+  "links": {
+    "home": {
+      "label": "Strona główna",
+      "href": "/strona-glowna"
+    },
+    "services": {
+      "label": "Usługi",
+      "href": "/uslugi"
+    },
+    "about": {
+      "label": "O nas",
+      "href": "/o-nas"
+    },
+    "blog": {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    "login": {
+      "label": "Zaloguj się",
+      "href": "/logowanie"
+    }
+  },
+  "home": {
+    "start": {
+      "title": {
+        "text1": "Jedno",
+        "highlight1": "miejsce",
+        "text2": "dla wszystkich",
+        "highlight2": "Twoich danych"
+      },
+      "subtitle": "Zarządzaj różnymi typami danych w jednym miejscu – dzięki temu uniwersalnemu szablonowi.",
+      "tryButton": "Wypróbuj!"
+    },
+    "charts": {
+      "paragraph": "Wybieraj spośród wykresów słupkowych, liniowych, kołowych i wielu innych, aby w najlepszy sposób przedstawić swoje dane."
+    },
+    "access": {
+      "title": "Uzyskaj dostęp do danych z każdego miejsca",
+      "description": {
+        "text1": "Używaj ",
+        "highlight": "DataManagera",
+        "text2": " na swoim telefonie, tablecie i komputerze. Teraz możesz zarządzać wszystkimi danymi w jednym miejscu i zrobić krok naprzód w swoim procesie zarządzania."
+      },
+      "desktop": {
+        "title": "Komputer",
+        "description": "Responsywny design stron internetowych został zaproponowany w 2010 roku przez Ethana Marcotte’a. Obejmuje on elastyczne siatki i układy zoptymalizowane dla komputerów stacjonarnych."
+      },
+      "tablet": {
+        "title": "Tablet",
+        "description": "Ponad 53% użytkowników internetu na świecie korzysta z urządzeń mobilnych, co pokazuje znaczącą zmianę w kierunku przeglądania stron na urządzeniach przenośnych."
+      },
+      "phone": {
+        "title": "Telefon",
+        "description": "Wprowadzenie przez Google indeksowania mobilnego jako pierwszego w 2018 roku podkreśliło znaczenie projektowania stron dostosowanych do urządzeń mobilnych, ponieważ wersje mobilne mają teraz priorytet w indeksowaniu i pozycjonowaniu."
+      }
+    },
+    "structure": {
+      "title": {
+        "highlight": "Atomic Design",
+        "text": "Podejście"
+      },
+      "description": "Wykorzystujemy zasady Atomic Design do tworzenia dynamicznych, modułowych rozwiązań, które zwiększają skalowalność i zapewniają płynną integrację w procesach programistycznych."
+    },
+    "modules": {
+      "main": {
+        "text": "Mamy",
+        "highlight": "moduły!"
+      },
+      "label": "Czytaj więcej"
+    },
+    "whyUs": {
+      "title": {
+        "text": "Dlaczego ",
+        "highlight": "my?"
+      }
+    },
+    "contact": {
+      "title": "Skontaktuj się z nami",
+      "description": "Masz pytania, potrzebujesz pomocy lub chcesz dowiedzieć się więcej o naszym projekcie? Skontaktuj się z nami – jesteśmy tu, aby Ci pomóc!"
+    }
+  },
+  "footer": {
+    "columns": {
+      "entities": {
+        "title": "Obiekty",
+        "activities": "Aktywności",
+        "articles": "Artykuły",
+        "contacts": "Kontakty",
+        "money": "Finanse",
+        "users": "Użytkownicy"
+      },
+      "services": {
+        "title": "Usługi",
+        "openSource": "Open Source",
+        "storage": "Przechowywanie danych",
+        "migration": "Migracja danych",
+        "integration": "Integracja danych",
+        "analysis": "Analiza danych",
+        "pageBuilder": "Kreator stron"
+      },
+      "about": {
+        "title": "O nas",
+        "purpose": "Cel",
+        "collaboration": "Współpraca",
+        "support": "Wesprzyj nas",
+        "license": "Licencja",
+        "contact": "Kontakt"
+      },
+      "blog": {
+        "title": "Blog",
+        "openSourceImpact": "Znaczenie Open Source we współczesnym świecie",
+        "automation": "Jak zautomatyzować przepływ danych",
+        "security": "Maksymalizacja bezpieczeństwa danych",
+        "scalability": "Budowanie skalowalnej strony",
+        "tools": "Najlepsze narzędzia dla każdej firmy"
+      }
+    }
+  },
+  "auth": {
+    "register": {
+      "title": "Rejestracja",
+      "subtitle": "Masz już konto? ",
+      "highlight": "Zaloguj się!"
+    },
+    "login": {
+      "title": "Witamy ponownie",
+      "subtitle": "Nie masz jeszcze konta?",
+      "highlight": "Zarejestruj się!"
+    }
+  }
+}

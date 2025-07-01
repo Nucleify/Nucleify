@@ -67,11 +67,11 @@
           <StepPanel :value="1">
             <div class="step-panel-container">
               <ad-heading :tag="4" class="tech-heading">
-                <span class="tech-text">We've got</span>&nbsp;
-                <span class="tech-text shiny">modules!</span>
+                <span class="tech-text">{{ t('home.modules.main.text') }}</span>&nbsp;
+                <span class="tech-text shiny">{{ t('home.modules.main.highlight') }}</span>
               </ad-heading>
               <ad-button
-                label="Read more"
+                :label="t('home.modules.label')"
                 class="start-button caterpillar"
                 @click="
                   navigateTo(
@@ -109,22 +109,23 @@ import { marked } from 'marked'
 import { navigateTo, isMobile, apiHandle } from 'atomic'
 import { modules } from './constants'
 
+const { t, locale } = useI18n()
+
 const activeStep = ref(1)
 const readmeContents = ref<Record<number, string>>({})
 const modulesSwiper = ref(null)
 
 const loadReadme = async (modulePath: string, value: number) => {
   try {
+    const lang = locale.value
+    const readmeFile = lang === 'pl' ? 'README.pl.md' : 'README.md'
+
     await apiHandle({
-      url: appUrl() + `modules/${modulePath}/README.md`,
+      url: appUrl() + `modules/${modulePath}/${readmeFile}`,
       method: 'GET',
       onSuccess: (data) => {
         const html = marked.parse(data)
-        readmeContents.value[value] = html
-        readmeContents.value[value] = readmeContents.value[value].replaceAll(
-          '/public',
-          ''
-        )
+        readmeContents.value[value] = html.replaceAll('/public', '')
       },
     })
   } catch (error) {

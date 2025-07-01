@@ -1,12 +1,9 @@
 <template>
   <div id="contact">
     <div class="contact-content container">
-      <ad-paragraph text="Contact Us" class="contact-content-title" />
+      <ad-paragraph :text="t('home.contact.title')" class="contact-content-title" />
       <ad-paragraph
-        text="
-          If you have any questions, need assistance, or would like to learn more
-          about our project, don’t hesitate to reach out. We’re here to help!
-        "
+        :text="t('home.contact.description')"
         class="contact-content-description"
       />
       <ad-button
@@ -20,4 +17,6 @@
 
 <script setup lang="ts">
 import { navigateTo } from 'atomic'
+
+const { t } = useI18n()
 </script>

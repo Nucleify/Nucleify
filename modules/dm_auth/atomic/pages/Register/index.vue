@@ -5,10 +5,10 @@
       <template #header>
         <div class="auth-card-header-container">
           <div class="auth-card-header">
-            <ad-heading :tag="1" text="Register" />
+            <ad-heading :tag="1" :text="t('auth.register.title')" />
 
-            <ad-paragraph text="Already have an account?">
-              <ad-anchor href="/login" :label="'Log in!'" />
+            <ad-paragraph :text="t('auth.register.subtitle')">
+              <ad-anchor :href="localePath('/login')" :label="t('auth.register.highlight')" />
             </ad-paragraph>
           </div>
         </div>
@@ -76,6 +76,10 @@ import {
 
 const { submitForm, registerFields, registerInputs } = useAuthForm()
 const { setDefaultColors } = useColors()
+
+const localePath = useLocalePath()
+
+const { t } = useI18n()
 
 onMounted(() => {
   setDefaultColors(true)
