@@ -144,8 +144,8 @@ export default defineNuxtConfig({
         pl: '/uslugi'
       },
       blog: {
-        en: '/blog',
-        pl: '/blog'
+        en: '/blog-en',
+        pl: '/blog-pl'
       },
       login: {
         en: '/login',

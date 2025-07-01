@@ -29,8 +29,8 @@ onMounted(() => {
 
 const { locale } = useI18n()
 
-const FRONT_EN = ['home', 'about', 'blog', 'license', 'services']
-const FRONT_PL = ['strona-glowna', 'o-nas', 'blog', 'license', 'uslugi']
+const FRONT_EN = ['home', 'about', 'blog-en', 'license', 'services']
+const FRONT_PL = ['strona-glowna', 'o-nas', 'blog-pl', 'license', 'uslugi']
 
 const BACK = ['activity-log', 'admin', 'dashboard', 'entities', 'settings', 'structural']
 
