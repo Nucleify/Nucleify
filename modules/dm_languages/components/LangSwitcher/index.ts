@@ -1,0 +1,1 @@
+export { default as LangSwitcher } from './index.vue'

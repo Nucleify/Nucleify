@@ -13,10 +13,11 @@
   padding: 1em;
 
   .container {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr max-content min-content;
     align-items: center;
     max-width: 1230px;
+    position: relative;
 
     .application-header {
       display: flex;

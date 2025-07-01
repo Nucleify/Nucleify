@@ -116,17 +116,45 @@ export default defineNuxtConfig({
     }
   },
   i18n: {
-    locales: [
-      { code: 'en', iso: 'en-US', name: 'English' },
-      { code: 'pl', iso: 'pl-PL', name: 'Polski' }
-    ],
     defaultLocale: 'en',
     lazy: true,
     strategy: 'prefix_except_default',
+    langDir: '../modules/dm_languages/locales/',
+    customRoutes: 'config',
     detectBrowserLanguage: {
       useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root'
+    }, 
+    locales: [
+      { code: 'en', iso: 'en-US', name: 'English', file: 'en.json' },
+      { code: 'pl', iso: 'pl-PL', name: 'Polski', file: 'pl.json' }
+    ],
+    pages: {
+      home: {
+        en: '/home',
+        pl: '/strona-glowna'
+      },
+      about: {
+        en: '/about',
+        pl: '/o-nas'
+      },
+      services: {
+        en: '/services',
+        pl: '/uslugi'
+      },
+      blog: {
+        en: '/blog',
+        pl: '/blog'
+      },
+      login: {
+        en: '/login',
+        pl: '/logowanie'
+      },
+      register: {
+        en: '/register',
+        pl: '/rejestracja'
+      }
     }
   }
 } as any)

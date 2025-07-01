@@ -2,7 +2,7 @@
 <template>
   <nav class="navbar">
     <div class="container">
-      <ad-anchor class="application-header" href="/home">
+      <ad-anchor class="application-header" :href="localePath('home')">
         <ad-image
           :src="imgUrl + 'logo.svg'"
           alt="DataManager logo"
@@ -19,9 +19,11 @@
         @click="toggleNavbar()"
         aria-label="Menu"
       />
+      <dm-lang-switcher/>
     </div>
     <navbar-drawer v-model:visible="navbarExpanded">
       <navbar-links />
+      <dm-lang-switcher :isMobile="true"/>
     </navbar-drawer>
   </nav>
 </template>
@@ -30,6 +32,8 @@
 import { NavbarLinks, NavbarDrawer } from './components'
 
 import { useNavbar } from 'atomic'
+
+const localePath = useLocalePath()
 
 const { navbarExpanded, toggleNavbar } = useNavbar()
 </script>

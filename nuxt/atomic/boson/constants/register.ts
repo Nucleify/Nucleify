@@ -8,6 +8,7 @@ import {
   storysetServicesImgUrl,
   storysetBlogImgUrl,
   technologiesImgUrl,
+  languagesImgUrl
 } from 'atomic'
 
 export function registerGlobalConstants(app: App): void {
@@ -24,4 +25,5 @@ export function registerGlobalConstants(app: App): void {
     prefix + storysetServicesImgUrl
   app.config.globalProperties.storysetBlogImgUrl = prefix + storysetBlogImgUrl
   app.config.globalProperties.technologiesImgUrl = prefix + technologiesImgUrl
+  app.config.globalProperties.languagesImgUrl = prefix + languagesImgUrl
 }
