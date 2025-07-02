@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Contracts\TaskContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -34,7 +35,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Builder scopeGetByStartDate
  * @property Builder scopeGetByEndDate
  */
-class Task extends Model
+class Task extends Model implements TaskContract
 {
     use HasFactory;
 
