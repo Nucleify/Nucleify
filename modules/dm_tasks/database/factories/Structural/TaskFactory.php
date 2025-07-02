@@ -27,7 +27,7 @@ class TaskFactory extends Factory
             'assignee_id' => $this->faker->numberBetween(1, 50),
             'collaborator_ids' => $collaboratorIds,
             'title' => $this->faker->sentence(3),
-            'description' => $this->faker->paragraph(),
+            'description' => substr($this->faker->paragraph(255), 0, 255),
             'start_date' => $this->faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d'),
             'end_date' => $this->faker->dateTimeBetween('now', '+1 month')->format('Y-m-d'),
             'created_at' => $this->faker->dateTimeBetween('-2 months', 'now')->format('Y-m-d H:i:s'),
