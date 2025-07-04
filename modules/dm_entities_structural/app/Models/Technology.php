@@ -6,6 +6,7 @@ use App\Contracts\TechnologyContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * @property int id
@@ -39,6 +40,7 @@ use Illuminate\Database\Eloquent\Model;
 class Technology extends Model implements TechnologyContract
 {
     use HasFactory;
+    use HasTranslations;
 
     protected $fillable = [
         'label',
@@ -48,6 +50,8 @@ class Technology extends Model implements TechnologyContract
         'display',
         'category',
     ];
+
+    public array $translatable = ['description'];
 
     /**
      *  Instance methods
@@ -64,7 +68,7 @@ class Technology extends Model implements TechnologyContract
 
     public function getDescription(): ?string
     {
-        return $this->description;
+        return $this->getTranslation('description', app()->getLocale());
     }
 
     public function getHref(): string

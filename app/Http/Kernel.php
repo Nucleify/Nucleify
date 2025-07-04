@@ -8,6 +8,7 @@ use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\Staff;
 use App\Http\Middleware\TrimStrings;
+use App\Http\Middleware\SetLocale;
 // use App\Http\Middleware\TrustHosts;
 use App\Http\Middleware\TrustProxies;
 use App\Http\Middleware\ValidateSignature;
@@ -44,6 +45,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         //         TrustHosts::class,
+        SetLocale::class,
         TrustProxies::class,
         HandleCors::class,
         PreventRequestsDuringMaintenance::class,
@@ -62,6 +64,7 @@ class Kernel extends HttpKernel
             EncryptCookies::class,
             AddQueuedCookiesToResponse::class,
             StartSession::class,
+            SetLocale::class,
             ShareErrorsFromSession::class,
             VerifyCsrfToken::class,
             SubstituteBindings::class,
@@ -69,6 +72,7 @@ class Kernel extends HttpKernel
 
         'api' => [
             //             EnsureFrontendRequestsAreStateful::class,
+            SetLocale::class,
             ThrottleRequests::class . ':api',
             SubstituteBindings::class,
         ],

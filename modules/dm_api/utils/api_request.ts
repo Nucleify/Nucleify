@@ -1,4 +1,4 @@
-import { useCookie, useRequestHeaders } from 'nuxt/app'
+import { useCookie, useRequestHeaders, useNuxtApp } from 'nuxt/app'
 import { HttpMethodType } from 'atomic'
 import { useRoute } from 'vue-router'
 
@@ -9,6 +9,9 @@ export async function apiRequest(
   id: string | number | null = null,
   params: Record<string, any> = {}
 ) {
+  const { $i18n } = useNuxtApp()
+  const currentLocale = $i18n.locale
+
   const finalUrl = id ? `${url}/${id}` : url
   let xsrfTokenValue: string | undefined
 
@@ -25,6 +28,7 @@ export async function apiRequest(
   let headers: Record<string, any> = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
+    'X-Locale': currentLocale.value
   }
   if (xsrfTokenValue) {
     headers['X-XSRF-TOKEN'] = xsrfTokenValue

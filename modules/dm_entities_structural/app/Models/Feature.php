@@ -6,6 +6,7 @@ use App\Contracts\FeatureContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * @property int id
@@ -31,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
 class Feature extends Model implements FeatureContract
 {
     use HasFactory;
+    use HasTranslations;
 
     protected $fillable = [
         'icon',
@@ -38,6 +40,8 @@ class Feature extends Model implements FeatureContract
         'description',
         'category',
     ];
+    
+    public array $translatable = ['header', 'description'];
 
     /**
      *  Instance methods
@@ -54,12 +58,12 @@ class Feature extends Model implements FeatureContract
 
     public function getHeader(): string
     {
-        return $this->header;
+        return $this->getTranslation('header', app()->getLocale());
     }
 
     public function getDescription(): string
     {
-        return $this->description;
+        return $this->getTranslation('description', app()->getLocale());
     }
 
     public function getCategory(): string

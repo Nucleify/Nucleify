@@ -6,6 +6,7 @@ use App\Contracts\QuestionContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * @property int id
@@ -39,6 +40,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model implements QuestionContract
 {
     use HasFactory;
+    use HasTranslations;
 
     protected $fillable = [
         'index',
@@ -48,6 +50,8 @@ class Question extends Model implements QuestionContract
         'on_site',
         'display',
     ];
+
+    public array $translatable = ['content', 'answer'];
 
     /**
      *  Instance methods
@@ -64,12 +68,12 @@ class Question extends Model implements QuestionContract
 
     public function getContent(): string
     {
-        return $this->content;
+        return $this->getTranslation('content', app()->getLocale());
     }
 
     public function getAnswer(): string
     {
-        return $this->answer;
+        return $this->getTranslation('answer', app()->getLocale());
     }
 
     public function getCategory(): ?string
