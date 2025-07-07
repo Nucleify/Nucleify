@@ -20,9 +20,12 @@ class UploadController extends Controller
     public function upload(UploadRequest $request): JsonResponse
     {
         try {
-            $this->service->upload($request->file('file'));
+            $filePath = $this->service->upload($request->file('file'));
 
-            return response()->json(['message' => 'Upload successful']);
+            return response()->json([
+                'message' => 'Upload successful',
+                'file_path' => $filePath,
+            ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
