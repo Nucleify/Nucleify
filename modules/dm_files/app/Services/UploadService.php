@@ -3,27 +3,22 @@
 namespace App\Services;
 
 use Illuminate\Http\UploadedFile;
-use ZanySoft\Zip\Facades\Zip;
 
 class UploadService
 {
-    public function upload(UploadedFile $file): void
+    public function upload(UploadedFile $file): string
     {
-        $zipDir = base_path('modules/dm_files/storage/uploads/zip');
-        $unzipDir = base_path('modules/dm_files/storage/uploads/unzipped');
+        $uploadDir = base_path('modules/dm_files/storage/uploads/zip');
 
-        $filename = $file->getClientOriginalName();
-        $baseName = pathinfo($filename, PATHINFO_FILENAME);
-        $fullZipPath = $zipDir . '/' . $filename;
-
-        foreach ([$zipDir, $unzipDir, $unzipDir . '/' . $baseName] as $dir) {
-            if (!file_exists($dir)) {
-                mkdir($dir, 0777, true);
-            }
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
         }
 
-        $file->move($zipDir, $filename);
+        $filename = $file->getClientOriginalName();
+        $filePath = $uploadDir . '/' . $filename;
 
-        Zip::open($fullZipPath)->extract($unzipDir . '/' . $baseName);
+        $file->move($uploadDir, $filename);
+
+        return $filePath;
     }
 }
