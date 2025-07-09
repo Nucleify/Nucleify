@@ -1,6 +1,5 @@
 import { useCookie, useRequestHeaders, useNuxtApp } from 'nuxt/app'
 import { HttpMethodType } from 'atomic'
-import { useRoute } from 'vue-router'
 
 export async function apiRequest(
   url: string,
@@ -28,7 +27,7 @@ export async function apiRequest(
   let headers: Record<string, any> = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    'X-Locale': currentLocale.value
+    'X-Locale': currentLocale.value,
   }
   if (xsrfTokenValue) {
     headers['X-XSRF-TOKEN'] = xsrfTokenValue

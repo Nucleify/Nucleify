@@ -8,7 +8,10 @@
             <ad-heading :tag="1" :text="t('auth.register.title')" />
 
             <ad-paragraph :text="t('auth.register.subtitle')">
-              <ad-anchor :href="localePath('/login')" :label="t('auth.register.highlight')" />
+              <ad-anchor
+                :href="localePath('/login')"
+                :label="t('auth.register.highlight')"
+              />
             </ad-paragraph>
           </div>
         </div>

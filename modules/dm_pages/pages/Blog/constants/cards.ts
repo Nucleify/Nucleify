@@ -6,8 +6,8 @@ export const blogCategoriesCards: Ref<UnwrapRef<CardCategoryInterface[]>> = ref(
   [
     {
       image: 'world.svg',
-      altText: "Open Source",
-      title: "Integrations",
+      altText: 'Open Source',
+      title: 'Integrations',
       description:
         'Explore why open-source solutions are essential for innovation, transparency, and control in modern tech.',
       url: '/home',
@@ -28,6 +28,6 @@ export const blogCategoriesCards: Ref<UnwrapRef<CardCategoryInterface[]>> = ref(
       description:
         'Key strategies and tools to protect your data from evolving threats and ensure privacy compliance.',
       url: '/home',
-    }
+    },
   ]
 )

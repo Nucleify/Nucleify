@@ -7,7 +7,9 @@
         :text="t('home.access.title')"
       />
       <ad-paragraph class="access-description">
-        {{ t('home.access.description.text1') }}<span class="shiny">{{ t('home.access.description.highlight') }}</span>{{ t('home.access.description.text2') }}
+        {{ t('home.access.description.text1')
+        }}<span class="shiny">{{ t('home.access.description.highlight') }}</span
+        >{{ t('home.access.description.text2') }}
       </ad-paragraph>
       <div class="access-card-container">
         <div class="access-card flip-card col-12 md:col-6 xl:col-4">
@@ -21,7 +23,11 @@
                 alt="Desktop image"
                 image-class="access-card-image"
               />
-              <ad-heading :tag="3" class="access-card-header" :text="t('home.access.desktop.title')" />
+              <ad-heading
+                :tag="3"
+                class="access-card-header"
+                :text="t('home.access.desktop.title')"
+              />
             </div>
             <div class="flip-card-back">
               <ad-paragraph
@@ -42,12 +48,14 @@
                 alt="Tablet image"
                 image-class="access-card-image"
               />
-              <ad-heading :tag="3" class="access-card-header" :text="t('home.access.tablet.title')" />
+              <ad-heading
+                :tag="3"
+                class="access-card-header"
+                :text="t('home.access.tablet.title')"
+              />
             </div>
             <div class="flip-card-back">
-              <ad-paragraph
-                :text="t('home.access.tablet.description')"
-              />
+              <ad-paragraph :text="t('home.access.tablet.description')" />
             </div>
           </div>
         </div>
@@ -62,7 +70,11 @@
                 alt="Phone image"
                 image-class="access-card-image"
               />
-              <ad-heading :tag="3" class="access-card-header" :text="t('home.access.phone.title')" />
+              <ad-heading
+                :tag="3"
+                class="access-card-header"
+                :text="t('home.access.phone.title')"
+              />
             </div>
             <div class="flip-card-back">
               <ad-paragraph
@@ -78,6 +90,5 @@
 </template>
 
 <script setup lang="ts">
-
 const { t } = useI18n()
 </script>

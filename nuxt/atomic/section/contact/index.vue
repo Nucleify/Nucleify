@@ -1,7 +1,10 @@
 <template>
   <div id="contact">
     <div class="contact-content container">
-      <ad-paragraph :text="t('home.contact.title')" class="contact-content-title" />
+      <ad-paragraph
+        :text="t('home.contact.title')"
+        class="contact-content-title"
+      />
       <ad-paragraph
         :text="t('home.contact.description')"
         class="contact-content-description"

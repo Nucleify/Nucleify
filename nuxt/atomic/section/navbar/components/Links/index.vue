@@ -20,16 +20,14 @@
 
 <script setup lang="ts">
 import { navigateTo } from 'atomic'
-import { useI18n } from 'vue-i18n'
-import { navLinks as rawLinks } from '.'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-const navLinks = (['home', 'services', 'about', 'blog', 'login']).map(key => ({
+const navLinks = ['home', 'services', 'about', 'blog', 'login'].map((key) => ({
   label: t('links.' + key + '.label'),
-  href: localePath(t('links.' + key + '.href')),
+  href: localePath({ name: key }),
   isButton: key === 'login',
-  class: key === 'login' ? 'login-button' : undefined
+  class: key === 'login' ? 'login-button' : undefined,
 }))
 </script>

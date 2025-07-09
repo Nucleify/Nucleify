@@ -19,11 +19,11 @@
         @click="toggleNavbar()"
         aria-label="Menu"
       />
-      <dm-lang-switcher/>
+      <dm-lang-switcher />
     </div>
     <navbar-drawer v-model:visible="navbarExpanded">
       <navbar-links />
-      <dm-lang-switcher :isMobile="true"/>
+      <dm-lang-switcher :isMobile="true" />
     </navbar-drawer>
   </nav>
 </template>

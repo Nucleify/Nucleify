@@ -32,18 +32,26 @@ const { locale } = useI18n()
 const FRONT_EN = ['home', 'about', 'blog-en', 'license', 'services']
 const FRONT_PL = ['strona-glowna', 'o-nas', 'blog-pl', 'license', 'uslugi']
 
-const BACK = ['activity-log', 'admin', 'dashboard', 'entities', 'settings', 'structural']
+const BACK = [
+  'activity-log',
+  'admin',
+  'dashboard',
+  'entities',
+  'settings',
+  'structural',
+]
 
 const officeRoutes = computed(() => ({
   front: locale.value === 'pl' ? FRONT_PL : FRONT_EN,
-  back: BACK
+  back: BACK,
 }))
 
 const officeType = computed(() => {
-  const path = route.path           
-  return officeRoutes.value.front.some(s => path.includes(s)) ? 'front'
-       : officeRoutes.value.back.some (s => path.includes(s)) ? 'back'
-       : null
+  const path = route.path
+  return officeRoutes.value.front.some((s) => path.includes(s))
+    ? 'front'
+    : officeRoutes.value.back.some((s) => path.includes(s))
+      ? 'back'
+      : null
 })
-
 </script>
