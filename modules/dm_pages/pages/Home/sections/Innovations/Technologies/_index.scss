@@ -10,6 +10,8 @@
       display: flex;
       justify-content: center;
       width: 48.5px !important;
+      margin: 2px 0;
+      opacity: 0;
 
       a {
         height: 50px;
@@ -25,6 +27,18 @@
           height: 35px;
         }
       }
+    }
+  }
+}
+
+@media (width >= $lg) {
+  #innovations > #technologies {
+    overflow-y: visible;
+
+    swiper-container,
+    .swiper-wrapper,
+    .swiper {
+      overflow-y: visible;
     }
   }
 }
