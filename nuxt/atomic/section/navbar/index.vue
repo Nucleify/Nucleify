@@ -5,11 +5,16 @@
       <nuxt-link class="application-header" to="/home">
         <ad-image
           :src="imgUrl + 'logo.svg'"
+          class="logo"
           alt="DataManager logo"
           fetchpriority="high"
         />
 
-        <ad-heading :tag="1" text="DataManager" />
+        <ad-heading
+          :tag="1"
+          text="DataManager"
+          class="application-header-text"
+        />
       </nuxt-link>
 
       <navbar-links />
@@ -27,9 +32,25 @@
 </template>
 
 <script setup lang="ts">
+import gsap from 'gsap'
 import { NavbarLinks, NavbarDrawer } from './components'
 
-import { useNavbar } from 'atomic'
+import { bounceFadeIn, useNavbar } from 'atomic'
 
 const { navbarExpanded, toggleNavbar } = useNavbar()
+
+onMounted(() => {
+  bounceFadeIn('.navbar .logo', { delay: 2.2, duration: 0.3 })
+  gsap.fromTo(
+    '.navbar .application-header-text',
+    { opacity: 0, y: 20 },
+    { opacity: 1, y: 0, duration: 0.2, delay: 2.4 }
+  )
+  gsap.to('.navbar', {
+    opacity: 1,
+    duration: 0.3,
+    ease: 'power2.out',
+    delay: 2.2,
+  })
+})
 </script>

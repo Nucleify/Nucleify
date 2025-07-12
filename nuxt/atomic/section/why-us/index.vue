@@ -28,11 +28,17 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, watch, watchEffect } from 'vue'
-import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
-import { featureRequests } from 'atomic'
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
+
+import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
+import {
+  bounceFadeIn,
+  featureRequests,
+  useScrollTrigger,
+  useSplitText,
+} from 'atomic'
 
 gsap.registerPlugin(Draggable)
 gsap.registerPlugin(InertiaPlugin)
@@ -196,4 +202,27 @@ onBeforeUnmount(() => {
     }
   }
 })
+
+useSplitText().animate(
+  '.section-header',
+  500,
+  0.2,
+  0.1,
+  'power2.out',
+  true,
+  'top 50%'
+)
+
+useScrollTrigger(
+  '.section-header',
+  () => {
+    bounceFadeIn('.viewport-box', {
+      duration: 0.3,
+      ease: 'power2.out',
+    })
+  },
+  {
+    start: 'top 60%',
+  }
+)
 </script>
