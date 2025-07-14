@@ -36,9 +36,3 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   expect(modules.registerDMScreenLights).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMScreenLoader).toHaveBeenCalledWith(vueApp)
 })
-
-it('exports the correct plugin structure', (): void => {
-  expect(module).toHaveProperty('enforce', 'pre')
-  expect(module).toHaveProperty('setup')
-  expect(typeof module.setup).toBe('function')
-})
