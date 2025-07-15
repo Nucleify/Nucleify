@@ -15,6 +15,8 @@ const { colors }: UseColorsInterface = useColors()
 
 const props = defineProps<PolarChartInterface>()
 
+const { t } = useI18n()
+
 const chartData = ref({
   labels: ['Articles', 'Contacts', 'Money'],
   datasets: [

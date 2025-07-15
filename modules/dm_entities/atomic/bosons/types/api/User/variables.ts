@@ -6,3 +6,8 @@ export type UserRoleType =
   | 'test_tech'
   | 'test_user'
   | 'user'
+
+export type TestLoginType = {
+  role: UserRoleType
+  path: string
+}

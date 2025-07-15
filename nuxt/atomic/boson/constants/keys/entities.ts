@@ -13,3 +13,16 @@ export const allEntitiesKeys: string[] = [
   ...entitiesKeys,
   ...structuralEntitiesKeys,
 ]
+
+export const allEntitiesKeysPl: string[] = [
+  'Aktywność',
+  'Artykuł',
+  'Kontakt',
+  'Finanse',
+  'Użytkownik',
+  'Karta',
+  'Funkcjonalność',
+  'Link',
+  'Pytanie',
+  'Technologia',
+]

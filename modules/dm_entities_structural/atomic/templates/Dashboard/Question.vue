@@ -6,7 +6,7 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="question"
-      headerText="Manage Questions"
+      :headerText="t('admin.sections.question.header')"
       buttonText="New Question"
     />
 
@@ -40,6 +40,8 @@ import {
 
 const props = defineProps<DashboardInterface>()
 
+const { t } = useI18n()
+
 const {
   visibleShow,
   visibleCreate,
@@ -68,7 +70,7 @@ const dialogs = computed(() => [
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete question?',
+    title: t('admin.dialogs.delete.headers.question'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: deleteQuestion,
@@ -78,7 +80,7 @@ const dialogs = computed(() => [
     entity: 'question',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new question',
+    title: t('admin.dialogs.create.headers.question'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: storeQuestion,
@@ -90,7 +92,7 @@ const dialogs = computed(() => [
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit question',
+    title: t('admin.dialogs.edit.headers.question'),
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
     confirm: editQuestion,

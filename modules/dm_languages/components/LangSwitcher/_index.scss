@@ -1,26 +1,28 @@
 .lang-switcher {
   padding: 16px;
   display: none;
+  justify-content: center;
 
   img {
     display: flex;
     align-items: center;
-    width: 20px;
-  }
-}
-.mobile-img {
-  display: flex;
-  justify-content: center;
-
-  img {
     width: 24px;
   }
 }
 
 @media (min-width: $lg) {
   .lang-switcher {
+    display: block;
     margin-left: 24px;
     cursor: pointer;
-    display: block;
+    justify-content: flex-start;
+
+    img {
+      width: 20px;
+    }
   }
+}
+
+.navbar-drawer .lang-switcher {
+  display: flex;
 }

@@ -6,9 +6,9 @@
         <div class="left-side">
           <ad-heading :tag="1" class="header">
             {{ t('home.start.title.text1') }}
-            <span class="shiny first-text">{{
-              t('home.start.title.highlight1')
-            }}</span>
+            <span class="shiny first-text">
+              {{ t('home.start.title.highlight1') }}</span
+            >
             <br />
             {{ t('home.start.title.text2') }}
             <span class="shiny">{{ t('home.start.title.highlight2') }}</span>

@@ -69,9 +69,9 @@
               <ad-heading :tag="4" class="tech-heading">
                 <span class="tech-text">{{ t('home.modules.main.text') }}</span
                 >&nbsp;
-                <span class="tech-text shiny">{{
-                  t('home.modules.main.highlight')
-                }}</span>
+                <span class="tech-text shiny">
+                  {{ t('home.modules.main.highlight') }}</span
+                >
               </ad-heading>
               <ad-button
                 :label="t('home.modules.label')"

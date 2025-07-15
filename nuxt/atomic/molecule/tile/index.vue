@@ -8,7 +8,7 @@
       <ad-icon class="icon" :icon="props.icon" :ad-type="props.adType" />
     </div>
     <div class="secondary">
-      <ad-paragraph class="count" :text="props.countSecondary + ' new'" />
+      <ad-paragraph class="count" :text="'+' + props.countSecondary" />
       <ad-paragraph class="text" :text="props.textSecondary" />
     </div>
   </ad-anchor>
@@ -18,4 +18,6 @@
 import { TileInterface } from '.'
 
 const props = defineProps<TileInterface>()
+
+const { t } = useI18n()
 </script>

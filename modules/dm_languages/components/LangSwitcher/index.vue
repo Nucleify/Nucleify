@@ -1,5 +1,5 @@
 <template>
-  <div class="lang-switcher" :class="{ 'mobile-img': props.isMobile }">
+  <div class="lang-switcher">
     <ad-image
       :src="languagesImgUrl + (locale === 'en' ? 'gb.svg' : 'pl.svg')"
       fetchpriority="high"
@@ -10,10 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { LangSwitcherInterface } from '.'
 import { useSwitchLanguage } from 'atomic'
 
-const props = defineProps<LangSwitcherInterface>()
+const props = defineProps()
 
 const { switchLanguage } = useSwitchLanguage()
 

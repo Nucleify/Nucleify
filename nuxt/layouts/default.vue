@@ -29,10 +29,10 @@ onMounted(() => {
 
 const { locale } = useI18n()
 
-const FRONT_EN = ['home', 'about', 'blog-en', 'license', 'services']
-const FRONT_PL = ['strona-glowna', 'o-nas', 'blog-pl', 'license', 'uslugi']
+const FRONT_EN = ['home', 'about', 'blog', 'license', 'services']
+const FRONT_PL = ['strona-glowna', 'o-nas', 'blog', 'license', 'uslugi']
 
-const BACK = [
+const BACK_EN = [
   'activity-log',
   'admin',
   'dashboard',
@@ -40,10 +40,18 @@ const BACK = [
   'settings',
   'structural',
 ]
+const BACK_PL = [
+  'dziennik-aktywnosci',
+  'panel-admina',
+  'pulpit',
+  'obiekty',
+  'ustawienia',
+  'strukturalne',
+]
 
 const officeRoutes = computed(() => ({
   front: locale.value === 'pl' ? FRONT_PL : FRONT_EN,
-  back: BACK,
+  back: locale.value === 'pl' ? BACK_PL : BACK_EN,
 }))
 
 const officeType = computed(() => {

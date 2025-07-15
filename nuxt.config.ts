@@ -118,7 +118,7 @@ export default defineNuxtConfig({
   i18n: {
     defaultLocale: 'en',
     lazy: true,
-    strategy: 'prefix_except_default',
+    strategy: 'prefix',
     langDir: '../modules/dm_languages/locales/',
     customRoutes: 'config',
     detectBrowserLanguage: {
@@ -144,8 +144,8 @@ export default defineNuxtConfig({
         pl: '/uslugi'
       },
       blog: {
-        en: '/blog-en',
-        pl: '/blog-pl'
+        en: '/blog',
+        pl: '/blog'
       },
       login: {
         en: '/login',
@@ -154,6 +154,74 @@ export default defineNuxtConfig({
       register: {
         en: '/register',
         pl: '/rejestracja'
+      },
+      admin: {
+        en: '/admin',
+        pl: '/panel-admina'
+      },
+      structural: {
+        en: '/structural',
+        pl: '/strukturalne'
+      },
+      dashboard: {
+        en: '/dashboard',
+        pl: '/pulpit'
+      },
+      entities: {
+        en: '/entities',
+        pl: '/obiekty'
+      },
+      'activity-log': {
+        en: '/activity-log',
+        pl: '/dziennik-aktywnosci'
+      },
+      messages: {
+        en: '/messages',
+        pl: '/wiadomosci'
+      },
+      calender: {
+        en: '/calendar',
+        pl: '/kalendarz'
+      },
+      profile: {
+        en: '/profile',
+        pl: '/profil'
+      },
+      settings: {
+        en: '/settings',
+        pl: '/ustawienia'
+      },
+      'structural/cards': {
+        en: "/structural/cards",
+        pl: "/strukturalne/karty"
+      },
+      'structural/features': {
+        en: "/structural/features",
+        pl: "/strukturalne/funkcjonalnosci"
+      },
+      'structural/questions': {
+        en: "/structural/questions",
+        pl: "/strukturalne/pytania"
+      },
+      'structural/technologies': {
+        en: "/structural/technologies",
+        pl: "/strukturalne/technologie"
+      },
+      'structural/links': {
+        en: "/structural/links",
+        pl: "/strukturalne/linki"
+      },
+      'entities/articles': {
+        en: "/entities/articles",
+        pl: "/obiekty/artykuly"
+      },
+      'entities/contacts': {
+        en: "/entities/contacts",
+        pl: "/obiekty/kontakty"
+      },
+      'entities/money': {
+        en: "/entities/money",
+        pl: "/obiekty/finanse"
       }
     }
   }

@@ -47,7 +47,9 @@
       action="#"
     >
       <div v-for="(field, index) in props.fields" :key="index" class="form-div">
-        <label :for="field.name">{{ field.label }}</label>
+        <label :for="field.name">{{
+          t('admin.sections.' + props.entity + '.' + toCamelCase(field.label))
+        }}</label>
         <component
           :is="getComponent(field.type as ComponentType)"
           v-model="formData[field.name]"
@@ -87,7 +89,13 @@
       class="show-data-container"
     >
       <div v-for="(item, key) in props.fields" :key="key">
-        <ad-heading :tag="5" class="show-data-header" :text="item.label" />
+        <ad-heading
+          :tag="5"
+          class="show-data-header"
+          :text="
+            t('admin.sections.' + props.entity + '.' + toCamelCase(item.label))
+          "
+        />
         <div>{{ (props.selectedObject as any)[item.key] }}</div>
       </div>
     </div>
@@ -95,7 +103,14 @@
     <template #footer>
       <div class="dialog-buttons-container">
         <ad-button
-          :label="props.cancelButtonLabel"
+          :label="
+            t(
+              'admin.dialogs.' +
+                toCamelCase(props.action!) +
+                '.' +
+                toCamelCase(props.cancelButtonLabel!)
+            )
+          "
           icon="pi pi-times"
           severity="secondary"
           @click="close!(props.action!)"
@@ -105,7 +120,9 @@
         <ad-button
           v-if="props.fields && props.confirm"
           :ad-type="props.entity"
-          :label="props.confirmButtonLabel"
+          :label="
+            t('admin.dialogs.' + toCamelCase(props.action!) + '.confirmButton')
+          "
           icon="pi pi-check"
           @click="props.confirm(formData, props.getData)"
           rounded
@@ -116,7 +133,9 @@
             props.action === 'delete' && props.confirm && props.selectedObject
           "
           :ad-type="props.entity"
-          :label="props.confirmButtonLabel"
+          :label="
+            t('admin.dialogs.' + toCamelCase(props.action!) + '.confirmButton')
+          "
           icon="pi pi-check"
           @click="props.confirm(props.selectedObject.id, props.getData)"
           rounded
@@ -139,11 +158,14 @@ import {
   isPasswordsMatch,
   isPhoneField,
   isSelectOrDatePicker,
+  toCamelCase,
 } from 'atomic'
 
 import { DialogInterface } from '.'
 
 const props = defineProps<DialogInterface>()
+
+const { t } = useI18n()
 
 const formData = ref<FormDataInterface>({
   ...(props.data && (Array.isArray(props.data) ? {} : props.data)),

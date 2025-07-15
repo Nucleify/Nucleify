@@ -6,7 +6,7 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="link"
-      headerText="Manage Links"
+      :headerText="t('admin.sections.link.header')"
       buttonText="New Link"
     />
 
@@ -40,6 +40,8 @@ import {
 
 const props = defineProps<DashboardInterface>()
 
+const { t } = useI18n()
+
 const {
   visibleShow,
   visibleCreate,
@@ -67,7 +69,7 @@ const dialogs = computed(() => [
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete link?',
+    title: t('admin.dialogs.delete.headers.link'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: deleteLink,
@@ -77,7 +79,7 @@ const dialogs = computed(() => [
     entity: 'link',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new link',
+    title: t('admin.dialogs.create.headers.link'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: storeLink,
@@ -89,7 +91,7 @@ const dialogs = computed(() => [
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit link',
+    title: t('admin.dialogs.edit.headers.link'),
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
     confirm: editLink,

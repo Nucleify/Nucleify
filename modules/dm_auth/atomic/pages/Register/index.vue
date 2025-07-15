@@ -52,11 +52,14 @@
               "
             />
 
-            <ad-label :for="field.id" :label="field.label" />
+            <ad-label
+              :for="field.id"
+              :label="t('auth.labels.' + toCamelCase(field.label))"
+            />
           </ad-float-label>
 
           <ad-button
-            label="Register"
+            :label="t('auth.labels.registerButton')"
             type="submit"
             class="primary-button"
             padding="10px 10px"
@@ -73,6 +76,7 @@ import { onMounted } from 'vue'
 import {
   checkIsEmpty,
   checkPasswordsMatch,
+  toCamelCase,
   useAuthForm,
   useColors,
 } from 'atomic'

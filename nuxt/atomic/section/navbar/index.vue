@@ -23,7 +23,7 @@
     </div>
     <navbar-drawer v-model:visible="navbarExpanded">
       <navbar-links />
-      <dm-lang-switcher :isMobile="true" />
+      <dm-lang-switcher />
     </navbar-drawer>
   </nav>
 </template>

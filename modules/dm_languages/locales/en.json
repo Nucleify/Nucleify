@@ -14,7 +14,7 @@
     },
     "blog": {
       "label": "Blog",
-      "href": "/blog-en"
+      "href": "/blog"
     },
     "login": {
       "label": "Login",
@@ -127,6 +127,258 @@
       "title": "Welcome Back",
       "subtitle": "Don't have an account?",
       "highlight": "Create today!"
+    },
+    "labels": {
+      "emailAddress": "Email Address",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "fullName": "Full Name",
+      "loginButton": "Log in",
+      "registerButton": "Register"
+    },
+    "criteria": {
+      "lowercase": "At least one lowercase",
+      "uppercase": "At least one uppercase",
+      "numeric": "At least one numeric",
+      "length": "Minimum 8 characters"
+    }
+  },
+  "admin": {
+    "dock": {
+      "adminPanel": "Admin Panel",
+      "structural": "Structural",
+      "dashboard": "Dashboard",
+      "entities": "Entities",
+      "activities": "Activities",
+      "messages": "Messages",
+      "calendar": "Calendar",
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout",
+      "position": "position"
+    },
+    "tiles": {
+      "highlight": "new",
+      "secondaryText": "this week",
+      "article": {
+        "header": "Articles"
+      },
+      "contacts": {
+        "header": "Contacts"
+      },
+      "money": {
+        "header": "Money"
+      },
+      "users": {
+        "header": "Users"
+      },
+      "cards": {
+        "header": "Cards"
+      },
+      "features": {
+        "header": "Features"
+      },
+      "question": {
+        "header": "Questions"
+      },
+      "technologies": {
+        "header": "Technologies"
+      },
+      "links": {
+        "header": "Links"
+      }
+    },
+    "sections": {
+      "article": {
+        "header": "Manage Articles",
+        "title": "Title",
+        "description": "Description",
+        "category": "Category",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at"
+      },
+      "contact": {
+        "header": "Manage Contacts",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "fullName": "Full Name",
+        "email": "Email",
+        "personalPhone": "Personal Phone",
+        "workPhone": "Work Phone",
+        "address": "Address",
+        "birthday": "Birthday",
+        "contactGroups": "Contact Groups",
+        "role": "Role",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at"
+      },
+      "money": {
+        "header": "Manage Money",
+        "count": "Count",
+        "receiver": "Receiver",
+        "sender": "Sender",
+        "title": "Title",
+        "description": "Description",
+        "category": "Category",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at"
+      },
+      "user": {
+        "header": "Manage Users",
+        "name": "Name",
+        "email": "Email",
+        "role": "Role",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at"
+      },
+      "card": {
+        "header": "Manage Cards",
+        "src": "Src",
+        "title": "Title",
+        "description": "Description",
+        "category": "Category",
+        "component": "Component",
+        "display": "Display",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at"
+      },
+      "feature": {
+        "mainHeader": "Manage Features",
+        "icon": "Icon",
+        "header": "Header",
+        "description": "Description",
+        "category": "Category",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at"
+      },
+      "link": {
+        "header": "Manage Links",
+        "download": "Download",
+        "href": "Href",
+        "src": "Src",
+        "icon": "Icon",
+        "category": "Category",
+        "hreflang": "Href Lang",
+        "media": "Media",
+        "ping": "Ping",
+        "referrerPolicy": "Referrer Policy",
+        "rel": "Rel",
+        "target": "Target",
+        "type": "Type",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at"
+      },
+      "question": {
+        "header": "Manage Questions",
+        "index": "Index",
+        "content": "Content",
+        "answer": "Answer",
+        "category": "Category",
+        "display": "Display",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at"
+      },
+      "technology": {
+        "header": "Manage Technologies",
+        "href": "Href",
+        "src": "Src",
+        "label": "Label",
+        "description": "Description",
+        "category": "Category",
+        "display": "Display",
+        "createdAt": "Created at",
+        "updatedAt": "Updated at"
+      },
+      "activity": {
+        "header": "Manage Activities",
+        "iD": "ID",
+        "description": "Description",
+        "createdAt": "Created at"
+      }
+    },
+    "pagination": {
+      "to": "to",
+      "of": "of"
+    },
+    "settings": {
+      "colors": {
+        "header": "Colors",
+        "main": "Main",
+        "activity": "Activity",
+        "article": "Article",
+        "card": "Card",
+        "contact": "Contact",
+        "feature": "Feature",
+        "link": "Link",
+        "money": "Finance",
+        "question": "Question",
+        "technology": "Technology",
+        "user": "User"
+      },
+      "charts": {
+        "header": "Charts",
+        "activity": "Activity",
+        "admin": "Admin",
+        "article": "Article",
+        "card": "Card",
+        "contact": "Contact",
+        "feature": "Feature",
+        "link": "Link",
+        "money": "Finance",
+        "question": "Question",
+        "structural": "Structural",
+        "technology": "Technology"
+      }
+    },
+    "dialogs": {
+      "create": {
+        "headers": {
+          "activity": "Create new activity",
+          "article": "Create new article",
+          "card": "Create new card",
+          "contact": "Create new contact",
+          "feature": "Create new feature",
+          "link": "Create new link",
+          "money": "Create new transaction",
+          "question": "Create new question",
+          "technology": "Create new technology"
+        },
+        "confirmButton": "Create",
+        "cancel": "Cancel"
+      },
+      "edit": {
+        "headers": {
+          "activity": "Edit activity",
+          "article": "Edit article",
+          "card": "Edit card",
+          "contact": "Edit contact",
+          "feature": "Edit feature",
+          "link": "Edit link",
+          "money": "Edit transaction",
+          "question": "Edit question",
+          "technology": "Edit technology"
+        },
+        "confirmButton": "Update",
+        "cancel": "Cancel"
+      },
+      "delete": {
+        "headers": {
+          "activity": "Delete activity?",
+          "article": "Delete article?",
+          "card": "Delete card?",
+          "contact": "Delete contact?",
+          "feature": "Delete feature?",
+          "link": "Delete link?",
+          "money": "Delete transaction?",
+          "question": "Delete question?",
+          "technology": "Delete technology?"
+        },
+        "confirmButton": "Confirm",
+        "cancel": "Cancel"
+      },
+      "show": {
+        "close": "Close"
+      }
     }
   }
 }

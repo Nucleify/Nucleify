@@ -25,17 +25,42 @@ const createDockItem = (
 
 const dockData: readonly DockItemInterface[] = [
   [undefined, undefined, '/home', 'logo', undefined, undefined, true],
-  ['pi pi-crown', 'Admin Panel', '/admin', undefined, 'admin'],
-  ['pi pi-sitemap', 'Structural', '/structural', undefined, 'structural'],
-  ['pi pi-chart-line', 'Dashboard', '/dashboard', undefined, 'dashboard'],
-  ['pi pi-box', 'Entities', '/entities', undefined, 'entities'],
-  ['pi pi-history', 'Activities', '/activity-log', undefined, 'activity-log'],
-  ['pi pi-envelope disabled-item', 'Messages'],
-  ['pi pi-calendar disabled-item', 'Calendar'],
-  ['pi pi-user disabled-item', 'Profile'],
-  ['pi pi-cog', 'Settings', '/settings', undefined, 'settings'],
-  ['pi pi-sign-out', 'Logout', undefined, undefined, undefined, logout],
-  [undefined, 'position', undefined, 'position'],
+  ['pi pi-crown', 'admin.dock.adminPanel', '/admin', undefined, 'admin'],
+  [
+    'pi pi-sitemap',
+    'admin.dock.structural',
+    '/structural',
+    undefined,
+    'structural',
+  ],
+  [
+    'pi pi-chart-line',
+    'admin.dock.dashboard',
+    '/dashboard',
+    undefined,
+    'dashboard',
+  ],
+  ['pi pi-box', 'admin.dock.entities', '/entities', undefined, 'entities'],
+  [
+    'pi pi-history',
+    'admin.dock.activities',
+    '/activity-log',
+    undefined,
+    'activity-log',
+  ],
+  ['pi pi-envelope disabled-item', 'admin.dock.messages'],
+  ['pi pi-calendar disabled-item', 'admin.dock.calendar'],
+  ['pi pi-user disabled-item', 'admin.dock.profile'],
+  ['pi pi-cog', 'admin.dock.settings', '/settings', undefined, 'settings'],
+  [
+    'pi pi-sign-out',
+    'admin.dock.logout',
+    undefined,
+    undefined,
+    undefined,
+    logout,
+  ],
+  [undefined, 'admin.dock.position', undefined, 'position'],
 ] as const
 
 export const dockItems: readonly DockItemInterface[] = ref(

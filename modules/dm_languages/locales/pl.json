@@ -14,7 +14,7 @@
     },
     "blog": {
       "label": "Blog",
-      "href": "/blog-pl"
+      "href": "/blog"
     },
     "login": {
       "label": "Zaloguj się",
@@ -127,6 +127,268 @@
       "title": "Witamy ponownie",
       "subtitle": "Nie masz jeszcze konta?",
       "highlight": "Zarejestruj się!"
+    },
+    "labels": {
+      "emailAddress": "Adres Email",
+      "password": "Hasło",
+      "confirmPassword": "Potwierdź Hasło",
+      "fullName": "Imię i Nazwisko",
+      "loginButton": "Zaloguj się",
+      "registerButton": "Zarejestruj się"
+    },
+    "criteria": {
+      "lowercase": "Co najmniej jedna mała litera",
+      "uppercase": "Co najmniej jedna wielka litera",
+      "numeric": "Co najmniej jedna cyfra",
+      "length": "Minimum 8 znaków"
+    }
+  },
+  "admin": {
+    "dock": {
+      "adminPanel": "Panel Admina",
+      "structural": "Strukturalne",
+      "dashboard": "Pulpit",
+      "entities": "Obiekty",
+      "activities": "Dziennik Aktywności",
+      "messages": "Wiadomości",
+      "calendar": "Kalendarz",
+      "profile": "Profil",
+      "settings": "Ustawienia",
+      "logout": "Wyloguj",
+      "position": "Pozycja"
+    },
+    "tiles": {
+      "highlight": "nowe",
+      "secondaryText": "w tym tygodniu",
+      "article": {
+        "header": "Artykuły"
+      },
+      "contacts": {
+        "header": "Kontakty"
+      },
+      "money": {
+        "header": "Finanse"
+      },
+      "users": {
+        "header": "Użytkownicy"
+      },
+      "cards": {
+        "header": "Karty"
+      },
+      "features": {
+        "header": "Funkcjonalności"
+      },
+      "question": {
+        "header": "Pytania"
+      },
+      "technologies": {
+        "header": "Technologie"
+      },
+      "links": {
+        "header": "Linki"
+      }
+    },
+    "sections": {
+      "article": {
+        "header": "Zarządzaj artykułami",
+        "title": "Tytuł",
+        "description": "Opis",
+        "category": "Kategoria",
+        "createdAt": "Utworzono",
+        "updatedAt": "Zaktualizowano"
+      },
+      "contact": {
+        "header": "Zarządzaj kontaktami",
+        "firstName": "Imię",
+        "lastName": "Nazwisko",
+        "fullName": "Imię i nazwisko",
+        "email": "Email",
+        "personalPhone": "Telefon prywatny",
+        "workPhone": "Telefon służbowy",
+        "address": "Adres",
+        "birthday": "Data urodzenia",
+        "contactGroups": "Grupy kontaktów",
+        "role": "Rola",
+        "createdAt": "Utworzono",
+        "updatedAt": "Zaktualizowano"
+      },
+      "money": {
+        "header": "Zarządzaj finansami",
+        "count": "Liczba",
+        "receiver": "Odbiorca",
+        "sender": "Nadawca",
+        "title": "Tytuł",
+        "description": "Opis",
+        "category": "Kategoria",
+        "createdAt": "Utworzono",
+        "updatedAt": "Zaktualizowano"
+      },
+      "user": {
+        "header": "Zarządzaj użytkownikami",
+        "name": "Nazwa",
+        "email": "Email",
+        "role": "Rola",
+        "createdAt": "Utworzono",
+        "updatedAt": "Zaktualizowano"
+      },
+      "card": {
+        "header": "Zarządzaj kartami",
+        "src": "Źródło",
+        "title": "Tytuł",
+        "description": "Opis",
+        "category": "Kategoria",
+        "component": "Komponent",
+        "display": "Widok",
+        "createdAt": "Utworzono",
+        "updatedAt": "Zaktualizowano"
+      },
+      "feature": {
+        "mainHeader": "Zarządzaj funkcjonalnościami",
+        "icon": "Ikona",
+        "header": "Nagłówek",
+        "description": "Opis",
+        "category": "Kategoria",
+        "createdAt": "Utworzono",
+        "updatedAt": "Zaktualizowano"
+      },
+      "link": {
+        "header": "Zarządzaj linkami",
+        "download": "Pobierz",
+        "href": "Href",
+        "src": "Źródło",
+        "icon": "Ikona",
+        "category": "Kategoria",
+        "hreflang": "Język linku",
+        "media": "Multimedia",
+        "ping": "Ping",
+        "referrerPolicy": "Polityka przekazywania strony odsyłającej",
+        "rel": "Relacja",
+        "target": "Cel",
+        "type": "Typ",
+        "createdAt": "Utworzono",
+        "updatedAt": "Zaktualizowano"
+      },
+      "question": {
+        "header": "Zarządzaj pytaniami",
+        "index": "Indeks",
+        "content": "Treść",
+        "answer": "Odpowiedź",
+        "category": "Kategoria",
+        "display": "Widok",
+        "createdAt": "Utworzono",
+        "updatedAt": "Zaktualizowano"
+      },
+      "technology": {
+        "header": "Zarządzaj technologiami",
+        "href": "Href",
+        "src": "Źródło",
+        "label": "Nazwa",
+        "description": "Opis",
+        "category": "Kategoria",
+        "display": "Widok",
+        "createdAt": "Utworzono",
+        "updatedAt": "Zaktualizowano"
+      },
+      "activity": {
+        "header": "Zarządzaj aktywnościami",
+        "iD": "ID",
+        "description": "Opis",
+        "createdAt": "Utworzono"
+      }
+    },
+    "pagination": {
+      "to": "do",
+      "of": "z"
+    },
+    "settings": {
+      "colors": {
+        "header": "Kolory",
+        "main": "Główna",
+        "activity": "Aktywność",
+        "article": "Artykuł",
+        "card": "Karta",
+        "contact": "Kontakt",
+        "feature": "Funkcjonalność",
+        "link": "Link",
+        "money": "Finanse",
+        "question": "Pytanie",
+        "technology": "Technologia",
+        "user": "Użytkownik"
+      },
+      "charts": {
+        "header": "Wykresy",
+        "activity": "Aktywność",
+        "admin": "Admin",
+        "article": "Artykuł",
+        "card": "Karta",
+        "contact": "Kontakt",
+        "feature": "Funkcjonalność",
+        "link": "Link",
+        "money": "Finanse",
+        "question": "Pytanie",
+        "structural": "Strukturalny",
+        "technology": "Technologia"
+      }
+    },
+    "chartLabels": {
+      "articles": "Artykuły",
+      "cards": "Karty",
+      "contacts": "Kontakty",
+      "features": "Funkcjonalności",
+      "money": "Finanse",
+      "questions": "Pytania",
+      "technologies": "Technologie",
+      "links": "Linki"
+    },
+    "dialogs": {
+      "create": {
+        "headers": {
+          "activity": "Dodaj nową aktywność",
+          "article": "Dodaj nowy artykuł",
+          "card": "Dodaj nową kartę",
+          "contact": "Dodaj nowy kontakt",
+          "feature": "Dodaj nową funkcjonalność",
+          "link": "Dodaj nowy link",
+          "money": "Dodaj nową transakcję",
+          "question": "Dodaj nowe pytanie",
+          "technology": "Dodaj nową technologię"
+        },
+        "confirmButton": "Utwórz",
+        "cancel": "Anuluj"
+      },
+      "edit": {
+        "headers": {
+          "activity": "Edytuj aktywność",
+          "article": "Edytuj artykuł",
+          "card": "Edytuj kartę",
+          "contact": "Edytuj kontakt",
+          "feature": "Edytuj funkcjonalność",
+          "link": "Edytuj link",
+          "money": "Edytuj transakcję",
+          "question": "Edytuj pytanie",
+          "technology": "Edytuj technologię"
+        },
+        "confirmButton": "Zaktualizuj",
+        "cancel": "Anuluj"
+      },
+      "delete": {
+        "headers": {
+          "activity": "Usunąć aktywność?",
+          "article": "Usunąć artykuł?",
+          "card": "Usunąć kartę?",
+          "contact": "Usunąć kontakt?",
+          "feature": "Usunąć funkcjonalność?",
+          "link": "Usunąć link?",
+          "money": "Usunąć transakcję?",
+          "question": "Usunąć pytanie?",
+          "technology": "Usunąć technologię?"
+        },
+        "confirmButton": "Potwierdź",
+        "cancel": "Anuluj"
+      },
+      "show": {
+        "close": "Zamknij"
+      }
     }
   }
 }

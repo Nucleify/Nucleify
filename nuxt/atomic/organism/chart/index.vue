@@ -23,6 +23,7 @@ import { ChartInterface, useChart } from 'atomic'
 const props = defineProps<ChartInterface>()
 
 const { chartData, setChartData, setChartOptions } = useChart()
+
 const chartOptions = ref(setChartOptions(props.type, props.direction))
 
 onMounted(() => {

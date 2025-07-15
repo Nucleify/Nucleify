@@ -6,7 +6,7 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      headerText="Manage Users"
+      :headerText="t('admin.sections.user.header')"
       buttonText="New User"
     />
 
@@ -40,6 +40,8 @@ import {
 
 const props = defineProps<DashboardInterface>()
 
+const { t } = useI18n()
+
 const {
   visibleShow,
   visibleCreate,
@@ -67,7 +69,7 @@ const dialogs = computed(() => [
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete user?',
+    title: t('admin.dialogs.delete.headers.user'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: deleteUser,
@@ -77,7 +79,7 @@ const dialogs = computed(() => [
     entity: 'user',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new user',
+    title: t('admin.dialogs.create.headers.user'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: storeUser,
@@ -89,7 +91,7 @@ const dialogs = computed(() => [
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit user',
+    title: t('admin.dialogs.edit.headers.user'),
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
     confirm: editUser,

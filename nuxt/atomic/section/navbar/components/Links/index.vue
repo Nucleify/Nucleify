@@ -24,10 +24,12 @@ import { navigateTo } from 'atomic'
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-const navLinks = ['home', 'services', 'about', 'blog', 'login'].map((key) => ({
-  label: t('links.' + key + '.label'),
-  href: localePath({ name: key }),
-  isButton: key === 'login',
-  class: key === 'login' ? 'login-button' : undefined,
-}))
+const navLinks = computed(() =>
+  ['home', 'services', 'about', 'blog', 'login'].map((key) => ({
+    label: t(`links.${key}.label`),
+    href: localePath({ name: key }),
+    isButton: key === 'login',
+    class: key === 'login' ? 'login-button' : undefined,
+  }))
+)
 </script>

@@ -1,5 +1,7 @@
 import { Ref, ref } from 'vue'
 
+import { useNuxtApp } from 'nuxt/app'
+
 import { InputInterface, LoginFieldKey, LoginFieldsInterface } from 'atomic'
 
 export const loginFields: Ref<LoginFieldsInterface> = ref<LoginFieldsInterface>(
@@ -20,7 +22,7 @@ export const loginInputs: readonly InputInterface<LoginFieldKey>[] =
       model,
       type,
       id,
-      label,
+      label: label,
       autofocus,
     })
   )

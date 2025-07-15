@@ -3,48 +3,48 @@
   <div class="panel-container">
     <div class="tiles grid col-12">
       <ad-tile
-        href="/structural/cards"
-        header="Cards"
+        :href="localePath('/structural/cards')"
+        :header="t('admin.tiles.cards.header')"
         :count="cards?.length"
         icon="pi pi-stop"
         :count-secondary="cardsCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="card"
       />
       <ad-tile
-        href="/structural/features"
-        header="Features"
+        :href="localePath('/structural/features')"
+        :header="t('admin.tiles.features.header')"
         :count="features?.length"
         icon="pi pi-star"
         :count-secondary="featuresCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="feature"
       />
       <ad-tile
-        href="/structural/questions"
-        header="Questions"
+        :href="localePath('/structural/questions')"
+        :header="t('admin.tiles.question.header')"
         :count="questions?.length"
         icon="pi pi-question"
         :count-secondary="questionsCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="question"
       />
       <ad-tile
-        href="/structural/technologies"
-        header="Technologies"
+        :href="localePath('/structural/technologies')"
+        :header="t('admin.tiles.technologies.header')"
         :count="technologies?.length"
         icon="pi pi-microchip-ai"
         :count-secondary="technologiesCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="technology"
       />
       <ad-tile
-        href="/structural/links"
-        header="Links"
+        :href="localePath('/structural/links')"
+        :header="t('admin.tiles.links.header')"
         :count="links?.length"
         icon="pi pi-link"
         :count-secondary="linksCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="link"
       />
     </div>
@@ -103,6 +103,9 @@ import {
   technologyRequests,
   useDisplayCharts,
 } from 'atomic'
+
+const { t } = useI18n()
+const localePath = useLocalePath()
 
 const { display } = useDisplayCharts()
 

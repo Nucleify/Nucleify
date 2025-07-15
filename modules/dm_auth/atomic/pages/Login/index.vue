@@ -31,10 +31,17 @@
             class="auth-input-text"
             :autofocus="field.autofocus"
           />
-          <ad-label :for="field.id" :label="field.label" />
+          <ad-label
+            :for="field.id"
+            :label="t('auth.labels.' + toCamelCase(field.label))"
+          />
         </ad-float-label>
 
-        <ad-button label="Log In" type="submit" padding="10px 10px" />
+        <ad-button
+          :label="t('auth.labels.loginButton')"
+          type="submit"
+          padding="10px 10px"
+        />
       </form>
     </template>
   </ad-card>
@@ -45,7 +52,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { useAuthForm, useColors } from 'atomic'
+import { useAuthForm, useColors, toCamelCase } from 'atomic'
 
 const { t } = useI18n()
 

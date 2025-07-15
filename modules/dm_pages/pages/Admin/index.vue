@@ -4,38 +4,38 @@
     <div class="admin-tiles grid col-12">
       <ad-tile
         href="#articles"
-        header="Articles"
+        :header="t('admin.tiles.article.header')"
         :count="articles?.length"
         icon="pi pi-comment"
         :count-secondary="articlesCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="article"
       />
       <ad-tile
         href="#contacts"
-        header="Contacts"
+        :header="t('admin.tiles.contacts.header')"
         :count="contacts?.length"
         icon="pi pi-user"
         :count-secondary="contactsCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="contact"
       />
       <ad-tile
         href="#money"
-        header="Money"
+        :header="t('admin.tiles.money.header')"
         :count="money?.length"
         icon="pi pi-dollar"
         :count-secondary="moneyCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="money"
       />
       <ad-tile
         href="#users"
-        header="Users"
+        :header="t('admin.tiles.users.header')"
         :count="users?.length"
         icon="pi pi-user"
         :count-secondary="usersCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="user"
       />
     </div>
@@ -87,6 +87,8 @@ import {
   userRequests,
   useDisplayCharts,
 } from 'atomic'
+
+const { t } = useI18n()
 
 const { display } = useDisplayCharts()
 
