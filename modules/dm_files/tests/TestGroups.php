@@ -21,3 +21,7 @@ uses()
 uses()
     ->group('upload-api')
     ->in('Feature/Api/Upload');
+
+uses()
+    ->group('zip-api')
+    ->in('Feature/Api/Zip');

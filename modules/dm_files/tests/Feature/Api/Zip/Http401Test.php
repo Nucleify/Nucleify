@@ -7,10 +7,10 @@ if (!defined('PEST_RUNNING')) {
 use Illuminate\Http\UploadedFile;
 
 describe('401 > Unauthorized', function (): void {
-    test('upload file', function () {
+    test('extract zip file', function () {
         $file = UploadedFile::fake()->create('test.zip', 100, 'application/zip');
 
-        $this->postJson(route('files.upload'), [
+        $this->postJson(route('files.zip'), [
             'file' => $file,
         ])
             ->assertStatus(401)
