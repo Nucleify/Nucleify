@@ -23,7 +23,7 @@ class UploadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => 'required|file|mimes:zip,rar,7z,tar,gz,bz2|max:2048',
+            'file' => 'required|file|max:2048',
         ];
     }
 }

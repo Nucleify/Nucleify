@@ -8,7 +8,7 @@ class UploadService
 {
     public function upload(UploadedFile $file): string
     {
-        $uploadDir = base_path('modules/dm_files/storage/uploads/zip');
+        $uploadDir = base_path('modules/dm_files/uploads');
 
         if (!file_exists($uploadDir)) {
             mkdir($uploadDir, 0777, true);

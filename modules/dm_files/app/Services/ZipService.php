@@ -6,9 +6,9 @@ use ZanySoft\Zip\Facades\Zip;
 
 class ZipService
 {
-    public function extract(string $filePath): string
+    public function extract(string $filePath, ?string $extractPath = null): string
     {
-        $unzipDir = base_path('modules/dm_files/storage/uploads/unzipped');
+        $unzipDir = $extractPath ?? base_path('modules/dm_files/uploads/unzipped');
 
         if (!file_exists($unzipDir)) {
             mkdir($unzipDir, 0777, true);

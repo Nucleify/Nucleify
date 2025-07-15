@@ -10,7 +10,7 @@ describe('401 > Unauthorized', function (): void {
     test('upload file', function () {
         $file = UploadedFile::fake()->create('test.zip', 100, 'application/zip');
 
-        $this->postJson(route('file.upload'), [
+        $this->postJson(route('files.upload'), [
             'file' => $file,
         ])
             ->assertStatus(401)

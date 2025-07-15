@@ -31,5 +31,7 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         ->in(
             'Feature/Api/Upload/Http200Test.php',
             'Feature/Api/Upload/Http422Test.php',
+            'Feature/Api/Zip/Http200Test.php',
+            'Feature/Api/Zip/Http422Test.php',
         );
 }

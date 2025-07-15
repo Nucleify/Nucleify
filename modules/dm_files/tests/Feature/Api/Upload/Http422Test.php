@@ -4,8 +4,6 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-use Illuminate\Http\UploadedFile;
-
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
@@ -13,17 +11,7 @@ beforeEach(function (): void {
 
 describe('422 > Unprocessable Content', function () {
     test('missing file', function () {
-        $this->postJson(route('file.upload'), [])
+        $this->postJson(route('files.upload'), [])
             ->assertStatus(422);
-    });
-
-    test('invalid file type', function () {
-        $file = UploadedFile::fake()->create('document.pdf', 100, 'application/pdf');
-
-        $response = $this->postJson(route('file.upload'), [
-            'file' => $file,
-        ]);
-
-        $response->assertStatus(422);
     });
 });
