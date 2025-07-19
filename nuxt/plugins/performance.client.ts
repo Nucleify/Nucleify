@@ -1,10 +1,10 @@
 import { defineNuxtPlugin } from 'nuxt/app'
 
-export default defineNuxtPlugin(() => {
-  function deferCSS() {
+export default defineNuxtPlugin((): void => {
+  function deferCSS(): void {
     const links = document.querySelectorAll('link[rel="stylesheet"]')
 
-    links.forEach((link, index) => {
+    links.forEach((link, index): void => {
       if (index > 0) {
         link.setAttribute('media', 'print')
         link.setAttribute('onload', "this.media='all'")
@@ -12,23 +12,23 @@ export default defineNuxtPlugin(() => {
     })
   }
 
-  function optimizeImages() {
+  function optimizeImages(): void {
     const images = document.querySelectorAll('img')
 
-    images.forEach((img) => {
+    images.forEach((img): void => {
       if (!img.loading) img.loading = 'lazy'
       if (!img.decoding) img.decoding = 'async'
     })
   }
 
-  function reduceLayoutThrashing() {
+  function reduceLayoutThrashing(): void {
     let ticking = false
 
-    function updateLayout() {
+    function updateLayout(): void {
       ticking = false
     }
 
-    function requestTick() {
+    function requestTick(): void {
       if (!ticking) {
         requestAnimationFrame(updateLayout)
         ticking = true
