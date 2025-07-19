@@ -16,3 +16,5 @@ else
   echo "APP_FRONTEND is not set, running both checks"
   npm run check && cd next && npm run check
 fi
+
+npm run tests
