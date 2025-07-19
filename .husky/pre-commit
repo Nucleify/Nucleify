@@ -17,3 +17,5 @@ else
   echo "Running both checks"
   npm run check && cd next && npm run check
 fi
+
+npm run tests
