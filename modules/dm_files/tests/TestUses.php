@@ -22,16 +22,24 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         RefreshDatabase::class
     )
         ->in(
-            //
+            'Database/Models'
         );
 
     uses(
         DatabaseMigrations::class
     )
         ->in(
+            // Upload API
             'Feature/Api/Upload/Http200Test.php',
             'Feature/Api/Upload/Http422Test.php',
+
+            // Zip API
             'Feature/Api/Zip/Http200Test.php',
             'Feature/Api/Zip/Http422Test.php',
+
+            'Database/Factories',
+            'Database/Migrations',
+
+            'Feature/Controllers'
         );
 }
