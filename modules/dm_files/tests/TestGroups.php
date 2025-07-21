@@ -5,19 +5,50 @@ if (!defined('PEST_RUNNING')) {
 }
 
 /**
- *  Main test group
+ *  Main test groups
  */
 uses()
     ->group('dm-files')
     ->in('.');
 
 uses()
+    ->group('dm-files-db')
+    ->in('Database');
+
+uses()
     ->group('dm-files-ft')
     ->in('Feature');
 
 /**
- *  Feature test group
+ *  Database groups
  */
+uses()
+    ->group('database')
+    ->in('Database');
+
+uses()
+    ->group('models')
+    ->in('Database/Models');
+
+uses()
+    ->group('migrations')
+    ->in('Database/Migrations');
+
+uses()
+    ->group('factories')
+    ->in('Database/Factories');
+
+/**
+ *  Feature groups
+ */
+uses()
+    ->group('api')
+    ->in('Feature/Api');
+
+uses()
+    ->group('file-api')
+    ->in('Feature/Api/File');
+
 uses()
     ->group('upload-api')
     ->in('Feature/Api/Upload');
@@ -25,3 +56,7 @@ uses()
 uses()
     ->group('zip-api')
     ->in('Feature/Api/Zip');
+
+uses()
+    ->group('controllers')
+    ->in('Feature/Controllers');

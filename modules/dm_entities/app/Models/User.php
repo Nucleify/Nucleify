@@ -44,6 +44,7 @@ use Multicaret\Acquaintances\Traits\Friendable;
  * @property Builder scopeGetByAdminRole
  * @property Builder scopeGetBySuperAdminRole
  * @property HasMany contacts
+ * @property HasMany files
  * @property HasMany money
  * @property HasMany card
  * @property HasMany question
@@ -214,6 +215,11 @@ class User extends Authenticatable implements UserContract
     public function contacts(): HasMany
     {
         return $this->hasMany(Contact::class);
+    }
+
+    public function files(): HasMany
+    {
+        return $this->hasMany(File::class);
     }
 
     public function createContactFromUserDetails(): void
