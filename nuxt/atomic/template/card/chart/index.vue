@@ -14,6 +14,7 @@
           :money-data="props.moneyData"
           :question-data="props.questionData"
           :feature-data="props.featureData"
+          :task-data="props.taskData"
           :technology-data="props.technologyData"
           :user-data="props.userData"
           :chart-class="props.chartClass"
