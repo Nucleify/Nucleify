@@ -11,7 +11,7 @@ it('can create record', function (): void {
 
     $this->assertDatabaseCount('tasks', 1);
     $this->assertDatabaseHas('tasks', ['id' => $task->id]);
-})->group('factories');
+});
 
 it('can create multiple records', function (): void {
     $tasks = Task::factory()->count(3)->create();
@@ -20,7 +20,7 @@ it('can create multiple records', function (): void {
     foreach ($tasks as $task) {
         $this->assertDatabaseHas('tasks', ['id' => $task->id]);
     }
-})->group('factories');
+});
 
 it("can't create record", function (): void {
     try {
@@ -32,8 +32,7 @@ it("can't create record", function (): void {
     }
 
     $this->fail('Expected exception not thrown.');
-})->group('factories')
-    ->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable for git workflow tests');
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable for git workflow tests');
 
 it("can't create multiple records", function (): void {
     try {
@@ -45,5 +44,4 @@ it("can't create multiple records", function (): void {
     }
 
     $this->fail('Expected exception not thrown.');
-})->group('factories')
-    ->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable for git workflow tests');
+})->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable for git workflow tests');

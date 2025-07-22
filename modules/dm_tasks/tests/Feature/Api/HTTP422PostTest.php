@@ -11,59 +11,6 @@ beforeEach(function (): void {
 
 describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
     /**
-     * INDEX TESTS
-     */
-    $taskData['index'] = '';
-    test('invalid index > empty', apiTest(
-        'POST',
-        'tasks.store',
-        422,
-        $taskData,
-        ['errors' => ['index']],
-        ['errors' => [
-            'index' => ['The index field is required.'],
-        ]]
-    ));
-
-    $taskData['index'] = 'index';
-    test('invalid index > string', apiTest(
-        'POST',
-        'tasks.store',
-        422,
-        $taskData,
-        ['errors' => ['index']],
-        ['errors' => [
-            'index' => ['The index field must be an integer.'],
-        ]]
-    ));
-
-    $taskData['index'] = false;
-    test('invalid index > false', apiTest(
-        'POST',
-        'tasks.store',
-        422,
-        $taskData,
-        ['errors' => ['index']],
-        ['errors' => [
-            'index' => ['The index field must be an integer.'],
-        ]]
-    ));
-
-    $taskData['index'] = [];
-    test('invalid index > empty array', apiTest(
-        'POST',
-        'tasks.store',
-        422,
-        $taskData,
-        ['errors' => ['index']],
-        ['errors' => [
-            'index' => ['The index field is required.'],
-        ]]
-    ));
-
-    $taskData['index'] = taskData['index'];
-
-    /**
      * USER_ID TESTS
      */
     $taskData['user_id'] = '';

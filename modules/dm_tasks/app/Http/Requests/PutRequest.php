@@ -24,7 +24,6 @@ class PutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'index' => 'required|integer',
             'user_id' => 'required|integer',
             'assignee_id' => 'required|integer',
             'collaborator_ids' => 'required|array',

@@ -22,10 +22,9 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         RefreshDatabase::class
     )
         ->in(
-            // Task API
-            'Feature/Api/Task/HTTP302Test.php',
-            'Feature/Api/Task/HTTP422PostTest.php',
-            'Feature/Api/Task/HTTP422PutTest.php',
+            'Feature/Api/HTTP302Test.php',
+            'Feature/Api/HTTP422PostTest.php',
+            'Feature/Api/HTTP422PutTest.php',
 
             'Database/Models'
         );
@@ -34,14 +33,13 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         DatabaseMigrations::class
     )
         ->in(
-            // Task API
-            'Feature/Api/Task/HTTP200Test.php',
-            'Feature/Api/Task/HTTP500Test.php',
+            'Feature/Api/HTTP200Test.php',
+            'Feature/Api/HTTP500Test.php',
 
             'Database/Factories',
             'Database/Migrations',
 
             'Feature/Controllers',
-            'Feature/Services',
+            'Feature/Services'
         );
 }
