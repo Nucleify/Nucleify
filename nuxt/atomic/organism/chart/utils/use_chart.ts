@@ -14,6 +14,7 @@ import {
   MoneyObjectInterface,
   UserObjectInterface,
   QuestionObjectInterface,
+  TaskObjectInterface,
   TechnologyObjectInterface,
   ChartMethodType,
   ChartType,
@@ -61,6 +62,7 @@ export function useChart() {
     linkData?: LinkObjectInterface[],
     moneyData?: MoneyObjectInterface[],
     questionData?: QuestionObjectInterface[],
+    taskData?: TaskObjectInterface[],
     technologyData?: TechnologyObjectInterface[],
     userData?: UserObjectInterface[],
     example?: boolean
@@ -97,6 +99,7 @@ export function useChart() {
           [linkData, dataByMonth.link],
           [moneyData, dataByMonth.money],
           [questionData, dataByMonth.question],
+          [taskData, dataByMonth.task],
           [technologyData, dataByMonth.technology],
           [userData, dataByMonth.user],
         ].forEach(([data, dataByMonth]) =>
@@ -148,6 +151,7 @@ export function useChart() {
                   Features: featureData,
                   Links: linkData,
                   Question: questionData,
+                  Task: taskData,
                   Technology: technologyData,
                 })[label]
             )

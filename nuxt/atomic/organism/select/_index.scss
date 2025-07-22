@@ -1,7 +1,7 @@
 @import 'mixins';
 
 @each $type in main, activity, article, card, contact, feature, link, money,
-  question, technology, user
+  question, task, technology, user
 {
   .p-select[ad-type='#{$type}'] {
     @include entity-select-styles(

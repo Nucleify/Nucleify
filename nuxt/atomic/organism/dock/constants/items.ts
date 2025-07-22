@@ -31,7 +31,7 @@ const dockData: readonly DockItemInterface[] = [
   ['pi pi-chart-line', 'Dashboard', '/dashboard', undefined, 'dashboard'],
   ['pi pi-box', 'Entities', '/entities', undefined, 'entities'],
   ['pi pi-history', 'Activities', '/activity-log', undefined, 'activity-log'],
-  ['pi pi-envelope disabled-item', 'Messages'],
+  ['pi pi-check-square', 'Tasks', '/tasks', undefined, 'tasks'],
   ['pi pi-calendar disabled-item', 'Calendar'],
   ['pi pi-user disabled-item', 'Profile'],
   ['pi pi-cog', 'Settings', '/settings', undefined, 'settings'],
