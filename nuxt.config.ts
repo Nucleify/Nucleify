@@ -60,10 +60,8 @@ export default defineNuxtConfig({
       ],
       link: [
         {
-          rel: 'preload',
-          href: '/fonts/primeicons/primeicons.css',
-          as: 'style',
-          onload: "this.onload=null;this.rel='stylesheet'",
+          rel: 'stylesheet',
+          href: '/fonts/primeicons/primeicons.css'
         }
       ]
     },
