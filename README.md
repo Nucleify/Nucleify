@@ -326,27 +326,25 @@ sail artisan sitemap:generate
 
 <details><summary> <h2> &nbsp;🛠️&nbsp;&nbsp; Tech Stack </h2> </summary> <br>
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=php" height="35" />
-  <img src="https://skillicons.dev/icons?i=laravel" height="35" />
-  <img src="https://skillicons.dev/icons?i=ts" height="35" />
-  <img src="https://skillicons.dev/icons?i=nuxt" height="35" />
-  <img src="https://skillicons.dev/icons?i=vue" height="35" />
-  <img src="https://www.primefaces.org/wp-content/uploads/2019/12/primevue-logo.png" height="35" />
-  <img src="https://skillicons.dev/icons?i=html" height="35" />
-  <img src="https://skillicons.dev/icons?i=sass" height="35" />
-  <img src="https://skillicons.dev/icons?i=mysql" height="35" />
-  <img src="https://skillicons.dev/icons?i=docker" height="35" />
-  <img src="https://skillicons.dev/icons?i=heroku" height="35" />
-  <img src="https://skillicons.dev/icons?i=vite" height="35" />
-  <img src="https://skillicons.dev/icons?i=vitest" height="35" />
-  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="33" />
-  <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="35" />
-  <img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="35" />
-  <img src="https://github.com/user-attachments/assets/06bebfc4-9927-45d6-ac7b-75ced6e85501" height="35" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" height="35" />
-  <img src="https://github.com/user-attachments/assets/ea4a5462-085b-4dd6-bf35-9f76cbcf3c35" height="35" />
-  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/a983a634-3e81-4a11-9281-0ef0bacfd187" height="35" />
-  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/712ed3a9-e9fa-4782-acff-140a4970ba88" height="35" />
+  <img src="/public/img/technologies/php.svg" width="35" />
+  <img src="/public/img/technologies/laravel.svg" width="35" />
+  <img src="/public/img/technologies/typescript.svg" width="35" />
+  <img src="/public/img/technologies/nuxt.svg" width="35" />
+  <img src="/public/img/technologies/vue.svg" width="35" />
+  <img src="/public/img/technologies/primevue.svg" width="35" />
+  <img src="/public/img/technologies/html5.svg" width="35" />
+  <img src="/public/img/technologies/scss.svg" width="35" />
+  <img src="/public/img/technologies/mysql.svg" width="35" />
+  <img src="/public/img/technologies/docker.svg" width="35" />
+  <img src="/public/img/technologies/heroku.svg" width="35" />
+  <img src="/public/img/technologies/vitest.svg" width="35" />
+  <img src="/public/img/technologies/pest.svg" width="35" />
+  <img src="/public/img/technologies/storybook.svg" width="35" />
+  <img src="/public/img/technologies/cypress.svg" width="35" />
+  <img src="/public/img/technologies/sonarcloud.svg" width="35" />
+  <img src="/public/img/technologies/biome.svg" width="35" />
+  <img src="/public/img/technologies/stylelint.svg" width="35" />
+  <img src="/public/img/technologies/husky.svg" width="35" />
 </div>
 <hr><br></details>
 
