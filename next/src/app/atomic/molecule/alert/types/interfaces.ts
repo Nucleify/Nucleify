@@ -1,8 +1,9 @@
-import type { SxProps, Theme } from '@mui/material'
 import type {
   AlertPropsColorOverrides,
   AlertPropsVariantOverrides,
 } from '@mui/material/Alert'
+
+import type { SxProps, Theme } from '@mui/material'
 import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdAlertInterface {

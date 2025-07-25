@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { useRouter } from '#app'
+
 import { testLogin } from 'atomic'
 
 const router = useRouter()

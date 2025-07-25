@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import type { CardChartInterface } from 'atomic'
+
 import { useDisplayChartsStore } from '~/stores/display_charts'
 
 const props = defineProps<CardChartInterface>()

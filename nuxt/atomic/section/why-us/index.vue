@@ -27,10 +27,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch, watchEffect } from 'vue'
+import { gsap } from 'gsap'
+import { onBeforeUnmount, onMounted, ref, watch, watchEffect } from 'vue'
+
 import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
 import { featureRequests } from 'atomic'
-import { gsap } from 'gsap'
+
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 

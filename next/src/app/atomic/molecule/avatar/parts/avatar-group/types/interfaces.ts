@@ -1,5 +1,6 @@
-import type { SxProps, Theme } from '@mui/material'
 import type { AvatarGroupPropsVariantOverrides } from '@mui/material/AvatarGroup'
+
+import type { SxProps, Theme } from '@mui/material'
 import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdAvatarGroupInterface {

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite'
-
 import { AdProgressBar } from '.'
+
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Atoms/ProgressBar',
