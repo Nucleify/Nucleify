@@ -106,7 +106,8 @@
 <script setup lang="ts">
 import { marked } from 'marked'
 
-import { navigateTo, isMobile, apiHandle } from 'atomic'
+import { apiHandle, isMobile, navigateTo } from 'atomic'
+
 import { modules } from './constants'
 
 const activeStep = ref(1)

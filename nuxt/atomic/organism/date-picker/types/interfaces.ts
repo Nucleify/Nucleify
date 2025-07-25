@@ -1,5 +1,3 @@
-import type { DatePickerResponsiveOptions } from 'primevue/datepicker'
-
 import type {
   DatePickerModelValueType,
   DatePickerVariant,
@@ -10,6 +8,8 @@ import type {
   IconDisplayType,
   ViewType,
 } from 'atomic'
+
+import type { DatePickerResponsiveOptions } from 'primevue/datepicker'
 
 export interface DatePickerInterface {
   modelValue?: DatePickerModelValueType

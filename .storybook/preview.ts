@@ -13,10 +13,9 @@ import { createApp } from 'vue'
  */
 import 'primeicons/primeicons.css'
 
-import PrimeVue from 'primevue/config'
-
-import { DataManagerPreset } from '../nuxt/atomic/primevue_preset'
 import type { Preview } from '@storybook/vue3'
+import PrimeVue from 'primevue/config'
+import { DataManagerPreset } from '../nuxt/atomic/primevue_preset'
 
 export const app = createApp({})
 

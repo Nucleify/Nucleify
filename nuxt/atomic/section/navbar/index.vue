@@ -27,9 +27,9 @@
 </template>
 
 <script setup lang="ts">
-import { NavbarLinks, NavbarDrawer } from './components'
-
 import { useNavbar } from 'atomic'
+
+import { NavbarDrawer, NavbarLinks } from './components'
 
 const { navbarExpanded, toggleNavbar } = useNavbar()
 </script>
