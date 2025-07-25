@@ -371,11 +371,17 @@ Your skills and expertise will directly contribute to the success of our project
 <a href="https://github.com/kbujak09" target="_blank">
 <img src="/public/img/contributors/kbujak09.svg" width="30" height="30" />
 </a>
+<a href="https://github.com/K4mD4m" target="_blank">
+<img src="/public/img/contributors/K4mD4m.svg" width="30" height="30" />
+</a>
 <a href="https://github.com/KatarzynaS97" target="_blank">
 <img src="/public/img/contributors/KatarzynaS97.svg" width="30" height="30" />
 </a>
 <a href="https://github.com/karol199393" target="_blank">
 <img src="/public/img/contributors/karol199393.svg" width="30" height="30" />
+</a>
+<a href="https://github.com/pysifu" target="_blank">
+<img src="/public/img/contributors/pysifu.svg" width="30" height="30" />
 </a>
 
 </div>
