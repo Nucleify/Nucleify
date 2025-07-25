@@ -4,12 +4,12 @@ import type {
   UseAuthFormInterface,
 } from 'atomic'
 import {
+  apiHandle,
+  getAndSetUser,
   loginFields,
   loginInputs,
   registerFields,
   registerInputs,
-  apiHandle,
-  getAndSetUser,
 } from 'atomic'
 
 export function useAuthForm(): UseAuthFormInterface {

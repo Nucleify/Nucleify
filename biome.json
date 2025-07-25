@@ -1,7 +1,16 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
   "vcs": { "enabled": false, "clientKind": "git", "useIgnoreFile": false },
-  "files": { "ignoreUnknown": false },
+  "files": {
+    "ignoreUnknown": false,
+    "includes": [
+      "**",
+      "!vendor/**",
+      "!modules/**/index.ts",
+      "!cypress/**",
+      "!.nuxt/**"
+    ]
+  },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
@@ -13,50 +22,7 @@
     "bracketSameLine": false,
     "bracketSpacing": true,
     "expand": "auto",
-    "useEditorconfig": true,
-    "includes": [
-      "**",
-      "!**/bootstrap.ts",
-      "!**/main.ts",
-      "!**/preview.ts",
-      "!**/index.html",
-      "!**/README.md",
-      "!**/public",
-      "!**/build",
-      "!**/coverage",
-      "!**/index.scss",
-      "!**/.output",
-      "!**/.data",
-      "!**/.nuxt",
-      "!**/.nitro",
-      "!**/.cache",
-      "!**/dist",
-      "!**/node_modules",
-      "!**/logs",
-      "!**/*.log",
-      "!**/.DS_Store",
-      "!**/.fleet",
-      "!**/.idea",
-      "!**/.env",
-      "!**/.env.*",
-      "**/.env.example",
-      "!**/.github",
-      "!**/.husky",
-      "!**/.prettierrc",
-      "!**/.stylelintrc.json",
-      "!**/eslint.config.mjs",
-      "!**/package*.json",
-      "!**/yarn.lock",
-      "!**/README.md",
-      "!**/tsconfig.json",
-      "!**/nuxt.config.ts",
-      "!**/vite.config.ts",
-      "!**/vue-shims.d.ts",
-      "!modules/dm_screen_lights/_index.scss",
-      "!atomic/bosons/styles/index.scss",
-      "!atomic/bosons/styles/variables",
-      "!**/next"
-    ]
+    "useEditorconfig": true
   },
   "linter": {
     "enabled": true,
@@ -82,14 +48,12 @@
         "noSelfAssign": "error",
         "noSetterReturn": "error",
         "noSwitchDeclarations": "error",
-        "noUndeclaredVariables": "error",
         "noUnreachable": "error",
         "noUnreachableSuper": "error",
         "noUnsafeFinally": "error",
         "noUnsafeOptionalChaining": "error",
         "noUnusedLabels": "error",
         "noUnusedPrivateClassMembers": "error",
-        "noUnusedVariables": "error",
         "useIsNan": "error",
         "useValidForDirection": "error",
         "useValidTypeof": "error",
@@ -133,8 +97,7 @@
         "useGetterReturn": "error",
         "useNamespaceKeyword": "error"
       }
-    },
-    "includes": ["**", "next/**/*"]
+    }
   },
   "javascript": {
     "formatter": {
@@ -187,6 +150,42 @@
   ],
   "assist": {
     "enabled": true,
-    "actions": { "source": { "organizeImports": "on" } }
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              [
+                ":BUN:",
+                "#app",
+                "vue",
+                "marked",
+                "primevue",
+                "vue-router",
+                "pinia",
+                "react",
+                "@mui/material/*",
+                "gsap",
+                "vitest",
+                "vue-i18n"
+              ],
+              ":BLANK_LINE:",
+              "atomic",
+              ":BLANK_LINE:",
+              "components",
+              "constants",
+              "types",
+              "utils",
+              "variables",
+              ":BLANK_LINE:",
+              ".",
+              ":BLANK_LINE:",
+              "index.vue"
+            ]
+          }
+        }
+      }
+    }
   }
 }

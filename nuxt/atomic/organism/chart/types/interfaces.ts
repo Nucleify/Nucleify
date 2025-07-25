@@ -3,16 +3,16 @@ import type { CanvasHTMLAttributes } from 'vue'
 import type {
   ActivityLogObjectInterface,
   ArticleObjectInterface,
-  ContactObjectInterface,
-  ChartType,
+  CardObjectInterface,
   ChartMethodType,
+  ChartType,
+  ContactObjectInterface,
+  FeatureObjectInterface,
+  LinkObjectInterface,
   MoneyObjectInterface,
   QuestionObjectInterface,
   TechnologyObjectInterface,
   UserObjectInterface,
-  CardObjectInterface,
-  LinkObjectInterface,
-  FeatureObjectInterface,
 } from 'atomic'
 
 export interface ChartInterface {

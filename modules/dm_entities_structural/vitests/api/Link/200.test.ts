@@ -1,4 +1,5 @@
-import { describe, expect, it, beforeEach, vi, type Mock } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
+
 import * as atomic from 'atomic'
 
 describe('linkRequests', (): void => {
@@ -24,7 +25,7 @@ describe('linkRequests', (): void => {
   })
 
   it('storeLink', async (): Promise<void> => {
-    await requests.storeLink(atomic.mockLink, async () => {})
+    await requests.storeLink(atomic.mockLink)
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -35,7 +36,7 @@ describe('linkRequests', (): void => {
   })
 
   it('editLink', async (): Promise<void> => {
-    await requests.editLink(atomic.mockLink, async () => {})
+    await requests.editLink(atomic.mockLink)
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -46,7 +47,7 @@ describe('linkRequests', (): void => {
   })
 
   it('deleteLink', async (): Promise<void> => {
-    await requests.deleteLink(atomic.mockLink.id ?? 0, async () => {})
+    await requests.deleteLink(atomic.mockLink.id ?? 0)
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
