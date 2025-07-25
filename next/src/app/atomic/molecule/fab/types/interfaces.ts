@@ -1,9 +1,10 @@
-import type { SxProps, Theme } from '@mui/material'
 import type {
   FabPropsColorOverrides,
   FabPropsSizeOverrides,
   FabPropsVariantOverrides,
 } from '@mui/material/Fab'
+
+import type { SxProps, Theme } from '@mui/material'
 import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdFabInterface {

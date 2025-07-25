@@ -39,9 +39,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
-import { updateImagesPerRow, getHexagonPoints } from './utils'
+import { getHexagonPoints, updateImagesPerRow } from './utils'
 import { PATTERN_UPDATE_INTERVAL } from './variables'
 
 const containerRef = ref<HTMLElement | null>(null)

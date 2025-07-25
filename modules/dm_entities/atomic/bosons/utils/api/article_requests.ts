@@ -4,9 +4,9 @@ import type {
   ArticleObjectInterface,
   ArticleRequestsInterface,
   CloseDialogType,
-  UseLoadingInterface,
   EntityCountResultsType,
   EntityResultsType,
+  UseLoadingInterface,
 } from 'atomic'
 import { apiHandle, useApiSuccess, useLoading } from 'atomic'
 

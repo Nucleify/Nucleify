@@ -1,7 +1,8 @@
 import type { ButtonHTMLAttributes } from 'vue'
-import type { ToastBreakpointsType, ToastMessageOptions } from 'primevue/toast'
 
 import type { FlashToastFunctionType, ToastPositionType } from 'atomic'
+
+import type { ToastBreakpointsType, ToastMessageOptions } from 'primevue/toast'
 
 export interface ToastInterface {
   group?: string

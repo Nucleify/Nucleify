@@ -1,6 +1,7 @@
-import type { SlotProps, SxProps, Theme } from '@mui/material'
 import type { ListItemTextOwnerState } from '@mui/material/ListItemText'
 import type { TypographyProps } from '@mui/material/Typography'
+
+import type { SlotProps, SxProps, Theme } from '@mui/material'
 
 export interface AdListItemTextInterface {
   children?: React.ReactNode

@@ -1,4 +1,4 @@
-import { defaultColors, cookieGetItem, localStorageGetItem } from 'atomic'
+import { cookieGetItem, defaultColors, localStorageGetItem } from 'atomic'
 
 export function getColorValue(key: string): string {
   return (

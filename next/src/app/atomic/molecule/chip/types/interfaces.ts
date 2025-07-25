@@ -1,9 +1,10 @@
-import type { SxProps, Theme } from '@mui/material'
 import type {
   ChipPropsColorOverrides,
   ChipPropsSizeOverrides,
   ChipPropsVariantOverrides,
 } from '@mui/material/Chip'
+
+import type { SxProps, Theme } from '@mui/material'
 import type { OverridableStringUnion } from '@mui/types'
 
 export interface AdChipInterface {

@@ -1,5 +1,4 @@
 import type { HTMLAttributes, StyleValue } from 'vue'
-import type { DialogBreakpoints } from 'primevue/dialog'
 
 import type {
   ActionType,
@@ -12,6 +11,8 @@ import type {
   SelectedObjectType,
   VisibleType,
 } from 'atomic'
+
+import type { DialogBreakpoints } from 'primevue/dialog'
 
 export interface DialogInterface {
   header?: string

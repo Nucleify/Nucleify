@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-import { officeRoutes, isAnyCurrentUrl } from 'atomic'
+import { isAnyCurrentUrl, officeRoutes } from 'atomic'
 
 export function useOfficeType() {
   const officeType = ref(getOfficeType())

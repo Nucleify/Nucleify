@@ -8,14 +8,5 @@ php .pest/guard_check.php
 echo 'Pint checking...'
 ./vendor/bin/pint
 
-if [ "$APP_FRONTEND" = "next" ]; then
-  cd next && npm run check
-elif [ "$APP_FRONTEND" = "nuxt" ]; then
-  npm run check
-else
-  echo "Please specify APP_FRONTEND (nuxt or next) in .env"
-  echo "Running both checks"
-  npm run check && cd next && npm run check
-fi
-
+npm run check
 npm run tests

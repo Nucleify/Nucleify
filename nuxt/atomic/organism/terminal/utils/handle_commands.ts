@@ -1,5 +1,4 @@
 import TerminalService from 'primevue/terminalservice'
-
 import { sendArtisanCommand } from './send_artisan_command'
 
 export async function handleCommands(text: string): Promise<void> {
