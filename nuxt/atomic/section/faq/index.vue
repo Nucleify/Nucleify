@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SectionFaqInterface, QuestionObjectInterface } from 'atomic'
+import type { QuestionObjectInterface, SectionFaqInterface } from 'atomic'
 import { questionRequests, useSplitQuestions } from 'atomic'
 
 const props = defineProps<SectionFaqInterface>()

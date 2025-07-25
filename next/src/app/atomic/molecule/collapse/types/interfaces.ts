@@ -1,5 +1,6 @@
-import type { SxProps, Theme } from '@mui/material'
 import type { TransitionProps } from '@mui/material/transitions'
+
+import type { SxProps, Theme } from '@mui/material'
 
 export interface AdCollapseInterface {
   addEndListener?: () => void

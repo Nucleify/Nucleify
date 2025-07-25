@@ -1,6 +1,6 @@
 import type { MockUseToastInterface } from 'atomic'
 
-// eslint-disable-next-line
+// biome-ignore lint/suspicious/noExplicitAny: fix in future
 export const mockUseToast = (fn: any): MockUseToastInterface => {
   return {
     add: fn,

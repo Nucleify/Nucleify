@@ -36,10 +36,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 
 import { displayChartList } from 'atomic'
+
 import { useDisplayChartsStore } from '~/stores/display_charts'
 
 const displayChartsStore = useDisplayChartsStore()

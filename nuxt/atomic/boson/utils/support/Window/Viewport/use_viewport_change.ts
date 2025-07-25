@@ -1,9 +1,9 @@
-import { ref, onMounted, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 import type {
   UseInViewportInterface,
-  ViewportStatusType,
   ViewportStatusesType,
+  ViewportStatusType,
 } from 'atomic'
 import { useInViewport } from 'atomic'
 

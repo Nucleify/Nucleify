@@ -1,8 +1,8 @@
 import {
-  defaultColors,
   colorKeys,
   colorTypes,
   cookieSetItem,
+  defaultColors,
   localStorageSetItem,
 } from 'atomic'
 

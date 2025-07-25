@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite'
-
 import { AdCard } from '.'
+
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Organisms/Card',
