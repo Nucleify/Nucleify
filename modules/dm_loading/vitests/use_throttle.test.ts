@@ -1,4 +1,4 @@
-import { it, expect, beforeEach, vi } from 'vitest'
+import { beforeEach, expect, it, vi } from 'vitest'
 import { nextTick } from 'vue'
 
 import { useThrottle } from 'atomic'

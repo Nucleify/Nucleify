@@ -1,8 +1,8 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 
-import type { UseColorsInterface, UseColorPickerInterface } from 'atomic'
-import { createColorTypes, useColors, setColorWithNewSuffix } from 'atomic'
+import type { UseColorPickerInterface, UseColorsInterface } from 'atomic'
+import { createColorTypes, setColorWithNewSuffix, useColors } from 'atomic'
 
 export function useColorPicker(item: string): UseColorPickerInterface {
   const { colors }: UseColorsInterface = useColors()

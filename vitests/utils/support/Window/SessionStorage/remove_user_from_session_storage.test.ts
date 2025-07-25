@@ -1,4 +1,4 @@
-import { it, expect, beforeEach } from 'vitest'
+import { beforeEach, expect, it } from 'vitest'
 
 import * as atomic from 'atomic'
 

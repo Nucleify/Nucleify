@@ -1,4 +1,4 @@
-import type { vi, Mock } from 'vitest'
+import type { Mock, vi } from 'vitest'
 
 interface VitestContextWithMocking {
   fn: typeof vi.fn

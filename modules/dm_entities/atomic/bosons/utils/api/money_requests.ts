@@ -2,10 +2,10 @@ import { ref } from 'vue'
 
 import type {
   CloseDialogType,
-  EntityResultsType,
   EntityCountResultsType,
-  MoneyRequestsInterface,
+  EntityResultsType,
   MoneyObjectInterface,
+  MoneyRequestsInterface,
   UseLoadingInterface,
 } from 'atomic'
 import {
