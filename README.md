@@ -1,4 +1,4 @@
-# <div align="center"> <img src="https://github.com/SzymCode/DataManager/assets/107359025/652cd065-7449-4e9a-9564-3916fa3baedc" width="70"> <br> DataManager <br> </div>
+# <div align="center"> <img src="/public/img/logo.png" width="70"> <br> DataManager <br> </div>
 <br>
 
 Streamline ERP and design management with a powerful system built using Laravel and Nuxt. Easily organize, manage, and access all your data types in one powerful, user-friendly platform - perfect for CRM, ERP and E-commerce solutions.
@@ -46,7 +46,7 @@ I'm sure I could optimize it further, but it's good enough for now.
 <br>
 
 
-<details><summary> <h2> &nbsp; <img src="https://upload.wikimedia.org/wikipedia/commons/d/dc/XAMPP_Logo.png" height=25/> &nbsp; XAMPP </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="/public/img/contributors/xampp.svg" height="20" /> &nbsp; XAMPP </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary>
 
 - First make sure u have installed latest versions of [PHP](https://www.php.net), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
@@ -129,7 +129,7 @@ Database\Factories\ActivityFactory::new()->count(100)->create();
 
 <details><summary> Tests </summary><br>
 
-<img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="15" /> &nbsp;Pest tests:
+<img src="/public/img/technologies/pest.svg" height="15" /> &nbsp;Pest tests:
 ```bash
 # run all tests
 ./vendor/bin/pest
@@ -146,17 +146,17 @@ database, feature, global, unit, commands, controllers, services, factories, mig
 ```
 ![Tests](https://github.com/user-attachments/assets/560df303-07c7-42f0-a178-07ef5e05a8a8)![Coverage](https://github.com/user-attachments/assets/0b6cc696-8fdb-469f-a78c-e6faaadbe437)
 
-<img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="15" /> &nbsp;Cypress tests:
+<img src="/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
 ```bash
 npm run open
 ```
 
-<img src="https://vitest.dev/logo-shadow.svg" height="15" /> &nbsp;Vitest tests:
+<img src="/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
 ```bash
 npm run tests
 ```
 
-<img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```npm run dev```
+<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```npm run dev```
 
 <br></details>
 
@@ -184,7 +184,7 @@ php artisan sitemap:generate
 
 
 
-<details><summary> <h2> &nbsp; <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" height=25/> &nbsp; Docker </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="/public/img/technologies/docker.svg" height="20" /> &nbsp; Docker </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary> <br>
 
 - First make sure u have installed latest versions of [Composer](https://getcomposer.org/) and [Docker](https://www.docker.com)
@@ -269,7 +269,7 @@ Database\Factories\ActivityFactory::new()->count(100)->create();
 
 <details><summary> Tests </summary><br>
 
-<img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="15" /> &nbsp;Pest tests:
+<img src="/public/img/technologies/pest.svg" height="15" /> &nbsp;Pest tests:
 ```bash
 # run all tests
 sail pest
@@ -289,17 +289,17 @@ sail pest --coverage
 
 
 
-<img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="15" /> &nbsp;Cypress tests:
+<img src="/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
 ```bash
 npm run open  # For now I've not configured Cypress with Docker
 ```
 
-<img src="https://vitest.dev/logo-shadow.svg" height="15" /> &nbsp;Vitest tests:
+<img src="/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
 ```bash
 sail npm run tests
 ```
 
-<img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail up -d```
+<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail up -d```
 
 <br></details>
 
@@ -324,35 +324,34 @@ sail artisan sitemap:generate
 
 </details></details><hr><br></details></details>
 
-<details><summary> <h2> &nbsp;🛠️&nbsp;&nbsp; Tech Stack </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="/public/img/technologies/stack.svg" width="20"> &nbsp; Tech Stack </h2> </summary> <br>
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=php" height="35" />
-  <img src="https://skillicons.dev/icons?i=laravel" height="35" />
-  <img src="https://skillicons.dev/icons?i=ts" height="35" />
-  <img src="https://skillicons.dev/icons?i=nuxt" height="35" />
-  <img src="https://skillicons.dev/icons?i=vue" height="35" />
-  <img src="https://www.primefaces.org/wp-content/uploads/2019/12/primevue-logo.png" height="35" />
-  <img src="https://skillicons.dev/icons?i=html" height="35" />
-  <img src="https://skillicons.dev/icons?i=sass" height="35" />
-  <img src="https://skillicons.dev/icons?i=mysql" height="35" />
-  <img src="https://skillicons.dev/icons?i=docker" height="35" />
-  <img src="https://skillicons.dev/icons?i=heroku" height="35" />
-  <img src="https://skillicons.dev/icons?i=vite" height="35" />
-  <img src="https://skillicons.dev/icons?i=vitest" height="35" />
-  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/ced20949-7b32-407b-a249-2dd9b117f5b2" height="33" />
-  <img src="https://icons.veryicon.com/png/o/business/vscode-program-item-icon/storybook.png" height="35" />
-  <img src="https://static-00.iconduck.com/assets.00/cypress-icon-512x511-29zvfts6.png" height="35" />
-  <img src="https://github.com/user-attachments/assets/06bebfc4-9927-45d6-ac7b-75ced6e85501" height="35" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" height="35" />
-  <img src="https://github.com/user-attachments/assets/ea4a5462-085b-4dd6-bf35-9f76cbcf3c35" height="35" />
-  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/a983a634-3e81-4a11-9281-0ef0bacfd187" height="35" />
-  <img src="https://github.com/SzymCode/SzymCode/assets/107359025/712ed3a9-e9fa-4782-acff-140a4970ba88" height="35" />
+  <img src="/public/img/technologies/php.svg" width="35" />
+  <img src="/public/img/technologies/laravel.svg" width="35" />
+  <img src="/public/img/technologies/typescript.svg" width="35" />
+  <img src="/public/img/technologies/nuxt.svg" width="35" />
+  <img src="/public/img/technologies/vue.svg" width="35" />
+  <img src="/public/img/technologies/primevue.svg" width="35" />
+  <img src="/public/img/technologies/html5.svg" width="35" />
+  <img src="/public/img/technologies/scss.svg" width="35" />
+  <img src="/public/img/technologies/mysql.svg" width="35" />
+  <img src="/public/img/technologies/docker.svg" width="35" />
+  <img src="/public/img/technologies/heroku.svg" width="35" />
+  <img src="/public/img/technologies/vitest.svg" width="35" />
+  <img src="/public/img/technologies/pest.svg" width="35" />
+  <img src="/public/img/technologies/storybook.svg" width="35" />
+  <img src="/public/img/technologies/cypress.svg" width="35" />
+  <img src="/public/img/technologies/sonarcloud.svg" width="35" />
+  <img src="/public/img/technologies/biome.svg" width="35" />
+  <img src="/public/img/technologies/stylelint.svg" width="35" />
+  <img src="/public/img/technologies/husky.svg" width="35" />
 </div>
+
 <hr><br></details>
 
-<details><summary> <h2> &nbsp; <img src="https://static-00.iconduck.com/assets.00/github-icon-2048x2048-823jqxdr.png" width="25"> &nbsp; Contribute </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="/public/img/technologies/github.svg" width="20"> &nbsp; Contribute </h2> </summary> <br>
 
-Feel free to check [Project](https://github.com/users/SzymCode/projects/2) and [Issues](https://github.com/SzymCode/DataManager/issues) sections. <br>
+Feel free to check [Issues](https://github.com/SzymCode/DataManager/issues) section. <br>
 Your skills and expertise will directly contribute to the success of our project, helping us achieve our goals and create an attractive portfolio.
 
 <br></details>
@@ -373,11 +372,17 @@ Your skills and expertise will directly contribute to the success of our project
 <a href="https://github.com/kbujak09" target="_blank">
 <img src="/public/img/contributors/kbujak09.svg" width="30" height="30" />
 </a>
+<a href="https://github.com/K4mD4m" target="_blank">
+<img src="/public/img/contributors/K4mD4m.svg" width="30" height="30" />
+</a>
 <a href="https://github.com/KatarzynaS97" target="_blank">
 <img src="/public/img/contributors/KatarzynaS97.svg" width="30" height="30" />
 </a>
 <a href="https://github.com/karol199393" target="_blank">
 <img src="/public/img/contributors/karol199393.svg" width="30" height="30" />
+</a>
+<a href="https://github.com/pysifu" target="_blank">
+<img src="/public/img/contributors/pysifu.svg" width="30" height="30" />
 </a>
 
 </div>

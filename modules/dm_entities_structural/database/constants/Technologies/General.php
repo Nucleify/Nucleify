@@ -68,12 +68,6 @@ return [
         'src' => 'heroku.svg',
     ],
     [
-        'label' => 'Vite',
-        'description' => 'A tool for building frontend projects, offering an ultra-fast development process and instant refresh during work',
-        'href' => 'https://vitejs.dev/',
-        'src' => 'vite.svg',
-    ],
-    [
         'label' => 'Vitest',
         'description' => 'A lightweight and fast testing framework for applications written in TypeScript and JavaScript, designed to work as a companion to Vite.',
         'href' => 'https://vitest.dev/',
@@ -104,10 +98,10 @@ return [
         'src' => 'sonarcloud.svg',
     ],
     [
-        'label' => 'ESLint',
-        'description' => 'A tool for static analysis of JavaScript and TypeScript code. It helps detect errors and coding convention violations, ensuring better code quality.',
-        'href' => 'https://eslint.org/',
-        'src' => 'eslint.svg',
+        'label' => 'Biome',
+        'description' => 'A fast, modern, and powerful linter and formatter for JavaScript, TypeScript, and CSS.',
+        'href' => 'https://biomejs.dev/',
+        'src' => 'biome.svg',
     ],
     [
         'label' => 'Stylelint',
@@ -120,11 +114,5 @@ return [
         'description' => 'A tool for managing Git hooks, enabling the execution of scripts (e.g., linting) before committing changes to a repository.',
         'href' => 'https://typicode.github.io/husky/',
         'src' => 'husky.svg',
-    ],
-    [
-        'label' => 'Prettier',
-        'description' => 'An automatic code formatting tool that supports multiple programming languages, ensuring a consistent coding style.',
-        'href' => 'https://prettier.io/',
-        'src' => 'prettier.svg',
     ],
 ];
