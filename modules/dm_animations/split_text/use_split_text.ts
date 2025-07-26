@@ -1,7 +1,8 @@
-import { onBeforeUnmount } from 'vue'
 import { gsap } from 'gsap'
-import { SplitText } from 'gsap/SplitText'
+import { onBeforeUnmount } from 'vue'
+
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 

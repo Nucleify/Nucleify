@@ -24,13 +24,13 @@
 </template>
 
 <script setup lang="ts">
-import type { SectionFaqInterface, QuestionObjectInterface } from 'atomic'
+import type { QuestionObjectInterface, SectionFaqInterface } from 'atomic'
 import {
   bounceFadeIn,
   questionRequests,
   useScrollTrigger,
-  useSplitText,
   useSplitQuestions,
+  useSplitText,
 } from 'atomic'
 
 const props = defineProps<SectionFaqInterface>()

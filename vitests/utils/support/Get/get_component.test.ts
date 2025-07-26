@@ -1,4 +1,5 @@
-import { it, expect } from 'vitest'
+import { expect, it } from 'vitest'
+
 import * as atomic from 'atomic'
 
 it('returns AdTextarea for "textarea"', (): void => {

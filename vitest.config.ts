@@ -1,5 +1,5 @@
-import { resolve } from 'path'
 import { defineVitestConfig } from '@nuxt/test-utils/config'
+import { resolve } from 'path'
 
 export default defineVitestConfig({
   resolve: {

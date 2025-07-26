@@ -13,9 +13,9 @@
 import type { Ref } from 'vue'
 import { onMounted, ref, watch } from 'vue'
 
-import { PolarAreaChart } from './components'
-
 import { articleRequests, contactRequests, moneyRequests } from 'atomic'
+
+import { PolarAreaChart } from './components'
 
 const {
   results: articles,

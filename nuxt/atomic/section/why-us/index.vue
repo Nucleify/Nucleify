@@ -27,10 +27,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch, watchEffect } from 'vue'
 import { gsap } from 'gsap'
-import { Draggable } from 'gsap/Draggable'
-import { InertiaPlugin } from 'gsap/InertiaPlugin'
+import { onBeforeUnmount, onMounted, ref, watch, watchEffect } from 'vue'
 
 import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
 import {
@@ -39,6 +37,9 @@ import {
   useScrollTrigger,
   useSplitText,
 } from 'atomic'
+
+import { Draggable } from 'gsap/Draggable'
+import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
 gsap.registerPlugin(Draggable)
 gsap.registerPlugin(InertiaPlugin)

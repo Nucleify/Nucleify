@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import { bounceFadeIn, useScrollTrigger, useSplitText } from 'atomic'
+
 import { StructureAnimation } from './'
 
 const { animate } = useSplitText()

@@ -33,9 +33,10 @@
 
 <script setup lang="ts">
 import gsap from 'gsap'
-import { NavbarLinks, NavbarDrawer } from './components'
 
 import { bounceFadeIn, useNavbar } from 'atomic'
+
+import { NavbarDrawer, NavbarLinks } from './components'
 
 const { navbarExpanded, toggleNavbar } = useNavbar()
 

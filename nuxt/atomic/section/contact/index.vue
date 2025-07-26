@@ -24,6 +24,7 @@
 
 <script setup lang="ts">
 import { gsap } from 'gsap'
+
 import { navigateTo, useScrollTrigger, useSplitText } from 'atomic'
 
 useSplitText().animate(
