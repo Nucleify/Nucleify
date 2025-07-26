@@ -60,12 +60,6 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
-      link: [
-        {
-          rel: 'stylesheet',
-          href: '/fonts/primeicons/primeicons.css',
-        },
-      ],
     },
   },
   schemaOrg: {
@@ -134,7 +128,6 @@ export default defineNuxtConfig({
       ripple: true,
     },
   },
-  css: ['primeicons/primeicons.css'],
   runtimeConfig: {
     public: {
       appUrl: process.env.APP_URL,
