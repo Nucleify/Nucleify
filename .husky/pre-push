@@ -9,4 +9,5 @@ echo 'Pint checking...'
 ./vendor/bin/pint
 
 npm run check
+npm run slint
 npm run tests
