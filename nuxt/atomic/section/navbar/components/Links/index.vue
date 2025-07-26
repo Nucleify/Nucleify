@@ -12,5 +12,19 @@
 </template>
 
 <script setup lang="ts">
+import { bounceFadeIn } from 'atomic'
+
 import { navLinks } from '.'
+
+onMounted(() => {
+  bounceFadeIn('.nav-links-container .nav-link', {
+    delay: 2.2,
+    duration: 0.05,
+    stagger: 0.15,
+  })
+  bounceFadeIn('.nav-links-container .login-button', {
+    delay: 2.9,
+    duration: 0.2,
+  })
+})
 </script>
