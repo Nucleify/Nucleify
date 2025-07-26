@@ -37,6 +37,7 @@
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        opacity: 0;
 
         @media (max-width: 400px) {
           width: 100%;
@@ -62,6 +63,7 @@
     max-width: 320px;
     margin: 0 auto 15px;
     text-align: center;
+    opacity: 0;
   }
 
   .access-description {

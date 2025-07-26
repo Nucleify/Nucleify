@@ -46,7 +46,7 @@ I'm sure I could optimize it further, but it's good enough for now.
 <br>
 
 
-<details><summary> <h2> &nbsp; <img src="/public/img/contributors/xampp.svg" height="20" /> &nbsp; XAMPP </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="/public/img/technologies/xampp.svg" height="20" /> &nbsp; XAMPP </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary>
 
 - First make sure u have installed latest versions of [PHP](https://www.php.net), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
@@ -332,6 +332,8 @@ sail artisan sitemap:generate
   <img src="/public/img/technologies/nuxt.svg" width="35" />
   <img src="/public/img/technologies/vue.svg" width="35" />
   <img src="/public/img/technologies/primevue.svg" width="35" />
+  <img src="/public/img/technologies/gsap.svg" width="35" />
+  <img src="/public/img/technologies/chart-js.svg" width="35" />
   <img src="/public/img/technologies/html5.svg" width="35" />
   <img src="/public/img/technologies/scss.svg" width="35" />
   <img src="/public/img/technologies/mysql.svg" width="35" />

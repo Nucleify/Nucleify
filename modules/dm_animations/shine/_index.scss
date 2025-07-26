@@ -1,23 +1,37 @@
 @import 'keyframes';
 
-.shiny {
-  background: linear-gradient(
-    to right,
-    #1bbd79 20%,
-    #178a59 40%,
-    #126543 60%,
-    #178a59 80%,
-    #1bbd79 100%
-  );
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+.shiny,
+%shiny {
+  position: relative;
+  display: inline-block;
+  
+  & > div[aria-hidden='true'] {
+    position: relative;
+    display: inline-block;
+    
+    &:nth-child(1) { animation-delay: 0s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+    &:nth-child(4) { animation-delay: 0.6s; }
+    &:nth-child(5) { animation-delay: 0.8s; }
+    &:nth-child(6) { animation-delay: 1.0s; }
+    &:nth-child(7) { animation-delay: 1.2s; }
+    &:nth-child(8) { animation-delay: 1.4s; }
+    &:nth-child(9) { animation-delay: 1.6s; }
+    &:nth-child(10) { animation-delay: 1.8s; }
+    
+    animation: letter-shine 10s linear infinite;
+  }
 
   &.first-text {
-    animation: shine 2.5s linear infinite;
+    & > div[aria-hidden='true'] {
+      animation-duration: 5.5s;
+    }
   }
 
   &:not(.first-text) {
-    animation: shine 2s linear infinite;
+    & > div[aria-hidden='true'] {
+      animation-duration: 5s;
+    }
   }
 }
