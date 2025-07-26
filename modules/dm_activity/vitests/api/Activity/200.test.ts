@@ -36,7 +36,9 @@ describe('activityRequests', (): void => {
   })
 
   it('deleteActivity', async (): Promise<void> => {
-    await requests.deleteActivity(atomic.mockActivity.id ?? 0)
+    await requests.deleteActivity(atomic.mockActivity.id ?? 0, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(

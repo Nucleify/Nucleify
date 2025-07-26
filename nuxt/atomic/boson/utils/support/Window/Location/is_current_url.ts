@@ -1,4 +1,4 @@
-import { useRoute } from '#imports'
+import { useRoute } from 'vue-router'
 
 export function isCurrentUrl(url: string): boolean {
   const route = useRoute()

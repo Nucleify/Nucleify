@@ -162,6 +162,8 @@
               [
                 ":BUN:",
                 "#app",
+                "nuxt/*",
+                "next/*",
                 "vue",
                 "marked",
                 "primevue",

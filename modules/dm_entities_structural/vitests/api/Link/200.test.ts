@@ -25,7 +25,9 @@ describe('linkRequests', (): void => {
   })
 
   it('storeLink', async (): Promise<void> => {
-    await requests.storeLink(atomic.mockLink)
+    await requests.storeLink(atomic.mockLink, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -36,7 +38,9 @@ describe('linkRequests', (): void => {
   })
 
   it('editLink', async (): Promise<void> => {
-    await requests.editLink(atomic.mockLink)
+    await requests.editLink(atomic.mockLink, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -47,7 +51,9 @@ describe('linkRequests', (): void => {
   })
 
   it('deleteLink', async (): Promise<void> => {
-    await requests.deleteLink(atomic.mockLink.id ?? 0)
+    await requests.deleteLink(atomic.mockLink.id ?? 0, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(

@@ -1,15 +1,22 @@
+import type { NuxtApp } from 'nuxt/app'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import performanceClientPlugin from '../../nuxt/plugins/performance.client'
+
+vi.mock('nuxt/app', () => ({
+  defineNuxtPlugin: (fn: (nuxt: Record<string, unknown>) => void) => fn,
+}))
 
 describe('performance.client plugin', (): void => {
   beforeEach((): void => {
     document.body.innerHTML = ''
     globalThis.__TEST_CLIENT__ = true
+    vi.stubGlobal('import', { meta: { client: true } })
   })
 
   afterEach((): void => {
     delete globalThis.__TEST_CLIENT__
+    vi.unstubAllGlobals()
   })
 
   it('defers CSS for all but the first stylesheet', (): void => {
@@ -22,7 +29,7 @@ describe('performance.client plugin', (): void => {
     document.body.appendChild(link1)
     document.body.appendChild(link2)
 
-    performanceClientPlugin()
+    performanceClientPlugin({} as NuxtApp)
 
     expect(link1.getAttribute('media')).not.toBe('print')
     expect(link2.getAttribute('media')).toBe('print')
@@ -34,7 +41,7 @@ describe('performance.client plugin', (): void => {
 
     document.body.appendChild(img)
 
-    performanceClientPlugin()
+    performanceClientPlugin({} as NuxtApp)
 
     expect(['auto', 'lazy']).toContain(img.loading)
     expect(['auto', 'async']).toContain(img.decoding)
@@ -43,11 +50,13 @@ describe('performance.client plugin', (): void => {
   it('attaches ResizeObserver to document.body', (): void => {
     const observe = vi.fn()
 
-    global.ResizeObserver = vi.fn().mockImplementation(function (this) {
+    global.ResizeObserver = vi.fn().mockImplementation(function (this: {
+      observe: typeof observe
+    }) {
       this.observe = observe
     })
 
-    performanceClientPlugin()
+    performanceClientPlugin({} as NuxtApp)
 
     expect(observe).toHaveBeenCalledWith(document.body)
   })

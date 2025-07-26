@@ -20,8 +20,8 @@ export async function apiHandle<T>({
 
     const response = await apiRequest(url, method, data, id)
 
-    if (response?.data) {
-      onSuccess(response.data as T)
+    if (response && typeof response === 'object' && 'data' in response) {
+      onSuccess((response as { data: T }).data)
     } else {
       onSuccess(response as T)
     }

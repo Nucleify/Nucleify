@@ -36,7 +36,9 @@ describe('featureRequests', (): void => {
   })
 
   it('storeFeature', async (): Promise<void> => {
-    await requests.storeFeature(atomic.mockFeature)
+    await requests.storeFeature(atomic.mockFeature, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -47,7 +49,9 @@ describe('featureRequests', (): void => {
   })
 
   it('editFeature', async (): Promise<void> => {
-    await requests.editFeature(atomic.mockFeature)
+    await requests.editFeature(atomic.mockFeature, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -58,7 +62,9 @@ describe('featureRequests', (): void => {
   })
 
   it('deleteFeature', async (): Promise<void> => {
-    await requests.deleteFeature(atomic.mockFeature.id ?? 0)
+    await requests.deleteFeature(atomic.mockFeature.id ?? 0, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(

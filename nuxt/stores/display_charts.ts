@@ -38,5 +38,5 @@ export const useDisplayChartsStore = defineStore('displayCharts', {
       })
     },
   },
-  persist: true,
+  ...({ persist: true } as { persist: boolean }),
 })

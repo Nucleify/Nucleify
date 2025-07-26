@@ -13,4 +13,5 @@ export interface ContactObjectInterface {
   role?: string
   created_at?: string
   updated_at?: string
+  [key: string]: unknown
 }

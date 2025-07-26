@@ -25,7 +25,9 @@ describe('userRequests', (): void => {
   })
 
   it('storeUser', async (): Promise<void> => {
-    await requests.storeUser(atomic.mockUser)
+    await requests.storeUser(atomic.mockUser, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -36,7 +38,9 @@ describe('userRequests', (): void => {
   })
 
   it('editUser', async (): Promise<void> => {
-    await requests.editUser(atomic.mockUser)
+    await requests.editUser(atomic.mockUser, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -47,7 +51,9 @@ describe('userRequests', (): void => {
   })
 
   it('deleteUser', async (): Promise<void> => {
-    await requests.deleteUser(atomic.mockUser.id ?? 0)
+    await requests.deleteUser(atomic.mockUser.id ?? 0, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(

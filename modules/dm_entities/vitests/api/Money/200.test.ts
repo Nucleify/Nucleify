@@ -25,7 +25,9 @@ describe('moneyRequests', (): void => {
   })
 
   it('storeMoney', async (): Promise<void> => {
-    await requests.storeMoney(atomic.mockMoney)
+    await requests.storeMoney(atomic.mockMoney, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -36,7 +38,9 @@ describe('moneyRequests', (): void => {
   })
 
   it('editMoney', async (): Promise<void> => {
-    await requests.editMoney(atomic.mockMoney)
+    await requests.editMoney(atomic.mockMoney, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -47,7 +51,9 @@ describe('moneyRequests', (): void => {
   })
 
   it('deleteMoney', async (): Promise<void> => {
-    await requests.deleteMoney(atomic.mockMoney.id ?? 0)
+    await requests.deleteMoney(atomic.mockMoney.id ?? 0, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(

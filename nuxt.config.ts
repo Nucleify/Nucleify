@@ -1,5 +1,6 @@
-import Lara from '@primeuix/themes/lara'
 import { defineNuxtConfig } from 'nuxt/config'
+
+import Lara from '@primeuix/themes/lara'
 import { definePerson } from 'nuxt-schema-org/schema'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -157,4 +158,5 @@ export default defineNuxtConfig({
     url: 'http://localhost',
     port: 6006,
   },
-})
+  // biome-ignore lint/suspicious/noExplicitAny: Nuxt module configurations require any type
+} as any)

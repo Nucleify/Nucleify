@@ -25,7 +25,9 @@ describe('contactRequests', (): void => {
   })
 
   it('storeContact', async (): Promise<void> => {
-    await requests.storeContact(atomic.mockContact)
+    await requests.storeContact(atomic.mockContact, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -36,7 +38,9 @@ describe('contactRequests', (): void => {
   })
 
   it('editContact', async (): Promise<void> => {
-    await requests.editContact(atomic.mockContact)
+    await requests.editContact(atomic.mockContact, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -47,7 +51,9 @@ describe('contactRequests', (): void => {
   })
 
   it('deleteContact', async (): Promise<void> => {
-    await requests.deleteContact(atomic.mockContact.id ?? 0)
+    await requests.deleteContact(atomic.mockContact.id ?? 0, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(

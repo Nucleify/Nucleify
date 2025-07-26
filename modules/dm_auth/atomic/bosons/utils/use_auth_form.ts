@@ -1,3 +1,5 @@
+import { useRouter } from 'vue-router'
+
 import type {
   LoginFieldsInterface,
   RegisterFieldsInterface,
@@ -33,7 +35,7 @@ export function useAuthForm(): UseAuthFormInterface {
     await apiHandle({
       url,
       method: 'POST',
-      data,
+      data: data as unknown as Record<string, unknown>,
       onSuccess: async (): Promise<void> => {
         await getAndSetUser()
       },

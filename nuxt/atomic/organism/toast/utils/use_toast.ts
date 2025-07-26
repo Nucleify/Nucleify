@@ -1,10 +1,10 @@
+import { useNuxtApp } from 'nuxt/app'
+
 import type {
   MessageOrMessagesType,
   ToastSeverityType,
   UseToastInterface,
 } from 'atomic'
-
-import { useNuxtApp } from 'nuxt/app'
 
 export function useToast(): UseToastInterface {
   const nuxtApp = useNuxtApp()

@@ -1,6 +1,6 @@
-import type { HttpMethodType } from 'atomic'
-
 import { useCookie, useRequestHeaders } from 'nuxt/app'
+
+import type { HttpMethodType } from 'atomic'
 
 export async function apiRequest(
   url: string,

@@ -27,6 +27,12 @@
     },
     "allowImportingTsExtensions": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "atomic/**/*.ts",
+    "atomic/**/*.tsx",
+    "modules/**/*.ts",
+    "modules/**/*.tsx"
+  ],
+  "exclude": ["node_modules", ".next/**/*", "dist/**/*", "build/**/*"]
 }

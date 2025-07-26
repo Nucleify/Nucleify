@@ -14,6 +14,7 @@
     "@gsap/react": "2.1.2",
     "@mui/material": "7.1.0",
     "@mui/material-nextjs": "7.1.0",
+    "@types/next": "^8.0.7",
     "gsap": "3.13.0",
     "next": "15.4.3",
     "react": "19.0.0",

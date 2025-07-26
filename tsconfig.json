@@ -20,6 +20,12 @@
       "~/*": ["./*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.vue", "**/*.js", "**/*.jsx"],
-  "exclude": ["node_modules", ".nuxt", "dist"]
+  "include": [
+    "nuxt/**/*.ts",
+    "nuxt/**/*.tsx",
+    "nuxt/**/*.vue",
+    "modules/**/*.ts",
+    "modules/**/*.tsx"
+  ],
+  "exclude": ["node_modules/**/*", ".nuxt", "dist"]
 }

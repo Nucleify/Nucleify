@@ -6,4 +6,5 @@ export interface ArticleObjectInterface {
   created_at?: string
   updated_at?: string
   category: string
+  [key: string]: unknown
 }

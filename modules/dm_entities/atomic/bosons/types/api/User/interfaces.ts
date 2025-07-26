@@ -16,7 +16,7 @@ export interface UserRequestsInterface {
   loading: LoadingRefType
   getAllUsers: GetAllEntitiesRequestType<UserObjectInterface>
   getCountUsersByCreatedLastWeek: GetEntityRequestType
-  getUser: GetEntityRequestType<UserObjectInterface>
+  getUser: GetEntityRequestType
   storeUser: StoreEntityRequestType<UserObjectInterface>
   editUser: EditEntityRequestType<UserObjectInterface>
   deleteUser: DeleteEntityRequestType

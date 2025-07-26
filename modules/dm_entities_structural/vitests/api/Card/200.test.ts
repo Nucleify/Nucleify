@@ -25,7 +25,9 @@ describe('cardRequests', (): void => {
   })
 
   it('storeCard', async (): Promise<void> => {
-    await requests.storeCard(atomic.mockCard)
+    await requests.storeCard(atomic.mockCard, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -36,7 +38,9 @@ describe('cardRequests', (): void => {
   })
 
   it('editCard', async (): Promise<void> => {
-    await requests.editCard(atomic.mockCard)
+    await requests.editCard(atomic.mockCard, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -47,7 +51,9 @@ describe('cardRequests', (): void => {
   })
 
   it('deleteCard', async (): Promise<void> => {
-    await requests.deleteCard(atomic.mockCard.id ?? 0)
+    await requests.deleteCard(atomic.mockCard.id ?? 0, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(

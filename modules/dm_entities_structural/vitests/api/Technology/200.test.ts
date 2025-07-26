@@ -25,7 +25,9 @@ describe('technologyRequests', (): void => {
   })
 
   it('storeTechnology', async (): Promise<void> => {
-    await requests.storeTechnology(atomic.mockTechnology)
+    await requests.storeTechnology(atomic.mockTechnology, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -36,7 +38,9 @@ describe('technologyRequests', (): void => {
   })
 
   it('editTechnology', async (): Promise<void> => {
-    await requests.editTechnology(atomic.mockTechnology)
+    await requests.editTechnology(atomic.mockTechnology, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -47,7 +51,9 @@ describe('technologyRequests', (): void => {
   })
 
   it('deleteTechnology', async (): Promise<void> => {
-    await requests.deleteTechnology(atomic.mockTechnology.id ?? 0)
+    await requests.deleteTechnology(atomic.mockTechnology.id ?? 0, async () => {
+      console.log()
+    })
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(

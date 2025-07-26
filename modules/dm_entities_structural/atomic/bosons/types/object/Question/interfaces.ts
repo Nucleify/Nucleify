@@ -8,4 +8,5 @@ export interface QuestionObjectInterface {
   display?: boolean
   created_at?: string
   updated_at?: string
+  [key: string]: unknown
 }

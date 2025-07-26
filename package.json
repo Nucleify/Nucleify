@@ -20,7 +20,7 @@
     "tests": "npx vitest run",
     "test:coverage": "npx vitest run --coverage",
     "test:watch": "npx vitest",
-    "typeslint": "tsc --noemit"
+    "typeslint": "tsc --noEmit --project tsconfig.json"
   },
   "dependencies": {
     "@nuxt/image": "1.10.0",

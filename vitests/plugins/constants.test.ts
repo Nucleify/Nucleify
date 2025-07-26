@@ -1,4 +1,5 @@
 import { expect, it } from 'vitest'
+import type { App } from 'vue'
 
 import { registerGlobalConstants } from 'atomic'
 
@@ -13,7 +14,7 @@ const constants = {
 }
 
 it('registers all constants on app.config.globalProperties', (): void => {
-  const app = { config: { globalProperties: {} } }
+  const app = { config: { globalProperties: {} } } as unknown as App
 
   registerGlobalConstants(app)
 

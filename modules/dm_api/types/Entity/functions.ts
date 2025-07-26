@@ -7,7 +7,7 @@ export type DeleteEntityRequestType = (
 
 export type GetAllEntitiesRequestType<T> = (
   loading?: boolean
-) => Promise<T[] | undefined>
+) => Promise<T[] | void>
 
 export type GetEntitiesByCategoryRequestType = (
   category: string,

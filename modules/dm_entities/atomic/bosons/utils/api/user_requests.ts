@@ -44,7 +44,7 @@ export function userRequests(close?: CloseDialogType): UserRequestsInterface {
       url: apiUrl() + 'user',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: UserObjectInterface) => {
-        results.value = response
+        results.value = [response]
       },
     })
   }

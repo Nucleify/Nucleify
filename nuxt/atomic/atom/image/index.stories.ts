@@ -1,6 +1,6 @@
 import { AdImage } from '.'
 
-import type { Meta, StoryObj } from '@storybook/vue3-vite'
+import type { Meta, StoryObj } from '@storybook/vue3'
 
 const meta = {
   title: 'Atoms/Image',

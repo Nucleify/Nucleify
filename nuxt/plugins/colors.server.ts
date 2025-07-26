@@ -1,6 +1,6 @@
-import { colorKeys, colorTypes } from 'atomic'
-
 import { defineNuxtPlugin, useHead, useRequestEvent } from 'nuxt/app'
+
+import { colorKeys, colorTypes } from 'atomic'
 
 export default defineNuxtPlugin(() => {
   if (import.meta.server) {

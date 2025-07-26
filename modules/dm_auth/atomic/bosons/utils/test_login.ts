@@ -21,7 +21,7 @@ export async function testLogin(role: UserRoleType): Promise<void> {
   await apiHandle({
     url: appUrl() + 'login',
     method: 'POST',
-    data: userCredentials,
+    data: userCredentials as unknown as Record<string, unknown>,
     onSuccess: async (): Promise<void> => {
       await getAndSetUser()
     },

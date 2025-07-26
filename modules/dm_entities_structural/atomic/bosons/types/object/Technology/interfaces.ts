@@ -9,4 +9,5 @@ export interface TechnologyObjectInterface {
   created_at?: string
   updated_at?: string
   prefix?: string
+  [key: string]: unknown
 }
