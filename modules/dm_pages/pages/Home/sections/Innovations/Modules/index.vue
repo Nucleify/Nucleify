@@ -102,12 +102,13 @@
 import { marked } from 'marked'
 
 import {
-  navigateTo,
-  isMobile,
   apiHandle,
-  useScrollTrigger,
   bounceFadeIn,
+  isMobile,
+  navigateTo,
+  useScrollTrigger,
 } from 'atomic'
+
 import { modules } from './constants'
 
 const activeStep = ref(1)

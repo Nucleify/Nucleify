@@ -136,7 +136,7 @@
 
 <script setup lang="ts">
 import type { DataTableInterface } from 'atomic'
-import { actions as actionsList, columns, useSelect, useMenu } from 'atomic'
+import { actions as actionsList, columns, useMenu, useSelect } from 'atomic'
 
 const props = defineProps<DataTableInterface>()
 

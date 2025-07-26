@@ -1,6 +1,6 @@
 import type { App } from 'vue'
 
-import { ActivityPage, ActivityDashboard } from './atomic'
+import { ActivityDashboard, ActivityPage } from './atomic'
 
 export function registerDMActivity(app: App<Element>): void {
   app

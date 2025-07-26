@@ -40,9 +40,9 @@
 </template>
 
 <script setup lang="ts">
-import Button from 'primevue/button' // Import for Storybook
-
 import type { ButtonInterface } from 'atomic'
+
+import Button from 'primevue/button' // Import for Storybook
 
 const props = defineProps<ButtonInterface>()
 </script>

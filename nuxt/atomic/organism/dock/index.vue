@@ -60,17 +60,17 @@
 </template>
 
 <script setup lang="ts">
-import { DockLogo } from '.'
-
 import type { DockInterface, PositionType } from 'atomic'
 import {
+  checkIsStaff,
   dockItems,
-  positions,
   localStorageGetItem,
   localStorageSetItem,
-  checkIsStaff,
+  positions,
   sessionStorageGetItem,
 } from 'atomic'
+
+import { DockLogo } from '.'
 
 const LOCAL_STORAGE_KEY = 'dock-position'
 

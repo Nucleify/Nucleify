@@ -1,5 +1,6 @@
-import { onMounted, onBeforeUnmount } from 'vue'
 import { gsap } from 'gsap'
+import { onBeforeUnmount, onMounted } from 'vue'
+
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export function useScrollTrigger(

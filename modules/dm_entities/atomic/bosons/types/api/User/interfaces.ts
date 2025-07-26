@@ -1,8 +1,8 @@
 import type {
   DeleteEntityRequestType,
   EditEntityRequestType,
-  EntityResultsType,
   EntityCountResultsType,
+  EntityResultsType,
   GetAllEntitiesRequestType,
   GetEntityRequestType,
   LoadingRefType,

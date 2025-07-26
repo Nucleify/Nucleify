@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { bounceFadeIn } from 'atomic'
+
 import { navLinks } from '.'
 
 onMounted(() => {

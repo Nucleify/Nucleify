@@ -1,6 +1,6 @@
-import type { MenuItem } from 'primevue/menuitem'
-
 import type { ElementDirectionType } from 'atomic'
+
+import type { MenuItem } from 'primevue/menuitem'
 
 export interface MegaMenuInterface {
   items?: MegaMenuValuesInterface[]

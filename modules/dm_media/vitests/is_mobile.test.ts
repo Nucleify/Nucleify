@@ -1,4 +1,4 @@
-import { it, expect, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, expect, it } from 'vitest'
 
 import { isMobile } from 'atomic'
 
