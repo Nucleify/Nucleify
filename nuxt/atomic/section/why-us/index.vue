@@ -31,7 +31,12 @@ import { gsap } from 'gsap'
 import { onBeforeUnmount, onMounted, ref, watch, watchEffect } from 'vue'
 
 import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
-import { featureRequests } from 'atomic'
+import {
+  bounceFadeIn,
+  featureRequests,
+  useScrollTrigger,
+  useSplitText,
+} from 'atomic'
 
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
@@ -198,4 +203,27 @@ onBeforeUnmount(() => {
     }
   }
 })
+
+useSplitText().animate(
+  '.section-header',
+  500,
+  0.2,
+  0.1,
+  'power2.out',
+  true,
+  'top 50%'
+)
+
+useScrollTrigger(
+  '.section-header',
+  () => {
+    bounceFadeIn('.viewport-box', {
+      duration: 0.3,
+      ease: 'power2.out',
+    })
+  },
+  {
+    start: 'top 60%',
+  }
+)
 </script>

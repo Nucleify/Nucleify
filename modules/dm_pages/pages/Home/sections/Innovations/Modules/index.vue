@@ -3,63 +3,57 @@
     <div class="modules-container container">
       <Stepper v-model:value="activeStep" class="basis-[40rem]">
         <StepList>
-          <client-only>
-            <swiper-container ref="modulesSwiper" class="modules-swiper">
-              <swiper-slide
-                v-for="module in modules.slice(0, 2)"
-                :key="module.value"
+          <swiper-container ref="modulesSwiper" class="modules-swiper">
+            <swiper-slide
+              v-for="module in modules.slice(0, 2)"
+              :key="module.value"
+            >
+              <Step
+                v-slot="{ activateCallback, a11yAttrs }"
+                as-child
+                :value="module.value"
               >
-                <Step
-                  v-slot="{ activateCallback, a11yAttrs }"
-                  as-child
-                  :value="module.value"
-                >
-                  <div
-                    class="cube"
-                    :class="module.icon"
-                    v-bind="a11yAttrs.root"
-                    @click="activateCallback"
-                  ></div>
-                </Step>
-              </swiper-slide>
-              <swiper-slide>
-                <Step
-                  v-slot="{ activateCallback, a11yAttrs }"
-                  as-child
-                  :value="1"
-                >
-                  <div
-                    class="cube"
-                    v-bind="a11yAttrs.root"
-                    @click="activateCallback"
-                  >
-                    <img
-                      :src="imgUrl + 'logo.svg'"
-                      alt="Logo"
-                      class="logo-img"
-                    />
-                  </div>
-                </Step>
-              </swiper-slide>
-              <swiper-slide
-                v-for="module in modules.slice(2)"
-                :key="module.value"
+                <div
+                  class="cube"
+                  :class="module.icon"
+                  v-bind="a11yAttrs.root"
+                  @click="activateCallback"
+                ></div>
+              </Step>
+            </swiper-slide>
+            <swiper-slide>
+              <Step
+                v-slot="{ activateCallback, a11yAttrs }"
+                as-child
+                :value="1"
               >
-                <Step
-                  v-slot="{ activateCallback, a11yAttrs }"
-                  as-child
-                  :value="module.value"
+                <div
+                  class="cube"
+                  v-bind="a11yAttrs.root"
+                  @click="activateCallback"
                 >
-                  <div
-                    class="cube"
-                    :class="module.icon"
-                    v-bind="a11yAttrs.root"
-                    @click="activateCallback"
-                  ></div>
-                </Step>
-              </swiper-slide>
-            </swiper-container>
-          </client-only>
+                  <img :src="imgUrl + 'logo.svg'" alt="Logo" class="logo-img" />
+                </div>
+              </Step>
+            </swiper-slide>
+            <swiper-slide
+              v-for="module in modules.slice(2)"
+              :key="module.value"
+            >
+              <Step
+                v-slot="{ activateCallback, a11yAttrs }"
+                as-child
+                :value="module.value"
+              >
+                <div
+                  class="cube"
+                  :class="module.icon"
+                  v-bind="a11yAttrs.root"
+                  @click="activateCallback"
+                ></div>
+              </Step>
+            </swiper-slide>
+          </swiper-container>
         </StepList>
         <StepPanels>
           <dm-animation-hexagons />
@@ -67,8 +61,9 @@
           <StepPanel :value="1">
             <div class="step-panel-container">
               <ad-heading :tag="4" class="tech-heading">
-                <span class="tech-text">We've got</span>&nbsp;
-                <span class="tech-text shiny">modules!</span>
+                <span class="tech-text">
+                  Explore our&nbsp;<span class="shiny">modules!</span>
+                </span>
               </ad-heading>
               <ad-button
                 label="Read more"
@@ -106,7 +101,13 @@
 <script setup lang="ts">
 import { marked } from 'marked'
 
-import { apiHandle, isMobile, navigateTo } from 'atomic'
+import {
+  apiHandle,
+  bounceFadeIn,
+  isMobile,
+  navigateTo,
+  useScrollTrigger,
+} from 'atomic'
 
 import { modules } from './constants'
 
@@ -152,4 +153,23 @@ watch(activeStep, (newValue) => {
     }
   }
 })
+
+useScrollTrigger(
+  '.modules-swiper',
+  () => {
+    bounceFadeIn('.modules-swiper swiper-slide', {
+      duration: 0.3,
+      stagger: 0.15,
+      ease: 'power2',
+    })
+    bounceFadeIn('.modules-container .p-steppanels', {
+      duration: 0.3,
+      stagger: 0.15,
+      ease: 'power2',
+    })
+  },
+  {
+    start: 'top 50%',
+  }
+)
 </script>

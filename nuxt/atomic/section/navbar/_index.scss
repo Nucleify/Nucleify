@@ -17,6 +17,7 @@ body:has(#back-office) {
   border: $border-none;
   border-radius: $border-radius-none;
   padding: 1em;
+  opacity: 0;
 
   .container {
     display: flex;
