@@ -5,7 +5,7 @@
         <ad-heading :tag="4" text="Colors" />
 
         <ad-button
-          icon="pi pi-refresh"
+          icon="prime:refresh"
           ad-type="main"
           class="refresh-button"
           rounded

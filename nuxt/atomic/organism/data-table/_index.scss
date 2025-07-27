@@ -7,6 +7,15 @@
   justify-content: space-between;
   transition: 0.2s 0.15s opacity;
 
+  .p-button {
+    padding: 0.25em;
+
+    .iconify {
+      font-size: 1.5em;
+      color: $primary-color;
+    }
+  }
+
   .p-row-even {
     background: $p-card-background !important;
   }
@@ -133,7 +142,7 @@
       .action-column-content {
         display: flex;
         justify-content: space-around;
-        gap: 0.15em;
+        gap: 0.1em;
       }
     }
 

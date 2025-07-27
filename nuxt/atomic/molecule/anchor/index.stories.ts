@@ -8,7 +8,7 @@ const meta = {
   args: {
     href: '',
     src: '',
-    icon: 'pi pi-star',
+    icon: 'prime:star',
     label: '',
     rel: undefined,
     target: undefined,
