@@ -1,6 +1,9 @@
 @mixin entity-tile-styles($item-color, $selected-color) {
-  .icon {
-    color: $item-color;
+  .icon-container {
     background: $selected-color;
+
+    .iconify {
+      color: $item-color;
+    }
   }
 }
