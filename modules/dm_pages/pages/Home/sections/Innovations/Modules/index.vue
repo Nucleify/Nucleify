@@ -13,12 +13,12 @@
                 as-child
                 :value="module.value"
               >
-                <div
-                  class="cube"
-                  :class="module.icon"
-                  v-bind="a11yAttrs.root"
-                  @click="activateCallback"
-                ></div>
+                <div class="cube" v-bind="a11yAttrs.root">
+                  <ad-icon
+                    :icon="module.icon"
+                    @click="activateCallback"
+                  />
+                </div>
               </Step>
             </swiper-slide>
             <swiper-slide>
@@ -45,12 +45,12 @@
                 as-child
                 :value="module.value"
               >
-                <div
-                  class="cube"
-                  :class="module.icon"
-                  v-bind="a11yAttrs.root"
-                  @click="activateCallback"
-                ></div>
+                <div class="cube" v-bind="a11yAttrs.root">
+                  <ad-icon
+                    :icon="module.icon"
+                    @click="activateCallback"
+                  />  
+                </div>
               </Step>
             </swiper-slide>
           </swiper-container>

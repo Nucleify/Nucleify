@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: [
+    '@nuxt/icon',
     '@nuxt/test-utils/module',
     '@nuxtjs/google-fonts',
     '@nuxtjs/robots',
@@ -59,12 +60,6 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      ],
-      link: [
-        {
-          rel: 'stylesheet',
-          href: '/fonts/primeicons/primeicons.css',
-        },
       ],
     },
   },
@@ -134,7 +129,6 @@ export default defineNuxtConfig({
       ripple: true,
     },
   },
-  css: ['primeicons/primeicons.css'],
   runtimeConfig: {
     public: {
       appUrl: process.env.APP_URL,
@@ -156,5 +150,9 @@ export default defineNuxtConfig({
   storybook: {
     url: 'http://localhost',
     port: 6006,
+  },
+  icon: {
+    prefix: 'i-prime',
+    mode: 'css',
   },
 })

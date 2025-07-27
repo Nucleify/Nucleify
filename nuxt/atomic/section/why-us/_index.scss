@@ -35,8 +35,8 @@
 }
 
 .main-circle {
-  width: 250px;
-  height: 250px;
+  width: 270px;
+  height: 270px;
   border-radius: 50%;
   position: relative;
   user-select: none;
@@ -72,39 +72,51 @@
   }
 }
 
-.circle-item i {
+.circle-item > div {
   display: flex;
   justify-content: center;
   align-items: center;
   height: min-content;
   width: min-content;
-  padding: 10px;
+  padding: .5em;
   background: $content-background;
-  font-size: 15px;
   box-shadow:
     0 4px 10px rgba(0, 0, 0, 0.03),
     0 0 2px rgba(0, 0, 0, 0.06),
     0 2px 6px rgba(0, 0, 0, 0.12);
   border: 1px solid $p-card-border !important;
   border-radius: 8px;
-  color: $primary-white-green-text-color;
+  color: $white-text-color;
   cursor: pointer;
   opacity: 1;
   transition: all 0.3s ease;
 
+  .iconify {
+    transition: all 0.3s ease;
+    color: $white-text-color;
+    font-size: 1.25em;
+  }
+
   &:hover {
-    color: $primary-color;
     border-color: $primary-color !important;
+
+    .iconify {
+      color: $primary-color;
+    }
   }
 
   @media (min-width: 768px) {
     padding: 12px;
-    font-size: 20px;
+
+    .iconify {
+      font-size: 20px;
+    }
   }
 
   @media (min-width: 992px) {
-    padding: 1rem;
-    font-size: 25px;
+    .iconify {
+      font-size: 1.8rem;
+    }
   }
 }
 
@@ -136,8 +148,9 @@
       margin: 0;
     }
 
-    .pi {
-      font-size: $font-size-md;
+    .iconify {
+      font-size: $font-size-lg;
+      margin-right: -0.5rem;
     }
   }
 }

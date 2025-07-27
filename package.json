@@ -23,6 +23,7 @@
     "typeslint": "tsc --noemit"
   },
   "dependencies": {
+    "@nuxt/icon": "1.15.0",
     "@nuxt/image": "1.10.0",
     "@nuxtjs/google-fonts": "3.2.0",
     "@nuxtjs/robots": "5.2.10",
@@ -44,7 +45,6 @@
     "nuxt-vitalizer": "0.10.0",
     "pinia": "3.0.3",
     "pinia-plugin-persistedstate": "4.3.0",
-    "primeicons": "7.0.0",
     "primevue": "4.3.4",
     "vue": "3.5.13",
     "vue-router": "4.5.1"
