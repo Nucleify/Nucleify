@@ -19,6 +19,8 @@
     height: 52px !important;
     width: 52px !important;
     transition: all 0.3s ease;
+    color: $white-text-color;
+    padding: 0.55em;
 
     &:has(.logo-img) {
       padding: 0.35em;
@@ -28,6 +30,26 @@
         height: 100%;
         object-fit: contain;
         transition: all 0.3s ease;
+      }
+    }
+
+    
+    .iconify {
+      transition: all 0.3s ease;
+      font-size: 1.7em;
+    }
+
+    &[data-p-active='true'] {
+      border-color: $primary-color !important;
+
+      .iconify {
+        color: $primary-color;
+      }
+    }
+
+    &:hover {
+      .iconify {
+        color: $primary-color;
       }
     }
   }

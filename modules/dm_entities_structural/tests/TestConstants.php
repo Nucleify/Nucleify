@@ -51,7 +51,7 @@ const updatedColorData = [
  */
 const featureData = [
     'id' => 1,
-    'icon' => 'pi pi-home',
+    'icon' => 'prime:home',
     'header' => 'Feature #test',
     'description' => 'Example description #test',
     'category' => 'test',
@@ -59,7 +59,7 @@ const featureData = [
 
 const updatedFeatureData = [
     'id' => 1,
-    'icon' => 'pi pi-cloud',
+    'icon' => 'prime:cloud',
     'header' => 'Feature #test2',
     'description' => 'Example description #test2',
     'category' => 'test2',

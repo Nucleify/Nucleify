@@ -6,7 +6,7 @@ const meta = {
   title: 'Atoms/Icon',
   component: AdIcon,
   args: {
-    icon: 'pi pi-star',
+    icon: 'prime:star',
     url: '',
     adType: '',
   },
