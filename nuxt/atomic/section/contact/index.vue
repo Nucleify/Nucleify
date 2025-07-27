@@ -25,7 +25,12 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
 
-import { navigateTo, useScrollTrigger, useSplitText } from 'atomic'
+import {
+  bounceFadeIn,
+  navigateTo,
+  useScrollTrigger,
+  useSplitText,
+} from 'atomic'
 
 useSplitText().animate(
   '.contact-content-title',
@@ -39,8 +44,8 @@ useSplitText().animate(
 useSplitText().animate(
   '.contact-content-description',
   500,
-  0.2,
-  0.075,
+  0.3,
+  0.05,
   'power2.out',
   true,
   'top 70%'
@@ -49,13 +54,13 @@ useSplitText().animate(
 useScrollTrigger(
   '.contact-content-description',
   () => {
-    gsap.to('.contact-content-button', {
-      opacity: 1,
-      duration: 0.1,
+    bounceFadeIn('.contact-content-button', {
+      delay: 1.1,
+      duration: 0.15,
     })
   },
   {
-    start: 'top 10%',
+    start: 'top 20%',
   }
 )
 </script>
