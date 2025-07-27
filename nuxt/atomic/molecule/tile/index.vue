@@ -5,7 +5,9 @@
         <ad-paragraph class="header" :text="props.header" />
         <ad-paragraph class="count" :text="props.count" />
       </div>
-      <ad-icon class="icon" :icon="props.icon" :ad-type="props.adType" />
+      <div class="icon-container">
+        <ad-icon class="icon" :icon="props.icon" :ad-type="props.adType" />
+      </div>
     </div>
     <div class="secondary">
       <ad-paragraph class="count" :text="props.countSecondary + ' new'" />

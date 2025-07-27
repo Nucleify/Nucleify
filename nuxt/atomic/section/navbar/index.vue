@@ -20,7 +20,7 @@
       <navbar-links />
       <ad-button
         class="navbar-drawer-toggler"
-        :icon="navbarExpanded ? 'hidden' : 'pi pi-align-justify'"
+        :icon="navbarExpanded ? 'hidden' : 'prime:align-justify'"
         aria-label="Menu"
         @click="toggleNavbar()"
       />

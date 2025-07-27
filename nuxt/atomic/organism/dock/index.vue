@@ -32,16 +32,26 @@
       <div v-if="item.logo">
         <dock-logo />
       </div>
-      <nuxt-link :to="item.url">
+      
+      <nuxt-link v-if="item.icon && (item.url || item.click)" :to="item.url">
         <ad-icon
-          v-if="item.icon || item.url"
           v-tooltip="item.label"
           :icon="item.icon"
           class="item"
           :ad-type="item.adType"
           @click="item.click"
+          size="1.7em"
         />
       </nuxt-link>
+
+      <ad-icon 
+        v-if="item.icon && !item.url && !item.click" 
+        v-tooltip="item.label" 
+        :icon="item.icon" 
+        class="item disabled-item" 
+        size="1.7em"
+        @click="item.click"
+      />
 
       <div v-if="item.label === 'position'" class="dock-position-buttons">
         <ad-radio-button
