@@ -28,10 +28,20 @@
 
 <script setup lang="ts">
 import { gsap } from 'gsap'
-import { onBeforeUnmount, onMounted, ref, watch, watchEffect } from 'vue'
+import {
+  type App,
+  createApp,
+  h,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+  watchEffect,
+} from 'vue'
 
 import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
 import {
+  AdIcon,
   bounceFadeIn,
   featureRequests,
   useScrollTrigger,
@@ -68,6 +78,7 @@ if (appEnv() !== 'production') {
 
 const dialogVisible = ref(false)
 const dialogData = ref<WhyUsItemInterface | null>(null)
+const iconApps = ref<App<Element>[]>([])
 
 const openDialog = (item: WhyUsItemInterface) => {
   dialogData.value = item
@@ -96,8 +107,23 @@ watchEffect(() => {
         el.classList.add('circle-item')
 
         if (item.icon) {
-          const icon = document.createElement('i')
-          icon.className = 'pi pi-' + item.icon
+          const icon = document.createElement('div')
+          icon.classList.add('icon-container')
+
+          const iconApp = createApp({
+            components: {
+              AdIcon,
+            },
+            render() {
+              return h(AdIcon, {
+                icon: item.icon,
+                class: 'iconify',
+              })
+            },
+          })
+
+          iconApp.mount(icon)
+          iconApps.value.push(iconApp)
           el.appendChild(icon)
         }
 
@@ -197,6 +223,12 @@ onBeforeUnmount(() => {
     const draggable = Draggable.get('.main-circle')
     draggable?.kill()
     gsap.killTweensOf('.main-circle')
+
+    // Clean up dynamically created Vue apps
+    iconApps.value.forEach((app) => {
+      app.unmount()
+    })
+    iconApps.value = []
 
     if (clickOutsideHandler) {
       document.removeEventListener('click', clickOutsideHandler)

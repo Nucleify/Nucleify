@@ -10,11 +10,12 @@
     border: 0 !important;
     box-shadow: none !important;
     display: block;
-
-    span {
+    
+    span {  
       position: relative;
       top: 2px;
-      font-size: 1.35em;
+      font-size: 1.5em;
+      color: $white-text-color;
     }
 
     .p-button-label {
@@ -43,12 +44,15 @@
     border-bottom: 0;
 
     .p-drawer-close-button {
+      background: transparent !important;
+      box-shadow: none !important;
+      outline: none !important;
       position: absolute !important;
       top: 0.8em;
       right: 1em;
 
       svg {
-        transform: scale(2);
+        transform: scale(1.5);
       }
     }
 
