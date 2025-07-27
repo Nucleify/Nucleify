@@ -23,6 +23,7 @@
     "typeslint": "tsc --noemit"
   },
   "dependencies": {
+    "@nuxt/icon": "1.15.0",
     "@nuxt/image": "1.10.0",
     "@nuxtjs/google-fonts": "3.2.0",
     "@nuxtjs/robots": "5.2.10",

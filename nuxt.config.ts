@@ -7,6 +7,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: [
+    '@nuxt/icon',
     '@nuxt/test-utils/module',
     '@nuxtjs/google-fonts',
     '@nuxtjs/robots',
@@ -149,5 +150,9 @@ export default defineNuxtConfig({
   storybook: {
     url: 'http://localhost',
     port: 6006,
+  },
+  icon: {
+    prefix: 'i-prime',
+    mode: 'css',
   },
 })
