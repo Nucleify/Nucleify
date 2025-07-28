@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxtjs/storybook',
     '@nuxtjs/stylelint-module',
+    '@nuxtjs/turnstile',
     '@pinia/nuxt',
     '@primevue/nuxt-module',
     '@radya/nuxt-dompurify',

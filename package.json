@@ -28,6 +28,7 @@
     "@nuxtjs/google-fonts": "3.2.0",
     "@nuxtjs/robots": "5.2.10",
     "@nuxtjs/sitemap": "7.2.10",
+    "@nuxtjs/turnstile": "1.0.0",
     "@nuxtjs/web-vitals": "0.2.7",
     "@pinia/nuxt": "0.11.1",
     "@primeuix/themes": "1.1.1",
