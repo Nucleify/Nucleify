@@ -1,6 +1,8 @@
 .p-dialog-mask {
   z-index: 999;
   padding: 0 10px;
+  background: $content-background;
+  backdrop-filter: blur(0.5em);
 
   .p-dialog {
     background: $content-background !important;

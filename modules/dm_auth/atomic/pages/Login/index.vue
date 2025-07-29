@@ -19,6 +19,8 @@
     </template>
     <template #content>
       <form @submit.prevent="submitAndGo(loginFields)">
+        <dm-captcha-dialog @validateCaptcha="onValidateCaptcha" />
+
         <ad-float-label v-for="(field, index) in loginInputs" :key="index">
           <ad-input-text
             :id="field.id"
@@ -31,7 +33,9 @@
           <ad-label :for="field.id" :label="field.label" />
         </ad-float-label>
 
-        <ad-button label="Log In" type="submit" padding="10px 10px" />
+        <client-only>
+          <ad-button :disabled="!isCaptchaValid" label="Log In" type="submit" padding="10px" />
+        </client-only>
       </form>
     </template>
   </ad-card>
@@ -43,4 +47,10 @@
 import { useAuthForm } from 'atomic'
 
 const { submitAndGo, loginFields, loginInputs } = useAuthForm()
+
+const isCaptchaValid = ref(false)
+
+function onValidateCaptcha(isValid: boolean) {
+  isCaptchaValid.value = isValid
+}
 </script>

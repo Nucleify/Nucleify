@@ -15,6 +15,8 @@
       </template>
       <template #content>
         <form @submit.prevent="submitAndGo(registerFields)">
+          <dm-captcha-dialog @validateCaptcha="onValidateCaptcha" />
+
           <ad-float-label v-for="(field, index) in registerInputs" :key="index">
             <ad-input-text
               v-if="field.type !== 'password'"
@@ -52,12 +54,15 @@
             <ad-label :for="field.id" :label="field.label" />
           </ad-float-label>
 
-          <ad-button
-            label="Register"
-            type="submit"
-            class="primary-button"
-            padding="10px 10px"
-          />
+          <client-only>
+            <ad-button
+              :disabled="!isCaptchaValid"
+              label="Register"
+              type="submit"
+              class="primary-button"
+              padding="10px 10px"
+            />
+          </client-only>
         </form>
       </template>
     </ad-card>
@@ -70,6 +75,12 @@ import { onMounted } from 'vue'
 import { checkIsEmpty, checkPasswordsMatch, useAuthForm } from 'atomic'
 
 const { submitAndGo, registerFields, registerInputs } = useAuthForm()
+
+const isCaptchaValid = ref(false)
+
+function onValidateCaptcha(isValid: boolean) {
+  isCaptchaValid.value = isValid
+}
 
 onMounted(() => {
   checkPasswordsMatch(

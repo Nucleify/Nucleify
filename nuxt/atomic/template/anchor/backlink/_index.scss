@@ -6,6 +6,7 @@
   text-decoration: none;
   color: $white-text-color;
   transition: all 300ms;
+  z-index: 9999;
 
   &:hover {
     color: $primary-hover-color;

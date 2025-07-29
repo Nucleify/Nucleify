@@ -25,6 +25,10 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     'nuxt-vitalizer',
     'pinia-plugin-persistedstate/nuxt',
+    /**
+     *  DataManager modules
+     */
+    './modules/dm_captcha/module',
   ],
   laravelSanctum: {
     apiUrl: process.env.APP_URL,
@@ -136,6 +140,12 @@ export default defineNuxtConfig({
       apiUrl: process.env.API_URL,
       appEnv: process.env.APP_ENV,
     },
+    turnstile: {
+      secretKey: process.env.TURNSTILE_SECRET_KEY,
+    },
+  },
+  turnstile: {
+    siteKey: process.env.TURNSTILE_SITE_KEY,
   },
   vitalizer: {
     disableStylesheets: 'entry',

@@ -4,6 +4,7 @@ import {
   registerDMActivity,
   registerDMAnimations,
   registerDMAuth,
+  registerDMCaptcha,
   registerDMEntities,
   registerDMEntitiesStructural,
   registerDMMedia,
@@ -19,6 +20,7 @@ export default defineNuxtPlugin({
     registerDMActivity(nuxtApp.vueApp)
     registerDMAnimations(nuxtApp.vueApp)
     registerDMAuth(nuxtApp.vueApp)
+    registerDMCaptcha(nuxtApp.vueApp)
     registerDMEntities(nuxtApp.vueApp)
     registerDMEntitiesStructural(nuxtApp.vueApp)
     registerDMMedia(nuxtApp.vueApp)
