@@ -11,6 +11,7 @@ import type {
   LinkObjectInterface,
   MoneyObjectInterface,
   QuestionObjectInterface,
+  TaskObjectInterface,
   TechnologyObjectInterface,
   UserObjectInterface,
 } from 'atomic'
@@ -36,6 +37,7 @@ export interface ChartInterface {
   linkData?: LinkObjectInterface[]
   moneyData?: MoneyObjectInterface[]
   questionData?: QuestionObjectInterface[]
+  taskData?: TaskObjectInterface[]
   technologyData?: TechnologyObjectInterface[]
   userData?: UserObjectInterface[]
   chartClass?: string
@@ -54,6 +56,7 @@ export interface DisplayChartsInterface {
   Money: boolean
   Question: boolean
   Structural: boolean
+  Task: boolean
   Technology: boolean
 }
 

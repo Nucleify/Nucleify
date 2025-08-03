@@ -64,6 +64,12 @@ const columnsData: readonly ColumnsInterface[] = {
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
+  task: [
+    ['title', 'Title', 'title-column'],
+    ['description', 'Description', 'description-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
   technology: [
     ['label', 'Label', 'label-column'],
     ['category', 'Category', 'category-column desktop-column'],

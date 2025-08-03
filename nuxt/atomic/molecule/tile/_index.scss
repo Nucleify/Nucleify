@@ -11,7 +11,7 @@
   background: var(--p-card-background) !important;
 
   @each $type in main, activity, article, card, contact, feature, link, money,
-    question, technology, user
+    question, task, technology, user
   {
     &[ad-type='#{$type}'] {
       @include entity-tile-styles(

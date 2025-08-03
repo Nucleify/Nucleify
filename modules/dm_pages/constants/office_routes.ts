@@ -6,6 +6,7 @@ export const officeRoutes = {
     'entities',
     'settings',
     'structural',
+    'tasks',
   ],
   front: ['home', 'about', 'blog', 'license', 'services'],
 }

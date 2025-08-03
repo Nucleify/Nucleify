@@ -8,7 +8,7 @@
   font-size: 1em;
 
   @each $type in main, activity, article, card, contact, feature, link, money,
-    question, technology, user
+    question, task, technology, user
   {
     &[ad-type='#{$type}'] {
       @include entity-inputtext-styles(
@@ -23,7 +23,7 @@ body:has(#login),
 body:has(#register) {
   .p-inputtext {
     @each $type in main, activity, article, card, contact, feature, link, money,
-      question, technology, user
+      question, task, technology, user
     {
       &[ad-type='#{$type}'] {
         @include entity-inputtext-styles(

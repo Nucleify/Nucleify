@@ -9,5 +9,6 @@ export const displayChartList: string[] = [
   'Money',
   'Question',
   'Structural',
+  'Task',
   'Technology',
 ] as const

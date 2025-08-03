@@ -37,6 +37,7 @@ onMounted(() => {
     props?.linkData,
     props?.moneyData,
     props?.questionData,
+    props?.taskData,
     props?.technologyData,
     props?.userData,
     props?.example
@@ -56,6 +57,7 @@ onMounted(() => {
         props?.linkData,
         props?.moneyData,
         props?.questionData,
+        props?.taskData,
         props?.technologyData,
         props?.userData,
         true
@@ -79,6 +81,7 @@ watch(
     props?.linkData,
     props?.moneyData,
     props?.questionData,
+    props?.taskData,
     props?.technologyData,
     props?.userData,
   ],
@@ -93,6 +96,7 @@ watch(
       props?.linkData,
       props?.moneyData,
       props?.questionData,
+      props?.taskData,
       props?.technologyData,
       props?.userData,
       props?.example
