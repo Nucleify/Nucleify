@@ -25,13 +25,12 @@ class PutRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer',
-            'assignee_id' => 'required|integer',
-            'collaborator_ids' => 'required|array',
-            'collaborator_ids.*' => 'integer',
+            'assignee_id' => 'nullable|integer',
+            'collaborator_ids' => 'nullable|string',
             'title' => 'required|string|max:255',
-            'description' => 'required|string|max:2000',
+            'description' => 'nullable|string|max:2000',
             'start_date' => 'required|string|date_format:Y-m-d',
-            'end_date' => 'required|string|date_format:Y-m-d|after_or_equal:start_date',
+            'end_date' => 'nullable|string|date_format:Y-m-d|after_or_equal:start_date',
         ];
     }
 }

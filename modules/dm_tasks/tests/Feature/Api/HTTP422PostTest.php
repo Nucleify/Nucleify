@@ -66,18 +66,6 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
     /**
      * ASSIGNEE_ID TESTS
      */
-    $taskData['assignee_id'] = '';
-    test('invalid assignee_id > empty', apiTest(
-        'POST',
-        'tasks.store',
-        422,
-        $taskData,
-        ['errors' => ['assignee_id']],
-        ['errors' => [
-            'assignee_id' => ['The assignee id field is required.'],
-        ]]
-    ));
-
     $taskData['assignee_id'] = 'user_id';
     test('invalid assignee_id > string', apiTest(
         'POST',
@@ -110,7 +98,7 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
         $taskData,
         ['errors' => ['assignee_id']],
         ['errors' => [
-            'assignee_id' => ['The assignee id field is required.'],
+            'assignee_id' => ['The assignee id field must be an integer.'],
         ]]
     ));
 
@@ -119,30 +107,6 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
     /**
      * COLLABORATOR_IDS TESTS
      */
-    $taskData['collaborator_ids'] = '';
-    test('invalid collaborator_ids > empty', apiTest(
-        'POST',
-        'tasks.store',
-        422,
-        $taskData,
-        ['errors' => ['collaborator_ids']],
-        ['errors' => [
-            'collaborator_ids' => ['The collaborator ids field is required.'],
-        ]]
-    ));
-
-    $taskData['collaborator_ids'] = 'collaborator_ids';
-    test('invalid collaborator_ids > string', apiTest(
-        'POST',
-        'tasks.store',
-        422,
-        $taskData,
-        ['errors' => ['collaborator_ids']],
-        ['errors' => [
-            'collaborator_ids' => ['The collaborator ids field must be an array.'],
-        ]]
-    ));
-
     $taskData['collaborator_ids'] = 1;
     test('invalid collaborator_ids > integer', apiTest(
         'POST',
@@ -151,7 +115,7 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
         $taskData,
         ['errors' => ['collaborator_ids']],
         ['errors' => [
-            'collaborator_ids' => ['The collaborator ids field must be an array.'],
+            'collaborator_ids' => ['The collaborator ids field must be a string.'],
         ]]
     ));
 
@@ -163,7 +127,7 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
         $taskData,
         ['errors' => ['collaborator_ids']],
         ['errors' => [
-            'collaborator_ids' => ['The collaborator ids field must be an array.'],
+            'collaborator_ids' => ['The collaborator ids field must be a string.'],
         ]]
     ));
 
@@ -175,7 +139,7 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
         $taskData,
         ['errors' => ['collaborator_ids']],
         ['errors' => [
-            'collaborator_ids' => ['The collaborator ids field must be an array.'],
+            'collaborator_ids' => ['The collaborator ids field must be a string.'],
         ]]
     ));
 
@@ -187,7 +151,7 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
         $taskData,
         ['errors' => ['collaborator_ids']],
         ['errors' => [
-            'collaborator_ids' => ['The collaborator ids field is required.'],
+            'collaborator_ids' => ['The collaborator ids field must be a string.'],
         ]]
     ));
 
@@ -261,18 +225,6 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
     /**
      * DESCRIPTION TESTS
      */
-    $taskData['description'] = '';
-    test('invalid description > empty', apiTest(
-        'POST',
-        'tasks.store',
-        422,
-        $taskData,
-        ['errors' => ['description']],
-        ['errors' => [
-            'description' => ['The description field is required.'],
-        ]]
-    ));
-
     $taskData['description'] = 1;
     test('invalid description > integer', apiTest(
         'POST',
@@ -317,7 +269,7 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
         $taskData,
         ['errors' => ['description']],
         ['errors' => [
-            'description' => ['The description field is required.'],
+            'description' => ['The description field must be a string.'],
         ]]
     ));
 
@@ -388,18 +340,6 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
     /**
      * END_DATE TESTS
      */
-    $taskData['end_date'] = '';
-    test('invalid end_date > empty', apiTest(
-        'POST',
-        'tasks.store',
-        422,
-        $taskData,
-        ['errors' => ['end_date']],
-        ['errors' => [
-            'end_date' => ['The end date field is required.'],
-        ]]
-    ));
-
     $taskData['end_date'] = 1;
     test('invalid end_date > integer', apiTest(
         'POST',
@@ -456,7 +396,11 @@ describe('422 > Unprocessable Content > POST', function ($taskData = taskData) {
         $taskData,
         ['errors' => ['end_date']],
         ['errors' => [
-            'end_date' => ['The end date field is required.'],
+            'end_date' => [
+                'The end date field must be a date after or equal to start date.',
+                'The end date field must be a string.',
+                'The end date field must match the format Y-m-d.',
+            ],
         ]]
     ));
 

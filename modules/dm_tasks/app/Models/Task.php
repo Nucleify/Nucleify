@@ -6,6 +6,7 @@ use App\Contracts\TaskContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @property int id
@@ -28,6 +29,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string getEndDate
  * @property string getCreatedAt
  * @property string getUpdatedAt
+ * @property BelongsTo user
  * @property Builder scopeGetById
  * @property Builder scopeGetByUserId
  * @property Builder scopeGetByAssigneeId
@@ -49,10 +51,6 @@ class Task extends Model implements TaskContract
         'end_date',
     ];
 
-    protected $casts = [
-        'collaborator_ids' => 'array',
-    ];
-
     /**
      * Instance methods
      */
@@ -66,12 +64,12 @@ class Task extends Model implements TaskContract
         return $this->user_id;
     }
 
-    public function getAssigneeId(): int
+    public function getAssigneeId(): ?int
     {
         return $this->assignee_id;
     }
 
-    public function getCollaboratorIds(): array
+    public function getCollaboratorIds(): ?string
     {
         return $this->collaborator_ids;
     }
@@ -81,7 +79,7 @@ class Task extends Model implements TaskContract
         return $this->title;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -91,7 +89,7 @@ class Task extends Model implements TaskContract
         return $this->start_date;
     }
 
-    public function getEndDate(): string
+    public function getEndDate(): ?string
     {
         return $this->end_date;
     }
@@ -119,7 +117,7 @@ class Task extends Model implements TaskContract
         return $query->where('user_id', $parameter);
     }
 
-    public function scopeGetByAssigneeId(Builder $query, int $parameter): Builder
+    public function scopeGetByAssigneeId(Builder $query, ?int $parameter): Builder
     {
         return $query->where('assignee_id', $parameter);
     }
@@ -134,13 +132,13 @@ class Task extends Model implements TaskContract
         return $query->whereDate('start_date', $parameter);
     }
 
-    public function scopeGetByEndDate(Builder $query, string $parameter): Builder
+    public function scopeGetByEndDate(Builder $query, ?string $parameter): Builder
     {
         return $query->whereDate('end_date', $parameter);
     }
 
-    protected static function newFactory()
+    public function user(): BelongsTo
     {
-        return \Database\Factories\Structural\TaskFactory::new();
+        return $this->belongsTo(\App\Models\User::class);
     }
 }

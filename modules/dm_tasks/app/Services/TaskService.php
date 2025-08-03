@@ -65,7 +65,7 @@ class TaskService
 
         $result = $this->model::findOrFail($id);
 
-        $this->logger->log($this->causer->name, $result->getDescription(), $this->entity, 'showed');
+        $this->logger->log($this->causer->name, $result->getTitle(), $this->entity, 'showed');
 
         return fractal()
             ->item($result)
@@ -82,7 +82,7 @@ class TaskService
 
         $result = $this->model::create($data);
 
-        $this->logger->log($this->causer->name, $result->getDescription(), $this->entity, 'created');
+        $this->logger->log($this->causer->name, $result->getTitle(), $this->entity, 'created');
 
         return fractal()
             ->item($result)
@@ -101,7 +101,7 @@ class TaskService
 
         $result->update($data);
 
-        $this->logger->log($this->causer->name, $result->getDescription(), $this->entity, 'updated');
+        $this->logger->log($this->causer->name, $result->getTitle(), $this->entity, 'updated');
 
         return fractal()
             ->item($result->fresh())
@@ -120,6 +120,6 @@ class TaskService
 
         $model->delete();
 
-        $this->logger->log($this->causer->name, $model->getDescription(), $this->entity, 'deleted');
+        $this->logger->log($this->causer->name, $model->getTitle(), $this->entity, 'deleted');
     }
 }
