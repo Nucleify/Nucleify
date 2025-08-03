@@ -9,6 +9,7 @@
         :article-data="articleData"
         :card-data="cardData"
         :contact-data="contactData"
+        :file-data="fileData"
         :link-data="linkData"
         :money-data="moneyData"
         :question-data="questionData"

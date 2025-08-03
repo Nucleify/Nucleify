@@ -28,8 +28,8 @@
     margin-top: 4px;
   }
 
-  @each $type in activity, article, card, contact, feature, link, money,
-    question, technology, user
+  @each $type in main, activity, article, card, contact, feature, file, link,
+    money, question, technology, user
   {
     &[ad-type='#{$type}'] {
       @include entity-datatable-styles(
@@ -117,7 +117,8 @@
     .label-column,
     .title-column,
     .name-column,
-    .full-name-column {
+    .full-name-column,
+    .path-column {
       width: 60%;
     }
 
@@ -143,7 +144,9 @@
     .updated-at-column,
     .id-activity-column,
     .causer-id-column,
-    .created-at-activity-column {
+    .created-at-activity-column,
+    .mime-type-column,
+    .size-column {
       display: none;
     }
 
@@ -155,7 +158,8 @@
     .description-column,
     .name-column,
     .src-column,
-    .question-category-column {
+    .question-category-column,
+    .path-column {
       overflow: hidden;
       white-space: nowrap;
     }
@@ -184,6 +188,7 @@
 
       .role-column,
       .birthday-column,
+      .mime-type-column,
       .id-activity-column {
         display: table-cell;
       }
@@ -196,7 +201,8 @@
 
     @media (min-width: $md) {
       .index-column,
-      .id-column {
+      .id-column,
+      .size-column {
         width: 10%;
       }
 
@@ -206,16 +212,19 @@
       }
 
       .role-column,
-      .birthday-column {
+      .birthday-column,
+      .mime-type-column {
         width: 18%;
       }
 
       .email-column,
+      .size-column,
       .created-at-activity-column {
         display: table-cell;
       }
 
-      .email-column {
+      .email-column,
+      .path-column {
         width: 30%;
       }
 
@@ -225,21 +234,18 @@
     }
 
     @media (min-width: $lg) {
-      .index-column,
-      .id-column {
-        width: 10%;
-      }
-
       .desktop-column {
         display: table-cell;
       }
 
-      .email-column {
+      .email-column,
+      .path-column {
         width: 32%;
       }
 
       .role-column,
-      .birthday-column {
+      .birthday-column,
+      .mime-type {
         width: 15%;
       }
 
@@ -272,7 +278,8 @@
         width: 20%;
       }
 
-      .email-column {
+      .email-column,
+      .path-column {
         width: 28%;
       }
 
@@ -301,12 +308,14 @@
         width: 12%;
       }
 
-      .email-column {
+      .email-column,
+      .path-column {
         width: 16%;
       }
 
       .role-column,
-      .birthday-column {
+      .birthday-column,
+      .mime-type-column {
         width: 10%;
       }
 

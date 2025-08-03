@@ -4,6 +4,7 @@ import type {
   ActivityLogObjectInterface,
   ArticleObjectInterface,
   ContactObjectInterface,
+  FileObjectInterface,
   ChartType,
   ChartMethodType,
   MoneyObjectInterface,
@@ -33,6 +34,7 @@ export interface ChartInterface {
   cardData?: CardObjectInterface[]
   contactData?: ContactObjectInterface[]
   featureData?: FeatureObjectInterface[]
+  fileData?: FileObjectInterface[]
   linkData?: LinkObjectInterface[]
   moneyData?: MoneyObjectInterface[]
   questionData?: QuestionObjectInterface[]
@@ -50,6 +52,7 @@ export interface DisplayChartsInterface {
   Contact: boolean
   Card: boolean
   Feature: boolean
+  File: boolean
   Link: boolean
   Money: boolean
   Question: boolean
