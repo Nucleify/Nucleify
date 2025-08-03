@@ -1,13 +1,13 @@
 <template>
   <div class="test-login-buttons-container">
     <ad-button
-      icon="pi pi-crown"
+      icon="prime:crown"
       class="primary-button text-sm"
       :rounded="true"
       @click="loginAndGo('admin')"
     />
     <ad-button
-      icon="pi pi-user"
+      icon="prime:user"
       severity="secondary"
       class="primary-button text-sm"
       :rounded="true"
@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { useRouter } from '#app'
+
 import { testLogin } from 'atomic'
 
 const router = useRouter()

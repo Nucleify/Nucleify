@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-color-api-405');
+uses()->group('user-color-api-405-unauth');
+
 describe('405 > Method Not Allowed > Unauthorized', function (): void {
     test('invalid method put > index api', function (): void {
         $this->put(route('tasks.index', 1))

@@ -2,7 +2,7 @@
   <ad-anchor
     href="/home"
     class="back-link"
-    icon="pi pi-chevron-left"
+    icon="prime:chevron-left"
     title="Back to home"
   />
 </template>

@@ -1,8 +1,9 @@
-import type { SxProps, Theme } from '@mui/material'
 import type {
   ButtonBaseActions,
   TouchRippleActions,
 } from '@mui/material/ButtonBase'
+
+import type { SxProps, Theme } from '@mui/material'
 
 export interface AdButtonBaseInterface {
   action?: React.Ref<ButtonBaseActions>

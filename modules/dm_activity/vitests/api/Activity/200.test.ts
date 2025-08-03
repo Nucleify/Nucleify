@@ -1,4 +1,5 @@
-import { describe, expect, it, beforeEach, vi, type Mock } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
+
 import * as atomic from 'atomic'
 
 describe('activityRequests', (): void => {
@@ -35,7 +36,7 @@ describe('activityRequests', (): void => {
   })
 
   it('deleteActivity', async (): Promise<void> => {
-    await requests.deleteActivity(atomic.mockActivity.id ?? 0, async () => {})
+    await requests.deleteActivity(atomic.mockActivity.id ?? 0)
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(

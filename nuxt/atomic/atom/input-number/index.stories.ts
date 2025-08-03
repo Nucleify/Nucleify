@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite'
-
 import { AdInputNumber } from '.'
+
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Atoms/InputNumber',
@@ -13,8 +13,8 @@ const meta = {
     format: false,
     showButtons: false,
     buttonLayout: undefined,
-    incrementButtonClass: 'pi pi-plus',
-    decrementButtonClass: 'pi pi-minus',
+    incrementButtonClass: 'prime:plus',
+    decrementButtonClass: 'prime:minus',
     incrementIcon: '',
     decrementIcon: '',
     locale: 'en-US',

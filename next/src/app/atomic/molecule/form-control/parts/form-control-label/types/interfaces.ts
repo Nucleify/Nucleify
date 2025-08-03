@@ -1,5 +1,6 @@
-import type { SxProps, Theme } from '@mui/material'
 import type { FormControlLabelProps } from '@mui/material/FormControlLabel'
+
+import type { SxProps, Theme } from '@mui/material'
 
 export interface AdFormControlLabelInterface {
   control: React.ReactElement

@@ -8,13 +8,16 @@
   gap: 5em;
   margin: 3em 0;
 
-  .header,
-  .header span {
-    font-size: 38px;
-    font-weight: bold !important;
-    font-family: $font-inter-sans-serif !important;
-    color: $primary-white-text-color;
-    white-space: nowrap;
+  .header {
+    opacity: 0;
+
+    span {
+      font-size: 38px;
+      font-weight: bold !important;
+      font-family: $font-inter-sans-serif !important;
+      color: $primary-white-text-color;
+      white-space: nowrap;
+    }
   }
 
   .ball {
@@ -29,6 +32,7 @@
     font-size: 1.25em;
     color: $white-text-color;
     font-weight: 300;
+    opacity: 0;
   }
 
   .cta {
@@ -48,6 +52,7 @@
       padding: 10px 25px !important;
       width: max-content;
       transition: all 300ms;
+      opacity: 0;
 
       .p-image {
         display: flex;

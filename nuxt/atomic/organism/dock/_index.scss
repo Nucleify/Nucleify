@@ -62,7 +62,7 @@
           box-shadow: none !important;
         }
 
-        i {
+        .iconify {
           color: $primary-white-green-text-color;
           font-size: 1.25em;
         }
@@ -207,8 +207,8 @@ $items: (
 );
 
 @each $item, $props in $items {
-  #app:has(> ##{$item}) {
-    .dock .pi[ad-type='#{$item}'] {
+  #__nuxt:has(##{$item}) {
+    .dock .iconify[ad-type='#{$item}'] {
       @include entity-dock-item-styles(var(map.get($props, color)) !important);
     }
   }

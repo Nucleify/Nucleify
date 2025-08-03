@@ -92,7 +92,7 @@
               v-if="props.adType === 'activity'"
               :ad-type="props.adType"
               class="data-table-button"
-              icon="pi pi-trash"
+              icon="prime:trash"
               rounded
               text
               :loading="props.loading"
@@ -113,7 +113,7 @@
               <ad-button
                 :ad-type="props.adType"
                 class="mobile-button data-table-button"
-                icon="pi pi-bars"
+                icon="prime:bars"
                 rounded
                 text
                 :loading="props.loading"
@@ -136,7 +136,7 @@
 
 <script setup lang="ts">
 import type { DataTableInterface } from 'atomic'
-import { actions as actionsList, columns, useSelect, useMenu } from 'atomic'
+import { actions as actionsList, columns, useMenu, useSelect } from 'atomic'
 
 const props = defineProps<DataTableInterface>()
 
