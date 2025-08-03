@@ -240,6 +240,11 @@ class User extends Authenticatable implements UserContract
         return $this->hasMany(Money::class, 'user_id');
     }
 
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'user_id');
+    }
+
     public function card(): HasMany
     {
         return $this->hasMany(Card::class);

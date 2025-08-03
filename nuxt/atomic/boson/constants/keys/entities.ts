@@ -12,4 +12,5 @@ export const allEntitiesKeys: string[] = [
   'activity',
   ...entitiesKeys,
   ...structuralEntitiesKeys,
+  'task',
 ]
