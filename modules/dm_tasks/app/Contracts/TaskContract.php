@@ -8,17 +8,17 @@ interface TaskContract
 
     public function getUserId(): int;
 
-    public function getAssigneeId(): int;
+    public function getAssigneeId(): ?int;
 
-    public function getCollaboratorIds(): array;
+    public function getCollaboratorIds(): ?string;
 
     public function getTitle(): string;
 
-    public function getDescription(): string;
+    public function getDescription(): ?string;
 
     public function getStartDate(): string;
 
-    public function getEndDate(): string;
+    public function getEndDate(): ?string;
 
     public function getCreatedAt(): string;
 

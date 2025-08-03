@@ -7,6 +7,7 @@ if (!defined('PEST_RUNNING')) {
 use App\Models\Task;
 
 beforeEach(function (): void {
+    $this->createUsers();
     $this->model = Task::factory()->create();
 });
 
@@ -35,7 +36,7 @@ describe('Instance', function (): void {
 
     test('can get collaborator_ids', function (): void {
         expect($this->model->getCollaboratorIds())
-            ->toBeArray()
+            ->toBeString()
             ->toBe($this->model->collaborator_ids);
     });
 

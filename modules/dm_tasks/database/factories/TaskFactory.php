@@ -1,8 +1,9 @@
 <?php
 
-namespace Database\Factories\Structural;
+namespace Database\Factories;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,12 +21,14 @@ class TaskFactory extends Factory
      */
     public function definition(): array
     {
-        $collaboratorIds = $this->faker->randomElements(range(1, 20), $this->faker->numberBetween(0, 5));
+        $users = User::all();
+        $userIds = $users->pluck('id')->toArray();
+        $collaboratorIdsArray = $users->random(rand(0, 3))->pluck('id')->toArray();
 
         $data = [
-            'user_id' => $this->faker->numberBetween(1, 50),
-            'assignee_id' => $this->faker->numberBetween(1, 50),
-            'collaborator_ids' => $collaboratorIds,
+            'user_id' => $this->faker->randomElement($userIds),
+            'assignee_id' => $this->faker->randomElement($userIds),
+            'collaborator_ids' => $collaboratorIdsArray ? implode(', ', $collaboratorIdsArray) : null,
             'title' => $this->faker->sentence(3),
             'description' => substr($this->faker->paragraph(255), 0, 255),
             'start_date' => $this->faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d'),
@@ -35,13 +38,13 @@ class TaskFactory extends Factory
         ];
 
         Validator::make($data, [
-            'user_id' => 'required|integer|min:1',
-            'assignee_id' => 'required|integer|min:1',
-            'collaborator_ids' => 'array',
+            'user_id' => 'required|integer|in:' . implode(',', $userIds),
+            'assignee_id' => 'nullable|integer|in:' . implode(',', $userIds),
+            'collaborator_ids' => 'nullable|string',
             'title' => 'required|string|max:255',
-            'description' => 'string|nullable',
+            'description' => 'nullable|string',
             'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
+            'end_date' => 'nullable|date|after_or_equal:start_date',
         ])->validate();
 
         return $data;

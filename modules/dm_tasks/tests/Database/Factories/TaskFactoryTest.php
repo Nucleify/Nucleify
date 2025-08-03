@@ -6,6 +6,10 @@ if (!defined('PEST_RUNNING')) {
 
 use App\Models\Task;
 
+beforeEach(function (): void {
+    $this->createUsers();
+});
+
 it('can create record', function (): void {
     $task = Task::factory()->create();
 
