@@ -22,7 +22,12 @@
 </template>
 
 <script setup lang="ts">
-import { isMobile, technologyRequests } from 'atomic'
+import {
+  bounceFadeIn,
+  isMobile,
+  technologyRequests,
+  useScrollTrigger,
+} from 'atomic'
 
 let data
 
@@ -55,4 +60,19 @@ useSwiper(technologiesSwiper, {
   slidesPerGroup: 2,
   loop: true,
 })
+
+useScrollTrigger(
+  '.swiper-container',
+  () => {
+    bounceFadeIn('.swiper-container swiper-slide', {
+      delay: 0,
+      duration: 0.4,
+      stagger: 0.1,
+      ease: 'power2.out',
+    })
+  },
+  {
+    start: 'top 75%',
+  }
+)
 </script>

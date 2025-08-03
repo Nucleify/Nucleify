@@ -1,30 +1,32 @@
 /* eslint-disable */
 // @ts-nocheck
+
 import { Ref, ref } from 'vue'
-import { ChartOptions } from 'chart.js'
 
 import {
-  allEntitiesKeys,
-  allEntitiesLabels,
-  months,
   ActivityLogObjectInterface,
   ArticleObjectInterface,
+  allEntitiesKeys,
+  allEntitiesLabels,
   CardObjectInterface,
+  ChartInterface,
+  ChartMethodType,
+  ChartType,
   ContactObjectInterface,
+  FeatureObjectInterface,
+  LabelItemType,
+  LinkObjectInterface,
   MoneyObjectInterface,
-  UserObjectInterface,
+  months,
   QuestionObjectInterface,
   TaskObjectInterface,
   TechnologyObjectInterface,
-  ChartMethodType,
-  ChartType,
-  ChartInterface,
-  LabelItemType,
-  LinkObjectInterface,
-  FeatureObjectInterface,
   UseColorsInterface,
+  UserObjectInterface,
   useColors,
 } from 'atomic'
+
+import { ChartOptions } from 'chart.js'
 
 export function useChart() {
   const { colors }: UseColorsInterface = useColors()

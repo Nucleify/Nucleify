@@ -1,6 +1,6 @@
 <template>
   <svg
-    class="ball"
+    class="bounce-animation ball"
     xmlns="http://www.w3.org/2000/svg"
     width="150"
     height="150"

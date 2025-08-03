@@ -1,0 +1,23 @@
+.split {
+  opacity: 0;
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+  will-change: transform;
+
+  * {
+    will-change: transform;
+  }
+
+  div,
+  span div {
+    font-family: $font-inter-sans-serif !important;
+    white-space: nowrap;
+  }
+
+  span {
+    display: inline;
+    white-space: pre;
+    opacity: 1;
+  }
+}

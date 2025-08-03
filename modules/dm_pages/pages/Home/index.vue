@@ -10,23 +10,13 @@
 </template>
 
 <script setup lang="ts">
-import { useViewportChange } from 'atomic'
+import { useSplitText, useViewportChange } from 'atomic'
 
 import { Features, Innovations, Start } from './sections'
 
-useViewportChange(
-  [
-    '#access div',
-    '#structure div',
-    '#technologies div',
-    '#modules div',
-    '#why-us div',
-    '#footer div',
-  ],
-  100
-)
-
-useViewportChange(['.home-chart-card div[data-pc-section="body"]'], 50)
+useViewportChange(['#footer div'], 100)
 
 onBeforeMount(() => window.scrollTo(0, 0))
+
+useSplitText().animate()
 </script>

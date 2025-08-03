@@ -5,7 +5,7 @@
         <ad-heading :tag="4" text="Charts" />
 
         <ad-button
-          icon="pi pi-refresh"
+          icon="prime:refresh"
           ad-type="main"
           class="refresh-button"
           rounded
@@ -36,10 +36,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
+import { ref } from 'vue'
 
 import { displayChartList } from 'atomic'
+
 import { useDisplayChartsStore } from '~/stores/display_charts'
 
 const displayChartsStore = useDisplayChartsStore()

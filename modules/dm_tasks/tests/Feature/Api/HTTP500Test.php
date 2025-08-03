@@ -7,6 +7,8 @@ if (!defined('PEST_RUNNING')) {
 use App\Models\Task;
 use App\Services\TaskService;
 
+uses()->group('task-api-500');
+
 use function Pest\Laravel\mock;
 
 beforeEach(function (): void {

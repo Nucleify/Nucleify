@@ -3,16 +3,17 @@
     <div class="access-container">
       <ad-heading
         :tag="2"
-        class="access-header"
+        class="access-header split"
         text="Access your data everywhere"
       />
-      <ad-paragraph class="access-description">
-        Use <span class="shiny">DataManager</span> application on your phone,
-        tablet and desktop. You can now manage all data in one place and take a
-        step ahead in your management process
-      </ad-paragraph>
       <div class="access-card-container">
-        <div class="access-card flip-card col-12 md:col-6 xl:col-4">
+        <div
+          class="access-card flip-card col-12 md:col-6 xl:col-4"
+          @mouseenter="animate('.access-card:nth-of-type(1) .flip-card-back p')"
+          @mouseleave="
+            deconstruct('.access-card:nth-of-type(1) .flip-card-back p', 200)
+          "
+        >
           <div class="flip-card-inner">
             <dm-animation-hexagons />
             <div class="flip-card-front">
@@ -35,7 +36,13 @@
             </div>
           </div>
         </div>
-        <div class="access-card flip-card col-12 md:col-6 xl:col-4">
+        <div
+          class="access-card flip-card col-12 md:col-6 xl:col-4"
+          @mouseenter="animate('.access-card:nth-of-type(2) .flip-card-back p')"
+          @mouseleave="
+            deconstruct('.access-card:nth-of-type(2) .flip-card-back p', 200)
+          "
+        >
           <div class="flip-card-inner">
             <dm-animation-hexagons />
             <div class="flip-card-front">
@@ -57,7 +64,13 @@
             </div>
           </div>
         </div>
-        <div class="access-card flip-card col-12 md:col-6 xl:col-4">
+        <div
+          class="access-card flip-card col-12 md:col-6 xl:col-4"
+          @mouseenter="animate('.access-card:nth-of-type(3) .flip-card-back p')"
+          @mouseleave="
+            deconstruct('.access-card:nth-of-type(3) .flip-card-back p', 200)
+          "
+        >
           <div class="flip-card-inner">
             <dm-animation-hexagons />
             <div class="flip-card-front">
@@ -85,4 +98,23 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { bounceFadeIn, useScrollTrigger, useSplitText } from 'atomic'
+
+const { animate, deconstruct } = useSplitText()
+
+useScrollTrigger(
+  '.access-card-container',
+  () => {
+    bounceFadeIn('.access-card-container .access-card', {
+      delay: 0,
+      duration: 0.3,
+      stagger: 0.3,
+      ease: 'power2.out',
+    })
+  },
+  {
+    start: 'top 80%',
+  }
+)
+</script>

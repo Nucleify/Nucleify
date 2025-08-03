@@ -1,13 +1,13 @@
 import type {
-  TaskObjectInterface,
   DeleteEntityRequestType,
   EditEntityRequestType,
-  GetAllEntitiesRequestType,
-  LoadingRefType,
-  StoreEntityRequestType,
-  GetEntityRequestType,
   EntityCountResultsType,
   EntityResultsType,
+  GetAllEntitiesRequestType,
+  GetEntityRequestType,
+  LoadingRefType,
+  StoreEntityRequestType,
+  TaskObjectInterface,
 } from 'atomic'
 
 export interface TaskRequestsInterface {
