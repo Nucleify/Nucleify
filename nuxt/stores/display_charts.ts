@@ -11,6 +11,7 @@ interface DisplayChartsState {
   Money: boolean
   Question: boolean
   Structural: boolean
+  Task: boolean
   Technology: boolean
 }
 
@@ -26,6 +27,7 @@ export const useDisplayChartsStore = defineStore('displayCharts', {
     Money: true,
     Question: true,
     Structural: true,
+    Task: true,
     Technology: true,
   }),
   actions: {

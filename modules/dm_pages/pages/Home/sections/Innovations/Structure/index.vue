@@ -45,7 +45,7 @@ animate(
   '.description-container .description',
   0.15,
   0.3,
-  0.15,
+  0.075,
   'power2.out',
   true,
   'top 70%'
