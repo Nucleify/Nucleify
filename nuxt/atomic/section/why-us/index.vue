@@ -255,7 +255,7 @@ useScrollTrigger(
     })
   },
   {
-    start: 'top 60%',
+    start: 'top 25%',
   }
 )
 </script>

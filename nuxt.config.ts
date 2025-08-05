@@ -46,6 +46,11 @@ export default defineNuxtConfig({
     experimental: {
       wasm: true,
     },
+    minify: true,
+    compressPublicAssets: true,
+    experimental: {
+      wasm: true,
+    },
   },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },

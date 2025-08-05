@@ -32,7 +32,7 @@ const dockData: readonly DockItemInterface[] = [
   ['prime:chart-line', 'Dashboard', '/dashboard', undefined, 'dashboard'],
   ['prime:box', 'Entities', '/entities', undefined, 'entities'],
   ['prime:history', 'Activities', '/activity-log', undefined, 'activity-log'],
-  ['prime:envelope', 'Messages', undefined, 'disabled-item'],
+  ['prime:check-square', 'Tasks', '/tasks', undefined, 'tasks'],
   ['prime:calendar', 'Calendar', undefined, 'disabled-item'],
   ['prime:user', 'Profile', undefined, 'disabled-item'],
   ['prime:cog', 'Settings', '/settings', undefined, 'settings'],

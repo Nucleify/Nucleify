@@ -13,6 +13,7 @@ vi.mock('../../modules', () => ({
   registerDMPages: vi.fn(),
   registerDMScreenLights: vi.fn(),
   registerDMScreenLoader: vi.fn(),
+  registerDMTasks: vi.fn(),
 }))
 
 const vueApp = {}
@@ -35,4 +36,5 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   expect(modules.registerDMPages).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMScreenLights).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMScreenLoader).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerDMTasks).toHaveBeenCalledWith(vueApp)
 })

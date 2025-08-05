@@ -10,6 +10,7 @@ import {
   registerDMPages,
   registerDMScreenLights,
   registerDMScreenLoader,
+  registerDMTasks,
 } from '../../modules'
 
 export default defineNuxtPlugin({
@@ -25,5 +26,6 @@ export default defineNuxtPlugin({
     registerDMPages(nuxtApp.vueApp)
     registerDMScreenLights(nuxtApp.vueApp)
     registerDMScreenLoader(nuxtApp.vueApp)
+    registerDMTasks(nuxtApp.vueApp)
   },
 })
