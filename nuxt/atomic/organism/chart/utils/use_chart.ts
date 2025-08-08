@@ -44,6 +44,7 @@ export function useChart() {
       ['feature', '#B91010'],
       ['link', '#10B3B9'],
       ['question', '#8CB910'],
+      ['task', '#1045b9'],
       ['technology', '#B95910'],
     ].map(([key, primary]) => [key, { primary, secondary: `${primary}35` }])
   )
