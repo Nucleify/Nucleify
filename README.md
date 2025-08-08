@@ -196,19 +196,10 @@ git clone https://github.com/Atomic-IT/DataManager.git
 ```
 
 - Change .env.docker.example file to .env in root directory
+- Unzip vendor.zip
 
-- Generate APP_KEY
-
-```
-php artisan key:generate
-```
-
-- Install modules in root directory
-
+- Build & run Docker image 
 ```bash
-composer install
-php artisan sail:install
-
 sail up --build -d
 ```
 
