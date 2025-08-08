@@ -160,4 +160,12 @@ export default defineNuxtConfig({
     prefix: 'i-prime',
     mode: 'css',
   },
+  // Production: Laravel serves prebuilt Nuxt app
+  // Development: Nuxt serves app with its own routes
+  routeRules:
+    process.env.APP_ENV === 'production'
+      ? {}
+      : {
+          '/': { redirect: { to: '/home', statusCode: 301 } },
+        },
 })
