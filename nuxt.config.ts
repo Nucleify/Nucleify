@@ -32,11 +32,16 @@ export default defineNuxtConfig({
   nitro: {
     prerender: process.env.CI
       ? {
-          enabled: false,
+          routes: [],
+          crawlLinks: false,
         }
       : {
-          routes: ['/home', '/settings'],
-          crawlLinks: true,
+          routes: process.env.PRERENDER_ROUTES
+            ? process.env.PRERENDER_ROUTES.split(',')
+                .map((r) => r.trim())
+                .filter(Boolean)
+            : [],
+          crawlLinks: process.env.PRERENDER_CRAWL_LINKS === 'true',
         },
     output: {
       publicDir: './public/build',
@@ -160,12 +165,4 @@ export default defineNuxtConfig({
     prefix: 'i-prime',
     mode: 'css',
   },
-  // Production: Laravel serves prebuilt Nuxt app
-  // Development: Nuxt serves app with its own routes
-  routeRules:
-    process.env.APP_ENV === 'production'
-      ? {}
-      : {
-          '/': { redirect: { to: '/home', statusCode: 301 } },
-        },
 })
