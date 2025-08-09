@@ -20,6 +20,25 @@
       "~/*": ["./*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.vue", "**/*.js", "**/*.jsx"],
-  "exclude": ["node_modules", ".nuxt", "dist"]
+  "include": [
+    "**/*.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.vue",
+    "**/*.js",
+    "**/*.jsx"
+  ],
+  "exclude": [
+    "node_modules",
+    ".nuxt",
+    "dist",
+    "cypress*",
+    "next",
+    "**/*.stories.ts",
+    "**/*.stories.tsx",
+    "**/*.spec.ts",
+    "**/*.spec.tsx",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
 }

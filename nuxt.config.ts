@@ -157,4 +157,5 @@ export default defineNuxtConfig({
     prefix: 'i-prime',
     mode: 'css',
   },
-})
+  // biome-ignore lint/suspicious/noExplicitAny: Nuxt config complexity @typescript-eslint/no-explicit-any
+} as any)
