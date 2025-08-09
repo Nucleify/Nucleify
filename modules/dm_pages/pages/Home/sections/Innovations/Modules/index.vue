@@ -118,7 +118,7 @@ const modulesSwiper = ref(null)
 const loadReadme = async (modulePath: string, value: number) => {
   try {
     await apiHandle({
-      url: appUrl() + `modules/${modulePath}/README.md`,
+      url: appUrl() + `/modules/${modulePath}/README.md`,
       method: 'GET',
       onSuccess: (data) => {
         const html = marked.parse(data)

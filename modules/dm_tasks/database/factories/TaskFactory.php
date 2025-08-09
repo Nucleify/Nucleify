@@ -23,12 +23,11 @@ class TaskFactory extends Factory
     {
         $users = User::all();
         $userIds = $users->pluck('id')->toArray();
-        $collaboratorIdsArray = $users->random(rand(0, 3))->pluck('id')->toArray();
 
         $data = [
             'user_id' => $this->faker->randomElement($userIds),
             'assignee_id' => $this->faker->randomElement($userIds),
-            'collaborator_ids' => $collaboratorIdsArray ? implode(', ', $collaboratorIdsArray) : null,
+            'collaborator_ids' => implode(',', $this->faker->randomElements($userIds, rand(0, 3))),
             'title' => $this->faker->sentence(3),
             'description' => substr($this->faker->paragraph(255), 0, 255),
             'start_date' => $this->faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d'),
