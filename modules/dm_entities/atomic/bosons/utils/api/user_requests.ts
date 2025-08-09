@@ -19,7 +19,7 @@ export function userRequests(close?: CloseDialogType): UserRequestsInterface {
 
   async function getAllUsers(loading?: boolean): Promise<void> {
     await apiHandle<UserObjectInterface[]>({
-      url: apiUrl() + 'users',
+      url: apiUrl() + '/users',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: UserObjectInterface[]) => {
         results.value = response
@@ -31,7 +31,7 @@ export function userRequests(close?: CloseDialogType): UserRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: apiUrl() + 'users/count-by-created-last-week',
+      url: apiUrl() + '/users/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -41,7 +41,7 @@ export function userRequests(close?: CloseDialogType): UserRequestsInterface {
 
   async function getUser(loading?: boolean): Promise<void> {
     await apiHandle<UserObjectInterface>({
-      url: apiUrl() + 'user',
+      url: apiUrl() + '/user',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: UserObjectInterface) => {
         results.value = response
@@ -54,7 +54,7 @@ export function userRequests(close?: CloseDialogType): UserRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<UserObjectInterface>({
-      url: apiUrl() + 'users',
+      url: apiUrl() + '/users',
       method: 'POST',
       data,
       onSuccess: (response: UserObjectInterface) => {
@@ -68,7 +68,7 @@ export function userRequests(close?: CloseDialogType): UserRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<UserObjectInterface>({
-      url: apiUrl() + 'users',
+      url: apiUrl() + '/users',
       method: 'PUT',
       data,
       id: data.id,
@@ -83,7 +83,7 @@ export function userRequests(close?: CloseDialogType): UserRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<UserObjectInterface>({
-      url: apiUrl() + 'users',
+      url: apiUrl() + '/users',
       method: 'DELETE',
       id,
       onSuccess: (response: UserObjectInterface) => {

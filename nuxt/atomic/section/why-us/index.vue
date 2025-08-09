@@ -67,7 +67,7 @@ if (appEnv() !== 'production') {
   })
 } else {
   ;({ data } = await useFetch(
-    apiUrl() + `features/get-site-features/${props.site}`,
+    apiUrl() + `/features/get-site-features/${props.site}`,
     {
       method: 'GET',
       immediate: true,
