@@ -10,11 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import { useSplitText, useViewportChange } from 'atomic'
+import { useSplitText } from 'atomic'
 
 import { Features, Innovations, Start } from './sections'
-
-useViewportChange(['#footer div'], 100)
 
 onBeforeMount(() => window.scrollTo(0, 0))
 
