@@ -25,7 +25,7 @@ beforeEach(function (): void {
 describe('RequestSetterTrait', function (): void {
     test('defineRequestData sets referrer and isRefererAdmin correctly for admin URL', function (): void {
         $request = new Request;
-        $request->headers->set('referer', "$this->appUrl/admin");
+        $request->headers->set('referer-slug', "$this->appUrl/admin");
 
         $this->trait->defineRequestData($request);
 
@@ -35,7 +35,7 @@ describe('RequestSetterTrait', function (): void {
 
     test('defineRequestData sets referrer and isRefererAdmin correctly for non-admin URL', function (): void {
         $request = new Request;
-        $request->headers->set('referer', "$this->appUrl/dashboard");
+        $request->headers->set('referer-slug', "$this->appUrl/dashboard");
 
         $this->trait->defineRequestData($request);
 
@@ -54,7 +54,7 @@ describe('RequestSetterTrait', function (): void {
 
     test('defineRequestData sets isRefererAdmin to false for unrelated URL patterns', function (): void {
         $request = new Request;
-        $request->headers->set('referer', "$this->appUrl/blog");
+        $request->headers->set('referer-slug', "$this->appUrl/blog");
 
         $this->trait->defineRequestData($request);
 

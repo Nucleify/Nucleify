@@ -21,10 +21,10 @@ export function useAuthForm(): UseAuthFormInterface {
   ): Promise<void> {
     switch (true) {
       case !('password_confirmation' in data):
-        url = appUrl() + 'login'
+        url = appUrl() + '/login'
         break
       case 'password_confirmation' in data:
-        url = appUrl() + 'register'
+        url = appUrl() + '/register'
         break
       default:
         throw Error

@@ -16,7 +16,7 @@ if (appEnv() !== 'production') {
   watchEffect(() => (data = resultsBySite))
 } else {
   ;({ data } = await useFetch(
-    apiUrl() + 'technologies/get-site-technologies/general',
+    apiUrl() + '/technologies/get-site-technologies/general',
     {
       method: 'GET',
       immediate: true,
