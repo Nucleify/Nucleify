@@ -3,3 +3,10 @@
     <dm-login-page></dm-login-page>
   </div>
 </template>
+
+<script setup lang="ts">
+definePageMeta({
+  pageTransition: false,
+  layoutTransition: false,
+})
+</script>
