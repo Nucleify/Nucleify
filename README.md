@@ -356,26 +356,13 @@ Your skills and expertise will directly contribute to the success of our project
 
 <h3>Contributors</h3>
 
-<a href="https://github.com/SzymCode" target="_blank">
-<img src="/public/img/contributors/szymcode.svg" width="30" height="30" />
-</a>
-<a href="https://github.com/kbloski" target="_blank">
-<img src="/public/img/contributors/kbloski.svg" width="30" height="30" />
-</a>
-<a href="https://github.com/kbujak09" target="_blank">
-<img src="/public/img/contributors/kbujak09.svg" width="30" height="30" />
-</a>
-<a href="https://github.com/K4mD4m" target="_blank">
-<img src="/public/img/contributors/K4mD4m.svg" width="30" height="30" />
-</a>
-<a href="https://github.com/KatarzynaS97" target="_blank">
-<img src="/public/img/contributors/KatarzynaS97.svg" width="30" height="30" />
-</a>
-<a href="https://github.com/karol199393" target="_blank">
-<img src="/public/img/contributors/karol199393.svg" width="30" height="30" />
-</a>
-<a href="https://github.com/pysifu" target="_blank">
-<img src="/public/img/contributors/pysifu.svg" width="30" height="30" />
-</a>
+<a href="https://github.com/SzymCode" target="_blank"><img src="/public/img/contributors/szymcode.svg" width="30" height="30" /></a>
+<a href="https://github.com/kbloski" target="_blank"><img src="/public/img/contributors/kbloski.svg" width="30" height="30" /></a>
+<a href="https://github.com/kbujak09" target="_blank"><img src="/public/img/contributors/kbujak09.svg" width="30" height="30" /></a>
+<a href="https://github.com/K4mD4m" target="_blank"><img src="/public/img/contributors/K4mD4m.svg" width="30" height="30" /></a>
+<a href="https://github.com/JakubMalik" target="_blank"><img src="/public/img/contributors/JakubMalik.svg" width="30" height="30" /><a>
+<a href="https://github.com/KatarzynaS97" target="_blank"><img src="/public/img/contributors/KatarzynaS97.svg" width="30" height="30" /></a>
+<a href="https://github.com/karol199393" target="_blank"><img src="/public/img/contributors/karol199393.svg" width="30" height="30" /></a>
+<a href="https://github.com/pysifu" target="_blank"><img src="/public/img/contributors/pysifu.svg" width="30" height="30" /></a>
 
 </div>
