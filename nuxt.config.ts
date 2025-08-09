@@ -32,25 +32,22 @@ export default defineNuxtConfig({
   nitro: {
     prerender: process.env.CI
       ? {
-          enabled: false,
+          routes: [],
+          crawlLinks: false,
         }
       : {
-          routes: ['/home', '/settings'],
-          crawlLinks: true,
+          routes: process.env.PRERENDER_ROUTES
+            ? process.env.PRERENDER_ROUTES.split(',')
+                .map((r) => r.trim())
+                .filter(Boolean)
+            : [],
+          crawlLinks: process.env.PRERENDER_CRAWL_LINKS === 'true',
         },
     output: {
       publicDir: './public/build',
     },
     minify: true,
     compressPublicAssets: true,
-    experimental: {
-      wasm: true,
-    },
-    minify: true,
-    compressPublicAssets: true,
-    experimental: {
-      wasm: true,
-    },
   },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },

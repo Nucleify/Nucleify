@@ -19,7 +19,7 @@ export function taskRequests(close?: CloseDialogType): TaskRequestsInterface {
 
   async function getAllTasks(loading?: boolean): Promise<void> {
     await apiHandle<TaskObjectInterface[]>({
-      url: apiUrl() + 'tasks',
+      url: apiUrl() + '/tasks',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: TaskObjectInterface[]) => {
         results.value = response
@@ -31,7 +31,7 @@ export function taskRequests(close?: CloseDialogType): TaskRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: apiUrl() + 'tasks/count-by-created-last-week',
+      url: apiUrl() + '/tasks/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -44,7 +44,7 @@ export function taskRequests(close?: CloseDialogType): TaskRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<TaskObjectInterface>({
-      url: apiUrl() + 'tasks',
+      url: apiUrl() + '/tasks',
       method: 'POST',
       data,
       onSuccess: (response: TaskObjectInterface) => {
@@ -58,7 +58,7 @@ export function taskRequests(close?: CloseDialogType): TaskRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<TaskObjectInterface>({
-      url: apiUrl() + 'tasks',
+      url: apiUrl() + '/tasks',
       method: 'PUT',
       data,
       id: data.id,
@@ -73,7 +73,7 @@ export function taskRequests(close?: CloseDialogType): TaskRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<TaskObjectInterface>({
-      url: apiUrl() + 'tasks',
+      url: apiUrl() + '/tasks',
       method: 'DELETE',
       id,
       onSuccess: (response: TaskObjectInterface) => {
