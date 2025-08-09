@@ -44,7 +44,7 @@ if (appEnv() !== 'production') {
   watchEffect(() => (data = resultsBySite))
 } else {
   ;({ data } = await useFetch(
-    apiUrl() + `questions/get-site-questions/${props.site}`,
+    apiUrl() + `/questions/get-site-questions/${props.site}`,
     {
       method: 'GET',
       immediate: true,

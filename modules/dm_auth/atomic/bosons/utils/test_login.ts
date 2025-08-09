@@ -19,7 +19,7 @@ export async function testLogin(role: UserRoleType): Promise<void> {
   }
 
   await apiHandle({
-    url: appUrl() + 'login',
+    url: appUrl() + '/login',
     method: 'POST',
     data: userCredentials,
     onSuccess: async (): Promise<void> => {

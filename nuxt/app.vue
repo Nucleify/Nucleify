@@ -35,7 +35,7 @@ useHead(() => ({
   link: [
     {
       rel: 'canonical',
-      href: appUrl() + route.path.replace(/\//g, ''),
+      href: appUrl() + '/' + route.path.replace(/\//g, ''),
     },
   ],
 }))
