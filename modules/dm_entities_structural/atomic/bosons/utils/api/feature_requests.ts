@@ -24,7 +24,7 @@ export function featureRequests(
 
   async function getAllFeatures(loading?: boolean): Promise<void> {
     await apiHandle<FeatureObjectInterface[]>({
-      url: apiUrl() + 'features',
+      url: apiUrl() + '/features',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: FeatureObjectInterface[]) => {
         results.value = response
@@ -36,7 +36,7 @@ export function featureRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: apiUrl() + 'features/count-by-created-last-week',
+      url: apiUrl() + '/features/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -49,7 +49,7 @@ export function featureRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<FeatureObjectInterface[]>({
-      url: apiUrl() + `features/get-by-category/${category}`,
+      url: apiUrl() + `/features/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: FeatureObjectInterface[]) => {
         resultsByCategory.value = response
@@ -62,7 +62,7 @@ export function featureRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<FeatureObjectInterface[]>({
-      url: apiUrl() + `features/get-site-features/${site}`,
+      url: apiUrl() + `/features/get-site-features/${site}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: FeatureObjectInterface[]) => {
         resultsBySite.value = response
@@ -75,7 +75,7 @@ export function featureRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FeatureObjectInterface>({
-      url: apiUrl() + 'features',
+      url: apiUrl() + '/features',
       method: 'POST',
       data,
       onSuccess: (response: FeatureObjectInterface) => {
@@ -89,7 +89,7 @@ export function featureRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FeatureObjectInterface>({
-      url: apiUrl() + 'features',
+      url: apiUrl() + '/features',
       method: 'PUT',
       data,
       id: data.id,
@@ -104,7 +104,7 @@ export function featureRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FeatureObjectInterface>({
-      url: apiUrl() + 'features',
+      url: apiUrl() + '/features',
       method: 'DELETE',
       id,
       onSuccess: (response: FeatureObjectInterface) => {
