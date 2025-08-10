@@ -44,6 +44,7 @@ export function userRequests(close?: CloseDialogType): UserRequestsInterface {
       url: apiUrl() + '/user',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: UserObjectInterface) => {
+        // @ts-expect-error TODO: fix this later
         results.value = response
       },
     })

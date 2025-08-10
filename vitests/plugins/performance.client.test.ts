@@ -2,6 +2,9 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import performanceClientPlugin from '../../nuxt/plugins/performance.client'
 
+type NuxtAppStub = Parameters<typeof performanceClientPlugin>[0]
+const nuxtAppStub = {} as unknown as NuxtAppStub
+
 describe('performance.client plugin', (): void => {
   beforeEach((): void => {
     document.body.innerHTML = ''
@@ -22,7 +25,7 @@ describe('performance.client plugin', (): void => {
     document.body.appendChild(link1)
     document.body.appendChild(link2)
 
-    performanceClientPlugin()
+    performanceClientPlugin(nuxtAppStub)
 
     expect(link1.getAttribute('media')).not.toBe('print')
     expect(link2.getAttribute('media')).toBe('print')
@@ -34,7 +37,7 @@ describe('performance.client plugin', (): void => {
 
     document.body.appendChild(img)
 
-    performanceClientPlugin()
+    performanceClientPlugin(nuxtAppStub)
 
     expect(['auto', 'lazy']).toContain(img.loading)
     expect(['auto', 'async']).toContain(img.decoding)
@@ -43,11 +46,13 @@ describe('performance.client plugin', (): void => {
   it('attaches ResizeObserver to document.body', (): void => {
     const observe = vi.fn()
 
-    global.ResizeObserver = vi.fn().mockImplementation(function (this) {
+    globalThis.ResizeObserver = vi.fn().mockImplementation(function (this: {
+      observe: (target: Element) => void
+    }): void {
       this.observe = observe
-    })
+    }) as unknown as typeof ResizeObserver
 
-    performanceClientPlugin()
+    performanceClientPlugin(nuxtAppStub)
 
     expect(observe).toHaveBeenCalledWith(document.body)
   })
