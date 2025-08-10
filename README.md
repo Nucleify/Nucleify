@@ -1,4 +1,4 @@
-# <div align="center"> <img src="/public/img/logo.png" width="70"> <br> DataManager <br> </div>
+# <div align="center"> <img src="/nuxt/public/img/logo.png" width="70"> <br> DataManager <br> </div>
 <br>
 
 Streamline ERP and design management with a powerful system built using Laravel and Nuxt. Easily organize, manage, and access all your data types in one powerful, user-friendly platform - perfect for CRM, ERP and E-commerce solutions.
@@ -46,7 +46,7 @@ I'm sure I could optimize it further, but it's good enough for now.
 <br>
 
 
-<details><summary> <h2> &nbsp; <img src="/public/img/technologies/xampp.svg" height="20" /> &nbsp; XAMPP </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="/nuxt/public/img/technologies/xampp.svg" height="20" /> &nbsp; XAMPP </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary>
 
 - First make sure u have installed latest versions of [PHP](https://www.php.net), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
@@ -129,7 +129,7 @@ Database\Factories\ActivityFactory::new()->count(100)->create();
 
 <details><summary> Tests </summary><br>
 
-<img src="/public/img/technologies/pest.svg" height="15" /> &nbsp;Pest tests:
+<img src="/nuxt/public/img/technologies/pest.svg" height="15" /> &nbsp;Pest tests:
 ```bash
 # run all tests
 ./vendor/bin/pest
@@ -146,17 +146,17 @@ database, feature, global, unit, commands, controllers, services, factories, mig
 ```
 ![Tests](https://github.com/user-attachments/assets/560df303-07c7-42f0-a178-07ef5e05a8a8)![Coverage](https://github.com/user-attachments/assets/0b6cc696-8fdb-469f-a78c-e6faaadbe437)
 
-<img src="/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
+<img src="/nuxt/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
 ```bash
 npm run open
 ```
 
-<img src="/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
+<img src="/nuxt/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
 ```bash
 npm run tests
 ```
 
-<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```npm run dev```
+<img src="/nuxt/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```npm run dev```
 
 <br></details>
 
@@ -184,7 +184,7 @@ php artisan sitemap:generate
 
 
 
-<details><summary> <h2> &nbsp; <img src="/public/img/technologies/docker.svg" height="20" /> &nbsp; Docker </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="/nuxt/public/img/technologies/docker.svg" height="20" /> &nbsp; Docker </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary> <br>
 
 - First make sure u have installed latest versions of [Composer](https://getcomposer.org/) and [Docker](https://www.docker.com)
@@ -260,7 +260,7 @@ Database\Factories\ActivityFactory::new()->count(100)->create();
 
 <details><summary> Tests </summary><br>
 
-<img src="/public/img/technologies/pest.svg" height="15" /> &nbsp;Pest tests:
+<img src="/nuxt/public/img/technologies/pest.svg" height="15" /> &nbsp;Pest tests:
 ```bash
 # run all tests
 sail pest
@@ -280,17 +280,17 @@ sail pest --coverage
 
 
 
-<img src="/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
+<img src="/nuxt/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
 ```bash
 npm run open  # For now I've not configured Cypress with Docker
 ```
 
-<img src="/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
+<img src="/nuxt/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
 ```bash
 sail npm run tests
 ```
 
-<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail up -d```
+<img src="/nuxt/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail up -d```
 
 <br></details>
 
@@ -315,34 +315,34 @@ sail artisan sitemap:generate
 
 </details></details><hr><br></details></details>
 
-<details><summary> <h2> &nbsp; <img src="/public/img/technologies/stack.svg" width="20"> &nbsp; Tech Stack </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="/nuxt/public/img/technologies/stack.svg" width="20"> &nbsp; Tech Stack </h2> </summary> <br>
 <div align="center">
-  <img src="/public/img/technologies/php.svg" width="35" />
-  <img src="/public/img/technologies/laravel.svg" width="35" />
-  <img src="/public/img/technologies/typescript.svg" width="35" />
-  <img src="/public/img/technologies/nuxt.svg" width="35" />
-  <img src="/public/img/technologies/vue.svg" width="35" />
-  <img src="/public/img/technologies/primevue.svg" width="35" />
-  <img src="/public/img/technologies/gsap.svg" width="35" />
-  <img src="/public/img/technologies/chart-js.svg" width="35" />
-  <img src="/public/img/technologies/html5.svg" width="35" />
-  <img src="/public/img/technologies/scss.svg" width="35" />
-  <img src="/public/img/technologies/mysql.svg" width="35" />
-  <img src="/public/img/technologies/docker.svg" width="35" />
-  <img src="/public/img/technologies/heroku.svg" width="35" />
-  <img src="/public/img/technologies/vitest.svg" width="35" />
-  <img src="/public/img/technologies/pest.svg" width="35" />
-  <img src="/public/img/technologies/storybook.svg" width="35" />
-  <img src="/public/img/technologies/cypress.svg" width="35" />
-  <img src="/public/img/technologies/sonarcloud.svg" width="35" />
-  <img src="/public/img/technologies/biome.svg" width="35" />
-  <img src="/public/img/technologies/stylelint.svg" width="35" />
-  <img src="/public/img/technologies/husky.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/php.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/laravel.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/typescript.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/nuxt.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/vue.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/primevue.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/gsap.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/chart-js.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/html5.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/scss.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/mysql.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/docker.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/heroku.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/vitest.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/pest.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/storybook.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/cypress.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/sonarcloud.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/biome.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/stylelint.svg" width="35" />
+  <img src="/nuxt/public/img/technologies/husky.svg" width="35" />
 </div>
 
 <hr><br></details>
 
-<details><summary> <h2> &nbsp; <img src="/public/img/technologies/github.svg" width="20"> &nbsp; Contribute </h2> </summary> <br>
+<details><summary> <h2> &nbsp; <img src="/nuxt/public/img/technologies/github.svg" width="20"> &nbsp; Contribute </h2> </summary> <br>
 
 Feel free to check [Issues](https://github.com/SzymCode/DataManager/issues) section. <br>
 Your skills and expertise will directly contribute to the success of our project, helping us achieve our goals and create an attractive portfolio.
@@ -356,13 +356,13 @@ Your skills and expertise will directly contribute to the success of our project
 
 <h3>Contributors</h3>
 
-<a href="https://github.com/SzymCode" target="_blank"><img src="/public/img/contributors/szymcode.svg" width="30" height="30" /></a>
-<a href="https://github.com/kbloski" target="_blank"><img src="/public/img/contributors/kbloski.svg" width="30" height="30" /></a>
-<a href="https://github.com/kbujak09" target="_blank"><img src="/public/img/contributors/kbujak09.svg" width="30" height="30" /></a>
-<a href="https://github.com/K4mD4m" target="_blank"><img src="/public/img/contributors/K4mD4m.svg" width="30" height="30" /></a>
-<a href="https://github.com/JakubMalik" target="_blank"><img src="/public/img/contributors/JakubMalik.svg" width="30" height="30" /><a>
-<a href="https://github.com/KatarzynaS97" target="_blank"><img src="/public/img/contributors/KatarzynaS97.svg" width="30" height="30" /></a>
-<a href="https://github.com/karol199393" target="_blank"><img src="/public/img/contributors/karol199393.svg" width="30" height="30" /></a>
-<a href="https://github.com/pysifu" target="_blank"><img src="/public/img/contributors/pysifu.svg" width="30" height="30" /></a>
+<a href="https://github.com/SzymCode" target="_blank"><img src="/nuxt/public/img/contributors/szymcode.svg" width="30" height="30" /></a>
+<a href="https://github.com/kbloski" target="_blank"><img src="/nuxt/public/img/contributors/kbloski.svg" width="30" height="30" /></a>
+<a href="https://github.com/kbujak09" target="_blank"><img src="/nuxt/public/img/contributors/kbujak09.svg" width="30" height="30" /></a>
+<a href="https://github.com/K4mD4m" target="_blank"><img src="/nuxt/public/img/contributors/K4mD4m.svg" width="30" height="30" /></a>
+<a href="https://github.com/JakubMalik" target="_blank"><img src="/nuxt/public/img/contributors/JakubMalik.svg" width="30" height="30" /><a>
+<a href="https://github.com/KatarzynaS97" target="_blank"><img src="/nuxt/public/img/contributors/KatarzynaS97.svg" width="30" height="30" /></a>
+<a href="https://github.com/karol199393" target="_blank"><img src="/nuxt/public/img/contributors/karol199393.svg" width="30" height="30" /></a>
+<a href="https://github.com/pysifu" target="_blank"><img src="/nuxt/public/img/contributors/pysifu.svg" width="30" height="30" /></a>
 
 </div>
