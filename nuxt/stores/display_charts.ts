@@ -6,7 +6,9 @@ interface DisplayChartsState {
   Article: boolean
   Card: boolean
   Contact: boolean
+  Entities: boolean
   Feature: boolean
+  File: boolean
   Link: boolean
   Money: boolean
   Question: boolean
@@ -22,7 +24,9 @@ export const useDisplayChartsStore = defineStore('displayCharts', {
     Article: true,
     Card: true,
     Contact: true,
+    Entities: true,
     Feature: true,
+    File: true,
     Link: true,
     Money: true,
     Question: true,

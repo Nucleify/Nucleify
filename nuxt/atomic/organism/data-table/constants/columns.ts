@@ -45,6 +45,13 @@ const columnsData: readonly ColumnsInterface[] = {
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
+  file: [
+    ['path', 'Path', 'path-column'],
+    ['mime_type', 'Mime Type', 'mime-type-column'],
+    ['size', 'Size', 'size-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
   money: [
     ['title', 'Title', 'title-column'],
     ['category', 'Category', 'category-column desktop-column'],
