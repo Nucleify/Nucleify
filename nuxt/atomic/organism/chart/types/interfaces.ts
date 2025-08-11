@@ -8,6 +8,7 @@ import type {
   ChartType,
   ContactObjectInterface,
   FeatureObjectInterface,
+  FileObjectInterface,
   LinkObjectInterface,
   MoneyObjectInterface,
   QuestionObjectInterface,
@@ -34,6 +35,7 @@ export interface ChartInterface {
   cardData?: CardObjectInterface[]
   contactData?: ContactObjectInterface[]
   featureData?: FeatureObjectInterface[]
+  fileData?: FileObjectInterface[]
   linkData?: LinkObjectInterface[]
   moneyData?: MoneyObjectInterface[]
   questionData?: QuestionObjectInterface[]
@@ -52,6 +54,7 @@ export interface DisplayChartsInterface {
   Contact: boolean
   Card: boolean
   Feature: boolean
+  File: boolean
   Link: boolean
   Money: boolean
   Question: boolean

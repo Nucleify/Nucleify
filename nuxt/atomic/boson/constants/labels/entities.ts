@@ -14,7 +14,8 @@ export const structuralEntitiesLabels: string[] = [
 ]
 
 export const allEntitiesLabels: string[] = [
-  'activity',
+  'Activities',
+  'Files',
   ...entitiesLabels,
   ...structuralEntitiesLabels,
 ]
