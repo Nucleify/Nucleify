@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('link-model');
+
 use App\Models\Link;
 
 test('can be created', function (): void {

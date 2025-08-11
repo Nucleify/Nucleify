@@ -4,6 +4,11 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('money-api-405');
+uses()->group('money-api-405-unauth');
+uses()->group('api-405');
+uses()->group('api-405-unauth');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->user);

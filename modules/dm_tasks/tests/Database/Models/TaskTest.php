@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('task-model');
+
 use App\Models\Task;
 
 beforeEach(function (): void {

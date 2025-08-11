@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('money-controller');
+
 use App\Http\Controllers\MoneyController;
 use App\Http\Requests\Money\PostRequest;
 use App\Http\Requests\Money\PutRequest;

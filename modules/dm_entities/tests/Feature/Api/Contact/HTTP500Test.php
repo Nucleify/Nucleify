@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('contact-api-500');
+uses()->group('api-500');
+
 use App\Models\Contact;
 use App\Services\ContactService;
 

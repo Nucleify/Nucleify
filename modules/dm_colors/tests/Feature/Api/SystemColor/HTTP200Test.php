@@ -4,9 +4,10 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-use App\Models\SystemColor;
-
 uses()->group('system-color-api-200');
+uses()->group('api-200');
+
+use App\Models\SystemColor;
 
 beforeEach(function (): void {
     $this->createUsers();

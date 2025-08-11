@@ -4,9 +4,10 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-use App\Models\Technology;
-
 uses()->group('technology-api-200');
+uses()->group('api-200');
+
+use App\Models\Technology;
 
 beforeEach(function (): void {
     $this->createUsers();

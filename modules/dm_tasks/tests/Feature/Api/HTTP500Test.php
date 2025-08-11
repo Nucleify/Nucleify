@@ -4,10 +4,11 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('task-api-500');
+uses()->group('api-500');
+
 use App\Models\Task;
 use App\Services\TaskService;
-
-uses()->group('task-api-500');
 
 use function Pest\Laravel\mock;
 

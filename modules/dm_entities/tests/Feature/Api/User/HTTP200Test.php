@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-api-200');
+uses()->group('api-200');
+
 use App\Models\User;
 
 beforeEach(function (): void {

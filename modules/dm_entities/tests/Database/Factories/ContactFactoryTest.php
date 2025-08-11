@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('contact-factory');
+
 use App\Models\Contact;
 
 beforeEach(function (): void {

@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('card-migrations');
+
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {

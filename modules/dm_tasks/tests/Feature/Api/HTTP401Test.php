@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('task-api-401');
+uses()->group('api-401');
+
 describe('401', function (): void {
     test('index api', apiTest(
         'GET',

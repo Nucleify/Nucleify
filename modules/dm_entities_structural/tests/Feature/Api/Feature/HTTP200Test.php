@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('feature-api-200');
+uses()->group('api-200');
+
 use App\Models\Feature;
 
 beforeEach(function (): void {

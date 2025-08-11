@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('friendship-service');
+
 use App\Models\User;
 use App\Services\FriendshipService;
 

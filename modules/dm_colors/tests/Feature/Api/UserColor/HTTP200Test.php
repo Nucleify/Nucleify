@@ -4,9 +4,10 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-use App\Models\UserColor;
-
 uses()->group('user-color-api-200');
+uses()->group('api-200');
+
+use App\Models\UserColor;
 
 beforeEach(function (): void {
     $this->createUsers();

@@ -4,6 +4,11 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('contact-api-405');
+uses()->group('contact-api-405-unauth');
+uses()->group('api-405');
+uses()->group('api-405-unauth');
+
 describe('405 > Unauthorized', function (): void {
     test('put with parameter > index api', function (): void {
         $this->put(route('contacts.index', 1))

@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('feature-api-302');
+uses()->group('api-302');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);

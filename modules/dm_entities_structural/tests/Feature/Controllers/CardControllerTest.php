@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('card-controller');
+
 use App\Http\Controllers\CardController;
 use App\Http\Requests\Card\PostRequest;
 use App\Http\Requests\Card\PutRequest;

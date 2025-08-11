@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('link-controller');
+
 use App\Http\Controllers\LinkController;
 use App\Http\Requests\Link\PostRequest;
 use App\Http\Requests\Link\PutRequest;

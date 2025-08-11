@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('article-controller');
+
 use App\Http\Controllers\ArticleController;
 use App\Http\Requests\Article\PostRequest;
 use App\Http\Requests\Article\PutRequest;

@@ -6,6 +6,8 @@ if (!defined('PEST_RUNNING')) {
 
 uses()->group('user-color-api-422');
 uses()->group('user-color-api-422-put');
+uses()->group('api-422');
+uses()->group('api-422-put');
 
 beforeEach(function (): void {
     $this->createUsers();

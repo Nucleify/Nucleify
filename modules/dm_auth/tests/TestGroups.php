@@ -25,3 +25,7 @@ uses()
 uses()
     ->group('migrations')
     ->in('Database/Migrations');
+
+uses()
+    ->group('auth-migrations')
+    ->in('Database/Migrations');

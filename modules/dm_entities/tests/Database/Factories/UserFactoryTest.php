@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-factory');
+
 use App\Models\User;
 
 test('can create record', function (): void {

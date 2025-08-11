@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('link-factory');
+
 use App\Models\Link;
 
 test('can create record', function (): void {

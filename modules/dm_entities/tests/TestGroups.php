@@ -5,7 +5,7 @@ if (!defined('PEST_RUNNING')) {
 }
 
 /**
- *  Main tests group
+ *  Main groups
  */
 uses()
     ->group('dm-entities')
@@ -31,11 +31,23 @@ uses()
     ->in('Database/Models');
 
 uses()
+        ->group('entity-models')
+        ->in('Database/Models');
+
+uses()
     ->group('migrations')
     ->in('Database/Migrations');
 
 uses()
+    ->group('entity-migrations')
+    ->in('Database/Migrations');
+
+uses()
     ->group('factories')
+    ->in('Database/Factories');
+
+uses()
+    ->group('entity-factories')
     ->in('Database/Factories');
 
 /**
@@ -66,21 +78,9 @@ uses()
     ->in('Feature');
 
 uses()
-    ->group('global')
-    ->in('Global');
-
-uses()
-    ->group('commands')
-    ->in('Feature/Commands');
-
-uses()
     ->group('controllers')
     ->in('Feature/Controllers');
 
 uses()
-    ->group('services')
-    ->in('Feature/Services');
-
-uses()
-    ->group('traits')
-    ->in('Feature/Traits');
+    ->group('entity-controllers')
+    ->in('Feature/Controllers');

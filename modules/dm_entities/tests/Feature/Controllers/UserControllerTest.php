@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-controller');
+
 use App\Http\Controllers\UserController;
 use App\Http\Requests\User\PostRequest;
 use App\Http\Requests\User\PutRequest;

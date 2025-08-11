@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('technology-factory');
+
 use App\Models\Technology;
 
 beforeEach(function (): void {

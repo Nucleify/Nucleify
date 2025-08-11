@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('article-factory');
+
 use App\Models\Article;
 
 beforeEach(function (): void {

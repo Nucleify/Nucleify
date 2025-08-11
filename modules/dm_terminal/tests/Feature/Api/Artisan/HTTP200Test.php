@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('terminal-api-200');
+uses()->group('api-200');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
