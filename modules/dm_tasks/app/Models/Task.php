@@ -11,31 +11,31 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 /**
  * @property int id
  * @property int user_id
- * @property int assignee_id
- * @property array collaborator_ids
+ * @property int|null assignee_id
+ * @property string|null collaborator_ids
  * @property string title
- * @property string description
+ * @property string|null description
  * @property string start_date
- * @property string end_date
+ * @property string|null end_date
  * @property string created_at
  * @property string updated_at
- * @property int getId
- * @property int getUserId
- * @property int getAssigneeId
- * @property array getCollaboratorIds
- * @property string getTitle
- * @property string getDescription
- * @property string getStartDate
- * @property string getEndDate
- * @property string getCreatedAt
- * @property string getUpdatedAt
- * @property BelongsTo user
- * @property Builder scopeGetById
- * @property Builder scopeGetByUserId
- * @property Builder scopeGetByAssigneeId
- * @property Builder scopeGetByTitle
- * @property Builder scopeGetByStartDate
- * @property Builder scopeGetByEndDate
+ * @property int getId()
+ * @property int getUserId()
+ * @property int|null getAssigneeId()
+ * @property string|null getCollaboratorIds()
+ * @property string getTitle()
+ * @property string|null getDescription()
+ * @property string getStartDate()
+ * @property string|null getEndDate()
+ * @property string getCreatedAt()
+ * @property string getUpdatedAt()
+ * @property BelongsTo user()
+ * @property Builder scopeGetById()
+ * @property Builder scopeGetByUserId()
+ * @property Builder scopeGetByAssigneeId()
+ * @property Builder scopeGetByTitle()
+ * @property Builder scopeGetByStartDate()
+ * @property Builder scopeGetByEndDate()
  */
 class Task extends Model implements TaskContract
 {
@@ -117,7 +117,7 @@ class Task extends Model implements TaskContract
         return $query->where('user_id', $parameter);
     }
 
-    public function scopeGetByAssigneeId(Builder $query, ?int $parameter): Builder
+    public function scopeGetByAssigneeId(Builder $query, int $parameter): Builder
     {
         return $query->where('assignee_id', $parameter);
     }
@@ -132,7 +132,7 @@ class Task extends Model implements TaskContract
         return $query->whereDate('start_date', $parameter);
     }
 
-    public function scopeGetByEndDate(Builder $query, ?string $parameter): Builder
+    public function scopeGetByEndDate(Builder $query, string $parameter): Builder
     {
         return $query->whereDate('end_date', $parameter);
     }

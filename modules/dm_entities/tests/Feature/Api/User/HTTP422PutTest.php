@@ -4,17 +4,22 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-api-422');
+uses()->group('user-api-422-put');
+uses()->group('api-422');
+uses()->group('api-422-put');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updatedUserData) {
+describe('422 > PUT', function ($updatedUserData = updatedUserData) {
     /**
      * NAME TESTS
      */
     $updatedUserData['name'] = '';
-    test('invalid name > empty', apiTest(
+    test('name > empty', apiTest(
         'PUT',
         'users.update',
         422,
@@ -26,7 +31,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['name'] = false;
-    test('invalid name > false', apiTest(
+    test('name > false', apiTest(
         'PUT',
         'users.update',
         422,
@@ -41,7 +46,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['name'] = true;
-    test('invalid name > true', apiTest(
+    test('name > true', apiTest(
         'PUT',
         'users.update',
         422,
@@ -56,7 +61,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['name'] = [];
-    test('invalid name > empty array', apiTest(
+    test('name > empty array', apiTest(
         'PUT',
         'users.update',
         422,
@@ -73,7 +78,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
      * EMAIL TESTS
      */
     $updatedUserData['email'] = 'admin.example.com';
-    test('invalid email > email format', apiTest(
+    test('email > email format', apiTest(
         'PUT',
         'users.update',
         422,
@@ -85,7 +90,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['email'] = 1;
-    test('invalid email > integer', apiTest(
+    test('email > integer', apiTest(
         'PUT',
         'users.update',
         422,
@@ -100,7 +105,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['email'] = false;
-    test('invalid email > false', apiTest(
+    test('email > false', apiTest(
         'PUT',
         'users.update',
         422,
@@ -115,7 +120,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['email'] = true;
-    test('invalid email > true', apiTest(
+    test('email > true', apiTest(
         'PUT',
         'users.update',
         422,
@@ -130,7 +135,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['email'] = '@a';
-    test('invalid email > too short', apiTest(
+    test('email > too short', apiTest(
         'PUT',
         'users.update',
         422,
@@ -145,7 +150,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['email'] = 'loremipsumdolorsitametconsecteturadipiscingelitseddoetaliqualaborum@exampleemail.com';
-    test('invalid email > too long', apiTest(
+    test('email > too long', apiTest(
         'PUT',
         'users.update',
         422,
@@ -157,7 +162,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['email'] = [];
-    test('invalid email > empty array', apiTest(
+    test('email > empty array', apiTest(
         'PUT',
         'users.update',
         422,
@@ -174,7 +179,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
      * PASSWORD TESTS
      */
     $updatedUserData['password'] = '';
-    test('invalid password > empty password', apiTest(
+    test('password > empty password', apiTest(
         'PUT',
         'users.update',
         422,
@@ -186,7 +191,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['password'] = 1;
-    test('invalid password > integer', apiTest(
+    test('password > integer', apiTest(
         'PUT',
         'users.update',
         422,
@@ -198,7 +203,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['password'] = false;
-    test('invalid password > false', apiTest(
+    test('password > false', apiTest(
         'PUT',
         'users.update',
         422,
@@ -210,7 +215,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['password'] = true;
-    test('invalid password > true', apiTest(
+    test('password > true', apiTest(
         'PUT',
         'users.update',
         422,
@@ -222,7 +227,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['password'] = 'L';
-    test('invalid password > too short', apiTest(
+    test('password > too short', apiTest(
         'PUT',
         'users.update',
         422,
@@ -234,7 +239,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['password'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do et aliqua laborum.';
-    test('invalid password > too long', apiTest(
+    test('password > too long', apiTest(
         'PUT',
         'users.update',
         422,
@@ -246,7 +251,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['password'] = [];
-    test('invalid password > empty array', apiTest(
+    test('password > empty array', apiTest(
         'PUT',
         'users.update',
         422,
@@ -263,7 +268,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
      * ROLE TESTS
      */
     $updatedUserData['role'] = '';
-    test('invalid role > empty', apiTest(
+    test('role > empty', apiTest(
         'PUT',
         'users.update',
         422,
@@ -275,7 +280,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['role'] = 1;
-    test('invalid role > integer', apiTest(
+    test('role > integer', apiTest(
         'PUT',
         'users.update',
         422,
@@ -287,7 +292,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['role'] = 'invalid';
-    test('invalid role > invalid', apiTest(
+    test('role > invalid', apiTest(
         'PUT',
         'users.update',
         422,
@@ -299,7 +304,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserData = updat
     ));
 
     $updatedUserData['role'] = [];
-    test('invalid role > empty array', apiTest(
+    test('role > empty array', apiTest(
         'PUT',
         'users.update',
         422,

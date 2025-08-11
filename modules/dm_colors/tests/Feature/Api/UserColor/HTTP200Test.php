@@ -4,16 +4,17 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-use App\Models\UserColor;
-
 uses()->group('user-color-api-200');
+uses()->group('api-200');
+
+use App\Models\UserColor;
 
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('index api', function (): void {
         UserColor::factory(3)->create();
 
@@ -41,24 +42,24 @@ describe('200 > Authorized', function (): void {
     });
 
     test('show api', function (): void {
-        $color = UserColor::factory()->create();
+        $model = UserColor::factory()->create();
 
-        $this->getJson(route('user-colors.show', $color->id))
+        $this->getJson(route('user-colors.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $color = UserColor::factory()->create();
+        $model = UserColor::factory()->create();
 
-        $this->putJson(route('user-colors.update', $color->id), updatedUserColorData)
+        $this->putJson(route('user-colors.update', $model->id), updatedUserColorData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $color = UserColor::factory()->create();
+        $model = UserColor::factory()->create();
 
-        $this->deleteJson(route('user-colors.destroy', $color->id))
+        $this->deleteJson(route('user-colors.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('user_colors', ['id' => $color->id]);
+        $this->assertDatabaseMissing('user_colors', ['id' => $model->id]);
     });
 });

@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('question-api-500');
+uses()->group('api-500');
+
 use App\Models\Question;
 use App\Services\QuestionService;
 
@@ -15,16 +18,15 @@ beforeEach(function (): void {
     $this->service = mock(QuestionService::class);
 });
 
-describe('500 > Internal Server Error', function (): void {
+describe('500', function (): void {
     test('index api', function (): void {
         $this->service
             ->shouldReceive('index')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('questions.index'));
-
-        $response->assertStatus(500)
+        $this->getJson(route('questions.index'))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -35,9 +37,8 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('questions.show', ['id' => 1]));
-
-        $response->assertStatus(500)
+        $this->getJson(route('questions.show', ['id' => 1]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -47,9 +48,8 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->postJson(route('questions.store'), questionData);
-
-        $response->assertStatus(500)
+        $this->postJson(route('questions.store'), questionData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -60,23 +60,21 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->putJson(route('questions.update', questionData['id']), updatedQuestionData);
-
-        $response->assertStatus(500)
+        $this->putJson(route('questions.update', questionData['id']), updatedQuestionData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
     test('destroy api', function (): void {
-        $question = Question::factory()->create();
+        $model = Question::factory()->create();
 
         $this->service
             ->shouldReceive('delete')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->deleteJson(route('questions.destroy', ['id' => $question->id]));
-
-        $response->assertStatus(500)
+        $this->deleteJson(route('questions.destroy', ['id' => $model->id]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 });

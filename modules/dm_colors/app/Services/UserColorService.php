@@ -3,12 +3,13 @@
 namespace App\Services;
 
 use App\Models\UserColor;
+use App\Resources\UserColorResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\UserColorTransformer;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserColorService
 {
@@ -23,9 +24,13 @@ class UserColorService
     ) {}
 
     /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
      * @throws Exception
      */
-    public function index(Request $request): mixed
+    public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
         $this->defineUserData();
@@ -34,13 +39,14 @@ class UserColorService
 
         $this->logger->logIndex($this->causer->name, $this->entity, true);
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new UserColorTransformer)
-            ->toArray()['data'];
+        return UserColorResource::collection($result);
     }
 
     /**
+     * @param Request $request
+     *
+     * @return int
+     *
      * @throws Exception
      */
     public function countByCreatedLastWeek(Request $request): int
@@ -57,9 +63,13 @@ class UserColorService
     }
 
     /**
+     * @param string $name
+     *
+     * @return AnonymousResourceCollection
+     *
      * @throws Exception
      */
-    public function getByName(string $name): array
+    public function getByName(string $name): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -67,16 +77,17 @@ class UserColorService
 
         $this->logger->logMessage($this->causer->name . ' fetched user colors by name: ' . $name . '.');
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new UserColorTransformer)
-            ->toArray()['data'];
+        return UserColorResource::collection($result);
     }
 
     /**
+     * @param int $id
+     *
+     * @return UserColorResource
+     *
      * @throws Exception
      */
-    public function show($id): array
+    public function show($id): UserColorResource
     {
         $this->defineUserData();
 
@@ -84,16 +95,17 @@ class UserColorService
 
         $this->logger->log($this->causer->name, $result->getValue(), $this->entity, 'showed');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new UserColorTransformer)
-            ->toArray()['data'];
+        return new UserColorResource($result);
     }
 
     /**
+     * @param array $data
+     *
+     * @return UserColorResource
+     *
      * @throws Exception
      */
-    public function create(array $data): array
+    public function create(array $data): UserColorResource
     {
         $this->defineUserData();
 
@@ -101,16 +113,18 @@ class UserColorService
 
         $this->logger->log($this->causer->name, $result->getName(), $this->entity, 'created');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new UserColorTransformer)
-            ->toArray()['data'];
+        return new UserColorResource($result);
     }
 
     /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return UserColorResource
+     *
      * @throws Exception
      */
-    public function update($id, array $data): array
+    public function update($id, array $data): UserColorResource
     {
         $this->defineUserData();
 
@@ -120,14 +134,15 @@ class UserColorService
 
         $this->logger->log($this->causer->name, $result->getName(), $this->entity, 'updated');
 
-        return fractal()
-            ->item($result->fresh())
-            ->transformWith(new UserColorTransformer)
-            ->toArray()['data'];
+        return new UserColorResource($result->fresh());
 
     }
 
     /**
+     * @param int $id
+     *
+     * @return void
+     *
      * @throws Exception
      */
     public function delete($id): void

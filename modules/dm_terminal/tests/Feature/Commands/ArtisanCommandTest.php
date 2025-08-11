@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('terminal-command');
+
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -15,26 +17,26 @@ afterAll(function (): void {
     artisan('migrate:fresh');
 });
 
-it('can run artisan migrate command', function (): void {
+test('can run artisan migrate command', function (): void {
     Artisan::call(ArtisanCommand::class, ['code' => 'Artisan::call("migrate")']);
 
     expect(Schema::hasTable('users'))->toBeTrue();
 });
 
-it('can run artisan migrate:fresh command', function (): void {
+test('can run artisan migrate:fresh command', function (): void {
     Artisan::call(ArtisanCommand::class, ['code' => 'Artisan::call("migrate:fresh")']);
 
     expect(Schema::hasTable('users'))->toBeTrue();
 });
 
-it('can run artisan migrate:fresh --seed command', function (): void {
+test('can run artisan migrate:fresh --seed command', function (): void {
     Artisan::call(ArtisanCommand::class, ['code' => 'Artisan::call("migrate:fresh --seed")']);
 
     expect(Schema::hasTable('migrations'))->toBeTrue()
         ->and(DB::table('users')->count())->toBeGreaterThan(0);
 });
 
-it('can handle and report errors during command execution', function (): void {
+test('can handle and report errors during command execution', function (): void {
     Artisan::call(ArtisanCommand::class, ['code' => 'undefinedFunction()']);
 
     $output = Artisan::output();

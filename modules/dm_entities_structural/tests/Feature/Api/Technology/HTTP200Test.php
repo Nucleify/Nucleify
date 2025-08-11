@@ -4,16 +4,17 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-use App\Models\Technology;
-
 uses()->group('technology-api-200');
+uses()->group('api-200');
+
+use App\Models\Technology;
 
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('index api', function (): void {
         Technology::factory(3)->create();
 
@@ -48,24 +49,24 @@ describe('200 > Authorized', function (): void {
     });
 
     test('show api', function (): void {
-        $technology = Technology::factory()->create();
+        $model = Technology::factory()->create();
 
-        $this->getJson(route('technologies.show', $technology->id))
+        $this->getJson(route('technologies.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $technology = Technology::factory()->create();
+        $model = Technology::factory()->create();
 
-        $this->putJson(route('technologies.update', $technology->id), updatedTechnologyData)
+        $this->putJson(route('technologies.update', $model->id), updatedTechnologyData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $technology = Technology::factory()->create();
+        $model = Technology::factory()->create();
 
-        $this->deleteJson(route('technologies.destroy', $technology->id))
+        $this->deleteJson(route('technologies.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('technologies', ['id' => $technology->id]);
+        $this->assertDatabaseMissing('technologies', ['id' => $model->id]);
     });
 });

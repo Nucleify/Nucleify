@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('article-model');
+
 use App\Models\Article;
 
 beforeEach(function (): void {
@@ -11,7 +13,7 @@ beforeEach(function (): void {
     $this->model = Article::factory()->create();
 });
 
-it('can be created', function (): void {
+test('can be created', function (): void {
     expect($this->model)->toBeInstanceOf(Article::class);
 });
 

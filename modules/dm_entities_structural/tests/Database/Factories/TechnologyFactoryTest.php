@@ -4,29 +4,31 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('technology-factory');
+
 use App\Models\Technology;
 
 beforeEach(function (): void {
     $this->createUsers();
 });
 
-it('can create record', function (): void {
-    $technology = Technology::factory()->create();
+test('can create record', function (): void {
+    $model = Technology::factory()->create();
 
-    $this->assertDatabaseCount('technologies', 1);
-    $this->assertDatabaseHas('technologies', ['id' => $technology->id]);
+    $this->assertDatabaseCount('technologies', 1)
+        ->assertDatabaseHas('technologies', ['id' => $model->id]);
 });
 
-it('can create multiple records', function (): void {
-    $technologies = Technology::factory()->count(3)->create();
+test('can create multiple records', function (): void {
+    $models = Technology::factory()->count(3)->create();
 
     $this->assertDatabaseCount('technologies', 3);
-    foreach ($technologies as $technology) {
-        $this->assertDatabaseHas('technologies', ['id' => $technology->id]);
+    foreach ($models as $model) {
+        $this->assertDatabaseHas('technologies', ['id' => $model->id]);
     }
 });
 
-it("can't create record", function (): void {
+test('can\'t create record', function (): void {
     try {
         Technology::factory()->create(['id' => 'id']);
     } catch (Exception $e) {
@@ -38,7 +40,7 @@ it("can't create record", function (): void {
     $this->fail('Expected exception not thrown.');
 })->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
 
-it("can't create multiple records", function (): void {
+test('can\'t create multiple records', function (): void {
     try {
         Technology::factory()->count(2)->create(['id' => 'id']);
     } catch (Exception $e) {

@@ -4,17 +4,22 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('link-api-422');
+uses()->group('link-api-422-post');
+uses()->group('api-422');
+uses()->group('api-422-post');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
+describe('422 > POST', function ($linkData = linkData) {
     /**
      * DOWNLOAD TESTS
      */
     $linkData['download'] = 1;
-    test('invalid download > int', apiTest(
+    test('download > int', apiTest(
         'POST',
         'links.store',
         422,
@@ -26,7 +31,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['download'] = false;
-    test('invalid download > false', apiTest(
+    test('download > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -43,7 +48,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
      * HREF TESTS
      */
     $linkData['href'] = '';
-    test('invalid href > empty', apiTest(
+    test('href > empty', apiTest(
         'POST',
         'links.store',
         422,
@@ -55,7 +60,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['href'] = 1;
-    test('invalid href > integer', apiTest(
+    test('href > integer', apiTest(
         'POST',
         'links.store',
         422,
@@ -70,7 +75,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['href'] = false;
-    test('invalid href > false', apiTest(
+    test('href > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -85,7 +90,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['href'] = true;
-    test('invalid href > true', apiTest(
+    test('href > true', apiTest(
         'POST',
         'links.store',
         422,
@@ -100,7 +105,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['href'] = [];
-    test('invalid href > empty array', apiTest(
+    test('href > empty array', apiTest(
         'POST',
         'links.store',
         422,
@@ -117,7 +122,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
      * CATEGORY TESTS
      */
     $linkData['category'] = '';
-    test('invalid content > empty', apiTest(
+    test('content > empty', apiTest(
         'POST',
         'links.store',
         422,
@@ -129,7 +134,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['category'] = 1;
-    test('invalid category > integer', apiTest(
+    test('category > integer', apiTest(
         'POST',
         'links.store',
         422,
@@ -143,7 +148,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -157,7 +162,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'POST',
         'links.store',
         422,
@@ -171,7 +176,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'POST',
         'links.store',
         422,
@@ -188,7 +193,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
      * SRC TESTS
      */
     $linkData['src'] = 1;
-    test('invalid src > integer', apiTest(
+    test('src > integer', apiTest(
         'POST',
         'links.store',
         422,
@@ -203,7 +208,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['src'] = false;
-    test('invalid src > false', apiTest(
+    test('src > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -218,7 +223,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['src'] = true;
-    test('invalid src > true', apiTest(
+    test('src > true', apiTest(
         'POST',
         'links.store',
         422,
@@ -233,7 +238,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['src'] = [];
-    test('invalid src > empty array', apiTest(
+    test('src > empty array', apiTest(
         'POST',
         'links.store',
         422,
@@ -253,7 +258,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
      * ICON TESTS
      */
     $linkData['icon'] = 1;
-    test('invalid icon > integer', apiTest(
+    test('icon > integer', apiTest(
         'POST',
         'links.store',
         422,
@@ -267,7 +272,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['icon'] = false;
-    test('invalid icon > false', apiTest(
+    test('icon > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -281,7 +286,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['icon'] = true;
-    test('invalid icon > true', apiTest(
+    test('icon > true', apiTest(
         'POST',
         'links.store',
         422,
@@ -295,7 +300,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['icon'] = [];
-    test('invalid icon > empty array', apiTest(
+    test('icon > empty array', apiTest(
         'POST',
         'links.store',
         422,
@@ -312,7 +317,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
      * HREFLANG TESTS
      */
     $linkData['hreflang'] = 1;
-    test('invalid hreflang > integer', apiTest(
+    test('hreflang > integer', apiTest(
         'POST',
         'links.store',
         422,
@@ -326,7 +331,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['hreflang'] = false;
-    test('invalid hreflang > false', apiTest(
+    test('hreflang > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -340,7 +345,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['hreflang'] = true;
-    test('invalid hreflang > true', apiTest(
+    test('hreflang > true', apiTest(
         'POST',
         'links.store',
         422,
@@ -354,7 +359,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['hreflang'] = [];
-    test('invalid hreflang > empty array', apiTest(
+    test('hreflang > empty array', apiTest(
         'POST',
         'links.store',
         422,
@@ -371,7 +376,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
      * MEDIA TESTS
      */
     $linkData['media'] = 1;
-    test('invalid media > integer', apiTest(
+    test('media > integer', apiTest(
         'POST',
         'links.store',
         422,
@@ -385,7 +390,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['media'] = false;
-    test('invalid media > false', apiTest(
+    test('media > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -399,7 +404,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['media'] = true;
-    test('invalid media > true', apiTest(
+    test('media > true', apiTest(
         'POST',
         'links.store',
         422,
@@ -413,7 +418,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['media'] = [];
-    test('invalid media > empty array', apiTest(
+    test('media > empty array', apiTest(
         'POST',
         'links.store',
         422,
@@ -430,7 +435,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
      * PING TESTS
      */
     $linkData['ping'] = 1;
-    test('invalid ping > integer', apiTest(
+    test('ping > integer', apiTest(
         'POST',
         'links.store',
         422,
@@ -444,7 +449,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['ping'] = false;
-    test('invalid ping > false', apiTest(
+    test('ping > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -458,7 +463,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['ping'] = true;
-    test('invalid ping > true', apiTest(
+    test('ping > true', apiTest(
         'POST',
         'links.store',
         422,
@@ -472,7 +477,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['ping'] = [];
-    test('invalid ping > empty array', apiTest(
+    test('ping > empty array', apiTest(
         'POST',
         'links.store',
         422,
@@ -489,7 +494,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
      * REL TESTS
      */
     $linkData['rel'] = 1;
-    test('invalid rel > integer', apiTest(
+    test('rel > integer', apiTest(
         'POST',
         'links.store',
         422,
@@ -504,7 +509,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['rel'] = false;
-    test('invalid rel > false', apiTest(
+    test('rel > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -519,7 +524,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['rel'] = true;
-    test('invalid rel > true', apiTest(
+    test('rel > true', apiTest(
         'POST',
         'links.store',
         422,
@@ -534,7 +539,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['rel'] = [];
-    test('invalid rel > empty array', apiTest(
+    test('rel > empty array', apiTest(
         'POST',
         'links.store',
         422,
@@ -554,7 +559,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
      * TARGET TESTS
      */
     $linkData['target'] = 1;
-    test('invalid target > integer', apiTest(
+    test('target > integer', apiTest(
         'POST',
         'links.store',
         422,
@@ -569,7 +574,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['target'] = false;
-    test('invalid target > false', apiTest(
+    test('target > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -584,7 +589,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['target'] = true;
-    test('invalid target > true', apiTest(
+    test('target > true', apiTest(
         'POST',
         'links.store',
         422,
@@ -599,7 +604,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['target'] = [];
-    test('invalid target > empty array', apiTest(
+    test('target > empty array', apiTest(
         'POST',
         'links.store',
         422,
@@ -619,7 +624,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
      * TYPE TESTS
      */
     $linkData['type'] = 1;
-    test('invalid type > integer', apiTest(
+    test('type > integer', apiTest(
         'POST',
         'links.store',
         422,
@@ -633,7 +638,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['type'] = false;
-    test('invalid type > false', apiTest(
+    test('type > false', apiTest(
         'POST',
         'links.store',
         422,
@@ -647,7 +652,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['type'] = true;
-    test('invalid type > true', apiTest(
+    test('type > true', apiTest(
         'POST',
         'links.store',
         422,
@@ -661,7 +666,7 @@ describe('422 > Unprocessable Content > POST', function ($linkData = linkData) {
     ));
 
     $linkData['type'] = [];
-    test('invalid type > empty array', apiTest(
+    test('type > empty array', apiTest(
         'POST',
         'links.store',
         422,

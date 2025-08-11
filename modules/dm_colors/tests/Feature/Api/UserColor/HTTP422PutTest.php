@@ -6,18 +6,20 @@ if (!defined('PEST_RUNNING')) {
 
 uses()->group('user-color-api-422');
 uses()->group('user-color-api-422-put');
+uses()->group('api-422');
+uses()->group('api-422-put');
 
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = updatedUserColorData) {
+describe('422 > PUT', function ($updatedUserColorData = updatedUserColorData) {
     /**
      * USER ID TESTS
      */
     $updatedUserColorData['user_id'] = '';
-    test('invalid user_id > empty', apiTest(
+    test('user_id > empty', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -29,7 +31,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['user_id'] = 'user_id';
-    test('invalid user_id > string', apiTest(
+    test('user_id > string', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -41,7 +43,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['user_id'] = false;
-    test('invalid user_id > false', apiTest(
+    test('user_id > false', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -53,7 +55,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['user_id'] = [];
-    test('invalid user_id > empty array', apiTest(
+    test('user_id > empty array', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -70,7 +72,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
      * NAME TESTS
      */
     $updatedUserColorData['name'] = '';
-    test('invalid name > empty', apiTest(
+    test('name > empty', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -82,7 +84,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['name'] = 1;
-    test('invalid name > integer', apiTest(
+    test('name > integer', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -94,7 +96,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['name'] = false;
-    test('invalid name > false', apiTest(
+    test('name > false', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -106,7 +108,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['name'] = true;
-    test('invalid name > true', apiTest(
+    test('name > true', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -118,7 +120,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['name'] = [];
-    test('invalid name > empty array', apiTest(
+    test('name > empty array', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -135,7 +137,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
      * VALUE TESTS
      */
     $updatedUserColorData['value'] = '';
-    test('invalid value > empty', apiTest(
+    test('value > empty', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -147,7 +149,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['value'] = 1;
-    test('invalid value > integer', apiTest(
+    test('value > integer', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -159,7 +161,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['value'] = false;
-    test('invalid value > false', apiTest(
+    test('value > false', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -171,7 +173,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['value'] = true;
-    test('invalid value > true', apiTest(
+    test('value > true', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -183,7 +185,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['value'] = [];
-    test('invalid value > empty array', apiTest(
+    test('value > empty array', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -200,7 +202,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
      * NEW TESTS
      */
     $updatedUserColorData['new'] = '';
-    test('invalid new > empty', apiTest(
+    test('new > empty', apiTest(
         'PUT',
         'user-colors.update',
         422, $updatedUserColorData,
@@ -211,7 +213,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['new'] = 'not_a_boolean';
-    test('invalid new > string', apiTest(
+    test('new > string', apiTest(
         'PUT',
         'user-colors.update',
         422,
@@ -223,7 +225,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedUserColorData = 
     ));
 
     $updatedUserColorData['new'] = [];
-    test('invalid new > empty array', apiTest(
+    test('new > empty array', apiTest(
         'PUT',
         'user-colors.update',
         422,

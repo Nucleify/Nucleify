@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('money-controller');
+
 use App\Http\Controllers\MoneyController;
 use App\Http\Requests\Money\PostRequest;
 use App\Http\Requests\Money\PutRequest;
@@ -17,63 +19,62 @@ beforeEach(function (): void {
     $this->controller = app()->makeWith(MoneyController::class, ['moneyService' => app()->make(MoneyService::class)]);
 });
 
-test('index > success', function (): void {
-    Money::factory(3)->create();
+describe('200', function (): void {
+    test('index method', function (): void {
+        Money::factory(3)->create();
 
-    $request = new Request;
+        $request = new Request;
 
-    $response = $this->controller->index($request);
+        $response = $this->controller->index($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('countByCreatedLastWeek > success', function (): void {
-    $request = new Request;
+    test('countByCreatedLastWeek method', function (): void {
+        $request = new Request;
 
-    $response = $this->controller->countByCreatedLastWeek($request);
+        $response = $this->controller->countByCreatedLastWeek($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-});
+        expect($response->getStatusCode())->toEqual(200);
+    });
 
-test('show > success', function (): void {
-    $money = Money::factory()->create();
+    test('show method', function (): void {
+        $model = Money::factory()->create();
 
-    $response = $this->controller->show($money->id);
+        $response = $this->controller->show($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('store > success', function (): void {
-    $request = Mockery::mock(PostRequest::class);
-    $request->shouldReceive('validated')
-        ->andReturn(moneyData);
+    test('store method', function (): void {
+        $request = Mockery::mock(PostRequest::class);
+        $request->shouldReceive('validated')
+            ->andReturn(moneyData);
 
-    $response = $this->controller->store($request);
+        $response = $this->controller->store($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('update > success', function (): void {
-    $money = Money::factory()->create();
+    test('update method', function (): void {
+        $model = Money::factory()->create();
 
-    $request = Mockery::mock(PutRequest::class);
-    $request->shouldReceive('validated')
-        ->andReturn(updatedMoneyData);
+        $request = Mockery::mock(PutRequest::class);
+        $request->shouldReceive('validated')
+            ->andReturn(updatedMoneyData);
 
-    $response = $this->controller->update($request, $money->id);
+        $response = $this->controller->update($request, $model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('delete > success', function (): void {
-    $money = Money::factory()->create();
+    test('delete method', function (): void {
+        $model = Money::factory()->create();
 
-    $response = $this->controller->destroy($money->id);
+        $response = $this->controller->destroy($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    $this->assertDatabaseMissing('money', ['id' => $money->id]);
+        expect($response->getStatusCode(), $response->getData(true)['deleted'])
+            ->toEqual(200)
+            ->and($this->assertDatabaseMissing('money', ['id' => $model->id]));
+    });
 });

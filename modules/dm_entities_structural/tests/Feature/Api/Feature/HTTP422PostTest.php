@@ -4,17 +4,22 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('feature-api-422');
+uses()->group('feature-api-422-post');
+uses()->group('api-422');
+uses()->group('api-422-post');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function ($featureData = featureData) {
+describe('422 > POST', function ($featureData = featureData) {
     /**
      * ICON TESTS
      */
     $featureData['icon'] = 1;
-    test('invalid icon > integer', apiTest(
+    test('icon > integer', apiTest(
         'POST',
         'features.store',
         422,
@@ -28,7 +33,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['icon'] = false;
-    test('invalid icon > false', apiTest(
+    test('icon > false', apiTest(
         'POST',
         'features.store',
         422,
@@ -42,7 +47,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['icon'] = true;
-    test('invalid icon > true', apiTest(
+    test('icon > true', apiTest(
         'POST',
         'features.store',
         422,
@@ -56,7 +61,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['icon'] = [];
-    test('invalid icon > empty array', apiTest(
+    test('icon > empty array', apiTest(
         'POST',
         'features.store',
         422,
@@ -73,7 +78,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
      * HEADER TESTS
      */
     $featureData['header'] = '';
-    test('invalid header > empty', apiTest(
+    test('header > empty', apiTest(
         'POST',
         'features.store',
         422,
@@ -85,7 +90,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['header'] = 1;
-    test('invalid header > integer', apiTest(
+    test('header > integer', apiTest(
         'POST',
         'features.store',
         422,
@@ -99,7 +104,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['header'] = false;
-    test('invalid header > false', apiTest(
+    test('header > false', apiTest(
         'POST',
         'features.store',
         422,
@@ -113,7 +118,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['header'] = true;
-    test('invalid header > true', apiTest(
+    test('header > true', apiTest(
         'POST',
         'features.store',
         422,
@@ -127,7 +132,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['header'] = [];
-    test('invalid header > empty array', apiTest(
+    test('header > empty array', apiTest(
         'POST',
         'features.store',
         422,
@@ -144,7 +149,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
      * DESCRIPTION TESTS
      */
     $featureData['description'] = 1;
-    test('invalid description > integer', apiTest(
+    test('description > integer', apiTest(
         'POST',
         'features.store',
         422,
@@ -158,7 +163,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['description'] = false;
-    test('invalid description > false', apiTest(
+    test('description > false', apiTest(
         'POST',
         'features.store',
         422,
@@ -172,7 +177,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['description'] = true;
-    test('invalid description > true', apiTest(
+    test('description > true', apiTest(
         'POST',
         'features.store',
         422,
@@ -186,7 +191,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['description'] = [];
-    test('invalid description > empty array', apiTest(
+    test('description > empty array', apiTest(
         'POST',
         'features.store',
         422,
@@ -203,7 +208,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
      * CATEGORY TESTS
      */
     $featureData['category'] = '';
-    test('invalid content > empty', apiTest(
+    test('content > empty', apiTest(
         'POST',
         'features.store',
         422,
@@ -215,7 +220,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['category'] = 1;
-    test('invalid category > integer', apiTest(
+    test('category > integer', apiTest(
         'POST',
         'features.store',
         422,
@@ -229,7 +234,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'POST',
         'features.store',
         422,
@@ -243,7 +248,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'POST',
         'features.store',
         422,
@@ -257,7 +262,7 @@ describe('422 > Unprocessable Content > POST', function ($featureData = featureD
     ));
 
     $featureData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'POST',
         'features.store',
         422,
