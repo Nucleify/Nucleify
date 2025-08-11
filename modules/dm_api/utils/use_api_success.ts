@@ -18,7 +18,9 @@ export function useApiSuccess() {
       await getData()
     }
 
-    const message = response?.message || 'Operation completed successfully'
+    const message =
+      (response as Record<'message', string>)?.message ||
+      'Operation completed successfully'
 
     if (flashToast) {
       flashToast(message, 'success')

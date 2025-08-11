@@ -4,7 +4,10 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-describe('401 > Unauthorized', function (): void {
+uses()->group('money-api-401');
+uses()->group('api-401');
+
+describe('401', function (): void {
     test('index api', apiTest(
         'GET',
         'money.index',

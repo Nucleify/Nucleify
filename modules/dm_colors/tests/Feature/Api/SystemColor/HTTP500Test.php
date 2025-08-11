@@ -5,6 +5,7 @@ if (!defined('PEST_RUNNING')) {
 }
 
 uses()->group('system-color-api-500');
+uses()->group('api-500');
 
 use App\Models\SystemColor;
 use App\Services\SystemColorService;
@@ -17,16 +18,15 @@ beforeEach(function (): void {
     $this->service = mock(SystemColorService::class);
 });
 
-describe('500 > Internal Server Error', function (): void {
+describe('500', function (): void {
     test('index api', function (): void {
         $this->service
             ->shouldReceive('index')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('system-colors.index'));
-
-        $response->assertStatus(500)
+        $this->getJson(route('system-colors.index'))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -37,9 +37,8 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('system-colors.show', ['id' => 1]));
-
-        $response->assertStatus(500)
+        $this->getJson(route('system-colors.show', ['id' => 1]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -49,9 +48,8 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->postJson(route('system-colors.store'), systemColorData);
-
-        $response->assertStatus(500)
+        $this->postJson(route('system-colors.store'), systemColorData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -62,23 +60,21 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->putJson(route('system-colors.update', systemColorData['id']), updatedSystemColorData);
-
-        $response->assertStatus(500)
+        $this->putJson(route('system-colors.update', systemColorData['id']), updatedSystemColorData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
     test('destroy api', function (): void {
-        $color = SystemColor::factory()->create();
+        $model = SystemColor::factory()->create();
 
         $this->service
             ->shouldReceive('delete')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->deleteJson(route('system-colors.destroy', ['id' => $color->id]));
-
-        $response->assertStatus(500)
+        $this->deleteJson(route('system-colors.destroy', ['id' => $model->id]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 });

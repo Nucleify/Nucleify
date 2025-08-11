@@ -1,9 +1,9 @@
 import type {
-  FileObjectInterface,
   DeleteEntityRequestType,
   EditEntityRequestType,
   EntityCountResultsType,
   EntityResultsType,
+  FileObjectInterface,
   GetAllEntitiesRequestType,
   GetEntityRequestType,
   LoadingRefType,

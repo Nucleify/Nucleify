@@ -13,20 +13,9 @@
 import type { Ref } from 'vue'
 import { onMounted, ref, watch } from 'vue'
 
+import { articleRequests, contactRequests, moneyRequests } from 'atomic'
+
 import { PolarAreaChart } from './components'
-
-import {
-  articleRequests,
-  contactRequests,
-  moneyRequests,
-  useDisplayCharts,
-} from 'atomic'
-
-const { setDefaultChartsDisplay } = useDisplayCharts()
-
-onMounted(() => {
-  setDefaultChartsDisplay(true)
-})
 
 const {
   results: articles,

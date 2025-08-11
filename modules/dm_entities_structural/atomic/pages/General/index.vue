@@ -6,7 +6,7 @@
         href="/structural/cards"
         header="Cards"
         :count="cards?.length"
-        icon="pi pi-stop"
+        icon="prime:stop"
         :count-secondary="cardsCreatedLastWeek"
         text-secondary="this week"
         ad-type="card"
@@ -15,7 +15,7 @@
         href="/structural/features"
         header="Features"
         :count="features?.length"
-        icon="pi pi-star"
+        icon="prime:star"
         :count-secondary="featuresCreatedLastWeek"
         text-secondary="this week"
         ad-type="feature"
@@ -24,7 +24,7 @@
         href="/structural/questions"
         header="Questions"
         :count="questions?.length"
-        icon="pi pi-question"
+        icon="prime:question"
         :count-secondary="questionsCreatedLastWeek"
         text-secondary="this week"
         ad-type="question"
@@ -33,7 +33,7 @@
         href="/structural/technologies"
         header="Technologies"
         :count="technologies?.length"
-        icon="pi pi-microchip-ai"
+        icon="prime:microchip-ai"
         :count-secondary="technologiesCreatedLastWeek"
         text-secondary="this week"
         ad-type="technology"
@@ -42,7 +42,7 @@
         href="/structural/links"
         header="Links"
         :count="links?.length"
-        icon="pi pi-link"
+        icon="prime:link"
         :count-secondary="linksCreatedLastWeek"
         text-secondary="this week"
         ad-type="link"
@@ -50,7 +50,7 @@
     </div>
 
     <ad-card-chart
-      v-if="display.Structural"
+      entity="Structural"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -102,10 +102,7 @@ import {
   linkRequests,
   questionRequests,
   technologyRequests,
-  useDisplayCharts,
 } from 'atomic'
-
-const { display } = useDisplayCharts()
 
 const {
   results: cards,

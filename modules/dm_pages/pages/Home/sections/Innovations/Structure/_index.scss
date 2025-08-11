@@ -11,9 +11,11 @@
       flex-direction: column-reverse;
       align-items: center;
       gap: 1em;
+      padding: 0;
 
       .animation-container {
         padding: 0 1em;
+        opacity: 0;
 
         svg {
           width: 100%;
@@ -53,6 +55,7 @@
         .title,
         .description {
           max-width: 600px;
+          opacity: 0;
         }
       }
     }

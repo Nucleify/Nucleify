@@ -96,7 +96,7 @@
       <div class="dialog-buttons-container">
         <ad-button
           :label="props.cancelButtonLabel"
-          icon="pi pi-times"
+          icon="prime:times"
           severity="secondary"
           rounded
           text
@@ -106,7 +106,7 @@
           v-if="props.fields && props.confirm"
           :ad-type="props.entity"
           :label="props.confirmButtonLabel"
-          icon="pi pi-check"
+          icon="prime:check"
           rounded
           text
           @click="props.confirm(formData, props.getData)"
@@ -117,7 +117,7 @@
           "
           :ad-type="props.entity"
           :label="props.confirmButtonLabel"
-          icon="pi pi-check"
+          icon="prime:check"
           rounded
           text
           @click="props.confirm(props.selectedObject.id, props.getData)"

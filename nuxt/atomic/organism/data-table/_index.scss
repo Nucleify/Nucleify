@@ -7,6 +7,15 @@
   justify-content: space-between;
   transition: 0.2s 0.15s opacity;
 
+  .p-button {
+    padding: 0.25em;
+
+    .iconify {
+      font-size: 1.5em;
+      color: $primary-color;
+    }
+  }
+
   .p-row-even {
     background: $p-card-background !important;
   }
@@ -28,8 +37,8 @@
     margin-top: 4px;
   }
 
-  @each $type in main, activity, article, card, contact, feature, file, link,
-    money, question, technology, user
+  @each $type in activity, article, card, contact, feature, file, link, money,
+    question, task, technology, user
   {
     &[ad-type='#{$type}'] {
       @include entity-datatable-styles(
@@ -134,7 +143,7 @@
       .action-column-content {
         display: flex;
         justify-content: space-around;
-        gap: 0.15em;
+        gap: 0.1em;
       }
     }
 

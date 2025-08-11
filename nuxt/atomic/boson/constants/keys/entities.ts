@@ -13,4 +13,5 @@ export const allEntitiesKeys: string[] = [
   'file',
   ...entitiesKeys,
   ...structuralEntitiesKeys,
+  'task',
 ]

@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-model');
+
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -12,11 +14,11 @@ beforeEach(function (): void {
     $this->model = User::factory()->create();
 });
 
-describe('Instance', function (): void {
-    test('can be created', function (): void {
-        expect($this->model)->toBeInstanceOf(User::class);
-    });
+test('can be created', function (): void {
+    expect($this->model)->toBeInstanceOf(User::class);
+});
 
+describe('Instance', function (): void {
     test('can have many contacts', function (): void {
         $contacts = $this->model->contacts();
 
@@ -72,33 +74,33 @@ describe('Instance', function (): void {
     });
 
     test('can check if user is a user', function (): void {
-        $user = User::factory()->create(['role' => 'user']);
+        $model = User::factory()->create(['role' => 'user']);
 
-        expect($user->isUser())->toBeTrue();
+        expect($model->isUser())->toBeTrue();
     });
 
     test('can check if user is tech', function (): void {
-        $user = User::factory()->create(['role' => 'tech']);
+        $model = User::factory()->create(['role' => 'tech']);
 
-        expect($user->isTech())->toBeTrue();
+        expect($model->isTech())->toBeTrue();
     });
 
     test('can check if user is test admin', function (): void {
-        $user = User::factory()->create(['role' => 'test_admin']);
+        $model = User::factory()->create(['role' => 'test_admin']);
 
-        expect($user->isTestAdmin())->toBeTrue();
+        expect($model->isTestAdmin())->toBeTrue();
     });
 
     test('can check if user is admin', function (): void {
-        $user = User::factory()->create(['role' => 'admin']);
+        $model = User::factory()->create(['role' => 'admin']);
 
-        expect($user->isAdmin())->toBeTrue();
+        expect($model->isAdmin())->toBeTrue();
     });
 
     test('can check if user is super admin', function (): void {
-        $user = User::factory()->create(['role' => 'super_admin']);
+        $model = User::factory()->create(['role' => 'super_admin']);
 
-        expect($user->isSuperAdmin())->toBeTrue();
+        expect($model->isSuperAdmin())->toBeTrue();
     });
 });
 
@@ -131,44 +133,44 @@ describe('Scope', function (): void {
         User::factory()->create(['role' => 'user']);
         User::factory()->create(['role' => 'admin']);
 
-        $users = User::getByUserRole()->get();
+        $foundModel = User::getByUserRole()->first();
 
-        expect($users->first()->role)->toBe('user');
+        expect($foundModel->role)->toBe('user');
     });
 
     test('can filter users by tech role using scopeGetByTechRole', function (): void {
         User::factory()->create(['role' => 'tech']);
         User::factory()->create(['role' => 'admin']);
 
-        $users = User::getByTechRole()->get();
+        $foundModel = User::getByTechRole()->first();
 
-        expect($users->first()->role)->toBe('tech');
+        expect($foundModel->role)->toBe('tech');
     });
 
     test('can filter users by test admin role using scopeGetByTestAdminRole', function (): void {
         User::factory()->create(['role' => 'test_admin']);
         User::factory()->create(['role' => 'admin']);
 
-        $users = User::getByTestAdminRole()->get();
+        $foundModel = User::getByTestAdminRole()->first();
 
-        expect($users->first()->role)->toBe('test_admin');
+        expect($foundModel->role)->toBe('test_admin');
     });
 
     test('can filter users by admin role using scopeGetByAdminRole', function (): void {
         User::factory()->create(['role' => 'admin']);
         User::factory()->create(['role' => 'user']);
 
-        $users = User::getByAdminRole()->get();
+        $foundModel = User::getByAdminRole()->first();
 
-        expect($users->first()->role)->toBe('admin');
+        expect($foundModel->role)->toBe('admin');
     });
 
     test('can filter users by super admin role using scopeGetBySuperAdminRole', function (): void {
         User::factory()->create(['role' => 'super_admin']);
         User::factory()->create(['role' => 'user']);
 
-        $users = User::getBySuperAdminRole()->get();
+        $foundModel = User::getBySuperAdminRole()->first();
 
-        expect($users->first()->role)->toBe('super_admin');
+        expect($foundModel->role)->toBe('super_admin');
     });
 });

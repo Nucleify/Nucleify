@@ -19,37 +19,37 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null work_phone
  * @property string|null address
  * @property string|null birthday
- * @property mixed|null contact_groups
+ * @property string|null contact_groups
  * @property string|null role
  * @property string created_at
  * @property string updated_at
- * @property int getId
- * @property int getUserId
- * @property string getFirstName
- * @property string|null getLastName
- * @property string|null getFullName
- * @property string|null getEmail
- * @property string|null getRole
- * @property string|null getPersonalPhone
- * @property string|null getWorkPhone
- * @property string|null getAddress
- * @property string|null getBirthday
- * @property array|null getContactGroups
- * @property string getCreatedAt
- * @property string getUpdatedAt
- * @property BelongsTo user
- * @property Builder scopeGetById
- * @property Builder scopeGetByUserId
- * @property Builder scopeGetByFirstName
- * @property Builder scopeGetByLastName
- * @property Builder scopeGetByEmail
- * @property Builder scopeGetByPersonalPhone
- * @property Builder scopeGetByWorkPhone
- * @property Builder scopeGetByAddress
- * @property Builder scopeGetByBirthday
- * @property Builder scopeGetByRole
- * @property Builder scopeGetByCreatedAt
- * @property Builder scopeGetByUpdatedAt
+ * @property int getId()
+ * @property int getUserId()
+ * @property string getFirstName()
+ * @property string|null getLastName()
+ * @property string|null getFullName()
+ * @property string|null getEmail()
+ * @property string|null getRole()
+ * @property string|null getPersonalPhone()
+ * @property string|null getWorkPhone()
+ * @property string|null getAddress()
+ * @property string|null getBirthday()
+ * @property string|null getContactGroups()
+ * @property string getCreatedAt()
+ * @property string getUpdatedAt()
+ * @property BelongsTo user()
+ * @property Builder scopeGetById()
+ * @property Builder scopeGetByUserId()
+ * @property Builder scopeGetByFirstName()
+ * @property Builder scopeGetByLastName()
+ * @property Builder scopeGetByEmail()
+ * @property Builder scopeGetByPersonalPhone()
+ * @property Builder scopeGetByWorkPhone()
+ * @property Builder scopeGetByAddress()
+ * @property Builder scopeGetByBirthday()
+ * @property Builder scopeGetByRole()
+ * @property Builder scopeGetByCreatedAt()
+ * @property Builder scopeGetByUpdatedAt()
  */
 class Contact extends Model implements ContactContract
 {
@@ -169,37 +169,37 @@ class Contact extends Model implements ContactContract
         return $query->where('first_name', $parameter);
     }
 
-    public function scopeGetByLastName(Builder $query, ?string $parameter): Builder
+    public function scopeGetByLastName(Builder $query, string $parameter): Builder
     {
         return $query->where('last_name', $parameter);
     }
 
-    public function scopeGetByEmail(Builder $query, ?string $parameter): Builder
+    public function scopeGetByEmail(Builder $query, string $parameter): Builder
     {
         return $query->where('email', $parameter);
     }
 
-    public function scopeGetByPersonalPhone(Builder $query, ?string $parameter): Builder
+    public function scopeGetByPersonalPhone(Builder $query, string $parameter): Builder
     {
         return $query->where('personal_phone', $parameter);
     }
 
-    public function scopeGetByWorkPhone(Builder $query, ?string $parameter): Builder
+    public function scopeGetByWorkPhone(Builder $query, string $parameter): Builder
     {
         return $query->where('work_phone', $parameter);
     }
 
-    public function scopeGetByAddress(Builder $query, ?string $parameter): Builder
+    public function scopeGetByAddress(Builder $query, string $parameter): Builder
     {
         return $query->where('address', $parameter);
     }
 
-    public function scopeGetByBirthday(Builder $query, ?string $parameter): Builder
+    public function scopeGetByBirthday(Builder $query, string $parameter): Builder
     {
         return $query->where('birthday', $parameter);
     }
 
-    public function scopeGetByRole(Builder $query, ?string $parameter): Builder
+    public function scopeGetByRole(Builder $query, string $parameter): Builder
     {
         return $query->where('role', $parameter);
     }

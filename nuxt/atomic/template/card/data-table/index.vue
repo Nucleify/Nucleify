@@ -23,7 +23,7 @@
           <ad-button
             v-if="adType !== 'activity'"
             :ad-type="adType"
-            icon="pi pi-plus"
+            icon="prime:plus"
             class=""
             rounded
             text

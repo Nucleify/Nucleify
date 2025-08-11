@@ -4,10 +4,13 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('contact-migrations');
+
 use Illuminate\Support\Facades\Schema;
 
-it('can create table', function (): void {
-    expect(Schema::hasTable('contacts'))->toBeTrue()
+test('can create table', function (): void {
+    expect(Schema::hasTable('contacts'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('contacts', [
             'id',
             'first_name',
@@ -21,10 +24,11 @@ it('can create table', function (): void {
             'role',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
-it('can be rolled back', function (): void {
+test('can be rolled back', function (): void {
     $this->artisan('migrate:rollback');
 
     expect(Schema::hasTable('contacts'))->toBeFalse();

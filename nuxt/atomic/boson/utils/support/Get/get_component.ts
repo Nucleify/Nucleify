@@ -1,10 +1,10 @@
 import type { ComponentType } from 'atomic'
 import {
   AdDatePicker,
-  AdSelect,
   AdInputMask,
   AdInputText,
   AdPassword,
+  AdSelect,
   AdTextarea,
 } from 'atomic'
 

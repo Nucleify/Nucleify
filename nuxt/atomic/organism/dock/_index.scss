@@ -4,6 +4,8 @@
 .p-dock.dock {
   position: fixed;
   z-index: 98;
+  opacity: 0;
+  animation: fade-in 0.3s 0.5s ease-in forwards;
 
   .logo[type='main'] {
     .lighter-color {
@@ -60,7 +62,7 @@
           box-shadow: none !important;
         }
 
-        i {
+        .iconify {
           color: $primary-white-green-text-color;
           font-size: 1.25em;
         }
@@ -205,8 +207,8 @@ $items: (
 );
 
 @each $item, $props in $items {
-  #app:has(> ##{$item}) {
-    .dock .pi[ad-type='#{$item}'] {
+  #__nuxt:has(##{$item}) {
+    .dock .iconify[ad-type='#{$item}'] {
       @include entity-dock-item-styles(var(map.get($props, color)) !important);
     }
   }

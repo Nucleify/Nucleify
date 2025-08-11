@@ -9,13 +9,13 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = updatedModuleData) {
+describe('422 > PUT', function ($updatedModuleData = updatedModuleData) {
 
     /**
      * NAME
      */
     $updatedModuleData['name'] = '';
-    test('invalid name > empty string', apiTest(
+    test('name > empty string', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -25,7 +25,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['name'] = [];
-    test('invalid name > empty array', apiTest(
+    test('name > empty array', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -35,7 +35,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['name'] = false;
-    test('invalid name > false', apiTest(
+    test('name > false', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -45,7 +45,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['name'] = true;
-    test('invalid name > true', apiTest(
+    test('name > true', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -55,7 +55,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['name'] = 1;
-    test('invalid name > integer', apiTest(
+    test('name > integer', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -70,7 +70,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
      * DESCRIPTION
      */
     $updatedModuleData['description'] = 12345;
-    test('invalid description > integer', apiTest(
+    test('description > integer', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -80,7 +80,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['description'] = false;
-    test('invalid description > false', apiTest(
+    test('description > false', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -90,7 +90,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['description'] = true;
-    test('invalid description > true', apiTest(
+    test('description > true', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -105,7 +105,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
      * CATEGORY
      */
     $updatedModuleData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -115,7 +115,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['category'] = null;
-    test('invalid category > null', apiTest(
+    test('category > null', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -125,7 +125,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -135,7 +135,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -150,7 +150,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
      * VERSION
      */
     $updatedModuleData['version'] = [];
-    test('invalid version > empty array', apiTest(
+    test('version > empty array', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -160,7 +160,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['version'] = 1.1;
-    test('invalid version > float', apiTest(
+    test('version > float', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -171,7 +171,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['version'] = true;
-    test('invalid version > true', apiTest(
+    test('version > true', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -181,7 +181,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['version'] = false;
-    test('invalid version > false', apiTest(
+    test('version > false', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -196,7 +196,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
      * ENABLED
      */
     $updatedModuleData['enabled'] = 'string';
-    test('invalid enabled > string', apiTest(
+    test('enabled > string', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -206,7 +206,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['enabled'] = '';
-    test('invalid enabled > empty string', apiTest(
+    test('enabled > empty string', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -216,7 +216,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['enabled'] = [];
-    test('invalid enabled > empty array', apiTest(
+    test('enabled > empty array', apiTest(
         'PUT',
         'modules.update',
         422,
@@ -226,7 +226,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedModuleData = upd
     ));
 
     $updatedModuleData['enabled'] = null;
-    test('invalid enabled > null', apiTest(
+    test('enabled > null', apiTest(
         'PUT',
         'modules.update',
         422,

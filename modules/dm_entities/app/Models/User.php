@@ -19,36 +19,36 @@ use Multicaret\Acquaintances\Traits\Friendable;
  * @property string role
  * @property string created_at
  * @property string updated_at
- * @property int getId
- * @property string getName
- * @property string getEmail
- * @property string getRole
- * @property string getCreatedAt
- * @property string getUpdatedAt
- * @property bool isUser
- * @property bool isTech
- * @property bool isTestAdmin
- * @property bool isAdmin
- * @property bool isSuperAdmin
- * @property bool isStaff
- * @property bool hasRole
- * @property Builder scopeGetById
- * @property Builder scopeGetByName
- * @property Builder scopeGetByEmail
- * @property Builder scopeGetByRole
- * @property Builder scopeGetByCreatedAt
- * @property Builder scopeGetByUpdatedAt
- * @property Builder scopeGetByUserRole
- * @property Builder scopeGetByTechRole
- * @property Builder scopeGetByTestAdminRole
- * @property Builder scopeGetByAdminRole
- * @property Builder scopeGetBySuperAdminRole
- * @property HasMany contacts
- * @property HasMany files
- * @property HasMany money
- * @property HasMany card
- * @property HasMany question
- * @property void createContactFromUserDetails
+ * @property int getId()
+ * @property string getName()
+ * @property string getEmail()
+ * @property string getRole()
+ * @property string getCreatedAt()
+ * @property string getUpdatedAt()
+ * @property bool isUser()
+ * @property bool isTech()
+ * @property bool isTestAdmin()
+ * @property bool isAdmin()
+ * @property bool isSuperAdmin()
+ * @property bool isStaff()
+ * @property bool hasRole()
+ * @property Builder scopeGetById()
+ * @property Builder scopeGetByName()
+ * @property Builder scopeGetByEmail()
+ * @property Builder scopeGetByRole()
+ * @property Builder scopeGetByCreatedAt()
+ * @property Builder scopeGetByUpdatedAt()
+ * @property Builder scopeGetByUserRole()
+ * @property Builder scopeGetByTechRole()
+ * @property Builder scopeGetByTestAdminRole()
+ * @property Builder scopeGetByAdminRole()
+ * @property Builder scopeGetBySuperAdminRole()
+ * @property HasMany contacts()
+ * @property HasMany files()
+ * @property HasMany money()
+ * @property HasMany card()
+ * @property HasMany question()
+ * @property void createContactFromUserDetails()
  */
 class User extends Authenticatable implements UserContract
 {
@@ -244,6 +244,11 @@ class User extends Authenticatable implements UserContract
     public function money(): HasMany
     {
         return $this->hasMany(Money::class, 'user_id');
+    }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'user_id');
     }
 
     public function card(): HasMany

@@ -1,5 +1,11 @@
 @import './components';
 
+body:has(#back-office) {
+  .navbar {
+    display: none;
+  }
+}
+
 .navbar {
   width: 100%;
   z-index: 9999;
@@ -11,6 +17,7 @@
   border: $border-none;
   border-radius: $border-radius-none;
   padding: 1em;
+  opacity: 0;
 
   .container {
     display: flex;

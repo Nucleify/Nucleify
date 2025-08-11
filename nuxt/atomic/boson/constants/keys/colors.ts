@@ -10,6 +10,7 @@ export const colorKeys: string[] = [
   'feature',
   'link',
   'question',
+  'task',
   'technology',
 ]
 

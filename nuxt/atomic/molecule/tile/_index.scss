@@ -11,7 +11,7 @@
   background: var(--p-card-background) !important;
 
   @each $type in main, activity, article, card, contact, feature, file, link,
-    money, question, technology, user
+    money, question, task, technology, user
   {
     &[ad-type='#{$type}'] {
       @include entity-tile-styles(
@@ -59,14 +59,18 @@
       }
     }
 
-    .icon {
+    .icon-container {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 2.2em;
       height: 2.2em;
       border-radius: 0.25em;
-      padding: 0.5em;
+      padding: 0;
+
+      .iconify {
+        font-size: 1.5em;
+      }
     }
   }
 }

@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use App\Models\Module;
+use App\Resources\ModuleResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\ModuleTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ModuleService
 {
@@ -21,7 +22,14 @@ class ModuleService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    public function index(Request $request): mixed
+    /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
+    public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
         $this->defineUserData();
@@ -30,13 +38,17 @@ class ModuleService
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererStructural);
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new ModuleTransformer)
-            ->toArray()['data'];
+        return ModuleResource::collection($result);
     }
 
-    public function show($id): array
+    /**
+     * @param int $id
+     *
+     * @return ModuleResource
+     *
+     * @throws Exception
+     */
+    public function show($id): ModuleResource
     {
         $this->defineUserData();
 
@@ -44,13 +56,17 @@ class ModuleService
 
         $this->logger->log($this->causer->name, $result->getName(), $this->entity, 'showed');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new ModuleTransformer)
-            ->toArray()['data'];
+        return new ModuleResource($result);
     }
 
-    public function create(array $data): array
+    /**
+     * @param array $data
+     *
+     * @return ModuleResource
+     *
+     * @throws Exception
+     */
+    public function create(array $data): ModuleResource
     {
         $this->defineUserData();
 
@@ -58,13 +74,18 @@ class ModuleService
 
         $this->logger->log($this->causer->name, $result->getName(), $this->entity, 'created');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new ModuleTransformer)
-            ->toArray()['data'];
+        return new ModuleResource($result);
     }
 
-    public function update($id, array $data): array
+    /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return ModuleResource
+     *
+     * @throws Exception
+     */
+    public function update($id, array $data): ModuleResource
     {
         $this->defineUserData();
 
@@ -74,12 +95,16 @@ class ModuleService
 
         $this->logger->log($this->causer->name, $result->getName(), $this->entity, 'updated');
 
-        return fractal()
-            ->item($result->fresh())
-            ->transformWith(new ModuleTransformer)
-            ->toArray()['data'];
+        return new ModuleResource($result->fresh());
     }
 
+    /**
+     * @param int $id
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();

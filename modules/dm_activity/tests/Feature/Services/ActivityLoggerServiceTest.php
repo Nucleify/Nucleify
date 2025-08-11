@@ -4,10 +4,12 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('activity-service');
+
 use App\Models\User;
 use App\Services\LoggerService;
 
-it('successfully logs message with attributes for all entities and methods', function (): void {
+test('can successfully log message with attributes for all entities and methods', function (): void {
     $activityLogger = new LoggerService;
     $causer = new User(['name' => 'Test Name']);
 
@@ -20,8 +22,7 @@ it('successfully logs message with attributes for all entities and methods', fun
             $log = $activityLogger->log($causer, $entity, $entity, $method);
             $constructLogMessage = $activityLogger->constructLogMessage($causer->name, getModelByEntity($entity), $entity, $method);
 
-            expect($log)->toBeString();
-            expect($constructLogMessage)->toBeString();
+            expect($log, $constructLogMessage)->toBeString();
 
             expectLogMessage($log, $model, $method, $causer, $entity);
             expectLogMessage($constructLogMessage, $model, $method, $causer, $entity);
@@ -29,7 +30,7 @@ it('successfully logs message with attributes for all entities and methods', fun
     }
 });
 
-it('successfully logs message', function (): void {
+test('can successfully log message', function (): void {
     $activityLogger = new LoggerService;
 
     $log = $activityLogger->logMessage('Example log message');
@@ -37,7 +38,7 @@ it('successfully logs message', function (): void {
     expect($log)->toBeString();
 });
 
-it('does not render log message for unknown entity', function (): void {
+test('can\'t render log message for unknown entity', function (): void {
     $activityLogger = new LoggerService;
     $causer = new User(['name' => 'Test Name']);
     $entity = 'Unknown';

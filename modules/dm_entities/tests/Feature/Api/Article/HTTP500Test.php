@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('article-api-500');
+uses()->group('api-500');
+
 use App\Models\Article;
 use App\Services\ArticleService;
 
@@ -15,16 +18,15 @@ beforeEach(function (): void {
     $this->service = mock(ArticleService::class);
 });
 
-describe('500 > Internal Server Error', function (): void {
+describe('500', function (): void {
     test('index api', function (): void {
         $this->service
             ->shouldReceive('index')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('articles.index'));
-
-        $response->assertStatus(500)
+        $this->getJson(route('articles.index'))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -35,9 +37,8 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('articles.show', ['id' => 1]));
-
-        $response->assertStatus(500)
+        $this->getJson(route('articles.show', ['id' => 1]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -47,9 +48,8 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->postJson(route('articles.store'), articleData);
-
-        $response->assertStatus(500)
+        $this->postJson(route('articles.store'), articleData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -60,14 +60,13 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->putJson(route('articles.update', articleData['id']), updatedArticleData);
-
-        $response->assertStatus(500)
+        $this->putJson(route('articles.update', articleData['id']), updatedArticleData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
     test('destroy api', function (): void {
-        $article = Article::factory()->create();
+        $model = Article::factory()->create();
 
         $this->service
             ->shouldReceive('delete')
@@ -75,9 +74,8 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->deleteJson(route('articles.destroy', ['id' => $article->id]));
-
-        $response->assertStatus(500)
+        $this->deleteJson(route('articles.destroy', ['id' => $model->id]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 });

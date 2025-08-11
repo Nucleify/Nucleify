@@ -1,11 +1,11 @@
 import { ref } from 'vue'
 
 import type {
-  FileObjectInterface,
-  FileRequestsInterface,
   CloseDialogType,
   EntityCountResultsType,
   EntityResultsType,
+  FileObjectInterface,
+  FileRequestsInterface,
   UseLoadingInterface,
 } from 'atomic'
 import { apiHandle, useApiSuccess, useLoading } from 'atomic'
