@@ -1,9 +1,8 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 php .pest/guard_check.php
 
 echo 'Pint checking...'
 ./vendor/bin/pint
 
 npm run check
+npm run typeslint
+npm run tests

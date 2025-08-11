@@ -18,7 +18,7 @@ beforeEach(function (): void {
 describe('RequestGetterTrait', function (): void {
     test('getReferrer handles referer', function (): void {
         $request = new Request;
-        $request->headers->set('referer', "$this->appUrl");
+        $request->headers->set('referer-slug', "$this->appUrl");
 
         expect($this->trait->getReferrer($request))->toBe("$this->appUrl");
     });
@@ -27,7 +27,7 @@ describe('RequestGetterTrait', function (): void {
         $this->actingAs($this->admin);
 
         $request = new Request;
-        $request->headers->set('referer', "$this->appUrl/admin");
+        $request->headers->set('referer-slug', "$this->appUrl/admin");
 
         expect($this->trait->getReferrer($request))->toBe("$this->appUrl/admin")
             ->and($this->trait->getRefererIsAdmin("$this->appUrl/admin"))->toBeTrue();

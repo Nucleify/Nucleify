@@ -21,14 +21,11 @@
       margin-bottom: -30px;
       border-radius: 12px;
       background: $content-background !important;
+      opacity: 0;
 
       .p-card-body {
         padding: 0;
         height: 100%;
-      }
-
-      div[data-pc-section='body'] {
-        opacity: 0;
       }
 
       .home-pie-chart {
@@ -55,6 +52,7 @@
       padding: 0 35px;
       text-align: center;
       margin-bottom: 60px;
+      opacity: 0;
     }
 
     @media (min-width: $lg) {

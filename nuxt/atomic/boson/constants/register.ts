@@ -1,12 +1,12 @@
 import type { App } from 'vue'
 
 import {
-  imgUrl,
   contributorsImgUrl,
-  storysetImgUrl,
+  imgUrl,
   storysetAboutImgUrl,
-  storysetServicesImgUrl,
   storysetBlogImgUrl,
+  storysetImgUrl,
+  storysetServicesImgUrl,
   technologiesImgUrl,
 } from 'atomic'
 

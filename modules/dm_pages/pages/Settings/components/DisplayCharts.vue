@@ -5,12 +5,12 @@
         <ad-heading :tag="4" text="Charts" />
 
         <ad-button
-          icon="pi pi-refresh"
+          icon="prime:refresh"
           ad-type="main"
           class="refresh-button"
           rounded
           text
-          @click="setDefaultChartsDisplay(false, true)"
+          @click="displayChartsStore.setAllTrue()"
         />
       </div>
     </template>
@@ -25,9 +25,9 @@
 
           <ad-select-button
             ad-type="main"
-            :model-value="display[item] ? 'On' : 'Off'"
+            :model-value="displayCharts[item].value ? 'On' : 'Off'"
             :options="options"
-            @click="displayChartsToggle(item)"
+            @click="displayChartsStore.toggle(item)"
           />
         </li>
       </ul>
@@ -36,12 +36,14 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 
-import { displayChartList, useDisplayCharts } from 'atomic'
+import { displayChartList } from 'atomic'
 
-const { display, setDefaultChartsDisplay, displayChartsToggle } =
-  useDisplayCharts()
+import { useDisplayChartsStore } from '~/stores/display_charts'
 
+const displayChartsStore = useDisplayChartsStore()
+const displayCharts = storeToRefs(displayChartsStore)
 const options = ref(['On', 'Off'])
 </script>

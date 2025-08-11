@@ -9,9 +9,9 @@ export const actions = (
   openDialog: OpenDialogFunctionType
 ): readonly ActionInterface[] => {
   const actionData: readonly [string, ActionType][] = [
-    ['pi pi-eye', 'show'],
-    ['pi pi-pencil', 'edit'],
-    ['pi pi-trash', 'delete'],
+    ['prime:eye', 'show'],
+    ['prime:pencil', 'edit'],
+    ['prime:trash', 'delete'],
   ] as const
 
   return actionData.map(

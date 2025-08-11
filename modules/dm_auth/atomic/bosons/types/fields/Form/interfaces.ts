@@ -15,4 +15,7 @@ export interface UseAuthFormInterface {
   submitForm: (
     data: LoginFieldsInterface | RegisterFieldsInterface
   ) => Promise<void>
+  submitAndGo: (
+    data: LoginFieldsInterface | RegisterFieldsInterface
+  ) => Promise<void>
 }

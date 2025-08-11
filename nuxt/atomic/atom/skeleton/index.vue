@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import Skeleton from 'primevue/skeleton' // Import for Storybook
-
 import type { SkeletonInterface } from 'atomic'
+
+import Skeleton from 'primevue/skeleton' // Import for Storybook
 
 const props = defineProps<SkeletonInterface>()
 </script>

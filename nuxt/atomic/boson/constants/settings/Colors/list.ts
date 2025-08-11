@@ -8,6 +8,7 @@ export const colorList: string[] = [
   'Link',
   'Money',
   'Question',
+  'Task',
   'Technology',
   'User',
 ] as const

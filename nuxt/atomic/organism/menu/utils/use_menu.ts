@@ -10,7 +10,7 @@ export function useMenu(): UseMenuInterface {
     selectedObject.value = object
   }
 
-  // eslint-disable-next-line
+  // biome-ignore lint/suspicious/noExplicitAny: fix in future
   function openMenu(menu: any, event: MouseEvent, object: ObjectType): void {
     setSelectedObject(object)
     menu.toggle(event)

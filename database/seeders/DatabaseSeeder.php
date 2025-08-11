@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ModuleSeeder::class);
         $this->showMessage('Module seeding completed.', $this->command);
 
+        $this->call(TaskSeeder::class);
+        $this->showMessage('Tasks seeding completed.', $this->command);
+
         $this->call(ColorsSeeder::class);
         $this->showMessage('Colors seeding completed.', $this->command);
     }

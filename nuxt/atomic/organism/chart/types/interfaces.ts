@@ -3,16 +3,17 @@ import type { CanvasHTMLAttributes } from 'vue'
 import type {
   ActivityLogObjectInterface,
   ArticleObjectInterface,
-  ContactObjectInterface,
-  ChartType,
+  CardObjectInterface,
   ChartMethodType,
+  ChartType,
+  ContactObjectInterface,
+  FeatureObjectInterface,
+  LinkObjectInterface,
   MoneyObjectInterface,
   QuestionObjectInterface,
+  TaskObjectInterface,
   TechnologyObjectInterface,
   UserObjectInterface,
-  CardObjectInterface,
-  LinkObjectInterface,
-  FeatureObjectInterface,
 } from 'atomic'
 
 export interface ChartInterface {
@@ -36,6 +37,7 @@ export interface ChartInterface {
   linkData?: LinkObjectInterface[]
   moneyData?: MoneyObjectInterface[]
   questionData?: QuestionObjectInterface[]
+  taskData?: TaskObjectInterface[]
   technologyData?: TechnologyObjectInterface[]
   userData?: UserObjectInterface[]
   chartClass?: string
@@ -54,6 +56,7 @@ export interface DisplayChartsInterface {
   Money: boolean
   Question: boolean
   Structural: boolean
+  Task: boolean
   Technology: boolean
 }
 

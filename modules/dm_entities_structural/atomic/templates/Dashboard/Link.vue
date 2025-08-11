@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { useLinkFields, useDialog, linkRequests } from 'atomic'
+import { linkRequests, useDialog, useLinkFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

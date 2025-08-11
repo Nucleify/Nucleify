@@ -3,8 +3,6 @@ import gsap from 'gsap'
 export function useBounceAnimation() {
   let ballBounce: gsap.core.Tween | null = null
 
-  gsap.set('svg', { opacity: 1 })
-
   ballBounce = gsap.to('.ball', {
     keyframes: {
       '0%': { y: -50, scaleX: 1, scaleY: 1 },
