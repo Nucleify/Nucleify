@@ -48,7 +48,7 @@ class LoggerService
 
     public function constructLogMessage(string $causer, ?string $model, string $entity, string $method): string
     {
-        if (!in_array($entity, ['activity', 'article', 'contact', 'money', 'question', 'technology', 'user', 'system color', 'user color'])) {
+        if (!in_array($entity, ['activity', 'article', 'contact', 'module', 'money', 'question', 'technology', 'user', 'system color', 'user color'])) {
             return false;
         }
 
