@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('card-model');
+
 use App\Models\Card;
 
 beforeEach(function (): void {

@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('activity-factory');
+
 use Database\Factories\ActivityFactory;
 
 beforeEach(function (): void {

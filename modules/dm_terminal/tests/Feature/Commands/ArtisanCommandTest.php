@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('terminal-command');
+
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;

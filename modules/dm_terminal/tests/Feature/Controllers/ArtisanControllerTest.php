@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('terminal-controller');
+
 use App\Http\Controllers\ArtisanController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;

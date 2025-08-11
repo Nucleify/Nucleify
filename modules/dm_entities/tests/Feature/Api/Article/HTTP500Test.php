@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('article-api-500');
+uses()->group('api-500');
+
 use App\Models\Article;
 use App\Services\ArticleService;
 

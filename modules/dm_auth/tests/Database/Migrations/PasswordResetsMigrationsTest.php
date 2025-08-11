@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('password-resets-migrations');
+
 use Illuminate\Support\Facades\Schema;
 
 test('can create password_resets table', function (): void {

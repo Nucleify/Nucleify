@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('friendship-migrations');
+
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schema;
 

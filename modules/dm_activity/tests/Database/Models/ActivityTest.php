@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('activity-model');
+
 use Database\Factories\ActivityFactory;
 use Spatie\Activitylog\Models\Activity;
 

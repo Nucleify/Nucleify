@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('system-color-factory');
+
 use App\Models\SystemColor;
 
 beforeEach(function (): void {

@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('question-controller');
+
 use App\Http\Controllers\QuestionController;
 use App\Http\Requests\Question\PostRequest;
 use App\Http\Requests\Question\PutRequest;

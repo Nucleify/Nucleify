@@ -5,6 +5,7 @@ if (!defined('PEST_RUNNING')) {
 }
 
 uses()->group('system-color-api-500');
+uses()->group('api-500');
 
 use App\Models\SystemColor;
 use App\Services\SystemColorService;

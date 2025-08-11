@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('task-controller');
+
 use App\Http\Controllers\TaskController;
 use App\Http\Requests\Task\PostRequest;
 use App\Http\Requests\Task\PutRequest;

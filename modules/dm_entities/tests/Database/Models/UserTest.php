@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-model');
+
 use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 

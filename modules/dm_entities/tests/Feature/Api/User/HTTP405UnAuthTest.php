@@ -4,6 +4,11 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-api-405');
+uses()->group('user-api-405-unauth');
+uses()->group('api-405');
+uses()->group('api-405-unauth');
+
 describe('405 > Unauthorized', function (): void {
     test('put > index api', function (): void {
         $this->put(route('users.index', 1))

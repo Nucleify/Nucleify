@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('friendship-controller');
+
 use App\Http\Controllers\FriendController;
 use App\Services\FriendshipService;
 use Database\Factories\UserFactory;

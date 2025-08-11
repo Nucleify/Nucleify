@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('technology-controller');
+
 use App\Http\Controllers\TechnologyController;
 use App\Http\Requests\Technology\PostRequest;
 use App\Http\Requests\Technology\PutRequest;

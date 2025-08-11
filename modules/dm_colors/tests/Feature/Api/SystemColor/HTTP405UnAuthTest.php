@@ -6,6 +6,8 @@ if (!defined('PEST_RUNNING')) {
 
 uses()->group('system-color-api-405');
 uses()->group('system-color-api-405-unauth');
+uses()->group('api-405');
+uses()->group('api-405-unauth');
 
 describe('405 > Unauthorized', function (): void {
     test('put > index api', function (): void {

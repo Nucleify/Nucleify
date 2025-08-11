@@ -31,11 +31,23 @@ uses()
     ->in('Database/Models');
 
 uses()
+    ->group('activity-model')
+    ->in('Database/Models');
+
+uses()
     ->group('migrations')
     ->in('Database/Migrations');
 
 uses()
+    ->group('activity-migrations')
+    ->in('Database/Migrations');
+
+uses()
     ->group('factories')
+    ->in('Database/Factories');
+
+uses()
+    ->group('activity-factory')
     ->in('Database/Factories');
 
 /**
@@ -54,9 +66,21 @@ uses()
     ->in('Feature');
 
 uses()
+    ->group('activity-feature')
+    ->in('Feature');
+
+uses()
     ->group('controllers')
     ->in('Feature/Controllers');
 
 uses()
+    ->group('activity-controller')
+    ->in('Feature/Controllers');
+
+uses()
     ->group('services')
+    ->in('Feature/Services');
+
+uses()
+    ->group('activity-service')
     ->in('Feature/Services');

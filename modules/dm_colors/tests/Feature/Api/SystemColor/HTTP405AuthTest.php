@@ -6,6 +6,8 @@ if (!defined('PEST_RUNNING')) {
 
 uses()->group('system-color-api-405');
 uses()->group('system-color-api-405-auth');
+uses()->group('api-405');
+uses()->group('api-405-auth');
 
 beforeEach(function (): void {
     $this->createUsers();

@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-api-500');
+uses()->group('api-500');
+
 use App\Models\User;
 use App\Services\UserService;
 

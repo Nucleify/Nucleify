@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('question-factory');
+
 use App\Models\Question;
 
 beforeEach(function (): void {

@@ -5,6 +5,7 @@ if (!defined('PEST_RUNNING')) {
 }
 
 uses()->group('system-color-api-302');
+uses()->group('api-302');
 
 beforeEach(function (): void {
     $this->createUsers();

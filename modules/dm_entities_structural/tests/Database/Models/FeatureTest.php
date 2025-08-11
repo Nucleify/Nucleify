@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('feature-model');
+
 use App\Models\Feature;
 
 beforeEach(function (): void {

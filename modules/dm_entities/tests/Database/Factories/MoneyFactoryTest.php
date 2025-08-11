@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('money-factory');
+
 use App\Models\Money;
 
 beforeEach(function (): void {

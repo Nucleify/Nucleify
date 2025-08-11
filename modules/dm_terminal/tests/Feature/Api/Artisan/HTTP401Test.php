@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('terminal-api-401');
+uses()->group('api-401');
+
 describe('401', function (): void {
     test('migrate:rollback command', function (): void {
         $response = $this->postJson(route('artisan.run'), ['command' => 'migrate:rollback']);

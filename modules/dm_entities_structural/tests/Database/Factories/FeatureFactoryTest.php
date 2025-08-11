@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('feature-factory');
+
 use App\Models\Feature;
 
 test('can create record', function (): void {

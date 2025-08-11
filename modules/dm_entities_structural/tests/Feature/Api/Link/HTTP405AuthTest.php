@@ -4,6 +4,11 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('link-api-405');
+uses()->group('link-api-405-auth');
+uses()->group('api-405');
+uses()->group('api-405-auth');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);

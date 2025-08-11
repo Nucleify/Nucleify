@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-color-model');
+
 use App\Models\UserColor;
 
 beforeEach(function (): void {

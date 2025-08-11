@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('feature-controller');
+
 use App\Http\Controllers\FeatureController;
 use App\Http\Requests\Feature\PostRequest;
 use App\Http\Requests\Feature\PutRequest;

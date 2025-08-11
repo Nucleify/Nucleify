@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('activity-controller');
+
 use App\Http\Controllers\ActivityController;
 use App\Services\ActivityService;
 use Database\Factories\ActivityFactory;

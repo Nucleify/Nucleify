@@ -5,9 +5,7 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-if (!defined('PEST_RUNNING')) {
-    return;
-}
+uses()->group('feature-migrations');
 
 use Illuminate\Support\Facades\Schema;
 

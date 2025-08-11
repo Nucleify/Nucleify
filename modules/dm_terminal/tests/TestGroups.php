@@ -5,7 +5,7 @@ if (!defined('PEST_RUNNING')) {
 }
 
 /**
- *  Main tests group
+ *  Main groups
  */
 uses()
     ->group('dm-terminal')
@@ -31,9 +31,21 @@ uses()
     ->in('Feature');
 
 uses()
+    ->group('terminal-feature')
+    ->in('Feature');
+
+uses()
     ->group('commands')
     ->in('Feature/Commands');
 
 uses()
+    ->group('terminal-command')
+    ->in('Feature/Commands');
+
+uses()
     ->group('controllers')
+    ->in('Feature/Controllers');
+
+uses()
+    ->group('terminal-controller')
     ->in('Feature/Controllers');
