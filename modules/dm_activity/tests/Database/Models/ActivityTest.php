@@ -11,7 +11,7 @@ beforeEach(function (): void {
     $this->createUsers();
 });
 
-it('can be created', function (): void {
+test('can be created', function (): void {
     $activity = ActivityFactory::new()->create();
 
     expect($activity)->toBeInstanceOf(Activity::class);

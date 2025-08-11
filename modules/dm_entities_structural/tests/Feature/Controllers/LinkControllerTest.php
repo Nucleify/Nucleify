@@ -17,74 +17,76 @@ beforeEach(function (): void {
     $this->controller = app()->makeWith(LinkController::class, ['linkService' => app()->make(LinkService::class)]);
 });
 
-test('index > success', function (): void {
-    Link::factory()->count(3)->create();
+describe('200', function (): void {
+    test('index method', function (): void {
+        Link::factory()->count(3)->create();
 
-    $request = new Request;
-    $response = $this->controller->index($request);
+        $request = new Request;
+        $response = $this->controller->index($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true));
+    });
 
-test('getByCategory > success', function (): void {
-    $category = 'technology';
-    $categories = ['other', 'science', $category];
+    test('getByCategory method', function (): void {
+        $category = 'technology';
+        $categories = ['other', 'science', $category];
 
-    foreach ($categories as $cat) {
-        Link::factory()->create(['category' => $cat]);
-    }
+        foreach ($categories as $cat) {
+            Link::factory()->create(['category' => $cat]);
+        }
 
-    $response = $this->controller->getByCategory($category);
-    $data = $response->getData(true);
+        $response = $this->controller->getByCategory($category);
+        $data = $response->getData(true);
 
-    expect($response->getStatusCode())->toEqual(200);
+        expect($response->getStatusCode())->toEqual(200);
 
-    foreach ($data as $link) {
-        expect($link['category'])->toEqual($category);
-    }
+        foreach ($data as $link) {
+            expect($link['category'])->toEqual($category);
+        }
 
-    expect(count($data))->toEqual(Link::where('category', $category)->count());
-});
+        expect(count($data))->toEqual(Link::where('category', $category)->count());
+    });
 
-test('show > success', function (): void {
-    $link = Link::factory()->create();
+    test('show method', function (): void {
+        $link = Link::factory()->create();
 
-    $response = $this->controller->show($link->id);
+        $response = $this->controller->show($link->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true));
+    });
 
-test('store > success', function (): void {
-    $request = Mockery::mock(PostRequest::class);
-    $request->shouldReceive('validated')
-        ->andReturn(linkData);
+    test('store method', function (): void {
+        $request = Mockery::mock(PostRequest::class);
+        $request->shouldReceive('validated')
+            ->andReturn(linkData);
 
-    $response = $this->controller->store($request);
+        $response = $this->controller->store($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true));
+    });
 
-test('update > success', function (): void {
-    $link = Link::factory()->create();
+    test('update method', function (): void {
+        $link = Link::factory()->create();
 
-    $request = Mockery::mock(PutRequest::class);
-    $request->shouldReceive('validated')
-        ->andReturn(linkData);
+        $request = Mockery::mock(PutRequest::class);
+        $request->shouldReceive('validated')
+            ->andReturn(linkData);
 
-    $response = $this->controller->update($request, $link->id);
+        $response = $this->controller->update($request, $link->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true));
+    });
 
-test('delete > success', function (): void {
-    $link = Link::factory()->create();
+    test('delete method', function (): void {
+        $link = Link::factory()->create();
 
-    $response = $this->controller->destroy($link->id);
+        $response = $this->controller->destroy($link->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    $this->assertDatabaseMissing('links', ['id' => $link->id]);
+        expect($response->getStatusCode())->toEqual(200);
+        $this->assertDatabaseMissing('links', ['id' => $link->id]);
+    });
 });

@@ -11,7 +11,7 @@ if (!defined('PEST_RUNNING')) {
 
 use Illuminate\Support\Facades\Schema;
 
-it('can create table', function (): void {
+test('can create table', function (): void {
     expect(Schema::hasTable('features'))->toBeTrue()
         ->and(Schema::hasColumns('features', [
             'id',
@@ -24,7 +24,7 @@ it('can create table', function (): void {
         ]))->toBeTrue();
 });
 
-it('can be rolled back', function (): void {
+test('can be rolled back', function (): void {
     $this->artisan('migrate:rollback');
 
     expect(Schema::hasTable('features'))->toBeFalse();

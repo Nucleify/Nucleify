@@ -9,12 +9,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedContactData = updatedContactData) {
+describe('422 > PUT', function ($updatedContactData = updatedContactData) {
     /**
      * USER ID TESTS
      */
     $updatedContactData['user_id'] = '';
-    test('invalid user_id > empty', apiTest(
+    test('user_id > empty', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -26,7 +26,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['user_id'] = 'user_id';
-    test('invalid user_id > string', apiTest(
+    test('user_id > string', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -38,7 +38,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['user_id'] = false;
-    test('invalid user_id > false', apiTest(
+    test('user_id > false', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -50,7 +50,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['user_id'] = [];
-    test('invalid user_id > empty array', apiTest(
+    test('user_id > empty array', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -67,7 +67,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
      * FIRST NAME TESTS
      */
     $updatedContactData['first_name'] = '';
-    test('invalid first_name > empty', apiTest(
+    test('first_name > empty', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -79,7 +79,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['first_name'] = 1;
-    test('invalid first_name > integer', apiTest(
+    test('first_name > integer', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -94,7 +94,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['first_name'] = false;
-    test('invalid first_name > false', apiTest(
+    test('first_name > false', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -109,7 +109,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['first_name'] = true;
-    test('invalid first_name > true', apiTest(
+    test('first_name > true', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -124,7 +124,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['first_name'] = 'L';
-    test('invalid first_name > too short', apiTest(
+    test('first_name > too short', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -136,7 +136,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['first_name'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do et aliqua laborum.';
-    test('invalid first_name > too long', apiTest(
+    test('first_name > too long', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -148,7 +148,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['first_name'] = [];
-    test('invalid first_name > empty array', apiTest(
+    test('first_name > empty array', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -165,7 +165,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
      * LAST NAME TESTS
      */
     $updatedContactData['last_name'] = 1;
-    test('invalid last_name > integer', apiTest(
+    test('last_name > integer', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -180,7 +180,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['last_name'] = false;
-    test('invalid last_name > false', apiTest(
+    test('last_name > false', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -195,7 +195,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['last_name'] = true;
-    test('invalid last_name > true', apiTest(
+    test('last_name > true', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -210,7 +210,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['last_name'] = 'L';
-    test('invalid last_name > too short', apiTest(
+    test('last_name > too short', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -222,7 +222,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['last_name'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do et aliqua laborum.';
-    test('invalid last_name > too long', apiTest(
+    test('last_name > too long', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -234,7 +234,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['last_name'] = [];
-    test('invalid last_name > empty array', apiTest(
+    test('last_name > empty array', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -254,7 +254,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
      * EMAIL TESTS
      */
     $updatedContactData['email'] = 'admin.example.com';
-    test('invalid email > format', apiTest(
+    test('email > format', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -266,7 +266,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['email'] = 1;
-    test('invalid email > integer', apiTest(
+    test('email > integer', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -281,7 +281,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['email'] = false;
-    test('invalid email > false', apiTest(
+    test('email > false', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -296,7 +296,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['email'] = true;
-    test('invalid email > true', apiTest(
+    test('email > true', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -311,7 +311,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['email'] = [];
-    test('invalid email > empty array', apiTest(
+    test('email > empty array', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -331,7 +331,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
      * PERSONAL PHONE TESTS
      */
     $updatedContactData['personal_phone'] = false;
-    test('invalid personal_phone > false', apiTest(
+    test('personal_phone > false', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -347,7 +347,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['personal_phone'] = true;
-    test('invalid personal_phone > true', apiTest(
+    test('personal_phone > true', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -363,7 +363,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['personal_phone'] = '9876543';
-    test('invalid personal_phone > too short', apiTest(
+    test('personal_phone > too short', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -378,7 +378,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['personal_phone'] = '98 76 543 210 123';
-    test('invalid personal_phone > too long', apiTest(
+    test('personal_phone > too long', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -393,7 +393,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['personal_phone'] = [];
-    test('invalid personal_phone > empty array', apiTest(
+    test('personal_phone > empty array', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -414,7 +414,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
      * WORK PHONE TESTS
      */
     $updatedContactData['work_phone'] = false;
-    test('invalid work_phone > false', apiTest(
+    test('work_phone > false', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -430,7 +430,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['work_phone'] = true;
-    test('invalid work_phone > true', apiTest(
+    test('work_phone > true', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -446,7 +446,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['work_phone'] = '9876543';
-    test('invalid work_phone > too short', apiTest(
+    test('work_phone > too short', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -461,7 +461,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['work_phone'] = '98 76 543 210 123';
-    test('invalid work_phone > too long', apiTest(
+    test('work_phone > too long', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -476,7 +476,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['work_phone'] = [];
-    test('invalid work_phone > empty array', apiTest(
+    test('work_phone > empty array', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -497,7 +497,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
      * ADDRESS TESTS
      */
     $updatedContactData['address'] = 1;
-    test('invalid address > integer', apiTest(
+    test('address > integer', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -512,7 +512,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['address'] = false;
-    test('invalid address > false', apiTest(
+    test('address > false', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -527,7 +527,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['address'] = true;
-    test('invalid address > true', apiTest(
+    test('address > true', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -542,7 +542,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['address'] = 'Lorem ipsum.';
-    test('invalid address > too short', apiTest(
+    test('address > too short', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -554,7 +554,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['address'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua';
-    test('invalid address > too long', apiTest(
+    test('address > too long', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -566,7 +566,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['address'] = [];
-    test('invalid address > empty array', apiTest(
+    test('address > empty array', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -586,7 +586,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
      * BIRTHDAY TESTS
      */
     $updatedContactData['birthday'] = 1;
-    test('invalid birthday > integer', apiTest(
+    test('birthday > integer', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -598,7 +598,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['birthday'] = 'birthday';
-    test('invalid birthday > string', apiTest(
+    test('birthday > string', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -610,7 +610,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['birthday'] = true;
-    test('invalid birthday > true', apiTest(
+    test('birthday > true', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -622,7 +622,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['birthday'] = false;
-    test('invalid birthday > false', apiTest(
+    test('birthday > false', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -634,7 +634,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['birthday'] = '30.30.2023';
-    test('invalid birthday > invalid date', apiTest(
+    test('birthday > date', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -646,7 +646,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['birthday'] = [];
-    test('invalid birthday > empty array', apiTest(
+    test('birthday > empty array', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -663,7 +663,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
      * CONTACT GROUPS TESTS
      */
     $updatedContactData['contact_groups'] = false;
-    test('invalid contact_groups > false', apiTest(
+    test('contact_groups > false', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -675,7 +675,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['contact_groups'] = [];
-    test('invalid contact_groups > empty array', apiTest(
+    test('contact_groups > empty array', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -692,7 +692,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
      * ROLE TESTS
      */
     $updatedContactData['role'] = 1;
-    test('invalid role > integer', apiTest(
+    test('role > integer', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -707,7 +707,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['role'] = 'example';
-    test('invalid role > example', apiTest(
+    test('role > example', apiTest(
         'PUT',
         'contacts.update',
         422,
@@ -721,7 +721,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedContactData = up
     ));
 
     $updatedContactData['role'] = [];
-    test('invalid role > empty array', apiTest(
+    test('role > empty array', apiTest(
         'PUT',
         'contacts.update',
         422,

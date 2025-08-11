@@ -9,12 +9,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = updatedQuestionData) {
+describe('422 > PUT', function ($updatedQuestionData = updatedQuestionData) {
     /**
      * CONTENT TESTS
      */
     $updatedQuestionData['content'] = '';
-    test('invalid content > empty', apiTest(
+    test('content > empty', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -26,7 +26,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
     ));
 
     $updatedQuestionData['content'] = 1;
-    test('invalid content > integer', apiTest(
+    test('content > integer', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -40,7 +40,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
     ));
 
     $updatedQuestionData['content'] = false;
-    test('invalid content > false', apiTest(
+    test('content > false', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -54,7 +54,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
     ));
 
     $updatedQuestionData['content'] = true;
-    test('invalid content > true', apiTest(
+    test('content > true', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -68,7 +68,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
     ));
 
     $updatedQuestionData['content'] = [];
-    test('invalid content > empty array', apiTest(
+    test('content > empty array', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -85,7 +85,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
      * ANSWER TESTS
      */
     $updatedQuestionData['answer'] = 1;
-    test('invalid answer > integer', apiTest(
+    test('answer > integer', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -99,7 +99,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
     ));
 
     $updatedQuestionData['answer'] = false;
-    test('invalid answer > false', apiTest(
+    test('answer > false', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -113,7 +113,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
     ));
 
     $updatedQuestionData['answer'] = true;
-    test('invalid answer > true', apiTest(
+    test('answer > true', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -127,7 +127,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
     ));
 
     $updatedQuestionData['answer'] = [];
-    test('invalid answer > empty array', apiTest(
+    test('answer > empty array', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -144,7 +144,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
      * CATEGORY TESTS
      */
     $updatedQuestionData['category'] = 1;
-    test('invalid category > integer', apiTest(
+    test('category > integer', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -156,7 +156,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
     ));
 
     $updatedQuestionData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -168,7 +168,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
     ));
 
     $updatedQuestionData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'PUT',
         'questions.update',
         422,
@@ -180,7 +180,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedQuestionData = u
     ));
 
     $updatedQuestionData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'PUT',
         'questions.update',
         422,

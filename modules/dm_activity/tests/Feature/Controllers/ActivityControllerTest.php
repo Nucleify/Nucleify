@@ -15,35 +15,37 @@ beforeEach(function (): void {
     $this->controller = app()->makeWith(ActivityController::class, ['articleService' => app()->make(ActivityService::class)]);
 });
 
-test('index > success', function (): void {
-    $response = $this->controller->index();
+describe('200', function (): void {
+    test('index method', function (): void {
+        $response = $this->controller->index();
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true));
+    });
 
-test('countByCreatedLastWeek > success', function (): void {
-    $request = new Request;
+    test('countByCreatedLastWeek method', function (): void {
+        $request = new Request;
 
-    $response = $this->controller->countByCreatedLastWeek($request);
+        $response = $this->controller->countByCreatedLastWeek($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-});
+        expect($response->getStatusCode())->toEqual(200);
+    });
 
-test('show > success', function (): void {
-    $activity = ActivityFactory::new()->create();
+    test('show method', function (): void {
+        $activity = ActivityFactory::new()->create();
 
-    $response = $this->controller->show($activity->id);
+        $response = $this->controller->show($activity->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true));
+    });
 
-test('delete > success', function (): void {
-    $activity = ActivityFactory::new()->create();
+    test('delete method', function (): void {
+        $activity = ActivityFactory::new()->create();
 
-    $response = $this->controller->destroy($activity->id);
+        $response = $this->controller->destroy($activity->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    $this->assertDatabaseMissing('activity_log', ['id' => $activity->id]);
+        expect($response->getStatusCode())->toEqual(200);
+        $this->assertDatabaseMissing('activity_log', ['id' => $activity->id]);
+    });
 });

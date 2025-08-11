@@ -7,7 +7,7 @@ if (!defined('PEST_RUNNING')) {
 use App\Models\User;
 use App\Services\LoggerService;
 
-it('successfully logs message with attributes for all entities and methods', function (): void {
+test('can successfully log message with attributes for all entities and methods', function (): void {
     $activityLogger = new LoggerService;
     $causer = new User(['name' => 'Test Name']);
 
@@ -29,7 +29,7 @@ it('successfully logs message with attributes for all entities and methods', fun
     }
 });
 
-it('successfully logs message', function (): void {
+test('can successfully log message', function (): void {
     $activityLogger = new LoggerService;
 
     $log = $activityLogger->logMessage('Example log message');
@@ -37,7 +37,7 @@ it('successfully logs message', function (): void {
     expect($log)->toBeString();
 });
 
-it('does not render log message for unknown entity', function (): void {
+test('can\'t render log message for unknown entity', function (): void {
     $activityLogger = new LoggerService;
     $causer = new User(['name' => 'Test Name']);
     $entity = 'Unknown';

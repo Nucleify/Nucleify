@@ -10,14 +10,14 @@ beforeEach(function (): void {
     $this->createUsers();
 });
 
-it('can create record', function (): void {
+test('can create record', function (): void {
     $color = UserColor::factory()->create();
 
     $this->assertDatabaseCount('user_colors', 1);
     $this->assertDatabaseHas('user_colors', ['id' => $color->id]);
 });
 
-it('can create multiple records', function (): void {
+test('can create multiple records', function (): void {
     $colors = UserColor::factory()->count(3)->create();
 
     $this->assertDatabaseCount('user_colors', 3);
@@ -26,7 +26,7 @@ it('can create multiple records', function (): void {
     }
 });
 
-it("can't create record", function (): void {
+test('can\'t create record', function (): void {
     try {
         UserColor::factory()->create(['user_id' => 'user_id']);
     } catch (Exception $e) {
@@ -38,7 +38,7 @@ it("can't create record", function (): void {
     $this->fail('Expected exception not thrown.');
 })->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
 
-it("can't create multiple records", function (): void {
+test('can\'t create multiple records', function (): void {
     try {
         UserColor::factory()->count(2)->create(['user_id' => 'user_id']);
     } catch (Exception $e) {

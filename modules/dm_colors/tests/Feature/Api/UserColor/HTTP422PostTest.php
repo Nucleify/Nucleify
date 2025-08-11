@@ -12,12 +12,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function ($userColorData = userColorData) {
+describe('422 > POST', function ($userColorData = userColorData) {
     /**
      * USER ID TESTS
      */
     $userColorData['user_id'] = '';
-    test('invalid user_id > empty', apiTest(
+    test('user_id > empty', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -29,7 +29,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['user_id'] = 'user_id';
-    test('invalid user_id > string', apiTest(
+    test('user_id > string', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -41,7 +41,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['user_id'] = false;
-    test('invalid user_id > false', apiTest(
+    test('user_id > false', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -53,7 +53,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['user_id'] = [];
-    test('invalid user_id > empty array', apiTest(
+    test('user_id > empty array', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -70,7 +70,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
      * NAME TESTS
      */
     $userColorData['name'] = '';
-    test('invalid name > empty', apiTest(
+    test('name > empty', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -82,7 +82,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['name'] = 1;
-    test('invalid name > integer', apiTest(
+    test('name > integer', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -94,7 +94,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['name'] = false;
-    test('invalid name > false', apiTest(
+    test('name > false', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -106,7 +106,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['name'] = true;
-    test('invalid name > true', apiTest(
+    test('name > true', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -118,7 +118,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['name'] = [];
-    test('invalid name > empty array', apiTest(
+    test('name > empty array', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -135,7 +135,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
      * VALUE TESTS
      */
     $userColorData['value'] = '';
-    test('invalid value > empty', apiTest(
+    test('value > empty', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -147,7 +147,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['value'] = 1;
-    test('invalid value > integer', apiTest(
+    test('value > integer', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -159,7 +159,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['value'] = false;
-    test('invalid value > false', apiTest(
+    test('value > false', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -171,7 +171,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['value'] = true;
-    test('invalid value > true', apiTest(
+    test('value > true', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -183,7 +183,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['value'] = [];
-    test('invalid value > empty array', apiTest(
+    test('value > empty array', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -200,7 +200,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
      * NEW TESTS
      */
     $userColorData['new'] = '';
-    test('invalid new > empty', apiTest(
+    test('new > empty', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -212,7 +212,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['new'] = 'not_a_boolean';
-    test('invalid new > string', apiTest(
+    test('new > string', apiTest(
         'POST',
         'user-colors.store',
         422,
@@ -224,7 +224,7 @@ describe('422 > Unprocessable Content > POST', function ($userColorData = userCo
     ));
 
     $userColorData['new'] = [];
-    test('invalid new > empty array', apiTest(
+    test('new > empty array', apiTest(
         'POST',
         'user-colors.store',
         422,

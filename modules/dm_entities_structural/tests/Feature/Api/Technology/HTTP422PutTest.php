@@ -9,12 +9,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData = updatedTechnologyData) {
+describe('422 > PUT', function ($updatedTechnologyData = updatedTechnologyData) {
     /**
      * LABEL TESTS
      */
     $updatedTechnologyData['label'] = '';
-    test('invalid label > empty', apiTest(
+    test('label > empty', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -26,7 +26,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['label'] = 1;
-    test('invalid label > integer', apiTest(
+    test('label > integer', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -40,7 +40,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['label'] = false;
-    test('invalid label > false', apiTest(
+    test('label > false', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -54,7 +54,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['label'] = true;
-    test('invalid label > true', apiTest(
+    test('label > true', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -68,7 +68,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['label'] = [];
-    test('invalid label > empty array', apiTest(
+    test('label > empty array', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -85,7 +85,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
      * DESCRIPTION TESTS
      */
     $updatedTechnologyData['description'] = 1;
-    test('invalid description > integer', apiTest(
+    test('description > integer', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -100,7 +100,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['description'] = 't';
-    test('invalid description > too short', apiTest(
+    test('description > too short', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -112,7 +112,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['description'] = false;
-    test('invalid description > false', apiTest(
+    test('description > false', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -127,7 +127,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['description'] = true;
-    test('invalid description > true', apiTest(
+    test('description > true', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -142,7 +142,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['description'] = [];
-    test('invalid description > empty array', apiTest(
+    test('description > empty array', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -162,7 +162,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
      * HREF TESTS
      */
     $updatedTechnologyData['href'] = '';
-    test('invalid href > empty', apiTest(
+    test('href > empty', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -174,7 +174,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['href'] = 1;
-    test('invalid href > integer', apiTest(
+    test('href > integer', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -188,7 +188,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['href'] = false;
-    test('invalid href > false', apiTest(
+    test('href > false', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -202,7 +202,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['href'] = true;
-    test('invalid href > true', apiTest(
+    test('href > true', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -216,7 +216,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['href'] = [];
-    test('invalid href > empty array', apiTest(
+    test('href > empty array', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -233,7 +233,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
      * SRC TESTS
      */
     $updatedTechnologyData['src'] = '';
-    test('invalid src > empty', apiTest(
+    test('src > empty', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -245,7 +245,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['src'] = 1;
-    test('invalid src > integer', apiTest(
+    test('src > integer', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -259,7 +259,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['src'] = false;
-    test('invalid src > false', apiTest(
+    test('src > false', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -273,7 +273,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['src'] = true;
-    test('invalid src > true', apiTest(
+    test('src > true', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -287,7 +287,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['src'] = [];
-    test('invalid src > empty array', apiTest(
+    test('src > empty array', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -304,7 +304,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
      * CATEGORY TESTS
      */
     $updatedTechnologyData['category'] = 1;
-    test('invalid category > integer', apiTest(
+    test('category > integer', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -316,7 +316,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -328,7 +328,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'PUT',
         'technologies.update',
         422,
@@ -340,7 +340,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTechnologyData =
     ));
 
     $updatedTechnologyData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'PUT',
         'technologies.update',
         422,

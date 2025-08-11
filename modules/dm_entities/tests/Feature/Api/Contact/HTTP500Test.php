@@ -15,7 +15,7 @@ beforeEach(function (): void {
     $this->service = mock(ContactService::class);
 });
 
-describe('500 > Internal Server Error', function ($contactData = contactData) {
+describe('500', function ($contactData = contactData) {
     test('index api', function (): void {
         $this->service
             ->shouldReceive('index')

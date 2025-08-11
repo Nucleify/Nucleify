@@ -12,11 +12,11 @@ beforeEach(function (): void {
     $this->model = User::factory()->create();
 });
 
-describe('Instance', function (): void {
-    test('can be created', function (): void {
-        expect($this->model)->toBeInstanceOf(User::class);
-    });
+test('can be created', function (): void {
+    expect($this->model)->toBeInstanceOf(User::class);
+});
 
+describe('Instance', function (): void {
     test('can have many contacts', function (): void {
         $contacts = $this->model->contacts();
 

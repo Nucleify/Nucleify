@@ -9,12 +9,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = updatedMoneyData) {
+describe('422 > PUT', function ($updatedMoneyData = updatedMoneyData) {
     /**
      * USER ID TESTS
      */
     $updatedMoneyData['user_id'] = '';
-    test('invalid user_id > empty', apiTest(
+    test('user_id > empty', apiTest(
         'PUT',
         'money.update',
         422,
@@ -26,7 +26,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['user_id'] = 'user_id';
-    test('invalid user_id > string', apiTest(
+    test('user_id > string', apiTest(
         'PUT',
         'money.update',
         422,
@@ -38,7 +38,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['user_id'] = false;
-    test('invalid user_id > false', apiTest(
+    test('user_id > false', apiTest(
         'PUT',
         'money.update',
         422,
@@ -50,7 +50,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['user_id'] = [];
-    test('invalid user_id > empty array', apiTest(
+    test('user_id > empty array', apiTest(
         'PUT',
         'money.update',
         422,
@@ -67,7 +67,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
      * COUNT TESTS
      */
     $updatedMoneyData['count'] = '';
-    test('invalid count > empty', apiTest(
+    test('count > empty', apiTest(
         'PUT',
         'money.update',
         422,
@@ -79,7 +79,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['count'] = 'count';
-    test('invalid count > string', apiTest(
+    test('count > string', apiTest(
         'PUT',
         'money.update',
         422,
@@ -91,7 +91,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['count'] = false;
-    test('invalid count > false', apiTest(
+    test('count > false', apiTest(
         'PUT',
         'money.update',
         422,
@@ -103,7 +103,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['count'] = [];
-    test('invalid count > empty array', apiTest(
+    test('count > empty array', apiTest(
         'PUT',
         'money.update',
         422,
@@ -120,7 +120,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
      * SENDER TESTS
      */
     $updatedMoneyData['sender'] = '';
-    test('invalid sender > empty', apiTest(
+    test('sender > empty', apiTest(
         'PUT',
         'money.update',
         422,
@@ -132,7 +132,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['sender'] = 1;
-    test('invalid sender > integer', apiTest(
+    test('sender > integer', apiTest(
         'PUT',
         'money.update',
         422,
@@ -146,7 +146,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['sender'] = false;
-    test('invalid sender > false', apiTest(
+    test('sender > false', apiTest(
         'PUT',
         'money.update',
         422,
@@ -160,7 +160,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['sender'] = true;
-    test('invalid sender > true', apiTest(
+    test('sender > true', apiTest(
         'PUT',
         'money.update',
         422,
@@ -174,7 +174,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['sender'] = [];
-    test('invalid sender > empty array', apiTest(
+    test('sender > empty array', apiTest(
         'PUT',
         'money.update',
         422,
@@ -193,7 +193,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
      * RECEIVER TESTS
      */
     $updatedMoneyData['receiver'] = '';
-    test('invalid receiver > empty', apiTest(
+    test('receiver > empty', apiTest(
         'PUT',
         'money.update',
         422,
@@ -205,7 +205,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['receiver'] = 1;
-    test('invalid receiver > integer', apiTest(
+    test('receiver > integer', apiTest(
         'PUT',
         'money.update',
         422,
@@ -219,7 +219,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['receiver'] = false;
-    test('invalid receiver > false', apiTest(
+    test('receiver > false', apiTest(
         'PUT',
         'money.update',
         422,
@@ -233,7 +233,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['receiver'] = true;
-    test('invalid receiver > true', apiTest(
+    test('receiver > true', apiTest(
         'PUT',
         'money.update',
         422,
@@ -247,7 +247,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['receiver'] = [];
-    test('invalid receiver > empty array', apiTest(
+    test('receiver > empty array', apiTest(
         'PUT',
         'money.update',
         422,
@@ -266,7 +266,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
      * TITLE TESTS
      */
     $updatedMoneyData['title'] = '';
-    test('invalid title > empty', apiTest(
+    test('title > empty', apiTest(
         'PUT',
         'money.update',
         422,
@@ -278,7 +278,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['title'] = 1;
-    test('invalid title > integer', apiTest(
+    test('title > integer', apiTest(
         'PUT',
         'money.update',
         422,
@@ -293,7 +293,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['title'] = 'ti';
-    test('invalid title > too short', apiTest(
+    test('title > too short', apiTest(
         'PUT',
         'money.update',
         422,
@@ -305,7 +305,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['title'] = false;
-    test('invalid title > false', apiTest(
+    test('title > false', apiTest(
         'PUT',
         'money.update',
         422,
@@ -320,7 +320,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['title'] = true;
-    test('invalid title > true', apiTest(
+    test('title > true', apiTest(
         'PUT',
         'money.update',
         422,
@@ -335,7 +335,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['title'] = [];
-    test('invalid title > empty array', apiTest(
+    test('title > empty array', apiTest(
         'PUT',
         'money.update',
         422,
@@ -352,7 +352,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
      * DESCRIPTION TESTS
      */
     $updatedMoneyData['description'] = 1;
-    test('invalid description > integer', apiTest(
+    test('description > integer', apiTest(
         'PUT',
         'money.update',
         422,
@@ -367,7 +367,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['description'] = 't';
-    test('invalid description > too short', apiTest(
+    test('description > too short', apiTest(
         'PUT',
         'money.update',
         422,
@@ -379,7 +379,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['description'] = false;
-    test('invalid description > false', apiTest(
+    test('description > false', apiTest(
         'PUT',
         'money.update',
         422,
@@ -394,7 +394,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['description'] = true;
-    test('invalid description > true', apiTest(
+    test('description > true', apiTest(
         'PUT',
         'money.update',
         422,
@@ -409,7 +409,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['description'] = [];
-    test('invalid description > empty array', apiTest(
+    test('description > empty array', apiTest(
         'PUT',
         'money.update',
         422,
@@ -429,7 +429,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
      * CATEGORY TESTS
      */
     $updatedMoneyData['category'] = 1;
-    test('invalid category > integer', apiTest(
+    test('category > integer', apiTest(
         'PUT',
         'money.update',
         422,
@@ -441,7 +441,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'PUT',
         'money.update',
         422,
@@ -453,7 +453,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'PUT',
         'money.update',
         422,
@@ -465,7 +465,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedMoneyData = upda
     ));
 
     $updatedMoneyData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'PUT',
         'money.update',
         422,

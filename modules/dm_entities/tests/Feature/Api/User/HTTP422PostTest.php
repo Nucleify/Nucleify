@@ -9,12 +9,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function ($userData = userData) {
+describe('422 > POST', function ($userData = userData) {
     /**
      * NAME TESTS
      */
     $userData['name'] = '';
-    test('invalid name > empty', apiTest(
+    test('name > empty', apiTest(
         'POST',
         'users.store',
         422,
@@ -26,7 +26,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['name'] = false;
-    test('invalid name > false', apiTest(
+    test('name > false', apiTest(
         'POST',
         'users.store',
         422,
@@ -41,7 +41,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['name'] = true;
-    test('invalid name > true', apiTest(
+    test('name > true', apiTest(
         'POST',
         'users.store',
         422,
@@ -56,7 +56,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['name'] = [];
-    test('invalid name > empty array', apiTest(
+    test('name > empty array', apiTest(
         'POST',
         'users.store',
         422,
@@ -73,7 +73,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
      * EMAIL TESTS
      */
     $userData['email'] = 'admin.example.com';
-    test('invalid email > email format', apiTest(
+    test('email > email format', apiTest(
         'POST',
         'users.store',
         422,
@@ -85,7 +85,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['email'] = 1;
-    test('invalid email > integer', apiTest(
+    test('email > integer', apiTest(
         'POST',
         'users.store',
         422,
@@ -100,7 +100,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['email'] = false;
-    test('invalid email > false', apiTest(
+    test('email > false', apiTest(
         'POST',
         'users.store',
         422,
@@ -115,7 +115,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['email'] = true;
-    test('invalid email > true', apiTest(
+    test('email > true', apiTest(
         'POST',
         'users.store',
         422,
@@ -130,7 +130,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['email'] = '@a';
-    test('invalid email > too short', apiTest(
+    test('email > too short', apiTest(
         'POST',
         'users.store',
         422,
@@ -145,7 +145,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['email'] = 'loremipsumdolorsitametconsecteturadipiscingelitseddoetaliqualaborum@exampleemail.com';
-    test('invalid email > too long', apiTest(
+    test('email > too long', apiTest(
         'POST',
         'users.store',
         422,
@@ -157,7 +157,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['email'] = [];
-    test('invalid email > empty array', apiTest(
+    test('email > empty array', apiTest(
         'POST',
         'users.store',
         422,
@@ -174,7 +174,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
      * PASSWORD TESTS
      */
     $userData['password'] = '';
-    test('invalid password > empty password', apiTest(
+    test('password > empty password', apiTest(
         'POST',
         'users.store',
         422,
@@ -186,7 +186,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['password'] = 1;
-    test('invalid password > integer', apiTest(
+    test('password > integer', apiTest(
         'POST',
         'users.store',
         422,
@@ -198,7 +198,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['password'] = false;
-    test('invalid password > false', apiTest(
+    test('password > false', apiTest(
         'POST',
         'users.store',
         422,
@@ -210,7 +210,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['password'] = true;
-    test('invalid password > true', apiTest(
+    test('password > true', apiTest(
         'POST',
         'users.store',
         422,
@@ -222,7 +222,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['password'] = 'L';
-    test('invalid password > too short', apiTest(
+    test('password > too short', apiTest(
         'POST',
         'users.store',
         422,
@@ -234,7 +234,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['password'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do et aliqua laborum.';
-    test('invalid password > too long', apiTest(
+    test('password > too long', apiTest(
         'POST',
         'users.store',
         422,
@@ -246,7 +246,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['password'] = [];
-    test('invalid password > empty array', apiTest(
+    test('password > empty array', apiTest(
         'POST',
         'users.store',
         422,
@@ -263,7 +263,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
      * ROLE TESTS
      */
     $userData['role'] = '';
-    test('invalid role > empty', apiTest(
+    test('role > empty', apiTest(
         'POST',
         'users.store',
         422,
@@ -275,7 +275,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['role'] = 1;
-    test('invalid role > integer', apiTest(
+    test('role > integer', apiTest(
         'POST',
         'users.store',
         422,
@@ -287,7 +287,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['role'] = 'invalid';
-    test('invalid role > invalid', apiTest(
+    test('role > invalid', apiTest(
         'POST',
         'users.store',
         422,
@@ -299,7 +299,7 @@ describe('422 > Unprocessable Content > POST', function ($userData = userData) {
     ));
 
     $userData['role'] = [];
-    test('invalid role > empty array', apiTest(
+    test('role > empty array', apiTest(
         'POST',
         'users.store',
         422,

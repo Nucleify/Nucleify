@@ -17,103 +17,105 @@ beforeEach(function (): void {
     $this->controller = app()->makeWith(TechnologyController::class, ['technologyService' => app()->make(TechnologyService::class)]);
 });
 
-test('index > success', function (): void {
-    Technology::factory()->count(3)->create();
+describe('200', function (): void {
+    test('index method', function (): void {
+        Technology::factory()->count(3)->create();
 
-    $request = new Request;
+        $request = new Request;
 
-    $response = $this->controller->index($request);
+        $response = $this->controller->index($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true));
+    });
 
-test('countByCreatedLastWeek > success', function (): void {
-    $request = new Request;
+    test('countByCreatedLastWeek method', function (): void {
+        $request = new Request;
 
-    $response = $this->controller->countByCreatedLastWeek($request);
+        $response = $this->controller->countByCreatedLastWeek($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-});
+        expect($response->getStatusCode())->toEqual(200);
+    });
 
-test('getByCategory > success', function (): void {
-    $category = 'technology';
-    $categories = ['other', 'science', $category];
+    test('getByCategory method', function (): void {
+        $category = 'technology';
+        $categories = ['other', 'science', $category];
 
-    foreach ($categories as $cat) {
-        Technology::factory()->create(['category' => $cat]);
-    }
+        foreach ($categories as $cat) {
+            Technology::factory()->create(['category' => $cat]);
+        }
 
-    $response = $this->controller->getByCategory($category);
-    $data = $response->getData(true);
+        $response = $this->controller->getByCategory($category);
+        $data = $response->getData(true);
 
-    expect($response->getStatusCode())->toEqual(200);
+        expect($response->getStatusCode())->toEqual(200);
 
-    foreach ($data as $technology) {
-        expect($technology['category'])->toEqual($category);
-    }
+        foreach ($data as $technology) {
+            expect($technology['category'])->toEqual($category);
+        }
 
-    expect(count($data))->toEqual(Technology::where('category', $category)->count());
-});
+        expect(count($data))->toEqual(Technology::where('category', $category)->count());
+    });
 
-test('getSiteTechnologies > success', function (): void {
-    $category = 'technology';
-    $categories = ['other', 'science', $category];
+    test('getSiteTechnologies method', function (): void {
+        $category = 'technology';
+        $categories = ['other', 'science', $category];
 
-    foreach ($categories as $cat) {
-        Technology::factory()->create(['category' => $cat]);
-    }
+        foreach ($categories as $cat) {
+            Technology::factory()->create(['category' => $cat]);
+        }
 
-    $response = $this->controller->getSiteTechnologies($category);
-    $data = $response->getData(true);
+        $response = $this->controller->getSiteTechnologies($category);
+        $data = $response->getData(true);
 
-    expect($response->getStatusCode())->toEqual(200);
+        expect($response->getStatusCode())->toEqual(200);
 
-    foreach ($data as $technology) {
-        expect($technology['category'])->toEqual($category);
-    }
+        foreach ($data as $technology) {
+            expect($technology['category'])->toEqual($category);
+        }
 
-    expect(count($data))->toEqual(Technology::where('category', $category)->count());
-});
+        expect(count($data))->toEqual(Technology::where('category', $category)->count());
+    });
 
-test('show > success', function (): void {
-    $technology = Technology::factory()->create();
+    test('show method', function (): void {
+        $technology = Technology::factory()->create();
 
-    $response = $this->controller->show($technology->id);
+        $response = $this->controller->show($technology->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true));
+    });
 
-test('store > success', function (): void {
-    $request = Mockery::mock(PostRequest::class);
-    $request->shouldReceive('validated')
-        ->andReturn(technologyData);
+    test('store method', function (): void {
+        $request = Mockery::mock(PostRequest::class);
+        $request->shouldReceive('validated')
+            ->andReturn(technologyData);
 
-    $response = $this->controller->store($request);
+        $response = $this->controller->store($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true));
+    });
 
-test('update > success', function (): void {
-    $technology = Technology::factory()->create();
+    test('update method', function (): void {
+        $technology = Technology::factory()->create();
 
-    $request = Mockery::mock(PutRequest::class);
-    $request->shouldReceive('validated')
-        ->andReturn(updatedTechnologyData);
+        $request = Mockery::mock(PutRequest::class);
+        $request->shouldReceive('validated')
+            ->andReturn(updatedTechnologyData);
 
-    $response = $this->controller->update($request, $technology->id);
+        $response = $this->controller->update($request, $technology->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true));
+    });
 
-test('delete > success', function (): void {
-    $technology = Technology::factory()->create();
+    test('delete method', function (): void {
+        $technology = Technology::factory()->create();
 
-    $response = $this->controller->destroy($technology->id);
+        $response = $this->controller->destroy($technology->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    $this->assertDatabaseMissing('technologies', ['id' => $technology->id]);
+        expect($response->getStatusCode())->toEqual(200);
+        $this->assertDatabaseMissing('technologies', ['id' => $technology->id]);
+    });
 });

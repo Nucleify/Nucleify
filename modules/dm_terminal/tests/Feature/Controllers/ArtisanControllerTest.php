@@ -14,105 +14,107 @@ beforeEach(function (): void {
     $this->controller = app()->makeWith(ArtisanController::class);
 });
 
-test('tinker command activity log factory > success', function (): void {
-    $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute ActivityFactory::new()->count(100)->create()']);
-    $response = $this->controller->run($request);
+describe('200', function (): void {
+    test('tinker command activity log factory', function (): void {
+        $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute ActivityFactory::new()->count(100)->create()']);
+        $response = $this->controller->run($request);
 
-    $responseData = $response->getData(true);
+        $responseData = $response->getData(true);
 
-    expect($response->status())->toBe(200)
-        ->and($responseData)->toMatchArray([
-            'exit_code' => 0,
-        ]);
-});
+        expect($response->status())->toBe(200)
+            ->and($responseData)->toMatchArray([
+                'exit_code' => 0,
+            ]);
+    });
 
-test('tinker command article factory > success', function (): void {
-    $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute Article::factory(100)->create()']);
-    $response = $this->controller->run($request);
+    test('tinker command article factory', function (): void {
+        $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute Article::factory(100)->create()']);
+        $response = $this->controller->run($request);
 
-    $responseData = $response->getData(true);
+        $responseData = $response->getData(true);
 
-    expect($response->status())->toBe(200)
-        ->and($responseData)->toMatchArray([
-            'exit_code' => 0,
-        ]);
-});
+        expect($response->status())->toBe(200)
+            ->and($responseData)->toMatchArray([
+                'exit_code' => 0,
+            ]);
+    });
 
-test('tinker command contact factory > success', function (): void {
-    $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute Contact::factory(100)->create()']);
-    $response = $this->controller->run($request);
+    test('tinker command contact factory', function (): void {
+        $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute Contact::factory(100)->create()']);
+        $response = $this->controller->run($request);
 
-    $responseData = $response->getData(true);
+        $responseData = $response->getData(true);
 
-    expect($response->status())->toBe(200)
-        ->and($responseData)->toMatchArray([
-            'exit_code' => 0,
-        ]);
-});
+        expect($response->status())->toBe(200)
+            ->and($responseData)->toMatchArray([
+                'exit_code' => 0,
+            ]);
+    });
 
-test('tinker command user factory > success', function (): void {
-    $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute User::factory(100)->create()']);
-    $response = $this->controller->run($request);
+    test('tinker command user factory', function (): void {
+        $request = Request::create('/artisan', 'POST', ['command' => 'tinker --execute User::factory(100)->create()']);
+        $response = $this->controller->run($request);
 
-    $responseData = $response->getData(true);
+        $responseData = $response->getData(true);
 
-    expect($response->status())->toBe(200)
-        ->and($responseData)->toMatchArray([
-            'exit_code' => 0,
-        ]);
-});
+        expect($response->status())->toBe(200)
+            ->and($responseData)->toMatchArray([
+                'exit_code' => 0,
+            ]);
+    });
 
-test('migrate:rollback command > success', function (): void {
-    $request = Request::create('/artisan', 'POST', ['command' => 'migrate:rollback']);
+    test('migrate:rollback command', function (): void {
+        $request = Request::create('/artisan', 'POST', ['command' => 'migrate:rollback']);
 
-    $response = $this->controller->run($request);
+        $response = $this->controller->run($request);
 
-    $responseData = $response->getData(true);
+        $responseData = $response->getData(true);
 
-    expect($response->status())->toBe(200)
-        ->and($responseData)->toMatchArray([
-            'exit_code' => 0,
-        ])
-        ->and(Schema::hasTable('users'))->toBeFalse();
-});
+        expect($response->status())->toBe(200)
+            ->and($responseData)->toMatchArray([
+                'exit_code' => 0,
+            ])
+            ->and(Schema::hasTable('users'))->toBeFalse();
+    });
 
-test('migrate command > success', function (): void {
-    $request = Request::create('/artisan', 'POST', ['command' => 'migrate']);
+    test('migrate command', function (): void {
+        $request = Request::create('/artisan', 'POST', ['command' => 'migrate']);
 
-    $response = $this->controller->run($request);
+        $response = $this->controller->run($request);
 
-    $responseData = $response->getData(true);
+        $responseData = $response->getData(true);
 
-    expect($response->status())->toBe(200)
-        ->and($responseData)->toMatchArray([
-            'exit_code' => 0,
-        ])
-        ->and(Schema::hasTable('users'))->toBeTrue();
-});
+        expect($response->status())->toBe(200)
+            ->and($responseData)->toMatchArray([
+                'exit_code' => 0,
+            ])
+            ->and(Schema::hasTable('users'))->toBeTrue();
+    });
 
-test('migrate:fresh command > success', function (): void {
-    $request = Request::create('/artisan', 'POST', ['command' => 'migrate:fresh']);
+    test('migrate:fresh command', function (): void {
+        $request = Request::create('/artisan', 'POST', ['command' => 'migrate:fresh']);
 
-    $response = $this->controller->run($request);
+        $response = $this->controller->run($request);
 
-    $responseData = $response->getData(true);
+        $responseData = $response->getData(true);
 
-    expect($response->status())->toBe(200)
-        ->and($responseData)->toMatchArray([
-            'exit_code' => 0,
-        ])
-        ->and(Schema::hasTable('users'))->toBeTrue();
-});
+        expect($response->status())->toBe(200)
+            ->and($responseData)->toMatchArray([
+                'exit_code' => 0,
+            ])
+            ->and(Schema::hasTable('users'))->toBeTrue();
+    });
 
-it('handles exception when running migrate:rollback command', function (): void {
-    $request = Request::create('/artisan', 'POST', ['command' => 'invalid']);
+    test('handles exception when running migrate:rollback command', function (): void {
+        $request = Request::create('/artisan', 'POST', ['command' => 'invalid']);
 
-    $response = $this->controller->run($request);
+        $response = $this->controller->run($request);
 
-    $responseData = $response->getData(true);
+        $responseData = $response->getData(true);
 
-    expect($response->status())->toBe(500)
-        ->and($responseData)->toMatchArray([
-            'error' => 'The command "invalid" does not exist.',
-        ]);
+        expect($response->status())->toBe(500)
+            ->and($responseData)->toMatchArray([
+                'error' => 'The command "invalid" does not exist.',
+            ]);
+    });
 });

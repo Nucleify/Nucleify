@@ -9,12 +9,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updatedCardData) {
+describe('422 > PUT', function ($updatedCardData = updatedCardData) {
     /**
      * SRC TESTS
      */
     $updatedCardData['src'] = '';
-    test('invalid src > empty', apiTest(
+    test('src > empty', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -26,7 +26,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
     ));
 
     $updatedCardData['src'] = 12345;
-    test('invalid src > integer', apiTest(
+    test('src > integer', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -38,7 +38,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
     ));
 
     $updatedCardData['src'] = false;
-    test('invalid src > false', apiTest(
+    test('src > false', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -55,7 +55,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
      * TITLE TESTS
      */
     $updatedCardData['title'] = '';
-    test('invalid title > empty', apiTest(
+    test('title > empty', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -67,7 +67,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
     ));
 
     $updatedCardData['title'] = 12345;
-    test('invalid title > integer', apiTest(
+    test('title > integer', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -79,7 +79,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
     ));
 
     $updatedCardData['title'] = false;
-    test('invalid title > false', apiTest(
+    test('title > false', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -96,7 +96,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
      * DESCRIPTION TESTS
      */
     $updatedCardData['description'] = '';
-    test('invalid description > empty', apiTest(
+    test('description > empty', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -108,7 +108,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
     ));
 
     $updatedCardData['description'] = 12345;
-    test('invalid description > integer', apiTest(
+    test('description > integer', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -125,7 +125,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
      * CATEGORY TESTS
      */
     $updatedCardData['category'] = 1;
-    test('invalid category > integer', apiTest(
+    test('category > integer', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -137,7 +137,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
     ));
 
     $updatedCardData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -149,7 +149,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
     ));
 
     $updatedCardData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -161,7 +161,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
     ));
 
     $updatedCardData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -178,7 +178,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
      * COMPONENT TESTS
      */
     $updatedCardData['component'] = '';
-    test('invalid component > empty', apiTest(
+    test('component > empty', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -190,7 +190,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
     ));
 
     $updatedCardData['component'] = 12345;
-    test('invalid component > integer', apiTest(
+    test('component > integer', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -207,7 +207,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
      * DISPLAY TESTS
      */
     $updatedCardData['display'] = 'string';
-    test('invalid display > string', apiTest(
+    test('display > string', apiTest(
         'PUT',
         'cards.update',
         422,
@@ -219,7 +219,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedCardData = updat
     ));
 
     $updatedCardData['display'] = [];
-    test('invalid display > empty array', apiTest(
+    test('display > empty array', apiTest(
         'PUT',
         'cards.update',
         422,
