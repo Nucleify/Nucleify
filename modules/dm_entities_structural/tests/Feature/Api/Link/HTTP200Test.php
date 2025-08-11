@@ -49,24 +49,24 @@ describe('200', function (): void {
     });
 
     test('show api', function (): void {
-        $model = Link::factory()->create();
+        $link = Link::factory()->create();
 
-        $this->getJson(route('links.show', $model->id))
+        $this->getJson(route('links.show', $link->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $model = Link::factory()->create();
+        $link = Link::factory()->create();
 
-        $this->putJson(route('links.update', $model->id), linkData)
+        $this->putJson(route('links.update', $link->id), linkData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $model = Link::factory()->create();
+        $link = Link::factory()->create();
 
-        $this->deleteJson(route('links.destroy', $model->id))
+        $this->deleteJson(route('links.destroy', $link->id))
             ->assertOk();
-        $this->assertDatabaseMissing('links', ['id' => $model->id]);
+        $this->assertDatabaseMissing('links', ['id' => $link->id]);
     });
 });
