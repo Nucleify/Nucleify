@@ -15,31 +15,32 @@ beforeEach(function (): void {
     $this->controller = app()->makeWith(FileController::class, ['fileService' => app()->make(FileService::class)]);
 });
 
-test('index > success', function (): void {
-    File::factory()->count(3)->create();
+describe('200', function (): void {
+    test('index method', function (): void {
+        File::factory()->count(3)->create();
 
-    $request = new Request;
+        $request = new Request;
 
-    $response = $this->controller->index($request);
+        $response = $this->controller->index($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('show > success', function (): void {
-    $file = File::factory()->create();
+    test('show method', function (): void {
+        $model = File::factory()->create();
 
-    $response = $this->controller->show($file->id);
+        $response = $this->controller->show($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('delete > success', function (): void {
-    $file = File::factory()->create();
+    test('delete method', function (): void {
+        $model = File::factory()->create();
 
-    $response = $this->controller->destroy($file->id);
+        $response = $this->controller->destroy($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    $this->assertDatabaseMissing('files', ['id' => $file->id]);
+        expect($response->getStatusCode(), $response->getData(true)['deleted'])
+            ->toEqual(200)
+            ->and($this->assertDatabaseMissing('files', ['id' => $model->id]));
+    });
 });

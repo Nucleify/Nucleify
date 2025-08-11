@@ -6,6 +6,14 @@ use ZanySoft\Zip\Facades\Zip;
 
 class ZipService
 {
+    /**
+     * @param string $filePath
+     * @param string|null $extractPath
+     *
+     * @return string
+     *
+     * @throws Exception
+     */
     public function extract(string $filePath, ?string $extractPath = null): string
     {
         $unzipDir = $extractPath ?? base_path('modules/dm_files/uploads/unzipped');

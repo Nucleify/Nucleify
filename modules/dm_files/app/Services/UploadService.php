@@ -6,6 +6,13 @@ use Illuminate\Http\UploadedFile;
 
 class UploadService
 {
+    /**
+     * @param UploadedFile $file
+     *
+     * @return string
+     *
+     * @throws Exception
+     */
     public function upload(UploadedFile $file): string
     {
         $uploadDir = base_path('modules/dm_files/uploads');

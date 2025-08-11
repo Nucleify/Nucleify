@@ -17,14 +17,13 @@ beforeEach(function (): void {
         ->andReturn(true);
 });
 
-describe('200 > Authorized', function (): void {
-    test('extract zip file', function (): void {
-        $file = UploadedFile::fake()->create('test.zip', 100, 'application/zip');
+describe('200', function (): void {
+    test('extract zip api', function (): void {
+        $model = UploadedFile::fake()->create('test.zip', 100, 'application/zip');
 
-        $response = $this->post(route('files.zip'), [
-            'file' => $file,
-        ]);
-
-        $response->assertOk();
+        $this->post(route('files.zip'), [
+            'file' => $model,
+        ])
+            ->assertOk();
     });
 });

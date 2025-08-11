@@ -4,7 +4,7 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-describe('401 > Unauthorized', function (): void {
+describe('401', function (): void {
     test('index api', apiTest(
         'GET',
         'files.index',
