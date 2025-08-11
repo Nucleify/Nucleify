@@ -19,7 +19,7 @@ export function fileRequests(close?: CloseDialogType): FileRequestsInterface {
 
   async function getAllFiles(loading?: boolean): Promise<void> {
     await apiHandle<FileObjectInterface[]>({
-      url: apiUrl() + 'files',
+      url: apiUrl() + '/files',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: FileObjectInterface[]) => {
         results.value = response
@@ -31,7 +31,7 @@ export function fileRequests(close?: CloseDialogType): FileRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: apiUrl() + 'files/count-by-created-last-week',
+      url: apiUrl() + '/files/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -44,7 +44,7 @@ export function fileRequests(close?: CloseDialogType): FileRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FileObjectInterface>({
-      url: apiUrl() + 'files',
+      url: apiUrl() + '/files',
       method: 'POST',
       data,
       onSuccess: (response: FileObjectInterface) => {
@@ -58,7 +58,7 @@ export function fileRequests(close?: CloseDialogType): FileRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FileObjectInterface>({
-      url: apiUrl() + 'files',
+      url: apiUrl() + '/files',
       method: 'PUT',
       data,
       id: data.id,
@@ -73,7 +73,7 @@ export function fileRequests(close?: CloseDialogType): FileRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<FileObjectInterface>({
-      url: apiUrl() + 'files',
+      url: apiUrl() + '/files',
       method: 'DELETE',
       id,
       onSuccess: (response: FileObjectInterface) => {
