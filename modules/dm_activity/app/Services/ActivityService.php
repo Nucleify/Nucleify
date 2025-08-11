@@ -2,12 +2,13 @@
 
 namespace App\Services;
 
+use App\Resources\ActivityResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\ActivityTransformer;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Spatie\Activitylog\Models\Activity;
 
 class ActivityService
@@ -22,7 +23,7 @@ class ActivityService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    public function index(): array
+    public function index(): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -30,10 +31,7 @@ class ActivityService
             ? $this->model->all()
             : $this->model->where('causer_id', $this->causer->id)->get();
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new ActivityTransformer)
-            ->toArray()['data'];
+        return ActivityResource::collection($result);
     }
 
     public function countByCreatedLastWeek(Request $request): int
@@ -55,7 +53,7 @@ class ActivityService
     /**
      * @throws Exception
      */
-    public function show(int $id): array
+    public function show(int $id): ActivityResource
     {
         $this->defineUserData();
 
@@ -67,10 +65,7 @@ class ActivityService
                 "You don't have permission to fetch other users activity log"
             );
         } else {
-            return fractal()
-                ->item($result)
-                ->transformWith(new ActivityTransformer)
-                ->toArray()['data'];
+            return new ActivityResource($result);
         }
     }
 
