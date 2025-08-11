@@ -1,7 +1,7 @@
 <template>
   <div class="panel-container">
     <ad-card-chart
-      v-if="display.File"
+      entity="File"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -22,11 +22,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { fileRequests, useDialog, useDisplayCharts } from 'atomic'
+import { fileRequests, useDialog } from 'atomic'
 
 const { closeDialog } = useDialog()
-
-const { display } = useDisplayCharts()
 
 const { results, loading, getAllFiles } = fileRequests(closeDialog)
 

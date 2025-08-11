@@ -9,7 +9,7 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content', function () {
+describe('422', function () {
     test('missing file', function () {
         $this->postJson(route('files.upload'), [])
             ->assertStatus(422);

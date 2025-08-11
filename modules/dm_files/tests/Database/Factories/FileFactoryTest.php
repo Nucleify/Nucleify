@@ -10,23 +10,23 @@ beforeEach(function (): void {
     $this->createUsers();
 });
 
-it('can create record', function (): void {
-    $file = File::factory()->create();
+test('can create record', function (): void {
+    $model = File::factory()->create();
 
-    $this->assertDatabaseCount('files', 1);
-    $this->assertDatabaseHas('files', ['id' => $file->id]);
+    $this->assertDatabaseCount('files', 1)
+        ->assertDatabaseHas('files', ['id' => $model->id]);
 });
 
-it('can create multiple records', function (): void {
-    $files = File::factory()->count(3)->create();
+test('can create multiple records', function (): void {
+    $models = File::factory()->count(3)->create();
 
     $this->assertDatabaseCount('files', 3);
-    foreach ($files as $file) {
-        $this->assertDatabaseHas('files', ['id' => $file->id]);
+    foreach ($models as $model) {
+        $this->assertDatabaseHas('files', ['id' => $model->id]);
     }
 });
 
-it("can't create record", function (): void {
+test('can\'t create record', function (): void {
     try {
         File::factory()->create(['id' => 'id']);
     } catch (Exception $e) {
@@ -37,7 +37,7 @@ it("can't create record", function (): void {
     $this->fail('Expected exception not thrown.');
 })->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable');
 
-it("can't create multiple records", function (): void {
+test('can\'t create multiple records', function (): void {
     try {
         File::factory()->count(2)->create(['id' => 'id']);
     } catch (Exception $e) {

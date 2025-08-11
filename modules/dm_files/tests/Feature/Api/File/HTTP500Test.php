@@ -15,16 +15,15 @@ beforeEach(function (): void {
     $this->service = mock(FileService::class);
 });
 
-describe('500 > Internal Server Error', function (): void {
+describe('500', function (): void {
     test('index api', function (): void {
         $this->service
             ->shouldReceive('index')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('files.index'));
-
-        $response->assertStatus(500)
+        $this->getJson(route('files.index'))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -35,23 +34,21 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('files.show', ['id' => 1]));
-
-        $response->assertStatus(500)
+        $this->getJson(route('files.show', ['id' => 1]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
     test('destroy api', function (): void {
-        $file = File::factory()->create();
+        $model = File::factory()->create();
 
         $this->service
             ->shouldReceive('delete')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->deleteJson(route('files.destroy', ['id' => $file->id]));
-
-        $response->assertStatus(500)
+        $this->deleteJson(route('files.destroy', ['id' => $model->id]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 });

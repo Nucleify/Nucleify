@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use App\Models\File;
+use App\Resources\FileResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\FileTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class FileService
 {
@@ -21,7 +22,14 @@ class FileService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    public function index(Request $request): mixed
+    /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
+    public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
         $this->defineUserData();
@@ -30,13 +38,17 @@ class FileService
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererStructural);
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new FileTransformer)
-            ->toArray()['data'];
+        return FileResource::collection($result);
     }
 
-    public function show($id): array
+    /**
+     * @param int $id
+     *
+     * @return FileResource
+     *
+     * @throws Exception
+     */
+    public function show($id): FileResource
     {
         $this->defineUserData();
 
@@ -44,12 +56,16 @@ class FileService
 
         $this->logger->log($this->causer->name, $result->getId(), $this->entity, 'showed');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new FileTransformer)
-            ->toArray()['data'];
+        return new FileResource($result);
     }
 
+    /**
+     * @param int $id
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();

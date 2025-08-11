@@ -11,7 +11,7 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('index api', function (): void {
         File::factory(3)->create();
 
@@ -20,17 +20,17 @@ describe('200 > Authorized', function (): void {
     });
 
     test('show api', function (): void {
-        $file = File::factory()->create();
+        $model = File::factory()->create();
 
-        $this->getJson(route('files.show', $file->id))
+        $this->getJson(route('files.show', $model->id))
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $file = File::factory()->create();
+        $model = File::factory()->create();
 
-        $this->deleteJson(route('files.destroy', $file->id))
+        $this->deleteJson(route('files.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('files', ['id' => $file->id]);
+        $this->assertDatabaseMissing('files', ['id' => $model->id]);
     });
 });
