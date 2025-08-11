@@ -1,14 +1,14 @@
+import type { ApiResponseType, HttpMethodType } from 'atomic'
+
 import { useCookie, useRequestHeaders } from 'nuxt/app'
 
-import type { HttpMethodType } from 'atomic'
-
-export async function apiRequest(
+export async function apiRequest<T>(
   url: string,
   method: HttpMethodType = 'GET',
-  data: Record<string, unknown> | null = null,
+  data: object | null = null,
   id: string | number | null = null,
   params: Record<string, unknown> = {}
-) {
+): Promise<ApiResponseType<T>> {
   const finalUrl = id ? `${url}/${id}` : url
   let xsrfTokenValue: string | undefined
 

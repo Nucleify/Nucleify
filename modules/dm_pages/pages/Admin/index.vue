@@ -6,7 +6,7 @@
         href="#articles"
         header="Articles"
         :count="articles?.length"
-        icon="pi pi-comment"
+        icon="prime:comment"
         :count-secondary="articlesCreatedLastWeek"
         text-secondary="this week"
         ad-type="article"
@@ -15,7 +15,7 @@
         href="#contacts"
         header="Contacts"
         :count="contacts?.length"
-        icon="pi pi-user"
+        icon="prime:user"
         :count-secondary="contactsCreatedLastWeek"
         text-secondary="this week"
         ad-type="contact"
@@ -24,7 +24,7 @@
         href="#money"
         header="Money"
         :count="money?.length"
-        icon="pi pi-dollar"
+        icon="prime:dollar"
         :count-secondary="moneyCreatedLastWeek"
         text-secondary="this week"
         ad-type="money"
@@ -33,7 +33,7 @@
         href="#users"
         header="Users"
         :count="users?.length"
-        icon="pi pi-user"
+        icon="prime:user"
         :count-secondary="usersCreatedLastWeek"
         text-secondary="this week"
         ad-type="user"
@@ -41,7 +41,7 @@
     </div>
 
     <ad-card-chart
-      v-if="display.Admin"
+      entity="Admin"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -53,7 +53,6 @@
       :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />
-
     <dm-article-dashboard
       :data="articles"
       :get-data="getAllArticles"
@@ -86,10 +85,7 @@ import {
   contactRequests,
   moneyRequests,
   userRequests,
-  useDisplayCharts,
 } from 'atomic'
-
-const { display } = useDisplayCharts()
 
 const {
   results: articles,

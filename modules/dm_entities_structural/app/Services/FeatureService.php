@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use App\Models\Feature;
+use App\Resources\FeatureResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\FeatureTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class FeatureService
 {
@@ -21,7 +22,14 @@ class FeatureService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    public function index(Request $request): mixed
+    /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
+    public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
         $this->defineUserData();
@@ -30,12 +38,16 @@ class FeatureService
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererStructural);
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new FeatureTransformer)
-            ->toArray()['data'];
+        return FeatureResource::collection($result);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
     public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
@@ -50,7 +62,14 @@ class FeatureService
         return $result;
     }
 
-    public function getByCategory(string $category): array
+    /**
+     * @param string $category
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
+    public function getByCategory(string $category): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -58,13 +77,17 @@ class FeatureService
 
         $this->logger->logMessage($this->causer->name . ' fetched features by category: ' . $category . '.');
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new FeatureTransformer)
-            ->toArray()['data'];
+        return FeatureResource::collection($result);
     }
 
-    public function getSiteFeatures(string $site): array
+    /**
+     * @param string $site
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
+    public function getSiteFeatures(string $site): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -74,26 +97,31 @@ class FeatureService
 
         $this->logger->logMessage($name . ' fetched features by site: ' . $site . '.');
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new FeatureTransformer)
-            ->toArray()['data'];
-    }
-
-    public function show($id): array
-    {
-        $result = $this->model::findOrFail($id);
-
-        return fractal()
-            ->item($result)
-            ->transformWith(new FeatureTransformer)
-            ->toArray()['data'];
+        return FeatureResource::collection($result);
     }
 
     /**
+     * @param int $id
+     *
+     * @return FeatureResource
+     *
      * @throws Exception
      */
-    public function create(array $data): array
+    public function show($id): FeatureResource
+    {
+        $result = $this->model::findOrFail($id);
+
+        return new FeatureResource($result);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return FeatureResource
+     *
+     * @throws Exception
+     */
+    public function create(array $data): FeatureResource
     {
         $this->defineUserData();
 
@@ -101,13 +129,18 @@ class FeatureService
 
         $this->logger->log($this->causer->name, $result->getHeader(), $this->entity, 'created');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new FeatureTransformer)
-            ->toArray()['data'];
+        return new FeatureResource($result);
     }
 
-    public function update($id, array $data): array
+    /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return FeatureResource
+     *
+     * @throws Exception
+     */
+    public function update($id, array $data): FeatureResource
     {
         $this->defineUserData();
 
@@ -117,12 +150,16 @@ class FeatureService
 
         $this->logger->log($this->causer->name, $result->getHeader(), $this->entity, 'updated');
 
-        return fractal()
-            ->item($result->fresh())
-            ->transformWith(new FeatureTransformer)
-            ->toArray()['data'];
+        return new FeatureResource($result->fresh());
     }
 
+    /**
+     * @param int $id
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();

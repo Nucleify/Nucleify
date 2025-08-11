@@ -30,8 +30,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { DashboardInterface } from 'atomic'
 
+import type { DashboardInterface } from 'atomic'
 import { fileRequests, useDialog, useFileFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()

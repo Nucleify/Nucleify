@@ -1,17 +1,17 @@
 import type { App } from 'vue'
 
 import {
+  CardDashboard,
   CardPage,
+  FeatureDashboard,
   FeaturePage,
+  LinkDashboard,
   LinkPage,
+  QuestionDashboard,
   QuestionPage,
   StructuralPage,
-  TechnologyPage,
-  CardDashboard,
-  FeatureDashboard,
-  LinkDashboard,
-  QuestionDashboard,
   TechnologyDashboard,
+  TechnologyPage,
 } from './atomic'
 
 export function registerDMEntitiesStructural(app: App<Element>): void {

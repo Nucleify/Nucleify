@@ -14,7 +14,7 @@
         </div>
       </template>
       <template #content>
-        <form @submit.prevent="submitForm(registerFields)">
+        <form @submit.prevent="submitAndGo(registerFields)">
           <ad-float-label v-for="(field, index) in registerInputs" :key="index">
             <ad-input-text
               v-if="field.type !== 'password'"
@@ -69,7 +69,7 @@ import { onMounted } from 'vue'
 
 import { checkIsEmpty, checkPasswordsMatch, useAuthForm } from 'atomic'
 
-const { submitForm, registerFields, registerInputs } = useAuthForm()
+const { submitAndGo, registerFields, registerInputs } = useAuthForm()
 
 onMounted(() => {
   checkPasswordsMatch(

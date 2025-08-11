@@ -1,7 +1,7 @@
 @import 'mixins';
 
 @each $type in main, activity, article, card, contact, feature, file, money,
-  link, question, technology, user
+  link, question, task, technology, user
 {
   .p-datepicker[ad-type='#{$type}'] {
     @include entity-calendar-styles(

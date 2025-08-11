@@ -1,7 +1,6 @@
 <template>
   <Button
     :label="props.label"
-    :icon="props.icon"
     :icon-pos="props.iconPos"
     :icon-class="props.iconClass"
     :badge="props.badge"
@@ -34,15 +33,16 @@
     @click="props.onclick"
   >
     <ad-image v-if="props.src" :src="props.src" :alt="props.alt" />
+    <ad-icon v-if="props.icon" :icon="props.icon" />
     <template v-if="props.label">{{ props.label }}</template>
     <slot />
   </Button>
 </template>
 
 <script setup lang="ts">
-import Button from 'primevue/button' // Import for Storybook
-
 import type { ButtonInterface } from 'atomic'
+
+import Button from 'primevue/button' // Import for Storybook
 
 const props = defineProps<ButtonInterface>()
 </script>

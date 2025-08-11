@@ -9,13 +9,13 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function ($moduleData = moduleData) {
+describe('422 > POST', function ($moduleData = moduleData) {
 
     /**
      * NAME
      */
     $moduleData['name'] = '';
-    test('invalid name > empty string', apiTest(
+    test('name > empty string', apiTest(
         'POST',
         'modules.store',
         422,
@@ -25,7 +25,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['name'] = [];
-    test('invalid name > empty array', apiTest(
+    test('name > empty array', apiTest(
         'POST',
         'modules.store',
         422,
@@ -35,7 +35,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['name'] = false;
-    test('invalid name > false', apiTest(
+    test('name > false', apiTest(
         'POST',
         'modules.store',
         422,
@@ -45,7 +45,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['name'] = true;
-    test('invalid name > true', apiTest(
+    test('name > true', apiTest(
         'POST',
         'modules.store',
         422,
@@ -55,7 +55,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['name'] = 1;
-    test('invalid name > integer', apiTest(
+    test('name > integer', apiTest(
         'POST',
         'modules.store',
         422,
@@ -70,7 +70,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
      * DESCRIPTION
      */
     $moduleData['description'] = 12345;
-    test('invalid description > integer', apiTest(
+    test('description > integer', apiTest(
         'POST',
         'modules.store',
         422,
@@ -80,7 +80,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['description'] = false;
-    test('invalid description > false', apiTest(
+    test('description > false', apiTest(
         'POST',
         'modules.store',
         422,
@@ -90,7 +90,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['description'] = true;
-    test('invalid description > true', apiTest(
+    test('description > true', apiTest(
         'POST',
         'modules.store',
         422,
@@ -105,7 +105,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
      * CATEGORY
      */
     $moduleData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'POST',
         'modules.store',
         422,
@@ -115,7 +115,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['category'] = null;
-    test('invalid category > null', apiTest(
+    test('category > null', apiTest(
         'POST',
         'modules.store',
         422,
@@ -125,7 +125,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'POST',
         'modules.store',
         422,
@@ -135,7 +135,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'POST',
         'modules.store',
         422,
@@ -150,7 +150,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
      * VERSION
      */
     $moduleData['version'] = [];
-    test('invalid version > empty array', apiTest(
+    test('version > empty array', apiTest(
         'POST',
         'modules.store',
         422,
@@ -160,7 +160,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['version'] = 1.1;
-    test('invalid version > float', apiTest(
+    test('version > float', apiTest(
         'POST',
         'modules.store',
         422,
@@ -169,7 +169,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
         ['errors' => ['version' => ['The version field must be a string.']]]
     ));
     $moduleData['version'] = true;
-    test('invalid version > true', apiTest(
+    test('version > true', apiTest(
         'POST',
         'modules.store',
         422,
@@ -179,7 +179,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['version'] = false;
-    test('invalid version > false', apiTest(
+    test('version > false', apiTest(
         'POST',
         'modules.store',
         422,
@@ -194,7 +194,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
      * ENABLED
      */
     $moduleData['enabled'] = 'string';
-    test('invalid enabled > string', apiTest(
+    test('enabled > string', apiTest(
         'POST',
         'modules.store',
         422,
@@ -204,7 +204,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['enabled'] = '';
-    test('invalid enabled > empty string', apiTest(
+    test('enabled > empty string', apiTest(
         'POST',
         'modules.store',
         422,
@@ -214,7 +214,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['enabled'] = [];
-    test('invalid enabled > empty array', apiTest(
+    test('enabled > empty array', apiTest(
         'POST',
         'modules.store',
         422,
@@ -224,7 +224,7 @@ describe('422 > Unprocessable Content > POST', function ($moduleData = moduleDat
     ));
 
     $moduleData['enabled'] = null;
-    test('invalid enabled > null', apiTest(
+    test('enabled > null', apiTest(
         'POST',
         'modules.store',
         422,

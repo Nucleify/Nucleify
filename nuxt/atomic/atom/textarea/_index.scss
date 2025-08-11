@@ -9,7 +9,7 @@
   max-height: 400px;
 
   @each $type in main, activity, article, card, contact, feature, file, link,
-    money, question, technology, user
+    money, question, task, technology, user
   {
     &[ad-type='#{$type}'] {
       @include entity-textarea-styles(

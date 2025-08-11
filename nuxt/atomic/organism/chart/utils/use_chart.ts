@@ -1,30 +1,33 @@
 /* eslint-disable */
 // @ts-nocheck
+
 import { Ref, ref } from 'vue'
-import { ChartOptions } from 'chart.js'
 
 import {
-  allEntitiesKeys,
-  allEntitiesLabels,
-  months,
   ActivityLogObjectInterface,
   ArticleObjectInterface,
+  allEntitiesKeys,
+  allEntitiesLabels,
   CardObjectInterface,
-  ContactObjectInterface,
-  FileObjectInterface,
-  MoneyObjectInterface,
-  UserObjectInterface,
-  QuestionObjectInterface,
-  TechnologyObjectInterface,
+  ChartInterface,
   ChartMethodType,
   ChartType,
-  ChartInterface,
+  ContactObjectInterface,
+  FeatureObjectInterface,
+  FileObjectInterface,
   LabelItemType,
   LinkObjectInterface,
-  FeatureObjectInterface,
+  MoneyObjectInterface,
+  months,
+  QuestionObjectInterface,
+  TaskObjectInterface,
+  TechnologyObjectInterface,
   UseColorsInterface,
+  UserObjectInterface,
   useColors,
 } from 'atomic'
+
+import { ChartOptions } from 'chart.js'
 
 export function useChart() {
   const { colors }: UseColorsInterface = useColors()
@@ -40,8 +43,10 @@ export function useChart() {
       ['user', '#64748B'],
       ['card', '#1B10B9'],
       ['feature', '#B91010'],
+      ['file', '#6DB910'],
       ['link', '#10B3B9'],
       ['question', '#8CB910'],
+      ['task', '#1045b9'],
       ['technology', '#B95910'],
     ].map(([key, primary]) => [key, { primary, secondary: `${primary}35` }])
   )
@@ -63,6 +68,7 @@ export function useChart() {
     linkData?: LinkObjectInterface[],
     moneyData?: MoneyObjectInterface[],
     questionData?: QuestionObjectInterface[],
+    taskData?: TaskObjectInterface[],
     technologyData?: TechnologyObjectInterface[],
     userData?: UserObjectInterface[],
     example?: boolean
@@ -100,6 +106,7 @@ export function useChart() {
           [linkData, dataByMonth.link],
           [moneyData, dataByMonth.money],
           [questionData, dataByMonth.question],
+          [taskData, dataByMonth.task],
           [technologyData, dataByMonth.technology],
           [userData, dataByMonth.user],
         ].forEach(([data, dataByMonth]) =>
@@ -152,6 +159,7 @@ export function useChart() {
                   Features: featureData,
                   Links: linkData,
                   Question: questionData,
+                  Task: taskData,
                   Technology: technologyData,
                 })[label]
             )

@@ -4,17 +4,22 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('feature-api-422');
+uses()->group('feature-api-422-put');
+uses()->group('api-422');
+uses()->group('api-422-put');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = updatedFeatureData) {
+describe('422 > PUT', function ($updatedFeatureData = updatedFeatureData) {
     /**
      * ICON TESTS
      */
     $updatedFeatureData['icon'] = 1;
-    test('invalid icon > integer', apiTest(
+    test('icon > integer', apiTest(
         'PUT',
         'features.update',
         422,
@@ -28,7 +33,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['icon'] = false;
-    test('invalid icon > false', apiTest(
+    test('icon > false', apiTest(
         'PUT',
         'features.update',
         422,
@@ -42,7 +47,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['icon'] = true;
-    test('invalid icon > true', apiTest(
+    test('icon > true', apiTest(
         'PUT',
         'features.update',
         422,
@@ -56,7 +61,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['icon'] = [];
-    test('invalid icon > empty array', apiTest(
+    test('icon > empty array', apiTest(
         'PUT',
         'features.update',
         422,
@@ -73,7 +78,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
      * HEADER TESTS
      */
     $updatedFeatureData['header'] = '';
-    test('invalid header > empty', apiTest(
+    test('header > empty', apiTest(
         'PUT',
         'features.update',
         422,
@@ -85,7 +90,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['header'] = 1;
-    test('invalid header > integer', apiTest(
+    test('header > integer', apiTest(
         'PUT',
         'features.update',
         422,
@@ -99,7 +104,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['header'] = false;
-    test('invalid header > false', apiTest(
+    test('header > false', apiTest(
         'PUT',
         'features.update',
         422,
@@ -113,7 +118,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['header'] = true;
-    test('invalid header > true', apiTest(
+    test('header > true', apiTest(
         'PUT',
         'features.update',
         422,
@@ -127,7 +132,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['header'] = [];
-    test('invalid header > empty array', apiTest(
+    test('header > empty array', apiTest(
         'PUT',
         'features.update',
         422,
@@ -144,7 +149,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
      * DESCRIPTION TESTS
      */
     $updatedFeatureData['description'] = 1;
-    test('invalid description > integer', apiTest(
+    test('description > integer', apiTest(
         'PUT',
         'features.update',
         422,
@@ -158,7 +163,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['description'] = false;
-    test('invalid description > false', apiTest(
+    test('description > false', apiTest(
         'PUT',
         'features.update',
         422,
@@ -172,7 +177,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['description'] = true;
-    test('invalid description > true', apiTest(
+    test('description > true', apiTest(
         'PUT',
         'features.update',
         422,
@@ -186,7 +191,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['description'] = [];
-    test('invalid description > empty array', apiTest(
+    test('description > empty array', apiTest(
         'PUT',
         'features.update',
         422,
@@ -203,7 +208,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
      * CATEGORY TESTS
      */
     $updatedFeatureData['category'] = '';
-    test('invalid content > empty', apiTest(
+    test('content > empty', apiTest(
         'PUT',
         'features.update',
         422,
@@ -215,7 +220,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['category'] = 1;
-    test('invalid category > integer', apiTest(
+    test('category > integer', apiTest(
         'PUT',
         'features.update',
         422,
@@ -229,7 +234,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'PUT',
         'features.update',
         422,
@@ -243,7 +248,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'PUT',
         'features.update',
         422,
@@ -257,7 +262,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedFeatureData = up
     ));
 
     $updatedFeatureData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'PUT',
         'features.update',
         422,

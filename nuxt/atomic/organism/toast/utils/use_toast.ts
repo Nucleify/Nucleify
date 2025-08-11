@@ -1,10 +1,10 @@
-import { useNuxtApp } from 'nuxt/app'
-
 import type {
   MessageOrMessagesType,
   ToastSeverityType,
   UseToastInterface,
 } from 'atomic'
+
+import { useNuxtApp } from 'nuxt/app'
 
 export function useToast(): UseToastInterface {
   const nuxtApp = useNuxtApp()
@@ -40,12 +40,7 @@ export function useToast(): UseToastInterface {
         }
 
         for (const value in messageOrMessages) {
-          if (
-            Object.prototype.hasOwnProperty.call(
-              messageOrMessages,
-              value as string
-            )
-          ) {
+          if (Object.hasOwn(messageOrMessages, value as string)) {
             message += `\n- ${messageOrMessages[value].join(', ')}`
           }
         }

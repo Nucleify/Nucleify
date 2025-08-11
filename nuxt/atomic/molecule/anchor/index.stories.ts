@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/vue3-vite'
-
 import { AdAnchor } from '.'
+
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Molecules/Anchor',
@@ -8,7 +8,7 @@ const meta = {
   args: {
     href: '',
     src: '',
-    icon: 'pi pi-star',
+    icon: 'prime:star',
     label: '',
     rel: undefined,
     target: undefined,

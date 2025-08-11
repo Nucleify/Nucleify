@@ -24,17 +24,15 @@ test('index > success', function (): void {
 
     $response = $this->controller->index($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
+    expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
 });
 
 test('show > success', function (): void {
-    $module = Module::factory()->create();
+    $model = Module::factory()->create();
 
-    $response = $this->controller->show($module->id);
+    $response = $this->controller->show($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
+    expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
 });
 
 test('store > success', function (): void {
@@ -43,27 +41,26 @@ test('store > success', function (): void {
 
     $response = $this->controller->store($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
+    expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
 });
 
 test('update > success', function (): void {
-    $module = Module::factory()->create();
+    $model = Module::factory()->create();
 
     $request = Mockery::mock(PutRequest::class);
     $request->shouldReceive('validated')->andReturn(updatedModuleData);
 
-    $response = $this->controller->update($request, $module->id);
+    $response = $this->controller->update($request, $model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
+    expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
 });
 
 test('delete > success', function (): void {
-    $module = Module::factory()->create();
+    $model = Module::factory()->create();
 
-    $response = $this->controller->destroy($module->id);
+    $response = $this->controller->destroy($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    $this->assertDatabaseMissing('modules', ['id' => $module->id]);
+    expect($response->getStatusCode(), $response->getData(true))
+        ->toEqual(200)
+        ->and($this->assertDatabaseMissing('modules', ['id' => $model->id]));
 });
