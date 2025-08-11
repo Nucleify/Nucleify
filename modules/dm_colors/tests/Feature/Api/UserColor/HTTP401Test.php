@@ -5,8 +5,9 @@ if (!defined('PEST_RUNNING')) {
 }
 
 uses()->group('user-color-api-401');
+uses()->group('api-401');
 
-describe('401 > Unauthorized', function (): void {
+describe('401', function (): void {
     test('index api', apiTest(
         'GET',
         'user-colors.index',

@@ -4,10 +4,13 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('technology-migrations');
+
 use Illuminate\Support\Facades\Schema;
 
-it('can create table', function (): void {
-    expect(Schema::hasTable('technologies'))->toBeTrue()
+test('can create table', function (): void {
+    expect(Schema::hasTable('technologies'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('technologies', [
             'id',
             'label',
@@ -18,10 +21,11 @@ it('can create table', function (): void {
             'display',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
-it('can be rolled back', function (): void {
+test('can be rolled back', function (): void {
     $this->artisan('migrate:rollback');
 
     expect(Schema::hasTable('technologies'))->toBeFalse();

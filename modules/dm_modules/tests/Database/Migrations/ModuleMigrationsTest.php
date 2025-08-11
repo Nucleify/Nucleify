@@ -7,7 +7,8 @@ if (!defined('PEST_RUNNING')) {
 use Illuminate\Support\Facades\Schema;
 
 it('can create table', function (): void {
-    expect(Schema::hasTable('modules'))->toBeTrue()
+    expect(Schema::hasTable('modules'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('modules', [
             'id',
             'name',
@@ -17,7 +18,8 @@ it('can create table', function (): void {
             'enabled',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 it('can be rolled back', function (): void {

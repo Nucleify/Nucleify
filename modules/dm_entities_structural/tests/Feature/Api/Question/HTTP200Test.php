@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('question-api-200');
+uses()->group('api-200');
+
 use App\Models\Question;
 
 beforeEach(function (): void {
@@ -11,7 +14,7 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('index api', function (): void {
         Question::factory(3)->create();
 
@@ -46,24 +49,24 @@ describe('200 > Authorized', function (): void {
     });
 
     test('show api', function (): void {
-        $question = Question::factory()->create();
+        $model = Question::factory()->create();
 
-        $this->getJson(route('questions.show', $question->id))
+        $this->getJson(route('questions.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $question = Question::factory()->create();
+        $model = Question::factory()->create();
 
-        $this->putJson(route('questions.update', $question->id), updatedQuestionData)
+        $this->putJson(route('questions.update', $model->id), updatedQuestionData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $question = Question::factory()->create();
+        $model = Question::factory()->create();
 
-        $this->deleteJson(route('questions.destroy', $question->id))
+        $this->deleteJson(route('questions.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('questions', ['id' => $question->id]);
+        $this->assertDatabaseMissing('questions', ['id' => $model->id]);
     });
 });

@@ -5,7 +5,7 @@ if (!defined('PEST_RUNNING')) {
 }
 
 /**
- *  Main tests group
+ *  Main groups
  */
 uses()
     ->group('dm-colors')
@@ -27,12 +27,24 @@ uses()
     ->in('Database');
 
 uses()
+    ->group('color-models')
+    ->in('Database/Models');
+
+uses()
     ->group('models')
     ->in('Database/Models');
 
 uses()
+    ->group('color-migrations')
+    ->in('Database/Migrations');
+
+uses()
     ->group('migrations')
     ->in('Database/Migrations');
+
+uses()
+    ->group('color-factories')
+    ->in('Database/Factories');
 
 uses()
     ->group('factories')
@@ -46,5 +58,13 @@ uses()
     ->in('Feature/Api');
 
 uses()
+    ->group('color-api')
+    ->in('Feature/Api');
+
+uses()
     ->group('controllers')
+    ->in('Feature/Controllers');
+
+uses()
+    ->group('color-controllers')
     ->in('Feature/Controllers');

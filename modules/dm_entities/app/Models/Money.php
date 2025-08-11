@@ -19,27 +19,27 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string category
  * @property string created_at
  * @property string updated_at
- * @property int getId
- * @property int getUserId
- * @property string getSender
- * @property string getReceiver
- * @property int getCount
- * @property string getTitle
- * @property string getDescription
- * @property string getCategory
- * @property string getCreatedAt
- * @property string getUpdatedAt
- * @property BelongsTo user
- * @property Builder scopeGetById
- * @property Builder scopeGetByUserId
- * @property Builder scopeGetBySender
- * @property Builder scopeGetByReceiver
- * @property Builder scopeGetByCount
- * @property Builder scopeGetByTitle
- * @property Builder scopeGetByDescription
- * @property Builder scopeGetByCategory
- * @property Builder scopeGetByCreatedAt
- * @property Builder scopeGetByUpdatedAt
+ * @property int getId()
+ * @property int getUserId()
+ * @property string getSender()
+ * @property string getReceiver()
+ * @property int getCount()
+ * @property string getTitle()
+ * @property string getDescription()
+ * @property string getCategory()
+ * @property string getCreatedAt()
+ * @property string getUpdatedAt()
+ * @property BelongsTo user()
+ * @property Builder scopeGetById()
+ * @property Builder scopeGetByUserId()
+ * @property Builder scopeGetBySender()
+ * @property Builder scopeGetByReceiver()
+ * @property Builder scopeGetByCount()
+ * @property Builder scopeGetByTitle()
+ * @property Builder scopeGetByDescription()
+ * @property Builder scopeGetByCategory()
+ * @property Builder scopeGetByCreatedAt()
+ * @property Builder scopeGetByUpdatedAt()
  */
 class Money extends Model implements MoneyContract
 {
@@ -146,7 +146,7 @@ class Money extends Model implements MoneyContract
         return $query->where('description', $parameter);
     }
 
-    public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
+    public function scopeGetByCategory(Builder $query, string $parameter): Builder
     {
         return $query->where('category', $parameter);
     }

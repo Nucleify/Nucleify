@@ -4,29 +4,31 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('system-color-factory');
+
 use App\Models\SystemColor;
 
 beforeEach(function (): void {
     $this->createUsers();
 });
 
-it('can create record', function (): void {
-    $color = SystemColor::factory()->create();
+test('can create record', function (): void {
+    $model = SystemColor::factory()->create();
 
-    $this->assertDatabaseCount('system_colors', 1);
-    $this->assertDatabaseHas('system_colors', ['id' => $color->id]);
+    $this->assertDatabaseCount('system_colors', 1)
+        ->assertDatabaseHas('system_colors', ['id' => $model->id]);
 });
 
-it('can create multiple records', function (): void {
-    $colors = SystemColor::factory()->count(3)->create();
+test('can create multiple records', function (): void {
+    $models = SystemColor::factory()->count(3)->create();
 
     $this->assertDatabaseCount('system_colors', 3);
-    foreach ($colors as $color) {
-        $this->assertDatabaseHas('system_colors', ['id' => $color->id]);
+    foreach ($models as $model) {
+        $this->assertDatabaseHas('system_colors', ['id' => $model->id]);
     }
 });
 
-it("can't create record", function (): void {
+test('can\'t create record', function (): void {
     try {
         SystemColor::factory(['id' => 'id'])->create();
     } catch (Exception $e) {
@@ -38,7 +40,7 @@ it("can't create record", function (): void {
     $this->fail('Expected exception not thrown.');
 })->skip(env('DB_DATABASE') === 'database/database.sqlite', 'temporarily unavailable'); // unavailable for git workflow tests
 
-it("can't create multiple records", function (): void {
+test('can\'t create multiple records', function (): void {
     try {
         SystemColor::factory(['id' => 'id'])->count(2)->create();
     } catch (Exception $e) {

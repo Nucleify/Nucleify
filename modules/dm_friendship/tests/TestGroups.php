@@ -5,7 +5,7 @@ if (!defined('PEST_RUNNING')) {
 }
 
 /**
- *  Main tests group
+ *  Main groups
  */
 uses()
     ->group('dm-friendship')
@@ -30,6 +30,10 @@ uses()
     ->group('migrations')
     ->in('Database/Migrations');
 
+uses()
+    ->group('friendship-migrations')
+    ->in('Database/Migrations');
+
 /**
  *  Feature groups
  */
@@ -38,5 +42,13 @@ uses()
     ->in('Feature/Controllers');
 
 uses()
+    ->group('friendship-controller')
+    ->in('Feature/Controllers');
+
+uses()
     ->group('services')
+    ->in('Feature/Services');
+
+uses()
+    ->group('friendship-service')
     ->in('Feature/Services');

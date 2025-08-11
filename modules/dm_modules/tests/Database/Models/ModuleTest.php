@@ -67,64 +67,48 @@ describe('Instance', function (): void {
 
 describe('Scope', function (): void {
     test('can filter by id using scopeGetById', function (): void {
-        $this->model = Module::factory()->create();
-
         $foundModel = Module::getById($this->model->id)->first();
 
         expect($foundModel->id)->toBe($this->model->id);
     });
 
     test('can filter by index using scopeGetByName', function (): void {
-        $this->model = Module::factory()->create();
-
         $foundModel = Module::getByName($this->model->name)->first();
 
         expect($foundModel->name)->toBe($this->model->name);
     });
 
     test('can filter by content using scopeGetByDescription', function (): void {
-        $this->model = Module::factory()->create();
-
         $foundModel = Module::getByDescription($this->model->description)->first();
 
         expect($foundModel->description)->toBe($this->model->description);
     });
 
     test('can filter by answer using scopeGetByCategory', function (): void {
-        $this->model = Module::factory()->create();
-
         $foundModel = Module::getByCategory($this->model->category)->first();
 
         expect($foundModel->category)->toBe($this->model->category);
     });
 
     test('can filter by category using scopeGetByVersion', function (): void {
-        $this->model = Module::factory()->create();
-
         $foundModel = Module::getByVersion($this->model->version)->first();
 
         expect($foundModel->version)->toBe($this->model->version);
     });
 
     test('can filter by on_site using scopeGetByEnabled', function (): void {
-        $this->model = Module::factory()->create();
-
         $foundModel = Module::getByEnabled($this->model->enabled)->first();
 
         expect($foundModel->enabled)->toEqual($this->model->enabled);
     });
 
     test('can filter by created_at using scopeGetByCreatedAt', function (): void {
-        $this->model = Module::factory()->create();
-
         $foundModel = Module::getByCreatedAt($this->model->created_at->toDateString())->first();
 
         expect($foundModel->created_at->toDateString())->toBe($this->model->created_at->toDateString());
     });
 
     test('can filter by updated_at using scopeGetByUpdatedAt', function (): void {
-        $this->model = Module::factory()->create();
-
         $foundModel = Module::getByUpdatedAt($this->model->updated_at->toDateString())->first();
 
         expect($foundModel->updated_at->toDateString())->toBe($this->model->updated_at->toDateString());

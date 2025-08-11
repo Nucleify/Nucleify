@@ -11,18 +11,18 @@ beforeEach(function (): void {
 });
 
 it('can create record', function (): void {
-    $module = Module::factory()->create();
+    $model = Module::factory()->create();
 
-    $this->assertDatabaseCount('modules', 1);
-    $this->assertDatabaseHas('modules', ['id' => $module->id]);
+    $this->assertDatabaseCount('modules', 1)
+        ->assertDatabaseHas('modules', ['id' => $model->id]);
 });
 
 it('can create multiple records', function (): void {
-    $modules = Module::factory()->count(3)->create();
+    $models = Module::factory()->count(3)->create();
 
     $this->assertDatabaseCount('modules', 3);
-    foreach ($modules as $module) {
-        $this->assertDatabaseHas('modules', ['id' => $module->id]);
+    foreach ($models as $model) {
+        $this->assertDatabaseHas('modules', ['id' => $model->id]);
     }
 });
 
