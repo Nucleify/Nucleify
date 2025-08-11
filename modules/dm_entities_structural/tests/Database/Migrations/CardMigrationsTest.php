@@ -9,7 +9,8 @@ uses()->group('card-migrations');
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
-    expect(Schema::hasTable('cards'))->toBeTrue()
+    expect(Schema::hasTable('cards'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('cards', [
             'id',
             'src',
@@ -20,7 +21,8 @@ test('can create table', function (): void {
             'display',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

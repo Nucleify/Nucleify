@@ -9,7 +9,8 @@ uses()->group('money-migrations');
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
-    expect(Schema::hasTable('money'))->toBeTrue()
+    expect(Schema::hasTable('money'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('money', [
             'id',
             'user_id',
@@ -21,7 +22,8 @@ test('can create table', function (): void {
             'category',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

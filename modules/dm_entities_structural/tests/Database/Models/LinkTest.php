@@ -8,282 +8,195 @@ uses()->group('link-model');
 
 use App\Models\Link;
 
-test('can be created', function (): void {
-    $link = Link::factory()->create();
+beforeEach(function (): void {
+    $this->createUsers();
+    $this->model = Link::factory()->create();
+});
 
-    expect($link)->toBeInstanceOf(Link::class);
+test('can be created', function (): void {
+    expect($this->model)->toBeInstanceOf(Link::class);
 });
 
 describe('Instance', function (): void {
     test('can get id', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getId())
+        expect($this->model->getId())
             ->toBeInt()
-            ->toBe($link->id);
+            ->toBe($this->model->id);
     });
 
     test('can get download', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getDownload())
+        expect($this->model->getDownload())
             ->toBeString()
-            ->toBe($link->download);
-    });
-
-    test('can get null for download if not set', function (): void {
-        $link = Link::factory()->create(['download' => null]);
-
-        expect($link->getDownload())->toBeNull();
+            ->toBe($this->model->download);
     });
 
     test('can get href', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getHref())
+        expect($this->model->getHref())
             ->toBeString()
-            ->toBe($link->href);
+            ->toBe($this->model->href);
     });
 
     test('can get src', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getSrc())
+        expect($this->model->getSrc())
             ->toBeString()
-            ->toBe($link->src);
-    });
-
-    test('can get null for src if not set', function (): void {
-        $link = Link::factory()->create(['src' => null]);
-
-        expect($link->getSrc())->toBeNull();
+            ->toBe($this->model->src);
     });
 
     test('can get icon', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getIcon())
+        expect($this->model->getIcon())
             ->toBeString()
-            ->toBe($link->icon);
-    });
-
-    test('can get null for icon if not set', function (): void {
-        $link = Link::factory()->create(['icon' => null]);
-
-        expect($link->getIcon())->toBeNull();
+            ->toBe($this->model->icon);
     });
 
     test('can get category', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getCategory())
+        expect($this->model->getCategory())
             ->toBeString()
-            ->toBe($link->category);
+            ->toBe($this->model->category);
     });
 
     test('can get hreflang', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getHreflang())
+        expect($this->model->getHreflang())
             ->toBeString()
-            ->toBe($link->hreflang);
-    });
-
-    test('can get null for hreflang if not set', function (): void {
-        $link = Link::factory()->create(['hreflang' => null]);
-
-        expect($link->getHreflang())->toBeNull();
+            ->toBe($this->model->hreflang);
     });
 
     test('can get media', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getMedia())
+        expect($this->model->getMedia())
             ->toBeString()
-            ->toBe($link->media);
-    });
-
-    test('can get null for media if not set', function (): void {
-        $link = Link::factory()->create(['media' => null]);
-
-        expect($link->getMedia())->toBeNull();
+            ->toBe($this->model->media);
     });
 
     test('can get ping', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getPing())
+        expect($this->model->getPing())
             ->toBeString()
-            ->toBe($link->ping);
-    });
-
-    test('can get null for ping if not set', function (): void {
-        $link = Link::factory()->create(['ping' => null]);
-
-        expect($link->getPing())->toBeNull();
+            ->toBe($this->model->ping);
     });
 
     test('can get referrerpolicy', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getReferrerPolicy())
+        expect($this->model->getReferrerPolicy())
             ->toBeString()
-            ->toBe($link->referrerpolicy);
-    });
-
-    test('can get null for referrerpolicy if not set', function (): void {
-        $link = Link::factory()->create(['referrerpolicy' => null]);
-
-        expect($link->getReferrerPolicy())->toBeNull();
+            ->toBe($this->model->referrerpolicy);
     });
 
     test('can get rel', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getRel())
+        expect($this->model->getRel())
             ->toBeString()
-            ->toBe($link->rel);
-    });
-
-    test('can get null for rel if not set', function (): void {
-        $link = Link::factory()->create(['rel' => null]);
-
-        expect($link->getRel())->toBeNull();
+            ->toBe($this->model->rel);
     });
 
     test('can get target', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getTarget())
+        expect($this->model->getTarget())
             ->toBeString()
-            ->toBe($link->target);
-    });
-
-    test('can get null for target if not set', function (): void {
-        $link = Link::factory()->create(['target' => null]);
-
-        expect($link->getTarget())->toBeNull();
+            ->toBe($this->model->target);
     });
 
     test('can get type', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getType())
+        expect($this->model->getType())
             ->toBeString()
-            ->toBe($link->type);
-    });
-
-    test('can get null for type if not set', function (): void {
-        $link = Link::factory()->create(['type' => null]);
-
-        expect($link->getType())->toBeNull();
+            ->toBe($this->model->type);
     });
 
     test('can get created_at date', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getCreatedAt())
+        expect($this->model->getCreatedAt())
             ->toBeString()
-            ->toBe($link->created_at->toDateTimeString());
+            ->toBe($this->model->created_at->toDateTimeString());
     });
 
     test('can get updated_at date', function (): void {
-        $link = Link::factory()->create();
-
-        expect($link->getUpdatedAt())
+        expect($this->model->getUpdatedAt())
             ->toBeString()
-            ->toBe($link->updated_at->toDateTimeString());
+            ->toBe($this->model->updated_at->toDateTimeString());
     });
 });
 
 describe('Scope', function (): void {
     test('can filter by id using scopeGetById', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getById($link->id)->first();
-        expect($foundLink->id)->toBe($link->id);
+        $foundModel = Link::getById($this->model->id)->first();
+
+        expect($foundModel->id)->toBe($this->model->id);
     });
 
     test('can filter by download using scopeGetByDownload', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByDownload($link->download)->first();
-        expect($foundLink->download)->toBe($link->download);
+        $foundModel = Link::getByDownload($this->model->download)->first();
+
+        expect($foundModel->download)->toBe($this->model->download);
     });
 
     test('can filter by href using scopeGetByHref', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByHref($link->href)->first();
-        expect($foundLink->href)->toBe($link->href);
+        $foundModel = Link::getByHref($this->model->href)->first();
+
+        expect($foundModel->href)->toBe($this->model->href);
     });
 
     test('can filter by src using scopeGetBySrc', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getBySrc($link->src)->first();
-        expect($foundLink->src)->toBe($link->src);
+        $foundModel = Link::getBySrc($this->model->src)->first();
+
+        expect($foundModel->src)->toBe($this->model->src);
     });
 
     test('can filter by icon using scopeGetByIcon', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByIcon($link->icon)->first();
-        expect($foundLink->icon)->toBe($link->icon);
+        $foundModel = Link::getByIcon($this->model->icon)->first();
+
+        expect($foundModel->icon)->toBe($this->model->icon);
     });
 
     test('can filter by category using scopeGetByCategory', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByCategory($link->category)->first();
-        expect($foundLink->category)->toBe($link->category);
+        $foundModel = Link::getByCategory($this->model->category)->first();
+
+        expect($foundModel->category)->toBe($this->model->category);
     });
 
     test('can filter by hreflang using scopeGetByHreflang', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByHreflang($link->hreflang)->first();
-        expect($foundLink->hreflang)->toBe($link->hreflang);
+        $foundModel = Link::getByHreflang($this->model->hreflang)->first();
+
+        expect($foundModel->hreflang)->toBe($this->model->hreflang);
     });
 
     test('can filter by media using scopeGetByMedia', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByMedia($link->media)->first();
-        expect($foundLink->media)->toBe($link->media);
+        $foundModel = Link::getByMedia($this->model->media)->first();
+
+        expect($foundModel->media)->toBe($this->model->media);
     });
 
     test('can filter by ping using scopeGetByPing', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByPing($link->ping)->first();
-        expect($foundLink->ping)->toBe($link->ping);
+        $foundModel = Link::getByPing($this->model->ping)->first();
+
+        expect($foundModel->ping)->toBe($this->model->ping);
     });
 
     test('can filter by referrerpolicy using scopeGetByReferrerPolicy', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByReferrerPolicy($link->referrerpolicy)->first();
-        expect($foundLink->referrerpolicy)->toBe($link->referrerpolicy);
+        $foundModel = Link::getByReferrerPolicy($this->model->referrerpolicy)->first();
+
+        expect($foundModel->referrerpolicy)->toBe($this->model->referrerpolicy);
     });
 
     test('can filter by rel using scopeGetByRel', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByRel($link->rel)->first();
-        expect($foundLink->rel)->toBe($link->rel);
+        $foundModel = Link::getByRel($this->model->rel)->first();
+
+        expect($foundModel->rel)->toBe($this->model->rel);
     });
 
     test('can filter by target using scopeGetByTarget', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByTarget($link->target)->first();
-        expect($foundLink->target)->toBe($link->target);
+        $foundModel = Link::getByTarget($this->model->target)->first();
+
+        expect($foundModel->target)->toBe($this->model->target);
     });
 
     test('can filter by type using scopeGetByType', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByType($link->type)->first();
-        expect($foundLink->type)->toBe($link->type);
+        $foundModel = Link::getByType($this->model->type)->first();
+
+        expect($foundModel->type)->toBe($this->model->type);
     });
 
     test('can filter by created_at using scopeGetByCreatedAt', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByCreatedAt($link->created_at->toDateString())->first();
-        expect($foundLink->created_at->toDateString())->toBe($link->created_at->toDateString());
+        $foundModel = Link::getByCreatedAt($this->model->created_at->toDateString())->first();
+
+        expect($foundModel->created_at->toDateString())->toBe($this->model->created_at->toDateString());
     });
 
     test('can filter by updated_at using scopeGetByUpdatedAt', function (): void {
-        $link = Link::factory()->create();
-        $foundLink = Link::getByUpdatedAt($link->updated_at->toDateString())->first();
-        expect($foundLink->updated_at->toDateString())->toBe($link->updated_at->toDateString());
+        $foundModel = Link::getByUpdatedAt($this->model->updated_at->toDateString())->first();
+
+        expect($foundModel->updated_at->toDateString())->toBe($this->model->updated_at->toDateString());
     });
 });

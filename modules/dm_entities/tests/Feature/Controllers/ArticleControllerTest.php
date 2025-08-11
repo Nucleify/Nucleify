@@ -27,8 +27,7 @@ describe('200', function (): void {
 
         $response = $this->controller->index($request);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('countByCreatedLastWeek method', function (): void {
@@ -40,12 +39,11 @@ describe('200', function (): void {
     });
 
     test('show method', function (): void {
-        $article = Article::factory()->create();
+        $model = Article::factory()->create();
 
-        $response = $this->controller->show($article->id);
+        $response = $this->controller->show($model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('store method', function (): void {
@@ -55,29 +53,28 @@ describe('200', function (): void {
 
         $response = $this->controller->store($request);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('update method', function (): void {
-        $article = Article::factory()->create();
+        $model = Article::factory()->create();
 
         $request = Mockery::mock(PutRequest::class);
         $request->shouldReceive('validated')
             ->andReturn(updatedArticleData);
 
-        $response = $this->controller->update($request, $article->id);
+        $response = $this->controller->update($request, $model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('delete method', function (): void {
-        $article = Article::factory()->create();
+        $model = Article::factory()->create();
 
-        $response = $this->controller->destroy($article->id);
+        $response = $this->controller->destroy($model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        $this->assertDatabaseMissing('articles', ['id' => $article->id]);
+        expect($response->getStatusCode(), $response->getData(true)['deleted'])
+            ->toEqual(200)
+            ->and($this->assertDatabaseMissing('articles', ['id' => $model->id]));
     });
 });

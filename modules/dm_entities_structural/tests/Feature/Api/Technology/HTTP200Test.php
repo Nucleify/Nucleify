@@ -49,24 +49,24 @@ describe('200', function (): void {
     });
 
     test('show api', function (): void {
-        $technology = Technology::factory()->create();
+        $model = Technology::factory()->create();
 
-        $this->getJson(route('technologies.show', $technology->id))
+        $this->getJson(route('technologies.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $technology = Technology::factory()->create();
+        $model = Technology::factory()->create();
 
-        $this->putJson(route('technologies.update', $technology->id), updatedTechnologyData)
+        $this->putJson(route('technologies.update', $model->id), updatedTechnologyData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $technology = Technology::factory()->create();
+        $model = Technology::factory()->create();
 
-        $this->deleteJson(route('technologies.destroy', $technology->id))
+        $this->deleteJson(route('technologies.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('technologies', ['id' => $technology->id]);
+        $this->assertDatabaseMissing('technologies', ['id' => $model->id]);
     });
 });

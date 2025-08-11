@@ -22,8 +22,7 @@ test('can successfully log message with attributes for all entities and methods'
             $log = $activityLogger->log($causer, $entity, $entity, $method);
             $constructLogMessage = $activityLogger->constructLogMessage($causer->name, getModelByEntity($entity), $entity, $method);
 
-            expect($log)->toBeString();
-            expect($constructLogMessage)->toBeString();
+            expect($log, $constructLogMessage)->toBeString();
 
             expectLogMessage($log, $model, $method, $causer, $entity);
             expectLogMessage($constructLogMessage, $model, $method, $causer, $entity);

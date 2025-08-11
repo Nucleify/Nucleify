@@ -9,7 +9,8 @@ uses()->group('contact-migrations');
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
-    expect(Schema::hasTable('contacts'))->toBeTrue()
+    expect(Schema::hasTable('contacts'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('contacts', [
             'id',
             'first_name',
@@ -23,7 +24,8 @@ test('can create table', function (): void {
             'role',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

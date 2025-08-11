@@ -25,9 +25,8 @@ describe('500', function ($contactData = contactData) {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('contacts.index'));
-
-        $response->assertStatus(500)
+        $this->getJson(route('contacts.index'))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -38,9 +37,8 @@ describe('500', function ($contactData = contactData) {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('contacts.show', ['id' => 1]));
-
-        $response->assertStatus(500)
+        $this->getJson(route('contacts.show', ['id' => 1]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -50,9 +48,8 @@ describe('500', function ($contactData = contactData) {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->postJson(route('contacts.store'), contactData);
-
-        $response->assertStatus(500)
+        $this->postJson(route('contacts.store'), contactData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -63,14 +60,13 @@ describe('500', function ($contactData = contactData) {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->putJson(route('contacts.update', contactData['id']), updatedContactData);
-
-        $response->assertStatus(500)
+        $this->putJson(route('contacts.update', contactData['id']), updatedContactData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
     test('destroy api', function (): void {
-        $contact = Contact::factory()->create();
+        $model = Contact::factory()->create();
 
         $this->service
             ->shouldReceive('delete')
@@ -78,9 +74,8 @@ describe('500', function ($contactData = contactData) {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->deleteJson(route('contacts.destroy', ['id' => $contact->id]));
-
-        $response->assertStatus(500)
+        $this->deleteJson(route('contacts.destroy', ['id' => $model->id]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 });

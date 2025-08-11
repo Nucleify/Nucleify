@@ -9,17 +9,17 @@ uses()->group('user-factory');
 use App\Models\User;
 
 test('can create record', function (): void {
-    $user = User::factory()->create();
+    $model = User::factory()->create();
 
-    $this->assertDatabaseCount('users', 1);
-    $this->assertDatabaseHas('users', ['id' => $user->id]);
+    $this->assertDatabaseCount('users', 1)
+        ->assertDatabaseHas('users', ['id' => $model->id]);
 });
 
 test('can create multiple records', function (): void {
-    $users = User::factory()->count(3)->create();
+    $models = User::factory()->count(3)->create();
 
     $this->assertDatabaseCount('users', 3);
-    foreach ($users as $user) {
-        $this->assertDatabaseHas('users', ['id' => $user->id]);
+    foreach ($models as $model) {
+        $this->assertDatabaseHas('users', ['id' => $model->id]);
     }
 });

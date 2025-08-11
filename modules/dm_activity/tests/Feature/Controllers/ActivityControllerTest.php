@@ -21,8 +21,7 @@ describe('200', function (): void {
     test('index method', function (): void {
         $response = $this->controller->index();
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('countByCreatedLastWeek method', function (): void {
@@ -34,20 +33,20 @@ describe('200', function (): void {
     });
 
     test('show method', function (): void {
-        $activity = ActivityFactory::new()->create();
+        $model = ActivityFactory::new()->create();
 
-        $response = $this->controller->show($activity->id);
+        $response = $this->controller->show($model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('delete method', function (): void {
-        $activity = ActivityFactory::new()->create();
+        $model = ActivityFactory::new()->create();
 
-        $response = $this->controller->destroy($activity->id);
+        $response = $this->controller->destroy($model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        $this->assertDatabaseMissing('activity_log', ['id' => $activity->id]);
+        expect($response->getStatusCode(), $response->getData(true)['deleted'])
+            ->toEqual(200)
+            ->and($this->assertDatabaseMissing('activity_log', ['id' => $model->id]));
     });
 });

@@ -27,8 +27,7 @@ describe('200', function (): void {
 
         $response = $this->controller->index($request);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('countByCreatedLastWeek method', function (): void {
@@ -52,8 +51,8 @@ describe('200', function (): void {
 
         expect($response->getStatusCode())->toEqual(200);
 
-        foreach ($data as $question) {
-            expect($question['category'])->toEqual($category);
+        foreach ($data as $model) {
+            expect($model['category'])->toEqual($category);
         }
 
         expect(count($data))->toEqual(Question::where('category', $category)->count());
@@ -72,20 +71,19 @@ describe('200', function (): void {
 
         expect($response->getStatusCode())->toEqual(200);
 
-        foreach ($data as $question) {
-            expect($question['category'])->toEqual($category);
+        foreach ($data as $model) {
+            expect($model['category'])->toEqual($category);
         }
 
         expect(count($data))->toEqual(Question::where('category', $category)->count());
     });
 
     test('show method', function (): void {
-        $question = Question::factory()->create();
+        $model = Question::factory()->create();
 
-        $response = $this->controller->show($question->id);
+        $response = $this->controller->show($model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('store method', function (): void {
@@ -95,29 +93,28 @@ describe('200', function (): void {
 
         $response = $this->controller->store($request);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('update method', function (): void {
-        $question = Question::factory()->create();
+        $model = Question::factory()->create();
 
         $request = Mockery::mock(PutRequest::class);
         $request->shouldReceive('validated')
             ->andReturn(updatedQuestionData);
 
-        $response = $this->controller->update($request, $question->id);
+        $response = $this->controller->update($request, $model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('delete method', function (): void {
-        $question = Question::factory()->create();
+        $model = Question::factory()->create();
 
-        $response = $this->controller->destroy($question->id);
+        $response = $this->controller->destroy($model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        $this->assertDatabaseMissing('questions', ['id' => $question->id]);
+        expect($response->getStatusCode(), $response->getData(true)['deleted'])
+            ->toEqual(200)
+            ->and($this->assertDatabaseMissing('questions', ['id' => $model->id]));
     });
 });

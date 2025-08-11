@@ -9,38 +9,26 @@ uses()->group('api-401');
 
 describe('401', function (): void {
     test('migrate:rollback command', function (): void {
-        $response = $this->postJson(route('artisan.run'), ['command' => 'migrate:rollback']);
-
-        $response->assertStatus(401)
-            ->assertJson([
-                'message' => 'Unauthenticated.',
-            ]);
+        $this->postJson(route('artisan.run'), ['command' => 'migrate:rollback'])
+            ->assertStatus(401)
+            ->assertJson(['message' => 'Unauthenticated.']);
     });
 
     test('migrate command', function (): void {
-        $response = $this->postJson(route('artisan.run'), ['command' => 'migrate']);
-
-        $response->assertStatus(401)
-            ->assertJson([
-                'message' => 'Unauthenticated.',
-            ]);
+        $this->postJson(route('artisan.run'), ['command' => 'migrate'])
+            ->assertStatus(401)
+            ->assertJson(['message' => 'Unauthenticated.']);
     });
 
     test('migrate:fresh command', function (): void {
-        $response = $this->postJson(route('artisan.run'), ['command' => 'migrate:fresh']);
-
-        $response->assertStatus(401)
-            ->assertJson([
-                'message' => 'Unauthenticated.',
-            ]);
+        $this->postJson(route('artisan.run'), ['command' => 'migrate:fresh'])
+            ->assertStatus(401)
+            ->assertJson(['message' => 'Unauthenticated.']);
     });
 
     test('migrate:fresh --seed command', function (): void {
-        $response = $this->postJson(route('artisan.run'), ['command' => 'migrate:fresh --seed']);
-
-        $response->assertStatus(401)
-            ->assertJson([
-                'message' => 'Unauthenticated.',
-            ]);
+        $this->postJson(route('artisan.run'), ['command' => 'migrate:fresh --seed'])
+            ->assertStatus(401)
+            ->assertJson(['message' => 'Unauthenticated.']);
     });
 });

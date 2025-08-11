@@ -49,24 +49,24 @@ describe('200', function (): void {
     });
 
     test('show api', function (): void {
-        $feature = Feature::factory()->create();
+        $model = Feature::factory()->create();
 
-        $this->getJson(route('features.show', $feature->id))
+        $this->getJson(route('features.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $feature = Feature::factory()->create();
+        $model = Feature::factory()->create();
 
-        $this->putJson(route('features.update', $feature->id), featureData)
+        $this->putJson(route('features.update', $model->id), featureData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $feature = Feature::factory()->create();
+        $model = Feature::factory()->create();
 
-        $this->deleteJson(route('features.destroy', $feature->id))
+        $this->deleteJson(route('features.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('features', ['id' => $feature->id]);
+        $this->assertDatabaseMissing('features', ['id' => $model->id]);
     });
 });

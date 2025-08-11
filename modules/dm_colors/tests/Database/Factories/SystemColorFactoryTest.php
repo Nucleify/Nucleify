@@ -13,18 +13,18 @@ beforeEach(function (): void {
 });
 
 test('can create record', function (): void {
-    $color = SystemColor::factory()->create();
+    $model = SystemColor::factory()->create();
 
-    $this->assertDatabaseCount('system_colors', 1);
-    $this->assertDatabaseHas('system_colors', ['id' => $color->id]);
+    $this->assertDatabaseCount('system_colors', 1)
+        ->assertDatabaseHas('system_colors', ['id' => $model->id]);
 });
 
 test('can create multiple records', function (): void {
-    $colors = SystemColor::factory()->count(3)->create();
+    $models = SystemColor::factory()->count(3)->create();
 
     $this->assertDatabaseCount('system_colors', 3);
-    foreach ($colors as $color) {
-        $this->assertDatabaseHas('system_colors', ['id' => $color->id]);
+    foreach ($models as $model) {
+        $this->assertDatabaseHas('system_colors', ['id' => $model->id]);
     }
 });
 
