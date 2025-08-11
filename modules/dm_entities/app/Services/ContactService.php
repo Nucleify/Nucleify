@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use App\Models\Contact;
+use App\Resources\ContactResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\ContactTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ContactService
 {
@@ -21,7 +22,7 @@ class ContactService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    public function index(Request $request): array
+    public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
         $this->defineUserData();
@@ -32,10 +33,7 @@ class ContactService
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererAdmin);
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new ContactTransformer)
-            ->toArray()['data'];
+        return ContactResource::collection($result);
     }
 
     public function countByCreatedLastWeek(Request $request): int
@@ -56,7 +54,7 @@ class ContactService
         return $result;
     }
 
-    public function show($id): array
+    public function show($id): ContactResource
     {
         $this->defineUserData();
 
@@ -66,13 +64,10 @@ class ContactService
 
         $this->logger->log($this->causer->name, $result->getFullName(), $this->entity, 'showed');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new ContactTransformer)
-            ->toArray()['data'];
+        return new ContactResource($result);
     }
 
-    public function create(array $data): array
+    public function create(array $data): ContactResource
     {
         $this->defineUserData();
 
@@ -80,13 +75,10 @@ class ContactService
 
         $this->logger->log($this->causer->name, $result->getFullName(), $this->entity, 'created');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new ContactTransformer)
-            ->toArray()['data'];
+        return new ContactResource($result);
     }
 
-    public function update($id, array $data): array
+    public function update($id, array $data): ContactResource
     {
         $this->defineUserData();
 
@@ -98,10 +90,7 @@ class ContactService
 
         $this->logger->log($this->causer->name, $result->getFullName(), $this->entity, 'updated');
 
-        return fractal()
-            ->item($result->fresh())
-            ->transformWith(new ContactTransformer)
-            ->toArray()['data'];
+        return new ContactResource($result->fresh());
     }
 
     public function delete($id): void

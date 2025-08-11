@@ -3,12 +3,12 @@
 namespace App\Services;
 
 use App\Models\Question;
+use App\Resources\QuestionResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\QuestionTransformer;
-use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class QuestionService
 {
@@ -25,7 +25,7 @@ class QuestionService
     /**
      * @throws Exception
      */
-    public function index(Request $request): mixed
+    public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
         $this->defineUserData();
@@ -34,10 +34,7 @@ class QuestionService
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererStructural);
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new QuestionTransformer)
-            ->toArray()['data'];
+        return QuestionResource::collection($result);
     }
 
     /**
@@ -59,7 +56,7 @@ class QuestionService
     /**
      * @throws Exception
      */
-    public function getByCategory(string $category): array
+    public function getByCategory(string $category): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -67,13 +64,10 @@ class QuestionService
 
         $this->logger->logMessage($this->causer->name . ' fetched questions by category: ' . $category . '.');
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new QuestionTransformer)
-            ->toArray()['data'];
+        return QuestionResource::collection($result);
     }
 
-    public function getSiteQuestions(string $site): array
+    public function getSiteQuestions(string $site): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -83,16 +77,13 @@ class QuestionService
 
         $this->logger->logMessage($name . ' fetched questions by site: ' . $site . '.');
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new QuestionTransformer)
-            ->toArray()['data'];
+        return QuestionResource::collection($result);
     }
 
     /**
      * @throws Exception
      */
-    public function show($id): array
+    public function show($id): QuestionResource
     {
         $this->defineUserData();
 
@@ -100,16 +91,13 @@ class QuestionService
 
         $this->logger->log($this->causer->name, $result->getContent(), $this->entity, 'showed');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new QuestionTransformer)
-            ->toArray()['data'];
+        return new QuestionResource($result);
     }
 
     /**
      * @throws Exception
      */
-    public function create(array $data): array
+    public function create(array $data): QuestionResource
     {
         $this->defineUserData();
 
@@ -117,16 +105,13 @@ class QuestionService
 
         $this->logger->log($this->causer->name, $result->getContent(), $this->entity, 'created');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new QuestionTransformer)
-            ->toArray()['data'];
+        return new QuestionResource($result);
     }
 
     /**
      * @throws Exception
      */
-    public function update($id, array $data): array
+    public function update($id, array $data): QuestionResource
     {
         $this->defineUserData();
 
@@ -136,10 +121,7 @@ class QuestionService
 
         $this->logger->log($this->causer->name, $result->getContent(), $this->entity, 'updated');
 
-        return fractal()
-            ->item($result->fresh())
-            ->transformWith(new QuestionTransformer)
-            ->toArray()['data'];
+        return new QuestionResource($result->fresh());
     }
 
     /**

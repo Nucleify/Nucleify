@@ -3,12 +3,13 @@
 namespace App\Services;
 
 use App\Models\SystemColor;
+use App\Resources\SystemColorResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\SystemColorTransformer;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class SystemColorService
 {
@@ -25,7 +26,7 @@ class SystemColorService
     /**
      * @throws Exception
      */
-    public function index(Request $request): mixed
+    public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
         $this->defineUserData();
@@ -36,10 +37,7 @@ class SystemColorService
 
         $this->logger->logIndex($name, $this->entity, true);
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new SystemColorTransformer)
-            ->toArray()['data'];
+        return SystemColorResource::collection($result);
     }
 
     /**
@@ -63,7 +61,7 @@ class SystemColorService
     /**
      * @throws Exception
      */
-    public function getByName(string $name): array
+    public function getByName(string $name): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -73,16 +71,13 @@ class SystemColorService
 
         $this->logger->logMessage($name . ' fetched system colors by name: ' . $name . '.');
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new SystemColorTransformer)
-            ->toArray()['data'];
+        return SystemColorResource::collection($result);
     }
 
     /**
      * @throws Exception
      */
-    public function show($id): array
+    public function show($id): SystemColorResource
     {
         $this->defineUserData();
 
@@ -92,16 +87,13 @@ class SystemColorService
 
         $this->logger->log($name, $result->getValue(), $this->entity, 'showed');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new SystemColorTransformer)
-            ->toArray()['data'];
+        return new SystemColorResource($result);
     }
 
     /**
      * @throws Exception
      */
-    public function create(array $data): array
+    public function create(array $data): SystemColorResource
     {
         $this->defineUserData();
 
@@ -111,16 +103,13 @@ class SystemColorService
 
         $this->logger->log($name, $result->getName(), $this->entity, 'created');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new SystemColorTransformer)
-            ->toArray()['data'];
+        return new SystemColorResource($result);
     }
 
     /**
      * @throws Exception
      */
-    public function update($id, array $data): array
+    public function update($id, array $data): SystemColorResource
     {
         $this->defineUserData();
 
@@ -132,10 +121,7 @@ class SystemColorService
 
         $this->logger->log($name, $result->getName(), $this->entity, 'updated');
 
-        return fractal()
-            ->item($result->fresh())
-            ->transformWith(new SystemColorTransformer)
-            ->toArray()['data'];
+        return new SystemColorResource($result->fresh());
 
     }
 

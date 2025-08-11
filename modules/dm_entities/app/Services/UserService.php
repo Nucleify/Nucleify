@@ -3,12 +3,13 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Resources\UserResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\UserTransformer;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserService
 {
@@ -25,7 +26,7 @@ class UserService
     /**
      * @throws Exception
      */
-    public function index(): array
+    public function index(): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -38,10 +39,7 @@ class UserService
 
         $this->logger->logMessage("User: ''{$this->causer->name}'' has fetched all users data");
 
-        return fractal()
-            ->collection($this->model->all())
-            ->transformWith(new UserTransformer)
-            ->toArray()['data'];
+        return UserResource::collection($this->model->all());
     }
 
     public function countByCreatedLastWeek(Request $request): int
@@ -67,7 +65,7 @@ class UserService
     /**
      * @throws Exception
      */
-    public function show($id): array
+    public function show($id): UserResource
     {
         $this->defineUserData();
 
@@ -82,16 +80,13 @@ class UserService
 
         $this->logger->log($this->causer->name, $result->name, $this->entity, 'showed');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new UserTransformer)
-            ->toArray()['data'];
+        return new UserResource($result);
     }
 
     /**
      * @throws Exception
      */
-    public function create(array $data): array
+    public function create(array $data): UserResource
     {
         $this->defineUserData();
 
@@ -106,16 +101,13 @@ class UserService
 
         $this->logger->log($this->causer->name, $result->name, $this->entity, 'created');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new UserTransformer)
-            ->toArray()['data'];
+        return new UserResource($result);
     }
 
     /**
      * @throws Exception
      */
-    public function update($id, array $data): array
+    public function update($id, array $data): UserResource
     {
         $this->defineUserData();
 
@@ -163,10 +155,7 @@ class UserService
 
         $this->logger->log($this->causer->name, $result->name, $this->entity, 'updated');
 
-        return fractal()
-            ->item($result->fresh())
-            ->transformWith(new UserTransformer)
-            ->toArray()['data'];
+        return new UserResource($result->fresh());
     }
 
     /**

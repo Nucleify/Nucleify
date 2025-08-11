@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use App\Models\Link;
+use App\Resources\LinkResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\LinkTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class LinkService
 {
@@ -21,7 +22,7 @@ class LinkService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    public function index(Request $request): mixed
+    public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
         $this->defineUserData();
@@ -30,10 +31,7 @@ class LinkService
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererStructural);
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new LinkTransformer)
-            ->toArray()['data'];
+        return LinkResource::collection($result);
     }
 
     public function countByCreatedLastWeek(Request $request): int
@@ -50,7 +48,7 @@ class LinkService
         return $result;
     }
 
-    public function getByCategory(string $category): array
+    public function getByCategory(string $category): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -60,13 +58,10 @@ class LinkService
 
         $this->logger->logMessage($name . ' fetched questions by category: ' . $category . '.');
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new LinkTransformer)
-            ->toArray()['data'];
+        return LinkResource::collection($result);
     }
 
-    public function getSiteLinks(string $site): array
+    public function getSiteLinks(string $site): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -76,33 +71,24 @@ class LinkService
 
         $this->logger->logMessage($name . ' fetched questions by site: ' . $site . '.');
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new LinkTransformer)
-            ->toArray()['data'];
+        return LinkResource::collection($result);
     }
 
-    public function show($id): array
+    public function show($id): LinkResource
     {
         $result = $this->model::findOrFail($id);
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new LinkTransformer)
-            ->toArray()['data'];
+        return new LinkResource($result);
     }
 
-    public function create(array $data): array
+    public function create(array $data): LinkResource
     {
         $result = $this->model::create($data);
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new LinkTransformer)
-            ->toArray()['data'];
+        return new LinkResource($result);
     }
 
-    public function update($id, array $data): array
+    public function update($id, array $data): LinkResource
     {
         $this->defineUserData();
 
@@ -112,10 +98,7 @@ class LinkService
 
         $this->logger->log($this->causer->name, $result->get(), $this->entity, 'updated');
 
-        return fractal()
-            ->item($result->fresh())
-            ->transformWith(new LinkTransformer)
-            ->toArray()['data'];
+        return new LinkResource($result->fresh());
     }
 
     public function delete($id): void
