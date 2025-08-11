@@ -9,7 +9,8 @@ uses()->group('link-migrations');
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
-    expect(Schema::hasTable('links'))->toBeTrue()
+    expect(Schema::hasTable('links'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('links', [
             'id',
             'download',
@@ -26,7 +27,8 @@ test('can create table', function (): void {
             'type',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

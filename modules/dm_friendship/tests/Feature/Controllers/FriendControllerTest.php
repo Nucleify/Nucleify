@@ -14,54 +14,61 @@ beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->controller = app()->makeWith(FriendController::class, ['service' => app()->make(FriendshipService::class)]);
+    $this->model = UserFactory::new()->create();
 });
 
 describe('200', function (): void {
     test('sendRequest method', function (): void {
-        $recipient = UserFactory::new()->create();
-        $response = $this->controller->sendRequest($recipient);
+        $response = $this->controller->sendRequest($this->model);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true))->toEqual(['message' => 'Friend request sent successfully']);
+        expect($response->getStatusCode())
+            ->toEqual(200)
+            ->and($response->getData(true))
+            ->toEqual(['message' => 'Friend request sent successfully']);
     });
 
     test('acceptRequest method', function (): void {
-        $sender = UserFactory::new()->create();
-        $response = $this->controller->acceptRequest($sender);
+        $response = $this->controller->acceptRequest($this->model);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true))->toEqual(['message' => 'Friend request accepted successfully']);
+        expect($response->getStatusCode())
+            ->toEqual(200)
+            ->and($response->getData(true))
+            ->toEqual(['message' => 'Friend request accepted successfully']);
     });
 
     test('denyRequest method', function (): void {
-        $sender = UserFactory::new()->create();
-        $response = $this->controller->denyRequest($sender);
+        $response = $this->controller->denyRequest($this->model);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true))->toEqual(['message' => 'Friend request denied successfully']);
+        expect($response->getStatusCode())
+            ->toEqual(200)
+            ->and($response->getData(true))
+            ->toEqual(['message' => 'Friend request denied successfully']);
     });
 
     test('removeFriend method', function (): void {
-        $friend = UserFactory::new()->create();
-        $response = $this->controller->removeFriend($friend);
+        $response = $this->controller->removeFriend($this->model);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true))->toEqual(['message' => 'Friend removed successfully']);
+        expect($response->getStatusCode())
+            ->toEqual(200)
+            ->and($response->getData(true))
+            ->toEqual(['message' => 'Friend removed successfully']);
     });
 
     test('blockFriend method', function (): void {
-        $friend = UserFactory::new()->create();
-        $response = $this->controller->blockFriend($friend);
+        $response = $this->controller->blockFriend($this->model);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true))->toEqual(['message' => 'Friend blocked successfully']);
+        expect($response->getStatusCode())
+            ->toEqual(200)
+            ->and($response->getData(true))
+            ->toEqual(['message' => 'Friend blocked successfully']);
     });
 
     test('unblockFriend method', function (): void {
-        $friend = UserFactory::new()->create();
-        $response = $this->controller->unblockFriend($friend);
+        $response = $this->controller->unblockFriend($this->model);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true))->toEqual(['message' => 'Friend unblocked successfully']);
+        expect($response->getStatusCode())
+            ->toEqual(200)
+            ->and($response->getData(true))
+            ->toEqual(['message' => 'Friend unblocked successfully']);
     });
 });

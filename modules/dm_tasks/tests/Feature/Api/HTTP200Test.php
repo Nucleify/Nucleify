@@ -35,24 +35,24 @@ describe('200', function (): void {
     });
 
     test('show api', function (): void {
-        $task = Task::factory()->create();
+        $model = Task::factory()->create();
 
-        $this->getJson(route('tasks.show', $task->id))
+        $this->getJson(route('tasks.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $task = Task::factory()->create();
+        $model = Task::factory()->create();
 
-        $this->putJson(route('tasks.update', $task->id), updatedTaskData)
+        $this->putJson(route('tasks.update', $model->id), updatedTaskData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $task = Task::factory()->create();
+        $model = Task::factory()->create();
 
-        $this->deleteJson(route('tasks.destroy', $task->id))
+        $this->deleteJson(route('tasks.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('tasks', ['id' => $task->id]);
+        $this->assertDatabaseMissing('tasks', ['id' => $model->id]);
     });
 });

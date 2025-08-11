@@ -25,9 +25,8 @@ describe('500', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('tasks.index'));
-
-        $response->assertStatus(500)
+        $this->getJson(route('tasks.index'))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -38,9 +37,8 @@ describe('500', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('tasks.show', ['id' => 1]));
-
-        $response->assertStatus(500)
+        $this->getJson(route('tasks.show', ['id' => 1]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -50,9 +48,8 @@ describe('500', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->postJson(route('tasks.store'), taskData);
-
-        $response->assertStatus(500)
+        $this->postJson(route('tasks.store'), taskData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -63,23 +60,21 @@ describe('500', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->putJson(route('tasks.update', taskData['id']), updatedTaskData);
-
-        $response->assertStatus(500)
+        $this->putJson(route('tasks.update', taskData['id']), updatedTaskData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
     test('destroy api', function (): void {
-        $task = Task::factory()->create();
+        $model = Task::factory()->create();
 
         $this->service
             ->shouldReceive('delete')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->deleteJson(route('tasks.destroy', ['id' => $task->id]));
-
-        $response->assertStatus(500)
+        $this->deleteJson(route('tasks.destroy', ['id' => $model->id]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 });

@@ -9,7 +9,8 @@ uses()->group('question-migrations');
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
-    expect(Schema::hasTable('questions'))->toBeTrue()
+    expect(Schema::hasTable('questions'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('questions', [
             'id',
             'index',
@@ -20,7 +21,8 @@ test('can create table', function (): void {
             'display',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

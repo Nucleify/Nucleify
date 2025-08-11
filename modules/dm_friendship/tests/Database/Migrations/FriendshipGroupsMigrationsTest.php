@@ -9,10 +9,16 @@ uses()->group('friendship-migrations');
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
-    expect(Schema::hasTable('friendship_groups'))->toBeTrue()
+    expect(Schema::hasTable('friendship_groups'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('friendship_groups', [
-            'id', 'friendship_id', 'friend_id', 'friend_type', 'group_id',
-        ]))->toBeTrue();
+            'id',
+            'friendship_id',
+            'friend_id',
+            'friend_type',
+            'group_id',
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

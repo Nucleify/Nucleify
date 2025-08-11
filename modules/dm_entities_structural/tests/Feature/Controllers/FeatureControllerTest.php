@@ -27,8 +27,7 @@ describe('200', function (): void {
 
         $response = $this->controller->index($request);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('countByCreatedLastWeek method', function (): void {
@@ -52,20 +51,19 @@ describe('200', function (): void {
 
         expect($response->getStatusCode())->toEqual(200);
 
-        foreach ($data as $feature) {
-            expect($feature['category'])->toEqual($category);
+        foreach ($data as $model) {
+            expect($model['category'])->toEqual($category);
         }
 
         expect(count($data))->toEqual(Feature::where('category', $category)->count());
     });
 
     test('show method', function (): void {
-        $feature = Feature::factory()->create();
+        $model = Feature::factory()->create();
 
-        $response = $this->controller->show($feature->id);
+        $response = $this->controller->show($model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('store method', function (): void {
@@ -80,24 +78,24 @@ describe('200', function (): void {
     });
 
     test('update method', function (): void {
-        $feature = Feature::factory()->create();
+        $model = Feature::factory()->create();
 
         $request = Mockery::mock(PutRequest::class);
         $request->shouldReceive('validated')
             ->andReturn(updatedFeatureData);
 
-        $response = $this->controller->update($request, $feature->id);
+        $response = $this->controller->update($request, $model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('delete method', function (): void {
-        $feature = Feature::factory()->create();
+        $model = Feature::factory()->create();
 
-        $response = $this->controller->destroy($feature->id);
+        $response = $this->controller->destroy($model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        $this->assertDatabaseMissing('features', ['id' => $feature->id]);
+        expect($response->getStatusCode(), $response->getData(true)['deleted'])
+            ->toEqual(200)
+            ->and($this->assertDatabaseMissing('features', ['id' => $model->id]));
     });
 });

@@ -42,24 +42,24 @@ describe('200', function (): void {
     });
 
     test('show api', function (): void {
-        $card = Card::factory()->create();
+        $model = Card::factory()->create();
 
-        $this->getJson(route('cards.show', $card->id))
+        $this->getJson(route('cards.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $card = Card::factory()->create();
+        $model = Card::factory()->create();
 
-        $this->putJson(route('cards.update', $card->id), updatedCardData)
+        $this->putJson(route('cards.update', $model->id), updatedCardData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $card = Card::factory()->create();
+        $model = Card::factory()->create();
 
-        $this->deleteJson(route('cards.destroy', $card->id))
+        $this->deleteJson(route('cards.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('cards', ['id' => $card->id]);
+        $this->assertDatabaseMissing('cards', ['id' => $model->id]);
     });
 });

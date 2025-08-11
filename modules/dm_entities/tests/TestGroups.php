@@ -31,8 +31,8 @@ uses()
     ->in('Database/Models');
 
 uses()
-        ->group('entity-models')
-        ->in('Database/Models');
+    ->group('entity-models')
+    ->in('Database/Models');
 
 uses()
     ->group('migrations')

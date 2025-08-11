@@ -13,18 +13,18 @@ beforeEach(function (): void {
 });
 
 test('can create record', function (): void {
-    $contact = Contact::factory()->create();
+    $model = Contact::factory()->create();
 
-    $this->assertDatabaseCount('contacts', 1);
-    $this->assertDatabaseHas('contacts', ['id' => $contact->id]);
+    $this->assertDatabaseCount('contacts', 1)
+        ->assertDatabaseHas('contacts', ['id' => $model->id]);
 });
 
 test('can create multiple records', function (): void {
-    $contacts = Contact::factory()->count(3)->create();
+    $models = Contact::factory()->count(3)->create();
 
     $this->assertDatabaseCount('contacts', 3);
-    foreach ($contacts as $contact) {
-        $this->assertDatabaseHas('contacts', ['id' => $contact->id]);
+    foreach ($models as $model) {
+        $this->assertDatabaseHas('contacts', ['id' => $model->id]);
     }
 });
 

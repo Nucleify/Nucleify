@@ -9,7 +9,8 @@ uses()->group('user-color-migrations');
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
-    expect(Schema::hasTable('user_colors'))->toBeTrue()
+    expect(Schema::hasTable('user_colors'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('user_colors', [
             'id',
             'user_id',
@@ -18,7 +19,8 @@ test('can create table', function (): void {
             'new',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

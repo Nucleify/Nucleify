@@ -13,18 +13,18 @@ beforeEach(function (): void {
 });
 
 test('can create record', function (): void {
-    $money = Money::factory()->create();
+    $model = Money::factory()->create();
 
-    $this->assertDatabaseCount('money', 1);
-    $this->assertDatabaseHas('money', ['id' => $money->id]);
+    $this->assertDatabaseCount('money', 1)
+        ->assertDatabaseHas('money', ['id' => $model->id]);
 });
 
 test('can create multiple records', function (): void {
-    $moneys = Money::factory()->count(3)->create();
+    $models = Money::factory()->count(3)->create();
 
     $this->assertDatabaseCount('money', 3);
-    foreach ($moneys as $money) {
-        $this->assertDatabaseHas('money', ['id' => $money->id]);
+    foreach ($models as $model) {
+        $this->assertDatabaseHas('money', ['id' => $model->id]);
     }
 });
 

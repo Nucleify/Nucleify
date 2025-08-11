@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
 
-    expect(Schema::hasTable('tasks'))->toBeTrue()
+    expect(Schema::hasTable('tasks'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('tasks', [
             'id',
             'user_id',
@@ -22,7 +23,8 @@ test('can create table', function (): void {
             'end_date',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

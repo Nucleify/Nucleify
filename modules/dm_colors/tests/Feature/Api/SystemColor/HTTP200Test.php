@@ -42,24 +42,24 @@ describe('200', function (): void {
     });
 
     test('show api', function (): void {
-        $color = SystemColor::factory()->create();
+        $model = SystemColor::factory()->create();
 
-        $this->getJson(route('system-colors.show', $color->id))
+        $this->getJson(route('system-colors.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $color = SystemColor::factory()->create();
+        $model = SystemColor::factory()->create();
 
-        $this->putJson(route('system-colors.update', $color->id), updatedSystemColorData)
+        $this->putJson(route('system-colors.update', $model->id), updatedSystemColorData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $color = SystemColor::factory()->create();
+        $model = SystemColor::factory()->create();
 
-        $this->deleteJson(route('system-colors.destroy', $color->id))
+        $this->deleteJson(route('system-colors.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('system_colors', ['id' => $color->id]);
+        $this->assertDatabaseMissing('system_colors', ['id' => $model->id]);
     });
 });

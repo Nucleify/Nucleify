@@ -14,7 +14,7 @@ beforeEach(function (): void {
 });
 
 test('can be created', function (): void {
-    $activity = ActivityFactory::new()->create();
+    $model = ActivityFactory::new()->create();
 
-    expect($activity)->toBeInstanceOf(Activity::class);
+    expect($model)->toBeInstanceOf(Activity::class);
 });

@@ -35,24 +35,24 @@ describe('200', function (): void {
     });
 
     test('show api', function (): void {
-        $contact = Contact::factory()->create();
+        $model = Contact::factory()->create();
 
-        $this->getJson(route('contacts.show', $contact->id))
+        $this->getJson(route('contacts.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $contact = Contact::factory()->create();
+        $model = Contact::factory()->create();
 
-        $this->putJson(route('contacts.update', $contact->id), updatedContactData)
+        $this->putJson(route('contacts.update', $model->id), updatedContactData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $contact = Contact::factory()->create();
+        $model = Contact::factory()->create();
 
-        $this->deleteJson(route('contacts.destroy', $contact->id))
+        $this->deleteJson(route('contacts.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('contacts', ['id' => $contact->id]);
+        $this->assertDatabaseMissing('contacts', ['id' => $model->id]);
     });
 });

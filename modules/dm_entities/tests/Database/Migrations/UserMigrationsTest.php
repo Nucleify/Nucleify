@@ -9,7 +9,8 @@ uses()->group('user-migrations');
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
-    expect(Schema::hasTable('users'))->toBeTrue()
+    expect(Schema::hasTable('users'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('users', [
             'id',
             'name',
@@ -18,7 +19,8 @@ test('can create table', function (): void {
             'role',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

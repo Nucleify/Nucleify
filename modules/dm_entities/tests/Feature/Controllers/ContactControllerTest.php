@@ -27,8 +27,7 @@ describe('200', function (): void {
 
         $response = $this->controller->index($request);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('countByCreatedLastWeek method', function (): void {
@@ -40,12 +39,11 @@ describe('200', function (): void {
     });
 
     test('show method', function (): void {
-        $contact = Contact::factory()->create();
+        $model = Contact::factory()->create();
 
-        $response = $this->controller->show($contact->id);
+        $response = $this->controller->show($model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('store method', function (): void {
@@ -54,28 +52,27 @@ describe('200', function (): void {
 
         $response = $this->controller->store($request);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('update method', function (): void {
-        $contact = Contact::factory()->create();
+        $model = Contact::factory()->create();
 
         $request = Mockery::mock(PutRequest::class);
         $request->shouldReceive('validated')->andReturn(updatedContactData);
 
-        $response = $this->controller->update($request, $contact->id);
+        $response = $this->controller->update($request, $model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true));
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });
 
     test('delete method', function (): void {
-        $contact = Contact::factory()->create();
+        $model = Contact::factory()->create();
 
-        $response = $this->controller->destroy($contact->id);
+        $response = $this->controller->destroy($model->id);
 
-        expect($response->getStatusCode())->toEqual(200);
-        expect($response->getData(true)['deleted'])->toBeTrue();
+        expect($response->getStatusCode(), $response->getData(true)['deleted'])
+            ->toEqual(200)
+            ->and($this->assertDatabaseMissing('contacts', ['id' => $model->id]));
     });
 });

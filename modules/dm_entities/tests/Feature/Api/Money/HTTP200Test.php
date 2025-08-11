@@ -30,9 +30,9 @@ describe('200', function (): void {
     });
 
     test('show api', function (): void {
-        $money = Money::factory()->create();
+        $model = Money::factory()->create();
 
-        $this->getJson(route('money.show', $money->id))
+        $this->getJson(route('money.show', $model->id))
             ->assertOk();
     });
 
@@ -42,17 +42,17 @@ describe('200', function (): void {
     });
 
     test('update api', function (): void {
-        $money = Money::factory()->create();
+        $model = Money::factory()->create();
 
-        $this->putJson(route('money.update', $money->id), updatedMoneyData)
+        $this->putJson(route('money.update', $model->id), updatedMoneyData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $money = Money::factory()->create();
+        $model = Money::factory()->create();
 
-        $this->deleteJson(route('money.destroy', $money->id))
+        $this->deleteJson(route('money.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('money', ['id' => $money->id]);
+        $this->assertDatabaseMissing('money', ['id' => $model->id]);
     });
 });

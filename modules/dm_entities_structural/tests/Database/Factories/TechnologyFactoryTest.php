@@ -13,18 +13,18 @@ beforeEach(function (): void {
 });
 
 test('can create record', function (): void {
-    $technology = Technology::factory()->create();
+    $model = Technology::factory()->create();
 
-    $this->assertDatabaseCount('technologies', 1);
-    $this->assertDatabaseHas('technologies', ['id' => $technology->id]);
+    $this->assertDatabaseCount('technologies', 1)
+        ->assertDatabaseHas('technologies', ['id' => $model->id]);
 });
 
 test('can create multiple records', function (): void {
-    $technologies = Technology::factory()->count(3)->create();
+    $models = Technology::factory()->count(3)->create();
 
     $this->assertDatabaseCount('technologies', 3);
-    foreach ($technologies as $technology) {
-        $this->assertDatabaseHas('technologies', ['id' => $technology->id]);
+    foreach ($models as $model) {
+        $this->assertDatabaseHas('technologies', ['id' => $model->id]);
     }
 });
 

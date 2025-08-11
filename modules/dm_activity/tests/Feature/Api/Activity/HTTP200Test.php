@@ -30,17 +30,17 @@ describe('200', function (): void {
     });
 
     test('show api', function (): void {
-        $activity = ActivityFactory::new()->create();
+        $model = ActivityFactory::new()->create();
 
-        $this->getJson(route('activity-log.show', $activity->id))
+        $this->getJson(route('activity-log.show', $model->id))
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $activity = ActivityFactory::new()->create();
+        $model = ActivityFactory::new()->create();
 
-        $this->deleteJson(route('activity-log.destroy', $activity->id))
+        $this->deleteJson(route('activity-log.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('activity_log', ['id' => $activity->id]);
+        $this->assertDatabaseMissing('activity_log', ['id' => $model->id]);
     });
 });

@@ -9,7 +9,8 @@ uses()->group('technology-migrations');
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
-    expect(Schema::hasTable('technologies'))->toBeTrue()
+    expect(Schema::hasTable('technologies'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('technologies', [
             'id',
             'label',
@@ -20,7 +21,8 @@ test('can create table', function (): void {
             'display',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

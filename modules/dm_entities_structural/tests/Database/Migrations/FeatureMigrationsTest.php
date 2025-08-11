@@ -10,7 +10,8 @@ uses()->group('feature-migrations');
 use Illuminate\Support\Facades\Schema;
 
 test('can create table', function (): void {
-    expect(Schema::hasTable('features'))->toBeTrue()
+    expect(Schema::hasTable('features'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('features', [
             'id',
             'icon',
@@ -19,7 +20,8 @@ test('can create table', function (): void {
             'category',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
 test('can be rolled back', function (): void {

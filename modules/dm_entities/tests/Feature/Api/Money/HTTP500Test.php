@@ -25,9 +25,8 @@ describe('500', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('money.index'));
-
-        $response->assertStatus(500)
+        $this->getJson(route('money.index'))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -38,9 +37,8 @@ describe('500', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('money.show', ['id' => 1]));
-
-        $response->assertStatus(500)
+        $this->getJson(route('money.show', ['id' => 1]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -50,9 +48,8 @@ describe('500', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->postJson(route('money.store'), moneyData);
-
-        $response->assertStatus(500)
+        $this->postJson(route('money.store'), moneyData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -63,23 +60,21 @@ describe('500', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->putJson(route('money.update', moneyData['id']), updatedMoneyData);
-
-        $response->assertStatus(500)
+        $this->putJson(route('money.update', moneyData['id']), updatedMoneyData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
     test('destroy api', function (): void {
-        $money = Money::factory()->create();
+        $model = Money::factory()->create();
 
         $this->service
             ->shouldReceive('delete')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->deleteJson(route('money.destroy', ['id' => $money->id]));
-
-        $response->assertStatus(500)
+        $this->deleteJson(route('money.destroy', ['id' => $model->id]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 });
