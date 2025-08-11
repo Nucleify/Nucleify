@@ -19,18 +19,21 @@
       font-weight: 600;
       font-size: 2em;
       color: $primary-white-green-text-color;
+      opacity: 0;
     }
 
     &-description {
       line-height: 1.5;
       max-width: 550px;
       margin: 1em 0 2em 0;
+      opacity: 0;
     }
 
     &-button {
       padding: 10px 3.5rem;
       font-weight: bold;
       font-size: 18px;
+      opacity: 0;
     }
   }
 

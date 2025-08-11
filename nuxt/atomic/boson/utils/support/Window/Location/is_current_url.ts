@@ -1,4 +1,4 @@
-import { useRoute } from '#imports'
+import { useRoute } from 'nuxt/app'
 
 export function isCurrentUrl(url: string): boolean {
   const route = useRoute()

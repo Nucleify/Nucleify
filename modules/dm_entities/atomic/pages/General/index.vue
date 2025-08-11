@@ -6,7 +6,7 @@
         href="/entities/articles"
         header="Articles"
         :count="articles?.length"
-        icon="pi pi-comment"
+        icon="prime:comment"
         :count-secondary="articlesCreatedLastWeek"
         text-secondary="this week"
         ad-type="article"
@@ -15,7 +15,7 @@
         href="/entities/contacts"
         header="Contacts"
         :count="contacts?.length"
-        icon="pi pi-user"
+        icon="prime:user"
         :count-secondary="contactsCreatedLastWeek"
         text-secondary="this week"
         ad-type="contact"
@@ -24,7 +24,7 @@
         href="/entities/money"
         header="Money"
         :count="money?.length"
-        icon="pi pi-dollar"
+        icon="prime:dollar"
         :count-secondary="moneyCreatedLastWeek"
         text-secondary="this week"
         ad-type="money"
@@ -32,7 +32,7 @@
     </div>
 
     <ad-card-chart
-      v-if="display.Admin"
+      entity="Entities"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -66,14 +66,7 @@
 import type { Ref } from 'vue'
 import { onMounted, ref, watch } from 'vue'
 
-import {
-  articleRequests,
-  contactRequests,
-  moneyRequests,
-  useDisplayCharts,
-} from 'atomic'
-
-const { display } = useDisplayCharts()
+import { articleRequests, contactRequests, moneyRequests } from 'atomic'
 
 const {
   results: articles,

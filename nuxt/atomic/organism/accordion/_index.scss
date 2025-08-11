@@ -4,7 +4,7 @@
   overflow: visible;
 
   @each $type in main, activity, article, card, contact, feature, link, money,
-    question, technology, user
+    question, task, technology, user
   {
     &[ad-type='#{$type}'] {
       @include entity-styles(
