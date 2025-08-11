@@ -22,6 +22,13 @@ class MoneyService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
+    /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
@@ -36,6 +43,13 @@ class MoneyService
         return MoneyResource::collection($result);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
     public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
@@ -54,6 +68,13 @@ class MoneyService
         return $result;
     }
 
+    /**
+     * @param int $id
+     *
+     * @return MoneyResource
+     *
+     * @throws Exception
+     */
     public function show($id): MoneyResource
     {
         $this->defineUserData();
@@ -67,6 +88,13 @@ class MoneyService
         return new MoneyResource($result);
     }
 
+    /**
+     * @param array $data
+     *
+     * @return MoneyResource
+     *
+     * @throws Exception
+     */
     public function create(array $data): MoneyResource
     {
         $this->defineUserData();
@@ -78,6 +106,14 @@ class MoneyService
         return new MoneyResource($result);
     }
 
+    /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return MoneyResource
+     *
+     * @throws Exception
+     */
     public function update($id, array $data): MoneyResource
     {
         $this->defineUserData();
@@ -93,6 +129,13 @@ class MoneyService
         return new MoneyResource($result->fresh());
     }
 
+    /**
+     * @param int $id
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();

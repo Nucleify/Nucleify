@@ -22,6 +22,13 @@ class ArticleService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
+    /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
@@ -36,6 +43,13 @@ class ArticleService
         return ArticleResource::collection($result);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
     public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
@@ -54,6 +68,13 @@ class ArticleService
         return $this->isRefererAdmin;
     }
 
+    /**
+     * @param int $id
+     *
+     * @return ArticleResource
+     *
+     * @throws Exception
+     */
     public function show($id): ArticleResource
     {
         $this->defineUserData();
@@ -67,6 +88,13 @@ class ArticleService
         return new ArticleResource($result);
     }
 
+    /**
+     * @param array $data
+     *
+     * @return ArticleResource
+     *
+     * @throws Exception
+     */
     public function create(array $data): ArticleResource
     {
         $this->defineUserData();
@@ -78,6 +106,14 @@ class ArticleService
         return new ArticleResource($result);
     }
 
+    /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return ArticleResource
+     *
+     * @throws Exception
+     */
     public function update($id, array $data): ArticleResource
     {
         $this->defineUserData();
@@ -93,6 +129,13 @@ class ArticleService
         return new ArticleResource($result->fresh());
     }
 
+    /**
+     * @param int $id
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();

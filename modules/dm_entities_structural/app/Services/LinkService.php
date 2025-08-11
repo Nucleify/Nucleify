@@ -22,6 +22,13 @@ class LinkService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
+    /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
@@ -34,6 +41,13 @@ class LinkService
         return LinkResource::collection($result);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
     public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
@@ -48,6 +62,13 @@ class LinkService
         return $result;
     }
 
+    /**
+     * @param string $category
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function getByCategory(string $category): AnonymousResourceCollection
     {
         $this->defineUserData();
@@ -61,6 +82,13 @@ class LinkService
         return LinkResource::collection($result);
     }
 
+    /**
+     * @param string $site
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function getSiteLinks(string $site): AnonymousResourceCollection
     {
         $this->defineUserData();
@@ -74,6 +102,13 @@ class LinkService
         return LinkResource::collection($result);
     }
 
+    /**
+     * @param int $id
+     *
+     * @return LinkResource
+     *
+     * @throws Exception
+     */
     public function show($id): LinkResource
     {
         $result = $this->model::findOrFail($id);
@@ -81,6 +116,13 @@ class LinkService
         return new LinkResource($result);
     }
 
+    /**
+     * @param array $data
+     *
+     * @return LinkResource
+     *
+     * @throws Exception
+     */
     public function create(array $data): LinkResource
     {
         $result = $this->model::create($data);
@@ -88,6 +130,14 @@ class LinkService
         return new LinkResource($result);
     }
 
+    /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return LinkResource
+     *
+     * @throws Exception
+     */
     public function update($id, array $data): LinkResource
     {
         $this->defineUserData();
@@ -101,6 +151,13 @@ class LinkService
         return new LinkResource($result->fresh());
     }
 
+    /**
+     * @param int $id
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();

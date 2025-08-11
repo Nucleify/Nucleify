@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Exceptions\LoggerException;
 use App\Resources\ActivityResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
@@ -23,6 +24,12 @@ class ActivityService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
+    /**
+     * @return AnonymousResourceCollection
+     *
+     * @throws LoggerException
+     * @throws Exception
+     */
     public function index(): AnonymousResourceCollection
     {
         $this->defineUserData();
@@ -34,6 +41,14 @@ class ActivityService
         return ActivityResource::collection($result);
     }
 
+    /**
+     * @param  Request  $request
+     *
+     * @return int
+     *
+     * @throws LoggerException
+     * @throws Exception
+     */
     public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
@@ -51,6 +66,11 @@ class ActivityService
     }
 
     /**
+     * @param  int  $id
+     *
+     * @return ActivityResource
+     *
+     * @throws LoggerException
      * @throws Exception
      */
     public function show(int $id): ActivityResource
@@ -69,6 +89,14 @@ class ActivityService
         }
     }
 
+    /**
+     * @param  int  $id
+     *
+     * @return void
+     *
+     * @throws LoggerException
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();
