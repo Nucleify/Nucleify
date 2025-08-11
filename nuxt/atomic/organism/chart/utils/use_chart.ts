@@ -14,6 +14,7 @@ import {
   ChartType,
   ContactObjectInterface,
   FeatureObjectInterface,
+  FileObjectInterface,
   LabelItemType,
   LinkObjectInterface,
   MoneyObjectInterface,
@@ -36,16 +37,18 @@ export function useChart() {
   const exampleColors = Object.fromEntries(
     [
       ['activity', '#FFB600'],
+      ['user', '#64748B'],
       ['article', '#1187C7'],
       ['contact', '#10B981'],
-      ['money', '#11C73B'],
-      ['user', '#64748B'],
       ['card', '#1B10B9'],
       ['feature', '#B91010'],
+      ['file', '#6DB910'],
       ['link', '#10B3B9'],
+      ['money', '#11C73B'],
       ['question', '#8CB910'],
       ['task', '#1045b9'],
       ['technology', '#B95910'],
+      ['user', '#64748B'],
     ].map(([key, primary]) => [key, { primary, secondary: `${primary}35` }])
   )
 
@@ -62,6 +65,7 @@ export function useChart() {
     cardData?: CardObjectInterface[],
     contactData?: ContactObjectInterface[],
     featureData?: FeatureObjectInterface[],
+    fileData?: FileObjectInterface[],
     linkData?: LinkObjectInterface[],
     moneyData?: MoneyObjectInterface[],
     questionData?: QuestionObjectInterface[],
@@ -99,6 +103,7 @@ export function useChart() {
           [cardData, dataByMonth.card],
           [contactData, dataByMonth.contact],
           [featureData, dataByMonth.feature],
+          [fileData, dataByMonth.file],
           [linkData, dataByMonth.link],
           [moneyData, dataByMonth.money],
           [questionData, dataByMonth.question],
@@ -148,6 +153,7 @@ export function useChart() {
                   Activities: activityLogData,
                   Articles: articleData,
                   Contacts: contactData,
+                  Files: fileData,
                   Money: moneyData,
                   Users: userData,
                   Cards: cardData,

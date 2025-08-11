@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('friendship-service');
+
 use App\Models\User;
 use App\Services\FriendshipService;
 
@@ -15,53 +17,67 @@ beforeEach(function (): void {
     $this->actingAs($this->user);
 });
 
-it('sends a friend request', function (): void {
-    $response = $this->service->sendRequest($this->otherUser);
+describe('200', function (): void {
+    test('can send a friend request', function (): void {
+        $response = $this->service->sendRequest($this->otherUser);
 
-    expect($response['message'])->toBe('Friend request sent successfully');
-    expect($this->user->hasSentFriendRequestTo($this->otherUser))->toBeTrue();
-});
+        expect($response['message'])
+            ->toBe('Friend request sent successfully')
+            ->and($this->user->hasSentFriendRequestTo($this->otherUser))
+            ->toBeTrue();
+    });
 
-it('accepts a friend request', function (): void {
-    $this->otherUser->befriend($this->user);
+    test('can accept a friend request', function (): void {
+        $this->otherUser->befriend($this->user);
 
-    $response = $this->service->acceptRequest($this->otherUser);
+        $response = $this->service->acceptRequest($this->otherUser);
 
-    expect($response['message'])->toBe('Friend request accepted successfully');
-    expect($this->user->isFriendWith($this->otherUser))->toBeTrue();
-});
+        expect($response['message'])
+            ->toBe('Friend request accepted successfully')
+            ->and($this->user->isFriendWith($this->otherUser))
+            ->toBeTrue();
+    });
 
-it('denies a friend request', function (): void {
-    $this->otherUser->befriend($this->user);
+    test('can deny a friend request', function (): void {
+        $this->otherUser->befriend($this->user);
 
-    $response = $this->service->denyRequest($this->otherUser);
+        $response = $this->service->denyRequest($this->otherUser);
 
-    expect($response['message'])->toBe('Friend request denied successfully');
-    expect($this->user->hasFriendRequestFrom($this->otherUser))->toBeFalse();
-});
+        expect($response['message'])
+            ->toBe('Friend request denied successfully')
+            ->and($this->user->hasFriendRequestFrom($this->otherUser))
+            ->toBeFalse();
+    });
 
-it('removes a friend', function (): void {
-    $this->user->befriend($this->otherUser);
-    $this->otherUser->acceptFriendRequest($this->user);
+    test('can remove a friend', function (): void {
+        $this->user->befriend($this->otherUser);
+        $this->otherUser->acceptFriendRequest($this->user);
 
-    $response = $this->service->removeFriend($this->otherUser);
+        $response = $this->service->removeFriend($this->otherUser);
 
-    expect($response['message'])->toBe('Friend removed successfully');
-    expect($this->user->isFriendWith($this->otherUser))->toBeFalse();
-});
+        expect($response['message'])
+            ->toBe('Friend removed successfully')
+            ->and($this->user->isFriendWith($this->otherUser))
+            ->toBeFalse();
+    });
 
-it('blocks a friend', function (): void {
-    $response = $this->service->blockFriend($this->otherUser);
+    test('can block a friend', function (): void {
+        $response = $this->service->blockFriend($this->otherUser);
 
-    expect($response['message'])->toBe('Friend blocked successfully');
-    expect($this->user->hasBlocked($this->otherUser))->toBeTrue();
-});
+        expect($response['message'])
+            ->toBe('Friend blocked successfully')
+            ->and($this->user->hasBlocked($this->otherUser))
+            ->toBeTrue();
+    });
 
-it('unblocks a friend', function (): void {
-    $this->user->blockFriend($this->otherUser);
+    test('can unblock a friend', function (): void {
+        $this->user->blockFriend($this->otherUser);
 
-    $response = $this->service->unblockFriend($this->otherUser);
+        $response = $this->service->unblockFriend($this->otherUser);
 
-    expect($response['message'])->toBe('Friend unblocked successfully');
-    expect($this->user->hasBlocked($this->otherUser))->toBeFalse();
+        expect($response['message'])
+            ->toBe('Friend unblocked successfully')
+            ->and($this->user->hasBlocked($this->otherUser))
+            ->toBeFalse();
+    });
 });

@@ -4,6 +4,7 @@ export const officeRoutes = {
     'admin',
     'dashboard',
     'entities',
+    'files',
     'settings',
     'structural',
     'tasks',

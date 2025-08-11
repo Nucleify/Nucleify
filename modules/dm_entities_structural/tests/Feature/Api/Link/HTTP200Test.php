@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('link-api-200');
+uses()->group('api-200');
+
 use App\Models\Link;
 
 beforeEach(function (): void {
@@ -11,7 +14,7 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('index api', function (): void {
         Link::factory(3)->create();
 
@@ -46,24 +49,24 @@ describe('200 > Authorized', function (): void {
     });
 
     test('show api', function (): void {
-        $Link = Link::factory()->create();
+        $link = Link::factory()->create();
 
-        $this->getJson(route('links.show', $Link->id))
+        $this->getJson(route('links.show', $link->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $Link = Link::factory()->create();
+        $link = Link::factory()->create();
 
-        $this->putJson(route('links.update', $Link->id), linkData)
+        $this->putJson(route('links.update', $link->id), linkData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $Link = Link::factory()->create();
+        $link = Link::factory()->create();
 
-        $this->deleteJson(route('links.destroy', $Link->id))
+        $this->deleteJson(route('links.destroy', $link->id))
             ->assertOk();
-        $this->assertDatabaseMissing('links', ['id' => $Link->id]);
+        $this->assertDatabaseMissing('links', ['id' => $link->id]);
     });
 });

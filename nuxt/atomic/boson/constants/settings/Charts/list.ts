@@ -5,6 +5,7 @@ export const displayChartList: string[] = [
   'Card',
   'Contact',
   'Feature',
+  'File',
   'Link',
   'Money',
   'Question',

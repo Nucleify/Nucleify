@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('card-api-200');
+uses()->group('api-200');
+
 use App\Models\Card;
 
 beforeEach(function (): void {
@@ -11,7 +14,7 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('index api', function (): void {
         Card::factory(3)->create();
 
@@ -39,24 +42,24 @@ describe('200 > Authorized', function (): void {
     });
 
     test('show api', function (): void {
-        $card = Card::factory()->create();
+        $model = Card::factory()->create();
 
-        $this->getJson(route('cards.show', $card->id))
+        $this->getJson(route('cards.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $card = Card::factory()->create();
+        $model = Card::factory()->create();
 
-        $this->putJson(route('cards.update', $card->id), updatedCardData)
+        $this->putJson(route('cards.update', $model->id), updatedCardData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $card = Card::factory()->create();
+        $model = Card::factory()->create();
 
-        $this->deleteJson(route('cards.destroy', $card->id))
+        $this->deleteJson(route('cards.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('cards', ['id' => $card->id]);
+        $this->assertDatabaseMissing('cards', ['id' => $model->id]);
     });
 });

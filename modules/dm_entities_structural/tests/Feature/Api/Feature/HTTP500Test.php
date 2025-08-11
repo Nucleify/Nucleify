@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('feature-api-500');
+uses()->group('api-500');
+
 use App\Models\Link;
 use App\Services\LinkService;
 
@@ -15,16 +18,15 @@ beforeEach(function (): void {
     $this->service = mock(LinkService::class);
 });
 
-describe('500 > Internal Server Error', function (): void {
+describe('500', function (): void {
     test('index api', function (): void {
         $this->service
             ->shouldReceive('index')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('links.index'));
-
-        $response->assertStatus(500)
+        $this->getJson(route('links.index'))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -35,9 +37,8 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->getJson(route('links.show', ['id' => 1]));
-
-        $response->assertStatus(500)
+        $this->getJson(route('links.show', ['id' => 1]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -47,9 +48,8 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->postJson(route('links.store'), linkData);
-
-        $response->assertStatus(500)
+        $this->postJson(route('links.store'), linkData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
@@ -60,23 +60,21 @@ describe('500 > Internal Server Error', function (): void {
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->putJson(route('links.update', linkData['id']), updatedLinkData);
-
-        $response->assertStatus(500)
+        $this->putJson(route('links.update', linkData['id']), updatedLinkData)
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
     test('destroy api', function (): void {
-        $link = Link::factory()->create();
+        $model = Link::factory()->create();
 
         $this->service
             ->shouldReceive('delete')
             ->once()
             ->andThrow(new Exception('Internal Server Error'));
 
-        $response = $this->deleteJson(route('links.destroy', ['id' => $link->id]));
-
-        $response->assertStatus(500)
+        $this->deleteJson(route('links.destroy', ['id' => $model->id]))
+            ->assertStatus(500)
             ->assertJson(['error' => 'Internal Server Error']);
     });
 });

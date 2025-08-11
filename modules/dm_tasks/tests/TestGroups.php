@@ -5,7 +5,7 @@ if (!defined('PEST_RUNNING')) {
 }
 
 /**
- *  Main tests group
+ *  Main groups
  */
 uses()
     ->group('dm-tasks')
@@ -43,11 +43,23 @@ uses()
     ->in('Database/Models');
 
 uses()
+    ->group('task-model')
+    ->in('Database/Models');
+
+uses()
     ->group('migrations')
     ->in('Database/Migrations');
 
 uses()
+    ->group('task-migrations')
+    ->in('Database/Migrations');
+
+uses()
     ->group('factories')
+    ->in('Database/Factories');
+
+uses()
+    ->group('task-factory')
     ->in('Database/Factories');
 
 /**
@@ -66,21 +78,13 @@ uses()
     ->in('Feature');
 
 uses()
-    ->group('global')
-    ->in('Global');
-
-uses()
-    ->group('commands')
-    ->in('Feature/Commands');
+    ->group('task-feature')
+    ->in('Feature');
 
 uses()
     ->group('controllers')
     ->in('Feature/Controllers');
 
 uses()
-    ->group('services')
-    ->in('Feature/Services');
-
-uses()
-    ->group('traits')
-    ->in('Feature/Traits');
+    ->group('task-controller')
+    ->in('Feature/Controllers');

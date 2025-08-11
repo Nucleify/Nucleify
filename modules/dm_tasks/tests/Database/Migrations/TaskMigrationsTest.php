@@ -4,11 +4,14 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('task-migrations');
+
 use Illuminate\Support\Facades\Schema;
 
-it('can create table', function (): void {
+test('can create table', function (): void {
 
-    expect(Schema::hasTable('tasks'))->toBeTrue()
+    expect(Schema::hasTable('tasks'))
+        ->toBeTrue()
         ->and(Schema::hasColumns('tasks', [
             'id',
             'user_id',
@@ -20,10 +23,11 @@ it('can create table', function (): void {
             'end_date',
             'created_at',
             'updated_at',
-        ]))->toBeTrue();
+        ]))
+        ->toBeTrue();
 });
 
-it('can be rolled back', function (): void {
+test('can be rolled back', function (): void {
     $this->artisan('migrate:rollback');
 
     expect(Schema::hasTable('tasks'))->toBeFalse();

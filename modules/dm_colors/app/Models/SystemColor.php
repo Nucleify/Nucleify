@@ -14,18 +14,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool new
  * @property string created_at
  * @property string updated_at
- * @property int getId
- * @property int getName
- * @property string getValue
- * @property string getNew
- * @property string getCreatedAt
- * @property string getUpdatedAt
- * @property Builder scopeGetById
- * @property Builder scopeGetByName
- * @property Builder scopeGetByValue
- * @property Builder scopeGetByNew
- * @property Builder scopeGetByCreatedAt
- * @property Builder scopeGetByUpdatedAt
+ * @property int getId()
+ * @property string getName()
+ * @property string getValue()
+ * @property bool getNew()
+ * @property string getCreatedAt()
+ * @property string getUpdatedAt()
+ * @property Builder scopeGetById()
+ * @property Builder scopeGetByName()
+ * @property Builder scopeGetByValue()
+ * @property Builder scopeGetByNew()
+ * @property Builder scopeGetByCreatedAt()
+ * @property Builder scopeGetByUpdatedAt()
  */
 class SystemColor extends Model implements SystemColorContract
 {

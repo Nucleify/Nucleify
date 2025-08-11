@@ -6,18 +6,20 @@ if (!defined('PEST_RUNNING')) {
 
 uses()->group('system-color-api-422');
 uses()->group('system-color-api-422-put');
+uses()->group('api-422');
+uses()->group('api-422-put');
 
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData = updatedSystemColorData) {
+describe('422 > PUT', function ($updatedSystemColorData = updatedSystemColorData) {
     /**
      * NAME TESTS
      */
     $updatedSystemColorData['name'] = '';
-    test('invalid name > empty', apiTest(
+    test('name > empty', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -29,7 +31,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
     ));
 
     $updatedSystemColorData['name'] = 1;
-    test('invalid name > integer', apiTest(
+    test('name > integer', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -41,7 +43,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
     ));
 
     $updatedSystemColorData['name'] = false;
-    test('invalid name > false', apiTest(
+    test('name > false', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -53,7 +55,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
     ));
 
     $updatedSystemColorData['name'] = true;
-    test('invalid name > true', apiTest(
+    test('name > true', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -65,7 +67,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
     ));
 
     $updatedSystemColorData['name'] = [];
-    test('invalid name > empty array', apiTest(
+    test('name > empty array', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -82,7 +84,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
      * VALUE TESTS
      */
     $updatedSystemColorData['value'] = '';
-    test('invalid value > empty', apiTest(
+    test('value > empty', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -94,7 +96,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
     ));
 
     $updatedSystemColorData['value'] = 1;
-    test('invalid value > integer', apiTest(
+    test('value > integer', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -106,7 +108,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
     ));
 
     $updatedSystemColorData['value'] = false;
-    test('invalid value > false', apiTest(
+    test('value > false', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -118,7 +120,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
     ));
 
     $updatedSystemColorData['value'] = true;
-    test('invalid value > true', apiTest(
+    test('value > true', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -130,7 +132,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
     ));
 
     $updatedSystemColorData['value'] = [];
-    test('invalid value > empty array', apiTest(
+    test('value > empty array', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -147,7 +149,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
      * NEW TESTS
      */
     $updatedSystemColorData['new'] = '';
-    test('invalid new > empty', apiTest(
+    test('new > empty', apiTest(
         'PUT',
         'system-colors.update',
         422, $updatedSystemColorData,
@@ -158,7 +160,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
     ));
 
     $updatedSystemColorData['new'] = 'not_a_boolean';
-    test('invalid new > string', apiTest(
+    test('new > string', apiTest(
         'PUT',
         'system-colors.update',
         422,
@@ -170,7 +172,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedSystemColorData 
     ));
 
     $updatedSystemColorData['new'] = [];
-    test('invalid new > empty array', apiTest(
+    test('new > empty array', apiTest(
         'PUT',
         'system-colors.update',
         422,

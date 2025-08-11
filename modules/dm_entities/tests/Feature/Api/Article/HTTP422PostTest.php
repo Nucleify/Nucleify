@@ -4,17 +4,22 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('article-api-422');
+uses()->group('article-api-422-post');
+uses()->group('api-422');
+uses()->group('api-422-post');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function ($articleData = articleData) {
+describe('422 > POST', function ($articleData = articleData) {
     /**
      * TITLE TESTS
      */
     $articleData['title'] = '';
-    test('invalid title > empty', apiTest(
+    test('title > empty', apiTest(
         'POST',
         'articles.store',
         422,
@@ -26,7 +31,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['title'] = 1;
-    test('invalid title > integer', apiTest(
+    test('title > integer', apiTest(
         'POST',
         'articles.store',
         422,
@@ -41,7 +46,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['title'] = 'ti';
-    test('invalid title > too short', apiTest(
+    test('title > too short', apiTest(
         'POST',
         'articles.store',
         422,
@@ -53,7 +58,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['title'] = false;
-    test('invalid title > false', apiTest(
+    test('title > false', apiTest(
         'POST',
         'articles.store',
         422,
@@ -68,7 +73,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['title'] = true;
-    test('invalid title > true', apiTest(
+    test('title > true', apiTest(
         'POST',
         'articles.store',
         422,
@@ -83,7 +88,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['title'] = [];
-    test('invalid title > empty array', apiTest(
+    test('title > empty array', apiTest(
         'POST',
         'articles.store',
         422,
@@ -100,7 +105,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
      * DESCRIPTION TESTS
      */
     $articleData['description'] = 1;
-    test('invalid description > integer', apiTest(
+    test('description > integer', apiTest(
         'POST',
         'articles.store',
         422,
@@ -115,7 +120,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['description'] = 'test';
-    test('invalid description > too short', apiTest(
+    test('description > too short', apiTest(
         'POST',
         'articles.store',
         422,
@@ -127,7 +132,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['description'] = false;
-    test('invalid description > false', apiTest(
+    test('description > false', apiTest(
         'POST',
         'articles.store',
         422,
@@ -142,7 +147,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['description'] = true;
-    test('invalid description > true', apiTest(
+    test('description > true', apiTest(
         'POST',
         'articles.store',
         422,
@@ -157,7 +162,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['description'] = [];
-    test('invalid description > empty array', apiTest(
+    test('description > empty array', apiTest(
         'POST',
         'articles.store',
         422,
@@ -174,7 +179,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
      * CATEGORY TESTS
      */
     $articleData['category'] = 1;
-    test('invalid category > integer', apiTest(
+    test('category > integer', apiTest(
         'POST',
         'articles.store',
         422,
@@ -186,7 +191,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'POST',
         'articles.store',
         422,
@@ -198,7 +203,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'POST',
         'articles.store',
         422,
@@ -210,7 +215,7 @@ describe('422 > Unprocessable Content > POST', function ($articleData = articleD
     ));
 
     $articleData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'POST',
         'articles.store',
         422,
