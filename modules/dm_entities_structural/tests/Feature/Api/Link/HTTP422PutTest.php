@@ -9,12 +9,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updatedLinkData) {
+describe('422 > PUT', function ($updatedLinkData = updatedLinkData) {
     /**
      * DOWNLOAD TESTS
      */
     $updatedLinkData['download'] = 1;
-    test('invalid download > int', apiTest(
+    test('download > int', apiTest(
         'PUT',
         'links.update',
         422,
@@ -26,7 +26,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['download'] = false;
-    test('invalid download > false', apiTest(
+    test('download > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -43,7 +43,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
      * HREF TESTS
      */
     $updatedLinkData['href'] = '';
-    test('invalid href > empty', apiTest(
+    test('href > empty', apiTest(
         'PUT',
         'links.update',
         422,
@@ -55,7 +55,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['href'] = 1;
-    test('invalid href > integer', apiTest(
+    test('href > integer', apiTest(
         'PUT',
         'links.update',
         422,
@@ -70,7 +70,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['href'] = false;
-    test('invalid href > false', apiTest(
+    test('href > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -85,7 +85,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['href'] = true;
-    test('invalid href > true', apiTest(
+    test('href > true', apiTest(
         'PUT',
         'links.update',
         422,
@@ -100,7 +100,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['href'] = [];
-    test('invalid href > empty array', apiTest(
+    test('href > empty array', apiTest(
         'PUT',
         'links.update',
         422,
@@ -117,7 +117,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
      * CATEGORY TESTS
      */
     $updatedLinkData['category'] = '';
-    test('invalid content > empty', apiTest(
+    test('content > empty', apiTest(
         'PUT',
         'links.update',
         422,
@@ -129,7 +129,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['category'] = 1;
-    test('invalid category > integer', apiTest(
+    test('category > integer', apiTest(
         'PUT',
         'links.update',
         422,
@@ -143,7 +143,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -157,7 +157,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'PUT',
         'links.update',
         422,
@@ -171,7 +171,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'PUT',
         'links.update',
         422,
@@ -188,7 +188,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
      * SRC TESTS
      */
     $updatedLinkData['src'] = 1;
-    test('invalid src > integer', apiTest(
+    test('src > integer', apiTest(
         'PUT',
         'links.update',
         422,
@@ -203,7 +203,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['src'] = false;
-    test('invalid src > false', apiTest(
+    test('src > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -218,7 +218,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['src'] = true;
-    test('invalid src > true', apiTest(
+    test('src > true', apiTest(
         'PUT',
         'links.update',
         422,
@@ -233,7 +233,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['src'] = [];
-    test('invalid src > empty array', apiTest(
+    test('src > empty array', apiTest(
         'PUT',
         'links.update',
         422,
@@ -253,7 +253,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
      * ICON TESTS
      */
     $updatedLinkData['icon'] = 1;
-    test('invalid icon > integer', apiTest(
+    test('icon > integer', apiTest(
         'PUT',
         'links.update',
         422,
@@ -267,7 +267,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['icon'] = false;
-    test('invalid icon > false', apiTest(
+    test('icon > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -281,7 +281,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['icon'] = true;
-    test('invalid icon > true', apiTest(
+    test('icon > true', apiTest(
         'PUT',
         'links.update',
         422,
@@ -295,7 +295,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['icon'] = [];
-    test('invalid icon > empty array', apiTest(
+    test('icon > empty array', apiTest(
         'PUT',
         'links.update',
         422,
@@ -312,7 +312,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
      * HREFLANG TESTS
      */
     $updatedLinkData['hreflang'] = 1;
-    test('invalid hreflang > integer', apiTest(
+    test('hreflang > integer', apiTest(
         'PUT',
         'links.update',
         422,
@@ -326,7 +326,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['hreflang'] = false;
-    test('invalid hreflang > false', apiTest(
+    test('hreflang > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -340,7 +340,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['hreflang'] = true;
-    test('invalid hreflang > true', apiTest(
+    test('hreflang > true', apiTest(
         'PUT',
         'links.update',
         422,
@@ -354,7 +354,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['hreflang'] = [];
-    test('invalid hreflang > empty array', apiTest(
+    test('hreflang > empty array', apiTest(
         'PUT',
         'links.update',
         422,
@@ -371,7 +371,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
      * MEDIA TESTS
      */
     $updatedLinkData['media'] = 1;
-    test('invalid media > integer', apiTest(
+    test('media > integer', apiTest(
         'PUT',
         'links.update',
         422,
@@ -385,7 +385,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['media'] = false;
-    test('invalid media > false', apiTest(
+    test('media > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -399,7 +399,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['media'] = true;
-    test('invalid media > true', apiTest(
+    test('media > true', apiTest(
         'PUT',
         'links.update',
         422,
@@ -413,7 +413,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['media'] = [];
-    test('invalid media > empty array', apiTest(
+    test('media > empty array', apiTest(
         'PUT',
         'links.update',
         422,
@@ -430,7 +430,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
      * PING TESTS
      */
     $updatedLinkData['ping'] = 1;
-    test('invalid ping > integer', apiTest(
+    test('ping > integer', apiTest(
         'PUT',
         'links.update',
         422,
@@ -444,7 +444,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['ping'] = false;
-    test('invalid ping > false', apiTest(
+    test('ping > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -458,7 +458,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['ping'] = true;
-    test('invalid ping > true', apiTest(
+    test('ping > true', apiTest(
         'PUT',
         'links.update',
         422,
@@ -472,7 +472,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['ping'] = [];
-    test('invalid ping > empty array', apiTest(
+    test('ping > empty array', apiTest(
         'PUT',
         'links.update',
         422,
@@ -489,7 +489,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
      * REL TESTS
      */
     $updatedLinkData['rel'] = 1;
-    test('invalid rel > integer', apiTest(
+    test('rel > integer', apiTest(
         'PUT',
         'links.update',
         422,
@@ -504,7 +504,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['rel'] = false;
-    test('invalid rel > false', apiTest(
+    test('rel > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -519,7 +519,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['rel'] = true;
-    test('invalid rel > true', apiTest(
+    test('rel > true', apiTest(
         'PUT',
         'links.update',
         422,
@@ -534,7 +534,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['rel'] = [];
-    test('invalid rel > empty array', apiTest(
+    test('rel > empty array', apiTest(
         'PUT',
         'links.update',
         422,
@@ -554,7 +554,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
      * TARGET TESTS
      */
     $updatedLinkData['target'] = 1;
-    test('invalid target > integer', apiTest(
+    test('target > integer', apiTest(
         'PUT',
         'links.update',
         422,
@@ -569,7 +569,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['target'] = false;
-    test('invalid target > false', apiTest(
+    test('target > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -584,7 +584,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['target'] = true;
-    test('invalid target > true', apiTest(
+    test('target > true', apiTest(
         'PUT',
         'links.update',
         422,
@@ -599,7 +599,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['target'] = [];
-    test('invalid target > empty array', apiTest(
+    test('target > empty array', apiTest(
         'PUT',
         'links.update',
         422,
@@ -619,7 +619,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
      * TYPE TESTS
      */
     $updatedLinkData['type'] = 1;
-    test('invalid type > integer', apiTest(
+    test('type > integer', apiTest(
         'PUT',
         'links.update',
         422,
@@ -633,7 +633,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['type'] = false;
-    test('invalid type > false', apiTest(
+    test('type > false', apiTest(
         'PUT',
         'links.update',
         422,
@@ -647,7 +647,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['type'] = true;
-    test('invalid type > true', apiTest(
+    test('type > true', apiTest(
         'PUT',
         'links.update',
         422,
@@ -661,7 +661,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedLinkData = updat
     ));
 
     $updatedLinkData['type'] = [];
-    test('invalid type > empty array', apiTest(
+    test('type > empty array', apiTest(
         'PUT',
         'links.update',
         422,

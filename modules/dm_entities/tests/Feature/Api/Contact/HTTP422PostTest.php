@@ -9,12 +9,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function ($contactData = contactData) {
+describe('422 > POST', function ($contactData = contactData) {
     /**
      * USER ID TESTS
      */
     $contactData['user_id'] = '';
-    test('invalid user_id > empty', apiTest(
+    test('user_id > empty', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -26,7 +26,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['user_id'] = 'user_id';
-    test('invalid user_id > string', apiTest(
+    test('user_id > string', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -38,7 +38,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['user_id'] = false;
-    test('invalid user_id > false', apiTest(
+    test('user_id > false', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -50,7 +50,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['user_id'] = [];
-    test('invalid user_id > empty array', apiTest(
+    test('user_id > empty array', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -67,7 +67,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
      * FIRST NAME TESTS
      */
     $contactData['first_name'] = '';
-    test('invalid first_name > empty', apiTest(
+    test('first_name > empty', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -79,7 +79,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['first_name'] = 1;
-    test('invalid first_name > integer', apiTest(
+    test('first_name > integer', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -94,7 +94,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['first_name'] = false;
-    test('invalid first_name > false', apiTest(
+    test('first_name > false', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -109,7 +109,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['first_name'] = true;
-    test('invalid first_name > true', apiTest(
+    test('first_name > true', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -124,7 +124,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['first_name'] = 'L';
-    test('invalid first_name > too short', apiTest(
+    test('first_name > too short', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -136,7 +136,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['first_name'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do et aliqua laborum.';
-    test('invalid first_name > too long', apiTest(
+    test('first_name > too long', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -148,7 +148,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['first_name'] = [];
-    test('invalid first_name > empty array', apiTest(
+    test('first_name > empty array', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -165,7 +165,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
      * LAST NAME TESTS
      */
     $contactData['last_name'] = 1;
-    test('invalid last_name > integer', apiTest(
+    test('last_name > integer', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -180,7 +180,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['last_name'] = false;
-    test('invalid last_name > false', apiTest(
+    test('last_name > false', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -195,7 +195,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['last_name'] = true;
-    test('invalid last_name > true', apiTest(
+    test('last_name > true', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -210,7 +210,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['last_name'] = 'L';
-    test('invalid last_name > too short', apiTest(
+    test('last_name > too short', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -222,7 +222,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['last_name'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do et aliqua laborum.';
-    test('invalid last_name > too long', apiTest(
+    test('last_name > too long', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -234,7 +234,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['last_name'] = [];
-    test('invalid last_name > empty array', apiTest(
+    test('last_name > empty array', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -254,7 +254,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
      * EMAIL TESTS
      */
     $contactData['email'] = 'admin.example.com';
-    test('invalid email > format', apiTest(
+    test('email > format', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -266,7 +266,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['email'] = 1;
-    test('invalid email > integer', apiTest(
+    test('email > integer', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -281,7 +281,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['email'] = false;
-    test('invalid email > false', apiTest(
+    test('email > false', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -296,7 +296,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['email'] = true;
-    test('invalid email > true', apiTest(
+    test('email > true', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -311,7 +311,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['email'] = [];
-    test('invalid email > empty array', apiTest(
+    test('email > empty array', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -331,7 +331,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
      * PERSONAL PHONE TESTS
      */
     $contactData['personal_phone'] = false;
-    test('invalid personal_phone > false', apiTest(
+    test('personal_phone > false', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -347,7 +347,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['personal_phone'] = true;
-    test('invalid personal_phone > true', apiTest(
+    test('personal_phone > true', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -363,7 +363,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['personal_phone'] = '9876543';
-    test('invalid personal_phone > too short', apiTest(
+    test('personal_phone > too short', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -378,7 +378,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['personal_phone'] = '98 76 543 210 123';
-    test('invalid personal_phone > too long', apiTest(
+    test('personal_phone > too long', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -393,7 +393,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['personal_phone'] = [];
-    test('invalid personal_phone > empty array', apiTest(
+    test('personal_phone > empty array', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -414,7 +414,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
      * WORK PHONE TESTS
      */
     $contactData['work_phone'] = false;
-    test('invalid work_phone > false', apiTest(
+    test('work_phone > false', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -430,7 +430,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['work_phone'] = true;
-    test('invalid work_phone > true', apiTest(
+    test('work_phone > true', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -446,7 +446,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['work_phone'] = '9876543';
-    test('invalid work_phone > too short', apiTest(
+    test('work_phone > too short', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -461,7 +461,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['work_phone'] = '98 76 543 210 123';
-    test('invalid work_phone > too long', apiTest(
+    test('work_phone > too long', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -476,7 +476,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['work_phone'] = [];
-    test('invalid work_phone > empty array', apiTest(
+    test('work_phone > empty array', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -497,7 +497,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
      * ADDRESS TESTS
      */
     $contactData['address'] = 1;
-    test('invalid address > integer', apiTest(
+    test('address > integer', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -512,7 +512,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['address'] = false;
-    test('invalid address > false', apiTest(
+    test('address > false', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -527,7 +527,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['address'] = true;
-    test('invalid address > true', apiTest(
+    test('address > true', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -542,7 +542,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['address'] = 'Lorem ipsum.';
-    test('invalid address > too short', apiTest(
+    test('address > too short', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -554,7 +554,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['address'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua';
-    test('invalid address > too long', apiTest(
+    test('address > too long', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -566,7 +566,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['address'] = [];
-    test('invalid address > empty array', apiTest(
+    test('address > empty array', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -586,7 +586,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
      * BIRTHDAY TESTS
      */
     $contactData['birthday'] = 1;
-    test('invalid birthday > integer', apiTest(
+    test('birthday > integer', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -598,7 +598,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['birthday'] = 'birthday';
-    test('invalid birthday > string', apiTest(
+    test('birthday > string', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -610,7 +610,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['birthday'] = true;
-    test('invalid birthday > true', apiTest(
+    test('birthday > true', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -622,7 +622,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['birthday'] = false;
-    test('invalid birthday > false', apiTest(
+    test('birthday > false', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -634,7 +634,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['birthday'] = '30.30.2023';
-    test('invalid birthday > invalid date', apiTest(
+    test('birthday > date', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -646,7 +646,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['birthday'] = [];
-    test('invalid birthday > empty array', apiTest(
+    test('birthday > empty array', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -663,7 +663,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
      * CONTACT GROUPS TESTS
      */
     $contactData['contact_groups'] = true;
-    test('invalid contact_groups > true', apiTest(
+    test('contact_groups > true', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -675,7 +675,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['contact_groups'] = false;
-    test('invalid contact_groups > false', apiTest(
+    test('contact_groups > false', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -687,7 +687,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['contact_groups'] = [];
-    test('invalid contact_groups > empty array', apiTest(
+    test('contact_groups > empty array', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -704,7 +704,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
      * ROLE TESTS
      */
     $contactData['role'] = 1;
-    test('invalid role > integer', apiTest(
+    test('role > integer', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -719,7 +719,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['role'] = 'example';
-    test('invalid role > example', apiTest(
+    test('role > example', apiTest(
         'POST',
         'contacts.store',
         422,
@@ -733,7 +733,7 @@ describe('422 > Unprocessable Content > POST', function ($contactData = contactD
     ));
 
     $contactData['role'] = [];
-    test('invalid role > empty array', apiTest(
+    test('role > empty array', apiTest(
         'POST',
         'contacts.store',
         422,

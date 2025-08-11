@@ -6,7 +6,7 @@ if (!defined('PEST_RUNNING')) {
 
 use App\Models\Link;
 
-it('can be created', function (): void {
+test('can be created', function (): void {
     $link = Link::factory()->create();
 
     expect($link)->toBeInstanceOf(Link::class);

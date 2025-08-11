@@ -11,7 +11,7 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('index api', function (): void {
         Money::factory(3)->create();
 

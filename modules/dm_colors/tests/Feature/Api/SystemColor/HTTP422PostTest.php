@@ -12,12 +12,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function ($systemColorData = systemColorData) {
+describe('422 > POST', function ($systemColorData = systemColorData) {
     /**
      * NAME TESTS
      */
     $systemColorData['name'] = '';
-    test('invalid name > empty', apiTest(
+    test('name > empty', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -29,7 +29,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
     ));
 
     $systemColorData['name'] = 1;
-    test('invalid name > integer', apiTest(
+    test('name > integer', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -41,7 +41,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
     ));
 
     $systemColorData['name'] = false;
-    test('invalid name > false', apiTest(
+    test('name > false', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -53,7 +53,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
     ));
 
     $systemColorData['name'] = true;
-    test('invalid name > true', apiTest(
+    test('name > true', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -65,7 +65,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
     ));
 
     $systemColorData['name'] = [];
-    test('invalid name > empty array', apiTest(
+    test('name > empty array', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -82,7 +82,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
      * VALUE TESTS
      */
     $systemColorData['value'] = '';
-    test('invalid value > empty', apiTest(
+    test('value > empty', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -94,7 +94,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
     ));
 
     $systemColorData['value'] = 1;
-    test('invalid value > integer', apiTest(
+    test('value > integer', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -106,7 +106,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
     ));
 
     $systemColorData['value'] = false;
-    test('invalid value > false', apiTest(
+    test('value > false', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -118,7 +118,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
     ));
 
     $systemColorData['value'] = true;
-    test('invalid value > true', apiTest(
+    test('value > true', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -130,7 +130,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
     ));
 
     $systemColorData['value'] = [];
-    test('invalid value > empty array', apiTest(
+    test('value > empty array', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -147,7 +147,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
      * NEW TESTS
      */
     $systemColorData['new'] = '';
-    test('invalid new > empty', apiTest(
+    test('new > empty', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -159,7 +159,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
     ));
 
     $systemColorData['new'] = 'not_a_boolean';
-    test('invalid new > string', apiTest(
+    test('new > string', apiTest(
         'POST',
         'system-colors.store',
         422,
@@ -171,7 +171,7 @@ describe('422 > Unprocessable Content > POST', function ($systemColorData = syst
     ));
 
     $systemColorData['new'] = [];
-    test('invalid new > empty array', apiTest(
+    test('new > empty array', apiTest(
         'POST',
         'system-colors.store',
         422,

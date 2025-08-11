@@ -9,18 +9,18 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('302 > Authorized', function (): void {
-    test('invalid method put on show api', function (): void {
+describe('302', function (): void {
+    test('put > show api', function (): void {
         $this->put(route('users.show', 1))
             ->assertStatus(302);
     });
 
-    test('invalid method put on update api', function (): void {
+    test('put > update api', function (): void {
         $this->put(route('users.update', 1))
             ->assertStatus(302);
     });
 
-    test('invalid method put on delete api', function (): void {
+    test('put > delete api', function (): void {
         $this->put(route('users.destroy', 1))
             ->assertStatus(302);
     });

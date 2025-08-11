@@ -14,50 +14,52 @@ beforeEach(function (): void {
     $this->controller = app()->makeWith(FriendController::class, ['service' => app()->make(FriendshipService::class)]);
 });
 
-test('send friend request > success', function (): void {
-    $recipient = UserFactory::new()->create();
-    $response = $this->controller->sendRequest($recipient);
+describe('200', function (): void {
+    test('sendRequest method', function (): void {
+        $recipient = UserFactory::new()->create();
+        $response = $this->controller->sendRequest($recipient);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true))->toEqual(['message' => 'Friend request sent successfully']);
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true))->toEqual(['message' => 'Friend request sent successfully']);
+    });
 
-test('accept friend request > success', function (): void {
-    $sender = UserFactory::new()->create();
-    $response = $this->controller->acceptRequest($sender);
+    test('acceptRequest method', function (): void {
+        $sender = UserFactory::new()->create();
+        $response = $this->controller->acceptRequest($sender);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true))->toEqual(['message' => 'Friend request accepted successfully']);
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true))->toEqual(['message' => 'Friend request accepted successfully']);
+    });
 
-test('deny friend request > success', function (): void {
-    $sender = UserFactory::new()->create();
-    $response = $this->controller->denyRequest($sender);
+    test('denyRequest method', function (): void {
+        $sender = UserFactory::new()->create();
+        $response = $this->controller->denyRequest($sender);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true))->toEqual(['message' => 'Friend request denied successfully']);
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true))->toEqual(['message' => 'Friend request denied successfully']);
+    });
 
-test('remove friend method > success', function (): void {
-    $friend = UserFactory::new()->create();
-    $response = $this->controller->removeFriend($friend);
+    test('removeFriend method', function (): void {
+        $friend = UserFactory::new()->create();
+        $response = $this->controller->removeFriend($friend);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true))->toEqual(['message' => 'Friend removed successfully']);
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true))->toEqual(['message' => 'Friend removed successfully']);
+    });
 
-test('block friend method > success', function (): void {
-    $friend = UserFactory::new()->create();
-    $response = $this->controller->blockFriend($friend);
+    test('blockFriend method', function (): void {
+        $friend = UserFactory::new()->create();
+        $response = $this->controller->blockFriend($friend);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true))->toEqual(['message' => 'Friend blocked successfully']);
-});
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true))->toEqual(['message' => 'Friend blocked successfully']);
+    });
 
-test('unblock friend method > success', function (): void {
-    $friend = UserFactory::new()->create();
-    $response = $this->controller->unblockFriend($friend);
+    test('unblockFriend method', function (): void {
+        $friend = UserFactory::new()->create();
+        $response = $this->controller->unblockFriend($friend);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true))->toEqual(['message' => 'Friend unblocked successfully']);
+        expect($response->getStatusCode())->toEqual(200);
+        expect($response->getData(true))->toEqual(['message' => 'Friend unblocked successfully']);
+    });
 });
