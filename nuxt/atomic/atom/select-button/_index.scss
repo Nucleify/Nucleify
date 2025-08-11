@@ -1,7 +1,7 @@
 @import 'mixins';
 
-@each $type in main, activity, article, card, contact, feature, link, money,
-  question, task, technology, user
+@each $type in main, activity, article, card, contact, feature, file, link,
+  money, question, task, technology, user
 {
   .p-selectbutton[ad-type='#{$type}'] {
     @include entity-styles(var(--#{$type}-item-selected-color-new) !important);

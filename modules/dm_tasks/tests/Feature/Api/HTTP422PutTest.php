@@ -4,17 +4,22 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('task-api-422');
+uses()->group('task-api-422-put');
+uses()->group('api-422');
+uses()->group('api-422-put');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updatedTaskData) {
+describe('422 > PUT', function ($updatedTaskData = updatedTaskData) {
     /**
      * USER_ID TESTS
      */
     $updatedTaskData['user_id'] = '';
-    test('invalid user_id > empty', apiTest(
+    test('user_id > empty', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -26,7 +31,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['user_id'] = 'user_id';
-    test('invalid user_id > string', apiTest(
+    test('user_id > string', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -38,7 +43,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['user_id'] = false;
-    test('invalid user_id > false', apiTest(
+    test('user_id > false', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -50,7 +55,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['user_id'] = [];
-    test('invalid user_id > empty array', apiTest(
+    test('user_id > empty array', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -67,7 +72,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
      * ASSIGNEE_ID TESTS
      */
     $updatedTaskData['assignee_id'] = 'user_id';
-    test('invalid assignee_id > string', apiTest(
+    test('assignee_id > string', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -79,7 +84,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['assignee_id'] = false;
-    test('invalid assignee_id > false', apiTest(
+    test('assignee_id > false', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -91,7 +96,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['assignee_id'] = [];
-    test('invalid assignee_id > empty array', apiTest(
+    test('assignee_id > empty array', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -108,7 +113,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
      * COLLABORATOR_IDS TESTS
      */
     $updatedTaskData['collaborator_ids'] = 1;
-    test('invalid collaborator_ids > integer', apiTest(
+    test('collaborator_ids > integer', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -120,7 +125,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['collaborator_ids'] = false;
-    test('invalid collaborator_ids > false', apiTest(
+    test('collaborator_ids > false', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -132,7 +137,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['collaborator_ids'] = true;
-    test('invalid collaborator_ids > true', apiTest(
+    test('collaborator_ids > true', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -144,7 +149,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['collaborator_ids'] = [];
-    test('invalid collaborator_ids > empty array', apiTest(
+    test('collaborator_ids > empty array', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -161,7 +166,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
      * TITLE TESTS
      */
     $updatedTaskData['title'] = '';
-    test('invalid title > empty', apiTest(
+    test('title > empty', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -173,7 +178,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['title'] = 1;
-    test('invalid title > integer', apiTest(
+    test('title > integer', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -185,7 +190,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['title'] = false;
-    test('invalid title > false', apiTest(
+    test('title > false', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -197,7 +202,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['title'] = true;
-    test('invalid title > true', apiTest(
+    test('title > true', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -209,7 +214,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['title'] = [];
-    test('invalid title > empty array', apiTest(
+    test('title > empty array', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -226,7 +231,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
      * DESCRIPTION TESTS
      */
     $updatedTaskData['description'] = 1;
-    test('invalid description > integer', apiTest(
+    test('description > integer', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -238,7 +243,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['description'] = false;
-    test('invalid description > false', apiTest(
+    test('description > false', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -250,7 +255,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['description'] = true;
-    test('invalid description > true', apiTest(
+    test('description > true', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -262,7 +267,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['description'] = [];
-    test('invalid description > empty array', apiTest(
+    test('description > empty array', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -279,7 +284,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
      * START_DATE TESTS
      */
     $updatedTaskData['start_date'] = '';
-    test('invalid start_date > empty', apiTest(
+    test('start_date > empty', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -291,7 +296,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['start_date'] = 1;
-    test('invalid start_date > integer', apiTest(
+    test('start_date > integer', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -306,7 +311,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['start_date'] = false;
-    test('invalid start_date > false', apiTest(
+    test('start_date > false', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -321,7 +326,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['start_date'] = true;
-    test('invalid start_date > true', apiTest(
+    test('start_date > true', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -341,7 +346,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
      * END_DATE TESTS
      */
     $updatedTaskData['end_date'] = 1;
-    test('invalid end_date > integer', apiTest(
+    test('end_date > integer', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -357,7 +362,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['end_date'] = false;
-    test('invalid end_date > false', apiTest(
+    test('end_date > false', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -373,7 +378,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['end_date'] = true;
-    test('invalid end_date > true', apiTest(
+    test('end_date > true', apiTest(
         'POST',
         'tasks.store',
         422,
@@ -389,7 +394,7 @@ describe('422 > Unprocessable Content > PUT', function ($updatedTaskData = updat
     ));
 
     $updatedTaskData['end_date'] = [];
-    test('invalid end_date > empty array', apiTest(
+    test('end_date > empty array', apiTest(
         'POST',
         'tasks.store',
         422,

@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('activity-api-200');
+uses()->group('api-200');
+
 use Database\Factories\ActivityFactory;
 
 beforeEach(function (): void {
@@ -11,7 +14,7 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('index api', function (): void {
         ActivityFactory::new()->count(10)->create();
 
@@ -27,17 +30,17 @@ describe('200 > Authorized', function (): void {
     });
 
     test('show api', function (): void {
-        $activity = ActivityFactory::new()->create();
+        $model = ActivityFactory::new()->create();
 
-        $this->getJson(route('activity-log.show', $activity->id))
+        $this->getJson(route('activity-log.show', $model->id))
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $activity = ActivityFactory::new()->create();
+        $model = ActivityFactory::new()->create();
 
-        $this->deleteJson(route('activity-log.destroy', $activity->id))
+        $this->deleteJson(route('activity-log.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('activity_log', ['id' => $activity->id]);
+        $this->assertDatabaseMissing('activity_log', ['id' => $model->id]);
     });
 });

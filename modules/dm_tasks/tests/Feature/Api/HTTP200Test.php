@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('task-api-200');
+uses()->group('api-200');
+
 use App\Models\Task;
 
 beforeEach(function (): void {
@@ -11,7 +14,7 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('index api', function (): void {
         Task::factory(3)->create();
 
@@ -32,24 +35,24 @@ describe('200 > Authorized', function (): void {
     });
 
     test('show api', function (): void {
-        $task = Task::factory()->create();
+        $model = Task::factory()->create();
 
-        $this->getJson(route('tasks.show', $task->id))
+        $this->getJson(route('tasks.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $task = Task::factory()->create();
+        $model = Task::factory()->create();
 
-        $this->putJson(route('tasks.update', $task->id), updatedTaskData)
+        $this->putJson(route('tasks.update', $model->id), updatedTaskData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $task = Task::factory()->create();
+        $model = Task::factory()->create();
 
-        $this->deleteJson(route('tasks.destroy', $task->id))
+        $this->deleteJson(route('tasks.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('tasks', ['id' => $task->id]);
+        $this->assertDatabaseMissing('tasks', ['id' => $model->id]);
     });
 });

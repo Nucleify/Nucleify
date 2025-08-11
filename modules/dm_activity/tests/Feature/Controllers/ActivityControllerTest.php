@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('activity-controller');
+
 use App\Http\Controllers\ActivityController;
 use App\Services\ActivityService;
 use Database\Factories\ActivityFactory;
@@ -15,35 +17,36 @@ beforeEach(function (): void {
     $this->controller = app()->makeWith(ActivityController::class, ['articleService' => app()->make(ActivityService::class)]);
 });
 
-test('index > success', function (): void {
-    $response = $this->controller->index();
+describe('200', function (): void {
+    test('index method', function (): void {
+        $response = $this->controller->index();
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('countByCreatedLastWeek > success', function (): void {
-    $request = new Request;
+    test('countByCreatedLastWeek method', function (): void {
+        $request = new Request;
 
-    $response = $this->controller->countByCreatedLastWeek($request);
+        $response = $this->controller->countByCreatedLastWeek($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-});
+        expect($response->getStatusCode())->toEqual(200);
+    });
 
-test('show > success', function (): void {
-    $activity = ActivityFactory::new()->create();
+    test('show method', function (): void {
+        $model = ActivityFactory::new()->create();
 
-    $response = $this->controller->show($activity->id);
+        $response = $this->controller->show($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('delete > success', function (): void {
-    $activity = ActivityFactory::new()->create();
+    test('delete method', function (): void {
+        $model = ActivityFactory::new()->create();
 
-    $response = $this->controller->destroy($activity->id);
+        $response = $this->controller->destroy($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    $this->assertDatabaseMissing('activity_log', ['id' => $activity->id]);
+        expect($response->getStatusCode(), $response->getData(true)['deleted'])
+            ->toEqual(200)
+            ->and($this->assertDatabaseMissing('activity_log', ['id' => $model->id]));
+    });
 });

@@ -4,6 +4,9 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('user-api-200');
+uses()->group('api-200');
+
 use App\Models\User;
 
 beforeEach(function (): void {
@@ -11,7 +14,7 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('index api', function (): void {
         $this->getJson(route('users.index'))
             ->assertOk();
@@ -30,24 +33,24 @@ describe('200 > Authorized', function (): void {
     });
 
     test('show api', function (): void {
-        $user = User::factory()->create();
+        $model = User::factory()->create();
 
-        $this->getJson(route('users.show', $user->id))
+        $this->getJson(route('users.show', $model->id))
             ->assertOk();
     });
 
     test('update api', function (): void {
-        $user = User::factory()->create();
+        $model = User::factory()->create();
 
-        $this->putJson(route('users.update', $user->id), updatedUserData)
+        $this->putJson(route('users.update', $model->id), updatedUserData)
             ->assertOk();
     });
 
     test('destroy api', function (): void {
-        $user = User::factory()->create();
+        $model = User::factory()->create();
 
-        $this->deleteJson(route('users.destroy', $user->id))
+        $this->deleteJson(route('users.destroy', $model->id))
             ->assertOk();
-        $this->assertDatabaseMissing('users', ['id' => $user->id]);
+        $this->assertDatabaseMissing('users', ['id' => $model->id]);
     });
 });

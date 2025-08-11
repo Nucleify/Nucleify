@@ -16,20 +16,20 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property string|null category
  * @property string created_at
  * @property string updated_at
- * @property int getId
- * @property int getUserId
- * @property string getTitle
- * @property string getDescription
- * @property string|null getCategory
- * @property string getCreatedAt
- * @property string getUpdatedAt
- * @property Builder scopeGetById
- * @property Builder scopeGetByUserId
- * @property Builder scopeGetByTitle
- * @property Builder scopeGetByDescription
- * @property Builder scopeGetByCategory
- * @property Builder scopeGetByCreatedAt
- * @property Builder scopeGetByUpdatedAt
+ * @property int getId()
+ * @property int getUserId()
+ * @property string getTitle()
+ * @property string getDescription()
+ * @property string|null getCategory()
+ * @property string getCreatedAt()
+ * @property string getUpdatedAt()
+ * @property Builder scopeGetById()
+ * @property Builder scopeGetByUserId()
+ * @property Builder scopeGetByTitle()
+ * @property Builder scopeGetByDescription()
+ * @property Builder scopeGetByCategory()
+ * @property Builder scopeGetByCreatedAt()
+ * @property Builder scopeGetByUpdatedAt()
  */
 class Article extends Model implements ArticleContract
 {
@@ -103,7 +103,7 @@ class Article extends Model implements ArticleContract
         return $query->where('description', $parameter);
     }
 
-    public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
+    public function scopeGetByCategory(Builder $query, string $parameter): Builder
     {
         return $query->where('category', $parameter);
     }
