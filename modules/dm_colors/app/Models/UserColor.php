@@ -16,21 +16,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @property bool new
  * @property string created_at
  * @property string updated_at
- * @property int getId
- * @property int getUserId
- * @property int getName
- * @property string getValue
- * @property string getNew
- * @property string getCreatedAt
- * @property string getUpdatedAt
- * @property BelongsTo user
- * @property Builder scopeGetById
- * @property Builder scopeGetByUserId
- * @property Builder scopeGetByName
- * @property Builder scopeGetByValue
- * @property Builder scopeGetByNew
- * @property Builder scopeGetByCreatedAt
- * @property Builder scopeGetByUpdatedAt
+ * @property int getId()
+ * @property int getUserId()
+ * @property string getName()
+ * @property string getValue()
+ * @property bool getNew()
+ * @property string getCreatedAt()
+ * @property string getUpdatedAt()
+ * @property BelongsTo user()
+ * @property Builder scopeGetById()
+ * @property Builder scopeGetByUserId()
+ * @property Builder scopeGetByName()
+ * @property Builder scopeGetByValue()
+ * @property Builder scopeGetByNew()
+ * @property Builder scopeGetByCreatedAt()
+ * @property Builder scopeGetByUpdatedAt()
  */
 class UserColor extends Model implements UserColorContract
 {
