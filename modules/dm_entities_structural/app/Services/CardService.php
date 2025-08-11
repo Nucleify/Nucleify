@@ -22,6 +22,13 @@ class CardService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
+    /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
@@ -34,6 +41,13 @@ class CardService
         return CardResource::collection($result);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
     public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
@@ -48,6 +62,10 @@ class CardService
     }
 
     /**
+     * @param string $category
+     *
+     * @return AnonymousResourceCollection
+     *
      * @throws Exception
      */
     public function getByCategory(string $category): AnonymousResourceCollection
@@ -61,6 +79,13 @@ class CardService
         return CardResource::collection($result);
     }
 
+    /**
+     * @param int $id
+     *
+     * @return CardResource
+     *
+     * @throws Exception
+     */
     public function show($id): CardResource
     {
         $this->defineUserData();
@@ -72,6 +97,13 @@ class CardService
         return new CardResource($result);
     }
 
+    /**
+     * @param array $data
+     *
+     * @return CardResource
+     *
+     * @throws Exception
+     */
     public function create(array $data): CardResource
     {
         $this->defineUserData();
@@ -84,7 +116,12 @@ class CardService
     }
 
     /**
-     * @return data
+     * @param int $id
+     * @param array $data
+     *
+     * @return CardResource
+     *
+     * @throws Exception
      */
     public function update($id, array $data): CardResource
     {
@@ -99,6 +136,13 @@ class CardService
         return new CardResource($result->fresh());
     }
 
+    /**
+     * @param int $id
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();

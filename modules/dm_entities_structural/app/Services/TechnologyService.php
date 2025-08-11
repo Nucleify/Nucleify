@@ -23,6 +23,10 @@ class TechnologyService
     ) {}
 
     /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
      * @throws Exception
      */
     public function index(Request $request): AnonymousResourceCollection
@@ -38,6 +42,10 @@ class TechnologyService
     }
 
     /**
+     * @param Request $request
+     *
+     * @return int
+     *
      * @throws Exception
      */
     public function countByCreatedLastWeek(Request $request): int
@@ -54,6 +62,10 @@ class TechnologyService
     }
 
     /**
+     * @param string $category
+     *
+     * @return AnonymousResourceCollection
+     *
      * @throws Exception
      */
     public function getByCategory(string $category): AnonymousResourceCollection
@@ -67,6 +79,13 @@ class TechnologyService
         return TechnologyResource::collection($result);
     }
 
+    /**
+     * @param string $site
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function getSiteTechnologies(string $site): AnonymousResourceCollection
     {
         $this->defineUserData();
@@ -81,6 +100,10 @@ class TechnologyService
     }
 
     /**
+     * @param int $id
+     *
+     * @return TechnologyResource
+     *
      * @throws Exception
      */
     public function show($id): TechnologyResource
@@ -95,6 +118,10 @@ class TechnologyService
     }
 
     /**
+     * @param array $data
+     *
+     * @return TechnologyResource
+     *
      * @throws Exception
      */
     public function create(array $data): TechnologyResource
@@ -109,6 +136,11 @@ class TechnologyService
     }
 
     /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return TechnologyResource
+     *
      * @throws Exception
      */
     public function update($id, array $data): TechnologyResource
@@ -125,6 +157,10 @@ class TechnologyService
     }
 
     /**
+     * @param int $id
+     *
+     * @return void
+     *
      * @throws Exception
      */
     public function delete($id): void

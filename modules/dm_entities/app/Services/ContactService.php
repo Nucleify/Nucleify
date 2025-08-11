@@ -22,6 +22,13 @@ class ContactService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
+    /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
@@ -36,6 +43,13 @@ class ContactService
         return ContactResource::collection($result);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
     public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
@@ -54,6 +68,13 @@ class ContactService
         return $result;
     }
 
+    /**
+     * @param int $id
+     *
+     * @return ContactResource
+     *
+     * @throws Exception
+     */
     public function show($id): ContactResource
     {
         $this->defineUserData();
@@ -67,6 +88,13 @@ class ContactService
         return new ContactResource($result);
     }
 
+    /**
+     * @param array $data
+     *
+     * @return ContactResource
+     *
+     * @throws Exception
+     */
     public function create(array $data): ContactResource
     {
         $this->defineUserData();
@@ -78,6 +106,14 @@ class ContactService
         return new ContactResource($result);
     }
 
+    /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return ContactResource
+     *
+     * @throws Exception
+     */
     public function update($id, array $data): ContactResource
     {
         $this->defineUserData();
@@ -93,6 +129,13 @@ class ContactService
         return new ContactResource($result->fresh());
     }
 
+    /**
+     * @param int $id
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();

@@ -24,6 +24,10 @@ class SystemColorService
     ) {}
 
     /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
      * @throws Exception
      */
     public function index(Request $request): AnonymousResourceCollection
@@ -41,6 +45,10 @@ class SystemColorService
     }
 
     /**
+     * @param Request $request
+     *
+     * @return int
+     *
      * @throws Exception
      */
     public function countByCreatedLastWeek(Request $request): int
@@ -59,6 +67,10 @@ class SystemColorService
     }
 
     /**
+     * @param string $name
+     *
+     * @return AnonymousResourceCollection
+     *
      * @throws Exception
      */
     public function getByName(string $name): AnonymousResourceCollection
@@ -75,6 +87,10 @@ class SystemColorService
     }
 
     /**
+     * @param int $id
+     *
+     * @return SystemColorResource
+     *
      * @throws Exception
      */
     public function show($id): SystemColorResource
@@ -91,6 +107,10 @@ class SystemColorService
     }
 
     /**
+     * @param array $data
+     *
+     * @return SystemColorResource
+     *
      * @throws Exception
      */
     public function create(array $data): SystemColorResource
@@ -107,6 +127,11 @@ class SystemColorService
     }
 
     /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return SystemColorResource
+     *
      * @throws Exception
      */
     public function update($id, array $data): SystemColorResource
@@ -126,6 +151,10 @@ class SystemColorService
     }
 
     /**
+     * @param int $id
+     *
+     * @return void
+     *
      * @throws Exception
      */
     public function delete($id): void

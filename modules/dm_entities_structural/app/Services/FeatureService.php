@@ -22,6 +22,13 @@ class FeatureService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
+    /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
@@ -34,6 +41,13 @@ class FeatureService
         return FeatureResource::collection($result);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
     public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
@@ -48,6 +62,13 @@ class FeatureService
         return $result;
     }
 
+    /**
+     * @param string $category
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function getByCategory(string $category): AnonymousResourceCollection
     {
         $this->defineUserData();
@@ -59,6 +80,13 @@ class FeatureService
         return FeatureResource::collection($result);
     }
 
+    /**
+     * @param string $site
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
     public function getSiteFeatures(string $site): AnonymousResourceCollection
     {
         $this->defineUserData();
@@ -72,6 +100,13 @@ class FeatureService
         return FeatureResource::collection($result);
     }
 
+    /**
+     * @param int $id
+     *
+     * @return FeatureResource
+     *
+     * @throws Exception
+     */
     public function show($id): FeatureResource
     {
         $result = $this->model::findOrFail($id);
@@ -80,6 +115,10 @@ class FeatureService
     }
 
     /**
+     * @param array $data
+     *
+     * @return FeatureResource
+     *
      * @throws Exception
      */
     public function create(array $data): FeatureResource
@@ -93,6 +132,14 @@ class FeatureService
         return new FeatureResource($result);
     }
 
+    /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return FeatureResource
+     *
+     * @throws Exception
+     */
     public function update($id, array $data): FeatureResource
     {
         $this->defineUserData();
@@ -106,6 +153,13 @@ class FeatureService
         return new FeatureResource($result->fresh());
     }
 
+    /**
+     * @param int $id
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();

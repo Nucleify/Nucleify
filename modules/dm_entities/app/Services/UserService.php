@@ -24,6 +24,8 @@ class UserService
     ) {}
 
     /**
+     * @return AnonymousResourceCollection
+     *
      * @throws Exception
      */
     public function index(): AnonymousResourceCollection
@@ -42,6 +44,13 @@ class UserService
         return UserResource::collection($this->model->all());
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
     public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
@@ -63,6 +72,10 @@ class UserService
     }
 
     /**
+     * @param int $id
+     *
+     * @return UserResource
+     *
      * @throws Exception
      */
     public function show($id): UserResource
@@ -84,6 +97,10 @@ class UserService
     }
 
     /**
+     * @param array $data
+     *
+     * @return UserResource
+     *
      * @throws Exception
      */
     public function create(array $data): UserResource
@@ -105,6 +122,11 @@ class UserService
     }
 
     /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return UserResource
+     *
      * @throws Exception
      */
     public function update($id, array $data): UserResource
@@ -159,6 +181,8 @@ class UserService
     }
 
     /**
+     * @param int $id
+     *
      * @return true[]
      *
      * @throws Exception

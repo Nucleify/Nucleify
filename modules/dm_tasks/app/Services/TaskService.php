@@ -23,6 +23,10 @@ class TaskService
     ) {}
 
     /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
      * @throws Exception
      */
     public function index(Request $request): AnonymousResourceCollection
@@ -38,6 +42,10 @@ class TaskService
     }
 
     /**
+     * @param Request $request
+     *
+     * @return int
+     *
      * @throws Exception
      */
     public function countByCreatedLastWeek(Request $request): int
@@ -54,6 +62,10 @@ class TaskService
     }
 
     /**
+     * @param int $id
+     *
+     * @return TaskResource
+     *
      * @throws Exception
      */
     public function show($id): TaskResource
@@ -68,6 +80,10 @@ class TaskService
     }
 
     /**
+     * @param array $data
+     *
+     * @return TaskResource
+     *
      * @throws Exception
      */
     public function create(array $data): TaskResource
@@ -82,6 +98,11 @@ class TaskService
     }
 
     /**
+     * @param int $id
+     * @param array $data
+     *
+     * @return TaskResource
+     *
      * @throws Exception
      */
     public function update($id, array $data): TaskResource
@@ -98,6 +119,10 @@ class TaskService
     }
 
     /**
+     * @param int $id
+     *
+     * @return void
+     *
      * @throws Exception
      */
     public function delete($id): void
