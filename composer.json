@@ -13,8 +13,7 @@
     "laravel/tinker": "2.9.0",
     "laravel/ui": "4.5.2",
     "multicaret/laravel-acquaintances": "3.6.1",
-    "spatie/laravel-activitylog": "4.8.0",
-    "spatie/laravel-fractal": "6.2.1"
+    "spatie/laravel-activitylog": "4.8.0"
   },
   "require-dev": {
     "laravel/pint": "1.22.0",
