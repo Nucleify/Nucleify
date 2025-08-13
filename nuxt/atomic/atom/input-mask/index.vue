@@ -1,11 +1,11 @@
 <template>
   <InputMask
+    :id="props.id"
     :ad-type="props.adType"
     :v-model="props.value"
     :default-value="props.defaultValue"
     :slot-char="props.slotChar"
     :mask="props.mask"
-    :id="props.id"
     :placeholder="props.placeholder"
     :auto-clear="props.autoClear"
     :unmask="props.unmask"
@@ -24,7 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import { InputMaskInterface } from 'atomic'
+import type { InputMaskInterface } from 'atomic'
+
+import InputMask from 'primevue/inputmask' // Import for Storybook
 
 const props = defineProps<InputMaskInterface>()
 </script>

@@ -1,11 +1,11 @@
+import type { ComponentType } from 'atomic'
 import {
   AdDatePicker,
-  AdSelect,
   AdInputMask,
   AdInputText,
   AdPassword,
+  AdSelect,
   AdTextarea,
-  ComponentType,
 } from 'atomic'
 
 export function getComponent(type: ComponentType) {

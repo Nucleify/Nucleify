@@ -5,21 +5,21 @@
         <ad-heading :tag="4" :text="t('admin.settings.charts.header')" />
 
         <ad-button
-          icon="pi pi-refresh"
+          icon="prime:refresh"
           ad-type="main"
           class="refresh-button"
-          @click="setDefaultChartsDisplay(false, true)"
           rounded
           text
+          @click="displayChartsStore.setAllTrue()"
         />
       </div>
     </template>
     <template #content>
       <ul class="settings-card-item-list">
         <li
-          class="settings-card-item"
           v-for="item in displayChartList"
           :key="item"
+          class="settings-card-item"
         >
           <ad-label
             :label="t('admin.settings.charts.' + item.toLocaleLowerCase())"
@@ -28,9 +28,9 @@
 
           <ad-select-button
             ad-type="main"
-            :model-value="display[item] ? 'On' : 'Off'"
+            :model-value="displayCharts[item].value ? 'On' : 'Off'"
             :options="options"
-            @click="displayChartsToggle(item)"
+            @click="displayChartsStore.toggle(item)"
           />
         </li>
       </ul>
@@ -39,14 +39,16 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 
-import { displayChartList, useDisplayCharts } from 'atomic'
+import { displayChartList } from 'atomic'
+
+import { useDisplayChartsStore } from '~/stores/display_charts'
 
 const { t } = useI18n()
 
-const { display, setDefaultChartsDisplay, displayChartsToggle } =
-  useDisplayCharts()
-
+const displayChartsStore = useDisplayChartsStore()
+const displayCharts = storeToRefs(displayChartsStore)
 const options = ref(['On', 'Off'])
 </script>

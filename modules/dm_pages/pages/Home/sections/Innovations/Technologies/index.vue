@@ -6,12 +6,14 @@
           <swiper-slide v-for="(tech, index) in data" :key="index">
             <ad-anchor
               v-if="tech"
-              :href="tech.href"
-              :src="technologiesImgUrl + tech.src"
-              :alt="tech.label"
-              :aria-label="tech.label"
               v-tooltip="tech.label"
-            />
+              :href="tech.href"
+              :aria-label="tech.label"
+            >
+              <deferred-content>
+                <img :src="technologiesImgUrl + tech.src" :alt="tech.label" />
+              </deferred-content>
+            </ad-anchor>
           </swiper-slide>
         </swiper-container>
       </client-only>
@@ -20,7 +22,12 @@
 </template>
 
 <script setup lang="ts">
-import { isMobile, technologyRequests } from 'atomic'
+import {
+  bounceFadeIn,
+  isMobile,
+  technologyRequests,
+  useScrollTrigger,
+} from 'atomic'
 
 let data
 
@@ -31,7 +38,7 @@ if (appEnv() !== 'production') {
   watchEffect(() => (data = resultsBySite))
 } else {
   ;({ data } = await useFetch(
-    apiUrl() + 'technologies/get-site-technologies/general',
+    apiUrl() + '/technologies/get-site-technologies/general',
     {
       method: 'GET',
       immediate: true,
@@ -53,4 +60,19 @@ useSwiper(technologiesSwiper, {
   slidesPerGroup: 2,
   loop: true,
 })
+
+useScrollTrigger(
+  '.swiper-container',
+  () => {
+    bounceFadeIn('.swiper-container swiper-slide', {
+      delay: 0,
+      duration: 0.4,
+      stagger: 0.1,
+      ease: 'power2.out',
+    })
+  },
+  {
+    start: 'top 75%',
+  }
+)
 </script>

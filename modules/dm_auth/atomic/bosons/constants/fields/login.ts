@@ -1,8 +1,11 @@
-import { Ref, ref } from 'vue'
+import type { Ref } from 'vue'
+import { ref } from 'vue'
 
-import { useNuxtApp } from 'nuxt/app'
-
-import { InputInterface, LoginFieldKey, LoginFieldsInterface } from 'atomic'
+import type {
+  InputInterface,
+  LoginFieldKey,
+  LoginFieldsInterface,
+} from 'atomic'
 
 export const loginFields: Ref<LoginFieldsInterface> = ref<LoginFieldsInterface>(
   {

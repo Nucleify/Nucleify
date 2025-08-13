@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { AdBadge } from '.'
 
-import { Badge as AdBadge } from './'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Atoms/Badge',
   component: AdBadge,
-  tags: ['autodocs'],
   args: {
     value: '2',
     severity: '',

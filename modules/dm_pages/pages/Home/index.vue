@@ -10,31 +10,11 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, onMounted } from 'vue'
-
-import { useColors, useViewportChange } from 'atomic'
+import { useSplitText } from 'atomic'
 
 import { Features, Innovations, Start } from './sections'
 
-useViewportChange(
-  [
-    '#access div',
-    '#structure div',
-    '#technologies div',
-    '#modules div',
-    '#why-us div',
-    '#footer div',
-  ],
-  100
-)
-
-useViewportChange(['.home-chart-card div[data-pc-section="body"]'], 50)
-
 onBeforeMount(() => window.scrollTo(0, 0))
 
-onMounted(() => {
-  const { setDefaultColors } = useColors()
-
-  setDefaultColors(true)
-})
+useSplitText().animate()
 </script>

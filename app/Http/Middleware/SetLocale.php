@@ -9,9 +9,8 @@ class SetLocale
     public function handle($request, Closure $next)
     {
         $locale = $request->header('X-Locale');
-        
-        if ($locale) 
-        {
+
+        if ($locale) {
             app()->setLocale($locale);
         }
 

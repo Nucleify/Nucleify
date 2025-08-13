@@ -2,7 +2,7 @@
 
 return [
     [
-        'icon' => 'pi pi-cloud',
+        'icon' => 'prime:cloud',
         'header' => [
             'en' => 'Your Own Cloud',
             'pl' => 'Twoja chmura',
@@ -13,7 +13,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-github',
+        'icon' => 'prime:github',
         'header' => [
             'en' => 'Open Source',
             'pl' => 'Open Source',
@@ -24,7 +24,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-building',
+        'icon' => 'prime:building',
         'header' => [
             'en' => 'Enterprise Solutions',
             'pl' => 'Rozwiązania dla firm',
@@ -35,7 +35,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-share-alt',
+        'icon' => 'prime:share-alt',
         'header' => [
             'en' => 'Share Data',
             'pl' => 'Udostępnianie danych',
@@ -46,7 +46,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-chart-line',
+        'icon' => 'prime:chart-line',
         'header' => [
             'en' => 'Analytics',
             'pl' => 'Analityka',
@@ -57,7 +57,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-palette',
+        'icon' => 'prime:palette',
         'header' => [
             'en' => 'Customizable',
             'pl' => 'Personalizacja',
@@ -68,7 +68,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-file-pdf',
+        'icon' => 'prime:file-pdf',
         'header' => [
             'en' => 'Many Extensions',
             'pl' => 'Wiele rozszerzeń',
@@ -79,7 +79,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-database',
+        'icon' => 'prime:database',
         'header' => [
             'en' => 'Database Services',
             'pl' => 'Bazy danych',
@@ -90,7 +90,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-history',
+        'icon' => 'prime:history',
         'header' => [
             'en' => 'Stay up to date',
             'pl' => 'Zawsze na bieżąco',
@@ -101,7 +101,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-sync',
+        'icon' => 'prime:sync',
         'header' => [
             'en' => 'Synchronization',
             'pl' => 'Synchronizacja',
@@ -112,7 +112,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-shield',
+        'icon' => 'prime:shield',
         'header' => [
             'en' => 'Security',
             'pl' => 'Bezpieczeństwo',
@@ -123,7 +123,7 @@ return [
         ],
     ],
     [
-        'icon' => 'pi pi-bell',
+        'icon' => 'prime:bell',
         'header' => [
             'en' => 'Notifications',
             'pl' => 'Powiadomienia',

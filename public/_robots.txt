@@ -1,8 +1,8 @@
 User-agent: *
 
+Disallow:
 Disallow: /cgi-bin/
 Disallow: /tmp/
-Disallow: /private/
 Disallow: /admin/
 Disallow: /login/
 Disallow: /register/

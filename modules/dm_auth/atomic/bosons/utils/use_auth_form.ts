@@ -1,26 +1,32 @@
+import type {
+  LoginFieldsInterface,
+  RegisterFieldsInterface,
+  UseAuthFormInterface,
+} from 'atomic'
 import {
+  apiHandle,
+  getAndSetUser,
   loginFields,
   loginInputs,
   registerFields,
   registerInputs,
-  LoginFieldsInterface,
-  RegisterFieldsInterface,
-  UseAuthFormInterface,
-  navigateTo,
-  apiHandle,
 } from 'atomic'
+
+import { useRouter } from 'nuxt/app'
 
 export function useAuthForm(): UseAuthFormInterface {
   let url: string
+  const router = useRouter()
+
   async function submitForm(
     data: LoginFieldsInterface | RegisterFieldsInterface
   ): Promise<void> {
     switch (true) {
       case !('password_confirmation' in data):
-        url = appUrl() + 'login'
+        url = appUrl() + '/login'
         break
       case 'password_confirmation' in data:
-        url = appUrl() + 'register'
+        url = appUrl() + '/register'
         break
       default:
         throw Error
@@ -30,13 +36,22 @@ export function useAuthForm(): UseAuthFormInterface {
       url,
       method: 'POST',
       data,
-      onSuccess: (): void => {
-        navigateTo('/dashboard')
+      onSuccess: async (): Promise<void> => {
+        await getAndSetUser()
       },
     })
   }
+
+  async function submitAndGo(
+    data: LoginFieldsInterface | RegisterFieldsInterface
+  ) {
+    await submitForm(data)
+    router.push('/dashboard')
+  }
+
   return {
     submitForm,
+    submitAndGo,
     loginFields,
     loginInputs,
     registerFields,

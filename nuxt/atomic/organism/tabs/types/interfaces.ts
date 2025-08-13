@@ -7,16 +7,16 @@ export interface TabsInterface {
   showNavigators?: boolean
   tabindex?: number
   selectOnFocus?: boolean
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }
 export interface TabListInterface {
-  value?: number
+  value: string | number
   header?: string
 }
 export interface TabPanelInterface {
-  value?: number
+  value: string | number
   content?: string
 }

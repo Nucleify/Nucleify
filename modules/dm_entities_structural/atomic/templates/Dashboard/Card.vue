@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  useCardFields,
-  DashboardInterface,
-  cardRequests,
-  useDialog,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { cardRequests, useCardFields, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

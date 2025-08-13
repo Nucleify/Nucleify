@@ -1,39 +1,47 @@
 <template>
   <div ref="containerRef" class="hexagon-rows-container">
     <client-only>
-      <div
-        v-for="(row, rowIndex) in hexagonRows"
-        :key="rowIndex"
-        class="hexagon-row-container"
-      >
+      <deferred-content>
         <div
-          v-for="(containerClass, containerIndex) in [
-            'hexagon-container n1',
-            'hexagon-container n2',
-          ]"
-          :key="containerIndex"
-          :class="containerClass"
-          :style="{ opacity: 0.05 + 0.012 * rowIndex }"
+          v-for="(row, rowIndex) in hexagonRows"
+          :key="rowIndex"
+          class="hexagon-row-container"
         >
-          <img
-            v-for="(opacity, imgIndex) in row[containerIndex]"
-            :key="imgIndex"
-            :alt="'hexagon-' + imgIndex"
-            :class="'hexagon-' + imgIndex"
-            :src="imgUrl + 'hexagon.svg'"
-            width="40"
-            :style="{ opacity: opacity }"
-          />
+          <div
+            v-for="(containerClass, containerIndex) in [
+              'hexagon-container n1',
+              'hexagon-container n2',
+            ]"
+            :key="containerIndex"
+            :class="containerClass"
+            :style="{ opacity: 0.125 + 0.012 * rowIndex }"
+          >
+            <svg
+              :width="row[containerIndex].length * 40"
+              height="40"
+              style="display: block"
+            >
+              <polygon
+                v-for="(opacity, imgIndex) in row[containerIndex]"
+                :key="imgIndex"
+                :class="'hexagon-' + imgIndex"
+                :style="{ opacity: opacity }"
+                :points="getHexagonPoints(20 + imgIndex * 40, 20, 20)"
+                stroke="#10b981"
+                stroke-width="2"
+              />
+            </svg>
+          </div>
         </div>
-      </div>
+      </deferred-content>
     </client-only>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 
-import { updateImagesPerRow } from './utils'
+import { getHexagonPoints, updateImagesPerRow } from './utils'
 import { PATTERN_UPDATE_INTERVAL } from './variables'
 
 const containerRef = ref<HTMLElement | null>(null)

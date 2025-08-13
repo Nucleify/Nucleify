@@ -30,7 +30,9 @@
 </template>
 
 <script setup lang="ts">
-import { CheckboxInterface } from 'atomic'
+import type { CheckboxInterface } from 'atomic'
+
+import Checkbox from 'primevue/checkbox' // Import for Storybook
 
 const props = defineProps<CheckboxInterface>()
 </script>

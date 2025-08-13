@@ -3,11 +3,12 @@
 namespace App\Services;
 
 use App\Models\Card;
+use App\Resources\CardResource;
 use App\Traits\Setters\RequestSetterTrait;
 use App\Traits\Setters\TimeSetterTrait;
 use App\Traits\Setters\UserSetterTrait;
-use App\Transformers\CardTransformer;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CardService
 {
@@ -21,7 +22,14 @@ class CardService
         private readonly LoggerService $logger = new LoggerService
     ) {}
 
-    public function index(Request $request): mixed
+    /**
+     * @param Request $request
+     *
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
+    public function index(Request $request): AnonymousResourceCollection
     {
         $this->defineRequestData($request);
         $this->defineUserData();
@@ -30,12 +38,16 @@ class CardService
 
         $this->logger->logIndex($this->causer->name, $this->entity, $this->isRefererStructural);
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new CardTransformer)
-            ->toArray()['data'];
+        return CardResource::collection($result);
     }
 
+    /**
+     * @param Request $request
+     *
+     * @return int
+     *
+     * @throws Exception
+     */
     public function countByCreatedLastWeek(Request $request): int
     {
         $this->defineRequestData($request);
@@ -50,9 +62,13 @@ class CardService
     }
 
     /**
+     * @param string $category
+     *
+     * @return AnonymousResourceCollection
+     *
      * @throws Exception
      */
-    public function getByCategory(string $category): array
+    public function getByCategory(string $category): AnonymousResourceCollection
     {
         $this->defineUserData();
 
@@ -60,13 +76,17 @@ class CardService
 
         $this->logger->logMessage($this->causer->name . ' fetched cards by category: ' . $category . '.');
 
-        return fractal()
-            ->collection($result)
-            ->transformWith(new CardTransformer)
-            ->toArray()['data'];
+        return CardResource::collection($result);
     }
 
-    public function show($id): array
+    /**
+     * @param int $id
+     *
+     * @return CardResource
+     *
+     * @throws Exception
+     */
+    public function show($id): CardResource
     {
         $this->defineUserData();
 
@@ -74,13 +94,17 @@ class CardService
 
         $this->logger->log($this->causer->name, $result->getTitle(), $this->entity, 'showed');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new CardTransformer)
-            ->toArray()['data'];
+        return new CardResource($result);
     }
 
-    public function create(array $data): array
+    /**
+     * @param array $data
+     *
+     * @return CardResource
+     *
+     * @throws Exception
+     */
+    public function create(array $data): CardResource
     {
         $this->defineUserData();
 
@@ -88,16 +112,18 @@ class CardService
 
         $this->logger->log($this->causer->name, $result->getTitle(), $this->entity, 'created');
 
-        return fractal()
-            ->item($result)
-            ->transformWith(new CardTransformer)
-            ->toArray()['data'];
+        return new CardResource($result);
     }
 
     /**
-     * @return data
+     * @param int $id
+     * @param array $data
+     *
+     * @return CardResource
+     *
+     * @throws Exception
      */
-    public function update($id, array $data): array
+    public function update($id, array $data): CardResource
     {
         $this->defineUserData();
 
@@ -107,12 +133,16 @@ class CardService
 
         $this->logger->log($this->causer->name, $result->getTitle(), $this->entity, 'updated');
 
-        return fractal()
-            ->item($result->fresh())
-            ->transformWith(new CardTransformer)
-            ->toArray()['data'];
+        return new CardResource($result->fresh());
     }
 
+    /**
+     * @param int $id
+     *
+     * @return void
+     *
+     * @throws Exception
+     */
     public function delete($id): void
     {
         $this->defineUserData();

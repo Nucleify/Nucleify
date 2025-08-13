@@ -10,8 +10,10 @@ export const structuralEntitiesKeys: string[] = [
 
 export const allEntitiesKeys: string[] = [
   'activity',
+  'file',
   ...entitiesKeys,
   ...structuralEntitiesKeys,
+  'task',
 ]
 
 export const allEntitiesKeysPl: string[] = [

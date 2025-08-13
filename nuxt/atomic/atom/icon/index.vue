@@ -1,9 +1,9 @@
 <template>
-  <i v-if="props.icon" :class="props.icon" :ad-type="props.adType" />
+  <Icon v-if="props.icon" :name="props.icon" :ad-type="props.adType" :class-name="props.className" :size="props.size" />
 </template>
 
 <script setup lang="ts">
-import { IconInterface } from 'atomic'
+import type { IconInterface } from 'atomic'
 
 const props = defineProps<IconInterface>()
 </script>

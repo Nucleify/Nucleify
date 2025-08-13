@@ -1,6 +1,6 @@
-import { HTMLAttributes, InputHTMLAttributes } from 'vue'
+import type { HTMLAttributes, InputHTMLAttributes } from 'vue'
 
-import {
+import type {
   ElementAppendTo,
   ElementSizeType,
   ElementVariantType,
@@ -45,10 +45,10 @@ export interface PasswordInterface {
   overlayProps?: HTMLAttributes
   ariaLabelledby?: string
   ariaLabel?: string
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
   id?: string
   passwordsMatch?: boolean

@@ -21,13 +21,13 @@
       </div>
     </template>
     <template #content>
-      <form @submit.prevent="submitForm(loginFields)">
+      <form @submit.prevent="submitAndGo(loginFields)">
         <ad-float-label v-for="(field, index) in loginInputs" :key="index">
           <ad-input-text
+            :id="field.id"
             v-model="loginFields[field.model]"
             :ad-type="'main'"
             :type="field.type"
-            :id="field.id"
             class="auth-input-text"
             :autofocus="field.autofocus"
           />
@@ -50,16 +50,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-
-import { useAuthForm, useColors, toCamelCase } from 'atomic'
+import { toCamelCase, useAuthForm } from 'atomic'
 
 const { t } = useI18n()
 
 const localePath = useLocalePath()
 
-const { submitForm, loginFields, loginInputs } = useAuthForm()
-const { setDefaultColors } = useColors()
-
-onMounted(() => setDefaultColors(true))
+const { submitAndGo, loginFields, loginInputs } = useAuthForm()
 </script>

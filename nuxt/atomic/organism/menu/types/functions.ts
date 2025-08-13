@@ -1,7 +1,8 @@
-import { ObjectType } from 'atomic'
+import type { ObjectType } from 'atomic'
 
 export type OpenMenuFunctionType = (
-  menu: any, // eslint-disable-line
+  // biome-ignore lint/suspicious/noExplicitAny: fix in future
+  menu: any,
   event: MouseEvent,
   object: ObjectType
 ) => void

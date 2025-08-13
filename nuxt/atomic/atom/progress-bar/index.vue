@@ -13,7 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import { ProgressBarInterface } from 'atomic'
+import type { ProgressBarInterface } from 'atomic'
+
+import ProgressBar from 'primevue/progressbar' // Import for Storybook
 
 const props = defineProps<ProgressBarInterface>()
 </script>

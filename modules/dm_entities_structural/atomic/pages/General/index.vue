@@ -6,7 +6,7 @@
         :href="localePath('/structural/cards')"
         :header="t('admin.tiles.cards.header')"
         :count="cards?.length"
-        icon="pi pi-stop"
+        icon="prime:stop"
         :count-secondary="cardsCreatedLastWeek"
         :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="card"
@@ -15,7 +15,7 @@
         :href="localePath('/structural/features')"
         :header="t('admin.tiles.features.header')"
         :count="features?.length"
-        icon="pi pi-star"
+        icon="prime:star"
         :count-secondary="featuresCreatedLastWeek"
         :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="feature"
@@ -24,7 +24,7 @@
         :href="localePath('/structural/questions')"
         :header="t('admin.tiles.question.header')"
         :count="questions?.length"
-        icon="pi pi-question"
+        icon="prime:question"
         :count-secondary="questionsCreatedLastWeek"
         :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="question"
@@ -33,7 +33,7 @@
         :href="localePath('/structural/technologies')"
         :header="t('admin.tiles.technologies.header')"
         :count="technologies?.length"
-        icon="pi pi-microchip-ai"
+        icon="prime:microchip-ai"
         :count-secondary="technologiesCreatedLastWeek"
         :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="technology"
@@ -42,7 +42,7 @@
         :href="localePath('/structural/links')"
         :header="t('admin.tiles.links.header')"
         :count="links?.length"
-        icon="pi pi-link"
+        icon="prime:link"
         :count-secondary="linksCreatedLastWeek"
         :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="link"
@@ -50,7 +50,7 @@
     </div>
 
     <ad-card-chart
-      v-if="display.Structural"
+      entity="Structural"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -66,34 +66,35 @@
 
     <dm-card-dashboard
       :data="cards"
-      :getData="getAllCards"
+      :get-data="getAllCards"
       :loading="!allLoaded"
     />
     <dm-feature-dashboard
       :data="features"
-      :getData="getAllFeatures"
+      :get-data="getAllFeatures"
       :loading="!allLoaded"
     />
     <dm-link-dashboard
       :data="links"
-      :getData="getAllLinks"
+      :get-data="getAllLinks"
       :loading="!allLoaded"
     />
     <dm-question-dashboard
       :data="questions"
-      :getData="getAllQuestions"
+      :get-data="getAllQuestions"
       :loading="!allLoaded"
     />
     <dm-technology-dashboard
       :data="technologies"
-      :getData="getAllTechnologies"
+      :get-data="getAllTechnologies"
       :loading="!allLoaded"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, Ref, watch } from 'vue'
+import type { Ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
 import {
   cardRequests,
@@ -101,7 +102,6 @@ import {
   linkRequests,
   questionRequests,
   technologyRequests,
-  useDisplayCharts,
 } from 'atomic'
 
 const { t } = useI18n()

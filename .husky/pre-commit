@@ -1,25 +1,8 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
-
 php .pest/guard_check.php
 
 echo 'Pint checking...'
 ./vendor/bin/pint
 
-# npm run check
-# npm run lint
-# npm run typeslint
-# npm run slint
-# npm run build
-# npm run storybook:build
-# npm run test
-
-
-# ./vendor/bin/pest - I'm testing before commit manually
-
-#npm run write
-#
-#if [ -n "$(git status --porcelain)" ]; then
-#  # Commit all modified files
-#  git add .
-#fi
+npm run check
+npm run typeslint
+npm run tests

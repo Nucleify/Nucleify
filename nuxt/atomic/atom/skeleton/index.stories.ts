@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { AdSkeleton } from '.'
 
-import { Skeleton as AdSkeleton } from './'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Atoms/Skeleton',
   component: AdSkeleton,
-  tags: ['autodocs'],
   args: {
     shape: 'rectangle',
     size: '',

@@ -19,7 +19,44 @@
 </template>
 
 <script setup lang="ts">
-import { navigateTo } from 'atomic'
+import {
+  bounceFadeIn,
+  navigateTo,
+  useScrollTrigger,
+  useSplitText,
+} from 'atomic'
 
 const { t } = useI18n()
+
+useSplitText().animate(
+  '.contact-content-title',
+  500,
+  0.2,
+  0.1,
+  'power2.out',
+  true,
+  'top 60%'
+)
+useSplitText().animate(
+  '.contact-content-description',
+  500,
+  0.3,
+  0.05,
+  'power2.out',
+  true,
+  'top 70%'
+)
+
+useScrollTrigger(
+  '.contact-content-description',
+  () => {
+    bounceFadeIn('.contact-content-button', {
+      delay: 1.1,
+      duration: 0.15,
+    })
+  },
+  {
+    start: 'top 20%',
+  }
+)
 </script>

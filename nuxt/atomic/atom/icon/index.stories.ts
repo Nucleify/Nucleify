@@ -1,13 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { AdIcon } from '.'
 
-import { Icon as AdIcon } from './'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Atoms/Icon',
   component: AdIcon,
-  tags: ['autodocs'],
   args: {
-    icon: '',
+    icon: 'prime:star',
     url: '',
     adType: '',
   },

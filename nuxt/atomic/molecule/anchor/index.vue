@@ -22,7 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import { AnchorInterface } from '.'
+import type { AnchorInterface } from 'atomic'
+
+import { AdIcon, AdImage, AdLabel } from '../../atom' // Import for Storybook
 
 const props = defineProps<AnchorInterface>()
 </script>

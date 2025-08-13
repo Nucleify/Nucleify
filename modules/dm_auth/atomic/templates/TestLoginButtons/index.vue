@@ -1,17 +1,17 @@
 <template>
   <div class="test-login-buttons-container">
     <ad-button
-      icon="pi pi-crown"
-      @click="testLogin({ role: 'admin', path: localePath('/dashboard') })"
+      icon="prime:crown"
       class="primary-button text-sm"
       :rounded="true"
+      @click="testLogin({ role: 'admin', path: localePath('/dashboard') })"
     />
     <ad-button
-      icon="pi pi-user"
+      icon="prime:user"
       severity="secondary"
-      @click="testLogin({ role: 'user', path: localePath('/login') })"
       class="primary-button text-sm"
       :rounded="true"
+      @click="testLogin({ role: 'user', path: localePath('/dashboard') })"
     />
   </div>
 </template>

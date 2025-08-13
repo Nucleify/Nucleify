@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { AdSlider } from '.'
 
-import { Slider as AdSlider } from './'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Atoms/Slider',
   component: AdSlider,
-  tags: ['autodocs'],
   args: {
     adType: undefined,
     modelValue: 1,

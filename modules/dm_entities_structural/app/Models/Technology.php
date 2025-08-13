@@ -18,24 +18,24 @@ use Spatie\Translatable\HasTranslations;
  * @property bool display
  * @property string created_at
  * @property string updated_at
- * @property int getId
- * @property string getLabel
- * @property string|null getDescription
- * @property int getHref
- * @property int getSrc
- * @property string|null getCategory
- * @property string getDisplay
- * @property string getCreatedAt
- * @property string getUpdatedAt
- * @property Builder scopeGetById
- * @property Builder scopeGetByLabel
- * @property Builder scopeGetByDescription
- * @property Builder scopeGetByHref
- * @property Builder scopeGetBySrc
- * @property Builder scopeGetByCategory
- * @property Builder scopeGetByDisplay
- * @property Builder scopeGetByCreatedAt
- * @property Builder scopeGetByUpdatedAt
+ * @property int getId()
+ * @property string getLabel()
+ * @property string|null getDescription()
+ * @property int getHref()
+ * @property int getSrc()
+ * @property string|null getCategory()
+ * @property string getDisplay()
+ * @property string getCreatedAt()
+ * @property string getUpdatedAt()
+ * @property Builder scopeGetById()
+ * @property Builder scopeGetByLabel()
+ * @property Builder scopeGetByDescription()
+ * @property Builder scopeGetByHref()
+ * @property Builder scopeGetBySrc()
+ * @property Builder scopeGetByCategory()
+ * @property Builder scopeGetByDisplay()
+ * @property Builder scopeGetByCreatedAt()
+ * @property Builder scopeGetByUpdatedAt()
  */
 class Technology extends Model implements TechnologyContract
 {
@@ -129,7 +129,7 @@ class Technology extends Model implements TechnologyContract
         return $query->where('src', $parameter);
     }
 
-    public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
+    public function scopeGetByCategory(Builder $query, string $parameter): Builder
     {
         return $query->where('category', $parameter);
     }

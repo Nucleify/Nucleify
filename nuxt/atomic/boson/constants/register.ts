@@ -1,14 +1,14 @@
-import { App } from 'vue'
+import type { App } from 'vue'
 
 import {
-  imgUrl,
   contributorsImgUrl,
-  storysetImgUrl,
-  storysetAboutImgUrl,
-  storysetServicesImgUrl,
-  storysetBlogImgUrl,
-  technologiesImgUrl,
+  imgUrl,
   languagesImgUrl,
+  storysetAboutImgUrl,
+  storysetBlogImgUrl,
+  storysetImgUrl,
+  storysetServicesImgUrl,
+  technologiesImgUrl,
 } from 'atomic'
 
 export function registerGlobalConstants(app: App): void {

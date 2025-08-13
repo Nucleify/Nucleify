@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { AdRadioButton } from '.'
 
-import { RadioButton as AdRadioButton } from './'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Atoms/RadioButton',
   component: AdRadioButton,
-  tags: ['autodocs'],
   args: {
     adType: undefined,
     value: 0,

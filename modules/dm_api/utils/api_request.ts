@@ -1,20 +1,22 @@
-import { useCookie, useRequestHeaders, useNuxtApp } from 'nuxt/app'
-import { HttpMethodType } from 'atomic'
+import type { ApiResponseType, HttpMethodType } from 'atomic'
 
-export async function apiRequest(
+import { useCookie, useNuxtApp, useRequestHeaders } from 'nuxt/app'
+
+export async function apiRequest<T>(
   url: string,
   method: HttpMethodType = 'GET',
-  data: Record<string, any> | null = null,
+  data: object | null = null,
   id: string | number | null = null,
-  params: Record<string, any> = {}
-) {
+  params: Record<string, unknown> = {}
+): Promise<ApiResponseType<T>> {
   const { $i18n } = useNuxtApp()
-  const currentLocale = $i18n.locale
+  // biome-ignore lint/suspicious/noExplicitAny: @typescript-eslint/no-explicit-any
+  const currentLocale = ($i18n as any).locale
 
   const finalUrl = id ? `${url}/${id}` : url
   let xsrfTokenValue: string | undefined
 
-  if (process.server) {
+  if (import.meta.server) {
     const cookies = useRequestHeaders(['cookie']).cookie
     if (cookies) {
       const match = cookies.match(/XSRF-TOKEN=([^;]+)/)
@@ -24,7 +26,7 @@ export async function apiRequest(
     const xsrfToken = useCookie('XSRF-TOKEN')
     xsrfTokenValue = xsrfToken.value ?? undefined
   }
-  let headers: Record<string, any> = {
+  let headers: Record<string, string> = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     'X-Locale': currentLocale.value,
@@ -33,27 +35,22 @@ export async function apiRequest(
     headers['X-XSRF-TOKEN'] = xsrfTokenValue
   }
 
-  if (process.client) {
+  if (import.meta.client) {
     headers['Referer-Slug'] = window.location.pathname
   }
 
-  if (process.server) {
+  if (import.meta.server) {
     headers = {
       ...headers,
       ...useRequestHeaders(['cookie']),
     }
   }
 
-  try {
-    const response = await $fetch(finalUrl, {
-      method,
-      params,
-      body: data,
-      headers,
-      credentials: 'include',
-    })
-    return response
-  } catch (error: any) {
-    throw error
-  }
+  return await $fetch(finalUrl, {
+    method,
+    params,
+    body: data,
+    headers,
+    credentials: 'include',
+  })
 }

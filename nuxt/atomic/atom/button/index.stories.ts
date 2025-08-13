@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { AdButton } from '.'
 
-import { Button as AdButton } from './'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Atoms/Button',
   component: AdButton,
-  tags: ['autodocs'],
   args: {
     adType: undefined,
     label: 'Button',

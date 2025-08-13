@@ -2,44 +2,76 @@
 
 namespace App\Services;
 
+use App\Models\User;
+
 class FriendshipService
 {
-    public function sendRequest($recipient): array
+    /**
+     * @param User $recipient
+     *
+     * @return array
+     */
+    public function sendRequest(User $recipient): array
     {
         auth()->user()->befriend($recipient);
 
         return ['message' => 'Friend request sent successfully'];
     }
 
-    public function acceptRequest($sender): array
+    /**
+     * @param User $sender
+     *
+     * @return array
+     */
+    public function acceptRequest(User $sender): array
     {
         auth()->user()->acceptFriendRequest($sender);
 
         return ['message' => 'Friend request accepted successfully'];
     }
 
-    public function denyRequest($sender): array
+    /**
+     * @param User $sender
+     *
+     * @return array
+     */
+    public function denyRequest(User $sender): array
     {
         auth()->user()->denyFriendRequest($sender);
 
         return ['message' => 'Friend request denied successfully'];
     }
 
-    public function removeFriend($friend): array
+    /**
+     * @param User $friend
+     *
+     * @return array
+     */
+    public function removeFriend(User $friend): array
     {
         auth()->user()->unfriend($friend);
 
         return ['message' => 'Friend removed successfully'];
     }
 
-    public function blockFriend($friend): array
+    /**
+     * @param User $friend
+     *
+     * @return array
+     */
+    public function blockFriend(User $friend): array
     {
         auth()->user()->blockFriend($friend);
 
         return ['message' => 'Friend blocked successfully'];
     }
 
-    public function unblockFriend($friend): array
+    /**
+     * @param User $friend
+     *
+     * @return array
+     */
+    public function unblockFriend(User $friend): array
     {
         auth()->user()->unblockFriend($friend);
 

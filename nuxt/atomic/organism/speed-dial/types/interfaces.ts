@@ -1,7 +1,8 @@
-import { MenuItem } from 'primevue/menuitem'
-import { SpeedDialTooltipOptions } from 'primevue'
+import type { SpeedDialTooltipOptions } from 'primevue'
 
-import { ElementDirectionType } from 'atomic'
+import type { ElementDirectionType } from 'atomic'
+
+import type { MenuItem } from 'primevue/menuitem'
 
 export interface SpeedDialInterface {
   model?: MenuItem[]
@@ -13,8 +14,8 @@ export interface SpeedDialInterface {
   mask?: boolean
   disabled?: boolean
   hideOnClickOutside?: boolean
-  buttonClass?: any // eslint-disable-line
-  maskStyle?: any // eslint-disable-line
+  buttonClass?: string
+  maskStyle?: object
   maskClass?: string
   showIcon?: string
   hideIcon?: string
@@ -24,8 +25,8 @@ export interface SpeedDialInterface {
   actionButtonProps?: object
   ariaLabel?: string
   ariaLabelledby?: string
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

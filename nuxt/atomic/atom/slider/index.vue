@@ -20,8 +20,11 @@
     :unstyled="props.unstyled"
   />
 </template>
+
 <script setup lang="ts">
-import { SliderInterface } from 'atomic'
+import type { SliderInterface } from 'atomic'
+
+import Slider from 'primevue/slider' // Import for Storybook
 
 const props = defineProps<SliderInterface>()
 </script>

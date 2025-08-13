@@ -1,11 +1,11 @@
-import { ref, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
-import {
-  ElementType,
+import type {
   ElementsType,
-  ViewportStatusType,
-  ViewportStatusesType,
+  ElementType,
   UseInViewportInterface,
+  ViewportStatusesType,
+  ViewportStatusType,
 } from 'atomic'
 
 export function useInViewport(

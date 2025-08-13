@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('contact-model');
+
 use App\Models\Contact;
 
 beforeEach(function (): void {
@@ -11,7 +13,7 @@ beforeEach(function (): void {
     $this->model = Contact::factory()->create();
 });
 
-it('can be created', function (): void {
+test('can be created', function (): void {
     expect($this->model)->toBeInstanceOf(Contact::class);
 });
 

@@ -1,10 +1,9 @@
-import {
+import type {
   ApiHandleOptionsInterface,
   HttpMethodType,
   UseApiErrorsInterface,
-  apiRequest,
-  useApiErrors,
 } from 'atomic'
+import { apiRequest, useApiErrors } from 'atomic'
 
 export async function apiHandle<T>({
   url,
@@ -19,12 +18,18 @@ export async function apiHandle<T>({
   try {
     setLoading?.(true)
 
-    const response = await apiRequest(url, method, data, id)
+    const response = await apiRequest<T>(url, method, data, id)
 
-    if (response?.data) {
-      onSuccess(response.data as T)
+    function hasDataProp(response: unknown): response is { data: T } {
+      return (
+        typeof response === 'object' && response !== null && 'data' in response
+      )
+    }
+
+    if (hasDataProp(response)) {
+      onSuccess(response.data)
     } else {
-      onSuccess(response as T)
+      onSuccess(response)
     }
   } catch (error) {
     apiErrors(error)

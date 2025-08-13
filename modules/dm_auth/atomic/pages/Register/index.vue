@@ -17,23 +17,23 @@
         </div>
       </template>
       <template #content>
-        <form @submit.prevent="submitForm(registerFields)">
+        <form @submit.prevent="submitAndGo(registerFields)">
           <ad-float-label v-for="(field, index) in registerInputs" :key="index">
             <ad-input-text
               v-if="field.type !== 'password'"
+              :id="field.id"
               v-model="registerFields[field.model]"
               ad-type="main"
               :type="field.type"
-              :id="field.id"
               class="auth-input-text"
               :autofocus="field.autofocus"
             />
 
             <ad-password
               v-else
+              :id="field.id"
               v-model="registerFields[field.model]"
               ad-type="main"
-              :id="field.id"
               class="auth-input-text"
               :autofocus="field.autofocus"
               :passwords-match="
@@ -78,18 +78,15 @@ import {
   checkPasswordsMatch,
   toCamelCase,
   useAuthForm,
-  useColors,
 } from 'atomic'
 
-const { submitForm, registerFields, registerInputs } = useAuthForm()
-const { setDefaultColors } = useColors()
+const { submitAndGo, registerFields, registerInputs } = useAuthForm()
 
 const localePath = useLocalePath()
 
 const { t } = useI18n()
 
 onMounted(() => {
-  setDefaultColors(true)
   checkPasswordsMatch(
     registerFields.value.password,
     registerFields.value.password_confirmation

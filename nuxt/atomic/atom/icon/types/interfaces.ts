@@ -1,5 +1,6 @@
 export interface IconInterface {
   icon?: string
-  url?: string
+  size?: string
+  className?: string
   adType?: string
 }

@@ -16,9 +16,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch, onUnmounted } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 
-import { ChartInterface, useChart } from 'atomic'
+import type { ChartInterface } from 'atomic'
+import { useChart } from 'atomic'
 
 const props = defineProps<ChartInterface>()
 
@@ -34,9 +35,11 @@ onMounted(() => {
     props?.cardData,
     props?.contactData,
     props?.featureData,
+    props?.fileData,
     props?.linkData,
     props?.moneyData,
     props?.questionData,
+    props?.taskData,
     props?.technologyData,
     props?.userData,
     props?.example
@@ -53,9 +56,11 @@ onMounted(() => {
         props?.cardData,
         props?.contactData,
         props?.featureData,
+        props?.fileData,
         props?.linkData,
         props?.moneyData,
         props?.questionData,
+        props?.taskData,
         props?.technologyData,
         props?.userData,
         true
@@ -76,9 +81,11 @@ watch(
     props?.cardData,
     props?.contactData,
     props?.featureData,
+    props?.fileData,
     props?.linkData,
     props?.moneyData,
     props?.questionData,
+    props?.taskData,
     props?.technologyData,
     props?.userData,
   ],
@@ -90,9 +97,11 @@ watch(
       props?.cardData,
       props?.contactData,
       props?.featureData,
+      props?.fileData,
       props?.linkData,
       props?.moneyData,
       props?.questionData,
+      props?.taskData,
       props?.technologyData,
       props?.userData,
       props?.example

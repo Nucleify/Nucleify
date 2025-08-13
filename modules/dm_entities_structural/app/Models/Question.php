@@ -18,24 +18,24 @@ use Spatie\Translatable\HasTranslations;
  * @property bool display
  * @property string created_at
  * @property string updated_at
- * @property int getId
- * @property int getIndex
- * @property string getContent
- * @property string getAnswer
- * @property string|null getCategory
- * @property bool getDisplay
- * @property bool getOnSite
- * @property string getCreatedAt
- * @property string getUpdatedAt
- * @property Builder scopeGetById
- * @property Builder scopeGetByIndex
- * @property Builder scopeGetByContent
- * @property Builder scopeGetByAnswer
- * @property Builder scopeGetByCategory
- * @property Builder scopeGetByOnSite
- * @property Builder scopeGetByDisplay
- * @property Builder scopeGetByCreatedAt
- * @property Builder scopeGetByUpdatedAt
+ * @property int getId()
+ * @property int getIndex()
+ * @property string getContent()
+ * @property string getAnswer()
+ * @property string|null getCategory()
+ * @property bool getDisplay()
+ * @property bool getOnSite()
+ * @property string getCreatedAt()
+ * @property string getUpdatedAt()
+ * @property Builder scopeGetById()
+ * @property Builder scopeGetByIndex()
+ * @property Builder scopeGetByContent()
+ * @property Builder scopeGetByAnswer()
+ * @property Builder scopeGetByCategory()
+ * @property Builder scopeGetByOnSite()
+ * @property Builder scopeGetByDisplay()
+ * @property Builder scopeGetByCreatedAt()
+ * @property Builder scopeGetByUpdatedAt()
  */
 class Question extends Model implements QuestionContract
 {
@@ -124,7 +124,7 @@ class Question extends Model implements QuestionContract
         return $query->where('answer', $parameter);
     }
 
-    public function scopeGetByCategory(Builder $query, ?string $parameter): Builder
+    public function scopeGetByCategory(Builder $query, string $parameter): Builder
     {
         return $query->where('category', $parameter);
     }

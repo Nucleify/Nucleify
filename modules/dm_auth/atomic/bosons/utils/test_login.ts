@@ -1,10 +1,5 @@
-import {
-  LoginFieldsInterface,
-  TestLoginType,
-  UserRoleType,
-  apiHandle,
-  navigateTo,
-} from 'atomic'
+import type { LoginFieldsInterface, TestLoginType, UserRoleType } from 'atomic'
+import { apiHandle, getAndSetUser, navigateTo } from 'atomic'
 
 export async function testLogin({ role, path }: TestLoginType): Promise<void> {
   const credentials: Record<UserRoleType, LoginFieldsInterface | undefined> = {
@@ -24,10 +19,11 @@ export async function testLogin({ role, path }: TestLoginType): Promise<void> {
   }
 
   await apiHandle({
-    url: appUrl() + 'login',
+    url: appUrl() + '/login',
     method: 'POST',
     data: userCredentials,
-    onSuccess: () => {
+    onSuccess: async (): Promise<void> => {
+      await getAndSetUser()
       navigateTo(path)
     },
   })

@@ -6,7 +6,7 @@
         :href="localePath('/entities/articles')"
         :header="t('admin.tiles.article.header')"
         :count="articles?.length"
-        icon="pi pi-comment"
+        icon="prime:comment"
         :count-secondary="articlesCreatedLastWeek"
         :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="article"
@@ -15,7 +15,7 @@
         :href="localePath('/entities/contacts')"
         :header="t('admin.tiles.contacts.header')"
         :count="contacts?.length"
-        icon="pi pi-user"
+        icon="prime:user"
         :count-secondary="contactsCreatedLastWeek"
         :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="contact"
@@ -24,7 +24,7 @@
         :href="localePath('/entities/money')"
         :header="t('admin.tiles.money.header')"
         :count="money?.length"
-        icon="pi pi-dollar"
+        icon="prime:dollar"
         :count-secondary="moneyCreatedLastWeek"
         :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="money"
@@ -32,7 +32,7 @@
     </div>
 
     <ad-card-chart
-      v-if="display.Admin"
+      entity="Entities"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
@@ -46,37 +46,30 @@
 
     <dm-article-dashboard
       :data="articles"
-      :getData="getAllArticles"
+      :get-data="getAllArticles"
       :loading="!allLoaded"
     />
     <dm-contact-dashboard
       :data="contacts"
-      :getData="getAllContacts"
+      :get-data="getAllContacts"
       :loading="!allLoaded"
     />
     <dm-money-dashboard
       :data="money"
-      :getData="getAllMoney"
+      :get-data="getAllMoney"
       :loading="!allLoaded"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, Ref, watch } from 'vue'
+import type { Ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 
-import {
-  articleRequests,
-  contactRequests,
-  moneyRequests,
-  useDisplayCharts,
-} from 'atomic'
-import Admin from '~/nuxt/pages/admin.vue'
+import { articleRequests, contactRequests, moneyRequests } from 'atomic'
 
 const { t } = useI18n()
 const localePath = useLocalePath()
-
-const { display } = useDisplayCharts()
 
 const {
   results: articles,

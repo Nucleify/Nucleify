@@ -5,9 +5,11 @@ export const displayChartList: string[] = [
   'Card',
   'Contact',
   'Feature',
+  'File',
   'Link',
   'Money',
   'Question',
   'Structural',
+  'Task',
   'Technology',
 ] as const

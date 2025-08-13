@@ -1,15 +1,15 @@
-import { it, expect, beforeEach } from 'vitest'
+import { beforeEach, expect, it } from 'vitest'
 
-import { mockUser, setUserToSessionStorage } from 'atomic'
+import * as atomic from 'atomic'
 
 beforeEach((): void => {
   window.sessionStorage.clear()
 })
 
 it('should store user data in sessionStorage', (): void => {
-  setUserToSessionStorage(mockUser)
+  atomic.setUserToSessionStorage(atomic.mockUser)
 
-  Object.entries(mockUser).forEach(([key, value]): void => {
+  Object.entries(atomic.mockUser).forEach(([key, value]): void => {
     const sessionStorageValue = window.sessionStorage.getItem(`user_${key}`)
     if (typeof value === 'number') {
       expect(Number(sessionStorageValue)).toBe(value)

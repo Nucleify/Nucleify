@@ -1,8 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+
 import { ref } from 'vue'
 
-import { DockItemInterface, logout } from 'atomic'
+import type { DockItemInterface } from 'atomic'
+import { logout } from 'atomic'
 
 const createDockItem = (
   icon?: string,
@@ -25,35 +27,35 @@ const createDockItem = (
 
 const dockData: readonly DockItemInterface[] = [
   [undefined, undefined, '/home', 'logo', undefined, undefined, true],
-  ['pi pi-crown', 'admin.dock.adminPanel', '/admin', undefined, 'admin'],
+  ['prime:crown', 'admin.dock.adminPanel', '/admin', undefined, 'admin'],
   [
-    'pi pi-sitemap',
+    'prime:sitemap',
     'admin.dock.structural',
     '/structural',
     undefined,
     'structural',
   ],
   [
-    'pi pi-chart-line',
+    'prime:chart-line',
     'admin.dock.dashboard',
     '/dashboard',
     undefined,
     'dashboard',
   ],
-  ['pi pi-box', 'admin.dock.entities', '/entities', undefined, 'entities'],
+  ['prime:box', 'admin.dock.entities', '/entities', undefined, 'entities'],
   [
-    'pi pi-history',
+    'prime:history',
     'admin.dock.activities',
     '/activity-log',
     undefined,
     'activity-log',
   ],
-  ['pi pi-envelope disabled-item', 'admin.dock.messages'],
-  ['pi pi-calendar disabled-item', 'admin.dock.calendar'],
-  ['pi pi-user disabled-item', 'admin.dock.profile'],
-  ['pi pi-cog', 'admin.dock.settings', '/settings', undefined, 'settings'],
+  ['prime:envelope disabled-item', 'admin.dock.messages'],
+  ['prime:calendar disabled-item', 'admin.dock.calendar'],
+  ['prime:user disabled-item', 'admin.dock.profile'],
+  ['prime:cog', 'admin.dock.settings', '/settings', undefined, 'settings'],
   [
-    'pi pi-sign-out',
+    'prime:sign-out',
     'admin.dock.logout',
     undefined,
     undefined,

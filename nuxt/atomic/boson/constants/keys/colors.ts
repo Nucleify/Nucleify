@@ -3,12 +3,14 @@ export const colorKeys: string[] = [
   'activity',
   'article',
   'contact',
+  'file',
   'money',
   'user',
   'card',
   'feature',
   'link',
   'question',
+  'task',
   'technology',
 ]
 

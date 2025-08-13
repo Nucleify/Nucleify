@@ -2,7 +2,6 @@
   <Textarea
     :ad-type="props.adType"
     :model-value="props.modelValue"
-    @update:model-value="updateValue"
     :default-value="props.defaultValue"
     :name="props.name"
     :auto-resize="props.autoResize"
@@ -15,11 +14,14 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
+    @update:model-value="updateValue"
   />
 </template>
 
 <script setup lang="ts">
-import { TextareaInterface } from 'atomic'
+import type { TextareaInterface } from 'atomic'
+
+import Textarea from 'primevue/textarea' // Import for Storybook
 
 const props = defineProps<TextareaInterface>()
 

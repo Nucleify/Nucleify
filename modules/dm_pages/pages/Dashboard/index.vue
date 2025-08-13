@@ -10,25 +10,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, Ref, watch } from 'vue'
+import type { Ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
+
+import { articleRequests, contactRequests, moneyRequests } from 'atomic'
 
 import { PolarAreaChart } from './components'
-
-import {
-  articleRequests,
-  contactRequests,
-  moneyRequests,
-  useColors,
-  useDisplayCharts,
-} from 'atomic'
-
-const { setDefaultColors } = useColors()
-const { setDefaultChartsDisplay } = useDisplayCharts()
-
-onMounted(() => {
-  setDefaultColors(true)
-  setDefaultChartsDisplay(true)
-})
 
 const {
   results: articles,

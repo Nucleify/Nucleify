@@ -1,7 +1,7 @@
 <?php
 
 return [
-[
+    [
         'label' => 'PHP',
         'description' => [
             'en' => 'Popular server-side programming language, often used for creating dynamic websites and web applications.',
@@ -54,6 +54,18 @@ return [
         ],
         'href' => 'https://primevue.org/',
         'src' => 'primevue.svg',
+    ],
+    [
+        'label' => 'GSAP',
+        'description' => 'A JavaScript library for creating high-performance animations, easing, and transitions.',
+        'href' => 'https://greensock.com/gsap/',
+        'src' => 'gsap.svg',
+    ],
+    [
+        'label' => 'Chart.js',
+        'description' => 'Simple yet flexible JavaScript charting library for the modern web',
+        'href' => 'https://www.chartjs.org/',
+        'src' => 'chart-js.svg',
     ],
     [
         'label' => 'HTML5',

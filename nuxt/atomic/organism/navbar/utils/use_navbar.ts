@@ -1,6 +1,7 @@
-import { ref, Ref } from 'vue'
+import type { Ref } from 'vue'
+import { ref } from 'vue'
 
-import { UseNavbarInterface } from 'atomic'
+import type { UseNavbarInterface } from 'atomic'
 
 export function useNavbar(): UseNavbarInterface {
   const navbarExpanded: Ref<boolean> = ref(false)

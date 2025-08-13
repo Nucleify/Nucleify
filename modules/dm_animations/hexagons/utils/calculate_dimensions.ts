@@ -1,8 +1,8 @@
-import { HexagonConfigInterface } from '../types'
+import type { HexagonConfigInterface } from '../types'
 import {
-  HEXAGON_WIDTH,
   HEXAGON_HEIGHT,
   HEXAGON_OVERLAP_FACTOR,
+  HEXAGON_WIDTH,
   HEXAGON_WIDTH_FACTOR,
 } from '../variables'
 

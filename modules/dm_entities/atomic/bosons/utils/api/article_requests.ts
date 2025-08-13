@@ -1,16 +1,14 @@
 import { ref } from 'vue'
 
-import {
+import type {
   ArticleObjectInterface,
   ArticleRequestsInterface,
   CloseDialogType,
-  UseLoadingInterface,
   EntityCountResultsType,
   EntityResultsType,
-  apiHandle,
-  useApiSuccess,
-  useLoading,
+  UseLoadingInterface,
 } from 'atomic'
+import { apiHandle, useApiSuccess, useLoading } from 'atomic'
 
 export function articleRequests(
   close?: CloseDialogType
@@ -23,7 +21,7 @@ export function articleRequests(
 
   async function getAllArticles(loading?: boolean): Promise<void> {
     await apiHandle<ArticleObjectInterface[]>({
-      url: apiUrl() + 'articles',
+      url: apiUrl() + '/articles',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: ArticleObjectInterface[]) => {
         results.value = response
@@ -35,7 +33,7 @@ export function articleRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: apiUrl() + 'articles/count-by-created-last-week',
+      url: apiUrl() + '/articles/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -48,7 +46,7 @@ export function articleRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ArticleObjectInterface>({
-      url: apiUrl() + 'articles',
+      url: apiUrl() + '/articles',
       method: 'POST',
       data,
       onSuccess: (response: ArticleObjectInterface) => {
@@ -62,7 +60,7 @@ export function articleRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ArticleObjectInterface>({
-      url: apiUrl() + 'articles',
+      url: apiUrl() + '/articles',
       method: 'PUT',
       data: article,
       id: article.id,
@@ -77,7 +75,7 @@ export function articleRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<ArticleObjectInterface>({
-      url: apiUrl() + 'articles',
+      url: apiUrl() + '/articles',
       method: 'DELETE',
       id,
       onSuccess: (response: ArticleObjectInterface) => {

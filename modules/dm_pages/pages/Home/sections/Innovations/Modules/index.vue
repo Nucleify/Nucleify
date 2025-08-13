@@ -3,63 +3,57 @@
     <div class="modules-container container">
       <Stepper v-model:value="activeStep" class="basis-[40rem]">
         <StepList>
-          <client-only>
-            <swiper-container ref="modulesSwiper" class="modules-swiper">
-              <swiper-slide
-                v-for="module in modules.slice(0, 2)"
-                :key="module.value"
+          <swiper-container ref="modulesSwiper" class="modules-swiper">
+            <swiper-slide
+              v-for="module in modules.slice(0, 2)"
+              :key="module.value"
+            >
+              <Step
+                v-slot="{ activateCallback, a11yAttrs }"
+                as-child
+                :value="module.value"
               >
-                <Step
-                  v-slot="{ activateCallback, a11yAttrs }"
-                  asChild
-                  :value="module.value"
-                >
-                  <div
-                    class="cube"
-                    :class="module.icon"
-                    v-bind="a11yAttrs.root"
+                <div class="cube" v-bind="a11yAttrs.root">
+                  <ad-icon
+                    :icon="module.icon"
                     @click="activateCallback"
-                  ></div>
-                </Step>
-              </swiper-slide>
-              <swiper-slide>
-                <Step
-                  v-slot="{ activateCallback, a11yAttrs }"
-                  asChild
-                  :value="1"
-                >
-                  <div
-                    class="cube"
-                    v-bind="a11yAttrs.root"
-                    @click="activateCallback"
-                  >
-                    <img
-                      :src="imgUrl + 'logo.svg'"
-                      alt="Logo"
-                      class="logo-img"
-                    />
-                  </div>
-                </Step>
-              </swiper-slide>
-              <swiper-slide
-                v-for="module in modules.slice(2)"
-                :key="module.value"
+                  />
+                </div>
+              </Step>
+            </swiper-slide>
+            <swiper-slide>
+              <Step
+                v-slot="{ activateCallback, a11yAttrs }"
+                as-child
+                :value="1"
               >
-                <Step
-                  v-slot="{ activateCallback, a11yAttrs }"
-                  asChild
-                  :value="module.value"
+                <div
+                  class="cube"
+                  v-bind="a11yAttrs.root"
+                  @click="activateCallback"
                 >
-                  <div
-                    class="cube"
-                    :class="module.icon"
-                    v-bind="a11yAttrs.root"
+                  <img :src="imgUrl + 'logo.svg'" alt="Logo" class="logo-img" />
+                </div>
+              </Step>
+            </swiper-slide>
+            <swiper-slide
+              v-for="module in modules.slice(2)"
+              :key="module.value"
+            >
+              <Step
+                v-slot="{ activateCallback, a11yAttrs }"
+                as-child
+                :value="module.value"
+              >
+                <div class="cube" v-bind="a11yAttrs.root">
+                  <ad-icon
+                    :icon="module.icon"
                     @click="activateCallback"
-                  ></div>
-                </Step>
-              </swiper-slide>
-            </swiper-container>
-          </client-only>
+                  />  
+                </div>
+              </Step>
+            </swiper-slide>
+          </swiper-container>
         </StepList>
         <StepPanels>
           <dm-animation-hexagons />
@@ -67,11 +61,10 @@
           <StepPanel :value="1">
             <div class="step-panel-container">
               <ad-heading :tag="4" class="tech-heading">
-                <span class="tech-text">{{ t('home.modules.main.text') }}</span
-                >&nbsp;
+                <span class="tech-text">{{ t('home.modules.main.text') }}</span>&nbsp;
                 <span class="tech-text shiny">
-                  {{ t('home.modules.main.highlight') }}</span
-                >
+                  {{ t('home.modules.main.highlight') }}
+                </span>
               </ad-heading>
               <ad-button
                 :label="t('home.modules.label')"
@@ -94,7 +87,7 @@
                 <div v-if="activeStep === module.value" class="readme-content">
                   <div
                     v-if="readmeContents[module.value]"
-                    v-html="readmeContents[module.value]"
+                    v-sanitize-html="readmeContents[module.value]"
                   ></div>
                 </div>
               </transition>
@@ -109,7 +102,14 @@
 <script setup lang="ts">
 import { marked } from 'marked'
 
-import { navigateTo, isMobile, apiHandle } from 'atomic'
+import {
+  apiHandle,
+  bounceFadeIn,
+  isMobile,
+  navigateTo,
+  useScrollTrigger,
+} from 'atomic'
+
 import { modules } from './constants'
 
 const { t, locale } = useI18n()
@@ -124,7 +124,7 @@ const loadReadme = async (modulePath: string, value: number) => {
     const readmeFile = lang === 'pl' ? 'README.pl.md' : 'README.md'
 
     await apiHandle({
-      url: appUrl() + `modules/${modulePath}/${readmeFile}`,
+      url: appUrl() + `/modules/${modulePath}/${readmeFile}`,
       method: 'GET',
       onSuccess: (data) => {
         const html = marked.parse(data)
@@ -155,4 +155,23 @@ watch(activeStep, (newValue) => {
     }
   }
 })
+
+useScrollTrigger(
+  '.modules-swiper',
+  () => {
+    bounceFadeIn('.modules-swiper swiper-slide', {
+      duration: 0.3,
+      stagger: 0.15,
+      ease: 'power2',
+    })
+    bounceFadeIn('.modules-container .p-steppanels', {
+      duration: 0.3,
+      stagger: 0.15,
+      ease: 'power2',
+    })
+  },
+  {
+    start: 'top 50%',
+  }
+)
 </script>

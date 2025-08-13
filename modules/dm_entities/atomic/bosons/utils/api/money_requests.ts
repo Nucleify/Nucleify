@@ -1,12 +1,14 @@
 import { ref } from 'vue'
 
-import {
+import type {
   CloseDialogType,
-  EntityResultsType,
   EntityCountResultsType,
-  MoneyRequestsInterface,
+  EntityResultsType,
   MoneyObjectInterface,
+  MoneyRequestsInterface,
   UseLoadingInterface,
+} from 'atomic'
+import {
   apiHandle,
   sessionStorageGetItem,
   useApiSuccess,
@@ -22,7 +24,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
 
   async function getAllMoney(loading?: boolean): Promise<void> {
     await apiHandle<MoneyObjectInterface[]>({
-      url: apiUrl() + 'money',
+      url: apiUrl() + '/money',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: MoneyObjectInterface[]) => {
         results.value = response
@@ -34,7 +36,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: apiUrl() + 'money/count-by-created-last-week',
+      url: apiUrl() + '/money/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -47,7 +49,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<MoneyObjectInterface>({
-      url: apiUrl() + 'money',
+      url: apiUrl() + '/money',
       method: 'POST',
       data: {
         user_id: sessionStorageGetItem('user_id'),
@@ -64,7 +66,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<MoneyObjectInterface>({
-      url: apiUrl() + 'money',
+      url: apiUrl() + '/money',
       method: 'PUT',
       data,
       id: data.id,
@@ -79,7 +81,7 @@ export function moneyRequests(close?: CloseDialogType): MoneyRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<MoneyObjectInterface>({
-      url: apiUrl() + 'money',
+      url: apiUrl() + '/money',
       method: 'DELETE',
       id,
       onSuccess: (response: MoneyObjectInterface) => {

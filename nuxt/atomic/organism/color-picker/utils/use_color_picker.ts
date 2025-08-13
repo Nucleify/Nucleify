@@ -1,11 +1,8 @@
-import { Ref, ref } from 'vue'
-import {
-  UseColorsInterface,
-  UseColorPickerInterface,
-  createColorTypes,
-  localStorageSetItem,
-  useColors,
-} from 'atomic'
+import type { Ref } from 'vue'
+import { ref } from 'vue'
+
+import type { UseColorPickerInterface, UseColorsInterface } from 'atomic'
+import { createColorTypes, setColorWithNewSuffix, useColors } from 'atomic'
 
 export function useColorPicker(item: string): UseColorPickerInterface {
   const { colors }: UseColorsInterface = useColors()
@@ -21,9 +18,10 @@ export function useColorPicker(item: string): UseColorPickerInterface {
 
     const colorSettings = createColorTypes(colorValue)
 
-    Object.entries(colorSettings).forEach(([key, value]) =>
-      localStorageSetItem(`${item}-item${key ? `-${key}` : ''}-color`, value)
-    )
+    Object.entries(colorSettings).forEach(([key, value]) => {
+      const colorKey = `${item}-item${key ? `-${key}` : ''}-color`
+      setColorWithNewSuffix(colorKey, value)
+    })
   }
 
   return { itemColor, setColorValues }

@@ -13,7 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import { ProgressSpinnerInterface } from 'atomic'
+import type { ProgressSpinnerInterface } from 'atomic'
+
+import ProgressSpinner from 'primevue/progressspinner' // Import for Storybook
 
 const props = defineProps<ProgressSpinnerInterface>()
 </script>

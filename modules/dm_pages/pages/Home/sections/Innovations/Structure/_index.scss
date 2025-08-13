@@ -11,9 +11,11 @@
       flex-direction: column-reverse;
       align-items: center;
       gap: 1em;
+      padding: 0;
 
       .animation-container {
         padding: 0 1em;
+        opacity: 0;
 
         svg {
           width: 100%;
@@ -40,7 +42,7 @@
 
           span,
           div {
-            font-weight: 800;
+            font-weight: 700;
             font-size: 1em;
             font-family: $font-inter-sans-serif !important;
           }
@@ -53,6 +55,7 @@
         .title,
         .description {
           max-width: 600px;
+          opacity: 0;
         }
       }
     }

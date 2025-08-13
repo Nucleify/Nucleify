@@ -1,13 +1,13 @@
-import { App } from 'vue'
+import type { App } from 'vue'
 
 import {
+  ArticleDashboard,
   ArticlePage,
+  ContactDashboard,
   ContactPage,
   EntitiesPage,
-  MoneyPage,
-  ArticleDashboard,
-  ContactDashboard,
   MoneyDashboard,
+  MoneyPage,
   UserDashboard,
 } from './atomic'
 

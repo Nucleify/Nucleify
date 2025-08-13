@@ -14,20 +14,20 @@ use Spatie\Translatable\HasTranslations;
  * @property string header
  * @property string description
  * @property string category
- * @property int getId
- * @property string getIcon
- * @property string getHeader
- * @property string getDescription
- * @property string getCategory
- * @property string getCreatedAt
- * @property string getUpdatedAt
- * @property Builder scopeGetById
- * @property Builder scopeGetByIcon
- * @property Builder scopeGetByHeader
- * @property Builder scopeGetByDescription
- * @property Builder scopeGetByCategory
- * @property Builder scopeGetByCreatedAt
- * @property Builder scopeGetByUpdatedAt
+ * @property int getId()
+ * @property string getIcon()
+ * @property string getHeader()
+ * @property string getDescription()
+ * @property string getCategory()
+ * @property string getCreatedAt()
+ * @property string getUpdatedAt()
+ * @property Builder scopeGetById()
+ * @property Builder scopeGetByIcon()
+ * @property Builder scopeGetByHeader()
+ * @property Builder scopeGetByDescription()
+ * @property Builder scopeGetByCategory()
+ * @property Builder scopeGetByCreatedAt()
+ * @property Builder scopeGetByUpdatedAt()
  */
 class Feature extends Model implements FeatureContract
 {
@@ -40,7 +40,7 @@ class Feature extends Model implements FeatureContract
         'description',
         'category',
     ];
-    
+
     public array $translatable = ['header', 'description'];
 
     /**

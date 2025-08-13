@@ -1,4 +1,5 @@
-import { describe, expect, it, beforeEach, vi } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
+
 import * as atomic from 'atomic'
 
 describe('featureRequests', (): void => {
@@ -14,7 +15,9 @@ describe('featureRequests', (): void => {
 
   it('getAllFeatures', async (): Promise<void> => {
     await requests.getAllFeatures()
-    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('features'),
       expect.objectContaining({ method: 'GET' })
     )
@@ -23,7 +26,9 @@ describe('featureRequests', (): void => {
 
   it('getCountFeaturesByCreatedLastWeek', async (): Promise<void> => {
     await requests.getCountFeaturesByCreatedLastWeek()
-    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('features/count-by-created-last-week'),
       expect.objectContaining({ method: 'GET' })
     )
@@ -31,8 +36,10 @@ describe('featureRequests', (): void => {
   })
 
   it('storeFeature', async (): Promise<void> => {
-    await requests.storeFeature(atomic.mockFeature, async () => {})
-    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+    await requests.storeFeature(atomic.mockFeature)
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('features'),
       expect.objectContaining({ method: 'POST' })
     )
@@ -40,8 +47,10 @@ describe('featureRequests', (): void => {
   })
 
   it('editFeature', async (): Promise<void> => {
-    await requests.editFeature(atomic.mockFeature, async () => {})
-    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+    await requests.editFeature(atomic.mockFeature)
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('features'),
       expect.objectContaining({ method: 'PUT' })
     )
@@ -49,8 +58,10 @@ describe('featureRequests', (): void => {
   })
 
   it('deleteFeature', async (): Promise<void> => {
-    await requests.deleteFeature(atomic.mockFeature.id ?? 0, async () => {})
-    expect((globalThis as any).$fetch).toHaveBeenCalledWith(
+    await requests.deleteFeature(atomic.mockFeature.id ?? 0)
+    expect(
+      (globalThis as unknown as { $fetch: Mock }).$fetch
+    ).toHaveBeenCalledWith(
       expect.stringContaining('features'),
       expect.objectContaining({ method: 'DELETE' })
     )

@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { AdInputMask } from '.'
 
-import { InputMask as AdInputMask } from './'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Atoms/InputMask',
   component: AdInputMask,
-  tags: ['autodocs'],
   args: {
     adType: undefined,
     value: '',

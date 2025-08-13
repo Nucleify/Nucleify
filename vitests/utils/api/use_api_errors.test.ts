@@ -1,4 +1,5 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import * as atomic from 'atomic'
 
 describe('useApiErrors', () => {
@@ -12,11 +13,12 @@ describe('useApiErrors', () => {
       closeToast: vi.fn(),
     })
     vi.spyOn(atomic, 'useApiErrors').mockReturnValue({ apiErrors: flashToast })
-    ;(globalThis as any).process = { client: true }
-    ;(globalThis as any).document = {
+
+    vi.stubGlobal('process', { client: true })
+    vi.stubGlobal('document', {
       querySelector: vi.fn().mockReturnValue({ classList: { add: vi.fn() } }),
       querySelectorAll: vi.fn().mockReturnValue([]),
-    }
+    })
     apiErrors = atomic.useApiErrors().apiErrors
   })
 

@@ -24,7 +24,9 @@
 </template>
 
 <script setup lang="ts">
-import { SelectButtonInterface } from 'atomic'
+import type { SelectButtonInterface } from 'atomic'
+
+import SelectButton from 'primevue/selectbutton' // Import for Storybook
 
 const props = defineProps<SelectButtonInterface>()
 </script>

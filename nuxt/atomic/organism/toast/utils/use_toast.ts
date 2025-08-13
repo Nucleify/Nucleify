@@ -1,19 +1,18 @@
-import { useNuxtApp } from 'nuxt/app'
-
-import {
+import type {
   MessageOrMessagesType,
   ToastSeverityType,
   UseToastInterface,
 } from 'atomic'
 
+import { useNuxtApp } from 'nuxt/app'
+
 export function useToast(): UseToastInterface {
   const nuxtApp = useNuxtApp()
-  const getToast: typeof useToast = () =>
-    nuxtApp.vueApp.config.globalProperties.$toast
+  const getToast = () => nuxtApp.vueApp.config.globalProperties.$toast
   const toast = getToast()
 
   function closeToast(): void {
-    if (process.client) {
+    if (import.meta.client) {
       document
         .querySelectorAll('.p-toast-message')
         .forEach((element: Element): void => {
@@ -41,12 +40,7 @@ export function useToast(): UseToastInterface {
         }
 
         for (const value in messageOrMessages) {
-          if (
-            Object.prototype.hasOwnProperty.call(
-              messageOrMessages,
-              value as string
-            )
-          ) {
+          if (Object.hasOwn(messageOrMessages, value as string)) {
             message += `\n- ${messageOrMessages[value].join(', ')}`
           }
         }

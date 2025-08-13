@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { CardBoxesInterface } from 'atomic'
+import type { CardBoxesInterface } from 'atomic'
 
 import { CardBox } from './components'
 

@@ -10,10 +10,10 @@
     <Dialog
       v-model:visible="dialogVisible"
       :data="dialogData"
-      @close="dialogVisible = false"
       :dismissable-mask="true"
       modal
       class="why-us-dialog"
+      @close="dialogVisible = false"
     >
       <template #header>
         <ad-icon :icon="dialogData.icon" class="text-xl" />
@@ -27,8 +27,27 @@
 </template>
 
 <script setup lang="ts">
-import { WhyUsInterface, WhyUsItemInterface, featureRequests } from 'atomic'
 import { gsap } from 'gsap'
+import {
+  type App,
+  createApp,
+  h,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+  watchEffect,
+} from 'vue'
+
+import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
+import {
+  AdIcon,
+  bounceFadeIn,
+  featureRequests,
+  useScrollTrigger,
+  useSplitText,
+} from 'atomic'
+
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
@@ -40,7 +59,7 @@ gsap.registerPlugin(InertiaPlugin)
 const props = defineProps<WhyUsInterface>()
 
 let data
-let clickOutsideHandler: ((event: MouseEvent) => void) | null = null
+const clickOutsideHandler: ((event: MouseEvent) => void) | null = null
 
 if (appEnv() !== 'production') {
   const { getSiteFeatures, resultsBySite } = featureRequests()
@@ -50,7 +69,7 @@ if (appEnv() !== 'production') {
   })
 } else {
   ;({ data } = await useFetch(
-    apiUrl() + `features/get-site-features/${props.site}`,
+    apiUrl() + `/features/get-site-features/${props.site}`,
     {
       method: 'GET',
       immediate: true,
@@ -61,6 +80,7 @@ if (appEnv() !== 'production') {
 
 const dialogVisible = ref(false)
 const dialogData = ref<WhyUsItemInterface | null>(null)
+const iconApps = ref<App<Element>[]>([])
 
 const openDialog = (item: WhyUsItemInterface) => {
   dialogData.value = item
@@ -68,7 +88,7 @@ const openDialog = (item: WhyUsItemInterface) => {
 }
 
 watchEffect(() => {
-  if (process.client) {
+  if (import.meta.client) {
     const circle = document.querySelector('.main-circle')
     if (!circle || !data?.value?.length) return
 
@@ -89,8 +109,23 @@ watchEffect(() => {
         el.classList.add('circle-item')
 
         if (item.icon) {
-          const icon = document.createElement('i')
-          icon.className = 'pi pi-' + item.icon
+          const icon = document.createElement('div')
+          icon.classList.add('icon-container')
+
+          const iconApp = createApp({
+            components: {
+              AdIcon,
+            },
+            render() {
+              return h(AdIcon, {
+                icon: item.icon,
+                class: 'iconify',
+              })
+            },
+          })
+
+          iconApp.mount(icon)
+          iconApps.value.push(iconApp)
           el.appendChild(icon)
         }
 
@@ -127,7 +162,7 @@ watchEffect(() => {
       })
     }
     const elements = placeItems(items)
-    let spin = gsap
+    const spin = gsap
       .timeline({ repeat: -1, defaults: { duration: 30, ease: 'none' } })
       .to(circle, { rotation: 360 })
       .to(elements, { rotation: -360 }, 0)
@@ -168,7 +203,7 @@ watchEffect(() => {
       const scrollProgress = window.scrollY / scrollHeight
       const currentProgress = spin.progress()
 
-      let targetProgress = (currentProgress / 0.4 + scrollProgress) / 4
+      const targetProgress = (currentProgress / 0.4 + scrollProgress) / 4
 
       gsap.to(spin, {
         progress: targetProgress,
@@ -186,14 +221,43 @@ watchEffect(() => {
 })
 
 onBeforeUnmount(() => {
-  if (process.client) {
+  if (import.meta.client) {
     const draggable = Draggable.get('.main-circle')
     draggable?.kill()
     gsap.killTweensOf('.main-circle')
+
+    // Clean up dynamically created Vue apps
+    iconApps.value.forEach((app) => {
+      app.unmount()
+    })
+    iconApps.value = []
 
     if (clickOutsideHandler) {
       document.removeEventListener('click', clickOutsideHandler)
     }
   }
 })
+
+useSplitText().animate(
+  '.section-header',
+  500,
+  0.2,
+  0.1,
+  'power2.out',
+  true,
+  'top 50%'
+)
+
+useScrollTrigger(
+  '.section-header',
+  () => {
+    bounceFadeIn('.viewport-box', {
+      duration: 0.3,
+      ease: 'power2.out',
+    })
+  },
+  {
+    start: 'top 25%',
+  }
+)
 </script>

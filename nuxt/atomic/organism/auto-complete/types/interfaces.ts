@@ -1,16 +1,20 @@
-import { VirtualScrollerProps } from 'primevue/virtualscroller'
+import type {
+  ElementAppendTo,
+  ElementSizeType,
+  ElementVariantType,
+} from 'atomic'
 
-import { ElementAppendTo, ElementSizeType, ElementVariantType } from 'atomic'
+import type { VirtualScrollerProps } from 'primevue/virtualscroller'
 
 export interface AutoCompleteInterface {
-  modelValue?: any // eslint-disable-line
-  defaultValue?: any // eslint-disable-line
+  modelValue?: unknown
+  defaultValue?: unknown
   name?: string
-  suggestions?: any[] // eslint-disable-line
-  optionLabel?: string | void
-  optionDisabled?: string | void
-  optionGroupLabel?: string | void
-  optionGroupChildren?: string | void
+  suggestions?: unknown[]
+  optionLabel?: string
+  optionDisabled?: string
+  optionGroupLabel?: string
+  optionGroupChildren?: string
   scrollHeight?: string
   dropdown?: boolean
   dropdownMode?: 'blank' | 'current'
@@ -34,7 +38,7 @@ export interface AutoCompleteInterface {
   panelClass?: string | object
   overlayStyle?: object
   overlayClass?: string | object
-  dropdownIcon?: string | object
+  dropdownIcon?: string
   dropdownClass?: string | object
   loader?: string
   removeTokenIcon?: string
@@ -53,9 +57,9 @@ export interface AutoCompleteInterface {
   fluid?: boolean
   ariaLabel?: string
   ariaLabelledby?: string
-  formControl?: Record<string, any> // eslint-disable-line
-  dt?: any // eslint-disable-line
-  pt?: any // eslint-disable-line
-  ptOptions?: any // eslint-disable-line
+  formControl?: Record<string, unknown>
+  dt?: unknown
+  pt?: object
+  ptOptions?: object
   unstyled?: boolean
 }

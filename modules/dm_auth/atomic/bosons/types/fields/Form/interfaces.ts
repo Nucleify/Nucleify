@@ -1,6 +1,6 @@
-import { Ref } from 'vue'
+import type { Ref } from 'vue'
 
-import {
+import type {
   LoginFieldsInterface,
   LoginInputInterface,
   RegisterFieldsInterface,
@@ -13,6 +13,9 @@ export interface UseAuthFormInterface {
   registerFields: Ref<RegisterFieldsInterface>
   registerInputs: readonly RegisterInputInterface[]
   submitForm: (
+    data: LoginFieldsInterface | RegisterFieldsInterface
+  ) => Promise<void>
+  submitAndGo: (
     data: LoginFieldsInterface | RegisterFieldsInterface
   ) => Promise<void>
 }

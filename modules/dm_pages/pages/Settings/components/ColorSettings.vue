@@ -5,12 +5,12 @@
         <ad-heading :tag="4" :text="t('admin.settings.colors.header')" />
 
         <ad-button
-          icon="pi pi-refresh"
+          icon="prime:refresh"
           ad-type="main"
           class="refresh-button"
-          @click="setDefaultColors(false)"
           rounded
           text
+          @click="resetColorsToDefault"
         />
       </div>
     </template>
@@ -29,9 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { colorList, useColors } from 'atomic'
+import { colorList, resetColorsToDefault } from 'atomic'
 
 const { t } = useI18n()
-
-const { setDefaultColors } = useColors()
 </script>

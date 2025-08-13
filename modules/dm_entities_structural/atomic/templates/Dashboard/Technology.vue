@@ -31,12 +31,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import {
-  useTechnologyFields,
-  DashboardInterface,
-  technologyRequests,
-  useDialog,
-} from 'atomic'
+import type { DashboardInterface } from 'atomic'
+import { technologyRequests, useDialog, useTechnologyFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 

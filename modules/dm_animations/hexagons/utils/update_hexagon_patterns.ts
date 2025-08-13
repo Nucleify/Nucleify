@@ -1,5 +1,6 @@
-import { HexagonPatternsType } from '../types'
 import { generateRowPattern } from '.'
+
+import type { HexagonPatternsType } from '../types'
 
 export function updateHexagonPatterns(
   totalRows: number,

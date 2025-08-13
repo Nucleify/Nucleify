@@ -1,11 +1,10 @@
-import type { Meta, StoryObj } from '@storybook/vue3'
+import { AdCard } from '.'
 
-import { Card as AdCard } from './'
+import type { Meta, StoryObj } from '@storybook/vue3-vite'
 
 const meta = {
   title: 'Organisms/Card',
   component: AdCard,
-  tags: ['autodocs'],
   args: {
     dt: {},
     pt: {},

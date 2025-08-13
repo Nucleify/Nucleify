@@ -1,17 +1,15 @@
 import { ref } from 'vue'
 
-import {
+import type {
   CloseDialogType,
-  UseLoadingInterface,
-  useApiSuccess,
-  useLoading,
-  SiteType,
-  LinkRequestsInterface,
-  LinkObjectInterface,
-  apiHandle,
-  EntityResultsType,
   EntityCountResultsType,
+  EntityResultsType,
+  LinkObjectInterface,
+  LinkRequestsInterface,
+  SiteType,
+  UseLoadingInterface,
 } from 'atomic'
+import { apiHandle, useApiSuccess, useLoading } from 'atomic'
 
 export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
   const results: EntityResultsType<LinkObjectInterface> = ref([])
@@ -24,7 +22,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
 
   async function getAllLinks(loading?: boolean): Promise<void> {
     await apiHandle<LinkObjectInterface[]>({
-      url: apiUrl() + 'links',
+      url: apiUrl() + '/links',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: LinkObjectInterface[]) => {
         results.value = response
@@ -36,7 +34,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: apiUrl() + 'links/count-by-created-last-week',
+      url: apiUrl() + '/links/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -49,7 +47,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<LinkObjectInterface[]>({
-      url: apiUrl() + `links/get-by-category/${category}`,
+      url: apiUrl() + `/links/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: LinkObjectInterface[]) => {
         resultsByCategory.value = response
@@ -62,7 +60,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     loading?: boolean
   ): Promise<void> {
     await apiHandle<LinkObjectInterface[]>({
-      url: apiUrl() + `links/get-site-links/${site}`,
+      url: apiUrl() + `/links/get-site-links/${site}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: LinkObjectInterface[]) => {
         resultsBySite.value = response
@@ -75,7 +73,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<LinkObjectInterface>({
-      url: apiUrl() + 'links',
+      url: apiUrl() + '/links',
       method: 'POST',
       data,
       onSuccess: (response) => {
@@ -89,7 +87,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<LinkObjectInterface>({
-      url: apiUrl() + 'links',
+      url: apiUrl() + '/links',
       method: 'PUT',
       data,
       id: data.id,
@@ -104,7 +102,7 @@ export function linkRequests(close?: CloseDialogType): LinkRequestsInterface {
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<LinkObjectInterface>({
-      url: apiUrl() + 'links',
+      url: apiUrl() + '/links',
       method: 'DELETE',
       id,
       onSuccess: (response) => {

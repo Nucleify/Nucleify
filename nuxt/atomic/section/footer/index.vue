@@ -16,18 +16,18 @@
             :key="columnIndex"
             :class="`column-${columnIndex + 1}`"
           >
-            <ad-anchor
+            <nuxt-link
               v-for="(item, itemIndex) in column"
               :key="itemIndex"
-              :href="item.url"
+              :to="item.url"
             >
               <ad-paragraph
-                class="header"
                 v-if="item?.header"
+                class="header"
                 :text="item.name"
               />
               <span v-else>{{ item.name }}</span>
-            </ad-anchor>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -40,6 +40,10 @@
 </template>
 
 <script setup lang="ts">
+import { useViewportChange } from 'atomic'
+
+useViewportChange(['#footer .footer-content-container'], 100)
+
 const { t } = useI18n()
 const localePath = useLocalePath()
 
