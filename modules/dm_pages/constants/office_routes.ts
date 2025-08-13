@@ -1,5 +1,6 @@
 export const officeRoutes = {
   back: [
+    // EN
     'activity-log',
     'admin',
     'dashboard',
@@ -8,6 +9,30 @@ export const officeRoutes = {
     'settings',
     'structural',
     'tasks',
+
+    // PL
+    'logowanie',
+    'panel-admina',
+    'pulpit',
+    'obiekty',
+    'pliki',
+    'ustawienia',
+    'strukturalne',
   ],
-  front: ['home', 'about', 'blog', 'license', 'services'],
+  front: [
+    // EN
+    'home',
+    'about',
+    'blog',
+    'license',
+    'services',
+
+    // PL
+    'strona-glowna',
+    'o-nas',
+    'blog',
+    'licencja',
+    'uslugi',
+    'kontakt',
+  ],
 }

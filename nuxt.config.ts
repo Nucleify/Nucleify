@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/test-utils/module',
     '@nuxtjs/google-fonts',
+    '@nuxtjs/i18n',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     '@nuxtjs/storybook',
@@ -156,6 +157,116 @@ export default defineNuxtConfig({
   icon: {
     prefix: 'i-prime',
     mode: 'css',
+  },
+  i18n: {
+    defaultLocale: 'en',
+    lazy: true,
+    strategy: 'prefix',
+    langDir: '../modules/dm_languages/locales/',
+    customRoutes: 'config',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+    },
+    locales: [
+      { code: 'en', iso: 'en-US', name: 'English', file: 'en.json' },
+      { code: 'pl', iso: 'pl-PL', name: 'Polski', file: 'pl.json' },
+    ],
+    pages: {
+      home: {
+        en: '/home',
+        pl: '/strona-glowna',
+      },
+      about: {
+        en: '/about',
+        pl: '/o-nas',
+      },
+      services: {
+        en: '/services',
+        pl: '/uslugi',
+      },
+      blog: {
+        en: '/blog',
+        pl: '/blog',
+      },
+      login: {
+        en: '/login',
+        pl: '/logowanie',
+      },
+      register: {
+        en: '/register',
+        pl: '/rejestracja',
+      },
+      admin: {
+        en: '/admin',
+        pl: '/panel-admina',
+      },
+      structural: {
+        en: '/structural',
+        pl: '/strukturalne',
+      },
+      dashboard: {
+        en: '/dashboard',
+        pl: '/pulpit',
+      },
+      entities: {
+        en: '/entities',
+        pl: '/obiekty',
+      },
+      'activity-log': {
+        en: '/activity-log',
+        pl: '/dziennik-aktywnosci',
+      },
+      messages: {
+        en: '/messages',
+        pl: '/wiadomosci',
+      },
+      calender: {
+        en: '/calendar',
+        pl: '/kalendarz',
+      },
+      profile: {
+        en: '/profile',
+        pl: '/profil',
+      },
+      settings: {
+        en: '/settings',
+        pl: '/ustawienia',
+      },
+      'structural/cards': {
+        en: '/structural/cards',
+        pl: '/strukturalne/karty',
+      },
+      'structural/features': {
+        en: '/structural/features',
+        pl: '/strukturalne/funkcjonalnosci',
+      },
+      'structural/questions': {
+        en: '/structural/questions',
+        pl: '/strukturalne/pytania',
+      },
+      'structural/technologies': {
+        en: '/structural/technologies',
+        pl: '/strukturalne/technologie',
+      },
+      'structural/links': {
+        en: '/structural/links',
+        pl: '/strukturalne/linki',
+      },
+      'entities/articles': {
+        en: '/entities/articles',
+        pl: '/obiekty/artykuly',
+      },
+      'entities/contacts': {
+        en: '/entities/contacts',
+        pl: '/obiekty/kontakty',
+      },
+      'entities/money': {
+        en: '/entities/money',
+        pl: '/obiekty/finanse',
+      },
+    },
   },
   // biome-ignore lint/suspicious/noExplicitAny: Nuxt config complexity @typescript-eslint/no-explicit-any
 } as any)

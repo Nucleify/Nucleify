@@ -6,8 +6,8 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="money"
-      header-text="Manage Money"
-      button-text="New Transaction"
+      :headerText="t('admin.sections.money.header')"
+      buttonText="New Transaction"
     />
 
     <ad-dialog
@@ -36,6 +36,8 @@ import { moneyRequests, useDialog, useMoneyFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
+const { t } = useI18n()
+
 const {
   visibleShow,
   visibleCreate,
@@ -63,7 +65,7 @@ const dialogs = computed(() => [
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete transaction?',
+    title: t('admin.dialogs.delete.headers.money'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: deleteMoney,
@@ -73,7 +75,7 @@ const dialogs = computed(() => [
     entity: 'money',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new transaction',
+    title: t('admin.dialogs.create.headers.money'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: storeMoney,
@@ -85,7 +87,7 @@ const dialogs = computed(() => [
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit transaction',
+    title: t('admin.dialogs.edit.headers.money'),
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
     confirm: editMoney,

@@ -26,19 +26,43 @@ const createDockItem = (
   }) as const
 
 const dockData: readonly DockItemInterface[] = [
-  [undefined, undefined, '/home', undefined, undefined, undefined, true],
-  ['prime:crown', 'Admin Panel', '/admin', undefined, 'admin'],
-  ['prime:sitemap', 'Structural', '/structural', undefined, 'structural'],
-  ['prime:chart-line', 'Dashboard', '/dashboard', undefined, 'dashboard'],
-  ['prime:box', 'Entities', '/entities', undefined, 'entities'],
-  ['prime:history', 'Activities', '/activity-log', undefined, 'activity-log'],
-  ['prime:file', 'Files', '/files', undefined, 'files'],
-  ['prime:check-square', 'Tasks', '/tasks', undefined, 'tasks'],
-  ['prime:calendar', 'Calendar', undefined, 'disabled-item'],
-  ['prime:user', 'Profile', undefined, 'disabled-item'],
-  ['prime:cog', 'Settings', '/settings', undefined, 'settings'],
-  ['prime:sign-out', 'Logout', undefined, undefined, undefined, logout],
-  [undefined, 'position', undefined, 'position'],
+  [undefined, undefined, '/home', 'logo', undefined, undefined, true],
+  ['prime:crown', 'admin.dock.adminPanel', '/admin', undefined, 'admin'],
+  [
+    'prime:sitemap',
+    'admin.dock.structural',
+    '/structural',
+    undefined,
+    'structural',
+  ],
+  [
+    'prime:chart-line',
+    'admin.dock.dashboard',
+    '/dashboard',
+    undefined,
+    'dashboard',
+  ],
+  ['prime:box', 'admin.dock.entities', '/entities', undefined, 'entities'],
+  [
+    'prime:history',
+    'admin.dock.activities',
+    '/activity-log',
+    undefined,
+    'activity-log',
+  ],
+  ['prime:envelope disabled-item', 'admin.dock.messages'],
+  ['prime:calendar disabled-item', 'admin.dock.calendar'],
+  ['prime:user disabled-item', 'admin.dock.profile'],
+  ['prime:cog', 'admin.dock.settings', '/settings', undefined, 'settings'],
+  [
+    'prime:sign-out',
+    'admin.dock.logout',
+    undefined,
+    undefined,
+    undefined,
+    logout,
+  ],
+  [undefined, 'admin.dock.position', undefined, 'position'],
 ] as const
 
 export const dockItems: readonly DockItemInterface[] = ref(

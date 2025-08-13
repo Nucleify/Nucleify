@@ -6,8 +6,8 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="card"
-      header-text="Manage Cards"
-      button-text="New Card"
+      :headerText="t('admin.sections.card.header')"
+      buttonText="New Card"
     />
 
     <ad-dialog
@@ -36,6 +36,8 @@ import { cardRequests, useCardFields, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
+const { t } = useI18n()
+
 const {
   visibleShow,
   visibleCreate,
@@ -63,7 +65,7 @@ const dialogs = computed(() => [
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete card?',
+    title: t('admin.dialogs.delete.headers.card'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: deleteCard,
@@ -73,7 +75,7 @@ const dialogs = computed(() => [
     entity: 'card',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new card',
+    title: t('admin.dialogs.create.headers.card'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: storeCard,
@@ -85,7 +87,7 @@ const dialogs = computed(() => [
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit card',
+    title: t('admin.dialogs.edit.headers.card'),
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
     confirm: editCard,

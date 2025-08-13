@@ -2,7 +2,7 @@
   <ad-card class="settings-card settings-small-card">
     <template #header>
       <div class="settings-card-header-container">
-        <ad-heading :tag="4" text="Charts" />
+        <ad-heading :tag="4" :text="t('admin.settings.charts.header')" />
 
         <ad-button
           icon="prime:refresh"
@@ -21,7 +21,10 @@
           :key="item"
           class="settings-card-item"
         >
-          <ad-label :label="item" :for="item" />
+          <ad-label
+            :label="t('admin.settings.charts.' + item.toLocaleLowerCase())"
+            :for="item"
+          />
 
           <ad-select-button
             ad-type="main"
@@ -42,6 +45,8 @@ import { ref } from 'vue'
 import { displayChartList } from 'atomic'
 
 import { useDisplayChartsStore } from '~/stores/display_charts'
+
+const { t } = useI18n()
 
 const displayChartsStore = useDisplayChartsStore()
 const displayCharts = storeToRefs(displayChartsStore)

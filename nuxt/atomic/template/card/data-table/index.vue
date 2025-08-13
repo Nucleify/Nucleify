@@ -42,7 +42,13 @@
         :ad-type="adType"
         :loading="loading"
         paginator-template="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
-        current-page-report-template="{first} to {last} of {totalRecords}"
+        :current-page-report-template="
+          '{first} ' +
+          t('admin.pagination.to') +
+          ' {last} ' +
+          t('admin.pagination.of') +
+          ' {totalRecords}'
+        "
       />
     </template>
   </ad-card>
@@ -52,4 +58,6 @@
 import type { CardDataTableInterface } from 'atomic'
 
 defineProps<CardDataTableInterface>()
+
+const { t } = useI18n()
 </script>

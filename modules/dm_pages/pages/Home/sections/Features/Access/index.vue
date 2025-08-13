@@ -3,9 +3,14 @@
     <div class="access-container">
       <ad-heading
         :tag="2"
-        class="access-header split"
-        text="Access your data everywhere"
+        class="access-header"
+        :text="t('home.access.title')"
       />
+      <ad-paragraph class="access-description">
+        {{ t('home.access.description.text1') }}
+        <span class="shiny">{{ t('home.access.description.highlight') }}</span>
+        {{ t('home.access.description.text2') }}
+      </ad-paragraph>
       <div class="access-card-container">
         <div
           class="access-card flip-card col-12 md:col-6 xl:col-4"
@@ -24,14 +29,16 @@
                 alt="Desktop image"
                 image-class="access-card-image"
               />
-              <ad-heading :tag="3" class="access-card-header" text="Desktop" />
+              <ad-heading
+                :tag="3"
+                class="access-card-header"
+                :text="t('home.access.desktop.title')"
+              />
             </div>
             <div class="flip-card-back">
               <ad-paragraph
                 class="mt-2"
-                text="Responsive web design was coined in 2010 by Ethan
-                                Marcotte, optimizing layouts for desktops with
-                                flexible grids and layouts."
+                :text="t('home.access.desktop.description')"
               />
             </div>
           </div>
@@ -53,14 +60,14 @@
                 alt="Tablet image"
                 image-class="access-card-image"
               />
-              <ad-heading :tag="3" class="access-card-header" text="Tablet" />
+              <ad-heading
+                :tag="3"
+                class="access-card-header"
+                :text="t('home.access.tablet.title')"
+              />
             </div>
             <div class="flip-card-back">
-              <ad-paragraph
-                text="Over 53% of internet users worldwide access the web
-                                through mobile devices, highlighting the significant
-                                shift towards mobile browsing in recent years."
-              />
+              <ad-paragraph :text="t('home.access.tablet.description')" />
             </div>
           </div>
         </div>
@@ -81,14 +88,16 @@
                 alt="Phone image"
                 image-class="access-card-image"
               />
-              <ad-heading :tag="3" class="access-card-header" text="Phone" />
+              <ad-heading
+                :tag="3"
+                class="access-card-header"
+                :text="t('home.access.phone.title')"
+              />
             </div>
             <div class="flip-card-back">
               <ad-paragraph
                 class="flip-card-back-text"
-                text="Google's implementation of mobile-first indexing in
-                                2018 underscored the importance of mobile-responsive design,
-                                prioritizing mobile versions for indexing and ranking."
+                :text="t('home.access.phone.description')"
               />
             </div>
           </div>
@@ -100,6 +109,8 @@
 
 <script setup lang="ts">
 import { bounceFadeIn, useScrollTrigger, useSplitText } from 'atomic'
+
+const { t } = useI18n()
 
 const { animate, deconstruct } = useSplitText()
 

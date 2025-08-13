@@ -8,8 +8,17 @@
   gap: 5em;
   margin: 3em 0;
 
-  .header {
+  .left-side {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .header,
+  .header span {
     opacity: 0;
+    font-size: 38px;
+    font-weight: bold !important;
+    font-family: $font-inter-sans-serif !important;
     color: $primary-white-text-color;
 
     span {

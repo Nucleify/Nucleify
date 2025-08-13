@@ -9,10 +9,13 @@
             alt="DataManager logo"
             width="50"
           />
-          <ad-heading :tag="1" text="Welcome Back" />
+          <ad-heading :tag="1" :text="t('auth.login.title')" />
 
-          <ad-paragraph class="mb-2" text="Don't have an account?">
-            <ad-anchor href="/register" :label="'Create today!'" />
+          <ad-paragraph class="mb-2" :text="t('auth.login.subtitle')">
+            <ad-anchor
+              :href="localePath('/register')"
+              :label="t('auth.login.highlight')"
+            />
           </ad-paragraph>
         </div>
       </div>
@@ -28,10 +31,17 @@
             class="auth-input-text"
             :autofocus="field.autofocus"
           />
-          <ad-label :for="field.id" :label="field.label" />
+          <ad-label
+            :for="field.id"
+            :label="t('auth.labels.' + toCamelCase(field.label))"
+          />
         </ad-float-label>
 
-        <ad-button label="Log In" type="submit" padding="10px 10px" />
+        <ad-button
+          :label="t('auth.labels.loginButton')"
+          type="submit"
+          padding="10px 10px"
+        />
       </form>
     </template>
   </ad-card>
@@ -40,7 +50,11 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthForm } from 'atomic'
+import { toCamelCase, useAuthForm } from 'atomic'
+
+const { t } = useI18n()
+
+const localePath = useLocalePath()
 
 const { submitAndGo, loginFields, loginInputs } = useAuthForm()
 </script>

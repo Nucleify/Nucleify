@@ -47,7 +47,9 @@
       action="#"
     >
       <div v-for="(field, index) in props.fields" :key="index" class="form-div">
-        <label :for="field.name">{{ field.label }}</label>
+        <label :for="field.name">{{
+          t('admin.sections.' + props.entity + '.' + toCamelCase(field.label))
+        }}</label>
         <component
           :is="getComponent(field.type as ComponentType)"
           v-bind="field.props"
@@ -87,7 +89,13 @@
       class="show-data-container"
     >
       <div v-for="(item, key) in props.fields" :key="key">
-        <ad-heading :tag="5" class="show-data-header" :text="item.label" />
+        <ad-heading
+          :tag="5"
+          class="show-data-header"
+          :text="
+            t('admin.sections.' + props.entity + '.' + toCamelCase(item.label))
+          "
+        />
         <div>{{ (props.selectedObject as any)[item.key] }}</div>
       </div>
     </div>
@@ -105,8 +113,10 @@
         <ad-button
           v-if="props.fields && props.confirm"
           :ad-type="props.entity"
-          :label="props.confirmButtonLabel"
           icon="prime:check"
+          :label="
+            t('admin.dialogs.' + toCamelCase(props.action!) + '.confirmButton')
+          "
           rounded
           text
           @click="props.confirm(formData, props.getData)"
@@ -116,8 +126,10 @@
             props.action === 'delete' && props.confirm && props.selectedObject
           "
           :ad-type="props.entity"
-          :label="props.confirmButtonLabel"
           icon="prime:check"
+          :label="
+            t('admin.dialogs.' + toCamelCase(props.action!) + '.confirmButton')
+          "
           rounded
           text
           @click="props.confirm(props.selectedObject.id, props.getData)"
@@ -137,9 +149,12 @@ import {
   isPasswordsMatch,
   isPhoneField,
   isSelectOrDatePicker,
+  toCamelCase,
 } from 'atomic'
 
 const props = defineProps<DialogInterface>()
+
+const { t } = useI18n()
 
 const formData = ref<FormDataInterface>({
   ...(props.data && (Array.isArray(props.data) ? {} : props.data)),

@@ -9,14 +9,17 @@
         </div>
         <div class="description-container">
           <ad-heading :tag="3" class="title">
-            <div class="shiny">Atomic Design&nbsp;</div>
-            <span>Approach</span>
+            <template v-if="locale === 'pl'">
+              <span>{{ t('home.structure.title.text') }}</span>
+              <div class="shiny">{{ t('home.structure.title.highlight') }}</div>
+            </template>
+            <template v-else>
+              <div class="shiny">{{ t('home.structure.title.highlight') }}</div>
+              <span>{{ t('home.structure.title.text') }}</span>
+            </template>
           </ad-heading>
           <ad-paragraph
-            text="
-              Utilizing Atomic Design principles to develop dynamic, modular solutions that enhance
-              scalability and ensure seamless integration in your development processes.
-            "
+            :text="t('home.structure.description')"
             class="description"
           />
         </div>
@@ -29,6 +32,8 @@
 import { bounceFadeIn, useScrollTrigger, useSplitText } from 'atomic'
 
 import { StructureAnimation } from './'
+
+const { t, locale } = useI18n()
 
 const { animate } = useSplitText()
 

@@ -7,6 +7,7 @@ import {
   ActivityLogObjectInterface,
   ArticleObjectInterface,
   allEntitiesKeys,
+  allEntitiesKeysPl,
   allEntitiesLabels,
   CardObjectInterface,
   ChartInterface,
@@ -19,6 +20,8 @@ import {
   LinkObjectInterface,
   MoneyObjectInterface,
   months,
+  months_en,
+  months_pl,
   QuestionObjectInterface,
   TaskObjectInterface,
   TechnologyObjectInterface,
@@ -27,12 +30,16 @@ import {
   useColors,
 } from 'atomic'
 
-import { ChartOptions } from 'chart.js'
+import { useNuxtApp } from 'nuxt/app'
 
 export function useChart() {
   const { colors }: UseColorsInterface = useColors()
 
   const chartData: Ref<ChartInterface | undefined> = ref<ChartInterface>()
+
+  const { $i18n } = useNuxtApp()
+  const currentLocale = $i18n.locale?.value ?? 'en'
+  const months = currentLocale === 'pl' ? months_pl : months_en
 
   const exampleColors = Object.fromEntries(
     [
@@ -135,7 +142,12 @@ export function useChart() {
             labels: months,
             datasets: dataTypes
               .map(({ label, data, colors }) => ({
-                label,
+                label:
+                  currentLocale === 'pl'
+                    ? (allEntitiesKeysPl[
+                        allEntitiesKeys.indexOf(label.toLowerCase())
+                      ] ?? label)
+                    : label,
                 backgroundColor: colors.secondary,
                 borderColor: colors.primary,
                 borderWidth: 1.5,

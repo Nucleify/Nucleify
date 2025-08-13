@@ -3,6 +3,7 @@ import type { App } from 'vue'
 import {
   contributorsImgUrl,
   imgUrl,
+  languagesImgUrl,
   storysetAboutImgUrl,
   storysetBlogImgUrl,
   storysetImgUrl,
@@ -24,4 +25,5 @@ export function registerGlobalConstants(app: App): void {
     prefix + storysetServicesImgUrl
   app.config.globalProperties.storysetBlogImgUrl = prefix + storysetBlogImgUrl
   app.config.globalProperties.technologiesImgUrl = prefix + technologiesImgUrl
+  app.config.globalProperties.languagesImgUrl = prefix + languagesImgUrl
 }

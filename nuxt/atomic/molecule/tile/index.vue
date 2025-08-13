@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="secondary">
-      <ad-paragraph class="count" :text="props.countSecondary + ' new'" />
+      <ad-paragraph class="count" :text="'+' + props.countSecondary" />
       <ad-paragraph class="text" :text="props.textSecondary" />
     </div>
   </nuxt-link>
@@ -22,4 +22,6 @@ import type { TileInterface } from 'atomic'
 import { AdIcon, AdParagraph } from '../../atom' // Import for Storybook
 
 const props = defineProps<TileInterface>()
+
+const { t } = useI18n()
 </script>

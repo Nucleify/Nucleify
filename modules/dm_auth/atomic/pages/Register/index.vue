@@ -5,10 +5,13 @@
       <template #header>
         <div class="auth-card-header-container">
           <div class="auth-card-header">
-            <ad-heading :tag="1" text="Register" />
+            <ad-heading :tag="1" :text="t('auth.register.title')" />
 
-            <ad-paragraph text="Already have an account?">
-              <ad-anchor href="/login" :label="'Log in!'" />
+            <ad-paragraph :text="t('auth.register.subtitle')">
+              <ad-anchor
+                :href="localePath('/login')"
+                :label="t('auth.register.highlight')"
+              />
             </ad-paragraph>
           </div>
         </div>
@@ -49,11 +52,14 @@
               "
             />
 
-            <ad-label :for="field.id" :label="field.label" />
+            <ad-label
+              :for="field.id"
+              :label="t('auth.labels.' + toCamelCase(field.label))"
+            />
           </ad-float-label>
 
           <ad-button
-            label="Register"
+            :label="t('auth.labels.registerButton')"
             type="submit"
             class="primary-button"
             padding="10px 10px"
@@ -67,9 +73,18 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { checkIsEmpty, checkPasswordsMatch, useAuthForm } from 'atomic'
+import {
+  checkIsEmpty,
+  checkPasswordsMatch,
+  toCamelCase,
+  useAuthForm,
+} from 'atomic'
 
 const { submitAndGo, registerFields, registerInputs } = useAuthForm()
+
+const localePath = useLocalePath()
+
+const { t } = useI18n()
 
 onMounted(() => {
   checkPasswordsMatch(

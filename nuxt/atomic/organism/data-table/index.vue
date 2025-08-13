@@ -80,11 +80,12 @@
         v-for="col in specificColumns"
         :key="col.field"
         :field="col.field"
-        :header="col.header"
+        :header="
+          t('admin.sections.' + props.adType + '.' + toCamelCase(col.header))
+        "
         :class="col.class"
         :sortable="col.sortable"
       />
-
       <Column class="action-column">
         <template #body="row">
           <div class="action-column-content">
@@ -139,6 +140,8 @@ import type { DataTableInterface } from 'atomic'
 import { actions as actionsList, columns, useMenu, useSelect } from 'atomic'
 
 const props = defineProps<DataTableInterface>()
+
+const { t } = useI18n()
 
 const menu = ref()
 const actions = actionsList(props.openDialog!)

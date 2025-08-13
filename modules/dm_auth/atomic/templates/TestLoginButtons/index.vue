@@ -4,27 +4,20 @@
       icon="prime:crown"
       class="primary-button text-sm"
       :rounded="true"
-      @click="loginAndGo('admin')"
+      @click="testLogin({ role: 'admin', path: localePath('/dashboard') })"
     />
     <ad-button
       icon="prime:user"
       severity="secondary"
       class="primary-button text-sm"
       :rounded="true"
-      @click="loginAndGo('user')"
+      @click="testLogin({ role: 'user', path: localePath('/dashboard') })"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { useRouter } from '#app'
-
 import { testLogin } from 'atomic'
 
-const router = useRouter()
-
-async function loginAndGo(role: string) {
-  await testLogin(role)
-  router.push('/dashboard')
-}
+const localePath = useLocalePath()
 </script>

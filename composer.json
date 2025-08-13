@@ -14,7 +14,8 @@
     "laravel/ui": "4.5.2",
     "multicaret/laravel-acquaintances": "3.6.1",
     "spatie/laravel-activitylog": "4.8.0",
-    "zanysoft/laravel-zip": "3.0.1"
+    "zanysoft/laravel-zip": "3.0.1",
+    "spatie/laravel-translatable": "6.11.4"
   },
   "require-dev": {
     "laravel/pint": "1.22.0",
