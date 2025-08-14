@@ -21,6 +21,7 @@ class ModuleResource extends JsonResource
             'category' => $this->getCategory(),
             'version' => $this->getVersion(),
             'enabled' => $this->getEnabled(),
+            'installed' => $this->getInstalled(),
             'created_at' => $this->getCreatedAt(),
             'updated_at' => $this->getUpdatedAt(),
         ];
