@@ -232,4 +232,51 @@ describe('422 > POST', function ($moduleData = moduleData) {
         ['errors' => ['enabled']],
         ['errors' => ['enabled' => ['The enabled field is required.']]]
     ));
+
+    $moduleData['enabled'] = moduleData['enabled'];
+
+    /**
+     * INSTALLED
+     */
+    $moduleData['installed'] = 'string';
+    test('installed > string', apiTest(
+        'POST',
+        'modules.store',
+        422,
+        $moduleData,
+        ['errors' => ['installed']],
+        ['errors' => ['installed' => ['The installed field must be true or false.']]]
+    ));
+
+    $moduleData['installed'] = '';
+    test('installed > empty string', apiTest(
+        'POST',
+        'modules.store',
+        422,
+        $moduleData,
+        ['errors' => ['installed']],
+        ['errors' => ['installed' => ['The installed field is required.']]]
+    ));
+
+    $moduleData['installed'] = [];
+    test('installed > empty array', apiTest(
+        'POST',
+        'modules.store',
+        422,
+        $moduleData,
+        ['errors' => ['installed']],
+        ['errors' => ['installed' => ['The installed field is required.']]]
+    ));
+
+    $moduleData['installed'] = null;
+    test('installed > null', apiTest(
+        'POST',
+        'modules.store',
+        422,
+        $moduleData,
+        ['errors' => ['installed']],
+        ['errors' => ['installed' => ['The installed field is required.']]]
+    ));
+
+    $moduleData['installed'] = moduleData['installed'];
 });

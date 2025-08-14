@@ -29,6 +29,7 @@ class PutRequest extends FormRequest
             'category' => 'string|max:255',
             'version' => 'required|string|max:100',
             'enabled' => 'required|boolean',
+            'installed' => 'required|boolean',
         ];
     }
 }

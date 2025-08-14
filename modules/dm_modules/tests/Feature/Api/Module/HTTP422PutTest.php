@@ -234,4 +234,51 @@ describe('422 > PUT', function ($updatedModuleData = updatedModuleData) {
         ['errors' => ['enabled']],
         ['errors' => ['enabled' => ['The enabled field is required.']]],
     ));
+
+    $updatedModuleData['enabled'] = updatedModuleData['enabled'];
+
+    /**
+     * INSTALLED
+     */
+    $updatedModuleData['installed'] = 'string';
+    test('installed > string', apiTest(
+        'PUT',
+        'modules.update',
+        422,
+        $updatedModuleData,
+        ['errors' => ['installed']],
+        ['errors' => ['installed' => ['The installed field must be true or false.']]],
+    ));
+
+    $updatedModuleData['installed'] = '';
+    test('installed > empty string', apiTest(
+        'PUT',
+        'modules.update',
+        422,
+        $updatedModuleData,
+        ['errors' => ['installed']],
+        ['errors' => ['installed' => ['The installed field is required.']]],
+    ));
+
+    $updatedModuleData['installed'] = [];
+    test('installed > empty array', apiTest(
+        'PUT',
+        'modules.update',
+        422,
+        $updatedModuleData,
+        ['errors' => ['installed']],
+        ['errors' => ['installed' => ['The installed field is required.']]],
+    ));
+
+    $updatedModuleData['installed'] = null;
+    test('installed > null', apiTest(
+        'PUT',
+        'modules.update',
+        422,
+        $updatedModuleData,
+        ['errors' => ['installed']],
+        ['errors' => ['installed' => ['The installed field is required.']]],
+    ));
+
+    $updatedModuleData['installed'] = updatedModuleData['installed'];
 });
