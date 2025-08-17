@@ -1,0 +1,11 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .p-button[ad-type='#{$type}'] {
+    @include entity-button-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-focus-color-new) !important,
+      var(--#{$type}-item-selected-color-new) !important
+    );
+  }
+}

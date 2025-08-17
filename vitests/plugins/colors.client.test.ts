@@ -6,7 +6,7 @@ import colorsClientPlugin from '../../nuxt/plugins/colors.client'
 
 vi.mock('atomic', () => ({
   colorKeys: ['foo'],
-  colorTypes: ['bar'],
+  colorShades: ['bar'],
   cookieGetItem: vi.fn().mockReturnValue(undefined),
   localStorageGetItem: vi.fn().mockReturnValue('localValue'),
   cookieSetItem: vi.fn(),

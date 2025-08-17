@@ -1,0 +1,19 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .p-datepicker[ad-type='#{$type}'] {
+    @include entity-calendar-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-focus-color-new) !important
+    );
+  }
+
+  .p-datepicker-panel.#{$type} {
+    @include entity-datepicker-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-focus-color-new) !important,
+      var(--#{$type}-item-selected-color-new) !important,
+      var(--#{$type}-item-highlight-color-new) !important
+    );
+  }
+}

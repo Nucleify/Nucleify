@@ -1,5 +1,3 @@
-import type { Ref } from 'vue'
-
 import type { AdTypeType, ColorType, ElementAppendTo } from 'atomic'
 
 export interface ColorPickerInterface {
@@ -23,9 +21,4 @@ export interface ColorPickerInterface {
   pt?: object
   ptOptions?: object
   unstyled?: boolean
-}
-
-export interface UseColorPickerInterface {
-  itemColor: Ref<string | undefined>
-  setColorValues: () => void
 }
