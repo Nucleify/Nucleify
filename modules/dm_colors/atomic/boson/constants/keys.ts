@@ -13,13 +13,3 @@ export const colorKeys: string[] = [
   'task',
   'technology',
 ]
-
-export const colorTypes: string[] = [
-  'color',
-  'dark-color',
-  'highlight-color',
-  'focus-color',
-  'secondary-color',
-  'selected-color',
-  'hover-color',
-]

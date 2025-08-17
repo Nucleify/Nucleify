@@ -1,6 +1,6 @@
 import { darkenColor, setColorOpacity } from 'atomic'
 
-export const createColorTypes = (colorValue: string) => ({
+export const createcolorShades = (colorValue: string) => ({
   '': colorValue,
   dark: darkenColor(colorValue, 60),
   hover: darkenColor(colorValue, 10),
