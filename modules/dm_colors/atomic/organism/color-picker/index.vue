@@ -1,7 +1,6 @@
 <template>
-  <ColorPicker
-    :model-value="props.modelValue"
-    @update:model-value="onUpdateModelValue"
+  <ad-color-picker
+    v-model="itemColor"
     :ad-type="props.adType"
     :default-color="props.defaultColor"
     :default-value="props.defaultValue"
@@ -25,12 +24,14 @@
 </template>
 
 <script setup lang="ts">
-import type { ColorPickerInterface } from 'atomic'
+import type { DMColorPickerInterface } from 'atomic'
+import { useColorPicker } from 'atomic'
 
-const props = defineProps<ColorPickerInterface>()
-const emit = defineEmits(['update:modelValue'])
+const props = defineProps<DMColorPickerInterface>()
 
-function onUpdateModelValue(value: string) {
-  emit('update:modelValue', value)
-}
+const { itemColor, setColorValues } = useColorPicker(props.adType!)
+
+watchEffect(() => {
+  setColorValues()
+})
 </script>
