@@ -10,7 +10,7 @@
   }
 }
 
-@mixin dock-radiobutton-styles($not-checked-color, $checked-color) {
+@mixin entity-dock-radiobutton-styles($not-checked-color, $checked-color) {
   background: $not-checked-color;
 
   &:checked {

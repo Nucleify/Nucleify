@@ -1,8 +1,6 @@
 @import 'mixins';
 
-@each $type in main, activity, article, card, contact, feature, file, link,
-  money, question, task, technology, user
-{
+@each $type in $ad-types {
   .p-radiobutton[ad-type='#{$type}'] {
     @include entity-radiobutton-styles(
       var(--#{$type}-item-color-new) !important
@@ -17,7 +15,7 @@
     .dock-position-buttons
     div[ad-type='#{$type}']
     input[type='radio'] {
-    @include dock-radiobutton-styles(
+    @include entity-dock-radiobutton-styles(
       #ffffff15,
       var(--#{$type}-item-color-new) !important
     );
