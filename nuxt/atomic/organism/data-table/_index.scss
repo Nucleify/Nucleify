@@ -1,5 +1,3 @@
-@import 'mixins';
-
 .p-datatable {
   min-height: 595px;
   display: flex;
@@ -35,18 +33,6 @@
 
   &:not(:has(.p-skeleton)) {
     margin-top: 4px;
-  }
-
-  @each $type in activity, article, card, contact, feature, file, link, money,
-    question, task, technology, user
-  {
-    &[ad-type='#{$type}'] {
-      @include entity-datatable-styles(
-        var(--#{$type}-item-color-new) !important,
-        var(--#{$type}-item-selected-color-new) !important,
-        var(--#{$type}-item-highlight-color-new) !important
-      );
-    }
   }
 
   .p-datatable-header-cell {
