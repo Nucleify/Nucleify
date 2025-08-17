@@ -18,7 +18,7 @@
       <ul class="settings-card-item-list">
         <li v-for="item in colorList" :key="item" class="settings-card-item">
           <ad-label :label="item" :for="item" />
-          <ad-color-picker :ad-type="item.toLowerCase()" />
+          <dm-color-picker :ad-type="item.toLowerCase()" />
         </li>
       </ul>
     </template>

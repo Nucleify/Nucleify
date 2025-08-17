@@ -1,7 +1,7 @@
 import {
   applyColorsWithNewSuffix,
   colorKeys,
-  colorTypes,
+  colorShades,
   cookieGetItem,
   cookieSetItem,
   localStorageGetItem,
@@ -18,7 +18,7 @@ export default defineNuxtPlugin(() => {
     }
 
     colorKeys.forEach((item: string): void =>
-      colorTypes.forEach((state: string): void => {
+      colorShades.forEach((state: string): void => {
         const key = `${item}-item-${state}`
         const localStorageValue = localStorageGetItem(key)
         const cookieValue = cookieGetItem(key)

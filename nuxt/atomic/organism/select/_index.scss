@@ -1,24 +1,3 @@
-@import 'mixins';
-
-@each $type in main, activity, article, card, contact, feature, file, link,
-  money, question, task, technology, user
-{
-  .p-select[ad-type='#{$type}'] {
-    @include entity-select-styles(
-      var(--#{$type}-item-color-new) !important,
-      var(--#{$type}-item-focus-color-new) !important
-    );
-  }
-
-  .p-select-panel.#{$type} {
-    @include entity-select-item-styles(
-      var(--#{$type}-item-color-new) !important,
-      var(--#{$type}-item-selected-color-new) !important,
-      var(--#{$type}-item-highlight-color-new) !important
-    );
-  }
-}
-
 .p-select-items {
   padding: 0;
 }
