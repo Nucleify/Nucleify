@@ -1,17 +1,21 @@
 <template>
   <div class="panel-container settings-panel-container">
     <template v-if="!isClient">
-      <skeleton-settings-card v-for="i in 2" :key="i" />
+      <dm-skeleton-settings-card v-for="i in 2" :key="i" />
     </template>
     <client-only>
-      <color-settings />
-      <display-charts />
+      <dm-color-settings />
+      <dm-display-charts />
     </client-only>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ColorSettings, DisplayCharts, SkeletonSettingsCard } from 'atomic'
+import {
+  DmColorSettings,
+  DmDisplayCharts,
+  DmSkeletonSettingsCard,
+} from './components'
 </script>
 
 <style scoped>
