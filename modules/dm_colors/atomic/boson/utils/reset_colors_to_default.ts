@@ -1,6 +1,6 @@
 import {
   colorKeys,
-  colorTypes,
+  colorShades,
   cookieSetItem,
   defaultColors,
   localStorageSetItem,
@@ -10,7 +10,7 @@ export function resetColorsToDefault(): void {
   if (import.meta.client) {
     console.log('🔄 Resetting all colors to default values...')
     colorKeys.forEach((item: string): void =>
-      colorTypes.forEach((state: string): void => {
+      colorShades.forEach((state: string): void => {
         const key = `${item}-item-${state}`
         const newKey = `${key}-new`
         const defaultValue = defaultColors[key]

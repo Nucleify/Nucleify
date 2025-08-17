@@ -1,4 +1,4 @@
-import { colorKeys, colorTypes } from 'atomic'
+import { colorKeys, colorShades } from 'atomic'
 
 import { defineNuxtPlugin, useHead, useRequestEvent } from 'nuxt/app'
 
@@ -11,7 +11,7 @@ export default defineNuxtPlugin(() => {
       const colorVariables: string[] = []
 
       colorKeys.forEach((item: string) => {
-        colorTypes.forEach((state: string) => {
+        colorShades.forEach((state: string) => {
           const key = `${item}-item-${state}`
           const newKey = `${key}-new`
 
