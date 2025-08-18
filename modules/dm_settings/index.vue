@@ -4,22 +4,8 @@
       <dm-skeleton-settings-card v-for="i in 2" :key="i" />
     </template>
     <client-only>
-      <dm-color-settings />
+      <dm-color-settings-card />
       <dm-display-charts />
     </client-only>
   </div>
 </template>
-
-<script setup lang="ts">
-import {
-  DmColorSettings,
-  DmDisplayCharts,
-  DmSkeletonSettingsCard,
-} from './components'
-</script>
-
-<style scoped>
-:deep(.p-card-body) {
-  padding: 0;
-}
-</style>
