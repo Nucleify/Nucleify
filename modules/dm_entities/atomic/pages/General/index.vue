@@ -31,7 +31,7 @@
       />
     </div>
 
-    <ad-card-chart
+    <dm-entity-chart-card
       entity="Entities"
       class="annual-chart-card"
       :chart-method-type="'annual'"
