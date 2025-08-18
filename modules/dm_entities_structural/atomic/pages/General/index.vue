@@ -49,7 +49,7 @@
       />
     </div>
 
-    <ad-card-chart
+    <dm-entity-chart-card
       entity="Structural"
       class="annual-chart-card"
       :chart-method-type="'annual'"

@@ -5,7 +5,7 @@
     </template>
     <client-only>
       <dm-color-settings-card />
-      <dm-display-charts />
+      <dm-settings-chart-card />
     </client-only>
   </div>
 </template>
