@@ -1,6 +1,6 @@
 <template>
   <div class="panel-container">
-    <ad-card-chart
+    <dm-entity-chart-card
       entity="File"
       class="annual-chart-card"
       :chart-method-type="'annual'"

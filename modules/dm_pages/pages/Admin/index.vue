@@ -40,7 +40,7 @@
       />
     </div>
 
-    <ad-card-chart
+    <dm-entity-chart-card
       entity="Admin"
       class="annual-chart-card"
       :chart-method-type="'annual'"

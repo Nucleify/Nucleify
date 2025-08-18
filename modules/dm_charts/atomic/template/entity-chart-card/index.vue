@@ -2,7 +2,7 @@
   <client-only>
     <ad-card v-if="displayCharts[props.entity]" class="my-card chart-card">
       <template #content>
-        <ad-chart
+        <dm-entity-chart
           :chart-method-type="props.chartMethodType"
           :type="props.type"
           :direction="props.direction"
