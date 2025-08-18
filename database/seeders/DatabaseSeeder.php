@@ -31,5 +31,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(FileSeeder::class);
         $this->showMessage('Files seeding completed.', $this->command);
+
+        $this->call(DocumentationSeeder::class);
+        $this->showMessage('Documentation seeding completed.', $this->command);
     }
 }
