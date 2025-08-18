@@ -39,9 +39,7 @@
 import { storeToRefs } from 'pinia'
 import { ref } from 'vue'
 
-import { displayChartList } from 'atomic'
-
-import { useDisplayChartsStore } from '~/stores/display_charts'
+import { displayChartList, useDisplayChartsStore } from 'atomic'
 
 const displayChartsStore = useDisplayChartsStore()
 const displayCharts = storeToRefs(displayChartsStore)

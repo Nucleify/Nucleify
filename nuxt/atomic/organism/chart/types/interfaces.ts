@@ -1,21 +1,6 @@
 import type { CanvasHTMLAttributes } from 'vue'
 
-import type {
-  ActivityLogObjectInterface,
-  ArticleObjectInterface,
-  CardObjectInterface,
-  ChartMethodType,
-  ChartType,
-  ContactObjectInterface,
-  FeatureObjectInterface,
-  FileObjectInterface,
-  LinkObjectInterface,
-  MoneyObjectInterface,
-  QuestionObjectInterface,
-  TaskObjectInterface,
-  TechnologyObjectInterface,
-  UserObjectInterface,
-} from 'atomic'
+import type { ChartMethodType, ChartType } from 'atomic'
 
 export interface ChartInterface {
   type: ChartType
@@ -30,41 +15,5 @@ export interface ChartInterface {
   ptOptions?: object
   direction?: string
   chartMethodType: ChartMethodType
-  activityLogData?: ActivityLogObjectInterface[]
-  articleData?: ArticleObjectInterface[]
-  cardData?: CardObjectInterface[]
-  contactData?: ContactObjectInterface[]
-  featureData?: FeatureObjectInterface[]
-  fileData?: FileObjectInterface[]
-  linkData?: LinkObjectInterface[]
-  moneyData?: MoneyObjectInterface[]
-  questionData?: QuestionObjectInterface[]
-  taskData?: TaskObjectInterface[]
-  technologyData?: TechnologyObjectInterface[]
-  userData?: UserObjectInterface[]
   chartClass?: string
-  example?: boolean
-}
-
-export interface DisplayChartsInterface {
-  [key: string]: boolean
-  Activity: boolean
-  Admin: boolean
-  Article: boolean
-  Contact: boolean
-  Card: boolean
-  Feature: boolean
-  File: boolean
-  Link: boolean
-  Money: boolean
-  Question: boolean
-  Structural: boolean
-  Task: boolean
-  Technology: boolean
-}
-
-export interface UseDisplayChartsInterface {
-  display: DisplayChartsInterface
-  displayChartsToggle: (action: string) => void
-  setDefaultChartsDisplay: (initial?: boolean, reload?: boolean) => void
 }
