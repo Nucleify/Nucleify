@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <ad-card v-if="displayCharts[props.entity]" class="my-card chart-card">
+    <ad-card v-if="displayCharts[props.entity]" class="my-card entity-chart-card">
       <template #content>
         <dm-entity-chart
           :chart-method-type="props.chartMethodType"
@@ -27,11 +27,10 @@
 </template>
 
 <script setup lang="ts">
-import type { CardChartInterface } from 'atomic'
+import type { DMEntityChartCardInterface } from 'atomic'
+import { useDisplayChartsStore } from 'atomic'
 
-import { useDisplayChartsStore } from '~/stores/display_charts'
-
-const props = defineProps<CardChartInterface>()
+const props = defineProps<DMEntityChartCardInterface>()
 
 const displayCharts = useDisplayChartsStore()
 </script>
