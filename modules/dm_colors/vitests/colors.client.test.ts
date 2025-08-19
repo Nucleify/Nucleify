@@ -1,8 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { applyColorsWithNewSuffix, cookieSetItem } from 'atomic'
+import * as atomic from 'atomic'
 
-import colorsClientPlugin from '../../nuxt/plugins/colors.client'
+import type { NuxtApp } from 'nuxt/app'
+import { colorsClientPlugin } from '../plugins'
 
 vi.mock('atomic', () => ({
   colorKeys: ['foo'],
@@ -30,13 +31,16 @@ describe('colors.client plugin', (): void => {
   it('calls applyColorsWithNewSuffix and syncs localStorage/cookies', (): void => {
     const addEventListenerSpy = vi.spyOn(document, 'addEventListener')
 
-    colorsClientPlugin()
+    colorsClientPlugin({} as NuxtApp)
 
     expect(addEventListenerSpy).toHaveBeenCalledWith(
       'DOMContentLoaded',
-      applyColorsWithNewSuffix
+      atomic.applyColorsWithNewSuffix
     )
-    expect(applyColorsWithNewSuffix).toHaveBeenCalled()
-    expect(cookieSetItem).toHaveBeenCalledWith('foo-item-bar', 'localValue')
+    expect(atomic.applyColorsWithNewSuffix).toHaveBeenCalled()
+    expect(atomic.cookieSetItem).toHaveBeenCalledWith(
+      'foo-item-bar',
+      'localValue'
+    )
   })
 })
