@@ -10,7 +10,7 @@
           class="refresh-button"
           rounded
           text
-          @click="displayChartsStore.setAllTrue()"
+          @click="displayChartsStore.setAllTo(true)"
         />
       </div>
     </template>
