@@ -1,12 +1,12 @@
-import type { StoreKeyType, StoreStatesInterface } from 'atomic'
+import type { StoreStateKeyType, StoreStatesInterface } from 'atomic'
 
 export function initialStoreState<T>(
-  keys: StoreKeyType[],
+  keys: StoreStateKeyType[],
   initialValue: T
 ): StoreStatesInterface<T> {
   const state: StoreStatesInterface<T> = {} as StoreStatesInterface<T>
 
-  keys.forEach((key: StoreKeyType): void => {
+  keys.forEach((key: StoreStateKeyType): void => {
     state[key] = initialValue
   })
 

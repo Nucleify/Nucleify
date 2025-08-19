@@ -1,4 +1,4 @@
-export type StoreKeyType = string
+export type StoreStateKeyType = string
 export type StoreStateType =
   | string
   | number

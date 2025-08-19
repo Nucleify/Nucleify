@@ -1,5 +1,5 @@
-import type { StoreKeyType } from './variables'
+import type { StoreStateKeyType } from './variables'
 
 export interface StoreStatesInterface<T> {
-  [key: StoreKeyType]: T
+  [key: StoreStateKeyType]: T
 }
