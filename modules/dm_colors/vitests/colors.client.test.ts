@@ -1,8 +1,8 @@
+import type { NuxtApp } from 'nuxt/app'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import * as atomic from 'atomic'
 
-import type { NuxtApp } from 'nuxt/app'
 import { colorsClientPlugin } from '../plugins'
 
 vi.mock('atomic', () => ({

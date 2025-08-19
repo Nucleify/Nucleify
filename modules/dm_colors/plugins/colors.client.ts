@@ -1,3 +1,5 @@
+import { defineNuxtPlugin } from 'nuxt/app'
+
 import {
   applyColorsWithNewSuffix,
   colorKeys,
@@ -6,8 +8,6 @@ import {
   cookieSetItem,
   localStorageGetItem,
 } from 'atomic'
-
-import { defineNuxtPlugin } from 'nuxt/app'
 
 export default defineNuxtPlugin(() => {
   if (import.meta.client) {
