@@ -6,7 +6,7 @@
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :contact-data="results"
+      :data="{ contact: results }"
       :chart-class="'h-30rem'"
       :loading="loading"
     />

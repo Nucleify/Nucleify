@@ -17,19 +17,23 @@ import type {
 
 export interface DMEntityChartInterface extends ChartInterface {
   chartMethodType: ChartMethodType
-  activityLogData?: ActivityLogObjectInterface[]
-  articleData?: ArticleObjectInterface[]
-  cardData?: CardObjectInterface[]
-  contactData?: ContactObjectInterface[]
-  featureData?: FeatureObjectInterface[]
-  fileData?: FileObjectInterface[]
-  linkData?: LinkObjectInterface[]
-  moneyData?: MoneyObjectInterface[]
-  questionData?: QuestionObjectInterface[]
-  taskData?: TaskObjectInterface[]
-  technologyData?: TechnologyObjectInterface[]
-  userData?: UserObjectInterface[]
+  data?: DMEntityChartDataInterface
   example?: boolean
+}
+
+export interface DMEntityChartDataInterface {
+  activity?: ActivityLogObjectInterface[]
+  article?: ArticleObjectInterface[]
+  card?: CardObjectInterface[]
+  contact?: ContactObjectInterface[]
+  feature?: FeatureObjectInterface[]
+  file?: FileObjectInterface[]
+  link?: LinkObjectInterface[]
+  money?: MoneyObjectInterface[]
+  question?: QuestionObjectInterface[]
+  task?: TaskObjectInterface[]
+  technology?: TechnologyObjectInterface[]
+  user?: UserObjectInterface[]
 }
 
 export interface DisplayChartsInterface {
