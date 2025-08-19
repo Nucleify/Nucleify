@@ -2,23 +2,23 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import * as atomic from 'atomic'
 
-describe('cookie.getItem', (): void => {
+describe('localStorageGetItem', (): void => {
   beforeEach((): void => {
     globalThis.__TEST_CLIENT__ = true
 
-    document.cookie = 'key=stored'
+    localStorage.clear()
   })
 
   it('returns value when key exists', (): void => {
-    document.cookie = 'key=stored'
+    localStorage.setItem('key', 'stored')
 
-    const result = atomic.cookieGetItem('key')
+    const result = atomic.localStorageGetItem('key')
 
     expect(result).toBe('stored')
   })
 
   it('returns undefined when key is missing', (): void => {
-    const result = atomic.cookieGetItem('missing')
+    const result = atomic.localStorageGetItem('missing')
 
     expect(result).toBeUndefined()
   })
