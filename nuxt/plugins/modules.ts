@@ -12,6 +12,7 @@ import {
   registerDMFiles,
   registerDMMedia,
   registerDMPages,
+  registerDMPerformance,
   registerDMScreenLights,
   registerDMScreenLoader,
   registerDMSettings,
@@ -32,6 +33,7 @@ export default defineNuxtPlugin({
     registerDMFiles(nuxtApp.vueApp)
     registerDMMedia(nuxtApp.vueApp)
     registerDMPages(nuxtApp.vueApp)
+    registerDMPerformance(nuxtApp.vueApp)
     registerDMScreenLights(nuxtApp.vueApp)
     registerDMScreenLoader(nuxtApp.vueApp)
     registerDMSettings(nuxtApp.vueApp)

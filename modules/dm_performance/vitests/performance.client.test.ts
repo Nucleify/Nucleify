@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import performanceClientPlugin from '../../nuxt/plugins/performance.client'
+import * as atomic from 'atomic'
 
-type NuxtAppStub = Parameters<typeof performanceClientPlugin>[0]
+type NuxtAppStub = Parameters<typeof atomic.performanceClientPlugin>[0]
 const nuxtAppStub = {} as unknown as NuxtAppStub
 
 describe('performance.client plugin', (): void => {
@@ -25,7 +25,7 @@ describe('performance.client plugin', (): void => {
     document.body.appendChild(link1)
     document.body.appendChild(link2)
 
-    performanceClientPlugin(nuxtAppStub)
+    atomic.performanceClientPlugin(nuxtAppStub)
 
     expect(link1.getAttribute('media')).not.toBe('print')
     expect(link2.getAttribute('media')).toBe('print')
@@ -37,7 +37,7 @@ describe('performance.client plugin', (): void => {
 
     document.body.appendChild(img)
 
-    performanceClientPlugin(nuxtAppStub)
+    atomic.performanceClientPlugin(nuxtAppStub)
 
     expect(['auto', 'lazy']).toContain(img.loading)
     expect(['auto', 'async']).toContain(img.decoding)
@@ -52,7 +52,7 @@ describe('performance.client plugin', (): void => {
       this.observe = observe
     }) as unknown as typeof ResizeObserver
 
-    performanceClientPlugin(nuxtAppStub)
+    atomic.performanceClientPlugin(nuxtAppStub)
 
     expect(observe).toHaveBeenCalledWith(document.body)
   })
