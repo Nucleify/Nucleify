@@ -1,34 +1,31 @@
 import { defineStore } from 'pinia'
 
-import type { DMDisplayChartsStateInterface } from 'atomic'
+import type {
+  DMDisplayChartsStateInterface,
+  DMDisplayChartsStateKeyType,
+} from 'atomic'
+import { displayChartList } from 'atomic'
 
 export const useDisplayChartsStore = defineStore('displayCharts', {
-  state: (): DMDisplayChartsStateInterface => ({
-    Activity: true,
-    Admin: true,
-    Article: true,
-    Card: true,
-    Contact: true,
-    Entities: true,
-    Feature: true,
-    File: true,
-    Link: true,
-    Money: true,
-    Question: true,
-    Structural: true,
-    Task: true,
-    Technology: true,
-  }),
+  state: (): DMDisplayChartsStateInterface => {
+    return displayChartList.reduce<DMDisplayChartsStateInterface>(
+      (state, key) => {
+        state[key as DMDisplayChartsStateKeyType] = true
+        return state
+      },
+      {} as DMDisplayChartsStateInterface
+    )
+  },
   actions: {
-    toggle(key: keyof DMDisplayChartsStateInterface) {
-      this[key] = !this[key]
+    toggle(key: DMDisplayChartsStateKeyType): void {
+      if (key in this) {
+        this[key] = !this[key]
+      }
     },
-    setAllTrue() {
-      ;(Object.keys(this) as (keyof DMDisplayChartsStateInterface)[]).forEach(
-        (k) => {
-          this[k] = true
-        }
-      )
+    setAllTrue(): void {
+      displayChartList.forEach((key) => {
+        this[key] = true
+      })
     },
   },
   persist: true,
