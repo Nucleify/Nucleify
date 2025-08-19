@@ -1,6 +1,6 @@
+import { defineNuxtPlugin } from 'nuxt/app'
 import type { App } from 'vue'
 
-import { defineNuxtPlugin } from 'nuxt/app'
 import { DMColorPicker, DMColorSettingsCard } from './atomic'
 import { colorsClientPlugin, colorsServerPlugin } from './plugins'
 
