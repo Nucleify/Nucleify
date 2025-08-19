@@ -6,7 +6,7 @@
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :activity-log-data="results"
+      :data="{ activity: results }"
       :chart-class="'h-30rem'"
       :loading="loading"
     />
