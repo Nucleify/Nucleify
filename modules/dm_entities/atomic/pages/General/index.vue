@@ -37,9 +37,11 @@
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :article-data="articles"
-      :contact-data="contacts"
-      :money-data="money"
+      :data="{ 
+        article: articles, 
+        contact: contacts, 
+        money: money 
+      }"
       :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />

@@ -1,13 +1,13 @@
 <template>
-  <ad-chart 
-    :data="chartData" 
-    :options="chartOptions" 
-    :type="props.type" 
-    :chart-method-type="props.chartMethodType"
-    :direction="props.direction" 
-    :chart-class="props.chartClass" 
-    :example="props.example"
-  />
+	<ad-chart 
+		:data="chartData" 
+		:options="chartOptions" 
+		:type="props.type" 
+		:chart-method-type="props.chartMethodType"
+		:direction="props.direction" 
+		:chart-class="props.chartClass" 
+		:example="props.example"
+	/>
 </template>
 
 <script setup lang="ts">
@@ -22,19 +22,19 @@ const chartOptions = ref(setChartOptions(props.type, props.direction))
 onMounted(() => {
   const initialData = setChartData(
     props.chartMethodType,
-    props?.activityLogData,
-    props?.articleData,
-    props?.cardData,
-    props?.contactData,
-    props?.featureData,
-    props?.fileData,
-    props?.linkData,
-    props?.moneyData,
-    props?.questionData,
-    props?.taskData,
-    props?.technologyData,
-    props?.userData,
-    props?.example
+    props.data?.activity,
+    props.data?.article,
+    props.data?.card,
+    props.data?.contact,
+    props.data?.feature,
+    props.data?.file,
+    props.data?.link,
+    props.data?.money,
+    props.data?.question,
+    props.data?.task,
+    props.data?.technology,
+    props.data?.user,
+    props.example
   )
   if (initialData) chartData.value = initialData
 
@@ -43,18 +43,18 @@ onMounted(() => {
     intervalId = setInterval(() => {
       const randomizedData = setChartData(
         props.chartMethodType,
-        props?.activityLogData,
-        props?.articleData,
-        props?.cardData,
-        props?.contactData,
-        props?.featureData,
-        props?.fileData,
-        props?.linkData,
-        props?.moneyData,
-        props?.questionData,
-        props?.taskData,
-        props?.technologyData,
-        props?.userData,
+        props.data?.activity,
+        props.data?.article,
+        props.data?.card,
+        props.data?.contact,
+        props.data?.feature,
+        props.data?.file,
+        props.data?.link,
+        props.data?.money,
+        props.data?.question,
+        props.data?.task,
+        props.data?.technology,
+        props.data?.user,
         true
       )
       if (randomizedData) chartData.value = randomizedData
@@ -66,40 +66,30 @@ onMounted(() => {
 })
 
 watch(
-  () => [
-    props.chartMethodType,
-    props?.activityLogData,
-    props?.articleData,
-    props?.cardData,
-    props?.contactData,
-    props?.featureData,
-    props?.fileData,
-    props?.linkData,
-    props?.moneyData,
-    props?.questionData,
-    props?.taskData,
-    props?.technologyData,
-    props?.userData,
-  ],
+  () => ({
+    method: props.chartMethodType,
+    example: props.example,
+    data: props.data,
+  }),
   () => {
     const watchedData = setChartData(
       props.chartMethodType,
-      props?.activityLogData,
-      props?.articleData,
-      props?.cardData,
-      props?.contactData,
-      props?.featureData,
-      props?.fileData,
-      props?.linkData,
-      props?.moneyData,
-      props?.questionData,
-      props?.taskData,
-      props?.technologyData,
-      props?.userData,
-      props?.example
+      props.data?.activity,
+      props.data?.article,
+      props.data?.card,
+      props.data?.contact,
+      props.data?.feature,
+      props.data?.file,
+      props.data?.link,
+      props.data?.money,
+      props.data?.question,
+      props.data?.task,
+      props.data?.technology,
+      props.data?.user,
+      props.example
     )
     if (watchedData) chartData.value = watchedData
   },
-  { immediate: true }
+  { immediate: true, deep: true }
 )
 </script>
