@@ -2,17 +2,17 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import * as atomic from 'atomic'
 
-describe('sessionStorage.setItem', (): void => {
+describe('localStorageSetItem', (): void => {
   beforeEach((): void => {
     globalThis.__TEST_CLIENT__ = true
 
-    sessionStorage.clear()
+    localStorage.clear()
   })
 
   it('sets the item', (): void => {
-    atomic.sessionStorageSetItem('key', 'value')
+    atomic.localStorageSetItem('key', 'value')
 
-    const storedValue = sessionStorage.getItem('key')
+    const storedValue = localStorage.getItem('key')
 
     expect(storedValue).toBe('value')
   })
