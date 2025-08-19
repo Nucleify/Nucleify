@@ -4,30 +4,22 @@ import type {
   DMDisplayChartsStateInterface,
   DMDisplayChartsStateKeyType,
 } from 'atomic'
-import { displayChartList } from 'atomic'
-
-function initialStoreState(): DMDisplayChartsStateInterface {
-  const state: DMDisplayChartsStateInterface = {}
-
-  displayChartList.forEach((key: DMDisplayChartsStateKeyType): void => {
-    state[key] = true
-  })
-
-  return state
-}
+import {
+  displayChartList,
+  initialStoreState,
+  setAllStatesTo,
+  toggleState,
+} from 'atomic'
 
 export const useDisplayChartsStore = defineStore('displayCharts', {
-  state: initialStoreState,
+  state: (): DMDisplayChartsStateInterface =>
+    initialStoreState(displayChartList, true),
   actions: {
     toggle(key: DMDisplayChartsStateKeyType): void {
-      if (key in this) {
-        this[key] = !this[key]
-      }
+      this[key] = toggleState(this[key])
     },
-    setAllTrue(): void {
-      displayChartList.forEach((key: DMDisplayChartsStateKeyType): void => {
-        this[key] = true
-      })
+    setAllTo(value: boolean): void {
+      this.$state = setAllStatesTo(this, value)
     },
   },
   persist: true,
