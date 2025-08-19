@@ -6,16 +6,18 @@ import type {
 } from 'atomic'
 import { displayChartList } from 'atomic'
 
+function initialStoreState(): DMDisplayChartsStateInterface {
+  const state: DMDisplayChartsStateInterface = {}
+
+  displayChartList.forEach((key: DMDisplayChartsStateKeyType): void => {
+    state[key] = true
+  })
+
+  return state
+}
+
 export const useDisplayChartsStore = defineStore('displayCharts', {
-  state: (): DMDisplayChartsStateInterface => {
-    return displayChartList.reduce<DMDisplayChartsStateInterface>(
-      (state, key) => {
-        state[key as DMDisplayChartsStateKeyType] = true
-        return state
-      },
-      {} as DMDisplayChartsStateInterface
-    )
-  },
+  state: initialStoreState,
   actions: {
     toggle(key: DMDisplayChartsStateKeyType): void {
       if (key in this) {
@@ -23,7 +25,7 @@ export const useDisplayChartsStore = defineStore('displayCharts', {
       }
     },
     setAllTrue(): void {
-      displayChartList.forEach((key) => {
+      displayChartList.forEach((key: DMDisplayChartsStateKeyType): void => {
         this[key] = true
       })
     },
