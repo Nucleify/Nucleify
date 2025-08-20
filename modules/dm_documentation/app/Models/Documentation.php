@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use App\Contracts\DocumentaionContract;
+use App\Contracts\DocumentationContract;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,7 +28,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Builder scopeGetByVersion()
  * @property Builder scopeGetByFile()
  */
-class Documentation extends Model // implements DocumentationContract
+class Documentation extends Model implements DocumentationContract
 {
     use HasFactory;
 
