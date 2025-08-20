@@ -8,8 +8,10 @@ import type {
 
 export function useToast(): UseToastInterface {
   const nuxtApp = useNuxtApp()
-  const getToast = () => nuxtApp.vueApp.config.globalProperties.$toast
-  const toast = getToast()
+  const getToast = () => {
+    if (!import.meta.client) return
+    return nuxtApp.vueApp.config.globalProperties.$toast
+  }
 
   function closeToast(): void {
     if (import.meta.client) {
@@ -47,6 +49,8 @@ export function useToast(): UseToastInterface {
         break
     }
 
+    const toast = getToast()
+    if (!toast?.add) return
     toast.add({
       severity: severity,
       summary: message,
