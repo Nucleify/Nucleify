@@ -4,7 +4,6 @@ import type {
   ElementAppendTo,
   ElementSizeType,
   ElementVariantType,
-  ObjectNameType,
 } from 'atomic'
 
 export interface PasswordInterface {

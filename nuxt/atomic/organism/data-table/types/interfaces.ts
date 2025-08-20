@@ -6,9 +6,7 @@ import type {
   ElementSizeType,
   ElementVariantType,
   LoadingType,
-  ObjectNameType,
   OpenDialogFunctionType,
-  SelectedObjectType,
 } from 'atomic'
 
 import type {

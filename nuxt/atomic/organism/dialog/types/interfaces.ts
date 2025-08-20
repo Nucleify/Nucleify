@@ -6,9 +6,7 @@ import type {
   ConfirmDialogFunctionType,
   DialogPositionType,
   ElementAppendTo,
-  ObjectType,
   OpenDialogFunctionType,
-  SelectedObjectType,
   VisibleType,
 } from 'atomic'
 
