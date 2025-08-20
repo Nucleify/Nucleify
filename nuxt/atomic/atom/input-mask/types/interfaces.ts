@@ -1,4 +1,4 @@
-import type { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
+import type { AdTypeType } from 'atomic'
 
 export interface InputMaskInterface {
   adType?: AdTypeType

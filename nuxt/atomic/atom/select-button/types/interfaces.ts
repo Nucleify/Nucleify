@@ -1,4 +1,4 @@
-import type { AdTypeType, ElementSizeType } from 'atomic'
+import type { AdTypeType } from 'atomic'
 
 export interface SelectButtonInterface {
   adType?: AdTypeType

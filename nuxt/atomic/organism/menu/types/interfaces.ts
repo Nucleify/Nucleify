@@ -1,4 +1,4 @@
-import type { ElementAppendTo, OpenMenuFunctionType } from 'atomic'
+import type { OpenMenuFunctionType } from 'atomic'
 
 import type { MenuItem } from 'primevue/menuitem'
 

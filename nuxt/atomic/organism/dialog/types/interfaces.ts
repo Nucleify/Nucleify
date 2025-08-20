@@ -5,7 +5,6 @@ import type {
   CloseDialogType,
   ConfirmDialogFunctionType,
   DialogPositionType,
-  ElementAppendTo,
   OpenDialogFunctionType,
   VisibleType,
 } from 'atomic'

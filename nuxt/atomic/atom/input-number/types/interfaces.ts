@@ -1,9 +1,4 @@
-import type {
-  AdTypeType,
-  ElementDirectionType,
-  ElementSizeType,
-  ElementVariantType,
-} from 'atomic'
+import type { AdTypeType } from 'atomic'
 
 import type { RoundingMode } from 'primevue/inputnumber'
 
