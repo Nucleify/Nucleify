@@ -1,5 +1,7 @@
 import type { App } from 'vue'
 
+import { isClient, isDesktop, isMobile } from 'atomic'
+
 import {
   contributorsImgUrl,
   imgUrl,
@@ -12,6 +14,13 @@ import {
 
 export function registerDMGlobals(app: App): void {
   const prefix = appEnv() === 'production' ? '/build' : ''
+
+  /**
+   *  dm_media
+   */
+  app.config.globalProperties.isClient = isClient
+  app.config.globalProperties.isMobile = isMobile
+  app.config.globalProperties.isDesktop = isDesktop
 
   /**
    *  Images urls
