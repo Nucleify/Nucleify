@@ -1,7 +1,5 @@
 import type { CarouselResponsiveOptions } from 'primevue'
 
-import type { ElementDirectionType } from 'atomic'
-
 export interface CarouselInterface {
   value?: unknown[]
   page?: number

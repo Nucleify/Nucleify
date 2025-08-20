@@ -3,8 +3,6 @@ import type { InputHTMLAttributes, TableHTMLAttributes } from 'vue'
 import type {
   ActionInterface,
   ColorItemStyleInterface,
-  ElementSizeType,
-  ElementVariantType,
   LoadingType,
   OpenDialogFunctionType,
 } from 'atomic'

@@ -1,4 +1,4 @@
-import type { AdTypeType, ColorType, ElementAppendTo } from 'atomic'
+import type { AdTypeType, ColorType } from 'atomic'
 
 export interface ColorPickerInterface {
   adType?: AdTypeType

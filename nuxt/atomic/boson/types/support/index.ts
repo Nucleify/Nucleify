@@ -1,5 +1,4 @@
 export * from './Actions'
-export * from './Element'
 export * from './Form'
 export * from './Get'
 export * from './Input'

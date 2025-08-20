@@ -6,7 +6,6 @@ import type {
   ButtonOnClickType,
   ButtonSeverityType,
   ButtonType,
-  ElementSizeType,
   LoadingType,
   PositionType,
 } from 'atomic'
