@@ -24,6 +24,8 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         ->in(
             'Feature/Api/Module/HTTP302Test.php',
 
+            'Feature/Api/ModuleInstaller/HTTP302Test.php',
+
             'Database/Models'
         );
 
@@ -36,9 +38,14 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/Module/HTTP422PostTest.php',
             'Feature/Api/Module/HTTP422PutTest.php',
 
+            'Feature/Api/ModuleInstaller/HTTP200Test.php',
+            'Feature/Api/ModuleInstaller/HTTP422PostTest.php',
+            'Feature/Api/ModuleInstaller/HTTP500Test.php',
+
             'Database/Factories',
             'Database/Migrations',
 
-            'Feature/Controllers'
+            'Feature/Controllers',
+            'Feature/Services',
         );
 }
