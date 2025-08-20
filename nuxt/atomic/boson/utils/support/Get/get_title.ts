@@ -1,5 +1,3 @@
-import type { ObjectType } from 'atomic'
-
 export function getTitle(selectedObject: ObjectType): string {
   if (!selectedObject) {
     return 'Unknown Entity'

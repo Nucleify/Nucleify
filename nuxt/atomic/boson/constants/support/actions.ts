@@ -1,7 +1,6 @@
 import type {
   ActionInterface,
   ActionType,
-  ObjectType,
   OpenDialogFunctionType,
 } from 'atomic'
 
