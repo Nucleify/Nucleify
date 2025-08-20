@@ -8,9 +8,9 @@ import {
   storysetImgUrl,
   storysetServicesImgUrl,
   technologiesImgUrl,
-} from 'atomic'
+} from '.'
 
-export function registerGlobalConstants(app: App): void {
+export function registerDMGlobals(app: App): void {
   const prefix = appEnv() === 'production' ? '/build' : ''
 
   /**
