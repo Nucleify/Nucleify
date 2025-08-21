@@ -1,14 +1,11 @@
 import type { Component } from 'vue'
 
 import type {
-  AdTypeType,
   ButtonBadgeSeverityType,
   ButtonOnClickType,
   ButtonSeverityType,
   ButtonType,
-  ElementSizeType,
   LoadingType,
-  PositionType,
 } from 'atomic'
 
 export interface ButtonInterface {

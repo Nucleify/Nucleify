@@ -1,4 +1,4 @@
-import type { AdTypeType, ProgressBarModeType } from 'atomic'
+import type { ProgressBarModeType } from 'atomic'
 
 export interface ProgressBarInterface {
   adType?: AdTypeType
