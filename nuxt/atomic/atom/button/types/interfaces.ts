@@ -6,7 +6,6 @@ import type {
   ButtonSeverityType,
   ButtonType,
   LoadingType,
-  PositionType,
 } from 'atomic'
 
 export interface ButtonInterface {

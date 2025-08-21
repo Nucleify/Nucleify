@@ -1,5 +1,3 @@
-import type { PositionType } from 'atomic'
-
 export interface DividerInterface {
   align?: PositionType | 'center'
   layout?: ElementDirectionType
