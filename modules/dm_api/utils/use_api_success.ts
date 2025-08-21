@@ -1,4 +1,4 @@
-import type { ActionType, CloseDialogType, UseToastInterface } from 'atomic'
+import type { CloseDialogType, UseToastInterface } from 'atomic'
 import { useToast } from 'atomic'
 
 export function useApiSuccess() {

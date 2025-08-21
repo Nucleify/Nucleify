@@ -1,7 +1,6 @@
 import type { InputHTMLAttributes, TableHTMLAttributes } from 'vue'
 
 import type {
-  ActionInterface,
   ColorItemStyleInterface,
   LoadingType,
   OpenDialogFunctionType,

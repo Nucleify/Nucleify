@@ -1,8 +1,4 @@
-import type {
-  ActionInterface,
-  ActionType,
-  OpenDialogFunctionType,
-} from 'atomic'
+import type { OpenDialogFunctionType } from 'atomic'
 
 export const actions = (
   openDialog: OpenDialogFunctionType
