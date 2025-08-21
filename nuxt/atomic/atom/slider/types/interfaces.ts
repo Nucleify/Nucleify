@@ -1,5 +1,3 @@
-import type { AdTypeType, ElementDirectionType } from 'atomic'
-
 export interface SliderInterface {
   adType?: AdTypeType
   modelValue?: number | number[]

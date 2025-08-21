@@ -1,6 +1,8 @@
 import type { NuxtApp } from 'nuxt/app'
 import { defineNuxtPlugin } from 'nuxt/app'
 
+import { registerDMGlobals } from 'atomic'
+
 import {
   registerDMActivity,
   registerDMAnimations,
@@ -10,7 +12,6 @@ import {
   registerDMEntities,
   registerDMEntitiesStructural,
   registerDMFiles,
-  registerDMMedia,
   registerDMPages,
   registerDMPerformance,
   registerDMScreenLights,
@@ -31,7 +32,7 @@ export default defineNuxtPlugin({
     registerDMEntities(nuxtApp.vueApp)
     registerDMEntitiesStructural(nuxtApp.vueApp)
     registerDMFiles(nuxtApp.vueApp)
-    registerDMMedia(nuxtApp.vueApp)
+    registerDMGlobals(nuxtApp.vueApp)
     registerDMPages(nuxtApp.vueApp)
     registerDMPerformance(nuxtApp.vueApp)
     registerDMScreenLights(nuxtApp.vueApp)
