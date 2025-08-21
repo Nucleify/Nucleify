@@ -1,5 +1,3 @@
-import type { AdTypeType } from 'atomic'
-
 export interface RadioButtonInterface {
   adType?: AdTypeType
   value?: unknown

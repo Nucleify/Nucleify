@@ -1,5 +1,3 @@
-import type { AdTypeType } from 'atomic'
-
 export interface SelectButtonInterface {
   adType?: AdTypeType
   modelValue?: number
