@@ -1,12 +1,10 @@
 import type { HTMLAttributes, StyleValue } from 'vue'
 
 import type {
-  ActionType,
   CloseDialogType,
   ConfirmDialogFunctionType,
   DialogPositionType,
   OpenDialogFunctionType,
-  VisibleType,
 } from 'atomic'
 
 import type { DialogBreakpoints } from 'primevue/dialog'
@@ -71,4 +69,10 @@ export interface UseDialogInterface {
   selectedObject: SelectedObjectType
   openDialog: OpenDialogFunctionType
   closeDialog: CloseDialogType
+}
+export interface DialogVisibleInterface {
+  create: VisibleType
+  delete: VisibleType
+  edit: VisibleType
+  show: VisibleType
 }

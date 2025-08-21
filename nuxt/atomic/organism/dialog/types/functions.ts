@@ -1,5 +1,3 @@
-import type { ActionType } from 'atomic'
-
 export type OpenDialogFunctionType = (
   action: ActionType,
   object?: ObjectType
