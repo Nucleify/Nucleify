@@ -1,5 +1,4 @@
 export * from '../../modules'
-export * from '../../vitests/__mocks__'
 export * from './atom'
 export * from './molecule'
 export * from './organism'
