@@ -2,8 +2,6 @@ import type {
   DatePickerModelValueType,
   DatePickerVariant,
   DateSelectionModeType,
-  ElementAppendTo,
-  ElementSizeType,
   HourFormatType,
   IconDisplayType,
   ViewType,

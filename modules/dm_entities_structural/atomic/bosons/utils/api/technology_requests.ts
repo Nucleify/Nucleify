@@ -4,7 +4,6 @@ import type {
   CloseDialogType,
   EntityCountResultsType,
   EntityResultsType,
-  SiteType,
   TechnologyObjectInterface,
   TechnologyRequestsInterface,
   UseLoadingInterface,
