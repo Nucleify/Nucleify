@@ -1,4 +1,4 @@
-export const names = [
+export const languageNames = [
   'Afar',
   'Abkhazian',
   'Avestan',
