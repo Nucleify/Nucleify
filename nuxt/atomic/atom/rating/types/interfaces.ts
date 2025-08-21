@@ -1,5 +1,3 @@
-import type { AdTypeType } from 'atomic'
-
 export interface RatingInterface {
   adType?: AdTypeType
   modelValue?: number

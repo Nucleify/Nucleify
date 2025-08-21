@@ -1,4 +1,5 @@
 import { useRuntimeConfig } from 'nuxt/app'
+
 import type { ConfigMapType, ConfigValueType, RuntimeConfigType } from './types'
 
 class RuntimeConfig {

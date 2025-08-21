@@ -9,7 +9,6 @@ import {
   HomePage,
   LicensePage,
   ServicesPage,
-  SettingsPage,
 } from './pages'
 
 export function registerDMPages(app: App<Element>): void {
@@ -22,5 +21,4 @@ export function registerDMPages(app: App<Element>): void {
     .component('dm-home-page', HomePage)
     .component('dm-license-page', LicensePage)
     .component('dm-services-page', ServicesPage)
-    .component('dm-settings-page', SettingsPage)
 }

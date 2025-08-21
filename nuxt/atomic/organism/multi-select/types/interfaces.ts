@@ -1,9 +1,3 @@
-import type {
-  ElementAppendTo,
-  ElementSizeType,
-  ElementVariantType,
-} from 'atomic'
-
 export interface MultiSelectInterface {
   modelValue?: unknown
   defaultValue?: unknown

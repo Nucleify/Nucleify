@@ -70,7 +70,7 @@
 </template>
 
 <script setup lang="ts">
-import type { DockInterface, PositionType } from 'atomic'
+import type { DockInterface } from 'atomic'
 import {
   checkIsStaff,
   dockItems,
