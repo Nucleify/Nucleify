@@ -1,5 +1,3 @@
-import type { AdTypeType } from 'atomic'
-
 import type { RoundingMode } from 'primevue/inputnumber'
 
 export interface InputNumberInterface {
