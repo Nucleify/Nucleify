@@ -54,8 +54,8 @@ uses()
     ->in('Feature/Api/Upload');
 
 uses()
-    ->group('zip-api')
-    ->in('Feature/Api/Zip');
+    ->group('unzip-api')
+    ->in('Feature/Api/Unzip');
 
 uses()
     ->group('controllers')
