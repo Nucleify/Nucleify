@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['web', 'auth'])->prefix('api')->group(function (): void {
     Route::prefix('files')->group(function (): void {
         Route::controller(ZipController::class)->group(function (): void {
-            Route::post('/zip', 'extract')
-                ->name('files.zip');
+            Route::post('/unzip', 'unzip')
+                ->name('files.unzip');
         });
 
         Route::controller(UploadController::class)->group(function (): void {
