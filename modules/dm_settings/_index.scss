@@ -1,83 +1,42 @@
-.settings-panel-container.panel-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 0.5em;
+@import './components';
 
-  .settings-card {
-    margin: 0;
-    padding: 20px;
-    box-shadow: $secondary-card-box-shadow;
-    border: 1px solid $p-card-border;
+#settings {
+  height: 100vh;
 
-    .p-card-body {
-      padding: 0;
-    }
-    
-    .refresh-button {
-      width: 32px;
-      height: 32px;
-      padding: 0.15em;
+  .panel-container {
+    height: 100%;
+    display: grid;
 
-      span {
-        margin-top: -2px;
-        font-size: 1.5em;
+    .settings-main-card > {
+      width: 100%;  
+
+      .p-card-header {
+        padding: 0 1.5rem;
+
+        h2 {
+          margin-bottom: 0;
+        }
       }
-    }
 
-    h4 {
-      margin: 0;
-    }
-
-    hr {
-      margin: 1em 0;
-    }
-
-    .p-card-content {
-      padding: 0 1px 0 0;
-    }
-
-    .p-colorpicker-preview {
-      max-width: 22px;
-      max-height: 22px;
-      padding: 0;
-    }
-
-    .settings-card-header-container {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1em;
-    }
-
-    .settings-card-item-list {
-      display: flex;
-      flex-direction: column;
-      padding-left: 0;
-      gap: 0.65em;
-      margin: 0;
-
-      .settings-card-item {
-        display: flex;
-        justify-content: space-between;
-        padding-right: 3px;
+      .p-card-body {
+        .p-card-content {
+          display: grid;
+          gap: 1rem;
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
       }
-    }
-  }
-
-  .p-selectbutton {
-    .p-togglebutton {
-      font-size: 10px;
-      padding: 5px 10px;
     }
   }
 
   @media (min-width: $lg) {
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    .panel-container {
+      .settings-main-card {
+        .p-card-body {
+          .p-card-content {
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+          }
+        }
+      }
+    }
   }
-}
-
-.p-colorpicker-panel,
-.p-colorpicker-content {
-  background: white;
-  border: 1px whitesmoke;
-  box-shadow: $my-card-box-shadow;
 }
