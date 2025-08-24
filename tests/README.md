@@ -1,4 +1,4 @@
-# <img src="/public/img/technologies/pest.svg" width="25"> &nbsp;Pest
+# <img src="/nuxt/public/img/technologies/pest.svg" width="25"> &nbsp;Pest
 
 This folder contains [Pest](https://pestphp.com/) tests.
 
