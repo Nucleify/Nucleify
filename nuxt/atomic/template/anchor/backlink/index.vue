@@ -1,6 +1,6 @@
 <template>
   <ad-anchor
-    :href="localePath('/home')"
+    :href="localePath('home')"
     class="back-link"
     icon="prime:chevron-left"
     title="Back to home"

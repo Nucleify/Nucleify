@@ -3,7 +3,7 @@
   <div class="panel-container">
     <div class="tiles grid col-12">
       <ad-tile
-        :href="localePath('/entities/articles')"
+        :href="localePath('entities-articles')"
         :header="t('admin.tiles.article.header')"
         :count="articles?.length"
         icon="prime:comment"
@@ -12,7 +12,7 @@
         ad-type="article"
       />
       <ad-tile
-        :href="localePath('/entities/contacts')"
+        :href="localePath('entities-contacts')"
         :header="t('admin.tiles.contacts.header')"
         :count="contacts?.length"
         icon="prime:user"
@@ -21,7 +21,7 @@
         ad-type="contact"
       />
       <ad-tile
-        :href="localePath('/entities/money')"
+        :href="localePath('entities-money')"
         :header="t('admin.tiles.money.header')"
         :count="money?.length"
         icon="prime:dollar"

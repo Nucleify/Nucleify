@@ -3,7 +3,7 @@
   <div class="panel-container">
     <div class="tiles grid col-12">
       <ad-tile
-        :href="localePath('/structural/cards')"
+        :href="localePath('structural-cards')"
         :header="t('admin.tiles.cards.header')"
         :count="cards?.length"
         icon="prime:stop"
@@ -12,7 +12,7 @@
         ad-type="card"
       />
       <ad-tile
-        :href="localePath('/structural/features')"
+        :href="localePath('structural-features')"
         :header="t('admin.tiles.features.header')"
         :count="features?.length"
         icon="prime:star"
@@ -21,7 +21,7 @@
         ad-type="feature"
       />
       <ad-tile
-        :href="localePath('/structural/questions')"
+        :href="localePath('structural-questions')"
         :header="t('admin.tiles.question.header')"
         :count="questions?.length"
         icon="prime:question"
@@ -30,7 +30,7 @@
         ad-type="question"
       />
       <ad-tile
-        :href="localePath('/structural/technologies')"
+        :href="localePath('structural-technologies')"
         :header="t('admin.tiles.technologies.header')"
         :count="technologies?.length"
         icon="prime:microchip-ai"
@@ -39,7 +39,7 @@
         ad-type="technology"
       />
       <ad-tile
-        :href="localePath('/structural/links')"
+        :href="localePath('structural-links')"
         :header="t('admin.tiles.links.header')"
         :count="links?.length"
         icon="prime:link"

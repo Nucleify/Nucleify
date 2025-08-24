@@ -24,7 +24,7 @@
             <ad-button
               :label="t('home.start.tryButton')"
               class="start-button caterpillar"
-              @click="navigateTo(localePath('/register'))"
+              @click="navigateTo(localePath('register'))"
             />
             <ad-button
               label="GitHub"

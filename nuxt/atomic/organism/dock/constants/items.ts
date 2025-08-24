@@ -26,34 +26,34 @@ const createDockItem = (
   }) as const
 
 const dockData: readonly DockItemInterface[] = [
-  [undefined, undefined, '/home', 'logo', undefined, undefined, true],
-  ['prime:crown', 'admin.dock.adminPanel', '/admin', undefined, 'admin'],
+  [undefined, undefined, 'home', 'logo', undefined, undefined, true],
+  ['pi pi-crown', 'admin.dock.adminPanel', 'admin', undefined, 'admin'],
   [
     'prime:sitemap',
     'admin.dock.structural',
-    '/structural',
+    'structural',
     undefined,
     'structural',
   ],
   [
     'prime:chart-line',
     'admin.dock.dashboard',
-    '/dashboard',
+    'dashboard',
     undefined,
     'dashboard',
   ],
-  ['prime:box', 'admin.dock.entities', '/entities', undefined, 'entities'],
+  ['pi pi-box', 'admin.dock.entities', 'entities', undefined, 'entities'],
   [
     'prime:history',
     'admin.dock.activities',
-    '/activity-log',
+    'activity-log',
     undefined,
     'activity-log',
   ],
   ['prime:envelope disabled-item', 'admin.dock.messages'],
   ['prime:calendar disabled-item', 'admin.dock.calendar'],
   ['prime:user disabled-item', 'admin.dock.profile'],
-  ['prime:cog', 'admin.dock.settings', '/settings', undefined, 'settings'],
+  ['pi pi-cog', 'admin.dock.settings', 'settings', undefined, 'settings'],
   [
     'prime:sign-out',
     'admin.dock.logout',

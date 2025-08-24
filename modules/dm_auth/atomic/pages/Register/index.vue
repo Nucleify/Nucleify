@@ -9,7 +9,7 @@
 
             <ad-paragraph :text="t('auth.register.subtitle')">
               <ad-anchor
-                :href="localePath('/login')"
+                :href="localePath('login')"
                 :label="t('auth.register.highlight')"
               />
             </ad-paragraph>
