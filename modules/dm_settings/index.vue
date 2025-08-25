@@ -1,20 +1,21 @@
 <template>
   <div class="panel-container">
-    <ad-card class="settings-main-card">
-      <template #header>
-        <h2>Settings</h2>
-      </template>
+    <ad-card class="settings-main-card" :id="route.hash.replace('#', '')">
       <template #content>
-        <template v-if="!isClient">
-          <dm-skeleton-settings-card v-for="i in 2" :key="i" />
-        </template>
-        <template v-else>
-          <client-only>
+        <dm-menu-tree />
+        <div class="settings-main-card-content">
+          <template v-if="route.hash === '#theme'">
             <dm-color-settings-card />
             <dm-settings-chart-card />
-          </client-only>
-        </template>
+          </template>
+        </div>
       </template>
     </ad-card>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useRoute } from 'nuxt/app'
+
+const route = useRoute()
+</script>
