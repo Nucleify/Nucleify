@@ -12,6 +12,18 @@ class ModuleSeeder extends Seeder
      */
     public function run(): void
     {
-        Module::factory()->count(10)->create();
+        $installedModules = require_once 'modules/dm_modules/hooks/getInstalledModules.php';
+
+        foreach ($installedModules as $moduleName => $moduleConfig) {
+            $name = is_string($moduleConfig) ? $moduleConfig : ($moduleConfig['name'] ?? $moduleName);
+
+            Module::factory()->create([
+                'installed' => true,
+                'name' => $name,
+                'description' => $moduleConfig['description'] ?? 'Module ' . $description,
+                'version' => $moduleConfig['version'] ?? '0.0.1',
+                'category' => $moduleConfig['category'] ?? 'core',
+            ]);
+        }
     }
 }
