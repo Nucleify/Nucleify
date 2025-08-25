@@ -52,6 +52,12 @@ describe('Instance', function (): void {
             ->toBe($this->model->enabled);
     });
 
+    test('can get installed', function (): void {
+        expect($this->model->getInstalled())
+            ->toBeBool()
+            ->toBe($this->model->installed);
+    });
+
     test('can get created_at date', function (): void {
         expect($this->model->getCreatedAt())
             ->toBeString()
@@ -100,6 +106,12 @@ describe('Scope', function (): void {
         $foundModel = Module::getByEnabled($this->model->enabled)->first();
 
         expect($foundModel->enabled)->toEqual($this->model->enabled);
+    });
+
+    test('can filter by on_site using scopeGetByInstalled', function (): void {
+        $foundModel = Module::getByInstalled($this->model->installed)->first();
+
+        expect($foundModel->installed)->toEqual($this->model->installed);
     });
 
     test('can filter by created_at using scopeGetByCreatedAt', function (): void {

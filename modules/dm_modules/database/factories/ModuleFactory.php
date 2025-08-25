@@ -26,6 +26,7 @@ class ModuleFactory extends Factory
             'category' => $category,
             'version' => $this->faker->numerify('##.##.##'),
             'enabled' => $this->faker->boolean(),
+            'installed' => $this->faker->boolean(),
             'created_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
             'updated_at' => $this->faker->dateTimeBetween('-1 year')->format('Y-m-d'),
         ];
@@ -36,6 +37,7 @@ class ModuleFactory extends Factory
             'category' => 'string|max:255',
             'version' => 'required|string|max:100',
             'enabled' => 'required|boolean',
+            'installed' => 'required|boolean',
         ]);
 
         return $data;
