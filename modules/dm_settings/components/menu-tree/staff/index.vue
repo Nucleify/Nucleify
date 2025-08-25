@@ -32,7 +32,6 @@ const nodes = ref([
     label: 'Modules',
     type: 'url',
     data: '#modules',
-    class: 'disabled-item',
   },
 ])
 
