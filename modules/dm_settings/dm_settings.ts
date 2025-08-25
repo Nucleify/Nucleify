@@ -4,6 +4,7 @@ import {
   DMGeneralMenuTree,
   DMMenuTree,
   DMSettingsCard,
+  DMSettingsCardContent,
   DMSettingsPage,
   DMSkeletonSettingsCard,
   DMStaffMenuTree,
@@ -17,4 +18,5 @@ export function registerDMSettings(app: App<Element>): void {
     .component('dm-menu-tree', DMMenuTree)
     .component('dm-general-menu-tree', DMGeneralMenuTree)
     .component('dm-staff-menu-tree', DMStaffMenuTree)
+    .component('dm-settings-card-content', DMSettingsCardContent)
 }
