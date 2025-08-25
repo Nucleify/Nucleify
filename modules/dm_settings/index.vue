@@ -1,13 +1,18 @@
 <template>
   <div class="panel-container">
-    <ad-card class="settings-main-card" :id="route.hash.replace('#', '')">
-      <template #content>
-        <dm-menu-tree />
-        <div class="settings-main-card-content">
-          <dm-settings-card-content />
-        </div>
-      </template>
-    </ad-card>
+    <client-only v-if="isClient">
+      <ad-card class="settings-main-card" :id="route.hash.replace('#', '')">
+        <template #content>
+          <dm-menu-tree />
+          <div class="settings-main-card-content">
+            <dm-settings-card-content />
+          </div>
+        </template>
+      </ad-card>
+    </client-only>
+    <template v-else>
+      <ad-card class="settings-main-card" />
+    </template>
   </div>
 </template>
 
