@@ -1,9 +1,13 @@
 .settings-card.settings-small-card {
   height: 100%;
-  padding: 20px;
+  padding: 1.5em;
 
   .p-card-body {
-    padding: 0;
+    padding: 0 !important;
+
+    .p-card-content {
+      display: grid !important;
+    }
   }
   
   .refresh-button {
@@ -23,10 +27,6 @@
 
   hr {
     margin: 1em 0;
-  }
-
-  .p-card-content {
-    padding: 0 1px 0 0;
   }
 
   .p-colorpicker-preview {
