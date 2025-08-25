@@ -1,7 +1,5 @@
 import type { DockTooltipOptions } from 'primevue'
 
-import type { PositionType } from 'atomic'
-
 import type { MenuItem } from 'primevue/menuitem'
 
 export interface DockInterface {

@@ -1,5 +1,3 @@
-import type { AdTypeType } from 'atomic'
-
 export interface ProgressSpinnerInterface {
   adType?: AdTypeType
   strokeWidth?: string

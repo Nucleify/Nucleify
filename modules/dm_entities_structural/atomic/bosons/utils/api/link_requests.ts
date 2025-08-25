@@ -6,7 +6,6 @@ import type {
   EntityResultsType,
   LinkObjectInterface,
   LinkRequestsInterface,
-  SiteType,
   UseLoadingInterface,
 } from 'atomic'
 import { apiHandle, useApiSuccess, useLoading } from 'atomic'

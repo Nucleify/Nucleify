@@ -52,5 +52,5 @@ onMounted(() => {
 </script>
 
 <style lang="scss">
-@import 'atomic/boson/styles';
+@import 'styles';
 </style>

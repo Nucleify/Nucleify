@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 
-import type { ObjectType, UseMenuInterface } from 'atomic'
+import type { UseMenuInterface } from 'atomic'
 
 export function useMenu(): UseMenuInterface {
   const selectedObject: Ref<ObjectType> = ref<ObjectType>()
