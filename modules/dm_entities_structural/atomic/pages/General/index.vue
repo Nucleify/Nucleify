@@ -49,17 +49,19 @@
       />
     </div>
 
-    <ad-card-chart
+    <dm-entity-chart-card
       entity="Structural"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :card-data="cards"
-      :link-data="links"
-      :question-data="questions"
-      :technology-data="technologies"
-      :feature-data="features"
+      :data="{ 
+        card: cards, 
+        link: links, 
+        question: questions, 
+        technology: technologies, 
+        feature: features 
+      }"
       :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />

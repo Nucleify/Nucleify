@@ -1,4 +1,3 @@
-@use 'sass:map';
 @import 'mixins';
 
 .p-dock.dock {
@@ -181,35 +180,6 @@
   &.p-dock-right {
     .p-dock-list-container {
       border-left: 1px solid $p-card-border;
-    }
-  }
-}
-
-$items: (
-  admin: (
-    color: --main-item-color-new,
-  ),
-  dashboard: (
-    color: --main-item-color-new,
-  ),
-  entities: (
-    color: --main-item-color-new,
-  ),
-  activity-log: (
-    color: --activity-item-color-new,
-  ),
-  settings: (
-    color: --main-item-color-new,
-  ),
-  structural: (
-    color: --main-item-color-new,
-  ),
-);
-
-@each $item, $props in $items {
-  #__nuxt:has(##{$item}) {
-    .dock .iconify[ad-type='#{$item}'] {
-      @include entity-dock-item-styles(var(map.get($props, color)) !important);
     }
   }
 }

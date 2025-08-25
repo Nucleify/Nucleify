@@ -1,5 +1,3 @@
-@import 'mixins';
-
 .tile {
   display: flex;
   flex-direction: column;
@@ -9,17 +7,6 @@
   padding: 1em;
   text-decoration: none;
   background: var(--p-card-background) !important;
-
-  @each $type in main, activity, article, card, contact, feature, file, link,
-    money, question, task, technology, user
-  {
-    &[ad-type='#{$type}'] {
-      @include entity-tile-styles(
-        var(--#{$type}-item-color-new) !important,
-        var(--#{$type}-item-highlight-color-new) !important
-      );
-    }
-  }
 
   &:hover {
     color: var(--p-card-color);

@@ -1,5 +1,3 @@
-import type { ElementSizeType, ElementVariantType } from 'atomic'
-
 export interface TextareaInterface {
   adType?: string
   value?: unknown[]

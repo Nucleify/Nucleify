@@ -1,4 +1,4 @@
-import type { ButtonBadgeSeverityType, ElementSizeType } from 'atomic'
+import type { ButtonBadgeSeverityType } from 'atomic'
 
 export interface BadgeInterface {
   value?: string | number
