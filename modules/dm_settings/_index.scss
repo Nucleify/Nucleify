@@ -61,7 +61,7 @@ $items: (
     .general-menu-tree,
     .staff-menu-tree {
       a[href="##{$item}"] {
-        color: $primary-color !important;
+        color: var(--main-item-color-new) !important;
       }
     }
   }
