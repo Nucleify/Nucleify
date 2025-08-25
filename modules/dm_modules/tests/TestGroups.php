@@ -50,5 +50,9 @@ uses()
     ->in('Feature/Api/Module');
 
 uses()
+    ->group('module-installer-api')
+    ->in('Feature/Api/ModuleInstaller');
+
+uses()
     ->group('controllers')
     ->in('Feature/Controllers');
