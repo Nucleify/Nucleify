@@ -1,0 +1,8 @@
+<?php
+
+return [
+    'name' => 'dm_pages',
+    'description' => 'Module that contains page functions.',
+    'version' => '0.0.1',
+    'category' => 'core',
+];

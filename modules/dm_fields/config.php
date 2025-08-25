@@ -1,0 +1,8 @@
+<?php
+
+return [
+    'name' => 'dm_fields',
+    'description' => 'Module that contains field functions.',
+    'version' => '0.0.1',
+    'category' => 'core',
+];
