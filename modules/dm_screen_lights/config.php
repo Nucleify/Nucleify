@@ -5,4 +5,6 @@ return [
     'description' => 'Module that displays background lights.',
     'version' => '0.0.1',
     'category' => 'core',
+    'installed' => true,
+    'enabled' => true,
 ];

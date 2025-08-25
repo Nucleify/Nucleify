@@ -5,4 +5,6 @@ return [
     'description' => 'Module that contains loading functions.',
     'version' => '0.0.1',
     'category' => 'core',
+    'installed' => true,
+    'enabled' => true,
 ];
