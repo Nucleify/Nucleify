@@ -4,10 +4,7 @@
       <template #content>
         <dm-menu-tree />
         <div class="settings-main-card-content">
-          <template v-if="route.hash === '#theme'">
-            <dm-color-settings-card />
-            <dm-settings-chart-card />
-          </template>
+          <dm-settings-card-content />
         </div>
       </template>
     </ad-card>
