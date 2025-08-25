@@ -1,0 +1,8 @@
+<?php
+
+return [
+    'name' => 'dm_media',
+    'description' => 'Module that contains media functions.',
+    'version' => '0.0.1',
+    'category' => 'core',
+];
