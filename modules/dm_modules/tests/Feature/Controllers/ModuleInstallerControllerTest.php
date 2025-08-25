@@ -16,7 +16,7 @@ beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->controller = app()->makeWith(ModuleInstallerController::class, ['moduleService' => app()->make(ModuleInstallerService::class)]);
-    $this->basePath = base_path('modules/dm_modules/tests/test_modules');
+    $this->basePath = base_path('modules/dm_modules/test_modules');
 });
 
 describe('200', function (): void {
