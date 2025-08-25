@@ -5,4 +5,6 @@ return [
     'description' => 'Module that contains global functions, constants, etc.',
     'version' => '0.0.1',
     'category' => 'core',
+    'installed' => true,
+    'enabled' => true,
 ];
