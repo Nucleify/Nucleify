@@ -20,6 +20,12 @@ beforeEach(function (): void {
 });
 
 describe('200', function (): void {
+    test('getInstalledModules method', function (): void {
+        $response = $this->controller->getInstalledModules();
+
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
+
     test('install method', function (): void {
         $module = $this->basePath . '/test_module_laravel.zip';
 
