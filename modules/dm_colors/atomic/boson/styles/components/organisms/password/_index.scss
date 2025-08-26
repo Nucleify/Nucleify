@@ -15,8 +15,8 @@
     .p-password[ad-type='#{$type}'] {
       .p-inputtext {
         @include entity-password-styles(
-          var(--#{$type}-item-color) !important,
-          var(--#{$type}-item-focus-color) !important
+          $primary-color !important,
+          $primary-focus-color !important
         );
       }
     }

@@ -1,0 +1,97 @@
+<template>
+  <div class="general-menu-tree">
+    <ad-heading :tag="4" text="General" />
+    <ad-tree :value="nodes" :expanded-keys="expandedKeys" />
+  </div>
+</template>
+
+<script setup>
+const nodes = ref([
+  {
+    key: '0',
+    label: 'My Profile',
+    children: [
+      {
+        key: '0-0',
+        label: 'Personal Info',
+        data: '#personal-info',
+        type: 'url',
+        class: 'disabled-item',
+      },
+      {
+        key: '0-1',
+        label: 'Password & Security',
+        data: '#password-security',
+        type: 'url',
+        class: 'disabled-item',
+      },
+      {
+        key: '0-2',
+        label: 'Notifications & Alerts',
+        data: '#notifications-alerts',
+        type: 'url',
+        class: 'disabled-item',
+      },
+    ],
+  },
+  {
+    key: '1',
+    label: 'Preferences',
+    children: [
+      {
+        key: '1-0',
+        label: 'Language & Region',
+        data: '#language-region',
+        type: 'url',
+        class: 'disabled-item',
+      },
+      {
+        key: '1-1',
+        label: 'Entities',
+        data: '#entities',
+        type: 'url',
+        class: 'disabled-item',
+      },
+      {
+        key: '1-2',
+        label: 'Theme',
+        data: '#theme',
+        type: 'url',
+      },
+    ],
+  },
+  {
+    key: '2',
+    label: 'Data & Export',
+    children: [
+      {
+        key: '2-0',
+        label: 'Data Import',
+        data: '#data-import',
+        type: 'url',
+        class: 'disabled-item',
+      },
+      {
+        key: '2-1',
+        label: 'Data Export',
+        data: '#data-export',
+        type: 'url',
+        class: 'disabled-item',
+      },
+      {
+        key: '2-2',
+        label: 'Convert Data',
+        data: '#convert-data',
+        type: 'url',
+        class: 'disabled-item',
+      },
+    ],
+  },
+])
+
+const expandedKeys = ref({
+  0: true,
+  1: true,
+  2: true,
+})
+</script>

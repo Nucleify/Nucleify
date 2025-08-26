@@ -3,8 +3,6 @@
 .p-dock.dock {
   position: fixed;
   z-index: 98;
-  opacity: 0;
-  animation: fade-in 0.3s 0.5s ease-in forwards;
 
   .logo[type='main'] {
     .lighter-color {
@@ -36,9 +34,9 @@
     border: 0;
     background: $p-card-background;
     backdrop-filter: blur(1em);
+    border-radius: 0;
 
     ul {
-      border-radius: var(--p-dock-border-radius);
       box-shadow: $primary-box-shadow;
       padding: 0;
       margin: 0;
