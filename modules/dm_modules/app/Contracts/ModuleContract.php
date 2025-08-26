@@ -16,6 +16,8 @@ interface ModuleContract
 
     public function getEnabled(): bool;
 
+    public function getInstalled(): bool;
+
     public function getCreatedAt(): string;
 
     public function getUpdatedAt(): string;

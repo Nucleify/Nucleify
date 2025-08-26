@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Module;
+namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -29,6 +29,7 @@ class PutRequest extends FormRequest
             'category' => 'string|max:255',
             'version' => 'required|string|max:100',
             'enabled' => 'required|boolean',
+            'installed' => 'required|boolean',
         ];
     }
 }

@@ -4,9 +4,11 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('module-controller');
+
 use App\Http\Controllers\ModuleController;
-use App\Http\Requests\Module\PostRequest;
-use App\Http\Requests\Module\PutRequest;
+use App\Http\Requests\PostRequest;
+use App\Http\Requests\PutRequest;
 use App\Models\Module;
 use App\Services\ModuleService;
 use Illuminate\Http\Request;

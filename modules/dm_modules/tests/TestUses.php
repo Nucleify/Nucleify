@@ -12,17 +12,19 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         ->beforeEach(function (): void {
             $this->artisan('migrate:fresh');
         })
-        ->in('Feature', 'Database', 'Global');
+        ->in('Feature', 'Database', 'Global', 'hooks');
 } else {
     uses(
         Tests\TestCase::class,
     )
-        ->in('Feature', 'Database');
+        ->in('Feature', 'Database', 'hooks');
     uses(
         RefreshDatabase::class
     )
         ->in(
             'Feature/Api/Module/HTTP302Test.php',
+
+            'Feature/Api/ModuleInstaller/HTTP302Test.php',
 
             'Database/Models'
         );
@@ -36,9 +38,14 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/Module/HTTP422PostTest.php',
             'Feature/Api/Module/HTTP422PutTest.php',
 
+            'Feature/Api/ModuleInstaller/HTTP200Test.php',
+            'Feature/Api/ModuleInstaller/HTTP422PostTest.php',
+            'Feature/Api/ModuleInstaller/HTTP500Test.php',
+
             'Database/Factories',
             'Database/Migrations',
 
-            'Feature/Controllers'
+            'Feature/Controllers',
+            'Feature/Services',
         );
 }

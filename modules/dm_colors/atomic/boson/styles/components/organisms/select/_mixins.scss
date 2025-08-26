@@ -6,7 +6,7 @@
   &:not(.p-disabled).p-focus {
     outline: 0 none;
     outline-offset: 0;
-    box-shadow: 0 0 0 0.2rem $focus-color;
+    box-shadow: 0 0 0.5em $focus-color;
     border-color: $item-color;
   }
 }
