@@ -5,12 +5,6 @@
   position: relative;
   display: inline-block;
 
-  &.cube {
-    animation: shiny-cube 10s linear infinite;
-    box-shadow: 0 0 4px var(--main-item-color-new) !important;
-    border: none !important;
-  }
-  
   & > div[aria-hidden='true'] {
     position: relative;
     display: inline-block;
