@@ -1,6 +1,6 @@
-# <img src="/nuxt/public/favicon.ico" width="17" height="17" /> &nbsp; dm_media
+# <img src="/nuxt/public/favicon.ico" width="17" height="17" /> &nbsp; dm_globals
 
-Module that contains media functions.
+Module that contains global functions, constants, etc.
 
 <br>
 
