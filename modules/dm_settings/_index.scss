@@ -4,10 +4,7 @@
   height: 100vh;
 
   .panel-container {
-    height: 100%;
-
     .settings-main-card {
-      height: 100%;
       width: 100%;  
 
       .p-card-body {
@@ -38,7 +35,11 @@
 
   @media (min-width: $md) {
     .panel-container {
+      height: 100%;
+
       .settings-main-card {
+        height: 100%;
+
         .p-card-body {
           .p-card-content {
             display: flex;
