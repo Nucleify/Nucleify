@@ -12,8 +12,8 @@
   body:has(#register) {
     .p-inputtext[ad-type='#{$type}'] {
       @include entity-inputtext-styles(
-        var(--#{$type}-item-color) !important,
-        var(--#{$type}-item-focus-color) !important
+        $primary-color !important,
+        $primary-focus-color !important
       );
     }
   }

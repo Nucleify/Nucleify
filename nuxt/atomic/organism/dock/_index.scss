@@ -34,9 +34,9 @@
     border: 0;
     background: $p-card-background;
     backdrop-filter: blur(1em);
+    border-radius: 0;
 
     ul {
-      border-radius: var(--p-dock-border-radius);
       box-shadow: $primary-box-shadow;
       padding: 0;
       margin: 0;
