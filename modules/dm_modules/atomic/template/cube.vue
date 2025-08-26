@@ -1,5 +1,5 @@
 <template>
   <div class="cube">
-    <ad-icon icon="prime:box" v-tooltip.right="'Module'" />
+    <ad-icon icon="prime:box" />
   </div>
 </template>
