@@ -1,6 +1,6 @@
 # <img src="/nuxt/public/favicon.ico" width="17" height="17" /> &nbsp; dm_stores
 
-Module that contains Pinia store functions.
+Module that contains store functions.
 
 <br>
 
