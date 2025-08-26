@@ -11,6 +11,7 @@ const moduleData = [
     'category' => 'Feature',
     'version' => '1.0.0',
     'enabled' => false,
+    'installed' => false,
 ];
 
 const updatedModuleData = [
@@ -20,4 +21,5 @@ const updatedModuleData = [
     'category' => 'Feature',
     'version' => '1.0.0',
     'enabled' => false,
+    'installed' => false,
 ];
