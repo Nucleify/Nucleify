@@ -3,7 +3,7 @@
     <template #content>
       <div class="modules-settings-card-content">
         <div v-for="module in data" :key="module.id" class="modules-settings-card-content-module">
-          <dm-modules-cube :class="{ 'shiny': module.enabled }"/>
+          <dm-modules-cube :class="{ 'shiny': module.enabled }" v-tooltip.right="module.enabled ? 'Enabled' : 'Disabled'" />
           <div class="modules-settings-card-content-module-info">
             <label>{{ module.name }}</label>
             <p>{{ module.description }}</p>
