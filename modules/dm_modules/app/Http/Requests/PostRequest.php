@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Module;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +28,7 @@ class PostRequest extends FormRequest
             'category' => 'string|max:255',
             'version' => 'required|string|max:100',
             'enabled' => 'required|boolean',
+            'installed' => 'required|boolean',
         ];
     }
 }

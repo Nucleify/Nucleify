@@ -19,6 +19,10 @@ uses()
     ->group('dm-modules-ft')
     ->in('Feature');
 
+uses()
+    ->group('dm-modules-hooks')
+    ->in('hooks');
+
 /**
  *  Database groups
  */
@@ -48,6 +52,10 @@ uses()
 uses()
     ->group('module-api')
     ->in('Feature/Api/Module');
+
+uses()
+    ->group('module-installer-api')
+    ->in('Feature/Api/ModuleInstaller');
 
 uses()
     ->group('controllers')

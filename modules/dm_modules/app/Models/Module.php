@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string category
  * @property string version
  * @property bool enabled
+ * @property bool installed
  * @property string created_at
  * @property string updated_at
  * @property string getId()
@@ -22,6 +23,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string getCategory()
  * @property string getVersion()
  * @property bool getEnabled()
+ * @property bool getInstalled()
  * @property string getCreatedAt()
  * @property string getUpdatedAt()
  * @property Builder scopeGetById()
@@ -30,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Builder scopeGetByCategory()
  * @property Builder scopeGetByVersion()
  * @property Builder scopeGetByEnabled()
+ * @property Builder scopeGetByInstalled()
  * @property Builder scopeGetByCreatedAt()
  * @property Builder scopeGetByUpdatedAt()
  */
@@ -43,6 +46,7 @@ class Module extends Model implements ModuleContract
         'category',
         'version',
         'enabled',
+        'installed',
     ];
 
     public function getId(): int
@@ -73,6 +77,11 @@ class Module extends Model implements ModuleContract
     public function getEnabled(): bool
     {
         return $this->enabled;
+    }
+
+    public function getInstalled(): bool
+    {
+        return $this->installed;
     }
 
     public function getCreatedAt(): string
@@ -116,6 +125,11 @@ class Module extends Model implements ModuleContract
     public function scopeGetByEnabled(Builder $query, bool $parameter): Builder
     {
         return $query->where('enabled', $parameter);
+    }
+
+    public function scopeGetByInstalled(Builder $query, bool $parameter): Builder
+    {
+        return $query->where('installed', $parameter);
     }
 
     public function scopeGetByCreatedAt(Builder $query, string $parameter): Builder

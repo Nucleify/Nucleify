@@ -78,13 +78,7 @@
   align-items: center;
   height: min-content;
   width: min-content;
-  padding: .5em;
-  background: $content-background;
-  box-shadow:
-    0 4px 10px rgba(0, 0, 0, 0.03),
-    0 0 2px rgba(0, 0, 0, 0.06),
-    0 2px 6px rgba(0, 0, 0, 0.12);
-  border: 1px solid $p-card-border !important;
+  padding: .35em;
   border-radius: 8px;
   color: $white-text-color;
   cursor: pointer;
@@ -98,8 +92,6 @@
   }
 
   &:hover {
-    border-color: $primary-color !important;
-
     .iconify {
       color: $primary-color;
     }

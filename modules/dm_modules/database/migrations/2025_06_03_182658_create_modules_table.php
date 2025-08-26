@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('version');
             $table->boolean('enabled');
+            $table->boolean('installed');
             $table->timestamps();
         });
     }

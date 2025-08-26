@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Module\PostRequest;
-use App\Http\Requests\Module\PutRequest;
+use App\Http\Requests\PostRequest;
+use App\Http\Requests\PutRequest;
 use App\Models\Module;
 use App\Services\ModuleService;
 use Exception;
