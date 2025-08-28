@@ -1,15 +1,19 @@
 <?php
 
 use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ModuleInstallerController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('api')->group(function (): void {
-    Route::middleware(['web', 'auth'])->group(function (): void {
+Route::middleware(['web', 'auth'])->prefix('api')->group(function (): void {
+    Route::prefix('modules')->group(function (): void {
+        Route::controller(ModuleInstallerController::class)->group(function (): void {
+            Route::get('/installed', 'getInstalledModules')
+                ->name('modules.getInstalledModules');
+            Route::post('/install', 'install')
+                ->name('modules.install');
+        });
 
-        /**
-         *  Modules
-         */
-        Route::prefix('modules')->controller(ModuleController::class)->group(function (): void {
+        Route::controller(ModuleController::class)->group(function (): void {
             Route::get('/', 'index')
                 ->name('modules.index');
             Route::get('/{id}', 'show')

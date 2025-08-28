@@ -2,7 +2,7 @@
   <section id="innovations">
     <technologies />
     <structure />
-    <modules />
+    <dm-modules-info />
 
     <!--
             TODO: More innovations
@@ -11,5 +11,5 @@
 </template>
 
 <script setup lang="ts">
-import { Modules, Structure, Technologies } from './'
+import { Structure, Technologies } from './'
 </script>

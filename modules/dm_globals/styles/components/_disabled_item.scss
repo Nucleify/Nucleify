@@ -1,5 +1,11 @@
+* {
+  &:has(>.disabled-item) {
+    cursor: not-allowed;
+  }
+}
+
 .disabled-item {
   opacity: 0.5;
-  cursor: not-allowed !important;
   color: $secondary-text-color;
+  pointer-events: none;
 }
