@@ -4,6 +4,7 @@ export const colorList: string[] = [
   'Article',
   'Card',
   'Contact',
+  'Documentation',
   'Feature',
   'File',
   'Link',
