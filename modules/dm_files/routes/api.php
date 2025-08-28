@@ -22,6 +22,8 @@ Route::middleware(['web', 'auth'])->prefix('api')->group(function (): void {
                 ->name('files.index');
             Route::get('/{id}', 'show')
                 ->name('files.show');
+            Route::put('/{id}', 'edit')
+                ->name('files.edit');
             Route::delete('/{id}', 'destroy')
                 ->name('files.destroy');
         });

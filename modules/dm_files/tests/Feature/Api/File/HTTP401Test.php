@@ -23,6 +23,15 @@ describe('401', function (): void {
         ['message' => 'Unauthenticated.']
     ));
 
+    test('edit api', apiTest(
+        'PUT',
+        'files.edit',
+        401,
+        fileData,
+        ['message'],
+        ['message' => 'Unauthenticated.']
+    ));
+
     test('destroy api', apiTest(
         'DELETE',
         'files.destroy',
