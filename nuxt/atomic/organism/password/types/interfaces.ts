@@ -1,12 +1,5 @@
 import type { HTMLAttributes, InputHTMLAttributes } from 'vue'
 
-import type {
-  ElementAppendTo,
-  ElementSizeType,
-  ElementVariantType,
-  ObjectNameType,
-} from 'atomic'
-
 export interface PasswordInterface {
   value?: string
   modelValue?: string

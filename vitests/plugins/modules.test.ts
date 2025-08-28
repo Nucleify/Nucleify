@@ -7,13 +7,18 @@ vi.mock('../../modules', () => ({
   registerDMActivity: vi.fn(),
   registerDMAnimations: vi.fn(),
   registerDMAuth: vi.fn(),
+  registerDMColors: vi.fn(),
+  registerDMCharts: vi.fn(),
   registerDMEntities: vi.fn(),
   registerDMEntitiesStructural: vi.fn(),
   registerDMFiles: vi.fn(),
-  registerDMMedia: vi.fn(),
+  registerDMModules: vi.fn(),
+  registerDMGlobals: vi.fn(),
   registerDMPages: vi.fn(),
+  registerDMPerformance: vi.fn(),
   registerDMScreenLights: vi.fn(),
   registerDMScreenLoader: vi.fn(),
+  registerDMSettings: vi.fn(),
   registerDMTasks: vi.fn(),
 }))
 
@@ -31,12 +36,17 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   expect(modules.registerDMActivity).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMAnimations).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMAuth).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerDMColors).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerDMCharts).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMEntities).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMEntitiesStructural).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMFiles).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMMedia).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerDMGlobals).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerDMModules).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMPages).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerDMPerformance).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMScreenLights).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMScreenLoader).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerDMSettings).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMTasks).toHaveBeenCalledWith(vueApp)
 })

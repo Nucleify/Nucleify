@@ -1,0 +1,20 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .p-inputtext[ad-type='#{$type}'] {
+    @include entity-inputtext-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-focus-color-new) !important
+    );
+  }
+
+  body:has(#login),
+  body:has(#register) {
+    .p-inputtext[ad-type='#{$type}'] {
+      @include entity-inputtext-styles(
+        $primary-color !important,
+        $primary-focus-color !important
+      );
+    }
+  }
+}

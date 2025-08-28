@@ -1,23 +1,9 @@
-@import 'mixins';
-
 .p-button {
   display: flex;
   justify-content: center;
   transition: all 0.5s;
   padding: 5px 15px;
   font-size: 1.2rem;
-
-  @each $type in main, activity, article, card, contact, feature, file, link,
-    money, question, task, technology, user
-  {
-    &[ad-type='#{$type}'] {
-      @include entity-button-styles(
-        var(--#{$type}-item-color-new) !important,
-        var(--#{$type}-item-focus-color-new) !important,
-        var(--#{$type}-item-selected-color-new) !important
-      );
-    }
-  }
 
   .p-button-label {
     font-family: Nunito, sans-serif;

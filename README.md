@@ -76,6 +76,7 @@ php artisan key:generate
 ```bash
 npm install
 composer install
+```
 
 ### **Make sure u have installed all modules!**
 
@@ -317,27 +318,27 @@ sail artisan sitemap:generate
 
 <details><summary> <h2> &nbsp; <img src="/nuxt/public/img/technologies/stack.svg" width="20"> &nbsp; Tech Stack </h2> </summary> <br>
 <div align="center">
-  <img src="/nuxt/public/img/technologies/php.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/laravel.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/typescript.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/nuxt.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/vue.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/primevue.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/gsap.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/chart-js.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/html5.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/scss.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/mysql.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/docker.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/heroku.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/vitest.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/pest.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/storybook.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/cypress.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/sonarcloud.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/biome.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/stylelint.svg" width="35" />
-  <img src="/nuxt/public/img/technologies/husky.svg" width="35" />
+    <a href="https://www.typescriptlang.org/" target="_blank"><img src="/nuxt/public/img/technologies/typescript.svg" height="35" width="35" alt="TypeScript" /></a>
+    <a href="https://www.php.net/" target="_blank"><img src="/nuxt/public/img/technologies/php.svg" height="35" width="35" alt="PHP" /></a>
+    <a href="https://laravel.com/" target="_blank"><img src="/nuxt/public/img/technologies/laravel.svg" height="35" width="35" alt="Laravel" /></a>
+    <a href="https://nuxt.com/" target="_blank"><img src="/nuxt/public/img/technologies/nuxt.svg" height="35" width="35" alt="Nuxt" /></a>
+    <a href="https://vuejs.org/" target="_blank"><img src="/nuxt/public/img/technologies/vue.svg" height="35" width="35" alt="Vue" /></a>
+    <a href="https://primevue.org/" target="_blank"><img src="/nuxt/public/img/technologies/primevue.svg" height="35" width="35" alt="PrimeVue" /></a>
+    <a href="https://www.chartjs.org/" target="_blank"><img src="/nuxt/public/img/technologies/chart-js.svg" height="35" width="35" alt="Chart.js" /></a>
+    <a href="https://greensock.com/gsap/" target="_blank"><img src="/nuxt/public/img/technologies/gsap.svg" height="35" width="35" alt="GSAP" /></a>
+    <a href="https://sass-lang.com/" target="_blank"><img src="/nuxt/public/img/technologies/scss.svg" height="35" width="35" alt="Sass" /></a>
+    <a href="https://html.com/" target="_blank"><img src="/nuxt/public/img/technologies/html5.svg" height="35" width="35" alt="HTML5" /></a>
+    <a href="https://www.docker.com/" target="_blank"><img src="/nuxt/public/img/technologies/docker.svg" height="35" width="35" alt="Docker" /></a>
+    <a href="https://www.heroku.com/" target="_blank"><img src="/nuxt/public/img/technologies/heroku.svg" height="35" width="35" alt="Heroku" /></a>
+    <a href="https://www.mysql.com/" target="_blank"><img src="/nuxt/public/img/technologies/mysql.svg" height="35" width="35" alt="MySQL" /></a>
+    <a href="https://pestphp.com/" target="_blank"><img src="/nuxt/public/img/technologies/pest.svg" height="34" width="34" alt="PestPHP" /></a>
+    <a href="https://vitest.dev/" target="_blank"><img src="/nuxt/public/img/technologies/vitest.svg" height="35" width="35" alt="Vitest" /></a>
+    <a href="https://storybook.js.org/" target="_blank"><img src="/nuxt/public/img/technologies/storybook.svg" height="35" width="35" alt="Storybook" /></a>
+    <a href="https://www.cypress.io/" target="_blank"><img src="/nuxt/public/img/technologies/cypress.svg" height="35" width="35" alt="Cypress" /></a>
+    <a href="https://biomejs.dev/" target="_blank"><img src="/nuxt/public/img/technologies/biome.svg" height="35" width="35" alt="Biome" /></a>
+    <a href="https://stylelint.io/" target="_blank"><img src="/nuxt/public/img/technologies/stylelint.svg" height="35" width="35" alt="Stylelint" /></a>
+    <a href="https://github.com/features/actions" target="_blank"><img src="/nuxt/public/img/technologies/github.svg" height="35" width="35" alt="Github Actions" /></a>
+    <a href="https://typicode.github.io/husky/" target="_blank"><img src="/nuxt/public/img/technologies/husky.svg" height="35" width="35" alt="Husky" /></a>
 </div>
 
 <hr><br></details>
@@ -360,6 +361,7 @@ Your skills and expertise will directly contribute to the success of our project
 <a href="https://github.com/kbloski" target="_blank"><img src="/nuxt/public/img/contributors/kbloski.svg" width="30" height="30" /></a>
 <a href="https://github.com/kbujak09" target="_blank"><img src="/nuxt/public/img/contributors/kbujak09.svg" width="30" height="30" /></a>
 <a href="https://github.com/K4mD4m" target="_blank"><img src="/nuxt/public/img/contributors/K4mD4m.svg" width="30" height="30" /></a>
+<a href="https://github.com/J0jeQ" target="_blank"><img src="/nuxt/public/img/contributors/J0jeQ.svg" width="30" height="30" /><a>
 <a href="https://github.com/JakubMalik" target="_blank"><img src="/nuxt/public/img/contributors/JakubMalik.svg" width="30" height="30" /><a>
 <a href="https://github.com/KatarzynaS97" target="_blank"><img src="/nuxt/public/img/contributors/KatarzynaS97.svg" width="30" height="30" /></a>
 <a href="https://github.com/karol199393" target="_blank"><img src="/nuxt/public/img/contributors/karol199393.svg" width="30" height="30" /></a>

@@ -1,12 +1,12 @@
 <template>
   <div class="panel-container">
-    <ad-card-chart
+    <dm-entity-chart-card
       entity="Contact"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :contact-data="results"
+      :data="{ contact: results }"
       :chart-class="'h-30rem'"
       :loading="loading"
     />

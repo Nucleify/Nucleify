@@ -40,16 +40,18 @@
       />
     </div>
 
-    <ad-card-chart
+    <dm-entity-chart-card
       entity="Admin"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :article-data="articles"
-      :contact-data="contacts"
-      :money-data="money"
-      :user-data="users"
+      :data="{ 
+        article: articles, 
+        contact: contacts, 
+        money: money, 
+        user: users 
+      }"
       :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />

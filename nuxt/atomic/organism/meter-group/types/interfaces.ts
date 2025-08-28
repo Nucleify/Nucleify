@@ -1,7 +1,5 @@
 import type { MeterItem } from 'primevue'
 
-import type { ElementDirectionType } from 'atomic'
-
 export interface MeterGroupInterface {
   value?: MeterItem[]
   min?: number

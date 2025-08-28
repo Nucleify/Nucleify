@@ -1,0 +1,18 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .p-select[ad-type='#{$type}'] {
+    @include entity-select-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-focus-color-new) !important
+    );
+  }
+
+  .p-select-panel.#{$type} {
+    @include entity-select-item-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-selected-color-new) !important,
+      var(--#{$type}-item-highlight-color-new) !important
+    );
+  }
+}

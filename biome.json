@@ -160,6 +160,7 @@
             "groups": [
               [
                 ":BUN:",
+                "nuxt/*",
                 "#app",
                 "vue",
                 "marked",

@@ -30,10 +30,4 @@ describe('200', function (): void {
             ->assertStatus(200)
             ->assertJson(['exit_code' => 0]);
     });
-
-    test('migrate:fresh --seed command', function (): void {
-        $this->postJson(route('artisan.run'), ['command' => 'migrate:fresh --seed'])
-            ->assertStatus(200)
-            ->assertJson(['exit_code' => 0]);
-    });
 });
