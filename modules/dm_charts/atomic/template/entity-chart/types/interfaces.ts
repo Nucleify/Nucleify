@@ -5,6 +5,7 @@ import type {
   ChartInterface,
   ChartMethodType,
   ContactObjectInterface,
+  DocumentationObjectInterface,
   FeatureObjectInterface,
   FileObjectInterface,
   LinkObjectInterface,
@@ -26,6 +27,7 @@ export interface DMEntityChartDataInterface {
   article?: ArticleObjectInterface[]
   card?: CardObjectInterface[]
   contact?: ContactObjectInterface[]
+  documentation?: DocumentationObjectInterface[]
   feature?: FeatureObjectInterface[]
   file?: FileObjectInterface[]
   link?: LinkObjectInterface[]
@@ -43,6 +45,7 @@ export interface DisplayChartsInterface {
   Article: boolean
   Contact: boolean
   Card: boolean
+  Documentation: boolean
   Feature: boolean
   File: boolean
   Link: boolean

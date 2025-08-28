@@ -11,6 +11,7 @@ export const structuralEntitiesKeys: string[] = [
 export const allEntitiesKeys: string[] = [
   'activity',
   'file',
+  'documentation',
   ...entitiesKeys,
   ...structuralEntitiesKeys,
   'task',
