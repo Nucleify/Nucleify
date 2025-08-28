@@ -1,11 +1,7 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 
-import type {
-  ObjectType,
-  OpenDialogFunctionType,
-  SelectItemInterface,
-} from 'atomic'
+import type { OpenDialogFunctionType, SelectItemInterface } from 'atomic'
 
 const createSelectItem = (
   label: string,

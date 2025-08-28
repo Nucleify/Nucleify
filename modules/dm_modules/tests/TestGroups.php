@@ -19,6 +19,10 @@ uses()
     ->group('dm-modules-ft')
     ->in('Feature');
 
+uses()
+    ->group('dm-modules-hooks')
+    ->in('hooks');
+
 /**
  *  Database groups
  */

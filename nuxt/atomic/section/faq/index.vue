@@ -62,28 +62,4 @@ watchEffect(() => {
   ;({ column1: column1.value, column2: column2.value } =
     useSplitQuestions(questions))
 })
-
-useSplitText().animate(
-  '.faq-section-header',
-  500,
-  0.2,
-  0.1,
-  'power2.out',
-  true,
-  'top 60%'
-)
-
-useScrollTrigger(
-  '.faq-section-header',
-  () => {
-    bounceFadeIn('.faq-section .p-accordionpanel', {
-      duration: 0.3,
-      ease: 'power2.out',
-      stagger: 0.1,
-    })
-  },
-  {
-    start: 'top 40%',
-  }
-)
 </script>

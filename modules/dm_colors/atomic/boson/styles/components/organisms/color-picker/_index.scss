@@ -1,0 +1,10 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .p-colorpicker[ad-type='#{$type}'] {
+    @include entity-colorpicker-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-focus-color-new) !important
+    );
+  }
+}

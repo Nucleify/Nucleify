@@ -1,11 +1,8 @@
-@use 'sass:map';
 @import 'mixins';
 
 .p-dock.dock {
   position: fixed;
   z-index: 98;
-  opacity: 0;
-  animation: fade-in 0.3s 0.5s ease-in forwards;
 
   .logo[type='main'] {
     .lighter-color {
@@ -37,9 +34,9 @@
     border: 0;
     background: $p-card-background;
     backdrop-filter: blur(1em);
+    border-radius: 0;
 
     ul {
-      border-radius: var(--p-dock-border-radius);
       box-shadow: $primary-box-shadow;
       padding: 0;
       margin: 0;
@@ -181,35 +178,6 @@
   &.p-dock-right {
     .p-dock-list-container {
       border-left: 1px solid $p-card-border;
-    }
-  }
-}
-
-$items: (
-  admin: (
-    color: --main-item-color-new,
-  ),
-  dashboard: (
-    color: --main-item-color-new,
-  ),
-  entities: (
-    color: --main-item-color-new,
-  ),
-  activity-log: (
-    color: --activity-item-color-new,
-  ),
-  settings: (
-    color: --main-item-color-new,
-  ),
-  structural: (
-    color: --main-item-color-new,
-  ),
-);
-
-@each $item, $props in $items {
-  #__nuxt:has(##{$item}) {
-    .dock .iconify[ad-type='#{$item}'] {
-      @include entity-dock-item-styles(var(map.get($props, color)) !important);
     }
   }
 }

@@ -1,12 +1,12 @@
 <template>
   <div class="panel-container">
-    <ad-card-chart
+    <dm-entity-chart-card
       entity="Task"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :task-data="results"
+      :data="{ task: results }"
       :chart-class="'h-30rem'"
       :loading="loading"
     />

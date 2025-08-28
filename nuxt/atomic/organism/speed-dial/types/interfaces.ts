@@ -1,7 +1,5 @@
 import type { SpeedDialTooltipOptions } from 'primevue'
 
-import type { ElementDirectionType } from 'atomic'
-
 import type { MenuItem } from 'primevue/menuitem'
 
 export interface SpeedDialInterface {

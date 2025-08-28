@@ -1,0 +1,73 @@
+@import './components';
+
+#settings {
+  height: 100vh;
+
+  .panel-container {
+    .settings-main-card {
+      width: 100%;  
+
+      .p-card-body {
+        height: 100%;
+        padding: 1em;
+
+        .p-card-caption {
+          display: none;
+        }
+
+        .p-card-content {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+
+          .settings-main-card-content,
+          .settings-main-card-content .grided-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: $md) {
+    .panel-container {
+      height: 100%;
+
+      .settings-main-card {
+        height: 100%;
+
+        .p-card-body {
+          .p-card-content {
+            display: flex;
+            flex-direction: row;
+
+            .settings-main-card-content .grided-content {
+              display: grid;  
+              grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+$items: (
+  'modules',
+  'theme',
+);
+
+@each $item in $items {
+  ##{$item} {
+    .general-menu-tree,
+    .staff-menu-tree {
+      a[href="##{$item}"] {
+        color: var(--main-item-color-new) !important;
+      }
+    }
+  }
+}

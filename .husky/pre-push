@@ -5,4 +5,5 @@ echo 'Pint checking...'
 
 npm run check
 npm run typeslint
+npm run slint
 npm run tests

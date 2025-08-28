@@ -1,0 +1,24 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .p-password[ad-type='#{$type}'] {
+    .p-inputtext {
+      @include entity-password-styles(
+        var(--#{$type}-item-color-new) !important,
+        var(--#{$type}-item-focus-color-new) !important
+      );
+    }
+  }
+
+  body:has(#login),
+  body:has(#register) {
+    .p-password[ad-type='#{$type}'] {
+      .p-inputtext {
+        @include entity-password-styles(
+          $primary-color !important,
+          $primary-focus-color !important
+        );
+      }
+    }
+  }
+}

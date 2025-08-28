@@ -1,3 +1,5 @@
+import { useRouter } from 'nuxt/app'
+
 import type {
   LoginFieldsInterface,
   RegisterFieldsInterface,
@@ -11,8 +13,6 @@ import {
   registerFields,
   registerInputs,
 } from 'atomic'
-
-import { useRouter } from 'nuxt/app'
 
 export function useAuthForm(): UseAuthFormInterface {
   let url: string
@@ -46,7 +46,7 @@ export function useAuthForm(): UseAuthFormInterface {
     data: LoginFieldsInterface | RegisterFieldsInterface
   ) {
     await submitForm(data)
-    router.push('/dashboard')
+    router.push('/entities')
   }
 
   return {
