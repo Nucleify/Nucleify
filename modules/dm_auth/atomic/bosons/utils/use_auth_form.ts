@@ -46,7 +46,7 @@ export function useAuthForm(): UseAuthFormInterface {
     data: LoginFieldsInterface | RegisterFieldsInterface
   ) {
     await submitForm(data)
-    router.push('/dashboard')
+    router.push('/entities')
   }
 
   return {

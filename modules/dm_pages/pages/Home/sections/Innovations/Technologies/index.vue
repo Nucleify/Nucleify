@@ -1,22 +1,21 @@
 <template>
   <section id="technologies">
     <div class="swiper-container">
-      <client-only>
         <swiper-container ref="technologiesSwiper" class="mySwiper">
           <swiper-slide v-for="(tech, index) in data" :key="index">
-            <ad-anchor
-              v-if="tech"
-              v-tooltip="tech.label"
-              :href="tech.href"
-              :aria-label="tech.label"
-            >
-              <deferred-content>
+            <deferred-content>
+              <ad-anchor
+                v-if="tech"
+                v-tooltip="tech.label"
+                :href="tech.href"
+                :aria-label="tech.label"
+                class="cube"
+              >
                 <img :src="technologiesImgUrl + tech.src" :alt="tech.label" />
-              </deferred-content>
-            </ad-anchor>
+              </ad-anchor>
+            </deferred-content>
           </swiper-slide>
         </swiper-container>
-      </client-only>
     </div>
   </section>
 </template>
