@@ -10,6 +10,7 @@ import {
   registerDMAuth,
   registerDMCharts,
   registerDMColors,
+  registerDMDocumentation,
   registerDMEntities,
   registerDMEntitiesStructural,
   registerDMFiles,
@@ -32,6 +33,7 @@ export default defineNuxtPlugin({
     registerDMAuth(nuxtApp.vueApp)
     registerDMColors(nuxtApp.vueApp)
     registerDMCharts(nuxtApp.vueApp)
+    registerDMDocumentation(nuxtApp.vueApp)
     registerDMEntities(nuxtApp.vueApp)
     registerDMEntitiesStructural(nuxtApp.vueApp)
     registerDMFiles(nuxtApp.vueApp)
