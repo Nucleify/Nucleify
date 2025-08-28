@@ -1,5 +1,3 @@
-export * from './check_is_admin'
-export * from './check_is_staff'
 export * from './get_and_set_user'
 export * from './logout'
 export * from './remove_user_from_session_storage'
