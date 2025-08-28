@@ -2,7 +2,6 @@ import type { App } from 'vue'
 
 import {
   AboutPage,
-  AdminPage,
   BlogPage,
   DashboardPage,
   Error404Page,
@@ -14,7 +13,6 @@ import {
 export function registerDMPages(app: App<Element>): void {
   app
     .component('dm-about-page', AboutPage)
-    .component('dm-admin-page', AdminPage)
     .component('dm-blog-page', BlogPage)
     .component('dm-dashboard-page', DashboardPage)
     .component('dm-error-404-page', Error404Page)
