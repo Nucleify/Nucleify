@@ -5,6 +5,7 @@ import module from '../../nuxt/plugins/modules'
 
 vi.mock('../../modules', () => ({
   registerDMActivity: vi.fn(),
+  registerDMAdmin: vi.fn(),
   registerDMAnimations: vi.fn(),
   registerDMAuth: vi.fn(),
   registerDMColors: vi.fn(),
@@ -34,6 +35,7 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   await module.setup(nuxtApp)
 
   expect(modules.registerDMActivity).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerDMAdmin).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMAnimations).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMAuth).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMColors).toHaveBeenCalledWith(vueApp)
