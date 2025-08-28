@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 
 class UploadService
 {
@@ -27,5 +28,18 @@ class UploadService
         $file->move($uploadDir, $filename);
 
         return $filePath;
+    }
+
+    public function edit(string $oldFullPath, string $newFullPath): void
+    {
+        if (!File::exists($oldFullPath)) {
+            throw new \Exception('Old file path does not exist: ' . $oldFullPath);
+        }
+
+        if (File::exists($newFullPath)) {
+            throw new \Exception('A file with the new name already exists: ' . $newFullPath);
+        }
+
+        File::move($oldFullPath, $newFullPath);
     }
 }

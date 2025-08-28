@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditRequest;
 use App\Models\File;
 use App\Services\FileService;
 use Exception;
@@ -43,6 +44,21 @@ class FileController extends Controller
             $result = $this->service->show($id);
 
             return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+    public function edit(EditRequest $request, $id): JsonResponse
+    {
+        try {
+            $input = $request->validated();
+            $result = $this->service->edit($id, $input['path']);
+
+            return response()->json([
+                $result,
+                'message' => 'Successfully updated file name: ' . $result->getPath(),
+            ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
