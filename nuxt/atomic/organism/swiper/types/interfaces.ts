@@ -1,5 +1,3 @@
-import type { ElementDirectionType } from 'atomic'
-
 export interface SwiperInterface {
   slides?: SwiperSlideInterface[]
   slidesPerView?: number

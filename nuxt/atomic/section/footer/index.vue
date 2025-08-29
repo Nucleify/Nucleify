@@ -40,9 +40,5 @@
 </template>
 
 <script setup lang="ts">
-import { useViewportChange } from 'atomic'
-
 import { columns } from './items'
-
-useViewportChange(['#footer .footer-content-container'], 100)
 </script>

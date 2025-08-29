@@ -12,12 +12,12 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         ->beforeEach(function (): void {
             $this->artisan('migrate:fresh');
         })
-        ->in('Feature', 'Database', 'Global');
+        ->in('Feature', 'Database', 'Global', 'hooks');
 } else {
     uses(
         Tests\TestCase::class,
     )
-        ->in('Feature', 'Database');
+        ->in('Feature', 'Database', 'hooks');
     uses(
         RefreshDatabase::class
     )

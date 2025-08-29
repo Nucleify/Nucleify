@@ -1,5 +1,3 @@
-import type { SiteType } from 'atomic'
-
 export type DeleteEntityRequestType = (
   id: number,
   getData: () => Promise<void>

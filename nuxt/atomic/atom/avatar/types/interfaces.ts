@@ -1,5 +1,3 @@
-import type { ElementShapeType } from 'atomic'
-
 export interface AvatarInterface {
   label?: string
   icon?: string

@@ -1,14 +1,9 @@
 import type { InputHTMLAttributes, TableHTMLAttributes } from 'vue'
 
 import type {
-  ActionInterface,
   ColorItemStyleInterface,
-  ElementSizeType,
-  ElementVariantType,
   LoadingType,
-  ObjectNameType,
   OpenDialogFunctionType,
-  SelectedObjectType,
 } from 'atomic'
 
 import type {

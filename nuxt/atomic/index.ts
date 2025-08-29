@@ -1,7 +1,5 @@
 export * from '../../modules'
-export * from '../../vitests/__mocks__'
 export * from './atom'
-export * from './boson'
 export * from './molecule'
 export * from './organism'
 export * from './section'
