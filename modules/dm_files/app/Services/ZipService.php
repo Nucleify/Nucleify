@@ -8,15 +8,15 @@ class ZipService
 {
     /**
      * @param string $filePath
-     * @param string|null $extractPath
+     * @param string|null $unzipPath
      *
      * @return string
      *
      * @throws Exception
      */
-    public function extract(string $filePath, ?string $extractPath = null): string
+    public function unzip(string $filePath, ?string $unzipPath = null): string
     {
-        $unzipDir = $extractPath ?? base_path('modules/dm_files/uploads/unzipped');
+        $unzipDir = $unzipPath ?? base_path('modules/dm_files/uploads/unzipped');
 
         if (!file_exists($unzipDir)) {
             mkdir($unzipDir, 0777, true);
