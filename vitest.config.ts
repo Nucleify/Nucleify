@@ -14,5 +14,6 @@ export default defineVitestConfig({
       'modules/**/*.{test,spec}.{js,ts,jsx,tsx}',
     ],
     testTimeout: 30000,
+    onConsoleLog: () => false,
   },
 })
