@@ -39,10 +39,10 @@ export function useChart() {
     [
       ['activity', '#FFB600'],
       ['user', '#64748B'],
+      ['documentation', '#8b5cf6'],
       ['article', '#1187C7'],
       ['contact', '#10B981'],
       ['card', '#1B10B9'],
-      ['documentation', '#8b5cf6'],
       ['feature', '#B91010'],
       ['file', '#6DB910'],
       ['link', '#10B3B9'],
