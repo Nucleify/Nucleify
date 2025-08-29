@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\File;
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
-    $this->basePath = base_path('modules/dm_modules/tests/test_modules');
+    $this->basePath = base_path('modules/dm_modules/test_modules');
 });
 
 describe('ModuleInstallerService', function (): void {

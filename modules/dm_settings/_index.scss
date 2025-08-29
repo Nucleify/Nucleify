@@ -1,83 +1,73 @@
-.settings-panel-container.panel-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 0.5em;
+@import './components';
 
-  .settings-card {
-    margin: 0;
-    padding: 20px;
-    box-shadow: $secondary-card-box-shadow;
-    border: 1px solid $p-card-border;
+#settings {
+  height: 100vh;
 
-    .p-card-body {
-      padding: 0;
-    }
-    
-    .refresh-button {
-      width: 32px;
-      height: 32px;
-      padding: 0.15em;
+  .panel-container {
+    .settings-main-card {
+      width: 100%;  
 
-      span {
-        margin-top: -2px;
-        font-size: 1.5em;
-      }
-    }
+      .p-card-body {
+        height: 100%;
+        padding: 1em;
 
-    h4 {
-      margin: 0;
-    }
+        .p-card-caption {
+          display: none;
+        }
 
-    hr {
-      margin: 1em 0;
-    }
+        .p-card-content {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
 
-    .p-card-content {
-      padding: 0 1px 0 0;
-    }
-
-    .p-colorpicker-preview {
-      max-width: 22px;
-      max-height: 22px;
-      padding: 0;
-    }
-
-    .settings-card-header-container {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1em;
-    }
-
-    .settings-card-item-list {
-      display: flex;
-      flex-direction: column;
-      padding-left: 0;
-      gap: 0.65em;
-      margin: 0;
-
-      .settings-card-item {
-        display: flex;
-        justify-content: space-between;
-        padding-right: 3px;
+          .settings-main-card-content,
+          .settings-main-card-content .grided-content {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            gap: 1rem;
+          }
+        }
       }
     }
   }
 
-  .p-selectbutton {
-    .p-togglebutton {
-      font-size: 10px;
-      padding: 5px 10px;
-    }
-  }
+  @media (min-width: $md) {
+    .panel-container {
+      height: 100%;
 
-  @media (min-width: $lg) {
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      .settings-main-card {
+        height: 100%;
+
+        .p-card-body {
+          .p-card-content {
+            display: flex;
+            flex-direction: row;
+
+            .settings-main-card-content .grided-content {
+              display: grid;  
+              grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            }
+          }
+        }
+      }
+    }
   }
 }
 
-.p-colorpicker-panel,
-.p-colorpicker-content {
-  background: white;
-  border: 1px whitesmoke;
-  box-shadow: $my-card-box-shadow;
+$items: (
+  'modules',
+  'theme',
+);
+
+@each $item in $items {
+  ##{$item} {
+    .general-menu-tree,
+    .staff-menu-tree {
+      a[href="##{$item}"] {
+        color: var(--main-item-color-new) !important;
+      }
+    }
+  }
 }

@@ -1,0 +1,1 @@
+export { default as DmSettingsPreferencesTheme } from './index.vue'

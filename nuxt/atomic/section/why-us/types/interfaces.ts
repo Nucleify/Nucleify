@@ -1,5 +1,3 @@
-import type { SiteType } from 'atomic'
-
 export interface WhyUsInterface {
   site: SiteType
 }

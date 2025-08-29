@@ -1,0 +1,1 @@
+export { default as performanceClientPlugin } from './performance.client'

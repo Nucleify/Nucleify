@@ -39,6 +39,14 @@ const columnsData: readonly ColumnsInterface[] = {
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
+  documentation: [
+    ['name', 'Name', 'name-column'],
+    ['category', 'Category', 'category-column desktop-column'],
+    ['file', 'File', 'file-column'],
+    ['version', 'Version', 'version-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
   feature: [
     ['header', 'Header', 'header-column'],
     ['category', 'Category', 'category-column desktop-column'],

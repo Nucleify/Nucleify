@@ -109,6 +109,7 @@ watchEffect(() => {
         if (item.icon) {
           const icon = document.createElement('div')
           icon.classList.add('icon-container')
+          icon.classList.add('cube')
 
           const iconApp = createApp({
             components: {
