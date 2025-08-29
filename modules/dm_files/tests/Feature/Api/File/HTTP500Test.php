@@ -39,6 +39,19 @@ describe('500', function (): void {
             ->assertJson(['error' => 'Internal Server Error']);
     });
 
+    test('edit api', function (): void {
+        $model = File::factory()->create();
+
+        $this->service
+            ->shouldReceive('edit')
+            ->once()
+            ->andThrow(new Exception('Internal Server Error'));
+
+        $this->putJson(route('files.edit', ['id' => $model->id]), ['path' => 'newName'])
+            ->assertStatus(500)
+            ->assertJson(['error' => 'Internal Server Error']);
+    });
+
     test('destroy api', function (): void {
         $model = File::factory()->create();
 

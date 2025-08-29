@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ZipRequest;
+use App\Http\Requests\UnzipRequest;
 use App\Services\UploadService;
 use App\Services\ZipService;
 use Exception;
@@ -21,17 +21,17 @@ class ZipController extends Controller
         $this->zipService = $zipService;
     }
 
-    public function extract(ZipRequest $request): JsonResponse
+    public function unzip(UnzipRequest $request): JsonResponse
     {
         try {
             $filePath = $this->uploadService->upload($request->file('file'));
 
-            $extractedPath = $this->zipService->extract($filePath);
+            $unzipedPath = $this->zipService->unzip($filePath);
 
             return response()->json([
-                'message' => 'Upload and extract successful',
+                'message' => 'Upload and unzip successful',
                 'file_path' => $filePath,
-                'extracted_path' => $extractedPath,
+                'unziped_path' => $unzipedPath,
             ]);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

@@ -34,9 +34,9 @@ class ModuleInstallerService
         }
 
         try {
-            $this->zipService->extract($path, $installPath);
+            $this->zipService->unzip($path, $installPath);
         } catch (Exception $e) {
-            throw new Exception('Failed to extract ZIP file: ' . $e->getMessage());
+            throw new Exception('Failed to unzip ZIP file: ' . $e->getMessage());
         }
 
         $moduleData = [

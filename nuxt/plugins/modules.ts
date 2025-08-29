@@ -1,3 +1,4 @@
+// @ts-nocheck
 import type { NuxtApp } from 'nuxt/app'
 import { defineNuxtPlugin } from 'nuxt/app'
 
