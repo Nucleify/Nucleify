@@ -33,9 +33,9 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
             'Feature/Api/Upload/Http200Test.php',
             'Feature/Api/Upload/Http422Test.php',
 
-            // Zip API
-            'Feature/Api/Zip/Http200Test.php',
-            'Feature/Api/Zip/Http422Test.php',
+            // Unzip API
+            'Feature/Api/Unzip/Http200Test.php',
+            'Feature/Api/Unzip/Http422Test.php',
 
             'Database/Factories',
             'Database/Migrations',

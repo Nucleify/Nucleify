@@ -19,7 +19,8 @@ class FileService
     public function __construct(
         private readonly File $model,
         protected string $entity = 'file',
-        private readonly LoggerService $logger = new LoggerService
+        private readonly LoggerService $logger = new LoggerService,
+        private readonly UploadService $uploadService = new UploadService
     ) {}
 
     /**
@@ -55,6 +56,34 @@ class FileService
         $result = $this->model::findOrFail($id);
 
         $this->logger->log($this->causer->name, $result->getId(), $this->entity, 'showed');
+
+        return new FileResource($result);
+    }
+
+    /**
+     * @param int $id
+     * @param string $data
+     *
+     * @return FileResource
+     *
+     * @throws Exception
+     */
+    public function edit($id, string $data): FileResource
+    {
+        $this->defineUserData();
+
+        $result = $this->model::findOrFail($id);
+        $oldFullPath = $result->getPath();
+
+        $directory = dirname($oldFullPath);
+        $newFullPath = $directory . '/' . $data;
+
+        $this->uploadService->edit($oldFullPath, $newFullPath);
+
+        $result->path = $newFullPath;
+        $result->save();
+
+        $this->logger->log($this->causer->name, $result->getId(), $this->entity, 'edited');
 
         return new FileResource($result);
     }
