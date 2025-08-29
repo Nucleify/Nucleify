@@ -24,14 +24,9 @@ class ZipService
 
         $filename = basename($filePath);
         $baseName = pathinfo($filename, PATHINFO_FILENAME);
-        $extractTo = $unzipDir . '/' . $baseName;
 
-        if (!file_exists($extractTo)) {
-            mkdir($extractTo, 0777, true);
-        }
+        Zip::open($filePath)->extract($unzipDir);
 
-        Zip::open($filePath)->extract($extractTo);
-
-        return $extractTo;
+        return $unzipDir;
     }
 }

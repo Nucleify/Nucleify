@@ -16,6 +16,7 @@ test('can create table', function (): void {
             'category',
             'version',
             'enabled',
+            'installed',
             'created_at',
             'updated_at',
         ]))
