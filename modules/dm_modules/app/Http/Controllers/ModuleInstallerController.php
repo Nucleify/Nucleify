@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\InstallRequest;
+use App\Services\ModuleInstallerService;
+use Exception;
+use Illuminate\Http\JsonResponse;
+
+class ModuleInstallerController extends Controller
+{
+    private ModuleInstallerService $service;
+
+    public function __construct(ModuleInstallerService $service)
+    {
+        $this->service = $service;
+    }
+
+    public function install(InstallRequest $request): JsonResponse
+    {
+        try {
+            $file = $request->file('file');
+
+            $tempPath = $file->getRealPath();
+
+            $result = $this->service->install($tempPath);
+
+            if ($result) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Module successfully installed: ' . $result->getName(),
+                    'module' => $result,
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'ZIP file does not contain required .php or .ts files',
+                ], 422);
+            }
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+}
