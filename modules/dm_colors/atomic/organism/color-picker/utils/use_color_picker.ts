@@ -2,7 +2,7 @@ import type { Ref } from 'vue'
 import { ref } from 'vue'
 
 import type { UseColorPickerInterface, UseColorsInterface } from 'atomic'
-import { createcolorShades, setColorWithNewSuffix, useColors } from 'atomic'
+import { createColorShades, setColorWithNewSuffix, useColors } from 'atomic'
 
 export function useColorPicker(item: string): UseColorPickerInterface {
   const { colors }: UseColorsInterface = useColors()
@@ -16,7 +16,7 @@ export function useColorPicker(item: string): UseColorPickerInterface {
 
     if (!colorValue) return
 
-    const colorSettings = createcolorShades(colorValue)
+    const colorSettings = createColorShades(colorValue)
 
     Object.entries(colorSettings).forEach(([key, value]) => {
       const colorKey = `${item}-item${key ? `-${key}` : ''}-color`

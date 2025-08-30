@@ -1,2 +1,2 @@
-export { default as DMStaffMenuTree } from './index.vue'
+export { default as DmStaffMenuTree } from './index.vue'
 

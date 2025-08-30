@@ -1,4 +1,4 @@
 export * from './general'
 export * from './staff'
 
-export { default as DMMenuTree } from './index.vue'
+export { default as DmMenuTree } from './index.vue'
