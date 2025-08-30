@@ -25,6 +25,6 @@ const router = useRouter()
 
 async function loginAndGo(role: string) {
   await testLogin(role)
-  router.push('/entities')
+  router.push('/settings#modules')
 }
 </script>
