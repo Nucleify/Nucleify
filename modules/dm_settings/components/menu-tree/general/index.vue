@@ -1,11 +1,17 @@
 <template>
   <div class="general-menu-tree">
-    <ad-heading :tag="4" text="General" />
+    <ad-heading :tag="4" text="General" >
+      <dm-navigation-back-button v-if="route.hash.includes('#module-')" />
+    </ad-heading>
     <ad-tree :value="nodes" :expanded-keys="expandedKeys" />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { useRoute } from 'nuxt/app'
+
+const route = useRoute()
+
 const nodes = ref([
   {
     key: '0',

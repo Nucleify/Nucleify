@@ -11,6 +11,10 @@
   }
 
   h4 {
+    height: 2em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: .75em;
     font-size: $font-size-sm;
     font-weight: 300;

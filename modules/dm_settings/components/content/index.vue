@@ -5,12 +5,17 @@
     <dm-chart-settings-card v-if="route.hash === '#module-dm_charts'"/>
   </div> 
   <dm-settings-staff-modules v-if="route.hash === '#modules'"/>
+  <dm-settings-no-content v-if="route.hash.includes('#module-') && !gridedContent" />
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'nuxt/app'
 
-import { DmSettingsPreferencesTheme, DmSettingsStaffModules } from '.'
+import {
+  DmSettingsNoContent,
+  DmSettingsPreferencesTheme,
+  DmSettingsStaffModules,
+} from '.'
 
 const route = useRoute()
 

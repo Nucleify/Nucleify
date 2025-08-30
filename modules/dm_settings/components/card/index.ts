@@ -1,4 +1,4 @@
 export * from './interfaces'
 
-export { default as DMSettingsCard } from './index.vue'
-export { default as DMSkeletonSettingsCard } from './skeleton.vue'
+export { default as DmSettingsCard } from './index.vue'
+export { default as DmSkeletonSettingsCard } from './skeleton.vue'
