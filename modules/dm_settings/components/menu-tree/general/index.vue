@@ -1,11 +1,17 @@
 <template>
   <div class="general-menu-tree">
-    <ad-heading :tag="4" text="General" />
+    <ad-heading :tag="4" text="General" >
+      <dm-navigation-back-button v-if="route.hash.includes('#module-')" />
+    </ad-heading>
     <ad-tree :value="nodes" :expanded-keys="expandedKeys" />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { useRoute } from 'nuxt/app'
+
+const route = useRoute()
+
 const nodes = ref([
   {
     key: '0',
@@ -14,21 +20,21 @@ const nodes = ref([
       {
         key: '0-0',
         label: 'Personal Info',
-        data: '#personal-info',
+        data: '#my-profile-personal-info',
         type: 'url',
         class: 'disabled-item',
       },
       {
         key: '0-1',
         label: 'Password & Security',
-        data: '#password-security',
+        data: '#my-profile-password-security',
         type: 'url',
         class: 'disabled-item',
       },
       {
         key: '0-2',
         label: 'Notifications & Alerts',
-        data: '#notifications-alerts',
+        data: '#my-profile-notifications-alerts',
         type: 'url',
         class: 'disabled-item',
       },
@@ -41,21 +47,21 @@ const nodes = ref([
       {
         key: '1-0',
         label: 'Language & Region',
-        data: '#language-region',
+        data: '#preferences-language-region',
         type: 'url',
         class: 'disabled-item',
       },
       {
         key: '1-1',
         label: 'Entities',
-        data: '#entities',
+        data: '#preferences-entities',
         type: 'url',
         class: 'disabled-item',
       },
       {
         key: '1-2',
         label: 'Theme',
-        data: '#theme',
+        data: '#preferences-theme',
         type: 'url',
       },
     ],

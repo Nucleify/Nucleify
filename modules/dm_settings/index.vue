@@ -1,6 +1,6 @@
 <template>
-  <div class="panel-container">
-    <client-only v-if="isClient">
+  <client-only>
+    <div class="panel-container">
       <ad-card class="settings-main-card" :id="route.hash.replace('#', '')">
         <template #content>
           <dm-menu-tree />
@@ -9,11 +9,8 @@
           </div>
         </template>
       </ad-card>
-    </client-only>
-    <template v-else>
-      <ad-card class="settings-main-card" />
-    </template>
-  </div>
+    </div>
+  </client-only>
 </template>
 
 <script setup lang="ts">

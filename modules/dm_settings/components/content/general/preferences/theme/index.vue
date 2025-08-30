@@ -1,4 +1,4 @@
 <template>
   <dm-color-settings-card />
-  <dm-settings-chart-card />
+  <dm-chart-settings-card />
 </template>
