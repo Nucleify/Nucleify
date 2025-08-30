@@ -1,22 +1,22 @@
 import type { App } from 'vue'
 
 import {
-  DMGeneralMenuTree,
-  DMMenuTree,
-  DMSettingsCard,
-  DMSettingsCardContent,
-  DMSettingsPage,
-  DMSkeletonSettingsCard,
-  DMStaffMenuTree,
+  DmGeneralMenuTree,
+  DmMenuTree,
+  DmSettingsCard,
+  DmSettingsCardContent,
+  DmSettingsPage,
+  DmSkeletonSettingsCard,
+  DmStaffMenuTree,
 } from '.'
 
 export function registerDMSettings(app: App<Element>): void {
   app
-    .component('dm-settings-card', DMSettingsCard)
-    .component('dm-settings-page', DMSettingsPage)
-    .component('dm-skeleton-settings-card', DMSkeletonSettingsCard)
-    .component('dm-menu-tree', DMMenuTree)
-    .component('dm-general-menu-tree', DMGeneralMenuTree)
-    .component('dm-staff-menu-tree', DMStaffMenuTree)
-    .component('dm-settings-card-content', DMSettingsCardContent)
+    .component('dm-settings-card', DmSettingsCard)
+    .component('dm-settings-page', DmSettingsPage)
+    .component('dm-skeleton-settings-card', DmSkeletonSettingsCard)
+    .component('dm-menu-tree', DmMenuTree)
+    .component('dm-general-menu-tree', DmGeneralMenuTree)
+    .component('dm-staff-menu-tree', DmStaffMenuTree)
+    .component('dm-settings-card-content', DmSettingsCardContent)
 }

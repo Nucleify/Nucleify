@@ -11,4 +11,4 @@ export * from './components'
 /**
  *  Files exports
  */
-export { default as DMSettingsPage } from './index.vue'
+export { default as DmSettingsPage } from './index.vue'
