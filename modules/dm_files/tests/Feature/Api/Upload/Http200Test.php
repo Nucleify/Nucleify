@@ -13,11 +13,17 @@ beforeEach(function (): void {
 
 describe('200', function (): void {
     test('upload api', function (): void {
-        $model = UploadedFile::fake()->create('test.zip', 100, 'application/zip');
+        $file = UploadedFile::fake()->create(uniqid('', true) . '_test.zip', 100, 'application/zip');
 
-        $this->post(route('files.upload'), [
-            'file' => $model,
+        $response = $this->post(route('files.upload'), [
+            'file' => $file,
         ])
             ->assertOk();
+
+        $filePath = $response->json('file_path');
+
+        if ($filePath && file_exists($filePath)) {
+            unlink($filePath);
+        }
     });
 });

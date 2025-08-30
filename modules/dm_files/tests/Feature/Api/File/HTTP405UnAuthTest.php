@@ -39,4 +39,9 @@ describe('405 > Unauthorized', function (): void {
         $this->postJson(route('files.destroy', 1))
             ->assertStatus(405);
     });
+
+    test('post json > edit api', function (): void {
+        $this->postJson(route('files.edit', 1))
+            ->assertStatus(405);
+    });
 });

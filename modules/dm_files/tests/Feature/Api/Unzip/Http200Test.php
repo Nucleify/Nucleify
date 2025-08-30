@@ -18,10 +18,10 @@ beforeEach(function (): void {
 });
 
 describe('200', function (): void {
-    test('extract zip api', function (): void {
+    test('unzip api', function (): void {
         $model = UploadedFile::fake()->create('test.zip', 100, 'application/zip');
 
-        $this->post(route('files.zip'), [
+        $this->post(route('files.unzip'), [
             'file' => $model,
         ])
             ->assertOk();

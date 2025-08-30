@@ -35,7 +35,7 @@ const dockData: readonly DockItemInterface[] = [
   ['prime:file', 'Files', '/files', undefined, 'files'],
   ['prime:check-square', 'Tasks', '/tasks', undefined, 'tasks'],
   ['prime:calendar', 'Calendar', undefined, 'disabled-item'],
-  ['prime:cog', 'Settings', '/settings#theme', undefined, 'settings'],
+  ['prime:cog', 'Settings', '/settings#modules', undefined, 'settings'],
   ['prime:sign-out', 'Logout', undefined, undefined, undefined, logout],
   [undefined, 'position', undefined, 'position'],
 ] as const

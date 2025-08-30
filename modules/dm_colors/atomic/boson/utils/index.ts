@@ -1,5 +1,5 @@
 export * from './apply_colors_with_new_suffix'
-export * from './create_color_types'
+export * from './create_color_shades'
 export * from './darken_color'
 export * from './get_color_value'
 export * from './is_default_color'

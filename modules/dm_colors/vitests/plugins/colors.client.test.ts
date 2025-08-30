@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import * as atomic from 'atomic'
 
-import { colorsClientPlugin } from '../plugins'
+import { colorsClientPlugin } from '../../plugins'
 
 vi.mock('atomic', () => ({
   colorKeys: ['foo'],
