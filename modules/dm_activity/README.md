@@ -1,4 +1,4 @@
-# <img src="/favicon.ico" width="17" height="17" /> &nbsp; dm_activity
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_activity
 
 Module that contains activity functions.
 

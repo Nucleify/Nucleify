@@ -1,4 +1,4 @@
-# <img src="/favicon.ico" width="17" height="17" /> &nbsp; dm_entities
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_entities
 
 Module for all classic entities in DataManager.
 

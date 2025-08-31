@@ -1,4 +1,4 @@
-# <img src="/favicon.ico" width="17" height="17" /> &nbsp; dm_entities_structural
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_entities_structural
 
 Module for all structural entities in DataManager.
 

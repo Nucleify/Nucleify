@@ -1,4 +1,4 @@
-# <img src="/favicon.ico" width="17" height="17" /> &nbsp; dm_settings
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_settings
 
 Module that contains settings functions.
 

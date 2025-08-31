@@ -1,4 +1,4 @@
-# <img src="/favicon.ico" width="17" height="17" /> &nbsp; dm_globals
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_globals
 
 Module that contains global functions, constants, etc.
 
