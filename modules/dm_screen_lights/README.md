@@ -1,4 +1,4 @@
-# <img src="/favicon.ico" width="17" height="17" /> &nbsp; dm_screen_lights
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_screen_lights
 
 Module that displays background lights.
 

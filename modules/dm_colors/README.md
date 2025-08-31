@@ -1,4 +1,4 @@
-# <img src="/favicon.ico" width="17" height="17" /> &nbsp; dm_colors
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_colors
 
 Module that contains color related CSS/SCSS variables and utils.
 

@@ -1,4 +1,4 @@
-# <img src="/favicon.ico" width="17" height="17" /> &nbsp; dm_admin
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_admin
 
 Module that contains admin functions.
 

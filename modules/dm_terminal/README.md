@@ -1,4 +1,4 @@
-# <img src="/favicon.ico" width="17" height="17" /> &nbsp; dm_terminal
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_terminal
 
 Module that contains terminal functions.
 
