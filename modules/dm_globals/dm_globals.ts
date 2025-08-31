@@ -13,7 +13,7 @@ import {
 } from '.'
 
 export function registerDMGlobals(app: App): void {
-  const prefix = appEnv() === 'production' ? '/build' : ''
+  const prefix = appEnv() === 'production' ? '' : appUrl()
 
   /**
    *  dm_media
