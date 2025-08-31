@@ -43,6 +43,7 @@ export default defineNuxtConfig({
                 .filter(Boolean)
             : [],
           crawlLinks: process.env.PRERENDER_CRAWL_LINKS === 'true',
+          ignore: ['/settings'],
         },
     output: {
       publicDir: './public/build',
