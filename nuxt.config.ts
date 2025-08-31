@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   laravelSanctum: {
     apiUrl: process.env.APP_URL,
   },
-  ssr: true,
+  ssr: process.env.SSR === 'true',
   nitro: {
     prerender: process.env.CI
       ? {
