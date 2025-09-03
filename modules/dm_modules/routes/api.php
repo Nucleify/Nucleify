@@ -11,6 +11,8 @@ Route::middleware(['web', 'auth'])->prefix('api')->group(function (): void {
                 ->name('modules.getInstalledModules');
             Route::post('/install', 'install')
                 ->name('modules.install');
+            Route::post('/uninstall', 'uninstall')
+                ->name('modules.uninstall');
         });
 
         Route::controller(ModuleController::class)->group(function (): void {

@@ -42,4 +42,27 @@ describe('ModuleInstallerService', function (): void {
 
         File::deleteDirectory($this->basePath . '/' . pathinfo($module, PATHINFO_FILENAME));
     });
+
+    test('can uninstall module', function (): void {
+        $module = $this->basePath . '/test_module_laravel.zip';
+        $service = app(ModuleInstallerService::class);
+        $installedModule = $service->install($module, 'modules');
+
+        expect($installedModule->installed)
+            ->toBeTrue();
+
+        $result = $service->uninstall($installedModule->getName());
+
+        expect($result)->toBeTrue();
+
+        $module = Module::find($installedModule->getId());
+
+        expect($module)->not->toBeNull();
+        expect($module->installed)->toBe(0);
+        expect($module->enabled)->toBe(0);
+
+        $path = base_path('modules/' . $installedModule->getName());
+
+        expect(File::exists($path))->toBeFalse();
+    });
 });
