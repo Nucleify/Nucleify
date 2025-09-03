@@ -1,7 +1,5 @@
 import type { MenuItem } from 'primevue/menuitem'
 
-import type { ElementDirectionType } from 'atomic'
-
 export interface MegaMenuInterface {
   items?: MegaMenuValuesInterface[]
   model?: MenuItem[][]

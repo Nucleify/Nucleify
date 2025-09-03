@@ -1,5 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+
 import { ref } from 'vue'
 
 import type { DockItemInterface } from 'atomic'
@@ -25,17 +26,17 @@ const createDockItem = (
   }) as const
 
 const dockData: readonly DockItemInterface[] = [
-  [undefined, undefined, '/home', 'logo', undefined, undefined, true],
-  ['pi pi-crown', 'Admin Panel', '/admin', undefined, 'admin'],
-  ['pi pi-sitemap', 'Structural', '/structural', undefined, 'structural'],
-  ['pi pi-chart-line', 'Dashboard', '/dashboard', undefined, 'dashboard'],
-  ['pi pi-box', 'Entities', '/entities', undefined, 'entities'],
-  ['pi pi-history', 'Activities', '/activity-log', undefined, 'activity-log'],
-  ['pi pi-envelope disabled-item', 'Messages'],
-  ['pi pi-calendar disabled-item', 'Calendar'],
-  ['pi pi-user', 'Profile', '/profile', undefined, 'profile'],
-  ['pi pi-cog', 'Settings', '/settings', undefined, 'settings'],
-  ['pi pi-sign-out', 'Logout', undefined, undefined, undefined, logout],
+  [undefined, undefined, '/home', undefined, undefined, undefined, true],
+  ['prime:crown', 'Admin Panel', '/admin', undefined, 'admin'],
+  ['prime:sitemap', 'Structural', '/structural', undefined, 'structural'],
+  ['prime:chart-line', 'Dashboard', '/dashboard', undefined, 'dashboard'],
+  ['prime:box', 'Entities', '/entities', undefined, 'entities'],
+  ['prime:history', 'Activities', '/activity-log', undefined, 'activity-log'],
+  ['prime:file', 'Files', '/files', undefined, 'files'],
+  ['prime:check-square', 'Tasks', '/tasks', undefined, 'tasks'],
+  ['prime:calendar', 'Calendar', undefined, 'disabled-item'],
+  ['prime:cog', 'Settings', '/settings#modules', undefined, 'settings'],
+  ['prime:sign-out', 'Logout', undefined, undefined, undefined, logout],
   [undefined, 'position', undefined, 'position'],
 ] as const
 

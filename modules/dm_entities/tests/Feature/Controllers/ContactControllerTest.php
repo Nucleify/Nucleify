@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('contact-controller');
+
 use App\Http\Controllers\ContactController;
 use App\Http\Requests\Contact\PostRequest;
 use App\Http\Requests\Contact\PutRequest;
@@ -17,61 +19,60 @@ beforeEach(function (): void {
     $this->controller = app()->makeWith(ContactController::class, ['contactService' => app()->make(ContactService::class)]);
 });
 
-test('index > success', function (): void {
-    Contact::factory()->count(3)->create();
+describe('200', function (): void {
+    test('index method', function (): void {
+        Contact::factory()->count(3)->create();
 
-    $request = new Request;
+        $request = new Request;
 
-    $response = $this->controller->index($request);
+        $response = $this->controller->index($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('countByCreatedLastWeek > success', function (): void {
-    $request = new Request;
+    test('countByCreatedLastWeek method', function (): void {
+        $request = new Request;
 
-    $response = $this->controller->countByCreatedLastWeek($request);
+        $response = $this->controller->countByCreatedLastWeek($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-});
+        expect($response->getStatusCode())->toEqual(200);
+    });
 
-test('show > success', function (): void {
-    $contact = Contact::factory()->create();
+    test('show method', function (): void {
+        $model = Contact::factory()->create();
 
-    $response = $this->controller->show($contact->id);
+        $response = $this->controller->show($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('store > success', function (): void {
-    $request = Mockery::mock(PostRequest::class);
-    $request->shouldReceive('validated')->once()->andReturn(contactData);
+    test('store method', function (): void {
+        $request = Mockery::mock(PostRequest::class);
+        $request->shouldReceive('validated')->once()->andReturn(contactData);
 
-    $response = $this->controller->store($request);
+        $response = $this->controller->store($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('update > success', function (): void {
-    $contact = Contact::factory()->create();
+    test('update method', function (): void {
+        $model = Contact::factory()->create();
 
-    $request = Mockery::mock(PutRequest::class);
-    $request->shouldReceive('validated')->andReturn(updatedContactData);
+        $request = Mockery::mock(PutRequest::class);
+        $request->shouldReceive('validated')->andReturn(updatedContactData);
 
-    $response = $this->controller->update($request, $contact->id);
+        $response = $this->controller->update($request, $model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('delete > success', function (): void {
-    $contact = Contact::factory()->create();
+    test('delete method', function (): void {
+        $model = Contact::factory()->create();
 
-    $response = $this->controller->destroy($contact->id);
+        $response = $this->controller->destroy($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true)['deleted'])->toBeTrue();
+        expect($response->getStatusCode(), $response->getData(true)['deleted'])
+            ->toEqual(200)
+            ->and($this->assertDatabaseMissing('contacts', ['id' => $model->id]));
+    });
 });

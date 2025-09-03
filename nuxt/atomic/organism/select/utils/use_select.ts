@@ -1,11 +1,7 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 
-import type {
-  SelectItemInterface,
-  ObjectType,
-  OpenDialogFunctionType,
-} from 'atomic'
+import type { OpenDialogFunctionType, SelectItemInterface } from 'atomic'
 
 const createSelectItem = (
   label: string,
@@ -18,10 +14,10 @@ const createSelectItem = (
 })
 
 const selectData = [
-  ['Show', 'pi pi-eye', 'show'],
-  ['Edit', 'pi pi-pencil', 'edit'],
-  ['Delete', 'pi pi-trash', 'delete'],
-  ['Share', 'pi pi-share-alt', null],
+  ['Show', 'prime:eye', 'show'],
+  ['Edit', 'prime:pencil', 'edit'],
+  ['Delete', 'prime:trash', 'delete'],
+  ['Share', 'prime:share-alt', null],
 ] as const
 
 export function useSelect(

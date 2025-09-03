@@ -5,7 +5,7 @@ if (!defined('PEST_RUNNING')) {
 }
 
 /**
- *  Main tests group
+ *  Main groups
  */
 uses()
     ->group('dm-pages')

@@ -1,0 +1,72 @@
+@mixin entity-calendar-styles($item-color, $focus-color) {
+  &:hover {
+    .p-inputtext {
+      border-color: $item-color;
+    }
+  }
+
+  &:not(.p-calendar-disabled).p-focus {
+    .p-inputtext {
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0.5em $focus-color;
+      border-color: $item-color;
+    }
+  }
+}
+
+@mixin entity-datepicker-styles(
+  $item-color,
+  $focus-color,
+  $selected-color,
+  $highlight-color
+) {
+  span,
+  .p-datepicker-prev,
+  .p-datepicker-next {
+    &:hover {
+      color: $item-color;
+      background: $selected-color;
+    }
+  }
+
+  span,
+  .p-button {
+    &.p-highlight {
+      color: $item-color;
+      background: $highlight-color;
+    }
+
+    &:not(.p-disabled, .p-highlight).p-focus {
+      color: $item-color;
+      background: $selected-color;
+    }
+  }
+
+  .p-datepicker-today {
+    span {
+      color: $item-color;
+      background: $highlight-color;
+    }
+  }
+
+  .p-button {
+    &:hover {
+      color: $item-color;
+      background: $selected-color;
+    }
+  }
+
+  th span,
+  .p-datepicker-decade,
+  .p-datepicker-year,
+  .p-datepicker-month,
+  .p-datepicker-weekday,
+  .p-datepicker-select-year,
+  .p-datepicker-select-month {
+    &:hover {
+      color: $item-color;
+      background: transparent !important;
+    }
+  }
+}

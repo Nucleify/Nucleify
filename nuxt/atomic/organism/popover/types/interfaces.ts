@@ -1,7 +1,5 @@
 import type { PopoverBreakpoints } from 'primevue/popover'
 
-import type { ElementAppendTo } from 'atomic'
-
 export interface PopoverInterface {
   dismissable?: boolean
   appendTo?: ElementAppendTo

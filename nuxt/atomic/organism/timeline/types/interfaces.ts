@@ -1,5 +1,3 @@
-import type { ElementDirectionType } from 'atomic'
-
 export interface TimelineInterface {
   events?: TimelineEventInterface[]
   value?: unknown[]

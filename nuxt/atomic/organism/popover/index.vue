@@ -1,6 +1,6 @@
 <template>
   <ad-button
-    :icon="props.popoverClass!.includes('terminal') ? 'pi pi-code' : props.icon"
+    :icon="props.popoverClass!.includes('terminal') ? 'prime:code' : props.icon"
     :src="props.src"
     :class="props.buttonClass"
     :style="props.buttonStyle"

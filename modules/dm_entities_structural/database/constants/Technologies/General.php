@@ -38,6 +38,18 @@ return [
         'src' => 'primevue.svg',
     ],
     [
+        'label' => 'GSAP',
+        'description' => 'A JavaScript library for creating high-performance animations, easing, and transitions.',
+        'href' => 'https://greensock.com/gsap/',
+        'src' => 'gsap.svg',
+    ],
+    [
+        'label' => 'Chart.js',
+        'description' => 'Simple yet flexible JavaScript charting library for the modern web',
+        'href' => 'https://www.chartjs.org/',
+        'src' => 'chart-js.svg',
+    ],
+    [
         'label' => 'HTML5',
         'description' => 'The latest version of the HTML markup language. It enables the creation of responsive and semantic websites with multimedia support, without the need for additional plugins.',
         'href' => 'https://html.spec.whatwg.org/multipage/',
@@ -66,12 +78,6 @@ return [
         'description' => 'A cloud-based PaaS (Platform-as-a-Service) platform, allowing easy deployment, scaling, and management of web applications',
         'href' => 'https://www.heroku.com/',
         'src' => 'heroku.svg',
-    ],
-    [
-        'label' => 'Vite',
-        'description' => 'A tool for building frontend projects, offering an ultra-fast development process and instant refresh during work',
-        'href' => 'https://vitejs.dev/',
-        'src' => 'vite.svg',
     ],
     [
         'label' => 'Vitest',
@@ -104,10 +110,10 @@ return [
         'src' => 'sonarcloud.svg',
     ],
     [
-        'label' => 'ESLint',
-        'description' => 'A tool for static analysis of JavaScript and TypeScript code. It helps detect errors and coding convention violations, ensuring better code quality.',
-        'href' => 'https://eslint.org/',
-        'src' => 'eslint.svg',
+        'label' => 'Biome',
+        'description' => 'A fast, modern, and powerful linter and formatter for JavaScript, TypeScript, and CSS.',
+        'href' => 'https://biomejs.dev/',
+        'src' => 'biome.svg',
     ],
     [
         'label' => 'Stylelint',
@@ -120,11 +126,5 @@ return [
         'description' => 'A tool for managing Git hooks, enabling the execution of scripts (e.g., linting) before committing changes to a repository.',
         'href' => 'https://typicode.github.io/husky/',
         'src' => 'husky.svg',
-    ],
-    [
-        'label' => 'Prettier',
-        'description' => 'An automatic code formatting tool that supports multiple programming languages, ensuring a consistent coding style.',
-        'href' => 'https://prettier.io/',
-        'src' => 'prettier.svg',
     ],
 ];

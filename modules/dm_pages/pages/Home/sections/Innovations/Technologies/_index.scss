@@ -10,12 +10,16 @@
       display: flex;
       justify-content: center;
       width: 48.5px !important;
+      margin: 2px 0;
+      opacity: 0;
 
-      a {
+      a.cube {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 50px;
         width: 50px;
         background: $content-background;
-        border: 1px solid $p-card-border;
         border-radius: 12px;
         padding: 0.35em;
 
@@ -25,6 +29,18 @@
           height: 35px;
         }
       }
+    }
+  }
+}
+
+@media (width >= $lg) {
+  #innovations > #technologies {
+    overflow-y: visible;
+
+    swiper-container,
+    .swiper-wrapper,
+    .swiper {
+      overflow-y: visible;
     }
   }
 }

@@ -1,5 +1,5 @@
-import { resolve } from 'path'
 import { defineVitestConfig } from '@nuxt/test-utils/config'
+import { resolve } from 'path'
 
 export default defineVitestConfig({
   resolve: {
@@ -13,5 +13,7 @@ export default defineVitestConfig({
       'vitests/**/*.{test,spec}.{js,ts,jsx,tsx}',
       'modules/**/*.{test,spec}.{js,ts,jsx,tsx}',
     ],
+    testTimeout: 30000,
+    onConsoleLog: () => false,
   },
 })

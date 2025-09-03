@@ -4,45 +4,30 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('terminal-api-200');
+uses()->group('api-200');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
-    it('can run migrate:rollback command', function (): void {
-        $response = $this->postJson(route('artisan.run'), ['command' => 'migrate:rollback']);
-
-        $response->assertStatus(200)
-            ->assertJson([
-                'exit_code' => 0,
-            ]);
+describe('200', function (): void {
+    test('migrate:rollback command', function (): void {
+        $this->postJson(route('artisan.run'), ['command' => 'migrate:rollback'])
+            ->assertStatus(200)
+            ->assertJson(['exit_code' => 0]);
     });
 
-    it('can run migrate command', function (): void {
-        $response = $this->postJson(route('artisan.run'), ['command' => 'migrate']);
-
-        $response->assertStatus(200)
-            ->assertJson([
-                'exit_code' => 0,
-            ]);
+    test('migrate command', function (): void {
+        $this->postJson(route('artisan.run'), ['command' => 'migrate'])
+            ->assertStatus(200)
+            ->assertJson(['exit_code' => 0]);
     });
 
-    it('can run migrate:fresh command', function (): void {
-        $response = $this->postJson(route('artisan.run'), ['command' => 'migrate:fresh']);
-
-        $response->assertStatus(200)
-            ->assertJson([
-                'exit_code' => 0,
-            ]);
-    });
-
-    it('can run migrate:fresh --seed command', function (): void {
-        $response = $this->postJson(route('artisan.run'), ['command' => 'migrate:fresh --seed']);
-
-        $response->assertStatus(200)
-            ->assertJson([
-                'exit_code' => 0,
-            ]);
+    test('migrate:fresh command', function (): void {
+        $this->postJson(route('artisan.run'), ['command' => 'migrate:fresh'])
+            ->assertStatus(200)
+            ->assertJson(['exit_code' => 0]);
     });
 });

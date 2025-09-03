@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 
-import type { ObjectType, UseMenuInterface } from 'atomic'
+import type { UseMenuInterface } from 'atomic'
 
 export function useMenu(): UseMenuInterface {
   const selectedObject: Ref<ObjectType> = ref<ObjectType>()
@@ -10,7 +10,7 @@ export function useMenu(): UseMenuInterface {
     selectedObject.value = object
   }
 
-  // eslint-disable-next-line
+  // biome-ignore lint/suspicious/noExplicitAny: fix in future
   function openMenu(menu: any, event: MouseEvent, object: ObjectType): void {
     setSelectedObject(object)
     menu.toggle(event)

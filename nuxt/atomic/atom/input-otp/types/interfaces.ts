@@ -1,5 +1,3 @@
-import type { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
-
 export interface InputOtpInterface {
   adType?: AdTypeType
   modelValue?: boolean

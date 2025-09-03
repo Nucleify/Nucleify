@@ -1,0 +1,193 @@
+name: 🚀 Laravel
+
+on:
+  push:
+    branches: [ "*" ]
+
+jobs:
+  # Checkout, Setup, and Install Dependencies
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.3.7'
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+
+      - name: Verify .env File Exists
+        run: |
+          if [ ! -f .env ]; then
+            echo ".env file was not created!"
+            exit 1
+          fi
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --no-interaction
+
+  # Generate Application Key
+  generate-key:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.3.7'
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --no-interaction
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+
+      - name: Verify .env File Exists
+        run: |
+          if [ ! -f .env ]; then
+            echo ".env file was not created!"
+            exit 1
+          fi
+
+      - name: Generate Application Key
+        run: php artisan key:generate
+
+  # Set Directory Permissions
+  set-permissions:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.3.7'
+
+      - name: Set Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+  # Create Database
+  create-database:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.3.7'
+
+      - name: Create Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+
+  # Pint
+  pint:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.3.7'
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --no-interaction
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+
+      - name: Verify .env File Exists
+        run: |
+          if [ ! -f .env ]; then
+            echo ".env file was not created!"
+            exit 1
+          fi
+
+      - name: Run Pint check
+        run: ./vendor/bin/pint
+
+  # Check Guard
+  guard-check:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.3.7'
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --no-interaction
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+
+      - name: Verify .env File Exists
+        run: |
+          if [ ! -f .env ]; then
+            echo ".env file was not created!"
+            exit 1
+          fi
+
+      - name: Check Guard
+        run: php .pest/guard_check.php
+
+  # Run Tests
+  test:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
+        with:
+          php-version: '8.3.7'
+
+      - name: Install Composer dependencies
+        run: composer install --no-progress --prefer-dist --no-interaction
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+
+      - name: Verify .env File Exists
+        run: |
+          if [ ! -f .env ]; then
+            echo ".env file was not created!"
+            exit 1
+          fi
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Create Database
+        run: |
+          mkdir -p database
+          touch database/database.sqlite
+
+      - name: Run Tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+          DB_FOREIGN_KEYS: false
+        run: php artisan test --coverage

@@ -8,6 +8,8 @@ export * from './dm_animations'
  */
 export * from './bounce'
 export * from './hexagons'
+export * from './scroll'
+export * from './split_text'
 
 /**
  *  File exports

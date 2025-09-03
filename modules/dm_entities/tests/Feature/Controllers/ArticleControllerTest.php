@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('article-controller');
+
 use App\Http\Controllers\ArticleController;
 use App\Http\Requests\Article\PostRequest;
 use App\Http\Requests\Article\PutRequest;
@@ -17,63 +19,62 @@ beforeEach(function (): void {
     $this->controller = app()->makeWith(ArticleController::class, ['articleService' => app()->make(ArticleService::class)]);
 });
 
-test('index > success', function (): void {
-    Article::factory()->count(3)->create();
+describe('200', function (): void {
+    test('index method', function (): void {
+        Article::factory()->count(3)->create();
 
-    $request = new Request;
+        $request = new Request;
 
-    $response = $this->controller->index($request);
+        $response = $this->controller->index($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('countByCreatedLastWeek > success', function (): void {
-    $request = new Request;
+    test('countByCreatedLastWeek method', function (): void {
+        $request = new Request;
 
-    $response = $this->controller->countByCreatedLastWeek($request);
+        $response = $this->controller->countByCreatedLastWeek($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-});
+        expect($response->getStatusCode())->toEqual(200);
+    });
 
-test('show > success', function (): void {
-    $article = Article::factory()->create();
+    test('show method', function (): void {
+        $model = Article::factory()->create();
 
-    $response = $this->controller->show($article->id);
+        $response = $this->controller->show($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('store > success', function (): void {
-    $request = Mockery::mock(PostRequest::class);
-    $request->shouldReceive('validated')
-        ->andReturn(articleData);
+    test('store method', function (): void {
+        $request = Mockery::mock(PostRequest::class);
+        $request->shouldReceive('validated')
+            ->andReturn(articleData);
 
-    $response = $this->controller->store($request);
+        $response = $this->controller->store($request);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('update > success', function (): void {
-    $article = Article::factory()->create();
+    test('update method', function (): void {
+        $model = Article::factory()->create();
 
-    $request = Mockery::mock(PutRequest::class);
-    $request->shouldReceive('validated')
-        ->andReturn(updatedArticleData);
+        $request = Mockery::mock(PutRequest::class);
+        $request->shouldReceive('validated')
+            ->andReturn(updatedArticleData);
 
-    $response = $this->controller->update($request, $article->id);
+        $response = $this->controller->update($request, $model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    expect($response->getData(true));
-});
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
 
-test('delete > success', function (): void {
-    $article = Article::factory()->create();
+    test('delete method', function (): void {
+        $model = Article::factory()->create();
 
-    $response = $this->controller->destroy($article->id);
+        $response = $this->controller->destroy($model->id);
 
-    expect($response->getStatusCode())->toEqual(200);
-    $this->assertDatabaseMissing('articles', ['id' => $article->id]);
+        expect($response->getStatusCode(), $response->getData(true)['deleted'])
+            ->toEqual(200)
+            ->and($this->assertDatabaseMissing('articles', ['id' => $model->id]));
+    });
 });

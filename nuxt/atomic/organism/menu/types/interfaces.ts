@@ -1,11 +1,6 @@
-import type { MenuItem } from 'primevue/menuitem'
+import type { OpenMenuFunctionType } from 'atomic'
 
-import type {
-  ElementAppendTo,
-  ObjectType,
-  OpenMenuFunctionType,
-  SelectedObjectType,
-} from 'atomic'
+import type { MenuItem } from 'primevue/menuitem'
 
 export interface MenuInterface {
   ref: string

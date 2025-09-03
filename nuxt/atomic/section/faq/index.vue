@@ -1,6 +1,10 @@
 <template>
   <div class="faq-section container">
-    <ad-paragraph text="FAQ" class="faq-section-header" />
+    <ad-paragraph class="faq-section-header">
+      <span>F</span>
+      <span>A</span>
+      <span>Q</span>
+    </ad-paragraph>
 
     <div class="faq-section-questions">
       <ad-accordion
@@ -20,8 +24,14 @@
 </template>
 
 <script setup lang="ts">
-import type { SectionFaqInterface, QuestionObjectInterface } from 'atomic'
-import { questionRequests, useSplitQuestions } from 'atomic'
+import type { QuestionObjectInterface, SectionFaqInterface } from 'atomic'
+import {
+  bounceFadeIn,
+  questionRequests,
+  useScrollTrigger,
+  useSplitQuestions,
+  useSplitText,
+} from 'atomic'
 
 const props = defineProps<SectionFaqInterface>()
 
@@ -34,7 +44,7 @@ if (appEnv() !== 'production') {
   watchEffect(() => (data = resultsBySite))
 } else {
   ;({ data } = await useFetch(
-    apiUrl() + `questions/get-site-questions/${props.site}`,
+    apiUrl() + `/questions/get-site-questions/${props.site}`,
     {
       method: 'GET',
       immediate: true,

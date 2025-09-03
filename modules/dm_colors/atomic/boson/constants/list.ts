@@ -1,0 +1,16 @@
+export const colorList: string[] = [
+  'Main',
+  'Activity',
+  'Article',
+  'Card',
+  'Contact',
+  'Documentation',
+  'Feature',
+  'File',
+  'Link',
+  'Money',
+  'Question',
+  'Task',
+  'Technology',
+  'User',
+] as const

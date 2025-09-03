@@ -27,10 +27,27 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount, watch, watchEffect } from 'vue'
-import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
-import { featureRequests } from 'atomic'
 import { gsap } from 'gsap'
+import {
+  type App,
+  createApp,
+  h,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+  watchEffect,
+} from 'vue'
+
+import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
+import {
+  AdIcon,
+  bounceFadeIn,
+  featureRequests,
+  useScrollTrigger,
+  useSplitText,
+} from 'atomic'
+
 import { Draggable } from 'gsap/Draggable'
 import { InertiaPlugin } from 'gsap/InertiaPlugin'
 
@@ -50,7 +67,7 @@ if (appEnv() !== 'production') {
   })
 } else {
   ;({ data } = await useFetch(
-    apiUrl() + `features/get-site-features/${props.site}`,
+    apiUrl() + `/features/get-site-features/${props.site}`,
     {
       method: 'GET',
       immediate: true,
@@ -61,6 +78,7 @@ if (appEnv() !== 'production') {
 
 const dialogVisible = ref(false)
 const dialogData = ref<WhyUsItemInterface | null>(null)
+const iconApps = ref<App<Element>[]>([])
 
 const openDialog = (item: WhyUsItemInterface) => {
   dialogData.value = item
@@ -89,8 +107,24 @@ watchEffect(() => {
         el.classList.add('circle-item')
 
         if (item.icon) {
-          const icon = document.createElement('i')
-          icon.className = 'pi pi-' + item.icon
+          const icon = document.createElement('div')
+          icon.classList.add('icon-container')
+          icon.classList.add('cube')
+
+          const iconApp = createApp({
+            components: {
+              AdIcon,
+            },
+            render() {
+              return h(AdIcon, {
+                icon: item.icon,
+                class: 'iconify',
+              })
+            },
+          })
+
+          iconApp.mount(icon)
+          iconApps.value.push(iconApp)
           el.appendChild(icon)
         }
 
@@ -191,9 +225,38 @@ onBeforeUnmount(() => {
     draggable?.kill()
     gsap.killTweensOf('.main-circle')
 
+    // Clean up dynamically created Vue apps
+    iconApps.value.forEach((app) => {
+      app.unmount()
+    })
+    iconApps.value = []
+
     if (clickOutsideHandler) {
       document.removeEventListener('click', clickOutsideHandler)
     }
   }
 })
+
+useSplitText().animate(
+  '.section-header',
+  500,
+  0.2,
+  0.1,
+  'power2.out',
+  true,
+  'top 50%'
+)
+
+useScrollTrigger(
+  '.section-header',
+  () => {
+    bounceFadeIn('.viewport-box', {
+      duration: 0.3,
+      ease: 'power2.out',
+    })
+  },
+  {
+    start: 'top 25%',
+  }
+)
 </script>

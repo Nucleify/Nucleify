@@ -1,12 +1,12 @@
 <template>
   <div class="panel-container">
-    <ad-card-chart
-      v-if="display.Link"
+    <dm-entity-chart-card
+      entity="Link"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :link-data="results"
+      :data="{ link: results }"
       :chart-class="'h-30rem'"
       :loading="loading"
     />
@@ -21,11 +21,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { linkRequests, useDialog, useDisplayCharts } from 'atomic'
+import { linkRequests, useDialog } from 'atomic'
 
 const { closeDialog } = useDialog()
-
-const { display } = useDisplayCharts()
 
 const { results, loading, getAllLinks } = linkRequests(closeDialog)
 
