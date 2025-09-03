@@ -66,6 +66,50 @@ class ModuleInstallerService
     }
 
     /**
+     * @param string $name
+     *
+     * @return bool
+     *
+     * @throws Exception
+     */
+    public function uninstall(string $name): bool
+    {
+        $this->defineUserData();
+
+        $module = $this->model::where('name', $name)->first();
+
+        if (!$module) {
+            throw new Exception('Module not found in database: ' . $name);
+        }
+
+        if (!$module->getInstalled()) {
+            throw new Exception('Module is not installed: ' . $name);
+        }
+
+        $path = base_path('modules/' . $name);
+
+        if (!is_dir($path)) {
+            throw new Exception('Module directory not found: ' . $path);
+        }
+
+        try {
+
+            $this->removeDirectory($path);
+
+            $module->update([
+                'installed' => false,
+                'enabled' => false,
+            ]);
+
+            $this->logger->log($this->causer->name, $module->getName(), $this->entity, 'uninstalled');
+
+            return true;
+        } catch (Exception $e) {
+            throw new Exception('Failed to uninstall module: ' . $e->getMessage());
+        }
+    }
+
+    /**
      * @param string $filePath
      *
      * @return bool
@@ -78,5 +122,24 @@ class ModuleInstallerService
         $baseName = pathinfo($filePath, PATHINFO_FILENAME);
 
         return $zip->has("$baseName/$baseName.ts") || $zip->has("$baseName/$baseName.php");
+    }
+
+    /**
+     * @param string $directory
+     *
+     * @return bool
+     */
+    private function removeDirectory(string $directory): bool
+    {
+        if (!is_dir($directory)) {
+            return false;
+        }
+
+        foreach (array_diff(scandir($directory), ['.', '..']) as $file) {
+            $path = $directory . '/' . $file;
+            is_dir($path) ? $this->removeDirectory($path) : unlink($path);
+        }
+
+        return rmdir($directory);
     }
 }
