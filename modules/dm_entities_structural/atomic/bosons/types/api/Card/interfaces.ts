@@ -2,12 +2,12 @@ import type {
   CardObjectInterface,
   DeleteEntityRequestType,
   EditEntityRequestType,
-  GetAllEntitiesRequestType,
-  LoadingRefType,
-  StoreEntityRequestType,
-  GetEntityRequestType,
   EntityCountResultsType,
   EntityResultsType,
+  GetAllEntitiesRequestType,
+  GetEntityRequestType,
+  LoadingRefType,
+  StoreEntityRequestType,
 } from 'atomic'
 
 export interface CardRequestsInterface {

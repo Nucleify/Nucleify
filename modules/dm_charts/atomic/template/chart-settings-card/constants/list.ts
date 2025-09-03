@@ -1,0 +1,17 @@
+export const displayChartList: string[] = [
+  'Activity',
+  'Admin',
+  'Article',
+  'Card',
+  'Contact',
+  'Documentation',
+  'Entities',
+  'Feature',
+  'File',
+  'Link',
+  'Money',
+  'Question',
+  'Structural',
+  'Task',
+  'Technology',
+] as const

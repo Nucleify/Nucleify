@@ -1,3 +1,14 @@
+<IfModule mod_mime.c>
+    AddType font/woff2 .woff2
+    AddType font/woff .woff
+</IfModule>
+
+<IfModule mod_headers.c>
+    <FilesMatch "\.(ttf|otf|eot|woff|woff2)$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
+</IfModule>
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
@@ -20,11 +31,6 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
-
-    # Allow cross-origin font loading
-    <FilesMatch "\.(ttf|otf|eot|woff|woff2)$">
-        Header set Access-Control-Allow-Origin "*"
-    </FilesMatch>
 
     # Leverage browser caching
     <IfModule mod_expires.c>

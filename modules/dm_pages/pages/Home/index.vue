@@ -10,31 +10,33 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount, onMounted } from 'vue'
-
-import { useColors, useViewportChange } from 'atomic'
+import { bounceFadeIn, useScrollTrigger, useSplitText } from 'atomic'
 
 import { Features, Innovations, Start } from './sections'
 
-useViewportChange(
-  [
-    '#access div',
-    '#structure div',
-    '#technologies div',
-    '#modules div',
-    '#why-us div',
-    '#footer div',
-  ],
-  100
-)
-
-useViewportChange(['.home-chart-card div[data-pc-section="body"]'], 50)
-
 onBeforeMount(() => window.scrollTo(0, 0))
 
-onMounted(() => {
-  const { setDefaultColors } = useColors()
+useSplitText().animate(
+  '.faq-section-header',
+  500,
+  0.2,
+  0.1,
+  'power2.out',
+  true,
+  'top 60%'
+)
 
-  setDefaultColors(true)
-})
+useScrollTrigger(
+  '.faq-section-header',
+  () => {
+    bounceFadeIn('.faq-section .p-accordionpanel', {
+      duration: 0.3,
+      ease: 'power2.out',
+      stagger: 0.1,
+    })
+  },
+  {
+    start: 'top 40%',
+  }
+)
 </script>

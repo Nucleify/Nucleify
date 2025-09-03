@@ -1,0 +1,16 @@
+export const colorKeys: string[] = [
+  'main',
+  'activity',
+  'article',
+  'contact',
+  'documentation',
+  'file',
+  'money',
+  'user',
+  'card',
+  'feature',
+  'link',
+  'question',
+  'task',
+  'technology',
+]

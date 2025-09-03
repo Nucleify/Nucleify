@@ -1,8 +1,6 @@
 import type { GalleriaResponsiveOptions } from 'primevue'
 import type { ButtonHTMLAttributes, HTMLAttributes } from 'vue'
 
-import type { PositionType } from 'atomic'
-
 export interface GalleriaInterface {
   item?: GalleriaImageItem[]
   id?: string

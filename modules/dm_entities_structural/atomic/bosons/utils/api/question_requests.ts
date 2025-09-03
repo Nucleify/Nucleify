@@ -6,7 +6,6 @@ import type {
   EntityResultsType,
   QuestionObjectInterface,
   QuestionRequestsInterface,
-  SiteType,
   UseLoadingInterface,
 } from 'atomic'
 import { apiHandle, useApiSuccess, useLoading } from 'atomic'
@@ -24,7 +23,7 @@ export function questionRequests(
 
   async function getAllQuestions(loading?: boolean): Promise<void> {
     await apiHandle<QuestionObjectInterface[]>({
-      url: apiUrl() + 'questions',
+      url: apiUrl() + '/questions',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: QuestionObjectInterface[]) => {
         results.value = response
@@ -36,7 +35,7 @@ export function questionRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<number>({
-      url: apiUrl() + 'questions/count-by-created-last-week',
+      url: apiUrl() + '/questions/count-by-created-last-week',
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: number) => {
         createdLastWeek.value = response
@@ -49,7 +48,7 @@ export function questionRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<QuestionObjectInterface[]>({
-      url: apiUrl() + `questions/get-by-category/${category}`,
+      url: apiUrl() + `/questions/get-by-category/${category}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (response: QuestionObjectInterface[]) => {
         resultsByCategory.value = response
@@ -63,7 +62,7 @@ export function questionRequests(
     loading?: boolean
   ): Promise<void> {
     await apiHandle<QuestionObjectInterface[]>({
-      url: apiUrl() + `questions/get-site-questions/${site}`,
+      url: apiUrl() + `/questions/get-site-questions/${site}`,
       setLoading: loading ? setLoading : undefined,
       onSuccess: (data: QuestionObjectInterface[]) => {
         resultsBySite.value = data
@@ -76,7 +75,7 @@ export function questionRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<QuestionObjectInterface>({
-      url: apiUrl() + 'questions',
+      url: apiUrl() + '/questions',
       method: 'POST',
       data,
       onSuccess: (response) => {
@@ -90,7 +89,7 @@ export function questionRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<QuestionObjectInterface>({
-      url: apiUrl() + 'questions',
+      url: apiUrl() + '/questions',
       method: 'PUT',
       data,
       id: data.id,
@@ -105,7 +104,7 @@ export function questionRequests(
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<QuestionObjectInterface>({
-      url: apiUrl() + 'questions',
+      url: apiUrl() + '/questions',
       method: 'DELETE',
       id,
       onSuccess: (response) => {

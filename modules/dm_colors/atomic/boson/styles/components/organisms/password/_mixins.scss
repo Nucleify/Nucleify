@@ -1,0 +1,12 @@
+@mixin entity-password-styles($item-color, $box-shadow-color) {
+  &:hover {
+    border-color: $item-color;
+  }
+
+  &:focus {
+    outline: 0 none;
+    outline-offset: 0;
+    box-shadow: 0 0 0.5em $box-shadow-color;
+    border-color: $item-color;
+  }
+}

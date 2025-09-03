@@ -1,4 +1,4 @@
-import type { ActionType, CloseDialogType, UseToastInterface } from 'atomic'
+import type { CloseDialogType, UseToastInterface } from 'atomic'
 import { useToast } from 'atomic'
 
 export function useApiSuccess() {
@@ -18,7 +18,9 @@ export function useApiSuccess() {
       await getData()
     }
 
-    const message = response?.message || 'Operation completed successfully'
+    const message =
+      (response as Record<'message', string>)?.message ||
+      'Operation completed successfully'
 
     if (flashToast) {
       flashToast(message, 'success')

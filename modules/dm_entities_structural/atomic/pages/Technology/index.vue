@@ -1,12 +1,12 @@
 <template>
   <div class="panel-container">
-    <ad-card-chart
-      v-if="display.Technology"
+    <dm-entity-chart-card
+      entity="Technology"
       class="annual-chart-card"
       :chart-method-type="'annual'"
       :type="'bar'"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
-      :technology-data="results"
+      :data="{ technology: results }"
       :chart-class="'h-30rem'"
       :loading="loading"
     />
@@ -21,11 +21,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { technologyRequests, useDialog, useDisplayCharts } from 'atomic'
+import { technologyRequests, useDialog } from 'atomic'
 
 const { closeDialog } = useDialog()
-
-const { display } = useDisplayCharts()
 
 const { results, loading, getAllTechnologies } = technologyRequests(closeDialog)
 

@@ -1,4 +1,5 @@
-import { describe, expect, it, beforeEach, vi, type Mock } from 'vitest'
+import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
+
 import * as atomic from 'atomic'
 
 describe('questionRequests', (): void => {
@@ -35,7 +36,7 @@ describe('questionRequests', (): void => {
   })
 
   it('storeQuestion', async (): Promise<void> => {
-    await requests.storeQuestion(atomic.mockQuestion, async () => {})
+    await requests.storeQuestion(atomic.mockQuestion)
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -46,7 +47,7 @@ describe('questionRequests', (): void => {
   })
 
   it('editQuestion', async (): Promise<void> => {
-    await requests.editQuestion(atomic.mockQuestion, async () => {})
+    await requests.editQuestion(atomic.mockQuestion)
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(
@@ -57,7 +58,7 @@ describe('questionRequests', (): void => {
   })
 
   it('deleteQuestion', async (): Promise<void> => {
-    await requests.deleteQuestion(atomic.mockQuestion.id ?? 0, async () => {})
+    await requests.deleteQuestion(atomic.mockQuestion.id ?? 0)
     expect(
       (globalThis as unknown as { $fetch: Mock }).$fetch
     ).toHaveBeenCalledWith(

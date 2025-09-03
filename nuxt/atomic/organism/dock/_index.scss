@@ -1,4 +1,3 @@
-@use 'sass:map';
 @import 'mixins';
 
 .p-dock.dock {
@@ -35,9 +34,9 @@
     border: 0;
     background: $p-card-background;
     backdrop-filter: blur(1em);
+    border-radius: 0;
 
     ul {
-      border-radius: var(--p-dock-border-radius);
       box-shadow: $primary-box-shadow;
       padding: 0;
       margin: 0;
@@ -60,7 +59,7 @@
           box-shadow: none !important;
         }
 
-        i {
+        .iconify {
           color: $primary-white-green-text-color;
           font-size: 1.25em;
         }
@@ -179,35 +178,6 @@
   &.p-dock-right {
     .p-dock-list-container {
       border-left: 1px solid $p-card-border;
-    }
-  }
-}
-
-$items: (
-  admin: (
-    color: --main-item-color-new,
-  ),
-  dashboard: (
-    color: --main-item-color-new,
-  ),
-  entities: (
-    color: --main-item-color-new,
-  ),
-  activity-log: (
-    color: --activity-item-color-new,
-  ),
-  settings: (
-    color: --main-item-color-new,
-  ),
-  structural: (
-    color: --main-item-color-new,
-  ),
-);
-
-@each $item, $props in $items {
-  #app:has(> ##{$item}) {
-    .dock .pi[ad-type='#{$item}'] {
-      @include entity-dock-item-styles(var(map.get($props, color)) !important);
     }
   }
 }

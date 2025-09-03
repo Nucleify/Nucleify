@@ -8,8 +8,10 @@ import type {
 
 export function useToast(): UseToastInterface {
   const nuxtApp = useNuxtApp()
-  const getToast = () => nuxtApp.vueApp.config.globalProperties.$toast
-  const toast = getToast()
+  const getToast = () => {
+    if (!import.meta.client) return
+    return nuxtApp.vueApp.config.globalProperties.$toast
+  }
 
   function closeToast(): void {
     if (import.meta.client) {
@@ -40,18 +42,15 @@ export function useToast(): UseToastInterface {
         }
 
         for (const value in messageOrMessages) {
-          if (
-            Object.prototype.hasOwnProperty.call(
-              messageOrMessages,
-              value as string
-            )
-          ) {
+          if (Object.hasOwn(messageOrMessages, value as string)) {
             message += `\n- ${messageOrMessages[value].join(', ')}`
           }
         }
         break
     }
 
+    const toast = getToast()
+    if (!toast?.add) return
     toast.add({
       severity: severity,
       summary: message,

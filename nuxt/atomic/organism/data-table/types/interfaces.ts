@@ -1,4 +1,11 @@
 import type { InputHTMLAttributes, TableHTMLAttributes } from 'vue'
+
+import type {
+  ColorItemStyleInterface,
+  LoadingType,
+  OpenDialogFunctionType,
+} from 'atomic'
+
 import type {
   DataTableEditButtonPropsOptions,
   DataTableEditingRows,
@@ -8,17 +15,6 @@ import type {
   DataTableSortMeta,
 } from 'primevue/datatable'
 import type { VirtualScrollerProps } from 'primevue/virtualscroller'
-
-import type {
-  ActionInterface,
-  ColorItemStyleInterface,
-  LoadingType,
-  ObjectNameType,
-  SelectedObjectType,
-  OpenDialogFunctionType,
-  ElementSizeType,
-  ElementVariantType,
-} from 'atomic'
 
 export interface DataTableInterface {
   adType: ObjectNameType

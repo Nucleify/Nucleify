@@ -1,5 +1,3 @@
-import type { AdTypeType, ElementSizeType, ElementVariantType } from 'atomic'
-
 export interface CheckboxInterface {
   adType?: AdTypeType
   value?: unknown[]

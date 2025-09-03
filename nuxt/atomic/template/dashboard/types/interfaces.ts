@@ -1,5 +1,3 @@
-import type { ObjectType } from 'atomic'
-
 export interface DashboardInterface {
   data?: ObjectType[]
   getData?: () => void

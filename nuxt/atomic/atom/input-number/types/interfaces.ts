@@ -1,12 +1,5 @@
 import type { RoundingMode } from 'primevue/inputnumber'
 
-import type {
-  AdTypeType,
-  ElementDirectionType,
-  ElementSizeType,
-  ElementVariantType,
-} from 'atomic'
-
 export interface InputNumberInterface {
   adType?: AdTypeType
   modelValue?: number

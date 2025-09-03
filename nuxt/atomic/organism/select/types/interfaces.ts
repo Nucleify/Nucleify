@@ -1,11 +1,5 @@
 import type { VirtualScrollerProps } from 'primevue/virtualscroller'
 
-import type {
-  ElementAppendTo,
-  ElementSizeType,
-  ElementVariantType,
-} from 'atomic'
-
 export interface SelectInterface {
   modelValue?: unknown
   defaultValue?: unknown

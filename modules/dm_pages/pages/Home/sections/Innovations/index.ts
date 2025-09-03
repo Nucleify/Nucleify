@@ -1,5 +1,4 @@
-export * from './Modules'
+export { default as Innovations } from './index.vue'
+
 export * from './Structure'
 export * from './Technologies'
-
-export { default as Innovations } from './index.vue'

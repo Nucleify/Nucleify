@@ -4,6 +4,8 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('feature-model');
+
 use App\Models\Feature;
 
 beforeEach(function (): void {
@@ -11,7 +13,7 @@ beforeEach(function (): void {
     $this->model = Feature::factory()->create();
 });
 
-it('can be created', function (): void {
+test('can be created', function (): void {
     expect($this->model)->toBeInstanceOf(Feature::class);
 });
 

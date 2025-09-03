@@ -1,19 +1,5 @@
-@import 'mixins';
-
 .p-accordion {
   overflow: visible;
-
-  @each $type in main, activity, article, card, contact, feature, link, money,
-    question, technology, user
-  {
-    &[ad-type='#{$type}'] {
-      @include entity-styles(
-        var(--#{$type}-item-color) !important,
-        var(--#{$type}-item-focus-color) !important,
-        var(--#{$type}-item-highlight-color) !important
-      );
-    }
-  }
 
   .p-accordionheader,
   .p-accordioncontent-content {

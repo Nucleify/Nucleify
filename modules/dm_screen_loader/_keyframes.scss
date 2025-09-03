@@ -1,10 +1,10 @@
 @keyframes change-lighter-color {
   0% {
-    fill: var(--article-item-color);
+    fill: #1187c7;
   }
 
   100% {
-    fill: var(--main-item-color);
+    fill: #10b981;
   }
 }
 
@@ -30,10 +30,10 @@
 
 @keyframes change-border-color {
   0% {
-    border: 1px solid var(--article-item-color);
+    border: 1px solid #1187c7;
   }
 
   100% {
-    border: 1px solid var(--main-item-color);
+    border: 1px solid #10b981;
   }
 }

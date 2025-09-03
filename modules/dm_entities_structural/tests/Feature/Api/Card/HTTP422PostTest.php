@@ -4,17 +4,22 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
+uses()->group('card-api-422');
+uses()->group('card-api-422-post');
+uses()->group('api-422');
+uses()->group('api-422-post');
+
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
 });
 
-describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
+describe('422 > POST', function ($cardData = cardData) {
     /**
      * SRC TESTS
      */
     $cardData['src'] = '';
-    test('invalid src > empty', apiTest(
+    test('src > empty', apiTest(
         'POST',
         'cards.store',
         422,
@@ -26,7 +31,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
     ));
 
     $cardData['src'] = 12345;
-    test('invalid src > integer', apiTest(
+    test('src > integer', apiTest(
         'POST',
         'cards.store',
         422,
@@ -38,7 +43,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
     ));
 
     $cardData['src'] = false;
-    test('invalid src > false', apiTest(
+    test('src > false', apiTest(
         'POST',
         'cards.store',
         422,
@@ -55,7 +60,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
      * TITLE TESTS
      */
     $cardData['title'] = '';
-    test('invalid title > empty', apiTest(
+    test('title > empty', apiTest(
         'POST',
         'cards.store',
         422,
@@ -67,7 +72,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
     ));
 
     $cardData['title'] = 12345;
-    test('invalid title > integer', apiTest(
+    test('title > integer', apiTest(
         'POST',
         'cards.store',
         422,
@@ -79,7 +84,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
     ));
 
     $cardData['title'] = false;
-    test('invalid title > false', apiTest(
+    test('title > false', apiTest(
         'POST',
         'cards.store',
         422,
@@ -96,7 +101,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
      * DESCRIPTION TESTS
      */
     $cardData['description'] = '';
-    test('invalid description > empty', apiTest(
+    test('description > empty', apiTest(
         'POST',
         'cards.store',
         422,
@@ -108,7 +113,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
     ));
 
     $cardData['description'] = 12345;
-    test('invalid description > integer', apiTest(
+    test('description > integer', apiTest(
         'POST',
         'cards.store',
         422,
@@ -125,7 +130,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
      * CATEGORY TESTS
      */
     $cardData['category'] = 1;
-    test('invalid category > integer', apiTest(
+    test('category > integer', apiTest(
         'POST',
         'cards.store',
         422,
@@ -137,7 +142,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
     ));
 
     $cardData['category'] = false;
-    test('invalid category > false', apiTest(
+    test('category > false', apiTest(
         'POST',
         'cards.store',
         422,
@@ -149,7 +154,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
     ));
 
     $cardData['category'] = true;
-    test('invalid category > true', apiTest(
+    test('category > true', apiTest(
         'POST',
         'cards.store',
         422,
@@ -161,7 +166,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
     ));
 
     $cardData['category'] = [];
-    test('invalid category > empty array', apiTest(
+    test('category > empty array', apiTest(
         'POST',
         'cards.store',
         422,
@@ -178,7 +183,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
      * COMPONENT TESTS
      */
     $cardData['component'] = '';
-    test('invalid component > empty', apiTest(
+    test('component > empty', apiTest(
         'POST',
         'cards.store',
         422,
@@ -190,7 +195,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
     ));
 
     $cardData['component'] = 12345;
-    test('invalid component > integer', apiTest(
+    test('component > integer', apiTest(
         'POST',
         'cards.store',
         422,
@@ -207,7 +212,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
      * DISPLAY TESTS
      */
     $cardData['display'] = 'string';
-    test('invalid display > string', apiTest(
+    test('display > string', apiTest(
         'POST',
         'cards.store',
         422,
@@ -219,7 +224,7 @@ describe('422 > Unprocessable Content > POST', function ($cardData = cardData) {
     ));
 
     $cardData['display'] = [];
-    test('invalid display > empty array', apiTest(
+    test('display > empty array', apiTest(
         'POST',
         'cards.store',
         422,

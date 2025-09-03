@@ -39,9 +39,24 @@ const columnsData: readonly ColumnsInterface[] = {
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
+  documentation: [
+    ['name', 'Name', 'name-column'],
+    ['category', 'Category', 'category-column desktop-column'],
+    ['file', 'File', 'file-column'],
+    ['version', 'Version', 'version-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
   feature: [
     ['header', 'Header', 'header-column'],
     ['category', 'Category', 'category-column desktop-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
+  file: [
+    ['path', 'Path', 'path-column'],
+    ['mime_type', 'Mime Type', 'mime-type-column'],
+    ['size', 'Size', 'size-column'],
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],
@@ -61,6 +76,12 @@ const columnsData: readonly ColumnsInterface[] = {
   question: [
     ['content', 'Content', 'content-column'],
     ['category', 'Category', 'category-column desktop-column'],
+    ['created_at', 'Created At', 'created-at-column'],
+    ['updated_at', 'Updated At', 'updated-at-column'],
+  ],
+  task: [
+    ['title', 'Title', 'title-column'],
+    ['description', 'Description', 'description-column'],
     ['created_at', 'Created At', 'created-at-column'],
     ['updated_at', 'Updated At', 'updated-at-column'],
   ],

@@ -1,13 +1,3 @@
-@import 'mixins';
-
-@each $type in main, activity, article, card, contact, feature, link, money,
-  question, technology, user
-{
-  .p-selectbutton[ad-type='#{$type}'] {
-    @include entity-styles(var(--#{$type}-item-selected-color-new) !important);
-  }
-}
-
 .p-selectbutton {
   .p-togglebutton {
     background: $p-card-background !important;

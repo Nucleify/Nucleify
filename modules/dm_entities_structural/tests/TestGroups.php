@@ -5,7 +5,7 @@ if (!defined('PEST_RUNNING')) {
 }
 
 /**
- *  Main tests group
+ *  Main groups
  */
 uses()
     ->group('dm-entities-structural')
@@ -31,11 +31,23 @@ uses()
     ->in('Database/Models');
 
 uses()
+    ->group('structural-model')
+    ->in('Database/Models');
+
+uses()
     ->group('migrations')
     ->in('Database/Migrations');
 
 uses()
+    ->group('structural-migrations')
+    ->in('Database/Migrations');
+
+uses()
     ->group('factories')
+    ->in('Database/Factories');
+
+uses()
+    ->group('structural-factory')
     ->in('Database/Factories');
 
 /**
@@ -48,10 +60,6 @@ uses()
 uses()
     ->group('card-api')
     ->in('Feature/Api/Card');
-
-uses()
-    ->group('color-api')
-    ->in('Feature/Api/Color');
 
 uses()
     ->group('feature-api')
@@ -74,21 +82,13 @@ uses()
     ->in('Feature');
 
 uses()
-    ->group('global')
-    ->in('Global');
-
-uses()
-    ->group('commands')
-    ->in('Feature/Commands');
+    ->group('structural-feature')
+    ->in('Feature');
 
 uses()
     ->group('controllers')
     ->in('Feature/Controllers');
 
 uses()
-    ->group('services')
-    ->in('Feature/Services');
-
-uses()
-    ->group('traits')
-    ->in('Feature/Traits');
+    ->group('structural-controller')
+    ->in('Feature/Controllers');
