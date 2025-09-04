@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   laravelSanctum: {
     apiUrl: process.env.APP_URL,
   },
-  ssr: true,
+  ssr: process.env.SSR === 'true',
   nitro: {
     prerender: process.env.CI
       ? {
@@ -38,11 +38,12 @@ export default defineNuxtConfig({
         }
       : {
           routes: process.env.PRERENDER_ROUTES
-            ? process.env.PRERENDER_ROUTES.split(',')
-                .map((r) => r.trim())
-                .filter(Boolean)
+            ? process.env.PRERENDER_ROUTES.split(',').map((r) => r.trim())
             : [],
           crawlLinks: process.env.PRERENDER_CRAWL_LINKS === 'true',
+          ignore: process.env.PRERENDER_IGNORE
+            ? process.env.PRERENDER_IGNORE.split(',').map((r) => r.trim())
+            : [],
         },
     output: {
       publicDir: './public/build',
