@@ -124,8 +124,8 @@ const loadReadme = async (modulePath: string, value: number) => {
         const html = marked.parse(data)
         readmeContents.value[value] = html
         readmeContents.value[value] = readmeContents.value[value].replaceAll(
-          '/nuxt/public',
-          ''
+          '/public',
+          appUrl()
         )
       },
     })
