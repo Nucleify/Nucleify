@@ -1,7 +1,13 @@
 import type { UserObjectInterface } from 'atomic'
 import { sessionStorageSetItem } from 'atomic'
 
-export function setUserToSessionStorage(user: UserObjectInterface): void {
+export function setUserToSessionStorage(
+  user: UserObjectInterface | null | undefined
+): void {
+  if (!user) {
+    return
+  }
+
   const sanitizedUser: UserObjectInterface = {
     id: user.id,
     name: user.name,
@@ -17,10 +23,11 @@ export function setUserToSessionStorage(user: UserObjectInterface): void {
       string,
       UserObjectInterface[keyof UserObjectInterface],
     ]): void => {
-      sessionStorageSetItem(
-        `user_${key}`,
-        JSON.stringify(value).replace(/^"|"$/g, '')
-      )
+      const stringValue =
+        value !== null && value !== undefined
+          ? JSON.stringify(value).replace(/^"|"$/g, '')
+          : ''
+      sessionStorageSetItem(`user_${key}`, stringValue)
     }
   )
 }

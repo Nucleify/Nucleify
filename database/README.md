@@ -1,4 +1,4 @@
-# <img src="/nuxt/public/img/technologies/laravel.svg" width="25"> Database 
+# <img src="/public/img/technologies/laravel.svg" width="25"> Database 
 
 Laravel provides an elegant and expressive way to interact with databases, ensuring **efficiency**, **scalability**, and **consistency** across development and production environments. These tools enable developers to manage database schemas, generate test data, and seed initial content with minimal effort, making database operations a core strength of Laravel.
 
