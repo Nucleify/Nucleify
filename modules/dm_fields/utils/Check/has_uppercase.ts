@@ -1,3 +1,5 @@
-export function hasUppercase(password: string): boolean {
-  return /[A-Z]/.test(password)
+export function hasUppercase(parameter: string): boolean {
+  if (parameter == null) return false
+
+  return /[A-Z]/.test(parameter)
 }
