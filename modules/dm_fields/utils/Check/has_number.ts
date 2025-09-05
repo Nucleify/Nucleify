@@ -1,3 +1,5 @@
-export function hasNumber(password: string): boolean {
-  return /\d/.test(password)
+export function hasNumber(parameter: string): boolean {
+  if (parameter == null) return false
+
+  return /\d/.test(parameter)
 }
