@@ -1,5 +1,5 @@
-export function hasLowercase(password: string | undefined | null): boolean {
-  if (password === undefined || null) return false
+export function hasLowercase(parameter: string): boolean {
+  if (parameter == null) return false
 
-  return /[a-z]/.test(password!)
+  return /[a-z]/.test(parameter)
 }
