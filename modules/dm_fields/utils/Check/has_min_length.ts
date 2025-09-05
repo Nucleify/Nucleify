@@ -1,8 +1,8 @@
 export function hasMinLength(
-  password: string | undefined | null,
+  parameter: string,
   minLength: number = 8
 ): boolean {
-  if (password === undefined || null) return false
+  if (parameter == null) return false
 
-  return password!.length >= minLength
+  return parameter.length >= minLength
 }
