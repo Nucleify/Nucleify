@@ -1,3 +1,5 @@
-export function isPhoneField(name: string): boolean {
-  return name === 'work_phone' || name === 'personal_phone'
+export function isPhoneField(parameter: string): boolean {
+  if (parameter == null) return false
+
+  return parameter === 'work_phone' || parameter === 'personal_phone'
 }
