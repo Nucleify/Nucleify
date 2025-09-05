@@ -1,4 +1,4 @@
-export function checkPasswordsMatch(
+export function passwordsMatch(
   password: string,
   password_confirmation: string
 ): boolean {

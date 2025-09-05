@@ -1,4 +1,4 @@
-export function checkMinLength(
+export function hasMinLength(
   password: string | undefined | null,
   minLength: number = 8
 ): boolean {

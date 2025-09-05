@@ -58,18 +58,18 @@
           :date-format="field.type === 'date-picker' ? 'yy-mm-dd' : null"
           :toggle-mask="field.type === 'password' ? true : null"
           :passwords-match="
-            field.name === 'password_confirmation' && isPasswordsMatch(formData)
+            field.name === 'password_confirmation' && passwordsMatch(formData.password, formData.password_confirmation)
               ? true
               : null
           "
           :empty-password="
-            field.name === 'password_confirmation' && isEmptyPassword(formData)
+            field.name === 'password_confirmation' && isEmpty(formData.password)
               ? true
               : null
           "
           :empty-confirm-password="
             field.name === 'password_confirmation' &&
-            isEmptyConfirmPassword(formData)
+            isEmpty(formData.password_confirmation)
               ? true
               : null
           "
@@ -132,11 +132,10 @@ import type { ComponentType, DialogInterface, FormDataInterface } from 'atomic'
 import {
   getComponent,
   getTitle,
-  isEmptyConfirmPassword,
-  isEmptyPassword,
-  isPasswordsMatch,
+  isEmpty,
   isPhoneField,
   isSelectOrDatePicker,
+  passwordsMatch,
 } from 'atomic'
 
 const props = defineProps<DialogInterface>()
