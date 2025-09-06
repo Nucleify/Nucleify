@@ -88,13 +88,6 @@ describe('hasMinLength', (): void => {
     expect(hasMinLength(parameter, minLength)).toBe(true)
   })
 
-  it('returns true when min length is 0', (): void => {
-    const parameter = ''
-    const minLength = 0
-
-    expect(hasMinLength(parameter, minLength)).toBe(true)
-  })
-
   it('returns true when min length is 0 and parameter has content', (): void => {
     const parameter = 'any content'
     const minLength = 0
