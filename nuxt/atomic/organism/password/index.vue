@@ -72,25 +72,15 @@
 
 <script setup lang="ts">
 import type { PasswordInterface } from 'atomic'
-import {
-  checkLowercase,
-  checkMinLength,
-  checkNumeric,
-  checkUppercase,
-} from 'atomic'
+import { hasLowercase, hasMinLength, hasNumber, hasUppercase } from 'atomic'
 
 const props = defineProps<PasswordInterface>()
 
-const hasLowercase = computed(() => checkLowercase(props.modelValue!))
-const hasUppercase = computed(() => checkUppercase(props.modelValue!))
-const hasNumeric = computed(() => checkNumeric(props.modelValue!))
-const hasMinLength = computed(() => checkMinLength(props.modelValue!))
-
 const criteria = computed(() => [
-  { label: 'At least one lowercase', isValid: hasLowercase.value },
-  { label: 'At least one uppercase', isValid: hasUppercase.value },
-  { label: 'At least one numeric', isValid: hasNumeric.value },
-  { label: 'Minimum 8 characters', isValid: hasMinLength.value },
+  { label: 'At least one lowercase', isValid: hasLowercase(props.modelValue!) },
+  { label: 'At least one uppercase', isValid: hasUppercase(props.modelValue!) },
+  { label: 'At least one number', isValid: hasNumber(props.modelValue!) },
+  { label: 'Minimum 8 characters', isValid: hasMinLength(props.modelValue!) },
 ])
 
 const emit = defineEmits(['update:modelValue'])
