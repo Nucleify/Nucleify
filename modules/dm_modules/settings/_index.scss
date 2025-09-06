@@ -1,0 +1,23 @@
+@import 'list';
+
+#settings .panel-container .modules-settings-card {
+  height: 100%;
+
+  .p-card-body {
+    height: 100%;
+    
+    .p-card-content {
+      height: unset !important;
+    }
+  }
+
+  @media (width > $md) {
+    .p-card-body {
+      height: 100% !important;
+
+      .p-card-content {
+        height: 100% !important;
+      }
+    }
+  }
+}

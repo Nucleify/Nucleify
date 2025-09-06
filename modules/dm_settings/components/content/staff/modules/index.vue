@@ -1,3 +1,3 @@
 <template>
-  <dm-modules-settings-card />
+  <dm-modules-settings />
 </template>
