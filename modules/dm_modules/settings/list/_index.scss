@@ -1,0 +1,24 @@
+@import 'item';
+
+#settings .panel-container .modules-settings-card .modules-settings-card-list {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 1em;
+
+  @media (width > $md) {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    margin: auto;
+  }
+
+  @media (width > $lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (width > $xl) {
+    gap: 1.5em;
+  }
+}
