@@ -40,4 +40,18 @@ describe('422', function (): void {
             ->assertStatus(422)
             ->assertJsonValidationErrors(['file']);
     });
+
+    test('uninstall > name empty', function (): void {
+        $this->postJson(route('modules.uninstall'), [])
+            ->assertStatus(422)
+            ->assertJsonValidationErrors(['name']);
+    });
+
+    test('uninstall > name too long', function (): void {
+        $this->postJson(route('modules.uninstall'), [
+            'name' => str_repeat('a', 300),
+        ])
+            ->assertStatus(422)
+            ->assertJsonValidationErrors(['name']);
+    });
 });
