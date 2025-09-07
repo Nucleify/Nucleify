@@ -1,0 +1,19 @@
+.install-module-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25em;
+
+  span {
+    font-size: $font-size-md;
+  }
+}
+
+.install-module-dialog {
+  width: 100%;
+  max-width: 600px;
+
+  .p-dialog-header {
+    display: none;
+  }
+}
