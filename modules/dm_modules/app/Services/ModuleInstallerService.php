@@ -34,7 +34,7 @@ class ModuleInstallerService
         }
 
         try {
-            $this->zipService->unzip($path, $installPath);
+            $this->zipService->unzip($path, base_path('modules'));
         } catch (Exception $e) {
             throw new Exception('Failed to unzip ZIP file: ' . $e->getMessage());
         }
@@ -60,8 +60,6 @@ class ModuleInstallerService
             $action = 'installed';
         }
 
-        $this->logger->log($this->causer->name, $result->getName(), $this->entity, $action);
-
         return $result;
     }
 
@@ -74,9 +72,20 @@ class ModuleInstallerService
      */
     public function hasExpectedFile(string $filePath): bool
     {
-        $zip = Zip::open($filePath);
-        $baseName = pathinfo($filePath, PATHINFO_FILENAME);
+        try {
+            $zip = Zip::open($filePath);
+            $files = $zip->listFiles();
 
-        return $zip->has("$baseName/$baseName.ts") || $zip->has("$baseName/$baseName.php");
+            foreach ($files as $file) {
+                $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                if ($extension === 'php' || $extension === 'ts') {
+                    return true;
+                }
+            }
+
+            return false;
+        } catch (Exception $e) {
+            throw new Exception('Failed to read ZIP file: ' . $e->getMessage());
+        }
     }
 }
