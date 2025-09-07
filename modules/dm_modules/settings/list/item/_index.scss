@@ -1,5 +1,6 @@
 #settings .panel-container .modules-settings-card .modules-settings-card-list {
   &-item {
+    width: 100%;
     display: flex;
     justify-content: start;
     align-items: start;
@@ -7,6 +8,17 @@
     border-radius: 0.5em;
     transition: background-color 0.3s ease;
     cursor: pointer;
+
+    &:hover {
+      background-color: $primary-highlight-color;
+    }
+
+    &-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 1em;
+    }
 
     &-info {
       display: flex;
