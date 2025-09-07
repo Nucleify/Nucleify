@@ -38,6 +38,14 @@ uses()
  *  Feature groups
  */
 uses()
+    ->group('api')
+    ->in('Feature/Api');
+
+uses()
+    ->group('feature')
+    ->in('Feature');
+
+uses()
     ->group('controllers')
     ->in('Feature/Controllers');
 

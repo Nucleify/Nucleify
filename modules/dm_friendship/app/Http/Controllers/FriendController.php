@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Services\FriendshipService;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -15,7 +16,7 @@ class FriendController extends Controller
         $this->service = $service;
     }
 
-    public function sendRequest($recipient): JsonResponse
+    public function sendRequest(User $recipient): JsonResponse
     {
         try {
             $result = $this->service->sendRequest($recipient);
@@ -26,7 +27,7 @@ class FriendController extends Controller
         }
     }
 
-    public function acceptRequest($sender): JsonResponse
+    public function acceptRequest(User $sender): JsonResponse
     {
         try {
             $result = $this->service->acceptRequest($sender);
@@ -37,7 +38,7 @@ class FriendController extends Controller
         }
     }
 
-    public function denyRequest($sender): JsonResponse
+    public function denyRequest(User $sender): JsonResponse
     {
         try {
             $result = $this->service->denyRequest($sender);
@@ -48,7 +49,7 @@ class FriendController extends Controller
         }
     }
 
-    public function removeFriend($friend): JsonResponse
+    public function removeFriend(User $friend): JsonResponse
     {
         try {
             $result = $this->service->removeFriend($friend);
@@ -59,7 +60,7 @@ class FriendController extends Controller
         }
     }
 
-    public function blockFriend($friend): JsonResponse
+    public function blockFriend(User $friend): JsonResponse
     {
         try {
             $result = $this->service->blockFriend($friend);
@@ -70,7 +71,7 @@ class FriendController extends Controller
         }
     }
 
-    public function unblockFriend($friend): JsonResponse
+    public function unblockFriend(User $friend): JsonResponse
     {
         try {
             $result = $this->service->unblockFriend($friend);

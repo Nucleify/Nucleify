@@ -29,6 +29,11 @@ if (env('DB_DATABASE') === 'database/database.sqlite') {
         DatabaseMigrations::class
     )
         ->in(
+            'Feature/Api/HTTP200Test.php',
+            'Feature/Api/HTTP401Test.php',
+            'Feature/Api/HTTP405AuthTest.php',
+            'Feature/Api/HTTP500Test.php',
+
             'Database/Migrations',
 
             'Feature/Controllers',
