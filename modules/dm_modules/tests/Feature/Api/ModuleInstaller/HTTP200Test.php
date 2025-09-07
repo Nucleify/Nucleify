@@ -45,4 +45,23 @@ describe('200', function (): void {
                 'message' => 'Module successfully installed: test_module',
             ]);
     });
+
+    test('uninstall api', function (): void {
+        $this->mock(\App\Services\ModuleInstallerService::class, function ($mock) {
+            $mock->shouldReceive('uninstall')
+                ->once()
+                ->with('test_module')
+                ->andReturn(true);
+        });
+
+        $this->post(route('modules.uninstall'), [
+            'name' => 'test_module',
+        ])
+            ->assertOk()
+            ->assertJson([
+                'success' => true,
+                'message' => 'Module successfully uninstalled: test_module',
+                'name' => 'test_module',
+            ]);
+    });
 });
