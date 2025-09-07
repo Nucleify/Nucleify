@@ -33,4 +33,21 @@ describe('500', function (): void {
                 'error' => 'Service error occurred',
             ]);
     });
+
+    test('uninstall api', function (): void {
+        $this->mock(ModuleInstallerService::class, function ($mock) {
+            $mock->shouldReceive('uninstall')
+                ->once()
+                ->with('test_module')
+                ->andThrow(new \Exception('Service error occurred'));
+        });
+
+        $this->post(route('modules.uninstall'), [
+            'name' => 'test_module',
+        ])
+            ->assertStatus(500)
+            ->assertJson([
+                'error' => 'Service error occurred',
+            ]);
+    });
 });
