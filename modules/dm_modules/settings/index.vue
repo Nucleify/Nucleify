@@ -4,21 +4,29 @@
       <dm-modules-settings-install-module @module-installed="refreshModules" />
     </template>
     <template #content>
-      <dm-modules-list :data="modules" />
+      <dm-modules-list :data="modules" @module-uninstalled="refreshModules" />
     </template>
   </ad-card>
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from 'vue'
+
 import type { ModuleObjectInterface } from 'atomic'
 import { apiRequest } from 'atomic'
 
-import { DmModulesList, DmModulesSettingsInstallModule } from '.'
+import {
+  DmModulesList,
+  DmModulesSettingsInstallModule,
+  DmModulesSettingsUninstallModule,
+} from '.'
 
 const modules = ref<ModuleObjectInterface[]>([])
 
 async function loadModules(): Promise<void> {
-  const response = await apiRequest(apiUrl() + '/modules/installed')
+  const response = await apiRequest<{ modules: ModuleObjectInterface[] }>(
+    apiUrl() + '/modules/installed'
+  )
 
   if (response.modules) {
     modules.value = response.modules
