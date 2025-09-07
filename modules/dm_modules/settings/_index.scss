@@ -1,0 +1,32 @@
+@import 'install', 'list', 'uninstall';
+
+#settings .panel-container .modules-settings-card {
+  height: 100%;
+
+  .p-card-header {
+    display: flex;
+    justify-content: end;
+    padding: 1em 1em 0;
+  }
+
+  .p-card-body {
+    height: 100%;
+    
+    .p-card-content {
+      height: unset !important;
+      display: flex;
+      flex-direction: column !important;
+      gap: 1em;
+    }
+  }
+
+  @media (width > $md) {
+    .p-card-body {
+      height: 100% !important;
+
+      .p-card-content {
+        height: 100% !important;
+      }
+    }
+  }
+}

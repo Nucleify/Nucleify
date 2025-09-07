@@ -7,7 +7,7 @@ export interface FileUploadInterface {
   disabled?: boolean
   auto?: boolean
   maxFileSize?: number
-  invalidDileSizeMessage?: string
+  invalidFileSizeMessage?: string
   invalidFileLimitMessage?: string
   invalidFileTypeMessage?: string
   fileLimit?: number
