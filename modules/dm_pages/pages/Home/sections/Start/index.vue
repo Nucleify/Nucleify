@@ -33,6 +33,15 @@
           </div>
         </div>
       </div>
+      <a 
+        href="https://github.com/Atomic-IT/DataManager/milestone/8" 
+        target="_blank"
+      >
+        <dm-time-countdown 
+          class="v1-release-countdown"
+          :date="new Date('2026-01-01')" 
+        />
+      </a>
     </div>
   </section>
 </template>
@@ -58,6 +67,18 @@ useScrollTrigger('.start-container', () => {
     delay: 2.7,
   })
 })
+
+useScrollTrigger(
+  '.v1-release-countdown',
+  () => {
+    bounceFadeIn('.v1-release-countdown', {
+      delay: 0.3,
+    })
+  },
+  {
+    start: 'top 65%',
+  }
+)
 
 onMounted(() => {
   gsap.to('.start-bounce-animation', {
