@@ -35,15 +35,6 @@
         <ad-anchor-authors />
       </div>
     </div>
-    <a 
-      href="https://github.com/Atomic-IT/DataManager/milestone/8" 
-      target="_blank"
-    >
-      <dm-time-countdown 
-        class="v1-release-countdown"
-        :date="new Date('2026-01-01')" 
-      />
-    </a>
     <dm-animation-hexagons />
   </section>
 </template>
