@@ -12,7 +12,18 @@
     bottom: 0;
 
     .hexagon-row-container {
-      top: 80px;
+      top: 120px;
+    }
+  }
+
+  a:has(.v1-release-countdown) {
+    z-index: 999;
+    
+    .v1-release-countdown {
+      position: absolute;
+      bottom: .5em;
+      left: 0;
+      right: 0;
     }
   }
 
@@ -31,6 +42,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      margin-bottom: 3em;
     }
 
     .top {
@@ -135,6 +147,7 @@
       .bottom {
         justify-content: flex-end;
         margin-left: 0;
+        margin-bottom: 0;
       }
     }
   }
