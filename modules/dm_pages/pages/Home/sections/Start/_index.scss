@@ -133,3 +133,18 @@
     }
   }
 }
+
+#home #start {
+  a:has(.v1-release-countdown) {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    width: max-content;
+    top: 5em;
+    text-decoration: none;
+
+    @media (min-width: $md) {
+      top: 8em;
+    }
+  }
+}
