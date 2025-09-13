@@ -1,6 +1,6 @@
 <template>
   <section id="users">
-    <ad-card-data-table
+    <dm-entity-datatable-card
       ad-type="user"
       :value="data"
       :loading="loading"

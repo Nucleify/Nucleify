@@ -1,13 +1,12 @@
 <template>
-  <DataTable
-    v-if="props.value && !props.loading"
+  <ad-data-table
     :ad-type="props.adType"
     :value="props.value"
     :data-key="props.dataKey"
     :rows="props.rows"
     :first="props.first"
     :total-records="props.totalRecords"
-    :paginator="props.paginator || true"
+    :paginator="props.paginator"
     :paginator-position="props.paginatorPosition"
     :always-show-paginator="props.alwaysShowPaginator"
     :paginator-template="props.paginatorTemplate"
@@ -33,7 +32,7 @@
     :context-menu="props.contextMenu"
     :context-menu-selection="props.contextMenuSelection"
     :select-all="props.selectAll"
-    :row-hover="props.rowHover || true"
+    :row-hover="props.rowHover"
     :csv-separator="props.csvSeparator"
     :export-filename="props.exportFilename"
     :export-function="props.exportFunction"
@@ -58,11 +57,11 @@
     :virtual-scroller-options="props.virtualScrollerOptions"
     :frozen-value="props.frozenValue"
     :breakpoint="props.breakpoint"
-    :show-headers="props.showHeaders || true"
+    :show-headers="props.showHeaders"
     :show-gridlines="props.showGridlines"
-    :striped-rows="props.stripedRows || true"
+    :striped-rows="props.stripedRows"
     :highlight-on-select="props.highlightOnSelect"
-    :size="props.size || 'small'"
+    :size="props.size"
     :table-style="props.tableStyle"
     :table-class="props.tableClass"
     :table-props="props.tableProps"
@@ -73,13 +72,78 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
+    :open-dialog="props.openDialog"
+    :selected-object="props.selectedObject"
   >
-    <slot />
-  </DataTable>
+    <Column
+      v-for="col in specificColumns"
+      :key="col.field"
+      :field="col.field"
+      :header="col.header"
+      :class="col.class"
+      :sortable="col.sortable"
+    />
+
+    <Column class="action-column">
+      <template #body="row">
+        <div class="action-column-content">
+          <ad-button
+            v-if="props.adType === 'activity'"
+            :ad-type="props.adType"
+            class="data-table-button"
+            icon="prime:trash"
+            rounded
+            text
+            :loading="props.loading"
+            @click="openDialog!('delete', row.data)"
+          />
+          <template v-else>
+            <ad-button
+              v-for="action in actions"
+              :key="action.icon"
+              :ad-type="props.adType"
+              class="desktop-button data-table-button"
+              :icon="action.icon"
+              rounded
+              text
+              :loading="props.loading"
+              @click="action.click(row.data)"
+            />
+            <ad-button
+              :ad-type="props.adType"
+              class="mobile-button data-table-button"
+              icon="prime:bars"
+              rounded
+              text
+              :loading="props.loading"
+              @click="openMenu(menu, $event, row.data)"
+            />
+            <Menu ref="menu" :model="selectItems" :popup="true" />
+          </template>
+        </div>
+      </template>
+    </Column>
+  </ad-data-table>
+
+  <dm-entity-datatable-skeleton
+    :rows="skeleton"
+    :loading="props.loading"
+    :specific-columns="specificColumns"
+  />
 </template>
 
 <script setup lang="ts">
-import type { DataTableInterface } from 'atomic'
+import type { DMEntityDatatableInterface } from 'atomic'
+import { actions as actionsList, columns, useMenu, useSelect } from 'atomic'
 
-const props = defineProps<DataTableInterface>()
+const props = defineProps<DMEntityDatatableInterface>()
+
+const menu = ref()
+const actions = actionsList(props.openDialog!)
+
+const { openMenu, selectedObject } = useMenu()
+const { selectItems } = useSelect(selectedObject, props.openDialog!)
+
+const specificColumns = columns[props.adType as keyof typeof columns]
+const skeleton = ref(new Array(props.rows))
 </script>
