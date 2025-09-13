@@ -51,6 +51,12 @@ export default defineNuxtConfig({
     },
     minify: true,
     compressPublicAssets: true,
+    experimental: {
+      wasm: false,
+    },
+    rollupConfig: {
+      maxParallelFileOps: 2,
+    },
   },
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
@@ -80,11 +86,23 @@ export default defineNuxtConfig({
   vite: {
     build: {
       chunkSizeWarningLimit: 1600,
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
       rollupOptions: {
+        maxParallelFileOps: 2,
         output: {
           manualChunks: {
             primevue: ['primevue'],
             vue: ['vue', 'vue-router'],
+            charts: ['chart.js'],
+            gsap: ['gsap'],
+            marked: ['marked'],
+            pinia: ['pinia'],
           },
         },
       },
@@ -103,6 +121,9 @@ export default defineNuxtConfig({
     },
     optimizeDeps: {
       include: ['vue', 'vue-router', 'primevue'],
+    },
+    esbuild: {
+      target: 'es2020',
     },
   },
   alias: {
@@ -124,6 +145,10 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: true,
     renderJsonPayloads: true,
+    componentIslands: true,
+  },
+  build: {
+    analyze: false,
   },
   primevue: {
     autoImport: true,
@@ -174,6 +199,9 @@ export default defineNuxtConfig({
       { code: 'en', iso: 'en-US', name: 'English', file: 'en.json' },
       { code: 'pl', iso: 'pl-PL', name: 'Polski', file: 'pl.json' },
     ],
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
     pages: {
       home: {
         en: '/home',
