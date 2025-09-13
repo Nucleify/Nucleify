@@ -1,6 +1,6 @@
 <template>
   <section id="activity-log">
-    <ad-card-data-table
+    <dm-entity-datatable-card
       ad-type="activity"
       :value="data"
       :loading="loading"
