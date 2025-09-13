@@ -109,8 +109,6 @@ import {
 const { t } = useI18n()
 const localePath = useLocalePath()
 
-const { display } = useDisplayCharts()
-
 const {
   results: cards,
   createdLastWeek: cardsCreatedLastWeek,
