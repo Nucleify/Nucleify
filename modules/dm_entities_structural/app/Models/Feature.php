@@ -96,12 +96,12 @@ class Feature extends Model implements FeatureContract
 
     public function scopeGetByHeader(Builder $query, string $parameter): Builder
     {
-        return $query->where('header', $parameter);
+        return $query->where('header->' . app()->getLocale(), $parameter);
     }
 
     public function scopeGetByDescription(Builder $query, string $parameter): Builder
     {
-        return $query->where('description', $parameter);
+        return $query->where('description->' . app()->getLocale(), $parameter);
     }
 
     public function scopeGetByCategory(Builder $query, string $parameter): Builder

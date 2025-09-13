@@ -116,12 +116,12 @@ class Question extends Model implements QuestionContract
 
     public function scopeGetByContent(Builder $query, string $parameter): Builder
     {
-        return $query->where('content', $parameter);
+        return $query->where('content->' . app()->getLocale(), $parameter);
     }
 
     public function scopeGetByAnswer(Builder $query, string $parameter): Builder
     {
-        return $query->where('answer', $parameter);
+        return $query->where('answer->' . app()->getLocale(), $parameter);
     }
 
     public function scopeGetByCategory(Builder $query, string $parameter): Builder

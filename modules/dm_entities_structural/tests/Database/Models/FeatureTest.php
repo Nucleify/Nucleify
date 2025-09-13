@@ -75,15 +75,15 @@ describe('Scope', function (): void {
     });
 
     test('can filter header using scopeGetByHeader', function (): void {
-        $foundModel = Feature::getByHeader($this->model->header)->first();
+        $foundModel = Feature::getByHeader($this->model->getHeader())->first();
 
-        expect($foundModel->header)->toBe($this->model->header);
+        expect($foundModel->getHeader())->toBe($this->model->getHeader());
     });
 
     test('can filter description using scopeGetByDescription', function (): void {
-        $foundModel = Feature::getByDescription($this->model->description)->first();
+        $foundModel = Feature::getByDescription($this->model->getDescription())->first();
 
-        expect($foundModel->description)->toBe($this->model->description);
+        expect($foundModel->getDescription())->toBe($this->model->getDescription());
     });
 
     test('can filter by category using scopeGetByCategory', function (): void {

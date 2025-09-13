@@ -116,7 +116,7 @@ class Technology extends Model implements TechnologyContract
 
     public function scopeGetByDescription(Builder $query, string $parameter): Builder
     {
-        return $query->where('description', $parameter);
+        return $query->where('description->' . app()->getLocale(), $parameter);
     }
 
     public function scopeGetByHref(Builder $query, string $parameter): Builder
