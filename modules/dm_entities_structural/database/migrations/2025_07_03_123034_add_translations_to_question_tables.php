@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -11,10 +10,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->json('content')->change();
-            $table->json('answer')->change();
-        });
+        DB::statement('ALTER TABLE questions MODIFY content JSON NOT NULL');
+        DB::statement('ALTER TABLE questions MODIFY answer JSON NOT NULL');
     }
 
     /**
@@ -22,9 +19,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('questions', function (Blueprint $table) {
-            $table->string('content')->change();
-            $table->string('answer')->change();
-        });
+        DB::statement('ALTER TABLE questions MODIFY content VARCHAR(255) NOT NULL');
+        DB::statement('ALTER TABLE questions MODIFY answer VARCHAR(255) NOT NULL');
     }
 };
