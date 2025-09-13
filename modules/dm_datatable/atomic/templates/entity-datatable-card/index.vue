@@ -33,7 +33,7 @@
       </div>
     </template>
     <template #content>
-      <ad-data-table
+      <dm-entity-datatable
         v-if="value"
         :value="value"
         :rows="10"
@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import type { CardDataTableInterface } from 'atomic'
+import type { DMEntityDatatableCardInterface } from 'atomic'
 
-defineProps<CardDataTableInterface>()
+defineProps<DMEntityDatatableCardInterface>()
 </script>
