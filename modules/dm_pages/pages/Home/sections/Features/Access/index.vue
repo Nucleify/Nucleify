@@ -6,11 +6,6 @@
         class="access-header"
         :text="t('home.access.title')"
       />
-      <ad-paragraph class="access-description">
-        {{ t('home.access.description.text1') }}
-        <span class="shiny">{{ t('home.access.description.highlight') }}</span>
-        {{ t('home.access.description.text2') }}
-      </ad-paragraph>
       <div class="access-card-container">
         <div
           class="access-card flip-card col-12 md:col-6 xl:col-4"

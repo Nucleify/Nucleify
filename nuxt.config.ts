@@ -167,7 +167,6 @@ export default defineNuxtConfig({
     langDir: '../modules/dm_languages/locales/',
     customRoutes: 'config',
     detectBrowserLanguage: {
-      useCookie: true,
       cookieKey: 'i18n_redirected',
       redirectOn: 'root',
     },

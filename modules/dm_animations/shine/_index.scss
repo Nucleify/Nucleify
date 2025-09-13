@@ -24,7 +24,7 @@
   }
 
   &:not(:has(> div[aria-hidden='true'])) {
-    animation: letter-shine 10s linear infinite;
+    animation: shiny-cube 10s linear infinite;
   }
 
   &.first-text {
@@ -37,5 +37,13 @@
     & > div[aria-hidden='true'] {
       animation-duration: 5s;
     }
+  }
+}
+
+
+#front-office {
+  .shiny,
+  %shiny {
+    animation: letter-shine 10s linear infinite;
   }
 }

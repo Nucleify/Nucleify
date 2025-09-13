@@ -79,7 +79,7 @@
       v-for="col in specificColumns"
       :key="col.field"
       :field="col.field"
-      :header="col.header"
+      :header="t('admin.sections.' + props.adType + '.' + toCamelCase(col.field))"
       :class="col.class"
       :sortable="col.sortable"
     />
@@ -134,9 +134,17 @@
 
 <script setup lang="ts">
 import type { DMEntityDatatableInterface } from 'atomic'
-import { actions as actionsList, columns, useMenu, useSelect } from 'atomic'
+import {
+  actions as actionsList,
+  columns,
+  toCamelCase,
+  useMenu,
+  useSelect,
+} from 'atomic'
 
 const props = defineProps<DMEntityDatatableInterface>()
+
+const { t } = useI18n()
 
 const menu = ref()
 const actions = actionsList(props.openDialog!)

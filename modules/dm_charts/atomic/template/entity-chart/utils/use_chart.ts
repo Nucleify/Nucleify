@@ -1,6 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
+import { useNuxtApp } from 'nuxt/app'
 import { Ref, ref } from 'vue'
 
 import {
@@ -30,8 +31,6 @@ import {
   UserObjectInterface,
   useColors,
 } from 'atomic'
-
-import { useNuxtApp } from 'nuxt/app'
 
 export function useChart() {
   const { colors }: UseColorsInterface = useColors()

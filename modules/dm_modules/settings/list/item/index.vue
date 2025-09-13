@@ -1,7 +1,8 @@
 <template>
   <div 
-    class="modules-settings-card-list-item" 
-    @click="navigateTo('/settings#module-' + props.name)"
+    class="modules-settings-card-list-item"
+    @click="navigateTo(localePath('settings') + '#module-' + props.name)"
+    :class="{ 'module-enabled': props.enabled }"
   >
     <dm-modules-cube 
       :class="{ 'shiny': props.enabled }" 
@@ -26,4 +27,6 @@ import type { ModuleObjectInterface } from 'atomic'
 import { DmModulesSettingsUninstallModule } from '../..'
 
 const props = defineProps<ModuleObjectInterface>()
+
+const localePath = useLocalePath()
 </script>

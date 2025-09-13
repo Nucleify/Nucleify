@@ -79,10 +79,19 @@ const props = defineProps<PasswordInterface>()
 const { t } = useI18n()
 
 const criteria = computed(() => [
-  { label: t('auth.criteria.lowercase'), isValid: hasLowercase(props.modelValue!) },
-  { label: t('auth.criteria.uppercase'), isValid: hasUppercase(props.modelValue!) },
+  {
+    label: t('auth.criteria.lowercase'),
+    isValid: hasLowercase(props.modelValue!),
+  },
+  {
+    label: t('auth.criteria.uppercase'),
+    isValid: hasUppercase(props.modelValue!),
+  },
   { label: t('auth.criteria.number'), isValid: hasNumber(props.modelValue!) },
-  { label: t('auth.criteria.length'), isValid: hasMinLength(props.modelValue!) },
+  {
+    label: t('auth.criteria.length'),
+    isValid: hasMinLength(props.modelValue!),
+  },
 ])
 
 const emit = defineEmits(['update:modelValue'])

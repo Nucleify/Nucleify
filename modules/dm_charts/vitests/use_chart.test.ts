@@ -40,7 +40,7 @@ describe('useChart', (): void => {
 
     expect(chartData).toHaveProperty('labels')
     expect(chartData).toHaveProperty('datasets')
-    expect(chartData?.labels).toEqual(atomic.months)
+    expect(chartData?.labels).toEqual(atomic.months_en)
     expect(Array.isArray(chartData?.datasets)).toBe(true)
   })
 
@@ -120,7 +120,7 @@ describe('useChart', (): void => {
 
     const chartData = result.setChartData('annual', undefined, mockArticleData)
 
-    expect(chartData).toHaveProperty('labels', atomic.months)
+    expect(chartData).toHaveProperty('labels', atomic.months_en)
     expect(chartData?.datasets).toBeDefined()
 
     if (chartData?.datasets) {

@@ -1,17 +1,15 @@
 <template>
   <ad-card class="modules-settings-card">
     <template #header>
-      <dm-modules-settings-install-module @module-installed="refreshModules" />
+      <dm-modules-settings-install-module @module-installed="loadModules" />
     </template>
     <template #content>
-      <dm-modules-list :data="modules" @module-uninstalled="refreshModules" />
+      <dm-modules-list :data="modules" @module-uninstalled="loadModules" />
     </template>
   </ad-card>
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-
 import type { ModuleObjectInterface } from 'atomic'
 import { apiRequest } from 'atomic'
 
@@ -31,10 +29,6 @@ async function loadModules(): Promise<void> {
   if (response.modules) {
     modules.value = response.modules
   }
-}
-
-async function refreshModules(): Promise<void> {
-  await loadModules()
 }
 
 onMounted(async () => {

@@ -88,7 +88,7 @@ const localePath = useLocalePath()
 const translatedDockItems = computed(() =>
   dockItems.value.map((item) => ({
     ...item,
-    url: localePath(item.url),
+    url: item.url ? localePath(item.url) : undefined,
     label: item.label
       ? item.label === 'position'
         ? 'position'

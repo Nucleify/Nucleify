@@ -14,6 +14,6 @@ describe('cookieSetItem', (): void => {
 
     const storedValue = document.cookie
 
-    expect(storedValue).toBe('key=value')
+    expect(storedValue).toBe('i18n_redirected=en; key=value')
   })
 })

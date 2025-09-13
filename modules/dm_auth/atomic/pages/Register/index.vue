@@ -73,7 +73,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { isEmpty, passwordsMatch, useAuthForm, toCamelCase } from 'atomic'
+import { isEmpty, passwordsMatch, toCamelCase, useAuthForm } from 'atomic'
 
 const { submitAndGo, registerFields, registerInputs } = useAuthForm()
 

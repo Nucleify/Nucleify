@@ -229,7 +229,9 @@
         "email": "Email",
         "role": "Rola",
         "createdAt": "Utworzono",
-        "updatedAt": "Zaktualizowano"
+        "updatedAt": "Zaktualizowano",
+        "password": "Hasło",
+        "confirmPassword": "Potwierdź Hasło"
       },
       "card": {
         "header": "Zarządzaj kartami",
@@ -351,7 +353,8 @@
           "link": "Dodaj nowy link",
           "money": "Dodaj nową transakcję",
           "question": "Dodaj nowe pytanie",
-          "technology": "Dodaj nową technologię"
+          "technology": "Dodaj nową technologię",
+          "user": "Dodaj nowego użytkownika"
         },
         "confirmButton": "Utwórz",
         "cancel": "Anuluj"
@@ -366,7 +369,8 @@
           "link": "Edytuj link",
           "money": "Edytuj transakcję",
           "question": "Edytuj pytanie",
-          "technology": "Edytuj technologię"
+          "technology": "Edytuj technologię",
+          "user": "Edytuj użytkownika"
         },
         "confirmButton": "Zaktualizuj",
         "cancel": "Anuluj"
@@ -381,7 +385,8 @@
           "link": "Usunąć link?",
           "money": "Usunąć transakcję?",
           "question": "Usunąć pytanie?",
-          "technology": "Usunąć technologię?"
+          "technology": "Usunąć technologię?",
+          "user": "Usunąć użytkownika?"
         },
         "confirmButton": "Potwierdź",
         "cancel": "Anuluj"

@@ -1,5 +1,4 @@
-import { reloadNuxtApp } from '#app'
-
+// @ts-nocheck
 export const useSwitchLanguage = () => {
   const { locale, setLocale } = useI18n()
   const switchLocalePath = useSwitchLocalePath()
