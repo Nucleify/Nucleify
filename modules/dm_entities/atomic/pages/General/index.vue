@@ -3,30 +3,30 @@
   <div class="panel-container">
     <div class="tiles grid col-12">
       <ad-tile
-        href="/entities/articles"
-        header="Articles"
+        :href="localePath('entities-articles')"
+        :header="t('admin.tiles.article.header')"
         :count="articles?.length"
         icon="prime:comment"
         :count-secondary="articlesCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="article"
       />
       <ad-tile
-        href="/entities/contacts"
-        header="Contacts"
+        :href="localePath('entities-contacts')"
+        :header="t('admin.tiles.contacts.header')"
         :count="contacts?.length"
         icon="prime:user"
         :count-secondary="contactsCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="contact"
       />
       <ad-tile
-        href="/entities/money"
-        header="Money"
+        :href="localePath('entities-money')"
+        :header="t('admin.tiles.money.header')"
         :count="money?.length"
         icon="prime:dollar"
         :count-secondary="moneyCreatedLastWeek"
-        text-secondary="this week"
+        :text-secondary="t('admin.tiles.secondaryText')"
         ad-type="money"
       />
     </div>
@@ -69,6 +69,9 @@ import type { Ref } from 'vue'
 import { onMounted, ref, watch } from 'vue'
 
 import { articleRequests, contactRequests, moneyRequests } from 'atomic'
+
+const { t } = useI18n()
+const localePath = useLocalePath()
 
 const {
   results: articles,

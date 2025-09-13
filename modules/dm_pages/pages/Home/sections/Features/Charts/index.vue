@@ -3,7 +3,7 @@
     <div class="home-charts-container">
       <ad-paragraph
         class="home-charts-header"
-        text="Choose from bar charts, line graphs, pie charts and more to best represent your data."
+        :text="t('home.charts.paragraph')"
       />
       <ad-card class="my-card home-chart-card">
         <template #content>
@@ -31,6 +31,8 @@
 
 <script setup lang="ts">
 import { bounceFadeIn, useScrollTrigger, useSplitText } from 'atomic'
+
+const { t } = useI18n()
 
 useSplitText().animate(
   '.home-charts-container .home-charts-header',

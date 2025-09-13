@@ -6,7 +6,7 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      header-text="Manage Activities"
+      :headerText="t('admin.sections.activity.header')"
     />
 
     <ad-dialog
@@ -34,6 +34,8 @@ import { activityRequests, useDialog } from 'atomic'
 
 defineProps<DashboardInterface>()
 
+const { t } = useI18n()
+
 const { visibleDelete, selectedObject, openDialog, closeDialog } = useDialog()
 
 const { deleteActivity, getAllActivities } = activityRequests(closeDialog)
@@ -44,7 +46,7 @@ const dialogs = computed(() => [
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete activity?',
+    title: t('admin.dialogs.delete.headers.activity'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: deleteActivity,

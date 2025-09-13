@@ -5,6 +5,7 @@ import { isClient, isDesktop, isMobile } from 'atomic'
 import {
   contributorsImgUrl,
   imgUrl,
+  languagesImgUrl,
   storysetAboutImgUrl,
   storysetBlogImgUrl,
   storysetImgUrl,
@@ -33,4 +34,5 @@ export function registerDMGlobals(app: App): void {
     prefix + storysetServicesImgUrl
   app.config.globalProperties.storysetBlogImgUrl = prefix + storysetBlogImgUrl
   app.config.globalProperties.technologiesImgUrl = prefix + technologiesImgUrl
+  app.config.globalProperties.languagesImgUrl = prefix + languagesImgUrl
 }

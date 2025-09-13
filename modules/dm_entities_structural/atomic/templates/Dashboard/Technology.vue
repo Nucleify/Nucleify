@@ -6,8 +6,8 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="technology"
-      header-text="Manage Technologies"
-      button-text="New Technology"
+      :headerText="t('admin.sections.technology.header')"
+      buttonText="New Technology"
     />
 
     <ad-dialog
@@ -35,6 +35,8 @@ import type { DashboardInterface } from 'atomic'
 import { technologyRequests, useDialog, useTechnologyFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
+
+const { t } = useI18n()
 
 const {
   visibleShow,
@@ -64,7 +66,7 @@ const dialogs = computed(() => [
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete technology?',
+    title: t('admin.dialogs.delete.headers.technology'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: deleteTechnology,
@@ -74,7 +76,7 @@ const dialogs = computed(() => [
     entity: 'technology',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new technology',
+    title: t('admin.dialogs.create.headers.technology'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: storeTechnology,
@@ -86,7 +88,7 @@ const dialogs = computed(() => [
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit technology',
+    title: t('admin.dialogs.edit.headers.technology'),
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
     confirm: editTechnology,

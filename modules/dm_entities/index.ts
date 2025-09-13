@@ -1,12 +1,12 @@
 /**
  *  Module's main file export
  */
+export * from './dm_entities'
 
 /**
  *  Folders exports
  */
 export * from './atomic'
-export * from './dm_entities'
 export * from './vitests'
 
 /**

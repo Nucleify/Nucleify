@@ -25,7 +25,7 @@ export const loginInputs: readonly InputInterface<LoginFieldKey>[] =
       model,
       type,
       id,
-      label,
+      label: label,
       autofocus,
     })
   )

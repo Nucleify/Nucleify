@@ -6,8 +6,8 @@
       :open-dialog="openDialog"
       :tag="3"
       ad-type="feature"
-      header-text="Manage Features"
-      button-text="New Feature"
+      :headerText="t('admin.sections.feature.mainHeader')"
+      buttonText="New Feature"
     />
 
     <ad-dialog
@@ -35,6 +35,8 @@ import type { DashboardInterface } from 'atomic'
 import { featureRequests, useDialog, useFeatureFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
+
+const { t } = useI18n()
 
 const {
   visibleShow,
@@ -64,7 +66,7 @@ const dialogs = computed(() => [
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete feature?',
+    title: t('admin.dialogs.delete.headers.feature'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: deleteFeature,
@@ -74,7 +76,7 @@ const dialogs = computed(() => [
     entity: 'feature',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new feature',
+    title: t('admin.dialogs.create.headers.feature'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: storeFeature,
@@ -86,7 +88,7 @@ const dialogs = computed(() => [
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit feature',
+    title: t('admin.dialogs.edit.headers.feature'),
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
     confirm: editFeature,

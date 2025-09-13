@@ -2,7 +2,7 @@
 <template>
   <nav class="navbar">
     <div class="container">
-      <nuxt-link class="application-header" to="/home">
+      <nuxt-link class="application-header" :to="localePath('home')">
         <ad-image
           :src="imgUrl + 'logo.svg'"
           class="logo"
@@ -24,9 +24,11 @@
         aria-label="Menu"
         @click="toggleNavbar()"
       />
+      <dm-lang-switcher />
     </div>
     <navbar-drawer v-model:visible="navbarExpanded">
       <navbar-links />
+      <dm-lang-switcher />
     </navbar-drawer>
   </nav>
 </template>
@@ -37,6 +39,8 @@ import gsap from 'gsap'
 import { bounceFadeIn, useNavbar } from 'atomic'
 
 import { NavbarDrawer, NavbarLinks } from './components'
+
+const localePath = useLocalePath()
 
 const { navbarExpanded, toggleNavbar } = useNavbar()
 

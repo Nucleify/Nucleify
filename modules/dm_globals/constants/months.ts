@@ -1,4 +1,4 @@
-export const months: readonly string[] = [
+export const months_en: readonly string[] = [
   'January',
   'February',
   'March',
@@ -11,4 +11,19 @@ export const months: readonly string[] = [
   'October',
   'November',
   'December',
+] as const
+
+export const months_pl: readonly string[] = [
+  'Styczeń',
+  'Luty',
+  'Marzec',
+  'Kwiecień',
+  'Maj',
+  'Czerwiec',
+  'Lipiec',
+  'Sierpień',
+  'Wrzesień',
+  'Październik',
+  'Listopad',
+  'Grudzień',
 ] as const

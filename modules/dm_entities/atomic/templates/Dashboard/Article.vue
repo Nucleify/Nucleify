@@ -6,8 +6,8 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      header-text="Manage Articles"
-      button-text="New Article"
+      :headerText="t('admin.sections.article.header')"
+      buttonText="New Article"
     />
 
     <ad-dialog
@@ -35,6 +35,8 @@ import type { DashboardInterface } from 'atomic'
 import { articleRequests, useArticleFields, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
+
+const { t } = useI18n()
 
 const {
   visibleShow,
@@ -64,7 +66,7 @@ const dialogs = computed(() => [
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete article?',
+    title: t('admin.dialogs.delete.headers.article'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: deleteArticle,
@@ -74,7 +76,7 @@ const dialogs = computed(() => [
     entity: 'article',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new article',
+    title: t('admin.dialogs.create.headers.article'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: storeArticle,
@@ -86,7 +88,7 @@ const dialogs = computed(() => [
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit article',
+    title: t('admin.dialogs.edit.headers.article'),
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
     confirm: editArticle,

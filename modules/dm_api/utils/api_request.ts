@@ -2,6 +2,8 @@ import { useCookie, useRequestHeaders } from 'nuxt/app'
 
 import type { ApiResponseType, HttpMethodType } from 'atomic'
 
+import { useCookie, useNuxtApp, useRequestHeaders } from 'nuxt/app'
+
 export async function apiRequest<T>(
   url: string,
   method: HttpMethodType = 'GET',
@@ -9,6 +11,10 @@ export async function apiRequest<T>(
   id: string | number | null = null,
   params: Record<string, unknown> = {}
 ): Promise<ApiResponseType<T>> {
+  const { $i18n } = useNuxtApp()
+  // biome-ignore lint/suspicious/noExplicitAny: @typescript-eslint/no-explicit-any
+  const currentLocale = ($i18n as any).locale
+
   const finalUrl = id ? `${url}/${id}` : url
   let xsrfTokenValue: string | undefined
 
@@ -25,6 +31,7 @@ export async function apiRequest<T>(
   let headers: Record<string, string> = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
+    'X-Locale': currentLocale.value,
   }
   if (xsrfTokenValue) {
     headers['X-XSRF-TOKEN'] = xsrfTokenValue

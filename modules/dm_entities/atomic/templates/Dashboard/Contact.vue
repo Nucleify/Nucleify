@@ -6,8 +6,8 @@
       :loading="loading"
       :open-dialog="openDialog"
       :tag="3"
-      header-text="Manage Contacts"
-      button-text="New Contact"
+      :headerText="t('admin.sections.contact.header')"
+      buttonText="New Contact"
     />
 
     <ad-dialog
@@ -35,6 +35,8 @@ import type { DashboardInterface } from 'atomic'
 import { contactRequests, useContactFields, useDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
+
+const { t } = useI18n()
 
 const {
   visibleShow,
@@ -64,7 +66,7 @@ const dialogs = computed(() => [
     action: 'delete',
     visible: visibleDelete.value,
     selectedObject: selectedObject.value,
-    title: 'Delete contact?',
+    title: t('admin.dialogs.delete.headers.contact'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: deleteContact,
@@ -74,7 +76,7 @@ const dialogs = computed(() => [
     entity: 'contact',
     action: 'create',
     visible: visibleCreate.value,
-    title: 'Create new contact',
+    title: t('admin.dialogs.create.headers.contact'),
     confirmButtonLabel: 'Confirm',
     cancelButtonLabel: 'Cancel',
     confirm: storeContact,
@@ -86,7 +88,7 @@ const dialogs = computed(() => [
     action: 'edit',
     visible: visibleEdit.value,
     data: selectedObject.value,
-    title: 'Edit contact',
+    title: t('admin.dialogs.edit.headers.contact'),
     confirmButtonLabel: 'Update',
     cancelButtonLabel: 'Cancel',
     confirm: editContact,

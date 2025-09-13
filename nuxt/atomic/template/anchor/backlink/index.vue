@@ -1,8 +1,12 @@
 <template>
   <ad-anchor
-    href="/home"
+    :href="localePath('home')"
     class="back-link"
     icon="prime:chevron-left"
     title="Back to home"
   />
 </template>
+
+<script setup>
+const localePath = useLocalePath()
+</script>

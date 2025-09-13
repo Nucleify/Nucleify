@@ -1,16 +1,12 @@
 <template>
   <div id="contact">
     <div class="contact-content container">
-      <ad-paragraph class="contact-content-title">
-        <span>Contact</span>&nbsp;
-        <span>Us</span>
-      </ad-paragraph>
-
       <ad-paragraph
-        text="
-          If you have any questions, need assistance, or would like to learn more
-          about our project, don’t hesitate to reach out. We’re here to help!
-        "
+        :text="t('home.contact.title')"
+        class="contact-content-title"
+      />
+      <ad-paragraph
+        :text="t('home.contact.description')"
         class="contact-content-description"
       />
       <ad-button
@@ -23,14 +19,14 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from 'gsap'
-
 import {
   bounceFadeIn,
   navigateTo,
   useScrollTrigger,
   useSplitText,
 } from 'atomic'
+
+const { t } = useI18n()
 
 useSplitText().animate(
   '.contact-content-title',

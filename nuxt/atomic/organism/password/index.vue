@@ -76,11 +76,13 @@ import { hasLowercase, hasMinLength, hasNumber, hasUppercase } from 'atomic'
 
 const props = defineProps<PasswordInterface>()
 
+const { t } = useI18n()
+
 const criteria = computed(() => [
-  { label: 'At least one lowercase', isValid: hasLowercase(props.modelValue!) },
-  { label: 'At least one uppercase', isValid: hasUppercase(props.modelValue!) },
-  { label: 'At least one number', isValid: hasNumber(props.modelValue!) },
-  { label: 'Minimum 8 characters', isValid: hasMinLength(props.modelValue!) },
+  { label: t('auth.criteria.lowercase'), isValid: hasLowercase(props.modelValue!) },
+  { label: t('auth.criteria.uppercase'), isValid: hasUppercase(props.modelValue!) },
+  { label: t('auth.criteria.number'), isValid: hasNumber(props.modelValue!) },
+  { label: t('auth.criteria.length'), isValid: hasMinLength(props.modelValue!) },
 ])
 
 const emit = defineEmits(['update:modelValue'])

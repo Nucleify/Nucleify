@@ -26,18 +26,19 @@ const createDockItem = (
   }) as const
 
 const dockData: readonly DockItemInterface[] = [
-  [undefined, 'Home', '/home', undefined, undefined, undefined, true],
-  ['prime:crown', 'Admin Panel', '/admin', undefined, 'admin'],
-  ['prime:sitemap', 'Structural', '/structural', undefined, 'structural'],
-  ['prime:chart-line', 'Dashboard', '/dashboard', undefined, 'dashboard'],
-  ['prime:box', 'Entities', '/entities', undefined, 'entities'],
-  ['prime:history', 'Activities', '/activity-log', undefined, 'activity-log'],
-  ['prime:file', 'Files', '/files', undefined, 'files'],
-  ['prime:check-square', 'Tasks', '/tasks', undefined, 'tasks'],
+  [undefined, 'Home', 'home', undefined, undefined, undefined, true],
+  ['prime:crown', 'Admin Panel', 'admin.dock.adminPanel', undefined, 'admin'],
+  ['prime:sitemap', 'Structural', 'admin.dock.structural', undefined, 'structural'],
+  ['prime:chart-line', 'Dashboard', 'admin.dock.dashboard', undefined, 'dashboard'],
+  ['prime:box', 'Entities', 'admin.dock.entities', undefined, 'entities'],
+  ['prime:history', 'Activities', 'admin.dock.activities', undefined, 'activity-log'],
+  ['prime:file', 'Files', 'admin.dock.files', undefined, 'files'],
+  ['prime:check-square', 'Tasks', 'admin.dock.tasks', undefined, 'tasks'],
   ['prime:calendar', 'Calendar', undefined, 'disabled-item'],
-  ['prime:cog', 'Settings', '/settings#modules', undefined, 'settings'],
-  ['prime:sign-out', 'Logout', undefined, undefined, undefined, logout],
-  [undefined, 'position', undefined, 'position'],
+  ['prime:user', 'Profile', undefined, 'disabled-item'],
+  ['prime:cog', 'Settings', 'admin.dock.settings', undefined, 'settings'],
+  ['prime:sign-out', 'admin.dock.logout', undefined, undefined, undefined, logout],
+  [undefined, 'admin.dock.position', undefined, 'position'],
 ] as const
 
 export const dockItems: readonly DockItemInterface[] = ref(

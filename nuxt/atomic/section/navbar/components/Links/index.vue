@@ -14,8 +14,6 @@
 <script setup lang="ts">
 import { bounceFadeIn, isMobile } from 'atomic'
 
-import { navLinks } from '.'
-
 onMounted(() => {
   if (isMobile()) {
     bounceFadeIn('.nav-links-container .nav-link', {
@@ -39,4 +37,15 @@ onMounted(() => {
     })
   }
 })
+const { t } = useI18n()
+const localePath = useLocalePath()
+
+const navLinks = computed(() =>
+  ['home', 'services', 'about', 'blog', 'login'].map((key) => ({
+    label: t(`links.${key}.label`),
+    href: localePath({ name: key }),
+    isButton: key === 'login',
+    class: key === 'login' ? 'login-button' : undefined,
+  }))
+)
 </script>

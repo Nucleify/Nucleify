@@ -23,7 +23,7 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
-    :model="dockItems"
+    :model="translatedDockItems"
     :position="position"
     class="dock"
     :class="{ staff: isStaff }"
@@ -81,6 +81,21 @@ import {
 } from 'atomic'
 
 import { DockLogo } from '.'
+
+const { t } = useI18n()
+const localePath = useLocalePath()
+
+const translatedDockItems = computed(() =>
+  dockItems.value.map((item) => ({
+    ...item,
+    url: localePath(item.url),
+    label: item.label
+      ? item.label === 'position'
+        ? 'position'
+        : t(item.label)
+      : undefined,
+  }))
+)
 
 const LOCAL_STORAGE_KEY = 'dock-position'
 
