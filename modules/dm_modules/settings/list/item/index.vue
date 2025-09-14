@@ -1,6 +1,7 @@
 <template>
   <div 
-    class="modules-settings-card-list-item" 
+    class="modules-settings-card-list-item"
+    :class="{ 'active': props.enabled }" 
     @click="navigateTo('/settings#module-' + props.name)"
   >
     <dm-modules-cube 
