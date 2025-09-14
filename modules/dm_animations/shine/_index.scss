@@ -39,3 +39,12 @@
     }
   }
 }
+
+#back-office {
+  .shiny,
+  %shiny {
+    &:not(:has(> div[aria-hidden='true'])) {
+      animation: shiny-cube 10s linear infinite;
+    }
+  }
+}

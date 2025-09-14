@@ -1,0 +1,10 @@
+<?php
+
+return [
+    'name' => 'dm_documentation',
+    'description' => 'Module that contains documentation functions.',
+    'version' => '0.0.1',
+    'category' => 'core',
+    'installed' => true,
+    'enabled' => true,
+];

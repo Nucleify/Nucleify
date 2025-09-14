@@ -7,7 +7,7 @@
   padding: 10px;
   background: $content-background;
   font-size: 1.25em !important;
-  box-shadow: 0 0 4px $p-card-box-shadow !important;
+  border: 1px solid $p-card-border !important;
   border: none;
   border-radius: 8px;
   color: $primary-white-text-color;
@@ -17,6 +17,7 @@
   &[data-p-active='true'],
   &:hover {
     color: $primary-color;
+    border-color: transparent !important;
     box-shadow: 0 0 4px $primary-color !important;
   }
 

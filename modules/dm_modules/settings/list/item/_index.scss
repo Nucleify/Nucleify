@@ -10,7 +10,11 @@
     cursor: pointer;
 
     &:hover {
-      background-color: $primary-highlight-color;
+      background-color: var(--main-item-highlight-color-new);
+    }
+
+    &:not(.active) {
+      background-color: $content-background;
     }
 
     &-container {
