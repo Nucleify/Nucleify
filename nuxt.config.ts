@@ -79,7 +79,9 @@ export default defineNuxtConfig({
   vite: {
     build: {
       chunkSizeWarningLimit: 1600,
+      minify: 'terser',
       rollupOptions: {
+        maxParallelFileOps: 2,
         output: {
           manualChunks: {
             primevue: ['primevue'],
