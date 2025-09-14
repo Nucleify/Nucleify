@@ -84,8 +84,17 @@ export default defineNuxtConfig({
         maxParallelFileOps: 2,
         output: {
           manualChunks: {
-            primevue: ['primevue'],
-            vue: ['vue', 'vue-router'],
+            vue: ['vue', 'vue-router', '@unhead/vue'],
+            pinia: ['pinia', 'pinia-plugin-persistedstate'],
+            primevue: [
+              'primevue',
+              '@primevue/forms',
+              '@primeuix/themes',
+              '@primevue/themes',
+            ],
+            chartjs: ['chart.js'],
+            gsap: ['gsap'],
+            marked: ['marked'],
           },
         },
       },
