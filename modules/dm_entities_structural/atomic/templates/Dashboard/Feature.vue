@@ -1,6 +1,6 @@
 <template>
   <section id="features">
-    <ad-card-data-table
+    <dm-entity-datatable-card
       :value="data"
       :loading="loading"
       :open-dialog="openDialog"
