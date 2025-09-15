@@ -9,6 +9,7 @@ Our target is to create fully responsive, functional and scalable website based 
 
 <br><a href="https://datamanager.atomic-it.org">Live preview</a><br><br>
 
+⭐ **Project setup with a single command** <br>
 ⭐ **Unique Laravel/Nuxt modules functionality** <br>
 ⭐ Atomic Design + [Storybook](https://storybook.js.org/) tests for most components <br>
 ⭐ Futuristic UI made with [PrimeVue](https://primevue.org/) + [Chart.js](https://www.chartjs.org/) + [GSAP](https://gsap.com/) + [SCSS](https://sass-lang.com/) <br>
@@ -46,6 +47,149 @@ I'm sure I could optimize it further, but it's good enough for now.
 <br>
 
 
+<details><summary> <h2> &nbsp; <img src="/public/img/technologies/docker.svg" height="20" /> &nbsp; Docker </h2> </summary> <br>
+<details><summary> 🛠️ Installation </summary> <br>
+
+- First make sure u have installed latest version of [Docker](https://www.docker.com) and have [Make](https://makefiletutorial.com/#getting-started) command ready
+  
+- Clone this repository
+
+```
+git clone https://github.com/Atomic-IT/DataManager.git
+```
+
+- Run ```make``` command
+
+<br>
+
+That's it! Now, you can enter http://localhost:3000
+
+<br>
+<br>
+
+<details><summary> Harder way </summary> <br>
+
+- Change ```.env.docker.example``` file to ```.env``` in root directory
+- Unzip vendor.zip
+
+- Build & run Docker image 
+```bash
+sail up --build -d
+sail art migrate:fresh --seed
+```
+
+</details>
+
+<br>
+
+Possible problems:
+- Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
+- Error: EACCES: permission denied, mkdir '/var/www/html/node_modules': ```sudo chmod 777 -R DataManager``` or [Solution](https://stackoverflow.com/questions/49679808/error-eacces-permission-denied-mkdir-usr-local-lib-node-modules-node-sass-b)
+
+<br></details>
+
+<details><summary> 🚀 Run </summary> <br>
+
+Root directory:
+
+```bash
+sail up -d
+```
+
+**Remember to shutdown all XAMPP processes!**
+
+Possible problems:
+- Error starting userland proxy: listen tcp4 0.0.0.0:3306: bind: address already in use: ```sudo service mysql stop```
+
+<br></details>
+
+<details><summary> ❓ Usage </summary><br>
+
+<details><summary> Migrations </summary><br>
+
+```bash
+sail artisan migrate:fresh --seed
+
+# Reset database by dropping all tables and then run all migrations
+# --seed flag runs the database seeders after the migrations
+```
+
+<br/></details>
+
+<details><summary> Factories </summary><br>
+
+```bash
+sail tinker
+
+# if you wish, you can specify count in factory() or attributes in create()
+Article::factory(100)->create();
+Contact::factory(100)->create();
+User::factory(100)->create();
+
+# for Spatie Activity model
+Database\Factories\ActivityFactory::new()->count(100)->create();
+```
+
+<br/></details>
+
+<details><summary> Tests </summary><br>
+
+<img src="/public/img/technologies/pest.svg" height="15" /> &nbsp;Pest tests:
+```bash
+# run all tests
+sail pest
+
+# or specify group
+sail pest --group=api
+
+# defined tests groups:
+api, activity-api, article-api, artisan-api, contact-api, sitemap-api, user-api,
+database, feature, global, unit, commands, controllers, services, factories, migrations, models
+
+# run all tests and check code coverage
+sail pest --coverage
+```
+
+![Tests](https://github.com/user-attachments/assets/560df303-07c7-42f0-a178-07ef5e05a8a8)![Coverage](https://github.com/user-attachments/assets/0b6cc696-8fdb-469f-a78c-e6faaadbe437)
+
+
+
+<img src="/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
+```bash
+npm run open  # For now I've not configured Cypress with Docker
+```
+
+<img src="/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
+```bash
+sail npm run tests
+```
+
+<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail up -d```
+
+<br></details>
+
+<details><summary> npm </summary><br>
+
+1. Install packages - ```sail npm install```
+2. Nuxt build - ```sail npm run build```
+3. Run Prettier - ```sail npm run write```
+4. Run Eslint - ```sail npm run lint```
+5. Run Stylelint - ```sail npm run slint```
+6. Husky install - ```sail npm run prepare```
+
+<br></details>
+
+<details><summary> Sitemaps </summary><br>
+
+Generate XML sitemap
+
+```bash
+sail artisan sitemap:generate
+```
+
+</details></details><hr><br></details></details>
+
+
 <details><summary> <h2> &nbsp; <img src="/public/img/technologies/xampp.svg" height="20" /> &nbsp; XAMPP </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary>
 
@@ -63,13 +207,7 @@ nvm use --lts
 git clone https://github.com/Atomic-IT/DataManager.git
 ```
 
-- Change *.env.example* file to *.env* in root directory
-
-- Generate APP_KEY
-
-```
-php artisan key:generate
-```
+- Change ```.env.xampp.example``` file to ```.env``` in root directory
 
 - Install modules in root directory
 
@@ -178,140 +316,6 @@ Generate XML sitemap
 
 ```bash
 php artisan sitemap:generate
-```
-
-</details></details><hr><br></details></details>
-
-
-
-
-<details><summary> <h2> &nbsp; <img src="/public/img/technologies/docker.svg" height="20" /> &nbsp; Docker </h2> </summary> <br>
-<details><summary> 🛠️ Installation </summary> <br>
-
-- First make sure u have installed latest versions of [Composer](https://getcomposer.org/) and [Docker](https://www.docker.com)
-  
-- Clone this repository
-
-```
-git clone https://github.com/Atomic-IT/DataManager.git
-```
-
-- Change .env.docker.example file to .env in root directory
-- Unzip vendor.zip
-
-- Build & run Docker image 
-```bash
-sail up --build -d
-```
-
-### **Make sure u have installed all modules!**
-
-<br>
-
-Possible problems:
-- Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
-- Error: EACCES: permission denied, mkdir '/var/www/html/node_modules': ```sudo chmod 777 -R DataManager``` or [Solution](https://stackoverflow.com/questions/49679808/error-eacces-permission-denied-mkdir-usr-local-lib-node-modules-node-sass-b)
-
-<br></details>
-
-<details><summary> 🚀 Run </summary> <br>
-
-Root directory:
-
-```bash
-# run all Docker containers in the background
-sail up -d
-```
-
-**Remember to shutdown all XAMPP processes!**
-
-Possible problems:
-- Error starting userland proxy: listen tcp4 0.0.0.0:3306: bind: address already in use: ```sudo service mysql stop```
-
-<br></details>
-
-<details><summary> ❓ Usage </summary><br>
-
-<details><summary> Migrations </summary><br>
-
-```bash
-sail artisan migrate:fresh --seed
-
-# Reset database by dropping all tables and then run all migrations
-# --seed flag runs the database seeders after the migrations
-```
-
-<br/></details>
-
-<details><summary> Factories </summary><br>
-
-```bash
-sail tinker
-
-# if you wish, you can specify count in factory() or attributes in create()
-Article::factory(100)->create();
-Contact::factory(100)->create();
-User::factory(100)->create();
-
-# for Spatie Activity model
-Database\Factories\ActivityFactory::new()->count(100)->create();
-```
-
-<br/></details>
-
-<details><summary> Tests </summary><br>
-
-<img src="/public/img/technologies/pest.svg" height="15" /> &nbsp;Pest tests:
-```bash
-# run all tests
-sail pest
-
-# or specify group
-sail pest --group=api
-
-# defined tests groups:
-api, activity-api, article-api, artisan-api, contact-api, sitemap-api, user-api,
-database, feature, global, unit, commands, controllers, services, factories, migrations, models
-
-# run all tests and check code coverage
-sail pest --coverage
-```
-
-![Tests](https://github.com/user-attachments/assets/560df303-07c7-42f0-a178-07ef5e05a8a8)![Coverage](https://github.com/user-attachments/assets/0b6cc696-8fdb-469f-a78c-e6faaadbe437)
-
-
-
-<img src="/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
-```bash
-npm run open  # For now I've not configured Cypress with Docker
-```
-
-<img src="/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
-```bash
-sail npm run tests
-```
-
-<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail up -d```
-
-<br></details>
-
-<details><summary> npm </summary><br>
-
-1. Install packages - ```sail npm install```
-2. Nuxt build - ```sail npm run build```
-3. Run Prettier - ```sail npm run write```
-4. Run Eslint - ```sail npm run lint```
-5. Run Stylelint - ```sail npm run slint```
-6. Husky install - ```sail npm run prepare```
-
-<br></details>
-
-<details><summary> Sitemaps </summary><br>
-
-Generate XML sitemap
-
-```bash
-sail artisan sitemap:generate
 ```
 
 </details></details><hr><br></details></details>
