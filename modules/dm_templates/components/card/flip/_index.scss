@@ -1,3 +1,9 @@
+.flip-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
 .flip-card {
   background: transparent;
   perspective: 1000px;
@@ -34,6 +40,16 @@
     transition: all 150ms 200ms;
     color: $white-text-color;
     padding-top: 8px;
+
+    .flip-card-image {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .flip-card-header {
+      margin-top: 16px;
+      font-weight: 600;
+    }
   }
 
   .flip-card-back {
