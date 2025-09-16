@@ -6,7 +6,7 @@
         class="access-header split"
         text="Access your data everywhere"
       />
-      <div class="access-card-container">
+      <div class="flip-card-container">
         <dm-flip-card
           v-for="accessCard in accessCards"
           :front-image="imgUrl + accessCard.frontImage"
@@ -30,9 +30,9 @@ import { accessCards } from '.'
 useSplitText().animate('.access-header', 500, 0.2, 0.1)
 
 useScrollTrigger(
-  '.access-card-container',
+  '.flip-card-container',
   () => {
-    bounceFadeIn('.access-card-container .flip-card', {
+    bounceFadeIn('.flip-card-container .flip-card', {
       delay: 0,
       duration: 0.3,
       stagger: 0.3,
