@@ -1,6 +1,6 @@
 <template>
   <div class="boxes-container">
-    <card-box
+    <dm-card-box
       v-for="(box, index) in props.boxes"
       :key="index"
       :src="technologiesImgUrl + box.src"
@@ -13,8 +13,6 @@
 
 <script setup lang="ts">
 import type { CardBoxesInterface } from 'atomic'
-
-import { CardBox } from './components'
 
 const props = defineProps<CardBoxesInterface>()
 </script>

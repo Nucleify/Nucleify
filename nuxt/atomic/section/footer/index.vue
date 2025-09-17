@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="bottom">
-        <ad-anchor-authors />
+        <dm-authors />
       </div>
     </div>
     <dm-animation-hexagons />

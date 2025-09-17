@@ -1,5 +1,6 @@
 export interface CardBoxesInterface {
   boxes?: BoxInterface[]
+  srcPrefix?: string
 }
 
 export interface BoxInterface {

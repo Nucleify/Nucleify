@@ -42,21 +42,3 @@ Organisms are more complex UI structures made up of groups of molecules and/or a
     Examples: datatable, chart, card, dialog, or forms.
 
 <br>
-
-### 5. Templates - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
-
-Templates define the structure and layout of combining organisms and other components. **They just serve as a blueprint for components combinations.**
-
-    Examples: card with datatable or chart, custom sections etc.
-
-<br>
-
-### 6. Pages - <img src="/public/img/technologies/vue.svg" width="15"> <img src="/public/img/technologies/typescript.svg" width="15">
-
-Pages are specific implementations of templates with functions. **They can be also treated as a "templates", but just for pages.**
-
-    Examples: The homepage, settings page template etc.
-
-**pages** folder moved to ```modules/dm_pages/pages```
-
-<br>
