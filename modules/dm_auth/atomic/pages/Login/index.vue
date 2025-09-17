@@ -1,5 +1,5 @@
 <template>
-  <ad-anchor-backlink />
+  <dm-home-link />
   <ad-card class="login-card">
     <template #header>
       <div class="auth-card-header-container">

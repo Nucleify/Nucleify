@@ -22,14 +22,14 @@
       border: 1px solid $p-card-border;
     }
 
-    .access-card-container {
+    .flip-card-container {
       margin: 50px 0 70px;
       display: flex;
       flex-flow: wrap;
       justify-content: center;
       gap: 0.5em;
 
-      .access-card {
+      .flip-card {
         width: 370px;
         min-height: 210px;
         display: flex;
@@ -44,12 +44,12 @@
         }
       }
 
-      .access-card-image {
+      .flip-card-image {
         margin: 15px 0 0;
         max-height: 100px;
       }
 
-      .access-card-header {
+      .flip-card-header {
         font-family: $font-inter-sans-serif;
       }
     }
