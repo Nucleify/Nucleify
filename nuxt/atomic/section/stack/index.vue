@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <ad-card-boxes :boxes="data" />
+    <dm-card-boxes :boxes="data" />
   </div>
 </template>
 
