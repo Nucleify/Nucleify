@@ -23,8 +23,7 @@
     :multi-sort-meta="props.multiSortMeta"
     :sort-mode="props.sortMode"
     :removable-sort="props.removableSort"
-    :filters="props.filters"
-    :filter-display="props.filterDisplay"
+    :filter-display="props.filterDisplay || 'row'"
     :filter-locale="props.filterLocale"
     :selection-mode="props.selectionMode"
     :compare-selection-by="props.compareSelectionBy"
@@ -74,6 +73,8 @@
     :unstyled="props.unstyled"
     :open-dialog="props.openDialog"
     :selected-object="props.selectedObject"
+    v-model:filters="props.filters"
+    @update:filters="emits('update:filters', $event)"
   >
     <Column
       v-for="col in specificColumns"
@@ -82,8 +83,17 @@
       :header="col.header"
       :class="col.class"
       :sortable="col.sortable"
-    />
-
+      :filter="true"
+      filterMatchMode="contains"
+    >
+      <template #filter="{ filterModel, filterCallback }">
+        <ad-input-text
+          v-model="filterModel.value"
+          :placeholder="`Search by ${col.header}`"
+          @input="filterCallback()"
+        />
+      </template>
+    </Column>
     <Column class="action-column">
       <template #body="row">
         <div class="action-column-content">
@@ -137,6 +147,7 @@ import type { DMEntityDatatableInterface } from 'atomic'
 import { actions as actionsList, columns, useMenu, useSelect } from 'atomic'
 
 const props = defineProps<DMEntityDatatableInterface>()
+const emits = defineEmits<{ (e: 'update:filters', value: unknown): void }>()
 
 const menu = ref()
 const actions = actionsList(props.openDialog!)
