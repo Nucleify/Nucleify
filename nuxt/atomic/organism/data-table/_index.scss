@@ -64,11 +64,19 @@
     border: 0;
 
     .p-paginator {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
       background: transparent !important;
       position: relative;
-      bottom: 10px;
+      width: 100%;
       margin: 0;
-      padding: 0;
+      padding: 20px;
+
+      .p-select-label {
+        padding: 0 0 0 10px;
+        cursor: pointer;
+      }
 
       &-current {
         margin: 0 4px;
