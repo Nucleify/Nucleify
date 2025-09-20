@@ -37,6 +37,7 @@
         v-if="value"
         :value="value"
         :rows="10"
+        :rows-per-page-options="[10, 20, 50]"
         :open-dialog="openDialog"
         :styles="styles"
         :ad-type="adType"
@@ -44,7 +45,7 @@
         v-model:filters="filters"
         :filter-display="'row'"
         :global-filter-fields="globalFilterFields"
-        paginator-template="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+        paginator-template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown"
         current-page-report-template="{first} to {last} of {totalRecords}"
       />
     </template>
