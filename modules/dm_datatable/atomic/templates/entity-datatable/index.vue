@@ -83,6 +83,7 @@
     :selected-object="props.selectedObject"
     v-model:filters="props.filters"
     @update:filters="emits('update:filters', $event)"
+    @row-click="props.openDialog?.('show', $event.data)"
     class="entity-datatable"
   >
     <Column
