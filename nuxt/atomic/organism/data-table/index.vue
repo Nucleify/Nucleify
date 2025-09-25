@@ -24,7 +24,6 @@
     :multi-sort-meta="props.multiSortMeta"
     :sort-mode="props.sortMode"
     :removable-sort="props.removableSort"
-    :filters="props.filters"
     :filter-display="props.filterDisplay"
     :filter-locale="props.filterLocale"
     :selection-mode="props.selectionMode"
@@ -73,6 +72,8 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
+    v-model:filters="props.filters"
+    @update:filters="emits('update:filters', $event)"
   >
     <slot />
   </DataTable>
@@ -82,4 +83,5 @@
 import type { DataTableInterface } from 'atomic'
 
 const props = defineProps<DataTableInterface>()
+const emits = defineEmits<{ (e: 'update:filters', value: unknown): void }>()
 </script>
