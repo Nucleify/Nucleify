@@ -1,9 +1,14 @@
 .p-datatable.entity-datatable {
+  .p-datatable-table-container {
+    overflow: visible;
+  }
+  
   .p-datatable-thead {
     .p-datatable-header-cell {
       &:has(.p-datatable-filter) {
         position: relative;
         padding: 0 !important;
+        overflow: visible;
   
         &:hover {
           background-color: $bg-black-color !important;
