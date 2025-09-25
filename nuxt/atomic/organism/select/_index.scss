@@ -2,14 +2,32 @@
   padding: 0;
 }
 
+.p-select {
+  padding: .25em !important;
+}
+
 .p-select,
 .p-select-list {
   background: $p-card-background !important;
   border: 1px solid $p-card-border !important;
   color: $white-text-color !important;
-  padding: 4px !important;
 
   .p-select-option {
-    border-radius: 4px;
+    padding: .25em .85em !important;
+    
+    &.p-focus:not(&-selected) {
+      background-color: $content-background !important;
+    }
+
+    &-selected {
+      background-color: var(--p-select-option-focus-background) !important;
+    }
   }
+}
+
+.p-select-list,
+.p-select-list-container {
+  border: none !important;
+  border-radius: .25em;
+  padding: 0 !important;
 }
