@@ -65,7 +65,15 @@
     :table-class="props.tableClass"
     :table-props="props.tableProps"
     :filter-input-props="props.filterInputProps"
-    :filter-button-props="props.filterButtonProps"
+    :filter-button-props="{
+      filter: { 
+        pt: { 
+          root: { 
+            'ad-type': props.adType 
+          } 
+        } 
+      }
+    }"
     :edit-button-props="props.editButtonProps"
     :dt="props.dt"
     :pt="props.pt"
@@ -75,6 +83,7 @@
     :selected-object="props.selectedObject"
     v-model:filters="props.filters"
     @update:filters="emits('update:filters', $event)"
+    class="entity-datatable"
   >
     <Column
       v-for="col in specificColumns"
@@ -89,7 +98,9 @@
       <template #filter="{ filterModel, filterCallback }">
         <ad-input-text
           v-model="filterModel.value"
+          :value="filterModel.value || ''"
           :placeholder="`Search by ${col.header}`"
+          :ad-type="props.adType"
           @input="filterCallback()"
         />
       </template>
