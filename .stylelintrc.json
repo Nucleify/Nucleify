@@ -5,5 +5,6 @@
     "media-query-no-invalid": null,
     "media-feature-range-notation": null,
     "at-rule-no-unknown": null
-  }
+  },
+  "ignoreFiles": ["**/*.vue"]
 }

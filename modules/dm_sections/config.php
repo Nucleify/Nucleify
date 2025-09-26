@@ -1,0 +1,10 @@
+<?php
+
+return [
+    'name' => 'dm_sections',
+    'description' => 'Module that contains section components & functions.',
+    'version' => '0.0.1',
+    'category' => 'core',
+    'installed' => true,
+    'enabled' => true,
+];

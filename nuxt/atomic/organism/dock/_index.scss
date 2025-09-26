@@ -40,6 +40,7 @@
       box-shadow: $primary-box-shadow;
       padding: 0;
       margin: 0;
+
       @include center-content;
 
       .p-dock-item {
@@ -69,6 +70,7 @@
           text-decoration: none;
           cursor: pointer;
           transition: all 300ms;
+
           @include center-content;
           @include min-content;
 
@@ -139,8 +141,10 @@
 
     .dock-position-buttons {
       @include center-content;
+
       margin-left: 0.25em;
     }
+
     .p-dock-list-container {
       height: 100%;
 

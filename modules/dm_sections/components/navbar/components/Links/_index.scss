@@ -4,7 +4,7 @@
     padding: 0.75rem 3rem !important;
     font-size: 1em;
 
-    @extend .caterpillar;
+    @extend %caterpillar;
   }
 
   .nav-link {

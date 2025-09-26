@@ -86,12 +86,7 @@ export default defineNuxtConfig({
           manualChunks: {
             vue: ['vue', 'vue-router', '@unhead/vue'],
             pinia: ['pinia', 'pinia-plugin-persistedstate'],
-            primevue: [
-              'primevue',
-              '@primevue/forms',
-              '@primeuix/themes',
-              '@primevue/themes',
-            ],
+            primevue: ['primevue', '@primevue/forms', '@primeuix/themes'],
             chartjs: ['chart.js'],
             gsap: ['gsap'],
             marked: ['marked'],
@@ -122,9 +117,6 @@ export default defineNuxtConfig({
     { path: '~/atomic/atom', prefix: 'ad', extensions: ['vue'] },
     { path: '~/atomic/molecule', prefix: 'ad', extensions: ['vue'] },
     { path: '~/atomic/organism', prefix: 'ad', extensions: ['vue'] },
-    { path: '~/atomic/section', prefix: 'ad-section', extensions: ['vue'] },
-    { path: '~/atomic/template', prefix: 'ad', extensions: ['vue'] },
-    { path: '~/atomic', extensions: ['vue'] },
   ],
   imports: {
     dirs: ['~/composables/**', '~/atomic/**', 'modules/**'],
