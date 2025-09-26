@@ -1,11 +1,5 @@
 @import './components';
 
-body:has(#back-office) {
-  .navbar {
-    display: none;
-  }
-}
-
 .navbar {
   width: 100%;
   z-index: 9999;
@@ -55,5 +49,11 @@ body:has(#back-office) {
 
   @media (min-width: $md) {
     max-height: 100px;
+  }
+}
+
+body:has(#back-office) {
+  .navbar {
+    display: none;
   }
 }
