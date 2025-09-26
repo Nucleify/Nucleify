@@ -4,8 +4,8 @@
     :class="{ 'active': props.enabled }" 
     @click="navigateTo('/settings#module-' + props.name)"
   >
-    <dm-modules-cube 
-      :class="{ 'shiny': props.enabled }" 
+    <dm-cube
+      :shiny="props.enabled"
       v-tooltip.right="props.enabled ? 'Enabled' : 'Disabled'" 
     />
     <div class="modules-settings-card-list-item-container">

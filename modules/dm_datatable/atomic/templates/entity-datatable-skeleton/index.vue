@@ -1,7 +1,7 @@
 <template>
   <DataTable
     v-if="loading"
-    class="skeleton-data-table"
+    class="entity-datatable skeleton-data-table"
     :value="rows"
     :size="'small'"
   >
