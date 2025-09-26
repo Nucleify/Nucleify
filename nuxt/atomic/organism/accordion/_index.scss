@@ -9,6 +9,8 @@
 
   .p-accordioncontent-content {
     border-top: none !important;
+    background: $content-background;
+    backdrop-filter: blur(0.5em);
   }
 
   .p-accordionheader,
@@ -20,6 +22,7 @@
     position: relative;
     padding: 0 1em;
     height: 60px !important;
+
     @include caterpillar;
 
     background: $content-background !important;
@@ -28,10 +31,5 @@
       overflow: visible;
       top: -25px;
     }
-  }
-
-  .p-accordioncontent-content {
-    background: $content-background;
-    backdrop-filter: blur(0.5em);
   }
 }
