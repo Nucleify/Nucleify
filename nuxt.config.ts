@@ -86,12 +86,7 @@ export default defineNuxtConfig({
           manualChunks: {
             vue: ['vue', 'vue-router', '@unhead/vue'],
             pinia: ['pinia', 'pinia-plugin-persistedstate'],
-            primevue: [
-              'primevue',
-              '@primevue/forms',
-              '@primeuix/themes',
-              '@primevue/themes',
-            ],
+            primevue: ['primevue', '@primevue/forms', '@primeuix/themes'],
             chartjs: ['chart.js'],
             gsap: ['gsap'],
             marked: ['marked'],
