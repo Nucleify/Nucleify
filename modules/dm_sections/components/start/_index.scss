@@ -1,0 +1,59 @@
+.start-section {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1em;
+  font-family: $font-inter-sans-serif;
+
+  .start {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    font-weight: 500;
+
+    &-header {
+      font-size: 2em;
+      font-weight: 700;
+    }
+
+    &-description {
+      max-width: 550px;
+      font-size: 1em;
+      margin: 0;
+      color: $white-text-color;
+    }
+
+    &-animation {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  @media (min-width: $md) {
+    flex-direction: row;
+    gap: 2em;
+
+    .start {
+      gap: 0.5em;
+
+      &-header {
+        font-size: 3em;
+      }
+
+      &-animation {
+        margin: 0;
+      }
+    }
+  }
+
+  @media (min-width: $lg) {
+    gap: 3em;
+
+    .start {
+      gap: 0.75em;
+      margin-bottom: 4.5em;
+    }
+  }
+}
