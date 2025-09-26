@@ -23,8 +23,14 @@
     color: $primary-white-text-color;
   }
 
+  th {
+    padding: 8px 9px !important;
+  }
+  
   td {
     border-color: #27272a !important;
+    padding: 6px 9px !important;
+    cursor: pointer;
   }
 
   .p-row-odd {
@@ -45,15 +51,6 @@
       justify-content: space-between;
       padding-right: 1em;
     }
-  }
-
-  th {
-    padding: 8px 9px !important;
-  }
-
-  td {
-    padding: 6px 9px !important;
-    cursor: pointer;
   }
 
   .p-component-overlay {
