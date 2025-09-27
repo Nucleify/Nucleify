@@ -20,6 +20,7 @@ import {
   LinkObjectInterface,
   MoneyObjectInterface,
   months,
+  ObjectType,
   QuestionObjectInterface,
   TaskObjectInterface,
   TechnologyObjectInterface,
@@ -29,6 +30,7 @@ import {
 } from 'atomic'
 
 import { ChartOptions } from 'chart.js'
+import { prepareAnnualData } from './prepare'
 
 export function useChart() {
   const { colors }: UseColorsInterface = useColors()
@@ -78,102 +80,43 @@ export function useChart() {
     example?: boolean
   ) {
     try {
+      const entitiesData: ObjectInterface[] = {
+        activityLogData,
+        articleData,
+        cardData,
+        contactData,
+        documentationData,
+        featureData,
+        fileData,
+        linkData,
+        moneyData,
+        questionData,
+        taskData,
+        technologyData,
+        userData,
+      }
+
       let labels: string[] = []
-      const dataByMonth = Object.fromEntries(
-        [...allEntitiesKeys].map((key) => [`${key}`, new Array(12).fill(0)])
-      )
 
       const chartColors = example ? exampleColors : colors
 
-      if (example) {
-        for (let i = 0; i < 12; i++) {
-          dataByMonth.article[i] = Math.floor(Math.random() * 100)
-          dataByMonth.contact[i] = Math.floor(Math.random() * 100)
-        }
-      } else {
-        const incrementByMonth = (
-          data: { created_at: string }[],
-          dataByMonth: number[]
-        ) => {
-          data?.forEach(
-            ({ created_at }) => dataByMonth[new Date(created_at).getMonth()]++
-          )
-        }
-
-        ;[
-          [activityLogData, dataByMonth.activity],
-          [articleData, dataByMonth.article],
-          [cardData, dataByMonth.card],
-          [contactData, dataByMonth.contact],
-          [documentationData, dataByMonth.documentation],
-          [featureData, dataByMonth.feature],
-          [fileData, dataByMonth.file],
-          [linkData, dataByMonth.link],
-          [moneyData, dataByMonth.money],
-          [questionData, dataByMonth.question],
-          [taskData, dataByMonth.task],
-          [technologyData, dataByMonth.technology],
-          [userData, dataByMonth.user],
-        ].forEach(([data, dataByMonth]) =>
-          incrementByMonth(data as { created_at: string }[], dataByMonth)
-        )
-      }
-
       switch (chartMethodType) {
         case 'annual': {
-          const createData = (data, colors) => ({ data, colors })
-
-          const dataMap = Object.fromEntries(
-            Object.entries(dataByMonth).map(([key, value]) => [
-              key.charAt(0).toUpperCase() + key.slice(1),
-              createData(value, chartColors[key]),
-            ])
-          )
-
-          const dataTypes = Object.keys(dataMap).map((label) => ({
-            label,
-            ...dataMap[label],
-          }))
-
-          return {
-            labels: months,
-            datasets: dataTypes
-              .map(({ label, data, colors }) => ({
-                label,
-                backgroundColor: colors.secondary,
-                borderColor: colors.primary,
-                borderWidth: 1.5,
-                data,
-              }))
-              .filter(({ data }) => data.some((count) => count > 0)),
-          }
+          return prepareAnnualData(entitiesData, chartColors, example)
         }
 
         case 'count': {
-          labels = chartLabels
-            .filter(
-              ({ label }) =>
-                ({
-                  Activities: activityLogData,
-                  Articles: articleData,
-                  Contacts: contactData,
-                  Documentation: documentationData,
-                  Files: fileData,
-                  Money: moneyData,
-                  Users: userData,
-                  Cards: cardData,
-                  Features: featureData,
-                  Links: linkData,
-                  Question: questionData,
-                  Task: taskData,
-                  Technology: technologyData,
-                })[label]
-            )
-            .map(({ label }) => label)
+          const dataCounts = Object.entries(entitiesData)
+            .map(([key, data]) => ({
+              label:
+                key.charAt(0).toUpperCase() + key.slice(1).replace('Data', ''),
+              data,
+              count: data?.length || 0,
+            }))
+            .filter(({ data }) => data && data.length > 0)
 
-          const totals = Object.values(dataByMonth).map((data) =>
-            data.reduce((sum, value) => sum + value, 0)
-          )
+          labels = dataCounts.map(({ label }) => label)
+          const totals = dataCounts.map(({ count }) => count)
 
           return {
             labels,
@@ -182,10 +125,11 @@ export function useChart() {
                 data: totals,
                 borderWidth: 1.5,
                 borderColor: totals.map(
-                  (_, i) => Object.values(chartColors)[i].primary
+                  (_, i) => Object.values(chartColors)[i]?.primary || '#000000'
                 ),
                 backgroundColor: totals.map(
-                  (_, i) => Object.values(chartColors)[i].secondary
+                  (_, i) =>
+                    Object.values(chartColors)[i]?.secondary || '#000000'
                 ),
               },
             ],
