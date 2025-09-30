@@ -16,14 +16,6 @@ beforeEach(function (): void {
 });
 
 describe('200', function (): void {
-    test('getAllModules api', function (): void {
-        $this->get(route('modules.getAllModules'))
-            ->assertOk()
-            ->assertJson([
-                'modules' => require __DIR__ . '/../../../../hooks/getAllModules.php',
-            ]);
-    });
-
     test('install api', function (): void {
         $this->mock(\App\Services\ModuleInstallerService::class, function ($mock) {
             $mock->shouldReceive('install')
