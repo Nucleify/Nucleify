@@ -1,7 +1,7 @@
 <?php
 
-if (!function_exists('getInstalledModules')) {
-    function getInstalledModules(): array
+if (!function_exists('getAllModules')) {
+    function getAllModules(): array
     {
         $modulesPath = __DIR__ . '/../../';
         $modules = [];
@@ -55,7 +55,7 @@ if (!function_exists('getInstalledModules')) {
     }
 
     try {
-        $result = getInstalledModules();
+        $result = getAllModules();
 
         return is_array($result) ? $result : [];
     } catch (Exception $e) {

@@ -21,8 +21,8 @@ beforeEach(function (): void {
 });
 
 describe('200', function (): void {
-    test('getInstalledModules method', function (): void {
-        $response = $this->controller->getInstalledModules();
+    test('getAllModules method', function (): void {
+        $response = $this->controller->getAllModules();
 
         expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
     });

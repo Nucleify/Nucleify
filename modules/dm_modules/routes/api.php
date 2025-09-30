@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['web', 'auth'])->prefix('api')->group(function (): void {
     Route::prefix('modules')->group(function (): void {
         Route::controller(ModuleInstallerController::class)->group(function (): void {
-            Route::get('/installed', 'getInstalledModules')
-                ->name('modules.getInstalledModules');
+            Route::get('/installed', 'getAllModules')
+                ->name('modules.getAllModules');
             Route::post('/install', 'install')
                 ->name('modules.install');
             Route::post('/uninstall', 'uninstall')

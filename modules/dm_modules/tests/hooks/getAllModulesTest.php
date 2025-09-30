@@ -4,18 +4,18 @@ if (!defined('PEST_RUNNING')) {
     return;
 }
 
-require_once __DIR__ . '/../../hooks/getInstalledModules.php';
+require_once __DIR__ . '/../../hooks/getAllModules.php';
 
-describe('getInstalledModules', function () {
+describe('getAllModules', function () {
     test('returns an array', function () {
-        $modules = getInstalledModules();
+        $modules = getAllModules();
 
         expect($modules)->toBeArray();
         expect($modules)->not->toBeEmpty();
     });
 
     test('returns modules with correct structure', function () {
-        $modules = getInstalledModules();
+        $modules = getAllModules();
 
         foreach ($modules as $moduleName => $moduleConfig) {
             expect($moduleConfig)->toBeArray();
@@ -26,7 +26,7 @@ describe('getInstalledModules', function () {
     });
 
     test('includes modules with config files', function () {
-        $modules = getInstalledModules();
+        $modules = getAllModules();
 
         expect($modules)->toHaveKey('dm_modules');
         expect($modules['dm_modules'])->toHaveKey('name');
@@ -36,7 +36,7 @@ describe('getInstalledModules', function () {
     });
 
     test('handles modules without config files gracefully', function () {
-        $modules = getInstalledModules();
+        $modules = getAllModules();
 
         foreach ($modules as $moduleName => $moduleConfig) {
             if (isset($moduleConfig['description']) && str_contains($moduleConfig['description'], 'Config file does not exist')) {
@@ -49,7 +49,7 @@ describe('getInstalledModules', function () {
     });
 
     test('returns consistent module structure', function () {
-        $modules = getInstalledModules();
+        $modules = getAllModules();
 
         foreach ($modules as $moduleName => $moduleConfig) {
             expect($moduleConfig)->toHaveKeys(['name', 'description']);
@@ -59,7 +59,7 @@ describe('getInstalledModules', function () {
     });
 
     test('returns only dm_* prefixed modules', function () {
-        $modules = getInstalledModules();
+        $modules = getAllModules();
 
         foreach ($modules as $moduleName => $moduleConfig) {
             expect($moduleName)->toMatch('/^dm_/');
@@ -67,11 +67,11 @@ describe('getInstalledModules', function () {
     });
 
     test('function is callable', function () {
-        expect(function_exists('getInstalledModules'))->toBeTrue();
+        expect(function_exists('getAllModules'))->toBeTrue();
     });
 
     test('returns array even when modules directory is empty', function () {
-        $modules = getInstalledModules();
+        $modules = getAllModules();
 
         expect($modules)->toBeArray();
         expect($modules)->not->toBeNull();
