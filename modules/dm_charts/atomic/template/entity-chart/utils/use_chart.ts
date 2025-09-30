@@ -30,7 +30,17 @@ import {
 } from 'atomic'
 
 import { ChartOptions } from 'chart.js'
-import { prepareAnnualData } from './prepare'
+import {
+  bubbleChart,
+  cartesianChart,
+  circularChart,
+  prepareAnnualData,
+  prepareCountData,
+  radialChart,
+  scatterChart,
+  stackedBarChart,
+} from './prepare'
+import { pointerChart } from './prepare/option/pointer'
 
 export function useChart() {
   const { colors }: UseColorsInterface = useColors()
@@ -80,7 +90,7 @@ export function useChart() {
     example?: boolean
   ) {
     try {
-      const entitiesData: ObjectInterface[] = {
+      const entitiesData = {
         activityLogData,
         articleData,
         cardData,
@@ -94,7 +104,7 @@ export function useChart() {
         taskData,
         technologyData,
         userData,
-      }
+      } as Record<string, ObjectType[]>
 
       let labels: string[] = []
 
@@ -106,41 +116,13 @@ export function useChart() {
         }
 
         case 'count': {
-          const dataCounts = Object.entries(entitiesData)
-            .map(([key, data]) => ({
-              label:
-                key.charAt(0).toUpperCase() + key.slice(1).replace('Data', ''),
-              data,
-              count: data?.length || 0,
-            }))
-            .filter(({ data }) => data && data.length > 0)
-
-          labels = dataCounts.map(({ label }) => label)
-          const totals = dataCounts.map(({ count }) => count)
-
-          return {
-            labels,
-            datasets: [
-              {
-                data: totals,
-                borderWidth: 1.5,
-                borderColor: totals.map(
-                  (_, i) => Object.values(chartColors)[i]?.primary || '#000000'
-                ),
-                backgroundColor: totals.map(
-                  (_, i) =>
-                    Object.values(chartColors)[i]?.secondary || '#000000'
-                ),
-              },
-            ],
-          }
+          return prepareCountData(entitiesData, chartColors, example)
         }
-
         default:
           return null
       }
     } catch (error) {
-      console.error('Error processing chart data:', error)
+      console.error(error)
       return null
     }
   }
@@ -161,34 +143,36 @@ export function useChart() {
       },
     }
 
-    if (chartType === 'pie' || chartType === 'doughnut') {
-      options.plugins.legend.display = false
-    } else if (direction === 'horizontal') {
-      options.indexAxis = 'y'
-    }
-
-    if (chartType !== 'pie' && chartType !== 'doughnut') {
-      options.scales = {
-        x: {
-          ticks: {
-            color: '#e6e6e6',
-            font: {
-              weight: 500,
-            },
-          },
-          grid: {
-            display: false,
-          },
-        },
-        y: {
-          ticks: {
-            color: '#e6e6e6',
-          },
-          grid: {
-            display: true,
-            color: '#39404a50',
-          },
-        },
+    switch (chartType) {
+      case 'bar':
+      case 'line': {
+        return cartesianChart(
+          options,
+          direction === 'horizontal' ? 'horizontal' : undefined
+        )
+      }
+      case 'bubble': {
+        return pointerChart(options, { withRadius: true })
+      }
+      case 'doughnut':
+      case 'pie': {
+        return circularChart(options)
+      }
+      case 'polarArea': {
+        return radialChart(options, { gridColor: chartColor })
+      }
+      case 'radar': {
+        return radialChart(options, {
+          angleLinesDisplay: false,
+          suggestedMin: 50,
+          suggestedMax: 100,
+        })
+      }
+      case 'scatter': {
+        return pointerChart(options)
+      }
+      case 'stackedBar': {
+        return stackedBarChart(options)
       }
     }
 
