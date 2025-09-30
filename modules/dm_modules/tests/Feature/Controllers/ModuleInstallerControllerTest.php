@@ -16,17 +16,11 @@ use Illuminate\Support\Facades\File;
 beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
-    $this->controller = app()->makeWith(ModuleInstallerController::class, ['moduleService' => app()->make(ModuleInstallerService::class)]);
+    $this->controller = app()->makeWith(ModuleInstallerController::class, ['service' => app()->make(ModuleInstallerService::class)]);
     $this->basePath = base_path('modules/dm_modules/test_modules');
 });
 
 describe('200', function (): void {
-    test('getAllModules method', function (): void {
-        $response = $this->controller->getAllModules();
-
-        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
-    });
-
     test('install method', function (): void {
         $module = $this->basePath . '/test_module_laravel.zip';
 

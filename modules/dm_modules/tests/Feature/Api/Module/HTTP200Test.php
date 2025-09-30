@@ -12,6 +12,14 @@ beforeEach(function (): void {
 });
 
 describe('200 > Authorized', function (): void {
+    test('getAllModules api', function (): void {
+        $this->get(route('modules.getAllModules'))
+            ->assertOk()
+            ->assertJson([
+                'modules' => require __DIR__ . '/../../../../hooks/getAllModules.php',
+            ]);
+    });
+
     test('index api', function (): void {
         Module::factory(3)->create();
 

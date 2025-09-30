@@ -12,26 +12,9 @@ class ModuleInstallerController extends Controller
 {
     private ModuleInstallerService $service;
 
-    private string $pathGetAllModules = __DIR__ . '/../../../hooks/getAllModules.php';
-
     public function __construct(ModuleInstallerService $service)
     {
         $this->service = $service;
-    }
-
-    public function getAllModules(): JsonResponse
-    {
-        if (!file_exists($this->pathGetAllModules)) {
-            return response()->json(['modules' => []], 200);
-        }
-
-        try {
-            $modules = require $this->pathGetAllModules;
-
-            return response()->json(['modules' => $modules], 200);
-        } catch (Exception $e) {
-            return response()->json(['error' => 'Failed to load all modules: ' . $e->getMessage()], 500);
-        }
     }
 
     public function install(InstallRequest $request): JsonResponse
