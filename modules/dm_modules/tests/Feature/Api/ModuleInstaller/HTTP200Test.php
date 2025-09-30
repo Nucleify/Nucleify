@@ -16,11 +16,11 @@ beforeEach(function (): void {
 });
 
 describe('200', function (): void {
-    test('getInstalledModules api', function (): void {
-        $this->get(route('modules.getInstalledModules'))
+    test('getAllModules api', function (): void {
+        $this->get(route('modules.getAllModules'))
             ->assertOk()
             ->assertJson([
-                'modules' => require __DIR__ . '/../../../../hooks/getInstalledModules.php',
+                'modules' => require __DIR__ . '/../../../../hooks/getAllModules.php',
             ]);
     });
 
