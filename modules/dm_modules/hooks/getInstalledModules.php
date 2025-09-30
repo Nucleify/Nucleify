@@ -19,16 +19,18 @@ if (!function_exists('getInstalledModules')) {
         foreach ($moduleDirs as $moduleDir) {
             $moduleName = basename($moduleDir);
 
-            $configFile = $moduleDir . '/config.php';
+            $configFile = $moduleDir . '/config.json';
             if (file_exists($configFile)) {
                 try {
-                    $config = require $configFile;
-                    if (is_array($config)) {
+                    $configContent = file_get_contents($configFile);
+                    $config = json_decode($configContent, true);
+
+                    if (json_last_error() === JSON_ERROR_NONE && is_array($config)) {
                         $modules[$moduleName] = $config;
                     } else {
                         $modules[$moduleName] = [
                             'name' => $moduleName,
-                            'description' => 'Config file did not return array',
+                            'description' => 'Config file contains invalid JSON: ' . json_last_error_msg(),
                         ];
                     }
                 } catch (Exception $e) {
