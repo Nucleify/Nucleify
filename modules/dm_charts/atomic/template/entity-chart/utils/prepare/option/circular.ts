@@ -1,8 +1,8 @@
 import { ChartOptions } from 'chart.js'
 
 export function circularChart(options: ChartOptions): ChartOptions {
-  options.plugins = {}
-  options.plugins.legend = {}
+  if (!options.plugins) options.plugins = {}
+  if (!options.plugins.legend) options.plugins.legend = {}
   options.plugins.legend.display = false
   return options
 }
