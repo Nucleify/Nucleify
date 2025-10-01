@@ -4,8 +4,8 @@ export function pointerChart(
   options: ChartOptions,
   opts?: { withRadius?: boolean }
 ): ChartOptions {
-  options.plugins = {}
-  options.plugins.legend = {}
+  if (!options.plugins) options.plugins = {}
+  if (!options.plugins.legend) options.plugins.legend = {}
   options.plugins.legend.display = false
   options.scales = {
     x: { type: 'linear', position: 'bottom' },

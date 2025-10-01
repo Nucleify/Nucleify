@@ -31,16 +31,14 @@ import {
 
 import { ChartOptions } from 'chart.js'
 import {
-  bubbleChart,
   cartesianChart,
   circularChart,
+  pointerChart,
   prepareAnnualData,
   prepareCountData,
   radialChart,
-  scatterChart,
   stackedBarChart,
 } from './prepare'
-import { pointerChart } from './prepare/option/pointer'
 
 export function useChart() {
   const { colors }: UseColorsInterface = useColors()
@@ -159,13 +157,13 @@ export function useChart() {
         return circularChart(options)
       }
       case 'polarArea': {
-        return radialChart(options, { gridColor: chartColor })
+        return radialChart(options, { gridColor: '#cce4dd' })
       }
       case 'radar': {
         return radialChart(options, {
           angleLinesDisplay: false,
-          suggestedMin: 50,
-          suggestedMax: 100,
+          gridColor: '#39404a50',
+          tickColor: '#e6e6e6',
         })
       }
       case 'scatter': {
@@ -174,9 +172,9 @@ export function useChart() {
       case 'stackedBar': {
         return stackedBarChart(options)
       }
+      default:
+        return options
     }
-
-    return options
   }
 
   return { chartData, setChartData, setChartOptions }
