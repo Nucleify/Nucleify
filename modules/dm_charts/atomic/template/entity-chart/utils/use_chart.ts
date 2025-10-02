@@ -110,7 +110,7 @@ export function useChart() {
 
       switch (chartMethodType) {
         case 'annual': {
-          return prepareAnnualData(entitiesData, chartColors, example)
+          return prepareAnnualData(entitiesData, chartColors, example, true)
         }
 
         case 'count': {
@@ -168,9 +168,6 @@ export function useChart() {
       }
       case 'scatter': {
         return pointerChart(options)
-      }
-      case 'stackedBar': {
-        return stackedBarChart(options)
       }
       default:
         return options
