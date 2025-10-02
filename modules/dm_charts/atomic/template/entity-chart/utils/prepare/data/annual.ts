@@ -4,7 +4,8 @@ import { allEntitiesKeys, months } from 'atomic'
 export function prepareAnnualData(
   entitiesData: Record<string, ObjectType[]>,
   chartColors: EntityColorsInterface,
-  example?: boolean
+  example?: boolean,
+  stacked?: boolean
 ) {
   const incrementByMonth = (
     data: { created_at: string }[],
@@ -70,6 +71,7 @@ export function prepareAnnualData(
         borderColor: colors.primary,
         borderWidth: 1.5,
         data,
+        ...(stacked && { stack: 'default' }),
       }))
       .filter(({ data }) => data.some((count) => count > 0)),
   }
