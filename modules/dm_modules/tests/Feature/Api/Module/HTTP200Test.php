@@ -11,12 +11,12 @@ beforeEach(function (): void {
     $this->actingAs($this->admin);
 });
 
-describe('200 > Authorized', function (): void {
+describe('200', function (): void {
     test('getAllModules api', function (): void {
         $this->get(route('modules.getAllModules'))
             ->assertOk()
             ->assertJson([
-                'modules' => require __DIR__ . '/../../../../hooks/getAllModules.php',
+                'modules' => require base_path('modules/dm_modules/hooks/getAllModules.php'),
             ]);
     });
 

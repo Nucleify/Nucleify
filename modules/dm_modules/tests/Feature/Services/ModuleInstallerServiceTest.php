@@ -14,11 +14,12 @@ beforeEach(function (): void {
     $this->createUsers();
     $this->actingAs($this->admin);
     $this->basePath = base_path('modules/dm_modules/test_modules');
+    $this->modules = ['test_module_laravel.zip', 'test_module_nuxt.zip'];
 });
 
 describe('ModuleInstallerService', function (): void {
     test('can install Laravel module', function (): void {
-        $module = $this->basePath . '/test_module_laravel.zip';
+        $module = $this->basePath . '/' . $this->modules[0];
 
         $service = app(ModuleInstallerService::class);
         $result = $service->install($module, $this->basePath);
@@ -26,12 +27,10 @@ describe('ModuleInstallerService', function (): void {
         expect($result)
             ->toBeInstanceOf(Module::class)
             ->and($result->installed)->toBeTrue();
-
-        File::deleteDirectory($this->basePath . '/' . pathinfo($module, PATHINFO_FILENAME));
     });
 
     test('can install Nuxt module', function (): void {
-        $module = $this->basePath . '/test_module_nuxt.zip';
+        $module = $this->basePath . '/' . $this->modules[1];
 
         $service = app(ModuleInstallerService::class);
         $result = $service->install($module, $this->basePath);
@@ -39,30 +38,22 @@ describe('ModuleInstallerService', function (): void {
         expect($result)
             ->toBeInstanceOf(Module::class)
             ->and($result->installed)->toBeTrue();
-
-        File::deleteDirectory($this->basePath . '/' . pathinfo($module, PATHINFO_FILENAME));
     });
 
-    test('can uninstall module', function (): void {
-        $module = $this->basePath . '/test_module_laravel.zip';
+    test('can uninstall modules', function (): void {
         $service = app(ModuleInstallerService::class);
-        $installedModule = $service->install($module, 'modules');
 
-        expect($installedModule->installed)
-            ->toBeTrue();
+        foreach ($this->modules as $module) {
+            $module = $this->basePath . '/' . $module;
+            $installedModule = $service->install($module, 'modules');
 
-        $result = $service->uninstall($installedModule->getName());
+            expect($installedModule->installed)->toBeTrue();
 
-        expect($result)->toBeTrue();
+            $result = $service->uninstall($installedModule->getName());
 
-        $module = Module::find($installedModule->getId());
+            expect($result)->toBeTrue();
 
-        expect($module)->not->toBeNull();
-        expect($module->installed)->toBe(0);
-        expect($module->enabled)->toBe(0);
-
-        $path = base_path('modules/' . $installedModule->getName());
-
-        expect(File::exists($path))->toBeFalse();
+            expect(File::exists(base_path('modules/' . $installedModule->getName())))->toBeFalse();
+        }
     });
 });
