@@ -108,11 +108,15 @@ export function useChart() {
 
       const chartColors = example ? exampleColors : colors
 
+      let stacked = true
+
       switch (chartMethodType) {
         case 'annual': {
-          return prepareAnnualData(entitiesData, chartColors, example, true)
+          return prepareAnnualData(entitiesData, chartColors, example)
         }
-
+        case 'annual-stacked': {
+          return prepareAnnualData(entitiesData, chartColors, example, stacked)
+        }
         case 'count': {
           return prepareCountData(entitiesData, chartColors, example)
         }
