@@ -7,4 +7,3 @@ export type ChartType =
   | 'polarArea'
   | 'radar'
   | 'scatter'
-  | 'stackedBar'

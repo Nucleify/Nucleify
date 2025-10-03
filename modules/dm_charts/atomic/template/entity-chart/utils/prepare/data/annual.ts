@@ -1,11 +1,24 @@
-import type { ColorItemInterface, EntityColorsInterface } from 'atomic'
-import { allEntitiesKeys, months } from 'atomic'
+import {
+  allEntitiesKeys,
+  type ChartType,
+  type ColorItemInterface,
+  type EntityColorsInterface,
+  months,
+} from 'atomic'
+
+import {
+  createScatterDatasets,
+  createStackedDatasets,
+  createStandardDatasets,
+} from './dataset'
 
 export function prepareAnnualData(
   entitiesData: Record<string, ObjectType[]>,
   chartColors: EntityColorsInterface,
   example?: boolean,
-  stacked?: boolean
+  stacked?: boolean,
+  comboTypes?: Record<string, 'bar' | 'line'>,
+  chartType?: ChartType
 ) {
   const incrementByMonth = (
     data: { created_at: string }[],
@@ -62,17 +75,25 @@ export function prepareAnnualData(
     ...dataMap[label],
   }))
 
+  let datasets
+
+  if (chartType === 'scatter') {
+    datasets = createScatterDatasets(dataTypes)
+  } else if (stacked) {
+    datasets = createStackedDatasets(dataTypes)
+  } else {
+    datasets = createStandardDatasets(dataTypes)
+  }
+
+  if (['pie', 'doughnut', 'polarArea'].includes(chartType || '')) {
+    return {
+      labels: dataTypes.map(({ label }) => label),
+      datasets,
+    }
+  }
+
   return {
     labels: months,
-    datasets: dataTypes
-      .map(({ label, data, colors }) => ({
-        label,
-        backgroundColor: colors.secondary,
-        borderColor: colors.primary,
-        borderWidth: 1.5,
-        data,
-        ...(stacked && { stack: 'default' }),
-      }))
-      .filter(({ data }) => data.some((count) => count > 0)),
+    datasets,
   }
 }
