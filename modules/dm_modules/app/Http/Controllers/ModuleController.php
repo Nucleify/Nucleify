@@ -15,6 +15,8 @@ class ModuleController extends Controller
 {
     private ModuleService $service;
 
+    private string $getAllModulesHook = __DIR__ . '/../../../hooks/getAllModules.php';
+
     public function __construct(ModuleService $service)
     {
         $this->service = $service;
@@ -26,6 +28,21 @@ class ModuleController extends Controller
     public function render(): Renderable
     {
         return view('modules');
+    }
+
+    public function getAllModules(): JsonResponse
+    {
+        if (!file_exists($this->getAllModulesHook)) {
+            return response()->json(['modules' => []], 200);
+        }
+
+        try {
+            $modules = require $this->getAllModulesHook;
+
+            return response()->json(['modules' => $modules], 200);
+        } catch (Exception $e) {
+            return response()->json(['error' => 'Failed to load all modules: ' . $e->getMessage()], 500);
+        }
     }
 
     public function index(Request $request): JsonResponse
