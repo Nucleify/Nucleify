@@ -34,7 +34,7 @@ class ModuleInstallerService
         }
 
         try {
-            $this->zipService->unzip($path, $installPath);
+            $this->zipService->unzip($path, base_path('modules'));
         } catch (Exception $e) {
             throw new Exception('Failed to unzip ZIP file: ' . $e->getMessage());
         }
@@ -60,9 +60,51 @@ class ModuleInstallerService
             $action = 'installed';
         }
 
-        $this->logger->log($this->causer->name, $result->getName(), $this->entity, $action);
-
         return $result;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return bool
+     *
+     * @throws Exception
+     */
+    public function uninstall(string $name): bool
+    {
+        $this->defineUserData();
+
+        $module = $this->model::where('name', $name)->first();
+
+        if (!$module) {
+            throw new Exception('Module not found in database: ' . $name);
+        }
+
+        if (!$module->getInstalled()) {
+            throw new Exception('Module is not installed: ' . $name);
+        }
+
+        $path = base_path('modules/' . $name);
+
+        if (!is_dir($path)) {
+            throw new Exception('Module directory not found: ' . $path);
+        }
+
+        try {
+
+            $this->removeDirectory($path);
+
+            $module->update([
+                'installed' => false,
+                'enabled' => false,
+            ]);
+
+            $this->logger->log($this->causer->name, $module->getName(), $this->entity, 'uninstalled');
+
+            return true;
+        } catch (Exception $e) {
+            throw new Exception('Failed to uninstall module: ' . $e->getMessage());
+        }
     }
 
     /**
@@ -74,9 +116,39 @@ class ModuleInstallerService
      */
     public function hasExpectedFile(string $filePath): bool
     {
-        $zip = Zip::open($filePath);
-        $baseName = pathinfo($filePath, PATHINFO_FILENAME);
+        try {
+            $zip = Zip::open($filePath);
+            $files = $zip->listFiles();
 
-        return $zip->has("$baseName/$baseName.ts") || $zip->has("$baseName/$baseName.php");
+            foreach ($files as $file) {
+                $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+                if ($extension === 'php' || $extension === 'ts') {
+                    return true;
+                }
+            }
+
+            return false;
+        } catch (Exception $e) {
+            throw new Exception('Failed to read ZIP file: ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * @param string $directory
+     *
+     * @return bool
+     */
+    private function removeDirectory(string $directory): bool
+    {
+        if (!is_dir($directory)) {
+            return false;
+        }
+
+        foreach (array_diff(scandir($directory), ['.', '..']) as $file) {
+            $path = $directory . '/' . $file;
+            is_dir($path) ? $this->removeDirectory($path) : unlink($path);
+        }
+
+        return rmdir($directory);
     }
 }

@@ -11,6 +11,7 @@ import {
   registerDMAuth,
   registerDMCharts,
   registerDMColors,
+  registerDMDataTable,
   registerDMDocumentation,
   registerDMEntities,
   registerDMEntitiesStructural,
@@ -23,8 +24,11 @@ import {
   registerDMPerformance,
   registerDMScreenLights,
   registerDMScreenLoader,
+  registerDMSections,
   registerDMSettings,
   registerDMTasks,
+  registerDMTemplates,
+  registerDMTime,
 } from '../../modules'
 
 export default defineNuxtPlugin({
@@ -37,6 +41,7 @@ export default defineNuxtPlugin({
     registerDMAuth(nuxtApp.vueApp)
     registerDMColors(nuxtApp.vueApp)
     registerDMCharts(nuxtApp.vueApp)
+    registerDMDataTable(nuxtApp.vueApp)
     registerDMDocumentation(nuxtApp.vueApp)
     registerDMEntities(nuxtApp.vueApp)
     registerDMEntitiesStructural(nuxtApp.vueApp)
@@ -50,7 +55,10 @@ export default defineNuxtPlugin({
     registerDMPerformance(nuxtApp.vueApp)
     registerDMScreenLights(nuxtApp.vueApp)
     registerDMScreenLoader(nuxtApp.vueApp)
+    registerDMSections(nuxtApp.vueApp)
     registerDMSettings(nuxtApp.vueApp)
     registerDMTasks(nuxtApp.vueApp)
+    registerDMTemplates(nuxtApp.vueApp)
+    registerDMTime(nuxtApp.vueApp)
   },
 })

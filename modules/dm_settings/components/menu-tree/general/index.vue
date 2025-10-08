@@ -1,7 +1,10 @@
 <template>
   <div class="general-menu-tree">
     <ad-heading :tag="4" text="General" >
-      <dm-navigation-back-button v-if="route.hash.includes('#module-')" />
+      <dm-navigation-back-button 
+        v-if="route.hash.includes('#module-')"
+        ad-type="main"
+      />
     </ad-heading>
     <ad-tree :value="nodes" :expanded-keys="expandedKeys" />
   </div>

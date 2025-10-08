@@ -22,4 +22,14 @@ describe('302', function (): void {
         $this->put(route('modules.install', []))
             ->assertStatus(302);
     });
+
+    test('post > uninstall api', function (): void {
+        $this->post(route('modules.uninstall', []))
+            ->assertStatus(302);
+    });
+
+    test('put > uninstall api', function (): void {
+        $this->put(route('modules.uninstall', []))
+            ->assertStatus(302);
+    });
 });

@@ -19,6 +19,8 @@
 
   swiper-slide {
     opacity: 0;
+    position: relative;
+    top: 3px;
 
     .cube {
       height: 52px !important;
@@ -58,11 +60,6 @@
         }
       }
     }
-  }
-
-  swiper-slide {
-    position: relative;
-    top: 3px;
   }
 
   @media (width >= $lg) {

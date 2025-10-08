@@ -26,7 +26,7 @@ const createDockItem = (
   }) as const
 
 const dockData: readonly DockItemInterface[] = [
-  [undefined, undefined, '/home', undefined, undefined, undefined, true],
+  [undefined, 'Home', '/home', undefined, undefined, undefined, true],
   ['prime:crown', 'Admin Panel', '/admin', undefined, 'admin'],
   ['prime:sitemap', 'Structural', '/structural', undefined, 'structural'],
   ['prime:chart-line', 'Dashboard', '/dashboard', undefined, 'dashboard'],

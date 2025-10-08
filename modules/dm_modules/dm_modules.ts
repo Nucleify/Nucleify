@@ -1,10 +1,9 @@
 import type { App } from 'vue'
 
-import { DmModulesCube, DmModulesInfo, DmModulesSettingsCard } from './atomic'
+import { DmModulesInfo, DmModulesSettings } from '.'
 
 export function registerDMModules(app: App<Element>): void {
   app
-    .component('dm-modules-cube', DmModulesCube)
     .component('dm-modules-info', DmModulesInfo)
-    .component('dm-modules-settings-card', DmModulesSettingsCard)
+    .component('dm-modules-settings', DmModulesSettings)
 }

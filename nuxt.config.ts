@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   laravelSanctum: {
     apiUrl: process.env.APP_URL,
   },
-  ssr: true,
+  ssr: process.env.SSR === 'true',
   nitro: {
     prerender: process.env.CI
       ? {
@@ -38,11 +38,12 @@ export default defineNuxtConfig({
         }
       : {
           routes: process.env.PRERENDER_ROUTES
-            ? process.env.PRERENDER_ROUTES.split(',')
-                .map((r) => r.trim())
-                .filter(Boolean)
+            ? process.env.PRERENDER_ROUTES.split(',').map((r) => r.trim())
             : [],
           crawlLinks: process.env.PRERENDER_CRAWL_LINKS === 'true',
+          ignore: process.env.PRERENDER_IGNORE
+            ? process.env.PRERENDER_IGNORE.split(',').map((r) => r.trim())
+            : [],
         },
     output: {
       publicDir: './public/build',
@@ -78,11 +79,17 @@ export default defineNuxtConfig({
   vite: {
     build: {
       chunkSizeWarningLimit: 1600,
+      minify: 'terser',
       rollupOptions: {
+        maxParallelFileOps: 2,
         output: {
           manualChunks: {
-            primevue: ['primevue'],
-            vue: ['vue', 'vue-router'],
+            vue: ['vue', 'vue-router', '@unhead/vue'],
+            pinia: ['pinia', 'pinia-plugin-persistedstate'],
+            primevue: ['primevue', '@primevue/forms', '@primeuix/themes'],
+            chartjs: ['chart.js'],
+            gsap: ['gsap'],
+            marked: ['marked'],
           },
         },
       },
@@ -110,9 +117,6 @@ export default defineNuxtConfig({
     { path: '~/atomic/atom', prefix: 'ad', extensions: ['vue'] },
     { path: '~/atomic/molecule', prefix: 'ad', extensions: ['vue'] },
     { path: '~/atomic/organism', prefix: 'ad', extensions: ['vue'] },
-    { path: '~/atomic/section', prefix: 'ad-section', extensions: ['vue'] },
-    { path: '~/atomic/template', prefix: 'ad', extensions: ['vue'] },
-    { path: '~/atomic', extensions: ['vue'] },
   ],
   imports: {
     dirs: ['~/composables/**', '~/atomic/**', 'modules/**'],

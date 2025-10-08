@@ -12,9 +12,9 @@ class ModuleSeeder extends Seeder
      */
     public function run(): void
     {
-        $installedModules = require_once 'modules/dm_modules/hooks/getInstalledModules.php';
+        $allModules = require_once 'modules/dm_modules/hooks/getAllModules.php';
 
-        foreach ($installedModules as $moduleName => $moduleConfig) {
+        foreach ($allModules as $moduleName => $moduleConfig) {
             $name = is_string($moduleConfig) ? $moduleConfig : ($moduleConfig['name'] ?? $moduleName);
 
             Module::factory()->create([
