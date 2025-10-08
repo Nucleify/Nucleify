@@ -23,6 +23,10 @@
     animation: letter-shine 10s linear infinite;
   }
 
+  &:not(:has(> div[aria-hidden='true'])) {
+    animation: letter-shine 10s linear infinite;
+  }
+
   &.first-text {
     & > div[aria-hidden='true'] {
       animation-duration: 5.5s;
@@ -32,6 +36,15 @@
   &:not(.first-text) {
     & > div[aria-hidden='true'] {
       animation-duration: 5s;
+    }
+  }
+}
+
+#back-office {
+  .shiny,
+  %shiny {
+    &:not(:has(> div[aria-hidden='true'])) {
+      animation: shiny-cube 10s linear infinite;
     }
   }
 }

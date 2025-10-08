@@ -1,0 +1,64 @@
+.nav-links-container {
+  .login-button {
+    text-align: center;
+    padding: 0.75rem 3rem !important;
+    font-size: 1em;
+
+    @extend %caterpillar;
+  }
+
+  .nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+    padding: 15px;
+    color: $white-text-color;
+    font-size: 1em;
+    text-align: end;
+    transition: all 300ms;
+    text-decoration: none;
+    opacity: 0;
+
+    &:hover {
+      color: $primary-hover-color;
+    }
+
+    @media (min-width: $md) {
+      gap: 10px;
+      margin-top: -3px;
+      padding: 8px;
+    }
+  }
+}
+
+.navbar {
+  .nav-links-container {
+    display: none;
+  }
+
+  @media (min-width: $lg) {
+    .nav-links-container {
+      display: flex;
+      justify-content: end;
+      gap: 4rem;
+    }
+  }
+}
+
+.p-drawer {
+  .nav-links-container {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    .login-button {
+      margin-top: 3rem;
+      max-height: 45px;
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "dm_sections",
+  "description": "Module that contains section functions.",
+  "version": "0.0.1",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

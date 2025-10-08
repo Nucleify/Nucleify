@@ -1,0 +1,46 @@
+#settings .panel-container .modules-settings-card .modules-settings-card-list {
+  &-item {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: 1em;
+    border-radius: 0.5em;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--main-item-highlight-color-new);
+    }
+
+    &:not(.active) {
+      background-color: $content-background;
+    }
+
+    &-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      gap: 1em;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: start;
+      gap: 0.35em;
+      padding: 0.2em 0;
+
+      p {
+        margin: 0;
+        font-size: $font-size-xs;
+      }
+
+      p,
+      label {
+        cursor: pointer;
+      }
+    }
+  }
+}

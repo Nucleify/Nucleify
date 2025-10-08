@@ -1,0 +1,55 @@
+#contact {
+  padding: 6em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 5em;
+
+  .contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    color: $white-text-color;
+
+    &-title {
+      font-family: $font-inter-sans-serif;
+      font-weight: 600;
+      font-size: 2em;
+      color: $primary-white-green-text-color;
+      opacity: 0;
+    }
+
+    &-description {
+      line-height: 1.5;
+      max-width: 550px;
+      margin: 1em 0 2em;
+      opacity: 0;
+    }
+
+    &-button {
+      padding: 10px 3.5rem;
+      font-weight: bold;
+      font-size: 18px;
+      opacity: 0;
+    }
+  }
+
+  @media (min-width: $md) {
+    &-content {
+      &-description {
+        margin: 2em 0;
+      }
+    }
+  }
+
+  @media (min-width: $lg) {
+    &-content {
+      &-description {
+        margin: 2.5em 0;
+      }
+    }
+  }
+}

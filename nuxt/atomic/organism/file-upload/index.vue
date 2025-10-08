@@ -8,7 +8,7 @@
     :disabled="props.disabled"
     :auto="props.auto"
     :max-file-size="props.maxFileSize"
-    :invalid-dile-size-message="props.invalidDileSizeMessage"
+    :invalid-file-size-message="props.invalidFileSizeMessage"
     :invalid-file-limit-message="props.invalidFileLimitMessage"
     :invalid-file-type-message="props.invalidFileTypeMessage"
     :file-limit="props.fileLimit"

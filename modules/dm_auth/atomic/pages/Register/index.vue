@@ -1,5 +1,5 @@
 <template>
-  <ad-anchor-backlink />
+  <dm-home-link />
   <div class="auth-card-container">
     <ad-card class="register-card">
       <template #header>
@@ -34,17 +34,17 @@
               class="auth-input-text"
               :autofocus="field.autofocus"
               :passwords-match="
-                checkPasswordsMatch(
+                passwordsMatch(
                   registerFields['password'],
                   registerFields['password_confirmation']
                 ) && field.model === 'password_confirmation'
               "
               :empty-password="
-                checkIsEmpty(registerFields['password']) &&
+                isEmpty(registerFields['password']) &&
                 field.model === 'password_confirmation'
               "
               :empty-confirm-password="
-                checkIsEmpty(registerFields['password_confirmation']) &&
+                isEmpty(registerFields['password_confirmation']) &&
                 field.model === 'password_confirmation'
               "
             />
@@ -65,14 +65,12 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
-
-import { checkIsEmpty, checkPasswordsMatch, useAuthForm } from 'atomic'
+import { isEmpty, passwordsMatch, useAuthForm } from 'atomic'
 
 const { submitAndGo, registerFields, registerInputs } = useAuthForm()
 
-onMounted(() => {
-  checkPasswordsMatch(
+onMounted((): void => {
+  passwordsMatch(
     registerFields.value.password,
     registerFields.value.password_confirmation
   )
