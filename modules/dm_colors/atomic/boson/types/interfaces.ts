@@ -6,14 +6,14 @@ export interface ColorItemStyleInterface {
   opacity?: number
 }
 
-export interface ColorItemColorsInterface {
+export interface ColorItemInterface {
   primary?: string
   hover?: string
   secondary?: string
 }
 
 export interface EntityColorsInterface {
-  [key: string]: ColorItemColorsInterface
+  [key: string]: ColorItemInterface
 }
 
 export interface UseColorsInterface {

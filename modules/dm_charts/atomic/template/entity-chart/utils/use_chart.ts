@@ -20,6 +20,7 @@ import {
   LinkObjectInterface,
   MoneyObjectInterface,
   months,
+  ObjectType,
   QuestionObjectInterface,
   TaskObjectInterface,
   TechnologyObjectInterface,
@@ -29,6 +30,15 @@ import {
 } from 'atomic'
 
 import { ChartOptions } from 'chart.js'
+import {
+  cartesianChart,
+  circularChart,
+  pointerChart,
+  prepareAnnualData,
+  prepareCountData,
+  radialChart,
+  stackedBarChart,
+} from './prepare'
 
 export function useChart() {
   const { colors }: UseColorsInterface = useColors()
@@ -60,6 +70,19 @@ export function useChart() {
     })
   )
 
+  function generateExampleDataByMonth() {
+    const dataByMonth = Object.fromEntries(
+      [...allEntitiesKeys].map((key) => [`${key}`, new Array(12).fill(0)])
+    )
+
+    for (let i = 0; i < 12; i++) {
+      dataByMonth.article[i] = Math.floor(Math.random() * 100)
+      dataByMonth.contact[i] = Math.floor(Math.random() * 100)
+    }
+
+    return dataByMonth
+  }
+
   function setChartData(
     chartMethodType: ChartMethodType,
     activityLogData?: ActivityLogObjectInterface[],
@@ -78,125 +101,60 @@ export function useChart() {
     example?: boolean
   ) {
     try {
+      const entitiesData = {
+        activityLogData,
+        articleData,
+        cardData,
+        contactData,
+        documentationData,
+        featureData,
+        fileData,
+        linkData,
+        moneyData,
+        questionData,
+        taskData,
+        technologyData,
+        userData,
+      } as Record<string, ObjectType[]>
+
       let labels: string[] = []
-      const dataByMonth = Object.fromEntries(
-        [...allEntitiesKeys].map((key) => [`${key}`, new Array(12).fill(0)])
-      )
 
       const chartColors = example ? exampleColors : colors
+      const exampleDataByMonth = example
+        ? generateExampleDataByMonth()
+        : undefined
 
-      if (example) {
-        for (let i = 0; i < 12; i++) {
-          dataByMonth.article[i] = Math.floor(Math.random() * 100)
-          dataByMonth.contact[i] = Math.floor(Math.random() * 100)
-        }
-      } else {
-        const incrementByMonth = (
-          data: { created_at: string }[],
-          dataByMonth: number[]
-        ) => {
-          data?.forEach(
-            ({ created_at }) => dataByMonth[new Date(created_at).getMonth()]++
-          )
-        }
-
-        ;[
-          [activityLogData, dataByMonth.activity],
-          [articleData, dataByMonth.article],
-          [cardData, dataByMonth.card],
-          [contactData, dataByMonth.contact],
-          [documentationData, dataByMonth.documentation],
-          [featureData, dataByMonth.feature],
-          [fileData, dataByMonth.file],
-          [linkData, dataByMonth.link],
-          [moneyData, dataByMonth.money],
-          [questionData, dataByMonth.question],
-          [taskData, dataByMonth.task],
-          [technologyData, dataByMonth.technology],
-          [userData, dataByMonth.user],
-        ].forEach(([data, dataByMonth]) =>
-          incrementByMonth(data as { created_at: string }[], dataByMonth)
-        )
-      }
+      let stacked = true
 
       switch (chartMethodType) {
         case 'annual': {
-          const createData = (data, colors) => ({ data, colors })
-
-          const dataMap = Object.fromEntries(
-            Object.entries(dataByMonth).map(([key, value]) => [
-              key.charAt(0).toUpperCase() + key.slice(1),
-              createData(value, chartColors[key]),
-            ])
+          return prepareAnnualData(
+            entitiesData,
+            chartColors,
+            undefined,
+            undefined,
+            undefined,
+            exampleDataByMonth
           )
-
-          const dataTypes = Object.keys(dataMap).map((label) => ({
-            label,
-            ...dataMap[label],
-          }))
-
-          return {
-            labels: months,
-            datasets: dataTypes
-              .map(({ label, data, colors }) => ({
-                label,
-                backgroundColor: colors.secondary,
-                borderColor: colors.primary,
-                borderWidth: 1.5,
-                data,
-              }))
-              .filter(({ data }) => data.some((count) => count > 0)),
-          }
         }
-
+        case 'annual-stacked': {
+          return prepareAnnualData(
+            entitiesData,
+            chartColors,
+            stacked,
+            undefined,
+            undefined,
+            exampleDataByMonth
+          )
+        }
         case 'count': {
-          labels = chartLabels
-            .filter(
-              ({ label }) =>
-                ({
-                  Activities: activityLogData,
-                  Articles: articleData,
-                  Contacts: contactData,
-                  Documentation: documentationData,
-                  Files: fileData,
-                  Money: moneyData,
-                  Users: userData,
-                  Cards: cardData,
-                  Features: featureData,
-                  Links: linkData,
-                  Question: questionData,
-                  Task: taskData,
-                  Technology: technologyData,
-                })[label]
-            )
-            .map(({ label }) => label)
-
-          const totals = Object.values(dataByMonth).map((data) =>
-            data.reduce((sum, value) => sum + value, 0)
-          )
-
-          return {
-            labels,
-            datasets: [
-              {
-                data: totals,
-                borderWidth: 1.5,
-                borderColor: totals.map(
-                  (_, i) => Object.values(chartColors)[i].primary
-                ),
-                backgroundColor: totals.map(
-                  (_, i) => Object.values(chartColors)[i].secondary
-                ),
-              },
-            ],
-          }
+          return prepareCountData(entitiesData, chartColors, exampleDataByMonth)
         }
-
         default:
           return null
       }
     } catch (error) {
-      console.error('Error processing chart data:', error)
+      console.error(error)
       return null
     }
   }
@@ -217,38 +175,37 @@ export function useChart() {
       },
     }
 
-    if (chartType === 'pie' || chartType === 'doughnut') {
-      options.plugins.legend.display = false
-    } else if (direction === 'horizontal') {
-      options.indexAxis = 'y'
-    }
-
-    if (chartType !== 'pie' && chartType !== 'doughnut') {
-      options.scales = {
-        x: {
-          ticks: {
-            color: '#e6e6e6',
-            font: {
-              weight: 500,
-            },
-          },
-          grid: {
-            display: false,
-          },
-        },
-        y: {
-          ticks: {
-            color: '#e6e6e6',
-          },
-          grid: {
-            display: true,
-            color: '#39404a50',
-          },
-        },
+    switch (chartType) {
+      case 'bar':
+      case 'line': {
+        return cartesianChart(
+          options,
+          direction === 'horizontal' ? 'horizontal' : undefined
+        )
       }
+      case 'bubble': {
+        return pointerChart(options, { withRadius: true })
+      }
+      case 'doughnut':
+      case 'pie': {
+        return circularChart(options)
+      }
+      case 'polarArea': {
+        return radialChart(options, { gridColor: '#cce4dd' })
+      }
+      case 'radar': {
+        return radialChart(options, {
+          angleLinesDisplay: false,
+          gridColor: '#39404a50',
+          tickColor: '#e6e6e6',
+        })
+      }
+      case 'scatter': {
+        return pointerChart(options)
+      }
+      default:
+        return options
     }
-
-    return options
   }
 
   return { chartData, setChartData, setChartOptions }

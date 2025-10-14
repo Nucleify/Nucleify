@@ -20,6 +20,12 @@ beforeEach(function (): void {
 });
 
 describe('200', function (): void {
+    test('getAllModules method', function (): void {
+        $response = $this->controller->getAllModules();
+
+        expect($response->getStatusCode(), $response->getData(true))->toEqual(200);
+    });
+
     test('index method', function (): void {
         Module::factory()->count(3)->create();
 
