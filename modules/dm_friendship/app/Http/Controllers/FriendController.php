@@ -16,6 +16,17 @@ class FriendController extends Controller
         $this->service = $service;
     }
 
+    public function index(): JsonResponse
+    {
+        try {
+            $result = $this->service->index();
+
+            return response()->json($result);
+        } catch (Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
     public function sendRequest(User $recipient): JsonResponse
     {
         try {

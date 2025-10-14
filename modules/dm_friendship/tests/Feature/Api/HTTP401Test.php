@@ -12,6 +12,12 @@ beforeEach(function (): void {
 });
 
 describe('401', function (): void {
+    test('index api', function () {
+        $this->getJson(route('friendship.index'))
+            ->assertStatus(401)
+            ->assertJson(['message' => 'Unauthenticated.']);
+    });
+
     test('sendRequest api', function () {
         $recipient = $this->user;
 

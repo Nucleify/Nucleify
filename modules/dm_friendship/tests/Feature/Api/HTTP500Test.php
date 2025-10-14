@@ -7,7 +7,6 @@ if (!defined('PEST_RUNNING')) {
 uses()->group('friendship-api-500');
 uses()->group('api-500');
 
-use App\Models\User;
 use App\Services\FriendshipService;
 
 use function Pest\Laravel\mock;
@@ -22,12 +21,18 @@ function mockServiceMethod($service, string $methodName): void
 {
     $service
         ->shouldReceive($methodName)
-        ->withArgs(fn ($arg) => $arg instanceof User)
         ->once()
         ->andThrow(new Exception('Internal Server Error'));
 }
 
 describe('500', function (): void {
+    test('index api', function (): void {
+        mockServiceMethod($this->service, 'index');
+
+        $this->getJson(route('friendship.index'))
+            ->assertStatus(500)
+            ->assertJson(['error' => 'Internal Server Error']);
+    });
 
     test('sendRequest api', function (): void {
         $recipient = $this->user;

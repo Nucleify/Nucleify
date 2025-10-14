@@ -13,6 +13,11 @@ beforeEach(function (): void {
 });
 
 describe('200', function (): void {
+    test('index api', function (): void {
+        $this->getJson(route('friendship.index'))
+            ->assertOk();
+    });
+
     test('sendRequest api', function (): void {
         $recipient = $this->user->id;
 

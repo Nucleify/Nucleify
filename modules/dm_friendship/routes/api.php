@@ -10,6 +10,9 @@ Route::prefix('api')->group(function (): void {
          *  Friendship
          */
         Route::prefix('friendship')->controller(FriendController::class)->group(function (): void {
+            Route::get('/all', 'index')
+                ->name('friendship.index');
+
             Route::post('/send-request/{recipient}', 'sendRequest')
                 ->name('friendship.sendRequest');
 

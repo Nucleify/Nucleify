@@ -8,6 +8,7 @@ uses()->group('friendship-service');
 
 use App\Models\User;
 use App\Services\FriendshipService;
+use Illuminate\Database\Eloquent\Collection;
 
 beforeEach(function (): void {
     $this->user = User::factory()->create();
@@ -18,6 +19,19 @@ beforeEach(function (): void {
 });
 
 describe('200', function (): void {
+    test('can get all friendships', function (): void {
+        $this->user->befriend($this->otherUser);
+        $this->otherUser->acceptFriendRequest($this->user);
+
+        $response = $this->service->index();
+
+        expect($response)
+            ->toBeInstanceOf(Collection::class)
+            ->and($response->count())
+            ->toBe(1)
+            ->and($this->user->isFriendWith($this->otherUser))
+            ->toBeTrue();
+    });
     test('can send a friend request', function (): void {
         $response = $this->service->sendRequest($this->otherUser);
 
