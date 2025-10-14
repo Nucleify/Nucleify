@@ -70,6 +70,19 @@ export function useChart() {
     })
   )
 
+  function generateExampleDataByMonth() {
+    const dataByMonth = Object.fromEntries(
+      [...allEntitiesKeys].map((key) => [`${key}`, new Array(12).fill(0)])
+    )
+
+    for (let i = 0; i < 12; i++) {
+      dataByMonth.article[i] = Math.floor(Math.random() * 100)
+      dataByMonth.contact[i] = Math.floor(Math.random() * 100)
+    }
+
+    return dataByMonth
+  }
+
   function setChartData(
     chartMethodType: ChartMethodType,
     activityLogData?: ActivityLogObjectInterface[],
@@ -107,18 +120,35 @@ export function useChart() {
       let labels: string[] = []
 
       const chartColors = example ? exampleColors : colors
+      const exampleDataByMonth = example
+        ? generateExampleDataByMonth()
+        : undefined
 
       let stacked = true
 
       switch (chartMethodType) {
         case 'annual': {
-          return prepareAnnualData(entitiesData, chartColors, example)
+          return prepareAnnualData(
+            entitiesData,
+            chartColors,
+            undefined,
+            undefined,
+            undefined,
+            exampleDataByMonth
+          )
         }
         case 'annual-stacked': {
-          return prepareAnnualData(entitiesData, chartColors, example, stacked)
+          return prepareAnnualData(
+            entitiesData,
+            chartColors,
+            stacked,
+            undefined,
+            undefined,
+            exampleDataByMonth
+          )
         }
         case 'count': {
-          return prepareCountData(entitiesData, chartColors, example)
+          return prepareCountData(entitiesData, chartColors, exampleDataByMonth)
         }
         default:
           return null
