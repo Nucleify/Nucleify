@@ -1,1 +1,1 @@
-export type ChartMethodType = 'annual' | 'count'
+export type ChartMethodType = 'annual' | 'count' | 'annual-stacked'
