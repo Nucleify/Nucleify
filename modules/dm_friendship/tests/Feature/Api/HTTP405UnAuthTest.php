@@ -10,6 +10,36 @@ uses()->group('api-405');
 uses()->group('api-405-unauth');
 
 describe('405 > Unauthorized', function (): void {
+    test('post > index api', function (): void {
+        $this->post(route('friendship.index', 1))
+            ->assertStatus(405);
+    });
+
+    test('post json > index api', function (): void {
+        $this->postJson(route('friendship.index', 1))
+            ->assertStatus(405);
+    });
+
+    test('put > index api', function (): void {
+        $this->put(route('friendship.index', 1))
+            ->assertStatus(405);
+    });
+
+    test('put json > index api', function (): void {
+        $this->putJson(route('friendship.index', 1))
+            ->assertStatus(405);
+    });
+
+    test('delete > index api', function (): void {
+        $this->delete(route('friendship.index', 1))
+            ->assertStatus(405);
+    });
+
+    test('delete json > index api', function (): void {
+        $this->deleteJson(route('friendship.index', 1))
+            ->assertStatus(405);
+    });
+
     test('put > sendRequest api', function (): void {
         $this->put(route('friendship.sendRequest', 1))
             ->assertStatus(405);

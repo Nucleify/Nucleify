@@ -3,9 +3,30 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Traits\Setters\UserSetterTrait;
+use Illuminate\Database\Eloquent\Collection;
 
 class FriendshipService
 {
+    use UserSetterTrait;
+
+    public function __construct(
+        private readonly LoggerService $logger = new LoggerService
+    ) {}
+
+    /**
+     * @return Collection
+     *
+     * @throws LoggerException
+     * @throws Exception
+     */
+    public function index(): Collection
+    {
+        $friends = auth()->user()->getAllFriendships();
+
+        return $friends;
+    }
+
     /**
      * @param User $recipient
      *
