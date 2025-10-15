@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class ColorsSeeder extends Seeder
+class ColorSeeder extends Seeder
 {
     public function run(): void
     {
