@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class StructuralSeeder extends Seeder
+class EntitiesStructuralSeeder extends Seeder
 {
     public function run(): void
     {
