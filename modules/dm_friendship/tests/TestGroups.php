@@ -34,6 +34,14 @@ uses()
     ->group('friendship-migrations')
     ->in('Database/Migrations');
 
+uses()
+    ->group('seeders')
+    ->in('Database/Seeders');
+
+uses()
+    ->group('friendship-seeder')
+    ->in('Database/Seeders');
+
 /**
  *  Feature groups
  */
@@ -50,7 +58,7 @@ uses()
     ->in('Feature/Controllers');
 
 uses()
-    ->group('friendship-controller')
+    ->group('friendship-controllers')
     ->in('Feature/Controllers');
 
 uses()
@@ -58,5 +66,5 @@ uses()
     ->in('Feature/Services');
 
 uses()
-    ->group('friendship-service')
+    ->group('friendship-services')
     ->in('Feature/Services');

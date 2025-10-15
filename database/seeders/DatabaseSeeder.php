@@ -34,5 +34,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(DocumentationSeeder::class);
         $this->showMessage('Documentation seeding completed.', $this->command);
+
+        $this->call(FriendshipSeeder::class);
+        $this->showMessage('Friendship seeding completed.', $this->command);
     }
 }
