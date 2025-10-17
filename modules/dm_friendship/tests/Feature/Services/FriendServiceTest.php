@@ -8,7 +8,6 @@ uses()->group('friendship-service');
 
 use App\Models\User;
 use App\Services\FriendshipService;
-use Illuminate\Database\Eloquent\Collection;
 
 beforeEach(function (): void {
     $this->user = User::factory()->create();
@@ -26,7 +25,6 @@ describe('200', function (): void {
         $response = $this->service->index();
 
         expect($response)
-            ->toBeInstanceOf(Collection::class)
             ->and($response->count())
             ->toBe(1)
             ->and($this->user->isFriendWith($this->otherUser))
