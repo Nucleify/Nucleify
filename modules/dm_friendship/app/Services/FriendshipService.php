@@ -3,8 +3,9 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Resources\FriendshipResource;
 use App\Traits\Setters\UserSetterTrait;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class FriendshipService
 {
@@ -15,16 +16,15 @@ class FriendshipService
     ) {}
 
     /**
-     * @return Collection
+     * @return AnonymousResourceCollection
      *
-     * @throws LoggerException
      * @throws Exception
      */
-    public function index(): Collection
+    public function index(): AnonymousResourceCollection
     {
-        $friends = auth()->user()->getAllFriendships();
+        $friendships = auth()->user()->getAllFriendships();
 
-        return $friends;
+        return FriendshipResource::collection($friendships);
     }
 
     /**
