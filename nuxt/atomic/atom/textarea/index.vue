@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import type { TextareaInterface } from 'atomic'
+import { Textarea } from 'primevue' // Import for Storybook
 
-import Textarea from 'primevue/textarea' // Import for Storybook
+import type { TextareaInterface } from 'atomic'
 
 const props = defineProps<TextareaInterface>()
 

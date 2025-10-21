@@ -11,9 +11,9 @@
 </template>
 
 <script setup lang="ts">
-import type { DividerInterface } from 'atomic'
+import { Divider } from 'primevue' // Import for Storybook
 
-import Divider from 'primevue/divider' // Import for Storybook
+import type { DividerInterface } from 'atomic'
 
 const props = defineProps<DividerInterface>()
 </script>

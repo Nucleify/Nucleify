@@ -1,15 +1,6 @@
-export interface ImageInterface {
-  preview?: boolean
-  imageStyle?: object
-  imageClass?: object
-  previewIcon?: string
-  zoomInDisabled?: boolean
-  zoomOutDisabled?: boolean
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
-  src: string
+import { ImageProps } from 'primevue'
+
+export interface ImageInterface extends ImageProps {
   alt?: string
   width?: string
   height?: string

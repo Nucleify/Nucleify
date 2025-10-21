@@ -41,7 +41,6 @@
     :reorderable-columns="props.reorderableColumns"
     :expanded-rows="props.expandedRows"
     :expanded-row-icon="props.expandedRowIcon"
-    :collaspe-row-icon="props.collaspeRowIcon"
     :row-group-mode="props.rowGroupMode"
     :group-rows-by="props.groupRowsBy"
     :expandable-row-groups="props.expandableRowGroups"

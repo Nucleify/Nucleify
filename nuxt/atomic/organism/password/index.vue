@@ -42,9 +42,9 @@
     :pt="props.pt"
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
-    :passwords-match="passwordsMatch"
-    :empty-password="emptyPassword"
-    :empty-confirm-password="emptyConfirmPassword"
+    :passwords-match="props.passwordsMatch"
+    :empty-password="props.emptyPassword"
+    :empty-confirm-password="props.emptyConfirmPassword"
     :ad-type="props.type"
     @update:model-value="updateValue"
   >
@@ -62,8 +62,8 @@
     </template>
     <template v-else-if="!emptyPassword" #footer>
       <ul class="password-criteria -mb-1">
-        <li :class="passwordsMatch ? 'valid' : 'invalid'">
-          {{ passwordsMatch ? 'Passwords match' : 'Passwords do not match' }}
+        <li :class="props.passwordsMatch ? 'valid' : 'invalid'">
+          {{ props.passwordsMatch ? 'Passwords match' : 'Passwords do not match' }}
         </li>
       </ul>
     </template>

@@ -12,7 +12,6 @@
     :increment-icon="props.incrementIcon"
     :decrement-icon="props.decrementIcon"
     :locale="props.locale"
-    :local-matcher="props.localMatcher"
     :mode="props.mode"
     :prefix="props.prefix"
     :suffix="props.suffix"
@@ -48,9 +47,9 @@
 </template>
 
 <script setup lang="ts">
-import type { InputNumberInterface } from 'atomic'
+import { InputNumber } from 'primevue' // Import for Storybook
 
-import InputNumber from 'primevue/inputnumber' // Import for Storybook
+import type { InputNumberInterface } from 'atomic'
 
 const props = defineProps<InputNumberInterface>()
 </script>

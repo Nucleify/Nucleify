@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import type { TooltipInterface } from 'atomic'
+import { Tooltip } from 'primevue' // Import for Storybook
 
-import Tooltip from 'primevue/tooltip' // Import for Storybook
+import type { TooltipInterface } from 'atomic'
 
 const props = defineProps<TooltipInterface>()
 </script>

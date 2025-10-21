@@ -10,7 +10,6 @@
     :show-item-navigators="props.showItemNavigators"
     :show-thumbnail-navigators="props.showThumbnailNavigators"
     :show-item-navigators-on-hover="props.showItemNavigatorsOnHover"
-    :change-item-on-indicator-hover="props.changeItemInIndicatorHover"
     :circular="props.circular"
     :auto-play="props.autoPlay"
     :transition-interval="props.transitionInterval"
@@ -34,13 +33,15 @@
     :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   >
-    <template #item="item">
-      <div>
+    <template #item>
+      <div v-for="(item, index) in props.items" :key="index">
         <img :src="item.itemImageSrc" :alt="item.alt" />
       </div>
     </template>
-    <template #thumbnail="item">
-      <img :src="item.thumbnailImageSrc" :alt="item.alt" />
+    <template #thumbnail>
+      <div v-for="(item, index) in props.items" :key="index">
+        <img :src="item.thumbnailImageSrc" :alt="item.alt" />
+      </div>
     </template>
   </Galleria>
 </template>

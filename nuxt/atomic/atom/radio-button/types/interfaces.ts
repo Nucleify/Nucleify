@@ -1,23 +1,6 @@
-export interface RadioButtonInterface {
+import type { RadioButtonProps } from 'primevue'
+
+export interface RadioButtonInterface
+  extends /* @vue-ignore */ RadioButtonProps {
   adType?: AdTypeType
-  value?: unknown
-  defaultValue?: unknown
-  name?: string
-  binary?: boolean
-  size?: ElementSizeType
-  invalid?: boolean
-  disabled?: boolean
-  variant?: ElementVariantType
-  readonly?: boolean
-  tabindex?: number
-  inputId?: string
-  inputStyle?: object
-  inputClass?: string
-  ariaLabelledby?: string
-  ariaLabel?: string
-  formControl?: Record<string, unknown>
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
 }

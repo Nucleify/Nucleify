@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import type { ImageInterface } from 'atomic'
+import { Image } from 'primevue' // Import for Storybook
 
-import Image from 'primevue/image' // Import for Storybook
+import type { ImageInterface } from 'atomic'
 
 const props = defineProps<ImageInterface>()
 </script>

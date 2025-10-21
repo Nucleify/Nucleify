@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import type { InputTextInterface } from 'atomic'
+import { InputText } from 'primevue' // Import for Storybook
 
-import InputText from 'primevue/inputtext' // Import for Storybook
+import type { InputTextInterface } from 'atomic'
 
 const props = defineProps<InputTextInterface>()
 </script>

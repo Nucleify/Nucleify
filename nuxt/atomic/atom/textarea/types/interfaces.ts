@@ -1,17 +1,5 @@
-export interface TextareaInterface {
+import { TextareaProps } from 'primevue'
+
+export interface TextareaInterface extends /* @vue-ignore */ TextareaProps {
   adType?: string
-  value?: unknown[]
-  modelValue?: string
-  defaultValue?: string
-  name?: string
-  autoResize?: boolean
-  size?: ElementSizeType
-  invalid?: boolean
-  variant?: ElementVariantType
-  fluid?: boolean
-  formControl?: Record<string, unknown>
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
 }
