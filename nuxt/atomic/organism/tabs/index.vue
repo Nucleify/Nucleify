@@ -35,6 +35,7 @@
 <script setup lang="ts">
 import type { TabsInterface } from 'atomic'
 
-const activeTab = ref(0)
 const props = defineProps<TabsInterface>()
+
+const activeTab = ref(0)
 </script>

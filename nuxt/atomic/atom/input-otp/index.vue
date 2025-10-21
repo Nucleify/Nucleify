@@ -21,9 +21,9 @@
   />
 </template>
 <script setup lang="ts">
-import type { InputOtpInterface } from 'atomic'
+import { InputOtp } from 'primevue' // Import for Storybook
 
-import InputOtp from 'primevue/inputotp' // Import for Storybook
+import type { InputOtpInterface } from 'atomic'
 
 const props = defineProps<InputOtpInterface>()
 </script>

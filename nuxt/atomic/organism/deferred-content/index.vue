@@ -2,7 +2,7 @@
   <DeferredContent
     :dt="props.dt"
     :pt="props.pt"
-    :pt-options="props.pt"
+    :pt-options="props.ptOptions"
     :unstyled="props.unstyled"
   />
 </template>

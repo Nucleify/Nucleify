@@ -1,6 +1,3 @@
-export interface CardInterface {
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
-}
+import { CardProps } from 'primevue'
+
+export interface CardInterface extends CardProps {}

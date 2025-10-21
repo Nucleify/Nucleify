@@ -22,9 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import type { SliderInterface } from 'atomic'
+import { Slider } from 'primevue' // Import for Storybook
 
-import Slider from 'primevue/slider' // Import for Storybook
+import type { SliderInterface } from 'atomic'
 
 const props = defineProps<SliderInterface>()
 </script>
