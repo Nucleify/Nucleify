@@ -27,6 +27,7 @@ import {
   registerDMTasks,
   registerDMTemplates,
   registerDMTime,
+  registerDMTooltip,
 } from '../../modules'
 
 export default defineNuxtPlugin({
@@ -56,5 +57,6 @@ export default defineNuxtPlugin({
     registerDMTasks(nuxtApp.vueApp)
     registerDMTemplates(nuxtApp.vueApp)
     registerDMTime(nuxtApp.vueApp)
+    registerDMTooltip(nuxtApp.vueApp)
   },
 })
