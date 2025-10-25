@@ -1,13 +1,6 @@
 <template>
   <ProgressBar
-    :ad-type="props.adType"
-    :value="props.value"
-    :mode="props.mode"
-    :show-value="props.showValue"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
+    v-bind="transformProps(props, excludedProps)"
     :style="{ width: props.width, height: props.height }"
   />
 </template>
@@ -17,5 +10,9 @@ import { ProgressBar } from 'primevue' // Import for Storybook
 
 import type { ProgressBarInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<ProgressBarInterface>()
+
+const excludedProps = ['width', 'height']
 </script>

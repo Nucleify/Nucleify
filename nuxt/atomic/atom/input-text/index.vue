@@ -1,22 +1,7 @@
 <template>
   <InputText
-    :id="props.id"
-    :ad-type="props.adType"
-    :v-model="props.value"
-    :default-value="props.defaultValue"
-    :name="props.name"
-    :size="props.size"
-    :invalid="props.invalid"
-    :variant="props.variant"
-    :fluid="props.fluid"
-    :form-control="props.formControl"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-    :disabled="props.disabled"
+    v-bind="transformProps(props, excludedProps)"
     :class="[{ 'p-invalid': props.invalid }]"
-    :placeholder="props.placeholder"
   />
 </template>
 
@@ -25,5 +10,9 @@ import { InputText } from 'primevue' // Import for Storybook
 
 import type { InputTextInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<InputTextInterface>()
+
+const excludedProps: string[] = []
 </script>

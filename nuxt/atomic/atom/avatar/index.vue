@@ -1,17 +1,5 @@
 <template>
-  <Avatar
-    :label="props.label"
-    :icon="props.icon"
-    :image="props.image"
-    :size="props.size"
-    :shape="props.shape"
-    :aria-label="props.ariaLabel"
-    :aria-labelledby="props.ariaLabelledby"
-    :dt="props.dt"
-    :unstyled="props.unstyled"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-  />
+  <Avatar v-bind="transformProps(props, excludedProps)" />
 </template>
 
 <script setup lang="ts">
@@ -19,5 +7,9 @@ import { Avatar } from 'primevue' // Import for Storybook
 
 import type { AvatarInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<AvatarInterface>()
+
+const excludedProps: string[] = []
 </script>

@@ -1,13 +1,5 @@
 <template>
-  <Divider
-    :align="props.align"
-    :layout="props.layout"
-    :type="props.type"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <Divider v-bind="transformProps(props, excludedProps)" />
 </template>
 
 <script setup lang="ts">
@@ -15,5 +7,9 @@ import { Divider } from 'primevue' // Import for Storybook
 
 import type { DividerInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<DividerInterface>()
+
+const excludedProps: string[] = []
 </script>

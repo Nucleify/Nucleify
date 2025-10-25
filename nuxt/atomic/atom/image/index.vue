@@ -1,19 +1,6 @@
 <template>
   <Image
-    :preview="props.preview"
-    :image-style="props.imageStyle"
-    :image-class="props.imageClass"
-    :preview-icon="props.previewIcon"
-    :zoom-in-disabled="props.zoomInDisabled"
-    :zoom-out-disabled="props.zoomOutDisabled"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :dt="props.dt"
-    :unstyled="props.unstyled"
-    :src="props.src"
-    :alt="props.alt"
-    :width="props.width"
-    :height="props.height"
+    v-bind="transformProps(props, excludedProps)"
     :fetchpriority="props.fetchpriority || 'low'"
   />
 </template>
@@ -23,5 +10,9 @@ import { Image } from 'primevue' // Import for Storybook
 
 import type { ImageInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<ImageInterface>()
+
+const excludedProps: string[] = ['fetchpriority']
 </script>
