@@ -48,19 +48,19 @@
     :ad-type="props.type"
     @update:model-value="updateValue"
   >
-    <template v-if="id !== 'password_confirmation'" #footer>
+    <template v-if="props.id !== 'password_confirmation'" #footer>
       <Divider />
       <ul class="password-criteria -mb-1">
         <li
           v-for="(criterion, index) in criteria"
           :key="index"
-          :class="{ valid: criterion.isValid }"
+          :class="{ valid: criterion.isValid, invalid: !criterion.isValid }"
         >
           {{ criterion.label }}
         </li>
       </ul>
     </template>
-    <template v-else-if="!emptyPassword" #footer>
+    <template v-else-if="!props.emptyPassword" #footer>
       <ul class="password-criteria -mb-1">
         <li :class="props.passwordsMatch ? 'valid' : 'invalid'">
           {{ props.passwordsMatch ? 'Passwords match' : 'Passwords do not match' }}
@@ -75,17 +75,23 @@ import type { PasswordInterface } from 'atomic'
 import { hasLowercase, hasMinLength, hasNumber, hasUppercase } from 'atomic'
 
 const props = defineProps<PasswordInterface>()
-
-const criteria = computed(() => [
-  { label: 'At least one lowercase', isValid: hasLowercase(props.modelValue!) },
-  { label: 'At least one uppercase', isValid: hasUppercase(props.modelValue!) },
-  { label: 'At least one number', isValid: hasNumber(props.modelValue!) },
-  { label: 'Minimum 8 characters', isValid: hasMinLength(props.modelValue!) },
-])
-
 const emit = defineEmits(['update:modelValue'])
 
-const updateValue = (value: string) => {
-  emit('update:modelValue', value)
-}
+const localValue = ref(props.modelValue || '')
+
+const criteria = computed(() => [
+  { label: 'At least one lowercase', isValid: hasLowercase(localValue.value) },
+  { label: 'At least one uppercase', isValid: hasUppercase(localValue.value) },
+  { label: 'At least one number', isValid: hasNumber(localValue.value) },
+  { label: 'Minimum 8 characters', isValid: hasMinLength(localValue.value) },
+])
+
+const updateValue = (value: string) => (
+  (localValue.value = value), emit('update:modelValue', value)
+)
+
+watch(
+  () => props.modelValue,
+  (value: string) => (localValue.value = value)
+)
 </script>
