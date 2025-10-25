@@ -1,13 +1,6 @@
 <template>
   <ProgressSpinner
-    :ad-type="props.adType"
-    :stroke-width="props.strokeWidth"
-    :fill="props.fill"
-    :animation-duration="props.animationDuration"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
+    v-bind="transformProps(props, excludedProps)"
     :style="{ width: props.width, height: props.height }"
   />
 </template>
@@ -17,5 +10,9 @@ import { ProgressSpinner } from 'primevue' // Import for Storybook
 
 import type { ProgressSpinnerInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<ProgressSpinnerInterface>()
+
+const excludedProps = ['width', 'height']
 </script>

@@ -1,19 +1,5 @@
 <template>
-  <Tooltip
-    :value="props.value"
-    :disabled="props.disabled"
-    :id="props.id"
-    :class="props.class"
-    :escape="props.escape"
-    :fitContent="props.fitContent"
-    :showDelay="props.showDelay"
-    :hideDelay="props.hideDelay"
-    :autoHide="props.autoHide"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  >
+  <Tooltip v-bind="transformProps(props, excludedProps)">
     <template #content>
       <slot />
     </template>
@@ -25,5 +11,9 @@ import { Tooltip } from 'primevue' // Import for Storybook
 
 import type { TooltipInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<TooltipInterface>()
+
+const excludedProps: string[] = []
 </script>
