@@ -11,16 +11,7 @@
 
   <Popover
     ref="pop"
-    :dismissable="props.dismissable"
-    :append-to="props.appendTo"
-    :base-z-index="props.baseZIndex"
-    :auto-z-index="props.autoZIndex"
-    :breakpoints="props.breakpoints"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-    :close-on-escape="props.closeOnEscape"
+    v-bind="transformProps(props, excludedProps)"
     :class="props.popoverClass"
   >
     <slot />
@@ -30,7 +21,17 @@
 <script setup lang="ts">
 import type { PopoverInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<PopoverInterface>()
+
+const excludedProps = [
+  'src',
+  'buttonClass',
+  'buttonStyle',
+  'popoverClass',
+  'icon',
+]
 
 const pop = ref()
 

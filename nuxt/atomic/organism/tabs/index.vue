@@ -1,15 +1,7 @@
 <template>
   <Tabs
+    v-bind="transformProps(props, excludedProps)"
     :value="activeTab"
-    :lazy="props.lazy"
-    :scrollable="props.scrollable"
-    :show-navigators="props.showNavigators"
-    :tabindex="props.tabindex"
-    :select-on-focus="props.selectOnFocus"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
   >
     <TabList>
       <Tab
@@ -35,7 +27,11 @@
 <script setup lang="ts">
 import type { TabsInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<TabsInterface>()
+
+const excludedProps = ['lists', 'panels']
 
 const activeTab = ref(0)
 </script>

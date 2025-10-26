@@ -1,17 +1,5 @@
 <template>
-  <Accordion
-    :value="props.value"
-    :multiple="props.multiple"
-    :lazy="props.lazy"
-    :expand-icon="props.expandIcon"
-    :collapse-icon="props.collapseIcon"
-    :tabindex="props.tabindex"
-    :select-on-focus="props.selectOnFocus"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  >
+  <Accordion v-bind="transformProps(props, excludedProps)">
     <AccordionPanel
       v-for="(panel, index) in props.panels"
       :key="index"
@@ -36,5 +24,9 @@ import {
 
 import type { AccordionInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<AccordionInterface>()
+
+const excludedProps = ['panels', 'hexagons']
 </script>

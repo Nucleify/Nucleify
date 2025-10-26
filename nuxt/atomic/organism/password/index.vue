@@ -1,51 +1,7 @@
 <template>
   <Password
-    :id="props.id"
-    :model-value="props.modelValue"
-    :default-value="props.defaultValue"
-    :name="props.name"
-    :prompt-label="props.promptLabel"
-    :medium-regex="props.mediumRegex"
-    :strong-regex="props.strongRegex"
-    :weak-label="props.weakLabel"
-    :medium-label="props.mediumLabel"
-    :strong-label="props.strongLabel"
+    v-bind="transformProps(props)"
     :feedback="!props.emptyPassword"
-    :append-to="props.appendTo"
-    :toggle-mask="props.toggleMask"
-    :mask-icon="props.maskIcon"
-    :unmask-icon="props.unmaskIcon"
-    :size="props.size"
-    :invalid="props.invalid"
-    :disabled="props.disabled"
-    :variant="props.variant"
-    :placeholder="props.placeholder"
-    :required="props.required"
-    :fluid="props.fluid"
-    :autofocus="props.autofocus"
-    :input-id="props.inputId"
-    :input-style="props.inputStyle"
-    :input-class="props.inputClass"
-    :input-props="props.inputProps"
-    :panel-id="props.panelId"
-    :panel-class="props.panelClass"
-    :panel-style="props.panelStyle"
-    :panel-props="props.panelProps"
-    :overlay-id="props.overlayId"
-    :overlay-class="props.overlayClass"
-    :overlay-style="props.overlayStyle"
-    :overlay-props="props.overlayProps"
-    :aria-labelledby="props.ariaLabelledby"
-    :aria-label="props.ariaLabel"
-    :form-control="props.formControl"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-    :passwords-match="props.passwordsMatch"
-    :empty-password="props.emptyPassword"
-    :empty-confirm-password="props.emptyConfirmPassword"
-    :ad-type="props.type"
     @update:model-value="updateValue"
   >
     <template v-if="props.id !== 'password_confirmation'" #footer>
@@ -72,7 +28,13 @@
 
 <script setup lang="ts">
 import type { PasswordInterface } from 'atomic'
-import { hasLowercase, hasMinLength, hasNumber, hasUppercase } from 'atomic'
+import {
+  hasLowercase,
+  hasMinLength,
+  hasNumber,
+  hasUppercase,
+  transformProps,
+} from 'atomic'
 
 const props = defineProps<PasswordInterface>()
 const emit = defineEmits(['update:modelValue'])

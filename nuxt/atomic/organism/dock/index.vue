@@ -11,18 +11,7 @@
   </ad-popover>
 
   <Dock
-    :v-model="props.modelValue"
-    :possition="props.position"
-    :breakpoint="props.breakpoint"
-    :tooltip-options="props.tooltipOptions"
-    :menu-id="props.menuId"
-    :tabindex="props.tabindex"
-    :aria-labelledby="props.ariaLabelledby"
-    :aria-label="props.ariaLabel"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
+    v-bind="transformProps(props, excludedProps)"
     :model="dockItems"
     :position="position"
     class="dock"
@@ -78,6 +67,7 @@ import {
   localStorageSetItem,
   positions,
   sessionStorageGetItem,
+  transformProps,
 } from 'atomic'
 
 import { DockLogo } from '.'
@@ -85,6 +75,8 @@ import { DockLogo } from '.'
 const LOCAL_STORAGE_KEY = 'dock-position'
 
 const props = defineProps<DockInterface>()
+
+const excludedProps = ['model', 'position']
 
 const position = ref<PositionType>('bottom')
 const isStaff = ref(false)
