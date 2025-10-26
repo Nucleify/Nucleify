@@ -3,7 +3,7 @@
     v-if="loading"
     class="entity-datatable skeleton-data-table"
     :value="rows"
-    :size="'small'"
+    size="small"
   >
     <Column
       v-for="(col, index) in specificColumns"

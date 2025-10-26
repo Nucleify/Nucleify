@@ -4,6 +4,8 @@
     v-bind="transformProps(props, excludedProps)"
     v-model:filters="props.filters"
     @update:filters="emits('update:filters', $event)"
+    :rows="props.rows || 10"
+    :paginator="props.paginator || true"
   >
     <slot />
   </DataTable>
@@ -17,5 +19,11 @@ import { transformProps } from '../../boson/transform_props'
 const props = defineProps<DataTableInterface>()
 const emits = defineEmits<{ (e: 'update:filters', value: unknown): void }>()
 
-const excludedProps = ['loading', 'actions', 'openDialog', 'selectedObject']
+const excludedProps = [
+  'loading',
+  'actions',
+  'openDialog',
+  'selectedObject',
+  'rows',
+]
 </script>

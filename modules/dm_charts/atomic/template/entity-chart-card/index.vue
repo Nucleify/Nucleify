@@ -10,8 +10,7 @@
           :chart-method-type="props.chartMethodType"
           :type="props.type"
           :direction="props.direction"
-          :chart-class="props.chartClass"
-          :class="props.loading ? 'chart-loading' : 'chart-loaded'"
+          :class="props.chartClass + ' ' + (props.loading ? 'chart-loading' : 'chart-loaded')"
         />
       </template>
     </ad-card>

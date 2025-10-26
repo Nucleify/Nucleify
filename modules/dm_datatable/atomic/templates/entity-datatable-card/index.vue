@@ -43,7 +43,7 @@
         :ad-type="adType"
         :loading="loading"
         v-model:filters="filters"
-        :filter-display="'row'"
+        filter-display="row"
         :global-filter-fields="globalFilterFields"
         paginator-template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown"
         current-page-report-template="{first} to {last} of {totalRecords}"

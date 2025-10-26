@@ -52,8 +52,8 @@
     <dm-entity-chart-card
       entity="Structural"
       class="annual-chart-card"
-      :chart-method-type="'annual'"
-      :type="'bar'"
+      chart-method-type="annual"
+      type="bar"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
       :data="{ 
         card: cards, 
@@ -62,7 +62,6 @@
         technology: technologies, 
         feature: features 
       }"
-      :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />
 
