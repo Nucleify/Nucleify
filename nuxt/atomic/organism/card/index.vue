@@ -1,10 +1,5 @@
 <template>
-  <Card
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  >
+  <Card v-bind="transformProps(props)">
     <template #header>
       <slot name="header" />
     </template>
@@ -23,6 +18,8 @@
 import { Card } from 'primevue' // Import for Storybook
 
 import type { CardInterface } from 'atomic'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<CardInterface>()
 </script>
