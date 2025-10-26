@@ -12,7 +12,7 @@
           <ad-heading :tag="1" text="Welcome Back" />
 
           <ad-paragraph class="mb-2" text="Don't have an account?">
-            <ad-anchor href="/register" :label="'Create today!'" />
+            <ad-anchor href="/register" label="Create today!" />
           </ad-paragraph>
         </div>
       </div>
@@ -23,7 +23,7 @@
           <ad-input-text
             :id="field.id"
             v-model="loginFields[field.model]"
-            :ad-type="'main'"
+            ad-type="main"
             :type="field.type"
             class="auth-input-text"
             :autofocus="field.autofocus"

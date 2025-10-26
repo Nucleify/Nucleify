@@ -43,8 +43,8 @@
     <dm-entity-chart-card
       entity="Admin"
       class="annual-chart-card"
-      :chart-method-type="'annual'"
-      :type="'bar'"
+      chart-method-type="annual"
+      type="bar"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
       :data="{ 
         article: articles, 
@@ -52,7 +52,6 @@
         money: money, 
         user: users 
       }"
-      :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />
     <dm-article-dashboard

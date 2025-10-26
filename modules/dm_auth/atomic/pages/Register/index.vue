@@ -8,7 +8,7 @@
             <ad-heading :tag="1" text="Register" />
 
             <ad-paragraph text="Already have an account?">
-              <ad-anchor href="/login" :label="'Log in!'" />
+              <ad-anchor href="/login" label="Log in!" />
             </ad-paragraph>
           </div>
         </div>
