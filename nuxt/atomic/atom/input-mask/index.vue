@@ -1,5 +1,5 @@
 <template>
-  <InputMask v-bind="transformProps(props, excludedProps)" />
+  <InputMask v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
@@ -10,6 +10,4 @@ import type { InputMaskInterface } from 'atomic'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<InputMaskInterface>()
-
-const excludedProps: string[] = []
 </script>

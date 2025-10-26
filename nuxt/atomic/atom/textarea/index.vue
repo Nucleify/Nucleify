@@ -1,6 +1,6 @@
 <template>
   <Textarea
-    v-bind="transformProps(props, excludedProps)"
+    v-bind="transformProps(props)"
     @update:model-value="updateValue"
   />
 </template>
@@ -15,8 +15,6 @@ import { transformProps } from '../../boson/transform_props'
 const props = defineProps<TextareaInterface>()
 
 const emit = defineEmits(['update:modelValue'])
-
-const excludedProps: string[] = []
 
 const updateValue = (value: string) => {
   emit('update:modelValue', value)

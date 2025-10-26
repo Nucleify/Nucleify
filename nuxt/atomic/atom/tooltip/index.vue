@@ -1,5 +1,5 @@
 <template>
-  <Tooltip v-bind="transformProps(props, excludedProps)">
+  <Tooltip v-bind="transformProps(props)">
     <template #content>
       <slot />
     </template>
@@ -14,6 +14,4 @@ import type { TooltipInterface } from 'atomic'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<TooltipInterface>()
-
-const excludedProps: string[] = []
 </script>
