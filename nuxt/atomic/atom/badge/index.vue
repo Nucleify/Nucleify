@@ -1,5 +1,5 @@
 <template>
-  <Badge v-bind="transformProps(props, excludedProps)" />
+  <Badge v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
@@ -10,6 +10,4 @@ import type { BadgeInterface } from 'atomic'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<BadgeInterface>()
-
-const excludedProps: string[] = []
 </script>

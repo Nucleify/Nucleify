@@ -1,5 +1,5 @@
 <template>
-  <Tag v-bind="transformProps(props, excludedProps)" />
+  <Tag v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
@@ -10,6 +10,4 @@ import type { TagInterface } from 'atomic'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<TagInterface>()
-
-const excludedProps: string[] = []
 </script>

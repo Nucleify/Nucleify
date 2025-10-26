@@ -1,5 +1,5 @@
 <template>
-  <Checkbox v-bind="transformProps(props, excludedProps)" />
+  <Checkbox v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
@@ -10,6 +10,4 @@ import type { CheckboxInterface } from 'atomic'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<CheckboxInterface>()
-
-const excludedProps: string[] = []
 </script>

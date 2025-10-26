@@ -1,5 +1,5 @@
 <template>
-  <Divider v-bind="transformProps(props, excludedProps)" />
+  <Divider v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
@@ -10,6 +10,4 @@ import type { DividerInterface } from 'atomic'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<DividerInterface>()
-
-const excludedProps: string[] = []
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <Knob v-bind="transformProps(props, excludedProps)" />
+  <Knob v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
@@ -10,6 +10,4 @@ import type { KnobInterface } from 'atomic'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<KnobInterface>()
-
-const excludedProps: string[] = []
 </script>

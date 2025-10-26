@@ -1,6 +1,6 @@
 <template>
   <InputText
-    v-bind="transformProps(props, excludedProps)"
+    v-bind="transformProps(props)"
     :class="[{ 'p-invalid': props.invalid }]"
   />
 </template>
@@ -13,6 +13,4 @@ import type { InputTextInterface } from 'atomic'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<InputTextInterface>()
-
-const excludedProps: string[] = []
 </script>

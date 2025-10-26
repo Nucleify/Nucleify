@@ -1,6 +1,6 @@
 <template>
   <Icon v-if="props.icon" 
-    v-bind="transformProps(props, excludedProps, propMap)"
+    v-bind="transformProps(props, [], propMap)"
    />
 </template>
 
@@ -10,8 +10,6 @@ import type { IconInterface } from 'atomic'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<IconInterface>()
-
-const excludedProps: string[] = []
 
 const propMap = {
   icon: 'name',

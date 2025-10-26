@@ -1,5 +1,5 @@
 <template>
-  <InputNumber v-bind="transformProps(props, excludedProps)" />
+  <InputNumber v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
@@ -10,6 +10,4 @@ import type { InputNumberInterface } from 'atomic'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<InputNumberInterface>()
-
-const excludedProps: string[] = []
 </script>
