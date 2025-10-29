@@ -95,6 +95,12 @@ export default defineNuxtConfig({
       },
     },
     css: {
+      modules: {
+        generateScopedName:
+          process.env.APP_ENV === 'production'
+            ? '[hash:base64:5]'
+            : '[local]_[hash:base64:5]',
+      },
       preprocessorOptions: {
         scss: {
           additionalData: `@import "~/assets/index";`,
