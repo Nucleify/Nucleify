@@ -1,6 +1,8 @@
 <template>
   <DatePicker
     v-bind="transformProps(props)"
+    :show-on-focus="props.showOnFocus || true"
+    :class="$style['ad-datepicker']"
     @update:model-value="onUpdateModelValue"
   />
 </template>
@@ -22,3 +24,7 @@ function onUpdateModelValue(value: DatePickerModelValueType) {
   }
 }
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>
