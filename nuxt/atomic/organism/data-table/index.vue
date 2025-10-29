@@ -6,6 +6,9 @@
     @update:filters="emits('update:filters', $event)"
     :rows="props.rows || 10"
     :paginator="props.paginator || true"
+    :show-headers="props.showHeaders|| true"
+    :striped-rows="props.stripedRows || true"
+    :row-hover="props.rowHover || true"
   >
     <slot />
   </DataTable>

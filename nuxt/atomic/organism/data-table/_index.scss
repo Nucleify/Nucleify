@@ -66,10 +66,19 @@
       align-items: center;
       background: transparent !important;
       position: relative;
+      font-size: $font-size-sm;
       width: 100%;
       margin: 0;
       padding: 20px;
+      padding-top: 25px;
+      margin-bottom: -20px;    
 
+      &-element {
+        max-height: $min-max-width-height-small;
+        max-width: $min-max-width-height-small;
+        min-width: $min-max-width-height-small;
+      }
+    
       .p-select-label {
         padding: 0 0 0 10px;
         cursor: pointer;

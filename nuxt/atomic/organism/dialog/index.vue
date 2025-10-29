@@ -1,6 +1,8 @@
 <template>
   <Dialog
     v-bind="transformProps(props, excludedProps)"
+    :modal="props.modal || true"
+    :show-header="props.showHeader || true"
     class="my-dialog"
     :class="props.action"
   >
