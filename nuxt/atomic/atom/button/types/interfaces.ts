@@ -1,9 +1,11 @@
 import type { ButtonProps } from 'primevue'
 
-import type { ButtonType } from 'atomic'
+import type { ButtonMedia, ButtonType, ButtonVariant } from 'atomic'
 
 export interface ButtonInterface extends /* @vue-ignore */ ButtonProps {
   adType?: AdTypeType
+  media?: ButtonMedia
+  variant?: ButtonVariant
   alt?: string
   label?: string
   icon?: string

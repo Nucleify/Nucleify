@@ -52,12 +52,7 @@
             <ad-label :for="field.id" :label="field.label" />
           </ad-float-label>
 
-          <ad-button
-            label="Register"
-            type="submit"
-            class="primary-button"
-            padding="10px 10px"
-          />
+          <ad-button label="Register" type="submit" />
         </form>
       </template>
     </ad-card>

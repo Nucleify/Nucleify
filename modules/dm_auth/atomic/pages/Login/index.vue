@@ -31,7 +31,7 @@
           <ad-label :for="field.id" :label="field.label" />
         </ad-float-label>
 
-        <ad-button label="Log In" type="submit" padding="10px 10px" />
+        <ad-button label="Log In" type="submit" />
       </form>
     </template>
   </ad-card>

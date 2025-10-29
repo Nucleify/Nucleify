@@ -1,5 +1,8 @@
 <template>
-  <InputMask v-bind="transformProps(props)" />
+  <InputMask 
+    v-bind="transformProps(props)" 
+    :class="$style['ad-inputmask']" 
+  />
 </template>
 
 <script setup lang="ts">
@@ -11,3 +14,7 @@ import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<InputMaskInterface>()
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>

@@ -1,15 +1,14 @@
-.p-button {
+.ad-button {
   display: flex;
   justify-content: center;
   transition: all 0.5s;
-  font-size: 1.2rem;
 
   .p-button-label {
     font-family: Nunito, sans-serif;
     font-weight: 600;
   }
 
-  &.p-button-rounded {
+  &.rounded-button {
     border-radius: 2em !important;
   }
 
@@ -21,6 +20,11 @@
     display: none;
   }
 
+  &.data-table-button {
+    height: 34px;
+    width: 34px;
+  }
+
   @media (min-width: $lg) {
     &.mobile-button {
       display: none;
@@ -29,17 +33,5 @@
     &.desktop-button {
       display: flex;
     }
-  }
-
-  &.primary-button {
-    &:active,
-    &:focus {
-      box-shadow: none;
-    }
-  }
-
-  &.data-table-button {
-    height: 34px !important;
-    width: 34px !important;
   }
 }

@@ -6,6 +6,13 @@
       gap: props.gap,
       padding: props.padding,
     }"
+    :class="[
+      $style['ad-button'],
+      props.media && $style[props.media + '-button'],
+      props.variant && $style[props.variant + '-button'],
+      props.rounded && $style['rounded-button'],
+      props.severity === 'primary' && $style['primary-button'],
+    ]"
   >
     <ad-image v-if="props.src" :src="props.src" :alt="props.alt" />
     <ad-icon v-if="props.icon" :icon="props.icon" />
@@ -34,3 +41,7 @@ const excludedProps = [
   'padding',
 ]
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>

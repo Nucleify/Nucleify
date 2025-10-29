@@ -18,3 +18,6 @@ export type ButtonSeverityType =
   | 'danger'
 
 export type ButtonType = 'button' | 'reset' | 'submit'
+
+export type ButtonMedia = 'mobile' | 'desktop'
+export type ButtonVariant = 'data-table'

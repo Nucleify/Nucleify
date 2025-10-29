@@ -97,6 +97,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
+          additionalData: `@import "~/assets/index";`,
           silenceDeprecations: [
             'mixed-decls',
             'import',

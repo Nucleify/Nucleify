@@ -1,6 +1,7 @@
 <template>
   <Textarea
     v-bind="transformProps(props)"
+    :class="[$style['ad-textarea']]"
     @update:model-value="updateValue"
   />
 </template>
@@ -20,3 +21,7 @@ const updateValue = (value: string) => {
   emit('update:modelValue', value)
 }
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>
