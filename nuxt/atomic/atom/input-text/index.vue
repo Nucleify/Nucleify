@@ -1,7 +1,7 @@
 <template>
   <InputText
     v-bind="transformProps(props)"
-    :class="[{ 'p-invalid': props.invalid }]"
+    :class="[$style['ad-inputtext'], { 'p-invalid': props.invalid }]"
   />
 </template>
 
@@ -14,3 +14,7 @@ import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<InputTextInterface>()
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>

@@ -1,0 +1,5 @@
+@import '../input-text';
+
+.ad-inputmask {
+  @extend %ad-inputtext;
+}
