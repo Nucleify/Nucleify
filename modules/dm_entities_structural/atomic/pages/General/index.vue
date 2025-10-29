@@ -1,53 +1,7 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
   <div class="panel-container">
-    <div class="tiles grid col-12">
-      <ad-tile
-        href="/structural/cards"
-        header="Cards"
-        :count="cards?.length"
-        icon="prime:stop"
-        :count-secondary="cardsCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="card"
-      />
-      <ad-tile
-        href="/structural/features"
-        header="Features"
-        :count="features?.length"
-        icon="prime:star"
-        :count-secondary="featuresCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="feature"
-      />
-      <ad-tile
-        href="/structural/questions"
-        header="Questions"
-        :count="questions?.length"
-        icon="prime:question"
-        :count-secondary="questionsCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="question"
-      />
-      <ad-tile
-        href="/structural/technologies"
-        header="Technologies"
-        :count="technologies?.length"
-        icon="prime:microchip-ai"
-        :count-secondary="technologiesCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="technology"
-      />
-      <ad-tile
-        href="/structural/links"
-        header="Links"
-        :count="links?.length"
-        icon="prime:link"
-        :count-secondary="linksCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="link"
-      />
-    </div>
+    <dm-tiles :entities="entities" />
 
     <dm-entity-chart-card
       entity="Structural"
@@ -94,9 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from 'vue'
-import { onMounted, ref, watch } from 'vue'
-
+import type { TileInterface } from 'atomic'
 import {
   cardRequests,
   featureRequests,
@@ -169,18 +121,18 @@ watch(
     technologiesLoading,
   ],
   ([
-    newCardsLoading,
-    newFeaturesLoading,
-    newLinksLoading,
-    newQuestionsLoading,
-    newTechnologiesLoading,
-  ]) => {
+    cardsLoading,
+    featuresLoading,
+    linksLoading,
+    questionsLoading,
+    technologiesLoading,
+  ]: [boolean, boolean, boolean, boolean, boolean]) => {
     if (
-      !newCardsLoading &&
-      !newFeaturesLoading &&
-      !newLinksLoading &&
-      !newQuestionsLoading &&
-      !newTechnologiesLoading
+      !cardsLoading &&
+      !featuresLoading &&
+      !linksLoading &&
+      !questionsLoading &&
+      !technologiesLoading
     ) {
       setTimeout(() => {
         allLoaded.value = true
@@ -188,4 +140,52 @@ watch(
     }
   }
 )
+
+const entities = computed<TileInterface[]>(() => [
+  {
+    href: '/structural/cards',
+    header: 'Cards',
+    count: cards.value?.length || 0,
+    icon: 'prime:stop',
+    countSecondary: cardsCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'card',
+  },
+  {
+    href: '/structural/features',
+    header: 'Features',
+    count: features.value?.length || 0,
+    icon: 'prime:star',
+    countSecondary: featuresCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'feature',
+  },
+  {
+    href: '/structural/questions',
+    header: 'Questions',
+    count: questions.value?.length || 0,
+    icon: 'prime:question',
+    countSecondary: questionsCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'question',
+  },
+  {
+    href: '/structural/technologies',
+    header: 'Technologies',
+    count: technologies.value?.length || 0,
+    icon: 'prime:microchip-ai',
+    countSecondary: technologiesCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'technology',
+  },
+  {
+    href: '/structural/links',
+    header: 'Links',
+    count: links.value?.length || 0,
+    icon: 'prime:link',
+    countSecondary: linksCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'link',
+  },
+])
 </script>
