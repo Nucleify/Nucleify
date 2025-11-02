@@ -1,5 +1,8 @@
 <template>
-  <Card v-bind="transformProps(props)">
+  <Card 
+    v-bind="transformProps(props)"
+    :class="$style['ad-card']"
+  >
     <template #header>
       <slot name="header" />
     </template>
@@ -23,3 +26,7 @@ import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<CardInterface>()
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>
