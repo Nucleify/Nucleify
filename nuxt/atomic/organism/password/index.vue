@@ -3,22 +3,35 @@
     v-bind="transformProps(props)"
     :feedback="!props.emptyPassword"
     @update:model-value="updateValue"
+    :class="$style['ad-password']"
+    :pt="{
+      pcInputText: {
+        root: $style['ad-inputtext']
+      },
+      overlay: $style['ad-password-overlay']
+    }"
   >
     <template v-if="props.id !== 'password_confirmation'" #footer>
       <Divider />
-      <ul class="password-criteria -mb-1">
+      <ul :class="$style['ad-password-criteria']">
         <li
           v-for="(criterion, index) in criteria"
           :key="index"
-          :class="{ valid: criterion.isValid, invalid: !criterion.isValid }"
+          :class="[
+            criterion.isValid ? $style['valid'] : $style['invalid'],
+            $style['ad-password-criterion']
+          ]"
         >
           {{ criterion.label }}
         </li>
       </ul>
     </template>
     <template v-else-if="!props.emptyPassword" #footer>
-      <ul class="password-criteria -mb-1">
-        <li :class="props.passwordsMatch ? 'valid' : 'invalid'">
+      <ul :class="$style['ad-password-criteria']">
+        <li :class="[
+          props.passwordsMatch ? $style['valid'] : $style['invalid'],
+          $style['ad-password-criterion']
+        ]">
           {{ props.passwordsMatch ? 'Passwords match' : 'Passwords do not match' }}
         </li>
       </ul>
@@ -57,3 +70,7 @@ watch(
   (value: string) => (localValue.value = value)
 )
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>
