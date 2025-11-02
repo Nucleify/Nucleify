@@ -1,26 +1,21 @@
-.p-password {
-  .p-inputtext {
-    width: 100%;
-  }
-}
+@import '../../atom/input-text';
 
-.p-dialog {
-  .p-password {
-    .p-icon {
-      margin-right: 5.5px;
-    }
+.ad-password {
+  .ad-inputtext {
+    width: 100%;
+
+    @extend %ad-inputtext;
   }
 }
 
 /* stylelint-disable */
-#password_overlay,
-#password_confirmation_overlay {
-  .password-criteria {
+.ad-password-overlay {
+  .ad-password-criteria {
     list-style-type: none;
     padding-left: 0;
     margin-bottom: 0;
 
-    li {
+    .ad-password-criterion {
       padding: 4px 0;
       font-size: 14px;
 
@@ -37,15 +32,9 @@
   }
 }
 
-#password_panel {
-  .p-divider {
-    margin: 8px 0;
-  }
-}
-
 #password_confirmation_panel {
   .p-password-meter,
   .p-password-info {
-    display: none !important;
+    display: none;
   }
 }
