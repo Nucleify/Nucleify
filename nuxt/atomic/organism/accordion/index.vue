@@ -1,15 +1,31 @@
 <template>
-  <Accordion v-bind="transformProps(props, excludedProps)">
+  <Accordion 
+    v-bind="transformProps(props, excludedProps)"
+    :class="$style['ad-accordion']"
+  >
     <AccordionPanel
       v-for="(panel, index) in props.panels"
       :key="index"
       :value="panel.index"
+      :class="$style['ad-accordionpanel']"
     >
-      <AccordionHeader>
-        <dm-animation-hexagons v-if="props.hexagons" />
+      <AccordionHeader
+        :class="$style['ad-accordionheader']"
+        :pt="{
+          toggleIcon: $style['ad-accordionheader-toggle-icon'],
+        }"
+      >
+        <dm-animation-hexagons 
+          v-if="props.hexagons" 
+          :class="$style['ad-hexagon-rows-container']"
+        />
         {{ panel.content }}
       </AccordionHeader>
-      <AccordionContent>{{ panel.answer }}</AccordionContent>
+      <AccordionContent 
+        :class="$style['ad-accordion-content']"
+      >
+        {{ panel.answer }}
+      </AccordionContent>
     </AccordionPanel>
   </Accordion>
 </template>
@@ -30,3 +46,7 @@ const props = defineProps<AccordionInterface>()
 
 const excludedProps = ['panels', 'hexagons']
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>
