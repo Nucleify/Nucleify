@@ -1,3 +1,5 @@
+@import '../select';
+
 .p-datatable {
   min-height: 595px;
   display: flex;
@@ -79,11 +81,6 @@
         min-width: $min-max-width-height-small;
       }
     
-      .p-select-label {
-        padding: 0 0 0 10px;
-        cursor: pointer;
-      }
-
       &-current {
         margin: 0 4px;
       }
@@ -114,4 +111,12 @@
   .p-column-title {
     font-size: $font-size-sm;
   }
+}
+
+.ad-select {
+  display: flex;
+  align-items: center;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  gap: 1em;
 }

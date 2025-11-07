@@ -1,6 +1,18 @@
 <template>
   <Select
     v-bind="transformProps(props)"
+    :class="$style['ad-select']"
+    :pt="{
+      label: $style['ad-select-label'],
+      dropdown: $style['ad-select-dropdown'],
+      overlay: {
+        class: $style['ad-select-overlay'],
+        'ad-type': props.adType,
+      },
+      listContainer: $style['ad-select-list-container'],
+      list: $style['ad-select-list'],
+      option: $style['ad-select-option'],
+    }"
     @update:model-value="onUpdateModelValue"
   />
 </template>
@@ -17,3 +29,7 @@ function onUpdateModelValue(value: unknown) {
   emit('update:modelValue', value)
 }
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>

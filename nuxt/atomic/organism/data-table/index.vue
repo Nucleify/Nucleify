@@ -9,6 +9,25 @@
     :show-headers="props.showHeaders|| true"
     :striped-rows="props.stripedRows || true"
     :row-hover="props.rowHover || true"
+    :pt="{
+      pcPaginator: {
+        pcRowPerPageDropdown: {
+          root: {
+            class: $style['ad-select'], 
+            'ad-type': props.adType
+          },
+          label: $style['ad-select-label'],
+          dropdown: $style['ad-select-dropdown'],
+          overlay: {
+            class: $style['ad-select-overlay'],
+            'ad-type': props.adType,
+          },
+          listContainer: $style['ad-select-list-container'],
+          list: $style['ad-select-list'],
+          option: $style['ad-select-option'],
+        },
+      }
+    }"
   >
     <slot />
   </DataTable>
@@ -30,3 +49,7 @@ const excludedProps = [
   'rows',
 ]
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>
