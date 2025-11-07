@@ -35,13 +35,4 @@
       }
     }
   }
-
-  .p-paginator {
-    .p-select {
-      &.p-focus {
-        box-shadow: 0 0 0.5em $item-color;
-        border-color: $item-color;
-      }
-    }
-  }
 }

@@ -1,33 +1,41 @@
-.p-select-items {
-  padding: 0;
-}
+@import '../../atom/input-text';
 
-.p-select {
-  padding: .25em !important;
-}
+.ad-select {
+  padding: .625em .8em;
 
-.p-select,
-.p-select-list {
-  background: $p-card-background !important;
-  border: 1px solid $p-card-border !important;
-  color: $white-text-color !important;
+  @extend %ad-inputtext;
 
-  .p-select-option {
-    padding: .25em .85em !important;
-    
-    &.p-focus:not(&-selected) {
-      background-color: $content-background !important;
-    }
+  .ad-select-dropdown {
+    width: min-content;
+  }
 
-    &-selected {
-      background-color: var(--p-select-option-focus-background) !important;
-    }
+  .ad-select-label {
+    padding: 0;
   }
 }
 
-.p-select-list,
-.p-select-list-container {
-  border: none !important;
-  border-radius: .25em;
-  padding: 0 !important;
+.ad-select-overlay {
+  .ad-select-list {
+    background: $p-card-background;
+    color: $white-text-color;
+
+    .ad-select-option {
+      padding: .625em .8em;
+      
+      &[data-p-selected="true"] {
+        background-color: $content-background;
+      }
+
+      &:hover {
+        background-color: var(--p-select-option-focus-background);
+      }
+    }
+  }
+
+  .ad-select-list,
+  .ad-select-list-container {
+    border: none;
+    border-radius: .25em;
+    padding: 0;
+  }
 }
