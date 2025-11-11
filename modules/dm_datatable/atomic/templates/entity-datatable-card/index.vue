@@ -2,49 +2,47 @@
   <ad-card class="my-card">
     <template #title>
       <div class="my-card-header-container">
-        <template v-if="loading">
+        <template v-if="props.loading">
           <ad-skeleton
-            :loading="loading"
+            :loading="props.loading"
             width="180px"
-            height="30px"
+            height="28px"
             border-radius="10px"
             class="heading-skeleton"
           />
           <ad-skeleton
-            :loading="loading"
-            width="30px"
-            height="30px"
+            :loading="props.loading"
+            width="28px"
+            height="28px"
             shape="circle"
           />
         </template>
         <template v-else>
-          <ad-heading :tag="tag" :text="headerText" />
+          <ad-heading :tag="props.tag" :text="props.headerText" />
 
           <ad-button
-            v-if="adType !== 'activity'"
-            :ad-type="adType"
+            v-if="props.adType !== 'activity'"
+            :ad-type="props.adType"
             icon="prime:plus"
-            class=""
             rounded
             text
-            @click="openDialog?.('create')"
+            @click="props.openDialog?.('create')"
           />
         </template>
       </div>
     </template>
     <template #content>
       <dm-entity-datatable
-        v-if="value"
-        :value="value"
+        v-if="props.value"
+        :value="props.value"
         :rows="10"
         :rows-per-page-options="[10, 20, 50]"
-        :open-dialog="openDialog"
-        :styles="styles"
-        :ad-type="adType"
-        :loading="loading"
+        :open-dialog="props.openDialog"
+        :ad-type="props.adType"
+        :loading="props.loading"
+        :global-filter-fields="globalFilterFields"
         v-model:filters="filters"
         filter-display="row"
-        :global-filter-fields="globalFilterFields"
         paginator-template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown"
         current-page-report-template="{first} to {last} of {totalRecords}"
       />
