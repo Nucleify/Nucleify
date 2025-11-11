@@ -2,41 +2,68 @@
   .p-datatable-table-container {
     overflow: visible;
   }
-  
-  .p-datatable-thead {
-    .p-datatable-header-cell {
-      &:has(.p-datatable-filter) {
-        position: relative;
-        padding: 0 !important;
-        overflow: visible;
-  
-        &:hover {
-          background-color: $bg-black-color !important;
-        }
 
-        .p-datatable-filter {
-          .p-inputtext {
-            width: 100%;
-            max-height: 40px;
-            z-index: 1;
-            transition: border-radius 0.3s ease-out;
-      
-            &:not(:focus) {
-              border-color: transparent !important;
-              border-radius: 0 !important;
-            }
+  .p-button {
+    padding: 0.25em;
+
+    .iconify {
+      font-size: 1.5em;
+      color: $primary-color;
+    }
+  }
+
+  &:has(.p-skeleton) {
+    .p-datatable-thead {
+      .p-datatable-header-cell {
+        &:has(.p-datatable-filter) {
+          padding: 9px !important;
+
+          .p-datatable-column-filter-button {
+            display: none;
           }
+        }
+      }
+    }
+  }
   
-          .p-button {
-            position: absolute !important;
-            right: 0;
-            height: 100%;
-            width: 40px;
-            border-radius: 50%;
-            border: transparent !important;
-  
-            &:not(:hover) {
-              background: transparent;
+  &:not(:has(.p-skeleton)) {
+    margin-top: .375em;
+
+    .p-datatable-thead {
+      .p-datatable-header-cell {
+        &:has(.p-datatable-filter) {
+          position: relative;
+          padding: 0 !important;
+          overflow: visible;
+    
+          &:hover {
+            background-color: $bg-black-color !important;
+          }
+
+          .p-datatable-filter {
+            .p-inputtext {
+              width: 100%;
+              max-height: 40px;
+              z-index: 1;
+              transition: border-radius 0.3s ease-out;
+        
+              &:not(:focus) {
+                border-color: transparent !important;
+                border-radius: 0 !important;
+              }
+            }
+    
+            .p-button {
+              position: absolute !important;
+              right: 0;
+              height: 100%;
+              width: 40px;
+              border-radius: 50%;
+              border: transparent !important;
+    
+              &:not(:hover) {
+                background: transparent;
+              }
             }
           }
         }

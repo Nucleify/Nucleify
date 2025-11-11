@@ -1,9 +1,10 @@
 <template>
-  <DataTable
+  <ad-data-table
     v-if="loading"
     class="entity-datatable skeleton-data-table"
     :value="rows"
     size="small"
+    filter-display="row"
   >
     <Column
       v-for="(col, index) in specificColumns"
@@ -13,12 +14,22 @@
       <template #header>
         <ad-skeleton
           :loading="loading"
-          class="data-table-header-skeleton"
+          width="100%"
+          height="22px"
+        />
+      </template>
+      <template #filter>
+        <ad-skeleton
+          :loading="loading"
+          width="100%"
           height="22px"
         />
       </template>
       <template #body>
-        <ad-skeleton :loading="loading" />
+        <ad-skeleton 
+          :loading="loading" 
+          height="34px" 
+        />
       </template>
     </Column>
     <Column class="action-column">
@@ -28,22 +39,22 @@
             v-for="index in 3"
             :key="index"
             :loading="loading"
-            class="data-table-button-skeleton desktop"
+            class="desktop"
             shape="circle"
-            width="30px"
-            height="30px"
+            width="34px"
+            height="34px"
           />
           <ad-skeleton
             :loading="loading"
-            class="data-table-button-skeleton mobile"
+            class="mobile"
             shape="circle"
-            width="30px"
-            height="30px"
+            width="34px"
+            height="34px"
           />
         </div>
       </template>
     </Column>
-  </DataTable>
+  </ad-data-table>
 </template>
 
 <script setup lang="ts">

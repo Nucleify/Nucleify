@@ -10,7 +10,18 @@
     :striped-rows="props.stripedRows || true"
     :row-hover="props.rowHover || true"
     :pt="{
+      root: $style['ad-datatable'],
+      bodyRow: $style['ad-datatable-row'],
+      columnHeaderContent: $style['ad-datatable-column-header-content'],
       pcPaginator: {
+        paginatorContainer: $style['ad-datatable-paginator-bottom'],
+        root: $style['ad-datatable-paginator'],
+        content: $style['ad-datatable-paginator-content'],
+        first: $style['ad-datatable-paginator-first'],
+        prev: $style['ad-datatable-paginator-prev'],
+        current: $style['ad-datatable-paginator-current'],
+        next: $style['ad-datatable-paginator-next'],
+        last: $style['ad-datatable-paginator-last'],
         pcRowPerPageDropdown: {
           root: {
             class: $style['ad-select'], 
