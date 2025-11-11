@@ -1,7 +1,7 @@
 <template>
-  <ad-card class="my-card">
+  <ad-card class="dm-card-base">
     <template #title>
-      <div class="my-card-header-container">
+      <div class="dm-card-base-header-container">
         <template v-if="props.loading">
           <ad-skeleton
             :loading="props.loading"
