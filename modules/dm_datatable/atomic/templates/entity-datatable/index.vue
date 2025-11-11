@@ -142,7 +142,7 @@
               :loading="props.loading"
               @click="openMenu(menu, $event, row.data)"
             />
-            <Menu ref="menu" :model="selectItems" :popup="true" />
+            <ad-menu ref="menu" :model="selectItems" :popup="true" />
           </template>
         </div>
       </template>
