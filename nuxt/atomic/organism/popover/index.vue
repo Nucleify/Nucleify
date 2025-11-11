@@ -1,19 +1,26 @@
 <template>
   <ad-button
-    :icon="props.popoverClass!.includes('terminal') ? 'prime:code' : props.icon"
+    :icon="props.icon"
     :src="props.src"
-    :class="props.buttonClass"
+    :class="[
+      props.buttonClass,
+      $style['ad-popover-toggle'],
+      $style[props.position!],
+    ]"
     :style="props.buttonStyle"
-    ad-type="main"
     rounded
     @click="toggle"
   />
 
   <Popover
-    ref="pop"
+    ref="adPopover"
     v-bind="transformProps(props, excludedProps)"
-    :class="props.popoverClass"
-  >
+    :class="[
+      props.popoverClass,
+      $style['ad-popover'],
+      $style[props.position!],
+    ]"
+  > 
     <slot />
   </Popover>
 </template>
@@ -33,9 +40,13 @@ const excludedProps = [
   'icon',
 ]
 
-const pop = ref()
+const adPopover = ref()
 
 const toggle = (event: unknown) => {
-  pop.value.toggle(event)
+  adPopover.value.toggle(event)
 }
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>
