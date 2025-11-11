@@ -28,7 +28,7 @@
     }
 
     > td {
-      padding: 6px 9px;
+      padding: 6px 9px !important;
     }
   }
 
@@ -39,7 +39,7 @@
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      background: transparent !important;
+      background: transparent;
       position: relative;
       font-size: $font-size-sm;
       width: 100%;
