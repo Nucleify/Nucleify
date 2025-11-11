@@ -1,8 +1,8 @@
 <template>
   <ad-popover
     dismissable
-    :button-class="'popover-toggle ' + positionClass"
-    :popover-class="'terminal ' + positionClass"
+    icon="prime:code"
+    :position="position"
   >
     <ad-terminal
       prompt="artisan >"
@@ -80,12 +80,6 @@ const excludedProps = ['model', 'position']
 
 const position = ref<PositionType>('bottom')
 const isStaff = ref(false)
-
-const positionClass = computed(() =>
-  ['top', 'right', 'bottom', 'left'].includes(position.value)
-    ? position.value
-    : ''
-)
 
 function setDockPositionForScreenSize() {
   if (window.innerWidth == 992) {
