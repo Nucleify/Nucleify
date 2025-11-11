@@ -135,6 +135,10 @@ export default defineNuxtConfig({
         preset: Lara,
       },
       ripple: true,
+      cssLayer: {
+        name: 'primevue',
+        order: 'app-styles, primevue',
+      },
     },
   },
   runtimeConfig: {
