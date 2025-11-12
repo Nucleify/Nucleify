@@ -134,6 +134,7 @@ export default defineNuxtConfig({
         preset: Lara,
       },
       ripple: true,
+      darkModeSelector: '.dark-mode',
     },
   },
   runtimeConfig: {
