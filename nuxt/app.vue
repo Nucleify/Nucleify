@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="dark-mode">
     <client-only>
       <dm-screen-lights :count="8" />
     </client-only>
