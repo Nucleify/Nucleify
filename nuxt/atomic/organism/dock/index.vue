@@ -19,7 +19,7 @@
   >
     <template #icon="{ item }">
       <nuxt-link v-if="item.logo" :to="item.url" :aria-label="item.label">
-        <dock-logo />
+        <ad-logo ad-type="main" />
       </nuxt-link>
       
       <nuxt-link v-if="item.icon && (item.url || item.click)" :to="item.url" :aria-label="item.label">
@@ -69,8 +69,6 @@ import {
   sessionStorageGetItem,
   transformProps,
 } from 'atomic'
-
-import { DockLogo } from '.'
 
 const LOCAL_STORAGE_KEY = 'dock-position'
 
