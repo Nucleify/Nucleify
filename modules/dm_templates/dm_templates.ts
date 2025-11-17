@@ -8,6 +8,7 @@ import {
   DmCube,
   DmFlipCard,
   DmHomeLink,
+  DmTiles,
 } from '.'
 
 export function registerDMTemplates(app: App<Element>): void {
@@ -19,4 +20,5 @@ export function registerDMTemplates(app: App<Element>): void {
     .component('dm-cube', DmCube)
     .component('dm-flip-card', DmFlipCard)
     .component('dm-home-link', DmHomeLink)
+    .component('dm-tiles', DmTiles)
 }

@@ -1,17 +1,11 @@
 <template>
-  <Fieldset
-    :legend="props.legend"
-    :toggleable="props.toggleable"
-    :toggle-button-props="props.toggleButtonProps"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <Fieldset v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
 import type { FieldsetInterface } from 'atomic'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<FieldsetInterface>()
 </script>

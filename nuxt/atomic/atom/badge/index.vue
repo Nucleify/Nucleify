@@ -1,19 +1,13 @@
 <template>
-  <Badge
-    :value="props.value"
-    :severity="props.severity"
-    :size="props.size"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <Badge v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
+import { Badge } from 'primevue' // Import for Storybook
+
 import type { BadgeInterface } from 'atomic'
 
-import Badge from 'primevue/badge' // Import for Storybook
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<BadgeInterface>()
 </script>

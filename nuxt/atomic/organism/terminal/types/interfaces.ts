@@ -1,12 +1,3 @@
-export interface TerminalInterface {
-  welcomeMessage?: string
-  prompt?: string
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
-}
+import type { TerminalProps } from 'primevue'
 
-export interface ArtisanResponseInterface {
-  output: string
-}
+export interface TerminalInterface extends TerminalProps {}

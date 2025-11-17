@@ -3,7 +3,7 @@
     border-color: $item-color;
   }
 
-  &:not(.p-disabled).p-focus {
+  &[data-p="focus"] {
     outline: 0 none;
     outline-offset: 0;
     box-shadow: 0 0 0.5em $focus-color;
@@ -11,22 +11,17 @@
   }
 }
 
-@mixin entity-select-item-styles(
+@mixin entity-select-overlay-styles(
   $item-color,
   $selected-color,
   $highlight-color
 ) {
-  .p-select-item {
+  .ad-select-option {
     &:hover {
       background: $highlight-color;
     }
 
-    &.p-highlight {
-      color: $item-color;
-      background: $highlight-color;
-    }
-
-    &:not(.p-disabled, .p-highlight).p-focus {
+    &[data-p-selected="true"] {
       color: $item-color;
       background: $selected-color;
     }

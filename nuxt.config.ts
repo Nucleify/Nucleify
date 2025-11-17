@@ -97,6 +97,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
+          additionalData: `@import "~/assets/index";`,
           silenceDeprecations: [
             'mixed-decls',
             'import',
@@ -134,6 +135,10 @@ export default defineNuxtConfig({
         preset: Lara,
       },
       ripple: true,
+      cssLayer: {
+        name: 'primevue',
+        order: 'app-styles, primevue',
+      },
       darkModeSelector: '.dark-mode',
     },
   },

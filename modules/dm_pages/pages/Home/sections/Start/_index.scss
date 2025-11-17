@@ -23,7 +23,6 @@
 
   .ball {
     display: none;
-    width: 100%;
     cursor: pointer;
   }
 
@@ -88,7 +87,6 @@
     .ball {
       display: flex;
       margin-top: -2em;
-      max-width: 100px;
     }
 
     .cta {
@@ -115,10 +113,6 @@
     .header,
     .header span {
       font-size: $font-size-xxl !important;
-    }
-
-    .ball {
-      max-width: 150px;
     }
 
     .start-description {
