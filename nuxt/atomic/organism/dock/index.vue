@@ -100,3 +100,7 @@ watch(position, (newPosition) => {
   localStorageSetItem(LOCAL_STORAGE_KEY, newPosition)
 })
 </script>
+
+<style lang="scss">
+@import 'index';
+</style>
