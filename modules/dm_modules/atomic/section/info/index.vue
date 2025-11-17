@@ -32,7 +32,7 @@
                   v-bind="a11yAttrs.root"
                   @click="activateCallback"
                 >
-                  <img :src="imgUrl + 'logo.svg'" alt="Logo" class="logo-img" />
+                  <ad-logo :dimensions="40" />
                 </div>
               </Step>
             </swiper-slide>

@@ -1,0 +1,12 @@
+.ad-logo {
+  &:not([ad-type]) {
+    .lighter-color {  
+      fill: $primary-color;
+    }
+
+    .darker-color {
+      fill: $primary-dark-color;
+    }
+  }
+}
+

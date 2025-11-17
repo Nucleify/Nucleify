@@ -2,15 +2,13 @@
   <div class="test-login-buttons-container">
     <ad-button
       icon="prime:crown"
-      class="primary-button text-sm"
-      :rounded="true"
+      rounded
       @click="loginAndGo('admin')"
     />
     <ad-button
       icon="prime:user"
       severity="secondary"
-      class="primary-button text-sm"
-      :rounded="true"
+      rounded
       @click="loginAndGo('user')"
     />
   </div>

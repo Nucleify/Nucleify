@@ -1,36 +1,18 @@
 <template>
   <Button
-    :label="props.label"
-    :icon-pos="props.iconPos"
-    :icon-class="props.iconClass"
-    :badge="props.badge"
-    :badge-class="props.badgeClass"
-    :badge-severity="props.badgeSeverity"
-    :loading="props.loading"
-    :loading-icon="props.loadingIcon"
-    :as="props.as"
-    :as-child="props.asChild"
-    :link="props.link"
-    :severity="props.severity"
-    :raised="props.raised"
-    :rounded="props.rounded"
-    :text="props.text"
-    :outlined="props.outlined"
-    :size="props.size"
-    :variant="props.variant"
-    :fluid="props.fluid"
-    :dt="props.dt"
-    :disabled="props.disabled"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :type="props.type"
+    v-bind="transformProps(props, excludedProps)"
     :style="{
       width: props.width,
       gap: props.gap,
       padding: props.padding,
     }"
-    :ad-type="props.adType"
-    @click="props.onclick"
+    :class="[
+      $style['ad-button'],
+      props.media && $style[props.media + '-button'],
+      props.variant && $style[props.variant + '-button'],
+      props.rounded && $style['rounded-button'],
+      props.severity === 'primary' && $style['primary-button'],
+    ]"
   >
     <ad-image v-if="props.src" :src="props.src" :alt="props.alt" />
     <ad-icon v-if="props.icon" :icon="props.icon" />
@@ -40,9 +22,26 @@
 </template>
 
 <script setup lang="ts">
+import { Button } from 'primevue' // Import for Storybook
+
 import type { ButtonInterface } from 'atomic'
 
-import Button from 'primevue/button' // Import for Storybook
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<ButtonInterface>()
+
+const excludedProps = [
+  'alt',
+  'label',
+  'icon',
+  'src',
+  'width',
+  'height',
+  'gap',
+  'padding',
+]
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>

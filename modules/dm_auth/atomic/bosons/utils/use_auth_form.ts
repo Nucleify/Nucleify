@@ -44,7 +44,7 @@ export function useAuthForm(): UseAuthFormInterface {
 
   async function submitAndGo(
     data: LoginFieldsInterface | RegisterFieldsInterface
-  ) {
+  ): Promise<void> {
     await submitForm(data)
     router.push('/settings#modules')
   }
