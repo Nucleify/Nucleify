@@ -29,15 +29,8 @@
       color: $white-text-color;
       padding: 0.55em;
 
-      &:has(.logo-img) {
+      &:has(.ad-logo) {
         padding: 0.35em;
-
-        .logo-img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          transition: all 0.3s ease;
-        }
       }
 
       .iconify {

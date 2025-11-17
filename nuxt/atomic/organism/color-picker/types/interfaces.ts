@@ -1,24 +1,5 @@
-import type { ColorType } from 'atomic'
+import { ColorPickerProps } from 'primevue'
 
-export interface ColorPickerInterface {
+export interface ColorPickerInterface extends ColorPickerProps {
   adType?: AdTypeType
-  modelValue?: string
-  defaultColor?: string
-  defaultValue?: unknown
-  name?: string
-  inline?: boolean
-  format?: ColorType
-  invalid?: boolean
-  disabled?: boolean
-  tabindex?: string
-  autoZIndex?: boolean
-  baseZIndex?: number
-  inputId?: string
-  overlayClass?: string
-  appendTo?: ElementAppendTo
-  formControl?: Record<string, unknown>
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
 }

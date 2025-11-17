@@ -32,6 +32,8 @@ export function useApiErrors(): UseApiErrorsInterface {
       } else {
         flashToast('An unknown error occurred', 'error')
       }
+
+      throw error
     }
   }
 

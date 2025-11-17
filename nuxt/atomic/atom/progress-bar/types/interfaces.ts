@@ -1,14 +1,7 @@
-import type { ProgressBarModeType } from 'atomic'
+import { ProgressBarProps } from 'primevue'
 
-export interface ProgressBarInterface {
+export interface ProgressBarInterface extends ProgressBarProps {
   adType?: AdTypeType
-  value?: number
-  mode?: ProgressBarModeType
-  showValue?: boolean
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
   width?: string
   height?: string
 }

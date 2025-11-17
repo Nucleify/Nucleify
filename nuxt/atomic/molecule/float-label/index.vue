@@ -1,10 +1,6 @@
 <template>
   <FloatLabel
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-    :variant="props.variant"
+    :bind="transformProps(props)"
   >
     <slot>
       <!-- Example use
@@ -17,6 +13,8 @@
 
 <script setup lang="ts">
 import type { FloatLabelInterface } from 'atomic'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<FloatLabelInterface>()
 </script>

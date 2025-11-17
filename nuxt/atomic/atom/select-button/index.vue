@@ -1,32 +1,24 @@
 <template>
-  <SelectButton
-    :ad-type="props.adType"
-    :model-value="props.modelValue"
-    :default-value="props.defaultValue"
-    :name="props.name"
-    :options="props.options"
-    :option-label="props.optionLabel"
-    :option-value="props.optionValue"
-    :option-disabled="props.optionDisabled"
-    :multiple="props.multiple"
-    :invalid="props.invalid"
-    :disabled="props.disabled"
-    :data-key="props.dataKey"
-    :allow-empty="props.allowEmpty"
-    :aria-labelledby="props.ariaLabelledby"
-    :size="props.size"
-    :form-control="props.formControl"
-    :pt="props.pt"
-    :dt="props.dt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
+  <SelectButton 
+    v-bind="transformProps(props)" 
+    :pt="{
+      pcToggleButton: {
+        root: $style['ad-togglebutton'],
+      }
+    }"
   />
 </template>
 
 <script setup lang="ts">
+import { SelectButton } from 'primevue' // Import for Storybook
+
 import type { SelectButtonInterface } from 'atomic'
 
-import SelectButton from 'primevue/selectbutton' // Import for Storybook
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<SelectButtonInterface>()
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>
