@@ -1,0 +1,10 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .ad-logo[ad-type='#{$type}'] {
+    @include entity-logo-styles(
+      var(--#{$type}-item-color-new) !important,
+      var(--#{$type}-item-dark-color-new) !important,
+    );
+  }
+}

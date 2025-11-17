@@ -1,28 +1,26 @@
 <template>
   <ad-button
-    :icon="props.popoverClass!.includes('terminal') ? 'prime:code' : props.icon"
+    :icon="props.icon"
     :src="props.src"
-    :class="props.buttonClass"
+    :class="[
+      props.buttonClass,
+      $style['ad-popover-toggle'],
+      $style[props.position!],
+    ]"
     :style="props.buttonStyle"
-    ad-type="main"
     rounded
     @click="toggle"
   />
 
   <Popover
-    ref="pop"
-    :dismissable="props.dismissable"
-    :append-to="props.appendTo"
-    :base-z-index="props.baseZIndex"
-    :auto-z-index="props.autoZIndex"
-    :breakpoints="props.breakpoints"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-    :close-on-escape="props.closeOnEscape"
-    :class="props.popoverClass"
-  >
+    ref="adPopover"
+    v-bind="transformProps(props, excludedProps)"
+    :class="[
+      props.popoverClass,
+      $style['ad-popover'],
+      $style[props.position!],
+    ]"
+  > 
     <slot />
   </Popover>
 </template>
@@ -30,11 +28,25 @@
 <script setup lang="ts">
 import type { PopoverInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<PopoverInterface>()
 
-const pop = ref()
+const excludedProps = [
+  'src',
+  'buttonClass',
+  'buttonStyle',
+  'popoverClass',
+  'icon',
+]
+
+const adPopover = ref()
 
 const toggle = (event: unknown) => {
-  pop.value.toggle(event)
+  adPopover.value.toggle(event)
 }
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>

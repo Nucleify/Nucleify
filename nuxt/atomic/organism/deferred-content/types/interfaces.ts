@@ -1,6 +1,3 @@
-export interface DeferredContentInterface {
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
-}
+import { DeferredContentProps } from 'primevue'
+
+export interface DeferredContentInterface extends DeferredContentProps {}

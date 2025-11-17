@@ -1,7 +1,7 @@
 @import './components';
 
 .navbar {
-  width: 100%;
+  width: 100vw;
   z-index: 9999;
   position: fixed;
   top: -1px;
@@ -30,15 +30,6 @@
         color: $white-text-color;
         font-size: 1.5em;
         margin: 0;
-      }
-
-      .p-image {
-        display: flex;
-
-        img {
-          height: 44px;
-          width: 44px;
-        }
       }
     }
   }

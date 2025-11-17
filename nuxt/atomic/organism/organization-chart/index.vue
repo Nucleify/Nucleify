@@ -1,19 +1,11 @@
 <template>
-  <OrganizationChart
-    :value="props.value"
-    :selection-keys="props.selectionKeys"
-    :selection-mode="props.selectionMode"
-    :collapsed-keys="props.collapsedKeys"
-    :collapsible="props.collapsible"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <OrganizationChart v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
 import type { OrganizationChartInterface } from 'atomic'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<OrganizationChartInterface>()
 </script>

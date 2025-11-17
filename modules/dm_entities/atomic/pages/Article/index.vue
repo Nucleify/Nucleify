@@ -3,11 +3,10 @@
     <dm-entity-chart-card
       entity="Article"
       class="annual-chart-card"
-      :chart-method-type="'annual'"
-      :type="'bar'"
+      chart-method-type="annual"
+      type="bar"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
       :data="{ article: results }"
-      :chart-class="'h-30rem'"
       :loading="loading"
     />
     <dm-article-dashboard

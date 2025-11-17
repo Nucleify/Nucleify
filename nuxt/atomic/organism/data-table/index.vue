@@ -1,79 +1,44 @@
 <template>
   <DataTable
     v-if="props.value && !props.loading"
-    :ad-type="props.adType"
-    :value="props.value"
-    :data-key="props.dataKey"
-    :rows="props.rows"
-    :first="props.first"
-    :total-records="props.totalRecords"
-    :paginator="props.paginator || true"
-    :paginator-position="props.paginatorPosition"
-    :always-show-paginator="props.alwaysShowPaginator"
-    :paginator-template="props.paginatorTemplate"
-    :page-link-size="props.pageLinkSize"
-    :rows-per-page-options="props.rowsPerPageOptions"
-    :current-page-report-template="props.currentPageReportTemplate"
-    :lazy="props.lazy"
-    :loading="props.loading"
-    :loading-icon="props.loadingIcon"
-    :sort-field="props.sortField"
-    :sort-order="props.sortOrder"
-    :null-sort-order="props.nullSortOrder"
-    :default-sort-order="props.defaultSortOrder"
-    :multi-sort-meta="props.multiSortMeta"
-    :sort-mode="props.sortMode"
-    :removable-sort="props.removableSort"
-    :filter-display="props.filterDisplay"
-    :filter-locale="props.filterLocale"
-    :selection-mode="props.selectionMode"
-    :compare-selection-by="props.compareSelectionBy"
-    :meta-key-selection="props.metaKeySelection"
-    :context-menu="props.contextMenu"
-    :context-menu-selection="props.contextMenuSelection"
-    :select-all="props.selectAll"
-    :row-hover="props.rowHover || true"
-    :csv-separator="props.csvSeparator"
-    :export-filename="props.exportFilename"
-    :export-function="props.exportFunction"
-    :resizable-columns="props.resizableColumns"
-    :column-resize-mode="props.columnResizeMode"
-    :reorderable-columns="props.reorderableColumns"
-    :expanded-rows="props.expandedRows"
-    :expanded-row-icon="props.expandedRowIcon"
-    :collaspe-row-icon="props.collaspeRowIcon"
-    :row-group-mode="props.rowGroupMode"
-    :group-rows-by="props.groupRowsBy"
-    :expandable-row-groups="props.expandableRowGroups"
-    :expanded-row-groups="props.expandedRowGroups"
-    :state-storage="props.stateStorage"
-    :state-key="props.stateKey"
-    :edit-mode="props.editMode"
-    :editing-rows="props.editingRows"
-    :row-class="props.rowClass"
-    :row-style="props.rowStyle"
-    :scrollable="props.scrollable"
-    :scroll-height="props.scrollHeight"
-    :virtual-scroller-options="props.virtualScrollerOptions"
-    :frozen-value="props.frozenValue"
-    :breakpoint="props.breakpoint"
-    :show-headers="props.showHeaders || true"
-    :show-gridlines="props.showGridlines"
-    :striped-rows="props.stripedRows || true"
-    :highlight-on-select="props.highlightOnSelect"
-    :size="props.size || 'small'"
-    :table-style="props.tableStyle"
-    :table-class="props.tableClass"
-    :table-props="props.tableProps"
-    :filter-input-props="props.filterInputProps"
-    :filter-button-props="props.filterButtonProps"
-    :edit-button-props="props.editButtonProps"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
+    v-bind="transformProps(props, excludedProps)"
     v-model:filters="props.filters"
     @update:filters="emits('update:filters', $event)"
+    :rows="props.rows || 10"
+    :paginator="props.paginator || true"
+    :show-headers="props.showHeaders|| true"
+    :striped-rows="props.stripedRows || true"
+    :row-hover="props.rowHover || true"
+    :pt="{
+      root: $style['ad-datatable'],
+      bodyRow: $style['ad-datatable-row'],
+      columnHeaderContent: $style['ad-datatable-column-header-content'],
+      pcPaginator: {
+        paginatorContainer: $style['ad-datatable-paginator-bottom'],
+        root: $style['ad-datatable-paginator'],
+        content: $style['ad-datatable-paginator-content'],
+        first: $style['ad-datatable-paginator-first'],
+        prev: $style['ad-datatable-paginator-prev'],
+        current: $style['ad-datatable-paginator-current'],
+        next: $style['ad-datatable-paginator-next'],
+        last: $style['ad-datatable-paginator-last'],
+        pcRowPerPageDropdown: {
+          root: {
+            class: $style['ad-select'], 
+            'ad-type': props.adType
+          },
+          label: $style['ad-select-label'],
+          dropdown: $style['ad-select-dropdown'],
+          overlay: {
+            class: $style['ad-select-overlay'],
+            'ad-type': props.adType,
+          },
+          listContainer: $style['ad-select-list-container'],
+          list: $style['ad-select-list'],
+          option: $style['ad-select-option'],
+        },
+      }
+    }"
   >
     <slot />
   </DataTable>
@@ -82,6 +47,20 @@
 <script setup lang="ts">
 import type { DataTableInterface } from 'atomic'
 
+import { transformProps } from '../../boson/transform_props'
+
 const props = defineProps<DataTableInterface>()
 const emits = defineEmits<{ (e: 'update:filters', value: unknown): void }>()
+
+const excludedProps = [
+  'loading',
+  'actions',
+  'openDialog',
+  'selectedObject',
+  'rows',
+]
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>

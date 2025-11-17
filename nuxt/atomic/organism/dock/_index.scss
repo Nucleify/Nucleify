@@ -4,16 +4,6 @@
   position: fixed;
   z-index: 98;
 
-  .logo[type='main'] {
-    .lighter-color {
-      fill: var(--main-item-color-new);
-    }
-
-    .darker-color {
-      fill: var(--main-item-dark-color-new);
-    }
-  }
-
   @media (min-width: $lg) {
     &.p-dock-top,
     &.p-dock-bottom {

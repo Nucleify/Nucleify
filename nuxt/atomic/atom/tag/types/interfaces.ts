@@ -1,12 +1,3 @@
-import type { ButtonBadgeSeverityType } from 'atomic'
+import { TagProps } from 'primevue'
 
-export interface TagInterface {
-  value?: unknown[]
-  severity?: ButtonBadgeSeverityType
-  rounded?: boolean
-  icon?: string
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
-}
+export interface TagInterface extends TagProps {}

@@ -1,19 +1,7 @@
-import type { CanvasHTMLAttributes } from 'vue'
+import { ChartProps } from 'primevue/chart'
 
-import type { ChartMethodType, ChartType } from 'atomic'
-
-export interface ChartInterface {
-  type: ChartType
-  data?: object
-  options?: object
-  plugins?: object
+export interface ChartInterface extends ChartProps {
   width?: number
   height?: number
-  canvasProps?: CanvasHTMLAttributes
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  direction?: string
-  chartMethodType: ChartMethodType
   chartClass?: string
 }
