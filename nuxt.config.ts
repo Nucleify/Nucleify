@@ -139,6 +139,7 @@ export default defineNuxtConfig({
         name: 'primevue',
         order: 'app-styles, primevue',
       },
+      darkModeSelector: '.dark-mode',
     },
   },
   runtimeConfig: {
