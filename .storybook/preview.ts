@@ -1,10 +1,14 @@
-import '../nuxt/styles/index.scss'
-
 import { createApp } from 'vue'
 
 import Lara from '@primeuix/themes/lara'
 import type { Preview } from '@storybook/vue3'
 import PrimeVue from 'primevue/config'
+import { defaultColors } from '../modules/dm_colors/atomic/boson/constants/default'
+import '../nuxt/styles/index.scss'
+
+Object.entries(defaultColors).forEach(([key, value]) => {
+  document.documentElement.style.setProperty(`--${key}-new`, value)
+})
 
 export const app = createApp({})
 
@@ -13,6 +17,10 @@ app.use(PrimeVue, {
     preset: Lara,
     options: {
       darkModeSelector: true,
+      cssLayer: {
+        name: 'primevue',
+        order: 'app-styles, primevue',
+      },
     },
   },
   ripple: true,
