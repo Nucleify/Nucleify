@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import type { LogoInterface } from 'atomic'
+import type { LogoInterface } from '.'
 
 const props = defineProps<LogoInterface>()
 </script>

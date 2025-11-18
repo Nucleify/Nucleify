@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { PickListInterface } from 'atomic'
+import type { PickListInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SpeedDialInterface } from 'atomic'
+import type { SpeedDialInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

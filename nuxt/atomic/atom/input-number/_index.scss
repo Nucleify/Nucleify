@@ -1,6 +1,6 @@
-@import '../../atom/input-text';
+@import '../input-text';
 
-.ad-datepicker {
+.ad-inputnumber {
   .ad-inputtext {
     @extend %ad-inputtext;
   }

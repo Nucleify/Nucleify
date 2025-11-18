@@ -6,7 +6,13 @@
     :style="props.style"
   >
     <slot />
-    <ad-icon v-if="props.icon" :icon="props.icon" />
+    <ad-icon 
+      v-if="props.icon" 
+      :icon="props.icon" 
+      :ad-type="props.adType" 
+      :size="props.size"
+      :storybook="props.storybook"
+    />
     <ad-image
       v-if="props.src"
       :src="props.src"
@@ -22,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import type { AnchorInterface } from 'atomic'
+import type { AnchorInterface } from '.'
 
 import { AdIcon, AdImage, AdLabel } from '../../atom' // Import for Storybook
 

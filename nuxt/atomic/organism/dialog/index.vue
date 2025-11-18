@@ -102,7 +102,6 @@
 </template>
 
 <script setup lang="ts">
-import type { ComponentType, DialogInterface, FormDataInterface } from 'atomic'
 import {
   getComponent,
   getTitle,
@@ -112,6 +111,8 @@ import {
   passwordsMatch,
   transformProps,
 } from 'atomic'
+
+import type { ComponentType, DialogInterface, FormDataInterface } from '.'
 
 const props = defineProps<DialogInterface>()
 

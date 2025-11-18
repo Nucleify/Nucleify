@@ -6,7 +6,7 @@ const meta = {
   title: 'Atoms/Button',
   component: AdButton,
   args: {
-    adType: undefined,
+    adType: 'main',
     label: 'Button',
     icon: '',
     iconPos: undefined,

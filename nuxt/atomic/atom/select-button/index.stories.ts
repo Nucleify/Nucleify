@@ -32,6 +32,10 @@ const meta = {
     unstyled: false,
   },
   argTypes: {
+    adType: {
+      control: 'select',
+      options: ['main', 'activity', 'article', 'contact', 'money', 'user'],
+    },
     modelValue: { control: 'number' },
     optionLabel: { control: 'text' },
     optionValue: { control: 'text' },

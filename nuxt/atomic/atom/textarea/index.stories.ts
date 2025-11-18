@@ -6,7 +6,7 @@ const meta = {
   title: 'Atoms/Textarea',
   component: AdTextarea,
   args: {
-    adType: undefined,
+    adType: 'main',
     value: [],
     modelValue: '',
     defaultValue:

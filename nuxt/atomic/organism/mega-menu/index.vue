@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MegaMenuInterface } from 'atomic'
+import type { MegaMenuInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

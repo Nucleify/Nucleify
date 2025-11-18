@@ -3,4 +3,5 @@ export interface IconInterface {
   size?: string
   className?: string
   adType?: string
+  storybook?: boolean
 }

@@ -26,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import type { PopoverInterface } from 'atomic'
+import type { PopoverInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 
