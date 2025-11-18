@@ -7,12 +7,13 @@ const meta = {
   component: AdTile,
   args: {
     adType: 'main',
-    header: '',
+    header: 'Tile',
     href: '',
     count: 0,
-    icon: '',
-    countSecondary: '',
-    textSecondary: '',
+    icon: 'prime:stop',
+    storybook: true,
+    countSecondary: 10,
+    textSecondary: 'this week',
   },
   argTypes: {},
 } satisfies Meta<typeof AdTile>

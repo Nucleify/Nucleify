@@ -12,7 +12,7 @@
 <script setup lang="ts">
 import { SelectButton } from 'primevue' // Import for Storybook
 
-import type { SelectButtonInterface } from 'atomic'
+import type { SelectButtonInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

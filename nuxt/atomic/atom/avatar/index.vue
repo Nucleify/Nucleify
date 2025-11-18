@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { Avatar } from 'primevue' // Import for Storybook
 
-import type { AvatarInterface } from 'atomic'
+import type { AvatarInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

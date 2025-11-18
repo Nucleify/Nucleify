@@ -6,7 +6,7 @@ const meta = {
   title: 'Atoms/InputOtp',
   component: AdInputOtp,
   args: {
-    adType: undefined,
+    adType: 'main',
     modelValue: undefined,
     defaultValue: undefined,
     name: '',

@@ -3,13 +3,22 @@
     v-bind="transformProps(props)"
     :show-on-focus="props.showOnFocus || true"
     :class="$style['ad-datepicker']"
+    :pt="{
+      pcInputText: {
+        root: {
+          class: $style['ad-inputtext'],
+          'ad-type': props.adType,
+        } 
+      },
+    }"
     @update:model-value="onUpdateModelValue"
   />
 </template>
 
 <script setup lang="ts">
-import type { DatePickerInterface, DatePickerModelValueType } from 'atomic'
 import { formatDate, transformProps } from 'atomic'
+
+import type { DatePickerInterface, DatePickerModelValueType } from '.'
 
 const props = defineProps<DatePickerInterface>()
 

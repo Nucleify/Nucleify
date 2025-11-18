@@ -10,7 +10,12 @@
         <ad-paragraph :class="$style['count']" :text="props.count" />
       </div>
       <div :class="$style['icon-container']">
-        <ad-icon :class="$style['icon']" :icon="props.icon" :ad-type="props.adType" />
+        <ad-icon 
+          :class="$style['icon']" 
+          :icon="props.icon" 
+          :ad-type="props.adType" 
+          :storybook="props.storybook" 
+        />
       </div>
     </div>
     <div :class="$style['secondary']">
@@ -21,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import type { TileInterface } from 'atomic'
+import type { TileInterface } from '.'
 
 import { AdIcon, AdParagraph } from '../../atom' // Import for Storybook
 

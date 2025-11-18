@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { CarouselInterface } from 'atomic'
+import type { CarouselInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

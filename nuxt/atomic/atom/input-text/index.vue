@@ -8,7 +8,7 @@
 <script setup lang="ts">
 import { InputText } from 'primevue' // Import for Storybook
 
-import type { InputTextInterface } from 'atomic'
+import type { InputTextInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 
