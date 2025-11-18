@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FileUploadInterface } from 'atomic'
+import type { FileUploadInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

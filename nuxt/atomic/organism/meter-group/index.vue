@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MeterGroupInterface } from 'atomic'
+import type { MeterGroupInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

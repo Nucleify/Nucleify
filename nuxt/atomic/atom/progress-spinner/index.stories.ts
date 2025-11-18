@@ -6,7 +6,7 @@ const meta = {
   title: 'Atoms/ProgressSpinner',
   component: AdProgressSpinner,
   args: {
-    adType: undefined,
+    adType: 'main',
     strokeWidth: '3',
     fill: '',
     animationDuration: '',

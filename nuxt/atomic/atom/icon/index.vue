@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { IconInterface } from 'atomic'
+import type { IconInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 import { getPrimeIconClass } from './utils'

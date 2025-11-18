@@ -1,12 +1,11 @@
 import type { StyleValue } from 'vue'
 
-import type { AnchorRelType, AnchorTargetType } from 'atomic'
+import type { AnchorRelType, AnchorTargetType, IconInterface } from 'atomic'
 
-export interface AnchorInterface {
+export interface AnchorInterface extends IconInterface {
   href?: string
   src?: string
   alt?: string
-  icon?: string
   label?: string
   rel?: AnchorRelType
   target?: AnchorTargetType

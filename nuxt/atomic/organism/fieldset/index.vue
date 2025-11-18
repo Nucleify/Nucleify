@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FieldsetInterface } from 'atomic'
+import type { FieldsetInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

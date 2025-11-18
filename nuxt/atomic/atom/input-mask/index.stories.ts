@@ -6,7 +6,7 @@ const meta = {
   title: 'Atoms/InputMask',
   component: AdInputMask,
   args: {
-    adType: undefined,
+    adType: 'main',
     value: '',
     defaultValue: '',
     slotChar: '',

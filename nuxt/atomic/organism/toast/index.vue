@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ToastInterface } from 'atomic'
+import type { ToastInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

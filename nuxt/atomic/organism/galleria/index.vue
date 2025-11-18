@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { GalleriaInterface } from 'atomic'
+import type { GalleriaInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

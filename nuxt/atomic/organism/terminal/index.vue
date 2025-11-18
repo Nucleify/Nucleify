@@ -10,8 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import type { TerminalInterface } from 'atomic'
 import { handleCommands, transformProps } from 'atomic'
+
+import type { TerminalInterface } from '.'
 
 import TerminalService from 'primevue/terminalservice'
 

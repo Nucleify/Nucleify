@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FloatLabelInterface } from 'atomic'
+import type { FloatLabelInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 
