@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { EditorInterface } from 'atomic'
+import type { EditorInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

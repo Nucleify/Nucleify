@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ScrollPanelInterface } from 'atomic'
+import type { ScrollPanelInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

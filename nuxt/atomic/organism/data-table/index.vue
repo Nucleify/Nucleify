@@ -45,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import type { DataTableInterface } from 'atomic'
+import type { DataTableInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

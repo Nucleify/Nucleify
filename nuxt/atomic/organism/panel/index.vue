@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import type { PanelInterface } from 'atomic'
+import type { PanelInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

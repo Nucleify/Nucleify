@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { RadioButton } from 'primevue' // Import for Storybook
 
-import type { RadioButtonInterface } from 'atomic'
+import type { RadioButtonInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

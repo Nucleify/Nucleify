@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import type { TreeInterface } from 'atomic'
+import type { TreeInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

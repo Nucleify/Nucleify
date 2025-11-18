@@ -1,12 +1,27 @@
 <template>
-  <InputOtp v-bind="transformProps(props)" />
+  <InputOtp 
+  v-bind="transformProps(props)"
+  :class="$style['ad-inputotp']"
+  :pt="{
+    pcInputText: {
+      root: {
+        class: $style['ad-inputtext'],
+        'ad-type': props.adType,
+      }
+    }
+  }" />
 </template>
+
 <script setup lang="ts">
 import { InputOtp } from 'primevue' // Import for Storybook
 
-import type { InputOtpInterface } from 'atomic'
+import type { InputOtpInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<InputOtpInterface>()
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>
