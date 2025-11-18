@@ -1,9 +1,10 @@
-export interface TileInterface {
+import type { IconInterface } from 'atomic'
+
+export interface TileInterface extends IconInterface {
   adType?: AdTypeType
   header?: string
   href?: string
   count?: number
-  icon?: string
   countSecondary?: number
   textSecondary?: string
 }

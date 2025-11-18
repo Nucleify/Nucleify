@@ -7,8 +7,9 @@ const meta = {
   component: AdIcon,
   args: {
     icon: 'prime:star',
-    url: '',
-    adType: '',
+    adType: 'main',
+    size: '1.5em',
+    storybook: true,
   },
   argTypes: {
     adType: {
