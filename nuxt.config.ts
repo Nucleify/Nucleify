@@ -133,13 +133,15 @@ export default defineNuxtConfig({
     options: {
       theme: {
         preset: Lara,
+        options: {
+          darkModeSelector: '.p-dark',
+        },
       },
       ripple: true,
       cssLayer: {
         name: 'primevue',
         order: 'app-styles, primevue',
       },
-      darkModeSelector: '.dark-mode',
     },
   },
   runtimeConfig: {
