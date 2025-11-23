@@ -21,14 +21,14 @@
             <ad-button
               label="Try it out!"
               class="start-button caterpillar"
-              @click="navigateTo('/register')"
+              @click="navigateToUrl('/register')"
             />
             <ad-button
               label="GitHub"
               alt="GitHub logo"
               :src="technologiesImgUrl + 'github.svg'"
               class="start-button caterpillar"
-              @click="navigateTo('https://github.com/SzymCode/DataManager')"
+              @click="navigateToUrl('https://github.com/SzymCode/DataManager')"
             />
           </div>
         </div>
@@ -51,7 +51,7 @@ import gsap from 'gsap'
 
 import {
   bounceFadeIn,
-  navigateTo,
+  navigateToUrl,
   useScrollTrigger,
   useSplitText,
 } from 'atomic'

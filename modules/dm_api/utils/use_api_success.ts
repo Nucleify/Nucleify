@@ -1,8 +1,8 @@
 import type { CloseDialogType, UseToastInterface } from 'atomic'
-import { useToast } from 'atomic'
+import { useAtomicToast } from 'atomic'
 
 export function useApiSuccess() {
-  const { flashToast }: UseToastInterface = useToast()
+  const { flashToast }: UseToastInterface = useAtomicToast()
 
   async function apiSuccess(
     response?: unknown,

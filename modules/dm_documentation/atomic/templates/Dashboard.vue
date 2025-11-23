@@ -34,7 +34,7 @@ import { computed } from 'vue'
 import type { DashboardInterface } from 'atomic'
 import {
   documentationRequests,
-  useDialog,
+  useAtomicDialog,
   useDocumentationFields,
 } from 'atomic'
 
@@ -48,7 +48,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useDialog()
+} = useAtomicDialog()
 
 const { createAndEditFields, showFields } = useDocumentationFields()
 const { deleteDocumentation, storeDocumentation, editDocumentation } =
