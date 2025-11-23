@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import { Textarea } from 'primevue' // Import for Storybook
 
-import type { TextareaInterface } from 'atomic'
+import type { TextareaInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

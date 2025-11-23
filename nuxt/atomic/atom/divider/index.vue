@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { Divider } from 'primevue' // Import for Storybook
 
-import type { DividerInterface } from 'atomic'
+import type { DividerInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

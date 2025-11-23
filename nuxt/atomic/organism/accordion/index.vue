@@ -38,7 +38,7 @@ import {
   AccordionPanel,
 } from 'primevue' // Import for Storybook
 
-import type { AccordionInterface } from 'atomic'
+import type { AccordionInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

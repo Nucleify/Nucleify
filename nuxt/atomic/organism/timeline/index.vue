@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import type { TimelineInterface } from 'atomic'
+import type { TimelineInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

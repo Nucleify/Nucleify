@@ -6,7 +6,7 @@ const meta = {
   title: 'Atoms/RadioButton',
   component: AdRadioButton,
   args: {
-    adType: undefined,
+    adType: 'main',
     value: 0,
     defaultValue: {},
     name: '',

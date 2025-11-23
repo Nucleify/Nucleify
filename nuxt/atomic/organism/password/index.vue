@@ -40,7 +40,6 @@
 </template>
 
 <script setup lang="ts">
-import type { PasswordInterface } from 'atomic'
 import {
   hasLowercase,
   hasMinLength,
@@ -48,6 +47,8 @@ import {
   hasUppercase,
   transformProps,
 } from 'atomic'
+
+import type { PasswordInterface } from '.'
 
 const props = defineProps<PasswordInterface>()
 const emit = defineEmits(['update:modelValue'])

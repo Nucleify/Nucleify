@@ -59,7 +59,6 @@
 </template>
 
 <script setup lang="ts">
-import type { DockInterface } from 'atomic'
 import {
   checkIsStaff,
   dockItems,
@@ -69,6 +68,8 @@ import {
   sessionStorageGetItem,
   transformProps,
 } from 'atomic'
+
+import type { DockInterface } from '.'
 
 const LOCAL_STORAGE_KEY = 'dock-position'
 

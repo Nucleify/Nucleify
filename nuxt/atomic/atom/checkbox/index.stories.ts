@@ -6,7 +6,7 @@ const meta = {
   title: 'Atoms/Checkbox',
   component: AdCheckbox,
   args: {
-    adType: undefined,
+    adType: 'main',
     value: undefined,
     modelValue: undefined,
     defaultValue: undefined,
