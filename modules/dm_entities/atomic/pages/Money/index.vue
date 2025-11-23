@@ -3,11 +3,10 @@
     <dm-entity-chart-card
       entity="Money"
       class="annual-chart-card"
-      :chart-method-type="'annual'"
-      :type="'bar'"
+      chart-method-type="annual"
+      type="bar"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
       :data="{ money: results }"
-      :chart-class="'h-30rem'"
       :loading="loading"
     />
     <dm-money-dashboard
@@ -21,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { moneyRequests, useDialog } from 'atomic'
+import { moneyRequests, useAtomicDialog } from 'atomic'
 
-const { closeDialog } = useDialog()
+const { closeDialog } = useAtomicDialog()
 
 const { loading, results, getAllMoney } = moneyRequests(closeDialog)
 

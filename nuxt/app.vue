@@ -19,6 +19,9 @@ const route = useRoute()
 useHead(() => ({
   title:
     'DataManager – Laravel/Nuxt ERP with Modular Design and Next-gen Architecture',
+  htmlAttrs: {
+    class: 'p-dark',
+  },
   meta: [
     { property: 'og:image', content: '/img/og-image.png' },
     { property: 'og:logo', content: '/img/logo.svg' },

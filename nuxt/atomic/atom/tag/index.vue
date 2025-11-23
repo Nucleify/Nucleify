@@ -1,20 +1,13 @@
 <template>
-  <Tag
-    :value="props.value"
-    :severity="props.severity"
-    :rounded="props.rounded"
-    :icon="props.icon"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <Tag v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
-import type { TagInterface } from 'atomic'
+import { Tag } from 'primevue' // Import for Storybook
 
-import Tag from 'primevue/tag' // Import for Storybook
+import type { TagInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<TagInterface>()
 </script>

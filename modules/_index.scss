@@ -1,14 +1,11 @@
-@import 'dm_media',
-'dm_admin',
-'dm_colors',
+@import
 'dm_globals',
+'dm_media',
 'dm_charts',
 'dm_datatable',
 'dm_activity',
 'dm_animations',
 'dm_auth',
-'dm_entities',
-'dm_entities_structural',
 'dm_loading',
 'dm_modules',
 'dm_navigation',
@@ -18,4 +15,5 @@
 'dm_sections',
 'dm_settings',
 'dm_templates',
-'dm_time';
+'dm_time',
+'dm_tooltip';

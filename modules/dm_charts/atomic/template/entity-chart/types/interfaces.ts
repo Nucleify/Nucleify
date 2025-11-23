@@ -20,6 +20,7 @@ export interface DMEntityChartInterface extends ChartInterface {
   chartMethodType: ChartMethodType
   data?: DMEntityChartDataInterface
   example?: boolean
+  direction?: string
 }
 
 export interface DMEntityChartDataInterface {

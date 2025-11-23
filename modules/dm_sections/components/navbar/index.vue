@@ -3,12 +3,7 @@
   <nav class="navbar">
     <div class="container">
       <nuxt-link class="application-header" to="/home">
-        <ad-image
-          :src="imgUrl + 'logo.svg'"
-          class="logo"
-          alt="DataManager logo"
-          fetchpriority="high"
-        />
+        <ad-logo />
 
         <ad-heading
           :tag="1"

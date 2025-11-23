@@ -1,0 +1,7 @@
+@import '../../atom/input-text';
+
+.ad-datepicker {
+  .ad-inputtext {
+    @extend %ad-inputtext;
+  }
+}

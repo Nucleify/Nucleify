@@ -1,11 +1,5 @@
-export interface PanelInterface {
-  header?: string
+import type { PanelProps } from 'primevue'
+
+export interface PanelInterface extends PanelProps {
   content?: string
-  toggleable?: boolean
-  collapsed?: boolean
-  toggleButtonProps?: object
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
 }

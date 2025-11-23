@@ -10,22 +10,16 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-
 import type { ModuleObjectInterface } from 'atomic'
 import { apiRequest } from 'atomic'
 
-import {
-  DmModulesList,
-  DmModulesSettingsInstallModule,
-  DmModulesSettingsUninstallModule,
-} from '.'
+import { DmModulesList, DmModulesSettingsInstallModule } from '.'
 
 const modules = ref<ModuleObjectInterface[]>([])
 
 async function loadModules(): Promise<void> {
   const response = await apiRequest<{ modules: ModuleObjectInterface[] }>(
-    apiUrl() + '/modules/installed'
+    apiUrl() + '/modules/all'
   )
 
   if (response.modules) {

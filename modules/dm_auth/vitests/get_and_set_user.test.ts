@@ -16,6 +16,9 @@ describe('getAndSetUser', (): void => {
   it('should return a Promise', (): void => {
     const result = atomic.getAndSetUser()
     expect(result).toBeInstanceOf(Promise)
+    result.catch((error) => {
+      expect(error).toBeInstanceOf(Error)
+    })
   })
 
   it('should handle API errors gracefully', async (): Promise<void> => {

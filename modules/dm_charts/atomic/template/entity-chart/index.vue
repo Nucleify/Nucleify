@@ -5,7 +5,7 @@
 		:type="props.type" 
 		:chart-method-type="props.chartMethodType"
 		:direction="props.direction" 
-		:chart-class="props.chartClass" 
+		:class="props.chartClass" 
 		:example="props.example"
 	/>
 </template>

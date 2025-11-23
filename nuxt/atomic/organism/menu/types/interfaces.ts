@@ -1,14 +1,9 @@
+import { MenuProps } from 'primevue'
+
 import type { OpenMenuFunctionType } from 'atomic'
 
-import type { MenuItem } from 'primevue/menuitem'
-
-export interface MenuInterface {
+export interface MenuInterface extends MenuProps {
   ref: string
-  model: MenuItem[]
-  popup: boolean
-  appendTo?: ElementAppendTo
-  autoZIndex?: boolean
-  baseZIndex?: number
 }
 
 export interface UseMenuInterface {

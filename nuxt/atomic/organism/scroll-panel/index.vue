@@ -1,15 +1,11 @@
 <template>
-  <ScrollPanel
-    :step="props.step"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <ScrollPanel v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
-import type { ScrollPanelInterface } from 'atomic'
+import type { ScrollPanelInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<ScrollPanelInterface>()
 </script>

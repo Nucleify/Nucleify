@@ -1,10 +1,8 @@
-.p-selectbutton {
-  .p-togglebutton {
-    background: $p-card-background !important;
-    border-color: $p-card-border !important;
+.ad-togglebutton {
+  background: $p-card-background;
+  border-color: $p-card-border;
 
-    span {
-      color: $white-text-color !important;
-    }
+  span {
+    color: $white-text-color;
   }
 }

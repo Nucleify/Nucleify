@@ -1,9 +1,3 @@
-export interface DividerInterface {
-  align?: PositionType | 'center'
-  layout?: ElementDirectionType
-  type?: 'solid' | 'dashed' | 'dotted'
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
-}
+import { DividerProps } from 'primevue'
+
+export interface DividerInterface extends DividerProps {}

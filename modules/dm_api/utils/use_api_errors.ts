@@ -3,10 +3,10 @@ import type {
   UseApiErrorsInterface,
   UseToastInterface,
 } from 'atomic'
-import { useToast } from 'atomic'
+import { useAtomicToast } from 'atomic'
 
 export function useApiErrors(): UseApiErrorsInterface {
-  const { flashToast }: UseToastInterface = useToast()
+  const { flashToast }: UseToastInterface = useAtomicToast()
 
   function apiErrors(error: ErrorResponseInterface | Error | unknown): void {
     if (error && typeof error === 'object' && 'data' in error) {
@@ -32,6 +32,8 @@ export function useApiErrors(): UseApiErrorsInterface {
       } else {
         flashToast('An unknown error occurred', 'error')
       }
+
+      throw error
     }
   }
 

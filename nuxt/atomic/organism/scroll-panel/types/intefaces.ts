@@ -1,7 +1,3 @@
-export interface ScrollPanelInterface {
-  step?: number
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
-}
+import type { ScrollPanelProps } from 'primevue'
+
+export interface ScrollPanelInterface extends ScrollPanelProps {}

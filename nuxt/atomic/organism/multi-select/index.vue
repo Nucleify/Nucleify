@@ -1,68 +1,11 @@
 <template>
-  <MultiSelect
-    :v-model="props.modelValue"
-    :default-value="props.defaultValue"
-    :name="props.name"
-    :options="props.options"
-    :option-label="props.optionLabel"
-    :option-disabled="props.optionDisabled"
-    :option-group-label="props.optionGroupLabel"
-    :option-group-children="props.optionGroupChildren"
-    :scroll-height="props.scrollHeight"
-    :placeholder="props.placeholder"
-    :size="props.size"
-    :invalid="props.invalid"
-    :disabled="props.disabled"
-    :variant="props.variant"
-    :fluid="props.fluid"
-    :input-id="props.inputId"
-    :overlay-style="props.overlayStyle"
-    :overlay-class="props.overlayClass"
-    :data-key="props.dataKey"
-    :show-clear="props.showClear"
-    :clear-icon="props.clearIcon"
-    :reset-filter-on-clear="props.resetFilterOnClear"
-    :filter-locale="props.filterLocale"
-    :filter-match-mode="props.filterMatchMode"
-    :filter-fields="props.filterFields"
-    :append-to="props.appendTo"
-    :display="props.display"
-    :selected-items-label="props.selectedItemsLabel"
-    :max-selected-labels="props.maxSelectedLabels"
-    :selection-limit="props.selectionLimit"
-    :show-toggle-all="props.showToggleAll"
-    :loading="props.loading"
-    :checkbox-icon="props.checkboxIcon"
-    :dropdown-icon="props.dropdownIcon"
-    :filter-icon="props.filterIcon"
-    :loading-icon="props.loadingIcon"
-    :remove-token-icon="props.removeTokenIcon"
-    :chip-icon="props.chipIcon"
-    :select-all="props.selectAll"
-    :reset-filter-on-hide="props.resetFilterOnHide"
-    :virtual-scroller-options="props.virtualScrollerOptions"
-    :auto-option-focus="props.autoOptionFocus"
-    :auto-filter-focus="props.autoFilterFocus"
-    :focus-on-hover="props.focusOnHover"
-    :highlight-on-select="props.highlightOnSelect"
-    :filter-message="props.filterMessage"
-    :selection-message="props.selectionMessage"
-    :empty-selection-message="props.emptySelectionMessage"
-    :empty-filter-message="props.emptyFilterMessage"
-    :empty-message="props.emptyMessage"
-    :tabindex="props.tabindex"
-    :aria-label="props.ariaLabel"
-    :aria-labelledby="props.ariaLabelledby"
-    :form-control="props.formControl"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <MultiSelect v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
-import type { MultiSelectInterface } from 'atomic'
+import type { MultiSelectInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<MultiSelectInterface>()
 </script>

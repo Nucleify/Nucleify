@@ -6,7 +6,7 @@ const meta = {
   title: 'Atoms/InputText',
   component: AdInputText,
   args: {
-    adType: undefined,
+    adType: 'main',
     value: '3',
     defaultValue: '',
     name: '',

@@ -1,18 +1,13 @@
 <template>
-  <ScrollTop
-    :target="props.target"
-    :threshold="props.threshold"
-    :icon="props.icon"
-    :behavior="props.behavior"
-    :button-props="props.buttonProps"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <ScrollTop v-bind="transformProps(props)" />
 </template>
+
 <script setup lang="ts">
-import type { ScrollTopInterface } from 'atomic'
+import { ScrollTop } from 'primevue' // Import for Storybook
+
+import type { ScrollTopInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<ScrollTopInterface>()
 </script>

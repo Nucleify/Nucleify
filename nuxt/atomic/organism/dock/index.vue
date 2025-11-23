@@ -1,8 +1,8 @@
 <template>
   <ad-popover
     dismissable
-    :button-class="'popover-toggle ' + positionClass"
-    :popover-class="'terminal ' + positionClass"
+    icon="prime:code"
+    :position="position"
   >
     <ad-terminal
       prompt="artisan >"
@@ -11,18 +11,7 @@
   </ad-popover>
 
   <Dock
-    :v-model="props.modelValue"
-    :possition="props.position"
-    :breakpoint="props.breakpoint"
-    :tooltip-options="props.tooltipOptions"
-    :menu-id="props.menuId"
-    :tabindex="props.tabindex"
-    :aria-labelledby="props.ariaLabelledby"
-    :aria-label="props.ariaLabel"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
+    v-bind="transformProps(props, excludedProps)"
     :model="dockItems"
     :position="position"
     class="dock"
@@ -30,7 +19,7 @@
   >
     <template #icon="{ item }">
       <nuxt-link v-if="item.logo" :to="item.url" :aria-label="item.label">
-        <dock-logo />
+        <ad-logo ad-type="main" />
       </nuxt-link>
       
       <nuxt-link v-if="item.icon && (item.url || item.click)" :to="item.url" :aria-label="item.label">
@@ -70,7 +59,6 @@
 </template>
 
 <script setup lang="ts">
-import type { DockInterface } from 'atomic'
 import {
   checkIsStaff,
   dockItems,
@@ -78,22 +66,19 @@ import {
   localStorageSetItem,
   positions,
   sessionStorageGetItem,
+  transformProps,
 } from 'atomic'
 
-import { DockLogo } from '.'
+import type { DockInterface } from '.'
 
 const LOCAL_STORAGE_KEY = 'dock-position'
 
 const props = defineProps<DockInterface>()
 
+const excludedProps = ['model', 'position']
+
 const position = ref<PositionType>('bottom')
 const isStaff = ref(false)
-
-const positionClass = computed(() =>
-  ['top', 'right', 'bottom', 'left'].includes(position.value)
-    ? position.value
-    : ''
-)
 
 function setDockPositionForScreenSize() {
   if (window.innerWidth == 992) {
@@ -116,3 +101,7 @@ watch(position, (newPosition) => {
   localStorageSetItem(LOCAL_STORAGE_KEY, newPosition)
 })
 </script>
+
+<style lang="scss">
+@import 'index';
+</style>

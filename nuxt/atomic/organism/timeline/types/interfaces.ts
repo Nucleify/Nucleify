@@ -1,14 +1,6 @@
-export interface TimelineInterface {
-  events?: TimelineEventInterface[]
-  value?: unknown[]
-  align?: 'left' | 'right' | 'top' | 'bottom' | 'alternate'
-  layout?: ElementDirectionType
-  dataKey?: string
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
-}
+import type { TimelineProps } from 'primevue'
+
+export interface TimelineInterface extends TimelineProps {}
 
 export interface TimelineEventInterface {
   status?: string

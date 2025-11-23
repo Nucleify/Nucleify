@@ -1,27 +1,17 @@
 <template>
   <Textarea
-    :ad-type="props.adType"
-    :model-value="props.modelValue"
-    :default-value="props.defaultValue"
-    :name="props.name"
-    :auto-resize="props.autoResize"
-    :size="props.size"
-    :invalid="props.invalid"
-    :variant="props.variant"
-    :fluid="props.fluid"
-    :form-control="props.formControl"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
+    v-bind="transformProps(props)"
+    :class="[$style['ad-textarea']]"
     @update:model-value="updateValue"
   />
 </template>
 
 <script setup lang="ts">
-import type { TextareaInterface } from 'atomic'
+import { Textarea } from 'primevue' // Import for Storybook
 
-import Textarea from 'primevue/textarea' // Import for Storybook
+import type { TextareaInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<TextareaInterface>()
 
@@ -31,3 +21,7 @@ const updateValue = (value: string) => {
   emit('update:modelValue', value)
 }
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>

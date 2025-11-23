@@ -1,48 +1,19 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
   <div class="panel-container">
-    <div class="tiles grid col-12">
-      <ad-tile
-        href="/entities/articles"
-        header="Articles"
-        :count="articles?.length"
-        icon="prime:comment"
-        :count-secondary="articlesCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="article"
-      />
-      <ad-tile
-        href="/entities/contacts"
-        header="Contacts"
-        :count="contacts?.length"
-        icon="prime:user"
-        :count-secondary="contactsCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="contact"
-      />
-      <ad-tile
-        href="/entities/money"
-        header="Money"
-        :count="money?.length"
-        icon="prime:dollar"
-        :count-secondary="moneyCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="money"
-      />
-    </div>
+    <dm-tiles :entities="entities" />
 
     <dm-entity-chart-card
       entity="Entities"
       class="annual-chart-card"
-      :chart-method-type="'annual'"
-      :type="'bar'"
+      chart-method-type="annual"
+      type="bar"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
       :data="{ 
         article: articles, 
         contact: contacts, 
         money: money 
       }"
-      :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />
 
@@ -65,9 +36,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Ref } from 'vue'
-import { onMounted, ref, watch } from 'vue'
-
+import type { TileInterface } from 'atomic'
 import { articleRequests, contactRequests, moneyRequests } from 'atomic'
 
 const {
@@ -105,34 +74,46 @@ const allLoaded: Ref<boolean> = ref(false)
 
 watch(
   [articlesLoading, contactsLoading, moneyLoading],
-  ([newArticlesLoading, newContactsLoading, newMoneyLoading]) => {
-    if (!newArticlesLoading && !newContactsLoading && !newMoneyLoading) {
+  ([articlesLoading, contactsLoading, moneyLoading]: [
+    boolean,
+    boolean,
+    boolean,
+  ]) => {
+    if (!articlesLoading && !contactsLoading && !moneyLoading) {
       setTimeout(() => {
         allLoaded.value = true
       }, 200)
     }
   }
 )
+
+const entities = computed<TileInterface[]>(() => [
+  {
+    href: '/entities/articles',
+    header: 'Articles',
+    count: articles.value?.length || 0,
+    icon: 'prime:comment',
+    countSecondary: articlesCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'article',
+  },
+  {
+    href: '/entities/contacts',
+    header: 'Contacts',
+    count: contacts.value?.length || 0,
+    icon: 'prime:user',
+    countSecondary: contactsCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'contact',
+  },
+  {
+    href: '/entities/money',
+    header: 'Money',
+    count: money.value?.length || 0,
+    icon: 'prime:dollar',
+    countSecondary: moneyCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'money',
+  },
+])
 </script>
-
-<style scoped>
-:deep(.p-progress-spinner-circle) {
-  stroke: #1ea97c;
-  animation:
-    p-progress-spinner-dash 1.2s ease-in-out infinite,
-    p-progress-spinner-custom-color 6s ease-in-out infinite !important;
-}
-
-@keyframes p-progress-spinner-custom-color {
-  0%,
-  100% {
-    stroke: var(--article-item-color);
-  }
-  25% {
-    stroke: var(--contact-item-color);
-  }
-  50% {
-    stroke: var(--money-item-color);
-  }
-}
-</style>

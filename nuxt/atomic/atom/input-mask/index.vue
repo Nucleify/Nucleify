@@ -1,32 +1,20 @@
 <template>
-  <InputMask
-    :id="props.id"
-    :ad-type="props.adType"
-    :v-model="props.value"
-    :default-value="props.defaultValue"
-    :slot-char="props.slotChar"
-    :mask="props.mask"
-    :placeholder="props.placeholder"
-    :auto-clear="props.autoClear"
-    :unmask="props.unmask"
-    :readonl="props.readonly"
-    :invalid="props.invalid"
-    :name="props.name"
-    :size="props.size"
-    :variant="props.variant"
-    :fluid="props.fluid"
-    :disabled="props.disabled"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
+  <InputMask 
+    v-bind="transformProps(props)" 
+    :class="$style['ad-inputmask']" 
   />
 </template>
 
 <script setup lang="ts">
-import type { InputMaskInterface } from 'atomic'
+import { InputMask } from 'primevue' // Import for Storybook
 
-import InputMask from 'primevue/inputmask' // Import for Storybook
+import type { InputMaskInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<InputMaskInterface>()
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>

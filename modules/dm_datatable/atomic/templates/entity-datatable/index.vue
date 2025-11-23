@@ -124,7 +124,8 @@
               v-for="action in actions"
               :key="action.icon"
               :ad-type="props.adType"
-              class="desktop-button data-table-button"
+              media="desktop"
+              variant="data-table"
               :icon="action.icon"
               rounded
               text
@@ -133,14 +134,15 @@
             />
             <ad-button
               :ad-type="props.adType"
-              class="mobile-button data-table-button"
+              media="mobile"
+              variant="data-table"
               icon="prime:bars"
               rounded
               text
               :loading="props.loading"
               @click="openMenu(menu, $event, row.data)"
             />
-            <Menu ref="menu" :model="selectItems" :popup="true" />
+            <ad-menu ref="menu" :model="selectItems" :popup="true" />
           </template>
         </div>
       </template>
@@ -170,3 +172,7 @@ const { selectItems } = useSelect(selectedObject, props.openDialog!)
 const specificColumns = columns[props.adType as keyof typeof columns]
 const skeleton = ref(new Array(props.rows))
 </script>
+
+<style lang="scss" scoped>
+@import 'index';
+</style>

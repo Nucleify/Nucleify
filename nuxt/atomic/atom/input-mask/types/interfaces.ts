@@ -1,22 +1,6 @@
-export interface InputMaskInterface {
+import { InputMaskProps } from 'primevue'
+
+export interface InputMaskInterface extends InputMaskProps {
   adType?: AdTypeType
   value?: string
-  defaultValue?: string
-  slotChar?: string
-  mask?: string
-  id?: string
-  placeholder?: string
-  autoClear?: boolean
-  unmask?: boolean
-  readonly?: boolean
-  invalid?: boolean
-  name?: string
-  size?: ElementSizeType
-  variant?: ElementVariantType
-  fluid?: boolean
-  disabled?: boolean
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
 }

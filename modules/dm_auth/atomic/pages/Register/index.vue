@@ -8,7 +8,7 @@
             <ad-heading :tag="1" text="Register" />
 
             <ad-paragraph text="Already have an account?">
-              <ad-anchor href="/login" :label="'Log in!'" />
+              <ad-anchor href="/login" label="Log in!" />
             </ad-paragraph>
           </div>
         </div>
@@ -52,12 +52,7 @@
             <ad-label :for="field.id" :label="field.label" />
           </ad-float-label>
 
-          <ad-button
-            label="Register"
-            type="submit"
-            class="primary-button"
-            padding="10px 10px"
-          />
+          <ad-button label="Register" type="submit" />
         </form>
       </template>
     </ad-card>

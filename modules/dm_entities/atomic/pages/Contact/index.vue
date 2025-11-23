@@ -3,11 +3,10 @@
     <dm-entity-chart-card
       entity="Contact"
       class="annual-chart-card"
-      :chart-method-type="'annual'"
-      :type="'bar'"
+      chart-method-type="annual"
+      type="bar"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
       :data="{ contact: results }"
-      :chart-class="'h-30rem'"
       :loading="loading"
     />
     <dm-contact-dashboard
@@ -21,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { contactRequests, useDialog } from 'atomic'
+import { contactRequests, useAtomicDialog } from 'atomic'
 
-const { closeDialog } = useDialog()
+const { closeDialog } = useAtomicDialog()
 
 const { loading, results, getAllContacts } = contactRequests(closeDialog)
 

@@ -1,8 +1,8 @@
-import type { ColorItemColorsInterface, UseColorsInterface } from 'atomic'
+import type { ColorItemInterface, UseColorsInterface } from 'atomic'
 import { colorKeys, getColorValue } from 'atomic'
 
 export function useColors(): UseColorsInterface {
-  const getItemColors = (key: string): ColorItemColorsInterface => {
+  const getItemColors = (key: string): ColorItemInterface => {
     const primary =
       getColorValue(`${key}-item-color-new`) ||
       getColorValue(`${key}-item-color`)

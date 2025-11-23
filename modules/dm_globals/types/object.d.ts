@@ -5,10 +5,13 @@ import type {
   ArticleObjectInterface,
   CardObjectInterface,
   ContactObjectInterface,
+  DocumentationObjectInterface,
   FeatureObjectInterface,
+  FileObjectInterface,
   LinkObjectInterface,
   MoneyObjectInterface,
   QuestionObjectInterface,
+  TaskObjectInterface,
   TechnologyObjectInterface,
   UserObjectInterface,
 } from 'atomic'
@@ -21,10 +24,13 @@ declare global {
     | ArticleObjectInterface
     | CardObjectInterface
     | ContactObjectInterface
+    | DocumentationObjectInterface
     | FeatureObjectInterface
+    | FileObjectInterface
     | LinkObjectInterface
     | MoneyObjectInterface
     | QuestionObjectInterface
+    | TaskObjectInterface
     | TechnologyObjectInterface
     | UserObjectInterface
     | undefined
@@ -34,12 +40,15 @@ declare global {
     | 'article'
     | 'card'
     | 'contact'
+    | 'documentation'
     | 'feature'
+    | 'file'
     | 'link'
     | 'money'
-    | 'user'
     | 'question'
+    | 'task'
     | 'technology'
+    | 'user'
 
   type SelectedObjectType = Ref<ObjectType>
 }
