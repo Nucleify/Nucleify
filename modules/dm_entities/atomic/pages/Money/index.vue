@@ -20,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { moneyRequests, useDialog } from 'atomic'
+import { moneyRequests, useAtomicDialog } from 'atomic'
 
-const { closeDialog } = useDialog()
+const { closeDialog } = useAtomicDialog()
 
 const { loading, results, getAllMoney } = moneyRequests(closeDialog)
 

@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 import type { DialogVisibleInterface, UseDialogInterface } from 'atomic'
 
-export function useDialog(): UseDialogInterface {
+export function useAtomicDialog(): UseDialogInterface {
   const selectedObject: Ref<ObjectType> = ref()
   const visible: DialogVisibleInterface = {
     create: ref(false),
