@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ColorPickerInterface } from 'atomic'
+import type { ColorPickerInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

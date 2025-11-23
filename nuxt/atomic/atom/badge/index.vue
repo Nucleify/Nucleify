@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { Badge } from 'primevue' // Import for Storybook
 
-import type { BadgeInterface } from 'atomic'
+import type { BadgeInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

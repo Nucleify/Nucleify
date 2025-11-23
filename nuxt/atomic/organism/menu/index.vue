@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MenuInterface } from 'atomic'
+import type { MenuInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

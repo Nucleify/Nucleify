@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { OrganizationChartInterface } from 'atomic'
+import type { OrganizationChartInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

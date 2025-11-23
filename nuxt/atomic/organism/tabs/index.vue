@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import type { TabsInterface } from 'atomic'
+import type { TabsInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

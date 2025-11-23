@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SwiperInterface } from 'atomic'
+import type { SwiperInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ChartInterface } from 'atomic'
+import type { ChartInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 

@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { DeferredContentInterface } from 'atomic'
+import type { DeferredContentInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 
