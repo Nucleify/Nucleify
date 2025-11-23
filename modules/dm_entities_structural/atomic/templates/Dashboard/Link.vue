@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { linkRequests, useDialog, useLinkFields } from 'atomic'
+import { linkRequests, useAtomicDialog, useLinkFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useDialog()
+} = useAtomicDialog()
 
 const { createAndEditFields, showFields } = useLinkFields()
 const { deleteLink, storeLink, editLink } = linkRequests(closeDialog)

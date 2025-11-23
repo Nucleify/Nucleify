@@ -1,13 +1,13 @@
 import { useCookie } from 'nuxt/app'
 
 import type { UseToastInterface } from 'atomic'
-import { useToast } from 'atomic'
+import { useAtomicToast } from 'atomic'
 
 import { usePrimeVue } from 'primevue/config'
 
 export function useInstallModule(onSuccess: () => void) {
   const $primevue = usePrimeVue()
-  const { flashToast }: UseToastInterface = useToast()
+  const { flashToast }: UseToastInterface = useAtomicToast()
 
   // biome-ignore lint/suspicious/noExplicitAny: fix it later
   function beforeUpload(event: any) {

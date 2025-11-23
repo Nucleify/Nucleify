@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { fileRequests, useDialog, useFileFields } from 'atomic'
+import { fileRequests, useAtomicDialog, useFileFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useDialog()
+} = useAtomicDialog()
 
 const { createAndEditFields, showFields } = useFileFields()
 const { deleteFile, storeFile, editFile } = fileRequests(closeDialog)

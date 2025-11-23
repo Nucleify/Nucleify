@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { cardRequests, useCardFields, useDialog } from 'atomic'
+import { cardRequests, useAtomicDialog, useCardFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useDialog()
+} = useAtomicDialog()
 
 const { createAndEditFields, showFields } = useCardFields()
 const { deleteCard, storeCard, editCard } = cardRequests(closeDialog)

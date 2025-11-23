@@ -1,1 +1,1 @@
-export * from './use_toast'
+export * from './use_atomic_toast'

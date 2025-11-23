@@ -20,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { activityRequests, useDialog } from 'atomic'
+import { activityRequests, useAtomicDialog } from 'atomic'
 
-const { closeDialog } = useDialog()
+const { closeDialog } = useAtomicDialog()
 
 const { results, loading, getAllActivities } = activityRequests(closeDialog)
 
