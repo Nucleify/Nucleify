@@ -18,6 +18,18 @@ beforeEach(function (): void {
 });
 
 describe('200', function (): void {
+    test('can get all friendships', function (): void {
+        $this->user->befriend($this->otherUser);
+        $this->otherUser->acceptFriendRequest($this->user);
+
+        $response = $this->service->index();
+
+        expect($response)
+            ->and($response->count())
+            ->toBe(1)
+            ->and($this->user->isFriendWith($this->otherUser))
+            ->toBeTrue();
+    });
     test('can send a friend request', function (): void {
         $response = $this->service->sendRequest($this->otherUser);
 
