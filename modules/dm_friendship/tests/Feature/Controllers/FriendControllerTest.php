@@ -18,6 +18,15 @@ beforeEach(function (): void {
 });
 
 describe('200', function (): void {
+    test('index method', function (): void {
+        $response = $this->controller->index();
+
+        expect($response->getStatusCode())
+            ->toEqual(200)
+            ->and($response->getData(true))
+            ->toEqual([]);
+    });
+
     test('sendRequest method', function (): void {
         $response = $this->controller->sendRequest($this->model);
 
