@@ -8,7 +8,7 @@ describe('useApiSuccess', () => {
 
   beforeEach(() => {
     flashToast = vi.fn()
-    vi.spyOn(atomic, 'useToast').mockReturnValue({
+    vi.spyOn(atomic, 'useAtomicToast').mockReturnValue({
       flashToast,
       closeToast: vi.fn(),
     })

@@ -16,7 +16,7 @@
       <ad-button
         class="contact-content-button caterpillar"
         label="Mail"
-        @click="navigateTo('mailto:business@atomic-it.org')"
+        @click="navigateToUrl('mailto:business@atomic-it.org')"
       />
     </div>
   </div>
@@ -27,7 +27,7 @@ import { gsap } from 'gsap'
 
 import {
   bounceFadeIn,
-  navigateTo,
+  navigateToUrl,
   useScrollTrigger,
   useSplitText,
 } from 'atomic'
