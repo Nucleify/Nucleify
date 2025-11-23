@@ -1,0 +1,9 @@
+@mixin entity-logo-styles($item-color, $darker-color) {
+  .lighter-color {
+    fill: $item-color;
+  }
+
+  .darker-color {
+    fill: $darker-color;
+  }
+}

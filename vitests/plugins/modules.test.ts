@@ -28,6 +28,7 @@ vi.mock('../../modules', () => ({
   registerDMTasks: vi.fn(),
   registerDMTemplates: vi.fn(),
   registerDMTime: vi.fn(),
+  registerDMTooltip: vi.fn(),
 }))
 
 const vueApp = {}

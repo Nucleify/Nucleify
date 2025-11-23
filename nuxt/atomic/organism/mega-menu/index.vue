@@ -1,22 +1,11 @@
 <template>
-  <MegaMenu
-    :model="props.model"
-    :orientation="props.orientation"
-    :breakpoint="props.breakpoint"
-    :disabled="props.disabled"
-    :tabindex="props.tabindex"
-    :scroll-height="props.scrollHeight"
-    :aria-label="props.ariaLabel"
-    :aria-labelledby="props.ariaLabelledby"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.pt"
-    :unstyled="props.unstyled"
-  />
+  <MegaMenu v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
-import type { MegaMenuInterface } from 'atomic'
+import type { MegaMenuInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<MegaMenuInterface>()
 </script>

@@ -1,12 +1,17 @@
-.tile {
+.ad-tile {
+  height: 8em;
+  width: 100%;
+  flex: 1 1 calc(50% - 0.3em);
+  max-width: calc(50% - 0.3em);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-radius: 0.35em !important;
+  border-radius: 0.35em;
   min-width: 150px;
   padding: 1em;
   text-decoration: none;
-  background: var(--p-card-background) !important;
+  background: $p-card-background;
+  border: 1px solid $p-card-border;
 
   &:hover {
     color: var(--p-card-color);
@@ -17,7 +22,9 @@
     gap: 0.25em;
 
     p {
+      font-size: 0.7em;
       margin: 0;
+      color: $primary-white-text-color;
     }
 
     .count {
@@ -43,6 +50,7 @@
       .count {
         font-size: 1.1em;
         font-weight: 500;
+        color: $primary-white-text-color;
       }
     }
 
@@ -55,9 +63,31 @@
       border-radius: 0.25em;
       padding: 0;
 
-      .iconify {
+      .icon {
         font-size: 1.5em;
       }
     }
+  }
+
+  @media (min-width: 360px) {
+    .secondary {
+      p {
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  @media (min-width: 500px) {
+    max-width: 250px;
+  }
+
+  @media (min-width: $md) {
+    height: 8.5em;
+    flex: 1 1 calc(33.33% - 0.35em);
+  }
+
+  @media (min-width: $xl) {
+    height: 9em;
+    flex: 1 1 calc(25% - 0.35em);
   }
 }

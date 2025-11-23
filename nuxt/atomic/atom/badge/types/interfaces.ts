@@ -1,11 +1,3 @@
-import type { ButtonBadgeSeverityType } from 'atomic'
+import { BadgeProps } from 'primevue'
 
-export interface BadgeInterface {
-  value?: string | number
-  severity?: ButtonBadgeSeverityType
-  size?: ElementSizeType | 'xlarge'
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
-}
+export interface BadgeInterface extends BadgeProps {}

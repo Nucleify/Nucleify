@@ -1,27 +1,28 @@
-/**
- *  Styles
- */
-import '../nuxt/atomic/boson/styles/index.scss'
-
-/**
- *  App mount
- */
 import { createApp } from 'vue'
 
-/**
- *  PrimeVue
- */
+import Lara from '@primeuix/themes/lara'
 import type { Preview } from '@storybook/vue3'
+import 'primeicons/primeicons.css'
+
 import PrimeVue from 'primevue/config'
-import { DataManagerPreset } from '../nuxt/atomic/primevue_preset'
+import { defaultColors } from '../modules/dm_colors/atomic/boson/constants/default'
+import '../nuxt/styles/index.scss'
+
+Object.entries(defaultColors).forEach(([key, value]) => {
+  document.documentElement.style.setProperty(`--${key}-new`, value)
+})
 
 export const app = createApp({})
 
 app.use(PrimeVue, {
   theme: {
-    preset: DataManagerPreset,
+    preset: Lara,
     options: {
       darkModeSelector: true,
+      cssLayer: {
+        name: 'primevue',
+        order: 'app-styles, primevue',
+      },
     },
   },
   ripple: true,

@@ -3,11 +3,10 @@
     <dm-entity-chart-card
       entity="Activity"
       class="annual-chart-card"
-      :chart-method-type="'annual'"
-      :type="'bar'"
+      chart-method-type="annual"
+      type="bar"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
       :data="{ activity: results }"
-      :chart-class="'h-30rem'"
       :loading="loading"
     />
     <dm-activity-dashboard
@@ -21,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { activityRequests, useDialog } from 'atomic'
+import { activityRequests, useAtomicDialog } from 'atomic'
 
-const { closeDialog } = useDialog()
+const { closeDialog } = useAtomicDialog()
 
 const { results, loading, getAllActivities } = activityRequests(closeDialog)
 

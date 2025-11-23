@@ -2,16 +2,19 @@
 
 #settings .panel-container .modules-settings-card {
   height: 100%;
+  width: 100%;
 
   .p-card-header {
     display: flex;
     justify-content: end;
-    padding: 1em 1em 0;
+    padding: 1em;
   }
 
   .p-card-body {
     height: 100%;
-    
+    padding: .125em 1em 1em;
+    overflow-y: scroll;
+
     .p-card-content {
       height: unset !important;
       display: flex;

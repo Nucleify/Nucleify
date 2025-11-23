@@ -1,24 +1,13 @@
 <template>
-  <Rating
-    :ad-type="props.adType"
-    :model-value="props.modelValue"
-    :default-value="props.defaultValue"
-    :name="props.name"
-    :invalid="props.invalid"
-    :disabled="props.disabled"
-    :readonly="props.readonly"
-    :stars="props.stars"
-    :on-icon="props.onIcon"
-    :off-icon="props.offIcon"
-    :form-control="props.formControl"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <Rating v-bind="transformProps(props)" />
 </template>
+
 <script setup lang="ts">
-import type { RatingInterface } from 'atomic'
+import { Rating } from 'primevue' // Import for Storybook
+
+import type { RatingInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<RatingInterface>()
 </script>

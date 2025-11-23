@@ -1,50 +1,13 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
   <div class="panel-container">
-    <div class="admin-tiles grid col-12">
-      <ad-tile
-        href="#articles"
-        header="Articles"
-        :count="articles?.length"
-        icon="prime:comment"
-        :count-secondary="articlesCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="article"
-      />
-      <ad-tile
-        href="#contacts"
-        header="Contacts"
-        :count="contacts?.length"
-        icon="prime:user"
-        :count-secondary="contactsCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="contact"
-      />
-      <ad-tile
-        href="#money"
-        header="Money"
-        :count="money?.length"
-        icon="prime:dollar"
-        :count-secondary="moneyCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="money"
-      />
-      <ad-tile
-        href="#users"
-        header="Users"
-        :count="users?.length"
-        icon="prime:user"
-        :count-secondary="usersCreatedLastWeek"
-        text-secondary="this week"
-        ad-type="user"
-      />
-    </div>
+    <dm-tiles :entities="entities" />
 
     <dm-entity-chart-card
       entity="Admin"
       class="annual-chart-card"
-      :chart-method-type="'annual'"
-      :type="'bar'"
+      chart-method-type="annual"
+      type="bar"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
       :data="{ 
         article: articles, 
@@ -52,7 +15,6 @@
         money: money, 
         user: users 
       }"
-      :chart-class="'myChart h-30rem'"
       :loading="!allLoaded"
     />
     <dm-article-dashboard
@@ -151,29 +113,43 @@ watch(
     }
   }
 )
+
+const entities = computed(() => [
+  {
+    href: '/admin#articles',
+    header: 'Articles',
+    count: articles?.value?.length || 0,
+    icon: 'prime:comment',
+    countSecondary: articlesCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'article',
+  },
+  {
+    href: '/admin#contacts',
+    header: 'Contacts',
+    count: contacts?.value?.length || 0,
+    icon: 'prime:user',
+    countSecondary: contactsCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'contact',
+  },
+  {
+    href: '/admin#money',
+    header: 'Money',
+    count: money?.value?.length || 0,
+    icon: 'prime:dollar',
+    countSecondary: moneyCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'money',
+  },
+  {
+    href: '/admin#users',
+    header: 'Users',
+    count: users?.value?.length || 0,
+    icon: 'prime:user',
+    countSecondary: usersCreatedLastWeek.value,
+    textSecondary: 'this week',
+    adType: 'user',
+  },
+])
 </script>
-
-<style scoped>
-:deep(.p-progress-spinner-circle) {
-  stroke: #1ea97c;
-  animation:
-    p-progress-spinner-dash 1.2s ease-in-out infinite,
-    p-progress-spinner-custom-color 6s ease-in-out infinite !important;
-}
-
-@keyframes p-progress-spinner-custom-color {
-  0%,
-  100% {
-    stroke: var(--article-item-color);
-  }
-  25% {
-    stroke: var(--contact-item-color);
-  }
-  50% {
-    stroke: var(--money-item-color);
-  }
-  75% {
-    stroke: var(--user-item-color);
-  }
-}
-</style>

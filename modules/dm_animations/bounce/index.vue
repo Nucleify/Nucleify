@@ -1,11 +1,12 @@
 <template>
-  <animation-logo />
+  <ad-logo 
+    class="bounce-animation ball"
+    :dimensions="isMobile() ? 100 : 150"
+  />
 </template>
 
 <script setup lang="ts">
 import { useBounceAnimation, useBounceClick } from '.'
-
-import AnimationLogo from './logo.vue'
 
 onMounted(() => {
   const { ballBounce } = useBounceAnimation()

@@ -1,34 +1,8 @@
 <template>
   <Dialog
-    :header="props.header"
-    :footer="props.footer"
-    :visible="props.visible"
+    v-bind="transformProps(props, excludedProps)"
     :modal="props.modal || true"
-    :content-style="props.contentStyle"
-    :content-class="props.contentClass"
-    :content-props="props.contentProps"
-    :closable="props.closable"
-    :dismissable-mask="props.dismissableMask"
-    :close-on-escape="props.closeOnEscape"
     :show-header="props.showHeader || true"
-    :block-scroll="props.blockScroll"
-    :base-z-index="props.baseZIndex"
-    :auto-z-index="props.autoZIndex"
-    :position="props.position"
-    :maximizable="props.maximizable"
-    :breakpoints="props.breakpoints"
-    :draggable="props.draggable"
-    :min-x="props.minX"
-    :min-y="props.minY"
-    :append-to="props.appendTo"
-    :close-icon="props.closeIcon"
-    :maximize-icon="props.maximizeIcon"
-    :minimize-icon="props.minimizeIcon"
-    :close-button-props="props.closeButtonProps"
-    :maximize-button-props="props.maximizeButtonProps"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
     class="my-dialog"
     :class="props.action"
   >
@@ -128,7 +102,6 @@
 </template>
 
 <script setup lang="ts">
-import type { ComponentType, DialogInterface, FormDataInterface } from 'atomic'
 import {
   getComponent,
   getTitle,
@@ -136,9 +109,27 @@ import {
   isPhoneField,
   isSelectOrDatePicker,
   passwordsMatch,
+  transformProps,
 } from 'atomic'
 
+import type { ComponentType, DialogInterface, FormDataInterface } from '.'
+
 const props = defineProps<DialogInterface>()
+
+const excludedProps = [
+  'entity',
+  'action',
+  'title',
+  'fields',
+  'selectedObject',
+  'data',
+  'getData',
+  'confirmButtonLabel',
+  'confirm',
+  'cancelButtonLabel',
+  'close',
+  'style',
+]
 
 const formData = ref<FormDataInterface>({
   ...(props.data && (Array.isArray(props.data) ? {} : props.data)),
@@ -151,3 +142,7 @@ watch(
   }
 )
 </script>
+
+<style lang="scss">
+@import 'index';
+</style>

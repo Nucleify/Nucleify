@@ -1,16 +1,7 @@
-export interface AccordionInterface {
+import { AccordionProps } from 'primevue'
+
+export interface AccordionInterface extends AccordionProps {
   panels?: AccordionPanelInterface[]
-  value?: number
-  multiple?: boolean
-  lazy?: boolean
-  expandIcon?: string
-  collapseIcon?: string
-  tabindex?: number
-  selectOnFocus?: boolean
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
   hexagons?: boolean
 }
 

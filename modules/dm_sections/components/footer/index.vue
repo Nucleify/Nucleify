@@ -3,11 +3,7 @@
     <div class="footer-content-container">
       <div class="top">
         <ad-anchor href="#start" class="header">
-          <ad-image
-            :src="imgUrl + 'logo.svg'"
-            alt="DataManager logo"
-            class="logo"
-          />
+          <ad-logo :dimensions="isMobile() ? 44 : 72" />
           <ad-heading :tag="1" text="DataManager" class="name" />
         </ad-anchor>
         <div class="content">

@@ -1,46 +1,13 @@
-import type { HTMLAttributes, StyleValue } from 'vue'
+import type { DialogProps } from 'primevue'
+import type { StyleValue } from 'vue'
 
 import type {
   CloseDialogType,
   ConfirmDialogFunctionType,
-  DialogPositionType,
   OpenDialogFunctionType,
 } from 'atomic'
 
-import type { DialogBreakpoints } from 'primevue/dialog'
-
-export interface DialogInterface {
-  header?: string
-  footer?: string
-  visible: boolean
-  modal?: boolean
-  contentStyle?: object
-  contentClass?: string
-  contentProps?: HTMLAttributes
-  closable?: boolean
-  dismissableMask?: boolean
-  closeOnEscape?: boolean
-  showHeader?: boolean
-  blockScroll?: boolean
-  baseZIndex?: number
-  autoZIndex?: boolean
-  position?: DialogPositionType
-  maximizable?: boolean
-  breakpoints?: DialogBreakpoints
-  draggable?: boolean
-  keepInViewPort?: boolean
-  minX?: number
-  minY?: number
-  appendTo?: ElementAppendTo
-  closeIcon?: string
-  maximizeIcon?: string
-  minimizeIcon?: string
-  closeButtonProps?: object
-  maximizeButtonProps?: object
-  dt?: unknown
-  pt?: object
-  ptOptions?: object
-  unstyled?: boolean
+export interface DialogInterface extends DialogProps {
   entity?: ObjectType
   action?: ActionType
   title?: string

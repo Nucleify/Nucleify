@@ -3,11 +3,10 @@
     <dm-entity-chart-card
       entity="File"
       class="annual-chart-card"
-      :chart-method-type="'annual'"
-      :type="'bar'"
+      chart-method-type="annual"
+      type="bar"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
       :data="{ file: results }"
-      :chart-class="'h-30rem'"
       :loading="loading"
     />
 
@@ -22,9 +21,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { fileRequests, useDialog } from 'atomic'
+import { fileRequests, useAtomicDialog } from 'atomic'
 
-const { closeDialog } = useDialog()
+const { closeDialog } = useAtomicDialog()
 
 const { results, loading, getAllFiles } = fileRequests(closeDialog)
 

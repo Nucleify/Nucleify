@@ -1,14 +1,5 @@
 <template>
-  <Timeline
-    :value="props.value"
-    :align="props.align"
-    :layout="props.layout"
-    :data-key="props.dataKey"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  >
+  <Timeline v-bind="transformProps(props)">
     <template #event="event">
       <div :style="{ color: event.color }">
         <ad-icon :icon="event.icon" />
@@ -19,7 +10,9 @@
 </template>
 
 <script setup lang="ts">
-import type { TimelineInterface } from 'atomic'
+import type { TimelineInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<TimelineInterface>()
 </script>

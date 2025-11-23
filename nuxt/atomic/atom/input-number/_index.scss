@@ -1,0 +1,7 @@
+@import '../input-text';
+
+.ad-inputnumber {
+  .ad-inputtext {
+    @extend %ad-inputtext;
+  }
+}

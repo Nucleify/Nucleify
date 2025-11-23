@@ -1,22 +1,17 @@
 <template>
   <Chart
     v-if="props.data"
-    :type="props.type"
-    :data="props.data"
-    :options="props.options"
-    :plugins="props.plugins"
-    :width="props.width"
-    :height="props.height"
-    :canvas-props="props.canvasProps"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
+    v-bind="transformProps(props, excludedProps)"
     :class="props.chartClass"
   />
 </template>
 
 <script setup lang="ts">
-import type { ChartInterface } from 'atomic'
+import type { ChartInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<ChartInterface>()
+
+const excludedProps = ['chartClass']
 </script>

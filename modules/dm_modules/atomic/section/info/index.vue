@@ -32,7 +32,7 @@
                   v-bind="a11yAttrs.root"
                   @click="activateCallback"
                 >
-                  <img :src="imgUrl + 'logo.svg'" alt="Logo" class="logo-img" />
+                  <ad-logo :dimensions="40" />
                 </div>
               </Step>
             </swiper-slide>
@@ -69,7 +69,7 @@
                 label="Read more"
                 class="start-button caterpillar"
                 @click="
-                  navigateTo(
+                  navigateToUrl(
                     'https://github.com/Atomic-IT/DataManager/tree/prod/modules'
                   )
                 "
@@ -105,7 +105,7 @@ import {
   apiHandle,
   bounceFadeIn,
   isMobile,
-  navigateTo,
+  navigateToUrl,
   useScrollTrigger,
 } from 'atomic'
 

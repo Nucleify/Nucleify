@@ -1,7 +1,9 @@
 export type ChartType =
   | 'bar'
-  | 'pie'
+  | 'bubble'
   | 'doughnut'
   | 'line'
+  | 'pie'
   | 'polarArea'
   | 'radar'
+  | 'scatter'

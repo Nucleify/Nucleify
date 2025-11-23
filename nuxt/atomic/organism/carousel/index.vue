@@ -1,29 +1,11 @@
 <template>
-  <Carousel
-    :value="props.value"
-    :page="props.page"
-    :num-visible="props.numVisible"
-    :num-scroll="props.numScroll"
-    :responsive-options="props.responsiveOptions"
-    :orientation="props.orientation"
-    :vertical-view-port-height="props.verticalViewPortHeight"
-    :container-class="props.containerClass"
-    :content-class="props.contentClass"
-    :indicators-content-class="props.indicatorsContentClass"
-    :circular="props.circular"
-    :autoplay-interval="props.autoplayInterval"
-    :show-navigators="props.showNavigators"
-    :show-indicators="props.showIndicators"
-    :prev-button-props="props.prevButtonProps"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <Carousel v-bind="transformProps(props)" />
 </template>
 
 <script setup lang="ts">
-import type { CarouselInterface } from 'atomic'
+import type { CarouselInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<CarouselInterface>()
 </script>

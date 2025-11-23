@@ -6,7 +6,7 @@ const meta = {
   title: 'Atoms/Slider',
   component: AdSlider,
   args: {
-    adType: undefined,
+    adType: 'main',
     modelValue: 1,
     defaultValue: 20,
     min: 10,

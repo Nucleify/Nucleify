@@ -3,11 +3,10 @@
     <dm-entity-chart-card
       entity="Task"
       class="annual-chart-card"
-      :chart-method-type="'annual'"
-      :type="'bar'"
+      chart-method-type="annual"
+      type="bar"
       :direction="isMobile() ? 'horizontal' : 'vertical'"
       :data="{ task: results }"
-      :chart-class="'h-30rem'"
       :loading="loading"
     />
     <dm-task-dashboard
@@ -19,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { taskRequests, useDialog } from 'atomic'
+import { taskRequests, useAtomicDialog } from 'atomic'
 
-const { closeDialog } = useDialog()
+const { closeDialog } = useAtomicDialog()
 const { results, loading, getAllTasks } = taskRequests(closeDialog)
 
 onMounted(() => {

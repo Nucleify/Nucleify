@@ -1,29 +1,27 @@
 <template>
-  <InputOtp
-    :ad-type="props.adType"
-    :v-model="props.modelValue"
-    :default-value="props.defaultValue"
-    :name="props.name"
-    :size="props.size"
-    :invalid="props.invalid"
-    :disabled="props.disabled"
-    :readonly="props.readonly"
-    :variant="props.variant"
-    :tabindex="props.tabindex"
-    :length="props.length"
-    :mask="props.mask"
-    :integer-only="props.integerOnly"
-    :form-control="props.formControl"
-    :dt="props.dt"
-    :pt="props.pt"
-    :pt-options="props.ptOptions"
-    :unstyled="props.unstyled"
-  />
+  <InputOtp 
+  v-bind="transformProps(props)"
+  :class="$style['ad-inputotp']"
+  :pt="{
+    pcInputText: {
+      root: {
+        class: $style['ad-inputtext'],
+        'ad-type': props.adType,
+      }
+    }
+  }" />
 </template>
-<script setup lang="ts">
-import type { InputOtpInterface } from 'atomic'
 
-import InputOtp from 'primevue/inputotp' // Import for Storybook
+<script setup lang="ts">
+import { InputOtp } from 'primevue' // Import for Storybook
+
+import type { InputOtpInterface } from '.'
+
+import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<InputOtpInterface>()
 </script>
+
+<style lang="scss" module>
+@import 'index';
+</style>
