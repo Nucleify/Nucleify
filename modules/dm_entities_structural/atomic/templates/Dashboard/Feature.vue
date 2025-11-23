@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { featureRequests, useDialog, useFeatureFields } from 'atomic'
+import { featureRequests, useAtomicDialog, useFeatureFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useDialog()
+} = useAtomicDialog()
 
 const { createAndEditFields, showFields } = useFeatureFields()
 const { deleteFeature, storeFeature, editFeature } =

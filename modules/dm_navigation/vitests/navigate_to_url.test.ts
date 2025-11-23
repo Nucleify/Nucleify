@@ -13,7 +13,7 @@ beforeEach((): void => {
 it('navigates to specified URL', (): void => {
   const testUrl: string = '/home'
 
-  atomic.navigateTo(testUrl)
+  atomic.navigateToUrl(testUrl)
 
   expect(window.location.href).toBe(testUrl)
 })

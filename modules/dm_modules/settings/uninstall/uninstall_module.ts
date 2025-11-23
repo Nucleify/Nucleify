@@ -1,11 +1,11 @@
 import type { UseToastInterface } from 'atomic'
-import { apiHandle, useToast } from 'atomic'
+import { apiHandle, useAtomicToast } from 'atomic'
 
 export async function uninstallModule(
   name: string,
   emit: (event: string) => void
 ): Promise<void> {
-  const { flashToast }: UseToastInterface = useToast()
+  const { flashToast }: UseToastInterface = useAtomicToast()
 
   if (!name) {
     flashToast('Module name is required', 'error')

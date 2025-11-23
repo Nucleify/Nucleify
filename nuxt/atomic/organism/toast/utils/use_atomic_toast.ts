@@ -6,7 +6,7 @@ import type {
   UseToastInterface,
 } from 'atomic'
 
-export function useToast(): UseToastInterface {
+export function useAtomicToast(): UseToastInterface {
   const nuxtApp = useNuxtApp()
   const getToast = () => {
     if (!import.meta.client) return
