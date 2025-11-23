@@ -3,9 +3,30 @@
 namespace App\Services;
 
 use App\Models\User;
+use App\Resources\FriendshipResource;
+use App\Traits\Setters\UserSetterTrait;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class FriendshipService
 {
+    use UserSetterTrait;
+
+    public function __construct(
+        private readonly LoggerService $logger = new LoggerService
+    ) {}
+
+    /**
+     * @return AnonymousResourceCollection
+     *
+     * @throws Exception
+     */
+    public function index(): AnonymousResourceCollection
+    {
+        $friendships = auth()->user()->getAllFriendships();
+
+        return FriendshipResource::collection($friendships);
+    }
+
     /**
      * @param User $recipient
      *

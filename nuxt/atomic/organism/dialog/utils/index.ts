@@ -1,1 +1,1 @@
-export * from './use_dialog'
+export * from './use_atomic_dialog'

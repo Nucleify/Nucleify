@@ -21,9 +21,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { fileRequests, useDialog } from 'atomic'
+import { fileRequests, useAtomicDialog } from 'atomic'
 
-const { closeDialog } = useDialog()
+const { closeDialog } = useAtomicDialog()
 
 const { results, loading, getAllFiles } = fileRequests(closeDialog)
 

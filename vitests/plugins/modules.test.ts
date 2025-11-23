@@ -15,6 +15,7 @@ vi.mock('../../modules', () => ({
   registerDMEntities: vi.fn(),
   registerDMEntitiesStructural: vi.fn(),
   registerDMFiles: vi.fn(),
+  registerDMFriendship: vi.fn(),
   registerDMModules: vi.fn(),
   registerDMNavigation: vi.fn(),
   registerDMGlobals: vi.fn(),

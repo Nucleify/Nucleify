@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { moneyRequests, useDialog, useMoneyFields } from 'atomic'
+import { moneyRequests, useAtomicDialog, useMoneyFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useDialog()
+} = useAtomicDialog()
 
 const { createAndEditFields, showFields } = useMoneyFields()
 const { deleteMoney, storeMoney, editMoney } = moneyRequests(closeDialog)

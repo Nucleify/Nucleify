@@ -30,11 +30,12 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { activityRequests, useDialog } from 'atomic'
+import { activityRequests, useAtomicDialog } from 'atomic'
 
 defineProps<DashboardInterface>()
 
-const { visibleDelete, selectedObject, openDialog, closeDialog } = useDialog()
+const { visibleDelete, selectedObject, openDialog, closeDialog } =
+  useAtomicDialog()
 
 const { deleteActivity, getAllActivities } = activityRequests(closeDialog)
 

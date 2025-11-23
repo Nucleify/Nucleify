@@ -1,8 +1,8 @@
 <template>
   <div 
-    class="modules-settings-card-list-item"
-    :class="{ 'active': props.enabled }" 
-    @click="navigateTo('/settings#module-' + props.name)"
+  class="modules-settings-card-list-item"
+  :class="{ 'active': props.enabled }" 
+  @click="navigateToUrl('/settings#module-' + props.name)"
   >
     <dm-cube
       :shiny="props.enabled"
@@ -23,6 +23,7 @@
 
 <script setup lang="ts">
 import type { ModuleObjectInterface } from 'atomic'
+import { navigateToUrl } from 'atomic'
 
 import { DmModulesSettingsUninstallModule } from '../..'
 

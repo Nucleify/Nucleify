@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
 import * as atomic from 'atomic'
 
 describe('featureRequests', (): void => {
-  const { closeDialog } = atomic.useDialog()
+  const { closeDialog } = atomic.useAtomicDialog()
   const requests: atomic.FeatureRequestsInterface =
     atomic.featureRequests(closeDialog)
   const mockResponse = [atomic.mockFeature]
