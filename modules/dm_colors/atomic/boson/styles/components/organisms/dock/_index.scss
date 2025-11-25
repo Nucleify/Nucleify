@@ -30,7 +30,7 @@ $items: (
 
 @each $item, $props in $items {
   #__nuxt:has(##{$item}) {
-    .dock .iconify[ad-type='#{$item}'] {
+    .p-dock .iconify[ad-type='#{$item}'] {
       @include entity-dock-item-styles(var(map.get($props, color)) !important);
     }
   }
