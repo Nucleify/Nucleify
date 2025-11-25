@@ -14,6 +14,7 @@
     :model="dockItems"
     :position="position"
     :class="{ staff: isStaff }"
+    class="dm-dock"
   >
     <template #icon="{ item }">
       <nuxt-link v-if="item.logo" :to="item.url" :aria-label="item.label">
@@ -92,3 +93,7 @@ watch(position, (newPosition) => {
   localStorageSetItem(LOCAL_STORAGE_KEY, newPosition)
 })
 </script>
+
+<style lang="scss">
+@import 'index';
+</style>
