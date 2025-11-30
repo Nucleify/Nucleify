@@ -16,7 +16,7 @@
     :class="{ staff: isStaff }"
     class="dm-dock"
   >
-    <template #icon="{ item }">
+    <template #item="{ item }">
       <nuxt-link v-if="item.logo" :to="item.url" :aria-label="item.label">
         <ad-logo ad-type="main" />
       </nuxt-link>
