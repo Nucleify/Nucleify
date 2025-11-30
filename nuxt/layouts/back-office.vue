@@ -1,7 +1,7 @@
 <template>
   <div id="back-office">
     <slot />
-    <ad-dock />
+    <dm-dock />
   </div>
 </template>
 
