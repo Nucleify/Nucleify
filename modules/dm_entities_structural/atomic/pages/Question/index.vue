@@ -20,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { questionRequests, useAtomicDialog } from 'atomic'
+import { questionRequests, useDmDialog } from 'atomic'
 
-const { closeDialog } = useAtomicDialog()
+const { closeDialog } = useDmDialog()
 
 const { results, loading, getAllQuestions } = questionRequests(closeDialog)
 

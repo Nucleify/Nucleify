@@ -10,7 +10,7 @@
       button-text="New Documentation"
     />
 
-    <ad-dialog
+    <dm-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"
@@ -34,7 +34,7 @@ import { computed } from 'vue'
 import type { DashboardInterface } from 'atomic'
 import {
   documentationRequests,
-  useAtomicDialog,
+  useDmDialog,
   useDocumentationFields,
 } from 'atomic'
 
@@ -48,7 +48,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useAtomicDialog()
+} = useDmDialog()
 
 const { createAndEditFields, showFields } = useDocumentationFields()
 const { deleteDocumentation, storeDocumentation, editDocumentation } =

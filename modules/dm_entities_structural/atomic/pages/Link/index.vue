@@ -20,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { linkRequests, useAtomicDialog } from 'atomic'
+import { linkRequests, useDmDialog } from 'atomic'
 
-const { closeDialog } = useAtomicDialog()
+const { closeDialog } = useDmDialog()
 
 const { results, loading, getAllLinks } = linkRequests(closeDialog)
 

@@ -20,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { featureRequests, useAtomicDialog } from 'atomic'
+import { featureRequests, useDmDialog } from 'atomic'
 
-const { closeDialog } = useAtomicDialog()
+const { closeDialog } = useDmDialog()
 
 const { results, loading, getAllFeatures } = featureRequests(closeDialog)
 
