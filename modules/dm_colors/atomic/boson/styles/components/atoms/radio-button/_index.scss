@@ -7,11 +7,10 @@
     );
   }
 
-  .dock
+  .p-dock
     .p-dock-list-container
     ul
     .p-dock-item
-    a
     .dock-position-buttons
     div[ad-type='#{$type}']
     input[type='radio'] {

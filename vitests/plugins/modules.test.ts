@@ -11,6 +11,8 @@ vi.mock('../../modules', () => ({
   registerDMColors: vi.fn(),
   registerDMCharts: vi.fn(),
   registerDMDataTable: vi.fn(),
+  registerDMDialog: vi.fn(),
+  registerDMDock: vi.fn(),
   registerDMDocumentation: vi.fn(),
   registerDMEntities: vi.fn(),
   registerDMEntitiesStructural: vi.fn(),
@@ -49,6 +51,8 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   expect(modules.registerDMColors).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMCharts).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMDataTable).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerDMDialog).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerDMDock).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMDocumentation).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMEntities).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMEntitiesStructural).toHaveBeenCalledWith(vueApp)

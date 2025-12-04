@@ -1,0 +1,80 @@
+.dm-dock {
+  &.p-dock-left,
+  &.p-dock-right {
+    .dock-position-buttons {
+      @include center-content;
+
+      margin-left: 0.25em;
+    }
+  }
+
+  .p-dock-list-container {
+    ul {
+      .p-dock-item {
+        .iconify {
+          color: $primary-white-green-text-color;
+        }
+
+        &:has(.dock-position-buttons) {
+          padding: 0;
+          width: 3rem;
+          height: 3rem;
+        }
+        
+        &:hover:not(:has(.dock-position-buttons)) {
+          transform: scale(1.15);
+        }
+
+        .dock-position-buttons {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.25rem;
+          max-width: 36px;
+          max-height: 36px;
+          transform: rotate(45deg);
+      
+          &:hover {
+            transform: rotate(45deg);
+          }
+      
+          .top,
+          .bottom,
+          .left,
+          .right {
+            margin: 0;
+            width: 11px;
+            height: 11px;
+          }
+      
+          .left,
+          .right {
+            pointer-events: none;
+            opacity: 0;
+      
+            @media (min-width: $lg) {
+              pointer-events: inherit;
+              opacity: 1;
+            }
+          }
+      
+          input[type='radio'] {
+            box-sizing: border-box;
+            appearance: none;
+            background: rgb(69 69 69 / 10%);
+            width: 10px;
+            height: 10px;
+            margin: 0;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  &:not(.staff) {
+    .p-dock-item[aria-label='Admin Panel'],
+    .p-dock-item[aria-label='Structural'] {
+      display: none;
+    }
+  }
+}
