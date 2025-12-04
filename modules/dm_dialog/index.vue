@@ -3,7 +3,7 @@
     v-bind="transformProps(props, excludedProps)"
     :modal="props.modal || true"
     :show-header="props.showHeader || true"
-    class="my-dialog"
+    class="dm-dialog"
     :class="props.action"
   >
     <template #header>
@@ -145,3 +145,7 @@ watch(
   }
 )
 </script>
+
+<style lang="scss">
+@import 'index';
+</style>
