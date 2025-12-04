@@ -10,7 +10,7 @@
       button-text="New Task"
     />
 
-    <ad-dialog
+    <dm-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"
@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { taskRequests, useAtomicDialog, useTaskFields } from 'atomic'
+import { taskRequests, useDmDialog, useTaskFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useAtomicDialog()
+} = useDmDialog()
 
 const { createAndEditFields, showFields } = useTaskFields()
 const { deleteTask, storeTask, editTask } = taskRequests(closeDialog)

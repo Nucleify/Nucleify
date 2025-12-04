@@ -10,7 +10,7 @@
       button-text="New File"
     />
 
-    <ad-dialog
+    <dm-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"
@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { fileRequests, useAtomicDialog, useFileFields } from 'atomic'
+import { fileRequests, useDmDialog, useFileFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useAtomicDialog()
+} = useDmDialog()
 
 const { createAndEditFields, showFields } = useFileFields()
 const { deleteFile, storeFile, editFile } = fileRequests(closeDialog)

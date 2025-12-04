@@ -10,7 +10,7 @@
       button-text="New Feature"
     />
 
-    <ad-dialog
+    <dm-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"
@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { featureRequests, useAtomicDialog, useFeatureFields } from 'atomic'
+import { featureRequests, useDmDialog, useFeatureFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useAtomicDialog()
+} = useDmDialog()
 
 const { createAndEditFields, showFields } = useFeatureFields()
 const { deleteFeature, storeFeature, editFeature } =
