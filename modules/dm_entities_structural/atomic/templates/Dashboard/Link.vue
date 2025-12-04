@@ -10,7 +10,7 @@
       button-text="New Link"
     />
 
-    <ad-dialog
+    <dm-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"
@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { linkRequests, useAtomicDialog, useLinkFields } from 'atomic'
+import { linkRequests, useDmDialog, useLinkFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useAtomicDialog()
+} = useDmDialog()
 
 const { createAndEditFields, showFields } = useLinkFields()
 const { deleteLink, storeLink, editLink } = linkRequests(closeDialog)
