@@ -10,7 +10,7 @@
       button-text="New Transaction"
     />
 
-    <ad-dialog
+    <dm-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"
@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { moneyRequests, useAtomicDialog, useMoneyFields } from 'atomic'
+import { moneyRequests, useDmDialog, useMoneyFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useAtomicDialog()
+} = useDmDialog()
 
 const { createAndEditFields, showFields } = useMoneyFields()
 const { deleteMoney, storeMoney, editMoney } = moneyRequests(closeDialog)

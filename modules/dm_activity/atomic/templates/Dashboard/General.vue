@@ -9,7 +9,7 @@
       header-text="Manage Activities"
     />
 
-    <ad-dialog
+    <dm-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"
@@ -30,12 +30,11 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { activityRequests, useAtomicDialog } from 'atomic'
+import { activityRequests, useDmDialog } from 'atomic'
 
 defineProps<DashboardInterface>()
 
-const { visibleDelete, selectedObject, openDialog, closeDialog } =
-  useAtomicDialog()
+const { visibleDelete, selectedObject, openDialog, closeDialog } = useDmDialog()
 
 const { deleteActivity, getAllActivities } = activityRequests(closeDialog)
 
