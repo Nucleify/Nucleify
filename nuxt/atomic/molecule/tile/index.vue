@@ -3,6 +3,7 @@
     :class="$style['ad-tile']"
     :to="props.href" 
     :ad-type="props.adType"
+    class="ad-tile"
   >
     <div :class="$style['general']">
       <div :class="$style['info']">
