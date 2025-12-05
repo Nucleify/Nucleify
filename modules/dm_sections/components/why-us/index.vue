@@ -198,19 +198,28 @@ watchEffect(() => {
     const scrollHeight =
       document.documentElement.scrollHeight - window.innerHeight
 
-    window.addEventListener('scroll', () => {
-      const scrollProgress = window.scrollY / scrollHeight
-      const currentProgress = spin.progress()
+    let ticking = false
 
-      const targetProgress = (currentProgress / 0.4 + scrollProgress) / 4
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrollProgress = window.scrollY / scrollHeight
+          const currentProgress = spin.progress()
+          const targetProgress = (currentProgress / 0.4 + scrollProgress) / 4
 
-      gsap.to(spin, {
-        progress: targetProgress,
-        duration: 0.5,
-        ease: 'power2.out',
-        overwrite: 'auto',
-      })
-    })
+          gsap.to(spin, {
+            progress: targetProgress,
+            duration: 0.5,
+            ease: 'power2.out',
+            overwrite: 'auto',
+          })
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     watch(
       () => dialogVisible.value,
@@ -225,10 +234,10 @@ onBeforeUnmount(() => {
     draggable?.kill()
     gsap.killTweensOf('.main-circle')
 
-    // Clean up dynamically created Vue apps
     iconApps.value.forEach((app) => {
       app.unmount()
     })
+
     iconApps.value = []
 
     if (clickOutsideHandler) {
