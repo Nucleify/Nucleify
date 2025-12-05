@@ -11,10 +11,12 @@ import {
 
 export default defineNuxtPlugin(() => {
   if (import.meta.client) {
-    applyColorsWithNewSuffix()
-
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', applyColorsWithNewSuffix)
+      document.addEventListener('DOMContentLoaded', applyColorsWithNewSuffix, {
+        once: true,
+      })
+    } else {
+      applyColorsWithNewSuffix()
     }
 
     colorKeys.forEach((item: string): void =>
