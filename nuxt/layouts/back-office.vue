@@ -10,3 +10,7 @@ definePageMeta({
   layout: 'back-office',
 })
 </script>
+
+<style lang="scss">
+@import '../../modules/dm_colors';
+</style>
