@@ -80,6 +80,7 @@ export default defineNuxtConfig({
     build: {
       chunkSizeWarningLimit: 1600,
       minify: 'terser',
+      cssCodeSplit: true,
       rollupOptions: {
         maxParallelFileOps: 2,
         output: {
