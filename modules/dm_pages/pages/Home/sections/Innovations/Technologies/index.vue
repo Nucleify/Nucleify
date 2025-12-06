@@ -2,7 +2,7 @@
   <section id="technologies">
     <div class="swiper-container">
       <swiper-container ref="technologiesSwiper" class="mySwiper">
-        <swiper-slide v-for="(tech, index) in data" :key="index">
+        <swiper-slide v-for="(tech, index) in resultsBySite" :key="index">
           <ad-anchor
             v-if="tech"
             v-tooltip="tech.label"
@@ -26,23 +26,9 @@ import {
   useScrollTrigger,
 } from 'atomic'
 
-let data
+const { getSiteTechnologies, resultsBySite } = technologyRequests()
 
-if (appEnv() !== 'production') {
-  const { getSiteTechnologies, resultsBySite } = technologyRequests()
-
-  onMounted(() => getSiteTechnologies('general', false))
-  watchEffect(() => (data = resultsBySite))
-} else {
-  ;({ data } = await useFetch(
-    apiUrl() + '/technologies/get-site-technologies/general',
-    {
-      method: 'GET',
-      immediate: true,
-      watch: false,
-    }
-  ))
-}
+onMounted(() => getSiteTechnologies('general', false))
 
 const technologiesSwiper = ref(null)
 
