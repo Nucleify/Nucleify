@@ -50,8 +50,14 @@ const totalRows = ref(0)
 const hexagonRows = ref<number[][][]>([])
 
 onMounted(() => {
+  let resizeTimeout: ReturnType<typeof setTimeout> | null = null
+
   const resizeObserver = new ResizeObserver(() => {
-    updateImagesPerRow(containerRef, imagesPerRow, totalRows, hexagonRows)
+    if (resizeTimeout) clearTimeout(resizeTimeout)
+
+    resizeTimeout = setTimeout(() => {
+      updateImagesPerRow(containerRef, imagesPerRow, totalRows, hexagonRows)
+    }, 100)
   })
 
   if (containerRef.value) {
@@ -61,10 +67,13 @@ onMounted(() => {
   updateImagesPerRow(containerRef, imagesPerRow, totalRows, hexagonRows)
 
   const interval = setInterval(() => {
-    updateImagesPerRow(containerRef, imagesPerRow, totalRows, hexagonRows)
+    requestAnimationFrame(() => {
+      updateImagesPerRow(containerRef, imagesPerRow, totalRows, hexagonRows)
+    })
   }, PATTERN_UPDATE_INTERVAL)
 
   onBeforeUnmount(() => {
+    if (resizeTimeout) clearTimeout(resizeTimeout)
     if (containerRef.value) {
       resizeObserver.unobserve(containerRef.value)
     }

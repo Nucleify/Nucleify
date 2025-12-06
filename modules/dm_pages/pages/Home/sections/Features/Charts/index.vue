@@ -7,22 +7,20 @@
       />
       <ad-card class="dm-card-base home-chart-card">
         <template #content>
-          <DeferredContent>
-            <dm-animation-hexagons style="opacity: 0.3" />
-            <dm-entity-chart
-              chart-method-type="annual"
-              type="bar"
-              class="home-vertical-chart"
-              :direction="isMobile() ? 'horizontal' : 'vertical'"
-              :example="true"
-            />
-            <dm-entity-chart
-              chart-method-type="count"
-              type="pie"
-              class="home-pie-chart"
-              :example="true"
-            />
-          </DeferredContent>
+          <dm-animation-hexagons style="opacity: 0.3" />
+          <dm-entity-chart
+            chart-method-type="annual"
+            type="bar"
+            class="home-vertical-chart"
+            :direction="isMobile() ? 'horizontal' : 'vertical'"
+            :example="true"
+          />
+          <dm-entity-chart
+            chart-method-type="count"
+            type="pie"
+            class="home-pie-chart"
+            :example="true"
+          />
         </template>
       </ad-card>
     </div>

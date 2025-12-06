@@ -4,14 +4,27 @@ import * as atomic from 'atomic'
 import { applyColorsWithNewSuffix } from 'atomic'
 
 describe('applyColorsWithNewSuffix', (): void => {
-  let setPropertySpy: ReturnType<typeof vi.spyOn>
+  let appendChildSpy: ReturnType<typeof vi.spyOn<[Node], Node>>
+  let createdStyle: HTMLStyleElement | null = null
 
   beforeEach((): void => {
     vi.restoreAllMocks()
 
-    setPropertySpy = vi
-      .spyOn(document.documentElement.style, 'setProperty')
-      .mockImplementation()
+    createdStyle = null
+    vi.spyOn(document, 'createElement').mockImplementation((tagName) => {
+      if (tagName === 'style') {
+        createdStyle = {
+          id: '',
+          textContent: '',
+        } as unknown as HTMLStyleElement
+        return createdStyle
+      }
+      return document.createElement(tagName)
+    })
+    vi.spyOn(document, 'getElementById').mockReturnValue(null)
+    appendChildSpy = vi
+      .spyOn(document.head, 'appendChild')
+      .mockImplementation(() => createdStyle as Node)
   })
 
   it('should call getColorValue with correct keys and set CSS variables', (): void => {
@@ -21,23 +34,24 @@ describe('applyColorsWithNewSuffix', (): void => {
 
     applyColorsWithNewSuffix()
 
+    expect(createdStyle).not.toBeNull()
+    expect(createdStyle!.id).toBe('dm-color-vars')
+
     atomic.colorKeys.forEach((item) => {
       atomic.colorShades.forEach((state) => {
         const key = `${item}-item-${state}-new`
 
-        expect(setPropertySpy).toHaveBeenCalledWith(
-          `--${key}`,
-          `value-of-${key}`
-        )
+        expect(createdStyle!.textContent).toContain(`--${key}: value-of-${key}`)
       })
     })
   })
 
-  it('should call setProperty correct number of times', (): void => {
+  it('should append style element to document head', (): void => {
+    vi.spyOn(atomic, 'getColorValue').mockReturnValue('test-value')
+
     applyColorsWithNewSuffix()
 
-    const expectedCalls = atomic.colorKeys.length * atomic.colorShades.length
-
-    expect(setPropertySpy).toHaveBeenCalledTimes(expectedCalls)
+    expect(appendChildSpy).toHaveBeenCalledTimes(1)
+    expect(appendChildSpy).toHaveBeenCalledWith(createdStyle)
   })
 })
