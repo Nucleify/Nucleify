@@ -72,3 +72,12 @@
     padding: 8em 6em;
   }
 }
+
+
+#services,
+#about {
+  .faq-section-header,
+  .faq-section-questions .p-accordion .p-accordionpanel {
+    opacity: 1;
+  }
+}

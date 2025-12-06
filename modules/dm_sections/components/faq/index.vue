@@ -25,39 +25,21 @@
 
 <script setup lang="ts">
 import type { QuestionObjectInterface, SectionFaqInterface } from 'atomic'
-import {
-  bounceFadeIn,
-  questionRequests,
-  useScrollTrigger,
-  useSplitQuestions,
-  useSplitText,
-} from 'atomic'
+import { questionRequests, useSplitQuestions } from 'atomic'
 
 const props = defineProps<SectionFaqInterface>()
-
-let data
-
-if (appEnv() !== 'production') {
-  const { getSiteQuestions, resultsBySite } = questionRequests()
-
-  onMounted(() => getSiteQuestions(props.site, false))
-  watchEffect(() => (data = resultsBySite))
-} else {
-  ;({ data } = await useFetch(
-    apiUrl() + `/questions/get-site-questions/${props.site}`,
-    {
-      method: 'GET',
-      immediate: true,
-      watch: false,
-    }
-  ))
-}
 
 const column1 = ref<QuestionObjectInterface[]>([])
 const column2 = ref<QuestionObjectInterface[]>([])
 
+const { getSiteQuestions, resultsBySite } = questionRequests()
+
+onMounted(() => {
+  if (props.site) getSiteQuestions(props.site, false)
+})
+
 watchEffect(() => {
-  const questions = props.questions || data.value
+  const questions = props.questions || resultsBySite.value
   if (!questions) return
   ;({ column1: column1.value, column2: column2.value } =
     useSplitQuestions(questions))
