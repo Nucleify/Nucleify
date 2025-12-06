@@ -7,12 +7,11 @@
     <div class="viewport-box">
       <div class="main-circle"></div>
     </div>
-    <Dialog
+    <ad-dialog
       v-model:visible="dialogVisible"
-      :data="dialogData"
-      :dismissable-mask="true"
-      modal
       class="why-us-dialog"
+      :dismissable-mask="true"
+      :draggable="false"
       @close="dialogVisible = false"
     >
       <template #header>
@@ -22,7 +21,7 @@
       <template #default>
         <ad-paragraph :text="dialogData?.description" />
       </template>
-    </Dialog>
+    </ad-dialog>
   </section>
 </template>
 
