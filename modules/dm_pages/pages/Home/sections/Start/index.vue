@@ -76,7 +76,7 @@ useScrollTrigger(
     })
   },
   {
-    start: 'top 65%',
+    start: 'top 70%',
   }
 )
 
