@@ -21,7 +21,7 @@
       />
     </div>
     <navbar-drawer v-model:visible="navbarExpanded">
-      <navbar-links />
+      <navbar-links @close-drawer="navbarExpanded = false" />
     </navbar-drawer>
   </nav>
 </template>
