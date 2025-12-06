@@ -16,11 +16,11 @@
       @close="dialogVisible = false"
     >
       <template #header>
-        <ad-icon :icon="dialogData.icon" class="text-xl" />
-        <ad-heading :tag="4" :text="dialogData.header" />
+        <ad-icon :icon="dialogData?.icon" class="text-xl" />
+        <ad-heading :tag="4" :text="dialogData?.header" />
       </template>
       <template #default>
-        <ad-paragraph :text="dialogData.description" />
+        <ad-paragraph :text="dialogData?.description" />
       </template>
     </Dialog>
   </section>
@@ -39,7 +39,12 @@ import {
   watchEffect,
 } from 'vue'
 
-import type { WhyUsInterface, WhyUsItemInterface } from 'atomic'
+import type {
+  EntityResultsType,
+  FeatureObjectInterface,
+  WhyUsInterface,
+  WhyUsItemInterface,
+} from 'atomic'
 import {
   AdIcon,
   bounceFadeIn,
@@ -56,25 +61,18 @@ gsap.registerPlugin(InertiaPlugin)
 
 const props = defineProps<WhyUsInterface>()
 
-let data
+const data = ref<EntityResultsType<FeatureObjectInterface> | null>(null)
+
 const clickOutsideHandler: ((event: MouseEvent) => void) | null = null
 
-if (appEnv() !== 'production') {
-  const { getSiteFeatures, resultsBySite } = featureRequests()
-  onMounted(() => getSiteFeatures(props.site, false))
-  watchEffect(() => {
-    data = resultsBySite
-  })
-} else {
-  ;({ data } = await useFetch(
-    apiUrl() + `/features/get-site-features/${props.site}`,
-    {
-      method: 'GET',
-      immediate: true,
-      watch: false,
-    }
-  ))
-}
+const { getSiteFeatures, resultsBySite } = featureRequests()
+
+onMounted(() => {
+  getSiteFeatures(props.site, false)
+})
+watchEffect(() => {
+  data.value = resultsBySite.value
+})
 
 const dialogVisible = ref(false)
 const dialogData = ref<WhyUsItemInterface | null>(null)
@@ -94,7 +92,7 @@ watchEffect(() => {
 
     function placeItems(items: WhyUsItemInterface[]) {
       const angleIncrement = (Math.PI * 2) / items.length
-      const outerRadius = circle.offsetWidth / 2
+      const outerRadius = (circle as HTMLElement).offsetWidth / 2
       const innerRadius = outerRadius * 0.9
       const center = outerRadius
       const elements: HTMLElement[] = []
@@ -146,7 +144,7 @@ watchEffect(() => {
         })
 
         el.addEventListener('click', () => openDialog(item))
-        circle.appendChild(el)
+        circle?.appendChild(el)
         elements.push(el)
       })
 
