@@ -1,12 +1,7 @@
 <template>
   <div class="nav-links-container">
     <template v-for="link in navLinks" :key="link.label">
-      <nuxt-link
-        v-if="!link.isButton"
-        class="nav-link"
-        :to="link.href"
-        @click="emit('closeDrawer')"
-      >
+      <nuxt-link v-if="!link.isButton" class="nav-link" :to="link.href">
         {{ link.label }}
       </nuxt-link>
       <nuxt-link v-else :to="link.href" :class="link.class">
@@ -20,8 +15,6 @@
 import { bounceFadeIn, isMobile } from 'atomic'
 
 import { navLinks } from '.'
-
-const emit = defineEmits(['closeDrawer'])
 
 onMounted(() => {
   if (isMobile()) {
