@@ -6,16 +6,16 @@ export const navLinks: NavLinkObjectInterface[] = [
     href: '/home',
   },
   {
-    label: 'Features',
-    href: '#features',
+    label: 'Services',
+    href: '/services',
   },
   {
-    label: 'Why Us',
-    href: '#why-us',
+    label: 'About',
+    href: '/about',
   },
   {
-    label: 'Contact',
-    href: '#contact',
+    label: 'Blog',
+    href: '/blog',
   },
   {
     label: 'Login',
