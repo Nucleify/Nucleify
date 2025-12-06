@@ -35,9 +35,10 @@ describe('colors.client plugin', (): void => {
 
     expect(addEventListenerSpy).toHaveBeenCalledWith(
       'DOMContentLoaded',
-      atomic.applyColorsWithNewSuffix
+      atomic.applyColorsWithNewSuffix,
+      { once: true }
     )
-    expect(atomic.applyColorsWithNewSuffix).toHaveBeenCalled()
+    expect(atomic.applyColorsWithNewSuffix).not.toHaveBeenCalled()
     expect(atomic.cookieSetItem).toHaveBeenCalledWith(
       'foo-item-bar',
       'localValue'

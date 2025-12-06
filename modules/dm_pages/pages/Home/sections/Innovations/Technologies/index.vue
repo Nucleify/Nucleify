@@ -1,21 +1,19 @@
 <template>
   <section id="technologies">
     <div class="swiper-container">
-        <swiper-container ref="technologiesSwiper" class="mySwiper">
-          <swiper-slide v-for="(tech, index) in data" :key="index">
-            <deferred-content>
-              <ad-anchor
-                v-if="tech"
-                v-tooltip="tech.label"
-                :href="tech.href"
-                :aria-label="tech.label"
-                class="cube"
-              >
-                <img :src="technologiesImgUrl + tech.src" :alt="tech.label" />
-              </ad-anchor>
-            </deferred-content>
-          </swiper-slide>
-        </swiper-container>
+      <swiper-container ref="technologiesSwiper" class="mySwiper">
+        <swiper-slide v-for="(tech, index) in resultsBySite" :key="index">
+          <ad-anchor
+            v-if="tech"
+            v-tooltip="tech.label"
+            :href="tech.href"
+            :aria-label="tech.label"
+            class="cube"
+          >
+            <img :src="technologiesImgUrl + tech.src" :alt="tech.label" />
+          </ad-anchor>
+        </swiper-slide>
+      </swiper-container>
     </div>
   </section>
 </template>
@@ -28,23 +26,9 @@ import {
   useScrollTrigger,
 } from 'atomic'
 
-let data
+const { getSiteTechnologies, resultsBySite } = technologyRequests()
 
-if (appEnv() !== 'production') {
-  const { getSiteTechnologies, resultsBySite } = technologyRequests()
-
-  onMounted(() => getSiteTechnologies('general', false))
-  watchEffect(() => (data = resultsBySite))
-} else {
-  ;({ data } = await useFetch(
-    apiUrl() + '/technologies/get-site-technologies/general',
-    {
-      method: 'GET',
-      immediate: true,
-      watch: false,
-    }
-  ))
-}
+onMounted(() => getSiteTechnologies('general', false))
 
 const technologiesSwiper = ref(null)
 

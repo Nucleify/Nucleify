@@ -23,8 +23,6 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from 'gsap'
-
 import {
   bounceFadeIn,
   navigateToUrl,
@@ -55,7 +53,7 @@ useScrollTrigger(
   '.contact-content-description',
   () => {
     bounceFadeIn('.contact-content-button', {
-      delay: 1.1,
+      delay: 0.5,
       duration: 0.15,
     })
   },
