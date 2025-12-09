@@ -18,7 +18,7 @@ describe('guessSeederName', function (): void {
         $method = $reflection->getMethod('guessSeederName');
         $method->setAccessible(true);
 
-        $result = $method->invoke($this->service, 'dm_activity');
+        $result = $method->invoke($this->service, 'nuc_activity');
 
         expect($result)->toBe('ActivitySeeder');
     });
@@ -38,7 +38,7 @@ describe('guessSeederName', function (): void {
         $method = $reflection->getMethod('guessSeederName');
         $method->setAccessible(true);
 
-        $result = $method->invoke($this->service, 'dm_activities');
+        $result = $method->invoke($this->service, 'nuc_activities');
 
         expect($result)->toBe('ActivitiesSeeder');
     });

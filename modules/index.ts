@@ -1,4 +1,4 @@
-export * from './dm_activity'
+export * from './nuc_activity'
 export * from './dm_admin'
 export * from './dm_animations'
 export * from './dm_api'

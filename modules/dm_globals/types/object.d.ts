@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 
 import type {
-  ActivityLogObjectInterface,
+  NucActivityObjectInterface,
   ArticleObjectInterface,
   CardObjectInterface,
   ContactObjectInterface,
@@ -20,7 +20,7 @@ export {}
 
 declare global {
   type ObjectType =
-    | ActivityLogObjectInterface
+    | NucActivityObjectInterface
     | ArticleObjectInterface
     | CardObjectInterface
     | ContactObjectInterface

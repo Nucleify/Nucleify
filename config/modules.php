@@ -1,7 +1,7 @@
 <?php
 
 return [
-    Modules\dm_activity\dm_activity::class,
+    Modules\nuc_activity\nuc_activity::class,
     Modules\dm_auth\dm_auth::class,
     Modules\dm_colors\dm_colors::class,
     Modules\dm_entities\dm_entities::class,
