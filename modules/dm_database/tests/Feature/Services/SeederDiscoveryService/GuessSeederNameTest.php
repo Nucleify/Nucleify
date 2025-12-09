@@ -58,7 +58,7 @@ describe('guessSeederName', function (): void {
         $method = $reflection->getMethod('guessSeederName');
         $method->setAccessible(true);
 
-        $result = $method->invoke($this->service, 'dm_admin');
+        $result = $method->invoke($this->service, 'nuc_admin');
 
         expect($result)->toBe('AdminSeeder');
     });
