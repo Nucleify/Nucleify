@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\CardController;
-use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\LinkController;
 use App\Http\Controllers\QuestionController;
@@ -41,28 +40,6 @@ Route::prefix('api')->group(function (): void {
                 ->name('cards.update');
             Route::delete('/{id}', 'destroy')
                 ->name('cards.destroy');
-        });
-
-        /**
-         *  Colors
-         */
-        Route::prefix('colors')->controller(ColorController::class)->group(function (): void {
-            Route::get('/', 'index')
-                ->name('colors.index');
-            Route::get('/count-by-created-last-week', 'countByCreatedLastWeek')
-                ->name('colors.countByCreatedLastWeek');
-            Route::get('/get-by-entity/{entity}', 'getByEntity')
-                ->name('colors.getByEntity');
-            Route::get('/get-site-colors/{site}', 'getSiteColors')
-                ->name('colors.getSiteColors');
-            Route::get('/{id}', 'show')
-                ->name('colors.show');
-            Route::post('/', 'store')
-                ->name('colors.store');
-            Route::put('/{id}', 'update')
-                ->name('colors.update');
-            Route::delete('/{id}', 'destroy')
-                ->name('colors.destroy');
         });
 
         /**
