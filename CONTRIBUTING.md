@@ -17,6 +17,7 @@ We can use help in a bunch of areas and any help is greatly appreciated!
   * [Commit messages](#commit-messages)
   * [Creating pull requests](#creating-pull-requests)
     + [Documentation](#documentation)
+  * [Code Review](#code-review)
   * [Members](#members)
     + [Lead team](#lead-team)
     + [Other Contributors](#other-contributors)
@@ -159,6 +160,16 @@ When creating a PR, please set it to the maintenance branch `dev`
 
 If your PR involves new features, or changes to existing features, documentation must be updated as well.
 
+## Code Review
+
+All contributions go through code review before merging. Please:
+
+- Ensure your code adheres to the [CODING_STANDARDS.md](./CODING_STANDARDS.md)
+- Write clear, concise commit messages
+- Include tests for new functionality
+- Make PR descriptions self-explanatory
+- Respond constructively to review comments
+
 ## Members
 
 Members are listed by number of contributions. Members are free to use the full name, GitHub handle, or any other nickname they wish to be addressed.
@@ -166,7 +177,7 @@ Members are listed by number of contributions. Members are free to use the full 
 ### Lead team
 
 - [Szymon Radomski @SzymCode](https://github.com/SzymCode)
-- [Mścibór Srebrny @Mmesek](https://github.com/Mmesek)
+- [Mścibor Srebrny @Mmesek](https://github.com/Mmesek)
 
 ### Other Contributors
 
