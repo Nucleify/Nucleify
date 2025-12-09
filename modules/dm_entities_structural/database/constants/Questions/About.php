@@ -2,23 +2,23 @@
 
 return [
     [
-        'content' => 'Why was DataManager created?',
+        'content' => 'Why was Nucleify created?',
         'answer' => 'Our goal was to create a tool that simplifies data management for both experts and beginners.',
     ],
     [
-        'content' => 'What are the future plans for DataManager?',
+        'content' => 'What are the future plans for Nucleify?',
         'answer' => 'We plan to introduce new features, such as AI integration and enhanced reporting capabilities',
     ],
     [
-        'content' => 'What problems does DataManager solve?',
+        'content' => 'What problems does Nucleify solve?',
         'answer' => 'It enables efficient data migration, integration, and analysis, eliminating technical barriers.',
     ],
     [
-        'content' => 'What industries can benefit from using DataManager?',
+        'content' => 'What industries can benefit from using Nucleify?',
         'answer' => 'The tool is versatile and can be used in industries such as finance, education, logistics, healthcare, and many others.',
     ],
     [
-        'content' => 'Can I contribute to the development of DataManager?',
+        'content' => 'Can I contribute to the development of Nucleify?',
         'answer' => 'Absolutely! We welcome developers, designers, and testers. Any contribution is appreciated.',
     ],
     [
@@ -30,7 +30,7 @@ return [
         'answer' => 'You can support us through donations, reporting bugs, or actively participating in the development of the project.',
     ],
     [
-        'content' => 'Under which license does DataManager operate?',
+        'content' => 'Under which license does Nucleify operate?',
         'answer' => 'The project is available under the MIT license, offering flexibility in its use.',
     ],
     [
@@ -42,7 +42,7 @@ return [
         'answer' => 'Yes, we offer technical support via email, online documentation, and a user community.',
     ],
     [
-        'content' => 'Is DataManager available in multiple languages?',
+        'content' => 'Is Nucleify available in multiple languages?',
         'answer' => 'Yes, we plan to expand support to multiple languages to make the tool accessible to users worldwide.',
     ],
     [
