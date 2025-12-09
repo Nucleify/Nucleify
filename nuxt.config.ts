@@ -58,12 +58,16 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      title:
-        'DataManager – Laravel/Nuxt ERP with Modular Design and Next-gen Architecture',
+      title: 'Nucleify - Modular Web Framework for Laravel & Nuxt',
       titleTemplate: '%s',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        {
+          name: 'description',
+          content:
+            'Create scalable web apps faster with Nucleify - a modular, core-driven framework with unique modules for Laravel & Nuxt developers.',
+        },
       ],
     },
   },
