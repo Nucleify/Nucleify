@@ -1,6 +1,6 @@
 # <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_entities
 
-Module for all classic entities in DataManager.
+Module for all classic entities in Nucleify.
 
 <br>
 
