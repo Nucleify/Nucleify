@@ -1,17 +1,18 @@
-# <div align="center"> <img src="/public/img/logo.png" width="70"> <br> DataManager <br> </div>
+# <div align="center"> <img src="/public/img/logo.png" width="70"> <br> Nucleify <br> </div>
 <br>
 
-Streamline ERP and design management with a powerful system built using Laravel and Nuxt. Easily organize, manage, and access all your data types in one powerful, user-friendly platform - perfect for CRM, ERP and E-commerce solutions.
-Our target is to create fully responsive, functional and scalable website based on [RWD](https://en.wikipedia.org/wiki/Responsive_web_design), [MFD](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [BDD](https://en.wikipedia.org/wiki/Behavior-driven_development), [FSD](https://medium.com/@dtgasparyan/feature-sliced-design-the-ideal-frontend-architecture-84d701ad44ba) and [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/) principles.
+Build modern, scalable web applications with Nucleify – a modular, core-driven framework of uniquely functional, nucleus-inspired modules. Easily structure, manage, and reuse components to create responsive, maintainable, and flexible web apps. Nucleify leverages **[Laravel](https://laravel.com/)** for the backend and **[Nuxt](https://nuxt.com/)** for the frontend, giving developers a powerful full-stack foundation.
 
+Designed with [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/), [Mobile-First](https://medium.com/@Vincentxia77/what-is-mobile-first-design-why-its-important-how-to-make-it-7d3cf2e29d00), [Feature-Sliced](https://medium.com/@dtgasparyan/feature-sliced-design-the-ideal-frontend-architecture-84d701ad44ba) and [Test Driven Development](https://wikipedia.org/wiki/Test-driven_development) principles in mind, Nucleify helps developers deliver powerful, efficient, and future-proof web projects.
 
-<b>Join our project and become part of building something incredible!</b>
+**Join our project and become part of building something incredible!**
 
-<br><a href="https://datamanager.atomic-it.org">Live preview</a><br><br>
+<br><a href="https://nucleify.io">Live preview</a><br><br>
 
 ⭐ **Project setup with a single command** <br>
 ⭐ **Unique Laravel/Nuxt modules functionality** <br>
-⭐ Atomic Design + [Storybook](https://storybook.js.org/) tests for most components <br>
+⭐ Atomic Design components + CSS modules <br>
+⭐ [Storybook](https://storybook.js.org/) tests for most Atomic components <br>
 ⭐ Futuristic UI made with [PrimeVue](https://primevue.org/) + [Chart.js](https://www.chartjs.org/) + [GSAP](https://gsap.com/) + [SCSS](https://sass-lang.com/) <br>
 
 <br>
@@ -19,8 +20,7 @@ Our target is to create fully responsive, functional and scalable website based 
 <details><summary>✅ 94/96 Performance</summary>
 <br>
 
-I'm sure I could optimize it further, but it's good enough for now.
-<br>
+*This score is a bit outdated, but I promise an optimizations are coming soon!*
 
 #### Introduced many optimizations:
 - SSR & Prerendering
@@ -55,7 +55,7 @@ I'm sure I could optimize it further, but it's good enough for now.
 - Clone this repository
 
 ```
-git clone https://github.com/Atomic-IT/DataManager.git
+git clone https://github.com/Nucleify/Nucleify
 ```
 
 - Run ```make``` command
@@ -84,7 +84,7 @@ sail art migrate:fresh --seed
 
 Possible problems:
 - Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
-- Error: EACCES: permission denied, mkdir '/var/www/html/node_modules': ```sudo chmod 777 -R DataManager``` or [Solution](https://stackoverflow.com/questions/49679808/error-eacces-permission-denied-mkdir-usr-local-lib-node-modules-node-sass-b)
+- Error: EACCES: permission denied, mkdir '/var/www/html/node_modules': ```sudo chmod 777 -R nucleify``` or [Solution](https://stackoverflow.com/questions/49679808/error-eacces-permission-denied-mkdir-usr-local-lib-node-modules-node-sass-b)
 
 <br></details>
 
@@ -204,7 +204,7 @@ nvm use --lts
 - Clone this repository
 
 ```
-git clone https://github.com/Atomic-IT/DataManager.git
+git clone https://github.com/Nucleify/Nucleify
 ```
 
 - Change ```.env.xampp.example``` file to ```.env``` in root directory
@@ -221,8 +221,8 @@ composer install
 - run XAMPP mysql server and create database
 ```bash
 mysql -u root -p
-create database datamanager
-create database datamanager_test    # it's not necessary, only for tests
+create database nucleify
+create database nucleify_test    # it's not necessary, only for tests
 ```
 
 <br></details>
@@ -349,8 +349,9 @@ php artisan sitemap:generate
 
 <details><summary> <h2> &nbsp; <img src="/public/img/technologies/github.svg" width="20"> &nbsp; Contribute </h2> </summary> <br>
 
-Feel free to check [Issues](https://github.com/SzymCode/DataManager/issues) section. <br>
-Your skills and expertise will directly contribute to the success of our project, helping us achieve our goals and create an attractive portfolio.
+Before contributing, please take a moment to read our [CONTRIBUTING.md](./CONTRIBUTING.MD). <br>
+Feel free to check [Issues](https://github.com/Nucleify/Nucleify/issues) section. <br>
+Your skills and expertise will directly contribute to the success of our project, helping us achieve our goals and create an attractive product.
 
 <br></details>
 
