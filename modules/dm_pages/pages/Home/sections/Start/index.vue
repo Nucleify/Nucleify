@@ -28,13 +28,13 @@
               alt="GitHub logo"
               :src="technologiesImgUrl + 'github.svg'"
               class="start-button caterpillar"
-              @click="navigateToUrl('https://github.com/SzymCode/DataManager')"
+              @click="navigateToUrl('https://github.com/Nucleify/Nucleify')"
             />
           </div>
         </div>
       </div>
       <a 
-        href="https://github.com/Atomic-IT/DataManager/milestone/8" 
+        href="https://github.com/Nucleify/Nucleify/milestone/8" 
         target="_blank"
       >
         <dm-time-countdown 

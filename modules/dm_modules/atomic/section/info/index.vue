@@ -70,7 +70,7 @@
                 class="start-button caterpillar"
                 @click="
                   navigateToUrl(
-                    'https://github.com/Atomic-IT/DataManager/tree/prod/modules'
+                    'https://github.com/Nucleify/Nucleify/tree/prod/modules'
                   )
                 "
               />
