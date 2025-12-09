@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'id' => 2,
             'name' => 'Admin',
-            'email' => 'admin@datamanager.com',
+            'email' => 'admin@nucleify.io',
             'role' => 'admin',
             'password' => env('ADMIN_PASSWORD'),
         ]);
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'id' => 3,
             'name' => 'Test Admin',
-            'email' => 'test_admin@datamanager.com',
+            'email' => 'test_admin@nucleify.io',
             'role' => 'test_admin',
             'password' => Hash::make('test_admin123'),
         ]);
@@ -37,7 +37,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'id' => 4,
             'name' => 'Test Admin 2',
-            'email' => 'test_admin2@datamanager.com',
+            'email' => 'test_admin2@nucleify.io',
             'role' => 'test_admin',
             'password' => Hash::make('test_admin2123'),
         ]);
@@ -45,7 +45,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'id' => 5,
             'name' => 'Test Tech',
-            'email' => 'test_tech@datamanager.com',
+            'email' => 'test_tech@nucleify.io',
             'role' => 'tech',
             'password' => Hash::make('test_tech123'),
         ]);
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'id' => 6,
             'name' => 'Test User',
-            'email' => 'test_user@datamanager.com',
+            'email' => 'test_user@nucleify.io',
             'role' => 'user',
             'password' => Hash::make('test_user123'),
         ]);
