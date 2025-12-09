@@ -7,7 +7,7 @@
 
         <ad-heading
           :tag="1"
-          text="DataManager"
+          text="Nucleify"
           class="application-header-text"
         />
       </nuxt-link>
