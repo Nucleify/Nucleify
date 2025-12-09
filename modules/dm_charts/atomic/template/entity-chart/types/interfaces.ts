@@ -1,5 +1,4 @@
 import type {
-  ActivityLogObjectInterface,
   ArticleObjectInterface,
   CardObjectInterface,
   ChartInterface,
@@ -10,6 +9,7 @@ import type {
   FileObjectInterface,
   LinkObjectInterface,
   MoneyObjectInterface,
+  NucActivityObjectInterface,
   QuestionObjectInterface,
   TaskObjectInterface,
   TechnologyObjectInterface,
@@ -24,7 +24,7 @@ export interface DMEntityChartInterface extends ChartInterface {
 }
 
 export interface DMEntityChartDataInterface {
-  activity?: ActivityLogObjectInterface[]
+  activity?: NucActivityObjectInterface[]
   article?: ArticleObjectInterface[]
   card?: CardObjectInterface[]
   contact?: ContactObjectInterface[]

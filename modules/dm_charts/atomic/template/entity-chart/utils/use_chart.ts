@@ -4,7 +4,6 @@
 import { Ref, ref } from 'vue'
 
 import {
-  ActivityLogObjectInterface,
   ArticleObjectInterface,
   allEntitiesKeys,
   allEntitiesLabels,
@@ -20,6 +19,7 @@ import {
   LinkObjectInterface,
   MoneyObjectInterface,
   months,
+  NucActivityObjectInterface,
   ObjectType,
   QuestionObjectInterface,
   TaskObjectInterface,
@@ -85,7 +85,7 @@ export function useChart() {
 
   function setChartData(
     chartMethodType: ChartMethodType,
-    activityLogData?: ActivityLogObjectInterface[],
+    activityLogData?: NucActivityObjectInterface[],
     articleData?: ArticleObjectInterface[],
     cardData?: CardObjectInterface[],
     contactData?: ContactObjectInterface[],
