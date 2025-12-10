@@ -7,7 +7,7 @@
       />
       <ad-card class="dm-card-base home-chart-card">
         <template #content>
-          <dm-animation-hexagons style="opacity: 0.3" />
+          <nuc-animation-hexagons style="opacity: 0.3" />
           <dm-entity-chart
             chart-method-type="annual"
             type="bar"

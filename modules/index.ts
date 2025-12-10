@@ -1,6 +1,6 @@
 export * from './nuc_activity'
 export * from './nuc_admin'
-export * from './dm_animations'
+export * from './nuc_animations'
 export * from './dm_api'
 export * from './dm_auth'
 export * from './dm_colors'

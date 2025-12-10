@@ -15,7 +15,7 @@
           toggleIcon: $style['ad-accordionheader-toggle-icon'],
         }"
       >
-        <dm-animation-hexagons 
+        <nuc-animation-hexagons 
           v-if="props.hexagons" 
           :class="$style['ad-hexagon-rows-container']"
         />

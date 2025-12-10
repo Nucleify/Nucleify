@@ -5,7 +5,7 @@
     @mouseleave="deconstruct(`.flip-card .flip-card-back p`)"
   >
     <div class="flip-card-inner">
-      <dm-animation-hexagons />
+      <nuc-animation-hexagons />
       <div class="flip-card-front">
         <ad-image
           :src="props.frontImage"

@@ -56,7 +56,7 @@
           </swiper-container>
         </StepList>
         <StepPanels>
-          <dm-animation-hexagons />
+          <nuc-animation-hexagons />
 
           <StepPanel :value="1">
             <div class="step-panel-container">

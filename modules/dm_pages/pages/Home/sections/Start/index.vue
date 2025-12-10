@@ -2,7 +2,7 @@
   <section id="start">
     <div class="container">
       <div class="container start-container">
-        <dm-animation-bounce class="start-bounce-animation" />
+        <nuc-animation-bounce class="start-bounce-animation" />
         <div class="left-side">
           <ad-heading :tag="1" class="header">
             One
