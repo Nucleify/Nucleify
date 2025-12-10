@@ -85,12 +85,14 @@ const userData = [
     'name' => 'User',
     'email' => 'user@example.com',
     'password' => 'password',
+    'password_confirmation' => 'password',
     'role' => 'user',
 ];
 const updatedUserData = [
     'id' => 1,
     'name' => 'Updated User',
     'password' => 'password',
+    'password_confirmation' => 'password',
     'email' => 'updateduser@example.com',
     'role' => 'user',
 ];

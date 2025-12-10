@@ -8,7 +8,12 @@ import type {
   NucArticleRequestsInterface,
   UseLoadingInterface,
 } from 'atomic'
-import { apiHandle, useApiSuccess, useLoading } from 'atomic'
+import {
+  apiHandle,
+  sessionStorageGetItem,
+  useApiSuccess,
+  useLoading,
+} from 'atomic'
 
 export function articleRequests(
   close?: CloseDialogType
@@ -48,7 +53,10 @@ export function articleRequests(
     await apiHandle<NucArticleObjectInterface>({
       url: apiUrl() + '/articles',
       method: 'POST',
-      data,
+      data: {
+        user_id: sessionStorageGetItem('user_id'),
+        ...data,
+      },
       onSuccess: (response: NucArticleObjectInterface) => {
         apiSuccess(response, getData, close, 'create')
       },
@@ -56,14 +64,14 @@ export function articleRequests(
   }
 
   async function editArticle(
-    article: NucArticleObjectInterface,
+    data: NucArticleObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
     await apiHandle<NucArticleObjectInterface>({
       url: apiUrl() + '/articles',
       method: 'PUT',
-      data: article,
-      id: article.id,
+      data: data,
+      id: data.id,
       onSuccess: (response: NucArticleObjectInterface) => {
         apiSuccess(response, getData, close, 'edit')
       },
