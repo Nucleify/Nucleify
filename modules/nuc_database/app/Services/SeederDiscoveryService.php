@@ -28,7 +28,7 @@ class SeederDiscoveryService
     {
         return array_filter(
             scandir($modulePath),
-            fn ($m) => !in_array($m, ['.', '..', '_index.scss', 'index.ts', 'README.md', 'dm_database'])
+            fn ($m) => !in_array($m, ['.', '..', '_index.scss', 'index.ts', 'README.md', 'nuc_database'])
         );
     }
 

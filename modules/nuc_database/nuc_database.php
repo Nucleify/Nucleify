@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\dm_database;
+namespace Modules\nuc_database;
 
 use App\Services\SeederDiscoveryService;
 use Illuminate\Support\ServiceProvider;
 
-class dm_database extends ServiceProvider
+class nuc_database extends ServiceProvider
 {
     public function register(): void
     {
