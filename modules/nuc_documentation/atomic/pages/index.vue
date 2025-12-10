@@ -9,7 +9,7 @@
       :data="{ documentation: results }"
       :loading="loading"
     />
-    <dm-documentation-dashboard
+    <nuc-documentation-dashboard
       :data="results"
       :get-data="getAllDocumentation"
       :loading="loading"

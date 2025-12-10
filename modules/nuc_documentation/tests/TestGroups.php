@@ -8,27 +8,27 @@ if (!defined('PEST_RUNNING')) {
  *  Main groups
  */
 uses()
-    ->group('dm-documentation')
+    ->group('nuc-documentation')
     ->in('.');
 
 uses()
-    ->group('dm-documentation-db')
+    ->group('nuc-documentation-db')
     ->in('Database');
 
 uses()
-    ->group('dm-documentation-migrations')
+    ->group('nuc-documentation-migrations')
     ->in('Database/Migrations');
 
 uses()
-    ->group('dm-documentation-ft')
+    ->group('nuc-documentation-ft')
     ->in('Feature');
 
 uses()
-    ->group('dm-documentation-controllers')
+    ->group('nuc-documentation-controllers')
     ->in('Feature/Controllers');
 
 uses()
-    ->group('dm-documentation-api')
+    ->group('nuc-documentation-api')
     ->in('Feature/Api');
 
 /**

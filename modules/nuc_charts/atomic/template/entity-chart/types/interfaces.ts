@@ -4,12 +4,12 @@ import type {
   ChartInterface,
   ChartMethodType,
   ContactObjectInterface,
-  DocumentationObjectInterface,
   FeatureObjectInterface,
   FileObjectInterface,
   LinkObjectInterface,
   MoneyObjectInterface,
   NucActivityObjectInterface,
+  NucDocumentationObjectInterface,
   QuestionObjectInterface,
   TaskObjectInterface,
   TechnologyObjectInterface,
@@ -28,7 +28,7 @@ export interface NucEntityChartDataInterface {
   article?: ArticleObjectInterface[]
   card?: CardObjectInterface[]
   contact?: ContactObjectInterface[]
-  documentation?: DocumentationObjectInterface[]
+  documentation?: NucDocumentationObjectInterface[]
   feature?: FeatureObjectInterface[]
   file?: FileObjectInterface[]
   link?: LinkObjectInterface[]

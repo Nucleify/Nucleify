@@ -1,4 +1,4 @@
-export interface DocumentationObjectInterface {
+export interface NucDocumentationObjectInterface {
   id?: number
   name: string
   category?: string

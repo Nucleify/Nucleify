@@ -1,8 +1,8 @@
 import { version } from 'vue'
 
-import type { DocumentationObjectInterface } from 'atomic'
+import type { NucDocumentationObjectInterface } from 'atomic'
 
-export const mockDocumentation: DocumentationObjectInterface = {
+export const mockDocumentation: NucDocumentationObjectInterface = {
   id: 99,
   name: 'Mock Documentation',
   category: 'api',

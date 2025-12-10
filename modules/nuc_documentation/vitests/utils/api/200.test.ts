@@ -4,7 +4,7 @@ import * as atomic from 'atomic'
 
 describe('documentationRequests', (): void => {
   const { closeDialog } = atomic.useNucDialog()
-  const requests: atomic.DocumentationRequestsInterface =
+  const requests: atomic.NucDocumentationRequestsInterface =
     atomic.documentationRequests(closeDialog)
   const mockResponse = [atomic.mockDocumentation]
 

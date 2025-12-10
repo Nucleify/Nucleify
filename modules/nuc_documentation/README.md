@@ -1,4 +1,4 @@
-# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_documentation
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; nuc_documentation
 
 Module that contains documentation functions.
 

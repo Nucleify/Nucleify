@@ -2,28 +2,28 @@ import { ref } from 'vue'
 
 import type {
   CloseDialogType,
-  DocumentationObjectInterface,
-  DocumentationRequestsInterface,
   EntityCountResultsType,
   EntityResultsType,
+  NucDocumentationObjectInterface,
+  NucDocumentationRequestsInterface,
   UseLoadingInterface,
 } from 'atomic'
 import { apiHandle, useApiSuccess, useLoading } from 'atomic'
 
 export function documentationRequests(
   close?: CloseDialogType
-): DocumentationRequestsInterface {
-  const results: EntityResultsType<DocumentationObjectInterface> = ref([])
+): NucDocumentationRequestsInterface {
+  const results: EntityResultsType<NucDocumentationObjectInterface> = ref([])
   const createdLastWeek: EntityCountResultsType = ref(0)
 
   const { loading, setLoading }: UseLoadingInterface = useLoading()
   const { apiSuccess } = useApiSuccess()
 
   async function getAllDocumentation(loading?: boolean): Promise<void> {
-    await apiHandle<DocumentationObjectInterface[]>({
+    await apiHandle<NucDocumentationObjectInterface[]>({
       url: apiUrl() + '/documentation',
       setLoading: loading ? setLoading : undefined,
-      onSuccess: (response: DocumentationObjectInterface[]) => {
+      onSuccess: (response: NucDocumentationObjectInterface[]) => {
         results.value = response
       },
     })
@@ -42,29 +42,29 @@ export function documentationRequests(
   }
 
   async function storeDocumentation(
-    data: DocumentationObjectInterface,
+    data: NucDocumentationObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<DocumentationObjectInterface>({
+    await apiHandle<NucDocumentationObjectInterface>({
       url: apiUrl() + '/documentation',
       method: 'POST',
       data,
-      onSuccess: (response: DocumentationObjectInterface) => {
+      onSuccess: (response: NucDocumentationObjectInterface) => {
         apiSuccess(response, getData, close, 'create')
       },
     })
   }
 
   async function editDocumentation(
-    data: DocumentationObjectInterface,
+    data: NucDocumentationObjectInterface,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<DocumentationObjectInterface>({
+    await apiHandle<NucDocumentationObjectInterface>({
       url: apiUrl() + '/documentation',
       method: 'PUT',
       data,
       id: data.id,
-      onSuccess: (response: DocumentationObjectInterface) => {
+      onSuccess: (response: NucDocumentationObjectInterface) => {
         apiSuccess(response, getData, close, 'edit')
       },
     })
@@ -74,11 +74,11 @@ export function documentationRequests(
     id: number,
     getData: () => Promise<void>
   ): Promise<void> {
-    await apiHandle<DocumentationObjectInterface>({
+    await apiHandle<NucDocumentationObjectInterface>({
       url: apiUrl() + '/documentation',
       method: 'DELETE',
       id,
-      onSuccess: (response: DocumentationObjectInterface) => {
+      onSuccess: (response: NucDocumentationObjectInterface) => {
         apiSuccess(response, getData, close, 'delete')
       },
     })
