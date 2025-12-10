@@ -20,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { technologyRequests, useDmDialog } from 'atomic'
+import { technologyRequests, useNucDialog } from 'atomic'
 
-const { closeDialog } = useDmDialog()
+const { closeDialog } = useNucDialog()
 
 const { results, loading, getAllTechnologies } = technologyRequests(closeDialog)
 

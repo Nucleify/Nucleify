@@ -10,7 +10,7 @@
       button-text="New Technology"
     />
 
-    <dm-dialog
+    <nuc-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"
@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { technologyRequests, useDmDialog, useTechnologyFields } from 'atomic'
+import { technologyRequests, useNucDialog, useTechnologyFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useDmDialog()
+} = useNucDialog()
 
 const { createAndEditFields, showFields } = useTechnologyFields()
 const { deleteTechnology, storeTechnology, editTechnology } =

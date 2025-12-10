@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { documentationRequests, useDmDialog } from 'atomic'
+import { documentationRequests, useNucDialog } from 'atomic'
 
-const { closeDialog } = useDmDialog()
+const { closeDialog } = useNucDialog()
 const { results, loading, getAllDocumentation } =
   documentationRequests(closeDialog)
 

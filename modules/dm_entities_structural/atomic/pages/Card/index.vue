@@ -20,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { cardRequests, useDmDialog } from 'atomic'
+import { cardRequests, useNucDialog } from 'atomic'
 
-const { closeDialog } = useDmDialog()
+const { closeDialog } = useNucDialog()
 
 const { results, loading, getAllCards } = cardRequests(closeDialog)
 

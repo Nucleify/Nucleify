@@ -3,7 +3,7 @@
     v-bind="transformProps(props, excludedProps)"
     :modal="props.modal || true"
     :show-header="props.showHeader || true"
-    class="dm-dialog"
+    class="nuc-dialog"
     :class="props.action"
   >
     <template #header>
@@ -104,8 +104,8 @@
 <script setup lang="ts">
 import type {
   ComponentType,
-  DmDialogInterface,
   FormDataInterface,
+  NucDialogInterface,
 } from 'atomic'
 import {
   getComponent,
@@ -117,7 +117,7 @@ import {
   transformProps,
 } from 'atomic'
 
-const props = defineProps<DmDialogInterface>()
+const props = defineProps<NucDialogInterface>()
 
 const excludedProps = [
   'entity',

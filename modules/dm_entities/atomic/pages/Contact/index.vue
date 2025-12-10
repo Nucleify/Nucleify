@@ -20,9 +20,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 
-import { contactRequests, useDmDialog } from 'atomic'
+import { contactRequests, useNucDialog } from 'atomic'
 
-const { closeDialog } = useDmDialog()
+const { closeDialog } = useNucDialog()
 
 const { loading, results, getAllContacts } = contactRequests(closeDialog)
 

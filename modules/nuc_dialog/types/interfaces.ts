@@ -7,7 +7,7 @@ import type {
   OpenDialogFunctionType,
 } from 'atomic'
 
-export interface DmDialogInterface extends DialogInterface {
+export interface NucDialogInterface extends DialogInterface {
   entity?: ObjectType
   action?: ActionType
   title?: string
@@ -28,7 +28,7 @@ export interface DmDialogInterface extends DialogInterface {
   style?: StyleValue
 }
 
-export interface UseDmDialogInterface {
+export interface UseNucDialogInterface {
   visibleShow: VisibleType
   visibleCreate: VisibleType
   visibleEdit: VisibleType
@@ -38,7 +38,7 @@ export interface UseDmDialogInterface {
   closeDialog: CloseDialogType
 }
 
-export interface DmDialogVisibleInterface {
+export interface NucDialogVisibleInterface {
   create: VisibleType
   delete: VisibleType
   edit: VisibleType
