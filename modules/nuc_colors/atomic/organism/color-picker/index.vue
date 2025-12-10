@@ -24,10 +24,10 @@
 </template>
 
 <script setup lang="ts">
-import type { DMColorPickerInterface } from 'atomic'
+import type { NucColorPickerInterface } from 'atomic'
 import { useColorPicker } from 'atomic'
 
-const props = defineProps<DMColorPickerInterface>()
+const props = defineProps<NucColorPickerInterface>()
 
 const { itemColor, setColorValues } = useColorPicker(props.adType!)
 

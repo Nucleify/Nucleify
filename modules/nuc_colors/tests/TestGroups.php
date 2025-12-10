@@ -8,15 +8,15 @@ if (!defined('PEST_RUNNING')) {
  *  Main groups
  */
 uses()
-    ->group('dm-colors')
+    ->group('nuc-colors')
     ->in('.');
 
 uses()
-    ->group('dm-colors-db')
+    ->group('nuc-colors-db')
     ->in('Database');
 
 uses()
-    ->group('dm-colors-ft')
+    ->group('nuc-colors-ft')
     ->in('Feature');
 
 /**

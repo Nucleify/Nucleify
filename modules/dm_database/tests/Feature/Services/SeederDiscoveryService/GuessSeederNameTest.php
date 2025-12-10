@@ -28,7 +28,7 @@ describe('guessSeederName', function (): void {
         $method = $reflection->getMethod('guessSeederName');
         $method->setAccessible(true);
 
-        $result = $method->invoke($this->service, 'dm_colors');
+        $result = $method->invoke($this->service, 'nuc_colors');
 
         expect($result)->toBe('ColorSeeder');
     });

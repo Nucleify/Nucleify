@@ -1,16 +1,16 @@
 import { defineNuxtPlugin } from 'nuxt/app'
 import type { App } from 'vue'
 
-import { DMColorPicker, DMColorSettingsCard } from './atomic'
+import { NucColorPicker, NucColorSettingsCard } from './atomic'
 import { colorsClientPlugin, colorsServerPlugin } from './plugins'
 
-export function registerDMColors(app: App<Element>): void {
+export function registerNucColors(app: App<Element>): void {
   app
     /**
      *  Components
      */
-    .component('dm-color-picker', DMColorPicker)
-    .component('dm-color-settings-card', DMColorSettingsCard)
+    .component('nuc-color-picker', NucColorPicker)
+    .component('nuc-color-settings-card', NucColorSettingsCard)
 
     /**
      *  Plugins
