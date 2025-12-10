@@ -26,10 +26,27 @@ class SeederDiscoveryService
 
     private function getModuleDirectories(string $modulePath): array
     {
-        return array_filter(
+        $modules = array_filter(
             scandir($modulePath),
             fn ($m) => !in_array($m, ['.', '..', '_index.scss', 'index.ts', 'README.md', 'nuc_database'])
         );
+
+        usort($modules, function ($a, $b) {
+            $aIsNuc = str_starts_with($a, 'nuc_');
+            $bIsNuc = str_starts_with($b, 'nuc_');
+
+            if ($aIsNuc && !$bIsNuc) {
+                return -1;
+            }
+
+            if (!$aIsNuc && $bIsNuc) {
+                return 1;
+            }
+
+            return strcmp($a, $b);
+        });
+
+        return $modules;
     }
 
     private function callModuleSeeder(Seeder $seeder, string $module): void
