@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SkeletonDataTableInterface } from 'atomic'
+import type { NucSkeletonDataTableInterface } from 'atomic'
 
-defineProps<SkeletonDataTableInterface>()
+defineProps<NucSkeletonDataTableInterface>()
 </script>

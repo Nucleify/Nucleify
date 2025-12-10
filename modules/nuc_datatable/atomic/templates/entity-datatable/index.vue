@@ -149,7 +149,7 @@
     </Column>
   </ad-data-table>
 
-  <dm-entity-datatable-skeleton
+  <nuc-entity-datatable-skeleton
     :rows="skeleton"
     :loading="props.loading"
     :specific-columns="specificColumns"
@@ -157,10 +157,10 @@
 </template>
 
 <script setup lang="ts">
-import type { DMEntityDatatableInterface } from 'atomic'
+import type { NucEntityDatatableInterface } from 'atomic'
 import { actions as actionsList, columns, useMenu, useSelect } from 'atomic'
 
-const props = defineProps<DMEntityDatatableInterface>()
+const props = defineProps<NucEntityDatatableInterface>()
 const emits = defineEmits<{ (e: 'update:filters', value: unknown): void }>()
 
 const menu = ref()

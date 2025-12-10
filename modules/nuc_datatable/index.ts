@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_datatable'
+export * from './nuc_datatable'
 
 /**
  *  Folders exports
