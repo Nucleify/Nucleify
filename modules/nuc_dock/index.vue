@@ -14,7 +14,7 @@
     :model="dockItems"
     :position="position"
     :class="{ staff: isStaff }"
-    class="dm-dock"
+    class="nuc-dock"
   >
     <template #item="{ item }">
       <nuxt-link v-if="item.logo" :to="item.url" :aria-label="item.label">

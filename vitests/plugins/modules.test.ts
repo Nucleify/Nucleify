@@ -4,7 +4,6 @@ import * as modules from '../../modules'
 import module from '../../nuxt/plugins/modules'
 
 vi.mock('../../modules', () => ({
-  registerDMDock: vi.fn(),
   registerDMDocumentation: vi.fn(),
   registerDMEntities: vi.fn(),
   registerDMEntitiesStructural: vi.fn(),
@@ -31,6 +30,7 @@ vi.mock('../../modules', () => ({
   registerNucColors: vi.fn(),
   registerNucDataTable: vi.fn(),
   registerNucDialog: vi.fn(),
+  registerNucDock: vi.fn(),
 }))
 
 const vueApp = {}
@@ -44,7 +44,6 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   // @ts-expect-error setup is a function on the plugin object
   await module.setup(nuxtApp)
 
-  expect(modules.registerDMDock).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMDocumentation).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMEntities).toHaveBeenCalledWith(vueApp)
   expect(modules.registerDMEntitiesStructural).toHaveBeenCalledWith(vueApp)
@@ -68,4 +67,5 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   expect(modules.registerNucColors).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucDataTable).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucDialog).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucDock).toHaveBeenCalledWith(vueApp)
 })
