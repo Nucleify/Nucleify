@@ -15,10 +15,10 @@ export function applyColorsWithNewSuffix(): void {
 
     const style = document.createElement('style')
 
-    style.id = 'dm-color-vars'
+    style.id = 'nuc-color-vars'
     style.textContent = `:root { ${cssVars.join('; ')} }`
 
-    const existingStyle = document.getElementById('dm-color-vars')
+    const existingStyle = document.getElementById('nuc-color-vars')
 
     if (existingStyle) {
       existingStyle.remove()

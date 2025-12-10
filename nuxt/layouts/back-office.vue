@@ -12,5 +12,5 @@ definePageMeta({
 </script>
 
 <style lang="scss">
-@import '../../modules/dm_colors';
+@import '../../modules/nuc_colors';
 </style>

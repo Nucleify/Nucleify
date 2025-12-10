@@ -7,7 +7,7 @@
     <ul class="settings-card-item-list">
       <li v-for="item in colorList" :key="item" class="settings-card-item">
         <ad-label :label="item" :for="item" />
-        <dm-color-picker :ad-type="item.toLowerCase()" />
+        <nuc-color-picker :ad-type="item.toLowerCase()" />
       </li>
     </ul>
   </dm-settings-card>

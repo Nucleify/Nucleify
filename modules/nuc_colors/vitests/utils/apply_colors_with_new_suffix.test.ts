@@ -35,7 +35,7 @@ describe('applyColorsWithNewSuffix', (): void => {
     applyColorsWithNewSuffix()
 
     expect(createdStyle).not.toBeNull()
-    expect(createdStyle!.id).toBe('dm-color-vars')
+    expect(createdStyle!.id).toBe('nuc-color-vars')
 
     atomic.colorKeys.forEach((item) => {
       atomic.colorShades.forEach((state) => {

@@ -2,7 +2,7 @@ export const modules = [
   { value: 2, icon: 'prime:history', path: 'nuc_activity' },
   { value: 3, icon: 'prime:sparkles', path: 'nuc_animations' },
   { value: 4, icon: 'prime:shield', path: 'nuc_auth' },
-  { value: 5, icon: 'prime:palette', path: 'dm_colors' },
+  { value: 5, icon: 'prime:palette', path: 'nuc_colors' },
   { value: 6, icon: 'prime:box', path: 'dm_entities' },
   { value: 7, icon: 'prime:sitemap', path: 'dm_entities_structural' },
   { value: 8, icon: 'prime:users', path: 'dm_friendship' },

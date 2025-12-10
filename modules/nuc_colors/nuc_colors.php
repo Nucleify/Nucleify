@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\dm_colors;
+namespace Modules\nuc_colors;
 
 use Illuminate\Support\ServiceProvider;
 
-class dm_colors extends ServiceProvider
+class nuc_colors extends ServiceProvider
 {
     public function boot(): void
     {

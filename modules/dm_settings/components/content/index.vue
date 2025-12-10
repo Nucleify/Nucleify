@@ -1,7 +1,7 @@
 <template>
   <div class="grided-content" v-if="gridedContent">
     <dm-settings-preferences-theme v-if="route.hash === '#preferences-theme'" />
-    <dm-color-settings-card v-if="route.hash === '#module-dm_colors'"/>
+    <nuc-color-settings-card v-if="route.hash === '#module-nuc_colors'"/>
     <nuc-chart-settings-card v-if="route.hash === '#module-nuc_charts'"/>
   </div> 
   <dm-settings-staff-modules v-if="route.hash === '#modules'"/>
@@ -21,7 +21,7 @@ const route = useRoute()
 
 const gridedHashes = [
   '#module-nuc_charts',
-  '#module-dm_colors',
+  '#module-nuc_colors',
   '#preferences-theme',
 ]
 
