@@ -10,7 +10,7 @@
       button-text="New User"
     />
 
-    <dm-dialog
+    <nuc-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"
@@ -32,7 +32,7 @@
 import { computed } from 'vue'
 
 import type { DashboardInterface } from 'atomic'
-import { useDmDialog, userRequests, useUserFields } from 'atomic'
+import { useNucDialog, userRequests, useUserFields } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
@@ -44,7 +44,7 @@ const {
   selectedObject,
   openDialog,
   closeDialog,
-} = useDmDialog()
+} = useNucDialog()
 
 const { createFields, editFields, showFields } = useUserFields()
 const { deleteUser, storeUser, editUser } = userRequests(closeDialog)

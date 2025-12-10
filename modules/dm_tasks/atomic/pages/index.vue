@@ -18,9 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { taskRequests, useDmDialog } from 'atomic'
+import { taskRequests, useNucDialog } from 'atomic'
 
-const { closeDialog } = useDmDialog()
+const { closeDialog } = useNucDialog()
 const { results, loading, getAllTasks } = taskRequests(closeDialog)
 
 onMounted(() => {

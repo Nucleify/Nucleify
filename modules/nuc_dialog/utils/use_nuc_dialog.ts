@@ -1,11 +1,11 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 
-import type { DmDialogVisibleInterface, UseDmDialogInterface } from 'atomic'
+import type { NucDialogVisibleInterface, UseNucDialogInterface } from 'atomic'
 
-export function useDmDialog(): UseDmDialogInterface {
+export function useNucDialog(): UseNucDialogInterface {
   const selectedObject: Ref<ObjectType> = ref()
-  const visible: DmDialogVisibleInterface = {
+  const visible: NucDialogVisibleInterface = {
     create: ref(false),
     delete: ref(false),
     edit: ref(false),

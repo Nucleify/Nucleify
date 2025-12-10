@@ -9,7 +9,7 @@
       header-text="Manage Activities"
     />
 
-    <dm-dialog
+    <nuc-dialog
       v-for="dialog in dialogs"
       :key="dialog.action"
       :entity="dialog.entity"
@@ -28,11 +28,12 @@
 
 <script setup lang="ts">
 import type { DashboardInterface } from 'atomic'
-import { activityRequests, useDmDialog } from 'atomic'
+import { activityRequests, useNucDialog } from 'atomic'
 
 const props = defineProps<DashboardInterface>()
 
-const { visibleDelete, selectedObject, openDialog, closeDialog } = useDmDialog()
+const { visibleDelete, selectedObject, openDialog, closeDialog } =
+  useNucDialog()
 
 const { deleteActivity } = activityRequests(closeDialog)
 

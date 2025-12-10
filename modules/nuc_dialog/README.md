@@ -1,4 +1,4 @@
-# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_dialog
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; nuc_dialog
 
 Module that contains dialog functionality.
 

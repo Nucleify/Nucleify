@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_dialog'
+export * from './nuc_dialog'
 
 /**
  *  Folders exports
@@ -12,4 +12,4 @@ export * from './utils'
 /**
  *  Files exports
  */
-export { default as DmDialog } from './index.vue'
+export { default as NucDialog } from './index.vue'
