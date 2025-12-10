@@ -4,28 +4,28 @@
 import { Ref, ref } from 'vue'
 
 import {
-  ArticleObjectInterface,
   allEntitiesKeys,
   allEntitiesLabels,
   CardObjectInterface,
   ChartInterface,
   ChartMethodType,
   ChartType,
-  ContactObjectInterface,
   FeatureObjectInterface,
   FileObjectInterface,
   LabelItemType,
   LinkObjectInterface,
-  MoneyObjectInterface,
   months,
   NucActivityObjectInterface,
+  NucArticleObjectInterface,
+  NucContactObjectInterface,
   NucDocumentationObjectInterface,
+  NucMoneyObjectInterface,
+  NucUserObjectInterface,
   ObjectType,
   QuestionObjectInterface,
   TaskObjectInterface,
   TechnologyObjectInterface,
   UseColorsInterface,
-  UserObjectInterface,
   useColors,
 } from 'atomic'
 
@@ -86,18 +86,18 @@ export function useChart() {
   function setChartData(
     chartMethodType: ChartMethodType,
     activityLogData?: NucActivityObjectInterface[],
-    articleData?: ArticleObjectInterface[],
+    articleData?: NucArticleObjectInterface[],
     cardData?: CardObjectInterface[],
-    contactData?: ContactObjectInterface[],
+    contactData?: NucContactObjectInterface[],
     documentationData?: NucDocumentationObjectInterface[],
     featureData?: FeatureObjectInterface[],
     fileData?: FileObjectInterface[],
     linkData?: LinkObjectInterface[],
-    moneyData?: MoneyObjectInterface[],
+    moneyData?: NucMoneyObjectInterface[],
     questionData?: QuestionObjectInterface[],
     taskData?: TaskObjectInterface[],
     technologyData?: TechnologyObjectInterface[],
-    userData?: UserObjectInterface[],
+    userData?: NucUserObjectInterface[],
     example?: boolean
   ) {
     try {

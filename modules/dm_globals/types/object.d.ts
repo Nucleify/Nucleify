@@ -2,18 +2,18 @@ import type { Ref } from 'vue'
 
 import type {
   NucActivityObjectInterface,
-  ArticleObjectInterface,
+  NucArticleObjectInterface,
   CardObjectInterface,
-  ContactObjectInterface,
+  NucContactObjectInterface,
   NucDocumentationObjectInterface,
   FeatureObjectInterface,
   FileObjectInterface,
   LinkObjectInterface,
-  MoneyObjectInterface,
+  NucMoneyObjectInterface,
   QuestionObjectInterface,
   TaskObjectInterface,
   TechnologyObjectInterface,
-  UserObjectInterface,
+  NucUserObjectInterface,
 } from 'atomic'
 
 export {}
@@ -21,18 +21,18 @@ export {}
 declare global {
   type ObjectType =
     | NucActivityObjectInterface
-    | ArticleObjectInterface
+    | NucArticleObjectInterface
     | CardObjectInterface
-    | ContactObjectInterface
+    | NucContactObjectInterface
     | NucDocumentationObjectInterface
     | FeatureObjectInterface
     | FileObjectInterface
     | LinkObjectInterface
-    | MoneyObjectInterface
+    | NucMoneyObjectInterface
     | QuestionObjectInterface
     | TaskObjectInterface
     | TechnologyObjectInterface
-    | UserObjectInterface
+    | NucUserObjectInterface
     | undefined
 
   type ObjectNameType =

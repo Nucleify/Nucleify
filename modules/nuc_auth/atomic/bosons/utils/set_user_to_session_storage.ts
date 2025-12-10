@@ -1,14 +1,14 @@
-import type { UserObjectInterface } from 'atomic'
+import type { NucUserObjectInterface } from 'atomic'
 import { sessionStorageSetItem } from 'atomic'
 
 export function setUserToSessionStorage(
-  user: UserObjectInterface | null | undefined
+  user: NucUserObjectInterface | null | undefined
 ): void {
   if (!user) {
     return
   }
 
-  const sanitizedUser: UserObjectInterface = {
+  const sanitizedUser: NucUserObjectInterface = {
     id: user.id,
     name: user.name,
     email: user.email,
@@ -21,7 +21,7 @@ export function setUserToSessionStorage(
   Object.entries(sanitizedUser).forEach(
     ([key, value]: [
       string,
-      UserObjectInterface[keyof UserObjectInterface],
+      NucUserObjectInterface[keyof NucUserObjectInterface],
     ]): void => {
       const stringValue =
         value !== null && value !== undefined

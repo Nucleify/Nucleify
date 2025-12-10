@@ -1,19 +1,19 @@
 import type {
-  ArticleObjectInterface,
   CardObjectInterface,
   ChartInterface,
   ChartMethodType,
-  ContactObjectInterface,
   FeatureObjectInterface,
   FileObjectInterface,
   LinkObjectInterface,
-  MoneyObjectInterface,
   NucActivityObjectInterface,
+  NucArticleObjectInterface,
+  NucContactObjectInterface,
   NucDocumentationObjectInterface,
+  NucMoneyObjectInterface,
+  NucUserObjectInterface,
   QuestionObjectInterface,
   TaskObjectInterface,
   TechnologyObjectInterface,
-  UserObjectInterface,
 } from 'atomic'
 
 export interface NucEntityChartInterface extends ChartInterface {
@@ -25,18 +25,18 @@ export interface NucEntityChartInterface extends ChartInterface {
 
 export interface NucEntityChartDataInterface {
   activity?: NucActivityObjectInterface[]
-  article?: ArticleObjectInterface[]
+  article?: NucArticleObjectInterface[]
   card?: CardObjectInterface[]
-  contact?: ContactObjectInterface[]
+  contact?: NucContactObjectInterface[]
   documentation?: NucDocumentationObjectInterface[]
   feature?: FeatureObjectInterface[]
   file?: FileObjectInterface[]
   link?: LinkObjectInterface[]
-  money?: MoneyObjectInterface[]
+  money?: NucMoneyObjectInterface[]
   question?: QuestionObjectInterface[]
   task?: TaskObjectInterface[]
   technology?: TechnologyObjectInterface[]
-  user?: UserObjectInterface[]
+  user?: NucUserObjectInterface[]
 }
 
 export interface DisplayChartsInterface {
