@@ -1,22 +1,22 @@
 import type {
   DeleteEntityRequestType,
-  DocumentationObjectInterface,
   EditEntityRequestType,
   EntityCountResultsType,
   EntityResultsType,
   GetAllEntitiesRequestType,
   GetEntityRequestType,
   LoadingRefType,
+  NucDocumentationObjectInterface,
   StoreEntityRequestType,
 } from 'atomic'
 
-export interface DocumentationRequestsInterface {
-  results: EntityResultsType<DocumentationObjectInterface>
+export interface NucDocumentationRequestsInterface {
+  results: EntityResultsType<NucDocumentationObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllDocumentation: GetAllEntitiesRequestType<DocumentationObjectInterface>
+  getAllDocumentation: GetAllEntitiesRequestType<NucDocumentationObjectInterface>
   getCountDocumentationByCreatedLastWeek: GetEntityRequestType
-  storeDocumentation: StoreEntityRequestType<DocumentationObjectInterface>
-  editDocumentation: EditEntityRequestType<DocumentationObjectInterface>
+  storeDocumentation: StoreEntityRequestType<NucDocumentationObjectInterface>
+  editDocumentation: EditEntityRequestType<NucDocumentationObjectInterface>
   deleteDocumentation: DeleteEntityRequestType
 }

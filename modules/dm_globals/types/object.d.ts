@@ -5,7 +5,7 @@ import type {
   ArticleObjectInterface,
   CardObjectInterface,
   ContactObjectInterface,
-  DocumentationObjectInterface,
+  NucDocumentationObjectInterface,
   FeatureObjectInterface,
   FileObjectInterface,
   LinkObjectInterface,
@@ -24,7 +24,7 @@ declare global {
     | ArticleObjectInterface
     | CardObjectInterface
     | ContactObjectInterface
-    | DocumentationObjectInterface
+    | NucDocumentationObjectInterface
     | FeatureObjectInterface
     | FileObjectInterface
     | LinkObjectInterface
