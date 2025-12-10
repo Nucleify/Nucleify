@@ -1,7 +1,7 @@
 <template>
   <div id="back-office">
     <slot />
-    <dm-dock />
+    <nuc-dock />
   </div>
 </template>
 
