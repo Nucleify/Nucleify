@@ -421,10 +421,7 @@ describe('422 > POST', function ($moneyData = moneyData) {
         $moneyData,
         ['errors' => ['description']],
         ['errors' => [
-            'description' => [
-                'The description field must be a string.',
-                'The description field must be at least 3 characters.',
-            ],
+            'description' => ['The description field is required.'],
         ]]
     ));
 
@@ -477,7 +474,7 @@ describe('422 > POST', function ($moneyData = moneyData) {
         $moneyData,
         ['errors' => ['category']],
         ['errors' => [
-            'category' => ['The category field must be a string.'],
+            'category' => ['The category field is required.'],
         ]]
     ));
 });

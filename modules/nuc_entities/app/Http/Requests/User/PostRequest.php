@@ -26,7 +26,8 @@ class PostRequest extends FormRequest
         return [
             'name' => 'required|string|min:3|max:30',
             'email' => 'required|email|min:3|max:70|unique:users,email',
-            'password' => 'required|min:8|max:50',
+            'password' => 'required|min:8|max:50|confirmed',
+            'password_confirmation' => 'required|min:8|max:50',
             'role' => 'required|in:user,tech,test_admin,admin,super_admin',
         ];
     }

@@ -198,7 +198,10 @@ describe('422 > POST', function ($userData = userData) {
         $userData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must be at least 8 characters.'],
+            'password' => [
+                'The password field must be at least 8 characters.',
+                'The password field confirmation does not match.',
+            ],
         ]]
     ));
 
@@ -210,7 +213,10 @@ describe('422 > POST', function ($userData = userData) {
         $userData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must be at least 8 characters.'],
+            'password' => [
+                'The password field must be at least 8 characters.',
+                'The password field confirmation does not match.',
+            ],
         ]]
     ));
 
@@ -222,7 +228,10 @@ describe('422 > POST', function ($userData = userData) {
         $userData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must be at least 8 characters.'],
+            'password' => [
+                'The password field must be at least 8 characters.',
+                'The password field confirmation does not match.',
+            ],
         ]]
     ));
 
@@ -234,7 +243,10 @@ describe('422 > POST', function ($userData = userData) {
         $userData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must be at least 8 characters.'],
+            'password' => [
+                'The password field must be at least 8 characters.',
+                'The password field confirmation does not match.',
+            ],
         ]]
     ));
 
@@ -246,7 +258,10 @@ describe('422 > POST', function ($userData = userData) {
         $userData,
         ['errors' => ['password']],
         ['errors' => [
-            'password' => ['The password field must not be greater than 50 characters.'],
+            'password' => [
+                'The password field must not be greater than 50 characters.',
+                'The password field confirmation does not match.',
+            ],
         ]]
     ));
 

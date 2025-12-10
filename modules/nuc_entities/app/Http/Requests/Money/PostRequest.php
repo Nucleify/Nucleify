@@ -29,8 +29,8 @@ class PostRequest extends FormRequest
             'receiver' => 'required|string',
             'count' => 'required|integer',
             'title' => 'required|string|min:3|max:30',
-            'description' => 'nullable|string|min:3|max:255',
-            'category' => 'nullable|string|max:15',
+            'description' => 'required|string|min:3|max:255',
+            'category' => 'required|string|max:15',
         ];
     }
 }
