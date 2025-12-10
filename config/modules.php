@@ -2,7 +2,7 @@
 
 return [
     Modules\nuc_activity\nuc_activity::class,
-    Modules\dm_auth\dm_auth::class,
+    Modules\nuc_auth\nuc_auth::class,
     Modules\dm_colors\dm_colors::class,
     Modules\dm_entities\dm_entities::class,
     Modules\dm_entities_structural\dm_entities_structural::class,

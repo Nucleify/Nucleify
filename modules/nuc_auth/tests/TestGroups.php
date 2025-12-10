@@ -8,11 +8,11 @@ if (!defined('PEST_RUNNING')) {
  *  Main tests group
  */
 uses()
-    ->group('dm-auth')
+    ->group('nuc-auth')
     ->in('.');
 
 uses()
-    ->group('dm-auth-db')
+    ->group('nuc-auth-db')
     ->in('Database');
 
 /**

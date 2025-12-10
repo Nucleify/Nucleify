@@ -1,6 +1,6 @@
 <template>
   <div id="register">
-    <dm-register-page />
+    <nuc-register-page />
   </div>
 </template>
 
