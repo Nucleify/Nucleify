@@ -28,7 +28,7 @@ describe('getModuleDirectories', function (): void {
     //         ->not->toContain('_index.scss')
     //         ->not->toContain('index.ts')
     //         ->not->toContain('README.md')
-    //         ->not->toContain('dm_database');
+    //         ->not->toContain('nuc_database');
 
     //     foreach ($result as $moduleName) {
     //         expect($moduleName)->toStartWith('dm_');

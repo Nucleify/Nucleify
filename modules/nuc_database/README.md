@@ -1,4 +1,4 @@
-# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_datatable
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; nuc_database
 
 This module provides automatic seeder discovery and execution for all modules.
 
