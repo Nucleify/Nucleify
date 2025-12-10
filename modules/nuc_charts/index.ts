@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_charts'
+export * from './nuc_charts'
 
 /**
  *  Folders exports

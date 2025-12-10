@@ -5,9 +5,9 @@ import * as atomic from 'atomic'
 
 import { testCases } from './cases'
 
-describe('useDisplayChartsStore > setAllTo', (): void => {
-  let store: atomic.DMDisplayChartsStateInterface
-  let keys: atomic.DMDisplayChartsStateKeyType[]
+describe('useDisplayChartsStore > toggle', (): void => {
+  let store: atomic.NucDisplayChartsStateInterface
+  let keys: atomic.NucDisplayChartsStateKeyType[]
 
   beforeEach((): void => {
     setActivePinia(createPinia())
@@ -19,9 +19,13 @@ describe('useDisplayChartsStore > setAllTo', (): void => {
   testCases.forEach(({ value, description }): void => {
     it(description, (): void => {
       for (const key of keys) {
-        store.setAllTo(value)
+        if (value === false) {
+          store.toggle(key)
+        }
 
-        expect(store[key]).toBe(value)
+        store.toggle(key)
+
+        expect(store[key]).toBe(!value)
       }
     })
   })

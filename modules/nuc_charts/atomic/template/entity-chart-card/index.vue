@@ -1,10 +1,10 @@
 <template>
   <ad-card 
-    v-if="displayCharts[props.entity as keyof DMDisplayChartsStateInterface]" 
+    v-if="displayCharts[props.entity as keyof NucDisplayChartsStateInterface]" 
     class="dm-card-base entity-chart-card"
   >
     <template #content>
-      <dm-entity-chart
+      <nuc-entity-chart
         :data="props.data"
         :chart-method-type="props.chartMethodType"
         :type="props.type"
@@ -17,12 +17,12 @@
 
 <script setup lang="ts">
 import type {
-  DMDisplayChartsStateInterface,
-  DMEntityChartCardInterface,
+  NucDisplayChartsStateInterface,
+  NucEntityChartCardInterface,
 } from 'atomic'
 import { useDisplayChartsStore } from 'atomic'
 
-const props = defineProps<DMEntityChartCardInterface>()
+const props = defineProps<NucEntityChartCardInterface>()
 
 const displayCharts = useDisplayChartsStore()
 </script>

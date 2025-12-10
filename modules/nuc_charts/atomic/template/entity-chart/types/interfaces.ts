@@ -16,14 +16,14 @@ import type {
   UserObjectInterface,
 } from 'atomic'
 
-export interface DMEntityChartInterface extends ChartInterface {
+export interface NucEntityChartInterface extends ChartInterface {
   chartMethodType: ChartMethodType
-  data?: DMEntityChartDataInterface
+  data?: NucEntityChartDataInterface
   example?: boolean
   direction?: string
 }
 
-export interface DMEntityChartDataInterface {
+export interface NucEntityChartDataInterface {
   activity?: NucActivityObjectInterface[]
   article?: ArticleObjectInterface[]
   card?: CardObjectInterface[]

@@ -1,4 +1,4 @@
 <template>
   <dm-color-settings-card />
-  <dm-chart-settings-card />
+  <nuc-chart-settings-card />
 </template>

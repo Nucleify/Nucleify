@@ -11,10 +11,10 @@
 </template>
 
 <script setup lang="ts">
-import type { DMEntityChartInterface } from './types'
+import type { NucEntityChartInterface } from './types'
 import { useChart } from './utils'
 
-const props = defineProps<DMEntityChartInterface>()
+const props = defineProps<NucEntityChartInterface>()
 const { chartData, setChartData, setChartOptions } = useChart()
 
 const chartOptions = ref(setChartOptions(props.type, props.direction))

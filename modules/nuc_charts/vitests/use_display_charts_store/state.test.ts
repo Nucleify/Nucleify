@@ -6,8 +6,8 @@ import * as atomic from 'atomic'
 import { testCases } from './cases'
 
 describe('useDisplayChartsStore > state', (): void => {
-  let store: atomic.DMDisplayChartsStateInterface
-  let keys: atomic.DMDisplayChartsStateKeyType[]
+  let store: atomic.NucDisplayChartsStateInterface
+  let keys: atomic.NucDisplayChartsStateKeyType[]
 
   beforeEach((): void => {
     setActivePinia(createPinia())
