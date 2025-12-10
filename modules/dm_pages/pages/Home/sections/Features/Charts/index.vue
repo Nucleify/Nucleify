@@ -8,14 +8,14 @@
       <ad-card class="dm-card-base home-chart-card">
         <template #content>
           <nuc-animation-hexagons style="opacity: 0.3" />
-          <dm-entity-chart
+          <nuc-entity-chart
             chart-method-type="annual"
             type="bar"
             class="home-vertical-chart"
             :direction="isMobile() ? 'horizontal' : 'vertical'"
             :example="true"
           />
-          <dm-entity-chart
+          <nuc-entity-chart
             chart-method-type="count"
             type="pie"
             class="home-pie-chart"

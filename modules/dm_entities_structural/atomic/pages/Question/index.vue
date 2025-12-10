@@ -1,6 +1,6 @@
 <template>
   <div class="panel-container">
-    <dm-entity-chart-card
+    <nuc-entity-chart-card
       entity="Question"
       class="annual-chart-card"
       chart-method-type="annual"

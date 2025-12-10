@@ -1,4 +1,4 @@
-# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_charts
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; nuc_charts
 
 Module that contains chart functions.
 

@@ -1,8 +1,8 @@
 import { defineStore } from 'pinia'
 
 import type {
-  DMDisplayChartsStateInterface,
-  DMDisplayChartsStateKeyType,
+  NucDisplayChartsStateInterface,
+  NucDisplayChartsStateKeyType,
 } from 'atomic'
 import {
   displayChartList,
@@ -12,10 +12,10 @@ import {
 } from 'atomic'
 
 export const useDisplayChartsStore = defineStore('displayCharts', {
-  state: (): DMDisplayChartsStateInterface =>
+  state: (): NucDisplayChartsStateInterface =>
     initialStoreState(displayChartList, true),
   actions: {
-    toggle(key: DMDisplayChartsStateKeyType): void {
+    toggle(key: NucDisplayChartsStateKeyType): void {
       this[key] = toggleState(this[key])
     },
     setAllTo(value: boolean): void {

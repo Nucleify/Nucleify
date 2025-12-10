@@ -5,7 +5,6 @@ import { defineNuxtPlugin } from 'nuxt/app'
 import { registerDMGlobals } from 'atomic'
 
 import {
-  registerDMCharts,
   registerDMColors,
   registerDMDataTable,
   registerDMDialog,
@@ -31,6 +30,7 @@ import {
   registerNucAdmin,
   registerNucAnimations,
   registerNucAuth,
+  registerNucCharts,
 } from '../../modules'
 
 export default defineNuxtPlugin({
@@ -38,7 +38,6 @@ export default defineNuxtPlugin({
   enforce: 'pre',
   setup(nuxtApp: NuxtApp) {
     registerDMColors(nuxtApp.vueApp)
-    registerDMCharts(nuxtApp.vueApp)
     registerDMDataTable(nuxtApp.vueApp)
     registerDMDialog(nuxtApp.vueApp)
     registerDMDock(nuxtApp.vueApp)
@@ -64,5 +63,6 @@ export default defineNuxtPlugin({
     registerNucAdmin(nuxtApp.vueApp)
     registerNucAnimations(nuxtApp.vueApp)
     registerNucAuth(nuxtApp.vueApp)
+    registerNucCharts(nuxtApp.vueApp)
   },
 })
