@@ -31,7 +31,7 @@
         <dm-authors />
       </div>
     </div>
-    <dm-animation-hexagons />
+    <nuc-animation-hexagons />
   </section>
 </template>
 

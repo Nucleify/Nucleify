@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_animations'
+export * from './nuc_animations'
 
 /**
  *  Folders exports

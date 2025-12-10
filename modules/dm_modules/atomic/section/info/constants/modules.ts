@@ -1,6 +1,6 @@
 export const modules = [
   { value: 2, icon: 'prime:history', path: 'nuc_activity' },
-  { value: 3, icon: 'prime:sparkles', path: 'dm_animations' },
+  { value: 3, icon: 'prime:sparkles', path: 'nuc_animations' },
   { value: 4, icon: 'prime:shield', path: 'dm_auth' },
   { value: 5, icon: 'prime:palette', path: 'dm_colors' },
   { value: 6, icon: 'prime:box', path: 'dm_entities' },
