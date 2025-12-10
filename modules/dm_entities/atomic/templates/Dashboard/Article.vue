@@ -1,6 +1,6 @@
 <template>
   <section id="articles">
-    <dm-entity-datatable-card
+    <nuc-entity-datatable-card
       ad-type="article"
       :value="data"
       :loading="loading"

@@ -1,6 +1,6 @@
 <template>
   <section id="contacts">
-    <dm-entity-datatable-card
+    <nuc-entity-datatable-card
       ad-type="contact"
       :value="data"
       :loading="loading"

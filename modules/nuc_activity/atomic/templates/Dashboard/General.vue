@@ -1,6 +1,6 @@
 <template>
   <section id="activity-log">
-    <dm-entity-datatable-card
+    <nuc-entity-datatable-card
       ad-type="activity"
       :value="props.data"
       :loading="props.loading"

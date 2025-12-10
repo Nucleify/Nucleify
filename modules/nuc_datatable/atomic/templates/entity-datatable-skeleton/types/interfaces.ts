@@ -1,6 +1,6 @@
 import type { ColumnInterface, LoadingType } from 'atomic'
 
-export interface SkeletonDataTableInterface {
+export interface NucSkeletonDataTableInterface {
   rows: []
   loading: LoadingType
   specificColumns: ColumnInterface[]

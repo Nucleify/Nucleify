@@ -1,6 +1,6 @@
 <template>
   <section id="files">
-    <dm-entity-datatable-card
+    <nuc-entity-datatable-card
       :value="data"
       :loading="loading"
       :open-dialog="openDialog"

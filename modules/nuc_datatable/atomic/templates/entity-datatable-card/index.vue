@@ -32,7 +32,7 @@
       </div>
     </template>
     <template #content>
-      <dm-entity-datatable
+      <nuc-entity-datatable
         v-if="props.value"
         :value="props.value"
         :rows="10"
@@ -51,10 +51,10 @@
 </template>
 
 <script setup lang="ts">
-import type { DMEntityDatatableCardInterface } from 'atomic'
+import type { NucEntityDatatableCardInterface } from 'atomic'
 import { columns } from 'atomic'
 
-const props = defineProps<DMEntityDatatableCardInterface>()
+const props = defineProps<NucEntityDatatableCardInterface>()
 
 const specificColumns = columns[props.adType as keyof typeof columns]
 
