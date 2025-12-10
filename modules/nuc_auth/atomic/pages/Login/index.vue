@@ -32,7 +32,7 @@
     </template>
   </ad-card>
 
-  <dm-test-login-buttons />
+  <nuc-test-login-buttons />
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,5 @@
 {
-  "name": "dm_auth",
+  "name": "nuc_auth",
   "description": "Module that contains auth functions.",
   "version": "0.0.1",
   "category": "core",

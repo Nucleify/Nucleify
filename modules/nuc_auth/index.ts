@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_auth'
+export * from './nuc_auth'
 
 /**
  *  Folders exports

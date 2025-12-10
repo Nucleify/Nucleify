@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\dm_auth;
+namespace Modules\nuc_auth;
 
 use Illuminate\Support\ServiceProvider;
 
-class dm_auth extends ServiceProvider
+class nuc_auth extends ServiceProvider
 {
     public function boot(): void
     {
