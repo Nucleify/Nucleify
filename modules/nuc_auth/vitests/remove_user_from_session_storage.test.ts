@@ -10,7 +10,7 @@ it('should remove user data from sessionStorage', (): void => {
   Object.keys(atomic.mockUser).forEach((key: string): void => {
     window.sessionStorage.setItem(
       `user_${key}`,
-      atomic.mockUser[key as keyof atomic.UserObjectInterface] as string
+      atomic.mockUser[key as keyof atomic.NucUserObjectInterface] as string
     )
   })
 

@@ -1,13 +1,13 @@
 import type {
-  ArticleObjectInterface,
-  ContactObjectInterface,
   LoadingType,
-  MoneyObjectInterface,
+  NucArticleObjectInterface,
+  NucContactObjectInterface,
+  NucMoneyObjectInterface,
 } from 'atomic'
 
 export interface PolarChartInterface {
-  articles: ArticleObjectInterface[]
-  contacts: ContactObjectInterface[]
-  money: MoneyObjectInterface[]
+  articles: NucArticleObjectInterface[]
+  contacts: NucContactObjectInterface[]
+  money: NucMoneyObjectInterface[]
   loading: LoadingType
 }

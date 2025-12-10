@@ -17,22 +17,22 @@
       }"
       :loading="!allLoaded"
     />
-    <dm-article-dashboard
+    <nuc-article-dashboard
       :data="articles"
       :get-data="getAllArticles"
       :loading="!allLoaded"
     />
-    <dm-contact-dashboard
+    <nuc-contact-dashboard
       :data="contacts"
       :get-data="getAllContacts"
       :loading="!allLoaded"
     />
-    <dm-money-dashboard
+    <nuc-money-dashboard
       :data="money"
       :get-data="getAllMoney"
       :loading="!allLoaded"
     />
-    <dm-user-dashboard
+    <nuc-user-dashboard
       :data="users"
       :get-data="getAllUsers"
       :loading="!allLoaded"

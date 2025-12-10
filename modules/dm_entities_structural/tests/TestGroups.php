@@ -8,15 +8,15 @@ if (!defined('PEST_RUNNING')) {
  *  Main groups
  */
 uses()
-    ->group('dm-entities-structural')
+    ->group('nuc-entities-structural')
     ->in('.');
 
 uses()
-    ->group('dm-entities-structural-db')
+    ->group('nuc-entities-structural-db')
     ->in('Database');
 
 uses()
-    ->group('dm-entities-structural-ft')
+    ->group('nuc-entities-structural-ft')
     ->in('Feature');
 
 /**
