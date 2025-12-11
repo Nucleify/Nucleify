@@ -3,9 +3,9 @@
     <nuc-start />
     <nuc-features />
     <nuc-innovations />
-    <dm-section-why-us site="home" />
-    <dm-section-faq site="home" />
-    <dm-section-contact />
+    <nuc-section-why-us site="home" />
+    <nuc-section-faq site="home" />
+    <nuc-section-contact />
   </div>
 </template>
 

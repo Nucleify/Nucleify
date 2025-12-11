@@ -1,9 +1,9 @@
 <template>
   <div id="front-office">
     <nuc-screen-loader />
-    <dm-section-navbar />
+    <nuc-section-navbar />
     <slot />
-    <dm-section-footer />
+    <nuc-section-footer />
   </div>
 </template>
 
