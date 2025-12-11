@@ -9,7 +9,7 @@ This module provides automatic seeder discovery and execution for all modules.
 - **Auto-discovery**: Automatically finds and runs seeders from enabled modules
 - **Config-based**: Uses module `config.json` to determine which seeders to run
 - **Smart naming**: Automatically guesses seeder names from module names
-- **Pluralization handling**: Intelligently handles plural module names (e.g., `dm_modules` → `ModuleSeeder`)
+- **Pluralization handling**: Intelligently handles plural module names (e.g., `nuc_modules` → `ModuleSeeder`)
 
 <br>
 
@@ -46,10 +46,10 @@ public function run(): void
 
 ## Auto-guessing Rules
 
-- `dm_modules` → `ModuleSeeder` (trims trailing 's')
-- `dm_files` → `FileSeeder` (trims trailing 's')
-- `dm_entities` → `EntitiesSeeder` (keeps 'ies')
-- `dm_friendship` → `FriendshipSeeder` (no 's' to trim)
+- `nuc_modules` → `ModuleSeeder` (trims trailing 's')
+- `nuc_files` → `FileSeeder` (trims trailing 's')
+- `nuc_entities` → `EntitiesSeeder` (keeps 'ies')
+- `nuc_friendship` → `FriendshipSeeder` (no 's' to trim)
 
 <br>
 
@@ -59,7 +59,7 @@ Add to your module's `config.json`:
 
 ```json
 {
-  "name": "dm_your_module",
+  "name": "nuc_your_module",
   "seeder": "YourModuleSeeder",
   "installed": true,
   "enabled": true

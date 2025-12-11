@@ -47,7 +47,7 @@ describe('discoverAndCallSeeders', function (): void {
     });
 
     test('discovers and calls seeders for enabled modules', function (): void {
-        $moduleName = 'dm_test_module_' . time();
+        $moduleName = 'nuc_test_module_' . time();
         $this->testModules[] = $moduleName;
         $modulePath = $this->testModulesPath . '/' . $moduleName;
         File::makeDirectory($modulePath, 0755, true);
@@ -78,7 +78,7 @@ describe('discoverAndCallSeeders', function (): void {
     });
 
     test('skips modules without config.json', function (): void {
-        $moduleName = 'dm_no_config_' . time();
+        $moduleName = 'nuc_no_config_' . time();
         $this->testModules[] = $moduleName;
         $modulePath = $this->testModulesPath . '/' . $moduleName;
         File::makeDirectory($modulePath, 0755, true);
@@ -96,7 +96,7 @@ describe('discoverAndCallSeeders', function (): void {
     });
 
     test('skips disabled modules', function (): void {
-        $moduleName = 'dm_disabled_module_' . time();
+        $moduleName = 'nuc_disabled_module_' . time();
         $this->testModules[] = $moduleName;
         $modulePath = $this->testModulesPath . '/' . $moduleName;
         File::makeDirectory($modulePath, 0755, true);
@@ -122,7 +122,7 @@ describe('discoverAndCallSeeders', function (): void {
     });
 
     test('skips not installed modules', function (): void {
-        $moduleName = 'dm_not_installed_' . time();
+        $moduleName = 'nuc_not_installed_' . time();
         $this->testModules[] = $moduleName;
         $modulePath = $this->testModulesPath . '/' . $moduleName;
         File::makeDirectory($modulePath, 0755, true);
@@ -148,7 +148,7 @@ describe('discoverAndCallSeeders', function (): void {
     });
 
     test('skips modules with seeder explicitly set to false', function (): void {
-        $moduleName = 'dm_no_seeder_' . time();
+        $moduleName = 'nuc_no_seeder_' . time();
         $this->testModules[] = $moduleName;
         $modulePath = $this->testModulesPath . '/' . $moduleName;
         File::makeDirectory($modulePath, 0755, true);

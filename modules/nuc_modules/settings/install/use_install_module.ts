@@ -65,7 +65,7 @@ export function useInstallModule(onSuccess: () => void) {
 
   function formatSize(bytes: number): string {
     const k = 1024
-    const dm = 3
+    const nuc = 4
     const sizes = $primevue.config.locale?.fileSizeTypes
 
     if (bytes === 0) {
@@ -73,7 +73,7 @@ export function useInstallModule(onSuccess: () => void) {
     }
 
     const i = Math.floor(Math.log(bytes) / Math.log(k))
-    const formattedSize = parseFloat((bytes / Math.pow(k, i)).toFixed(dm))
+    const formattedSize = parseFloat((bytes / Math.pow(k, i)).toFixed(nuc))
 
     return `${formattedSize} ${sizes?.[i]}`
   }
