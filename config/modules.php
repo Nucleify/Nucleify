@@ -5,7 +5,7 @@ return [
     Modules\nuc_auth\nuc_auth::class,
     Modules\nuc_colors\nuc_colors::class,
     Modules\nuc_entities\nuc_entities::class,
-    Modules\dm_entities_structural\dm_entities_structural::class,
+    Modules\nuc_entities_structural\nuc_entities_structural::class,
     Modules\dm_files\dm_files::class,
     Modules\dm_friendship\dm_friendship::class,
     Modules\dm_modules\dm_modules::class,

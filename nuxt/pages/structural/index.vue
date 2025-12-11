@@ -1,5 +1,5 @@
 <template>
   <div id="structural">
-    <dm-structural-page />
+    <nuc-structural-page />
   </div>
 </template>

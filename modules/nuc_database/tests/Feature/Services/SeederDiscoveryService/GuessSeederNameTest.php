@@ -48,7 +48,7 @@ describe('guessSeederName', function (): void {
         $method = $reflection->getMethod('guessSeederName');
         $method->setAccessible(true);
 
-        $result = $method->invoke($this->service, 'dm_entities_structural');
+        $result = $method->invoke($this->service, 'nuc_entities_structural');
 
         expect($result)->toBe('EntitiesStructuralSeeder');
     });

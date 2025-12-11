@@ -40,7 +40,7 @@ import {
 
 import type {
   EntityResultsType,
-  FeatureObjectInterface,
+  NucFeatureObjectInterface,
   WhyUsInterface,
   WhyUsItemInterface,
 } from 'atomic'
@@ -60,7 +60,7 @@ gsap.registerPlugin(InertiaPlugin)
 
 const props = defineProps<WhyUsInterface>()
 
-const data = ref<EntityResultsType<FeatureObjectInterface> | null>(null)
+const data = ref<EntityResultsType<NucFeatureObjectInterface> | null>(null)
 
 const clickOutsideHandler: ((event: MouseEvent) => void) | null = null
 

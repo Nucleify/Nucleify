@@ -1,12 +1,12 @@
 import type {
-  QuestionObjectInterface,
+  NucQuestionObjectInterface,
   UseSplitQuestionsInterface,
 } from 'atomic'
 
 export function useSplitQuestions(
-  questions: QuestionObjectInterface | QuestionObjectInterface[]
+  questions: NucQuestionObjectInterface | NucQuestionObjectInterface[]
 ): UseSplitQuestionsInterface {
-  const normalizedQuestions: QuestionObjectInterface[] = Array.isArray(
+  const normalizedQuestions: NucQuestionObjectInterface[] = Array.isArray(
     questions
   )
     ? questions
@@ -14,11 +14,11 @@ export function useSplitQuestions(
 
   const middleIndex: number = Math.ceil(normalizedQuestions.length / 2)
 
-  const column1: QuestionObjectInterface[] = normalizedQuestions.slice(
+  const column1: NucQuestionObjectInterface[] = normalizedQuestions.slice(
     0,
     middleIndex
   )
-  const column2: QuestionObjectInterface[] =
+  const column2: NucQuestionObjectInterface[] =
     normalizedQuestions.slice(middleIndex)
 
   return { column1, column2 }

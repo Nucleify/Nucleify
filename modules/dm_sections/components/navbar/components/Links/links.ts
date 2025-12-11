@@ -1,6 +1,6 @@
-import type { NavLinkObjectInterface } from '.'
+import type { NavNucLinkObjectInterface } from '.'
 
-export const navLinks: NavLinkObjectInterface[] = [
+export const navLinks: NavNucLinkObjectInterface[] = [
   {
     label: 'Home',
     href: '/home',
