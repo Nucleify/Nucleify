@@ -68,7 +68,7 @@ describe('guessSeederName', function (): void {
         $method = $reflection->getMethod('guessSeederName');
         $method->setAccessible(true);
 
-        $result = $method->invoke($this->service, 'dm_screen_lights');
+        $result = $method->invoke($this->service, 'nuc_screen_lights');
 
         expect($result)->toBe('ScreenLightSeeder');
     });
