@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
-use Modules\dm_pages\dm_pages;
+use Modules\nuc_pages\nuc_pages;
 
 class ResetPasswordController extends Controller
 {
@@ -24,5 +24,5 @@ class ResetPasswordController extends Controller
     /**
      * Where to redirect users after resetting their password.
      */
-    protected string $redirectTo = dm_pages::HOME;
+    protected string $redirectTo = nuc_pages::HOME;
 }

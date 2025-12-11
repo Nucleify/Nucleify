@@ -1,6 +1,6 @@
 <template>
   <div id="services">
-    <dm-services-page />
+    <nuc-services-page />
   </div>
 </template>
 
