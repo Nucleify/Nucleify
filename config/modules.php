@@ -6,7 +6,7 @@ return [
     Modules\nuc_colors\nuc_colors::class,
     Modules\nuc_entities\nuc_entities::class,
     Modules\nuc_entities_structural\nuc_entities_structural::class,
-    Modules\dm_files\dm_files::class,
+    Modules\nuc_files\nuc_files::class,
     Modules\dm_friendship\dm_friendship::class,
     Modules\dm_modules\dm_modules::class,
     Modules\dm_pages\dm_pages::class,

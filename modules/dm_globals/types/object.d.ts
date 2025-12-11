@@ -7,7 +7,7 @@ import type {
   NucContactObjectInterface,
   NucDocumentationObjectInterface,
   NucFeatureObjectInterface,
-  FileObjectInterface,
+  NucFileObjectInterface,
   NucLinkObjectInterface,
   NucMoneyObjectInterface,
   NucQuestionObjectInterface,
@@ -26,7 +26,7 @@ declare global {
     | NucContactObjectInterface
     | NucDocumentationObjectInterface
     | NucFeatureObjectInterface
-    | FileObjectInterface
+    | NucFileObjectInterface
     | NucLinkObjectInterface
     | NucMoneyObjectInterface
     | NucQuestionObjectInterface
