@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_performance'
+export * from './nuc_performance'
 
 /**
  *  Folders exports

@@ -1,4 +1,4 @@
-# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_performance
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; nuc_performance
 
 Module that contains performance functions.
 
