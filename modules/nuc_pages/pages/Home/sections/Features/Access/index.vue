@@ -4,7 +4,7 @@
       <ad-heading
         :tag="2"
         class="access-header split"
-        text="Access your data everywhere"
+        text="Manage your pages from anywhere"
       />
       <div class="flip-card-container">
         <nuc-flip-card

@@ -8,12 +8,12 @@
             One
             <span class="shiny first-text">place</span> <br />
             for all
-            <span class="shiny">your data</span>
+            <span class="shiny">your pages</span>
           </ad-heading>
 
           <ad-heading
             :tag="2"
-            text="Manage various data types from a single place with this development template."
+            text="Build scalable pages with Nucleify - a modular page builder for Laravel & Nuxt powered by atomic design."
             class="start-description"
           />
 

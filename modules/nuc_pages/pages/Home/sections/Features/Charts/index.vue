@@ -3,7 +3,7 @@
     <div class="home-charts-container">
       <ad-paragraph
         class="home-charts-header"
-        text="Choose from bar charts, line graphs, pie charts and more to best represent your data."
+        text="Enhance your pages with interactive data visualizations - bar, line, pie charts and more."
       />
       <ad-card class="nuc-card-base home-chart-card">
         <template #content>
