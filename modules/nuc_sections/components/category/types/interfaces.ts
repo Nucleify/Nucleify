@@ -1,6 +1,6 @@
-import type { CardCategoryInterface } from 'atomic'
+import type { NucCardCategoryInterface } from 'atomic'
 
 export interface NucSectionCategoryInterface {
-  cards: CardCategoryInterface[]
+  cards: NucCardCategoryInterface[]
   prefix: string
 }

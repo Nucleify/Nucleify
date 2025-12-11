@@ -1,7 +1,7 @@
 <!--suppress HtmlUnknownAnchorTarget -->
 <template>
   <div class="panel-container">
-    <dm-tiles :entities="entities" />
+    <nuc-tiles :entities="entities" />
 
     <nuc-entity-chart-card
       entity="Entities"

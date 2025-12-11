@@ -7,7 +7,7 @@
     />
 
     <div class="cards-container container">
-      <dm-card-category
+      <nuc-card-category
         v-for="(card, index) in props.cards"
         :key="index"
         :image="props.prefix + card.image"

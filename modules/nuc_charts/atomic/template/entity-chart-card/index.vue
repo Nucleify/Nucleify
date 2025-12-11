@@ -1,7 +1,7 @@
 <template>
   <ad-card 
     v-if="displayCharts[props.entity as keyof NucDisplayChartsStateInterface]" 
-    class="dm-card-base entity-chart-card"
+    class="nuc-card-base entity-chart-card"
   >
     <template #content>
       <nuc-entity-chart

@@ -1,6 +1,6 @@
-import type { DmFlipCardInterface } from 'atomic'
+import type { NucFlipCardInterface } from 'atomic'
 
-export const accessCards: DmFlipCardInterface[] = [
+export const accessCards: NucFlipCardInterface[] = [
   {
     frontImage: 'desktop.webp',
     frontImageAlt: 'Desktop image',

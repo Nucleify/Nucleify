@@ -1,5 +1,5 @@
 import { CheckboxProps } from 'primevue'
 
-export interface CheckboxInterface extends CheckboxProps {
+export interface CheckNucBoxInterface extends CheckboxProps {
   adType?: AdTypeType
 }

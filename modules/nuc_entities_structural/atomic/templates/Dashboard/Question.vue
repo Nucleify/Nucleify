@@ -31,10 +31,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { DashboardInterface } from 'atomic'
+import type { NucDashboardInterface } from 'atomic'
 import { questionRequests, useNucDialog, useQuestionFields } from 'atomic'
 
-const props = defineProps<DashboardInterface>()
+const props = defineProps<NucDashboardInterface>()
 
 const {
   visibleShow,

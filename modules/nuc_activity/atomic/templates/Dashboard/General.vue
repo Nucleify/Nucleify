@@ -27,10 +27,10 @@
 </template>
 
 <script setup lang="ts">
-import type { DashboardInterface } from 'atomic'
+import type { NucDashboardInterface } from 'atomic'
 import { activityRequests, useNucDialog } from 'atomic'
 
-const props = defineProps<DashboardInterface>()
+const props = defineProps<NucDashboardInterface>()
 
 const { visibleDelete, selectedObject, openDialog, closeDialog } =
   useNucDialog()

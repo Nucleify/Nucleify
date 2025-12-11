@@ -4,7 +4,7 @@
   :class="{ 'active': props.enabled }" 
   @click="navigateToUrl('/settings#module-' + props.name)"
   >
-    <dm-cube
+    <nuc-cube
       :shiny="props.enabled"
       v-tooltip.right="props.enabled ? 'Enabled' : 'Disabled'" 
     />
