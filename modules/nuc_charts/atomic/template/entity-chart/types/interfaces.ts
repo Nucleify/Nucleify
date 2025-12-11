@@ -1,13 +1,13 @@
 import type {
   ChartInterface,
   ChartMethodType,
-  FileObjectInterface,
   NucActivityObjectInterface,
   NucArticleObjectInterface,
   NucCardObjectInterface,
   NucContactObjectInterface,
   NucDocumentationObjectInterface,
   NucFeatureObjectInterface,
+  NucFileObjectInterface,
   NucLinkObjectInterface,
   NucMoneyObjectInterface,
   NucQuestionObjectInterface,
@@ -30,7 +30,7 @@ export interface NucEntityChartDataInterface {
   contact?: NucContactObjectInterface[]
   documentation?: NucDocumentationObjectInterface[]
   feature?: NucFeatureObjectInterface[]
-  file?: FileObjectInterface[]
+  file?: NucFileObjectInterface[]
   link?: NucLinkObjectInterface[]
   money?: NucMoneyObjectInterface[]
   question?: NucQuestionObjectInterface[]
