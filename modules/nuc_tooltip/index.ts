@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_tooltip'
+export * from './nuc_tooltip'
 
 /**
  *  Folders exports
