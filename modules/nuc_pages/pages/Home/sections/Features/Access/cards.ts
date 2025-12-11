@@ -8,8 +8,7 @@ export const accessCards: NucFlipCardInterface[] = [
     frontImageHeight: '92px',
     frontTitle: 'Desktop',
     backContent:
-      'Responsive web design was coined in 2010 by Ethan Marcotte, optimizing layouts for desktops with flexible grids and layouts.',
-    backContentClass: 'mt-2',
+      'Optimized desktop layouts with flexible grids, sharp typography, and high-performance rendering for modern web apps.',
   },
   {
     frontImage: 'tablet.webp',
@@ -18,7 +17,7 @@ export const accessCards: NucFlipCardInterface[] = [
     frontImageHeight: '100px',
     frontTitle: 'Tablet',
     backContent:
-      'Over 53% of internet users worldwide access the web through mobile devices, highlighting the significant shift towards mobile browsing in recent years.',
+      'Seamless adaptive layouts for tablets, bridging mobile-first design with scalable, clean, and modular components.',
   },
   {
     frontImage: 'phone.webp',
@@ -27,7 +26,6 @@ export const accessCards: NucFlipCardInterface[] = [
     frontImageHeight: '100px',
     frontTitle: 'Phone',
     backContent:
-      "Google's implementation of mobile-first indexing in 2018 underscored the importance of mobile-responsive design, prioritizing mobile versions for indexing and ranking.",
-    backContentClass: '',
+      'Experience fully responsive mobile pages - fast, touch-friendly, and optimized for seamless browsing on any device.',
   },
 ]

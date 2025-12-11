@@ -108,7 +108,7 @@
   @media (min-width: $lg) {
     display: flex;
     gap: 8rem;
-    margin-top: 3rem;
+    margin-top: 2rem;
 
     .header,
     .header span {
@@ -116,7 +116,7 @@
     }
 
     .start-description {
-      max-width: 570px;
+      max-width: 600px;
       font-size: 1.75em;
     }
   }
