@@ -1,5 +1,5 @@
 <template>
   <div id="profile">
-    <dm-profile-page></dm-profile-page>
+    <nuc-profile-page></nuc-profile-page>
   </div>
 </template>

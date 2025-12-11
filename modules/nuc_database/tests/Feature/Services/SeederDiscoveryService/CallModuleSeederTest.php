@@ -27,7 +27,7 @@ afterEach(function (): void {
 
 describe('callModuleSeeder', function (): void {
     test('uses custom seeder name from config', function (): void {
-        $moduleName = 'dm_custom_module_' . time();
+        $moduleName = 'nuc_custom_module_' . time();
         $this->testModules[] = $moduleName;
         $modulePath = $this->testModulesPath . '/' . $moduleName;
         File::makeDirectory($modulePath, 0755, true);
@@ -58,7 +58,7 @@ describe('callModuleSeeder', function (): void {
     });
 
     test('guesses seeder name when not provided in config', function (): void {
-        $moduleName = 'dm_test_colors';
+        $moduleName = 'nuc_test_colors';
         $this->testModules[] = $moduleName;
         $modulePath = $this->testModulesPath . '/' . $moduleName;
         File::makeDirectory($modulePath, 0755, true);
@@ -88,7 +88,7 @@ describe('callModuleSeeder', function (): void {
     });
 
     test('skips calling seeder if class does not exist', function (): void {
-        $moduleName = 'dm_nonexistent_seeder_' . time();
+        $moduleName = 'nuc_nonexistent_seeder_' . time();
         $this->testModules[] = $moduleName;
         $modulePath = $this->testModulesPath . '/' . $moduleName;
         File::makeDirectory($modulePath, 0755, true);

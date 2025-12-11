@@ -31,7 +31,7 @@ describe('getModuleDirectories', function (): void {
     //         ->not->toContain('nuc_database');
 
     //     foreach ($result as $moduleName) {
-    //         expect($moduleName)->toStartWith('dm_');
+    //         expect($moduleName)->toStartWith('nuc_');
     //     }
     // });
 
