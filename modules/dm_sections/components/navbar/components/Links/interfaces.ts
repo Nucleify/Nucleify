@@ -1,4 +1,4 @@
-export interface NavLinkObjectInterface {
+export interface NavNucLinkObjectInterface {
   label: string
   href: string
   isButton?: boolean

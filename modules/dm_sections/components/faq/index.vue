@@ -24,13 +24,13 @@
 </template>
 
 <script setup lang="ts">
-import type { QuestionObjectInterface, SectionFaqInterface } from 'atomic'
+import type { NucQuestionObjectInterface, SectionFaqInterface } from 'atomic'
 import { questionRequests, useSplitQuestions } from 'atomic'
 
 const props = defineProps<SectionFaqInterface>()
 
-const column1 = ref<QuestionObjectInterface[]>([])
-const column2 = ref<QuestionObjectInterface[]>([])
+const column1 = ref<NucQuestionObjectInterface[]>([])
+const column2 = ref<NucQuestionObjectInterface[]>([])
 
 const { getSiteQuestions, resultsBySite } = questionRequests()
 
