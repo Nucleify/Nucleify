@@ -8,11 +8,11 @@ if (!defined('PEST_RUNNING')) {
  *  Main groups
  */
 uses()
-    ->group('dm-terminal')
+    ->group('nuc-terminal')
     ->in('.');
 
 uses()
-    ->group('dm-terminal-ft')
+    ->group('nuc-terminal-ft')
     ->in('Feature');
 
 /**
