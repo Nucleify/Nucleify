@@ -14,4 +14,4 @@ Allow: /*.css$
 Allow: /*.js$
 Allow: /search$
 
-Sitemap: https://datamanager.atomic-it.org/sitemap.xml
+Sitemap: https://nucleify.io/sitemap.xml

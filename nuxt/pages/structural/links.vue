@@ -1,5 +1,5 @@
 <template>
   <div id="links">
-    <dm-link-page />
+    <nuc-link-page />
   </div>
 </template>

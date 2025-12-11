@@ -1,0 +1,13 @@
+.nuc-home-link {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: $font-size-md;
+  text-decoration: none;
+  color: $white-text-color;
+  transition: all 300ms;
+
+  &:hover {
+    color: $primary-hover-color;
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "nuc_datatable",
+  "description": "Module that contains datatable functions.",
+  "version": "0.0.1",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

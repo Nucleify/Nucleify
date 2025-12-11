@@ -6,7 +6,7 @@ import type {
 import type { SxProps, Theme } from '@mui/material'
 import type { OverridableStringUnion } from '@mui/types'
 
-export interface AdCheckboxInterface {
+export interface AdCheckNucBoxInterface {
   checked?: boolean
   checkedIcon?: React.ReactNode
   className?: string

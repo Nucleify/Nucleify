@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use Modules\dm_terminal\App\Console\Commands\ArtisanCommand;
+use Modules\nuc_terminal\App\Console\Commands\ArtisanCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -27,6 +27,6 @@ class Kernel extends ConsoleKernel
     {
         $this->load(__DIR__ . '/Commands');
 
-        require base_path('modules/dm_terminal/routes/console.php');
+        require base_path('modules/nuc_terminal/routes/console.php');
     }
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <dm-home-page />
+    <nuc-home-page />
   </div>
 </template>
 

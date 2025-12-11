@@ -1,5 +1,5 @@
 <template>
   <div id="entities">
-    <dm-entities-page />
+    <nuc-entities-page />
   </div>
 </template>

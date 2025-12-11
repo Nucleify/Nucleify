@@ -1,8 +1,0 @@
-{
-  "name": "dm_screen_lights",
-  "description": "Module that contains screen lights functions.",
-  "version": "0.0.1",
-  "category": "core",
-  "installed": true,
-  "enabled": true
-}

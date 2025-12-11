@@ -158,9 +158,9 @@ nuxt/
 
 | Type | Convention | Example |
 |------|------------|---------|
-| Module folders | `snake_case` | `dm_auth`, `dm_entities` |
+| Module folders | `snake_case` | `nuc_auth`, `nuc_entities` |
 | PHP classes | `PascalCase` | `UserController.php`, `AuthService.php` |
-| Config files | `snake_case` | `dm_auth.php` |
+| Config files | `snake_case` | `nuc_auth.php` |
 | Migration files | Laravel convention | `2024_01_01_000000_create_users_table.php` |
 | Routes | `kebab-case` in URLs | `/api/user-profile` |
 
@@ -281,14 +281,14 @@ nuxt/
 ## Example: Creating a New Module
 
 ```bash
-modules/dm_example/
+modules/nuc_example/
 ├── app/
 │   ├── Controllers/
 │   │   └── ExampleController.php
 │   └── Services/
 │       └── ExampleService.php
 ├── config/
-│   └── dm_example.php
+│   └── nuc_example.php
 ├── database/
 │   └── migrations/
 │       └── 2024_01_01_000000_create_examples_table.php
@@ -321,7 +321,7 @@ modules/dm_example/
 │   └── example.test.ts
 ├── config.json
 ├── index.ts
-├── dm_example.ts
-├── dm_example.php
+├── nuc_example.ts
+├── nuc_example.php
 └── README.md
 ```

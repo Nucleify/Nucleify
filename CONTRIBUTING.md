@@ -116,7 +116,7 @@ When you finish your work and are ready to commit, `pre-commit` and `pre-push` h
 
 ## Branches
 
-Branch names should use snake_case for consistency and readability (e.g. dm_colors, ui_corrections, nucleify_rebranding).
+Branch names should use snake_case for consistency and readability (e.g. nuc_colors, ui_corrections, nucleify_rebranding).
 This helps keep branches easy to scan, avoids ambiguity, and maintains a clear, predictable naming convention across the project.
 
 ## Commit messages
@@ -141,13 +141,13 @@ The following commit prefixes are supported:
 Below are examples of well-formatted commits:
 
 ```txt
-feat(dm_colors): implement new custom colors
+feat(nuc_colors): implement new custom colors
 fix: prerender data fetching
 docs: fix link to website page
 test(lint): add more cases to handle invalid input
 ```
 
-If possible, please include the module name in brackets (e.g. feat(dm_colors)) for clarity.
+If possible, please include the module name in brackets (e.g. feat(nuc_colors)) for clarity.
 
 ## Creating pull requests
 
