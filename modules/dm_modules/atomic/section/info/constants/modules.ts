@@ -5,7 +5,7 @@ export const modules = [
   { value: 5, icon: 'prime:palette', path: 'nuc_colors' },
   { value: 6, icon: 'prime:box', path: 'nuc_entities' },
   { value: 7, icon: 'prime:sitemap', path: 'nuc_entities_structural' },
-  { value: 8, icon: 'prime:users', path: 'dm_friendship' },
+  { value: 8, icon: 'prime:users', path: 'nuc_friendship' },
   { value: 9, icon: 'prime:link', path: 'dm_pages' },
   { value: 10, icon: 'prime:spinner-dotted', path: 'dm_screen_loader' },
   { value: 11, icon: 'prime:code', path: 'dm_terminal' },

@@ -8,15 +8,15 @@ if (!defined('PEST_RUNNING')) {
  *  Main groups
  */
 uses()
-    ->group('dm-friendship')
+    ->group('nuc-friendship')
     ->in('.');
 
 uses()
-    ->group('dm-friendship-db')
+    ->group('nuc-friendship-db')
     ->in('Database');
 
 uses()
-    ->group('dm-friendship-ft')
+    ->group('nuc-friendship-ft')
     ->in('Feature');
 
 /**

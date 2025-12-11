@@ -1,7 +1,7 @@
 <template>
   <ad-card>
     <template #content>
-      <dm-friends-list />
+      <nuc-friends-list />
     </template>
   </ad-card>
 </template>

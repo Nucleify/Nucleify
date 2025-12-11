@@ -1,5 +1,5 @@
 <template>
   <div class="panel-container">
-    <dm-friendship />
+    <nuc-friendship />
   </div>
 </template>
