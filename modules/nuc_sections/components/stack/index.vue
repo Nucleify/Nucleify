@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <dm-card-boxes :boxes="data" />
+    <nuc-card-boxes :boxes="data" />
   </div>
 </template>
 

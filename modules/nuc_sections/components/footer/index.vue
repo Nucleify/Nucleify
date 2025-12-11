@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="bottom">
-        <dm-authors />
+        <nuc-authors />
       </div>
     </div>
     <nuc-animation-hexagons />

@@ -1,10 +1,10 @@
 import type { Ref, UnwrapRef } from 'vue'
 import { ref } from 'vue'
 
-import type { CardCategoryInterface } from 'atomic'
+import type { NucCardCategoryInterface } from 'atomic'
 
-export const blogCategoriesCards: Ref<UnwrapRef<CardCategoryInterface[]>> = ref(
-  [
+export const blogCategoriesCards: Ref<UnwrapRef<NucCardCategoryInterface[]>> =
+  ref([
     {
       image: 'world.svg',
       altText: 'Open Source',
@@ -30,5 +30,4 @@ export const blogCategoriesCards: Ref<UnwrapRef<CardCategoryInterface[]>> = ref(
         'Key strategies and tools to protect your data from evolving threats and ensure privacy compliance.',
       url: '/home',
     },
-  ]
-)
+  ])

@@ -7,7 +7,7 @@
         text="Access your data everywhere"
       />
       <div class="flip-card-container">
-        <dm-flip-card
+        <nuc-flip-card
           v-for="accessCard in accessCards"
           :front-image="imgUrl + accessCard.frontImage"
           :front-image-alt="accessCard.frontImageAlt"

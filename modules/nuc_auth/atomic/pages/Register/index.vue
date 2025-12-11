@@ -1,5 +1,5 @@
 <template>
-  <dm-home-link />
+  <nuc-home-link />
   <div class="auth-card-container">
     <ad-card class="register-card">
       <template #header>

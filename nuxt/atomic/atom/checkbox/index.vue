@@ -5,9 +5,9 @@
 <script setup lang="ts">
 import { Checkbox } from 'primevue' // Import for Storybook
 
-import type { CheckboxInterface } from '.'
+import type { CheckNucBoxInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 
-const props = defineProps<CheckboxInterface>()
+const props = defineProps<CheckNucBoxInterface>()
 </script>
