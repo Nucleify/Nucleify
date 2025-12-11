@@ -1,6 +1,6 @@
 import { expect, it } from 'vitest'
 
-import { registerDMGlobals } from '.'
+import { registerNucGlobals } from '.'
 
 const constants = {
   imgUrl: '/img/',
@@ -15,7 +15,7 @@ const constants = {
 it('registers all constants on app.config.globalProperties', (): void => {
   const app = { config: { globalProperties: {} } }
 
-  registerDMGlobals(app)
+  registerNucGlobals(app)
 
   for (const [key, value] of Object.entries(constants)) {
     expect(app.config.globalProperties[key]).toBe(value)

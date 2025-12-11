@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_globals'
+export * from './nuc_globals'
 
 /**
  *  Folders exports

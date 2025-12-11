@@ -2,7 +2,7 @@
 import type { NuxtApp } from 'nuxt/app'
 import { defineNuxtPlugin } from 'nuxt/app'
 
-import { registerDMGlobals } from 'atomic'
+import { registerNucGlobals } from 'atomic'
 
 import {
   registerDMModules,
@@ -37,7 +37,7 @@ export default defineNuxtPlugin({
   name: 'modules-registration',
   enforce: 'pre',
   setup(nuxtApp: NuxtApp) {
-    registerDMGlobals(nuxtApp.vueApp)
+    registerNucGlobals(nuxtApp.vueApp)
     registerDMModules(nuxtApp.vueApp)
     registerDMNavigation(nuxtApp.vueApp)
     registerDMPages(nuxtApp.vueApp)
