@@ -16,7 +16,7 @@ export function registerNucGlobals(app: App): void {
   const prefix = appEnv() === 'production' ? '' : appUrl()
 
   /**
-   *  dm_media
+   *  nuc_media
    */
   app.config.globalProperties.isClient = isClient
   app.config.globalProperties.isMobile = isMobile
