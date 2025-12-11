@@ -1,4 +1,4 @@
-# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_media
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; nuc_media
 
 Module that contains media functions.
 
