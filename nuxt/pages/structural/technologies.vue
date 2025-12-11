@@ -1,5 +1,5 @@
 <template>
   <div id="technologies">
-    <dm-technology-page />
+    <nuc-technology-page />
   </div>
 </template>

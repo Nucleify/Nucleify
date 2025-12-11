@@ -1,0 +1,1 @@
+export { default as NucSettingsPreferencesTheme } from './index.vue'

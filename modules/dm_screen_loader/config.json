@@ -1,8 +1,0 @@
-{
-  "name": "dm_screen_loader",
-  "description": "Module that contains screen loader functions.",
-  "version": "0.0.1",
-  "category": "core",
-  "installed": true,
-  "enabled": true
-}

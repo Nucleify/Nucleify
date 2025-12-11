@@ -4,33 +4,33 @@ import * as modules from '../../modules'
 import module from '../../nuxt/plugins/modules'
 
 vi.mock('../../modules', () => ({
-  registerDMActivity: vi.fn(),
-  registerDMAdmin: vi.fn(),
-  registerDMAnimations: vi.fn(),
-  registerDMAuth: vi.fn(),
-  registerDMColors: vi.fn(),
-  registerDMCharts: vi.fn(),
-  registerDMDataTable: vi.fn(),
-  registerDMDialog: vi.fn(),
-  registerDMDock: vi.fn(),
-  registerDMDocumentation: vi.fn(),
-  registerDMEntities: vi.fn(),
-  registerDMEntitiesStructural: vi.fn(),
-  registerDMFiles: vi.fn(),
-  registerDMFriendship: vi.fn(),
-  registerDMModules: vi.fn(),
-  registerDMNavigation: vi.fn(),
-  registerDMGlobals: vi.fn(),
-  registerDMPages: vi.fn(),
-  registerDMPerformance: vi.fn(),
-  registerDMScreenLights: vi.fn(),
-  registerDMScreenLoader: vi.fn(),
-  registerDMSections: vi.fn(),
-  registerDMSettings: vi.fn(),
-  registerDMTasks: vi.fn(),
-  registerDMTemplates: vi.fn(),
-  registerDMTime: vi.fn(),
-  registerDMTooltip: vi.fn(),
+  registerNucActivity: vi.fn(),
+  registerNucAdmin: vi.fn(),
+  registerNucAnimations: vi.fn(),
+  registerNucAuth: vi.fn(),
+  registerNucCharts: vi.fn(),
+  registerNucColors: vi.fn(),
+  registerNucDataTable: vi.fn(),
+  registerNucDialog: vi.fn(),
+  registerNucDock: vi.fn(),
+  registerNucDocumentation: vi.fn(),
+  registerNucEntities: vi.fn(),
+  registerNucEntitiesStructural: vi.fn(),
+  registerNucFiles: vi.fn(),
+  registerNucFriendship: vi.fn(),
+  registerNucGlobals: vi.fn(),
+  registerNucModules: vi.fn(),
+  registerNucNavigation: vi.fn(),
+  registerNucPages: vi.fn(),
+  registerNucPerformance: vi.fn(),
+  registerNucScreenLights: vi.fn(),
+  registerNucScreenLoader: vi.fn(),
+  registerNucSections: vi.fn(),
+  registerNucSettings: vi.fn(),
+  registerNucTasks: vi.fn(),
+  registerNucTemplates: vi.fn(),
+  registerNucTime: vi.fn(),
+  registerNucTooltip: vi.fn(),
 }))
 
 const vueApp = {}
@@ -44,28 +44,31 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   // @ts-expect-error setup is a function on the plugin object
   await module.setup(nuxtApp)
 
-  expect(modules.registerDMActivity).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMAdmin).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMAnimations).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMAuth).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMColors).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMCharts).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMDataTable).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMDialog).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMDock).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMDocumentation).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMEntities).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMEntitiesStructural).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMFiles).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMGlobals).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMModules).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMNavigation).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMPages).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMPerformance).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMScreenLights).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMScreenLoader).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMSections).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMSettings).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMTemplates).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerDMTasks).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucActivity).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucAdmin).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucAnimations).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucAuth).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucCharts).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucColors).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucDataTable).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucDialog).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucDock).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucDocumentation).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucEntities).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucEntitiesStructural).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucFiles).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucFriendship).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucGlobals).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucModules).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucNavigation).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucPages).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucPerformance).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucScreenLights).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucScreenLoader).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucSections).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucSettings).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucTasks).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucTemplates).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucTime).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucTooltip).toHaveBeenCalledWith(vueApp)
 })

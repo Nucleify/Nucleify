@@ -1,6 +1,6 @@
 <template>
   <div id="blog">
-    <dm-blog-page />
+    <nuc-blog-page />
   </div>
 </template>
 

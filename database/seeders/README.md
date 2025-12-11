@@ -2,7 +2,7 @@ Most seeders are located in modules folder.
 
 ## Auto-Discovery of Module Seeders
 
-The `DatabaseSeeder` uses the `SeederDiscoveryService` (from the `dm_database` module) to automatically discover and call seeders from all enabled modules.
+The `DatabaseSeeder` uses the `SeederDiscoveryService` (from the `nuc_database` module) to automatically discover and call seeders from all enabled modules.
 
 <br>
 
@@ -15,7 +15,7 @@ The `DatabaseSeeder` uses the `SeederDiscoveryService` (from the `dm_database` m
    - `"enabled": true`
 4. **Finds the seeder** using:
    - Explicit `"seeder": "SeederName"` in config.json
-   - OR auto-guesses from module name (e.g., `dm_entities` → `EntitiesSeeder`)
+   - OR auto-guesses from module name (e.g., `nuc_entities` → `EntitiesSeeder`)
 
 <br>
 
@@ -23,7 +23,7 @@ The `DatabaseSeeder` uses the `SeederDiscoveryService` (from the `dm_database` m
 
 ```json
 {
-  "name": "dm_entities",
+  "name": "nuc_entities",
   "description": "Module that contains entity functions.",
   "version": "0.0.1",
   "category": "core",
@@ -34,15 +34,15 @@ The `DatabaseSeeder` uses the `SeederDiscoveryService` (from the `dm_database` m
 ```
 
 **Note:** The `"seeder"` field is optional. If omitted, the seeder name will be auto-guessed from the module name. The guessing logic:
-- Removes `dm_` prefix
+- Removes `nuc_` prefix
 - Capitalizes each word
 - Removes trailing `s` (unless the name ends with `ies`)
 - Adds `Seeder` suffix
 
 Examples:
-- `dm_entities` → `EntitiesSeeder` (keeps `ies`)
-- `dm_colors` → `ColorSeeder` (removes `s`)
-- `dm_activity` → `ActivitySeeder` (no `s` to remove)
+- `nuc_entities` → `EntitiesSeeder` (keeps `ies`)
+- `nuc_colors` → `ColorSeeder` (removes `s`)
+- `nuc_activity` → `ActivitySeeder` (no `s` to remove)
 
 <br>
 

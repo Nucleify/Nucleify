@@ -1,5 +1,5 @@
 <template>
   <div id="questions">
-    <dm-question-page />
+    <nuc-question-page />
   </div>
 </template>

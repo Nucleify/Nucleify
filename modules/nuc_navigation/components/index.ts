@@ -1,0 +1,1 @@
+export { default as NucNavigationBackButton } from './back-button.vue'

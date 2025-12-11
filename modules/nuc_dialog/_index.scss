@@ -1,0 +1,82 @@
+.nuc-dialog {
+  width: 30em;
+  max-height: 620px;
+
+  .dialog-buttons-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &.delete {
+    max-width: 300px;
+
+    .p-dialog-header {
+      display: flex;
+      justify-content: center;
+    }
+
+    .p-dialog-content {
+      display: none;
+    }
+
+    .p-dialog-footer {
+      box-shadow: none !important;
+
+      .dialog-buttons-container {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 25px;
+      }
+    }
+  }
+
+  .p-button {
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    font-size: 1.15em;
+
+    .iconify {
+      font-size: 1.5em;
+    }
+
+    &-secondary {
+      padding: 0.5rem 1.25rem 0.5rem 0.75rem;
+
+      .iconify {
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  .show-data-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  
+    .show-data-header {
+      margin-bottom: 0;
+    }
+  
+    .show-data-dates-container,
+    .show-data-phone-numbers-container {
+      display: flex;
+    }
+  
+    .show-data-date,
+    .show-data-phone-number {
+      padding: 0 !important;
+    }
+  
+    .show-data-role {
+      margin-top: -1em;
+    }
+  }
+
+  @media (min-width: $lg) {
+    &.delete {
+      max-width: 350px;
+    }
+  }
+}

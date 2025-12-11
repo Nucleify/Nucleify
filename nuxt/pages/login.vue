@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <dm-login-page />
+    <nuc-login-page />
   </div>
 </template>
 
