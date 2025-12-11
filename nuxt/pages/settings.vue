@@ -1,5 +1,5 @@
 <template>
   <div id="settings">
-    <dm-settings-page />
+    <nuc-settings-page />
   </div>
 </template>

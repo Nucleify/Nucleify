@@ -1,7 +1,7 @@
 <template>
   <div class="menu-tree-container">
-    <dm-general-menu-tree />
-    <dm-staff-menu-tree v-if="isStaff" />
+    <nuc-general-menu-tree />
+    <nuc-staff-menu-tree v-if="isStaff" />
   </div>
 </template>
 

@@ -3,9 +3,9 @@
     <div class="panel-container">
       <ad-card class="settings-main-card" :id="route.hash.replace('#', '')">
         <template #content>
-          <dm-menu-tree />
+          <nuc-menu-tree />
           <div class="settings-main-card-content">
-            <dm-settings-card-content />
+            <nuc-settings-card-content />
           </div>
         </template>
       </ad-card>

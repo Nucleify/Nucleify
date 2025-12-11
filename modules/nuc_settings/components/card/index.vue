@@ -23,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import type { DMSettingsCardInterface } from './interfaces'
+import type { NucSettingsCardInterface } from './interfaces'
 
-const props = defineProps<DMSettingsCardInterface>()
+const props = defineProps<NucSettingsCardInterface>()
 </script>

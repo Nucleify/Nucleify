@@ -1,4 +1,4 @@
-export interface DMSettingsCardInterface {
+export interface NucSettingsCardInterface {
   heading: string
   showButton?: boolean
   buttonIcon?: string

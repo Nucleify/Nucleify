@@ -1,20 +1,20 @@
 <template>
   <div class="grided-content" v-if="gridedContent">
-    <dm-settings-preferences-theme v-if="route.hash === '#preferences-theme'" />
+    <nuc-settings-preferences-theme v-if="route.hash === '#preferences-theme'" />
     <nuc-color-settings-card v-if="route.hash === '#module-nuc_colors'"/>
     <nuc-chart-settings-card v-if="route.hash === '#module-nuc_charts'"/>
   </div> 
-  <dm-settings-staff-modules v-if="route.hash === '#modules'"/>
-  <dm-settings-no-content v-if="route.hash.includes('#module-') && !gridedContent" />
+  <nuc-settings-staff-modules v-if="route.hash === '#modules'"/>
+  <nuc-settings-no-content v-if="route.hash.includes('#module-') && !gridedContent" />
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'nuxt/app'
 
 import {
-  DmSettingsNoContent,
-  DmSettingsPreferencesTheme,
-  DmSettingsStaffModules,
+  NucSettingsNoContent,
+  NucSettingsPreferencesTheme,
+  NucSettingsStaffModules,
 } from '.'
 
 const route = useRoute()

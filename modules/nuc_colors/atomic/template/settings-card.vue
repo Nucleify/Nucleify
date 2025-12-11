@@ -1,5 +1,5 @@
 <template>
-  <dm-settings-card
+  <nuc-settings-card
     heading="Colors"
     :show-button="true"
     :onButtonClick="resetColorsToDefault"
@@ -10,7 +10,7 @@
         <nuc-color-picker :ad-type="item.toLowerCase()" />
       </li>
     </ul>
-  </dm-settings-card>
+  </nuc-settings-card>
 </template>
 
 <script setup lang="ts">
