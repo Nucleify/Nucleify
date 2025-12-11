@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_navigation'
+export * from './nuc_navigation'
 
 /**
  *  Folders exports
