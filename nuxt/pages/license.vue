@@ -1,6 +1,6 @@
 <template>
   <div id="license">
-    <dm-license-page />
+    <nuc-license-page />
   </div>
 </template>
 

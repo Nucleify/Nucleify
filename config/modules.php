@@ -9,6 +9,6 @@ return [
     Modules\nuc_files\nuc_files::class,
     Modules\nuc_friendship\nuc_friendship::class,
     Modules\nuc_modules\nuc_modules::class,
-    Modules\dm_pages\dm_pages::class,
+    Modules\nuc_pages\nuc_pages::class,
     Modules\dm_terminal\dm_terminal::class,
 ];

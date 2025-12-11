@@ -15,7 +15,7 @@ return [
 
     'paths' => [
         base_path('atomic/views'),
-        base_path('modules/dm_pages/views'),
+        base_path('modules/nuc_pages/views'),
     ],
 
     /*

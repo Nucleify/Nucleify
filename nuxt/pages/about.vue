@@ -1,6 +1,6 @@
 <template>
   <div id="about">
-    <dm-about-page />
+    <nuc-about-page />
   </div>
 </template>
 

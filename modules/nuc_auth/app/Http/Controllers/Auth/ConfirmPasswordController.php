@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
-use Modules\dm_pages\dm_pages;
+use Modules\nuc_pages\nuc_pages;
 
 class ConfirmPasswordController extends Controller
 {
@@ -24,7 +24,7 @@ class ConfirmPasswordController extends Controller
     /**
      * Where to redirect users when the intended url fails.
      */
-    protected string $redirectTo = dm_pages::HOME;
+    protected string $redirectTo = nuc_pages::HOME;
 
     /**
      * Create a new controller instance.

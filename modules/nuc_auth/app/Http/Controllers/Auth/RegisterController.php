@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Modules\dm_pages\dm_pages;
+use Modules\nuc_pages\nuc_pages;
 
 class RegisterController extends Controller
 {
@@ -29,7 +29,7 @@ class RegisterController extends Controller
     /**
      * Where to redirect users after registration.
      */
-    protected string $redirectTo = dm_pages::HOME;
+    protected string $redirectTo = nuc_pages::HOME;
 
     /**
      * Create a new controller instance.
