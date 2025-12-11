@@ -5,7 +5,6 @@ import { defineNuxtPlugin } from 'nuxt/app'
 import { registerNucGlobals } from 'atomic'
 
 import {
-  registerDMModules,
   registerDMNavigation,
   registerDMPages,
   registerDMPerformance,
@@ -31,6 +30,7 @@ import {
   registerNucEntitiesStructural,
   registerNucFiles,
   registerNucFriendship,
+  registerNucModules,
 } from '../../modules'
 
 export default defineNuxtPlugin({
@@ -38,7 +38,6 @@ export default defineNuxtPlugin({
   enforce: 'pre',
   setup(nuxtApp: NuxtApp) {
     registerNucGlobals(nuxtApp.vueApp)
-    registerDMModules(nuxtApp.vueApp)
     registerDMNavigation(nuxtApp.vueApp)
     registerDMPages(nuxtApp.vueApp)
     registerDMPerformance(nuxtApp.vueApp)
@@ -64,5 +63,6 @@ export default defineNuxtPlugin({
     registerNucEntitiesStructural(nuxtApp.vueApp)
     registerNucFiles(nuxtApp.vueApp)
     registerNucFriendship(nuxtApp.vueApp)
+    registerNucModules(nuxtApp.vueApp)
   },
 })

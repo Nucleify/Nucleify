@@ -2,7 +2,7 @@
   <section id="innovations">
     <technologies />
     <structure />
-    <dm-modules-info />
+    <nuc-modules-info />
 
     <!--
             TODO: More innovations
