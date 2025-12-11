@@ -1,7 +1,7 @@
 <template>
   <div class="general-menu-tree">
     <ad-heading :tag="4" text="General" >
-      <dm-navigation-back-button 
+      <nuc-navigation-back-button 
         v-if="route.hash.includes('#module-')"
         ad-type="main"
       />
