@@ -10,5 +10,5 @@ return [
     Modules\nuc_friendship\nuc_friendship::class,
     Modules\nuc_modules\nuc_modules::class,
     Modules\nuc_pages\nuc_pages::class,
-    Modules\dm_terminal\dm_terminal::class,
+    Modules\nuc_terminal\nuc_terminal::class,
 ];

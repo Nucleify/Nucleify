@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\dm_terminal\App\Console\Commands;
+namespace Modules\nuc_terminal\App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Throwable;

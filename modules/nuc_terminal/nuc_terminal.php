@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\dm_terminal;
+namespace Modules\nuc_terminal;
 
 use Illuminate\Support\ServiceProvider;
 
-class dm_terminal extends ServiceProvider
+class nuc_terminal extends ServiceProvider
 {
     public function boot(): void
     {

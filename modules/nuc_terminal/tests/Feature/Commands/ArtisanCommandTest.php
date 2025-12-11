@@ -9,7 +9,7 @@ uses()->group('terminal-command');
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Modules\dm_terminal\App\Console\Commands\ArtisanCommand;
+use Modules\nuc_terminal\App\Console\Commands\ArtisanCommand;
 
 use function Pest\Laravel\artisan;
 
