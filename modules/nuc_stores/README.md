@@ -1,4 +1,4 @@
-# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; dm_stores
+# <img src="/public/favicon.ico" width="17" height="17" /> &nbsp; nuc_stores
 
 Module that contains store functions.
 
