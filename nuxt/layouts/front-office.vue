@@ -1,6 +1,6 @@
 <template>
   <div id="front-office">
-    <dm-screen-loader />
+    <nuc-screen-loader />
     <dm-section-navbar />
     <slot />
     <dm-section-footer />
