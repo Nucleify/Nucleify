@@ -8,7 +8,7 @@ return [
     Modules\nuc_entities_structural\nuc_entities_structural::class,
     Modules\nuc_files\nuc_files::class,
     Modules\nuc_friendship\nuc_friendship::class,
-    Modules\dm_modules\dm_modules::class,
+    Modules\nuc_modules\nuc_modules::class,
     Modules\dm_pages\dm_pages::class,
     Modules\dm_terminal\dm_terminal::class,
 ];

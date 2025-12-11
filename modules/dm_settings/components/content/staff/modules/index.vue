@@ -1,3 +1,3 @@
 <template>
-  <dm-modules-settings />
+  <nuc-modules-settings />
 </template>
