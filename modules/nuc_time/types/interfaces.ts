@@ -1,8 +1,8 @@
-export interface DmTimeCountdownInterface {
+export interface NucTimeCountdownInterface {
   date: Date | number | string
 }
 
-export interface DmTimeCalculateCountdownInterface {
+export interface NucTimeCalculateCountdownInterface {
   days: number
   hours: number
   minutes: number

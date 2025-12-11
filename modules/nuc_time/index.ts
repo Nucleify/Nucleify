@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_time'
+export * from './nuc_time'
 
 /**
  *  Folders exports
