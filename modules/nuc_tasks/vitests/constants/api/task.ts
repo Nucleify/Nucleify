@@ -1,6 +1,6 @@
-import type { TaskObjectInterface } from 'atomic'
+import type { NucTaskObjectInterface } from 'atomic'
 
-export const mockTask: TaskObjectInterface = {
+export const mockTask: NucTaskObjectInterface = {
   id: 99,
   user_id: 1,
   assignee_id: 2,

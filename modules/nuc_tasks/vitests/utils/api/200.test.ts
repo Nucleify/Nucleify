@@ -4,7 +4,7 @@ import * as atomic from 'atomic'
 
 describe('taskRequests', (): void => {
   const { closeDialog } = atomic.useNucDialog()
-  const requests: atomic.TaskRequestsInterface =
+  const requests: atomic.NucTaskRequestsInterface =
     atomic.taskRequests(closeDialog)
   const mockResponse = [atomic.mockTask]
 

@@ -11,7 +11,7 @@ import type {
   NucLinkObjectInterface,
   NucMoneyObjectInterface,
   NucQuestionObjectInterface,
-  TaskObjectInterface,
+  NucTaskObjectInterface,
   NucTechnologyObjectInterface,
   NucUserObjectInterface,
 } from 'atomic'
@@ -30,7 +30,7 @@ declare global {
     | NucLinkObjectInterface
     | NucMoneyObjectInterface
     | NucQuestionObjectInterface
-    | TaskObjectInterface
+    | NucTaskObjectInterface
     | NucTechnologyObjectInterface
     | NucUserObjectInterface
     | undefined

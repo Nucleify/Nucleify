@@ -9,7 +9,7 @@
       :data="{ task: results }"
       :loading="loading"
     />
-    <dm-task-dashboard
+    <nuc-task-dashboard
       :data="results"
       :get-data="getAllTasks"
       :loading="loading"

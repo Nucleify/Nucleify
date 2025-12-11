@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_tasks'
+export * from './nuc_tasks'
 
 /**
  *  Folders exports

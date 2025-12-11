@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\dm_tasks;
+namespace Modules\nuc_tasks;
 
 use Illuminate\Support\ServiceProvider;
 
-class dm_tasks extends ServiceProvider
+class nuc_tasks extends ServiceProvider
 {
     public function boot(): void
     {
