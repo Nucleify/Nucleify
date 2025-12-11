@@ -12,7 +12,7 @@ import {
   technologiesImgUrl,
 } from '.'
 
-export function registerDMGlobals(app: App): void {
+export function registerNucGlobals(app: App): void {
   const prefix = appEnv() === 'production' ? '' : appUrl()
 
   /**
