@@ -3,50 +3,26 @@
 return [
     [
         'content' => 'Why was Nucleify created?',
-        'answer' => 'Our goal was to create a tool that simplifies data management for both experts and beginners.',
+        'answer' => 'Nucleify was designed to simplify page building and data management for both beginners and professionals.',
     ],
     [
-        'content' => 'What are the future plans for Nucleify?',
-        'answer' => 'We plan to introduce new features, such as AI integration and enhanced reporting capabilities',
+        'content' => 'What problems does it solve?',
+        'answer' => 'It streamlines data migration, integration, and analysis while providing a flexible PageBuilder for creating dynamic web pages.',
     ],
     [
-        'content' => 'What problems does Nucleify solve?',
-        'answer' => 'It enables efficient data migration, integration, and analysis, eliminating technical barriers.',
+        'content' => 'Who can benefit from using Nucleify?',
+        'answer' => 'Nucleify is versatile and ideal for industries like finance, education, logistics, healthcare, and digital services.',
     ],
     [
-        'content' => 'What industries can benefit from using Nucleify?',
-        'answer' => 'The tool is versatile and can be used in industries such as finance, education, logistics, healthcare, and many others.',
+        'content' => 'Can I contribute to Nucleify?',
+        'answer' => 'Yes! Developers, designers, and testers are welcome to contribute through GitHub, bug reports, or feature suggestions.',
     ],
     [
-        'content' => 'Can I contribute to the development of Nucleify?',
-        'answer' => 'Absolutely! We welcome developers, designers, and testers. Any contribution is appreciated.',
+        'content' => 'What license does it use?',
+        'answer' => 'Nucleify is open-source under the BSD-3-Clause license, allowing free commercial and personal use.',
     ],
     [
-        'content' => 'Can I suggest new features?',
-        'answer' => 'Yes, we encourage you to submit suggestions via our GitHub repository or through the contact form.',
-    ],
-    [
-        'content' => 'How can I support the project?',
-        'answer' => 'You can support us through donations, reporting bugs, or actively participating in the development of the project.',
-    ],
-    [
-        'content' => 'Under which license does Nucleify operate?',
-        'answer' => 'The project is available under the MIT license, offering flexibility in its use.',
-    ],
-    [
-        'content' => 'Does the MIT license mean I can use the tool commercially?',
-        'answer' => 'Yes, the MIT license allows for commercial use without additional fees or licenses.',
-    ],
-    [
-        'content' => 'Do you offer technical support?',
-        'answer' => 'Yes, we offer technical support via email, online documentation, and a user community.',
-    ],
-    [
-        'content' => 'Is Nucleify available in multiple languages?',
-        'answer' => 'Yes, we plan to expand support to multiple languages to make the tool accessible to users worldwide.',
-    ],
-    [
-        'content' => 'How can I contact the team?',
-        'answer' => 'You can reach us via the contact form on the website or by email at business@atomic-it.org',
+        'content' => 'Is it available in multiple languages?',
+        'answer' => 'Yes, Nucleify plans to support multiple languages, making it accessible to users worldwide.',
     ],
 ];
