@@ -1,5 +1,5 @@
 <template>
   <div id="cards">
-    <dm-card-page />
+    <nuc-card-page />
   </div>
 </template>

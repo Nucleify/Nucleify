@@ -1,5 +1,5 @@
 <template>
   <div id="file">
-    <dm-file-page></dm-file-page>
+    <nuc-file-page></nuc-file-page>
   </div>
 </template>

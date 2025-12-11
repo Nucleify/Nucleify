@@ -2,67 +2,67 @@
 import type { NuxtApp } from 'nuxt/app'
 import { defineNuxtPlugin } from 'nuxt/app'
 
-import { registerDMGlobals } from 'atomic'
+import { registerNucGlobals } from 'atomic'
 
 import {
-  registerDMActivity,
-  registerDMAdmin,
-  registerDMAnimations,
-  registerDMAuth,
-  registerDMCharts,
-  registerDMColors,
-  registerDMDataTable,
-  registerDMDialog,
-  registerDMDock,
-  registerDMDocumentation,
-  registerDMEntities,
-  registerDMEntitiesStructural,
-  registerDMFiles,
-  registerDMFriendship,
-  registerDMModules,
-  registerDMNavigation,
-  registerDMPages,
-  registerDMPerformance,
-  registerDMScreenLights,
-  registerDMScreenLoader,
-  registerDMSections,
-  registerDMSettings,
-  registerDMTasks,
-  registerDMTemplates,
-  registerDMTime,
-  registerDMTooltip,
+  registerNucActivity,
+  registerNucAdmin,
+  registerNucAnimations,
+  registerNucAuth,
+  registerNucCharts,
+  registerNucColors,
+  registerNucDataTable,
+  registerNucDialog,
+  registerNucDock,
+  registerNucDocumentation,
+  registerNucEntities,
+  registerNucEntitiesStructural,
+  registerNucFiles,
+  registerNucFriendship,
+  registerNucModules,
+  registerNucNavigation,
+  registerNucPages,
+  registerNucPerformance,
+  registerNucScreenLights,
+  registerNucScreenLoader,
+  registerNucSections,
+  registerNucSettings,
+  registerNucTasks,
+  registerNucTemplates,
+  registerNucTime,
+  registerNucTooltip,
 } from '../../modules'
 
 export default defineNuxtPlugin({
   name: 'modules-registration',
   enforce: 'pre',
   setup(nuxtApp: NuxtApp) {
-    registerDMActivity(nuxtApp.vueApp)
-    registerDMAdmin(nuxtApp.vueApp)
-    registerDMAnimations(nuxtApp.vueApp)
-    registerDMAuth(nuxtApp.vueApp)
-    registerDMColors(nuxtApp.vueApp)
-    registerDMCharts(nuxtApp.vueApp)
-    registerDMDataTable(nuxtApp.vueApp)
-    registerDMDialog(nuxtApp.vueApp)
-    registerDMDock(nuxtApp.vueApp)
-    registerDMDocumentation(nuxtApp.vueApp)
-    registerDMEntities(nuxtApp.vueApp)
-    registerDMEntitiesStructural(nuxtApp.vueApp)
-    registerDMFiles(nuxtApp.vueApp)
-    registerDMFriendship(nuxtApp.vueApp)
-    registerDMGlobals(nuxtApp.vueApp)
-    registerDMModules(nuxtApp.vueApp)
-    registerDMNavigation(nuxtApp.vueApp)
-    registerDMPages(nuxtApp.vueApp)
-    registerDMPerformance(nuxtApp.vueApp)
-    registerDMScreenLights(nuxtApp.vueApp)
-    registerDMScreenLoader(nuxtApp.vueApp)
-    registerDMSections(nuxtApp.vueApp)
-    registerDMSettings(nuxtApp.vueApp)
-    registerDMTasks(nuxtApp.vueApp)
-    registerDMTemplates(nuxtApp.vueApp)
-    registerDMTime(nuxtApp.vueApp)
-    registerDMTooltip(nuxtApp.vueApp)
+    registerNucGlobals(nuxtApp.vueApp)
+    registerNucActivity(nuxtApp.vueApp)
+    registerNucAdmin(nuxtApp.vueApp)
+    registerNucAnimations(nuxtApp.vueApp)
+    registerNucAuth(nuxtApp.vueApp)
+    registerNucCharts(nuxtApp.vueApp)
+    registerNucColors(nuxtApp.vueApp)
+    registerNucDataTable(nuxtApp.vueApp)
+    registerNucDialog(nuxtApp.vueApp)
+    registerNucDock(nuxtApp.vueApp)
+    registerNucDocumentation(nuxtApp.vueApp)
+    registerNucEntities(nuxtApp.vueApp)
+    registerNucEntitiesStructural(nuxtApp.vueApp)
+    registerNucFiles(nuxtApp.vueApp)
+    registerNucFriendship(nuxtApp.vueApp)
+    registerNucModules(nuxtApp.vueApp)
+    registerNucNavigation(nuxtApp.vueApp)
+    registerNucPages(nuxtApp.vueApp)
+    registerNucPerformance(nuxtApp.vueApp)
+    registerNucScreenLights(nuxtApp.vueApp)
+    registerNucScreenLoader(nuxtApp.vueApp)
+    registerNucSections(nuxtApp.vueApp)
+    registerNucSettings(nuxtApp.vueApp)
+    registerNucTasks(nuxtApp.vueApp)
+    registerNucTemplates(nuxtApp.vueApp)
+    registerNucTime(nuxtApp.vueApp)
+    registerNucTooltip(nuxtApp.vueApp)
   },
 })

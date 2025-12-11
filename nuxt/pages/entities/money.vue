@@ -1,5 +1,5 @@
 <template>
   <div id="money">
-    <dm-money-page />
+    <nuc-money-page />
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
   <div id="contacts">
-    <dm-contact-page />
+    <nuc-contact-page />
   </div>
 </template>

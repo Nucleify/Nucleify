@@ -1,8 +1,0 @@
-{
-  "name": "dm_dialog",
-  "description": "Module that contains dialog functionality.",
-  "version": "0.0.1",
-  "category": "core",
-  "installed": true,
-  "enabled": true
-}

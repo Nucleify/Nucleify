@@ -5,7 +5,7 @@ import type { Preview } from '@storybook/vue3'
 import 'primeicons/primeicons.css'
 
 import PrimeVue from 'primevue/config'
-import { defaultColors } from '../modules/dm_colors/atomic/boson/constants/default'
+import { defaultColors } from '../modules/nuc_colors/atomic/boson/constants/default'
 import '../nuxt/styles/index.scss'
 
 Object.entries(defaultColors).forEach(([key, value]) => {
