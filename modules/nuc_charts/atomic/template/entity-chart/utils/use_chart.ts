@@ -21,10 +21,10 @@ import {
   NucLinkObjectInterface,
   NucMoneyObjectInterface,
   NucQuestionObjectInterface,
+  NucTaskObjectInterface,
   NucTechnologyObjectInterface,
   NucUserObjectInterface,
   ObjectType,
-  TaskObjectInterface,
   UseColorsInterface,
   useColors,
 } from 'atomic'
@@ -95,7 +95,7 @@ export function useChart() {
     linkData?: NucLinkObjectInterface[],
     moneyData?: NucMoneyObjectInterface[],
     questionData?: NucQuestionObjectInterface[],
-    taskData?: TaskObjectInterface[],
+    taskData?: NucTaskObjectInterface[],
     technologyData?: NucTechnologyObjectInterface[],
     userData?: NucUserObjectInterface[],
     example?: boolean

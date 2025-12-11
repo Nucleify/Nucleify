@@ -1,4 +1,4 @@
-export interface TaskObjectInterface {
+export interface NucTaskObjectInterface {
   id?: number
   user_id: number
   assignee_id: number

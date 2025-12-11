@@ -11,9 +11,9 @@ import type {
   NucLinkObjectInterface,
   NucMoneyObjectInterface,
   NucQuestionObjectInterface,
+  NucTaskObjectInterface,
   NucTechnologyObjectInterface,
   NucUserObjectInterface,
-  TaskObjectInterface,
 } from 'atomic'
 
 export interface NucEntityChartInterface extends ChartInterface {
@@ -34,7 +34,7 @@ export interface NucEntityChartDataInterface {
   link?: NucLinkObjectInterface[]
   money?: NucMoneyObjectInterface[]
   question?: NucQuestionObjectInterface[]
-  task?: TaskObjectInterface[]
+  task?: NucTaskObjectInterface[]
   technology?: NucTechnologyObjectInterface[]
   user?: NucUserObjectInterface[]
 }

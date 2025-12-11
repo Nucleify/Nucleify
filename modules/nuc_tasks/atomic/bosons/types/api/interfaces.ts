@@ -6,17 +6,17 @@ import type {
   GetAllEntitiesRequestType,
   GetEntityRequestType,
   LoadingRefType,
+  NucTaskObjectInterface,
   StoreEntityRequestType,
-  TaskObjectInterface,
 } from 'atomic'
 
-export interface TaskRequestsInterface {
-  results: EntityResultsType<TaskObjectInterface>
+export interface NucTaskRequestsInterface {
+  results: EntityResultsType<NucTaskObjectInterface>
   createdLastWeek: EntityCountResultsType
   loading: LoadingRefType
-  getAllTasks: GetAllEntitiesRequestType<TaskObjectInterface>
+  getAllTasks: GetAllEntitiesRequestType<NucTaskObjectInterface>
   getCountTasksByCreatedLastWeek: GetEntityRequestType
-  storeTask: StoreEntityRequestType<TaskObjectInterface>
-  editTask: EditEntityRequestType<TaskObjectInterface>
+  storeTask: StoreEntityRequestType<NucTaskObjectInterface>
+  editTask: EditEntityRequestType<NucTaskObjectInterface>
   deleteTask: DeleteEntityRequestType
 }

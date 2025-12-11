@@ -8,27 +8,27 @@ if (!defined('PEST_RUNNING')) {
  *  Main groups
  */
 uses()
-    ->group('dm-tasks')
+    ->group('nuc-tasks')
     ->in('.');
 
 uses()
-    ->group('dm-tasks-db')
+    ->group('nuc-tasks-db')
     ->in('Database');
 
 uses()
-    ->group('dm-tasks-migrations')
+    ->group('nuc-tasks-migrations')
     ->in('Database/Migrations');
 
 uses()
-    ->group('dm-tasks-ft')
+    ->group('nuc-tasks-ft')
     ->in('Feature');
 
 uses()
-    ->group('dm-tasks-controllers')
+    ->group('nuc-tasks-controllers')
     ->in('Feature/Controllers');
 
 uses()
-    ->group('dm-tasks-api')
+    ->group('nuc-tasks-api')
     ->in('Feature/Api');
 
 /**
