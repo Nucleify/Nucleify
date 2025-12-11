@@ -1,7 +1,7 @@
 /**
  *  Module's main file export
  */
-export * from './dm_settings'
+export * from './nuc_settings'
 
 /**
  *  Folders exports
@@ -11,4 +11,4 @@ export * from './components'
 /**
  *  Files exports
  */
-export { default as DmSettingsPage } from './index.vue'
+export { default as NucSettingsPage } from './index.vue'
