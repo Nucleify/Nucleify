@@ -1,6 +1,6 @@
 <template>
   <div class="services-container">
-    <dm-section-faq site="services" />
-    <dm-section-contact />
+    <nuc-section-faq site="services" />
+    <nuc-section-contact />
   </div>
 </template>

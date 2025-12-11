@@ -1,8 +1,8 @@
 <template>
   <div class="about-container">
-    <dm-section-stack />
-    <dm-section-faq site="about" />
-    <dm-section-contact />
+    <nuc-section-stack />
+    <nuc-section-faq site="about" />
+    <nuc-section-contact />
   </div>
 </template>
 

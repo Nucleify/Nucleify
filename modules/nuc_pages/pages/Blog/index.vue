@@ -1,6 +1,6 @@
 <template>
   <div class="blog-container">
-    <dm-section-category
+    <nuc-section-category
       :cards="blogCategoriesCards"
       :prefix="storysetBlogImgUrl"
     />
