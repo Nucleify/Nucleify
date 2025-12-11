@@ -4,7 +4,6 @@ import * as modules from '../../modules'
 import module from '../../nuxt/plugins/modules'
 
 vi.mock('../../modules', () => ({
-  registerDMTime: vi.fn(),
   registerDMTooltip: vi.fn(),
   registerNucActivity: vi.fn(),
   registerNucAdmin: vi.fn(),
@@ -31,6 +30,7 @@ vi.mock('../../modules', () => ({
   registerNucSettings: vi.fn(),
   registerNucTasks: vi.fn(),
   registerNucTemplates: vi.fn(),
+  registerNucTime: vi.fn(),
 }))
 
 const vueApp = {}
@@ -69,4 +69,5 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   expect(modules.registerNucSettings).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucTasks).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucTemplates).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucTime).toHaveBeenCalledWith(vueApp)
 })

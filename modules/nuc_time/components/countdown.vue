@@ -1,5 +1,5 @@
 <template>
-  <div class="countdown">
+  <div class="nuc-countdown">
     <div v-if="result && !result.finished && !result.expired" class="time-display">
       <span v-if="result.days > 0" class="time">{{ result.days }}d</span>
       <span class="time">{{ result.hours }}h</span>
@@ -12,14 +12,14 @@
 
 <script setup lang="ts">
 import type {
-  DmTimeCalculateCountdownInterface,
-  DmTimeCountdownInterface,
+  NucTimeCalculateCountdownInterface,
+  NucTimeCountdownInterface,
 } from 'atomic'
 import { calculateCountdown } from 'atomic'
 
-const props = defineProps<DmTimeCountdownInterface>()
+const props = defineProps<NucTimeCountdownInterface>()
 
-const result = ref<DmTimeCalculateCountdownInterface>()
+const result = ref<NucTimeCalculateCountdownInterface>()
 
 let timer: ReturnType<typeof setInterval> | null = null
 

@@ -37,7 +37,7 @@
         href="https://github.com/Nucleify/Nucleify/milestone/8" 
         target="_blank"
       >
-        <dm-time-countdown 
+        <nuc-time-countdown 
           class="v1-release-countdown"
           :date="new Date('2026-01-01')" 
         />

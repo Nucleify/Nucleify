@@ -1,9 +1,9 @@
-import type { DmTimeCalculateCountdownInterface } from 'atomic'
+import type { NucTimeCalculateCountdownInterface } from 'atomic'
 import { daysLeft, hoursLeft, minutesLeft, secondsLeft } from 'atomic'
 
 export function calculateCountdown(
   target: Date | number | string
-): DmTimeCalculateCountdownInterface {
+): NucTimeCalculateCountdownInterface {
   const targetDate = new Date(target)
   const now = new Date()
   const diff = targetDate.getTime() - now.getTime()
