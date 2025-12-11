@@ -1,5 +1,5 @@
 <template>
   <div id="admin">
-    <dm-admin-page />
+    <nuc-admin-page />
   </div>
 </template>

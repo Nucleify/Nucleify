@@ -1,5 +1,5 @@
 <template>
   <div id="activity-log">
-    <dm-activity-page />
+    <nuc-activity-page />
   </div>
 </template>

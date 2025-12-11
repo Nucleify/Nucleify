@@ -1,5 +1,5 @@
 <template>
   <div id="articles">
-    <dm-article-page />
+    <nuc-article-page />
   </div>
 </template>

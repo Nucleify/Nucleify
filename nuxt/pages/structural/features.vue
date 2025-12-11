@@ -1,5 +1,5 @@
 <template>
   <div id="features">
-    <dm-feature-page />
+    <nuc-feature-page />
   </div>
 </template>

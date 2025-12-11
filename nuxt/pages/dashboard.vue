@@ -1,5 +1,5 @@
 <template>
   <div id="dashboard">
-    <dm-dashboard-page />
+    <nuc-dashboard-page />
   </div>
 </template>

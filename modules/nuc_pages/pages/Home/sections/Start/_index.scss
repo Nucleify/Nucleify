@@ -1,0 +1,144 @@
+#home .start-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: start;
+  padding: 0 1.5em;
+  gap: 5em;
+  margin: 3em 0;
+
+  .header {
+    opacity: 0;
+    color: $primary-white-text-color;
+
+    span {
+      font-size: 38px;
+      font-weight: bold !important;
+      font-family: $font-inter-sans-serif !important;
+      color: $primary-white-text-color;
+      white-space: nowrap;
+    }
+  }
+
+  .ball {
+    display: none;
+    cursor: pointer;
+  }
+
+  .start-description {
+    margin: 2em 0;
+    max-width: 500px;
+    font-size: 1.25em;
+    color: $white-text-color;
+    font-weight: 300;
+    opacity: 0;
+  }
+
+  .cta {
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-top: 1.5em;
+    gap: 1em;
+
+    .start-button {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 10px 25px !important;
+      width: max-content;
+      transition: all 300ms;
+      opacity: 0;
+
+      .p-image {
+        display: flex;
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  @media (min-width: 370px) {
+    .header,
+    .header span {
+      font-size: 40px;
+    }
+
+    .cta {
+      gap: 1.5em;
+    }
+  }
+
+  @media (min-width: $md) {
+    flex-direction: row;
+    justify-content: center;
+
+    .header,
+    .header span {
+      font-size: $font-size-xl !important;
+    }
+
+    .ball {
+      display: flex;
+      margin-top: -2em;
+    }
+
+    .cta {
+      margin-top: 2em;
+      gap: 2em;
+
+      .start-button {
+        padding: 10px 2rem !important;
+        gap: 0.75rem;
+      }
+    }
+
+    .right-side {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  @media (min-width: $lg) {
+    display: flex;
+    gap: 8rem;
+    margin-top: 2rem;
+
+    .header,
+    .header span {
+      font-size: $font-size-xxl !important;
+    }
+
+    .start-description {
+      max-width: 600px;
+      font-size: 1.75em;
+    }
+  }
+
+  @media (min-width: $xl) {
+    .cta {
+      margin-top: 4em;
+    }
+  }
+}
+
+#home #start {
+  a:has(.v1-release-countdown) {
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    width: max-content;
+    top: 5em;
+    text-decoration: none;
+
+    @media (min-width: $md) {
+      top: 8em;
+    }
+  }
+}

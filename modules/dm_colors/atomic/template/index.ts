@@ -1,1 +1,0 @@
-export { default as DMColorSettingsCard } from './settings-card.vue'

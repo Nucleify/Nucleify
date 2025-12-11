@@ -1,0 +1,9 @@
+{
+  "name": "nuc_database",
+  "description": "Module that manages database seeding with auto-discovery.",
+  "version": "0.0.1",
+  "category": "core",
+  "installed": true,
+  "enabled": true,
+  "seeder": false
+}

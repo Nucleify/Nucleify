@@ -1,1 +1,0 @@
-export { default as DmTooltipBase } from './index.vue'

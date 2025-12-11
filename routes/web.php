@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 /**
  *  Modules includes
  */
-require base_path('modules/dm_auth/routes/web.php');
+require base_path('modules/nuc_auth/routes/web.php');
 
 /**
  *  Logout

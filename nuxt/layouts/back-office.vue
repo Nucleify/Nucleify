@@ -1,7 +1,7 @@
 <template>
   <div id="back-office">
     <slot />
-    <dm-dock />
+    <nuc-dock />
   </div>
 </template>
 
@@ -12,5 +12,5 @@ definePageMeta({
 </script>
 
 <style lang="scss">
-@import '../../modules/dm_colors';
+@import '../../modules/nuc_colors';
 </style>

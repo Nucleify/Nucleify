@@ -1,0 +1,8 @@
+{
+  "name": "nuc_entities_structural",
+  "description": "Module that contains structural entity functions.",
+  "version": "0.0.1",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

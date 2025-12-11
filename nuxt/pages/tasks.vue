@@ -1,5 +1,5 @@
 <template>
   <div id="tasks">
-    <dm-task-page />
+    <nuc-task-page />
   </div>
 </template>
