@@ -4,7 +4,6 @@ import * as modules from '../../modules'
 import module from '../../nuxt/plugins/modules'
 
 vi.mock('../../modules', () => ({
-  registerDMFriendship: vi.fn(),
   registerDMModules: vi.fn(),
   registerDMNavigation: vi.fn(),
   registerDMGlobals: vi.fn(),
@@ -31,6 +30,7 @@ vi.mock('../../modules', () => ({
   registerNucEntities: vi.fn(),
   registerNucEntitiesStructural: vi.fn(),
   registerNucFiles: vi.fn(),
+  registerNucFriendship: vi.fn(),
 }))
 
 const vueApp = {}
@@ -68,4 +68,5 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   expect(modules.registerNucEntities).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucEntitiesStructural).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucFiles).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucFriendship).toHaveBeenCalledWith(vueApp)
 })

@@ -7,7 +7,7 @@ return [
     Modules\nuc_entities\nuc_entities::class,
     Modules\nuc_entities_structural\nuc_entities_structural::class,
     Modules\nuc_files\nuc_files::class,
-    Modules\dm_friendship\dm_friendship::class,
+    Modules\nuc_friendship\nuc_friendship::class,
     Modules\dm_modules\dm_modules::class,
     Modules\dm_pages\dm_pages::class,
     Modules\dm_terminal\dm_terminal::class,

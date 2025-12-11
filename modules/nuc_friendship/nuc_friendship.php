@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\dm_friendship;
+namespace Modules\nuc_friendship;
 
 use Illuminate\Support\ServiceProvider;
 
-class dm_friendship extends ServiceProvider
+class nuc_friendship extends ServiceProvider
 {
     public function boot(): void
     {
