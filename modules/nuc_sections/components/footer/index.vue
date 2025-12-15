@@ -3,7 +3,7 @@
     <div class="footer-content-container">
       <div class="top">
         <ad-anchor href="#start" class="header">
-          <ad-logo :dimensions="isMobile() ? 44 : 72" />
+          <ad-logo :dimensions="isMobile() ? 44 : 72" ad-type="main" />
           <ad-heading :tag="1" text="Nucleify" class="name" />
         </ad-anchor>
         <div class="content">

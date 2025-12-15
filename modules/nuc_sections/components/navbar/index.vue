@@ -3,7 +3,7 @@
   <nav class="navbar">
     <div class="container">
       <nuxt-link class="application-header" to="/home">
-        <ad-logo />
+        <ad-logo ad-type="main" />
 
         <ad-heading
           :tag="1"

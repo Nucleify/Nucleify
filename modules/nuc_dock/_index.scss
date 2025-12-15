@@ -11,6 +11,12 @@
   .p-dock-list-container {
     ul {
       .p-dock-item {
+        a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }        
+        
         .iconify {
           color: $primary-white-green-text-color;
         }
