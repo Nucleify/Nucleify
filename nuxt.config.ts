@@ -1,7 +1,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 import Lara from '@primeuix/themes/lara'
-import { definePerson } from 'nuxt-schema-org/schema'
+import { schemaOrgConfig } from './nuxt/config/schema-org'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -75,15 +75,7 @@ export default defineNuxtConfig({
       ],
     },
   },
-  schemaOrg: {
-    identity: definePerson({
-      name: 'Szymon Radomski',
-      alternateName: 'SzymCode',
-      image: '/img/contributors/szymcode.svg',
-      url: 'https://github.com/SzymCode',
-      sameAs: ['https://github.com/SzymCode'],
-    }),
-  },
+  schemaOrg: schemaOrgConfig,
   vite: {
     build: {
       chunkSizeWarningLimit: 1600,
