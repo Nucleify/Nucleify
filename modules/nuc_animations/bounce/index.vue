@@ -1,7 +1,8 @@
 <template>
   <ad-logo 
     class="bounce-animation ball"
-    :dimensions="isMobile() ? 100 : 150"
+    ad-type="main"
+    dimensions="175"
   />
 </template>
 

@@ -32,7 +32,7 @@
                   v-bind="a11yAttrs.root"
                   @click="activateCallback"
                 >
-                  <ad-logo :dimensions="40" />
+                  <ad-logo :dimensions="40" ad-type="main" />
                 </div>
               </Step>
             </swiper-slide>
