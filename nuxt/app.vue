@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ad-logo-symbol style="display: none;" />
     <client-only>
       <nuc-screen-lights :count="8" />
     </client-only>
@@ -12,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import { resetColorsIfEmpty, useOfficeType } from 'atomic'
+import { AdLogoSymbol, resetColorsIfEmpty, useOfficeType } from 'atomic'
 
 const route = useRoute()
 
