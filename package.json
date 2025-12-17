@@ -13,6 +13,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prepare:husky": "husky",
+    "prepare:submodules": "sh prepare-submodules.sh",
     "check": "npx biome check .",
     "write": "npx biome check --write .",
     "slint": "npx stylelint \"**/**/*.scss\"",
@@ -20,7 +21,8 @@
     "tests": "npx vitest run",
     "test:coverage": "npx vitest run --coverage",
     "test:watch": "npx vitest",
-    "typeslint": "tsc --noemit"
+    "typeslint": "tsc --noemit",
+    "heroku-prebuild": "npm run prepare:submodules"
   },
   "dependencies": {
     "@nuxt/icon": "1.15.0",
