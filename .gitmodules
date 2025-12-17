@@ -1,0 +1,3 @@
+[submodule "modules/nuc_activity"]
+	path = modules/nuc_activity
+	url = https://github.com/Nucleify/nuc_activity.git
