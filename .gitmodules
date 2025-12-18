@@ -4,3 +4,6 @@
 [submodule "modules/nuc_admin"]
 	path = modules/nuc_admin
 	url = https://github.com/Nucleify/nuc_admin.git
+[submodule "modules/nuc_animations"]
+	path = modules/nuc_animations
+	url = https://github.com/Nucleify/nuc_animations.git
