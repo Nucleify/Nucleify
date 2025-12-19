@@ -1,9 +1,0 @@
-@mixin entity-tile-styles($item-color, $selected-color) {
-  div:has(> .iconify) {
-    background: $selected-color;
-
-    .iconify {
-      color: $item-color;
-    }
-  }
-}
