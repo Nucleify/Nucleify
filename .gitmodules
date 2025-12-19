@@ -10,3 +10,6 @@
 [submodule "modules/nuc_api"]
 	path = modules/nuc_api
 	url = https://github.com/Nucleify/nuc_api.git
+[submodule "modules/nuc_auth"]
+	path = modules/nuc_auth
+	url = https://github.com/Nucleify/nuc_auth.git
