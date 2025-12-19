@@ -16,3 +16,6 @@
 [submodule "modules/nuc_charts"]
 	path = modules/nuc_charts
 	url = https://github.com/Nucleify/nuc_charts.git
+[submodule "modules/nuc_colors"]
+	path = modules/nuc_colors
+	url = https://github.com/Nucleify/nuc_colors.git
