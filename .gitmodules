@@ -25,3 +25,6 @@
 [submodule "modules/nuc_datatable"]
 	path = modules/nuc_datatable
 	url = https://github.com/Nucleify/nuc_datatable.git
+[submodule "modules/nuc_dialog"]
+	path = modules/nuc_dialog
+	url = https://github.com/Nucleify/nuc_dialog.git
