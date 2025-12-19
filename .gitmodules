@@ -31,3 +31,6 @@
 [submodule "modules/nuc_dock"]
 	path = modules/nuc_dock
 	url = https://github.com/Nucleify/nuc_dock.git
+[submodule "modules/nuc_documentation"]
+	path = modules/nuc_documentation
+	url = https://github.com/Nucleify/nuc_documentation.git
