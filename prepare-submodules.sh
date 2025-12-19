@@ -5,7 +5,7 @@ echo "~~~ Running prepare-submodules script ~~~"
 
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
-SUBMODULES="nuc_activity nuc_admin nuc_animations nuc_api nuc_auth nuc_charts nuc_colors nuc_database nuc_datatable nuc_dialog"
+SUBMODULES="nuc_activity nuc_admin nuc_animations nuc_api nuc_auth nuc_charts nuc_colors nuc_database nuc_datatable nuc_dialog nuc_dock"
 
 for NAME in $SUBMODULES; do
   URL="https://github.com/Nucleify/$NAME.git"
