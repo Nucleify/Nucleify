@@ -7,3 +7,6 @@
 [submodule "modules/nuc_animations"]
 	path = modules/nuc_animations
 	url = https://github.com/Nucleify/nuc_animations.git
+[submodule "modules/nuc_api"]
+	path = modules/nuc_api
+	url = https://github.com/Nucleify/nuc_api.git
