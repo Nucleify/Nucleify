@@ -28,3 +28,6 @@
 [submodule "modules/nuc_dialog"]
 	path = modules/nuc_dialog
 	url = https://github.com/Nucleify/nuc_dialog.git
+[submodule "modules/nuc_dock"]
+	path = modules/nuc_dock
+	url = https://github.com/Nucleify/nuc_dock.git
