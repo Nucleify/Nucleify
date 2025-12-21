@@ -18,6 +18,7 @@ datatable
 dialog
 dock
 documentation
+entities
 "
 
 for NAME in $NUC_SUBMODULES; do
