@@ -24,6 +24,7 @@ fields
 files
 friendship
 globals
+loading
 "
 
 for NAME in $NUC_SUBMODULES; do
