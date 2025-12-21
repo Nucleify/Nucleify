@@ -25,6 +25,7 @@ files
 friendship
 globals
 loading
+media
 "
 
 for NAME in $NUC_SUBMODULES; do

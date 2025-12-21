@@ -55,3 +55,6 @@
 [submodule "modules/nuc_loading"]
 	path = modules/nuc_loading
 	url = https://github.com/Nucleify/nuc_loading.git
+[submodule "modules/nuc_media"]
+	path = modules/nuc_media
+	url = https://github.com/Nucleify/nuc_media.git
