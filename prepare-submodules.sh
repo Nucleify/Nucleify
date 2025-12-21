@@ -21,6 +21,7 @@ documentation
 entities
 entities_structural
 fields
+files
 "
 
 for NAME in $NUC_SUBMODULES; do
