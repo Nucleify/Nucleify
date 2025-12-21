@@ -1,5 +1,0 @@
-export * from './Card'
-export * from './Feature'
-export * from './Link'
-export * from './Question'
-export * from './Technology'
