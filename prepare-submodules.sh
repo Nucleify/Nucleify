@@ -5,17 +5,27 @@ echo "~~~ Running prepare-submodules script ~~~"
 
 export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
 
-SUBMODULES="nuc_activity nuc_admin nuc_animations nuc_api nuc_auth nuc_charts nuc_colors nuc_database nuc_datatable nuc_dialog nuc_dock nuc_documentation"
+NUC_SUBMODULES="
+activity
+admin
+animations
+api
+auth
+charts
+colors
+database
+datatable
+dialog
+dock
+documentation
+"
 
-for NAME in $SUBMODULES; do
-  URL="https://github.com/Nucleify/$NAME.git"
-  DIR="modules/$NAME"
+for NAME in $NUC_SUBMODULES; do
+  URL="https://github.com/Nucleify/nuc_$NAME.git"
+  DIR="modules/nuc_$NAME"
 
-  echo "Cloning submodule $NAME from $URL into $DIR..."
+  echo "Cloning submodule nuc_$NAME from $URL into $DIR..."
   git clone --depth=1 "$URL" "$DIR"
 done
-
-echo "Removing .git folders from submodules..."
-rm -rf modules/**/.git
 
 echo "~~~ prepare-submodules script finished ~~~"
