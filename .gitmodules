@@ -49,3 +49,6 @@
 [submodule "modules/nuc_friendship"]
 	path = modules/nuc_friendship
 	url = https://github.com/Nucleify/nuc_friendship.git
+[submodule "modules/nuc_globals"]
+	path = modules/nuc_globals
+	url = https://github.com/Nucleify/nuc_globals.git
