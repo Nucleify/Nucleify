@@ -43,3 +43,6 @@
 [submodule "modules/nuc_fields"]
 	path = modules/nuc_fields
 	url = https://github.com/Nucleify/nuc_fields.git
+[submodule "modules/nuc_files"]
+	path = modules/nuc_files
+	url = https://github.com/Nucleify/nuc_files.git
