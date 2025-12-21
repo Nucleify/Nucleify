@@ -22,6 +22,7 @@ entities
 entities_structural
 fields
 files
+friendship
 "
 
 for NAME in $NUC_SUBMODULES; do
