@@ -27,6 +27,7 @@ globals
 loading
 media
 modules
+navigation
 "
 
 for NAME in $NUC_SUBMODULES; do
