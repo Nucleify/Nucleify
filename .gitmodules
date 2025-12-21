@@ -61,3 +61,6 @@
 [submodule "modules/nuc_modules"]
 	path = modules/nuc_modules
 	url = https://github.com/Nucleify/nuc_modules.git
+[submodule "modules/nuc_navigation"]
+	path = modules/nuc_navigation
+	url = https://github.com/Nucleify/nuc_navigation.git
