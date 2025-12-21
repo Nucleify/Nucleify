@@ -52,3 +52,6 @@
 [submodule "modules/nuc_globals"]
 	path = modules/nuc_globals
 	url = https://github.com/Nucleify/nuc_globals.git
+[submodule "modules/nuc_loading"]
+	path = modules/nuc_loading
+	url = https://github.com/Nucleify/nuc_loading.git
