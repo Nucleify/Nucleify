@@ -162,6 +162,9 @@ export default defineNuxtConfig({
     },
     display: 'swap',
     subsets: ['latin'],
+    preconnect: true,
+    prefetch: true,
+    preload: true,
   },
   storybook: {
     url: 'http://localhost',
