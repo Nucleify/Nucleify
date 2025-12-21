@@ -92,6 +92,16 @@ export default defineNuxtConfig({
             gsap: ['gsap'],
             marked: ['marked'],
           },
+          chunkFileNames: (chunkInfo: { facadeModuleId: string }) => {
+            const facadeModuleId = chunkInfo.facadeModuleId
+            if (facadeModuleId && facadeModuleId.includes('modules/nuc_')) {
+              const moduleName = facadeModuleId.match(/modules\/(nuc_\w+)/)?.[1]
+              if (moduleName) {
+                return `modules/${moduleName}-[hash].js`
+              }
+            }
+            return 'chunks/[name]-[hash].js'
+          },
         },
       },
     },
