@@ -1,6 +1,6 @@
 import { defineNuxtPlugin } from 'nuxt/app'
 import type { App } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
 
 import { colorsClientPlugin, colorsServerPlugin } from './plugins'
 
@@ -11,13 +11,17 @@ export function registerNucColors(app: App<Element>): void {
      */
     .component(
       'nuc-color-picker',
-      defineAsyncComponent(
-        () => import('./atomic/organism/color-picker/index.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./atomic/organism/color-picker/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-color-settings-card',
-      defineAsyncComponent(() => import('./atomic/template/settings-card.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/template/settings-card.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
 
     /**

@@ -1,38 +1,55 @@
 import type { App } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
 
 export function registerNucSettings(app: App<Element>): void {
   app
     .component(
       'nuc-settings-card',
-      defineAsyncComponent(() => import('./components/card/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/card/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-settings-page',
-      defineAsyncComponent(() => import('./index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-skeleton-settings-card',
-      defineAsyncComponent(() => import('./components/card/skeleton.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/card/skeleton.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-menu-tree',
-      defineAsyncComponent(() => import('./components/menu-tree/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/menu-tree/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-general-menu-tree',
-      defineAsyncComponent(
-        () => import('./components/menu-tree/general/index.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./components/menu-tree/general/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-staff-menu-tree',
-      defineAsyncComponent(
-        () => import('./components/menu-tree/staff/index.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./components/menu-tree/staff/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-settings-card-content',
-      defineAsyncComponent(() => import('./components/content/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/content/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
 }

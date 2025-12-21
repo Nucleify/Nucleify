@@ -1,46 +1,62 @@
 import type { App } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
 
 export function registerNucEntities(app: App<Element>): void {
   app
     .component(
       'nuc-article-page',
-      defineAsyncComponent(() => import('./atomic/pages/Article/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/pages/Article/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-contact-page',
-      defineAsyncComponent(() => import('./atomic/pages/Contact/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/pages/Contact/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-entities-page',
-      defineAsyncComponent(() => import('./atomic/pages/General/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/pages/General/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-money-page',
-      defineAsyncComponent(() => import('./atomic/pages/Money/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/pages/Money/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-article-dashboard',
-      defineAsyncComponent(
-        () => import('./atomic/templates/Dashboard/Article.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./atomic/templates/Dashboard/Article.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-contact-dashboard',
-      defineAsyncComponent(
-        () => import('./atomic/templates/Dashboard/Contact.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./atomic/templates/Dashboard/Contact.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-money-dashboard',
-      defineAsyncComponent(
-        () => import('./atomic/templates/Dashboard/Money.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./atomic/templates/Dashboard/Money.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-user-dashboard',
-      defineAsyncComponent(
-        () => import('./atomic/templates/Dashboard/User.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./atomic/templates/Dashboard/User.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
 }

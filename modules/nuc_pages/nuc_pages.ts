@@ -1,34 +1,56 @@
 import type { App } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
 
 export function registerNucPages(app: App<Element>): void {
   app
+    // Wszystkie strony używają hydrateOnVisible - ładują się tylko gdy są widoczne
     .component(
       'nuc-about-page',
-      defineAsyncComponent(() => import('./pages/About/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./pages/About/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }), // Ładuj 100px przed widocznością
+      })
     )
     .component(
       'nuc-blog-page',
-      defineAsyncComponent(() => import('./pages/Blog/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./pages/Blog/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-dashboard-page',
-      defineAsyncComponent(() => import('./pages/Dashboard/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./pages/Dashboard/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-error-404-page',
-      defineAsyncComponent(() => import('./pages/Errors/404/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./pages/Errors/404/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-home-page',
-      defineAsyncComponent(() => import('./pages/Home/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./pages/Home/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '200px' }), // Większy margin dla strony głównej
+      })
     )
     .component(
       'nuc-license-page',
-      defineAsyncComponent(() => import('./pages/License/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./pages/License/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-services-page',
-      defineAsyncComponent(() => import('./pages/Services/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./pages/Services/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
 }

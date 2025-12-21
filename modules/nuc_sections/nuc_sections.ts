@@ -1,38 +1,62 @@
 import type { App } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
 
 export function registerNucSections(app: App<Element>): void {
   app
     .component(
       'nuc-section-category',
-      defineAsyncComponent(() => import('./components/category/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/category/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-section-contact',
-      defineAsyncComponent(() => import('./components/contact/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/contact/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-section-faq',
-      defineAsyncComponent(() => import('./components/faq/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/faq/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-section-footer',
-      defineAsyncComponent(() => import('./components/footer/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/footer/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '50px' }), // Footer na dole, mniejszy margin
+      })
     )
     .component(
       'nuc-section-navbar',
-      defineAsyncComponent(() => import('./components/navbar/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/navbar/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '200px' }), // Navbar na górze, większy margin
+      })
     )
     .component(
       'nuc-section-stack',
-      defineAsyncComponent(() => import('./components/stack/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/stack/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-section-start',
-      defineAsyncComponent(() => import('./components/start/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/start/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '200px' }), // Start section często na początku
+      })
     )
     .component(
       'nuc-section-why-us',
-      defineAsyncComponent(() => import('./components/why-us/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/why-us/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
 }

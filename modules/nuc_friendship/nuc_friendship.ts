@@ -1,18 +1,27 @@
 import type { App } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
 
 export function registerNucFriendship(app: App<Element>): void {
   app
     .component(
       'nuc-friendship',
-      defineAsyncComponent(() => import('./index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-friends-list',
-      defineAsyncComponent(() => import('./components/friends-list.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/friends-list.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-invite-form',
-      defineAsyncComponent(() => import('./components/invite-form.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/invite-form.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
 }

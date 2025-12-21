@@ -1,14 +1,20 @@
 import type { App } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
 
 export function registerNucModules(app: App<Element>): void {
   app
     .component(
       'nuc-modules-info',
-      defineAsyncComponent(() => import('./atomic/section/info/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/section/info/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-modules-settings',
-      defineAsyncComponent(() => import('./settings/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./settings/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
 }

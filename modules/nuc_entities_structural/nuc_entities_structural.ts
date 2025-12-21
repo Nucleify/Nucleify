@@ -1,60 +1,83 @@
 import type { App } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
 
 export function registerNucEntitiesStructural(app: App<Element>): void {
   app
     .component(
       'nuc-card-dashboard',
-      defineAsyncComponent(
-        () => import('./atomic/templates/Dashboard/Card.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./atomic/templates/Dashboard/Card.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-card-page',
-      defineAsyncComponent(() => import('./atomic/pages/Card/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/pages/Card/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-feature-dashboard',
-      defineAsyncComponent(
-        () => import('./atomic/templates/Dashboard/Feature.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./atomic/templates/Dashboard/Feature.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-feature-page',
-      defineAsyncComponent(() => import('./atomic/pages/Feature/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/pages/Feature/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-link-dashboard',
-      defineAsyncComponent(
-        () => import('./atomic/templates/Dashboard/Link.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./atomic/templates/Dashboard/Link.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-link-page',
-      defineAsyncComponent(() => import('./atomic/pages/Link/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/pages/Link/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-question-dashboard',
-      defineAsyncComponent(
-        () => import('./atomic/templates/Dashboard/Question.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./atomic/templates/Dashboard/Question.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-question-page',
-      defineAsyncComponent(() => import('./atomic/pages/Question/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/pages/Question/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-structural-page',
-      defineAsyncComponent(() => import('./atomic/pages/General/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/pages/General/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-technology-page',
-      defineAsyncComponent(() => import('./atomic/pages/Technology/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./atomic/pages/Technology/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-technology-dashboard',
-      defineAsyncComponent(
-        () => import('./atomic/templates/Dashboard/Technology.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./atomic/templates/Dashboard/Technology.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
 }

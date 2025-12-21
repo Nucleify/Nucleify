@@ -1,40 +1,62 @@
 import type { App } from 'vue'
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, hydrateOnVisible } from 'vue'
 
 export function registerNucTemplates(app: App<Element>): void {
   app
     .component(
       'nuc-authors',
-      defineAsyncComponent(() => import('./components/authors/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/authors/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-card-box',
-      defineAsyncComponent(
-        () => import('./components/card/boxes/components/Box.vue')
-      )
+      defineAsyncComponent({
+        loader: () => import('./components/card/boxes/components/Box.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-card-boxes',
-      defineAsyncComponent(() => import('./components/card/boxes/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/card/boxes/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-card-category',
-      defineAsyncComponent(() => import('./components/card/category/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/card/category/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-cube',
-      defineAsyncComponent(() => import('./components/cube/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/cube/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-flip-card',
-      defineAsyncComponent(() => import('./components/card/flip/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/card/flip/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-home-link',
-      defineAsyncComponent(() => import('./components/home-link/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/home-link/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
     .component(
       'nuc-tiles',
-      defineAsyncComponent(() => import('./components/tiles/index.vue'))
+      defineAsyncComponent({
+        loader: () => import('./components/tiles/index.vue'),
+        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      })
     )
 }
