@@ -37,3 +37,6 @@
 [submodule "modules/nuc_entities"]
 	path = modules/nuc_entities
 	url = https://github.com/Nucleify/nuc_entities.git
+[submodule "modules/nuc_entities_structural"]
+	path = modules/nuc_entities_structural
+	url = https://github.com/Nucleify/nuc_entities_structural.git

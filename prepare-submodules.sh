@@ -19,6 +19,7 @@ dialog
 dock
 documentation
 entities
+entities_structural
 "
 
 for NAME in $NUC_SUBMODULES; do
