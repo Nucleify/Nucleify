@@ -58,3 +58,6 @@
 [submodule "modules/nuc_media"]
 	path = modules/nuc_media
 	url = https://github.com/Nucleify/nuc_media.git
+[submodule "modules/nuc_modules"]
+	path = modules/nuc_modules
+	url = https://github.com/Nucleify/nuc_modules.git
