@@ -20,6 +20,7 @@ dock
 documentation
 entities
 entities_structural
+fields
 "
 
 for NAME in $NUC_SUBMODULES; do
