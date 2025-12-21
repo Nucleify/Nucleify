@@ -1,7 +1,9 @@
 import type { App } from 'vue'
-
-import { NucScreenLights } from '.'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucScreenLights(app: App<Element>): void {
-  app.component('nuc-screen-lights', NucScreenLights)
+  app.component(
+    'nuc-screen-lights',
+    defineAsyncComponent(() => import('./index.vue'))
+  )
 }

@@ -1,9 +1,14 @@
 import type { App } from 'vue'
-
-import { NucDocumentationDashboard, NucDocumentationPage } from './atomic'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucDocumentation(app: App<Element>): void {
   app
-    .component('nuc-documentation-page', NucDocumentationPage)
-    .component('nuc-documentation-dashboard', NucDocumentationDashboard)
+    .component(
+      'nuc-documentation-page',
+      defineAsyncComponent(() => import('./atomic/pages/index.vue'))
+    )
+    .component(
+      'nuc-documentation-dashboard',
+      defineAsyncComponent(() => import('./atomic/templates/Dashboard.vue'))
+    )
 }

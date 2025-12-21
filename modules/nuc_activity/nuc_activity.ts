@@ -1,9 +1,16 @@
 import type { App } from 'vue'
-
-import { NucActivityDashboard, NucActivityPage } from './atomic'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucActivity(app: App<Element>): void {
   app
-    .component('nuc-activity-page', NucActivityPage)
-    .component('nuc-activity-dashboard', NucActivityDashboard)
+    .component(
+      'nuc-activity-page',
+      defineAsyncComponent(() => import('./atomic/pages/General/index.vue'))
+    )
+    .component(
+      'nuc-activity-dashboard',
+      defineAsyncComponent(
+        () => import('./atomic/templates/Dashboard/General.vue')
+      )
+    )
 }

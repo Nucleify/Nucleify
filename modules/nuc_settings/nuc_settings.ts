@@ -1,22 +1,38 @@
 import type { App } from 'vue'
-
-import {
-  NucGeneralMenuTree,
-  NucMenuTree,
-  NucSettingsCard,
-  NucSettingsCardContent,
-  NucSettingsPage,
-  NucSkeletonSettingsCard,
-  NucStaffMenuTree,
-} from '.'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucSettings(app: App<Element>): void {
   app
-    .component('nuc-settings-card', NucSettingsCard)
-    .component('nuc-settings-page', NucSettingsPage)
-    .component('nuc-skeleton-settings-card', NucSkeletonSettingsCard)
-    .component('nuc-menu-tree', NucMenuTree)
-    .component('nuc-general-menu-tree', NucGeneralMenuTree)
-    .component('nuc-staff-menu-tree', NucStaffMenuTree)
-    .component('nuc-settings-card-content', NucSettingsCardContent)
+    .component(
+      'nuc-settings-card',
+      defineAsyncComponent(() => import('./components/card/index.vue'))
+    )
+    .component(
+      'nuc-settings-page',
+      defineAsyncComponent(() => import('./index.vue'))
+    )
+    .component(
+      'nuc-skeleton-settings-card',
+      defineAsyncComponent(() => import('./components/card/skeleton.vue'))
+    )
+    .component(
+      'nuc-menu-tree',
+      defineAsyncComponent(() => import('./components/menu-tree/index.vue'))
+    )
+    .component(
+      'nuc-general-menu-tree',
+      defineAsyncComponent(
+        () => import('./components/menu-tree/general/index.vue')
+      )
+    )
+    .component(
+      'nuc-staff-menu-tree',
+      defineAsyncComponent(
+        () => import('./components/menu-tree/staff/index.vue')
+      )
+    )
+    .component(
+      'nuc-settings-card-content',
+      defineAsyncComponent(() => import('./components/content/index.vue'))
+    )
 }

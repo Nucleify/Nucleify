@@ -1,30 +1,60 @@
 import type { App } from 'vue'
-
-import {
-  NucCardDashboard,
-  NucCardPage,
-  NucFeatureDashboard,
-  NucFeaturePage,
-  NucLinkDashboard,
-  NucLinkPage,
-  NucQuestionDashboard,
-  NucQuestionPage,
-  NucStructuralPage,
-  NucTechnologyDashboard,
-  NucTechnologyPage,
-} from './atomic'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucEntitiesStructural(app: App<Element>): void {
   app
-    .component('nuc-card-dashboard', NucCardDashboard)
-    .component('nuc-card-page', NucCardPage)
-    .component('nuc-feature-dashboard', NucFeatureDashboard)
-    .component('nuc-feature-page', NucFeaturePage)
-    .component('nuc-link-dashboard', NucLinkDashboard)
-    .component('nuc-link-page', NucLinkPage)
-    .component('nuc-question-dashboard', NucQuestionDashboard)
-    .component('nuc-question-page', NucQuestionPage)
-    .component('nuc-structural-page', NucStructuralPage)
-    .component('nuc-technology-page', NucTechnologyPage)
-    .component('nuc-technology-dashboard', NucTechnologyDashboard)
+    .component(
+      'nuc-card-dashboard',
+      defineAsyncComponent(
+        () => import('./atomic/templates/Dashboard/Card.vue')
+      )
+    )
+    .component(
+      'nuc-card-page',
+      defineAsyncComponent(() => import('./atomic/pages/Card/index.vue'))
+    )
+    .component(
+      'nuc-feature-dashboard',
+      defineAsyncComponent(
+        () => import('./atomic/templates/Dashboard/Feature.vue')
+      )
+    )
+    .component(
+      'nuc-feature-page',
+      defineAsyncComponent(() => import('./atomic/pages/Feature/index.vue'))
+    )
+    .component(
+      'nuc-link-dashboard',
+      defineAsyncComponent(
+        () => import('./atomic/templates/Dashboard/Link.vue')
+      )
+    )
+    .component(
+      'nuc-link-page',
+      defineAsyncComponent(() => import('./atomic/pages/Link/index.vue'))
+    )
+    .component(
+      'nuc-question-dashboard',
+      defineAsyncComponent(
+        () => import('./atomic/templates/Dashboard/Question.vue')
+      )
+    )
+    .component(
+      'nuc-question-page',
+      defineAsyncComponent(() => import('./atomic/pages/Question/index.vue'))
+    )
+    .component(
+      'nuc-structural-page',
+      defineAsyncComponent(() => import('./atomic/pages/General/index.vue'))
+    )
+    .component(
+      'nuc-technology-page',
+      defineAsyncComponent(() => import('./atomic/pages/Technology/index.vue'))
+    )
+    .component(
+      'nuc-technology-dashboard',
+      defineAsyncComponent(
+        () => import('./atomic/templates/Dashboard/Technology.vue')
+      )
+    )
 }

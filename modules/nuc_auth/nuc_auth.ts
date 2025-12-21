@@ -1,10 +1,20 @@
 import type { App } from 'vue'
-
-import { NucLoginPage, NucRegisterPage, NucTestLoginButtons } from '.'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucAuth(app: App<Element>): void {
   app
-    .component('nuc-login-page', NucLoginPage)
-    .component('nuc-register-page', NucRegisterPage)
-    .component('nuc-test-login-buttons', NucTestLoginButtons)
+    .component(
+      'nuc-login-page',
+      defineAsyncComponent(() => import('./atomic/pages/Login/index.vue'))
+    )
+    .component(
+      'nuc-register-page',
+      defineAsyncComponent(() => import('./atomic/pages/Register/index.vue'))
+    )
+    .component(
+      'nuc-test-login-buttons',
+      defineAsyncComponent(
+        () => import('./atomic/templates/TestLoginButtons/index.vue')
+      )
+    )
 }

@@ -1,7 +1,9 @@
 import type { App } from 'vue'
-
-import { NucNavigationBackButton } from './components'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucNavigation(app: App<Element>): void {
-  app.component('nuc-navigation-back-button', NucNavigationBackButton)
+  app.component(
+    'nuc-navigation-back-button',
+    defineAsyncComponent(() => import('./components/back-button.vue'))
+  )
 }

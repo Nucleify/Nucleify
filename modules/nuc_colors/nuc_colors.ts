@@ -1,7 +1,7 @@
 import { defineNuxtPlugin } from 'nuxt/app'
 import type { App } from 'vue'
+import { defineAsyncComponent } from 'vue'
 
-import { NucColorPicker, NucColorSettingsCard } from './atomic'
 import { colorsClientPlugin, colorsServerPlugin } from './plugins'
 
 export function registerNucColors(app: App<Element>): void {
@@ -9,8 +9,16 @@ export function registerNucColors(app: App<Element>): void {
     /**
      *  Components
      */
-    .component('nuc-color-picker', NucColorPicker)
-    .component('nuc-color-settings-card', NucColorSettingsCard)
+    .component(
+      'nuc-color-picker',
+      defineAsyncComponent(
+        () => import('./atomic/organism/color-picker/index.vue')
+      )
+    )
+    .component(
+      'nuc-color-settings-card',
+      defineAsyncComponent(() => import('./atomic/template/settings-card.vue'))
+    )
 
     /**
      *  Plugins

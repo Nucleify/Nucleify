@@ -1,7 +1,9 @@
 import type { App } from 'vue'
-
-import { NucScreenLoader } from '.'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucScreenLoader(app: App<Element>): void {
-  app.component('nuc-screen-loader', NucScreenLoader)
+  app.component(
+    'nuc-screen-loader',
+    defineAsyncComponent(() => import('./index.vue'))
+  )
 }

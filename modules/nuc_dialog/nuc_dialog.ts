@@ -1,7 +1,9 @@
 import type { App } from 'vue'
-
-import { NucDialog } from '.'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucDialog(app: App<Element>): void {
-  app.component('nuc-dialog', NucDialog)
+  app.component(
+    'nuc-dialog',
+    defineAsyncComponent(() => import('./index.vue'))
+  )
 }

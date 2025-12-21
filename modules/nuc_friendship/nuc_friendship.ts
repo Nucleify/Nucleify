@@ -1,10 +1,18 @@
 import type { App } from 'vue'
-
-import { NucFriendship, NucFriendsList, NucInviteForm } from '.'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucFriendship(app: App<Element>): void {
   app
-    .component('nuc-friendship', NucFriendship)
-    .component('nuc-friends-list', NucFriendsList)
-    .component('nuc-invite-form', NucInviteForm)
+    .component(
+      'nuc-friendship',
+      defineAsyncComponent(() => import('./index.vue'))
+    )
+    .component(
+      'nuc-friends-list',
+      defineAsyncComponent(() => import('./components/friends-list.vue'))
+    )
+    .component(
+      'nuc-invite-form',
+      defineAsyncComponent(() => import('./components/invite-form.vue'))
+    )
 }

@@ -1,7 +1,9 @@
 import type { App } from 'vue'
-
-import { NucTimeCountdown } from './components'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucTime(app: App<Element>): void {
-  app.component('nuc-time-countdown', NucTimeCountdown)
+  app.component(
+    'nuc-time-countdown',
+    defineAsyncComponent(() => import('./components/countdown.vue'))
+  )
 }

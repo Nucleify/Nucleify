@@ -1,22 +1,34 @@
 import type { App } from 'vue'
-
-import {
-  NucAboutPage,
-  NucBlogPage,
-  NucDashboardPage,
-  NucError404Page,
-  NucHomePage,
-  NucLicensePage,
-  NucServicesPage,
-} from './pages'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucPages(app: App<Element>): void {
   app
-    .component('nuc-about-page', NucAboutPage)
-    .component('nuc-blog-page', NucBlogPage)
-    .component('nuc-dashboard-page', NucDashboardPage)
-    .component('nuc-error-404-page', NucError404Page)
-    .component('nuc-home-page', NucHomePage)
-    .component('nuc-license-page', NucLicensePage)
-    .component('nuc-services-page', NucServicesPage)
+    .component(
+      'nuc-about-page',
+      defineAsyncComponent(() => import('./pages/About/index.vue'))
+    )
+    .component(
+      'nuc-blog-page',
+      defineAsyncComponent(() => import('./pages/Blog/index.vue'))
+    )
+    .component(
+      'nuc-dashboard-page',
+      defineAsyncComponent(() => import('./pages/Dashboard/index.vue'))
+    )
+    .component(
+      'nuc-error-404-page',
+      defineAsyncComponent(() => import('./pages/Errors/404/index.vue'))
+    )
+    .component(
+      'nuc-home-page',
+      defineAsyncComponent(() => import('./pages/Home/index.vue'))
+    )
+    .component(
+      'nuc-license-page',
+      defineAsyncComponent(() => import('./pages/License/index.vue'))
+    )
+    .component(
+      'nuc-services-page',
+      defineAsyncComponent(() => import('./pages/Services/index.vue'))
+    )
 }

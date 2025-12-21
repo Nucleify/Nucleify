@@ -1,9 +1,14 @@
 import type { App } from 'vue'
-
-import { NucFileDashboard, NucFilePage } from './atomic'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucFiles(app: App<Element>): void {
   app
-    .component('nuc-file-dashboard', NucFileDashboard)
-    .component('nuc-file-page', NucFilePage)
+    .component(
+      'nuc-file-dashboard',
+      defineAsyncComponent(() => import('./atomic/templates/Dashboard.vue'))
+    )
+    .component(
+      'nuc-file-page',
+      defineAsyncComponent(() => import('./atomic/pages/index.vue'))
+    )
 }

@@ -1,9 +1,14 @@
 import type { App } from 'vue'
-
-import { NucAnimationBounce, NucAnimationHexagons } from '.'
+import { defineAsyncComponent } from 'vue'
 
 export function registerNucAnimations(app: App<Element>): void {
   app
-    .component('nuc-animation-bounce', NucAnimationBounce)
-    .component('nuc-animation-hexagons', NucAnimationHexagons)
+    .component(
+      'nuc-animation-bounce',
+      defineAsyncComponent(() => import('./bounce/index.vue'))
+    )
+    .component(
+      'nuc-animation-hexagons',
+      defineAsyncComponent(() => import('./hexagons/index.vue'))
+    )
 }
