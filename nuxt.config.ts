@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: [
+    './modules/nuc_overrides',
     '@nuxt/icon',
     '@nuxt/test-utils/module',
     '@nuxtjs/google-fonts',
@@ -80,7 +81,7 @@ export default defineNuxtConfig({
     build: {
       chunkSizeWarningLimit: 1600,
       minify: 'terser',
-      cssCodeSplit: true,
+      cssCodeSplit: process.env.NODE_ENV === 'production',
       rollupOptions: {
         maxParallelFileOps: 2,
         output: {
