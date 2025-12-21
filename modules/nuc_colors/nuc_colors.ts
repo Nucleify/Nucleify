@@ -13,14 +13,14 @@ export function registerNucColors(app: App<Element>): void {
       'nuc-color-picker',
       defineAsyncComponent({
         loader: () => import('./atomic/organism/color-picker/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-color-settings-card',
       defineAsyncComponent({
         loader: () => import('./atomic/template/settings-card.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
 

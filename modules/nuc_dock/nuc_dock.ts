@@ -6,7 +6,7 @@ export function registerNucDock(app: App<Element>): void {
     'nuc-dock',
     defineAsyncComponent({
       loader: () => import('./index.vue'),
-      hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      hydrate: hydrateOnVisible({ rootMargin: '500px' }),
     })
   )
 }

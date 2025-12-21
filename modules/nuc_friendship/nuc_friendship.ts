@@ -7,21 +7,21 @@ export function registerNucFriendship(app: App<Element>): void {
       'nuc-friendship',
       defineAsyncComponent({
         loader: () => import('./index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-friends-list',
       defineAsyncComponent({
         loader: () => import('./components/friends-list.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-invite-form',
       defineAsyncComponent({
         loader: () => import('./components/invite-form.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
 }

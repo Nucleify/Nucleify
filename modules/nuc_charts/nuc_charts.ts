@@ -7,21 +7,21 @@ export function registerNucCharts(app: App<Element>): void {
       'nuc-entity-chart',
       defineAsyncComponent({
         loader: () => import('./atomic/template/entity-chart/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-entity-chart-card',
       defineAsyncComponent({
         loader: () => import('./atomic/template/entity-chart-card/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-chart-settings-card',
       defineAsyncComponent({
         loader: () => import('./atomic/template/chart-settings-card/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
 }

@@ -6,7 +6,7 @@ export function registerNucNavigation(app: App<Element>): void {
     'nuc-navigation-back-button',
     defineAsyncComponent({
       loader: () => import('./components/back-button.vue'),
-      hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      hydrate: hydrateOnVisible({ rootMargin: '500px' }),
     })
   )
 }

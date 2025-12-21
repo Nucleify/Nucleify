@@ -7,14 +7,14 @@ export function registerNucModules(app: App<Element>): void {
       'nuc-modules-info',
       defineAsyncComponent({
         loader: () => import('./atomic/section/info/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-modules-settings',
       defineAsyncComponent({
         loader: () => import('./settings/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
 }

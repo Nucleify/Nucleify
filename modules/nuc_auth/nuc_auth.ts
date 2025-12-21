@@ -21,7 +21,7 @@ export function registerNucAuth(app: App<Element>): void {
       'nuc-test-login-buttons',
       defineAsyncComponent({
         loader: () => import('./atomic/templates/TestLoginButtons/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
 }

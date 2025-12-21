@@ -6,7 +6,7 @@ export function registerNucTime(app: App<Element>): void {
     'nuc-time-countdown',
     defineAsyncComponent({
       loader: () => import('./components/countdown.vue'),
-      hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      hydrate: hydrateOnVisible({ rootMargin: '500px' }),
     })
   )
 }

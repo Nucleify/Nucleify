@@ -7,7 +7,7 @@ export function registerNucDataTable(app: App<Element>): void {
       'nuc-entity-datatable',
       defineAsyncComponent({
         loader: () => import('./atomic/templates/entity-datatable/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
@@ -15,7 +15,7 @@ export function registerNucDataTable(app: App<Element>): void {
       defineAsyncComponent({
         loader: () =>
           import('./atomic/templates/entity-datatable-card/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
@@ -23,7 +23,7 @@ export function registerNucDataTable(app: App<Element>): void {
       defineAsyncComponent({
         loader: () =>
           import('./atomic/templates/entity-datatable-skeleton/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
 }

@@ -7,14 +7,14 @@ export function registerNucTasks(app: App<Element>): void {
       'nuc-task-page',
       defineAsyncComponent({
         loader: () => import('./atomic/pages/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-task-dashboard',
       defineAsyncComponent({
         loader: () => import('./atomic/templates/Dashboard.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
 }

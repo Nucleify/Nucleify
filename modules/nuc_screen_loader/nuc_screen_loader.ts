@@ -6,7 +6,7 @@ export function registerNucScreenLoader(app: App<Element>): void {
     'nuc-screen-loader',
     defineAsyncComponent({
       loader: () => import('./index.vue'),
-      hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      hydrate: hydrateOnVisible({ rootMargin: '500px' }),
     })
   )
 }

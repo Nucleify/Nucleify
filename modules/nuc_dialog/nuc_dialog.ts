@@ -6,7 +6,7 @@ export function registerNucDialog(app: App<Element>): void {
     'nuc-dialog',
     defineAsyncComponent({
       loader: () => import('./index.vue'),
-      hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      hydrate: hydrateOnVisible({ rootMargin: '500px' }),
     })
   )
 }

@@ -6,7 +6,7 @@ export function registerNucAdmin(app: App<Element>): void {
     'nuc-admin-page',
     defineAsyncComponent({
       loader: () => import('./atomic/pages/index.vue'),
-      hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+      hydrate: hydrateOnVisible({ rootMargin: '500px' }),
     })
   )
 }

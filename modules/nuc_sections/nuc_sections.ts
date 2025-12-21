@@ -7,21 +7,21 @@ export function registerNucSections(app: App<Element>): void {
       'nuc-section-category',
       defineAsyncComponent({
         loader: () => import('./components/category/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-section-contact',
       defineAsyncComponent({
         loader: () => import('./components/contact/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-section-faq',
       defineAsyncComponent({
         loader: () => import('./components/faq/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
@@ -42,7 +42,7 @@ export function registerNucSections(app: App<Element>): void {
       'nuc-section-stack',
       defineAsyncComponent({
         loader: () => import('./components/stack/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
@@ -56,7 +56,7 @@ export function registerNucSections(app: App<Element>): void {
       'nuc-section-why-us',
       defineAsyncComponent({
         loader: () => import('./components/why-us/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
 }

@@ -7,14 +7,14 @@ export function registerNucActivity(app: App<Element>): void {
       'nuc-activity-page',
       defineAsyncComponent({
         loader: () => import('./atomic/pages/General/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-activity-dashboard',
       defineAsyncComponent({
         loader: () => import('./atomic/templates/Dashboard/General.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
 }

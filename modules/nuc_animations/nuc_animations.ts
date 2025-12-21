@@ -7,14 +7,14 @@ export function registerNucAnimations(app: App<Element>): void {
       'nuc-animation-bounce',
       defineAsyncComponent({
         loader: () => import('./bounce/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
     .component(
       'nuc-animation-hexagons',
       defineAsyncComponent({
         loader: () => import('./hexagons/index.vue'),
-        hydrate: hydrateOnVisible({ rootMargin: '100px' }),
+        hydrate: hydrateOnVisible({ rootMargin: '500px' }),
       })
     )
 }
