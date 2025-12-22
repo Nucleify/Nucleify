@@ -36,6 +36,7 @@ sections
 settings
 stores
 tasks
+templates
 "
 
 for NAME in $NUC_SUBMODULES; do
