@@ -85,3 +85,6 @@
 [submodule "modules/nuc_stores"]
 	path = modules/nuc_stores
 	url = https://github.com/Nucleify/nuc_stores.git
+[submodule "modules/nuc_tasks"]
+	path = modules/nuc_tasks
+	url = https://github.com/Nucleify/nuc_tasks.git
