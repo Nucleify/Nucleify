@@ -33,6 +33,7 @@ performance
 screen_lights
 screen_loader
 sections
+settings
 "
 
 for NAME in $NUC_SUBMODULES; do
