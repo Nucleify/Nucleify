@@ -29,6 +29,7 @@ media
 modules
 navigation
 pages
+performance
 "
 
 for NAME in $NUC_SUBMODULES; do
