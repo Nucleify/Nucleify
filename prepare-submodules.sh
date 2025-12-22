@@ -28,6 +28,7 @@ loading
 media
 modules
 navigation
+pages
 "
 
 for NAME in $NUC_SUBMODULES; do
