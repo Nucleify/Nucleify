@@ -94,3 +94,6 @@
 [submodule "modules/nuc_terminal"]
 	path = modules/nuc_terminal
 	url = https://github.com/Nucleify/nuc_terminal.git
+[submodule "modules/nuc_time"]
+	path = modules/nuc_time
+	url = https://github.com/Nucleify/nuc_time.git

@@ -38,6 +38,7 @@ stores
 tasks
 templates
 terminal
+time
 "
 
 for NAME in $NUC_SUBMODULES; do
