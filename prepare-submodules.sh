@@ -37,6 +37,7 @@ settings
 stores
 tasks
 templates
+terminal
 "
 
 for NAME in $NUC_SUBMODULES; do
