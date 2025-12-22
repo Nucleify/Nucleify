@@ -34,6 +34,7 @@ screen_lights
 screen_loader
 sections
 settings
+stores
 "
 
 for NAME in $NUC_SUBMODULES; do
