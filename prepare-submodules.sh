@@ -30,6 +30,7 @@ modules
 navigation
 pages
 performance
+screen_lights
 "
 
 for NAME in $NUC_SUBMODULES; do
