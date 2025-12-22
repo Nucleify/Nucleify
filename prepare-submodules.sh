@@ -31,6 +31,7 @@ navigation
 pages
 performance
 screen_lights
+screen_loader
 "
 
 for NAME in $NUC_SUBMODULES; do

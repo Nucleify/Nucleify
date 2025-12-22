@@ -73,3 +73,6 @@
 [submodule "modules/nuc_screen_lights"]
 	path = modules/nuc_screen_lights
 	url = https://github.com/Nucleify/nuc_screen_lights.git
+[submodule "modules/nuc_screen_loader"]
+	path = modules/nuc_screen_loader
+	url = https://github.com/Nucleify/nuc_screen_loader.git
