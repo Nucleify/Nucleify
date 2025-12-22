@@ -79,3 +79,6 @@
 [submodule "modules/nuc_sections"]
 	path = modules/nuc_sections
 	url = https://github.com/Nucleify/nuc_sections.git
+[submodule "modules/nuc_settings"]
+	path = modules/nuc_settings
+	url = https://github.com/Nucleify/nuc_settings.git
