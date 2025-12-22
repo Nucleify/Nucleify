@@ -32,6 +32,7 @@ pages
 performance
 screen_lights
 screen_loader
+sections
 "
 
 for NAME in $NUC_SUBMODULES; do
