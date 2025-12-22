@@ -91,3 +91,6 @@
 [submodule "modules/nuc_templates"]
 	path = modules/nuc_templates
 	url = https://github.com/Nucleify/nuc_templates.git
+[submodule "modules/nuc_terminal"]
+	path = modules/nuc_terminal
+	url = https://github.com/Nucleify/nuc_terminal.git
