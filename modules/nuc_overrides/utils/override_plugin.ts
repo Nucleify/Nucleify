@@ -34,6 +34,8 @@ export function overridePlugin(): Plugin {
     },
     load(id) {
       if (id.includes('/overrides/')) return null
+      if (id.includes('?vue&type=')) return null
+
       const override = overrideMap.get(normalize(id.split('?')[0]))
       return override ? readFileSync(override, 'utf-8') : null
     },
