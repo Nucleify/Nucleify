@@ -1,7 +1,0 @@
-export * from './About'
-export * from './Blog'
-export * from './Dashboard'
-export * from './Errors'
-export * from './Home'
-export * from './License'
-export * from './Services'
