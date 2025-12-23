@@ -1,1 +1,0 @@
-export { default as NucColorSettingsCard } from './settings-card.vue'
