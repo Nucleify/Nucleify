@@ -1,17 +1,11 @@
-import { getExcludedPaths } from '.'
+import { scanOverrides } from '.'
 
 // biome-ignore lint/suspicious/noExplicitAny: Nitro config type
 export function handleNitroConfig(config: any): void {
-  const excludedPaths = getExcludedPaths()
-  if (excludedPaths.length > 0) {
-    if (!config.ignore) {
-      config.ignore = []
-    }
-    excludedPaths.forEach((path) => {
-      const relativePath = path.replace(process.cwd() + '/', '')
-      if (!config.ignore?.includes(relativePath)) {
-        config.ignore.push(relativePath)
-      }
-    })
+  const excluded = scanOverrides().map((m) =>
+    m.originalPath.replace(process.cwd() + '/', '')
+  )
+  if (excluded.length) {
+    config.ignore = [...new Set([...(config.ignore || []), ...excluded])]
   }
 }
