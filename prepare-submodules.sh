@@ -39,6 +39,7 @@ tasks
 templates
 terminal
 time
+tooltip
 "
 
 for NAME in $NUC_SUBMODULES; do
