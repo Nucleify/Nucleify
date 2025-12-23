@@ -1,0 +1,102 @@
+[submodule "modules/nuc_activity"]
+	path = modules/nuc_activity
+	url = https://github.com/Nucleify/nuc_activity.git
+[submodule "modules/nuc_admin"]
+	path = modules/nuc_admin
+	url = https://github.com/Nucleify/nuc_admin.git
+[submodule "modules/nuc_animations"]
+	path = modules/nuc_animations
+	url = https://github.com/Nucleify/nuc_animations.git
+[submodule "modules/nuc_api"]
+	path = modules/nuc_api
+	url = https://github.com/Nucleify/nuc_api.git
+[submodule "modules/nuc_auth"]
+	path = modules/nuc_auth
+	url = https://github.com/Nucleify/nuc_auth.git
+[submodule "modules/nuc_charts"]
+	path = modules/nuc_charts
+	url = https://github.com/Nucleify/nuc_charts.git
+[submodule "modules/nuc_colors"]
+	path = modules/nuc_colors
+	url = https://github.com/Nucleify/nuc_colors.git
+[submodule "modules/nuc_database"]
+	path = modules/nuc_database
+	url = https://github.com/Nucleify/nuc_database.git
+[submodule "modules/nuc_datatable"]
+	path = modules/nuc_datatable
+	url = https://github.com/Nucleify/nuc_datatable.git
+[submodule "modules/nuc_dialog"]
+	path = modules/nuc_dialog
+	url = https://github.com/Nucleify/nuc_dialog.git
+[submodule "modules/nuc_dock"]
+	path = modules/nuc_dock
+	url = https://github.com/Nucleify/nuc_dock.git
+[submodule "modules/nuc_documentation"]
+	path = modules/nuc_documentation
+	url = https://github.com/Nucleify/nuc_documentation.git
+[submodule "modules/nuc_entities"]
+	path = modules/nuc_entities
+	url = https://github.com/Nucleify/nuc_entities.git
+[submodule "modules/nuc_entities_structural"]
+	path = modules/nuc_entities_structural
+	url = https://github.com/Nucleify/nuc_entities_structural.git
+[submodule "modules/nuc_fields"]
+	path = modules/nuc_fields
+	url = https://github.com/Nucleify/nuc_fields.git
+[submodule "modules/nuc_files"]
+	path = modules/nuc_files
+	url = https://github.com/Nucleify/nuc_files.git
+[submodule "modules/nuc_friendship"]
+	path = modules/nuc_friendship
+	url = https://github.com/Nucleify/nuc_friendship.git
+[submodule "modules/nuc_globals"]
+	path = modules/nuc_globals
+	url = https://github.com/Nucleify/nuc_globals.git
+[submodule "modules/nuc_loading"]
+	path = modules/nuc_loading
+	url = https://github.com/Nucleify/nuc_loading.git
+[submodule "modules/nuc_media"]
+	path = modules/nuc_media
+	url = https://github.com/Nucleify/nuc_media.git
+[submodule "modules/nuc_modules"]
+	path = modules/nuc_modules
+	url = https://github.com/Nucleify/nuc_modules.git
+[submodule "modules/nuc_navigation"]
+	path = modules/nuc_navigation
+	url = https://github.com/Nucleify/nuc_navigation.git
+[submodule "modules/nuc_pages"]
+	path = modules/nuc_pages
+	url = https://github.com/Nucleify/nuc_pages.git
+[submodule "modules/nuc_performance"]
+	path = modules/nuc_performance
+	url = https://github.com/Nucleify/nuc_performance.git
+[submodule "modules/nuc_screen_lights"]
+	path = modules/nuc_screen_lights
+	url = https://github.com/Nucleify/nuc_screen_lights.git
+[submodule "modules/nuc_screen_loader"]
+	path = modules/nuc_screen_loader
+	url = https://github.com/Nucleify/nuc_screen_loader.git
+[submodule "modules/nuc_sections"]
+	path = modules/nuc_sections
+	url = https://github.com/Nucleify/nuc_sections.git
+[submodule "modules/nuc_settings"]
+	path = modules/nuc_settings
+	url = https://github.com/Nucleify/nuc_settings.git
+[submodule "modules/nuc_stores"]
+	path = modules/nuc_stores
+	url = https://github.com/Nucleify/nuc_stores.git
+[submodule "modules/nuc_tasks"]
+	path = modules/nuc_tasks
+	url = https://github.com/Nucleify/nuc_tasks.git
+[submodule "modules/nuc_templates"]
+	path = modules/nuc_templates
+	url = https://github.com/Nucleify/nuc_templates.git
+[submodule "modules/nuc_terminal"]
+	path = modules/nuc_terminal
+	url = https://github.com/Nucleify/nuc_terminal.git
+[submodule "modules/nuc_time"]
+	path = modules/nuc_time
+	url = https://github.com/Nucleify/nuc_time.git
+[submodule "modules/nuc_tooltip"]
+	path = modules/nuc_tooltip
+	url = https://github.com/Nucleify/nuc_tooltip.git
