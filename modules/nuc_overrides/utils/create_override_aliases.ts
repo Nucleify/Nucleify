@@ -3,22 +3,20 @@ import { scanOverrides } from '.'
 import { resolve } from 'path'
 
 export function createOverrideAliases(): Record<string, string> {
-  const mappings = scanOverrides()
+  const nuxtDir = resolve(process.cwd(), 'nuxt')
+  const modulesDir = resolve(process.cwd(), 'modules')
   const aliases: Record<string, string> = {}
 
-  for (const mapping of mappings) {
-    aliases[mapping.originalPath] = mapping.overridePath
-
-    const relativeImport = mapping.relativePath.replace(/\\/g, '/')
-
-    if (mapping.originalPath.startsWith(resolve(process.cwd(), 'nuxt'))) {
-      aliases[`~/${relativeImport}`] = mapping.overridePath
-      aliases[`nuxt/${relativeImport}`] = mapping.overridePath
+  for (const m of scanOverrides()) {
+    const rel = m.relativePath.replace(/\\/g, '/')
+    aliases[m.originalPath] = m.overridePath
+    if (m.originalPath.startsWith(nuxtDir)) {
+      aliases[`~/${rel}`] = m.overridePath
+      aliases[`nuxt/${rel}`] = m.overridePath
     }
-    if (mapping.originalPath.startsWith(resolve(process.cwd(), 'modules'))) {
-      aliases[`modules/${relativeImport}`] = mapping.overridePath
+    if (m.originalPath.startsWith(modulesDir)) {
+      aliases[`modules/${rel}`] = m.overridePath
     }
   }
-
   return aliases
 }
