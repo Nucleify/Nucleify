@@ -1,6 +1,7 @@
 export * from './create_override_aliases'
 export * from './handle_app_resolve'
 export * from './handle_nitro_config'
+export * from './handle_override_change'
 export * from './handle_pages_extend'
 export * from './override_plugin'
 export * from './scan_overrides'
