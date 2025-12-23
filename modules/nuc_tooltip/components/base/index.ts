@@ -1,1 +1,0 @@
-export { default as NucTooltipBase } from './index.vue'
