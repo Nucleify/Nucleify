@@ -8,6 +8,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
   modules: [
+    './modules/nuc_overrides',
     '@nuxt/icon',
     '@nuxt/test-utils/module',
     '@nuxtjs/google-fonts',
