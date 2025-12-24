@@ -59,7 +59,11 @@ class ModulesProvider extends ServiceProvider
         if (File::exists($configPath)) {
             foreach (File::allFiles($configPath) as $file) {
                 $configName = $module . '.' . basename($file->getRealPath(), '.php');
-                Config::set($configName, require $file->getRealPath());
+                if (function_exists('include_override')) {
+                    Config::set($configName, include_override($file->getRealPath()));
+                } else {
+                    Config::set($configName, require $file->getRealPath());
+                }
             }
         }
     }
@@ -94,7 +98,11 @@ class ModulesProvider extends ServiceProvider
     private function requireAllFiles(string $path): void
     {
         foreach (File::allFiles($path) as $file) {
-            require_once $file->getRealPath();
+            if (function_exists('require_once_override')) {
+                require_once_override($file->getRealPath());
+            } else {
+                require_once $file->getRealPath();
+            }
         }
     }
 }
