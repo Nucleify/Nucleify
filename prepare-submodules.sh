@@ -28,6 +28,7 @@ loading
 media
 modules
 navigation
+overrides
 pages
 performance
 screen_lights
