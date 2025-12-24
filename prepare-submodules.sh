@@ -28,6 +28,7 @@ loading
 media
 modules
 navigation
+overrides
 pages
 performance
 screen_lights
@@ -49,5 +50,11 @@ for NAME in $NUC_SUBMODULES; do
   echo "Cloning submodule nuc_$NAME from $URL into $DIR..."
   git clone --depth=1 "$URL" "$DIR"
 done
+
+NEXT_URL="https://github.com/Nucleify/Nucleify-React-Next.git"
+NEXT_DIR="next"
+
+echo "Cloning submodule next from $NEXT_URL into $NEXT_DIR..."
+git clone --depth=1 "$NEXT_URL" "$NEXT_DIR"
 
 echo "~~~ prepare-submodules script finished ~~~"

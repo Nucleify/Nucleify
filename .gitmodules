@@ -100,3 +100,9 @@
 [submodule "modules/nuc_tooltip"]
 	path = modules/nuc_tooltip
 	url = https://github.com/Nucleify/nuc_tooltip.git
+[submodule "modules/nuc_overrides"]
+	path = modules/nuc_overrides
+	url = https://github.com/Nucleify/nuc_overrides.git
+[submodule "next"]
+	path = next
+	url = https://github.com/Nucleify/Nucleify-React-Next.git
