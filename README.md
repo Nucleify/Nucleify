@@ -349,7 +349,7 @@ php artisan sitemap:generate
 
 <details><summary> <h2> &nbsp; <img src="/public/img/technologies/github.svg" width="20"> &nbsp; Contribute </h2> </summary> <br>
 
-Before contributing, please take a moment to read our [CONTRIBUTING.md](./CONTRIBUTING.MD). <br>
+Before contributing, please take a moment to read our [CONTRIBUTING.md](./CONTRIBUTING.md). <br>
 Feel free to check [Issues](https://github.com/Nucleify/Nucleify/issues) section. <br>
 Your skills and expertise will directly contribute to the success of our project, helping us achieve our goals and create an attractive product.
 
