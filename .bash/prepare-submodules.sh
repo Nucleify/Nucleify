@@ -33,7 +33,10 @@ clone_repo() {
   print_separator
   log_header "Cloning $name"
 
-  [ -d "$dir" ] && { log_warn "Directory '$dir' exists, skipping"; return 0; }
+  if [ -n "$NUC_SUBMODULES_CHECK" ] && [ -d "$dir" ]; then
+    log_warn "Directory '$dir' exists, skipping"
+    return 0
+  fi
 
   local branch=$(resolve_branch "$url")
   git clone --depth=1 --branch "$branch" "$url" "$dir"
@@ -48,6 +51,8 @@ main() {
   
   TARGET_BRANCH="${NUC_SUBMODULES_BRANCH:-$DEFAULT_BRANCH}"
   log_info "Target branch: $TARGET_BRANCH"
+  
+  [ -n "$NUC_SUBMODULES_CHECK" ] && log_info "Check mode: will skip existing directories"
 
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
