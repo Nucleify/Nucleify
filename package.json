@@ -13,7 +13,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "prepare:husky": "husky",
-    "prepare:submodules": "sh prepare-submodules.sh",
+    "prepare:submodules": "sh .bash/prepare-submodules.sh",
     "check": "npx biome check .",
     "write": "npx biome check --write .",
     "slint": "npx stylelint \"**/**/*.scss\"",
