@@ -40,6 +40,7 @@ clone_repo() {
 
   local branch=$(resolve_branch "$url")
   git clone --depth=1 --branch "$branch" --progress "$url" "$dir" 2>&1 | tr '\r' '\n' | grep -E '^(Cloning|remote:.*done)'
+  echo
   log_success "Cloned $name ($branch)"
 }
 
