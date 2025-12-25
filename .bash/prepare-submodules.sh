@@ -39,7 +39,7 @@ clone_repo() {
   fi
 
   local branch=$(resolve_branch "$url")
-  git clone --depth=1 --branch "$branch" "$url" "$dir"
+  git clone --depth=1 --branch "$branch" --progress "$url" "$dir" 2>&1
   log_success "Cloned $name ($branch)"
 }
 
