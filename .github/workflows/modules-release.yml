@@ -88,7 +88,6 @@ jobs:
           GH_TOKEN: ${{ secrets.MODULES_RELEASE_TOKEN }}
           MODULE_NAME: ${{ matrix.module.name }}
           VERSION: ${{ matrix.module.version }}
-          DESCRIPTION: ${{ matrix.module.description }}
         run: |
           REPO="Nucleify/$MODULE_NAME"
           TAG="v$VERSION"
@@ -119,18 +118,12 @@ jobs:
           
           echo "Created tag $TAG"
           
-          # Create release
+          # Create release with auto-generated release notes
           gh api "repos/$REPO/releases" \
             -X POST \
             -f tag_name="$TAG" \
             -f name="$TAG" \
-            -f body="## $MODULE_NAME $TAG
-
-          $DESCRIPTION
-
-          ---
-
-          Released automatically from nucleify main repository." \
+            -F generate_release_notes=true \
             -F draft=false \
             -F prerelease=false
           
