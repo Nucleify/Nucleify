@@ -1,4 +1,4 @@
-name: 🏷️ Modules Auto Release
+name: 🏷️ Modules
 
 on:
   push:
@@ -74,6 +74,7 @@ jobs:
           echo "Modules to release: $MODULES_JSON"
 
   release:
+    name: release (${{ matrix.module.name }}, v${{ matrix.module.version }})
     needs: detect-changes
     if: needs.detect-changes.outputs.modules != '[]'
     runs-on: ubuntu-latest
