@@ -57,11 +57,11 @@
   cursor: pointer;
   transition: all 300ms;
   padding: 0.25em 1em;
-  color: $white-text-color;
+  color: $white-text-color !important;
 
   :global(.iconify) {
     transition: all 300ms;
-    color: $white-text-color;
+    color: $white-text-color !important;
   }
 
   &:active {
@@ -74,7 +74,7 @@
     color: var(--main-item-color-new) !important;
 
     :global(.iconify) {
-      color: var(--main-item-color-new);
+      color: var(--main-item-color-new) !important;
     }
   }
 
