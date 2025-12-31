@@ -70,11 +70,11 @@
 
   &:active,
   &:hover {
-    border: 1px solid var(--main-item-color-new) !important;
-    color: var(--main-item-color-new) !important;
+    border: 1px solid var(--main-item-color-user) !important;
+    color: var(--main-item-color-user) !important;
 
     :global(.iconify) {
-      color: var(--main-item-color-new) !important;
+      color: var(--main-item-color-user) !important;
     }
   }
 
