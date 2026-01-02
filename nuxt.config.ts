@@ -53,7 +53,6 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
   },
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       htmlAttrs: {
         lang: 'en',
