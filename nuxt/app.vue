@@ -13,7 +13,12 @@
 </template>
 
 <script setup lang="ts">
-import { AdLogoSymbol, resetColorsIfEmpty, useOfficeType } from 'atomic'
+import {
+  AdLogoSymbol,
+  resetColorsIfEmpty,
+  syncColorsWithDatabase,
+  useOfficeType,
+} from 'atomic'
 
 const route = useRoute()
 
@@ -43,9 +48,17 @@ watchEffect(() => {
   officeType.value = getOfficeType()
 })
 
-onMounted(() => {
+if (import.meta.client) {
   resetColorsIfEmpty()
-})
+  await syncColorsWithDatabase()
+}
+
+watch(
+  () => route.path,
+  async () => {
+    await syncColorsWithDatabase()
+  }
+)
 </script>
 
 <style lang="scss">
