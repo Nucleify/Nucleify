@@ -29,6 +29,7 @@ vi.mock('../../modules', () => ({
   registerNucSettings: vi.fn(),
   registerNucTasks: vi.fn(),
   registerNucTemplates: vi.fn(),
+  registerNucTerminal: vi.fn(),
   registerNucTime: vi.fn(),
   registerNucTooltip: vi.fn(),
 }))
@@ -69,6 +70,7 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   expect(modules.registerNucSettings).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucTasks).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucTemplates).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucTerminal).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucTime).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucTooltip).toHaveBeenCalledWith(vueApp)
 })
