@@ -5,6 +5,7 @@ export interface PopoverInterface extends PopoverProps {
   src?: string
   buttonClass?: string
   buttonStyle?: string | object
+  buttonText?: string
   popoverClass?: string
   icon?: string
 }
