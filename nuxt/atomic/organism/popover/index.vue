@@ -1,11 +1,13 @@
 <template>
   <ad-button
+    :label="props.buttonText"
     :icon="props.icon"
     :src="props.src"
     :class="[
       props.buttonClass,
       $style['ad-popover-toggle'],
       $style[props.position!],
+      props.position
     ]"
     :style="props.buttonStyle"
     rounded
@@ -19,6 +21,7 @@
       props.popoverClass,
       $style['ad-popover'],
       $style[props.position!],
+      props.position
     ]"
   > 
     <slot />

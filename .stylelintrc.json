@@ -5,7 +5,8 @@
     "media-query-no-invalid": null,
     "media-feature-range-notation": null,
     "at-rule-no-unknown": null,
-    "selector-pseudo-class-no-unknown": null
+    "selector-pseudo-class-no-unknown": null,
+    "scss/comment-no-empty": null
   },
   "ignoreFiles": ["**/*.vue"]
 }

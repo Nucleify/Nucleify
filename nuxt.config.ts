@@ -53,8 +53,6 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
   },
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' },
-    layoutTransition: { name: 'layout', mode: 'out-in' },
     head: {
       htmlAttrs: {
         lang: 'en',
@@ -137,13 +135,13 @@ export default defineNuxtConfig({
         preset: Lara,
         options: {
           darkModeSelector: '.p-dark',
+          cssLayer: {
+            name: 'primevue',
+            order: 'app-styles, primevue',
+          },
         },
       },
       ripple: true,
-      cssLayer: {
-        name: 'primevue',
-        order: 'app-styles, primevue',
-      },
     },
   },
   runtimeConfig: {
