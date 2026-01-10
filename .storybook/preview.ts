@@ -9,7 +9,11 @@ import { defaultColors } from '../modules/nuc_colors/atomic/boson/constants/defa
 import '../nuxt/styles/index.scss'
 
 Object.entries(defaultColors).forEach(([key, value]) => {
-  document.documentElement.style.setProperty(`--${key}-new`, value)
+  // Set both user and system colors to defaults for Storybook
+  document.documentElement.style.setProperty(`--${key}-user`, value)
+  document.documentElement.style.setProperty(`--${key}-system`, value)
+  // Set base CSS variable
+  document.documentElement.style.setProperty(`--${key}`, value)
 })
 
 export const app = createApp({})

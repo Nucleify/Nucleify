@@ -9,15 +9,16 @@
   z-index: 100;
   border-radius: 0;
   overflow: hidden;
-
+  margin: 0 !important;
+  
   &.top,
   &.right,
   &.left {
-    bottom: 0;
+    bottom: .5rem;
   }
 
   &.bottom {
-    bottom: 4.375rem;
+    bottom: 5rem;
   }
 
   &::before,
@@ -42,25 +43,25 @@
 
 .ad-popover-toggle {
   position: fixed !important;
-  right: 12px;
+  right: 16px;
   z-index: 99;
-  width: 36px !important;
-  height: 36px !important;
-  border-radius: 50%;
+  height: 2.5rem;
+  border-radius: 1.75rem;
   border: 1px solid $p-card-border !important;
   background: $p-card-background !important;
-  backdrop-filter: blur(1em) !important;
+  backdrop-filter: blur(1em);
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: 0 3px 4px rgb(0 0 0 / 20%);
   cursor: pointer;
-  transition: all 300ms !important;
-  padding: 0.3em !important;
+  transition: all 300ms;
+  padding: 0.25em 1em;
+  color: $white-text-color !important;
 
   :global(.iconify) {
     transition: all 300ms;
-    color: $white-text-color;
+    color: $white-text-color !important;
   }
 
   &:active {
@@ -69,25 +70,22 @@
 
   &:active,
   &:hover {
-    border: 1px solid var(--main-item-color-new) !important;
+    border: 1px solid var(--main-item-color-user) !important;
+    color: var(--main-item-color-user) !important;
 
     :global(.iconify) {
-      color: var(--main-item-color-new);
+      color: var(--main-item-color-user) !important;
     }
-  }
-
-  &.right {
-    right: 84px;
   }
 
   &.top,
   &.right,
   &.left {
-    bottom: 12px;
+    bottom: 16px;
   }
 
   &.bottom {
-    bottom: 84px;
+    bottom: 88px;
   }
 
   @media (max-width: $lg) {
