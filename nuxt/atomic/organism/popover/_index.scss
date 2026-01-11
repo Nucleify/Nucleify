@@ -42,8 +42,6 @@
 }
 
 .ad-popover-toggle {
-  position: fixed !important;
-  right: 16px;
   z-index: 99;
   height: 2.5rem;
   border-radius: 1.75rem;
@@ -56,9 +54,10 @@
   box-shadow: 0 3px 4px rgb(0 0 0 / 20%);
   cursor: pointer;
   transition: all 300ms;
-  padding: 0.25em 1em;
+  padding: 0.5em !important;
   color: $white-text-color !important;
-
+  font-size: 1.25em !important;
+  
   :global(.iconify) {
     transition: all 300ms;
     color: $white-text-color !important;
@@ -78,17 +77,12 @@
     }
   }
 
-  &.top,
-  &.right,
-  &.left {
-    bottom: 16px;
-  }
-
-  &.bottom {
-    bottom: 88px;
-  }
-
   @media (max-width: $lg) {
     z-index: 101;
+  }
+
+  @media (min-width: $lg) {
+    padding: 0.25em 1em !important;
+    font-size: 1em !important;
   }
 }
