@@ -17,7 +17,6 @@ const selectData = [
   ['Show', 'prime:eye', 'show'],
   ['Edit', 'prime:pencil', 'edit'],
   ['Delete', 'prime:trash', 'delete'],
-  ['Share', 'prime:share-alt', null],
 ] as const
 
 export function useSelect(

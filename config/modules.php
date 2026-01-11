@@ -11,5 +11,6 @@ return [
     Modules\nuc_modules\nuc_modules::class,
     Modules\nuc_overrides\nuc_overrides::class,
     Modules\nuc_pages\nuc_pages::class,
+    Modules\nuc_share\nuc_share::class,
     Modules\nuc_terminal\nuc_terminal::class,
 ];
