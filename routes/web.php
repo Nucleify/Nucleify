@@ -88,6 +88,29 @@ Route::get('/_fonts/{path}', function ($path) {
 })->where('path', '.*');
 
 /**
+ *  Serve module content files (MDX, etc.)
+ */
+Route::get('/modules/{module}/content/{file}', function ($module, $file) {
+    $path = base_path("modules/{$module}/content/{$file}");
+
+    if (!file_exists($path)) {
+        return response()->json(['error' => 'File not found'], 404);
+    }
+
+    $extension = pathinfo($file, PATHINFO_EXTENSION);
+    $mimeType = match ($extension) {
+        'mdx', 'md' => 'text/plain',
+        'json' => 'application/json',
+        default => 'text/plain'
+    };
+
+    return response()->file($path, [
+        'Content-Type' => $mimeType,
+        'Access-Control-Allow-Origin' => '*',
+    ]);
+})->where('module', '[a-z_]+')->where('file', '.+');
+
+/**
  *  Serve Nuxt application for all other routes
  */
 Route::get('/{any}', function ($any) {
@@ -98,7 +121,7 @@ Route::get('/{any}', function ($any) {
     }
 
     return response()->json(['error' => 'Page not found'], 404);
-})->where('any', '^(?!api/|logout).+');
+})->where('any', '^(?!api/|logout|modules/).+');
 
 Route::prefix('/')->group(function () {
     Route::get('', fn () => redirect()->route('home'));
