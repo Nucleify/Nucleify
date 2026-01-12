@@ -90,8 +90,8 @@ Route::get('/_fonts/{path}', function ($path) {
 /**
  *  Serve module content files (MDX, etc.)
  */
-Route::get('/modules/{module}/content/{file}', function ($module, $file) {
-    $path = base_path("modules/{$module}/content/{$file}");
+Route::get('/modules/{module}/content/{category}/{file}', function ($module, $category, $file) {
+    $path = base_path("modules/{$module}/content/{$category}/{$file}");
 
     if (!file_exists($path)) {
         return response()->json(['error' => 'File not found'], 404);
@@ -108,7 +108,7 @@ Route::get('/modules/{module}/content/{file}', function ($module, $file) {
         'Content-Type' => $mimeType,
         'Access-Control-Allow-Origin' => '*',
     ]);
-})->where('module', '[a-z_]+')->where('file', '.+');
+})->where('module', '[a-z_]+')->where('category', '[a-z-]+')->where('file', '.+');
 
 /**
  *  Serve Nuxt application for all other routes
