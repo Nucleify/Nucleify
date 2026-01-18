@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { getColorSuffix, useOfficeType } from 'atomic'
+import { defaultColors, getColorSuffix, useOfficeType } from 'atomic'
 
 import type { LogoInterface } from '.'
 
@@ -27,10 +27,13 @@ const logoStyle = computed(() => {
   }
 
   const suffix = colorSuffix.value || 'system'
+  const fallbackColor = defaultColors[`${props.adType}-item-color`] ?? '#10b981'
+  const fallbackDarkColor =
+    defaultColors[`${props.adType}-item-dark-color`] ?? '#054a32'
 
   return {
-    '--logo-lighter-color': `var(--${props.adType}-item-color-${suffix})`,
-    '--logo-darker-color': `var(--${props.adType}-item-dark-color-${suffix})`,
+    '--logo-lighter-color': `var(--${props.adType}-item-color-${suffix}, ${fallbackColor})`,
+    '--logo-darker-color': `var(--${props.adType}-item-dark-color-${suffix}, ${fallbackDarkColor})`,
   }
 })
 </script>
