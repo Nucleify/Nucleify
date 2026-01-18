@@ -1,6 +1,6 @@
 setup:
-	unzip -o vendor.zip -d vendor 
 	cp .env.docker.example .env
+	composer install
 	npm install
 	npm run prepare:husky
 	./vendor/bin/sail up --build -d

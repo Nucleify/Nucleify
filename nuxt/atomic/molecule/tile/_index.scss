@@ -12,7 +12,8 @@
   text-decoration: none;
   background: $p-card-background;
   border: 1px solid $p-card-border;
-
+  transition: all 300ms;
+  
   &:hover {
     color: var(--p-card-color);
   }
