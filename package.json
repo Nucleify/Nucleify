@@ -39,6 +39,7 @@
     "@unhead/vue": "2.0.19",
     "chart.js": "4.4.9",
     "gsap": "3.13.0",
+    "highlight.js": "11.11.1",
     "marked": "15.0.11",
     "nuxt": "3.20.1",
     "nuxt-schema-org": "5.0.5",
