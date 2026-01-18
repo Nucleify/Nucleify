@@ -27,6 +27,7 @@ screen_lights
 screen_loader
 sections
 settings
+share
 stores
 tasks
 templates
