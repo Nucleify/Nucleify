@@ -1,13 +1,10 @@
 FROM node:20
-
 WORKDIR /app/next
 
-COPY package*.json ./
-
+COPY next/package*.json ./
 RUN npm install
 
-COPY ./next .
+COPY next/ .
 
 EXPOSE 3000 6006
-
-CMD ["npm", "run", "dev"] 
+CMD ["npm", "run", "dev"]
