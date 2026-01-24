@@ -32,6 +32,7 @@ stores
 tasks
 templates
 terminal
+tests
 time
 tooltip
 

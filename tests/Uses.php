@@ -2,16 +2,17 @@
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 if (env('DB_DATABASE') === 'database/database.sqlite') {
-    uses(Tests\TestCase::class)
+    uses(TestCase::class)
         ->beforeEach(function (): void {
             $this->artisan('migrate:fresh');
         })
         ->in('Feature', 'Database', 'Global');
 } else {
     uses(
-        Tests\TestCase::class,
+        TestCase::class,
     )
         ->in('Feature', 'Database');
     uses(
