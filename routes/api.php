@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactFormController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,3 +18,6 @@ Route::get('/test', function () {
         'message' => 'Hello World',
     ]);
 });
+
+Route::post('/contact-form', [ContactFormController::class, 'send'])
+    ->name('contact-form.send');

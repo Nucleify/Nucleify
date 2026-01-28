@@ -1,6 +1,5 @@
 <template>
   <div id="front-office">
-    <nuc-screen-loader />
     <nuc-section-navbar />
     <slot />
     <nuc-section-footer />
