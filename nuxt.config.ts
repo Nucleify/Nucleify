@@ -11,6 +11,7 @@ export default defineNuxtConfig({
     './modules/nuc_overrides',
     '@nuxt/icon',
     '@nuxt/test-utils/module',
+    '@nuxtjs/critters',
     '@nuxtjs/google-fonts',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
@@ -27,6 +28,18 @@ export default defineNuxtConfig({
     'nuxt-vitalizer',
     'pinia-plugin-persistedstate/nuxt',
   ],
+  critters: {
+    config: {
+      preload: 'media',
+      inlineFonts: true,
+      preloadFonts: true,
+      pruneSource: false,
+      mergeStylesheets: false,
+      reduceInlineStyles: true,
+      keyframes: 'all',
+      compress: false,
+    },
+  },
   laravelSanctum: {
     apiUrl: process.env.APP_URL,
   },
@@ -50,7 +63,10 @@ export default defineNuxtConfig({
       publicDir: './public/build',
     },
     minify: true,
-    compressPublicAssets: true,
+    compressPublicAssets: {
+      brotli: true,
+      gzip: true,
+    },
   },
   app: {
     head: {
@@ -71,6 +87,14 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/favicon.ico' },
+        { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
+        { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' },
+        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+        {
+          rel: 'preconnect',
+          href: 'https://fonts.gstatic.com',
+          crossorigin: '',
+        },
       ],
     },
   },
@@ -80,6 +104,12 @@ export default defineNuxtConfig({
       chunkSizeWarningLimit: 1600,
       minify: 'terser',
       cssCodeSplit: true,
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
       rollupOptions: {
         maxParallelFileOps: 2,
         output: {
@@ -90,6 +120,10 @@ export default defineNuxtConfig({
             chartjs: ['chart.js'],
             gsap: ['gsap'],
             marked: ['marked'],
+            highlightjs: ['highlight.js'],
+            swiper: ['swiper'],
+            dompurify: ['dompurify'],
+            iconify: ['@iconify/vue', '@iconify/utils', '@iconify/types'],
           },
         },
       },
@@ -127,6 +161,8 @@ export default defineNuxtConfig({
   experimental: {
     payloadExtraction: true,
     renderJsonPayloads: true,
+    componentIslands: true,
+    asyncContext: true,
   },
   primevue: {
     autoImport: true,
@@ -152,23 +188,34 @@ export default defineNuxtConfig({
     },
   },
   vitalizer: {
-    disableStylesheets: 'entry',
+    disableStylesheets: false,
+    disablePrefetchLinks: true,
   },
   googleFonts: {
     families: {
       Inter: '300..700',
-      Nunito: '300..700',
     },
     display: 'swap',
     subsets: ['latin'],
+    preload: false,
+    prefetch: true,
+    preconnect: true,
+    download: true,
+    base64: false,
   },
   storybook: {
     url: 'http://localhost',
     port: 6006,
   },
   icon: {
-    prefix: 'i-prime',
-    mode: 'css',
+    mode: 'svg',
+    serverBundle: {
+      collections: ['prime', 'mdi'],
+    },
+    clientBundle: {
+      scan: true,
+      sizeLimitKb: 256,
+    },
   },
   // biome-ignore lint/suspicious/noExplicitAny: Nuxt config complexity @typescript-eslint/no-explicit-any
 } as any)

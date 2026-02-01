@@ -29,7 +29,6 @@ sections
 settings
 share
 stores
-tasks
 templates
 terminal
 tests
