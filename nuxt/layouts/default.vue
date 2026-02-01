@@ -1,5 +1,7 @@
 <template>
   <div id="default">
-    <slot />
+    <main>
+      <slot />
+    </main>
   </div>
 </template>
