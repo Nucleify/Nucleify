@@ -28,7 +28,6 @@ import {
   registerNucSections,
   registerNucSettings,
   registerNucShare,
-  registerNucTasks,
   registerNucTemplates,
   registerNucTerminal,
   registerNucTime,
@@ -63,7 +62,6 @@ export default defineNuxtPlugin({
     registerNucSections(nuxtApp.vueApp)
     registerNucSettings(nuxtApp.vueApp)
     registerNucShare(nuxtApp.vueApp)
-    registerNucTasks(nuxtApp.vueApp)
     registerNucTemplates(nuxtApp.vueApp)
     registerNucTerminal(nuxtApp.vueApp)
     registerNucTime(nuxtApp.vueApp)
