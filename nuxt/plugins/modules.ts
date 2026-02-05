@@ -23,6 +23,7 @@ import {
   registerNucNavigation,
   registerNucPages,
   registerNucPerformance,
+  registerNucPricings,
   registerNucScreenLights,
   registerNucScreenLoader,
   registerNucSections,
@@ -56,6 +57,7 @@ export default defineNuxtPlugin({
     registerNucModules(nuxtApp.vueApp)
     registerNucNavigation(nuxtApp.vueApp)
     registerNucPages(nuxtApp.vueApp)
+    registerNucPricings(nuxtApp.vueApp)
     registerNucPerformance(nuxtApp.vueApp)
     registerNucScreenLights(nuxtApp.vueApp)
     registerNucScreenLoader(nuxtApp.vueApp)
