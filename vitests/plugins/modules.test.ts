@@ -23,6 +23,7 @@ vi.mock('../../modules', () => ({
   registerNucNavigation: vi.fn(),
   registerNucPages: vi.fn(),
   registerNucPerformance: vi.fn(),
+  registerNucPricings: vi.fn(),
   registerNucScreenLights: vi.fn(),
   registerNucScreenLoader: vi.fn(),
   registerNucSections: vi.fn(),
@@ -64,6 +65,7 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   expect(modules.registerNucNavigation).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucPages).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucPerformance).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucPricings).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucScreenLights).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucScreenLoader).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucSections).toHaveBeenCalledWith(vueApp)
