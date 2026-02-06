@@ -1,8 +1,11 @@
+@import '../input-text';
+
 .ad-textarea {
-  background: $p-card-background;
-  border: 1px solid $p-card-border;
-  color: $white-text-color;
+  @extend %ad-inputtext;
+
   padding: 5px 10px;
   min-height: 100px;
   max-height: 400px;
+  min-width: 100%;
+  max-width: 100%;
 }

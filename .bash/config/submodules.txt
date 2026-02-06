@@ -23,15 +23,16 @@ navigation
 overrides
 pages
 performance
+pricings
 screen_lights
 screen_loader
 sections
 settings
 share
 stores
-tasks
 templates
 terminal
+tests
 time
 tooltip
 

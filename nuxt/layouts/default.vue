@@ -1,9 +1,7 @@
 <template>
   <div id="default">
-    <slot />
+    <main>
+      <slot />
+    </main>
   </div>
 </template>
-
-<style lang="scss">
-@import '../../modules/nuc_colors';
-</style>
