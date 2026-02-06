@@ -1,6 +1,8 @@
 <template>
   <div id="back-office">
-    <slot />
+    <main>
+      <slot />
+    </main>
     <nuc-dock />
   </div>
 </template>
@@ -14,7 +16,3 @@ useHead({
   pageTransition: { name: 'page', mode: 'out-in' },
 })
 </script>
-
-<style lang="scss">
-@import '../../modules/nuc_colors';
-</style>

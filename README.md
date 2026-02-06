@@ -150,7 +150,7 @@ database, feature, global, unit, commands, controllers, services, factories, mig
 sail pest --coverage
 ```
 
-![Tests](https://github.com/user-attachments/assets/560df303-07c7-42f0-a178-07ef5e05a8a8)![Coverage](https://github.com/user-attachments/assets/0b6cc696-8fdb-469f-a78c-e6faaadbe437)
+![Tests](/public/img/tests.png)![Coverage](/public/img/tests_coverage.png)
 
 
 
@@ -283,7 +283,7 @@ database, feature, global, unit, commands, controllers, services, factories, mig
 # run all tests and check code coverage
 ./vendor/bin/pest --coverage
 ```
-![Tests](https://github.com/user-attachments/assets/560df303-07c7-42f0-a178-07ef5e05a8a8)![Coverage](https://github.com/user-attachments/assets/0b6cc696-8fdb-469f-a78c-e6faaadbe437)
+![Tests](/public/img/tests.png)![Coverage](/public/img/tests_coverage.png)
 
 <img src="/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
 ```bash

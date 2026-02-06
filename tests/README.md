@@ -1,11 +1,31 @@
 # <img src="/public/img/technologies/pest.svg" width="25"> &nbsp;Pest
 
-This folder contains [Pest](https://pestphp.com/) tests.
+This folder contains [Pest](https://pestphp.com/) tests entry point.
 
-1. ```Pest.php``` core file for imports
-1. ```TestCase.php``` initializes core features for each test case
-2. ```TestConstants.php``` contains constants accessible for all tests
-3. ```TestExpectations.php``` contains expectations definitions. Expectation name should be camelCase and start with ```toBe``` prefix
-4. ```TestFunctions.php``` contains functions accessible for all tests
-5. ```TestGroups.php``` contains test groups definitions which can be used with ```--group=``` flag
-5. ```TestUses.php``` it defines test uses for local/workflow runs
+## Structure
+
+- `Pest.php` - main loader, includes all from `modules/nuc_tests`
+- `TestCase.php` - alias for backward compatibility (`Tests\TestCase` → `Modules\NucTests\TestCase`)
+
+## Core module
+
+All test infrastructure has been moved to `modules/nuc_tests/tests/`:
+
+```txt
+modules/nuc_tests/tests/
+├── functions/                    # Helper functions
+│   ├── apiTest.php
+│   ├── apiTestArray.php
+│   ├── expectLogMessage.php
+│   └── getModelByEntity.php
+├── testcase/                     # TestCase traits
+│   ├── CreatesApplication.php
+│   ├── CreatesUsers.php
+│   └── ResolvesSqlite.php
+├── Functions.php                 # Includes functions/*
+├── TestCase.php                  # Base test case class
+├── Expectations.php              # Custom Pest expectations
+├── Groups.php                    # Test group definitions
+├── Uses.php                      # Test uses configuration
+└── Pest.php
+```
