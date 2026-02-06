@@ -1,9 +1,7 @@
 <template>
   <div>
     <ad-logo-symbol style="display: none;" />
-    <client-only>
-      <nuc-screen-lights :count="8" />
-    </client-only>
+    <nuc-screen-lights :count="8" />
     <ad-toast />
     <NuxtRouteAnnouncer />
     <NuxtLayout :name="officeType">

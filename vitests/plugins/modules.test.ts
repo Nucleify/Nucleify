@@ -23,12 +23,12 @@ vi.mock('../../modules', () => ({
   registerNucNavigation: vi.fn(),
   registerNucPages: vi.fn(),
   registerNucPerformance: vi.fn(),
+  registerNucPricings: vi.fn(),
   registerNucScreenLights: vi.fn(),
   registerNucScreenLoader: vi.fn(),
   registerNucSections: vi.fn(),
   registerNucSettings: vi.fn(),
   registerNucShare: vi.fn(),
-  registerNucTasks: vi.fn(),
   registerNucTemplates: vi.fn(),
   registerNucTerminal: vi.fn(),
   registerNucTime: vi.fn(),
@@ -65,12 +65,12 @@ it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
   expect(modules.registerNucNavigation).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucPages).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucPerformance).toHaveBeenCalledWith(vueApp)
+  expect(modules.registerNucPricings).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucScreenLights).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucScreenLoader).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucSections).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucSettings).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucShare).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucTasks).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucTemplates).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucTerminal).toHaveBeenCalledWith(vueApp)
   expect(modules.registerNucTime).toHaveBeenCalledWith(vueApp)
