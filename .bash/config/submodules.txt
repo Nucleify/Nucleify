@@ -16,6 +16,7 @@ fields
 files
 friendship
 globals
+languages
 loading
 media
 modules
