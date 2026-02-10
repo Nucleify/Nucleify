@@ -1,5 +1,6 @@
 <template>
   <div id="documentation">
+    <nuc-grid-background />
     <nuc-documentation-page />
   </div>
 </template>
