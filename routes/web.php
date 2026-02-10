@@ -120,10 +120,22 @@ Route::get('/{any}', function ($any) {
         return serveNuxtFile($htmlPath);
     }
 
+    // SPA fallback: serve prerendered home page as shell for client-side routing
+    $lang = explode('/', $page)[0] ?? 'en';
+    $validLangs = ['en', 'pl'];
+    if (!in_array($lang, $validLangs)) {
+        $lang = 'en';
+    }
+
+    $fallbackPath = base_path("public/build/{$lang}/home/index.html");
+    if (file_exists($fallbackPath)) {
+        return serveNuxtFile($fallbackPath);
+    }
+
     return response()->json(['error' => 'Page not found'], 404);
 })->where('any', '^(?!api/|logout|modules/).+');
 
 Route::prefix('/')->group(function () {
-    Route::get('', fn () => redirect()->route('home'));
-    Route::get('home', fn () => serveNuxtPage('home'))->name('home');
+    Route::get('', fn () => redirect('/en/home'));
+    Route::get('home', fn () => redirect('/en/home'))->name('home');
 });

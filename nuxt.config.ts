@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@nuxtjs/critters',
     '@nuxtjs/google-fonts',
+    '@nuxtjs/i18n',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     '@nuxtjs/storybook',
@@ -28,6 +29,20 @@ export default defineNuxtConfig({
     'nuxt-vitalizer',
     'pinia-plugin-persistedstate/nuxt',
   ],
+  i18n: {
+    locales: [
+      { code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
+      { code: 'pl', language: 'pl-PL', file: 'pl.json', name: 'Polski' },
+    ],
+    defaultLocale: 'en',
+    lazy: false,
+    langDir: '../modules/nuc_languages/locales',
+    strategy: 'no_prefix',
+    detectBrowserLanguage: false,
+    compilation: {
+      strictMessage: false,
+    },
+  },
   critters: {
     config: {
       preload: 'media',
@@ -70,9 +85,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      htmlAttrs: {
-        lang: 'en',
-      },
+      htmlAttrs: {},
       title: 'Nucleify - Modular Web Framework for Laravel & Nuxt',
       titleTemplate: '%s',
       meta: [
@@ -114,7 +127,7 @@ export default defineNuxtConfig({
         maxParallelFileOps: 2,
         output: {
           manualChunks: {
-            vue: ['vue', 'vue-router', '@unhead/vue'],
+            vue: ['vue', 'vue-router', '@unhead/vue', 'vue-i18n'],
             pinia: ['pinia', 'pinia-plugin-persistedstate'],
             primevue: ['primevue', '@primevue/forms', '@primeuix/themes'],
             chartjs: ['chart.js'],
