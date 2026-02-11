@@ -31,16 +31,18 @@ export default defineNuxtConfig({
   ],
   i18n: {
     locales: [
-      { code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
-      { code: 'pl', language: 'pl-PL', file: 'pl.json', name: 'Polski' },
+      { code: 'en', language: 'en-US', name: 'English' },
+      { code: 'pl', language: 'pl-PL', name: 'Polski' },
     ],
     defaultLocale: 'en',
-    lazy: false,
-    langDir: '../modules/nuc_languages/locales',
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
     compilation: {
       strictMessage: false,
+    },
+    bundle: {
+      compositionOnly: true,
+      fullInstall: false,
     },
   },
   critters: {
