@@ -31,10 +31,12 @@ export default defineNuxtConfig({
   ],
   i18n: {
     locales: [
-      { code: 'en', language: 'en-US', name: 'English' },
-      { code: 'pl', language: 'pl-PL', name: 'Polski' },
+      { code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
+      { code: 'pl', language: 'pl-PL', file: 'pl.json', name: 'Polski' },
     ],
     defaultLocale: 'en',
+    lazy: true,
+    langDir: '../modules/nuc_languages/locales',
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
     compilation: {
@@ -43,6 +45,8 @@ export default defineNuxtConfig({
     bundle: {
       compositionOnly: true,
       fullInstall: false,
+      runtimeOnly: true,
+      dropMessageCompiler: true,
     },
   },
   critters: {
