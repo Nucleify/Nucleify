@@ -19,6 +19,7 @@ import {
   registerNucEntitiesStructural,
   registerNucFiles,
   registerNucFriendship,
+  registerNucLanguages,
   registerNucModules,
   registerNucNavigation,
   registerNucPages,
@@ -54,6 +55,7 @@ export default defineNuxtPlugin({
     registerNucEntitiesStructural(nuxtApp.vueApp)
     registerNucFiles(nuxtApp.vueApp)
     registerNucFriendship(nuxtApp.vueApp)
+    registerNucLanguages(nuxtApp)
     registerNucModules(nuxtApp.vueApp)
     registerNucNavigation(nuxtApp.vueApp)
     registerNucPages(nuxtApp.vueApp)
