@@ -112,3 +112,6 @@
 [submodule "modules/nuc_pricings"]
 	path = modules/nuc_pricings
 	url = https://github.com/Nucleify/nuc_pricings.git
+[submodule "modules/nuc_languages"]
+	path = modules/nuc_languages
+	url = https://github.com/Nucleify/nuc_languages.git
