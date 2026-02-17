@@ -62,7 +62,6 @@ export default defineNuxtConfig({
   },
   ssr: process.env.SSR !== 'false',
   nitro: {
-    preset: 'netlify',
     prerender: process.env.CI
       ? {
           routes: [],
@@ -108,17 +107,6 @@ export default defineNuxtConfig({
   },
   schemaOrg: schemaOrgConfig,
   vite: {
-    build: {
-      chunkSizeWarningLimit: 1600,
-      minify: 'terser',
-      cssCodeSplit: true,
-      terserOptions: {
-        compress: {
-          drop_console: true,
-          drop_debugger: true,
-        },
-      },
-    },
     css: {
       preprocessorOptions: {
         scss: {
