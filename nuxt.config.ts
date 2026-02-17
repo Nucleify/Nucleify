@@ -65,13 +65,7 @@ export default defineNuxtConfig({
   ssr: process.env.SSR !== 'false',
   nitro: {
     externals: {
-      inline: [
-        'vue',
-        'primevue',
-        '@primevue/core',
-        '@primevue/forms',
-        '@primeuix/themes',
-      ],
+      inline: ['vue'],
     },
     moduleSideEffects: ['@primevue/core/basecomponent/style'],
     prerender: process.env.CI
@@ -88,9 +82,6 @@ export default defineNuxtConfig({
             ? process.env.PRERENDER_IGNORE.split(',').map((r) => r.trim())
             : [],
         },
-    output: {
-      publicDir: './.output/public',
-    },
   },
   app: {
     head: {
