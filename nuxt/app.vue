@@ -48,7 +48,23 @@ watchEffect(() => {
 
 if (import.meta.client) {
   resetColorsIfEmpty()
-  await syncColorsWithDatabase()
+
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(
+      () => {
+        syncColorsWithDatabase().catch((error) => {
+          console.error('Failed to sync colors:', error)
+        })
+      },
+      { timeout: 2000 }
+    )
+  } else {
+    setTimeout(() => {
+      syncColorsWithDatabase().catch((error) => {
+        console.error('Failed to sync colors:', error)
+      })
+    }, 100)
+  }
 }
 
 watch(
