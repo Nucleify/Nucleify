@@ -2,6 +2,8 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 import Lara from '@primeuix/themes/lara'
 import { schemaOrgConfig } from './nuxt/config/schema-org'
+// Force bundle PrimeVue modules for serverless
+import '@primevue/core/basecomponent/style'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -63,8 +65,15 @@ export default defineNuxtConfig({
   ssr: process.env.SSR !== 'false',
   nitro: {
     externals: {
-      inline: ['vue']
+      inline: [
+        'vue',
+        'primevue',
+        '@primevue/core',
+        '@primevue/forms',
+        '@primeuix/themes',
+      ],
     },
+    moduleSideEffects: ['@primevue/core/basecomponent/style'],
     prerender: process.env.CI
       ? {
           routes: [],
