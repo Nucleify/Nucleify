@@ -65,7 +65,13 @@ export default defineNuxtConfig({
   ssr: process.env.SSR !== 'false',
   nitro: {
     externals: {
-      inline: ['vue'],
+      inline: [
+        'vue',
+        'primevue',
+        '@primevue/core',
+        '@primevue/forms',
+        '@primeuix/themes',
+      ],
     },
     moduleSideEffects: ['@primevue/core/basecomponent/style'],
     prerender: process.env.CI
