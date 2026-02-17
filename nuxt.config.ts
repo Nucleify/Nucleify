@@ -132,9 +132,6 @@ export default defineNuxtConfig({
         },
       },
     },
-    optimizeDeps: {
-      include: ['vue', 'vue-router', 'primevue'],
-    },
   },
   alias: {
     atomic: '~/atomic',
@@ -148,7 +145,6 @@ export default defineNuxtConfig({
     dirs: ['~/composables/**', '~/atomic/**', 'modules/**'],
   },
   srcDir: 'nuxt',
-  publicDir: './public',
   experimental: {
     componentIslands: true,
     asyncContext: true,
