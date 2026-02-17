@@ -76,9 +76,6 @@ export default defineNuxtConfig({
             ? process.env.PRERENDER_IGNORE.split(',').map((r) => r.trim())
             : [],
         },
-    output: {
-      publicDir: './public/build',
-    },
     minify: true,
     compressPublicAssets: {
       brotli: true,
