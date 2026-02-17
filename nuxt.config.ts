@@ -62,6 +62,9 @@ export default defineNuxtConfig({
   },
   ssr: process.env.SSR !== 'false',
   nitro: {
+    externals: {
+      inline: ['vue']
+    },
     prerender: process.env.CI
       ? {
           routes: [],
