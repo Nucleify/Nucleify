@@ -1,0 +1,10 @@
+[build]
+  command = "npm run build"
+  publish = ".output/public"
+  functions = ".output/server"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Nuxt 3 with Nitro automatically generates redirects in .output/public/_redirects
+# This configuration works for both SSR and static generation modes
