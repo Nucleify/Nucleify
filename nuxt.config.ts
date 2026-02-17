@@ -79,6 +79,9 @@ export default defineNuxtConfig({
             ? process.env.PRERENDER_IGNORE.split(',').map((r) => r.trim())
             : [],
         },
+    output: {
+      publicDir: './.output/public',
+    },
   },
   app: {
     head: {
