@@ -60,8 +60,9 @@ export default defineNuxtConfig({
   laravelSanctum: {
     apiUrl: process.env.APP_URL,
   },
-  ssr: process.env.SSR === 'true',
+  ssr: process.env.SSR !== 'false',
   nitro: {
+    preset: 'netlify',
     prerender: process.env.CI
       ? {
           routes: [],
@@ -76,11 +77,6 @@ export default defineNuxtConfig({
             ? process.env.PRERENDER_IGNORE.split(',').map((r) => r.trim())
             : [],
         },
-    minify: true,
-    compressPublicAssets: {
-      brotli: true,
-      gzip: true,
-    },
   },
   app: {
     head: {
@@ -122,23 +118,6 @@ export default defineNuxtConfig({
           drop_debugger: true,
         },
       },
-      rollupOptions: {
-        maxParallelFileOps: 2,
-        output: {
-          manualChunks: {
-            vue: ['vue', 'vue-router', '@unhead/vue', 'vue-i18n'],
-            pinia: ['pinia', 'pinia-plugin-persistedstate'],
-            primevue: ['primevue', '@primevue/forms', '@primeuix/themes'],
-            chartjs: ['chart.js'],
-            gsap: ['gsap'],
-            marked: ['marked'],
-            highlightjs: ['highlight.js'],
-            swiper: ['swiper'],
-            dompurify: ['dompurify'],
-            iconify: ['@iconify/vue', '@iconify/utils', '@iconify/types'],
-          },
-        },
-      },
     },
     css: {
       preprocessorOptions: {
@@ -171,8 +150,6 @@ export default defineNuxtConfig({
   srcDir: 'nuxt',
   publicDir: './public',
   experimental: {
-    payloadExtraction: false,
-    renderJsonPayloads: false,
     componentIslands: true,
     asyncContext: true,
   },
