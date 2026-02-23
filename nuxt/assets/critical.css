@@ -1,0 +1,25 @@
+.navbar {
+  .nuc-submit-button {
+    margin-left: auto;
+  }
+}
+
+#start {
+  .p-inputtext,
+  .p-textarea,
+  .p-select,
+  .p-password,
+  .p-card-body,
+  .p-card-content,
+  .email-us-formm .form-group {
+    width: 100%;
+  }
+
+  .p-card-caption {
+    display: none;
+  }
+
+  .p-card {
+    border-radius: 0.25rem;
+  }
+}
