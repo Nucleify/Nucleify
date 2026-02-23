@@ -6,7 +6,8 @@
     "media-feature-range-notation": null,
     "at-rule-no-unknown": null,
     "selector-pseudo-class-no-unknown": null,
-    "scss/comment-no-empty": null
+    "scss/comment-no-empty": null,
+    "no-descending-specificity": null
   },
   "ignoreFiles": ["**/*.vue"]
 }
