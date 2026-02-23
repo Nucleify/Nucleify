@@ -11,7 +11,8 @@
       "!vendor/**",
       "!.nuxt/**",
       "!.output/**",
-      "!**/build/**"
+      "!**/build/**",
+      "!.netlify/**"
     ]
   },
   "formatter": {
