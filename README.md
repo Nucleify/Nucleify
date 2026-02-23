@@ -10,7 +10,7 @@ Designed with [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/), [M
 <br><a href="https://nucleify.io">Live preview</a><br><br>
 
 ⭐ **Project setup with a single command** <br>
-⭐ **Unique Laravel/Nuxt modules functionality** <br>
+⭐ **Unique Laravel/Nuxt modules & overrides functionality** <br>
 ⭐ Atomic Design components + CSS modules <br>
 ⭐ [Storybook](https://storybook.js.org/) tests for most Atomic components <br>
 ⭐ Futuristic UI made with [PrimeVue](https://primevue.org/) + [Chart.js](https://www.chartjs.org/) + [GSAP](https://gsap.com/) + [SCSS](https://sass-lang.com/) <br>

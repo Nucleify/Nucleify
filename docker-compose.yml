@@ -22,7 +22,7 @@ services:
     depends_on:
       - mysql
   frontend:
-    platform: linux/amd64
+    platform: ${DOCKER_PLATFORM}
     build:
       context: .
       dockerfile: .docker/Dockerfile.$APP_FRONTEND
