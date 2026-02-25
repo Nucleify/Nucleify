@@ -56,10 +56,10 @@ export default defineNuxtConfig({
       inlineFonts: false,
       preloadFonts: false,
       pruneSource: false,
-      mergeStylesheets: true,
+      mergeStylesheets: false,
       reduceInlineStyles: true,
       keyframes: 'all',
-      compress: true,
+      compress: false,
     },
   },
   laravelSanctum: {
