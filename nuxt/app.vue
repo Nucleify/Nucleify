@@ -21,6 +21,7 @@ import {
 const route = useRoute()
 
 const GTM_ID = 'GTM-WQH9K476'
+const CLARITY_ID = 'vmewuw52gn'
 
 useHead(() => ({
   htmlAttrs: {
@@ -40,21 +41,44 @@ useHead(() => ({
       href: appUrl() + '/' + route.path.replace(/\//g, ''),
     },
   ],
-  script: [
-    {
-      hid: 'gtm',
-      children: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');`,
-      type: 'text/javascript',
-    },
-  ],
   noscript: [
     {
-      hid: 'gtm-noscript',
+      key: 'gtm-noscript',
       innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
       body: true,
     },
   ],
 }))
+
+function loadGTM() {
+  // biome-ignore lint/suspicious/noExplicitAny: window is not typed
+  const w = window as any
+  w.dataLayer = w.dataLayer || []
+  w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+  const s = document.createElement('script')
+  s.async = true
+  s.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`
+  document.body.appendChild(s)
+}
+
+function loadClarity() {
+  // biome-ignore lint/suspicious/noExplicitAny: window is not typed
+  const w = window as any
+  w.clarity =
+    w.clarity ||
+    function () {
+      ;(w.clarity.q = w.clarity.q || []).push(arguments)
+    }
+  const s = document.createElement('script')
+  s.async = true
+  s.src = `https://www.clarity.ms/tag/${CLARITY_ID}`
+  document.body.appendChild(s)
+}
+
+function loadAnalytics() {
+  loadGTM()
+  loadClarity()
+}
 
 const { officeType, getOfficeType } = useOfficeType()
 
@@ -64,24 +88,13 @@ watchEffect(() => {
 
 if (import.meta.client) {
   resetColorsIfEmpty()
-
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(
-      () => {
-        syncColorsWithDatabase().catch((error) => {
-          console.error('Failed to sync colors:', error)
-        })
-      },
-      { timeout: 2000 }
-    )
-  } else {
-    setTimeout(() => {
-      syncColorsWithDatabase().catch((error) => {
-        console.error('Failed to sync colors:', error)
-      })
-    }, 100)
-  }
 }
+
+onMounted(() => {
+  requestIdleCallback(() => {
+    loadAnalytics()
+  })
+})
 
 watch(
   () => route.path,
