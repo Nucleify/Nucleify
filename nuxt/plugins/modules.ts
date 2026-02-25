@@ -11,6 +11,7 @@ import {
   registerNucAuth,
   registerNucCharts,
   registerNucColors,
+  registerNucDarkMode,
   registerNucDataTable,
   registerNucDialog,
   registerNucDock,
@@ -47,6 +48,7 @@ export default defineNuxtPlugin({
     registerNucAuth(nuxtApp.vueApp)
     registerNucCharts(nuxtApp.vueApp)
     registerNucColors(nuxtApp.vueApp)
+    registerNucDarkMode(nuxtApp.vueApp)
     registerNucDataTable(nuxtApp.vueApp)
     registerNucDialog(nuxtApp.vueApp)
     registerNucDock(nuxtApp.vueApp)
