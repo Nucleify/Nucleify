@@ -5,6 +5,7 @@ api
 auth
 charts
 colors
+dark_mode
 database
 datatable
 dialog
