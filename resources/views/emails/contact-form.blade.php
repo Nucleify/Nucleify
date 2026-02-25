@@ -46,10 +46,6 @@
             border-radius: 4px;
             border-left: 3px solid #10b981;
         }
-        .message-content {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
         .footer {
             text-align: center;
             margin-top: 30px;
@@ -67,29 +63,15 @@
         </div>
 
         <div class="field">
-            <span class="field-label">Name:</span>
-            <div class="field-value">{{ $formData['name'] }}</div>
-        </div>
-
-        <div class="field">
             <span class="field-label">Email:</span>
             <div class="field-value">
                 <a href="mailto:{{ $formData['email'] }}">{{ $formData['email'] }}</a>
             </div>
         </div>
 
-        @if(!empty($formData['phone']))
         <div class="field">
-            <span class="field-label">Phone:</span>
-            <div class="field-value">
-                <a href="tel:{{ $formData['phone'] }}">{{ $formData['phone'] }}</a>
-            </div>
-        </div>
-        @endif
-
-        <div class="field">
-            <span class="field-label">Message:</span>
-            <div class="field-value message-content">{{ $formData['message'] }}</div>
+            <span class="field-label">Website Type:</span>
+            <div class="field-value">{{ ucfirst($formData['website_type']) }}</div>
         </div>
 
         <div class="footer">

@@ -23,10 +23,8 @@ class ContactFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:2|max:100',
             'email' => 'required|email|max:255',
-            'phone' => 'nullable|string|min:9|max:20',
-            'message' => 'required|string|min:10|max:2000',
+            'website_type' => 'required|string|in:landing,business,blog,help',
         ];
     }
 
@@ -38,17 +36,11 @@ class ContactFormRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'name.required' => 'Name is required.',
-            'name.min' => 'Name must be at least 2 characters.',
-            'name.max' => 'Name must be less than 100 characters.',
             'email.required' => 'Email is required.',
             'email.email' => 'Please enter a valid email address.',
             'email.max' => 'Email must be less than 255 characters.',
-            'phone.min' => 'Phone number must be at least 9 digits.',
-            'phone.max' => 'Phone number must be less than 20 digits.',
-            'message.required' => 'Message is required.',
-            'message.min' => 'Message must be at least 10 characters.',
-            'message.max' => 'Message must be less than 2000 characters.',
+            'website_type.required' => 'Website type is required.',
+            'website_type.in' => 'Please select a valid website type.',
         ];
     }
 }
