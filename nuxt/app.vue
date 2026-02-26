@@ -21,6 +21,7 @@ import {
 const route = useRoute()
 
 const GTM_ID = 'GTM-WQH9K476'
+const GADS_ID = 'AW-17959551210'
 const CLARITY_ID = 'vmewuw52gn'
 
 useHead(() => ({
@@ -61,6 +62,24 @@ function loadGTM() {
   document.body.appendChild(s)
 }
 
+function loadGoogleAds() {
+  // biome-ignore lint/suspicious/noExplicitAny: window is not typed
+  const w = window as any
+  const s = document.createElement('script')
+  s.async = true
+  s.src = `https://www.googletagmanager.com/gtag/js?id=${GADS_ID}`
+  document.body.appendChild(s)
+
+  w.dataLayer = w.dataLayer || []
+  w.gtag =
+    w.gtag ||
+    function () {
+      w.dataLayer.push(arguments)
+    }
+  w.gtag('js', new Date())
+  w.gtag('config', GADS_ID)
+}
+
 function loadClarity() {
   // biome-ignore lint/suspicious/noExplicitAny: window is not typed
   const w = window as any
@@ -77,6 +96,7 @@ function loadClarity() {
 
 function loadAnalytics() {
   loadGTM()
+  loadGoogleAds()
   loadClarity()
 }
 
