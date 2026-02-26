@@ -179,7 +179,6 @@ export default defineNuxtConfig({
     componentIslands: true,
     asyncContext: true,
   },
-  css: ['~/assets/critical.css'],
   primevue: {
     options: {
       theme: {
