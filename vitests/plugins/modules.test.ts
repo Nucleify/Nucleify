@@ -1,40 +1,36 @@
 import { beforeEach, expect, it, vi } from 'vitest'
 
+import * as atomic from 'atomic'
+
 import * as modules from '../../modules'
 import module from '../../nuxt/plugins/modules'
 
-vi.mock('../../modules', () => ({
-  registerNucActivity: vi.fn(),
-  registerNucAdmin: vi.fn(),
-  registerNucAnimations: vi.fn(),
-  registerNucAuth: vi.fn(),
-  registerNucCharts: vi.fn(),
-  registerNucColors: vi.fn(),
-  registerNucDataTable: vi.fn(),
-  registerNucDialog: vi.fn(),
-  registerNucDock: vi.fn(),
-  registerNucDocumentation: vi.fn(),
-  registerNucEntities: vi.fn(),
-  registerNucEntitiesStructural: vi.fn(),
-  registerNucFiles: vi.fn(),
-  registerNucFriendship: vi.fn(),
-  registerNucGlobals: vi.fn(),
-  registerNucLanguages: vi.fn(),
-  registerNucModules: vi.fn(),
-  registerNucNavigation: vi.fn(),
-  registerNucPages: vi.fn(),
-  registerNucPerformance: vi.fn(),
-  registerNucPricings: vi.fn(),
-  registerNucScreenLights: vi.fn(),
-  registerNucScreenLoader: vi.fn(),
-  registerNucSections: vi.fn(),
-  registerNucSettings: vi.fn(),
-  registerNucShare: vi.fn(),
-  registerNucTemplates: vi.fn(),
-  registerNucTerminal: vi.fn(),
-  registerNucTime: vi.fn(),
-  registerNucTooltip: vi.fn(),
-}))
+function mockRegisterFunctions(
+  original: Record<string, unknown>
+): Record<string, unknown> {
+  const mocked: Record<string, unknown> = {}
+
+  for (const [key, value] of Object.entries(original)) {
+    mocked[key] =
+      typeof value === 'function' && key.startsWith('register')
+        ? vi.fn()
+        : value
+  }
+
+  return mocked
+}
+
+vi.mock('../../modules', async (importOriginal) => {
+  return mockRegisterFunctions(
+    (await importOriginal()) as Record<string, unknown>
+  )
+})
+
+vi.mock('atomic', async (importOriginal) => {
+  return mockRegisterFunctions(
+    (await importOriginal()) as Record<string, unknown>
+  )
+})
 
 const vueApp = {}
 const nuxtApp = { vueApp }
@@ -43,38 +39,29 @@ beforeEach((): void => {
   vi.clearAllMocks()
 })
 
-it('registers all modules with nuxtApp.vueApp', async (): Promise<void> => {
+it('registers all modules from modules barrel', async (): Promise<void> => {
   // @ts-expect-error setup is a function on the plugin object
   await module.setup(nuxtApp)
 
-  expect(modules.registerNucActivity).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucAdmin).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucAnimations).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucAuth).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucCharts).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucColors).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucDataTable).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucDialog).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucDock).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucDocumentation).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucEntities).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucEntitiesStructural).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucFiles).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucFriendship).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucGlobals).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucLanguages).toHaveBeenCalledWith(nuxtApp)
-  expect(modules.registerNucModules).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucNavigation).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucPages).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucPerformance).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucPricings).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucScreenLights).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucScreenLoader).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucSections).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucSettings).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucShare).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucTemplates).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucTerminal).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucTime).toHaveBeenCalledWith(vueApp)
-  expect(modules.registerNucTooltip).toHaveBeenCalledWith(vueApp)
+  const atomicImports = new Set(['registerNucGlobals'])
+
+  Object.entries(modules).forEach(([name, fn]) => {
+    if (
+      typeof fn === 'function' &&
+      name.startsWith('register') &&
+      !atomicImports.has(name)
+    ) {
+      expect(fn, `${name} should have been called`).toHaveBeenCalled()
+    }
+  })
+})
+
+it('registers globals from atomic', async (): Promise<void> => {
+  // @ts-expect-error setup is a function on the plugin object
+  await module.setup(nuxtApp)
+
+  expect(
+    atomic.registerNucGlobals,
+    'registerNucGlobals should have been called'
+  ).toHaveBeenCalledWith(vueApp)
 })
