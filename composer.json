@@ -39,7 +39,7 @@
     }
   },
   "scripts": {
-    "pre-install-cmd": ["sh .bash/prepare-submodules.sh"],
+    "pre-install-cmd": ["[ \"$CI\" = true ] || sh .bash/prepare-submodules.sh"],
     "post-autoload-dump": [
       "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
       "@php artisan package:discover --ansi || true"
