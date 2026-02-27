@@ -18,7 +18,10 @@ import {
   useOfficeType,
 } from 'atomic'
 
+import { useDarkMode } from 'atomic'
+
 const route = useRoute()
+const { isDark } = useDarkMode()
 
 const GTM_ID = 'GTM-WQH9K476'
 const GADS_ID = 'AW-17959551210'
@@ -26,7 +29,7 @@ const CLARITY_ID = 'vmewuw52gn'
 
 useHead(() => ({
   htmlAttrs: {
-    class: 'p-dark',
+    class: isDark.value ? 'p-dark' : '',
   },
   meta: [
     { property: 'og:image', content: '/img/og-image.png' },
