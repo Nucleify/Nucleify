@@ -1,0 +1,8 @@
+{
+  "name": "nuc_pagebuilder",
+  "description": "Module that provides elementor-like page builder with database persistence.",
+  "version": "0.1.0",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

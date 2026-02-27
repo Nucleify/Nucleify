@@ -7,3 +7,4 @@ export const useConfig = () => ({
 export const apiUrl = () => useConfig().get('apiUrl')
 export const appUrl = () => useConfig().get('appUrl')
 export const appEnv = () => useConfig().get('appEnv')
+export const frontendUrl = () => useConfig().get('frontendUrl')
