@@ -15,7 +15,7 @@
 }
 
 .ad-select-overlay {
-  z-index: 10000;
+  z-index: 10000 !important;
   margin-top: 2px;
 
   .ad-select-list {
