@@ -15,10 +15,9 @@ import {
   AdLogoSymbol,
   resetColorsIfEmpty,
   syncColorsWithDatabase,
+  useDarkMode,
   useOfficeType,
 } from 'atomic'
-
-import { useDarkMode } from 'atomic'
 
 const route = useRoute()
 const { isDark } = useDarkMode()
@@ -109,20 +108,27 @@ watchEffect(() => {
   officeType.value = getOfficeType()
 })
 
-if (import.meta.client) {
-  resetColorsIfEmpty()
-}
-
 onMounted(() => {
   requestIdleCallback(() => {
-    loadAnalytics()
+    resetColorsIfEmpty()
   })
+
+  setTimeout(() => {
+    loadAnalytics()
+  }, 3500)
 })
+
+let syncTimeout: ReturnType<typeof setTimeout> | null = null
 
 watch(
   () => route.path,
-  async () => {
-    await syncColorsWithDatabase()
+  () => {
+    if (syncTimeout) clearTimeout(syncTimeout)
+    syncTimeout = setTimeout(() => {
+      requestIdleCallback(() => {
+        syncColorsWithDatabase()
+      })
+    }, 300)
   }
 )
 </script>
