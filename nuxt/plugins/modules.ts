@@ -23,6 +23,7 @@ import {
   registerNucLanguages,
   registerNucModules,
   registerNucNavigation,
+  registerNucPageBuilder,
   registerNucPages,
   registerNucPerformance,
   registerNucPricings,
@@ -60,6 +61,7 @@ export default defineNuxtPlugin({
     registerNucLanguages(nuxtApp)
     registerNucModules(nuxtApp.vueApp)
     registerNucNavigation(nuxtApp.vueApp)
+    registerNucPageBuilder(nuxtApp.vueApp)
     registerNucPages(nuxtApp.vueApp)
     registerNucPricings(nuxtApp.vueApp)
     registerNucPerformance(nuxtApp.vueApp)

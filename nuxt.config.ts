@@ -2,7 +2,6 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 import Lara from '@primeuix/themes/lara'
 import { schemaOrgConfig } from './nuxt/config/schema-org'
-import '@primevue/core/basecomponent/style'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -10,6 +9,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     './modules/nuc_overrides',
+    './modules/nuc_pagebuilder',
     '@nuxt/icon',
     '@nuxtjs/critters',
     '@nuxtjs/google-fonts',
@@ -36,10 +36,12 @@ export default defineNuxtConfig({
   ],
   i18n: {
     locales: [
-      { code: 'en', language: 'en-US', name: 'English' },
-      { code: 'pl', language: 'pl-PL', name: 'Polski' },
+      { code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
+      { code: 'pl', language: 'pl-PL', file: 'pl.json', name: 'Polski' },
     ],
     defaultLocale: 'en',
+    lazy: true,
+    langDir: '../modules/nuc_languages/locales',
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
     compilation: {
@@ -67,9 +69,14 @@ export default defineNuxtConfig({
   },
   ssr: process.env.SSR === 'true',
   nitro: {
-    moduleSideEffects: ['@primevue/core/basecomponent/style'],
     externals: {
-      inline: ['vue', 'vue-router', '@unhead/vue'],
+      inline: [
+        'vue',
+        'vue-router',
+        '@unhead/vue',
+        '@primevue/core/base/style',
+        '@primevue/core/basecomponent/style',
+      ],
     },
     prerender: process.env.CI
       ? {
@@ -177,8 +184,8 @@ export default defineNuxtConfig({
   srcDir: 'nuxt',
   publicDir: './public',
   experimental: {
-    payloadExtraction: true,
-    renderJsonPayloads: true,
+    payloadExtraction: false,
+    renderJsonPayloads: false,
     componentIslands: true,
     asyncContext: true,
   },
@@ -233,6 +240,9 @@ export default defineNuxtConfig({
       scan: true,
       sizeLimitKb: 256,
     },
+  },
+  routeRules: {
+    '/**': { swr: true },
   },
   // biome-ignore lint/suspicious/noExplicitAny: Nuxt config complexity @typescript-eslint/no-explicit-any
 } as any)
