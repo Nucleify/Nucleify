@@ -23,6 +23,7 @@ media
 modules
 navigation
 overrides
+pagebuilder
 pages
 performance
 pricings
