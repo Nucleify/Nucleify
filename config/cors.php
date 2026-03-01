@@ -15,11 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie', 'login', 'register', 'logout', 'modules/*'],
+    'paths' => ['*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [env('APP_URL'), 'http://localhost:3000'],
+    'allowed_origins' => ['https://nucleify.io', 'http://localhost:3000'],
 
     'allowed_origins_patterns' => [],
 
