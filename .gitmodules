@@ -115,3 +115,9 @@
 [submodule "modules/nuc_languages"]
 	path = modules/nuc_languages
 	url = https://github.com/Nucleify/nuc_languages.git
+[submodule "modules/nuc_dark_mode"]
+	path = modules/nuc_dark_mode
+	url = https://github.com/Nucleify/nuc_dark_mode.git
+[submodule "modules/nuc_pagebuilder"]
+	path = modules/nuc_pagebuilder
+	url = https://github.com/Nucleify/nuc_pagebuilder.git

@@ -5,6 +5,7 @@ api
 auth
 charts
 colors
+dark_mode
 database
 datatable
 dialog
@@ -22,6 +23,7 @@ media
 modules
 navigation
 overrides
+pagebuilder
 pages
 performance
 pricings
