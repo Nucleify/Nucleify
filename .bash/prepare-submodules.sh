@@ -17,9 +17,7 @@ load_env() {
 }
 
 resolve_branch() {
-  local url="$1"
-  
-  if git ls-remote --exit-code --heads "$url" "$TARGET_BRANCH" > /dev/null 2>&1; then
+  if git ls-remote --exit-code --heads "$1" "$TARGET_BRANCH" > /dev/null 2>&1; then
     echo "$TARGET_BRANCH"
   else
     log_warn "Branch '$TARGET_BRANCH' not found, using '$DEFAULT_BRANCH'" >&2
@@ -27,9 +25,88 @@ resolve_branch() {
   fi
 }
 
+get_version() {
+  [ -f "$1/config.json" ] &&
+    sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' "$1/config.json"
+  return 0
+}
+
+get_remote_version() {
+  local repo=$(echo "$1" | sed 's|https://github.com/||; s|\.git$||')
+  curl -sf "https://raw.githubusercontent.com/$repo/$2/config.json" 2>/dev/null \
+    | sed -n 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p'
+}
+
+has_local_modules() {
+  while IFS= read -r name || [ -n "$name" ]; do
+    [ -z "$name" ] && continue
+    [ -f "modules/nuc_$name/config.json" ] && return 0
+  done < "$SUBMODULES_FILE"
+  return 1
+}
+
+cleanup_empty_modules() {
+  while IFS= read -r name || [ -n "$name" ]; do
+    [ -z "$name" ] && continue
+    local dir="modules/nuc_$name"
+
+    if [ -d "$dir" ] && [ ! -f "$dir/config.json" ]; then
+      log_warn "nuc_$name: empty module detected, removing"
+      rm -rf "$dir"
+    fi
+  done < "$SUBMODULES_FILE"
+}
+
+check_versions() {
+  log_header "Checking versions"
+  local has_diff=0
+
+  while IFS= read -r name || [ -n "$name" ]; do
+    [ -z "$name" ] && continue
+    local dir="modules/nuc_$name"
+    local url="$GITHUB_URL/nuc_$name.git"
+    local local_ver=$(get_version "$dir")
+    local remote_ver=$(get_remote_version "$url" "$TARGET_BRANCH")
+
+    if [ -z "$local_ver" ]; then
+      continue
+    elif [ -z "$remote_ver" ]; then
+      log_info "nuc_$name: $local_ver (remote version unknown)"
+    elif [ "$local_ver" != "$remote_ver" ]; then
+      log_warn "nuc_$name: $local_ver -> $remote_ver (removing outdated)"
+      rm -rf "$dir"
+      has_diff=1
+    else
+      log_success "nuc_$name: $local_ver (up to date)"
+    fi
+  done < "$SUBMODULES_FILE"
+
+  [ "$has_diff" -eq 0 ] && log_success "All modules are up to date"
+  echo
+  return $has_diff
+}
+
+prompt_yn() {
+  printf "${BOLD}%s [y/N]:${NC} " "$1"
+  read -r answer
+  echo
+  case "$answer" in
+    [yY]|[yY][eE][sS]) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+confirm_local() {
+  [ "$APP_ENV" = "local" ] || return 0
+  has_local_modules || return 0
+  prompt_yn "Run prepare-submodules?" || { log_info "Aborted"; exit 0; }
+
+  log_warn "This will overwrite local modules with fresh clones"
+  check_versions || true
+}
+
 clone_repo() {
   local name="$1" url="$2" dir="$3"
-  
   print_separator
   log_header "Cloning $name"
 
@@ -39,20 +116,21 @@ clone_repo() {
   fi
 
   local branch=$(resolve_branch "$url")
-  git clone --depth=1 --branch "$branch" --progress "$url" "$dir" 2>&1 | tr '\r' '\n' | grep -E '^(Cloning|remote:.*done)'
+  git clone --depth=1 --branch "$branch" --progress "$url" "$dir" 2>&1 \
+    | tr '\r' '\n' | grep -E '^(Cloning|remote:.*done)'
   echo
   log_success "Cloned $name ($branch)"
 }
 
 main() {
-  log_header "Prepare Submodules"
-  
-  export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
   load_env
-  
   TARGET_BRANCH="${NUC_SUBMODULES_BRANCH:-$DEFAULT_BRANCH}"
+  confirm_local
+
+  log_header "Prepare Submodules"
+  export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
   log_info "Target branch: $TARGET_BRANCH"
-  
+  cleanup_empty_modules
   [ -n "$NUC_SUBMODULES_CHECK" ] && log_info "Check mode: will skip existing directories"
 
   while IFS= read -r name || [ -n "$name" ]; do
@@ -61,7 +139,6 @@ main() {
   done < "$SUBMODULES_FILE"
 
   clone_repo "next" "$GITHUB_URL/Nucleify-React-Next.git" "next"
-
   print_separator
   log_success "Done!"
 }
