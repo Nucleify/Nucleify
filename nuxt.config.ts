@@ -38,6 +38,7 @@ export default defineNuxtConfig({
     locales: [
       { code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
       { code: 'pl', language: 'pl-PL', file: 'pl.json', name: 'Polski' },
+      { code: 'vn', language: 'vi-VN', file: 'vn.json', name: 'Tiếng Việt' },
     ],
     defaultLocale: 'en',
     lazy: true,
@@ -84,9 +85,17 @@ export default defineNuxtConfig({
           crawlLinks: false,
         }
       : {
-          routes: process.env.PRERENDER_ROUTES
-            ? process.env.PRERENDER_ROUTES.split(',').map((r) => r.trim())
-            : [],
+          routes: (() => {
+            const locales =
+              process.env.PRERENDER_LOCALES?.split(',').map((l) => l.trim()) ||
+              []
+            const pages =
+              process.env.PRERENDER_ROUTES?.split(',').map((r) => r.trim()) ||
+              []
+            return locales.flatMap((locale) =>
+              pages.map((page) => `/${locale}${page}`)
+            )
+          })(),
           crawlLinks: process.env.PRERENDER_CRAWL_LINKS === 'true',
           ignore: process.env.PRERENDER_IGNORE
             ? process.env.PRERENDER_IGNORE.split(',').map((r) => r.trim())
