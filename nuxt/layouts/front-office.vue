@@ -12,4 +12,8 @@
 definePageMeta({
   layout: 'front-office',
 })
+
+useHead({
+  bodyAttrs: { class: 'nuc-system' },
+})
 </script>

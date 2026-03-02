@@ -9,32 +9,40 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     './modules/nuc_overrides',
+    './modules/nuc_pagebuilder',
     '@nuxt/icon',
-    '@nuxt/test-utils/module',
     '@nuxtjs/critters',
     '@nuxtjs/google-fonts',
     '@nuxtjs/i18n',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
-    '@nuxtjs/storybook',
-    '@nuxtjs/stylelint-module',
     '@pinia/nuxt',
     '@primevue/nuxt-module',
     '@radya/nuxt-dompurify',
     '@qirolab/nuxt-sanctum-authentication',
-    'nuxt-link-checker',
     'nuxt-schema-org',
     'nuxt-seo-utils',
     'nuxt-swiper',
     'nuxt-vitalizer',
     'pinia-plugin-persistedstate/nuxt',
+    ...(process.env.NODE_ENV === 'local'
+      ? [
+          '@nuxt/test-utils/module',
+          '@nuxtjs/storybook',
+          '@nuxtjs/stylelint-module',
+          'nuxt-link-checker',
+        ]
+      : []),
   ],
   i18n: {
     locales: [
-      { code: 'en', language: 'en-US', name: 'English' },
-      { code: 'pl', language: 'pl-PL', name: 'Polski' },
+      { code: 'en', language: 'en-US', file: 'en.json', name: 'English' },
+      { code: 'pl', language: 'pl-PL', file: 'pl.json', name: 'Polski' },
+      { code: 'vn', language: 'vi-VN', file: 'vn.json', name: 'Tiếng Việt' },
     ],
     defaultLocale: 'en',
+    lazy: true,
+    langDir: '../modules/nuc_languages/locales',
     strategy: 'no_prefix',
     detectBrowserLanguage: false,
     compilation: {
@@ -48,8 +56,8 @@ export default defineNuxtConfig({
   critters: {
     config: {
       preload: 'media',
-      inlineFonts: true,
-      preloadFonts: true,
+      inlineFonts: false,
+      preloadFonts: false,
       pruneSource: false,
       mergeStylesheets: false,
       reduceInlineStyles: true,
@@ -62,27 +70,39 @@ export default defineNuxtConfig({
   },
   ssr: process.env.SSR === 'true',
   nitro: {
+    externals: {
+      inline: [
+        'vue',
+        'vue-router',
+        '@unhead/vue',
+        '@primevue/core/base/style',
+        '@primevue/core/basecomponent/style',
+      ],
+    },
     prerender: process.env.CI
       ? {
           routes: [],
           crawlLinks: false,
         }
       : {
-          routes: process.env.PRERENDER_ROUTES
-            ? process.env.PRERENDER_ROUTES.split(',').map((r) => r.trim())
-            : [],
+          routes: (() => {
+            const locales =
+              process.env.PRERENDER_LOCALES?.split(',').map((l) => l.trim()) ||
+              []
+            const pages =
+              process.env.PRERENDER_ROUTES?.split(',').map((r) => r.trim()) ||
+              []
+            return locales.flatMap((locale) =>
+              pages.map((page) => `/${locale}${page}`)
+            )
+          })(),
           crawlLinks: process.env.PRERENDER_CRAWL_LINKS === 'true',
           ignore: process.env.PRERENDER_IGNORE
             ? process.env.PRERENDER_IGNORE.split(',').map((r) => r.trim())
             : [],
         },
     output: {
-      publicDir: './public/build',
-    },
-    minify: true,
-    compressPublicAssets: {
-      brotli: true,
-      gzip: true,
+      publicDir: './.output/public',
     },
   },
   app: {
@@ -102,14 +122,13 @@ export default defineNuxtConfig({
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         { rel: 'apple-touch-icon', href: '/favicon.ico' },
-        { rel: 'dns-prefetch', href: 'https://fonts.googleapis.com' },
-        { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         {
           rel: 'preconnect',
           href: 'https://fonts.gstatic.com',
           crossorigin: '',
         },
+        { rel: 'dns-prefetch', href: 'https://www.googletagmanager.com' },
       ],
     },
   },
@@ -180,7 +199,6 @@ export default defineNuxtConfig({
     asyncContext: true,
   },
   primevue: {
-    autoImport: true,
     options: {
       theme: {
         preset: Lara,
@@ -197,9 +215,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      appUrl: process.env.APP_URL,
-      apiUrl: process.env.API_URL,
-      appEnv: process.env.APP_ENV,
+      appUrl: process.env.APP_URL || 'https://nucleify.netlify.app',
+      apiUrl: process.env.API_URL || 'https://nucleify.io/api',
+      appEnv: process.env.APP_ENV || 'production',
     },
   },
   vitalizer: {
@@ -212,8 +230,8 @@ export default defineNuxtConfig({
     },
     display: 'swap',
     subsets: ['latin'],
-    preload: false,
-    prefetch: true,
+    preload: true,
+    prefetch: false,
     preconnect: true,
     download: true,
     base64: false,
@@ -231,6 +249,9 @@ export default defineNuxtConfig({
       scan: true,
       sizeLimitKb: 256,
     },
+  },
+  routeRules: {
+    '/**': { swr: true },
   },
   // biome-ignore lint/suspicious/noExplicitAny: Nuxt config complexity @typescript-eslint/no-explicit-any
 } as any)
