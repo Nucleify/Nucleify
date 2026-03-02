@@ -2,6 +2,7 @@
   <Select
     v-bind="transformProps(props)"
     :class="$style['ad-select']"
+    appendTo="body"
     :pt="{
       label: $style['ad-select-label'],
       dropdown: $style['ad-select-dropdown'],

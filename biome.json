@@ -12,7 +12,8 @@
       "!.nuxt/**",
       "!**/.next/**",
       "!.output/**",
-      "!**/build/**"
+      "!**/build/**",
+      "!.netlify/**"
     ]
   },
   "formatter": {
@@ -168,11 +169,14 @@
                 "primevue",
                 "vue-router",
                 "pinia",
-                "react",
-                "@mui/material/*",
                 "gsap",
                 "vitest",
-                "vue-i18n"
+                "vue-i18n",
+                "next/*",
+                "react",
+                "primereact",
+                "primereact/*",
+                "chart.js"
               ],
               ":BLANK_LINE:",
               "atomic",
