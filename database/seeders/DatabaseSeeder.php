@@ -12,6 +12,10 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        app(SeederDiscoveryService::class)->discoverAndCallSeeders($this);
+        $this->call(UserSeeder::class);
+
+        app(SeederDiscoveryService::class)->discoverAndCallSeeders($this, [
+            UserSeeder::class,
+        ]);
     }
 }
