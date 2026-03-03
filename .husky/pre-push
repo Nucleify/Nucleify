@@ -1,17 +1,9 @@
-SUPER_ROOT="$(git rev-parse --show-superproject-working-tree 2>/dev/null || true)"
+#!/usr/bin/env sh
+set -e
 
-if [ -n "$SUPER_ROOT" ]; then
-  cd "$SUPER_ROOT" || exit 1
-else
-  cd "$(git rev-parse --show-toplevel)" || exit 1
-fi
+HOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+. "$HOOK_DIR/../.bash/hook-root.sh"
+. "$HOOK_DIR/../.bash/hook-checks.sh"
 
-php .pest/guard_check.php
-
-echo 'Pint checking...'
-./vendor/bin/pint
-
-npm run check
-npm run typeslint
-npm run slint
-npm run tests
+go_to_hook_root || exit 1
+run_hook_checks
