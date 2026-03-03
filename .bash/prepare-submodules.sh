@@ -2,9 +2,11 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 . "$SCRIPT_DIR/utils/print_separator.sh"
 . "$SCRIPT_DIR/utils/colors.sh"
+. "$SCRIPT_DIR/configure-submodule-hooks.sh"
 
 DEFAULT_BRANCH="main"
 GITHUB_URL="https://github.com/Nucleify"
@@ -139,7 +141,7 @@ main() {
   done < "$SUBMODULES_FILE"
 
   clone_repo "next" "$GITHUB_URL/Nucleify-React-Next.git" "next"
-  print_separator
+  configure_submodule_hooks "$ROOT_DIR" "$SUBMODULES_FILE"
   log_success "Done!"
 }
 

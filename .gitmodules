@@ -121,3 +121,6 @@
 [submodule "modules/nuc_pagebuilder"]
 	path = modules/nuc_pagebuilder
 	url = https://github.com/Nucleify/nuc_pagebuilder.git
+[submodule "modules/nuc_users"]
+	path = modules/nuc_users
+	url = https://github.com/Nucleify/nuc_users.git

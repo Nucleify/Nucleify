@@ -1,9 +1,9 @@
-php .pest/guard_check.php
+#!/usr/bin/env sh
+set -e
 
-echo 'Pint checking...'
-./vendor/bin/pint
+HOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
+. "$HOOK_DIR/../.bash/hook-root.sh"
+. "$HOOK_DIR/../.bash/hook-checks.sh"
 
-npm run check
-npm run typeslint
-npm run slint
-npm run tests
+go_to_hook_root || exit 1
+run_hook_checks
