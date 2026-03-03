@@ -14,4 +14,5 @@ return [
     Modules\nuc_pages\nuc_pages::class,
     Modules\nuc_share\nuc_share::class,
     Modules\nuc_terminal\nuc_terminal::class,
+    Modules\nuc_users\nuc_users::class,
 ];
