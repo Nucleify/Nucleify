@@ -1,3 +1,11 @@
+SUPER_ROOT="$(git rev-parse --show-superproject-working-tree 2>/dev/null || true)"
+
+if [ -n "$SUPER_ROOT" ]; then
+  cd "$SUPER_ROOT" || exit 1
+else
+  cd "$(git rev-parse --show-toplevel)" || exit 1
+fi
+
 php .pest/guard_check.php
 
 echo 'Pint checking...'
