@@ -36,6 +36,7 @@ import {
   registerNucTerminal,
   registerNucTime,
   registerNucTooltip,
+  registerNucUsers,
 } from '../../modules'
 
 export default defineNuxtPlugin({
@@ -74,5 +75,6 @@ export default defineNuxtPlugin({
     registerNucTerminal(nuxtApp.vueApp)
     registerNucTime(nuxtApp.vueApp)
     registerNucTooltip(nuxtApp.vueApp)
+    registerNucUsers(nuxtApp.vueApp)
   },
 })
