@@ -1,6 +1,7 @@
 import { beforeEach, expect, it, vi } from 'vitest'
 
 import * as nucleify from 'nucleify'
+
 import * as modules from '../../modules'
 import module from '../../nuxt/plugins/modules'
 

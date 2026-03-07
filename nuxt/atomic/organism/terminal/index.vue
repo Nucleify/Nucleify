@@ -10,9 +10,10 @@
 </template>
 
 <script setup lang="ts">
+import { handleCommands, transformProps } from 'nucleify'
+
 import type { TerminalInterface } from '.'
 
-import { handleCommands, transformProps } from 'nucleify'
 import TerminalService from 'primevue/terminalservice'
 
 const props = defineProps<TerminalInterface>()

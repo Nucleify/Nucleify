@@ -11,9 +11,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { LogoInterface } from '.'
-
 import { defaultColors, getColorSuffix, useOfficeType } from 'nucleify'
+
+import type { LogoInterface } from '.'
 
 const props = defineProps<LogoInterface>()
 

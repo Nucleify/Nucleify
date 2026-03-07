@@ -3,6 +3,7 @@ import type { NuxtApp } from 'nuxt/app'
 import { defineNuxtPlugin } from 'nuxt/app'
 
 import { registerNucGlobals } from 'nucleify'
+
 import {
   registerNucActivity,
   registerNucAdmin,
