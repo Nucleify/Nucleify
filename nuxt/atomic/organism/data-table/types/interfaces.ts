@@ -1,6 +1,6 @@
 import type { DataTableProps } from 'primevue'
 
-import type { LoadingType, OpenDialogFunctionType } from 'atomic'
+import type { LoadingType, OpenDialogFunctionType } from 'nucleify'
 
 export interface DataTableInterface extends DataTableProps {
   adType: ObjectNameType

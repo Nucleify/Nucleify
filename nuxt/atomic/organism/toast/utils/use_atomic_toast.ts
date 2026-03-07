@@ -4,7 +4,7 @@ import type {
   MessageOrMessagesType,
   ToastSeverityType,
   UseToastInterface,
-} from 'atomic'
+} from 'nucleify'
 
 export function useAtomicToast(): UseToastInterface {
   const nuxtApp = useNuxtApp()

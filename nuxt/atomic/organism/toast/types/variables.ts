@@ -1,4 +1,4 @@
-import type { MessageOrMessagesType } from 'atomic'
+import type { MessageOrMessagesType } from 'nucleify'
 
 export type ToastSeverityType =
   | 'success'

@@ -1,4 +1,4 @@
-import type { HeadingType } from 'atomic'
+import type { HeadingType } from 'nucleify'
 
 export function chooseHeading(tag: number): string {
   const headings: HeadingType[] = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
