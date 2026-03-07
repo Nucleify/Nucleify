@@ -57,4 +57,5 @@ logs
 .env.*
 !.env.*example
 
-.netlify
+# AI workflow
+.ai/specs/*
