@@ -13,8 +13,8 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "atomic": ["nuxt/atomic"],
-      "atomic/*": ["nuxt/atomic/*"],
+      "nucleify": ["nuxt/atomic"],
+      "nucleify/*": ["nuxt/atomic/*"],
       "modules": ["./modules"],
       "modules/*": ["./modules/*"],
       "~/*": ["./*"]

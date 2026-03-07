@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 
-import type { UseNavbarInterface } from 'atomic'
+import type { UseNavbarInterface } from 'nucleify'
 
 export function useNavbar(): UseNavbarInterface {
   const navbarExpanded: Ref<boolean> = ref(false)

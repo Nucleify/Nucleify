@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { handleCommands, transformProps } from 'atomic'
+import { handleCommands, transformProps } from 'nucleify'
 
 import type { TerminalInterface } from '.'
 
