@@ -16,7 +16,7 @@ import {
   syncColorsWithDatabase,
   useDarkMode,
   useOfficeType,
-} from 'atomic'
+} from 'nucleify'
 
 const route = useRoute()
 const { isDark } = useDarkMode()

@@ -1,7 +1,6 @@
 import { beforeEach, expect, it, vi } from 'vitest'
 
-import * as atomic from 'atomic'
-
+import * as nucleify from 'nucleify'
 import * as modules from '../../modules'
 import module from '../../nuxt/plugins/modules'
 
@@ -26,7 +25,7 @@ vi.mock('../../modules', async (importOriginal) => {
   )
 })
 
-vi.mock('atomic', async (importOriginal) => {
+vi.mock('nucleify', async (importOriginal) => {
   return mockRegisterFunctions(
     (await importOriginal()) as Record<string, unknown>
   )
@@ -61,7 +60,7 @@ it('registers globals from atomic', async (): Promise<void> => {
   await module.setup(nuxtApp)
 
   expect(
-    atomic.registerNucGlobals,
+    nucleify.registerNucGlobals,
     'registerNucGlobals should have been called'
   ).toHaveBeenCalledWith(vueApp)
 })

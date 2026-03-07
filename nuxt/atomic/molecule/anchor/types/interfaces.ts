@@ -1,6 +1,6 @@
 import type { StyleValue } from 'vue'
 
-import type { AnchorRelType, AnchorTargetType, IconInterface } from 'atomic'
+import type { AnchorRelType, AnchorTargetType, IconInterface } from 'nucleify'
 
 export interface AnchorInterface extends IconInterface {
   href?: string
