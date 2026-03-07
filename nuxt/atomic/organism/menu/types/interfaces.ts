@@ -1,6 +1,6 @@
 import { MenuProps } from 'primevue'
 
-import type { OpenMenuFunctionType } from 'atomic'
+import type { OpenMenuFunctionType } from 'nucleify'
 
 export interface MenuInterface extends MenuProps {
   ref: string

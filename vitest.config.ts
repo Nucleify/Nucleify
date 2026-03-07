@@ -4,7 +4,7 @@ import { resolve } from 'path'
 export default defineVitestConfig({
   resolve: {
     alias: {
-      atomic: resolve(__dirname, 'nuxt/atomic'),
+      nucleify: resolve(__dirname, 'nuxt/atomic'),
     },
   },
   test: {

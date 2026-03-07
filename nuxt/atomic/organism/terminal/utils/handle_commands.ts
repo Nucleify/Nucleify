@@ -1,4 +1,4 @@
-import { sendArtisanCommand } from 'atomic'
+import { sendArtisanCommand } from 'nucleify'
 
 import TerminalService from 'primevue/terminalservice'
 

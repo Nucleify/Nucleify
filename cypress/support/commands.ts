@@ -11,7 +11,7 @@
 //
 //
 
-import type { UserRoleType } from 'atomic'
+import type { UserRoleType } from 'nucleify'
 
 Cypress.Commands.add('login', (role: UserRoleType): void => {
   const fixtureName: string =

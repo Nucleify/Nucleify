@@ -46,7 +46,7 @@ import {
   hasNumber,
   hasUppercase,
   transformProps,
-} from 'atomic'
+} from 'nucleify'
 
 import type { PasswordInterface } from '.'
 
