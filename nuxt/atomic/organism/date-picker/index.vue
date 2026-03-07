@@ -16,9 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import type { DatePickerInterface, DatePickerModelValueType } from '.'
-
 import { formatDate, transformProps } from 'nucleify'
+
+import type { DatePickerInterface, DatePickerModelValueType } from '.'
 
 const props = defineProps<DatePickerInterface>()
 

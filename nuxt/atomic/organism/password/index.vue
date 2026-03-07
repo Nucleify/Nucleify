@@ -40,8 +40,6 @@
 </template>
 
 <script setup lang="ts">
-import type { PasswordInterface } from '.'
-
 import {
   hasLowercase,
   hasMinLength,
@@ -49,6 +47,8 @@ import {
   hasUppercase,
   transformProps,
 } from 'nucleify'
+
+import type { PasswordInterface } from '.'
 
 const props = defineProps<PasswordInterface>()
 const emit = defineEmits(['update:modelValue'])
