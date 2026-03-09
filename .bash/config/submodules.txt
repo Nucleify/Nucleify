@@ -22,6 +22,7 @@ loading
 media
 modules
 navigation
+openapi
 overrides
 pagebuilder
 pages
