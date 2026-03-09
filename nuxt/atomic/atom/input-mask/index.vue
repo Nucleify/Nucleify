@@ -2,7 +2,9 @@
   <InputMask 
     v-bind="transformProps(props)" 
     :class="$style['ad-inputmask']" 
-  />
+  >
+    <slot />
+  </InputMask>
 </template>
 
 <script setup lang="ts">

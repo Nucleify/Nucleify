@@ -3,7 +3,9 @@
     v-bind="transformProps(props)"
     :class="[$style['ad-textarea']]"
     @update:model-value="updateValue"
-  />
+  >
+    <slot />
+  </Textarea>
 </template>
 
 <script setup lang="ts">

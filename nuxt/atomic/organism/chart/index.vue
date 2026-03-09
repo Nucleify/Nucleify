@@ -3,7 +3,9 @@
     v-if="props.data"
     v-bind="transformProps(props, excludedProps)"
     :class="props.chartClass"
-  />
+  >
+    <slot />
+  </Chart>
 </template>
 
 <script setup lang="ts">
