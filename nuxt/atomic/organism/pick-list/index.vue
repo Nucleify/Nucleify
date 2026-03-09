@@ -1,5 +1,7 @@
 <template>
-  <PickList v-bind="transformProps(props)" />
+  <PickList v-bind="transformProps(props)">
+    <slot />
+  </PickList>
 </template>
 
 <script setup lang="ts">
