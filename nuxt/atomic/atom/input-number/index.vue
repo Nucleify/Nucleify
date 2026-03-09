@@ -10,7 +10,9 @@
         } 
       },
     }"
-  />
+  >
+    <slot />
+  </InputNumber>
 </template>
 
 <script setup lang="ts">

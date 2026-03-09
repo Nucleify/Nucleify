@@ -2,7 +2,9 @@
   <ProgressBar
     v-bind="transformProps(props, excludedProps)"
     :style="{ width: props.width, height: props.height }"
-  />
+  >
+    <slot />
+  </ProgressBar>
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,7 @@
 <template>
-  <MegaMenu v-bind="transformProps(props)" />
+  <MegaMenu v-bind="transformProps(props)">
+    <slot />
+  </MegaMenu>
 </template>
 
 <script setup lang="ts">
