@@ -124,3 +124,6 @@
 [submodule "modules/nuc_users"]
 	path = modules/nuc_users
 	url = https://github.com/Nucleify/nuc_users.git
+[submodule "modules/nuc_openapi"]
+	path = modules/nuc_openapi
+	url = https://github.com/Nucleify/nuc_openapi.git
