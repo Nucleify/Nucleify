@@ -12,7 +12,9 @@
       },
     }"
     @update:model-value="onUpdateModelValue"
-  />
+  >
+    <slot />
+  </DatePicker>
 </template>
 
 <script setup lang="ts">

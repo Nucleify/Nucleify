@@ -6,7 +6,9 @@
         root: $style['ad-togglebutton'],
       }
     }"
-  />
+  >
+    <slot />
+  </SelectButton>
 </template>
 
 <script setup lang="ts">

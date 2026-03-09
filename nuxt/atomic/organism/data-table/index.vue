@@ -41,16 +41,39 @@
     }"
   >
     <slot />
+    <Column
+      v-if="!hasSlotContent"
+      v-for="col in autoColumns"
+      :key="col"
+      :field="col"
+      :header="capitalize(col)"
+      sortable
+    />
   </DataTable>
 </template>
 
 <script setup lang="ts">
+import { Column } from 'primevue'
+import { computed, useSlots } from 'vue'
+
 import type { DataTableInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<DataTableInterface>()
 const emits = defineEmits<{ (e: 'update:filters', value: unknown): void }>()
+const slots = useSlots()
+
+const hasSlotContent = computed(() => !!slots.default)
+
+const autoColumns = computed(() => {
+  if (!Array.isArray(props.value) || props.value.length === 0) return []
+  return Object.keys(props.value[0] as Record<string, unknown>)
+})
+
+function capitalize(str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
 
 const excludedProps = [
   'loading',

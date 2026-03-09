@@ -1,5 +1,7 @@
 <template>
-  <FileUpload v-bind="transformProps(props)" />
+  <FileUpload v-bind="transformProps(props)">
+    <slot />
+  </FileUpload>
 </template>
 
 <script setup lang="ts">

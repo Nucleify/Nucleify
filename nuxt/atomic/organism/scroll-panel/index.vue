@@ -1,5 +1,7 @@
 <template>
-  <ScrollPanel v-bind="transformProps(props)" />
+  <ScrollPanel v-bind="transformProps(props)">
+    <slot />
+  </ScrollPanel>
 </template>
 
 <script setup lang="ts">

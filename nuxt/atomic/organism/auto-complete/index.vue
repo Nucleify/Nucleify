@@ -1,5 +1,7 @@
 <template>
-  <AutoComplete v-bind="transformProps(props)" />
+  <AutoComplete v-bind="transformProps(props)">
+    <slot />
+  </AutoComplete>
 </template>
 
 <script setup lang="ts">

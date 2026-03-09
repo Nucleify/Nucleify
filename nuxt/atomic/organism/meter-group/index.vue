@@ -1,5 +1,7 @@
 <template>
-  <MeterGroup v-bind="transformProps(props)" />
+  <MeterGroup v-bind="transformProps(props)">
+    <slot />
+  </MeterGroup>
 </template>
 
 <script setup lang="ts">
