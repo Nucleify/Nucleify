@@ -16,7 +16,7 @@
   >
     <ad-image v-if="props.src" :src="props.src" :alt="props.alt" />
     <ad-icon v-if="props.icon" :icon="props.icon" />
-    <template v-if="props.label">{{ props.label }}</template>
+    <template v-if="props.label">{{ $t(props.label, props.label) }}</template>
     <slot />
   </Button>
 </template>

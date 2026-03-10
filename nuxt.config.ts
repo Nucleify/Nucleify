@@ -180,7 +180,7 @@ export default defineNuxtConfig({
     },
   },
   alias: {
-    atomic: '~/atomic',
+    nucleify: '~/atomic',
   },
   components: [
     { path: '~/atomic/atom', prefix: 'ad', extensions: ['vue'] },

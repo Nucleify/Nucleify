@@ -57,4 +57,8 @@ logs
 .env.*
 !.env.*example
 
+# AI workflow
+.ai/specs/*
+
+# Local Netlify folder
 .netlify

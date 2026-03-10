@@ -1,7 +1,7 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 
-import type { OpenDialogFunctionType, SelectItemInterface } from 'atomic'
+import type { OpenDialogFunctionType, SelectItemInterface } from 'nucleify'
 
 const createSelectItem = (
   label: string,

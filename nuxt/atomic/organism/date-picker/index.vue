@@ -12,11 +12,13 @@
       },
     }"
     @update:model-value="onUpdateModelValue"
-  />
+  >
+    <slot />
+  </DatePicker>
 </template>
 
 <script setup lang="ts">
-import { formatDate, transformProps } from 'atomic'
+import { formatDate, transformProps } from 'nucleify'
 
 import type { DatePickerInterface, DatePickerModelValueType } from '.'
 

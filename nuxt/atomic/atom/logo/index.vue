@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { defaultColors, getColorSuffix, useOfficeType } from 'atomic'
+import { defaultColors, getColorSuffix, useOfficeType } from 'nucleify'
 
 import type { LogoInterface } from '.'
 

@@ -21,6 +21,7 @@
         <ad-paragraph :text="panel.content" />
       </TabPanel>
     </TabPanels>
+    <slot />
   </Tabs>
 </template>
 

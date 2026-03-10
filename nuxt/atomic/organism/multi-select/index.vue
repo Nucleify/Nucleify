@@ -1,5 +1,7 @@
 <template>
-  <MultiSelect v-bind="transformProps(props)" />
+  <MultiSelect v-bind="transformProps(props)">
+    <slot />
+  </MultiSelect>
 </template>
 
 <script setup lang="ts">

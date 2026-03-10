@@ -37,6 +37,7 @@
       </ul>
     </template>
   </Password>
+  <slot />
 </template>
 
 <script setup lang="ts">
@@ -46,7 +47,7 @@ import {
   hasNumber,
   hasUppercase,
   transformProps,
-} from 'atomic'
+} from 'nucleify'
 
 import type { PasswordInterface } from '.'
 

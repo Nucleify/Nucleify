@@ -1,5 +1,7 @@
 <template>
-  <Skeleton v-if="props.loading" v-bind="transformProps(props, excludedProps)" />
+  <Skeleton v-if="props.loading" v-bind="transformProps(props, excludedProps)">
+    <slot />
+  </Skeleton>
 </template>
 
 <script setup lang="ts">

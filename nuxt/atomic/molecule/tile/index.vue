@@ -23,6 +23,7 @@
       <ad-paragraph :class="$style['count']" :text="props.countSecondary + ' new'" />
       <ad-paragraph :class="$style['text']" :text="props.textSecondary" />
     </div>
+    <slot />
   </nuxt-link>
 </template>
 

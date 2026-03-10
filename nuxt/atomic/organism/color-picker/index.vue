@@ -2,7 +2,9 @@
   <ColorPicker
     v-bind="transformProps(props)"
     @update:model-value="onUpdateModelValue"
-  />
+  >
+    <slot />
+  </ColorPicker>
 </template>
 
 <script setup lang="ts">

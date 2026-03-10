@@ -1,6 +1,7 @@
 <template>
   <label :for="props.forInput">
-    {{ props.label }}
+    {{ $t(String(props.label ?? ''), String(props.label ?? '')) }}
+    <slot />
   </label>
 </template>
 
