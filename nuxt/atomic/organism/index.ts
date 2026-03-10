@@ -1,5 +1,6 @@
 export * from './accordion'
 export * from './auto-complete'
+export * from './breadcrumb'
 export * from './card'
 export * from './chart'
 export * from './color-picker'
