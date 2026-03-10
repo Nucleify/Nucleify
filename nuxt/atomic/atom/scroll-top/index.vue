@@ -1,5 +1,7 @@
 <template>
-  <ScrollTop v-bind="transformProps(props)" />
+  <ScrollTop v-bind="transformProps(props)">
+    <slot />
+  </ScrollTop>
 </template>
 
 <script setup lang="ts">

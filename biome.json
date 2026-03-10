@@ -179,7 +179,7 @@
                 "chart.js"
               ],
               ":BLANK_LINE:",
-              "atomic",
+              "nucleify",
               ":BLANK_LINE:",
               "components",
               "constants",

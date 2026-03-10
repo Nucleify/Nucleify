@@ -9,7 +9,10 @@
         'ad-type': props.adType,
       }
     }
-  }" />
+  }"
+  >
+    <slot />
+  </InputOtp>
 </template>
 
 <script setup lang="ts">

@@ -27,6 +27,7 @@
         {{ panel.answer }}
       </AccordionContent>
     </AccordionPanel>
+    <slot />
   </Accordion>
 </template>
 

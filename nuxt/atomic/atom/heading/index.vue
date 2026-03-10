@@ -1,6 +1,6 @@
 <template>
   <component :is="chooseHeading(props.tag)">
-    {{ props.text }}
+    {{ $t(String(props.text ?? ''), String(props.text ?? '')) }}
     <slot />
   </component>
 </template>

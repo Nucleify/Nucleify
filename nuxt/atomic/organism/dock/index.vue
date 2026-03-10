@@ -13,7 +13,12 @@
     }"
   >
     <template #item="slotProps">
-      <slot name="item" v-bind="slotProps" />
+      <slot name="item" v-bind="slotProps">
+        <a class="p-dock-item-link" :title="slotProps.item?.label">
+          <Icon v-if="slotProps.item?.icon" :name="slotProps.item.icon" size="24" />
+          <span v-else>{{ slotProps.item?.label }}</span>
+        </a>
+      </slot>
     </template>
   </Dock>
 </template>

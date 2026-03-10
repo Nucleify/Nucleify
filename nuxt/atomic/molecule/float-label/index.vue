@@ -1,6 +1,6 @@
 <template>
   <FloatLabel
-    :bind="transformProps(props)"
+    v-bind="transformProps(props)"
   >
     <slot>
       <!-- Example use

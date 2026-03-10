@@ -2,7 +2,9 @@
   <ProgressSpinner
     v-bind="transformProps(props, excludedProps)"
     :style="{ width: props.width, height: props.height }"
-  />
+  >
+    <slot />
+  </ProgressSpinner>
 </template>
 
 <script setup lang="ts">

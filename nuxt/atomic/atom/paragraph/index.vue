@@ -1,6 +1,6 @@
 <template>
   <p>
-    {{ props.text }}
+    {{ $t(String(props.text ?? ''), String(props.text ?? '')) }}
     <slot />
   </p>
 </template>

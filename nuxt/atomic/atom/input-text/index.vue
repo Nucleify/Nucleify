@@ -2,7 +2,9 @@
   <InputText
     v-bind="transformProps(props)"
     :class="[$style['ad-inputtext'], { 'p-invalid': props.invalid }]"
-  />
+  >
+    <slot />
+  </InputText>
 </template>
 
 <script setup lang="ts">

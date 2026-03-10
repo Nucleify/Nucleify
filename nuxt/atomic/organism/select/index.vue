@@ -15,7 +15,9 @@
       option: $style['ad-select-option'],
     }"
     @update:model-value="onUpdateModelValue"
-  />
+  >
+    <slot />
+  </Select>
 </template>
 
 <script setup lang="ts">

@@ -1,5 +1,7 @@
 <template>
-  <Divider v-bind="transformProps(props)" />
+  <Divider v-bind="transformProps(props)">
+    <slot />
+  </Divider>
 </template>
 
 <script setup lang="ts">
