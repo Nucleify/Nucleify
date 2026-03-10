@@ -3,6 +3,7 @@ admin
 animations
 api
 auth
+breadcrumb
 charts
 colors
 dark_mode
