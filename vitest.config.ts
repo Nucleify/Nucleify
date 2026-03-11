@@ -1,12 +1,6 @@
 import { defineVitestConfig } from '@nuxt/test-utils/config'
-import { resolve } from 'path'
 
 export default defineVitestConfig({
-  resolve: {
-    alias: {
-      nucleify: resolve(__dirname, 'nuxt/atomic'),
-    },
-  },
   test: {
     environment: 'nuxt',
     setupFiles: ['./vitests/setup.ts'],

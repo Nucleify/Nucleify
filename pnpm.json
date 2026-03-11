@@ -1,0 +1,8 @@
+{
+  "$schema": "https://pnpm.io/schema.json",
+  "overrides": {
+    "chokidar": "3.6.0",
+    "esbuild": "0.18.20"
+  },
+  "packageManager": "pnpm@9.15.0"
+}
