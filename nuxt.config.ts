@@ -6,7 +6,7 @@ import { schemaOrgConfig } from './nuxt/config/schema-org'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
+  devtools: { enabled: process.env.DEV_TOOLS === 'true' },
   modules: [
     './modules/nuc_overrides',
     './modules/nuc_pagebuilder',
@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     'nuxt-swiper',
     'nuxt-vitalizer',
     'pinia-plugin-persistedstate/nuxt',
-    ...(process.env.NODE_ENV === 'local'
+    ...(process.env.APP_ENV === 'local'
       ? [
           '@nuxt/test-utils/module',
           '@nuxtjs/storybook',
@@ -233,7 +233,7 @@ export default defineNuxtConfig({
     preload: true,
     prefetch: false,
     preconnect: true,
-    download: true,
+    download: false,
     base64: false,
   },
   storybook: {
