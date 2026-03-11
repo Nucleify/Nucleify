@@ -54,7 +54,7 @@
     "pinia": "3.0.3",
     "pinia-plugin-persistedstate": "4.3.0",
     "primevue": "4.3.5",
-    "unstorage": "1.17.2",
+    "unstorage": "1.17.4",
     "vue-router": "4.5.1"
   },
   "devDependencies": {
