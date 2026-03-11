@@ -32,13 +32,6 @@
 </template>
 
 <script setup lang="ts">
-import {
-  Accordion,
-  AccordionContent,
-  AccordionHeader,
-  AccordionPanel,
-} from 'primevue' // Import for Storybook
-
 import type { AccordionInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'

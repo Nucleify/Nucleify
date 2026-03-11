@@ -18,8 +18,6 @@
 </template>
 
 <script setup lang="ts">
-import { Card } from 'primevue' // Import for Storybook
-
 import type { CardInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'

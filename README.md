@@ -12,7 +12,6 @@ Designed with [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/), [M
 ⭐ **Project setup with a single command** <br>
 ⭐ **Unique Laravel/Nuxt modules & overrides functionality** <br>
 ⭐ Atomic Design components + CSS modules <br>
-⭐ [Storybook](https://storybook.js.org/) tests for most Atomic components <br>
 ⭐ Futuristic UI made with [PrimeVue](https://primevue.org/) + [Chart.js](https://www.chartjs.org/) + [GSAP](https://gsap.com/) + [SCSS](https://sass-lang.com/) <br>
 
 <br>
@@ -164,8 +163,6 @@ npm run open  # For now I've not configured Cypress with Docker
 sail npm run tests
 ```
 
-<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail up -d```
-
 <br></details>
 
 <details><summary> npm </summary><br>
@@ -295,8 +292,6 @@ npm run open
 npm run tests
 ```
 
-<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```npm run dev```
-
 <br></details>
 
 <details><summary> npm </summary><br>
@@ -337,7 +332,6 @@ php artisan sitemap:generate
     <a href="https://www.mysql.com/" target="_blank"><img src="/public/img/technologies/mysql.svg" height="35" width="35" alt="MySQL" /></a>
     <a href="https://pestphp.com/" target="_blank"><img src="/public/img/technologies/pest.svg" height="34" width="34" alt="PestPHP" /></a>
     <a href="https://vitest.dev/" target="_blank"><img src="/public/img/technologies/vitest.svg" height="35" width="35" alt="Vitest" /></a>
-    <a href="https://storybook.js.org/" target="_blank"><img src="/public/img/technologies/storybook.svg" height="35" width="35" alt="Storybook" /></a>
     <a href="https://www.cypress.io/" target="_blank"><img src="/public/img/technologies/cypress.svg" height="35" width="35" alt="Cypress" /></a>
     <a href="https://biomejs.dev/" target="_blank"><img src="/public/img/technologies/biome.svg" height="35" width="35" alt="Biome" /></a>
     <a href="https://stylelint.io/" target="_blank"><img src="/public/img/technologies/stylelint.svg" height="35" width="35" alt="Stylelint" /></a>
