@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { Skeleton } from 'primevue' // Import for Storybook
-
 import type { SkeletonInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'

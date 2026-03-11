@@ -28,7 +28,6 @@ export default defineNuxtConfig({
     ...(process.env.APP_ENV === 'local'
       ? [
           '@nuxt/test-utils/module',
-          '@nuxtjs/storybook',
           '@nuxtjs/stylelint-module',
           'nuxt-link-checker',
         ]
@@ -235,10 +234,6 @@ export default defineNuxtConfig({
     preconnect: true,
     download: false,
     base64: false,
-  },
-  storybook: {
-    url: 'http://localhost',
-    port: 6006,
   },
   icon: {
     mode: 'svg',

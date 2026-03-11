@@ -6,8 +6,6 @@
 </template>
 
 <script setup lang="ts">
-import { Image } from 'primevue' // Import for Storybook
-
 import type { ImageInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
