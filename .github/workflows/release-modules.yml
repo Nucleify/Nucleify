@@ -24,7 +24,7 @@ jobs:
           GH_TOKEN: ${{ secrets.MODULES_RELEASE_TOKEN }}
         run: |
           MODULES_JSON="[]"
-          SUBMODULES_FILE=".bash/config/submodules.txt"
+          SUBMODULES_FILE=".config/bash/config/submodules.txt"
           
           while IFS= read -r name || [ -n "$name" ]; do
             [ -z "$name" ] && continue
