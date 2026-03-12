@@ -8,8 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { InputMask } from 'primevue' // Import for Storybook
-
 import type { InputMaskInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'

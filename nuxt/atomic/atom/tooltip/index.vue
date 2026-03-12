@@ -7,8 +7,6 @@
 </template>
 
 <script setup lang="ts">
-import { Tooltip } from 'primevue' // Import for Storybook
-
 import type { TooltipInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'

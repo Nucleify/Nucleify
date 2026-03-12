@@ -16,8 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import { InputOtp } from 'primevue' // Import for Storybook
-
 import type { InputOtpInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'

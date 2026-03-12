@@ -15,7 +15,6 @@
           :class="$style['icon']" 
           :icon="props.icon" 
           :ad-type="props.adType" 
-          :storybook="props.storybook" 
         />
       </div>
     </div>
@@ -29,8 +28,6 @@
 
 <script setup lang="ts">
 import type { TileInterface } from '.'
-
-import { AdIcon, AdParagraph } from '../../atom' // Import for Storybook
 
 const props = defineProps<TileInterface>()
 </script>
