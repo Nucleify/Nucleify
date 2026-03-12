@@ -6,5 +6,5 @@ RUN npm install
 
 COPY next/ .
 
-EXPOSE 3000 6006
+EXPOSE 3000
 CMD ["npm", "run", "dev"]

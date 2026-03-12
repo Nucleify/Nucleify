@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { AutoComplete } from 'primevue' // Import for Storybook
-
 import type { AutoCompleteInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'

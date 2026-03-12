@@ -193,7 +193,6 @@ nuxt/
 <component>/
 ├── index.vue               ← Main component
 ├── index.ts                ← Exports & composition
-├── index.stories.ts        ← Storybook stories (optional)
 ├── _index.scss             ← Component styles (optional)
 └── types/
     ├── index.ts            ← Type exports

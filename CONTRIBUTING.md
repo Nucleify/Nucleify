@@ -104,8 +104,6 @@ sail pest --coverage
 npm run tests
 ```
 
-<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail start```
-
 ### Debugging
 
 Sometimes you want to debug something when running tests. Like `console.log`, in JavaScript, in PHP you can use `dd()` or `dump()` to print something during debugging something.

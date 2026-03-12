@@ -22,8 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from 'primevue' // Import for Storybook
-
 import type { ButtonInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
