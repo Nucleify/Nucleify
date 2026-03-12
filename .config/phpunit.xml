@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
+         xsi:noNamespaceSchemaLocation="../vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="../vendor/autoload.php"
          colors="true"
 >
     <testsuites>
         <testsuite name="Modules">
-            <directory>modules</directory>
+            <directory>../modules</directory>
         </testsuite>
         <testsuite name="Global">
-            <directory>tests/Global</directory>
+            <directory>../tests/Global</directory>
         </testsuite>
         <testsuite name="Database">
-            <directory>tests/Database</directory>
+            <directory>../tests/Database</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory>tests/Feature</directory>
+            <directory>../tests/Feature</directory>
         </testsuite>
     </testsuites>
     <source>
         <include>
-            <directory>app</directory>
-            <directory>modules</directory>
+            <directory>../app</directory>
+            <directory>../modules</directory>
         </include>
         <exclude>
-            <directory>modules/*/tests</directory>
+            <directory>../modules/*/tests</directory>
         </exclude>
     </source>
     <php>

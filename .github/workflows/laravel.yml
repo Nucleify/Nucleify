@@ -21,7 +21,7 @@ jobs:
           php-version: '8.3.7'
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+        run: php -r "file_exists('.env') || copy('.config/.env.test.example', '.env');"
 
       - name: Verify .env File Exists
         run: |
@@ -53,7 +53,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --no-interaction
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+        run: php -r "file_exists('.env') || copy('.config/.env.test.example', '.env');"
 
       - name: Verify .env File Exists
         run: |
@@ -125,7 +125,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --no-interaction
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+        run: php -r "file_exists('.env') || copy('.config/.env.test.example', '.env');"
 
       - name: Verify .env File Exists
         run: |
@@ -135,7 +135,7 @@ jobs:
           fi
 
       - name: Run Pint check
-        run: ./vendor/bin/pint
+        run: ./vendor/bin/pint --config=.config/pint.json
 
   # Check Guard
   guard-check:
@@ -157,7 +157,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --no-interaction
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+        run: php -r "file_exists('.env') || copy('.config/.env.test.example', '.env');"
 
       - name: Verify .env File Exists
         run: |
@@ -167,7 +167,7 @@ jobs:
           fi
 
       - name: Check Guard
-        run: php .pest/guard_check.php
+        run: php .config/pest/guard_check.php
 
   # Run Tests
   test:
@@ -189,7 +189,7 @@ jobs:
         run: composer install --no-progress --prefer-dist --no-interaction
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.test.example', '.env');"
+        run: php -r "file_exists('.env') || copy('.config/.env.test.example', '.env');"
 
       - name: Verify .env File Exists
         run: |
@@ -211,4 +211,4 @@ jobs:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
           DB_FOREIGN_KEYS: false
-        run: php artisan test --coverage
+        run: ./vendor/bin/pest -c .config/phpunit.xml --coverage

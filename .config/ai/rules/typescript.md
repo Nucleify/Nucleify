@@ -25,4 +25,4 @@ import type { NucArticleObjectInterface } from 'nucleify'
 
 - Strict null checks, no implicit any
 - `/* @vue-ignore */` for Vue template type issues
-- Type check: `npm run typeslint` (`tsc --noemit`)
+- Type check: `pnpm run typeslint` (`tsc --noemit`)

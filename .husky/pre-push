@@ -1,9 +1,4 @@
 #!/usr/bin/env sh
 set -e
 
-HOOK_DIR="$(cd "$(dirname "$0")" && pwd)"
-. "$HOOK_DIR/../.bash/hook-root.sh"
-. "$HOOK_DIR/../.bash/hook-checks.sh"
-
-go_to_hook_root || exit 1
-run_hook_checks
+P="$(cd "$(dirname "$0")/../.config/bash" && pwd)" && RUN_HOOKS_DIR="$P" . "$P/run-hooks.sh"
