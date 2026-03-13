@@ -1,6 +1,6 @@
 # Environment Variables
 
-Example files: `.env.docker.example`, `.env.test.example`, `.env.ci.example`, `.env.xampp.example`.
+Example files: `.config/.env.docker.example`, `.config/.env.test.example`, `.config/.env.ci.example`.
 
 ## App
 

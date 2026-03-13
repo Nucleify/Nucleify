@@ -57,7 +57,7 @@ test('can get title', function (): void {
 ## Commands
 
 ```bash
-php artisan test
-php artisan test --group=nuc-entities
-php artisan test --group=api-200
+composer test
+composer test -- --group=nuc-entities
+composer test -- --group=api-200
 ```
