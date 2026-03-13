@@ -6,16 +6,6 @@ onlyBuiltDependencies:
   - "@parcel/watcher"
   - sharp
 
-overrides:
-  diff@>=6.0.0 <8.0.3: '8.0.3'
-  serialize-javascript@<=7.0.2: '7.0.3'
-  swiper@>=6.5.1 <12.1.2: '12.1.2'
-  glob@10.5.0: '13.0.6'
-  tar@6.2.1: '7.5.11'
-  c12@2.0.4: '3.3.3'
-  unplugin-vue-router@0.16.2: '0.19.2'
-  '@nuxt/cli@3.34.0': '3.21.1'
-
 allowedDeprecatedVersions:
   unplugin-vue-router: '*'
   whatwg-encoding: '*'

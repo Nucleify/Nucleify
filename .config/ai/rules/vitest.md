@@ -45,7 +45,7 @@ describe('entityRequests', (): void => {
 ## Commands
 
 ```bash
-npm run tests          # run all
-npm run test:watch     # watch mode
-npm run test:coverage  # with coverage
+pnpm run tests          # run all
+pnpm run test:watch     # watch mode
+pnpm run test:coverage  # with coverage
 ```

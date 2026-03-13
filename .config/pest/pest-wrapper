@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+BIN_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$(cd "$BIN_DIR/../.." && pwd)"
+cd "$ROOT" || exit 1
+exec php "$BIN_DIR/../pestphp/pest/bin/pest" -c .config/phpunit.xml "$@"

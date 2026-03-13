@@ -66,7 +66,7 @@ You can work on the project locally by cloning the repository and follow the [lo
 
 ### Local development
 
-First make sure u have installed latest version of [Docker](https://www.docker.com), [Composer](https://getcomposer.org/), [Node.js](https://nodejs.org/en) and have [Make](https://makefiletutorial.com/#getting-started) command ready.
+First make sure u have installed latest version of [Docker](https://www.docker.com), [Composer](https://getcomposer.org/), [Node.js](https://nodejs.org/en), [pnpm](https://pnpm.io/) and have [Make](https://makefiletutorial.com/#getting-started) command ready.
 
 - Clone the repository and navigate to the `root` directory:
 
@@ -101,7 +101,7 @@ sail pest --coverage
 
 <img src="/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
 ```bash
-npm run tests
+pnpm run tests
 ```
 
 ### Debugging
