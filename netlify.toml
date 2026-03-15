@@ -2,6 +2,9 @@
   command = "pnpm run build"
   publish = ".output/public"
 
+[functions]
+  directory = ".netlify/functions"
+
 [build.environment]
   APP_URL = "https://api.nucleify.io"
   API_URL = "https://api.nucleify.io/api"
