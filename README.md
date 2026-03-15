@@ -12,15 +12,12 @@ Designed with [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/), [M
 ⭐ **Project setup with a single command** <br>
 ⭐ **Unique Laravel/Nuxt modules & overrides functionality** <br>
 ⭐ Atomic Design components + CSS modules <br>
-⭐ [Storybook](https://storybook.js.org/) tests for most Atomic components <br>
 ⭐ Futuristic UI made with [PrimeVue](https://primevue.org/) + [Chart.js](https://www.chartjs.org/) + [GSAP](https://gsap.com/) + [SCSS](https://sass-lang.com/) <br>
 
 <br>
 
 <details><summary>✅ 94/96 Performance</summary>
 <br>
-
-*This score is a bit outdated, but I promise an optimizations are coming soon!*
 
 #### Introduced many optimizations:
 - SSR & Prerendering
@@ -30,7 +27,7 @@ Designed with [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/), [M
 - [nuxt-vitalizer](https://nuxt.com/modules/vitalizer) - this module is just perfect
 - [@nuxtjs/google-fonts](https://nuxt.com/modules/google-fonts) - downloading fonts on building & serving them on prerender, reducing third-party sources
 - I also recommend ```<deferred-content>``` tag from PrimeVue - it impacts performance extremely well
-- and some other magic tricks that I keep secret :D
+- and some other magic tricks that we keep secret :D
 
 <br>
     
@@ -44,13 +41,18 @@ Designed with [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/), [M
 
 <br>
 <hr>
-<br>
 
+> We have officially deprecated all installation methods other than Docker. \
+> Alternative installation approaches proved unnecessary and introduced additional complexity and avoidable setup issues. \
+> To ensure a simpler and more reliable setup process, the project is now distributed exclusively through Docker.
+
+<hr>
+<br>
 
 <details><summary> <h2> &nbsp; <img src="/public/img/technologies/docker.svg" height="20" /> &nbsp; Docker </h2> </summary> <br>
 <details><summary> 🛠️ Installation </summary> <br>
 
-- First make sure u have installed latest version of [Docker](https://www.docker.com) and have [Make](https://makefiletutorial.com/#getting-started) command ready
+- First make sure u have installed latest version of [Docker](https://www.docker.com), [Composer](https://getcomposer.org/), [Node.js](https://nodejs.org/en), [pnpm](https://pnpm.io/) and have [Make](https://makefiletutorial.com/#getting-started) command ready
   
 - Clone this repository
 
@@ -69,12 +71,13 @@ That's it! Now, you can enter http://localhost:3000
 
 <details><summary> Harder way </summary> <br>
 
-- Change ```.env.docker.example``` file to ```.env``` in root directory
-- Unzip vendor.zip
+- Copy ```.config/.env.docker.example``` to ```.env``` in root directory
+- Run ```composer install```
 
 - Build & run Docker image 
 ```bash
 sail up --build -d
+bash .config/bash/wait-for-db.sh   # Wait for MySQL on slower machines
 sail art migrate:fresh --seed
 ```
 
@@ -83,6 +86,7 @@ sail art migrate:fresh --seed
 <br>
 
 Possible problems:
+- Database not ready during migrate: Run `bash .config/bash/wait-for-db.sh` before migrations, or use `make` which handles this automatically.
 - Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
 - Error: EACCES: permission denied, mkdir '/var/www/html/node_modules': ```sudo chmod 777 -R nucleify``` or [Solution](https://stackoverflow.com/questions/49679808/error-eacces-permission-denied-mkdir-usr-local-lib-node-modules-node-sass-b)
 
@@ -96,8 +100,6 @@ Root directory:
 sail up -d
 ```
 
-**Remember to shutdown all XAMPP processes!**
-
 Possible problems:
 - Error starting userland proxy: listen tcp4 0.0.0.0:3306: bind: address already in use: ```sudo service mysql stop```
 
@@ -108,7 +110,7 @@ Possible problems:
 <details><summary> Migrations </summary><br>
 
 ```bash
-sail artisan migrate:fresh --seed
+sail art migrate:fresh --seed
 
 # Reset database by dropping all tables and then run all migrations
 # --seed flag runs the database seeders after the migrations
@@ -153,29 +155,21 @@ sail pest --coverage
 ![Tests](/public/img/tests.png)![Coverage](/public/img/tests_coverage.png)
 
 
-
-<img src="/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
-```bash
-npm run open  # For now I've not configured Cypress with Docker
-```
-
 <img src="/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
 ```bash
-sail npm run tests
+sail pnpm run tests
 ```
-
-<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```sail up -d```
 
 <br></details>
 
-<details><summary> npm </summary><br>
+<details><summary> pnpm </summary><br>
 
-1. Install packages - ```sail npm install```
-2. Nuxt build - ```sail npm run build```
-3. Run Prettier - ```sail npm run write```
-4. Run Eslint - ```sail npm run lint```
-5. Run Stylelint - ```sail npm run slint```
-6. Husky install - ```sail npm run prepare```
+1. Install packages - ```sail pnpm install```
+2. Nuxt build - ```sail pnpm run build```
+3. Run Biome - ```sail pnpm run write```
+4. Run check - ```sail pnpm run check```
+5. Run Stylelint - ```sail pnpm run slint```
+6. Husky install - ```sail pnpm run prepare:husky```
 
 <br></details>
 
@@ -184,141 +178,11 @@ sail npm run tests
 Generate XML sitemap
 
 ```bash
-sail artisan sitemap:generate
+sail art sitemap:generate
 ```
 
 </details></details><hr><br></details></details>
 
-
-<details><summary> <h2> &nbsp; <img src="/public/img/technologies/xampp.svg" height="20" /> &nbsp; XAMPP </h2> </summary> <br>
-<details><summary> 🛠️ Installation </summary>
-
-- First make sure u have installed latest versions of [PHP](https://www.php.net), [Node.js](https://nodejs.org/en), [npm](https://www.npmjs.com), [XAMPP](https://www.apachefriends.org/pl/index.html) and [Composer](https://getcomposer.org/)
-
-- I recommend use [nvm](https://github.com/nvm-sh/nvm/blob/master/README.md) for install latest supported versions of [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com),
-
-```
-nvm use --lts
-```
-
-- Clone this repository
-
-```
-git clone https://github.com/Nucleify/Nucleify
-```
-
-- Change ```.env.xampp.example``` file to ```.env``` in root directory
-
-- Install modules in root directory
-
-```bash
-npm install
-composer install
-```
-
-### **Make sure u have installed all modules!**
-
-- run XAMPP mysql server and create database
-```bash
-mysql -u root -p
-create database nucleify
-create database nucleify_test    # it's not necessary, only for tests
-```
-
-<br></details>
-
-<details><summary> 🚀 Run </summary><br>
-
-Root directory:
-
-```bash
-npm run dev
-php artisan serve
-```
-
-<br></details>
-
-<details><summary> ❓ Usage </summary><br>
-<details><summary> Migrations </summary><br>
-
-```bash
-php artisan migrate:fresh --seed
-
-# Reset database by dropping all tables and then run all migrations
-# --seed flag runs the database seeders after the migrations
-```
-
-<br/></details>
-
-<details><summary> Factories </summary><br>
-
-```bash
-php artisan tinker
-
-# if you wish, you can specify count in factory() or attributes in create()
-Article::factory(100)->create();
-Contact::factory(100)->create();
-User::factory(100)->create();
-
-# for Spatie Activity model
-Database\Factories\ActivityFactory::new()->count(100)->create();
-```
-
-<br/></details>
-
-<details><summary> Tests </summary><br>
-
-<img src="/public/img/technologies/pest.svg" height="15" /> &nbsp;Pest tests:
-```bash
-# run all tests
-./vendor/bin/pest
-
-# or specify group
-./vendor/bin/pest --group=api
-
-# defined tests groups:
-api, activity-api, article-api, artisan-api, contact-api, sitemap-api, user-api,
-database, feature, global, unit, commands, controllers, services, factories, migrations, models
-
-# run all tests and check code coverage
-./vendor/bin/pest --coverage
-```
-![Tests](/public/img/tests.png)![Coverage](/public/img/tests_coverage.png)
-
-<img src="/public/img/technologies/cypress.svg" height="15" /> &nbsp;Cypress tests:
-```bash
-npm run open
-```
-
-<img src="/public/img/technologies/vitest.svg" height="15" /> &nbsp;Vitest tests:
-```bash
-npm run tests
-```
-
-<img src="/public/img/technologies/storybook.svg" height="15" /> &nbsp;Storybook - visit ```localhost:6006``` after ```npm run dev```
-
-<br></details>
-
-<details><summary> npm </summary><br>
-
-1. Install packages - ```npm install```
-2. Nuxt build - ```npm run build```
-3. Run Prettier - ```npm run write```
-4. Run Eslint - ```npm run lint```
-5. Run Stylelint - ```npm run slint```
-6. Husky install - ```npm run prepare```
-
-<br></details>
-
-<details><summary> Sitemaps </summary><br>
-
-Generate XML sitemap
-
-```bash
-php artisan sitemap:generate
-```
-
-</details></details><hr><br></details></details>
 
 <details><summary> <h2> &nbsp; <img src="/public/img/technologies/stack.svg" width="20"> &nbsp; Tech Stack </h2> </summary> <br>
 <div align="center">
@@ -337,8 +201,6 @@ php artisan sitemap:generate
     <a href="https://www.mysql.com/" target="_blank"><img src="/public/img/technologies/mysql.svg" height="35" width="35" alt="MySQL" /></a>
     <a href="https://pestphp.com/" target="_blank"><img src="/public/img/technologies/pest.svg" height="34" width="34" alt="PestPHP" /></a>
     <a href="https://vitest.dev/" target="_blank"><img src="/public/img/technologies/vitest.svg" height="35" width="35" alt="Vitest" /></a>
-    <a href="https://storybook.js.org/" target="_blank"><img src="/public/img/technologies/storybook.svg" height="35" width="35" alt="Storybook" /></a>
-    <a href="https://www.cypress.io/" target="_blank"><img src="/public/img/technologies/cypress.svg" height="35" width="35" alt="Cypress" /></a>
     <a href="https://biomejs.dev/" target="_blank"><img src="/public/img/technologies/biome.svg" height="35" width="35" alt="Biome" /></a>
     <a href="https://stylelint.io/" target="_blank"><img src="/public/img/technologies/stylelint.svg" height="35" width="35" alt="Stylelint" /></a>
     <a href="https://github.com/features/actions" target="_blank"><img src="/public/img/technologies/github.svg" height="35" width="35" alt="Github Actions" /></a>
