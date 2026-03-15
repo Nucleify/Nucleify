@@ -67,9 +67,6 @@
 [submodule "modules/nuc_pages"]
 	path = modules/nuc_pages
 	url = https://github.com/Nucleify/nuc_pages.git
-[submodule "modules/nuc_performance"]
-	path = modules/nuc_performance
-	url = https://github.com/Nucleify/nuc_performance.git
 [submodule "modules/nuc_screen_lights"]
 	path = modules/nuc_screen_lights
 	url = https://github.com/Nucleify/nuc_screen_lights.git
