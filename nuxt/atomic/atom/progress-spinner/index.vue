@@ -8,8 +8,6 @@
 </template>
 
 <script setup lang="ts">
-import { ProgressSpinner } from 'primevue' // Import for Storybook
-
 import type { ProgressSpinnerInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'

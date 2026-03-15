@@ -56,7 +56,7 @@ it('registers all modules from modules barrel', async (): Promise<void> => {
   })
 })
 
-it('registers globals from atomic', async (): Promise<void> => {
+it('registers globals from nucleify', async (): Promise<void> => {
   // @ts-expect-error setup is a function on the plugin object
   await module.setup(nuxtApp)
 

@@ -1,0 +1,11 @@
+packages:
+  - "."
+
+onlyBuiltDependencies:
+  - esbuild
+  - "@parcel/watcher"
+  - sharp
+
+allowedDeprecatedVersions:
+  unplugin-vue-router: '*'
+  whatwg-encoding: '*'

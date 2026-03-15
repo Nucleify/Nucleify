@@ -15,21 +15,19 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-
-      - name: Cache Node.js Modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          cache: 'pnpm'
 
       - name: Install Node.js Dependencies
-        run: npm install
+        run: pnpm install
 
   # Biome
   biome:
@@ -42,14 +40,22 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Restore Node.js Modules Cache
-        uses: actions/cache@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          version: 9
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Node.js Dependencies
+        run: pnpm install
 
       - name: Biome
-        run: npm run check
+        run: pnpm run check
 
   # Typeslint
   typeslint:
@@ -62,14 +68,22 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Restore Node.js Modules Cache
-        uses: actions/cache@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          version: 9
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Node.js Dependencies
+        run: pnpm install
 
       - name: Typeslint
-        run: npm run typeslint
+        run: pnpm run typeslint
         
   # Stylelint
   stylelint:
@@ -82,14 +96,22 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Restore Node.js Modules Cache
-        uses: actions/cache@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          version: 9
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Node.js Dependencies
+        run: pnpm install
 
       - name: Stylelint
-        run: npm run slint
+        run: pnpm run slint
 
   # Build Assets
   build:
@@ -102,14 +124,22 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Restore Node.js Modules Cache
-        uses: actions/cache@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          version: 9
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Node.js Dependencies
+        run: pnpm install
 
       - name: Build Assets
-        run: npm run build
+        run: pnpm run build
 
   # Run Vitests
   test:
@@ -122,11 +152,19 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Restore Node.js Modules Cache
-        uses: actions/cache@v3
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
         with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          version: 9
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+
+      - name: Install Node.js Dependencies
+        run: pnpm install
 
       - name: Execute tests via Vitest
-        run: npm run tests
+        run: pnpm run tests

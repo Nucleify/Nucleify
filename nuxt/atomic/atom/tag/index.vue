@@ -5,8 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { Tag } from 'primevue' // Import for Storybook
-
 import type { TagInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'

@@ -1,0 +1,10 @@
+FROM node:20
+WORKDIR /app/next
+
+COPY next/package*.json ./
+RUN npm install
+
+COPY next/ .
+
+EXPOSE 3000
+CMD ["npm", "run", "dev"]

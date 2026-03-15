@@ -9,8 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { Textarea } from 'primevue' // Import for Storybook
-
 import type { TextareaInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'

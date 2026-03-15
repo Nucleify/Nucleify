@@ -16,8 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import { InputNumber } from 'primevue' // Import for Storybook
-
 import type { InputNumberInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
