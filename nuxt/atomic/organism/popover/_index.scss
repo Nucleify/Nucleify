@@ -10,7 +10,7 @@
   border-radius: 0;
   overflow: hidden;
   margin: 0 !important;
-  
+
   &.top,
   &.right,
   &.left {
@@ -57,7 +57,7 @@
   padding: 0.5em !important;
   color: $white-text-color !important;
   font-size: 1.25em !important;
-  
+
   :global(.iconify) {
     transition: all 300ms;
     color: $white-text-color !important;
@@ -69,11 +69,11 @@
 
   &:active,
   &:hover {
-    border: 1px solid var(--main-item-color-user) !important;
-    color: var(--main-item-color-user) !important;
+    border: 1px solid $main-color-user !important;
+    color: $main-color-user !important;
 
     :global(.iconify) {
-      color: var(--main-item-color-user) !important;
+      color: $main-color-user !important;
     }
   }
 

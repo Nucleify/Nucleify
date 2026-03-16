@@ -26,14 +26,13 @@ const logoStyle = computed(() => {
     return undefined
   }
 
-  const suffix = colorSuffix.value || 'system'
-  const fallbackColor = defaultColors[`${props.adType}-item-color`] ?? '#10b981'
-  const fallbackDarkColor =
-    defaultColors[`${props.adType}-item-dark-color`] ?? '#054a32'
+  const suffix = (colorSuffix.value === 'user' ? 'u' : 's') as 'u' | 's'
+  const fallbackColor = defaultColors[`${props.adType}-c`] ?? '#10b981'
+  const fallbackDarkColor = defaultColors[`${props.adType}-d`] ?? '#054a32'
 
   return {
-    '--logo-lighter-color': `var(--${props.adType}-item-color-${suffix}, ${fallbackColor})`,
-    '--logo-darker-color': `var(--${props.adType}-item-dark-color-${suffix}, ${fallbackDarkColor})`,
+    '--logo-lighter-color': `var(--${props.adType}-c-${suffix}, ${fallbackColor})`,
+    '--logo-darker-color': `var(--${props.adType}-d-${suffix}, ${fallbackDarkColor})`,
   }
 })
 </script>
