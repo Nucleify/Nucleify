@@ -24,6 +24,11 @@
   status = 404
 
 [[redirects]]
-  from = "/*"
-  to = "/en/404"
-  status = 404
+  from = "/"
+  to = "/en/home"
+  status = 302
+
+[[redirects]]
+  from = "/home/*"
+  to = "/en/home"
+  status = 302
