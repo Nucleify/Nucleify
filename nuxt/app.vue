@@ -21,8 +21,6 @@ import {
 const route = useRoute()
 const { isDark } = useDarkMode()
 
-const GTM_ID = 'GTM-WQH9K476'
-const GADS_ID = 'AW-17959551210'
 const CLARITY_ID = 'vmewuw52gn'
 
 useHead(() => ({
@@ -43,43 +41,7 @@ useHead(() => ({
       href: appUrl() + '/' + route.path.replace(/\//g, ''),
     },
   ],
-  noscript: [
-    {
-      key: 'gtm-noscript',
-      innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
-      body: true,
-    },
-  ],
 }))
-
-function loadGTM() {
-  // biome-ignore lint/suspicious/noExplicitAny: window is not typed
-  const w = window as any
-  w.dataLayer = w.dataLayer || []
-  w.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
-  const s = document.createElement('script')
-  s.async = true
-  s.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`
-  document.body.appendChild(s)
-}
-
-function loadGoogleAds() {
-  // biome-ignore lint/suspicious/noExplicitAny: window is not typed
-  const w = window as any
-  const s = document.createElement('script')
-  s.async = true
-  s.src = `https://www.googletagmanager.com/gtag/js?id=${GADS_ID}`
-  document.body.appendChild(s)
-
-  w.dataLayer = w.dataLayer || []
-  w.gtag =
-    w.gtag ||
-    function () {
-      w.dataLayer.push(arguments)
-    }
-  w.gtag('js', new Date())
-  w.gtag('config', GADS_ID)
-}
 
 function loadClarity() {
   // biome-ignore lint/suspicious/noExplicitAny: window is not typed
@@ -95,12 +57,6 @@ function loadClarity() {
   document.body.appendChild(s)
 }
 
-function loadAnalytics() {
-  loadGTM()
-  loadGoogleAds()
-  loadClarity()
-}
-
 const { officeType, getOfficeType } = useOfficeType()
 
 watchEffect(() => {
@@ -110,11 +66,11 @@ watchEffect(() => {
 onMounted(() => {
   requestIdleCallback(() => {
     resetColorsIfEmpty()
-  })
 
-  setTimeout(() => {
-    loadAnalytics()
-  }, 3500)
+    setTimeout(() => {
+      loadClarity()
+    }, 3500)
+  })
 })
 
 let syncTimeout: ReturnType<typeof setTimeout> | null = null
