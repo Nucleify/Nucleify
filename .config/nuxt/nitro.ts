@@ -36,8 +36,5 @@ export const nitroConfig = {
               )
             : [],
         },
-    output: {
-      publicDir: './.output/public',
-    },
   },
 }
