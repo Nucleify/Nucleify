@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://nucleify.io', 'http://localhost:3000'],
+    'allowed_origins' => ['https://nucleify.io', 'http://localhost:3000', env('NUC_ALLOWED_ORIGINS')],
 
     'allowed_origins_patterns' => [],
 
