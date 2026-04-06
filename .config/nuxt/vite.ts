@@ -17,7 +17,6 @@ export const viteConfig = {
           pinia: ['pinia', 'pinia-plugin-persistedstate'],
           primevue: ['primevue', '@primevue/forms', '@primeuix/themes'],
           chartjs: ['chart.js'],
-          gsap: ['gsap'],
           marked: ['marked'],
           highlightjs: ['highlight.js'],
           swiper: ['swiper'],
