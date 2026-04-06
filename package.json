@@ -83,6 +83,7 @@
     "stylelint": "16.19.1",
     "stylelint-config-standard-scss": "14.0.0",
     "typescript": "5.8.3",
-    "vitest": "3.2.0"
+    "vitest": "3.2.0",
+    "wrangler": "4.80.0"
   }
 }
