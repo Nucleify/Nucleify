@@ -94,10 +94,4 @@ afterEach(() => {
   activeIntervals.clear()
   activeRafIds.forEach((id) => cancelRaf(id))
   activeRafIds.clear()
-
-  // biome-ignore lint/suspicious/noExplicitAny: any
-  const gsap = (globalThis as any).gsap
-  if (gsap?.ScrollTrigger?.killAll) {
-    gsap.ScrollTrigger.killAll(true)
-  }
 })
