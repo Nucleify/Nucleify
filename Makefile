@@ -10,9 +10,10 @@ setup:
 
 nuxt:
 	cp .config/.env.docker.nuxt.example .env
-	npm install
-	npm run prepare:husky
+	pnpm install
+	pnpm prepare:husky
 
 next:
 	cp .config/.env.docker.next.example .env
-	cd next && npm install
+	cd next && pnpm install
+	pnpm prepare:husky
