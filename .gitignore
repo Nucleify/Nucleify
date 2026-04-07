@@ -57,6 +57,4 @@ logs
 
 # AI workflow
 .ai/specs/*
-
-# Local Netlify folder
-.netlify
+y

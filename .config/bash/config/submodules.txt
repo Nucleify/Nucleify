@@ -27,9 +27,7 @@ openapi
 overrides
 pagebuilder
 pages
-performance
 pricings
-screen_lights
 screen_loader
 sections
 settings
