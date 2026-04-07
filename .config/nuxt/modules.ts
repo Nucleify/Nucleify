@@ -9,7 +9,6 @@ export const modules = [
   '@nuxtjs/sitemap',
   '@pinia/nuxt',
   '@primevue/nuxt-module',
-  '@radya/nuxt-dompurify',
   '@qirolab/nuxt-sanctum-authentication',
   'nuxt-schema-org',
   'nuxt-seo-utils',
