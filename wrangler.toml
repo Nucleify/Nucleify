@@ -1,0 +1,12 @@
+name = "nucleify"
+main = ".output/server/index.mjs"
+compatibility_date = "2026-04-06"
+account_id = "7c5285307cec0088f9f25c2388e5558e"
+
+routes = [
+  "nucleify.io/*",
+  "www.nucleify.io/*"
+]
+
+[site]
+bucket = ".output/public"
