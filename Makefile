@@ -1,10 +1,18 @@
+.PHONY: setup nuxt next
+
 setup:
-	cp .config/.env.docker.example .env
+	$(MAKE) nuxt
+	$(MAKE) next
 	composer install
-	pnpm install
-	cd next && pnpm install
-	cd ..
-	pnpm prepare:husky
+
 	./vendor/bin/sail up --build -d
-	@bash .config/bash/wait-for-db.sh
 	./vendor/bin/sail art migrate:fresh --seed
+
+nuxt:
+	cp .config/.env.docker.nuxt.example .env
+	npm install
+	npm run prepare:husky
+
+next:
+	cp .config/.env.docker.next.example .env
+	cd next && npm install
