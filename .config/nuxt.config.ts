@@ -16,6 +16,7 @@ import { getRouteRules } from './nuxt/route-rules'
 import { runtimeConfig } from './nuxt/runtime'
 import { structureConfig } from './nuxt/structure'
 import { viteConfig } from './nuxt/vite'
+import { featuresConfig } from './nuxt/features'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -30,6 +31,7 @@ export default defineNuxtConfig({
   experimental: experimentalConfig,
   primevue: primevueConfig,
   googleFonts: googleFontsConfig,
+  features: featuresConfig,
   icon: iconConfig,
   i18n: i18nConfig,
   ...performanceConfig,

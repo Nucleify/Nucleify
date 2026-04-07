@@ -6,7 +6,7 @@ export const performanceConfig = {
       inlineFonts: false,
       preloadFonts: false,
       pruneSource: false,
-      mergeStylesheets: false,
+      mergeStylesheets: true,
       reduceInlineStyles: true,
       keyframes: 'all',
       compress: false,
