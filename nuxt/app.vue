@@ -66,11 +66,22 @@ watchEffect(() => {
 onMounted(() => {
   requestIdleCallback(() => {
     resetColorsIfEmpty()
-
-    setTimeout(() => {
-      loadClarity()
-    }, 3500)
   })
+
+  let clarityLoaded = false
+  const loadClarityOnce = (): void => {
+    if (clarityLoaded) return
+    clarityLoaded = true
+    loadClarity()
+  }
+  const onFirstInteraction = (): void => {
+    window.removeEventListener('scroll', onFirstInteraction)
+    window.removeEventListener('pointerdown', onFirstInteraction)
+    requestIdleCallback(() => loadClarityOnce())
+  }
+  window.addEventListener('scroll', onFirstInteraction, { passive: true })
+  window.addEventListener('pointerdown', onFirstInteraction)
+  setTimeout(loadClarityOnce, 12000)
 })
 
 let syncTimeout: ReturnType<typeof setTimeout> | null = null
