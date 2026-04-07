@@ -89,5 +89,5 @@ watch(
 </script>
 
 <style lang="scss">
-@import 'assets/styles';
+@import '../modules/app';
 </style>
