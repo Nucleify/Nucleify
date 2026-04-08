@@ -40,6 +40,7 @@ get_remote_version() {
 }
 
 has_local_modules() {
+  [ -f "next/next.config.ts" ] && return 0
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
     [ -f "modules/nuc_$name/config.json" ] && return 0
@@ -48,6 +49,10 @@ has_local_modules() {
 }
 
 cleanup_empty_modules() {
+  if [ -d "next" ] && [ ! -f "next/next.config.ts" ]; then
+    log_warn "next: empty module detected, removing"
+    rm -rf "next"
+  fi
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
     local dir="modules/nuc_$name"

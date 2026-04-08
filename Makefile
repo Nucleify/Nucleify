@@ -3,16 +3,26 @@
 setup:
 	$(MAKE) nuxt
 	$(MAKE) next
-	composer install
-
-	./vendor/bin/sail up --build -d
-	./vendor/bin/sail art migrate:fresh --seed
 
 nuxt:
 	cp .config/.env.docker.nuxt.example .env
-	npm install
-	npm run prepare:husky
+	make php
+	pnpm install
+	pnpm prepare:husky
+
+	make docker
 
 next:
 	cp .config/.env.docker.next.example .env
-	cd next && npm install
+	make php
+	cd next && pnpm install
+	pnpm prepare:husky
+
+	make docker
+
+php: 
+	composer install
+
+docker:
+	./vendor/bin/sail up --build -d
+	./vendor/bin/sail art migrate:fresh --seed
