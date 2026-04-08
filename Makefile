@@ -6,6 +6,7 @@ setup:
 
 nuxt:
 	cp .config/.env.docker.nuxt.example .env
+	make php
 	pnpm install
 	pnpm prepare:husky
 
@@ -13,6 +14,7 @@ nuxt:
 
 next:
 	cp .config/.env.docker.next.example .env
+	make php
 	cd next && pnpm install
 	pnpm prepare:husky
 
@@ -22,6 +24,5 @@ php:
 	composer install
 
 docker:
-	make php
 	./vendor/bin/sail up --build -d
 	./vendor/bin/sail art migrate:fresh --seed
