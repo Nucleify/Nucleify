@@ -12,7 +12,7 @@ export function getRouteRules(locales: readonly { code: string }[]) {
             locales.map((locale) => [
               `/${locale.code}/*`,
               { swr: true, prerender: true },
-            ]),
+            ])
           ),
         }),
   }
