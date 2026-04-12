@@ -1,7 +1,5 @@
 <template>
-  <DeferredContent v-bind="transformProps(props)">
-    <slot />
-  </DeferredContent>
+  <DeferredContent v-bind="transformProps(props)"> <slot /> </DeferredContent>
 </template>
 
 <script setup lang="ts">

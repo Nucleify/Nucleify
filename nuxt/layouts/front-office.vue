@@ -1,9 +1,7 @@
 <template>
   <div id="front-office">
     <nuc-section-navbar />
-    <main>
-      <slot />
-    </main>
+    <main><slot /></main>
     <nuc-section-footer />
   </div>
 </template>

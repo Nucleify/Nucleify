@@ -1,19 +1,10 @@
 <template>
-  <Card 
-    v-bind="transformProps(props)"
-    :class="$style['ad-card']"
-  >
-    <template #header>
-      <slot name="header" />
-    </template>
+  <Card v-bind="transformProps(props)" :class="$style['ad-card']">
+    <template #header> <slot name="header" /> </template>
 
-    <template #title>
-      <slot name="title" />
-    </template>
+    <template #title> <slot name="title" /> </template>
 
-    <template #content>
-      <slot name="content" />
-    </template>
+    <template #content> <slot name="content" /> </template>
   </Card>
 </template>
 

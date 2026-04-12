@@ -1,7 +1,5 @@
 <template>
-  <Badge v-bind="transformProps(props)">
-    <slot />
-  </Badge>
+  <Badge v-bind="transformProps(props)"> <slot /> </Badge>
 </template>
 
 <script setup lang="ts">

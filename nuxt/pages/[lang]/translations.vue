@@ -1,5 +1,3 @@
 <template>
-  <div id="translations">
-    <nuc-translation-page />
-  </div>
+  <div id="translations"><nuc-translation-page /></div>
 </template>

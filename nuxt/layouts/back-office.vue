@@ -1,8 +1,6 @@
 <template>
   <div id="back-office">
-    <main>
-      <slot />
-    </main>
+    <main><slot /></main>
     <nuc-dock />
   </div>
 </template>

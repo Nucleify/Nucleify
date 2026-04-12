@@ -1,8 +1,5 @@
 <template>
-  <InputMask 
-    v-bind="transformProps(props)" 
-    :class="$style['ad-inputmask']" 
-  >
+  <InputMask v-bind="transformProps(props)" :class="$style['ad-inputmask']">
     <slot />
   </InputMask>
 </template>
