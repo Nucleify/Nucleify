@@ -1,8 +1,5 @@
 <template>
-  <Tabs
-    v-bind="transformProps(props, excludedProps)"
-    :value="activeTab"
-  >
+  <Tabs v-bind="transformProps(props, excludedProps)" :value="activeTab">
     <TabList>
       <Tab
         v-for="(list, index) in props.lists"

@@ -1,5 +1,5 @@
 <template>
-  <Toast 
+  <Toast
     v-bind="transformProps(props)"
     :class="$style['ad-toast']"
     :pt="{

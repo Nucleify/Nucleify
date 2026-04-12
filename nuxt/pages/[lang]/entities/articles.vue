@@ -1,5 +1,3 @@
 <template>
-  <div id="articles">
-    <nuc-article-page />
-  </div>
+  <div id="articles"><nuc-article-page /></div>
 </template>

@@ -4,5 +4,3 @@
     <nuc-thank-you-page />
   </div>
 </template>
-
-

@@ -28,10 +28,12 @@
     </template>
     <template v-else-if="!props.emptyPassword" #footer>
       <ul :class="$style['ad-password-criteria']">
-        <li :class="[
+        <li
+          :class="[
           props.passwordsMatch ? $style['valid'] : $style['invalid'],
           $style['ad-password-criterion']
-        ]">
+        ]"
+        >
           {{ props.passwordsMatch ? 'Passwords match' : 'Passwords do not match' }}
         </li>
       </ul>

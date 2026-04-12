@@ -1,7 +1,5 @@
 <template>
-  <Tag v-bind="transformProps(props)">
-    <slot />
-  </Tag>
+  <Tag v-bind="transformProps(props)"> <slot /> </Tag>
 </template>
 
 <script setup lang="ts">

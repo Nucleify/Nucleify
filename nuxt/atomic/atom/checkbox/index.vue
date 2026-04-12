@@ -1,8 +1,5 @@
 <template>
-  <Checkbox 
-    v-bind="transformProps(props)" 
-    @update:modelValue="updateValue"
-  />
+  <Checkbox v-bind="transformProps(props)" @update:modelValue="updateValue" />
 </template>
 
 <script setup lang="ts">
