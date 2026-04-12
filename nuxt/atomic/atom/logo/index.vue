@@ -1,5 +1,5 @@
 <template>
-  <svg 
+  <svg
     :width="props.dimensions || 44"
     :height="props.dimensions || 44"
     :style="logoStyle"

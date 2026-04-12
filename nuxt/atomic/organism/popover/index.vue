@@ -23,7 +23,7 @@
       $style[props.position!],
       props.position
     ]"
-  > 
+  >
     <slot />
   </Popover>
 </template>

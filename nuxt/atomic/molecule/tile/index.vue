@@ -1,7 +1,7 @@
 <template>
-  <nuxt-link 
+  <nuxt-link
     :class="$style['ad-tile']"
-    :to="props.href" 
+    :to="props.href"
     :ad-type="props.adType"
     class="ad-tile"
   >
@@ -11,15 +11,18 @@
         <ad-paragraph :class="$style['count']" :text="props.count" />
       </div>
       <div :class="$style['icon-container']">
-        <ad-icon 
-          :class="$style['icon']" 
-          :icon="props.icon" 
-          :ad-type="props.adType" 
+        <ad-icon
+          :class="$style['icon']"
+          :icon="props.icon"
+          :ad-type="props.adType"
         />
       </div>
     </div>
     <div :class="$style['secondary']">
-      <ad-paragraph :class="$style['count']" :text="props.countSecondary + ' new'" />
+      <ad-paragraph
+        :class="$style['count']"
+        :text="props.countSecondary + ' new'"
+      />
       <ad-paragraph :class="$style['text']" :text="props.textSecondary" />
     </div>
     <slot />

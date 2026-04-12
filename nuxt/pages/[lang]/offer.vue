@@ -4,4 +4,3 @@
     <nuc-offer-page />
   </div>
 </template>
-

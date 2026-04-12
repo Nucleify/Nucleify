@@ -1,5 +1,3 @@
 <template>
-  <div id="settings">
-    <nuc-settings-page />
-  </div>
+  <div id="settings"><nuc-settings-page /></div>
 </template>

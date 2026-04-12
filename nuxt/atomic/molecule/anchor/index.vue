@@ -6,10 +6,10 @@
     :style="props.style"
   >
     <slot />
-    <ad-icon 
-      v-if="props.icon" 
-      :icon="props.icon" 
-      :ad-type="props.adType" 
+    <ad-icon
+      v-if="props.icon"
+      :icon="props.icon"
+      :ad-type="props.adType"
       :size="props.size"
     />
     <ad-image
