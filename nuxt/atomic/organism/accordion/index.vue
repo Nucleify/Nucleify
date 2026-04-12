@@ -1,5 +1,5 @@
 <template>
-  <Accordion 
+  <Accordion
     v-bind="transformProps(props, excludedProps)"
     :class="$style['ad-accordion']"
   >
@@ -15,15 +15,13 @@
           toggleIcon: $style['ad-accordionheader-toggle-icon'],
         }"
       >
-        <nuc-animation-hexagons 
-          v-if="props.hexagons" 
+        <nuc-animation-hexagons
+          v-if="props.hexagons"
           :class="$style['ad-hexagon-rows-container']"
         />
         {{ panel.content }}
       </AccordionHeader>
-      <AccordionContent 
-        :class="$style['ad-accordion-content']"
-      >
+      <AccordionContent :class="$style['ad-accordion-content']">
         {{ panel.answer }}
       </AccordionContent>
     </AccordionPanel>

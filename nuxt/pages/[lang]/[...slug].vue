@@ -1,12 +1,34 @@
 <template>
-  <div v-if="pending" />
-  <div v-else-if="pageData" id="page-builder-public" :style="wrapperStyle">
-    <nuc-page-builder-render :layout="pageData.layout_json" />
+  <!-- Zawsze coś w drzewie (FCP). Tła NIE w #fafafa — psuje wygląd dark mode (p-dark na html + tokeny Prime). -->
+  <div
+    class="pagebuilder-catchall"
+    style="
+      min-height: 100vh;
+    "
+  >
+    <span
+      class="pagebuilder-catchall__fcp"
+      aria-hidden="true"
+      style="
+        display: block;
+        font-size: 2px;
+        line-height: 1;
+        color: var(--p-text-muted-color, #94a3b8);
+        margin: 0;
+        padding: 0;
+      "
+      >.</span
+    >
+    <div v-if="pageData" id="page-builder-public" :style="wrapperStyle">
+      <nuc-page-builder-render :layout="pageData.layout_json" />
+    </div>
+    <nuc-error-404-page v-else-if="showNotFound" />
   </div>
-  <nuc-error-404-page v-else />
 </template>
 
 <script setup lang="ts">
+import { setResponseStatus } from 'h3'
+
 import type { PageBuilderLayoutInterface } from '../../../modules/nuc_pagebuilder/components/pagebuilder'
 
 interface PageBuilderRenderResponse {
@@ -16,14 +38,53 @@ interface PageBuilderRenderResponse {
 }
 
 const route = useRoute()
-const slug = computed(() => {
-  const parts = route.params.slug
-  return Array.isArray(parts) ? (parts[0] ?? '') : String(parts ?? '')
+
+/** Pełna ścieżka catch‑alla (np. `promo` albo `sekcja/podstrona`), zgodna z `/page-builder/render/{slug}` w API. */
+const pagebuilderSlug = computed(() => {
+  const raw = route.params.slug
+  const segments = Array.isArray(raw)
+    ? raw.filter((s) => s !== undefined && s !== '')
+    : [String(raw ?? '')]
+  return segments.join('/')
 })
 
-const { data: pageData, pending } = useFetch<PageBuilderRenderResponse>(
-  () => `${apiUrl()}/page-builder/render/${slug.value}`,
-  { server: false }
+const renderUrl = computed(
+  () =>
+    `${apiUrl()}/page-builder/render/${encodeURIComponent(pagebuilderSlug.value)}`
+)
+
+const requestEvent = useRequestEvent()
+
+const { data: pageData, status } = useFetch<PageBuilderRenderResponse>(
+  renderUrl,
+  {
+    server: true,
+    key: () => `pagebuilder-public:${route.fullPath}`,
+    /** Domyślny $fetch rzuca na 4xx — może psuć SSR i audyty (PageSpeed). */
+    ignoreResponseError: true,
+    timeout: 20_000,
+    onResponse({ response }: { response: { status: number } }) {
+      if (import.meta.server && response.status === 404 && requestEvent) {
+        setResponseStatus(requestEvent, 404)
+      }
+    },
+    transform(data: unknown): PageBuilderRenderResponse | null {
+      if (
+        data &&
+        typeof data === 'object' &&
+        'layout_json' in data &&
+        (data as PageBuilderRenderResponse).layout_json
+      ) {
+        return data as PageBuilderRenderResponse
+      }
+      return null
+    },
+  }
+)
+
+/** Brak UI „loading”; 404 dopiero po zakończeniu żądania (nie w trakcie fetcha). */
+const showNotFound = computed(
+  () => status.value !== 'pending' && status.value !== 'idle' && !pageData.value
 )
 
 const wrapperStyle = computed(() => {

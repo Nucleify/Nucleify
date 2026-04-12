@@ -3,9 +3,7 @@
     <ad-logo-symbol style="display: none;" />
     <ad-toast />
     <NuxtRouteAnnouncer />
-    <NuxtLayout :name="officeType">
-      <NuxtPage />
-    </NuxtLayout>
+    <NuxtLayout :name="officeType"> <NuxtPage /> </NuxtLayout>
   </div>
 </template>
 

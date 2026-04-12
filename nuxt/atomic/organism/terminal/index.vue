@@ -1,5 +1,5 @@
 <template>
-  <Terminal 
+  <Terminal
     v-bind="transformProps(props)"
     :class="$style['ad-terminal']"
     :pt="{

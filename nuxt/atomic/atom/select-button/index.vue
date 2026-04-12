@@ -1,6 +1,6 @@
 <template>
-  <SelectButton 
-    v-bind="transformProps(props)" 
+  <SelectButton
+    v-bind="transformProps(props)"
     :pt="{
       pcToggleButton: {
         root: $style['ad-togglebutton'],

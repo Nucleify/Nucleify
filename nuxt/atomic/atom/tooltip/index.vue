@@ -1,8 +1,6 @@
 <template>
   <Tooltip v-bind="transformProps(props)">
-    <template #content>
-      <slot />
-    </template>
+    <template #content> <slot /> </template>
   </Tooltip>
 </template>
 

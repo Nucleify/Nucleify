@@ -1,8 +1,8 @@
 <template>
-  <InputOtp 
-  v-bind="transformProps(props)"
-  :class="$style['ad-inputotp']"
-  :pt="{
+  <InputOtp
+    v-bind="transformProps(props)"
+    :class="$style['ad-inputotp']"
+    :pt="{
     pcInputText: {
       root: {
         class: $style['ad-inputtext'],

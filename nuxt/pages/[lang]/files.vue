@@ -1,5 +1,3 @@
 <template>
-  <div id="file">
-    <nuc-file-page />
-  </div>
+  <div id="file"><nuc-file-page /></div>
 </template>
