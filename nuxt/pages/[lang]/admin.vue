@@ -1,5 +1,3 @@
 <template>
-  <div id="admin">
-    <nuc-admin-page />
-  </div>
+  <div id="admin"><nuc-admin-page /></div>
 </template>

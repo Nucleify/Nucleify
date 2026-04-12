@@ -4,7 +4,9 @@
       <b :class="slotProps.node.class">{{ slotProps.node.label }}</b>
     </template>
     <template #url="slotProps">
-      <a :href="slotProps.node.data" :class="slotProps.node.class">{{ slotProps.node.label }}</a>
+      <a :href="slotProps.node.data" :class="slotProps.node.class"
+        >{{ slotProps.node.label }}</a
+      >
     </template>
   </Tree>
   <slot />

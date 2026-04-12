@@ -1,5 +1,3 @@
 <template>
-  <div id="register">
-    <nuc-register-page />
-  </div>
+  <div id="register"><nuc-register-page /></div>
 </template>
