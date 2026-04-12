@@ -1,7 +1,5 @@
 <template>
-  <FloatLabel
-    v-bind="transformProps(props)"
-  >
+  <FloatLabel v-bind="transformProps(props)">
     <slot>
       <!-- Example use
           <ad-input-text :id="" v-model="" />

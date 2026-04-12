@@ -6,8 +6,8 @@
     viewBox="0 0 2710 3140"
     version="1.1"
   >
-    <AdLogoPaths 
-      :lighter-color-class="props.lighterColorClass" 
+    <AdLogoPaths
+      :lighter-color-class="props.lighterColorClass"
       :darker-color-class="props.darkerColorClass"
     />
   </svg>

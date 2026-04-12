@@ -12,15 +12,11 @@
       footer: $style['ad-dialog-footer'],
     }"
   >
-    <template #header>
-      <slot name="header" />
-    </template>
+    <template #header> <slot name="header" /> </template>
 
     <slot />
 
-    <template #footer>
-      <slot name="footer" />
-    </template>
+    <template #footer> <slot name="footer" /> </template>
   </Dialog>
 </template>
 

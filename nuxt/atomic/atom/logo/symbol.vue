@@ -5,13 +5,10 @@
     :width="props.dimensions || 44"
     :height="props.dimensions || 44"
   >
-    <symbol
-      id="logo-symbol" 
-      viewBox="0 0 2710 3140"
-    >
-      <AdLogoPaths 
-        :lighter-color-class="[$style['lighter-color'], props.lighterColorClass]" 
-        :darker-color-class="[$style['darker-color'], props.darkerColorClass]" 
+    <symbol id="logo-symbol" viewBox="0 0 2710 3140">
+      <AdLogoPaths
+        :lighter-color-class="[$style['lighter-color'], props.lighterColorClass]"
+        :darker-color-class="[$style['darker-color'], props.darkerColorClass]"
       />
     </symbol>
   </svg>

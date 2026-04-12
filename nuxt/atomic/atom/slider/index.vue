@@ -1,7 +1,5 @@
 <template>
-  <Slider v-bind="transformProps(props)">
-    <slot />
-  </Slider>
+  <Slider v-bind="transformProps(props)"> <slot /> </Slider>
 </template>
 
 <script setup lang="ts">

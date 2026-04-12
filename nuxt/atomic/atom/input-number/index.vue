@@ -1,5 +1,5 @@
 <template>
-  <InputNumber 
+  <InputNumber
     v-bind="transformProps(props)"
     :class="$style['ad-inputnumber']"
     :pt="{
