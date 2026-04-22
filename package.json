@@ -27,15 +27,15 @@
     "prepare:husky": "husky",
     "prepare:storage": "rm -Rf .output/public/storage && cp -r storage/app/public .output/public/storage",
     "prepare:submodules": "sh .config/bash/prepare-submodules.sh",
-    "check": "npx biome check .",
-    "write": "npx biome check --write .",
-    "slint": "npx stylelint \"**/**/*.scss\"",
-    "slint:fix": "npx stylelint \"**/**/*.scss\" --fix",
-    "tests": "npx vitest run",
-    "test:coverage": "npx vitest run --coverage",
-    "test:watch": "npx vitest",
+    "check": "pnpm biome check .",
+    "write": "pnpm biome check --write .",
+    "slint": "pnpm stylelint \"**/**/*.scss\"",
+    "slint:fix": "pnpm stylelint \"**/**/*.scss\" --fix",
+    "tests": "pnpm vitest run",
+    "test:coverage": "pnpm vitest run --coverage",
+    "test:watch": "pnpm vitest",
     "typeslint": "tsc --noemit",
-    "wrangler": "pnpm prepare:storage && npx wrangler deploy"
+    "wrangler": "pnpm prepare:storage && pnpm exec wrangler deploy"
   },
   "dependencies": {
     "@iconify-json/mdi": "1.2.3",
