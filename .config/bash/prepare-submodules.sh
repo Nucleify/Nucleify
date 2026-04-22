@@ -65,19 +65,30 @@ cleanup_empty_modules() {
 }
 
 check_versions() {
+  has_local_modules || {
+    log_info "No local modules detected, skipping version check"
+    echo
+    return 0
+  }
+
   log_header "Checking versions"
   local has_diff=0
+  local checked_any=0
 
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
     local dir="modules/nuc_$name"
     local url="$GITHUB_URL/nuc_$name.git"
     local local_ver=$(get_version "$dir")
-    local remote_ver=$(get_remote_version "$url" "$TARGET_BRANCH")
 
     if [ -z "$local_ver" ]; then
       continue
-    elif [ -z "$remote_ver" ]; then
+    fi
+
+    checked_any=1
+    local remote_ver=$(get_remote_version "$url" "$TARGET_BRANCH")
+
+    if [ -z "$remote_ver" ]; then
       log_info "nuc_$name: $local_ver (remote version unknown)"
     elif [ "$local_ver" != "$remote_ver" ]; then
       log_warn "nuc_$name: $local_ver -> $remote_ver (removing outdated)"
@@ -88,7 +99,8 @@ check_versions() {
     fi
   done < "$SUBMODULES_FILE"
 
-  [ "$has_diff" -eq 0 ] && log_success "All modules are up to date"
+  [ "$checked_any" -eq 0 ] && log_info "No local module versions found, skipping"
+  [ "$checked_any" -eq 1 ] && [ "$has_diff" -eq 0 ] && log_success "All modules are up to date"
   echo
   return $has_diff
 }
