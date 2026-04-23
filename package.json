@@ -27,6 +27,7 @@
     "prepare:husky": "husky",
     "prepare:storage": "rm -Rf .output/public/storage && cp -r storage/app/public .output/public/storage",
     "prepare:submodules": "sh .config/bash/prepare-submodules.sh",
+    "btest": "bash .config/bash/tests/run.sh",
     "check": "pnpm biome check .",
     "write": "pnpm biome check --write .",
     "slint": "pnpm stylelint \"**/**/*.scss\"",
