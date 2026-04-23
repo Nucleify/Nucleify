@@ -72,6 +72,7 @@ check_versions() {
   }
 
   log_header "Checking versions"
+  echo
   local has_diff=0
   local checked_any=0
 
@@ -100,6 +101,7 @@ check_versions() {
   done < "$SUBMODULES_FILE"
 
   [ "$checked_any" -eq 0 ] && log_info "No local module versions found, skipping"
+  echo
   [ "$checked_any" -eq 1 ] && [ "$has_diff" -eq 0 ] && log_success "All modules are up to date"
   echo
   return $has_diff
@@ -118,19 +120,24 @@ prompt_yn() {
 confirm_local() {
   [ "$APP_ENV" = "local" ] || return 0
   has_local_modules || return 0
+  echo
   prompt_yn "Run prepare-submodules?" || { log_info "Aborted"; exit 0; }
 
+  print_separator
   log_warn "This will overwrite local modules with fresh clones"
+  echo
   check_versions || true
 }
 
 clone_repo() {
   local name="$1" url="$2" dir="$3"
-  print_separator
   log_header "Cloning $name"
+  echo
 
   if [ -n "$NUC_SUBMODULES_CHECK" ] && [ -d "$dir" ]; then
     log_warn "Directory '$dir' exists, skipping"
+    echo
+    print_separator
     return 0
   fi
 
@@ -139,6 +146,8 @@ clone_repo() {
     | tr '\r' '\n' | grep -E '^(Cloning|remote:.*done)'
   echo
   log_success "Cloned $name ($branch)"
+  echo
+  print_separator
 }
 
 main() {
@@ -146,11 +155,15 @@ main() {
   TARGET_BRANCH="${NUC_SUBMODULES_BRANCH:-$DEFAULT_BRANCH}"
   confirm_local
 
+  print_separator
   log_header "Prepare Submodules"
+  echo
   export GIT_DISCOVERY_ACROSS_FILESYSTEM=1
   log_info "Target branch: $TARGET_BRANCH"
   cleanup_empty_modules
   [ -n "$NUC_SUBMODULES_CHECK" ] && log_info "Check mode: will skip existing directories"
+  echo
+  print_separator
 
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
