@@ -26,18 +26,20 @@ configure_submodule_hooks() {
   local hooks_path="$root_dir/.husky"
 
   log_header "Configuring submodule hook paths"
+  echo
 
   if [ ! -d "$hooks_path" ]; then
     log_warn "Missing $hooks_path, skipping hook path configuration"
     return 0
   fi
 
-  configure_submodule_hook_path "$root_dir/next" "$hooks_path"
-
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
     configure_submodule_hook_path "$root_dir/modules/nuc_$name" "$hooks_path"
   done < "$submodules_file"
 
+  configure_submodule_hook_path "$root_dir/next" "$hooks_path"
+
+  echo
   print_separator
 }

@@ -6,6 +6,9 @@ onlyBuiltDependencies:
   - "@parcel/watcher"
   - sharp
 
+ignoredBuiltDependencies:
+  - workerd
+
 allowedDeprecatedVersions:
   unplugin-vue-router: '*'
   whatwg-encoding: '*'
