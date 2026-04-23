@@ -1,6 +1,8 @@
 #!/bin/sh
 
 run_hook_checks() {
+  pnpm run btest
+
   php .config/pest/guard_check.php
 
   echo 'Pint checking...'

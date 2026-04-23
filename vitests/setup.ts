@@ -11,6 +11,45 @@ const originalClearTimeout = globalThis.clearTimeout
 const originalSetInterval = globalThis.setInterval
 const originalClearInterval = globalThis.clearInterval
 
+const createMemoryStorage = (): Storage => {
+  const store = new Map<string, string>()
+
+  return {
+    get length(): number {
+      return store.size
+    },
+    clear(): void {
+      store.clear()
+    },
+    getItem(key: string): string | null {
+      return store.has(key) ? (store.get(key) ?? null) : null
+    },
+    key(index: number): string | null {
+      return Array.from(store.keys())[index] ?? null
+    },
+    removeItem(key: string): void {
+      store.delete(key)
+    },
+    setItem(key: string, value: string): void {
+      store.set(key, String(value))
+    },
+  }
+}
+
+const storage = createMemoryStorage()
+
+Object.defineProperty(globalThis, 'localStorage', {
+  configurable: true,
+  value: storage,
+})
+
+if (typeof window !== 'undefined') {
+  Object.defineProperty(window, 'localStorage', {
+    configurable: true,
+    value: storage,
+  })
+}
+
 const trackedSetTimeout = (
   callback: TimerCallback,
   delay?: number,

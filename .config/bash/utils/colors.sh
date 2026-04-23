@@ -8,9 +8,9 @@ CYAN='\033[0;36m'
 BOLD='\033[1m'
 NC='\033[0m'
 
-log_info()    { printf "${CYAN}ℹ${NC}  %s\n\n" "$1"; }
-log_success() { printf "${GREEN}✓${NC}  %s\n\n" "$1"; }
-log_warn()    { printf "${YELLOW}⚠${NC}  %s\n\n" "$1"; }
-log_error()   { printf "${RED}✗${NC}  %s\n\n" "$1"; }
-log_header()  { printf "${BOLD}${BLUE}▶ %s${NC}\n\n" "$1"; }
+log_info()    { printf "${CYAN}ℹ${NC}  %s\n" "$1"; }
+log_success() { printf "${GREEN}✓${NC}  %s\n" "$1"; }
+log_warn()    { printf "${YELLOW}⚠${NC}  %s\n" "$1"; }
+log_error()   { printf "${RED}✗${NC}  %s\n" "$1"; }
+log_header()  { printf "${BOLD}${BLUE}▶  %s${NC}\n" "$1"; }
 

@@ -9,6 +9,7 @@ import {
   registerNucAdmin,
   registerNucAnimations,
   registerNucAuth,
+  registerNucBreadcrumb,
   registerNucCharts,
   registerNucColors,
   registerNucDarkMode,
@@ -30,6 +31,7 @@ import {
   registerNucSections,
   registerNucSettings,
   registerNucShare,
+  registerNucSocials,
   registerNucTemplates,
   registerNucTerminal,
   registerNucTime,
@@ -46,6 +48,7 @@ export default defineNuxtPlugin({
     registerNucAdmin(nuxtApp.vueApp)
     registerNucAnimations(nuxtApp.vueApp)
     registerNucAuth(nuxtApp.vueApp)
+    registerNucBreadcrumb(nuxtApp.vueApp)
     registerNucCharts(nuxtApp.vueApp)
     registerNucColors(nuxtApp.vueApp)
     registerNucDarkMode(nuxtApp.vueApp)
@@ -67,6 +70,7 @@ export default defineNuxtPlugin({
     registerNucSections(nuxtApp.vueApp)
     registerNucSettings(nuxtApp.vueApp)
     registerNucShare(nuxtApp.vueApp)
+    registerNucSocials(nuxtApp.vueApp)
     registerNucTemplates(nuxtApp.vueApp)
     registerNucTerminal(nuxtApp.vueApp)
     registerNucTime(nuxtApp.vueApp)
