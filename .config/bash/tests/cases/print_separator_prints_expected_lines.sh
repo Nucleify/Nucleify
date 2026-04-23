@@ -7,6 +7,6 @@ TEST_CASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "$REPO_ROOT/.config/bash/utils/print_separator.sh"
 
 output="$(print_separator; printf 'END')"
-expected=$'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nEND'
+expected=$'~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nEND'
 
 assert_equals "$expected" "$output" "print_separator should print separator and a trailing blank line"
