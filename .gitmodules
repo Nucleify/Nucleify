@@ -124,3 +124,6 @@
 [submodule "modules/nuc_breadcrumb"]
 	path = modules/nuc_breadcrumb
 	url = https://github.com/Nucleify/nuc_breadcrumb.git
+[submodule "modules/nuc_socials"]
+	path = modules/nuc_socials
+	url = https://github.com/Nucleify/nuc_socials.git
