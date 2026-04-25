@@ -12,6 +12,7 @@ datatable
 dialog
 dock
 documentation
+documents
 entities
 entities_structural
 fields
