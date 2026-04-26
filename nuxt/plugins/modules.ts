@@ -17,6 +17,7 @@ import {
   registerNucDialog,
   registerNucDock,
   registerNucDocumentation,
+  registerNucDocuments,
   registerNucEntities,
   registerNucEntitiesStructural,
   registerNucFiles,
@@ -55,6 +56,7 @@ export default defineNuxtPlugin({
     registerNucDataTable(nuxtApp.vueApp)
     registerNucDialog(nuxtApp.vueApp)
     registerNucDock(nuxtApp.vueApp)
+    registerNucDocuments(nuxtApp.vueApp)
     registerNucDocumentation(nuxtApp.vueApp)
     registerNucEntities(nuxtApp.vueApp)
     registerNucEntitiesStructural(nuxtApp.vueApp)
