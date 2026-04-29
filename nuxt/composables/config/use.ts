@@ -6,4 +6,5 @@ export const useConfig = () => ({
 
 export const apiUrl = () => useConfig().get('apiUrl')
 export const appUrl = () => useConfig().get('appUrl')
+export const convertDocumentsUrl = () => useConfig().get('convertDocumentsUrl')
 export const appEnv = () => useConfig().get('appEnv')
