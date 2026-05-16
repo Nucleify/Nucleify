@@ -55,4 +55,4 @@ logs
 # AI workflow
 .ai/specs/*
 
-supabase/.temp/merged_*.sql
+supabase/.temp
