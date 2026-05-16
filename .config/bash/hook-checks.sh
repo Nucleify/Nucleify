@@ -2,12 +2,6 @@
 
 run_hook_checks() {
   pnpm run btest
-
-  php .config/pest/guard_check.php
-
-  echo 'Pint checking...'
-  ./vendor/bin/pint --config=.config/pint.json
-
   pnpm run check
   pnpm run typeslint
   pnpm run slint

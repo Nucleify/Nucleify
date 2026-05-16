@@ -19,10 +19,7 @@
       </div>
     </div>
     <div :class="$style['secondary']">
-      <ad-paragraph
-        :class="$style['count']"
-        :text="props.countSecondary + ' new'"
-      />
+      <ad-paragraph :class="$style['count']" :text="secondaryCountLabel" />
       <ad-paragraph :class="$style['text']" :text="props.textSecondary" />
     </div>
     <slot />
@@ -30,9 +27,23 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import type { TileInterface } from '.'
 
 const props = defineProps<TileInterface>()
+
+const secondaryCountLabel = computed(() => {
+  const raw = props.countSecondary
+  const n =
+    typeof raw === 'number'
+      ? raw
+      : typeof raw === 'string'
+        ? Number(raw)
+        : Number((raw as { count?: unknown })?.count)
+  const safe = Number.isFinite(n) ? n : 0
+  return `${safe} new`
+})
 </script>
 
 <style lang="scss" module>

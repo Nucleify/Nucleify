@@ -1,1 +1,0 @@
-Most API tests are located in modules folder.

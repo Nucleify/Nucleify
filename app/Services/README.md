@@ -1,1 +1,0 @@
-Most services are located in modules folder.

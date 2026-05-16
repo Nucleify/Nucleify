@@ -1,1 +1,0 @@
-Most factories are located in modules folder.
