@@ -1,4 +1,4 @@
-.PHONY: setup nuxt next
+.PHONY: setup nuxt next docker-fix-perms
 
 setup:
 	$(MAKE) nuxt
@@ -6,7 +6,6 @@ setup:
 
 nuxt:
 	cp .config/.env.docker.nuxt.example .env
-	make php
 	pnpm install
 	pnpm prepare:husky
 
@@ -14,15 +13,14 @@ nuxt:
 
 next:
 	cp .config/.env.docker.next.example .env
-	make php
 	cd next && pnpm install
 	pnpm prepare:husky
 
 	make docker
 
-php: 
-	composer install
-
 docker:
-	./vendor/bin/sail up --build -d
-	./vendor/bin/sail art migrate:fresh --seed
+	docker compose up --build -d
+
+# Jednorazowo po starym Dockerze (pliki .nuxt/.output jako root) — inaczej EACCES przy `pnpm dev` na hoście.
+docker-fix-perms:
+	sudo chown -R $$(id -u):$$(id -g) .nuxt .output

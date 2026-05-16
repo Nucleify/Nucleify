@@ -6,10 +6,6 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: 'back-office',
-})
-
 useHead({
   pageTransition: { name: 'page', mode: 'out-in' },
 })

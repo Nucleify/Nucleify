@@ -1,8 +1,10 @@
-FROM node:20
+FROM node:20-bookworm
 
 WORKDIR /app
 
-COPY . .
+COPY --chown=node:node . .
+
+USER node
 
 EXPOSE 3000
 

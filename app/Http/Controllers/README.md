@@ -1,1 +1,0 @@
-Most controllers are located in modules folder.

@@ -1,1 +1,0 @@
-Most database tests are located in modules folder.
