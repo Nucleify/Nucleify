@@ -4,19 +4,28 @@
     <ad-toast />
     <NuxtRouteAnnouncer />
     <NuxtLayout :name="officeType"> <NuxtPage /> </NuxtLayout>
+    <ul v-if="todos.length" style="display: none;">
+      <li v-for="todo in todos" :key="todo.id">{{ todo.name }}</li>
+    </ul>
   </div>
 </template>
 
 <script setup lang="ts">
+import { createClient } from '@supabase/supabase-js'
 import {
   AdLogoSymbol,
+  getAndSetUser,
+  pathIsBackOffice,
   resetColorsIfEmpty,
   syncColorsWithDatabase,
+  sessionStorageGetItem,
   useDarkMode,
   useOfficeType,
 } from 'nucleify'
 
 const route = useRoute()
+const config = useRuntimeConfig()
+const todos = ref<Array<{ id: number | string; name: string }>>([])
 const { isDark } = useDarkMode()
 
 const CLARITY_ID = 'vmewuw52gn'
@@ -80,21 +89,41 @@ onMounted(() => {
   window.addEventListener('scroll', onFirstInteraction, { passive: true })
   window.addEventListener('pointerdown', onFirstInteraction)
   setTimeout(loadClarityOnce, 12000)
+
+  void getTodos()
 })
 
-let syncTimeout: ReturnType<typeof setTimeout> | null = null
+let backOfficeColorsSyncTimeout: ReturnType<typeof setTimeout> | null = null
 
 watch(
   () => route.path,
   () => {
-    if (syncTimeout) clearTimeout(syncTimeout)
-    syncTimeout = setTimeout(() => {
+    if (!import.meta.client || !pathIsBackOffice(route.path)) return
+
+    if (backOfficeColorsSyncTimeout) clearTimeout(backOfficeColorsSyncTimeout)
+    backOfficeColorsSyncTimeout = setTimeout(() => {
       requestIdleCallback(() => {
-        syncColorsWithDatabase()
+        void (async () => {
+          if (!sessionStorageGetItem('user_id')) {
+            await getAndSetUser()
+          }
+          await syncColorsWithDatabase()
+        })()
       })
     }, 300)
-  }
+  },
+  { immediate: true }
 )
+
+async function getTodos(): Promise<void> {
+  const supabaseUrl = String(config.public.supabaseUrl || '')
+  const supabaseKey = String(config.public.supabaseKey || '')
+  if (!supabaseUrl || !supabaseKey) return
+
+  const supabase = createClient(supabaseUrl, supabaseKey)
+  const { data } = await supabase.from('todos').select()
+  todos.value = (data || []) as Array<{ id: number | string; name: string }>
+}
 </script>
 
 <style lang="scss">

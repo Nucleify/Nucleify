@@ -20,7 +20,6 @@ export const viteConfig = {
           marked: ['marked'],
           highlightjs: ['highlight.js'],
           swiper: ['swiper'],
-          dompurify: ['dompurify'],
           iconify: ['@iconify/vue', '@iconify/utils', '@iconify/types'],
         },
       },

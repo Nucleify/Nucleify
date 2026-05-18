@@ -208,10 +208,15 @@
                 "primereact",
                 "primereact/*",
                 "chart.js",
-                "h3"
+                "fflate",
+                "h3",
+                "node:fs/*",
+                "node:path",
+                "@supabase/*"
               ],
               ":BLANK_LINE:",
               "nucleify",
+              "nuc_*",
               ":BLANK_LINE:",
               "components",
               "constants",
