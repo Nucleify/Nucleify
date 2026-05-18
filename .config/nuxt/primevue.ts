@@ -50,7 +50,8 @@ const PRIMEVUE_COMPONENT_INCLUDE = [
   'Tree',
 ]
 
-const PRIMEVUE_DIRECTIVE_INCLUDE = ['ripple', 'tooltip']
+/** `tooltip` nie jest tu — rejestruje go `registerNucTooltip` (Nuc + ad-tooltip), inaczej kolizja z PrimeVue. */
+const PRIMEVUE_DIRECTIVE_INCLUDE = ['ripple']
 
 export const primevueConfig = {
   autoImport: false,

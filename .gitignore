@@ -1,15 +1,12 @@
-/.phpunit.cache
 /node_modules
 /public/build
 /public/hot
 /public/storage
 /public/sitemap.xml
 /storage/*.key
-/vendor
 .env
 .env.backup
 .env.production
-.phpunit.result.cache
 Homestead.json
 Homestead.yaml
 auth.json
@@ -57,4 +54,9 @@ logs
 
 # AI workflow
 .ai/specs/*
-y
+
+# Supabase
+supabase/.temp
+
+# Wrangler
+.wrangler

@@ -7,8 +7,12 @@
   >
     <symbol id="logo-symbol" viewBox="0 0 2710 3140">
       <AdLogoPaths
-        :lighter-color-class="[$style['lighter-color'], props.lighterColorClass]"
-        :darker-color-class="[$style['darker-color'], props.darkerColorClass]"
+        :lighter-color-class="
+          [props.lighterColorClass, $style['lighter-color']].filter(Boolean).join(' ')
+        "
+        :darker-color-class="
+          [props.darkerColorClass, $style['darker-color']].filter(Boolean).join(' ')
+        "
       />
     </symbol>
   </svg>

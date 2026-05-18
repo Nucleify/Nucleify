@@ -1,7 +1,6 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 import { appConfig } from './nuxt/app'
-import { authConfig } from './nuxt/auth'
 import { devConfig } from './nuxt/dev'
 import { experimentalConfig } from './nuxt/experimental'
 import { featuresConfig } from './nuxt/features'
@@ -36,7 +35,6 @@ export default defineNuxtConfig({
   i18n: i18nConfig,
   ...performanceConfig,
   ...structureConfig,
-  ...authConfig,
   ...nitroConfig,
   ...hooksConfig,
   // biome-ignore lint/suspicious/noExplicitAny: Nuxt config complexity @typescript-eslint/no-explicit-any
