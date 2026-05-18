@@ -1,0 +1,11 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .p-selectbutton[ad-type='#{$type}'] {
+    @include entity-with-suffix($type) using ($suffix) {
+      @include entity-select-button-styles(
+        var(--#{$type}-sl#{$suffix}) !important
+      );
+    }
+  }
+}

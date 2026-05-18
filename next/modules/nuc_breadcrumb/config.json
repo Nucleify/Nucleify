@@ -1,0 +1,8 @@
+{
+  "name": "nuc_breadcrumb",
+  "description": "Module that contains breadcrumb functionality.",
+  "version": "0.0.2",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

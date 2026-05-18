@@ -1,0 +1,33 @@
+.ad-toast {
+  z-index: 99999;
+
+  .ad-toast-message {
+    position: fixed;
+    font-size: $font-size-sm;
+    top: 0.875rem;
+    right: 0.875rem;
+    width: 95vw;
+
+    .ad-toast-message-content {
+      display: flex;
+      gap: 0.375rem;
+    }
+
+    .ad-toast-close-button {
+      margin-left: 0.375rem;
+    }
+
+    .ad-toast-summary {
+      margin-left: 0.5rem;
+
+      &:global(.validation-errors) {
+        margin-top: -1.35rem;
+      }
+    }
+
+    @media (min-width: $sm) {
+      width: max-content;
+      max-width: max-content;
+    }
+  }
+}

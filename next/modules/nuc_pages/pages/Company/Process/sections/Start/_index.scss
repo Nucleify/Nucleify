@@ -1,0 +1,184 @@
+#process #start {
+  position: relative;
+  padding: 2rem 0 3.5rem;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($primary-color, 0.2), transparent);
+  }
+
+  @media (min-width: $lg) {
+    padding: 9rem 0 5rem;
+  }
+
+  .process-start-decoration {
+    position: absolute;
+    color: rgba($primary-color, 0.1);
+    pointer-events: none;
+    display: none;
+
+    @media (min-width: $md) {
+      display: block;
+    }
+
+    &-1 {
+      top: 18%;
+      left: 7%;
+      animation: process-float 7s ease-in-out infinite;
+
+      .iconify {
+        font-size: 3rem;
+      }
+    }
+
+    &-2 {
+      bottom: 22%;
+      right: 5%;
+      animation: process-float 6s ease-in-out infinite reverse;
+
+      .iconify {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .process-start-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .process-start-badge {
+    display: inline-block;
+    font-size: $font-size-xs;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: $primary-color;
+    padding: 0.4em 1em;
+    border-radius: 6px;
+    background: rgba($primary-color, 0.1);
+    border: 1px solid rgba($primary-color, 0.2);
+  }
+
+  .process-start-title {
+    font-family: $font-inter-sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $white-text-color;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.02em;
+
+    @media (min-width: $sm) {
+      font-size: 2.5rem;
+    }
+
+    @media (min-width: $md) {
+      font-size: 2.75rem;
+    }
+
+    @media (min-width: $lg) {
+      font-size: 3.25rem;
+    }
+
+    &-highlight {
+      display: block;
+      font-size: 2.25rem;
+      font-weight: 800;
+      font-style: italic;
+      color: transparent;
+      background: linear-gradient(
+        135deg,
+        $primary-color 0%,
+        color.adjust($primary-color, $lightness: 15%) 50%,
+        $primary-white-green-text-color 100%
+      );
+      background-clip: text;
+      background-size: 200% 200%;
+      animation: process-gradient-shift 5s ease infinite;
+      margin-top: 0.15rem;
+
+      @media (min-width: $sm) {
+        font-size: 2.75rem;
+      }
+
+      @media (min-width: $md) {
+        font-size: 3.25rem;
+      }
+
+      @media (min-width: $lg) {
+        font-size: 3.75rem;
+      }
+    }
+  }
+
+  .process-start-subtitle {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba($white-text-color-rgb, 0.7);
+    margin: 0;
+    max-width: 620px;
+
+    @media (min-width: $md) {
+      font-size: 1.1rem;
+    }
+  }
+
+  .process-start-indicators {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+
+    @media (min-width: $sm) {
+      gap: 1rem;
+    }
+  }
+
+  .process-start-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba($primary-color, 0.05);
+    border: 1px solid rgba($primary-color, 0.15);
+    border-radius: 10px;
+    font-size: $font-size-sm;
+    color: rgba($white-text-color-rgb, 0.6);
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: rgba($primary-color, 0.35);
+      background: rgba($primary-color, 0.08);
+    }
+
+    &-num {
+      font-size: $font-size-xs;
+      font-weight: 700;
+      color: $primary-color;
+    }
+  }
+}
+
+@keyframes process-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+@keyframes process-gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}

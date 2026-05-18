@@ -1,0 +1,7 @@
+@import '../input-text/index.module';
+
+.ad-inputotp {
+  .ad-inputtext {
+    @extend %ad-inputtext;
+  }
+}

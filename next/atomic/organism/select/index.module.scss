@@ -1,0 +1,41 @@
+@import "../../atom/input-text/index.module";
+
+.ad-select {
+  padding: 0.625em 0.8em;
+
+  @extend %ad-inputtext;
+
+  .ad-select-dropdown {
+    width: min-content;
+  }
+
+  .ad-select-label {
+    padding: 0;
+  }
+}
+
+.ad-select-overlay {
+  .ad-select-list {
+    background: $p-card-background;
+    color: $white-text-color;
+
+    .ad-select-option {
+      padding: 0.625em 0.8em;
+
+      &[data-p-selected="true"] {
+        background-color: $content-background;
+      }
+
+      &:hover {
+        background-color: var(--p-select-option-focus-background);
+      }
+    }
+  }
+
+  .ad-select-list,
+  .ad-select-list-container {
+    border: none;
+    border-radius: 0.25em;
+    padding: 0;
+  }
+}

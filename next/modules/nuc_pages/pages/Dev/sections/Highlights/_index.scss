@@ -1,0 +1,559 @@
+#dev #dev-highlights {
+  position: relative;
+  padding: 6rem 1rem;
+  margin: 0 -1rem;
+  overflow: hidden;
+
+  .dev-hl-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(175deg, #000208 0%, #020713 40%, #040d22 70%, #030915 100%);
+    z-index: 0;
+  }
+
+  .dev-hl-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba($primary-color, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba($primary-color, 0.025) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, #000 10%, transparent 100%);
+  }
+
+  .dev-hl-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+
+    &-1 {
+      width: 600px;
+      height: 600px;
+      top: -20%;
+      right: 10%;
+      background: rgba($primary-color, 0.03);
+      animation: dev-hl-drift 18s ease-in-out infinite;
+    }
+
+    &-2 {
+      width: 400px;
+      height: 400px;
+      bottom: -15%;
+      left: 5%;
+      background: rgba(#60a5fa, 0.015);
+      animation: dev-hl-drift 22s ease-in-out infinite reverse;
+    }
+  }
+
+  @keyframes dev-hl-drift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, -15px) scale(1.05); }
+    66% { transform: translate(-15px, 10px) scale(0.95); }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .dev-hl-bento {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  .dev-hl-card {
+    position: relative;
+    border-radius: 20px;
+    border: 1px solid rgba($primary-color, 0.12);
+    background: rgba(#01040d, 0.92);
+    backdrop-filter: blur(16px);
+    overflow: hidden;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    transition: border-color 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: dev-hl-enter 0.55s ease forwards;
+
+    &-1 { animation-delay: 0ms; }
+    &-2 { animation-delay: 100ms; }
+    &-3 { animation-delay: 200ms; }
+    &-4 { animation-delay: 300ms; }
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba($primary-color, 0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 1;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(180deg, rgba($primary-color, 0.04), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+
+    &:hover {
+      border-color: rgba($primary-color, 0.22);
+      box-shadow: 0 8px 40px rgba(#000, 0.55), 0 0 60px rgba($primary-color, 0.025);
+
+      &::before {
+        opacity: 1;
+      }
+
+      &::after {
+        opacity: 1;
+      }
+    }
+
+    &-wide {
+      @media (min-width: $md) {
+        grid-column: span 2;
+        flex-direction: row;
+        align-items: center;
+        gap: 3.5rem;
+        padding: 2.75rem 3rem;
+      }
+    }
+  }
+
+  @keyframes dev-hl-enter {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .dev-hl-card-content {
+    flex: 1;
+    min-width: 0;
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgba(#dbeafe, 0.85);
+      line-height: 1.6;
+      margin: 0;
+
+      @media (min-width: $md) {
+        font-size: 1.3rem;
+      }
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: rgba(#bfdbfe, 0.7);
+      line-height: 1.7;
+      margin: 0;
+    }
+  }
+
+  .dev-hl-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $primary-color;
+    background: rgba($primary-color, 0.08);
+    border: 1px solid rgba($primary-color, 0.15);
+    padding: 0.35em 0.8em;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+  }
+
+  .dev-hl-list {
+    list-style: none;
+    padding: 0.75rem 0 0;
+    margin: 0.75rem 0 0;
+    border-top: 1px solid rgba($primary-color, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: rgba(#bfdbfe, 0.7);
+      line-height: 1.5;
+      transition: color 0.25s ease, transform 0.25s ease;
+
+      .iconify {
+        font-size: 0.8rem;
+        color: $primary-color;
+        flex-shrink: 0;
+        margin-top: 0.15rem;
+      }
+    }
+
+    .dev-hl-card:hover & li {
+      color: rgba(#eff6ff, 0.95);
+      transform: translateX(2px);
+    }
+  }
+
+  .dev-hl-visual-layers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex-shrink: 0;
+    width: 100%;
+
+    @media (min-width: $md) {
+      width: 340px;
+    }
+  }
+
+  .dev-hl-layer {
+    border-radius: 10px;
+    padding: 0.85rem 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+    &-1 {
+      background: rgba(#1e3a8a, 0.35);
+      border: 1px solid rgba($primary-color, 0.08);
+    }
+
+    &-2 {
+      background: rgba($primary-color, 0.08);
+      border: 1px solid rgba($primary-color, 0.18);
+      transform: translateX(10px);
+    }
+
+    &-3 {
+      background: rgba($primary-color, 0.14);
+      border: 1px solid rgba($primary-color, 0.25);
+      transform: translateX(20px);
+    }
+
+    .dev-hl-card:hover &-2 {
+      transform: translateX(16px);
+      box-shadow: 0 2px 16px rgba($primary-color, 0.06);
+    }
+
+    .dev-hl-card:hover &-3 {
+      transform: translateX(28px);
+      box-shadow: 0 4px 20px rgba($primary-color, 0.08);
+    }
+  }
+
+  .dev-hl-layer-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: rgba($primary-color, 0.8);
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
+
+  .dev-hl-layer-line {
+    height: 4px;
+    border-radius: 2px;
+    background: rgba($primary-color, 0.15);
+    flex: 1;
+
+    &-short {
+      flex: 0.5;
+    }
+  }
+
+  .dev-hl-visual-dash {
+    display: flex;
+    gap: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba($primary-color, 0.1);
+    background: rgba(#0b1220, 0.6);
+    height: 150px;
+    transition: border-color 0.4s ease;
+
+    .dev-hl-card:hover & {
+      border-color: rgba($primary-color, 0.2);
+    }
+  }
+
+  .dev-hl-dash-sidebar {
+    width: 32px;
+    background: rgba($primary-color, 0.05);
+    border-right: 1px solid rgba($primary-color, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.6rem 0;
+    gap: 0.5rem;
+  }
+
+  .dev-hl-dash-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    background: rgba($primary-color, 0.12);
+    transition: background 0.3s ease;
+
+    &:first-child {
+      background: rgba($primary-color, 0.35);
+    }
+
+    .dev-hl-card:hover & {
+      background: rgba($primary-color, 0.2);
+
+      &:first-child {
+        background: rgba($primary-color, 0.5);
+      }
+    }
+  }
+
+  .dev-hl-dash-main {
+    flex: 1;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .dev-hl-dash-bar-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .dev-hl-dash-bar {
+    height: 5px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, rgba($primary-color, 0.15), rgba($primary-color, 0.06));
+    transition: all 0.5s ease;
+
+    .dev-hl-card:hover & {
+      background: linear-gradient(90deg, rgba($primary-color, 0.3), rgba($primary-color, 0.08));
+    }
+  }
+
+  .dev-hl-dash-cards {
+    display: flex;
+    gap: 0.35rem;
+    flex: 1;
+
+    > div {
+      flex: 1;
+      border-radius: 5px;
+      border: 1px solid rgba($primary-color, 0.08);
+      background: rgba($primary-color, 0.03);
+      transition: border-color 0.4s ease, background 0.4s ease;
+
+      .dev-hl-card:hover & {
+        border-color: rgba($primary-color, 0.15);
+        background: rgba($primary-color, 0.06);
+      }
+    }
+  }
+
+  .dev-hl-visual-palette {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.25rem;
+    border-radius: 10px;
+    background: rgba(#0b1220, 0.6);
+    border: 1px solid rgba($primary-color, 0.1);
+    transition: border-color 0.4s ease;
+
+    .dev-hl-card:hover & {
+      border-color: rgba($primary-color, 0.2);
+    }
+  }
+
+  .dev-hl-swatch-row {
+    display: flex;
+    gap: 0.35rem;
+  }
+
+  .dev-hl-swatch {
+    flex: 1;
+    height: 34px;
+    border-radius: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    .dev-hl-card:hover & {
+      transform: scaleY(1.15);
+
+      &:nth-child(3) {
+        box-shadow: 0 0 12px rgba($primary-color, 0.25);
+      }
+    }
+  }
+
+  .dev-hl-mode-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+
+    .iconify {
+      font-size: 0.85rem;
+      color: rgba($primary-color, 0.4);
+    }
+  }
+
+  .dev-hl-mode-track {
+    width: 32px;
+    height: 16px;
+    border-radius: 8px;
+    background: rgba($primary-color, 0.12);
+    border: 1px solid rgba($primary-color, 0.15);
+    position: relative;
+    transition: background 0.3s ease;
+
+    .dev-hl-card:hover & {
+      background: rgba($primary-color, 0.2);
+    }
+  }
+
+  .dev-hl-mode-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: $primary-color;
+    transition: left 0.3s ease;
+
+    .dev-hl-card:hover & {
+      left: 18px;
+    }
+  }
+
+  .dev-hl-visual-devices {
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    flex-shrink: 0;
+    width: 100%;
+    justify-content: center;
+
+    @media (min-width: $md) {
+      width: 340px;
+    }
+  }
+
+  .dev-hl-device {
+    border-radius: 8px;
+    border: 1px solid rgba($primary-color, 0.12);
+    background: rgba(#0b1220, 0.7);
+    overflow: hidden;
+    transition: border-color 0.4s ease, transform 0.4s ease;
+
+    .dev-hl-card:hover & {
+      border-color: rgba($primary-color, 0.25);
+    }
+
+    &-desktop {
+      width: 180px;
+      height: 120px;
+
+      .dev-hl-card:hover & { transform: translateY(-4px); }
+    }
+
+    &-tablet {
+      width: 90px;
+      height: 110px;
+
+      .dev-hl-card:hover & { transform: translateY(-2px); }
+    }
+
+    &-phone {
+      width: 48px;
+      height: 88px;
+      border-radius: 10px;
+
+      .dev-hl-card:hover & { transform: translateY(-1px); }
+    }
+  }
+
+  .dev-hl-device-bar {
+    display: flex;
+    gap: 4px;
+    padding: 5px 8px;
+    background: rgba($primary-color, 0.04);
+    border-bottom: 1px solid rgba($primary-color, 0.06);
+
+    span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba($primary-color, 0.15);
+    }
+  }
+
+  .dev-hl-device-screen {
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: calc(100% - 16px);
+
+    > div {
+      border-radius: 3px;
+      background: rgba($primary-color, 0.08);
+      transition: background 0.4s ease;
+
+      .dev-hl-card:hover & {
+        background: rgba($primary-color, 0.15);
+      }
+    }
+
+    .dev-hl-device-desktop & {
+      > div {
+        height: 10px;
+
+        &:first-child { height: 14px; }
+        &:last-child { width: 55%; }
+      }
+    }
+
+    .dev-hl-device-tablet & {
+      > div {
+        height: 9px;
+
+        &:last-child { width: 65%; }
+      }
+    }
+
+    .dev-hl-device-phone & {
+      > div {
+        height: 7px;
+
+        &:first-child { height: 10px; }
+      }
+    }
+  }
+}

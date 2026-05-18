@@ -1,0 +1,27 @@
+.ad-dialog {
+  background: $bg-dark-color !important;
+  border: 1px solid $bg-dark-green-color !important;
+  color: $white-text-color !important;
+  backdrop-filter: blur(0.5em);
+
+  &-mask {
+    padding: 0 10px;
+    backdrop-filter: blur(0.5em);
+  }
+
+  &-header {
+    padding: 1.125rem 1.5rem 0.5rem;
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  &-content {
+    padding: 20px;
+  }
+
+  &-footer {
+    padding: 20px;
+  }
+}

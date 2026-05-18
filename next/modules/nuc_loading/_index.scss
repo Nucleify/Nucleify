@@ -1,0 +1,14 @@
+.loaded {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.loading {
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.invisible-loading {
+  opacity: 0 !important;
+  pointer-events: none;
+}

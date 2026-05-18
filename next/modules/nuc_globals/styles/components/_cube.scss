@@ -1,0 +1,52 @@
+.cube {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  height: min-content;
+  width: min-content;
+  padding: 10px;
+  background: $content-background;
+  font-size: 1.25em !important;
+  border: 1px solid $p-card-border !important;
+  border: none;
+  border-radius: 8px;
+  color: $primary-white-text-color;
+  transition: all 300ms;
+  cursor: pointer;
+  box-shadow: 0 0 4px transparent !important;
+
+  &[data-p-active='true'],
+  &:hover {
+    color: $primary-color;
+    border-color: transparent !important;
+    box-shadow: 0 0 4px $primary-color !important;
+  }
+
+  @media (min-width: 768px) {
+    padding: 12px;
+    font-size: 20px;
+  }
+
+  @media (min-width: 992px) {
+    padding: 15px;
+  }
+}
+
+* {
+  &:has(> .cube) {
+    &:hover {
+      .cube {
+        filter: brightness(1.75);
+      }
+    }
+  }  
+}
+
+.shiny,
+%shiny {
+  &.cube {
+    animation: shiny-cube 10s linear infinite;
+    box-shadow: 0 0 4px var(--main-c-u) !important;
+    border-color: transparent !important;
+  }
+}

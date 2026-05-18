@@ -1,0 +1,317 @@
+
+.offer-container {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  overflow: hidden;
+
+  @media (min-width: $lg) {
+    padding: 3.5rem 0;
+  }
+
+  .p-card {
+    background: rgb(16 185 129 / 3%);
+    border: 1px solid rgba($primary-color, 0.25) !important;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: rgba($primary-color, 0.35) !important;
+    }
+  }
+}
+
+.offer-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: $lg) {
+    min-height: calc(100vh - 5rem);
+  }
+
+  &-floating {
+    position: absolute;
+    z-index: 2;
+    display: none;
+
+    @media (min-width: $lg) {
+      display: block;
+    }
+
+    &-left {
+      left: 10%;
+      top: 35%;
+      animation: offer-float-left 4s ease-in-out infinite;
+    }
+
+    &-right {
+      right: 10%;
+      top: 45%;
+      animation: offer-float-right 4.5s ease-in-out infinite;
+    }
+  }
+
+  &-decoration {
+    position: absolute;
+    color: rgba($primary-color, 0.15);
+    pointer-events: none;
+    display: none;
+
+    @media (min-width: $md) {
+      display: block;
+    }
+
+    .iconify {
+      font-size: 3rem;
+    }
+
+    &-1 {
+      top: 20%;
+      left: 15%;
+      animation: offer-spin-slow 20s linear infinite;
+
+      .iconify {
+        font-size: 4rem;
+      }
+    }
+
+    &-3 {
+      top: 30%;
+      right: 12%;
+      animation: offer-spin-slow-reverse 25s linear infinite;
+
+      .iconify {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  &-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    max-width: 900px;
+  }
+
+  &-title {
+    font-family: $font-inter-sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $white-text-color;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.02em;
+
+    @media (min-width: $sm) {
+      font-size: 3rem;
+    }
+
+    @media (min-width: $md) {
+      font-size: 3.5rem;
+    }
+
+    @media (min-width: $lg) {
+      font-size: 4rem;
+    }
+
+    &-highlight {
+      display: block;
+      font-size: 3rem;
+      font-weight: 800;
+      font-style: italic;
+      color: transparent;
+      background: linear-gradient(
+        135deg,
+        $primary-color 0%,
+        color.adjust($primary-color, $lightness: 15%) 50%,
+        $primary-white-green-text-color 100%
+      );
+      background-clip: text;
+      margin-top: 0.25rem;
+      animation: offer-gradient-shift 5s ease infinite;
+      background-size: 200% 200%;
+
+      @media (min-width: $sm) {
+        font-size: 3.5rem;
+      }
+
+      @media (min-width: $md) {
+        font-size: 4.25rem;
+      }
+
+      @media (min-width: $lg) {
+        font-size: 5rem;
+      }
+    }
+  }
+
+  &-subtitle {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba($white-text-color-rgb, 0.7);
+    margin: 0;
+    max-width: 600px;
+
+    strong {
+      color: $primary-color;
+      font-weight: 600;
+    }
+
+    @media (min-width: $md) {
+      font-size: 1.25rem;
+    }
+  }
+
+  &-cta {
+    margin-top: 0.5rem;
+  }
+
+  &-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+    background: linear-gradient(135deg, $primary-color, color.adjust($primary-color, $lightness: -5%));
+    border: none;
+    border-radius: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 24px rgba($primary-color, 0.4);
+
+    .iconify {
+      font-size: 1.2rem;
+      animation: offer-bounce-arrow 1.5s ease-in-out infinite;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba($primary-color, 0.5);
+      background: linear-gradient(135deg, color.adjust($primary-color, $lightness: 5%), $primary-color);
+    }
+  }
+
+  &-scroll-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba($primary-color, 0.5);
+    font-size: 1.5rem;
+    animation: offer-scroll-bounce 2s ease-in-out infinite;
+    padding: 2rem;
+  }
+}
+
+.offer-floating-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 2rem;
+  background: rgba($primary-color, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba($primary-color, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgb(0 0 0 / 30%);
+
+  .iconify {
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+
+  &-value {
+    font-size: 2rem;
+    font-weight: 800;
+    color: $white-text-color;
+    line-height: 1;
+  }
+
+  &-label {
+    font-size: 0.75rem;
+    color: rgba($white-text-color-rgb, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+@keyframes offer-float-left {
+  0%, 100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(0deg);
+  }
+}
+
+@keyframes offer-float-right {
+  0%, 100% {
+    transform: translateY(0) rotate(3deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(0deg);
+  }
+}
+
+@keyframes offer-spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes offer-spin-slow-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes offer-gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes offer-bounce-arrow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes offer-scroll-bounce {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: translateX(-50%) translateY(10px);
+    opacity: 1;
+  }
+}
+

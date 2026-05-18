@@ -1,0 +1,11 @@
+.blocked-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+
+  .empty-state {
+    text-align: center;
+    padding: 2em;
+    opacity: 0.6;
+  }
+}

@@ -1,0 +1,2 @@
+export { NucSharePopover } from './component'
+

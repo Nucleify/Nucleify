@@ -1,0 +1,8 @@
+.process-container {
+  overflow: hidden;
+  padding: 6rem 1rem;
+
+  @media (min-width: $lg) {
+    padding: 3.5rem 0 0;
+  }
+}

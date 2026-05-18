@@ -1,0 +1,8 @@
+{
+  "name": "nuc_users",
+  "description": "Module that contains user domain logic and user settings.",
+  "version": "0.2.5",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

@@ -1,0 +1,5 @@
+@mixin entity-select-button-styles($c) {
+  .p-togglebutton-checked {
+    background: $c;
+  }
+}

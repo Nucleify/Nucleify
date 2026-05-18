@@ -1,0 +1,12 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .ad-tile[ad-type='#{$type}'] {
+    @include entity-with-suffix($type) using ($suffix) {
+      @include entity-tile-styles(
+        var(--#{$type}-c#{$suffix}) !important,
+        var(--#{$type}-h#{$suffix}) !important
+      );
+    }
+  }
+}

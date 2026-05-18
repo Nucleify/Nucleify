@@ -1,0 +1,262 @@
+#conversion {
+  .feature-card {
+    max-width: 100% !important;
+  }
+
+  .conversion-preview {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    height: 100%;
+    justify-content: center;
+  }
+
+  .preview-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .metric-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba($primary-color, 0.1);
+    border-radius: 8px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 8px;
+      padding: 1px;
+      background: linear-gradient(
+        to top,
+        rgba($primary-color, 0.5) 0%,
+        transparent 100%
+      );
+      mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .iconify {
+      font-size: 1.25rem;
+      color: $primary-color;
+    }
+  }
+
+  .metric-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: $white-text-color;
+  }
+
+  .metric-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(#000, 0.3);
+    border: 1px solid rgba($primary-color, 0.15);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+
+    &.highlight-metric {
+      background: rgba($primary-color, 0.08);
+      border-color: rgba($primary-color, 0.3);
+
+      .metric-value {
+        color: $primary-color;
+      }
+    }
+  }
+
+  .metric-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .metric-label {
+    font-size: $font-size-xs;
+    color: rgba($white-text-color-rgb, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .preview-cta-demo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(#000, 0.2);
+    border-radius: 10px;
+    border: 1px solid rgba($primary-color, 0.1);
+  }
+
+  .cta-example {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cta-label {
+    font-size: 0.65rem;
+    color: rgba($white-text-color-rgb, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .cta-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background: rgba($primary-color, 0.1);
+    border-radius: 50%;
+    color: $primary-color;
+
+    .iconify {
+      font-size: 0.85rem;
+    }
+  }
+
+  .cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    width: 100%;
+
+    &.old {
+      background: rgba($white-text-color-rgb, 0.1);
+      color: rgba($white-text-color-rgb, 0.5);
+      border: 1px solid rgba($white-text-color-rgb, 0.1);
+    }
+
+    &.new {
+      background: $primary-color;
+      color: #000;
+      border: 1px solid $primary-color;
+      box-shadow: 0 4px 20px rgba($primary-color, 0.3);
+      animation: cta-glow 2s ease-in-out infinite;
+
+      .iconify {
+        display: none;
+      }
+    }
+  }
+
+  @keyframes cta-glow {
+    0%, 100% {
+      box-shadow: 0 4px 20px rgba($primary-color, 0.3);
+    }
+
+    50% {
+      box-shadow: 0 4px 30px rgba($primary-color, 0.5);
+    }
+  }
+
+  @media (min-width: $sm) {
+    .preview-metrics {
+      flex-direction: row;
+      gap: 0.75rem;
+    }
+
+    .metric-item {
+      flex: 1;
+      flex-direction: column;
+      text-align: center;
+      padding: 1.25rem 1rem;
+    }
+
+    .metric-info {
+      align-items: center;
+    }
+
+    .preview-cta-demo {
+      gap: 1rem;
+      padding: 1.25rem;
+    }
+
+    .cta-label {
+      font-size: $font-size-xs;
+    }
+
+    .cta-button {
+      padding: 0.6rem 1rem;
+      font-size: $font-size-sm;
+    }
+  }
+}
+
+html:not(.p-dark) #conversion {
+  .metric-item {
+    background: rgba(#fff, 0.06);
+    border-color: rgba(#fff, 0.1);
+
+    &.highlight-metric {
+      background: rgba($primary-color, 0.12);
+      border-color: rgba($primary-color, 0.3);
+
+      .metric-value {
+        color: #34d399;
+      }
+    }
+  }
+
+  .metric-value {
+    color: #f0f5f3;
+  }
+
+  .metric-label {
+    color: rgba(#d1e8de, 0.7);
+  }
+
+  .metric-icon {
+    background: rgba($primary-color, 0.15);
+
+    .iconify {
+      color: #34d399;
+    }
+  }
+
+  .preview-cta-demo {
+    background: rgba(#fff, 0.04);
+    border-color: rgba(#fff, 0.08);
+  }
+
+  .cta-label {
+    color: rgba(#d1e8de, 0.7);
+  }
+
+  .cta-button.old {
+    background: rgba(#fff, 0.08);
+    color: rgba(#d1e8de, 0.5);
+    border-color: rgba(#fff, 0.1);
+  }
+
+  .cta-button.new {
+    color: #fff;
+  }
+}

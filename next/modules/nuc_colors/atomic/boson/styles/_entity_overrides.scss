@@ -1,0 +1,73 @@
+@include entity-var-overrides-multi(
+  (
+    '.p-inputtext',
+    '.p-textarea',
+    '.p-colorpicker',
+    '.p-datepicker',
+    '.p-password',
+    '.p-select'
+  ),
+  (
+    '--inp-item': 'c',
+    '--inp-focus': 'f'
+  )
+);
+@include entity-var-overrides-multi(
+  (
+    '.p-select-overlay',
+    '.p-datatable'
+  ),
+  (
+    '--hl-item': 'c',
+    '--hl-selected': 'sl',
+    '--hl-highlight': 'h'
+  )
+);
+@include entity-var-overrides(
+  '.p-button',
+  (
+    '--btn-item': 'c',
+    '--btn-focus': 'f',
+    '--btn-selected': 'sl'
+  )
+);
+@include entity-var-overrides(
+  '.p-checkbox',
+  (
+    '--chk-focus': 'f',
+    '--chk-item': 'c'
+  )
+);
+@include entity-var-overrides('.p-radiobutton', ('--radio-item': 'c'));
+@include entity-var-overrides('.p-selectbutton', ('--selbtn-selected': 'sl'));
+@include entity-var-overrides(
+  '.ad-logo',
+  (
+    '--logo-item': 'c',
+    '--logo-dark': 'd'
+  )
+);
+@include entity-var-overrides(
+  '.ad-tile',
+  (
+    '--tile-item': 'c',
+    '--tile-highlight': 'h'
+  )
+);
+@include entity-var-overrides(
+  '.p-accordion',
+  (
+    '--acc-item': 'c',
+    '--acc-focus': 'f',
+    '--acc-highlight': 'h'
+  )
+);
+@include entity-class-var-overrides(
+  '.p-datepicker-panel',
+  (
+    '--ddp-item': 'c',
+    '--ddp-focus': 'f',
+    '--ddp-selected': 'sl',
+    '--ddp-highlight': 'h'
+  )
+);

@@ -1,0 +1,23 @@
+@import 'mixins';
+
+$dock-items: (
+  activity-log: activity,
+  admin: main,
+  dashboard: main,
+  entities: main,
+  files: file,
+  settings: main,
+  structural: main,
+);
+
+@each $item, $type in $dock-items {
+  #__nuxt:has(##{$item}) {
+    .p-dock .iconify[ad-type='#{$item}'] {
+      @include entity-with-suffix($type) using ($suffix) {
+        @include entity-dock-item-styles(
+          var(--#{$type}-c#{$suffix}) !important
+        );
+      }
+    }
+  }
+}

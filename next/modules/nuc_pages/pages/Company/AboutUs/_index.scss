@@ -1,0 +1,8 @@
+.about-us-container {
+  overflow: hidden;
+  padding: 5rem 1rem;
+
+  @media (min-width: $lg) {
+    padding: 3.5rem 0 0;
+  }
+}

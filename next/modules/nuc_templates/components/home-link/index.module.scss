@@ -1,0 +1,22 @@
+.nuc-home-link {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: $font-size-md;
+  text-decoration: none;
+  color: $white-text-color;
+  transition: all 300ms;
+
+  :global(.pi) {
+    color: $white-text-color;
+    transition: color 300ms;
+  }
+
+  &:hover {
+    color: $primary-hover-color;
+
+    :global(.pi) {
+      color: $primary-hover-color;
+    }
+  }
+}

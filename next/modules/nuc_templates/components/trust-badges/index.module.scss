@@ -1,0 +1,44 @@
+.nuc-trust-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 1210px;
+
+  .nuc-trust-badge-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba($primary-color, 0.03);
+    border: 1px solid rgba($primary-color, 0.08);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: rgba($white-text-color, 0.6);
+    transition: all 0.3s ease;
+
+    .iconify {
+      font-size: 1.1rem;
+      color: $primary-color;
+    }
+
+    &:hover {
+      background: rgba($primary-color, 0.06);
+      border-color: rgba($primary-color, 0.15);
+    }
+  }
+
+  @media (min-width: $sm) {
+    flex-flow: row wrap;
+    justify-content: center;
+
+    .nuc-trust-badge-item {
+      flex: 0 0 auto;
+    }
+  }
+
+  @media (min-width: $md) {
+    gap: 1.5rem;
+  }
+}

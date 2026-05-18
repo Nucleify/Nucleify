@@ -1,0 +1,112 @@
+#dev #dev-stack {
+  padding: 5rem 0;
+
+  .dev-stack-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .dev-stack-category {
+    h3 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: $primary-color;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, rgba($primary-color, 0.3), transparent);
+      }
+    }
+  }
+
+  .dev-stack-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .dev-stack-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.875rem 1rem;
+    border-radius: 10px;
+    border: 1px solid rgba($primary-color, 0.12);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba($primary-color, 0.05), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &:hover {
+      border-color: rgba($primary-color, 0.4);
+      transform: translateX(4px);
+      box-shadow: 0 4px 16px rgba($primary-color, 0.08);
+
+      &::before {
+        opacity: 1;
+      }
+
+      .dev-stack-item-icon .iconify {
+        transform: scale(1.15);
+      }
+    }
+
+    .dev-stack-item-icon {
+      flex-shrink: 0;
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 8px;
+      background: rgba($primary-color, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+
+      .iconify {
+        font-size: 1.25rem;
+        color: $primary-color;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    .dev-stack-item-info {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 1;
+
+      span {
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      small {
+        color: $white-text-color;
+        font-size: 0.8rem;
+        margin-top: 0.15rem;
+      }
+    }
+  }
+}

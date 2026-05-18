@@ -1,0 +1,7 @@
+.lighter-color {
+  fill: var(--logo-lighter-color, currentColor);
+}
+
+.darker-color {
+  fill: var(--logo-darker-color, currentColor);
+}
