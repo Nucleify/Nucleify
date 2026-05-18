@@ -55,4 +55,8 @@ logs
 # AI workflow
 .ai/specs/*
 
+# Supabase
 supabase/.temp
+
+# Wrangler
+.wrangler
