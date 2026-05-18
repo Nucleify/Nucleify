@@ -1,7 +1,6 @@
+import type { SupabaseClient, User } from '@supabase/supabase-js'
 import type { H3Event } from 'h3'
 import { getRequestHeader } from 'h3'
-
-import type { SupabaseClient, User } from '@supabase/supabase-js'
 
 export type GatewayListScope = { mode: 'all' } | { mode: 'own'; userId: string }
 
