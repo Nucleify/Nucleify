@@ -35,7 +35,7 @@
     "tests": "pnpm vitest run",
     "test:coverage": "pnpm vitest run --coverage",
     "test:watch": "pnpm vitest",
-    "typeslint": "nuxt prepare && tsc --noEmit",
+    "typeslint": "tsc --noEmit",
     "supabase:merge-sql": "bash .config/bash/merge-module-supabase-sql.sh all",
     "supabase:factories:apply:local": "bash .config/bash/apply-module-sql.sh factories local",
     "supabase:factories:apply:linked": "bash .config/bash/apply-module-sql.sh factories linked",

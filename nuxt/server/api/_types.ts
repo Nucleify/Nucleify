@@ -1,6 +1,5 @@
-import type { H3Event } from 'h3'
-
 import type { SupabaseClient } from '@supabase/supabase-js'
+import type { H3Event } from 'h3'
 
 export type Json = Record<string, unknown>
 

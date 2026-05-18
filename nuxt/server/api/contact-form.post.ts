@@ -1,6 +1,6 @@
+import { createClient } from '@supabase/supabase-js'
 import { createError, defineEventHandler, readBody } from 'h3'
 
-import { createClient } from '@supabase/supabase-js'
 import { useRuntimeConfig } from 'nitropack/runtime'
 
 const WEBSITE_TYPES = new Set(['landing', 'business', 'blog', 'help'])

@@ -1,3 +1,4 @@
+import { createClient } from '@supabase/supabase-js'
 import {
   defineEventHandler,
   getMethod,
@@ -5,7 +6,6 @@ import {
   setResponseStatus,
 } from 'h3'
 
-import { createClient } from '@supabase/supabase-js'
 import { useRuntimeConfig } from 'nitropack/runtime'
 import { handleActivityApi } from '../../../modules/nuc_activity/supabase/api/handle'
 import { handleColorsApi } from '../../../modules/nuc_colors/supabase/api/handle'

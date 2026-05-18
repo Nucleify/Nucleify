@@ -22,6 +22,9 @@
       "#imports": [".nuxt/imports.d.ts"],
       "nucleify": ["nuxt/atomic"],
       "nucleify/*": ["nuxt/atomic/*"],
+      "nuc_api": ["modules/nuc_api/supabase/api/server.ts"],
+      "nuc_client": ["nuxt/nuc_client.ts"],
+      "nuc_server": ["nuxt/server/nuc_server.ts"],
       "modules": ["modules"],
       "modules/*": ["modules/*"],
       "~/*": ["nuxt/*"]

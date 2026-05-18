@@ -1,6 +1,5 @@
-import { useRuntimeConfig } from 'nuxt/app'
-
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
+import { useRuntimeConfig } from 'nuxt/app'
 
 const resolveSupabaseConfig = () => {
   const config = useRuntimeConfig()
