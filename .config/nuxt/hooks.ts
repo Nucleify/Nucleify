@@ -1,5 +1,6 @@
-import { cpSync, existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
+
+import { cpSync, existsSync, readdirSync } from 'node:fs'
 
 export const hooksConfig = {
   hooks: {

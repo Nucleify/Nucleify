@@ -1,1 +1,0 @@
-Most commands tests are located in modules folder.

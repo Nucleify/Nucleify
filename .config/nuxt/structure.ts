@@ -1,6 +1,11 @@
 export const structureConfig = {
   alias: {
     nucleify: '~/atomic',
+    'nucleify/atom': '~/atomic/atom',
+    'nucleify/molecule': '~/atomic/molecule',
+    'nucleify/organism': '~/atomic/organism',
+    nuc_client: '~/nuc_client',
+    nuc_server: '~/server/nuc_server',
   },
   components: [
     { path: '~/atomic/atom', prefix: 'ad', extensions: ['vue'] },

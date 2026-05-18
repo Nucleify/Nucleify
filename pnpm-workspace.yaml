@@ -1,10 +1,20 @@
 packages:
   - "."
 
+# pnpm-only (npm ignores this file — avoids unknown .npmrc key warnings)
+publicHoistPattern:
+  - "*"
+autoInstallPeers: true
+strictPeerDependencies: false
+childConcurrency: 5
+networkConcurrency: 32
+packageImportMethod: copy
+
 onlyBuiltDependencies:
   - esbuild
   - "@parcel/watcher"
   - sharp
+  - supabase
 
 ignoredBuiltDependencies:
   - workerd

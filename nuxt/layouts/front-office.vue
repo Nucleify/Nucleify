@@ -8,10 +8,6 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  layout: 'front-office',
-})
-
 useHead({
   bodyAttrs: { class: 'nuc-system' },
 })
