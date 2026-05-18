@@ -1,0 +1,8 @@
+{
+  "name": "nuc_socials",
+  "description": "Module that displays social media links.",
+  "version": "0.0.1",
+  "category": "social",
+  "installed": true,
+  "enabled": true
+}

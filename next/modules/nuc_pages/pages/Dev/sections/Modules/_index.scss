@@ -1,0 +1,157 @@
+#dev #dev-modules {
+  padding: 5rem 0;
+  background: $content-background;
+
+  .dev-modules-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $lg) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .dev-module-card {
+    position: relative;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba($primary-color, 0.12);
+    transition: all 0.35s ease;
+    overflow: hidden;
+
+    &:hover {
+      border-color: rgba($primary-color, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba($primary-color, 0.1);
+
+      .dev-module-card-glow {
+        opacity: 1;
+      }
+
+      .dev-module-card-icon .iconify {
+        transform: scale(1.15) rotate(-5deg);
+      }
+    }
+
+    .dev-module-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .dev-module-card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 10px;
+      background: rgba($primary-color, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .iconify {
+        font-size: 1.25rem;
+        color: $primary-color;
+        transition: transform 0.35s ease;
+      }
+    }
+
+    .dev-module-card-content {
+      position: relative;
+      z-index: 1;
+
+      h3 {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 0.85rem;
+        color: $white-text-color;
+        line-height: 1.5;
+        margin: 0;
+      }
+    }
+
+    .dev-module-version {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 600;
+      line-height: 1;
+      padding: 0.35em 0.6em;
+      border-radius: 4px;
+      border: 1px solid rgba($primary-color, 0.2);
+      background: rgba($primary-color, 0.08);
+      color: $primary-color;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      height: fit-content;
+    }
+
+    .dev-module-card-glow {
+      position: absolute;
+      bottom: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      height: 60%;
+      background: radial-gradient(ellipse, rgba($primary-color, 0.08) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    &--more {
+      text-decoration: none;
+      color: inherit;
+      border-style: dashed;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+
+      .dev-module-card-content h3 {
+        color: $primary-color;
+      }
+
+      .dev-module-card-arrow {
+        position: absolute;
+        bottom: 1.25rem;
+        right: 1.25rem;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: rgba($primary-color, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.35s ease;
+
+        .iconify {
+          font-size: 1rem;
+          color: $primary-color;
+          transition: transform 0.35s ease;
+        }
+      }
+
+      &:hover {
+        border-style: solid;
+
+        .dev-module-card-arrow {
+          background: rgba($primary-color, 0.2);
+
+          .iconify {
+            transform: translateX(3px);
+          }
+        }
+      }
+    }
+  }
+}

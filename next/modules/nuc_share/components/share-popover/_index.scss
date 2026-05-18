@@ -1,0 +1,19 @@
+.share-popover-container {
+  padding: 1em;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  background-color: $content-background;
+
+  .share-popover-header {
+    margin: 0;
+  }
+
+  .share-popover-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+}

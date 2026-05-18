@@ -1,0 +1,21 @@
+.nuc-hexagons-button {
+  position: relative;
+  border: 1px solid $p-card-border;
+  color: $white-text-color;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
+  text-decoration: none;
+
+  .hexagon-rows-container .hexagon-row-container {
+    margin-top: -2.8rem;
+  }
+
+  &:hover,
+  &:active {
+    background: var(--main-h-s);
+    border-color: var(--main-hv-s);
+    color: var(--main-hv-s);
+  }
+}

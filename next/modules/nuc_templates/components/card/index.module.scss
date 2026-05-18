@@ -1,0 +1,33 @@
+.nuc-card-base {
+  .nuc-card-base-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4px;
+    margin-bottom: 8px;
+
+    h3 {
+      margin: 0;
+    }
+
+    .p-button {
+      padding: 0.15em;
+      width: 1.75em !important;
+      height: 1.75em !important;
+
+      .iconify {
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  @media (min-width: $lg) {
+    .nuc-card-base-header-container {
+      padding: 2px 6px 0;
+
+      .heading-skeleton {
+        height: 38px !important;
+      }
+    }
+  }
+}

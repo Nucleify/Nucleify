@@ -1,0 +1,23 @@
+.home-container {
+  padding: 5rem 1rem;
+
+  @media (min-width: $lg) {
+    padding: 3.5rem 0 0;
+  }
+
+  .p-card {
+    background: rgb(16 185 129 / 3%);
+    border: 1px solid rgba($primary-color, 0.25) !important;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: rgba($primary-color, 0.35) !important;
+    }
+  }
+}
+
+div[data-pc-name='deferredcontent'] {
+  z-index: -1;
+  margin-top: -150px;
+  padding-top: 150px;
+}

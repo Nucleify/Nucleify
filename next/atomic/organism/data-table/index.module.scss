@@ -1,0 +1,94 @@
+@import '../select/index.module';
+
+.ad-datatable {
+  min-height: 595px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: 0.2s 0.15s opacity;
+
+  .p-datatable-thead > tr > th {
+    background: $bg-black-color !important;
+    color: $white-text-color !important;
+    padding: 9px !important;
+    border: none !important;
+    text-align: left;
+  }
+
+  .p-datatable-tbody > tr {
+    border: none !important;
+    cursor: pointer;
+    outline: none !important;
+
+    > td {
+      padding: 6px 9px !important;
+      border: none !important;
+    }
+
+    &:nth-child(even) {
+      background-color: $p-card-background !important;
+      color: $white-text-color !important;
+
+      > td {
+        background-color: $p-card-background !important;
+        color: $white-text-color !important;
+      }
+    }
+
+    &:nth-child(odd) {
+      background-color: $content-background !important;
+      color: $white-text-color !important;
+
+      > td {
+        background-color: $content-background !important;
+        color: $white-text-color !important;
+      }
+    }
+
+    &:hover {
+      background-color: inherit !important;
+    }
+  }
+}
+
+.ad-datatable-paginator {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: transparent !important;
+  border: none !important;
+  position: relative;
+  font-size: $font-size-sm;
+  width: 100%;
+  padding: 20px 0;
+  margin: -0.5em 0 -2.125em;
+}
+
+.ad-datatable-paginator-content {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ad-datatable-paginator-button {
+  min-height: $min-max-width-height-small !important;
+  min-width: $min-max-width-height-small !important;
+  max-height: $min-max-width-height-small !important;
+  max-width: $min-max-width-height-small !important;
+  background: transparent !important;
+  border: none !important;
+  color: inherit !important;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+
+  &[data-p-highlight='true'] {
+    background: $content-background !important;
+    color: $white-text-color !important;
+  }
+}

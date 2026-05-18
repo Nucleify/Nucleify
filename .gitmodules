@@ -94,9 +94,6 @@
 [submodule "modules/nuc_overrides"]
 	path = modules/nuc_overrides
 	url = https://github.com/Nucleify/nuc_overrides.git
-[submodule "next"]
-	path = next
-	url = https://github.com/Nucleify/Nucleify-React-Next.git
 [submodule "modules/nuc_share"]
 	path = modules/nuc_share
 	url = https://github.com/Nucleify/nuc_share.git

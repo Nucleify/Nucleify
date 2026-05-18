@@ -1,0 +1,13 @@
+.share-requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  overflow-y: auto;
+  flex: 1;
+
+  &-empty {
+    padding: 1em;
+    text-align: center;
+    opacity: 0.7;
+  }
+}

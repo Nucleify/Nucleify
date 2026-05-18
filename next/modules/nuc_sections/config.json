@@ -1,0 +1,8 @@
+{
+  "name": "nuc_sections",
+  "description": "Module that contains section functions.",
+  "version": "0.7.0",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

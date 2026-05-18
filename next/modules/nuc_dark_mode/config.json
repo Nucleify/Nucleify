@@ -1,0 +1,8 @@
+{
+  "name": "nuc_dark_mode",
+  "description": "Module that contains dark mode functions.",
+  "version": "0.1.0",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

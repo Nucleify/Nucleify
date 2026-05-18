@@ -1,0 +1,46 @@
+#innovations > #technologies {
+  swiper-container {
+    width: 100%;
+    max-width: 1140px;
+    padding: 4em 1em;
+    overflow-y: visible;
+
+    swiper-slide {
+      padding: 0 1em;
+      display: flex;
+      justify-content: center;
+      width: 48.5px !important;
+      margin: 2px 0;
+      opacity: 0;
+
+      a.cube {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+        width: 50px;
+        background: $content-background;
+        border-radius: 12px;
+        padding: 0.35em;
+
+        .p-image,
+        img {
+          width: 35px;
+          height: 35px;
+        }
+      }
+    }
+  }
+}
+
+@media (width >= $lg) {
+  #innovations > #technologies {
+    overflow-y: visible;
+
+    swiper-container,
+    .swiper-wrapper,
+    .swiper {
+      overflow-y: visible;
+    }
+  }
+}

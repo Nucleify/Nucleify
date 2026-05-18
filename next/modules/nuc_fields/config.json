@@ -1,0 +1,8 @@
+{
+  "name": "nuc_fields",
+  "description": "Module that contains field functions.",
+  "version": "0.2.0",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

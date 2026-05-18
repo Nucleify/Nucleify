@@ -1,0 +1,314 @@
+
+#about-us #start {
+  position: relative;
+  padding: 2rem 1rem 3.5rem;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba($primary-color, 0.2), transparent);
+  }
+
+  @media (min-width: $lg) {
+    padding: 9rem 0 5rem;
+  }
+
+  .about-start-decoration {
+    position: absolute;
+    color: rgba($primary-color, 0.1);
+    pointer-events: none;
+    display: none;
+
+    @media (min-width: $md) {
+      display: block;
+    }
+
+    &-1 {
+      top: 15%;
+      left: 8%;
+      animation: about-float 6s ease-in-out infinite;
+
+      .iconify {
+        font-size: 3.5rem;
+      }
+    }
+
+    &-2 {
+      bottom: 20%;
+      right: 6%;
+      animation: about-float 7s ease-in-out infinite reverse;
+
+      .iconify {
+        font-size: 2.5rem;
+      }
+    }
+  }
+
+  .about-start-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 1210px;
+    margin: 0 auto;
+    align-items: center;
+
+    @media (min-width: $lg) {
+      flex-direction: row;
+      align-items: center;
+      gap: 4rem;
+    }
+  }
+
+  .about-start-left {
+    flex: 1;
+    max-width: 620px;
+
+    @media (min-width: $lg) {
+      max-width: none;
+    }
+  }
+
+  .about-start-badge {
+    display: inline-block;
+    font-size: $font-size-xs;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: $primary-color;
+    padding: 0.4em 1em;
+    border-radius: 6px;
+    background: rgba($primary-color, 0.1);
+    border: 1px solid rgba($primary-color, 0.2);
+    margin-bottom: 1.25rem;
+  }
+
+  .about-start-title {
+    font-family: $font-inter-sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: $white-text-color;
+    line-height: 1.2;
+    margin: 0 0 1.25rem;
+    letter-spacing: -0.02em;
+
+    @media (min-width: $sm) {
+      font-size: 2.5rem;
+    }
+
+    @media (min-width: $md) {
+      font-size: 2.75rem;
+    }
+
+    @media (min-width: $lg) {
+      font-size: 3.25rem;
+    }
+
+    &-highlight {
+      display: block;
+      font-size: 2.25rem;
+      font-weight: 800;
+      font-style: italic;
+      color: transparent;
+      background: linear-gradient(
+        135deg,
+        $primary-color 0%,
+        color.adjust($primary-color, $lightness: 15%) 50%,
+        $primary-white-green-text-color 100%
+      );
+      background-clip: text;
+      background-size: 200% 200%;
+      animation: about-gradient-shift 5s ease infinite;
+      margin-top: 0.15rem;
+
+      @media (min-width: $sm) {
+        font-size: 2.75rem;
+      }
+
+      @media (min-width: $md) {
+        font-size: 3.25rem;
+      }
+
+      @media (min-width: $lg) {
+        font-size: 3.75rem;
+      }
+    }
+  }
+
+  .about-start-subtitle {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: rgba($white-text-color-rgb, 0.7);
+    margin: 0;
+    max-width: 560px;
+
+    @media (min-width: $md) {
+      font-size: 1.1rem;
+    }
+  }
+
+  .about-start-right {
+    width: 100%;
+    max-width: 400px;
+    flex-shrink: 0;
+
+    @media (min-width: $lg) {
+      max-width: 380px;
+    }
+  }
+
+  .about-start-card {
+    display: block;
+    background: rgba($primary-color, 0.04);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba($primary-color, 0.18);
+    border-radius: 20px;
+    padding: 1.25rem;
+    transition: all 0.3s ease;
+
+    @media (min-width: $sm) {
+      padding: 2rem;
+    }
+
+    &:hover {
+      border-color: rgba($primary-color, 0.3);
+      box-shadow: 0 16px 48px rgba($primary-color, 0.1);
+    }
+
+    &-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+
+      .iconify {
+        font-size: 1.1rem;
+        color: $primary-color;
+      }
+
+      span {
+        font-size: $font-size-xs;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba($white-text-color-rgb, 0.5);
+      }
+    }
+
+    &-company {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+
+      .iconify {
+        font-size: 1.25rem;
+        color: $primary-color;
+      }
+
+      span {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: $white-text-color;
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+
+      span {
+        transition: color 0.3s ease;
+      }
+
+      &:hover span {
+        color: rgba($primary-color, 0.8);
+      }
+    }
+
+    &-divider {
+      height: 1px;
+      background: linear-gradient(90deg, rgba($primary-color, 0.25), transparent);
+      margin-bottom: 1.25rem;
+    }
+
+    &-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .5rem;
+      overflow: hidden;
+
+      @media (min-width: 360px) {
+        gap: 1rem;
+      }
+    }
+
+    &-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: inherit;
+
+      &-icon {
+        flex-shrink: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba($primary-color, 0.08);
+        border-radius: 8px;
+        margin-top: 2px;
+
+        .iconify {
+          font-size: 1rem;
+          color: $primary-color;
+        }
+      }
+
+      &-text {
+        display: flex;
+        flex-direction: column;
+      }
+
+      &-value {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: $white-text-color;
+        line-height: 1.3;
+        white-space: nowrap;
+
+        @media (min-width: 370px) {
+          font-size: 0.85rem;
+        }
+
+        @media (min-width: $sm) {
+          font-size: 0.9rem;
+        }
+      }
+
+      &-label {
+        font-size: $font-size-xs;
+        color: rgba($white-text-color-rgb, 0.45);
+        line-height: 1.3;
+      }
+    }
+  }
+}
+
+@keyframes about-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(5deg); }
+}
+
+@keyframes about-gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}

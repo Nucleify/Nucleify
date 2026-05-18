@@ -1,0 +1,23 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .p-datepicker[ad-type='#{$type}'] {
+    @include entity-with-suffix($type) using ($suffix) {
+      @include entity-calendar-styles(
+        var(--#{$type}-c#{$suffix}) !important,
+        var(--#{$type}-f#{$suffix}) !important
+      );
+    }
+  }
+
+  .p-datepicker-panel.#{$type} {
+    @include entity-with-suffix($type) using ($suffix) {
+      @include entity-datepicker-styles(
+        var(--#{$type}-c#{$suffix}) !important,
+        var(--#{$type}-f#{$suffix}) !important,
+        var(--#{$type}-sl#{$suffix}) !important,
+        var(--#{$type}-h#{$suffix}) !important
+      );
+    }
+  }
+}

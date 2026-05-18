@@ -1,0 +1,11 @@
+@property --opacity {
+  syntax: '<number>';
+  initial-value: 0.5;
+  inherits: false;
+}
+
+@property --angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}

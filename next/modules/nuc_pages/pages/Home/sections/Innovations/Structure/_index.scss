@@ -1,0 +1,131 @@
+#innovations > #structure {
+  .structure-container {
+    display: flex;
+    justify-content: center;
+    padding: 2em 1em;
+
+    .content {
+      width: 100%;
+      max-width: 1140px;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 1em;
+      padding: 0;
+
+      .animation-container {
+        padding: 0 1em;
+        opacity: 0;
+
+        svg {
+          width: 100%;
+          max-width: 500px;
+          transform: scaleX(-1);
+        }
+      }
+
+      .description-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: $primary-white-green-text-color;
+
+        .title {
+          width: 100%;
+          display: flex;
+          flex-wrap: wrap;
+          margin: 0;
+
+          .shiny {
+            min-width: max-content;
+          }
+
+          span,
+          div {
+            font-weight: 700;
+            font-size: 1em;
+            font-family: $font-inter-sans-serif !important;
+          }
+        }
+
+        .description {
+          font-weight: 300;
+        }
+
+        .title,
+        .description {
+          max-width: 600px;
+          opacity: 0;
+        }
+      }
+    }
+
+    @media (min-width: 360px) {
+      .content {
+        .description-container {
+          .title {
+            font-size: 2.6em;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 400px) {
+      .content {
+        .description-container {
+          .title {
+            font-size: 2.8em;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 768px) {
+      padding: 3em 1em;
+
+      .content {
+        flex-direction: row;
+        padding: 0 2em;
+
+        .animation-container,
+        .description-container {
+          width: 50%;
+        }
+      }
+    }
+
+    @media (min-width: 992px) {
+      .content {
+        .description-container {
+          gap: 1.5em;
+
+          .title {
+            font-size: 3.2em;
+          }
+
+          .description {
+            font-size: 1.1em;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .content {
+        padding: 3em 0;
+        gap: 5em;
+
+        .description-container {
+          .title {
+            font-size: 3.5em;
+            margin-top: -1em;
+          }
+
+          .description {
+            font-size: 1.15em;
+          }
+        }
+      }
+    }
+  }
+}

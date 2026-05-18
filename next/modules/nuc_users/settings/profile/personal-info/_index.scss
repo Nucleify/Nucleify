@@ -1,0 +1,183 @@
+.profile-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0.25rem;
+
+  .profile-surface {
+    border: 1px solid $p-card-border;
+    border-radius: $small-border-radius;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .profile-picture-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+
+    @media (max-width: $md) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .profile-picture-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .profile-avatar-wrap {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .profile-avatar-clickable {
+    cursor: pointer;
+  }
+
+  .avatar-edit-corner {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.35rem;
+    background: $content-background;
+    border: 1px solid $p-card-border;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 0.8rem;
+  }
+
+  .avatar-delete-corner {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.35rem;
+    background: $content-background;
+    border: 1px solid $p-card-border;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 0.8rem;
+
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+  }
+
+  .profile-picture-title {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .profile-account-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .profile-status {
+    font-size: 0.8rem;
+    color: #7f6dff;
+  }
+
+  .profile-picture-subtitle {
+    margin: 0.2rem 0 0;
+    opacity: 0.7;
+    font-size: 0.85rem;
+  }
+
+  .coming-soon-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 1rem;
+    background: rgb(255 255 255 / 6%);
+    border: 1px solid $p-card-border;
+    opacity: 0.6;
+    white-space: nowrap;
+  }
+
+  .preference-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .preference-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .profile-select {
+    min-width: 12rem;
+  }
+
+  .integration-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 8%);
+    font-weight: 600;
+    font-size: 1.35rem;
+  }
+
+  .integration-title {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .integration-subtitle {
+    margin: 0.2rem 0 0;
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.password-dialog-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.password-dialog-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+
+  label {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    font-weight: 500;
+  }
+}

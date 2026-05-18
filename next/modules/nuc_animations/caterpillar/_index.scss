@@ -1,0 +1,47 @@
+@import 'keyframes', 'mixins', 'properties';
+
+.caterpillar,
+%caterpillar {
+  background: transparent !important;
+  border: 0 !important;
+  outline: #ffffff30 1px solid !important;
+  backdrop-filter: blur(0.5em);
+  border-radius: 0 !important;
+  z-index: 1;
+  overflow: visible;
+  color: white !important;
+  text-decoration: none;
+
+  img {
+    position: relative;
+    top: -1px;
+    width: 20px;
+    height: 20px;
+    fill: white !important;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border: 2px solid transparent !important;
+    border-image: conic-gradient(
+        from var(--angle),
+        #10b981 0deg 80deg,
+        transparent 60deg 200deg
+      )
+      1 stretch !important;
+    animation: rotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  &:hover {
+    background: #ffffff09 !important;
+
+    &::before {
+      isolation: isolate;
+      opacity: 1;
+    }
+  }
+}

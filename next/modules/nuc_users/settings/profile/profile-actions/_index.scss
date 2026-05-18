@@ -1,0 +1,21 @@
+.profile-actions-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-end;
+
+  .profile-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .profile-actions-meta {
+    margin: 0;
+    opacity: 0.8;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    text-align: right;
+  }
+}

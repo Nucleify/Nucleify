@@ -1,0 +1,8 @@
+{
+  "name": "nuc_activity",
+  "description": "Module that contains Nucleify's activity functions.",
+  "version": "0.1.3",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

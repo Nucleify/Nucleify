@@ -1,0 +1,49 @@
+.install-module-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25em;
+
+  span {
+    font-size: $font-size-md;
+  }
+}
+
+.install-module-dialog {
+  width: 100%;
+  max-width: 600px;
+
+  .p-dialog-header {
+    display: none;
+  }
+
+  .p-fileupload-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+
+    .p-button {
+      width: max-content;
+      padding: 0.5em !important;
+
+      label {
+        display: none;
+      }
+
+      @media (width > $md) {
+        padding: 0.5em 1em !important;
+
+        label {
+          display: flex;
+        }
+      }
+    }
+  }
+
+  .p-fileupload-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+  }
+}

@@ -1,0 +1,45 @@
+.nuc-grid-background {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  max-height: 100vh;
+
+  &-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba($primary-color, 0.15) 1px, rgba($primary-color, 0.05) 1px),
+      linear-gradient(90deg, rgba($primary-color, 0.15) 1px, rgba($primary-color, 0.05) 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 20%, transparent 70%);
+  }
+
+  &-glow {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle,
+        rgba($primary-color, 0.15) 0%,
+        rgba($primary-color, 0.06) 45%,
+        transparent 70%);
+    animation: nuc-grid-glow-pulse 8s ease-in-out infinite;
+    filter: blur(40px);
+  }
+}
+
+@keyframes nuc-grid-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.95;
+    transform: translate(-50%, -50%) scale(1.5);
+  }
+}

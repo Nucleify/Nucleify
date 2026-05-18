@@ -39,5 +39,4 @@ status=$?
 set -e
 
 assert_equals "0" "$status" "prepare-submodules exits with success in local env"
-assert_contains "$output" "configured:$root/next->$root/.husky"
 assert_contains "$output" "configured:$root/modules/nuc_demo->$root/.husky"

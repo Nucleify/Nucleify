@@ -1,0 +1,13 @@
+.add-friend {
+  padding-bottom: .5em;
+
+  .add-friend-input {
+    display: flex;
+    gap: 0.5em;
+    align-items: center;
+
+    .search-input {
+      flex: 1;
+    }
+  }
+}

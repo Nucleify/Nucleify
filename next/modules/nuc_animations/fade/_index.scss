@@ -1,0 +1,12 @@
+@import 'keyframes';
+
+%fade-in,
+.fade-in {
+  animation: fade-in 0.3s ease-in forwards;
+}
+
+%fade-out,
+.fade-out {
+  animation: fade-out 0.3s ease-in forwards;
+  opacity: 0;
+}

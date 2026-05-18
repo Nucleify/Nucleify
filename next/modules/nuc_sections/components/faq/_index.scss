@@ -1,0 +1,102 @@
+.faq-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4em 0;
+
+  &-header {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $white-text-color;
+    text-align: center;
+    margin-bottom: 1em;
+
+    span {
+      font-family: $font-inter-sans-serif;
+      display: inline-block;
+      color: transparent;
+      background: linear-gradient(135deg, $primary-color, $primary-white-green-text-color);
+      background-clip: text;
+    }
+  }
+
+  &-questions {
+    width: 100%;
+    padding: 0;
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 1210px;
+
+    .p-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      &:nth-child(2) {
+        margin-top: 0;
+      }
+
+      .p-accordion-header {
+        background: rgba(#000, 0.4) !important;
+        transition: all 0.3s ease;
+
+        &.p-highlight {
+          .p-accordion-header-link {
+            border-end-start-radius: 0;
+            border-end-end-radius: 0;
+          }
+        }
+
+        &-link {
+          border-radius: .5rem;
+          border: 1px solid rgba($primary-color, 0.5);
+
+          &:hover {
+            background: rgba(#000, 0.5) !important;
+          }
+  
+          .p-accordionheader-toggle-icon {
+            color: $primary-color;
+            transition: transform 0.3s ease;
+          }
+        }
+      }
+
+      .p-accordion-content {
+        background: rgba(#000, 0.25);
+        border: 1px solid rgba($primary-color, 0.35);
+        padding: 1.25rem 1.5rem;
+        color: rgba($white-text-color, 0.8);
+        line-height: 1.6;
+      }
+    }
+  }
+
+  @media (min-width: $md) {
+    padding: 5em 2em;
+
+    &-header {
+      font-size: 2.5rem;
+      margin-bottom: 1.5em;
+    }
+
+    &-questions {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+
+      .p-accordion {
+        gap: 1rem;
+      }
+    }
+  }
+
+  @media (min-width: $xl) {
+    padding: 6em 4em;
+
+    &-header {
+      font-size: 2.75rem;
+    }
+  }
+}

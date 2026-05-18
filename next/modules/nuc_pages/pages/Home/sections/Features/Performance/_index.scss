@@ -1,0 +1,86 @@
+#performance {
+  .feature-card {
+    padding: 2rem !important;
+    max-width: 550px;
+  }
+
+  .speedometers-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    height: 100%;
+    align-content: center;
+  }
+
+  .speedometer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .mini-speedometer {
+    position: relative;
+    width: 100%;
+    max-width: 120px;
+  }
+
+  .speedometer-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .speedometer-value {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: $font-inter-sans-serif;
+    text-shadow: 0 0 15px currentcolor;
+  }
+
+  .speedometer-label {
+    font-size: $font-size-xs;
+    color: rgba($white-text-color-rgb, 0.6);
+    text-align: center;
+  }
+
+  @media (min-width: $md) {
+    .speedometers-grid {
+      gap: 2rem;
+    }
+
+    .speedometer-value {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (min-width: $lg) {
+    .feature-visual {
+      justify-content: flex-start;
+    }
+
+    .mini-speedometer {
+      max-width: 140px;
+    }
+
+    .speedometer-value {
+      font-size: 2rem;
+    }
+  }
+}
+
+html:not(.p-dark) #performance {
+  .speedometer-label {
+    color: #475569;
+  }
+
+  .speedometer-value {
+    text-shadow: 0 0 12px rgba($primary-color, 0.35);
+  }
+}

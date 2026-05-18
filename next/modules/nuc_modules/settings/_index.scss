@@ -1,0 +1,33 @@
+#settings .modules-settings-card {
+  height: 100%;
+  width: 100%;
+
+  .p-card-header {
+    display: flex;
+    justify-content: end;
+    padding: 1em;
+  }
+
+  .p-card-body {
+    height: 100%;
+    padding: 0.125em 1em 1em;
+    overflow-y: scroll;
+
+    .p-card-content {
+      height: unset !important;
+      display: flex;
+      flex-direction: column !important;
+      gap: 1em;
+    }
+  }
+
+  @media (width > $md) {
+    .p-card-body {
+      height: 100% !important;
+
+      .p-card-content {
+        height: 100% !important;
+      }
+    }
+  }
+}

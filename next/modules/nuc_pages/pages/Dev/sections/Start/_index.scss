@@ -1,0 +1,306 @@
+#dev #dev-start {
+  position: relative;
+  min-height: 80vh;
+  scroll-margin-top: 5rem;
+  background: $bg-dark-green-color;
+  margin: 0 -1rem;
+
+  .dev-start-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+
+    @media (min-width: $lg) {
+      flex-direction: row;
+      align-items: center;
+      gap: 4rem;
+      padding: 7rem 0;
+    }
+  }
+
+  .dev-start-left {
+    flex: 1;
+    max-width: 600px;
+  }
+
+  .dev-start-heading {
+    font-family: $font-inter-sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $primary-white-text-color;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+
+    @media (min-width: $lg) {
+      font-size: $font-size-lg;
+    }
+  }
+
+  .dev-start-description {
+    font-size: 1rem;
+    color: $primary-white-text-color;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+
+    @media (min-width: $md) {
+      font-size: 1.1rem;
+    }
+  }
+
+  .dev-start-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .dev-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    opacity: 0;
+    animation: dev-fade-in-up 0.5s ease forwards;
+
+    .dev-feature-icon {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      background: rgba($primary-color, 0.075);
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.125rem;
+      position: relative;
+      transition: background 0.3s ease;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 0.5rem;
+        padding: 1px;
+        background: linear-gradient(to top, rgba($primary-color, 0.5), transparent);
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+
+      .iconify {
+        color: $primary-color;
+        font-size: 1.1rem;
+        position: relative;
+      }
+    }
+
+    &:hover .dev-feature-icon {
+      background: rgba($primary-color, 0.15);
+    }
+
+    .dev-feature-content {
+      span {
+        font-size: 1rem;
+        font-weight: 700;
+        color: $primary-white-green-text-color;
+        margin: 0 0 0.25rem;
+      }
+
+      p {
+        font-size: $font-size-sm;
+        color: $primary-white-text-color;
+        margin: 0;
+      }
+    }
+  }
+
+  .dev-start-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .dev-cta-spinner {
+    animation: dev-spin 1s linear infinite;
+  }
+
+  @keyframes dev-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .dev-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: #93c5fd;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    .iconify {
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      color: #bfdbfe;
+
+      .iconify {
+        transform: translateX(4px);
+      }
+    }
+  }
+
+  .dev-start-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    @media (min-width: $lg) {
+      justify-content: flex-end;
+    }
+  }
+
+  .dev-terminal {
+    width: 100%;
+    max-width: 480px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgb(0 0 0 / 40%), 0 0 30px rgba($primary-color, 0.08);
+    border: 1px solid rgba($primary-color, 0.15);
+    opacity: 0;
+    animation: dev-fade-in-up 0.5s ease 0.3s forwards;
+  }
+
+  .dev-terminal-header {
+    background: rgba(#0f172a, 0.9);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    border-bottom: 1px solid rgba($primary-color, 0.1);
+  }
+
+  .dev-terminal-dots {
+    display: flex;
+    gap: 6px;
+
+    span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: block;
+
+      &:nth-child(1) { background: rgba($primary-color, 0.25); }
+      &:nth-child(2) { background: rgba($primary-color, 0.4); }
+      &:nth-child(3) { background: rgba($primary-color, 0.6); }
+    }
+  }
+
+  .dev-terminal-title {
+    color: rgba($primary-color, 0.5);
+    font-size: 0.75rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .dev-terminal-body {
+    background: rgba(#020617, 0.95);
+    padding: 1.25rem;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+  }
+
+  .dev-terminal-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: dev-terminal-type 0.3s ease forwards;
+
+    &:nth-child(1) { animation-delay: 0.6s; }
+    &:nth-child(2) { animation-delay: 0.8s; }
+    &:nth-child(3) { animation-delay: 1s; }
+    &:nth-child(4) { animation-delay: 1.2s; }
+    &:nth-child(5) { animation-delay: 1.4s; }
+    &:nth-child(6) { animation-delay: 1.6s; }
+  }
+
+  .dev-terminal-prompt {
+    color: $primary-color;
+    font-weight: 700;
+  }
+
+  .dev-terminal-cmd {
+    color: #dbeafe;
+  }
+
+  .dev-terminal-output {
+    color: rgba(#dbeafe, 0.55);
+    padding-left: 1rem;
+
+    &.dev-terminal-success {
+      color: $primary-color;
+
+      .iconify {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+
+@keyframes dev-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dev-terminal-type {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+html:not(.p-dark) #dev #dev-start {
+  background: linear-gradient(160deg, #0b1b3a 0%, #0f2a57 35%, #0f2648 65%, #09162b 100%);
+
+  .dev-start-heading {
+    color: #eff6ff;
+  }
+
+  .dev-start-description {
+    color: rgba(#dbeafe, 0.85);
+  }
+
+  .dev-feature-icon {
+    background: rgba(#60a5fa, 0.1);
+
+    &::before {
+      background: linear-gradient(to top, rgba(#60a5fa, 0.4), transparent);
+    }
+
+    .iconify { color: #60a5fa; }
+  }
+
+  .dev-feature-content {
+    span { color: #93c5fd; }
+    p { color: rgba(#dbeafe, 0.72); }
+  }
+}

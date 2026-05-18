@@ -1,0 +1,12 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .ad-logo[ad-type='#{$type}'] {
+    @include entity-with-suffix($type) using ($suffix) {
+      @include entity-logo-styles(
+        var(--#{$type}-c#{$suffix}) !important,
+        var(--#{$type}-d#{$suffix}) !important
+      );
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@keyframes change-lighter-color {
+  0% {
+    fill: #1187c7;
+  }
+
+  100% {
+    fill: #10b981;
+  }
+}
+
+@keyframes change-darker-color {
+  0% {
+    fill: #062e44;
+  }
+
+  100% {
+    fill: #074732;
+  }
+}
+
+@keyframes change-background-color {
+  0% {
+    background: #062e44;
+  }
+
+  100% {
+    background: #074732;
+  }
+}
+
+@keyframes change-border-color {
+  0% {
+    border: 1px solid #1187c7;
+  }
+
+  100% {
+    border: 1px solid #10b981;
+  }
+}

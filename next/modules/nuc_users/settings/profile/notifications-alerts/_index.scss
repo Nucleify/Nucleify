@@ -1,0 +1,18 @@
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .profile-form-toggle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .profile-form-description {
+    font-size: 0.85rem;
+    opacity: 0.65;
+    margin: 0;
+  }
+}

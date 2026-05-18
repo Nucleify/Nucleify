@@ -1,0 +1,8 @@
+{
+  "name": "nuc_templates",
+  "description": "Module that contains template functions.",
+  "version": "0.5.1",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}

@@ -1,0 +1,39 @@
+.nuc-entity-datatable-card {
+  &-header-container {
+    display: flex;
+    justify-content: space-between;
+    min-height: 42px;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  &-header-actions {
+    display: flex;
+    gap: 0.5em;
+
+    .p-button {
+      padding: 0.5em !important;
+
+      .iconify {
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  &:has(.p-skeleton) {
+    .heading-actions-skeleton {
+      display: flex;  
+      gap: 0.5em;
+    }
+
+    .p-card-caption {
+      margin-bottom: 6px;
+    }
+
+    .p-card-body {
+      margin-bottom: 2px;
+    }
+  }
+}

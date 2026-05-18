@@ -1,0 +1,13 @@
+@import 'mixins';
+
+@each $type in $ad-types {
+  .p-accordion[ad-type='#{$type}'] {
+    @include entity-with-suffix($type) using ($suffix) {
+      @include entity-accordion-styles(
+        var(--#{$type}-c#{$suffix}) !important,
+        var(--#{$type}-f#{$suffix}) !important,
+        var(--#{$type}-h#{$suffix}) !important
+      );
+    }
+  }
+}
