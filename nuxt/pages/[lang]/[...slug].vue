@@ -19,10 +19,14 @@
       "
       >.</span
     >
-    <div v-if="pageData" id="page-builder-public" :style="wrapperStyle">
+    <div
+      v-if="pageData?.layout_json"
+      id="page-builder-public"
+      :style="wrapperStyle"
+    >
       <nuc-page-builder-render :layout="pageData.layout_json" />
     </div>
-    <nuc-error-404-page v-else-if="showNotFound" />
+    <div v-else-if="showNotFound" id="error-404"><nuc-error-404-page /></div>
   </div>
 </template>
 
@@ -33,7 +37,7 @@ import type { PageBuilderLayoutInterface } from '../../../modules/nuc_pagebuilde
 
 interface PageBuilderRenderResponse {
   page: { data: { title: string; slug: string } }
-  layout_json: PageBuilderLayoutInterface
+  layout_json: PageBuilderLayoutInterface | null
   version: number
 }
 
@@ -68,7 +72,7 @@ const { data: pageData, status } = useFetch<PageBuilderRenderResponse>(
         setResponseStatus(requestEvent, 404)
       }
     },
-    transform(data: unknown): PageBuilderRenderResponse | null {
+    transform(data: unknown): PageBuilderRenderResponse {
       if (
         data &&
         typeof data === 'object' &&
@@ -77,14 +81,22 @@ const { data: pageData, status } = useFetch<PageBuilderRenderResponse>(
       ) {
         return data as PageBuilderRenderResponse
       }
-      return null
+      /** Nuxt ostrzega, gdy `transform` zwraca `null` — unikamy duplikacji żądania po stronie klienta. */
+      return {
+        page: { data: { title: '', slug: '' } },
+        layout_json: null,
+        version: 0,
+      }
     },
   }
 )
 
 /** Brak UI „loading”; 404 dopiero po zakończeniu żądania (nie w trakcie fetcha). */
 const showNotFound = computed(
-  () => status.value !== 'pending' && status.value !== 'idle' && !pageData.value
+  () =>
+    status.value !== 'pending' &&
+    status.value !== 'idle' &&
+    !pageData.value?.layout_json
 )
 
 const wrapperStyle = computed(() => {
@@ -102,7 +114,7 @@ const wrapperStyle = computed(() => {
 })
 
 useHead(() => {
-  if (!pageData.value) return {}
+  if (!pageData.value?.layout_json) return {}
   const settings = (pageData.value.layout_json?.settings ?? {}) as Record<
     string,
     string

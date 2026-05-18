@@ -43,8 +43,8 @@
         ExpiresByType image/jpeg "access plus 1 year"
     </IfModule>
 
-    # Send Requests To Front Controller...
+    # SPA / static: non-file routes fall back to Nuxt shell
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+    RewriteRule ^ index.html [L]
 </IfModule>

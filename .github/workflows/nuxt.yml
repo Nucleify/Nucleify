@@ -2,10 +2,9 @@ name: 🚀 Nuxt
 
 on:
   push:
-    branches: [ "*" ]
+    branches: ['*']
 
 jobs:
-  # Checkout, Setup and Install Dependencies
   setup:
     runs-on: ubuntu-latest
     steps:
@@ -16,20 +15,17 @@ jobs:
           fetch-depth: 0
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Install Node.js Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
-  # Biome
   biome:
     runs-on: ubuntu-latest
     needs: setup
@@ -41,23 +37,20 @@ jobs:
           fetch-depth: 0
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Install Node.js Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Biome
         run: pnpm run check
 
-  # Typeslint
   typeslint:
     runs-on: ubuntu-latest
     needs: setup
@@ -69,23 +62,20 @@ jobs:
           fetch-depth: 0
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Install Node.js Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Typeslint
         run: pnpm run typeslint
-        
-  # Stylelint
+
   stylelint:
     runs-on: ubuntu-latest
     needs: setup
@@ -97,23 +87,20 @@ jobs:
           fetch-depth: 0
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Install Node.js Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Stylelint
         run: pnpm run slint
 
-  # Build Assets
   build:
     runs-on: ubuntu-latest
     needs: setup
@@ -125,23 +112,20 @@ jobs:
           fetch-depth: 0
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Install Node.js Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Build Assets
         run: pnpm run build
 
-  # Run Vitests
   test:
     runs-on: ubuntu-latest
     needs: setup
@@ -153,18 +137,16 @@ jobs:
           fetch-depth: 0
 
       - name: Set up pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 9
+        uses: pnpm/action-setup@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'pnpm'
 
       - name: Install Node.js Dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Execute tests via Vitest
         run: pnpm run tests

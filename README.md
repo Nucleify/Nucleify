@@ -77,7 +77,6 @@ That's it! Now, you can enter http://localhost:3000
 - Build & run Docker image 
 ```bash
 sail up --build -d
-bash .config/bash/wait-for-db.sh   # Wait for MySQL on slower machines
 sail art migrate:fresh --seed
 ```
 
@@ -86,7 +85,6 @@ sail art migrate:fresh --seed
 <br>
 
 Possible problems:
-- Database not ready during migrate: Run `bash .config/bash/wait-for-db.sh` before migrations, or use `make` which handles this automatically.
 - Sail: no such file or directory found: [Solution 1](https://laravel.com/docs/10.x/sail#configuring-a-shell-alias), [Solution 2](https://stackoverflow.com/questions/71503871/laravel-error-laravel-sail-no-such-file-or-directory-found)
 - Error: EACCES: permission denied, mkdir '/var/www/html/node_modules': ```sudo chmod 777 -R nucleify``` or [Solution](https://stackoverflow.com/questions/49679808/error-eacces-permission-denied-mkdir-usr-local-lib-node-modules-node-sass-b)
 

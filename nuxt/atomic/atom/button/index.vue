@@ -15,18 +15,29 @@
     ]"
   >
     <ad-image v-if="props.src" :src="props.src" :alt="props.alt" />
-    <ad-icon v-if="props.icon" :icon="props.icon" />
-    <template v-if="props.label">{{ $t(props.label, props.label) }}</template>
+    <ad-icon v-if="props.icon?.trim()" :icon="props.icon" />
+    <template v-if="displayLabel">{{ displayLabel }}</template>
     <slot />
   </Button>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
 import type { ButtonInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<ButtonInterface>()
+const { t, te } = useI18n()
+
+/** Nie wołaj `$t` na już przetłumaczonym tekście z rodzica (`$t('…')`) — intlify szuka wtedy klucza. */
+const displayLabel = computed(() => {
+  const raw = props.label != null ? String(props.label) : ''
+  if (!raw.trim()) return ''
+  return te(raw) ? t(raw) : raw
+})
 
 const excludedProps = [
   'alt',

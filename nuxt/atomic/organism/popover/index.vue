@@ -16,7 +16,7 @@
 
   <Popover
     ref="adPopover"
-    v-bind="transformProps(props, excludedProps)"
+    v-bind="popoverBindings"
     :class="[
       props.popoverClass,
       $style['ad-popover'],
@@ -29,11 +29,16 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref, useAttrs } from 'vue'
+
 import type { PopoverInterface } from '.'
 
 import { transformProps } from '../../boson/transform_props'
 
+defineOptions({ inheritAttrs: false })
+
 const props = defineProps<PopoverInterface>()
+const attrs = useAttrs()
 
 const excludedProps = [
   'src',
@@ -43,10 +48,15 @@ const excludedProps = [
   'icon',
 ]
 
+const popoverBindings = computed(() => ({
+  ...transformProps(props, excludedProps),
+  ...attrs,
+}))
+
 const adPopover = ref()
 
 const toggle = (event: unknown) => {
-  adPopover.value.toggle(event)
+  adPopover.value?.toggle(event)
 }
 </script>
 
