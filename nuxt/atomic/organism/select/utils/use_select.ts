@@ -1,7 +1,9 @@
 import type { Ref } from 'vue'
 import { ref } from 'vue'
 
-import type { OpenDialogFunctionType, SelectItemInterface } from 'nucleify'
+import type { OpenDialogFunctionType } from 'nucleify'
+
+import type { SelectItemInterface } from '../types/Item/interfaces'
 
 const createSelectItem = (
   label: string,
@@ -32,7 +34,9 @@ export function useSelect(
       createSelectItem(
         label,
         icon,
-        action ? () => openDialog(action, selectedObject.value) : undefined
+        action
+          ? () => openDialog(action, selectedObject.value as ObjectType)
+          : undefined
       )
     )
   )

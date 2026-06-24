@@ -1,18 +1,17 @@
+import path from 'path'
 import { describe, expect, it } from 'vitest'
 
-import fs from 'fs'
-import path from 'path'
-
-const pluginsDir = path.resolve(__dirname, '../../nuxt/plugins')
-
-const pluginFiles = fs
-  .readdirSync(pluginsDir)
-  .filter((file) => file.endsWith('.ts'))
+const pluginFiles = [
+  '../../nuxt/plugins/modules.ts',
+  '../../modules/nuc_colors/plugins/colors.server.ts',
+  '../../modules/nuc_languages/plugins/nuc_translations.ts',
+].map((relativePath) => path.resolve(__dirname, relativePath))
 
 describe('Nuxt plugins', (): void => {
-  for (const file of pluginFiles) {
+  for (const pluginPath of pluginFiles) {
+    const file = path.basename(pluginPath)
     it(`${file} exports the correct structure`, async (): Promise<void> => {
-      const pluginModule = await import(path.join(pluginsDir, file))
+      const pluginModule = await import(pluginPath)
       const plugin = pluginModule.default
 
       if (plugin && typeof plugin === 'object' && 'setup' in plugin) {

@@ -1,10 +1,8 @@
 import { MenuProps } from 'primevue'
 
-import type { OpenMenuFunctionType } from 'nucleify'
+import type { OpenMenuFunctionType } from './functions'
 
-export interface MenuInterface extends MenuProps {
-  ref: string
-}
+export interface MenuInterface extends MenuProps {}
 
 export interface UseMenuInterface {
   selectedObject: SelectedObjectType

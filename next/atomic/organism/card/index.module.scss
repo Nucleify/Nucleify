@@ -1,0 +1,9 @@
+.ad-card {
+  background: $p-card-background !important;
+  border: 1px solid $p-card-border;
+  color: $white-text-color;
+
+  .ad-card-content {
+    padding: 0;
+  }
+}

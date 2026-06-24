@@ -1,26 +1,19 @@
-.PHONY: setup nuxt next docker-fix-perms
+.PHONY: setup nuxt next
 
 setup:
 	$(MAKE) nuxt
 	$(MAKE) next
 
 nuxt:
-	cp .config/.env.docker.nuxt.example .env
+	cp .config/.env.nuxt.example .env
 	pnpm install
 	pnpm prepare:husky
 
-	make docker
+	pnpm nuxt
 
 next:
-	cp .config/.env.docker.next.example .env
-	cd next && pnpm install
+	cp .config/.env.next.example .env
+	pnpm install
 	pnpm prepare:husky
 
-	make docker
-
-docker:
-	docker compose up --build -d
-
-# Jednorazowo po starym Dockerze (pliki .nuxt/.output jako root) — inaczej EACCES przy `pnpm dev` na hoście.
-docker-fix-perms:
-	sudo chown -R $$(id -u):$$(id -g) .nuxt .output
+	pnpm next
