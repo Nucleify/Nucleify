@@ -10,7 +10,3 @@ useHead({
   pageTransition: { name: 'page', mode: 'out-in' },
 })
 </script>
-
-<style lang="scss">
-@import '../../modules/back_office';
-</style>

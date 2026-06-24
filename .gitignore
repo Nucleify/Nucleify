@@ -15,6 +15,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+tsconfig.next.tsbuildinfo
 
 .data
 .output
@@ -60,3 +61,8 @@ supabase/.temp
 
 # Wrangler
 .wrangler
+
+# Next.js
+.next
+next/.next
+next/out
