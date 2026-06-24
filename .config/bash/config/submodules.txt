@@ -37,7 +37,5 @@ socials
 stores
 templates
 terminal
-tests
-time
 tooltip
 users

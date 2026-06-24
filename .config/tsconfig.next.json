@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "types": ["react", "react-dom", "node"],
+    "paths": {
+      "nucleify": ["next/atomic/index.ts"],
+      "nuc_server": ["nuxt/server/nuc_server.ts"],
+      "nuc_client": ["modules/nuc_api/supabase/client.ts"],
+      "nuc_api": ["modules/nuc_api/supabase/api/server.ts"],
+      "modules": ["modules"],
+      "modules/*": ["modules/*"]
+    },
+    "allowImportingTsExtensions": true
+  }
+}

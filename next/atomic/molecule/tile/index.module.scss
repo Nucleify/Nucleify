@@ -1,0 +1,92 @@
+.ad-tile {
+  display: flex;
+  flex: 1 1 calc(50% - 0.3em);
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 150px;
+  max-width: calc(50% - 0.3em);
+  height: 8em;
+  padding: 1em;
+  text-decoration: none;
+  background: $p-card-background;
+  border: 1px solid $p-card-border;
+  border-radius: 0.35em;
+  transition: all 300ms;
+
+  &:hover {
+    color: var(--p-card-color);
+  }
+
+  .secondary {
+    display: flex;
+    gap: 0.25em;
+
+    :global(p) {
+      margin: 0;
+      color: $primary-white-text-color;
+      font-size: 0.7em;
+    }
+
+    .count :global(p) {
+      color: $primary-color;
+    }
+  }
+
+  .general {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.65em;
+
+    .info {
+      display: flex;
+      flex-direction: column;
+
+      .header :global(p) {
+        margin: 0;
+        color: $primary-white-text-color;
+        font-size: 0.9em;
+      }
+
+      .count :global(p) {
+        color: $primary-white-text-color;
+        font-weight: 500;
+        font-size: 1.1em;
+      }
+    }
+
+    .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.2em;
+      height: 2.2em;
+      padding: 0;
+      border-radius: 0.25em;
+
+      .icon {
+        font-size: 1.5em;
+      }
+    }
+  }
+
+  @media (min-width: 360px) {
+    .secondary :global(p) {
+      font-size: 0.9em;
+    }
+  }
+
+  @media (min-width: 500px) {
+    max-width: 250px;
+  }
+
+  @media (min-width: $md) {
+    flex: 1 1 calc(33.33% - 0.35em);
+    height: 8.5em;
+  }
+
+  @media (min-width: $xl) {
+    flex: 1 1 calc(25% - 0.35em);
+    height: 9em;
+  }
+}

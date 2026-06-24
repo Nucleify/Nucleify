@@ -38,8 +38,6 @@ configure_submodule_hooks() {
     configure_submodule_hook_path "$root_dir/modules/nuc_$name" "$hooks_path"
   done < "$submodules_file"
 
-  configure_submodule_hook_path "$root_dir/next" "$hooks_path"
-
   echo
   print_separator
 }

@@ -1,7 +1,17 @@
 <template>
   <Chart
-    v-if="props.data"
-    v-bind="transformProps(props, excludedProps)"
+    v-if="props.data && props.type"
+    :type="props.type"
+    :data="props.data"
+    :options="props.options"
+    :plugins="props.plugins"
+    :width="props.width"
+    :height="props.height"
+    :canvas-props="props.canvasProps"
+    :dt="props.dt"
+    :pt="props.pt"
+    :pt-options="props.ptOptions"
+    :unstyled="props.unstyled"
     :class="props.chartClass"
   >
     <slot />
@@ -9,11 +19,9 @@
 </template>
 
 <script setup lang="ts">
+import Chart from 'primevue/chart'
+
 import type { ChartInterface } from '.'
 
-import { transformProps } from '../../boson/transform_props'
-
 const props = defineProps<ChartInterface>()
-
-const excludedProps = ['chartClass']
 </script>
