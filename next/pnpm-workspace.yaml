@@ -1,6 +1,0 @@
-packages:
-  - "."
-
-onlyBuiltDependencies:
-  - "@parcel/watcher"
-  - sharp

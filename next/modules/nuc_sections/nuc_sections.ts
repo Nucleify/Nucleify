@@ -1,5 +1,0 @@
-export { NucSectionContact } from './components/contact'
-export { NucSectionEmailUs } from './components/email-us'
-export { NucSectionFaq } from './components/faq'
-export { NucSectionFooter } from './components/footer'
-export { NucSectionNavbar } from './components/navbar'

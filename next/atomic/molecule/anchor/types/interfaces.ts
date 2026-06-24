@@ -1,7 +1,8 @@
 import type { CSSProperties as StyleValue } from 'react'
 
-import type { IconInterface } from '../../../atom/icon/types/interfaces'
 import type { AnchorRelType, AnchorTargetType } from './variables'
+
+import type { IconInterface } from '../../../atom/icon/types/interfaces'
 
 export interface AnchorInterface extends IconInterface {
   href?: string

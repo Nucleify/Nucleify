@@ -3,50 +3,45 @@ import type { Toast } from 'primereact/toast'
 import type {
   MessageOrMessagesType,
   ToastSeverityType,
-  UseToastInterface,
-} from '../types'
+} from '../types/variables'
 
 const toastRef: { current: Toast | null } = { current: null }
 
-export function useAtomicToast(): UseToastInterface {
-  function closeToast(): void {
-    toastRef.current?.clear()
-  }
+export function setToastInstance(instance: Toast | null): void {
+  toastRef.current = instance
+}
 
-  function flashToast(
-    messageOrMessages: MessageOrMessagesType,
-    severity: ToastSeverityType,
-    life?: number
-  ): void {
-    closeToast()
+export function closeToast(): void {
+  toastRef.current?.clear()
+}
 
-    let message = ''
+export function flashToast(
+  messageOrMessages: MessageOrMessagesType,
+  severity: ToastSeverityType,
+  life?: number
+): void {
+  closeToast()
 
-    if (typeof messageOrMessages === 'string') {
-      message = messageOrMessages
-    } else if (messageOrMessages && typeof messageOrMessages === 'object') {
-      if (severity === 'warn') {
-        message = 'Validation errors:'
-      }
+  let message = ''
 
-      for (const key in messageOrMessages) {
-        if (Object.hasOwn(messageOrMessages, key)) {
-          const errors = (messageOrMessages as Record<string, string[]>)[key]
-          message += `\n- ${Array.isArray(errors) ? errors.join(', ') : errors}`
-        }
-      }
+  if (typeof messageOrMessages === 'string') {
+    message = messageOrMessages
+  } else if (messageOrMessages && typeof messageOrMessages === 'object') {
+    if (severity === 'warn') {
+      message = 'Validation errors:'
     }
 
-    toastRef.current?.show({
-      severity: severity || 'info',
-      summary: message,
-      life: life || 5000,
-    })
+    for (const key in messageOrMessages) {
+      if (Object.hasOwn(messageOrMessages, key)) {
+        const errors = (messageOrMessages as Record<string, string[]>)[key]
+        message += `\n- ${Array.isArray(errors) ? errors.join(', ') : errors}`
+      }
+    }
   }
 
-  return {
-    toastRef,
-    closeToast,
-    flashToast,
-  }
+  toastRef.current?.show({
+    severity: severity || 'info',
+    summary: message,
+    life: life || 5000,
+  })
 }

@@ -1,39 +1,40 @@
 # Overrides
 
-This folder contains files that override original files from `nuxt/` and `modules/`.
+This folder contains files that override originals from `nuxt/` and `modules/` without editing core source.
 
 ## How it works
 
-1. **Folder structure**: Create a file with the same directory structure as the original file:
-   - `overrides/nuxt/` - overrides files from `nuxt/` (frontend)
-   - `overrides/modules/` - overrides files from `modules/` (both frontend and backend)
+1. **Folder structure** — mirror the original path under `overrides/`:
+   - `overrides/nuxt/` — overrides files from `nuxt/`
+   - `overrides/modules/` — overrides files from `modules/`
 
-2. **Frontend Examples** (Nuxt/TypeScript/Vue):
-   - Original file: `nuxt/composables/useAuth.ts`
+2. **Frontend examples** (Nuxt / TypeScript / Vue):
+   - Original: `nuxt/composables/useAuth.ts`
    - Override: `overrides/nuxt/composables/useAuth.ts`
-   
-   Or:
-   - Original file: `modules/nuc_auth/atomic/LoginButton.vue`
-   - Override: `overrides/modules/nuc_auth/atomic/LoginButton.vue`
 
-3. **Backend Examples** (Laravel/PHP):
-   - Original file: `modules/nuc_auth/app/Models/User.php`
-   - Override: `overrides/modules/nuc_auth/app/Models/User.php`
-   
    Or:
-   - Original file: `modules/nuc_auth/config/auth.php`
-   - Override: `overrides/modules/nuc_auth/config/auth.php`
+   - Original: `modules/nuc_auth/atomic/pages/Login/index.vue`
+   - Override: `overrides/modules/nuc_auth/atomic/pages/Login/index.vue`
 
-4. **Automatic redirection**: 
-   - **Frontend**: The system automatically redirects all imports to override files, excludes original files from the Nuxt build, and handles all import types (relative, absolute, from `~`, from `modules/`)
-   - **Backend**: The system automatically loads override files instead of original files when loading modules (providers, classes, configs, migrations, etc.)
+3. **Backend examples** (Supabase API handlers):
+   - Original: `modules/nuc_auth/supabase/api/handle.ts`
+   - Override: `overrides/modules/nuc_auth/supabase/api/handle.ts`
+
+   Or:
+   - Original: `modules/nuc_entities/supabase/seeders/20260501000000_nuc_entities_seeder.sql`
+   - Override: `overrides/modules/nuc_entities/supabase/seeders/20260501000000_nuc_entities_seeder.sql`
+
+4. **Automatic resolution**:
+   - **Frontend**: imports are redirected to override files; originals are excluded from the build
+   - **Server handlers**: `modules/*/supabase/api/*.ts` resolved the same way when imported by the API gateway
 
 ## Notes
 
-- Override files must have the exact same directory structure as the original files
-- **Frontend**: The system works for both TypeScript/JavaScript and Vue components. Original files are not included in the build at all if they have an override.
-- **Backend**: The system works for PHP files (classes, configs, migrations, seeders, factories, etc.). Override files are loaded instead of original files during application bootstrap.
+- Override paths must match originals exactly
+- Overrides **fully replace** the original file (no merging)
+- Copy only what you need to change
+- Test after upgrades — overrides can break when upstream paths change
 
-## Module Documentation
+## Module documentation
 
-For more information about the frontend override system implementation, see the [`nuc_overrides`](../modules/nuc_overrides/README.md) module documentation.
+See [`nuc_overrides`](../modules/nuc_overrides/README.md) for implementation details.

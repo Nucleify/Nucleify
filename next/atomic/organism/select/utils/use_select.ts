@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react'
 
-import type { OpenDialogFunctionType, SelectItemInterface } from '../types'
+import type { OpenDialogFunctionType, SelectItemInterface } from 'nucleify'
 
 const selectData = [
   ['Show', 'pi pi-eye', 'show'],
@@ -21,7 +21,7 @@ const createSelectItem = (
 })
 
 export function useSelect(
-  selectedObject: unknown,
+  selectedObject: ObjectType,
   openDialog: OpenDialogFunctionType
 ) {
   if (typeof openDialog !== 'function') {

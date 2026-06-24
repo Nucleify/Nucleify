@@ -1,2 +1,0 @@
-export { NucShareRequestsItem } from './component'
-

@@ -35,10 +35,25 @@
   }
 
   @media (min-width: $lg) {
-    height: 300px;
     max-width: 450px;
     margin-left: 3px;
   }
+
+  &:not(.share-inbox-popover, .friendship-popover) {
+    @media (min-width: $lg) {
+      height: 300px;
+    }
+  }
+}
+
+.ad-popover-content {
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
 }
 
 .ad-popover-toggle {
@@ -51,6 +66,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.5em;
   box-shadow: 0 3px 4px rgb(0 0 0 / 20%);
   cursor: pointer;
   transition: all 300ms;
@@ -69,11 +85,11 @@
 
   &:active,
   &:hover {
-    border: 1px solid var(--main-c-u) !important;
-    color: var(--main-c-u) !important;
+    border: 1px solid $primary-color !important;
+    color: $primary-color !important;
 
     :global(.iconify) {
-      color: var(--main-c-u) !important;
+      color: $primary-color !important;
     }
   }
 

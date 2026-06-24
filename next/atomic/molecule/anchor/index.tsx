@@ -1,7 +1,8 @@
 import type { JSX, ReactNode } from 'react'
 
-import { AdIcon, AdImage, AdLabel } from '../../atom'
 import type { AnchorInterface } from './types'
+
+import { AdIcon, AdImage, AdLabel } from '../../atom'
 
 export function AdAnchor({
   children,

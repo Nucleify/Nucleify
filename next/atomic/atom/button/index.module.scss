@@ -4,6 +4,10 @@
   justify-content: center !important;
   transition: all 0.5s;
 
+  &.with-ad-icon {
+    gap: 0.5em;
+  }
+
   .p-button-label {
     flex: 0 1 auto;
     font-family: Nunito, sans-serif;
@@ -19,11 +23,11 @@
   }
 
   &.mobile-button {
-    display: flex;
+    display: inline-flex !important;
   }
 
   &.desktop-button {
-    display: none;
+    display: none !important;
   }
 
   &.data-table-button {
@@ -37,11 +41,11 @@
 
   @media (min-width: $lg) {
     &.mobile-button {
-      display: none;
+      display: none !important;
     }
 
     &.desktop-button {
-      display: flex;
+      display: inline-flex !important;
     }
   }
 }

@@ -7,6 +7,7 @@ import type { DockInterface } from './types'
 export function AdDock({
   className,
   position = 'bottom',
+  magnification = false,
   ...rest
 }: DockInterface): JSX.Element {
   const cx = (...classes: (string | undefined | null | false)[]) =>
@@ -32,5 +33,7 @@ export function AdDock({
     },
   }
 
-  return <Dock {...rest} position={position} pt={pt} />
+  return (
+    <Dock {...rest} magnification={magnification} position={position} pt={pt} />
+  )
 }

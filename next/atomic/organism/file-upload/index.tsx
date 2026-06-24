@@ -1,3 +1,5 @@
+'use client'
+
 import { FileUpload } from 'primereact/fileupload'
 import type { JSX } from 'react'
 

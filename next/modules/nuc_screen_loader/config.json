@@ -1,8 +1,0 @@
-{
-  "name": "nuc_screen_loader",
-  "description": "Module that contains screen loader functions.",
-  "version": "1.0.0",
-  "category": "core",
-  "installed": true,
-  "enabled": true
-}

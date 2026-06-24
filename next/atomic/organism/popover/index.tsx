@@ -4,9 +4,10 @@ import { OverlayPanel } from 'primereact/overlaypanel'
 import type { JSX } from 'react'
 import { useRef } from 'react'
 
-import { AdButton } from '../../atom/button'
 import styles from './index.module.scss'
 import type { PopoverInterface } from './types'
+
+import { AdButton } from '../../atom/button'
 
 export function AdPopover(props: PopoverInterface): JSX.Element {
   const {

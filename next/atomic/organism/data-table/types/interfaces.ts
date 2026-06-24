@@ -1,11 +1,7 @@
 import { DataTable } from 'primereact/datatable'
 import type { ComponentProps } from 'react'
 
-type LoadingType = boolean | undefined
-
-type OpenDialogFunctionType = (action: ActionType, object?: ObjectType) => void
-
-type SelectedObjectType = ObjectType | undefined
+import type { LoadingType, OpenDialogFunctionType } from 'nucleify'
 
 export interface DataTableInterface
   extends Omit<ComponentProps<typeof DataTable>, 'className'> {
@@ -14,7 +10,7 @@ export interface DataTableInterface
   loading?: LoadingType
   actions?: ActionInterface
   openDialog?: OpenDialogFunctionType
-  selectedObject?: SelectedObjectType
+  selectedObject?: ObjectType
 }
 
 export interface ColumnInterface {

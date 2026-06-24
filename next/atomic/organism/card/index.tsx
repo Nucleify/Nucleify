@@ -4,6 +4,7 @@ import { Card } from 'primereact/card'
 import type { JSX, ReactNode } from 'react'
 
 import styles from './index.module.scss'
+
 import type { CardInterface } from './types/interfaces'
 
 export function AdCard({
@@ -18,7 +19,8 @@ export function AdCard({
 
   const pt = {
     root: { className: cx(styles['ad-card'], className) },
-    content: { className: styles['ad-card-content'] },
+    body: { className: styles['ad-card-body'] },
+    content: { className: cx(styles['ad-card-content'], 'p-card-content') },
   }
 
   return (

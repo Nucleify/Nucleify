@@ -2,10 +2,11 @@
 import Link from 'next/link'
 import type { JSX } from 'react'
 
-import { AdIcon } from '../../atom/icon'
-import { AdParagraph } from '../../atom/paragraph'
 import styles from './index.module.scss'
 import type { TileInterface } from './types'
+
+import { AdIcon } from '../../atom/icon'
+import { AdParagraph } from '../../atom/paragraph'
 
 export function AdTile({
   adType,
