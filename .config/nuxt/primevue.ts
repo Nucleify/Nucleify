@@ -30,6 +30,7 @@ const PRIMEVUE_COMPONENT_INCLUDE = [
   'Knob',
   'Menu',
   'MeterGroup',
+  'Paginator',
   'Password',
   'Popover',
   'ProgressBar',
@@ -50,7 +51,6 @@ const PRIMEVUE_COMPONENT_INCLUDE = [
   'Tree',
 ]
 
-/** `tooltip` nie jest tu — rejestruje go `registerNucTooltip` (Nuc + ad-tooltip), inaczej kolizja z PrimeVue. */
 const PRIMEVUE_DIRECTIVE_INCLUDE = ['ripple']
 
 export const primevueConfig = {

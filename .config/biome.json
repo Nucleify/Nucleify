@@ -6,7 +6,7 @@
     "ignoreUnknown": false,
     "includes": [
       "**",
-      "!**/modules/**/index.ts",
+      "**/modules",
       "!**/cypress/**",
       "!**/node_modules/**",
       "!**/vendor/**",
@@ -193,25 +193,35 @@
             "groups": [
               [
                 ":BUN:",
+                "@nuxt/*",
                 "nuxt/*",
                 "#app",
                 "vue",
                 "marked",
+                "highlight.js/**",
                 "primevue",
                 "vue-router",
                 "pinia",
                 "gsap",
+                "vite",
                 "vitest",
                 "vue-i18n",
                 "next/*",
                 "react",
+                "react-i18next",
+                "i18next",
                 "primereact",
                 "primereact/*",
+                "zustand",
                 "chart.js",
+                "@iconify/react",
                 "fflate",
                 "h3",
+                "path",
+                "fs",
                 "node:fs/*",
                 "node:path",
+                "node:url",
                 "@supabase/*"
               ],
               ":BLANK_LINE:",
@@ -225,9 +235,11 @@
               "variables",
               ":BLANK_LINE:",
               ".",
+              "./*",
               "../*",
               ":BLANK_LINE:",
-              "index.vue"
+              "index.vue",
+              "_index.scss"
             ]
           }
         }

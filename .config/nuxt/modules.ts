@@ -2,7 +2,7 @@ export const modules = [
   './modules/nuc_overrides',
   './modules/nuc_pagebuilder',
   '@nuxt/icon',
-  '@nuxtjs/critters',
+  ...(process.env.NODE_ENV === 'production' ? ['@nuxtjs/critters'] : []),
   '@nuxtjs/google-fonts',
   '@nuxtjs/i18n',
   '@nuxtjs/robots',

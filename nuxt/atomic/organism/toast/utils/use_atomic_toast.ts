@@ -1,62 +1,53 @@
 import { useNuxtApp } from 'nuxt/app'
 
-import type {
-  MessageOrMessagesType,
-  ToastSeverityType,
-  UseToastInterface,
-} from 'nucleify'
+import type { MessageOrMessagesType, ToastSeverityType } from 'nucleify'
 
-export function useAtomicToast(): UseToastInterface {
-  const nuxtApp = useNuxtApp()
-  const getToast = () => {
-    if (!import.meta.client) return
-    return nuxtApp.vueApp.config.globalProperties.$toast
+function getToastInstance() {
+  if (!import.meta.client) return undefined
+  return useNuxtApp().vueApp.config.globalProperties.$toast
+}
+
+export function closeToast(): void {
+  if (import.meta.client) {
+    document
+      .querySelectorAll('.p-toast-message')
+      .forEach((element: Element): void => {
+        element.remove()
+      })
   }
+}
 
-  function closeToast(): void {
-    if (import.meta.client) {
-      document
-        .querySelectorAll('.p-toast-message')
-        .forEach((element: Element): void => {
-          element.remove()
-        })
-    }
-  }
+export function flashToast(
+  messageOrMessages: MessageOrMessagesType,
+  severity: ToastSeverityType,
+  life?: number
+): void {
+  closeToast()
 
-  function flashToast(
-    messageOrMessages: MessageOrMessagesType,
-    severity: ToastSeverityType,
-    life?: number
-  ): void {
-    closeToast()
+  let message: string = ''
 
-    let message: string = ''
+  switch (typeof messageOrMessages) {
+    case 'string':
+      message = messageOrMessages
+      break
+    default:
+      if (severity === 'warn') {
+        message = 'Validation errors:'
+      }
 
-    switch (typeof messageOrMessages) {
-      case 'string':
-        message = messageOrMessages
-        break
-      default:
-        if (severity === 'warn') {
-          message = 'Validation errors:'
+      for (const value in messageOrMessages) {
+        if (Object.hasOwn(messageOrMessages, value as string)) {
+          message += `\n- ${messageOrMessages[value].join(', ')}`
         }
-
-        for (const value in messageOrMessages) {
-          if (Object.hasOwn(messageOrMessages, value as string)) {
-            message += `\n- ${messageOrMessages[value].join(', ')}`
-          }
-        }
-        break
-    }
-
-    const toast = getToast()
-    if (!toast?.add) return
-    toast.add({
-      severity: severity,
-      summary: message,
-      life: life ? life : 5000,
-    })
+      }
+      break
   }
 
-  return { closeToast, flashToast }
+  const toast = getToastInstance()
+  if (!toast?.add) return
+  toast.add({
+    severity: severity,
+    summary: message,
+    life: life ? life : 5000,
+  })
 }

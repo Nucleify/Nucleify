@@ -1,0 +1,36 @@
+.ad-menu {
+  background: $content-background;
+  border: 1px solid $p-card-border;
+  backdrop-filter: blur(0.25em);
+}
+
+.ad-menu,
+.ad-menu-list,
+.ad-menu-item-content {
+  border-radius: 0;
+}
+
+.ad-menu,
+.ad-menu-list,
+.ad-menu-item {
+  min-width: 130px;
+  max-width: 120px;
+}
+
+.ad-menu,
+.ad-menu-list {
+  padding: 0;
+  margin: 0;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.ad-menu-item-link {
+  text-decoration: none;
+  gap: 1em;
+  padding-left: 1.45em;
+
+  span {
+    color: $white-text-color;
+  }
+}

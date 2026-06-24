@@ -2,7 +2,7 @@ import type { StyleValue } from 'vue'
 
 import type { AnchorRelType, AnchorTargetType, IconInterface } from 'nucleify'
 
-export interface AnchorInterface extends IconInterface {
+export interface AnchorInterface extends /* @vue-ignore */ IconInterface {
   href?: string
   src?: string
   alt?: string

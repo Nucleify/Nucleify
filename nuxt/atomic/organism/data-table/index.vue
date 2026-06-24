@@ -81,6 +81,7 @@ const excludedProps = [
   'openDialog',
   'selectedObject',
   'rows',
+  'filters',
 ]
 </script>
 
