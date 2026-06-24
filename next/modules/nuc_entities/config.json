@@ -1,8 +1,0 @@
-{
-  "name": "nuc_entities",
-  "description": "Module that contains entity functions.",
-  "version": "0.6.2",
-  "category": "core",
-  "installed": true,
-  "enabled": true
-}

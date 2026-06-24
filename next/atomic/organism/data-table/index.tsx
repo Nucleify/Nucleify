@@ -2,6 +2,9 @@ import { DataTable } from 'primereact/datatable'
 import type { JSX } from 'react'
 
 import styles from './index.module.scss'
+
+import { adTypePt } from '../../utils/ad_type'
+import selectStyles from '../select/index.module.scss'
 import type { DataTableInterface } from './types/interfaces'
 
 export function AdDataTable({
@@ -24,53 +27,68 @@ export function AdDataTable({
   const cx = (...classes: (string | undefined | null | false)[]) =>
     classes.filter(Boolean).join(' ')
 
-  const adTypeAttribute = adType ? { 'data-ad-type': adType } : {}
+  const adTypeAttribute = adType ? { 'ad-type': adType } : {}
 
   const pt = {
     root: {
       className: cx(styles['ad-datatable'], className),
       'data-nuc-datatable': '',
+      ...adTypePt(adType)?.root,
     },
     bodyRow: {
       className: styles['ad-datatable-row'],
     },
+    headerContent: {
+      className: styles['ad-datatable-column-header-content'],
+    },
     paginator: {
       root: {
-        className: styles['ad-datatable-paginator'],
+        className: cx(
+          styles['ad-datatable-paginator-bottom'],
+          styles['ad-datatable-paginator']
+        ),
       },
-      content: {
-        className: styles['ad-datatable-paginator-content'],
+      firstPageButton: {
+        className: styles['ad-datatable-paginator-first'],
       },
-      firstPageButton: { className: styles['ad-datatable-paginator-first'] },
-      prevPageButton: { className: styles['ad-datatable-paginator-prev'] },
-      nextPageButton: { className: styles['ad-datatable-paginator-next'] },
-      lastPageButton: { className: styles['ad-datatable-paginator-last'] },
-      pageButton: { className: styles['ad-datatable-paginator-current'] },
-
-      rowsPerPageDropdown: {
+      prevPageButton: {
+        className: styles['ad-datatable-paginator-prev'],
+      },
+      nextPageButton: {
+        className: styles['ad-datatable-paginator-next'],
+      },
+      lastPageButton: {
+        className: styles['ad-datatable-paginator-last'],
+      },
+      current: {
+        className: styles['ad-datatable-paginator-current'],
+      },
+      RPPDropdown: {
         root: {
-          className: styles['ad-select'],
-          style: { display: 'flex', alignItems: 'center' },
+          className: cx(
+            selectStyles['ad-select'],
+            styles['ad-datatable-paginator-rpp']
+          ),
           ...adTypeAttribute,
         },
         input: {
-          className: styles['ad-select-label'],
+          className: selectStyles['ad-select-label'],
         },
         trigger: {
-          className: styles['ad-select-dropdown'],
+          className: selectStyles['ad-select-dropdown'],
         },
         panel: {
-          className: styles['ad-select-overlay'],
+          className: selectStyles['ad-select-overlay'],
           ...adTypeAttribute,
         },
         wrapper: {
-          className: styles['ad-select-list-container'],
+          className: selectStyles['ad-select-list-container'],
         },
         list: {
-          className: styles['ad-select-list'],
+          className: selectStyles['ad-select-list'],
         },
         item: {
-          className: styles['ad-select-option'],
+          className: selectStyles['ad-select-option'],
         },
       },
     },

@@ -1,66 +1,25 @@
-'use client'
-
-import { usePathname } from 'next/navigation'
-import { use, useEffect, useState } from 'react'
+import { LangLayoutClient } from './layout.client'
 
 import {
-  NucSectionFooter,
-  NucSectionNavbar,
-  setActiveLocale,
-  useOfficeType,
-} from 'nucleify'
+  isSupportedLocale,
+  requireLocaleMessages,
+  type SupportedLocale,
+} from '../../../modules/nuc_languages/atomic/bosons/utils/fetch_locale_messages'
 
-export default function FrontOfficeLayout({
+export default async function LangLayout({
   children,
   params,
 }: {
   children: React.ReactNode
   params: Promise<{ lang: string }>
 }) {
-  const [isHydrated, setIsHydrated] = useState(false)
-  const pathname = usePathname()
-  const { officeType } = useOfficeType()
-  const resolvedParams = use(params)
-  const routeLang = resolvedParams?.lang || 'en'
-  const pathnameLang = pathname.split('/').filter(Boolean).at(0) || routeLang
-  const pageId = pathname.split('/').filter(Boolean).at(1) || 'page'
-
-  setActiveLocale(pathnameLang)
-
-  useEffect(() => {
-    setActiveLocale(pathnameLang)
-    setIsHydrated(true)
-  }, [pathnameLang])
-
-  if (!isHydrated) {
-    return (
-      <div id="default">
-        <main id={pageId}>{children}</main>
-      </div>
-    )
-  }
-
-  if (officeType === 'back-office') {
-    return (
-      <div id="back-office">
-        <main id={pageId}>{children}</main>
-      </div>
-    )
-  }
-
-  if (officeType === 'default') {
-    return (
-      <div id="default">
-        <main id={pageId}>{children}</main>
-      </div>
-    )
-  }
+  const { lang: rawLang } = await params
+  const lang: SupportedLocale = isSupportedLocale(rawLang) ? rawLang : 'en'
+  const messages = await requireLocaleMessages(lang)
 
   return (
-    <div id="front-office">
-      <NucSectionNavbar />
-      <main id={pageId}>{children}</main>
-      <NucSectionFooter />
-    </div>
+    <LangLayoutClient lang={lang} messages={messages}>
+      {children}
+    </LangLayoutClient>
   )
 }

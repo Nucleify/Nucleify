@@ -1,7 +1,6 @@
 import type { DropdownProps } from 'primereact/dropdown'
 
-export type OpenDialogFunctionType = (action: string, data: unknown) => void
-
-export interface SelectInterface extends DropdownProps {
+export interface SelectInterface extends Omit<DropdownProps, 'appendTo'> {
   adType?: string
+  appendTo?: DropdownProps['appendTo'] | 'body'
 }

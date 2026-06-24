@@ -1,16 +1,26 @@
 'use client'
 
+import { PrimeReactProvider } from 'primereact/api'
 import { useEffect } from 'react'
 
-import { colorsClientPlugin } from 'nucleify'
-
-import { I18nextProvider } from 'react-i18next'
-import i18n from './i18n'
+import {
+  AdLogoSymbol,
+  AdToast,
+  colorsClientPlugin,
+  initNucGlobals,
+} from 'nucleify'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    initNucGlobals()
     colorsClientPlugin()
   }, [])
 
-  return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
+  return (
+    <PrimeReactProvider value={{ ripple: true }}>
+      <AdLogoSymbol />
+      <AdToast />
+      {children}
+    </PrimeReactProvider>
+  )
 }

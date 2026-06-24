@@ -1,5 +1,7 @@
-export * from '../../modules'
 export * from './atom'
+export * as AtomicAtom from './atom'
 export * from './boson'
 export * from './molecule'
+export * as AtomicMolecule from './molecule'
 export * from './organism'
+export * as AtomicOrganism from './organism'

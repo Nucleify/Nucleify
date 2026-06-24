@@ -1,9 +1,0 @@
-@mixin entity-accordion-styles($c, $focus-color, $selected-color) {
-  .p-accordionheader:hover {
-    color: $c;
-
-    .p-accordionheader-toggle-icon {
-      color: $c;
-    }
-  }
-}

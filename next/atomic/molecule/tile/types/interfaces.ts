@@ -1,4 +1,4 @@
-import type { IconInterface } from '../../../atom/icon/types/interfaces'
+import type { IconInterface } from 'nucleify'
 
 export interface TileInterface extends IconInterface {
   adType?: AdTypeType

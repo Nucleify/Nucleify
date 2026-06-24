@@ -54,8 +54,9 @@ Implement the frontend portion of a feature based on the planner's spec. Create 
 
 ### TypeScript Conventions
 - Interfaces extend PrimeVue props where applicable
-- All types exported through barrel files
-- Use `nucleify` alias for cross-module imports
+- **Barrel exports:** every folder has `index.ts` re-exporting its public API; parent folders only use `export * from './child'` (see `.cursor/rules/barrel-exports.mdc`)
+- Never add deep `export { x } from '.../utils/foo.ts'` in `nuxt/atomic/index.ts`, `next/atomic/index.ts`, or similar aggregators
+- Use `nucleify` alias for cross-module imports (no `../../../modules/nuc_*` paths)
 - `NucPascalCase` prefix for module types
 
 ## Execution

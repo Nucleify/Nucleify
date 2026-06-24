@@ -1,7 +1,12 @@
 'use client'
 
-import { NucHomePage } from 'nucleify'
+import { NucHomePage, NucSocialsDock } from 'nucleify'
 
 export default function HomePage() {
-  return <NucHomePage />
+  return (
+    <>
+      <NucHomePage />
+      <NucSocialsDock />
+    </>
+  )
 }

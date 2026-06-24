@@ -1,11 +1,10 @@
 import { Button, type ButtonProps } from 'primereact/button'
 import type { CSSProperties, JSX, ReactNode } from 'react'
 
-import { AdIcon } from '../icon'
-import { AdImage } from '../image'
-
 import styles from './index.module.scss'
 import type { ButtonInterface } from './types'
+import { AdIcon } from '../icon'
+import { AdImage } from '../image'
 
 export function AdButton({
   adType,
@@ -65,13 +64,14 @@ export function AdButton({
   return (
     <Button
       {...rest}
+      aria-label={rest['aria-label'] ?? label}
       severity={primeSeverity}
       rounded={rounded}
-      label={label}
       pt={pt}
     >
       {src && <AdImage src={src} alt={alt} />}
       {icon && <AdIcon icon={icon} />}
+      {label ? <span className={styles['p-button-label']}>{label}</span> : null}
       {children}
     </Button>
   )

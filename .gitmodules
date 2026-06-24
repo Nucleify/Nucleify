@@ -85,9 +85,6 @@
 [submodule "modules/nuc_terminal"]
 	path = modules/nuc_terminal
 	url = https://github.com/Nucleify/nuc_terminal.git
-[submodule "modules/nuc_time"]
-	path = modules/nuc_time
-	url = https://github.com/Nucleify/nuc_time.git
 [submodule "modules/nuc_tooltip"]
 	path = modules/nuc_tooltip
 	url = https://github.com/Nucleify/nuc_tooltip.git
@@ -97,9 +94,6 @@
 [submodule "modules/nuc_share"]
 	path = modules/nuc_share
 	url = https://github.com/Nucleify/nuc_share.git
-[submodule "modules/nuc_tests"]
-	path = modules/nuc_tests
-	url = https://github.com/Nucleify/nuc_tests.git
 [submodule "modules/nuc_pricings"]
 	path = modules/nuc_pricings
 	url = https://github.com/Nucleify/nuc_pricings.git

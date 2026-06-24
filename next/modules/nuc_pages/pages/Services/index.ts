@@ -1,6 +1,0 @@
-export * from './BusinessWebsites'
-export * from './CustomProjects'
-export * from './EcommerceStores'
-export * from './LandingPages'
-export * from './Services'
-export * from './WebsiteRedesign'

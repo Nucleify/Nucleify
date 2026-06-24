@@ -1,6 +1,6 @@
+import { Icon } from '@iconify/react'
 import type { CSSProperties, JSX } from 'react'
 
-import { Icon } from '@iconify/react'
 import styles from './index.module.scss'
 import type { IconInterface } from './types'
 
@@ -22,6 +22,20 @@ export function AdIcon({
     ...style,
   }
 
+  if (icon.startsWith('prime:')) {
+    const iconClass = `pi pi-${icon.slice(6)}`
+    const mergedClassName = cx(iconClass, styles['prime-icon'], className)
+
+    return (
+      <i
+        className={mergedClassName}
+        style={mergedStyle}
+        {...(adType ? { 'data-ad-type': adType } : {})}
+        {...rest}
+      />
+    )
+  }
+
   // Iconify set ids (e.g. mdi:email-outline, lucide:home)
   if (icon.includes(':')) {
     return (
@@ -35,7 +49,7 @@ export function AdIcon({
     )
   }
 
-  const iconClass = `pi pi-${icon.replace('prime:', '')}`
+  const iconClass = `pi pi-${icon}`
   const mergedClassName = cx(iconClass, styles['prime-icon'], className)
 
   return (

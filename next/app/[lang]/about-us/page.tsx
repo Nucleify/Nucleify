@@ -1,7 +1,12 @@
 'use client'
 
-import { NucAboutUsPage } from 'nucleify'
+import { NucAboutUsPage, NucGridBackground } from 'nucleify'
 
 export default function AboutUsPage() {
-  return <NucAboutUsPage />
+  return (
+    <div id="about-us">
+      <NucGridBackground />
+      <NucAboutUsPage />
+    </div>
+  )
 }

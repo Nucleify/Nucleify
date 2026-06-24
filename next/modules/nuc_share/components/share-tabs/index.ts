@@ -1,2 +1,0 @@
-export { NucShareTabs } from './component'
-

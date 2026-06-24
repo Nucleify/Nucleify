@@ -1,6 +1,6 @@
 import path from 'node:path'
-
 import { fileURLToPath } from 'node:url'
+
 import { defineVitestConfig } from '@nuxt/test-utils/config'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')

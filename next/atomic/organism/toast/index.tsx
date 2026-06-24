@@ -1,10 +1,12 @@
 'use client'
 
 import { Toast } from 'primereact/toast'
-import { forwardRef, type JSX } from 'react'
+import { forwardRef, useCallback } from 'react'
 
 import styles from './index.module.scss'
 import type { AdToastProps } from './types'
+
+import { setToastInstance } from './utils/use_atomic_toast'
 
 export const AdToast = forwardRef<Toast, AdToastProps>(
   ({ className, ...rest }, ref) => {
@@ -27,8 +29,24 @@ export const AdToast = forwardRef<Toast, AdToastProps>(
       closeButton: {
         className: styles['ad-toast-close-button'],
       },
+      icon: {
+        className: styles['ad-toast-message-icon'],
+      },
     }
 
-    return <Toast ref={ref} {...rest} pt={pt} />
+    const registerToast = useCallback(
+      (instance: Toast | null) => {
+        setToastInstance(instance)
+
+        if (typeof ref === 'function') {
+          ref(instance)
+        } else if (ref) {
+          ref.current = instance
+        }
+      },
+      [ref]
+    )
+
+    return <Toast ref={registerToast} {...rest} pt={pt} />
   }
 )

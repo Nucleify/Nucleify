@@ -4,10 +4,11 @@ import type { ParagraphInterface } from './types'
 
 export function AdParagraph({
   text,
+  className,
   children,
 }: ParagraphInterface & { children?: ReactNode }): JSX.Element {
   return (
-    <p>
+    <p className={className}>
       {text}
       {children}
     </p>

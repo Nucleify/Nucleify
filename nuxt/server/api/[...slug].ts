@@ -6,6 +6,8 @@ import {
   setResponseStatus,
 } from 'h3'
 
+import type { ApiContext } from './_types'
+
 import { useRuntimeConfig } from 'nitropack/runtime'
 import { handleActivityApi } from '../../../modules/nuc_activity/supabase/api/handle'
 import { handleColorsApi } from '../../../modules/nuc_colors/supabase/api/handle'
@@ -19,7 +21,6 @@ import { handlePagebuilderApi } from '../../../modules/nuc_pagebuilder/supabase/
 import { handleShareApi } from '../../../modules/nuc_share/supabase/api/handle'
 import { handleTerminalApi } from '../../../modules/nuc_terminal/supabase/api/handle'
 import { handleUsersApi } from '../../../modules/nuc_users/supabase/api/handle'
-import type { ApiContext } from './_types'
 
 const parsePath = (slug: string | undefined): string[] =>
   String(slug || '')

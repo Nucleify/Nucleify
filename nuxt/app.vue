@@ -32,7 +32,10 @@ const CLARITY_ID = 'vmewuw52gn'
 
 useHead(() => ({
   htmlAttrs: {
-    class: isDark.value ? 'p-dark' : '',
+    class: isDark.value ? 'p-dark nuc-nuxt' : 'nuc-nuxt',
+  },
+  bodyAttrs: {
+    class: 'nuc-nuxt',
   },
   meta: [
     { property: 'og:image', content: '/img/og-image.png' },
@@ -127,5 +130,5 @@ async function getTodos(): Promise<void> {
 </script>
 
 <style lang="scss">
-@import '../modules/app';
+@import '../modules/index';
 </style>
