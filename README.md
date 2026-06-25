@@ -185,19 +185,14 @@ sail art sitemap:generate
 <details><summary> <h2> &nbsp; <img src="/public/img/technologies/stack.svg" width="20"> &nbsp; Tech Stack </h2> </summary> <br>
 <div align="center">
     <a href="https://www.typescriptlang.org/" target="_blank"><img src="/public/img/technologies/typescript.svg" height="35" width="35" alt="TypeScript" /></a>
-    <a href="https://www.php.net/" target="_blank"><img src="/public/img/technologies/php.svg" height="35" width="35" alt="PHP" /></a>
-    <a href="https://laravel.com/" target="_blank"><img src="/public/img/technologies/laravel.svg" height="35" width="35" alt="Laravel" /></a>
     <a href="https://nuxt.com/" target="_blank"><img src="/public/img/technologies/nuxt.svg" height="35" width="35" alt="Nuxt" /></a>
-    <a href="https://vuejs.org/" target="_blank"><img src="/public/img/technologies/vue.svg" height="35" width="35" alt="Vue" /></a>
-    <a href="https://primevue.org/" target="_blank"><img src="/public/img/technologies/primevue.svg" height="35" width="35" alt="PrimeVue" /></a>
+    <a href="https://nextjs.org/" target="_blank"><img src="/public/img/technologies/next.svg" height="35" width="35" alt="Next.js" /></a>
     <a href="https://www.chartjs.org/" target="_blank"><img src="/public/img/technologies/chart-js.svg" height="35" width="35" alt="Chart.js" /></a>
-    <a href="https://greensock.com/gsap/" target="_blank"><img src="/public/img/technologies/gsap.svg" height="35" width="35" alt="GSAP" /></a>
     <a href="https://sass-lang.com/" target="_blank"><img src="/public/img/technologies/scss.svg" height="35" width="35" alt="Sass" /></a>
     <a href="https://html.com/" target="_blank"><img src="/public/img/technologies/html5.svg" height="35" width="35" alt="HTML5" /></a>
+    <a href="https://supabase.com/" target="_blank"><img src="/public/img/technologies/supabase.svg" height="35" width="35" alt="Supabase" /></a>
     <a href="https://www.docker.com/" target="_blank"><img src="/public/img/technologies/docker.svg" height="35" width="35" alt="Docker" /></a>
-    <a href="https://www.heroku.com/" target="_blank"><img src="/public/img/technologies/heroku.svg" height="35" width="35" alt="Heroku" /></a>
-    <a href="https://www.mysql.com/" target="_blank"><img src="/public/img/technologies/mysql.svg" height="35" width="35" alt="MySQL" /></a>
-    <a href="https://pestphp.com/" target="_blank"><img src="/public/img/technologies/pest.svg" height="34" width="34" alt="PestPHP" /></a>
+    <a href="https://www.cloudflare.com/" target="_blank"><img src="/public/img/technologies/cloudflare.svg" height="35" width="35" alt="Cloudflare" /></a>
     <a href="https://vitest.dev/" target="_blank"><img src="/public/img/technologies/vitest.svg" height="35" width="35" alt="Vitest" /></a>
     <a href="https://biomejs.dev/" target="_blank"><img src="/public/img/technologies/biome.svg" height="35" width="35" alt="Biome" /></a>
     <a href="https://stylelint.io/" target="_blank"><img src="/public/img/technologies/stylelint.svg" height="35" width="35" alt="Stylelint" /></a>
