@@ -1,6 +1,3 @@
 <template>
-  <div id="website-redesign">
-    <nuc-grid-background />
-    <nuc-website-redesign-page />
-  </div>
+  <div id="website-redesign"><nuc-website-redesign-page /></div>
 </template>

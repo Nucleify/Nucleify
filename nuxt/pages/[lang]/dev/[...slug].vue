@@ -1,8 +1,5 @@
 <template>
-  <div v-if="page" :id="page.id">
-    <nuc-grid-background v-if="page.grid" />
-    <component :is="page.component" />
-  </div>
+  <div v-if="page" :id="page.id"><component :is="page.component" /></div>
   <nuc-error-404-page v-else />
 </template>
 
