@@ -1,7 +1,12 @@
 'use client'
 
-import { NucError404Page } from 'nucleify'
+import { NucError404Page, NucGridBackground } from 'nucleify'
 
 export default function NotFound() {
-  return <NucError404Page />
+  return (
+    <>
+      <NucGridBackground />
+      <NucError404Page />
+    </>
+  )
 }

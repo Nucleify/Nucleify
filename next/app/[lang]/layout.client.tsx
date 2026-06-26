@@ -6,10 +6,12 @@ import { useEffect, useState } from 'react'
 import { I18nextProvider } from 'react-i18next'
 
 import {
+  AdSpacing,
   createI18nInstance,
   hydrateLocaleMessages,
   type LocaleCode,
   NucDock,
+  NucGridBackground,
   NucSectionFooter,
   NucSectionNavbar,
   setActiveLocale,
@@ -63,8 +65,10 @@ export function LangLayoutClient({
         <div className="layout-navbar">
           {showFrontOfficeChrome ? <NucSectionNavbar /> : null}
         </div>
+        {showFrontOfficeChrome ? <NucGridBackground /> : null}
         <main id={pageId}>{children}</main>
         <div className="layout-footer">
+          {showFrontOfficeChrome ? <AdSpacing /> : null}
           {showFrontOfficeChrome ? <NucSectionFooter /> : null}
         </div>
         {showBackOfficeDock ? <NucDock /> : null}

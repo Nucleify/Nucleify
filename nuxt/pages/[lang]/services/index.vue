@@ -1,6 +1,3 @@
 <template>
-  <div id="services">
-    <nuc-grid-background />
-    <nuc-services-page />
-  </div>
+  <div id="services"><nuc-services-page /></div>
 </template>
