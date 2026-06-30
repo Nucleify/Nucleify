@@ -17,7 +17,7 @@
     bottom: 0.5rem;
   }
 
-  &.bottom {
+  &.bottom:not(.share-inbox-popover, .friendship-popover, .terminal-popover-sidebar) {
     bottom: 5rem;
   }
 
@@ -39,7 +39,7 @@
     margin-left: 3px;
   }
 
-  &:not(.share-inbox-popover, .friendship-popover) {
+  &:not(.share-inbox-popover, .friendship-popover, .terminal-popover-sidebar) {
     @media (min-width: $lg) {
       height: 300px;
     }

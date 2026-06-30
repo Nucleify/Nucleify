@@ -1,7 +1,7 @@
 'use client'
 
 import { OverlayPanel } from 'primereact/overlaypanel'
-import type { JSX } from 'react'
+import type { JSX, MouseEvent } from 'react'
 import { useRef } from 'react'
 
 import styles from './index.module.scss'
@@ -20,6 +20,7 @@ export function AdPopover(props: PopoverInterface): JSX.Element {
     buttonText,
     popoverClass,
     icon,
+    renderTrigger,
     ...rest
   } = props
 
@@ -31,6 +32,10 @@ export function AdPopover(props: PopoverInterface): JSX.Element {
     classes.filter(Boolean).join(' ')
 
   const positionStyle = position ? styles[position] : undefined
+
+  const toggle = (event: MouseEvent) => {
+    opRef.current?.toggle(event)
+  }
 
   const pt = {
     root: {
@@ -49,22 +54,24 @@ export function AdPopover(props: PopoverInterface): JSX.Element {
 
   return (
     <>
-      {showButton && (
-        <AdButton
-          label={buttonText}
-          icon={icon}
-          src={src}
-          className={cx(
-            buttonClass,
-            styles['ad-popover-toggle'],
-            positionStyle,
-            position
+      {renderTrigger
+        ? renderTrigger(toggle)
+        : showButton && (
+            <AdButton
+              label={buttonText}
+              icon={icon}
+              src={src}
+              className={cx(
+                buttonClass,
+                styles['ad-popover-toggle'],
+                positionStyle,
+                position
+              )}
+              style={typeof buttonStyle === 'object' ? buttonStyle : undefined}
+              rounded
+              onClick={toggle}
+            />
           )}
-          style={typeof buttonStyle === 'object' ? buttonStyle : undefined}
-          rounded
-          onClick={(e) => opRef.current?.toggle(e)}
-        />
-      )}
 
       <OverlayPanel ref={opRef} {...rest} pt={pt}>
         {children}
