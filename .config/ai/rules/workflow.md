@@ -6,10 +6,10 @@ When the user asks to implement a feature, follow this multi-agent pipeline. Eac
 
 ## Phase 1 — PLAN
 
-Act as the **Planner** agent. Read `.ai/agents/planner.md` for your role instructions.
+Act as the **Planner** agent (`.cursor/agents/planner.md`).
 
-1. Read project context: `.ai/rules/laravel.md`, `.ai/rules/modules.md`, `.ai/rules/frontend.md`, `.ai/rules/typescript.md`, `.ai/rules/pest.md`, `.ai/rules/vitest.md`
-2. If the feature involves an existing module, read that module's code for reference
+1. Read project context: `.config/ai/rules/modules.md`, `api.md`, `frontend.md`, `typescript.md`, `vitest.md`
+2. If the feature involves an existing module, read that module's code
 3. Produce a structured implementation plan
 4. Save the plan to `.ai/specs/plan.md`
 5. Present the plan and **wait for approval**
@@ -18,24 +18,26 @@ Act as the **Planner** agent. Read `.ai/agents/planner.md` for your role instruc
 
 ## Phase 2 — IMPLEMENT
 
-Launch **two subagents in parallel** (same message):
+Launch **two subagents in parallel** when both API and UI are needed:
 
-- **Backend** (`subagent_type: "Backend"`) — pass `.ai/agents/backend.md` content + plan. Read `modules/nuc_entities/` as reference. Create all backend files. Return file list.
-- **Frontend** (`subagent_type: "Frontend"`) — pass `.ai/agents/frontend.md` content + plan. Read `modules/nuc_entities/` as reference. Create all frontend files. Return file list.
+- **Backend** (`subagent_type: "Backend"`) — `.cursor/agents/backend.md` + plan. Reference `modules/nuc_calendar/` or `modules/nuc_entities/` for API patterns.
+- **Frontend** (`subagent_type: "Frontend"`) — `.cursor/agents/frontend.md` + plan. Reference an existing module with similar UI.
+
+For frontend-only or API-only features, run a single agent.
 
 ---
 
 ## Phase 3 — TEST
 
-Launch **tester subagent** (`subagent_type: "Tester"`) — pass `.ai/agents/tester.md` content + plan + file lists. Read `modules/nuc_entities/tests/` and `vitests/` as reference. Create all tests. Return file list.
+Launch **Tester** (`subagent_type: "Tester"`) — `.cursor/agents/tester.md` + plan + file lists. Reference `modules/*/vitests/`.
 
 ---
 
 ## Phase 4 — REVIEW
 
-Act as **Reviewer** yourself (no subagent). Read `.ai/agents/reviewer.md`.
+Act as **Reviewer** (`.cursor/agents/reviewer.md`):
 
 1. Read all created files
-2. Check convention compliance, fix issues
-3. Run linter checks
-4. Present summary: files created, issues fixed, overall assessment
+2. Check convention compliance; fix issues
+3. Run: `pnpm check`, `pnpm nuxt:typeslint`, `pnpm next:typeslint`, `pnpm slint`, `pnpm tests`
+4. Present summary: passed / fixed / incomplete

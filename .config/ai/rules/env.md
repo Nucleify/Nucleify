@@ -1,39 +1,47 @@
 # Environment Variables
 
-Example files: `.config/.env.docker.example`, `.config/.env.test.example`, `.config/.env.ci.example`.
+Example files: `.config/.env.nuxt.example`, `.config/.env.next.example`, `.config/.env.ci.example`, `.config/.env.test.example`.
 
 ## App
 
 | Variable | Example | Description |
 |----------|---------|-------------|
-| `APP_ENV` | `local` | Environment (local, production, testing) |
-| `APP_URL` | `http://localhost` | Laravel app URL |
-| `API_URL` | `http://localhost/api` | API base URL (used by `apiUrl()`) |
-| `APP_FRONTEND` | `nuxt` | Frontend framework (`nuxt` or `next`) |
+| `APP_ENV` | `local` | Environment (`local`, `production`, `testing`) |
+| `APP_DEBUG` | `true` | Debug flag |
+| `APP_FRONTEND` | `nuxt` | Active frontend (`nuxt` or `next`) |
+| `NUXT_PUBLIC_APP_URL` | `http://localhost:3000` | Public app URL |
 
-## Nuxt (nuxt.config.ts)
+## Supabase
+
+| Variable | Description |
+|----------|-------------|
+| `SUPABASE_URL` | Project URL |
+| `SUPABASE_KEY` | Anon/public key (client-safe) |
+| `SUPABASE_SERVICE_ROLE_KEY` | Service role key — **server only**, never expose to client |
+| `SUPABASE_EDGE_BASE` | Optional edge functions base URL |
+
+## Nuxt (`nuxt.config.ts`)
 
 | Variable | Example | Description |
 |----------|---------|-------------|
-| `SSR` | `true` | Enable server-side rendering |
-| `PRERENDER_ROUTES` | `/home,/login,...` | Comma-separated routes to prerender |
-| `PRERENDER_CRAWL_LINKS` | `true` | Crawl links for prerendering |
-| `PRERENDER_IGNORE` | `/settings` | Routes to skip prerendering |
-| `PRERENDER_LOCALES` | `en,pl,vn` | Locales for prerendering |
+| `SSR` | `true` | Server-side rendering |
+| `PRERENDER_ROUTES` | `/home,/login,…` | Comma-separated prerender routes |
+| `PRERENDER_CRAWL_LINKS` | `true` | Crawl links when prerendering |
+| `PRERENDER_IGNORE` | `/settings` | Routes to skip |
+| `PRERENDER_LOCALES` | `en,pl,vn` | Locales for prerender |
+| `NITRO_PRESET` | `cloudflare` | Nitro deployment preset |
 
 ## Submodules
 
 | Variable | Example | Description |
 |----------|---------|-------------|
-| `NUC_SUBMODULES_BRANCH` | `main` | Git branch for module cloning |
+| `NUC_SUBMODULES_BRANCH` | `main` | Branch for `prepare-submodules` |
 | `NUC_SUBMODULES_CHECK` | `1` | Skip existing dirs when set |
 
-## Docker
+## Other
 
-| Variable | Example | Description |
-|----------|---------|-------------|
-| `DOCKER_PLATFORM` | `linux/amd64` | `linux/arm64` for Apple Silicon |
-
-## Database
-
-Default: MySQL via Sail (`DB_HOST=mysql`). Testing uses SQLite. Separate `DB_TEST_DATABASE` for test suite.
+| Variable | Description |
+|----------|-------------|
+| `NUC_ALLOWED_ORIGINS` | CORS allowlist |
+| `NUC_ALLOWED_ORIGINS_PATTERNS` | CORS pattern allowlist |
+| `NUC_CONVERT_DOCUMENTS_URL` | External document conversion service |

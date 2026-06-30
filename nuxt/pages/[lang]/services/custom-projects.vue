@@ -1,6 +1,3 @@
 <template>
-  <div id="custom-projects">
-    <nuc-grid-background />
-    <nuc-custom-projects-page />
-  </div>
+  <div id="custom-projects"><nuc-custom-projects-page /></div>
 </template>

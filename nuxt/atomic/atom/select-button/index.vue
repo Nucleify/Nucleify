@@ -6,6 +6,7 @@
         root: $style['ad-togglebutton'],
       }
     }"
+    @update:model-value="updateValue"
   >
     <slot />
   </SelectButton>
@@ -17,6 +18,12 @@ import type { SelectButtonInterface } from '.'
 import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<SelectButtonInterface>()
+
+const emit = defineEmits(['update:modelValue'])
+
+function updateValue(value: unknown): void {
+  emit('update:modelValue', value)
+}
 </script>
 
 <style lang="scss" module>
