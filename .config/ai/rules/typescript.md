@@ -4,25 +4,36 @@ TypeScript 5.8, strict mode, ESNext target, bundler resolution.
 
 ## Path Aliases
 
-| Alias | Resolves to | Usage |
-|-------|-------------|-------|
-| `nucleify` | `nuxt/atomic/` | Cross-module atomic imports |
-| `modules` | `./modules/` | Module imports |
-| `~/*` | `./*` | Project root |
+| Alias | Nuxt resolves to | Next resolves to |
+|-------|------------------|------------------|
+| `nucleify` | `nuxt/nucleify.ts` → `modules/index.ts` | `next/atomic/index.ts` → `modules/index.react.ts` |
+| `nuc_api` | `modules/nuc_api/supabase/api/server.ts` | same |
+| `nuc_server` | `nuxt/server/nuc_server.ts` | same |
+| `modules/*` | `modules/*` | `modules/*` |
+| `~/*` | `nuxt/*` | — |
 
 ```typescript
-import { AdButton, articleRequests } from 'nucleify'
-import type { NucArticleObjectInterface } from 'nucleify'
+import { AdButton, calendarRequests } from 'nucleify'
+import type { NucCalendarEventObjectInterface } from 'nucleify'
 ```
 
 ## Naming
 
 - Atomic props: `{Component}Interface` (e.g. `ButtonInterface`)
 - Module types: `Nuc{Entity}{Type}Interface` (e.g. `NucArticleObjectInterface`)
-- Types in `types/` folders: `index.ts`, `interfaces.ts`, `variables.ts` (optional)
+- API types: `modules/nuc_*/atomic/bosons/types/api/interfaces.ts`
+- React-specific API types: `interfaces.react.ts` when needed
+
+## Type Check
+
+```bash
+pnpm nuxt:typeslint   # Nuxt + Vue modules (excludes .tsx)
+pnpm next:typeslint   # Next + React modules (.tsx, index.react.ts)
+```
 
 ## Rules
 
-- Strict null checks, no implicit any
-- `/* @vue-ignore */` for Vue template type issues
-- Type check: `pnpm run typeslint` (`tsc --noemit`)
+- Strict null checks, no implicit `any`
+- `/* @vue-ignore */` on PrimeVue prop extensions in Vue interfaces
+- Supabase row types: format in helpers before returning to client
+- Discriminated unions for parse results (`ParsedBody | { error: string }`), not `Record<string, unknown>` for error branches
