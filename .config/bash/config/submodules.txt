@@ -4,6 +4,7 @@ animations
 api
 auth
 breadcrumb
+calendar
 charts
 colors
 dark_mode

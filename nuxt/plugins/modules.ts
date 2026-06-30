@@ -10,6 +10,7 @@ import {
   registerNucAnimations,
   registerNucAuth,
   registerNucBreadcrumb,
+  registerNucCalendar,
   registerNucCharts,
   registerNucColors,
   registerNucDarkMode,
@@ -49,6 +50,7 @@ export default defineNuxtPlugin({
     registerNucAnimations(nuxtApp.vueApp)
     registerNucAuth(nuxtApp.vueApp)
     registerNucBreadcrumb(nuxtApp.vueApp)
+    registerNucCalendar(nuxtApp.vueApp)
     registerNucCharts(nuxtApp.vueApp)
     registerNucColors(nuxtApp.vueApp)
     registerNucDarkMode(nuxtApp.vueApp)

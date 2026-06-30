@@ -12,7 +12,6 @@ import {
   NucEcommerceStoresPage,
   NucError404Page,
   NucGDPRPage,
-  NucGridBackground,
   NucLandingPagesPage,
   NucOfferPage,
   NucPrivacyPolicyPage,
@@ -57,7 +56,6 @@ export default function DevPreviewPage(): JSX.Element {
 
   return (
     <div id={entry.id}>
-      {entry.grid ? <NucGridBackground /> : null}
       <Page />
     </div>
   )
