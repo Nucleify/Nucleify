@@ -64,6 +64,7 @@
     "i18next": "26.0.3",
     "marked": "15.0.11",
     "next": "16.1.6",
+    "nucleify-ui": "0.1.0",
     "nuxt": "3.21.1",
     "nuxt-schema-org": "5.0.5",
     "nuxt-seo-utils": "7.0.11",

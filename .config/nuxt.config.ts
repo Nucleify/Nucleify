@@ -16,6 +16,7 @@ import { runtimeConfig } from './nuxt/runtime'
 import { schemaOrgConfig } from './nuxt/schema-org'
 import { structureConfig } from './nuxt/structure'
 import { viteConfig } from './nuxt/vite'
+import { vueConfig } from './nuxt/vue'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -27,6 +28,7 @@ export default defineNuxtConfig({
   routeRules: getRouteRules(LOCALES),
   schemaOrg: schemaOrgConfig,
   vite: viteConfig,
+  vue: vueConfig,
   experimental: experimentalConfig,
   primevue: primevueConfig,
   googleFonts: googleFontsConfig,

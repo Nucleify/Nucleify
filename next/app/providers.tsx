@@ -10,10 +10,13 @@ import {
   initNucGlobals,
 } from 'nucleify'
 
+import { initNuiRegistry } from '../../.config/nui-registry'
+
 export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     initNucGlobals()
     colorsClientPlugin()
+    void initNuiRegistry('next')
   }, [])
 
   return (
