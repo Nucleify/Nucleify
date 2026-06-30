@@ -13,6 +13,9 @@
 [submodule "modules/nuc_auth"]
 	path = modules/nuc_auth
 	url = https://github.com/Nucleify/nuc_auth.git
+[submodule "modules/nuc_calendar"]
+	path = modules/nuc_calendar
+	url = https://github.com/Nucleify/nuc_calendar.git
 [submodule "modules/nuc_charts"]
 	path = modules/nuc_charts
 	url = https://github.com/Nucleify/nuc_charts.git
@@ -121,3 +124,6 @@
 [submodule "modules/nuc_documents"]
 	path = modules/nuc_documents
 	url = https://github.com/Nucleify/nuc_documents
+[submodule "modules/nuc_calendar"]
+	path = modules/nuc_calendar
+	url = https://github.com/Nucleify/nuc_calendar.git

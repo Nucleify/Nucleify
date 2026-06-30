@@ -17,7 +17,7 @@
     bottom: .5rem;
   }
 
-  &.bottom {
+  &.bottom:not(.share-inbox-popover, .friendship-popover, .terminal-popover-sidebar) {
     bottom: 5rem;
   }
 
@@ -35,9 +35,12 @@
   }
 
   @media (min-width: $lg) {
-    height: 300px;
     max-width: 450px;
     margin-left: 3px;
+
+    &:not(.share-inbox-popover, .friendship-popover, .terminal-popover-sidebar) {
+      height: 300px;
+    }
   }
 }
 
