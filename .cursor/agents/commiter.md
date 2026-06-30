@@ -42,12 +42,12 @@ When asked to commit, follow this procedure:
 2. **Identify scope** — determine which modules and root areas have changes
 3. **Ask for branch** if not specified — the user should tell you which branch to commit on. This branch applies to submodules independently — ignore what branch the root repo is on
 4. **Run checks first** (from root):
-   - `./vendor/bin/pint`
-   - `npm run write` (Biome fix)
-   - `npm run typeslint`
-   - `npm run slint`
-   - `npm run tests`
-   - If any check fails — fix the issues, then re-run. Do not proceed to commits until all checks pass.
+   - `pnpm write` (Biome fix)
+   - `pnpm nuxt:typeslint`
+   - `pnpm next:typeslint`
+   - `pnpm slint`
+   - `pnpm tests`
+   - If any check fails — fix, then re-run. Do not commit until checks pass.
 5. **For each modified submodule:**
    - `cd modules/nuc_<name>`
    - Checkout the target branch: `git checkout <branch>` (create with `-b` if needed)

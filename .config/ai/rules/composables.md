@@ -1,33 +1,43 @@
-# Composables
+# Composables & Hooks
 
-## Auto-imports
+## Nuxt Auto-imports
 
-Directories auto-imported by Nuxt (no explicit imports needed): `nuxt/composables/**`, `nuxt/atomic/**`, `modules/**`.
+Directories auto-imported (no explicit import): `nuxt/composables/**`, `nuxt/atomic/**`, `modules/**` (Vue surface only).
 
 ## useConfig / apiUrl / appUrl
 
-Singleton runtime config wrapper in `nuxt/composables/config/`:
+Runtime config in `nuxt/composables/config/`:
 
 ```typescript
 const config = useConfig()
-config.get('apiUrl') // returns runtime config value
-
-// Shorthand helpers (auto-imported)
-apiUrl()  // API base URL (e.g. 'http://localhost/api')
-appUrl()  // App URL (e.g. 'http://localhost:3000')
-appEnv()  // Environment (e.g. 'local', 'production')
+apiUrl()   // API base (e.g. '/api' or full URL)
+appUrl()   // App URL
+appEnv()   // 'local' | 'production' | …
 ```
 
-Used in API request composables:
+Used in request composables:
 
 ```typescript
-await apiHandle<T>({ url: apiUrl() + '/articles', ... })
+await apiHandle<T>({ url: `${apiUrl()}/calendar/events`, … })
 ```
 
-## Other Key Composables (from modules)
+## Key Module Utilities
 
-- `useOfficeType()` (`nuc_pages`) — returns layout name based on current route
-- `useDarkMode()` (`nuc_dark_mode`) — `{ isDark }` reactive dark mode state
-- `useLoading()` (`nuc_loading`) — `{ loading, setLoading }` for async operations
-- `useNucDialog()` (`nuc_dialog`) — `{ closeDialog }` for dialog management
-- `useNucToast()` — toast notifications
+| Composable / hook | Module | Purpose |
+|-------------------|--------|---------|
+| `useOfficeType()` | `nuc_pages` | Layout: `front-office` / `back-office` |
+| `useDarkMode()` | `nuc_dark_mode` | Dark mode state |
+| `useLoading()` | `nuc_loading` | `{ loading, setLoading }` |
+| `useNucDialog()` | `nuc_dialog` | Dialog close helper |
+| `useToolbarStyle()` | `nuc_dock` | Dock vs sidebar (`use_toolbar_style.ts` / `.react.ts`) |
+| `entityRequests()` | per module | CRUD via `apiHandle` |
+
+## React
+
+React hooks live beside Vue composables with `.react.ts` suffix. Import from `nucleify` (via `index.react.ts`). Use `useSyncExternalStore` for shared client stores when syncing with vanilla TS modules.
+
+## i18n
+
+- **Vue:** `const { t } = useI18n()` from `vue-i18n`
+- **React:** `import { t } from 'nucleify'` (locale store in `nuc_languages`)
+- Keys in DB seeder; use `t('calendar-today')` directly — no constant indirection files

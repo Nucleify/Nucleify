@@ -1,43 +1,54 @@
 # Routing
 
-## i18n Routing
+## i18n
 
-All pages live under `nuxt/pages/[lang]/`. Root `index.vue` redirects to `/${locale}/home`:
+All user-facing routes live under `[lang]/` (`en`, `pl`, `vn`).
 
-```typescript
-const locale = useCookie('nuc_locale')
-navigateTo(`/${locale.value || 'en'}/home`, { redirectCode: 302 })
-```
+**Nuxt:** `nuxt/pages/[lang]/` — root `index.vue` redirects to `/${locale}/home`.
 
-New pages must be created in `nuxt/pages/[lang]/`, not `nuxt/pages/`.
+**Next:** `next/app/[lang]/` — App Router with `[lang]` segment.
+
+New pages must be created under `[lang]/`, not at the app root.
 
 ## Page Convention
 
 Pages are thin wrappers rendering module components:
 
 ```vue
+<!-- nuxt/pages/[lang]/calendar.vue -->
 <template>
-  <div id="admin">
-    <nuc-admin-page />
-  </div>
+  <nuc-calendar-page />
 </template>
 ```
 
-Nested routes: `[lang]/entities/articles.vue`, `[lang]/docs/[category]/[slug].vue`, `[lang]/[...slug].vue` (catch-all).
+```tsx
+// next/app/[lang]/calendar/page.tsx
+import { NucCalendarPage } from 'nucleify'
 
-## Layouts
+export default function CalendarPage() {
+  return <NucCalendarPage />
+}
+```
 
-Selected dynamically in `app.vue` via `useOfficeType()` (from `nuc_pages`):
+Nested routes: `[lang]/entities/articles.vue`, `[lang]/docs/[category]/[slug].vue`, catch-all `[lang]/[...slug].vue`.
 
-- **`front-office`** — public pages (home, offer, docs, login, register). Has `nuc-section-navbar` + `nuc-section-footer`.
-- **`back-office`** — authenticated pages (admin, entities, settings, files). Has `nuc-dock`. Page transition: `{ name: 'page', mode: 'out-in' }`.
-- **`default`** — fallback.
+## API Routes
 
-`useOfficeType()` checks current URL against `officeRoutes.front` / `officeRoutes.back` to pick layout.
+- **Nuxt:** `nuxt/server/api/[...slug].ts` — single gateway for all module APIs
+- **Next:** equivalent route handler wiring to `gateway_dispatch.ts`
 
-## app.vue
+Client calls `apiUrl() + '/module/…'` — not module-specific Nitro files.
 
-- `NuxtLayout :name="officeType"` wraps `NuxtPage`
-- Dark mode via `useDarkMode()` → `p-dark` class on `<html>`
-- Color sync: `resetColorsIfEmpty()` on mount, `syncColorsWithDatabase()` on route change (debounced 300ms)
-- Analytics (GTM, Google Ads, Clarity) loaded after 3.5s delay
+## Layouts (Nuxt)
+
+Selected in `app.vue` via `useOfficeType()`:
+
+- **`front-office`** — public pages; navbar + footer
+- **`back-office`** — authenticated; dock or sidebar (`useToolbarStyle`)
+- **`default`** — fallback
+
+`back-office` adds `toolbar-sidebar` class when sidebar mode is active.
+
+## Next Layout
+
+`next/app/[lang]/layout.client.tsx` mirrors back-office chrome (sidebar vs dock).

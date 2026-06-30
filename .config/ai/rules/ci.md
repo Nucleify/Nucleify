@@ -2,33 +2,33 @@
 
 ## Pre-commit & Pre-push (Husky)
 
-Both hooks run `.config/bash/hook-checks.sh` which executes in order:
+Both hooks run `.config/bash/hook-checks.sh`:
 
-1. `php .pest/guard_check.php` — verifies all test files have `PEST_RUNNING` guard
-2. `./vendor/bin/pint` — PHP code style
-3. `pnpm run check` — Biome lint
-4. `pnpm run typeslint` — `tsc --noemit`
-5. `pnpm run slint` — Stylelint SCSS
-6. `pnpm run tests` — Vitest
+1. `pnpm btest` — bash test suite
+2. `pnpm check` — Biome lint
+3. `pnpm nuxt:typeslint` — `tsc` for Nuxt/Vue
+4. `pnpm next:typeslint` — `tsc` for Next/React modules
+5. `pnpm slint` — Stylelint (SCSS files)
+6. `pnpm tests` — Vitest
 
 ## GitHub Actions
 
-### `laravel.yml` (all branches)
+### `health-check.yml` (all branches)
 
-PHP 8.3, SQLite, `.env.test.example`. Jobs (parallel after setup):
-- **pint** — `./vendor/bin/pint`
-- **guard-check** — `php .pest/guard_check.php`
-- **test** — `./vendor/bin/pest -c .config/phpunit.xml --coverage` (SQLite, `DB_FOREIGN_KEYS=false`)
+Node 22, pnpm, recursive submodules. Jobs (parallel after setup):
 
-### `nuxt.yml` (all branches)
+- **biome** — `pnpm check`
+- **nuxt-typeslint** — `pnpm nuxt:typeslint`
+- **next-typeslint** — `pnpm next:typeslint`
+- **stylelint** — `pnpm slint`
+- **nuxt-build** — `pnpm nuxt:build`
+- **next-build** — `pnpm next:build`
+- **test** — `pnpm tests`
 
-Node 20, cached `node_modules`. Jobs (parallel after setup):
-- **biome** — `pnpm run check`
-- **typeslint** — `pnpm run typeslint`
-- **stylelint** — `pnpm run slint`
-- **build** — `pnpm run build`
-- **test** — `pnpm run tests`
+### `bash.yaml`
+
+Runs `.config/bash/tests/run.sh` on push.
 
 ### `release-modules.yml`
 
-Triggered on changes to `modules/nuc_*`. Detects unreleased versions from `config.json` and creates GitHub releases.
+On changes to `modules/nuc_*`: reads `config.json` version and creates GitHub releases for unreleased modules.
