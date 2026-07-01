@@ -47,13 +47,13 @@ When the feature has UI, implement **both** `.vue` and `.tsx` unless the plan sa
 - Import from `nucleify` — no relative paths outside the module
 - Vue: `<script setup lang="ts">`, `useI18n()` for `t('key')`
 - React: named exports only in module `.tsx`; `import { t } from 'nucleify'`
-- Barrel exports per `.config/ai/rules/frontend.md`
+- Barrel exports per `.cursor/rules/frontend.md`
 - Pages in `nuxt/pages/[lang]/` and `next/app/[lang]/` are thin wrappers only
 
 ## Execution
 
 1. Read `.ai/specs/plan.md` (or latest spec)
-2. Read `.config/ai/rules/frontend.md`
+2. Read `.cursor/rules/frontend.md`
 3. Create all required files; register plugin in `nuxt/plugins/modules.ts` if new module
 4. Add translation keys to `nuc_languages` seeder when adding user-visible strings
 5. Return a summary of all files created

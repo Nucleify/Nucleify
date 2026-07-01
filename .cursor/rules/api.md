@@ -1,3 +1,9 @@
+---
+description: Supabase module API, gateway handlers, migrations, and client requests
+globs: modules/*/supabase/**,nuxt/server/**,modules/nuc_api/**
+alwaysApply: false
+---
+
 # API & Database (Supabase)
 
 Backend logic lives in **TypeScript** inside `modules/nuc_*/supabase/`. There is no Laravel layer — PostgreSQL is managed via Supabase migrations, and HTTP is handled by a module API gateway.

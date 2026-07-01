@@ -20,7 +20,7 @@ Analyze the feature request and produce a detailed implementation plan. Read pro
 
 ## Execution
 
-1. Read: `.config/ai/rules/modules.md`, `api.md`, `frontend.md`, `typescript.md`, `vitest.md`
+1. Read: `.cursor/rules/modules.md`, `api.md`, `frontend.md`, `typescript.md`, `vitest.md`
 2. If the feature touches an existing module, read that module's code
 3. Produce a structured plan:
    - **Summary** — scope in one paragraph

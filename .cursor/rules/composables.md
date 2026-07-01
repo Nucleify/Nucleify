@@ -1,3 +1,9 @@
+---
+description: Nuxt composables, React hooks, useConfig, apiUrl, and i18n
+globs: nuxt/composables/**,**/use_*.ts,**/*.react.ts,modules/*/atomic/bosons/utils/api/**
+alwaysApply: false
+---
+
 # Composables & Hooks
 
 ## Nuxt Auto-imports

@@ -1,3 +1,9 @@
+---
+description: nuc_* submodule structure, config.json, barrels, and registration
+globs: modules/**
+alwaysApply: false
+---
+
 # Modules
 
 Modular architecture — each feature lives in `modules/nuc_*` as a **git submodule**. Modules are self-contained with optional API (`supabase/`), frontend (`atomic/`), and Vitest tests.
