@@ -1,6 +1,3 @@
 <template>
-  <div id="process-page">
-    <nuc-grid-background />
-    <nuc-process-page />
-  </div>
+  <div id="process-page"><nuc-process-page /></div>
 </template>

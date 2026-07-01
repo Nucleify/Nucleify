@@ -14,9 +14,9 @@ import { transformProps } from '../../boson/transform_props'
 
 const props = defineProps<RadioButtonInterface>()
 
-const excludedProps = ['adType']
+const excludedProps = ['nuiType']
 
 const passthrough = computed(() =>
-  props.adType ? { root: { 'ad-type': props.adType } } : undefined
+  props.nuiType ? { root: { 'nui-type': props.nuiType } } : undefined
 )
 </script>

@@ -3,7 +3,7 @@ import type { DataTableProps } from 'primevue'
 import type { OpenDialogFunctionType } from 'nucleify'
 
 export interface DataTableInterface extends DataTableProps {
-  adType: ObjectNameType
+  nuiType: ObjectNameType
   actions?: ActionInterface
   openDialog?: OpenDialogFunctionType
   selectedObject?: SelectedObjectType

@@ -5,7 +5,7 @@ import type { ColorPickerInterface } from './types'
 
 export function AdColorPicker({
   className = '',
-  adType,
+  nuiType,
   ...rest
 }: ColorPickerInterface): JSX.Element {
   const mergedClassName = ['ad-colorpicker', className]
@@ -16,7 +16,7 @@ export function AdColorPicker({
     <ColorPicker
       {...rest}
       className={mergedClassName || undefined}
-      {...(adType ? { 'ad-type': adType } : {})}
+      {...(nuiType ? { 'nui-type': nuiType } : {})}
     />
   )
 }

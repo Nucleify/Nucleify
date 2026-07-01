@@ -3,6 +3,6 @@ import type { JSX } from 'react'
 
 import type { SliderInterface } from './types'
 
-export function AdSlider({ adType, ...rest }: SliderInterface): JSX.Element {
+export function AdSlider({ nuiType, ...rest }: SliderInterface): JSX.Element {
   return <Slider {...rest} />
 }

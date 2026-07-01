@@ -10,6 +10,7 @@ import type { ApiContext } from './_types'
 
 import { useRuntimeConfig } from 'nitropack/runtime'
 import { handleActivityApi } from '../../../modules/nuc_activity/supabase/api/handle'
+import { handleCalendarApi } from '../../../modules/nuc_calendar/supabase/api/handle'
 import { handleColorsApi } from '../../../modules/nuc_colors/supabase/api/handle'
 import { handleEntitiesApi } from '../../../modules/nuc_entities/supabase/api/handle'
 import { handleStructuralApi } from '../../../modules/nuc_entities_structural/supabase/api/handle'
@@ -41,6 +42,7 @@ const handlers = [
   handleStructuralApi,
   handleFilesApi,
   handleActivityApi,
+  handleCalendarApi,
   handleFriendshipApi,
   handleShareApi,
   handleModulesApi,

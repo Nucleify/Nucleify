@@ -8,7 +8,7 @@ import type { TextareaInterface } from './types'
 
 export function AdTextarea({
   className = '',
-  adType,
+  nuiType,
   ...rest
 }: TextareaInterface): JSX.Element {
   const cx = (...classes: (string | undefined | null | false)[]) =>
@@ -17,7 +17,7 @@ export function AdTextarea({
   const pt = {
     root: {
       className: cx(styles['ad-textarea'], className),
-      ...(adType ? { 'ad-type': adType } : {}),
+      ...(nuiType ? { 'nui-type': nuiType } : {}),
     },
   }
 

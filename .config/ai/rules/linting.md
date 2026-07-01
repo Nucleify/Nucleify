@@ -13,8 +13,9 @@ Config: `.config/biome.json`. Replaces ESLint + Prettier.
 **Suppression:** `// biome-ignore lint/suspicious/noExplicitAny: reason`
 
 ```bash
-pnpm run check    # lint
-pnpm run write    # lint + fix
+pnpm check    # lint
+pnpm write    # lint + fix
+pnpm nuxt:typeslint && pnpm next:typeslint   # TypeScript (also in hooks)
 ```
 
 ## Stylelint (SCSS)

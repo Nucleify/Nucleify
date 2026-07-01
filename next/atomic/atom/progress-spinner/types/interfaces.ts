@@ -1,7 +1,7 @@
 import { ProgressSpinnerProps } from 'primereact/progressspinner'
 
 export interface ProgressSpinnerInterface extends ProgressSpinnerProps {
-  adType?: AdTypeType
+  nuiType?: NuiTypeType
   width?: string
   height?: string
 }

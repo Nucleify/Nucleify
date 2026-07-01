@@ -11,7 +11,7 @@ export function AdAnchor({
   target,
   style,
   icon,
-  adType,
+  nuiType,
   size,
   src,
   alt,
@@ -26,7 +26,7 @@ export function AdAnchor({
   return (
     <a href={href} rel={rel} target={target} style={combinedStyle} {...rest}>
       {children}
-      {icon && <AdIcon icon={icon} adType={adType} size={size} />}
+      {icon && <AdIcon icon={icon} nuiType={nuiType} size={size} />}
       {src && <AdImage src={src} alt={alt} fetchpriority={fetchpriority} />}
       {label && <AdLabel label={label} />}
     </a>

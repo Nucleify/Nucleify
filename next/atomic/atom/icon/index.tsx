@@ -9,7 +9,7 @@ export function AdIcon({
   size,
   className = '',
   style,
-  adType,
+  nuiType,
   ...rest
 }: IconInterface & { style?: CSSProperties }): JSX.Element | null {
   if (!icon) return null
@@ -30,7 +30,7 @@ export function AdIcon({
       <i
         className={mergedClassName}
         style={mergedStyle}
-        {...(adType ? { 'data-ad-type': adType } : {})}
+        {...(nuiType ? { 'data-nui-type': nuiType } : {})}
         {...rest}
       />
     )
@@ -43,7 +43,7 @@ export function AdIcon({
         icon={icon}
         className={cx(styles['iconify-icon'], className)}
         style={mergedStyle}
-        {...(adType ? { 'data-ad-type': adType } : {})}
+        {...(nuiType ? { 'data-nui-type': nuiType } : {})}
         {...rest}
       />
     )
@@ -56,7 +56,7 @@ export function AdIcon({
     <i
       className={mergedClassName}
       style={mergedStyle}
-      {...(adType ? { 'data-ad-type': adType } : {})}
+      {...(nuiType ? { 'data-nui-type': nuiType } : {})}
       {...rest}
     />
   )

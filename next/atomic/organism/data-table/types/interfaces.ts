@@ -5,7 +5,7 @@ import type { LoadingType, OpenDialogFunctionType } from 'nucleify'
 
 export interface DataTableInterface
   extends Omit<ComponentProps<typeof DataTable>, 'className'> {
-  adType: ObjectNameType
+  nuiType: ObjectNameType
   className?: string
   loading?: LoadingType
   actions?: ActionInterface

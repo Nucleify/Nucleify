@@ -1,43 +1,40 @@
 # Vitest
 
-Vitest 3.2 + Nuxt test environment. Tests in `vitests/` (global) and `modules/*/vitests/` (per module).
+Vitest 3.2. Tests in `modules/*/vitests/` and root `vitests/` if present.
 
 ## Module Test Structure
 
 ```
 modules/nuc_example/vitests/
-├── index.ts                    # Barrel exports
-├── api/{Entity}/200.test.ts    # API request tests
-└── constants/api/
-    ├── entity.ts               # Mock data matching interfaces
-    └── index.ts
+├── api/example/200.test.ts
+├── utils/example.test.ts
+└── constants/…              # mock data
 ```
 
 ## Conventions
 
-- `import * as nucleify from 'nucleify'`
+- `import * as nucleify from 'nucleify'` (or direct imports from module under test)
 - `import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'`
-- `beforeEach`: `vi.clearAllMocks()` + `nucleify.mockGlobalFetch(vi, mockResponse)`
+- `beforeEach`: `vi.clearAllMocks()`; mock `$fetch` / `fetch` via `nuc_api` test helpers when available
 - Typed callbacks: `(): void =>` / `async (): Promise<void> =>`
-- Mock data exported through barrel files, accessible via `nucleify.mockEntity`
+- Mock data matches module interfaces
 
-## API Test Pattern
+## API Composable Test Pattern
 
 ```typescript
-describe('entityRequests', (): void => {
-  const { closeDialog } = nucleify.useNucDialog()
-  const requests = nucleify.entityRequests(closeDialog)
-  const mockResponse = [nucleify.mockEntity]
-
+describe('calendarRequests', (): void => {
   beforeEach((): void => {
     vi.clearAllMocks()
-    nucleify.mockGlobalFetch(vi, mockResponse)
+    nucleify.mockGlobalFetch(vi, mockEvents)
   })
 
-  it('getAll', async (): Promise<void> => {
-    await requests.getAll()
-    expect((globalThis as unknown as { $fetch: Mock }).$fetch)
-      .toHaveBeenCalledWith(expect.stringContaining('entities'), expect.objectContaining({ method: 'GET' }))
+  it('getEventsInRange', async (): Promise<void> => {
+    const { getEventsInRange } = nucleify.calendarRequests()
+    await getEventsInRange('2026-01-01', '2026-01-31')
+    expect((globalThis as unknown as { $fetch: Mock }).$fetch).toHaveBeenCalledWith(
+      expect.stringContaining('calendar/events'),
+      expect.objectContaining({ method: 'GET' })
+    )
   })
 })
 ```
@@ -45,7 +42,13 @@ describe('entityRequests', (): void => {
 ## Commands
 
 ```bash
-pnpm run tests          # run all
-pnpm run test:watch     # watch mode
-pnpm run test:coverage  # with coverage
+pnpm tests           # run all
+pnpm test:watch      # watch mode
+pnpm test:coverage   # with coverage
+pnpm next:test       # Next-specific vitest config
 ```
+
+## What We Don't Test in Vitest
+
+- Supabase SQL migrations — apply via `pnpm supabase:migrations:apply:*` manually or in deploy
+- E2E browser flows — not in default pipeline

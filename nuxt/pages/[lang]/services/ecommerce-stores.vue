@@ -1,6 +1,3 @@
 <template>
-  <div id="ecommerce-stores">
-    <nuc-grid-background />
-    <nuc-ecommerce-stores-page />
-  </div>
+  <div id="ecommerce-stores"><nuc-ecommerce-stores-page /></div>
 </template>
