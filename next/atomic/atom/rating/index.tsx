@@ -5,9 +5,9 @@ import type { JSX } from 'react'
 
 import type { RatingInterface } from './types'
 
-import { adTypePt, splitAdTypeProps } from '../../utils/ad_type'
+import { nuiTypePt, splitNuiTypeProps } from '../../utils/nui_type'
 
 export function AdRating(props: RatingInterface): JSX.Element {
-  const { adType, rest } = splitAdTypeProps(props)
-  return <Rating {...rest} pt={adTypePt(adType)} />
+  const { nuiType, rest } = splitNuiTypeProps(props)
+  return <Rating {...rest} pt={nuiTypePt(nuiType)} />
 }

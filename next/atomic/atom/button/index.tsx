@@ -7,7 +7,7 @@ import { AdIcon } from '../icon'
 import { AdImage } from '../image'
 
 export function AdButton({
-  adType,
+  nuiType,
   media,
   variant,
   rounded,
@@ -51,7 +51,7 @@ export function AdButton({
         padding,
         ...style,
       } as CSSProperties,
-      ...(adType ? { 'ad-type': adType } : {}),
+      ...(nuiType ? { 'nui-type': nuiType } : {}),
     },
     label: {
       className: styles['p-button-label'],

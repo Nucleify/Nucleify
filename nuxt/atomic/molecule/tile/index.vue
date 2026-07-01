@@ -2,7 +2,7 @@
   <nuxt-link
     :class="$style['ad-tile']"
     :to="props.href"
-    :ad-type="props.adType"
+    :nui-type="props.nuiType"
     class="ad-tile"
   >
     <div :class="$style['general']">
@@ -14,7 +14,7 @@
         <ad-icon
           :class="$style['icon']"
           :icon="props.icon"
-          :ad-type="props.adType"
+          :nui-type="props.nuiType"
         />
       </div>
     </div>

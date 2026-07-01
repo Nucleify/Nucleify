@@ -15,7 +15,7 @@ declare global {
     | 'technology'
     | 'user'
 
-  type AdTypeType = ObjectNameType | 'main' | 'secondary'
+  type NuiTypeType = ObjectNameType | 'main' | 'secondary'
 
   type ActionType = 'delete' | 'show' | 'create' | 'edit'
 

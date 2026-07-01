@@ -5,10 +5,10 @@ import type { JSX } from 'react'
 
 import type { ProgressBarInterface } from './types'
 
-import { adTypePt, splitAdTypeProps } from '../../utils/ad_type'
+import { nuiTypePt, splitNuiTypeProps } from '../../utils/nui_type'
 
 export function AdProgressBar(props: ProgressBarInterface): JSX.Element {
-  const { adType, rest } = splitAdTypeProps(props)
+  const { nuiType, rest } = splitNuiTypeProps(props)
   const { width, height, style, ...primeProps } = rest
   const mergedStyle = {
     ...(style || {}),
@@ -17,6 +17,6 @@ export function AdProgressBar(props: ProgressBarInterface): JSX.Element {
   }
 
   return (
-    <ProgressBar {...primeProps} style={mergedStyle} pt={adTypePt(adType)} />
+    <ProgressBar {...primeProps} style={mergedStyle} pt={nuiTypePt(nuiType)} />
   )
 }

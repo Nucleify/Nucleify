@@ -1,6 +1,6 @@
 import { InputMaskProps } from 'primevue'
 
 export interface InputMaskInterface extends InputMaskProps {
-  adType?: AdTypeType
+  nuiType?: NuiTypeType
   value?: string
 }

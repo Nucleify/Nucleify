@@ -36,7 +36,7 @@ function useAppendTarget(
 
 export function AdSelect({
   className,
-  adType,
+  nuiType,
   appendTo,
   ...rest
 }: SelectInterface): JSX.Element {
@@ -48,7 +48,7 @@ export function AdSelect({
   const pt = {
     root: {
       className: cx(styles['ad-select'], className),
-      ...(adType ? { 'ad-type': adType } : {}),
+      ...(nuiType ? { 'nui-type': nuiType } : {}),
     },
     input: {
       className: styles['ad-select-label'],
@@ -58,7 +58,7 @@ export function AdSelect({
     },
     panel: {
       className: styles['ad-select-overlay'],
-      ...(adType ? { 'ad-type': adType } : {}),
+      ...(nuiType ? { 'nui-type': nuiType } : {}),
     },
     wrapper: {
       className: styles['ad-select-list-container'],
