@@ -1,3 +1,9 @@
+---
+description: TypeScript strict mode, path aliases, and naming conventions
+globs: "**/*.{ts,tsx,vue}"
+alwaysApply: false
+---
+
 # TypeScript
 
 TypeScript 5.8, strict mode, ESNext target, bundler resolution.

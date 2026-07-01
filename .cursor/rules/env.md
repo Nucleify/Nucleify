@@ -1,3 +1,9 @@
+---
+description: Environment variables for Nuxt, Next, and Supabase
+globs: .config/.env*,nuxt.config.ts,next/**/*
+alwaysApply: false
+---
+
 # Environment Variables
 
 Example files: `.config/.env.nuxt.example`, `.config/.env.next.example`, `.config/.env.ci.example`, `.config/.env.test.example`.

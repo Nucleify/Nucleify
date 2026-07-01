@@ -1,3 +1,9 @@
+---
+description: Husky hooks and GitHub Actions CI pipeline
+globs: .github/**,.config/bash/**,package.json
+alwaysApply: false
+---
+
 # CI / Hooks
 
 ## Pre-commit & Pre-push (Husky)

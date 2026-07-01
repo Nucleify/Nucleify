@@ -1,3 +1,8 @@
+---
+description: Multi-agent feature implementation pipeline (plan → implement → test → review)
+alwaysApply: true
+---
+
 # Feature Workflow
 
 When the user asks to implement a feature, follow this multi-agent pipeline. Each phase must complete before the next begins.
@@ -8,7 +13,7 @@ When the user asks to implement a feature, follow this multi-agent pipeline. Eac
 
 Act as the **Planner** agent (`.cursor/agents/planner.md`).
 
-1. Read project context: `.config/ai/rules/modules.md`, `api.md`, `frontend.md`, `typescript.md`, `vitest.md`
+1. Read project context: `.cursor/rules/modules.md`, `api.md`, `frontend.md`, `typescript.md`, `vitest.md`
 2. If the feature involves an existing module, read that module's code
 3. Produce a structured implementation plan
 4. Save the plan to `.ai/specs/plan.md`

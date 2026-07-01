@@ -1,3 +1,9 @@
+---
+description: i18n routing under [lang], page wrappers, layouts, and API gateway routes
+globs: nuxt/pages/**,next/app/**,nuxt/layouts/**
+alwaysApply: false
+---
+
 # Routing
 
 ## i18n

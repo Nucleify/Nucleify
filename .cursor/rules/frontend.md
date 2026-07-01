@@ -1,3 +1,9 @@
+---
+description: Nuxt/Next structure, Atomic Design, module barrels, and UI conventions
+globs: nuxt/**,next/**,modules/**/atomic/**
+alwaysApply: false
+---
+
 # Frontend
 
 **Nuxt 3.21** (`srcDir: 'nuxt'`) and **Next 16** (`next/`) share modules via the `nucleify` alias. Vue 3.5 Composition API, PrimeVue 4.3 / PrimeReact 10.9, Pinia 3.0, SCSS, TypeScript 5.8.
