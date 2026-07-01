@@ -5,9 +5,9 @@ import type { JSX } from 'react'
 
 import type { DividerInterface } from './types'
 
-import { adTypePt, splitAdTypeProps } from '../../utils/ad_type'
+import { nuiTypePt, splitNuiTypeProps } from '../../utils/nui_type'
 
 export function AdDivider(props: DividerInterface): JSX.Element {
-  const { adType, rest } = splitAdTypeProps(props)
-  return <Divider {...rest} pt={adTypePt(adType)} />
+  const { nuiType, rest } = splitNuiTypeProps(props)
+  return <Divider {...rest} pt={nuiTypePt(nuiType)} />
 }

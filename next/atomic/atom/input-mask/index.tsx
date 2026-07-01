@@ -6,7 +6,7 @@ import type { InputMaskInterface } from './types'
 
 export function AdInputMask({
   className = '',
-  adType,
+  nuiType,
   ...rest
 }: InputMaskInterface): JSX.Element {
   const cx = (...classes: (string | undefined | null | false)[]) =>
@@ -15,7 +15,7 @@ export function AdInputMask({
   const pt = {
     root: {
       className: cx(styles['ad-inputmask'], className),
-      ...(adType ? { 'ad-type': adType } : {}),
+      ...(nuiType ? { 'nui-type': nuiType } : {}),
     },
   }
 
