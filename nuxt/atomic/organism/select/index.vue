@@ -8,7 +8,7 @@
       dropdown: $style['ad-select-dropdown'],
       overlay: {
         class: $style['ad-select-overlay'],
-        'ad-type': props.adType,
+        'nui-type': props.nuiType,
       },
       listContainer: $style['ad-select-list-container'],
       list: $style['ad-select-list'],

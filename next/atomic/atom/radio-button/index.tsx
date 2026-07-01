@@ -5,9 +5,9 @@ import type { JSX } from 'react'
 
 import type { RadioButtonInterface } from './types'
 
-import { adTypePt, splitAdTypeProps } from '../../utils/ad_type'
+import { nuiTypePt, splitNuiTypeProps } from '../../utils/nui_type'
 
 export function AdRadioButton(props: RadioButtonInterface): JSX.Element {
-  const { adType, rest } = splitAdTypeProps(props)
-  return <RadioButton {...rest} pt={adTypePt(adType)} />
+  const { nuiType, rest } = splitNuiTypeProps(props)
+  return <RadioButton {...rest} pt={nuiTypePt(nuiType)} />
 }

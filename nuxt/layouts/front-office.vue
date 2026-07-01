@@ -1,7 +1,9 @@
 <template>
   <div id="front-office">
     <nuc-section-navbar />
+    <nuc-grid-background />
     <main><slot /></main>
+    <ad-spacing />
     <nuc-section-footer />
   </div>
 </template>

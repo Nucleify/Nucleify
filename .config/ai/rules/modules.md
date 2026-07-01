@@ -1,69 +1,85 @@
 # Modules
 
-Modular architecture — each module is `modules/nuc_*`, self-contained with optional backend + frontend. All PHP classes use `App\*` namespace (e.g. `App\Models\Article`, `App\Services\ArticleService`) — modules are part of the main app, not separate packages. Only the ServiceProvider uses `Modules\nuc_*` namespace. Registered in `config/modules.php` (backend) and `modules/index.ts` (frontend).
+Modular architecture — each feature lives in `modules/nuc_*` as a **git submodule**. Modules are self-contained with optional API (`supabase/`), frontend (`atomic/`), and Vitest tests.
+
+Registered in:
+- **Frontend:** `modules/index.ts` (Vue) and `modules/index.react.ts` (React barrel per module)
+- **Nuxt plugins:** `nuxt/plugins/modules.ts` — `registerNucExample(nuxtApp.vueApp)`
+- **API gateway:** handler imported in `nuxt/server/api/[...slug].ts` and `modules/nuc_api/supabase/api/gateway_dispatch.ts`
+
+## `config.json`
+
+```json
+{
+  "name": "nuc_example",
+  "description": "…",
+  "version": "0.1.0",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}
+```
+
+Folder name is the canonical module key (`modules.name` in DB). Discovered by `nuc_modules` seeder generator.
 
 ## Full-Stack Module Structure
 
 ```
 modules/nuc_example/
-├── config.json              # { name, description, version, category, installed, enabled }
-├── nuc_example.php          # Laravel ServiceProvider (loads migrations + routes)
-├── nuc_example.ts           # Vue plugin (registers components globally)
-├── index.ts                 # Barrel re-exports
-├── _index.scss              # Module SCSS (optional)
-├── app/
-│   ├── Contracts/           # Model interfaces
-│   ├── Http/Controllers/
-│   ├── Http/Requests/{Entity}/  # PostRequest.php, PutRequest.php
-│   ├── Models/
-│   ├── Resources/
-│   └── Services/
-├── database/
-│   ├── factories/
+├── config.json
+├── nuc_example.ts           # Vue plugin — registerNucExample(app)
+├── index.ts                 # Vue/Nuxt barrel exports
+├── index.react.ts           # React/Next barrel exports (if UI has .tsx)
+├── _index.scss              # Optional global module styles
+├── supabase/
+│   ├── api/                 # handle.ts, *_handlers.ts, *_helpers.ts
 │   ├── migrations/
+│   ├── factories/
 │   └── seeders/
-├── routes/api.php
-├── atomic/                  # Frontend
+├── atomic/                  # Frontend (preferred)
 │   ├── bosons/              # constants, types, utils/api
 │   ├── pages/
 │   └── templates/
-├── tests/                   # Pest PHP
-│   ├── Pest.php, TestConstants.php, TestGroups.php, TestUses.php
-│   ├── Database/{Factories,Migrations,Models}/
-│   └── Feature/{Api/{Entity}/HTTP{code}Test.php, Controllers/}
-└── vitests/                 # Vitest
-    ├── api/{Entity}/200.test.ts
-    └── constants/api/
+├── components/              # Alternative to atomic/ (legacy modules)
+└── vitests/                 # Vitest unit tests
 ```
 
-Frontend-only modules skip `app/`, `database/`, `routes/`, `tests/`. Some use `components/` instead of `atomic/`.
+Frontend-only modules skip `supabase/`. API-only modules skip `atomic/`.
 
-## Registration
-
-**Backend:** `config/modules.php` → `Modules\nuc_example\nuc_example::class`
-
-**Frontend:** `modules/index.ts` → `export * from './nuc_example'`
+## Vue Plugin Registration
 
 ```typescript
 // nuc_example.ts
 import type { App } from 'vue'
 import { NucExamplePage } from './atomic'
+
 export function registerNucExample(app: App<Element>): void {
   app.component('nuc-example-page', NucExamplePage)
 }
 ```
 
-## ServiceProvider
+Then in `nuxt/plugins/modules.ts` (alphabetically after `registerNucGlobals`):
 
-```php
-class nuc_example extends ServiceProvider {
-    public function boot(): void {
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
-        $this->loadRoutesFrom(__DIR__ . '/routes/api.php');
-    }
-}
+```typescript
+registerNucExample(nuxtApp.vueApp)
 ```
 
-## Barrel Files
+## Barrel Exports
 
-Every folder uses `index.ts` for clean re-exports. Module `index.ts` re-exports: main file, `atomic/`, `vitests/`.
+See `frontend.md` — **Module Barrel Exports** section.
+
+- `index.ts` — Vue components as `export { default as NucName } from '…'`, everything else `export *`
+- `index.react.ts` — only `export *`; React components use **named exports** (no `export default` in `.tsx`)
+
+## Dual Frontend (Vue + React)
+
+| Surface | Pages | Components |
+|---------|-------|------------|
+| Nuxt | `nuxt/pages/[lang]/…` thin wrappers | `.vue` in module |
+| Next | `next/app/[lang]/…` thin wrappers | `.tsx` in module |
+
+Share logic via `atomic/bosons/` (utils, types, constants). Split hooks when needed: `use_foo.ts` / `use_foo.react.ts`.
+
+## Submodule Workflow
+
+Modules are separate git repos (see `.gitmodules`). Commit inside `modules/nuc_*` first, then update submodule ref in root.

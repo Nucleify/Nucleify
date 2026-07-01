@@ -6,14 +6,18 @@ import { useEffect, useState } from 'react'
 import { I18nextProvider } from 'react-i18next'
 
 import {
+  AdSpacing,
   createI18nInstance,
   hydrateLocaleMessages,
   type LocaleCode,
   NucDock,
+  NucGridBackground,
   NucSectionFooter,
   NucSectionNavbar,
+  NucSidebar,
   setActiveLocale,
   useOfficeType,
+  useToolbarStyle,
 } from 'nucleify'
 
 export function LangLayoutClient({
@@ -29,6 +33,7 @@ export function LangLayoutClient({
   const [isHydrated, setIsHydrated] = useState(false)
   const pathname = usePathname()
   const { officeType } = useOfficeType()
+  const { effectiveToolbarStyle } = useToolbarStyle()
   const pathnameLang = pathname.split('/').filter(Boolean).at(0) || lang
   const pageId = pathname.split('/').filter(Boolean).at(1) || 'page'
 
@@ -51,7 +56,11 @@ export function LangLayoutClient({
         : 'front-office'
 
   const showFrontOfficeChrome = isHydrated && officeType === 'front-office'
-  const showBackOfficeDock = isHydrated && officeType === 'back-office'
+  const showBackOfficeChrome = isHydrated && officeType === 'back-office'
+  const backOfficeShellClass =
+    showBackOfficeChrome && effectiveToolbarStyle === 'sidebar'
+      ? 'toolbar-sidebar'
+      : undefined
 
   if (!i18n) {
     return null
@@ -59,15 +68,23 @@ export function LangLayoutClient({
 
   return (
     <I18nextProvider i18n={i18n}>
-      <div id={shellId}>
+      <div id={shellId} className={backOfficeShellClass}>
         <div className="layout-navbar">
           {showFrontOfficeChrome ? <NucSectionNavbar /> : null}
         </div>
+        {showFrontOfficeChrome ? <NucGridBackground /> : null}
         <main id={pageId}>{children}</main>
         <div className="layout-footer">
+          {showFrontOfficeChrome ? <AdSpacing /> : null}
           {showFrontOfficeChrome ? <NucSectionFooter /> : null}
         </div>
-        {showBackOfficeDock ? <NucDock /> : null}
+        {showBackOfficeChrome ? (
+          effectiveToolbarStyle === 'sidebar' ? (
+            <NucSidebar />
+          ) : (
+            <NucDock />
+          )
+        ) : null}
       </div>
     </I18nextProvider>
   )

@@ -1,7 +1,7 @@
 import { ProgressBarProps } from 'primevue'
 
 export interface ProgressBarInterface extends ProgressBarProps {
-  adType?: AdTypeType
+  nuiType?: NuiTypeType
   width?: string
   height?: string
 }

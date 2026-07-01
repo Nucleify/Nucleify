@@ -3,13 +3,13 @@ import type { JSX } from 'react'
 
 import styles from './index.module.scss'
 
-import { adTypePt } from '../../utils/ad_type'
+import { nuiTypePt } from '../../utils/nui_type'
 import selectStyles from '../select/index.module.scss'
 import type { DataTableInterface } from './types/interfaces'
 
 export function AdDataTable({
   className = '',
-  adType,
+  nuiType,
   value,
   loading,
   rows = 10,
@@ -27,13 +27,13 @@ export function AdDataTable({
   const cx = (...classes: (string | undefined | null | false)[]) =>
     classes.filter(Boolean).join(' ')
 
-  const adTypeAttribute = adType ? { 'ad-type': adType } : {}
+  const nuiTypeAttribute = nuiType ? { 'nui-type': nuiType } : {}
 
   const pt = {
     root: {
       className: cx(styles['ad-datatable'], className),
       'data-nuc-datatable': '',
-      ...adTypePt(adType)?.root,
+      ...nuiTypePt(nuiType)?.root,
     },
     bodyRow: {
       className: styles['ad-datatable-row'],
@@ -69,7 +69,7 @@ export function AdDataTable({
             selectStyles['ad-select'],
             styles['ad-datatable-paginator-rpp']
           ),
-          ...adTypeAttribute,
+          ...nuiTypeAttribute,
         },
         input: {
           className: selectStyles['ad-select-label'],
@@ -79,7 +79,7 @@ export function AdDataTable({
         },
         panel: {
           className: selectStyles['ad-select-overlay'],
-          ...adTypeAttribute,
+          ...nuiTypeAttribute,
         },
         wrapper: {
           className: selectStyles['ad-select-list-container'],
@@ -108,7 +108,7 @@ export function AdDataTable({
       filters={filters}
       onFilter={onFilter}
       pt={pt}
-      {...adTypeAttribute}
+      {...nuiTypeAttribute}
     >
       {children}
     </DataTable>

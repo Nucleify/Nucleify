@@ -1,78 +1,112 @@
 # Frontend
 
-Nuxt 3.20 (`srcDir: 'nuxt'`), Vue 3.5 Composition API, PrimeVue 4.3, Pinia 3.0, SCSS, TypeScript 5.8.
+**Nuxt 3.21** (`srcDir: 'nuxt'`) and **Next 16** (`next/`) share modules via the `nucleify` alias. Vue 3.5 Composition API, PrimeVue 4.3 / PrimeReact 10.9, Pinia 3.0, SCSS, TypeScript 5.8.
 
 ## Structure
 
 ```
-nuxt/
-├── app.vue
-├── assets/                    # Global SCSS
-├── atomic/                    # Atomic Design (ad- prefix, auto-imported)
-│   ├── boson/                 # Pure TS helpers (transformProps, camelToKebab)
-│   ├── atom/                  # PrimeVue wrappers (AdButton, AdIcon, AdLabel, AdInputText)
-│   ├── molecule/              # Composed atoms (AdAnchor, AdFloatLabel, AdTile)
-│   └── organism/              # Complex UI (AdCard, AdDialog, AdDataTable, AdChart, AdMenu)
-├── composables/
+nuxt/                          # Nuxt app
+├── atomic/                    # Global Atomic Design (ad- prefix, auto-imported)
+│   ├── boson/
+│   ├── atom/
+│   ├── molecule/
+│   └── organism/
+├── pages/[lang]/              # Thin wrappers → module pages
 ├── layouts/                   # default, front-office, back-office
-├── pages/                     # Thin wrappers: <nuc-example-page />
-└── plugins/
+└── plugins/modules.ts         # registerNuc* plugins
+
+next/                          # Next app (App Router)
+├── app/[lang]/                # Thin wrappers → module pages
+├── atomic/                    # React Ad* components (PrimeReact)
+└── types/
+
+modules/nuc_*/                 # Feature modules (submodules)
+├── atomic/                    # bosons, pages, templates
+├── index.ts                   # Vue barrel
+└── index.react.ts             # React barrel
 ```
 
-## Atomic Component File Structure
+## Atomic Component File Structure (Nuxt)
 
 ```
 nuxt/atomic/{level}/{component}/
-├── index.vue                  # <script setup lang="ts"> + <style lang="scss" module>
-├── index.ts                   # export { default as AdName } from './index.vue' + export * from './types'
-├── _index.scss                # Optional scoped styles
+├── index.vue
+├── index.ts
+├── _index.scss
 └── types/
-    ├── index.ts
-    ├── interfaces.ts          # Props interface extends PrimeVue props
-    └── variables.ts           # Type aliases (optional)
+    ├── interfaces.ts
+    └── variables.ts
 ```
 
-## Module Atomic Structure (`modules/nuc_*/atomic/`)
+React equivalents live in `next/atomic/` with `.tsx` + `index.module.scss`.
+
+## Module Atomic Structure
 
 ```
 atomic/
 ├── bosons/
-│   ├── constants/fields/      # useEntityFields()
-│   ├── types/api/{Entity}/    # NucEntityRequestsInterface
-│   ├── types/object/{Entity}/ # NucEntityObjectInterface
-│   └── utils/api/             # entityRequests() composables
-├── pages/                     # Full-page components
-└── templates/                 # Reusable templates
+│   ├── constants/fields/
+│   ├── types/api/
+│   ├── types/object/
+│   └── utils/api/             # *Requests() composables
+├── pages/
+└── templates/
 ```
 
 ## Conventions
 
-- `<script setup lang="ts">` — always
-- `<style lang="scss" module>` — reference via `$style['class-name']`
-- Props: `defineProps<Interface>()`, interfaces extend PrimeVue props
-- PrimeVue wrappers: `v-bind="transformProps(props, excludedProps)"`
-- Types: `NucPascalCase` prefix (e.g. `NucArticleObjectInterface`)
-- Imports: `nucleify` alias for cross-module (`import { ... } from 'nucleify'`)
-- Barrel files (`index.ts`) at every directory level
-- Pages are thin wrappers rendering module components
+- Vue: `<script setup lang="ts">`, SCSS modules where used
+- React: `'use client'` when needed; **named exports only** in module `.tsx`
+- Props: `defineProps<Interface>()` / typed React props
+- Types: `NucPascalCase` prefix (e.g. `NucCalendarEventObjectInterface`)
+- Imports: `import { … } from 'nucleify'` — never deep `../../../modules/…`
+- i18n: Vue `useI18n()` + `t('key')`; React `t` from `nucleify` (`nuc_languages`)
+- Translation keys in `modules/nuc_languages/supabase/seeders/` (en, pl, vn)
+
+## Module Barrel Exports
+
+Every module exposes its public API through root `index.ts` (Vue) and `index.react.ts` (React).
+
+### `index.ts` (Vue / Nuxt)
+
+- **Vue components** (`.vue`): `export { default as NucName } from './…'`
+- **Everything else:** `export * from './…'`
+
+```typescript
+export { default as NucDock } from './index.vue'
+export { default as NucDockSettingsCard } from './components/settings-card/index.vue'
+export * from './nuc_dock'
+export * from './utils/use_toolbar_style'
+```
+
+### `index.react.ts` (React / Next)
+
+- **Always** `export * from './…'`
+- Named exports in `.tsx` — no `export default` in module components
+
+```typescript
+export * from './index.tsx'
+export * from './components/settings-card/index.tsx'
+export * from './utils/use_toolbar_style.react'
+```
+
+Framework-specific pairs (`use_foo.ts` / `use_foo.react.ts`) go in the matching barrel only.
 
 ## API Communication
 
 ```typescript
-// modules/nuc_*/atomic/bosons/utils/api/entity_requests.ts
-export function entityRequests(close?: CloseDialogType): NucEntityRequestsInterface {
-  const results = ref([])
+export function calendarRequests(): NucCalendarRequestsInterface {
+  const { items: events, setItems: setEvents } = useEntityResults()
   const { loading, setLoading } = useLoading()
 
-  async function getAll(loading?: boolean): Promise<void> {
-    await apiHandle<NucEntityObjectInterface[]>({
-      url: apiUrl() + '/entities',
-      setLoading: loading ? setLoading : undefined,
-      onSuccess: (response) => { results.value = response },
+  async function getEventsInRange(from: string, to: string): Promise<void> {
+    await apiHandle<NucCalendarEventObjectInterface[]>({
+      url: `${apiUrl()}/calendar/events?from=${from}&to=${to}`,
+      setLoading,
+      onSuccess: setEvents,
     })
   }
-
-  return { results, loading, getAll, ... }
+  return { events, loading, getEventsInRange, … }
 }
 ```
 
@@ -82,24 +116,36 @@ Pinia 3.0 + `pinia-plugin-persistedstate`. Utilities from `nuc_stores`: `initial
 
 ## Auth
 
-`@qirolab/nuxt-sanctum-authentication` for Laravel Sanctum SPA auth.
+Supabase Auth via `@supabase/supabase-js`. Session handled server-side in API gateway (`withGatewayUser`).
 
-## Plugin Registration
-
-New modules must be registered in `nuxt/plugins/modules.ts`:
+## Plugin Registration (Nuxt)
 
 1. Export `registerNucExample` from `modules/nuc_example/nuc_example.ts`
 2. Re-export from `modules/index.ts`
-3. Import and call in `nuxt/plugins/modules.ts`:
-
-```typescript
-// nuxt/plugins/modules.ts (enforce: 'pre')
-registerNucGlobals(nuxtApp.vueApp)  // always first
-registerNucExample(nuxtApp.vueApp)  // add alphabetically
-```
+3. Import and call in `nuxt/plugins/modules.ts` (alphabetically, after `registerNucGlobals`)
 
 ## Layouts
 
-- `front-office` — public pages (landing, docs, offer)
-- `back-office` — authenticated pages (entities, admin, settings)
-- Selected via `useOfficeType()` composable
+- `front-office` — public (landing, docs, login)
+- `back-office` — authenticated (entities, settings, calendar)
+- Selected via `useOfficeType()` (`nuc_pages`)
+- Dock vs sidebar layout: `useToolbarStyle()` (`nuc_dock`)
+
+## Pages
+
+Thin wrappers only:
+
+```vue
+<!-- nuxt/pages/[lang]/calendar.vue -->
+<template>
+  <nuc-calendar-page />
+</template>
+```
+
+```tsx
+// next/app/[lang]/calendar/page.tsx
+import { NucCalendarPage } from 'nucleify'
+export default function Page() {
+  return <NucCalendarPage />
+}
+```

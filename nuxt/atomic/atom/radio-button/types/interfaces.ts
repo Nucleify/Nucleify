@@ -2,5 +2,5 @@ import type { RadioButtonProps } from 'primevue'
 
 export interface RadioButtonInterface
   extends /* @vue-ignore */ RadioButtonProps {
-  adType?: AdTypeType
+  nuiType?: NuiTypeType
 }

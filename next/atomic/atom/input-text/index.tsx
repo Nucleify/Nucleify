@@ -6,7 +6,7 @@ import type { InputTextInterface } from './types'
 
 export function AdInputText({
   className = '',
-  adType,
+  nuiType,
   invalid,
   ...rest
 }: InputTextInterface): JSX.Element {
@@ -16,7 +16,7 @@ export function AdInputText({
   const pt = {
     root: {
       className: cx(styles['ad-inputtext'], invalid && 'p-invalid', className),
-      ...(adType ? { 'ad-type': adType } : {}),
+      ...(nuiType ? { 'nui-type': nuiType } : {}),
     },
   }
 
