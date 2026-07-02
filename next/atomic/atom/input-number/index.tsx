@@ -6,7 +6,7 @@ import type { InputNumberInterface } from './types'
 
 export function AdInputNumber({
   className = '',
-  adType,
+  nuiType,
   ...rest
 }: InputNumberInterface): JSX.Element {
   const cx = (...classes: (string | undefined | null | false)[]) =>
@@ -19,7 +19,7 @@ export function AdInputNumber({
     input: {
       root: {
         className: styles['ad-inputtext'],
-        ...(adType ? { 'ad-type': adType } : {}),
+        ...(nuiType ? { 'nui-type': nuiType } : {}),
       },
     },
   }

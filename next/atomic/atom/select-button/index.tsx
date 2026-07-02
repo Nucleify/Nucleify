@@ -8,7 +8,7 @@ import type { SelectButtonInterface } from './types'
 
 export function AdSelectButton({
   className = '',
-  adType,
+  nuiType,
   ...rest
 }: SelectButtonInterface): JSX.Element {
   const cx = (...classes: (string | undefined | null | false)[]) =>
@@ -20,7 +20,7 @@ export function AdSelectButton({
     },
     button: {
       className: styles['ad-togglebutton'],
-      ...(adType ? { 'ad-type': adType } : {}),
+      ...(nuiType ? { 'nui-type': nuiType } : {}),
     },
   }
 

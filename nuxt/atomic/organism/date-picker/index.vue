@@ -27,7 +27,7 @@ const emit = defineEmits(['update:modelValue'])
 
 const style = useCssModule()
 
-const resolvedPanelClass = computed(() => props.panelClass ?? props.adType)
+const resolvedPanelClass = computed(() => props.panelClass ?? props.nuiType)
 
 const parsedModelValue = computed(() => parseDateValue(props.modelValue))
 
@@ -35,18 +35,18 @@ const datePickerPt = computed(() => {
   const panelType = resolvedPanelClass.value
 
   return {
-    ...(props.adType ? { root: { 'ad-type': props.adType } } : {}),
+    ...(props.nuiType ? { root: { 'nui-type': props.nuiType } } : {}),
     pcInputText: {
       root: {
         class: style['ad-inputtext'],
-        ...(props.adType ? { 'ad-type': props.adType } : {}),
+        ...(props.nuiType ? { 'nui-type': props.nuiType } : {}),
       },
     },
     ...(panelType
       ? {
           panel: {
             class: panelType,
-            'ad-type': panelType,
+            'nui-type': panelType,
           },
         }
       : {}),

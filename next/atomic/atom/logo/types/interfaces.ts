@@ -1,5 +1,5 @@
 export interface LogoInterface extends PathsInterface {
-  adType?: string
+  nuiType?: string
   useSymbol?: boolean
   dimensions?: string | number
 }

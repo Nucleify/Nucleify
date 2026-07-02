@@ -22,17 +22,17 @@ const { officeType } = useOfficeType()
 const colorSuffix = computed(() => getColorSuffix(officeType))
 
 const logoStyle = computed(() => {
-  if (!props.adType) {
+  if (!props.nuiType) {
     return undefined
   }
 
   const suffix = (colorSuffix.value === 'user' ? 'u' : 's') as 'u' | 's'
-  const fallbackColor = defaultColors[`${props.adType}-c`] ?? '#10b981'
-  const fallbackDarkColor = defaultColors[`${props.adType}-d`] ?? '#054a32'
+  const fallbackColor = defaultColors[`${props.nuiType}-c`] ?? '#10b981'
+  const fallbackDarkColor = defaultColors[`${props.nuiType}-d`] ?? '#054a32'
 
   return {
-    '--logo-lighter-color': `var(--${props.adType}-c-${suffix}, ${fallbackColor})`,
-    '--logo-darker-color': `var(--${props.adType}-d-${suffix}, ${fallbackDarkColor})`,
+    '--logo-lighter-color': `var(--${props.nuiType}-c-${suffix}, ${fallbackColor})`,
+    '--logo-darker-color': `var(--${props.nuiType}-d-${suffix}, ${fallbackDarkColor})`,
   }
 })
 </script>

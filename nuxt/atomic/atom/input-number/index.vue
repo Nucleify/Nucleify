@@ -6,7 +6,7 @@
       pcInputText: {
         root: {
           class: $style['ad-inputtext'],
-          'ad-type': props.adType,
+          'nui-type': props.nuiType,
         } 
       },
     }"

@@ -7,7 +7,7 @@ export interface DockItemInterface {
   label?: string
   url?: string
   class?: string
-  adType?: string
+  nuiType?: string
   click?: () => void
   logo?: boolean
 }

@@ -1,7 +1,7 @@
 import { ProgressSpinnerProps } from 'primevue'
 
 export interface ProgressSpinnerInterface extends ProgressSpinnerProps {
-  adType?: AdTypeType
+  nuiType?: NuiTypeType
   width?: string
   height?: string
 }
