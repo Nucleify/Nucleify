@@ -5,12 +5,12 @@ import type { JSX } from 'react'
 
 import type { ProgressSpinnerInterface } from './types'
 
-import { adTypePt, splitAdTypeProps } from '../../utils/ad_type'
+import { nuiTypePt, splitNuiTypeProps } from '../../utils/nui_type'
 
 export function AdProgressSpinner(
   props: ProgressSpinnerInterface
 ): JSX.Element {
-  const { adType, rest } = splitAdTypeProps(props)
+  const { nuiType, rest } = splitNuiTypeProps(props)
   const { width, height, style, ...primeProps } = rest
   const mergedStyle = {
     ...(style || {}),
@@ -22,7 +22,7 @@ export function AdProgressSpinner(
     <ProgressSpinner
       {...primeProps}
       style={mergedStyle}
-      pt={adTypePt(adType)}
+      pt={nuiTypePt(nuiType)}
     />
   )
 }

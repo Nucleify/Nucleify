@@ -5,10 +5,10 @@ import type { JSX } from 'react'
 
 import type { KnobInterface } from './types'
 
-import { adTypePt, splitAdTypeProps } from '../../utils/ad_type'
+import { nuiTypePt, splitNuiTypeProps } from '../../utils/nui_type'
 
 export function AdKnob(props: KnobInterface): JSX.Element {
-  const { adType, rest } = splitAdTypeProps(props)
+  const { nuiType, rest } = splitNuiTypeProps(props)
   const { className, ...primeProps } = rest
-  return <Knob {...primeProps} className={className} pt={adTypePt(adType)} />
+  return <Knob {...primeProps} className={className} pt={nuiTypePt(nuiType)} />
 }

@@ -9,7 +9,7 @@ import type { CheckboxInterface } from './types'
 import { MinusIcon } from 'primereact/icons/minus'
 
 export function AdCheckbox({
-  adType,
+  nuiType,
   className = '',
   indeterminate,
   inputRef: userInputRef,
@@ -53,7 +53,7 @@ export function AdCheckbox({
             ]
               .filter(Boolean)
               .join(' '),
-            ...(adType ? { 'ad-type': adType } : {}),
+            ...(nuiType ? { 'nui-type': nuiType } : {}),
             ...(isIndeterminate ? { 'data-indeterminate': 'true' } : {}),
             ...(isIndeterminate ? { 'data-p-indeterminate': 'true' } : {}),
           },

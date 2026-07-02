@@ -6,7 +6,7 @@ import type { InputOtpInterface } from './types'
 
 export function AdInputOtp({
   className = '',
-  adType,
+  nuiType,
   ...rest
 }: InputOtpInterface): JSX.Element {
   const cx = (...classes: (string | undefined | null | false)[]) =>
@@ -19,7 +19,7 @@ export function AdInputOtp({
     input: {
       root: {
         className: styles['ad-inputtext'],
-        ...(adType ? { 'ad-type': adType } : {}),
+        ...(nuiType ? { 'nui-type': nuiType } : {}),
       },
     },
   }

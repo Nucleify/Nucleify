@@ -9,7 +9,7 @@
     <ad-icon
       v-if="props.icon"
       :icon="props.icon"
-      :ad-type="props.adType"
+      :nui-type="props.nuiType"
       :size="props.size"
     />
     <ad-image

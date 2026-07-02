@@ -1,6 +1,6 @@
 import type { InputMaskProps } from 'primereact/inputmask'
 
 export interface InputMaskInterface extends InputMaskProps {
-  adType?: string
+  nuiType?: string
   value?: string
 }

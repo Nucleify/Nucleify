@@ -9,7 +9,7 @@ import { AdIcon } from '../../atom/icon'
 import { AdParagraph } from '../../atom/paragraph'
 
 export function AdTile({
-  adType,
+  nuiType,
   header,
   href = '#',
   count,
@@ -18,7 +18,7 @@ export function AdTile({
   icon,
 }: TileInterface): JSX.Element {
   return (
-    <Link href={href} data-ad-type={adType} className={styles['ad-tile']}>
+    <Link href={href} data-nui-type={nuiType} className={styles['ad-tile']}>
       <div className={styles['general']}>
         <div className={styles['info']}>
           <div className={styles['header']}>
@@ -31,7 +31,7 @@ export function AdTile({
         </div>
 
         <div className={styles['icon-container']}>
-          <AdIcon className={styles['icon']} icon={icon} adType={adType} />
+          <AdIcon className={styles['icon']} icon={icon} nuiType={nuiType} />
         </div>
       </div>
 

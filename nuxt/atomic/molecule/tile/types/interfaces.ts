@@ -1,7 +1,7 @@
 import type { IconInterface } from 'nucleify'
 
 export interface TileInterface extends IconInterface {
-  adType?: AdTypeType
+  nuiType?: NuiTypeType
   header?: string
   href?: string
   count?: number
