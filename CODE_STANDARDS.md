@@ -86,11 +86,12 @@ modules/<module_name>/
 ├── routes/                 ← Module routes
 │   └── api.php
 │
-├── atomic/                 ← Frontend components (TS/Vue/SCSS)
-│   ├── components/         ← Vue components
-│   ├── types/              ← TypeScript types
-│   ├── utils/              ← Utility functions
-│   └── constants/          ← Constants
+├── constants/              ← Shared constants
+├── types/                  ← TypeScript types
+├── utils/                  ← Utility functions / API requests
+├── pages/                  ← Full pages (NucExamplePage)
+├── components/             ← Vue/React reusable UI
+├── styles/                 ← Optional shared SCSS
 │
 ├── tests/                  ← Backend PHP tests (Pest)
 ├── vitests/                ← Frontend tests (Vitest)
@@ -258,8 +259,8 @@ nuxt/
 
 - Each module should be **self-contained**
 - Backend logic stays in `modules/<module>/app/`
-- Frontend: `modules/<module>/atomic/` (or `components/` for simple modules)
-- Global/shared components go in `nuxt/atomic/`
+- Frontend: `modules/<module>/{constants,types,utils,pages,components}/`
+- Global/shared Ad* components go in `nuxt/atomic/` / `next/atomic/`
 - Use `config.json` for module metadata
 - Document module purpose in `README.md`
 
@@ -293,27 +294,20 @@ modules/nuc_example/
 │       └── 2024_01_01_000000_create_examples_table.php
 ├── routes/
 │   └── api.php
-├── atomic/
-│   ├── bosons/
-│   │   ├── constants/
-│   │   │   ├── example.ts
-│   │   │   └── index.ts
-│   │   ├── types/
-│   │   │   ├── example.ts
-│   │   │   └── index.ts
-│   │   └── utils/
-│   │       ├── example.ts
-│   │       └── index.ts
-│   ├── pages/
-│   │   └── ExamplePage/
-│   │       ├── index.vue
-│   │       └── index.ts
-│   ├── templates/
-│   │   └── ExampleCard/
-│   │       ├── index.vue
-│   │       └── index.ts
-│   └── types/
-│       └── example.ts
+├── constants/
+│   └── example.ts
+├── types/
+│   └── example.ts
+├── utils/
+│   └── example.ts
+├── pages/
+│   └── ExamplePage/
+│       ├── index.vue
+│       └── index.tsx
+├── components/
+│   └── ExampleCard/
+│       ├── index.vue
+│       └── index.tsx
 ├── tests/
 │   └── ExampleTest.php
 ├── vitests/

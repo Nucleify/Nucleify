@@ -45,8 +45,8 @@ Add `handleExampleApi` to:
 
 ### Frontend API layer (when needed)
 
-- `atomic/bosons/utils/api/*_requests.ts` — composable calling `apiHandle`
-- `atomic/bosons/types/api/interfaces.ts` — request/response types
+- `utils/api.ts` — composable calling `apiHandle`
+- `types/api/interfaces.ts` — request/response types
 
 ## Reference Modules
 
@@ -56,7 +56,7 @@ Add `handleExampleApi` to:
 
 ## Execution
 
-1. Read `.config/ai/rules/api.md` and `.config/ai/rules/modules.md`
+1. Read `.cursor/rules/api.md` and `.cursor/rules/modules.md`
 2. Read existing module code for patterns
 3. Create migrations before seeders; enable RLS on new tables
 4. Scope user data by `user_id`; never trust client-provided ownership

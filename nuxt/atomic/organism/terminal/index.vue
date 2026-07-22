@@ -12,7 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { handleCommands, transformProps } from 'nucleify'
+import { transformProps } from '../../boson/transform_props'
+import { handleCommands } from './utils/handle_commands'
 
 import type { TerminalInterface } from '.'
 

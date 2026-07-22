@@ -16,11 +16,11 @@ Analyze the feature request and produce a detailed implementation plan. Read pro
 - **Frontend:** Nuxt 3.21 + Next 16; shared modules via `nucleify` alias
 - **Modules:** Git submodules in `modules/nuc_*` with `config.json`
 - **Testing:** Vitest (TS); SQL via `pnpm supabase:*`
-- **Design:** Atomic Design — global `nuxt/atomic/` + `next/atomic/`; module `atomic/bosons/pages/templates`
+- **Design:** Global Atomic Design `nuxt/atomic/` + `next/atomic/` (Ad*); modules use `constants/` / `types/` / `utils/` / `components/`
 
 ## Execution
 
-1. Read: `.config/ai/rules/modules.md`, `api.md`, `frontend.md`, `typescript.md`, `vitest.md`
+1. Read: `.cursor/rules/modules.md`, `api.md`, `frontend.md`, `typescript.md`, `vitest.md`
 2. If the feature touches an existing module, read that module's code
 3. Produce a structured plan:
    - **Summary** — scope in one paragraph

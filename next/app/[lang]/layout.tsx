@@ -4,7 +4,7 @@ import {
   isSupportedLocale,
   requireLocaleMessages,
   type SupportedLocale,
-} from '../../../modules/nuc_languages/atomic/bosons/utils/fetch_locale_messages'
+} from '../../../modules/nuc_languages/utils/fetch_locale_messages'
 
 export default async function LangLayout({
   children,

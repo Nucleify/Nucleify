@@ -13,8 +13,8 @@ This folder contains files that override originals from `nuxt/` and `modules/` w
    - Override: `overrides/nuxt/composables/useAuth.ts`
 
    Or:
-   - Original: `modules/nuc_auth/atomic/pages/Login/index.vue`
-   - Override: `overrides/modules/nuc_auth/atomic/pages/Login/index.vue`
+   - Original: `modules/nuc_auth/pages/login.vue`
+   - Override: `overrides/modules/nuc_auth/pages/login.vue`
 
 3. **Backend examples** (Supabase API handlers):
    - Original: `modules/nuc_auth/supabase/api/handle.ts`

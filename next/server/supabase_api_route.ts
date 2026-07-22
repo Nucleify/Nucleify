@@ -1,27 +1,23 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { createEvent } from 'h3'
 
 import type { ApiContext, Json } from 'nuc_server'
 
-import { loadEnvConfig } from '@next/env'
 import { fetchNodeRequestHandler } from 'node-mock-http'
 import {
   createServiceRoleSupabaseClient,
   dispatchSupabaseApiGateway,
   parseApiSlug,
 } from '../../modules/nuc_api/supabase/api/gateway_dispatch'
+import { ensureServerEnv } from '../../modules/nuc_api/supabase/api/server_env'
 
-const repoRoot = path.resolve(
-  path.dirname(fileURLToPath(import.meta.url)),
-  '../..'
-)
-loadEnvConfig(repoRoot)
+ensureServerEnv()
 
 async function runGateway(
   request: Request,
   segments: string[]
 ): Promise<Response> {
+  ensureServerEnv()
+
   let supabase
   try {
     supabase = createServiceRoleSupabaseClient()

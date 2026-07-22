@@ -14,7 +14,7 @@ Bosons are the smallest, indivisible pieces of reusable logic or data. Put it in
 
     Constants, styles, types and utils.
 
-**boson** folder content moved to ```modules/**/atomic/boson```
+**Shared non-UI** (constants, types, utils) lives in ```modules/**/{constants,types,utils}```
 
 <br>
 

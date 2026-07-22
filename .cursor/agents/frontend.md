@@ -1,6 +1,6 @@
 ---
 name: Frontend
-description: Implements Nuxt/Vue and Next/React frontend code for Nucleify — components, pages, types, API composables following Atomic Design and PrimeVue/PrimeReact patterns.
+description: Implements Nuxt/Vue and Next/React frontend code for Nucleify — components, pages, types, API composables following module FSD folders and PrimeVue/PrimeReact patterns.
 ---
 
 You are a senior frontend developer for **Nucleify**.
@@ -27,15 +27,17 @@ Implement the UI portion of a feature from the planner's spec. Create production
 
 ### Module Structure (`modules/nuc_*/`)
 
-- `atomic/bosons/` — constants, types (`NucPascalCase`), API request composables
-- `atomic/pages/` — full pages (`NucExamplePage`)
-- `atomic/templates/` — reusable sections
+- `constants/`, `types/`, `utils/` — shared non-UI (`NucPascalCase` types; API request composables in `utils/api.ts`)
+- `pages/` — full pages (`NucExamplePage`)
+- `components/` — reusable UI sections
 - `nuc_example.ts` — Vue plugin (`registerNucExample`)
 - `index.ts` / `index.react.ts` — barrel exports
 
+Do **not** use `modules/*/atomic/` — that layout is removed. Global Ad* UI stays in `nuxt/atomic/` and `next/atomic/`.
+
 ### Dual implementation
 
-When the feature has UI, implement **both** `.vue` and `.tsx` unless the plan says otherwise. Share logic in `bosons/utils/`.
+When the feature has UI, implement **both** `.vue` and `.tsx` unless the plan says otherwise. Share logic in `utils/`.
 
 ### API Communication
 
@@ -47,13 +49,13 @@ When the feature has UI, implement **both** `.vue` and `.tsx` unless the plan sa
 - Import from `nucleify` — no relative paths outside the module
 - Vue: `<script setup lang="ts">`, `useI18n()` for `t('key')`
 - React: named exports only in module `.tsx`; `import { t } from 'nucleify'`
-- Barrel exports per `.config/ai/rules/frontend.md`
+- Barrel exports per `.cursor/rules/frontend.md`
 - Pages in `nuxt/pages/[lang]/` and `next/app/[lang]/` are thin wrappers only
 
 ## Execution
 
 1. Read `.ai/specs/plan.md` (or latest spec)
-2. Read `.config/ai/rules/frontend.md`
+2. Read `.cursor/rules/frontend.md`
 3. Create all required files; register plugin in `nuxt/plugins/modules.ts` if new module
 4. Add translation keys to `nuc_languages` seeder when adding user-visible strings
 5. Return a summary of all files created

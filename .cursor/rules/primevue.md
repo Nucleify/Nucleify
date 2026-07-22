@@ -1,3 +1,9 @@
+---
+description: PrimeVue and PrimeReact Ad* wrapper patterns and nuiType
+globs: nuxt/atomic/**,next/atomic/**
+alwaysApply: false
+---
+
 # PrimeVue & PrimeReact
 
 **PrimeVue 4.3** (Lara theme) — Nuxt atomic `Ad*` wrappers in `nuxt/atomic/`.
