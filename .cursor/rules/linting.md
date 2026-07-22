@@ -1,3 +1,9 @@
+---
+description: Biome and Stylelint configuration and commands
+globs: .config/biome.json,.config/.stylelintrc.json
+alwaysApply: false
+---
+
 # Linting
 
 ## Biome 2.1 (JS/TS)

@@ -1,3 +1,9 @@
+---
+description: Supabase module API, gateway handlers, migrations, and client requests
+globs: modules/*/supabase/**,nuxt/server/**,modules/nuc_api/**
+alwaysApply: false
+---
+
 # API & Database (Supabase)
 
 Backend logic lives in **TypeScript** inside `modules/nuc_*/supabase/`. There is no Laravel layer — PostgreSQL is managed via Supabase migrations, and HTTP is handled by a module API gateway.
@@ -74,9 +80,9 @@ pnpm supabase:setup:linked           # migrations + factories + seeders
 
 ## Client API (frontend)
 
-- Request composables in `atomic/bosons/utils/api/` (e.g. `calendarRequests()`)
+- Request composables in `utils/api.ts` (e.g. `calendarRequests()`)
 - Wrap calls with `apiHandle` / `apiUrl` from `nuc_api`
-- Types: `atomic/bosons/types/api/interfaces.ts` (+ `interfaces.react.ts` when needed)
+- Types: `types/api/interfaces.ts` (+ `interfaces.react.ts` when needed)
 
 ## Auth
 

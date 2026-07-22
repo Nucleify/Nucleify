@@ -22,3 +22,12 @@ additional_redirect_urls = ["http://localhost:3000/**"]
 jwt_expiry = 3600
 
 [functions]
+
+[functions.calendar-calendly-oauth-callback]
+verify_jwt = false
+
+[functions.calendar-calendly-webhook]
+verify_jwt = false
+
+[functions.calendar-google-oauth-callback]
+verify_jwt = false

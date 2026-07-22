@@ -1,3 +1,9 @@
+---
+description: Nuxt/Next structure, Atomic Design, module barrels, and UI conventions
+globs: nuxt/**,next/**,modules/**
+alwaysApply: false
+---
+
 # Frontend
 
 **Nuxt 3.21** (`srcDir: 'nuxt'`) and **Next 16** (`next/`) share modules via the `nucleify` alias. Vue 3.5 Composition API, PrimeVue 4.3 / PrimeReact 10.9, Pinia 3.0, SCSS, TypeScript 5.8.
@@ -21,7 +27,9 @@ next/                          # Next app (App Router)
 └── types/
 
 modules/nuc_*/                 # Feature modules (submodules)
-├── atomic/                    # bosons, pages, templates
+├── constants/ types/ utils/   # Shared non-UI
+├── pages/                     # Full pages (NucExamplePage)
+├── components/                # Reusable UI
 ├── index.ts                   # Vue barrel
 └── index.react.ts             # React barrel
 ```
@@ -40,17 +48,19 @@ nuxt/atomic/{level}/{component}/
 
 React equivalents live in `next/atomic/` with `.tsx` + `index.module.scss`.
 
-## Module Atomic Structure
+## Module Structure
 
 ```
-atomic/
-├── bosons/
-│   ├── constants/fields/
-│   ├── types/api/
-│   ├── types/object/
-│   └── utils/api/             # *Requests() composables
-├── pages/
-└── templates/
+modules/nuc_example/
+├── constants/                 # fields/, …
+├── types/
+│   ├── api/
+│   └── object/
+├── utils/
+│   └── api.ts                 # *Requests() composables
+├── pages/                     # NucExamplePage
+├── components/                # reusable UI pieces
+└── styles/                    # optional shared SCSS
 ```
 
 ## Conventions

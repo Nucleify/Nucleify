@@ -1,3 +1,9 @@
+---
+description: Vitest conventions, test structure, and commands
+globs: "**/vitests/**,**/*.test.ts"
+alwaysApply: false
+---
+
 # Vitest
 
 Vitest 3.2. Tests in `modules/*/vitests/` and root `vitests/` if present.

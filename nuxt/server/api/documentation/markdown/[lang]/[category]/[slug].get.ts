@@ -1,6 +1,6 @@
-import { createError, defineEventHandler, getRouterParam } from 'h3'
+import { createError, defineEventHandler, getRouterParam, setHeader } from 'h3'
 
-import { readMarkdownFile } from '../../../../../../../modules/nuc_documentation/atomic/bosons/utils/read_markdown_file.server'
+import { readMarkdownFile } from '../../../../../../../modules/nuc_documentation/utils/read_markdown_file.server'
 
 export default defineEventHandler(async (event) => {
   const lang = getRouterParam(event, 'lang')
@@ -13,7 +13,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     const markdown = await readMarkdownFile(lang, category, slug)
-    event.node.res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    setHeader(event, 'Content-Type', 'text/plain; charset=utf-8')
     return markdown
   } catch {
     throw createError({
