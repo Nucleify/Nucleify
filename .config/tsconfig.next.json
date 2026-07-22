@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -14,12 +13,11 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
     "types": ["react", "react-dom", "node"],
+    "allowImportingTsExtensions": true,
+    "baseUrl": "..",
+    "tsBuildInfoFile": "../.next/cache/tsconfig.next.tsbuildinfo",
     "paths": {
       "nucleify": ["next/atomic/index.ts"],
       "nuc_server": ["nuxt/server/nuc_server.ts"],
@@ -27,7 +25,29 @@
       "nuc_api": ["modules/nuc_api/supabase/api/server.ts"],
       "modules": ["modules"],
       "modules/*": ["modules/*"]
-    },
-    "allowImportingTsExtensions": true
-  }
+    }
+  },
+  "include": [
+    "../next/next-env.d.ts",
+    "../next/types/**/*.d.ts",
+    "../next/**/*.ts",
+    "../next/**/*.tsx",
+    "../next/types/**/*.ts",
+    "../modules/**/*.tsx",
+    "../modules/**/*.react.ts",
+    "../.next/types/**/*.ts",
+    "../.next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../modules/**/*.vue",
+    "../modules/**/supabase/functions/**",
+    "../modules/**/supabase/calendly/**",
+    "../modules/**/supabase/google_calendar/**",
+    "../modules/**/vitests/**",
+    "../modules/**/*.test.ts",
+    "../modules/**/*.test.react.ts",
+    "../modules/**/utils/api/requests.ts",
+    "../modules/**/utils/api/*_requests.ts"
+  ]
 }
