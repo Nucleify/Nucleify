@@ -6,7 +6,15 @@ import { DOC_LANGUAGES } from '../../modules/nuc_documentation/constants/languag
 
 const root = resolve(fileURLToPath(import.meta.url), '../../..')
 
+function isPrerenderEnabled(): boolean {
+  if (process.env.CI === 'true') return false
+  if (process.env.PRERENDER === 'false') return false
+  return true
+}
+
 function getDocumentationPrerenderRoutes(): string[] {
+  if (!isPrerenderEnabled()) return []
+
   const routes: string[] = []
 
   for (const { code } of DOC_LANGUAGES) {
@@ -44,8 +52,8 @@ export const nitroConfig = {
       ],
     },
     prerender: {
-      crawlLinks: false,
-      failOnError: true,
+      crawlLinks: process.env.PRERENDER_CRAWL_LINKS === 'true',
+      failOnError: isPrerenderEnabled(),
       routes: getDocumentationPrerenderRoutes(),
     },
   },
