@@ -10,6 +10,7 @@ import type { ApiContext } from './_types'
 
 import { useRuntimeConfig } from 'nitropack/runtime'
 import { handleActivityApi } from '../../../modules/nuc_activity/supabase/api/handle'
+import { ensureServerEnv } from '../../../modules/nuc_api/supabase/api/server_env'
 import { handleCalendarApi } from '../../../modules/nuc_calendar/supabase/api/handle'
 import { handleColorsApi } from '../../../modules/nuc_colors/supabase/api/handle'
 import { handleEntitiesApi } from '../../../modules/nuc_entities/supabase/api/handle'
@@ -51,6 +52,7 @@ const handlers = [
 ]
 
 export default defineEventHandler(async (event) => {
+  ensureServerEnv()
   const method = getMethod(event).toUpperCase()
   const segments = parsePath(getRouterParam(event, 'slug'))
   const config = useRuntimeConfig(event)

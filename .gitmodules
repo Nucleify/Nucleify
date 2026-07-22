@@ -22,9 +22,6 @@
 [submodule "modules/nuc_colors"]
 	path = modules/nuc_colors
 	url = https://github.com/Nucleify/nuc_colors.git
-[submodule "modules/nuc_database"]
-	path = modules/nuc_database
-	url = https://github.com/Nucleify/nuc_database.git
 [submodule "modules/nuc_datatable"]
 	path = modules/nuc_datatable
 	url = https://github.com/Nucleify/nuc_datatable.git
@@ -112,9 +109,6 @@
 [submodule "modules/nuc_users"]
 	path = modules/nuc_users
 	url = https://github.com/Nucleify/nuc_users.git
-[submodule "modules/nuc_openapi"]
-	path = modules/nuc_openapi
-	url = https://github.com/Nucleify/nuc_openapi.git
 [submodule "modules/nuc_breadcrumb"]
 	path = modules/nuc_breadcrumb
 	url = https://github.com/Nucleify/nuc_breadcrumb.git

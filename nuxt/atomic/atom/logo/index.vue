@@ -11,7 +11,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { defaultColors, getColorSuffix, useOfficeType } from 'nucleify'
+import { defaultColors } from '../../../../modules/nuc_colors/constants/default'
+import { getColorSuffix } from '../../../../modules/nuc_colors/utils/get_color_suffix'
+import { useOfficeType } from '../../../../modules/nuc_pages/utils/use_office_type'
 
 import type { LogoInterface } from '.'
 

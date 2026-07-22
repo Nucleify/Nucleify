@@ -8,9 +8,10 @@
   },
   "scripts": {
     "nuxt": "nuxt dev",
-    "nuxt:build": "nuxt build",
+    "nuxt:build": "node scripts/generate-doc-markdown-bundle.mjs && nuxt build",
     "nuxt:start": "node .output/server/index.mjs",
-    "nuxt:generate": "nuxt generate",
+    "nuxt:generate": "node scripts/generate-doc-markdown-bundle.mjs && nuxt generate",
+    "docs:bundle": "node scripts/generate-doc-markdown-bundle.mjs",
     "nuxt:preview": "nuxt preview",
     "nuxt:prepare": "nuxt prepare",
     "nuxt:typeslint": "tsc --noEmit -p tsconfig.nuxt.json",

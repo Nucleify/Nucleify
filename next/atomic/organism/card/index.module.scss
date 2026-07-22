@@ -1,7 +1,9 @@
 .ad-card {
   background: $p-card-background !important;
-  border: 1px solid $p-card-border;
+  border: 1px solid $p-card-border !important;
+  border-radius: 12px;
   color: $white-text-color;
+  box-shadow: none;
 
   .ad-card-content {
     padding: 0;

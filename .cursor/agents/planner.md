@@ -16,7 +16,7 @@ Analyze the feature request and produce a detailed implementation plan. Read pro
 - **Frontend:** Nuxt 3.21 + Next 16; shared modules via `nucleify` alias
 - **Modules:** Git submodules in `modules/nuc_*` with `config.json`
 - **Testing:** Vitest (TS); SQL via `pnpm supabase:*`
-- **Design:** Atomic Design — global `nuxt/atomic/` + `next/atomic/`; module `atomic/bosons/pages/templates`
+- **Design:** Global Atomic Design `nuxt/atomic/` + `next/atomic/` (Ad*); modules use `constants/` / `types/` / `utils/` / `components/`
 
 ## Execution
 

@@ -80,9 +80,9 @@ pnpm supabase:setup:linked           # migrations + factories + seeders
 
 ## Client API (frontend)
 
-- Request composables in `atomic/bosons/utils/api/` (e.g. `calendarRequests()`)
+- Request composables in `utils/api.ts` (e.g. `calendarRequests()`)
 - Wrap calls with `apiHandle` / `apiUrl` from `nuc_api`
-- Types: `atomic/bosons/types/api/interfaces.ts` (+ `interfaces.react.ts` when needed)
+- Types: `types/api/interfaces.ts` (+ `interfaces.react.ts` when needed)
 
 ## Auth
 
