@@ -27,7 +27,7 @@ import type { NucCalendarEventObjectInterface } from 'nucleify'
 
 - Atomic props: `{Component}Interface` (e.g. `ButtonInterface`)
 - Module types: `Nuc{Entity}{Type}Interface` (e.g. `NucArticleObjectInterface`)
-- API types: `modules/nuc_*/atomic/bosons/types/api/interfaces.ts`
+- API types: `modules/nuc_*/types/api/interfaces.ts`
 - React-specific API types: `interfaces.react.ts` when needed
 
 ## Type Check

@@ -45,8 +45,8 @@ Add `handleExampleApi` to:
 
 ### Frontend API layer (when needed)
 
-- `atomic/bosons/utils/api/*_requests.ts` — composable calling `apiHandle`
-- `atomic/bosons/types/api/interfaces.ts` — request/response types
+- `utils/api.ts` — composable calling `apiHandle`
+- `types/api/interfaces.ts` — request/response types
 
 ## Reference Modules
 

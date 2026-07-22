@@ -27,6 +27,8 @@
     "node_modules",
     "modules/**/*.vue",
     "modules/**/supabase/functions/**",
+    "modules/**/supabase/calendly/**",
+    "modules/**/supabase/google_calendar/**",
     "modules/**/vitests/**",
     "modules/**/*.test.ts",
     "modules/**/*.test.react.ts",

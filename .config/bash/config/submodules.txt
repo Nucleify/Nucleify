@@ -8,7 +8,6 @@ calendar
 charts
 colors
 dark_mode
-database
 datatable
 dialog
 dock
@@ -25,7 +24,6 @@ loading
 media
 modules
 navigation
-openapi
 overrides
 pagebuilder
 pages

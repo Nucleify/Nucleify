@@ -50,6 +50,8 @@
     "../modules/**/index.react.ts",
     "../modules/**/index.react.tsx",
     "../modules/**/supabase/functions/**",
+    "../modules/**/supabase/calendly/**",
+    "../modules/**/supabase/google_calendar/**",
     "../**/*.stories.ts",
     "../**/*.stories.tsx",
     "../**/*.spec.ts",

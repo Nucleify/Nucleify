@@ -28,7 +28,8 @@
       "!**/Procfile",
       "!**/.npmrc",
       "!**/.env*",
-      "!**/.git*"
+      "!**/.git*",
+      "!**/markdown_bundle.generated.ts"
     ]
   },
   "formatter": {

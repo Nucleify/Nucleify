@@ -43,13 +43,11 @@
 </template>
 
 <script setup lang="ts">
-import {
-  hasLowercase,
-  hasMinLength,
-  hasNumber,
-  hasUppercase,
-  transformProps,
-} from 'nucleify'
+import { hasLowercase } from '../../../../modules/nuc_fields/utils/check/has_lowercase'
+import { hasMinLength } from '../../../../modules/nuc_fields/utils/check/has_min_length'
+import { hasNumber } from '../../../../modules/nuc_fields/utils/check/has_number'
+import { hasUppercase } from '../../../../modules/nuc_fields/utils/check/has_uppercase'
+import { transformProps } from '../../boson/transform_props'
 
 import type { PasswordInterface } from '.'
 

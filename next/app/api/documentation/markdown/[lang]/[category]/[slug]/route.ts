@@ -1,4 +1,4 @@
-import { readMarkdownFile } from '../../../../../../../../modules/nuc_documentation/atomic/bosons/utils/read_markdown_file.server'
+import { readMarkdownFile } from '../../../../../../../../modules/nuc_documentation/utils/read_markdown_file.server'
 
 type RouteContext = {
   params: Promise<{ lang: string; category: string; slug: string }>

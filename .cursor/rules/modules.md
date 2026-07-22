@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Modules
 
-Modular architecture — each feature lives in `modules/nuc_*` as a **git submodule**. Modules are self-contained with optional API (`supabase/`), frontend (`atomic/`), and Vitest tests.
+Modular architecture — each feature lives in `modules/nuc_*` as a **git submodule**. Modules are self-contained with optional API (`supabase/`), frontend (`constants/` / `types/` / `utils/` / `components/`), and Vitest tests.
 
 Registered in:
 - **Frontend:** `modules/index.ts` (Vue) and `modules/index.react.ts` (React barrel per module)
@@ -42,22 +42,23 @@ modules/nuc_example/
 │   ├── migrations/
 │   ├── factories/
 │   └── seeders/
-├── atomic/                  # Frontend (preferred)
-│   ├── bosons/              # constants, types, utils/api
-│   ├── pages/
-│   └── templates/
-├── components/              # Alternative to atomic/ (legacy modules)
+├── constants/               # Shared constants
+├── types/                   # Shared types (api/, object/, …)
+├── utils/                   # Shared utils (+ utils/api.ts request composables)
+├── pages/                   # Full pages (NucExamplePage)
+├── components/              # Reusable UI
+├── styles/                  # Optional shared SCSS (e.g. nuc_colors)
 └── vitests/                 # Vitest unit tests
 ```
 
-Frontend-only modules skip `supabase/`. API-only modules skip `atomic/`.
+Frontend-only modules skip `supabase/`. API-only modules skip UI folders. Feature folders like `nuc_sections/*` / `nuc_templates/*` stay as-is.
 
 ## Vue Plugin Registration
 
 ```typescript
 // nuc_example.ts
 import type { App } from 'vue'
-import { NucExamplePage } from './atomic'
+import { NucExamplePage } from '.'
 
 export function registerNucExample(app: App<Element>): void {
   app.component('nuc-example-page', NucExamplePage)
@@ -84,7 +85,7 @@ See `frontend.md` — **Module Barrel Exports** section.
 | Nuxt | `nuxt/pages/[lang]/…` thin wrappers | `.vue` in module |
 | Next | `next/app/[lang]/…` thin wrappers | `.tsx` in module |
 
-Share logic via `atomic/bosons/` (utils, types, constants). Split hooks when needed: `use_foo.ts` / `use_foo.react.ts`.
+Share logic via `utils/`, `types/`, `constants/`. Split hooks when needed: `use_foo.ts` / `use_foo.react.ts`.
 
 ## Submodule Workflow
 

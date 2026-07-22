@@ -1,6 +1,6 @@
 ---
 description: Nuxt composables, React hooks, useConfig, apiUrl, and i18n
-globs: nuxt/composables/**,**/use_*.ts,**/*.react.ts,modules/*/atomic/bosons/utils/api/**
+globs: nuxt/composables/**,**/use_*.ts,**/*.react.ts,modules/*/utils/api.ts
 alwaysApply: false
 ---
 

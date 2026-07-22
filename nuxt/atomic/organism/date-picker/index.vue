@@ -16,10 +16,10 @@
 <script setup lang="ts">
 import { computed, useCssModule } from 'vue'
 
-import { formatDate, transformProps } from 'nucleify'
+import { transformProps } from '../../boson/transform_props'
 
 import type { DatePickerInterface, DatePickerModelValueType } from '.'
-import { parseDateValue } from './utils/format_date'
+import { formatDate, parseDateValue } from './utils/format_date'
 
 const props = defineProps<DatePickerInterface>()
 

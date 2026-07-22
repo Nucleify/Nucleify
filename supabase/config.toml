@@ -28,3 +28,6 @@ verify_jwt = false
 
 [functions.calendar-calendly-webhook]
 verify_jwt = false
+
+[functions.calendar-google-oauth-callback]
+verify_jwt = false

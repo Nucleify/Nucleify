@@ -15,7 +15,7 @@ Review implemented code, run checks, fix issues, report results.
 - [ ] Module is self-contained under `modules/nuc_*`
 - [ ] API handler registered in both gateways (if API added)
 - [ ] Vue plugin registered in `nuxt/plugins/modules.ts` (if UI added)
-- [ ] Atomic structure: bosons / pages / templates
+- [ ] Module structure: constants / types / utils / components (no `modules/*/atomic/`)
 - [ ] Imports use `nucleify`, not relative cross-module paths
 
 ### API & Database
