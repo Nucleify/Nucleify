@@ -21,6 +21,7 @@ tsconfig.next.tsbuildinfo
 .data
 .output
 .nuxt
+.nuxtrc
 .nitro
 .cache
 dist

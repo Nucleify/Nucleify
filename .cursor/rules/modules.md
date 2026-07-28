@@ -11,7 +11,27 @@ Modular architecture — each feature lives in `modules/nuc_*` as a **git submod
 Registered in:
 - **Frontend:** `modules/index.ts` (Vue) and `modules/index.react.ts` (React barrel per module)
 - **Nuxt plugins:** `nuxt/plugins/modules.ts` — `registerNucExample(nuxtApp.vueApp)`
-- **API gateway:** handler imported in `nuxt/server/api/[...slug].ts` and `modules/nuc_api/supabase/api/gateway_dispatch.ts`
+- **API gateway:** single registry in `modules/nuc_api/supabase/api/gateway_dispatch.ts` (Nuxt `[...slug].ts` and Next adapter both call `dispatchSupabaseApiGateway`)
+
+## Kernel contract (`NucModule`)
+
+```typescript
+// modules/nuc_api/types/module.ts
+export interface NucModule {
+  name: string
+  config: NucModuleConfig
+  registerVue?: (app: App) => void
+  apiHandlers?: readonly NucApiHandler[]
+}
+```
+
+## Import rules
+
+Module UI must **not** import `from 'nucleify'` (breaks circular barrels). Use relative imports, `nuc_api` / `nuc_client` / `nuc_server`, or `nucleify-ui`. Public surface still exports via `index.ts` / `index.react.ts`.
+
+## UI stack
+
+Feature UI uses **`nucleify-ui`** Lit web components (`nui-*`). There is no `nuxt/atomic` / `next/atomic`.
 
 ## `config.json`
 
@@ -51,7 +71,7 @@ modules/nuc_example/
 └── vitests/                 # Vitest unit tests
 ```
 
-Frontend-only modules skip `supabase/`. API-only modules skip UI folders. Feature folders like `nuc_sections/*` / `nuc_templates/*` stay as-is.
+Frontend-only modules skip `supabase/`. API-only modules skip UI folders.
 
 ## Vue Plugin Registration
 

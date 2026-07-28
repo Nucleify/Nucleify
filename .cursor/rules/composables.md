@@ -33,9 +33,9 @@ await apiHandle<T>({ url: `${apiUrl()}/calendar/events`, … })
 |-------------------|--------|---------|
 | `useOfficeType()` | `nuc_pages` | Layout: `front-office` / `back-office` |
 | `useDarkMode()` | `nuc_dark_mode` | Dark mode state |
-| `useLoading()` | `nuc_loading` | `{ loading, setLoading }` |
-| `useNucDialog()` | `nuc_dialog` | Dialog close helper |
-| `useToolbarStyle()` | `nuc_dock` | Dock vs sidebar (`use_toolbar_style.ts` / `.react.ts`) |
+| `useLoading()` | `nuc_globals/loading` | `{ loading, setLoading }` |
+| `useNucDialog()` | `nuc_templates/dialog` | Dialog close helper |
+| `useToolbarStyle()` | `nuc_templates/dock` | Dock vs sidebar (`use_toolbar_style.ts` / `.react.ts`) |
 | `entityRequests()` | per module | CRUD via `apiHandle` |
 
 ## React

@@ -1,5 +1,0 @@
-export { default as AdLogo } from './index.vue'
-export { default as AdLogoPaths } from './paths.vue'
-export { default as AdLogoSvg } from './svg.vue'
-export { default as AdLogoSymbol } from './symbol.vue'
-export * from './types'

@@ -1,7 +1,0 @@
-@import '../input-text/index.module';
-
-.ad-inputnumber {
-  .ad-inputtext {
-    @extend %ad-inputtext;
-  }
-}

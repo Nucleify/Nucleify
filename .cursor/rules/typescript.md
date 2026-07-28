@@ -40,6 +40,5 @@ pnpm next:typeslint   # Next + React modules (.tsx, index.react.ts)
 ## Rules
 
 - Strict null checks, no implicit `any`
-- `/* @vue-ignore */` on PrimeVue prop extensions in Vue interfaces
 - Supabase row types: format in helpers before returning to client
 - Discriminated unions for parse results (`ParsedBody | { error: string }`), not `Record<string, unknown>` for error branches

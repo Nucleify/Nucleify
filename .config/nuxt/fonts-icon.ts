@@ -1,7 +1,8 @@
 /** Konfiguracja fontów (Google Fonts) i ikon (@nuxt/icon) */
 export const googleFontsConfig = {
   families: {
-    Inter: '300..700',
+    'Instrument Sans': '400..700',
+    'JetBrains Mono': '100..800',
   },
   display: 'swap' as const,
   subsets: ['latin'],
@@ -15,7 +16,7 @@ export const googleFontsConfig = {
 export const iconConfig = {
   mode: 'svg' as const,
   serverBundle: {
-    collections: ['prime', 'mdi'],
+    collections: ['mdi'],
   },
   clientBundle: {
     scan: true,

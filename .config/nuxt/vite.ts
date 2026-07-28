@@ -1,4 +1,11 @@
 export const viteConfig = {
+  vue: {
+    template: {
+      compilerOptions: {
+        isCustomElement: (tag: string) => tag.startsWith('nui-'),
+      },
+    },
+  },
   build: {
     chunkSizeWarningLimit: 1600,
     minify: 'terser',
@@ -15,11 +22,10 @@ export const viteConfig = {
         manualChunks: {
           vue: ['vue', 'vue-router', '@unhead/vue', 'vue-i18n'],
           pinia: ['pinia', 'pinia-plugin-persistedstate'],
-          primevue: ['primevue', '@primevue/forms', '@primeuix/themes'],
+          'nucleify-ui': ['lit'],
           chartjs: ['chart.js'],
           marked: ['marked'],
           highlightjs: ['highlight.js'],
-          swiper: ['swiper'],
           iconify: ['@iconify/vue', '@iconify/utils', '@iconify/types'],
         },
       },
@@ -39,6 +45,6 @@ export const viteConfig = {
     },
   },
   optimizeDeps: {
-    include: ['vue', 'vue-router', 'primevue'],
+    include: ['vue', 'vue-router', 'lit', 'animejs'],
   },
 }

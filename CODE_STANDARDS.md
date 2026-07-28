@@ -51,11 +51,10 @@ root/
 │   └── <module_name>/
 │
 ├── nuxt/                   ← Frontend application (Nuxt/Vue)
-│   ├── atomic/             ← Atomic Design components
 │   ├── pages/              ← Route pages
 │   ├── layouts/            ← Layout templates
 │   ├── composables/        ← Vue composables
-│   ├── plugins/            ← Nuxt plugins
+│   ├── plugins/            ← Nuxt plugins (nucleify-ui, modules)
 │   └── assets/             ← Global styles, images
 │
 └── tests/                  ← Global tests
@@ -111,45 +110,16 @@ modules/<module_name>/
 ```
 nuxt/
 ├── assets/                 ← Global assets
-├── atomic/
-│   ├── boson/              ← Utility functions, helpers
-│   │   └── *.ts
-│   │
-│   ├── atom/               ← Basic UI components
-│   │   └── <component>/
-│   │       ├── index.vue
-│   │       ├── index.ts
-│   │       ├── index.stories.ts
-│   │       ├── _index.scss
-│   │       └── types/
-│   │
-│   ├── molecule/           ← Combined atoms
-│   │   └── <component>/
-│   │
-│   └── organism/           ← Complex components
-│       └── <component>/
-│
 ├── composables/            ← Vue 3 composables
-│   └── *.ts
-│
 ├── layouts/                ← Layout templates
-│   ├── default.vue
-│   ├── back-office.vue
-│   └── front-office.vue
-│
-├── pages/                  ← Route pages
-│   ├── index.vue
-│   ├── <page>.vue
-│   └── <nested>/
-│       └── *.vue
-│
-├── plugins/                ← Nuxt plugins
-│   ├── modules.ts          ← Register modules from /modules folder
-│   └── *.ts
-│
-└── server/                 ← Nuxt server configuration & utils
-    └── *.ts
+├── pages/                  ← Thin route wrappers → modules
+├── plugins/                ← nucleify-ui + registerNuc*
+│   ├── nucleify-ui.client.ts
+│   └── modules.ts
+└── server/                 ← API gateway adapter & utils
 ```
+
+UI components come from **`nucleify-ui`** (`nui-*`) and feature modules under `modules/nuc_*`.
 
 ---
 
@@ -159,9 +129,9 @@ nuxt/
 
 | Type | Convention | Example |
 |------|------------|---------|
-| Module folders | `snake_case` | `nuc_auth`, `nuc_entities` |
+| Module folders | `snake_case` | `nuc_users`, `nuc_entities` |
 | PHP classes | `PascalCase` | `UserController.php`, `AuthService.php` |
-| Config files | `snake_case` | `nuc_auth.php` |
+| Config files | `snake_case` | `nuc_users.php` |
 | Migration files | Laravel convention | `2024_01_01_000000_create_users_table.php` |
 | Routes | `kebab-case` in URLs | `/api/user-profile` |
 
@@ -180,12 +150,7 @@ nuxt/
 
 ## Component Architecture
 
-### Atomic Design Hierarchy
-
-1. **Boson** – Utility functions, transformations, helpers
-2. **Atom** – Basic UI elements (Button, Input, Icon, Label)
-3. **Molecule** – Simple combinations of atoms (FloatLabel, Anchor, Tile)
-4. **Organism** – Complex components (DataTable, Dialog, Menu, Toast)
+Use **`nucleify-ui`** Lit web components (`nui-button`, `nui-dialog`, `nui-card`, …). Feature screens live in `modules/nuc_*` as thin Vue/React wrappers around those CEs.
 5. **Template** – Page-level layouts combining organisms (PageHeader, DashboardLayout)
 
 ### Component File Structure
@@ -258,9 +223,9 @@ nuxt/
 ## Module Guidelines
 
 - Each module should be **self-contained**
-- Backend logic stays in `modules/<module>/app/`
+- Backend logic stays in `modules/<module>/supabase/` (API handlers, migrations, seeders)
 - Frontend: `modules/<module>/{constants,types,utils,pages,components}/`
-- Global/shared Ad* components go in `nuxt/atomic/` / `next/atomic/`
+- **UI**: use **`nucleify-ui`** Lit web components (`nui-*`). Do not `import … from 'nucleify'` inside feature modules for UI (relative / `nuc_api` / `nuc_client` / `nuc_server` only).
 - Use `config.json` for module metadata
 - Document module purpose in `README.md`
 
@@ -268,12 +233,10 @@ nuxt/
 
 ## Why These Standards
 
-- Aligns with Laravel + Nuxt recommended patterns  
-- Enables horizontal scaling with new modules  
+- Aligns with Nuxt, Next, and Supabase patterns  
+- Enables horizontal scaling with modules  
 - Maintains clear separation between backend/frontend  
-- Atomic Design provides consistent UI architecture  
-- Designed for scalability and future-proof development  
-- Supports building modular, flexible, and forward-looking applications  
+- UI via nucleify-ui (`nui-*`)  
 - Easy onboarding for new contributors
 
 ---

@@ -1,7 +1,10 @@
-'use client'
+import { redirect } from 'next/navigation'
 
-import { NucHomePage } from 'nucleify'
-
-export default function LangIndexPage() {
-  return <NucHomePage />
+export default async function LangIndexPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>
+}) {
+  const { lang } = await params
+  redirect(`/${lang || 'en'}/home`)
 }

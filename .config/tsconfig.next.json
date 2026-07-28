@@ -19,7 +19,7 @@
     "baseUrl": "..",
     "tsBuildInfoFile": "../.next/cache/tsconfig.next.tsbuildinfo",
     "paths": {
-      "nucleify": ["next/atomic/index.ts"],
+      "nucleify": ["next/nucleify.ts"],
       "nuc_server": ["nuxt/server/nuc_server.ts"],
       "nuc_client": ["modules/nuc_api/supabase/client.ts"],
       "nuc_api": ["modules/nuc_api/supabase/api/server.ts"],

@@ -1,19 +1,7 @@
 export {}
 
 declare global {
-  type ObjectNameType =
-    | 'activity'
-    | 'article'
-    | 'card'
-    | 'contact'
-    | 'feature'
-    | 'file'
-    | 'link'
-    | 'money'
-    | 'question'
-    | 'task'
-    | 'technology'
-    | 'user'
+  type ObjectNameType = string
 
   type NuiTypeType = ObjectNameType | 'main' | 'secondary'
 
@@ -27,4 +15,25 @@ declare global {
   }
 
   type PositionType = 'top' | 'right' | 'left' | 'bottom'
+}
+
+type NuiElementProps = React.DetailedHTMLProps<
+  React.HTMLAttributes<HTMLElement> & Record<string, unknown>,
+  HTMLElement
+>
+
+declare module 'react' {
+  // biome-ignore lint/style/noNamespace: React IntrinsicElements augmentation requires JSX namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      'nui-button': NuiElementProps
+      'nui-dialog': NuiElementProps
+      'nui-heading': NuiElementProps
+      'nui-icon': NuiElementProps
+      'nui-input-text': NuiElementProps
+      'nui-logo': NuiElementProps
+      'nui-select': NuiElementProps
+      'nui-toast': NuiElementProps
+    }
+  }
 }

@@ -10,7 +10,6 @@ import { i18nConfig, LOCALES } from './nuxt/locales'
 import { modules } from './nuxt/modules'
 import { nitroConfig } from './nuxt/nitro'
 import { performanceConfig } from './nuxt/performance'
-import { primevueConfig } from './nuxt/primevue'
 import { getRouteRules } from './nuxt/route-rules'
 import { runtimeConfig } from './nuxt/runtime'
 import { schemaOrgConfig } from './nuxt/schema-org'
@@ -19,7 +18,7 @@ import { viteConfig } from './nuxt/vite'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: '2025-07-15',
   ...devConfig,
   modules,
   runtimeConfig,
@@ -28,7 +27,6 @@ export default defineNuxtConfig({
   schemaOrg: schemaOrgConfig,
   vite: viteConfig,
   experimental: experimentalConfig,
-  primevue: primevueConfig,
   googleFonts: googleFontsConfig,
   features: featuresConfig,
   icon: iconConfig,

@@ -4,6 +4,7 @@ import { createError, defineEventHandler, readBody } from 'h3'
 import { useRuntimeConfig } from 'nitropack/runtime'
 
 const WEBSITE_TYPES = new Set(['landing', 'business', 'blog', 'help'])
+const MAX_MESSAGE = 4000
 
 function escapeHtml(s: string): string {
   return s
@@ -13,11 +14,16 @@ function escapeHtml(s: string): string {
     .replace(/"/g, '&quot;')
 }
 
-function renderHtmlEmail(email: string, websiteType: string): string {
+function renderHtmlEmail(
+  email: string,
+  websiteType: string,
+  message: string
+): string {
   const safeEmail = escapeHtml(email)
   const formattedType =
     websiteType.charAt(0).toUpperCase() + websiteType.slice(1)
   const safeType = escapeHtml(formattedType)
+  const safeMessage = escapeHtml(message).replace(/\n/g, '<br>')
   const now = new Date().toISOString().replace('T', ' ').slice(0, 19)
 
   return `<!DOCTYPE html>
@@ -26,7 +32,7 @@ function renderHtmlEmail(email: string, websiteType: string): string {
 <body style="font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;color:#333;max-width:600px;margin:0 auto;padding:20px;background:#f5f5f5">
   <div style="background:#fff;border-radius:8px;padding:30px;box-shadow:0 2px 10px rgba(0,0,0,.1)">
     <div style="text-align:center;padding-bottom:20px;border-bottom:2px solid #10b981;margin-bottom:20px">
-      <h1 style="color:#10b981;margin:0;font-size:24px">📬 New Contact Form Submission</h1>
+      <h1 style="color:#10b981;margin:0;font-size:24px">New Contact Form Submission</h1>
     </div>
     <div style="margin-bottom:15px">
       <span style="font-weight:600;color:#555;display:block;margin-bottom:5px">Email:</span>
@@ -35,9 +41,17 @@ function renderHtmlEmail(email: string, websiteType: string): string {
       </div>
     </div>
     <div style="margin-bottom:15px">
-      <span style="font-weight:600;color:#555;display:block;margin-bottom:5px">Website Type:</span>
+      <span style="font-weight:600;color:#555;display:block;margin-bottom:5px">What they need:</span>
       <div style="background:#f9f9f9;padding:12px;border-radius:4px;border-left:3px solid #10b981">${safeType}</div>
     </div>
+    ${
+      message
+        ? `<div style="margin-bottom:15px">
+      <span style="font-weight:600;color:#555;display:block;margin-bottom:5px">Message:</span>
+      <div style="background:#f9f9f9;padding:12px;border-radius:4px;border-left:3px solid #10b981;white-space:pre-wrap">${safeMessage}</div>
+    </div>`
+        : ''
+    }
     <div style="text-align:center;margin-top:30px;padding-top:20px;border-top:1px solid #eee;color:#888;font-size:12px">
       <p>This message was sent from the contact form on your website.</p>
       <p>Sent at: ${escapeHtml(now)}</p>
@@ -54,8 +68,9 @@ async function sendWithResend(options: {
   replyTo: string
   email: string
   websiteType: string
+  message: string
 }): Promise<void> {
-  const { apiKey, from, to, replyTo, email, websiteType } = options
+  const { apiKey, from, to, replyTo, email, websiteType, message } = options
   const res = await fetch('https://api.resend.com/emails', {
     method: 'POST',
     headers: {
@@ -67,7 +82,7 @@ async function sendWithResend(options: {
       to: [to],
       reply_to: replyTo,
       subject: `New Contact Form Submission - ${email}`,
-      html: renderHtmlEmail(email, websiteType),
+      html: renderHtmlEmail(email, websiteType, message),
     }),
   })
   if (!res.ok) {
@@ -104,6 +119,7 @@ export default defineEventHandler(async (event) => {
   const email = String(raw?.email ?? '')
     .trim()
     .toLowerCase()
+  const message = String(raw?.message ?? '').trim()
   const websiteType = String(raw?.website_type ?? '').trim()
 
   if (!email) {
@@ -145,6 +161,18 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  if (message.length > MAX_MESSAGE) {
+    throw createError({
+      statusCode: 422,
+      statusMessage: 'Validation error.',
+      data: {
+        success: false,
+        error: 'Validation error.',
+        errors: { message: ['Message is too long.'] },
+      },
+    })
+  }
+
   if (supabaseUrl && serviceKey) {
     const supabase = createClient(supabaseUrl, serviceKey, {
       auth: { persistSession: false, autoRefreshToken: false },
@@ -172,6 +200,7 @@ export default defineEventHandler(async (event) => {
       replyTo: email,
       email,
       websiteType,
+      message,
     })
   } catch (e) {
     const msg = e instanceof Error ? e.message : 'Resend failed'

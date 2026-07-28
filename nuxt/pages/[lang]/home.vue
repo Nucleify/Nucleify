@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import NucHomePage from '../../../modules/nuc_pages/pages/home/index.vue'
+</script>
+
 <template>
-  <div id="home"><nuc-home-page /></div>
+  <NucHomePage />
 </template>
