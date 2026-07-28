@@ -1,4 +1,16 @@
-html {
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow: auto;
   color-scheme: dark;
-  background-color: black;
+  background-color: #070908;
+}
+
+.nuc-next {
+  --nuc-font-ui:
+    var(--font-instrument-sans), "Instrument Sans", system-ui, sans-serif;
+  --nuc-font-mono:
+    var(--font-jetbrains-mono), "JetBrains Mono", ui-monospace, monospace;
+  font-family: var(--nuc-font-ui);
 }

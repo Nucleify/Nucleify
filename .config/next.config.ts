@@ -36,7 +36,7 @@ const resolveAliases = {
   nuc_api: '../modules/nuc_api/supabase/api/server.ts',
   nuc_server: '../nuxt/server/nuc_server.ts',
   modules: '../modules',
-  nucleify: './atomic/index.ts',
+  nucleify: './nucleify.ts',
 } as const
 
 const nextProjectDir = path.join(repoRoot, 'next')

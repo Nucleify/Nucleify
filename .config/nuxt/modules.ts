@@ -8,10 +8,8 @@ export const modules = [
   '@nuxtjs/robots',
   '@nuxtjs/sitemap',
   '@pinia/nuxt',
-  '@primevue/nuxt-module',
   'nuxt-schema-org',
   'nuxt-seo-utils',
-  'nuxt-swiper',
   'nuxt-vitalizer',
   'pinia-plugin-persistedstate/nuxt',
   ...(process.env.APP_ENV === 'local'

@@ -1,11 +1,3 @@
 <template>
-  <div id="default">
-    <main><slot /></main>
-  </div>
+  <slot />
 </template>
-
-<script setup lang="ts">
-useHead({
-  bodyAttrs: { class: 'nuc-system' },
-})
-</script>

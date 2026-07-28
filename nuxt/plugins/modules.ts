@@ -2,43 +2,19 @@
 import type { NuxtApp } from 'nuxt/app'
 import { defineNuxtPlugin } from 'nuxt/app'
 
-import { registerNucGlobals } from 'nucleify'
-
-import {
-  registerNucActivity,
-  registerNucAdmin,
-  registerNucAnimations,
-  registerNucAuth,
-  registerNucBreadcrumb,
-  registerNucCalendar,
-  registerNucCharts,
-  registerNucColors,
-  registerNucDarkMode,
-  registerNucDataTable,
-  registerNucDialog,
-  registerNucDock,
-  registerNucDocumentation,
-  registerNucDocuments,
-  registerNucEntities,
-  registerNucEntitiesStructural,
-  registerNucFiles,
-  registerNucFriendship,
-  registerNucLanguages,
-  registerNucModules,
-  registerNucNavigation,
-  registerNucPageBuilder,
-  registerNucPages,
-  registerNucPricings,
-  registerNucScreenLoader,
-  registerNucSections,
-  registerNucSettings,
-  registerNucShare,
-  registerNucSocials,
-  registerNucTemplates,
-  registerNucTerminal,
-  registerNucTooltip,
-  registerNucUsers,
-} from '../../modules'
+import { registerNucActivity } from '../../modules/nuc_activity/nuc_activity'
+import { registerNucCalendar } from '../../modules/nuc_calendar/nuc_calendar'
+import { registerNucColors } from '../../modules/nuc_colors/nuc_colors'
+import { registerNucDarkMode } from '../../modules/nuc_dark_mode/nuc_dark_mode'
+import { registerNucDocumentation } from '../../modules/nuc_documentation/nuc_documentation'
+import { registerNucDocuments } from '../../modules/nuc_documents/nuc_documents'
+import { registerNucEntities } from '../../modules/nuc_entities/nuc_entities'
+import { registerNucGlobals } from '../../modules/nuc_globals/nuc_globals'
+import { registerNucLanguages } from '../../modules/nuc_languages/nuc_languages'
+import { registerNucModules } from '../../modules/nuc_modules/nuc_modules'
+import { registerNucPageBuilder } from '../../modules/nuc_pagebuilder/nuc_pagebuilder'
+import { registerNucPages } from '../../modules/nuc_pages/nuc_pages'
+import { registerNucUsers } from '../../modules/nuc_users/nuc_users'
 
 export default defineNuxtPlugin({
   name: 'modules-registration',
@@ -46,37 +22,16 @@ export default defineNuxtPlugin({
   setup(nuxtApp: NuxtApp) {
     registerNucGlobals(nuxtApp.vueApp)
     registerNucActivity(nuxtApp.vueApp)
-    registerNucAdmin(nuxtApp.vueApp)
-    registerNucAnimations(nuxtApp.vueApp)
-    registerNucAuth(nuxtApp.vueApp)
-    registerNucBreadcrumb(nuxtApp.vueApp)
     registerNucCalendar(nuxtApp.vueApp)
-    registerNucCharts(nuxtApp.vueApp)
     registerNucColors(nuxtApp.vueApp)
     registerNucDarkMode(nuxtApp.vueApp)
-    registerNucDataTable(nuxtApp.vueApp)
-    registerNucDialog(nuxtApp.vueApp)
-    registerNucDock(nuxtApp.vueApp)
     registerNucDocuments(nuxtApp.vueApp)
     registerNucDocumentation(nuxtApp.vueApp)
     registerNucEntities(nuxtApp.vueApp)
-    registerNucEntitiesStructural(nuxtApp.vueApp)
-    registerNucFiles(nuxtApp.vueApp)
-    registerNucFriendship(nuxtApp.vueApp)
     registerNucLanguages(nuxtApp)
     registerNucModules(nuxtApp.vueApp)
-    registerNucNavigation(nuxtApp.vueApp)
     registerNucPageBuilder(nuxtApp.vueApp)
     registerNucPages(nuxtApp.vueApp)
-    registerNucPricings(nuxtApp.vueApp)
-    registerNucScreenLoader(nuxtApp.vueApp)
-    registerNucSections(nuxtApp.vueApp)
-    registerNucSettings(nuxtApp.vueApp)
-    registerNucShare(nuxtApp.vueApp)
-    registerNucSocials(nuxtApp.vueApp)
-    registerNucTemplates(nuxtApp.vueApp)
-    registerNucTerminal(nuxtApp.vueApp)
-    registerNucTooltip(nuxtApp.vueApp)
     registerNucUsers(nuxtApp.vueApp)
   },
 })
