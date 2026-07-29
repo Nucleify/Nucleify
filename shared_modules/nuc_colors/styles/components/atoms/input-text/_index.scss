@@ -1,0 +1,8 @@
+@import 'mixins';
+
+.p-inputtext[nui-type] {
+  @include entity-inputtext-styles(
+    var(--inp-item) !important,
+    var(--inp-focus) !important
+  );
+}

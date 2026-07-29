@@ -1,0 +1,5 @@
+@import '../input-text/mixins';
+
+@mixin entity-textarea-styles($item-color, $box-shadow-color) {
+  @include entity-inputtext-styles($item-color, $box-shadow-color);
+}

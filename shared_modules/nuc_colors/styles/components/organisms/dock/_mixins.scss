@@ -1,0 +1,35 @@
+@mixin entity-dock-item-styles($item-color) {
+  color: $item-color;
+  text-decoration: none !important;
+  border: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  transition: color 0.2s ease;
+}
+
+@mixin entity-sidebar-link-hover($type) {
+  @include entity-with-suffix($type) using ($suffix) {
+    color: $white-text-color;
+    background: color-mix(in srgb, var(--#{$type}-h#{$suffix}) 88%, transparent);
+    border-color: color-mix(in srgb, var(--#{$type}-c#{$suffix}) 22%, transparent);
+
+    .iconify,
+    .pi {
+      color: var(--#{$type}-c#{$suffix});
+    }
+  }
+}
+
+@mixin entity-sidebar-link-active($type) {
+  @include entity-with-suffix($type) using ($suffix) {
+    color: $white-text-color;
+    background: color-mix(in srgb, var(--#{$type}-sl#{$suffix}) 92%, transparent);
+    border-color: color-mix(in srgb, var(--#{$type}-c#{$suffix}) 30%, transparent);
+    box-shadow: inset 1px 0 0 var(--#{$type}-c#{$suffix});
+
+    .iconify,
+    .pi {
+      color: var(--#{$type}-c#{$suffix});
+    }
+  }
+}

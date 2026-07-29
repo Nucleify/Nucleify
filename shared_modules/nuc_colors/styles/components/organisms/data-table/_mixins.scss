@@ -1,0 +1,77 @@
+@mixin entity-datatable-styles($item-color, $selected-color, $highlight-color) {
+  // Sorted column: .p-datatable-column-sorted | .p-sortable-column.p-highlight
+  .p-datatable-column-sorted,
+  .p-sortable-column.p-datatable-column-sorted,
+  .p-datatable-header-cell.p-datatable-column-sorted,
+  th.p-datatable-column-sorted,
+  .p-sortable-column.p-highlight,
+  th.p-sortable-column.p-highlight,
+  .p-datatable-header-cell.p-highlight {
+    background: $highlight-color;
+
+    .p-datatable-column-title,
+    .p-column-title {
+      color: $item-color;
+    }
+
+    .p-datatable-sort-icon,
+    .p-sortable-column-icon,
+    .p-column-sort-icon,
+    [data-pc-section='sort'] {
+      color: $item-color;
+    }
+  }
+
+  .p-paginator-content button:hover,
+  .p-paginator .p-paginator-page:hover,
+  .p-paginator .p-paginator-first:hover,
+  .p-paginator .p-paginator-prev:hover,
+  .p-paginator .p-paginator-next:hover,
+  .p-paginator .p-paginator-last:hover {
+    color: $item-color;
+    background: $highlight-color;
+  }
+
+  .p-button {
+    .iconify {
+      color: $item-color;
+    }
+  }
+
+  .p-datatable-thead {
+    th:not(.p-datatable-column-sorted, .p-highlight, .action-column),
+    .p-datatable-header-cell:not(.p-datatable-column-sorted, .p-highlight, .action-column) {
+      &:hover {
+        background: $highlight-color;
+      }
+    }
+  }
+
+  .p-datatable-tbody {
+    tr {
+      &:hover {
+        background: $highlight-color;
+
+        td {
+          background: $highlight-color;
+        }
+      }
+    }
+  }
+
+  .p-paginator {
+    .p-select {
+      &.p-focus {
+        box-shadow: 0 0 0.5em $item-color;
+        border-color: $item-color;
+      }
+    }
+
+    .p-dropdown {
+      &.p-inputwrapper-focus {
+        box-shadow: 0 0 0.5em $item-color;
+        border-color: $item-color;
+      }
+    }
+  }
+}

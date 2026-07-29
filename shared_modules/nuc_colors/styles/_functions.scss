@@ -1,0 +1,3 @@
+@function nuc-primary-rgba($alpha) {
+  @return rgba(var(--nuc-primary-color-rgb), $alpha);
+}

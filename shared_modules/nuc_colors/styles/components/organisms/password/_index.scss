@@ -1,0 +1,8 @@
+@import 'mixins';
+
+.p-password[nui-type] .p-inputtext {
+  @include entity-password-styles(
+    var(--inp-item) !important,
+    var(--inp-focus) !important
+  );
+}

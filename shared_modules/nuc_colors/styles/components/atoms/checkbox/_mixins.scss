@@ -1,0 +1,20 @@
+@mixin entity-checkbox-styles($box-shadow-color) {
+  &.p-invalid {
+    .p-checkbox-box {
+      border-color: $invalid-color !important;
+    }
+  }
+
+  &:not(.p-invalid):hover {
+    .p-checkbox-box {
+      border-color: $box-shadow-color;
+    }
+  }
+}
+
+@mixin entity-checkbox-checked-styles($item-color) {
+  .p-checkbox-box {
+    background-color: $item-color;
+    border-color: $item-color;
+  }
+}

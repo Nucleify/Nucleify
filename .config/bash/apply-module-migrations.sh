@@ -4,8 +4,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-SUPABASE_LOCAL_BIN="$ROOT_DIR/node_modules/.bin/supabase"
-
+PKG_DIR="$ROOT_DIR/root"
+SUPABASE_LOCAL_BIN="${PKG_DIR}/node_modules/.bin/supabase"
+if [[ ! -x "$SUPABASE_LOCAL_BIN" ]]; then SUPABASE_LOCAL_BIN="$ROOT_DIR/node_modules/.bin/supabase"; fi
 MODE="${1:-linked}"
 if [[ "$MODE" != "linked" && "$MODE" != "local" ]]; then
   echo "Usage: bash .config/bash/apply-module-migrations.sh [linked|local]"
@@ -18,10 +19,10 @@ if [[ "$MODE" == "local" ]]; then
 fi
 
 shopt -s nullglob
-module_sources=( "$ROOT_DIR"/modules/*/supabase/migrations/*.sql )
+module_sources=( "$ROOT_DIR"/shared_modules/*/supabase/migrations/*.sql )
 
 if [[ ${#module_sources[@]} -eq 0 ]]; then
-  echo "No module migrations found under modules/*/supabase/migrations."
+  echo "No module migrations found under shared_modules/*/supabase/migrations."
   exit 0
 fi
 

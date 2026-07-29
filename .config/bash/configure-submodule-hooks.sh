@@ -35,7 +35,7 @@ configure_submodule_hooks() {
 
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
-    configure_submodule_hook_path "$root_dir/modules/nuc_$name" "$hooks_path"
+    configure_submodule_hook_path "$root_dir/shared_modules/nuc_$name" "$hooks_path"
   done < "$submodules_file"
 
   echo

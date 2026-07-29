@@ -1,0 +1,16 @@
+#front-office main > [class$='-container'] > :first-child:not(.service-hero, .offer-hero),
+#front-office main > * > [class$='-container'] > :first-child:not(.service-hero, .offer-hero) {
+  padding: 6rem 0 0;
+
+  @media (min-width: 768px) {
+    padding: 8rem 0 0;
+  }
+
+  @media (min-width: 992px) {
+    padding: 10rem 0 0;
+  }
+
+  @media (min-width: 1200px) {
+    padding: 12rem 0 0;
+  }
+}

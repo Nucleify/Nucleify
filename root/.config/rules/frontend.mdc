@@ -1,0 +1,28 @@
+---
+description: Nuxt landing app — structure, plugins, nucleify-ui
+globs: root/src/**,root/.config/nuxt/**
+alwaysApply: false
+---
+
+# Frontend — root (`@nucleify/root`)
+
+Landing Nuxt app. Source in `root/src/`. Shared code comes from `shared_modules/`.
+
+## Structure
+
+```
+root/src/
+├── pages/[lang]/     # Thin route wrappers
+├── pages/home/       # Landing sections (migrated from nuc_pages)
+├── plugins/          # nucleify-ui + registerNuc*
+├── server/api/       # Nitro gateway catch-all
+├── assets/           # SCSS entry (imports from shared_modules)
+└── nucleify.ts       # Re-exports shared_modules + flashToast
+```
+
+## Conventions
+
+- UI: `nui-*` from `nucleify-ui` (Lit web components)
+- Vue SFCs: `<script setup lang="ts">`
+- Import shared via `shared_modules/nuc_*/…` or `modules` alias
+- Do not place shared code under `root/`

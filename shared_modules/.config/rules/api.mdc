@@ -1,0 +1,40 @@
+---
+description: Supabase API handlers, gateway, migrations for shared_modules
+globs: shared_modules/*/supabase/**,root/src/server/**,shared_modules/nuc_api/**
+alwaysApply: false
+---
+
+# API — shared_modules
+
+Backend logic in `shared_modules/nuc_*/supabase/`. Gateway dispatches to handlers.
+
+## Gateway
+
+- Entry: `root/src/server/api/[...slug].ts` → `dispatchSupabaseApiGateway`
+- Registry: `shared_modules/nuc_api/supabase/api/gateway_dispatch.ts`
+
+## handle.ts pattern
+
+```typescript
+import { apiMethodNotAllowed, apiNotHandled, withGatewayUser } from 'nuc_api'
+import type { ApiContext, ApiHandlerResult } from 'nuc_server'
+
+export async function handleExampleApi(ctx: ApiContext): Promise<ApiHandlerResult> {
+  if (ctx.segments[0] !== 'example') return apiNotHandled()
+  return withGatewayUser(ctx, async (gatewayCtx, userId) => {
+    const result = await dispatchAuthRoutes(exampleRoutes, gatewayCtx, userId)
+    return result ?? apiMethodNotAllowed()
+  })
+}
+```
+
+## SQL workflow
+
+```bash
+pnpm supabase:migrations:apply:local
+pnpm supabase:seeders:apply:local
+```
+
+- Migrations: `shared_modules/nuc_*/supabase/migrations/*.sql`
+- Merged by `.config/bash/merge-module-supabase-sql.sh`
+- Enable RLS; add policies for `authenticated` role

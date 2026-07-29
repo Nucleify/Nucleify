@@ -1,0 +1,33 @@
+---
+import { readdirSync, existsSync } from 'node:fs'
+import { join } from 'node:path'
+
+const contentRoot = join(process.cwd(), 'content')
+const langs = existsSync(contentRoot)
+  ? readdirSync(contentRoot).filter((name) => !name.startsWith('.'))
+  : []
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Nucleify Documentation</title>
+  </head>
+  <body>
+    <main>
+      <h1>Nucleify Documentation</h1>
+      <p>
+        Content migrated from <code>nuc_documentation</code> into
+        <code>docs/content</code>.
+      </p>
+      <ul>
+        {langs.map((lang) => (
+          <li>
+            <a href={`/content/${lang}`}>{lang}</a>
+          </li>
+        ))}
+      </ul>
+      <p>Utils/constants live under <code>src/lib/</code> for future Astro pages.</p>
+    </main>
+  </body>
+</html>

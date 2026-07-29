@@ -1,70 +1,51 @@
-/node_modules
-/public/build
-/public/hot
-/public/storage
-/public/sitemap.xml
-/storage/*.key
-.env
-.env.backup
-.env.production
-next/next-env.d.ts
-Homestead.json
-Homestead.yaml
-auth.json
-npm-debug.log
-yarn-error.log
-/.fleet
-/.idea
-/.vscode
-tsconfig.next.tsbuildinfo
+# Dependencies
+**/node_modules
 
-.data
-.output
-.nuxt
-.nuxtrc
-.nitro
-.cache
-dist
+# Env
+**/.env
+**/.env.*
+!**/.env.*example
 
-build
-coverage
+# Nuxt / Nitro / Vite outputs
+**/.output
+**/.data
+**/.nuxt
+**/.nuxtrc
+**/.nitro
+**/.cache
+**/dist
+**/build
+**/.wrangler
+**/.stylelintcache
 
-# Nuxt dev/build outputs
-.output
-.data
-.nuxt
-.nitro
-.cache
-.stylelintcache
-dist
+# Public build artefacts
+**/public/build
+**/public/hot
+**/public/storage
+**/public/sitemap.xml
+**/storage/*.key
 
-# Node dependencies
-node_modules
+# Coverage / logs
+**/coverage
+**/logs
+**/*.log
+**/*npm-debug.log
+**/*yarn-error.log
 
-# Logs
-logs
-*.log
+# IDE / OS
+**/.DS_Store
+**/.fleet
+**/.idea
+**/.vscode
 
-# Misc
-.DS_Store
-.fleet
-.idea
-
-# Local env files
-.env
-.env.*
-!.env.*example
+# TypeScript
+**/tsconfig*.tsbuildinfo
 
 # AI workflow
 .ai/specs/*
 
+# Cursor generated rules (synced from .config/rules via sync-rules)
+.cursor
+
 # Supabase
 supabase/.temp
-
-# Wrangler
-.wrangler
-
-# Next.js
-.next
-next/.next
-next/out

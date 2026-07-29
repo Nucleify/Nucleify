@@ -1,0 +1,7 @@
+@import 'mixins';
+
+.p-selectbutton[nui-type] {
+  @include entity-select-button-styles(
+    var(--selbtn-selected) !important
+  );
+}

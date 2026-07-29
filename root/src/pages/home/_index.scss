@@ -1,0 +1,533 @@
+.nuc-home {
+  --home-bg: #070908;
+  --home-fg: #e7ebe8;
+  --home-muted: #8b968f;
+  --home-dim: #5c665f;
+  --home-line: rgb(255 255 255 / 8%);
+  --home-accent: var(--nui-primary-color, #10b981);
+  --home-accent-soft: rgb(var(--nui-primary-color-rgb, 16, 185, 129) / 16%);
+  --home-max: 1200px;
+  --home-pad: 1rem;
+  --home-mx: 0;
+  --home-my: 0;
+  --home-iris: 0%;
+  --home-iris-x: 18%;
+  --home-iris-y: 40%;
+
+  position: relative;
+  height: 100svh;
+  color: var(--home-fg);
+  background: var(--home-bg);
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  overflow: hidden;
+  isolation: isolate;
+
+  &-shear {
+    pointer-events: none;
+    position: absolute;
+    inset: -12%;
+    z-index: 0;
+    transform: perspective(1200px) rotateX(calc(var(--home-my) * -4deg))
+      rotateY(calc(var(--home-mx) * 5deg))
+      translate3d(calc(var(--home-mx) * 18px), calc(var(--home-my) * 14px), 0);
+    transform-origin: 50% 35%;
+    will-change: transform;
+  }
+
+  &-aura {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(
+        48% 42% at calc(70% + var(--home-mx) * 6%),
+        calc(18% + var(--home-my) * 4%),
+        var(--home-accent-soft),
+        transparent 70%
+      ),
+      radial-gradient(
+        36% 30% at calc(18% + var(--home-mx) * -4%),
+        calc(72% + var(--home-my) * 3%),
+        rgb(16 185 129 / 7%),
+        transparent 72%
+      );
+  }
+
+  &-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--home-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--home-line) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(
+      circle at var(--home-iris-x) var(--home-iris-y),
+      #000 var(--home-iris),
+      transparent calc(var(--home-iris) + 18%)
+    );
+    opacity: 0.7;
+    transform: translate3d(
+      calc(var(--home-mx) * -10px),
+      calc(var(--home-my) * -8px),
+      0
+    );
+  }
+
+  &-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: var(--home-max);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0.85rem var(--home-pad);
+    pointer-events: none;
+
+    a,
+    button {
+      pointer-events: auto;
+    }
+  }
+
+  &-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: inherit;
+    text-decoration: none;
+    min-width: 0;
+  }
+
+  &-brand-name {
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+
+  &-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  &-menu-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid rgb(255 255 255 / 12%);
+    border-radius: 0.7rem;
+    background: rgb(7 9 8 / 72%);
+    color: var(--home-fg);
+    cursor: pointer;
+  }
+
+  &-nav-links {
+    position: absolute;
+    top: calc(100% + 0.45rem);
+    right: var(--home-pad);
+    left: var(--home-pad);
+    z-index: 6;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.15rem;
+    margin-left: 0;
+    padding: 0.55rem;
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 0.9rem;
+    background: rgb(7 9 8 / 94%);
+    box-shadow: 0 16px 40px rgb(0 0 0 / 45%);
+    pointer-events: auto;
+
+    &.is-open {
+      display: flex;
+    }
+
+    .nuc-home-nav-link {
+      padding: 0.75rem 0.85rem;
+      border-radius: 0.65rem;
+    }
+
+    .nuc-home-nav-link-login {
+      margin-top: 0.25rem;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+
+  &-nav-link {
+    color: var(--home-muted);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: var(--home-fg);
+    }
+
+    &-login {
+      color: var(--home-fg);
+      padding: 0.35rem 0.85rem;
+      border: 1px solid rgb(255 255 255 / 14%);
+      border-radius: 999px;
+      transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.2s ease;
+
+      &:hover {
+        color: var(--home-bg);
+        border-color: var(--home-accent);
+        background: var(--home-accent);
+      }
+    }
+  }
+
+  &-nav-login-mobile {
+    display: inline-flex;
+    font-size: 0.82rem;
+    padding: 0.3rem 0.7rem;
+  }
+
+  &-rail {
+    position: absolute;
+    inset: auto 0 0.7rem;
+    z-index: 4;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  &:not(.nuc-home-ready) {
+    .nuc-home-nav,
+    .nuc-home-rail {
+      opacity: 0;
+    }
+  }
+
+  &-rail-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.35rem;
+    margin: 0;
+    padding: 0.35rem 0.45rem;
+    list-style: none;
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 999px;
+    background: rgb(7 9 8 / 88%);
+    backdrop-filter: blur(10px);
+    pointer-events: auto;
+  }
+
+  &-rail-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin: 0;
+    padding: 0.35rem 0.45rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--home-dim);
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+    transition: color 0.25s ease;
+
+    &::before {
+      display: none;
+      content: '';
+      width: 1.25rem;
+      height: 1px;
+      background: currentcolor;
+      opacity: 0.45;
+      transition:
+        width 0.3s ease,
+        opacity 0.3s ease,
+        background-color 0.3s ease;
+    }
+
+    &:hover {
+      color: var(--home-fg);
+    }
+
+    &.is-active {
+      color: var(--home-accent);
+      background: rgb(16 185 129 / 14%);
+
+      &::before {
+        width: 2rem;
+        opacity: 1;
+        background: var(--home-accent);
+      }
+    }
+  }
+
+  &-rail-index {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+  }
+
+  &-rail-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  &-inner {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    clip-path: circle(var(--home-iris) at var(--home-iris-x) var(--home-iris-y));
+  }
+
+  &-ready &-inner,
+  &-booting#{&}-ready &-inner {
+    clip-path: none;
+  }
+
+  &-scroller {
+    height: 100%;
+    overflow: hidden auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: contain;
+    scrollbar-width: none;
+    scroll-padding-bottom: 3.5rem;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  @media (min-width: $md) {
+    &-nav {
+      padding: 1rem var(--home-pad);
+    }
+
+    &-nav-actions {
+      display: none;
+    }
+
+    &-nav-login-mobile {
+      display: none;
+    }
+
+    &-nav-links {
+      position: static;
+      top: auto;
+      right: auto;
+      left: auto;
+      z-index: auto;
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.35rem 1.15rem;
+      margin-left: auto;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+
+      &.is-open {
+        display: flex;
+      }
+
+      .nuc-home-nav-link {
+        padding: 0;
+        border-radius: 0;
+      }
+
+      .nuc-home-nav-link-login {
+        margin-top: 0;
+        text-align: inherit;
+        justify-content: flex-start;
+      }
+    }
+
+    &-rail {
+      inset: 50% clamp(0.75rem, 2.5vw, 1.75rem) auto auto;
+      transform: translateY(-50%);
+      display: block;
+      pointer-events: auto;
+    }
+
+    &-rail-list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.65rem;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      backdrop-filter: none;
+    }
+
+    &-rail-item {
+      gap: 0.7rem;
+      padding: 0.2rem 0;
+      border-radius: 0;
+
+      &::before {
+        display: block;
+      }
+
+      &.is-active {
+        background: transparent;
+      }
+    }
+
+    &-rail-label {
+      position: static;
+      width: auto;
+      height: auto;
+      padding: 0;
+      margin: 0;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+      border: 0;
+    }
+
+    &-scroller {
+      scroll-padding-bottom: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &-shear,
+    &-grid,
+    &-inner {
+      transform: none !important;
+      clip-path: none !important;
+      mask-image: none !important;
+    }
+
+    &-scroller {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.nuc-home-panel {
+  box-sizing: border-box;
+  min-height: 100%;
+  height: auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+
+  @media (min-width: $md) {
+    height: 100%;
+  }
+}
+
+/* First slide must be exactly one snap page — never taller than the scroller. */
+.nuc-home-hero.nuc-home-panel {
+  height: 100%;
+  max-height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.nuc-home-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: var(--home-max);
+  margin: 0 auto;
+  padding: 4.75rem var(--home-pad) 4.5rem;
+
+  @media (min-width: $md) {
+    justify-content: center;
+    padding: 5.5rem var(--home-pad) 3rem;
+  }
+}
+
+.nuc-home-eyebrow {
+  margin: 0 0 0.85rem;
+  color: var(--home-accent);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.nuc-home-title {
+  margin: 0;
+  font-size: clamp(1.55rem, 7vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+
+  @media (min-width: $md) {
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+  }
+}
+
+.nuc-home-support {
+  margin: 1rem 0 0;
+  max-width: 36rem;
+  color: var(--home-muted);
+  font-size: 0.98rem;
+  line-height: 1.6;
+
+  @media (min-width: $md) {
+    font-size: 1.05rem;
+  }
+}
+
+.nuc-home-hero-glyph {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-weight: 650;
+  font-synthesis: none;
+  font-variant-ligatures: none;
+  color: var(--home-accent);
+  text-shadow: 0 0 18px rgb(var(--nui-primary-color-rgb, 16, 185, 129) / 35%);
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+
+  &.is-locked {
+    color: inherit;
+    text-shadow: none;
+  }
+}
+
+.nuc-home-anim-lattice {
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}

@@ -1,0 +1,14 @@
+@mixin entity-colorpicker-styles($item-color, $box-shadow-color) {
+  .p-colorpicker-preview {
+    &:hover {
+      border-color: $item-color;
+    }
+
+    &:focus {
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0 0.2rem $box-shadow-color;
+      border-color: $item-color;
+    }
+  }
+}

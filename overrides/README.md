@@ -1,40 +1,17 @@
 # Overrides
 
-This folder contains files that override originals from `nuxt/` and `modules/` without editing core source.
+Monorepo override layer. Each app/package has its own folder — put files that mirror the original path inside the matching package.
 
-## How it works
+```txt
+overrides/
+├── admin/              # @nucleify/admin
+├── docs/              # @nucleify/docs
+├── root/               # @nucleify/root (landing)
+└── shared_modules/     # @nucleify/shared-modules
+```
 
-1. **Folder structure** — mirror the original path under `overrides/`:
-   - `overrides/nuxt/` — overrides files from `nuxt/`
-   - `overrides/modules/` — overrides files from `modules/`
+## Rules
 
-2. **Frontend examples** (Nuxt / TypeScript / Vue):
-   - Original: `nuxt/composables/useAuth.ts`
-   - Override: `overrides/nuxt/composables/useAuth.ts`
-
-   Or:
-   - Original: `modules/nuc_users/auth/pages/login.vue`
-   - Override: `overrides/modules/nuc_users/auth/pages/login.vue`
-
-3. **Backend examples** (Supabase API handlers):
-   - Original: `modules/nuc_users/supabase/api/handle.ts`
-   - Override: `overrides/modules/nuc_users/supabase/api/handle.ts`
-
-   Or:
-   - Original: `modules/nuc_entities/supabase/seeders/20260501000000_nuc_entities_seeder.sql`
-   - Override: `overrides/modules/nuc_entities/supabase/seeders/20260501000000_nuc_entities_seeder.sql`
-
-4. **Automatic resolution**:
-   - **Frontend**: imports are redirected to override files; originals are excluded from the build
-   - **Server handlers**: `modules/*/supabase/api/*.ts` resolved the same way when imported by the API gateway
-
-## Notes
-
-- Override paths must match originals exactly
+- Paths must match originals exactly (relative to that package)
 - Overrides **fully replace** the original file (no merging)
-- Copy only what you need to change
-- Test after upgrades — overrides can break when upstream paths change
-
-## Module documentation
-
-See [`nuc_overrides`](../modules/nuc_overrides/README.md) for implementation details.
+- Prefer package-scoped folders (`overrides/root/…`) over cross-package hacks

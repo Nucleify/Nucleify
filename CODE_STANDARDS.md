@@ -1,13 +1,14 @@
 # Nucleify – Coding Standards
 
 This document defines coding, structure, and naming standards for the Nucleify project.  
-Following these standards ensures code is readable, consistent, and maintainable across backend and frontend layers.
+Following these standards ensures code is readable, consistent, and maintainable across all packages.
 
 ## Table of Contents
 
-- [Project Structure Overview](#project-structure-overview)
-- [Module Structure](#module-structure)
-- [Nuxt Frontend Structure](#nuxt-frontend-structure)
+- [Monorepo Structure](#monorepo-structure)
+- [Package Overview](#package-overview)
+- [Shared Module Structure](#shared-module-structure)
+- [Root App Structure](#root-app-structure)
 - [File and Folder Naming](#file-and-folder-naming)
 - [Component Architecture](#component-architecture)
 - [Coding Rules](#coding-rules)
@@ -16,155 +17,123 @@ Following these standards ensures code is readable, consistent, and maintainable
 - [Why These Standards](#why-these-standards)
 - [Example: Creating a New Module](#example-creating-a-new-module)
 
-
 ---
 
-## Project Structure Overview
+## Monorepo Structure
 
 ```
-root/
-├── app/                    ← Laravel core application
-│   ├── Console/            ← Artisan commands
-│   ├── Exceptions/         ← Exception handlers
-│   ├── Http/               ← Controllers, Middleware, Kernel
-│   ├── Providers/          ← Service providers
-│   ├── Services/           ← Shared services
-│   └── Traits/             ← Reusable traits (Getters, Setters, Runners)
-│
-├── config/                 ← Laravel configuration files
-│   ├── app.php
-│   ├── database.php
-│   ├── modules.php
-│   └── ...
-│
-├── database/               ← Database layer
-│   ├── factories/          ← Model factories
-│   ├── migrations/         ← Database migrations
-│   └── seeders/            ← Database seeders
-│
-├── routes/                 ← Route definitions
-│   ├── api.php             ← API routes
-│   ├── web.php             ← Web routes
-│   └── modules.php         ← Module routes aggregator
-│
-├── modules/                ← Self-contained feature modules (backend + frontend)
-│   └── <module_name>/
-│
-├── nuxt/                   ← Frontend application (Nuxt/Vue)
-│   ├── pages/              ← Route pages
-│   ├── layouts/            ← Layout templates
-│   ├── composables/        ← Vue composables
-│   ├── plugins/            ← Nuxt plugins (nucleify-ui, modules)
-│   └── assets/             ← Global styles, images
-│
-└── tests/                  ← Global tests
+nucleify/
+├── root/               ← @nucleify/root — Nuxt landing app
+├── admin/              ← @nucleify/admin — Nuxt admin app
+├── docs/               ← @nucleify/docs — Astro documentation
+├── compiler/           ← @nucleify/compiler — IR/portable UI compiler
+├── shared_modules/     ← shared nuc_* packages
+├── overrides/          ← per-package override layers
+├── .config/            ← monorepo-level bash scripts and CI helpers
+├── .cursor/            ← Cursor agents and shared rules
+└── supabase/           ← Supabase config and merged SQL
 ```
 
 ---
 
-## Module Structure
+## Package Overview
 
-Each module is self-contained with both backend and frontend code:
+| Package | Name | Tech | Dev command |
+|---------|------|------|-------------|
+| `root/` | `@nucleify/root` | Nuxt 3 | `pnpm nuxt` |
+| `admin/` | `@nucleify/admin` | Nuxt 3 | `pnpm admin` |
+| `docs/` | `@nucleify/docs` | Astro | `pnpm docs` |
+| `compiler/` | `@nucleify/compiler` | TypeScript | — |
+| `shared_modules/` | `@nucleify/shared_modules` | TypeScript / Vue | — |
+
+Each package has its own `package.json`, `.config/`, and optional `.config/rules/`.
+
+---
+
+## Shared Module Structure
+
+Shared feature packages live in `shared_modules/nuc_*` and are self-contained:
 
 ```
-modules/<module_name>/
-├── app/                    ← Backend PHP code
-│   ├── Controllers/        ← HTTP controllers
-│   ├── Services/           ← Business logic
-│   ├── Models/             ← Eloquent models
-│   ├── Resources/          ← API resources
-│   └── Requests/           ← Form requests
-│
-├── config/                 ← Module configuration (PHP)
-│
-├── database/               ← Module database files
-│   ├── migrations/         ← Module-specific migrations
-│   ├── seeders/            ← Module seeders
-│   └── factories/          ← Module factories
-│
-├── routes/                 ← Module routes
-│   └── api.php
-│
-├── constants/              ← Shared constants
-├── types/                  ← TypeScript types
-├── utils/                  ← Utility functions / API requests
-├── pages/                  ← Full pages (NucExamplePage)
-├── components/             ← Vue/React reusable UI
-├── styles/                 ← Optional shared SCSS
-│
-├── tests/                  ← Backend PHP tests (Pest)
-├── vitests/                ← Frontend tests (Vitest)
-│
+shared_modules/nuc_example/
 ├── config.json             ← Module metadata
-├── index.ts                ← Frontend entry point
-├── <module_name>.ts        ← Main frontend module file
-├── <module_name>.php       ← Main backend module file
-├── _index.scss             ← Module styles entry (optional)
-└── README.md               ← Module documentation
+├── nuc_example.ts          ← Vue plugin (registerNucExample)
+├── index.ts                ← Vue/Nuxt barrel exports
+├── _index.scss             ← Global module styles (optional)
+├── supabase/
+│   ├── api/
+│   │   ├── handle.ts           ← Gateway entry
+│   │   ├── example_handlers.ts ← Route table + handlers
+│   │   └── example_helpers.ts  ← Domain helpers
+│   ├── migrations/
+│   ├── factories/
+│   └── seeders/
+├── constants/
+├── types/
+├── utils/
+│   └── api.ts              ← Request composables
+├── pages/                  ← Full page components (NucExamplePage)
+├── components/             ← Reusable UI components
+├── styles/                 ← Optional shared SCSS
+└── vitests/                ← Vitest unit tests
 ```
+
+Frontend-only modules omit `supabase/`. API-only modules omit UI folders.
 
 ---
 
-## Nuxt Frontend Structure
+## Root App Structure
 
 ```
-nuxt/
-├── assets/                 ← Global assets
-├── composables/            ← Vue 3 composables
-├── layouts/                ← Layout templates
-├── pages/                  ← Thin route wrappers → modules
-├── plugins/                ← nucleify-ui + registerNuc*
+root/src/
+├── pages/
+│   ├── [lang]/         ← Thin i18n route wrappers
+│   └── home/           ← Landing sections
+├── plugins/
 │   ├── nucleify-ui.client.ts
-│   └── modules.ts
-└── server/                 ← API gateway adapter & utils
+│   └── modules.ts      ← registerNuc* calls
+├── composables/        ← Auto-imported Vue composables
+├── server/api/         ← Nitro catch-all → nuc_api gateway
+├── assets/             ← SCSS entry (_index.scss)
+├── layouts/
+├── middleware/
+└── nucleify.ts         ← Re-exports from shared_modules
 ```
 
-UI components come from **`nucleify-ui`** (`nui-*`) and feature modules under `modules/nuc_*`.
+Config pieces split in `root/.config/nuxt/`. Entry: `root/nuxt.config.ts`.
 
 ---
 
 ## File and Folder Naming
 
-### Backend (Laravel/PHP)
+### TypeScript / Vue
 
 | Type | Convention | Example |
 |------|------------|---------|
-| Module folders | `snake_case` | `nuc_users`, `nuc_entities` |
-| PHP classes | `PascalCase` | `UserController.php`, `AuthService.php` |
-| Config files | `snake_case` | `nuc_users.php` |
-| Migration files | Laravel convention | `2024_01_01_000000_create_users_table.php` |
-| Routes | `kebab-case` in URLs | `/api/user-profile` |
-
-### Frontend (Nuxt/Vue/TypeScript)
-
-| Type | Convention | Example |
-|------|------------|---------|
-| Vue components | `kebab-case` folders, `index.vue` | `input-text/index.vue` |
-| TypeScript files | `snake_case` or `kebab-case` | `use_auth.ts`, `fetch-user.ts` |
-| Type definitions | `PascalCase` in files | `UserProps`, `ButtonEmits` |
-| Composables | `use` prefix | `useAuth.ts`, `useConfig.ts` |
+| Module folders | `snake_case` | `nuc_colors`, `nuc_entities` |
+| Vue components | `kebab-case` folder, `index.vue` | `input-text/index.vue` |
+| TypeScript files | `snake_case` | `use_auth.ts`, `gateway_dispatch.ts` |
+| React-specific files | `*.react.ts` | `use_headings.react.ts` |
+| Type definitions | `PascalCase` names | `NucColorObjectInterface` |
 | Constants | `SCREAMING_SNAKE_CASE` | `API_BASE_URL` |
-| Entry points | `index.ts` / `index.vue` | Component main file |
+| Entry points | `index.ts` / `index.vue` | barrel or component root |
 
 ---
 
 ## Component Architecture
 
-Use **`nucleify-ui`** Lit web components (`nui-button`, `nui-dialog`, `nui-card`, …). Feature screens live in `modules/nuc_*` as thin Vue/React wrappers around those CEs.
-5. **Template** – Page-level layouts combining organisms (PageHeader, DashboardLayout)
+UI comes from **`nucleify-ui`** Lit web components (`nui-*`). Feature screens in `shared_modules/nuc_*/pages/` are thin wrappers around those custom elements.
 
-### Component File Structure
+### Component file structure
 
 ```
 <component>/
-├── index.vue               ← Main component
-├── index.ts                ← Exports & composition
-├── _index.scss             ← Component styles (optional)
+├── index.vue           ← Main component
+├── _index.scss         ← Component styles (optional)
 └── types/
-    ├── index.ts            ← Type exports
-    ├── functions.ts        ← Component function types
-    ├── interfaces.ts       ← Component interfaces
-    └── variables.ts        ← Component variable types
+    ├── index.ts
+    ├── interfaces.ts
+    └── variables.ts
 ```
 
 ---
@@ -174,110 +143,92 @@ Use **`nucleify-ui`** Lit web components (`nui-button`, `nui-dialog`, `nui-card`
 ### General
 
 - Prefer **readability** over cleverness
-- Follow **KISS** – Keep It Simple, Stupid
-- Follow **DRY** – Don't Repeat Yourself
-- Comment only when code intent is unclear
-- Remove unused code, don't comment it out
+- Follow **KISS** and **DRY**
+- Comment only when intent is unclear
+- Remove unused code — do not comment it out
 - Keep functions small and focused
 
 ### TypeScript
 
-- Use explicit types/interfaces; avoid `any`
-- Export types from dedicated `types/` folders
-- Use `const` assertions for literal types
+- Strict mode; no `any`
 - Prefer interfaces over type aliases for objects
-
-### PHP
-
-- Follow PSR-12 coding standard
-- Use type hints for parameters and return types
-- Separate concerns: Controllers → Services → Models
+- Export types from `types/` folders
+- Use `const` assertions for literal types
+- Naming: `Nuc{Entity}{Type}Interface` (e.g. `NucColorObjectInterface`)
 
 ### Vue
 
-- Use Composition API with `<script setup lang="ts">`
+- Composition API with `<script setup lang="ts">`
 - Define props and emits with TypeScript
-- Keep templates clean; move logic to composables
+- Keep templates clean; move logic to composables or utils
 - Use `index.vue` as component entry point
 
 ---
 
 ## Testing Standards
 
-### Backend (Pest/PHPUnit)
-
-- Tests in `modules/<module>/tests/` or `tests/`
-- Use Pest syntax for cleaner tests
-- Group related tests with `describe()`
-- Use factories for test data
-
 ### Frontend (Vitest)
 
-- Tests in `modules/<module>/vitests/` or `vitests/`
-- Test file naming: `*.test.ts`
-- Mock external dependencies
-- Test component behavior, not implementation
+- Config: `root/.config/vitest.config.ts`; entry: `root/vitest.config.ts`
+- Tests in `shared_modules/nuc_*/vitests/` or `root/vitests/`
+- Filename: `*.test.ts`
+- `vi.clearAllMocks()` in `beforeEach`
+- Mock external dependencies; test behavior, not implementation
+
+```bash
+pnpm tests        # vitest run
+pnpm test:watch   # vitest watch
+```
 
 ---
 
 ## Module Guidelines
 
-- Each module should be **self-contained**
-- Backend logic stays in `modules/<module>/supabase/` (API handlers, migrations, seeders)
-- Frontend: `modules/<module>/{constants,types,utils,pages,components}/`
-- **UI**: use **`nucleify-ui`** Lit web components (`nui-*`). Do not `import … from 'nucleify'` inside feature modules for UI (relative / `nuc_api` / `nuc_client` / `nuc_server` only).
+- Each module must be **self-contained** — no imports from app packages (`root`, `admin`, `docs`)
+- Do not import `from 'nucleify'` inside modules (circular barrel)
+- Backend logic: `supabase/api/`, `supabase/migrations/`, `supabase/seeders/`
+- Frontend: `constants/`, `types/`, `utils/`, `pages/`, `components/`
+- Register in: `shared_modules/index.ts`, `root/src/plugins/modules.ts`, and the API gateway
 - Use `config.json` for module metadata
-- Document module purpose in `README.md`
 
 ---
 
 ## Why These Standards
 
-- Aligns with Nuxt, Next, and Supabase patterns  
-- Enables horizontal scaling with modules  
-- Maintains clear separation between backend/frontend  
-- UI via nucleify-ui (`nui-*`)  
+- Aligns with Nuxt 3, Astro, and Supabase patterns
+- Enables horizontal scaling via isolated `nuc_*` modules
+- Clear separation: shared logic in `shared_modules/`, app shell in `root/`/`admin/`/`docs/`
+- UI via `nucleify-ui` (`nui-*`) — no framework-specific coupling
 - Easy onboarding for new contributors
 
 ---
 
 ## Example: Creating a New Module
 
-```bash
-modules/nuc_example/
-├── app/
-│   ├── Controllers/
-│   │   └── ExampleController.php
-│   └── Services/
-│       └── ExampleService.php
-├── config/
-│   └── nuc_example.php
-├── database/
+```
+shared_modules/nuc_example/
+├── config.json
+├── nuc_example.ts
+├── index.ts
+├── supabase/
+│   ├── api/
+│   │   ├── handle.ts
+│   │   ├── example_handlers.ts
+│   │   └── example_helpers.ts
 │   └── migrations/
-│       └── 2024_01_01_000000_create_examples_table.php
-├── routes/
-│   └── api.php
+│       └── 20240101000000_nuc_example.sql
 ├── constants/
-│   └── example.ts
+│   └── index.ts
 ├── types/
-│   └── example.ts
+│   └── index.ts
 ├── utils/
-│   └── example.ts
+│   └── api.ts
 ├── pages/
-│   └── ExamplePage/
-│       ├── index.vue
-│       └── index.tsx
+│   └── NucExamplePage/
+│       └── index.vue
 ├── components/
 │   └── ExampleCard/
-│       ├── index.vue
-│       └── index.tsx
-├── tests/
-│   └── ExampleTest.php
-├── vitests/
-│   └── example.test.ts
-├── config.json
-├── index.ts
-├── nuc_example.ts
-├── nuc_example.php
-└── README.md
+│       └── index.vue
+└── vitests/
+    └── example.test.ts
 ```

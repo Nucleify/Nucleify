@@ -1,0 +1,9 @@
+@import 'mixins';
+
+.p-accordion[nui-type] {
+  @include entity-accordion-styles(
+    var(--acc-item) !important,
+    var(--acc-focus) !important,
+    var(--acc-highlight) !important
+  );
+}
