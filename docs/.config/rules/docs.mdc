@@ -1,0 +1,24 @@
+---
+description: Docs Astro app — conventions and structure
+globs: docs/**
+alwaysApply: false
+---
+
+# Docs (`@nucleify/docs`)
+
+Astro documentation app.
+
+## Conventions
+
+- Markdown content: `docs/content/{lang}/{category}/{slug}.md`
+- Helpers/utils: `docs/src/lib/`
+- Categories defined in `docs/src/lib/constants/docs.ts`
+- Overrides: `overrides/docs/`
+- Rules: `docs/.config/rules/`
+- Agents: `root/.cursor/agents/`
+
+## Commands
+
+```bash
+pnpm docs   # pnpm --filter @nucleify/docs dev
+```

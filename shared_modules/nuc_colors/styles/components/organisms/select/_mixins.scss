@@ -1,0 +1,42 @@
+@mixin entity-select-styles($item-color, $box-shadow-color) {
+  &.p-invalid {
+    border-color: $invalid-color;
+
+    &:focus {
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0.5em $invalid-color;
+      border-color: $invalid-color;
+    }
+  }
+
+  &:not(.p-invalid) {
+    &:hover {
+      border-color: $box-shadow-color;
+    }
+
+    &.p-focus {
+      outline: 0 none;
+      outline-offset: 0;
+      box-shadow: 0 0 0.5em $box-shadow-color;
+      border-color: $item-color;
+    }
+  }
+}
+
+@mixin entity-select-overlay-styles(
+  $item-color,
+  $selected-color,
+  $highlight-color
+) {
+  .p-select-option {
+    &:hover {
+      background: $highlight-color;
+    }
+
+    &[data-p-selected="true"] {
+      color: $item-color;
+      background: $selected-color;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@nucleify/shared-modules",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "description": "Thin shared packages across root/admin/docs/compiler.",
+  "exports": {
+    ".": "./index.ts",
+    "./nuc_api": "./nuc_api/index.ts",
+    "./nuc_api/*": "./nuc_api/*",
+    "./nuc_colors": "./nuc_colors/index.ts",
+    "./nuc_colors/*": "./nuc_colors/*",
+    "./nuc_dark_mode": "./nuc_dark_mode/index.ts",
+    "./nuc_dark_mode/*": "./nuc_dark_mode/*",
+    "./nuc_globals": "./nuc_globals/index.ts",
+    "./nuc_globals/*": "./nuc_globals/*",
+    "./nuc_languages": "./nuc_languages/index.ts",
+    "./nuc_languages/*": "./nuc_languages/*",
+    "./nuc_stores": "./nuc_stores/index.ts",
+    "./nuc_stores/*": "./nuc_stores/*"
+  }
+}

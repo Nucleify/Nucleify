@@ -5,8 +5,8 @@ TEST_CASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 . "$TEST_CASE_DIR/../helpers.sh"
 
 root="$(with_tmp_root prepare-check)"
-mkdir -p "$root/modules/nuc_demo" "$root/bin"
-printf '{"version":"1.0.0"}\n' > "$root/modules/nuc_demo/config.json"
+mkdir -p "$root/shared_modules/nuc_demo" "$root/bin"
+printf '{"version":"1.0.0"}\n' > "$root/shared_modules/nuc_demo/config.json"
 printf 'demo\n' > "$root/.config/bash/config/submodules.txt"
 
 cat > "$root/bin/git" <<'EOF'
@@ -42,5 +42,5 @@ status=$?
 set -e
 
 assert_equals "0" "$status" "prepare-submodules exits with success in check mode"
-assert_contains "$output" "Directory 'modules/nuc_demo' exists, skipping"
+assert_contains "$output" "Directory 'shared_modules/nuc_demo' exists, skipping"
 assert_equals "" "$(cat "$git_log")" "git clone should not run in check mode"

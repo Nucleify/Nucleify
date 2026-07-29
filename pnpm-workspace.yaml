@@ -1,5 +1,9 @@
 packages:
-  - "."
+  - "root"
+  - "admin"
+  - "docs"
+  - "compiler"
+  - "shared_modules"
 
 # pnpm-only (npm ignores this file — avoids unknown .npmrc key warnings)
 publicHoistPattern:

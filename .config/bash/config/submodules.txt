@@ -1,16 +1,2 @@
-activity
-api
-calendar
-colors
-dark_mode
-documentation
-documents
-entities
-globals
-languages
-modules
-overrides
-pagebuilder
-pages
-stores
-users
+# Shared modules now live in shared_modules/ (absorbed, not git submodules).
+# Re-add submodule names here if you restore gitlink workflow.

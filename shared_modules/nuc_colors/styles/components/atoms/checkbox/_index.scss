@@ -1,0 +1,31 @@
+@import 'mixins';
+
+.ad-checkbox-root {
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+
+  .ad-checkbox-indeterminate-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.75rem;
+    height: 0.75rem;
+    color: $primary-white-text-color;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.p-checkbox[nui-type] {
+  @include entity-checkbox-styles(var(--chk-focus) !important);
+}
+
+label:hover .p-checkbox[nui-type] .p-checkbox-box {
+  border-color: var(--chk-item) !important;
+}
+
+.p-checkbox-checked[nui-type],
+.p-checkbox[nui-type].p-highlight {
+  @include entity-checkbox-checked-styles(var(--chk-item) !important);
+}

@@ -1,0 +1,9 @@
+@import 'mixins';
+
+.p-datatable[nui-type] {
+  @include entity-datatable-styles(
+    var(--hl-item),
+    var(--hl-selected),
+    var(--hl-highlight)
+  );
+}

@@ -1,0 +1,12 @@
+---
+description: Nuxt composables and shared request helpers (root)
+globs: root/src/composables/**,root/src/**/use_*.ts,shared_modules/*/utils/api.ts
+alwaysApply: false
+---
+# Composables — root
+
+Auto-imported from `root/src/composables/**` (Nuxt auto-import).
+
+Runtime helpers: `useConfig()`, `apiUrl()`, `appUrl()`, `appEnv()` (if present).
+
+Shared request helpers live in `shared_modules/nuc_*/utils/api.ts` — import directly or re-export via `nucleify` alias.

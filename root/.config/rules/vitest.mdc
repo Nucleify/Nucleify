@@ -1,0 +1,20 @@
+---
+description: Vitest — root landing tests and shared_modules tests
+globs: root/vitests/**,shared_modules/**/vitests/**,root/**/*.test.ts,shared_modules/**/*.test.ts
+alwaysApply: false
+---
+
+# Vitest — root
+
+Config: `root/.config/vitest.config.ts`. Entry: `root/vitest.config.ts`.
+
+Tests in:
+- `root/vitests/` — plugin registration, global helpers
+- `shared_modules/nuc_*/vitests/` — module-level unit tests
+
+```bash
+pnpm tests        # vitest run
+pnpm test:watch   # vitest watch
+```
+
+Conventions: `vi.clearAllMocks()` in `beforeEach`; typed callbacks `(): void`; mock `nucleify` for composable tests.

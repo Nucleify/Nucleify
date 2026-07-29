@@ -1,0 +1,9 @@
+{
+  "name": "@nucleify/compiler",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "echo \"compiler: not implemented yet (Faza 0+)\"",
+    "check": "echo \"compiler: not implemented yet (Faza 0+)\""
+  }
+}

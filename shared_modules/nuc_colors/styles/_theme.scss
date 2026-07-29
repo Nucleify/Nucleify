@@ -1,0 +1,17 @@
+@import 'framework';
+
+// Nuxt shell — scope Nuxt palette to Nuxt only.
+// IMPORTANT: Next.js also uses `#back-office` as a shell id, so `#back-office` must NOT imply Nuxt colors.
+.nuc-nuxt,
+.nuc-nuxt #back-office {
+  @include nuc-primary-palette-nuxt;
+  @include nuc-theme-light-nuxt;
+}
+
+.nuc-nuxt.p-dark,
+.p-dark .nuc-nuxt,
+.nuc-nuxt #back-office.p-dark,
+.p-dark .nuc-nuxt #back-office {
+  @include nuc-primary-palette-nuxt;
+  @include nuc-theme-dark-nuxt;
+}

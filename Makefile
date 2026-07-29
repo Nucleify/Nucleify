@@ -1,19 +1,19 @@
-.PHONY: setup nuxt next
+.PHONY: setup root admin docs
 
 setup:
-	$(MAKE) nuxt
-	$(MAKE) next
-
-nuxt:
-	cp .config/.env.nuxt.example .env
 	pnpm install
 	pnpm prepare:husky
+	pnpm --filter @nucleify/root prepare
+	pnpm sync-rules
 
-	pnpm nuxt
-
-next:
-	cp .config/.env.next.example .env
+root:
+	cp root/.config/.env.example .env
 	pnpm install
 	pnpm prepare:husky
+	pnpm --filter @nucleify/root nuxt
 
-	pnpm next
+admin:
+	pnpm --filter @nucleify/admin dev
+
+docs:
+	pnpm --filter @nucleify/docs dev

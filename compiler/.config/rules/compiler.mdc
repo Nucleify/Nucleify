@@ -1,0 +1,18 @@
+---
+description: Compiler package — IR/portable UI conventions
+globs: compiler/**
+alwaysApply: false
+---
+
+# Compiler (`@nucleify/compiler`)
+
+IR-first portable UI compiler (`.nuc.tsx` → Vue + React emit).
+
+## Conventions
+
+- Source: `compiler/src/`
+- Tests: `compiler/tests/`
+- Fixtures: `compiler/fixtures/`
+- Keep compiler logic self-contained — do not import from `root/`, `admin/`, `docs/`
+- Rules: `compiler/.config/rules/`
+- Agents: `root/.cursor/agents/`

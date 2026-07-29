@@ -1,0 +1,9 @@
+@import 'mixins';
+
+.p-button[nui-type] {
+  @include entity-button-styles(
+    var(--btn-item) !important,
+    var(--btn-focus) !important,
+    var(--btn-selected) !important
+  );
+}

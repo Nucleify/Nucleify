@@ -1,0 +1,13 @@
+---
+description: TypeScript conventions inside shared_modules
+globs: shared_modules/**/*.{ts,tsx,vue}
+alwaysApply: false
+---
+
+# TypeScript — shared_modules
+
+- Strict mode; relative imports within a module
+- Do not import from app packages (`root`, `admin`, `docs`, `compiler`)
+- Naming: `Nuc{Entity}{Type}Interface` (e.g. `NucColorObjectInterface`)
+- Public surface: module's `index.ts` + `shared_modules/index.ts`
+- React-specific types/hooks: `*.react.ts` suffix
