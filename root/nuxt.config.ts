@@ -1,3 +1,5 @@
+import './.config/nuxt/load-env'
+
 import { defineNuxtConfig } from 'nuxt/config'
 
 import { appConfig } from './.config/nuxt/app'
