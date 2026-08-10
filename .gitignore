@@ -41,6 +41,16 @@
 # TypeScript
 **/tsconfig*.tsbuildinfo
 
+# Compiler IR dumps (--dump-ir)
+**/*.ir.json
+
+# Generated simple emit demos at monorepo root only (recreated by `make vue|react|nuxt|next`)
+# Use anchored paths so compiler/templates/* and portable/fixtures/emit/* stay tracked.
+/vue/
+/react/
+/nuxt/
+/next/
+
 # AI workflow
 .ai/specs/*
 

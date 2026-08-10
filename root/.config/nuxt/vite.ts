@@ -1,4 +1,7 @@
+import { ignoreNucTsxPlugin } from "./ignore-nuc-tsx";
+
 export const viteConfig = {
+	plugins: [ignoreNucTsxPlugin()],
 	vue: {
 		template: {
 			compilerOptions: {

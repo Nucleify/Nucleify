@@ -5,7 +5,8 @@
     "moduleResolution": "bundler",
     "strict": true,
     "paths": {
-      "nucleify": ["."]
+      "nucleify": ["."],
+      "#nuc-compiler/runtime": ["../compiler/runtime/index.ts"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx"]

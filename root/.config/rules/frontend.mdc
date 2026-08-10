@@ -26,3 +26,7 @@ root/src/
 - Vue SFCs: `<script setup lang="ts">`
 - Import shared via `shared_modules/nuc_*/…` or `modules` alias
 - Do not place shared code under `root/`
+
+## Portable UI (`*.nuc.tsx`)
+
+Author portable presentational UI in `*.nuc.tsx` (not Vue/React APIs). The compiler emits sibling `.vue` / `.tsx` (+ `.css`). Do not hand-edit emit as source of truth — use `pnpm compiler -- import` after emit edits. Bundlers ignore `*.nuc.tsx`; see `compiler/PORTABLE.md` and `compiler/README.md`.

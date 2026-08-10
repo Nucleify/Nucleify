@@ -1,0 +1,72 @@
+{
+  "irVersion": "0.1.0",
+  "name": "Button",
+  "portable": true,
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "optional": true,
+      "default": "Click"
+    }
+  ],
+  "state": [],
+  "derived": [],
+  "handlers": [
+    {
+      "name": "onClick",
+      "params": [],
+      "body": [
+        {
+          "kind": "expr",
+          "value": {
+            "kind": "call",
+            "callee": {
+              "kind": "member",
+              "object": { "kind": "ident", "name": "console" },
+              "property": "log"
+            },
+            "args": [{ "kind": "literal", "value": "clicked" }]
+          }
+        }
+      ]
+    }
+  ],
+  "template": {
+    "kind": "element",
+    "tag": "button",
+    "props": [
+      {
+        "kind": "static",
+        "name": "type",
+        "value": "button"
+      },
+      {
+        "kind": "static",
+        "name": "class",
+        "value": "btn"
+      },
+      {
+        "kind": "event",
+        "name": "click",
+        "handler": "onClick"
+      }
+    ],
+    "children": [
+      {
+        "kind": "expr",
+        "value": {
+          "kind": "member",
+          "object": { "kind": "ident", "name": "props" },
+          "property": "label"
+        }
+      }
+    ]
+  },
+  "styles": {
+    "css": ".btn { cursor: pointer; }"
+  },
+  "meta": {
+    "sourcePath": "fixtures/source/button.nuc.tsx"
+  }
+}

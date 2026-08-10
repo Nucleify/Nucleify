@@ -1,8 +1,10 @@
 # @nucleify/docs
 
-Astro docs app. Markdown content from former `nuc_documentation` lives in `content/`.
-Shared helpers are under `src/lib/` (`utils`, `constants`, `types`).
+Astro docs app (default host today). Markdown in `content/`; helpers in `src/lib/`.
 
 ```bash
+make docs
 pnpm --filter @nucleify/docs dev
 ```
+
+`TARGET=` is reserved for alternate docs hosts later; Astro remains the default until then.
