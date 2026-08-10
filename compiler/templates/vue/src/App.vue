@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Hello from './components/hello.vue'
 import NuiCta from './components/nui_cta.vue'
+import Counter from './components/counter.vue'
 </script>
 
 <template>
@@ -8,5 +9,6 @@ import NuiCta from './components/nui_cta.vue'
     <h1>Vue emit demo</h1>
     <Hello title="Hello from vue/" />
     <NuiCta label="Launch with nucleify-ui" />
+    <Counter label="Clicks" />
   </main>
 </template>

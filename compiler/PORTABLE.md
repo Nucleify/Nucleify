@@ -16,6 +16,34 @@ Rules for `*.nuc.tsx` sources consumed by `@nucleify/compiler` (IR v0.1).
 - Boolean attributes (`disabled`, `disabled={false}`, `disabled={props.x}`)
 - Static and bound `aria-*` attributes (`aria-label`, `aria-hidden="true"`, …)
 - `nui-*` tags from **nucleify-ui** (Lit custom elements; demo templates register them)
+- Local UI state via `setup` + `state` / `derived` / `handler` (Phase 7)
+
+## State (Phase 7)
+
+```tsx
+import { component, state, derived, handler } from '#nuc-compiler/runtime'
+
+export default component({
+  name: 'Counter',
+  props: { label: { type: 'string', default: 'Count' } },
+  setup(props) {
+    const count = state(0)
+    const double = derived(() => count.value * 2)
+    const onInc = handler(() => {
+      count.set(count.value + 1)
+    })
+    return () => (
+      <button type="button" onClick={onInc}>
+        {props.label + ': ' + double.value}
+      </button>
+    )
+  },
+})
+```
+
+- Emit: Vue `ref` / `computed`; React `useState` / `useMemo` (deps = all state names)
+- v0 `render` + top-level `handlers` still works; **do not** mix with `setup`
+- Runtime markers are compile-time only — they must not appear in emitted bundles
 
 ## Forbidden
 
@@ -26,6 +54,7 @@ Rules for `*.nuc.tsx` sources consumed by `@nucleify/compiler` (IR v0.1).
 - Named slots
 - Bare `window` / `document` without an explicit guard (prefer no DOM globals)
 - Routing, SSR/RSC, middleware, API, Supabase, Pinia/Zustand
+- Async `setup` / `handler` / `derived`, effects, deep watch, custom memo deps API
 
 ## File roles
 
@@ -39,7 +68,7 @@ Rules for `*.nuc.tsx` sources consumed by `@nucleify/compiler` (IR v0.1).
 ## Runtime import
 
 ```tsx
-import { component } from '#nuc-compiler/runtime'
+import { component, state, derived, handler } from '#nuc-compiler/runtime'
 ```
 
 Helpers exposed here must stay host-agnostic. See `compiler/README.md` for CLI cycles A/B.

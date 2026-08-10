@@ -1,5 +1,6 @@
 import Hello from './components/hello'
 import NuiCta from './components/nui_cta'
+import Counter from './components/counter'
 
 export default function App() {
   return (
@@ -7,6 +8,7 @@ export default function App() {
       <h1>React emit demo</h1>
       <Hello title="Hello from react/" />
       <NuiCta label="Launch with nucleify-ui" />
+      <Counter label="Clicks" />
     </main>
   )
 }

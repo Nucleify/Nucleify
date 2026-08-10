@@ -1,6 +1,18 @@
 import type { IrAttr, IrDocument, IrExpr, IrNode, IrProp, IrStmt } from '../ir/types'
 import { irEventToReact } from '../adapters/events'
 import { toReactClassName } from '../adapters/class-name'
+import {
+  reactiveNames,
+  reactSetterName,
+  rewriteReactExpr,
+  rewriteReactStmt,
+  stateNames,
+} from './rewrite-state'
+
+type EmitCtx = {
+  states: Set<string>
+  reactives: Set<string>
+}
 
 function emitExpr(expr: IrExpr): string {
   switch (expr.kind) {
@@ -34,7 +46,11 @@ function emitPropType(type: IrProp['type']): string {
   }
 }
 
-function emitAttrs(attrs: IrAttr[]): string {
+function mapExpr(expr: IrExpr, ctx: EmitCtx): IrExpr {
+  return rewriteReactExpr(expr, ctx.states, ctx.reactives)
+}
+
+function emitAttrs(attrs: IrAttr[], ctx: EmitCtx): string {
   const parts: string[] = []
   for (const attr of attrs) {
     if (attr.kind === 'static') {
@@ -48,7 +64,7 @@ function emitAttrs(attrs: IrAttr[]): string {
       }
     } else if (attr.kind === 'bind') {
       const name = toReactClassName(attr.name)
-      parts.push(`${name}={${emitExpr(attr.value)}}`)
+      parts.push(`${name}={${emitExpr(mapExpr(attr.value, ctx))}}`)
     } else if (attr.kind === 'event') {
       parts.push(`${irEventToReact(attr.name)}={${attr.handler}}`)
     }
@@ -56,56 +72,56 @@ function emitAttrs(attrs: IrAttr[]): string {
   return parts.length ? ` ${parts.join(' ')}` : ''
 }
 
-function emitNode(node: IrNode, indent: string): string {
+function emitNode(node: IrNode, indent: string, ctx: EmitCtx): string {
   switch (node.kind) {
     case 'text':
       return `${indent}${node.value}`
     case 'expr':
-      return `${indent}{${emitExpr(node.value)}}`
+      return `${indent}{${emitExpr(mapExpr(node.value, ctx))}}`
     case 'slot':
       return `${indent}{children}`
     case 'if': {
       const thenExpr =
         node.then.length === 1
-          ? emitNodeInline(node.then[0]!)
-          : `(\n${node.then.map((c) => emitNode(c, `${indent}  `)).join('\n')}\n${indent})`
+          ? emitNodeInline(node.then[0]!, ctx)
+          : `(\n${node.then.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')}\n${indent})`
       if (!node.else?.length) {
-        return `${indent}{${emitExpr(node.test)} ? ${thenExpr} : null}`
+        return `${indent}{${emitExpr(mapExpr(node.test, ctx))} ? ${thenExpr} : null}`
       }
       const elseExpr =
         node.else.length === 1
-          ? emitNodeInline(node.else[0]!)
-          : `(\n${node.else.map((c) => emitNode(c, `${indent}  `)).join('\n')}\n${indent})`
-      return `${indent}{${emitExpr(node.test)} ? ${thenExpr} : ${elseExpr}}`
+          ? emitNodeInline(node.else[0]!, ctx)
+          : `(\n${node.else.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')}\n${indent})`
+      return `${indent}{${emitExpr(mapExpr(node.test, ctx))} ? ${thenExpr} : ${elseExpr}}`
     }
     case 'for': {
       const params = node.index != null ? `(${node.item}, ${node.index})` : `(${node.item})`
       const body =
         node.body.length === 1
-          ? emitNodeInline(node.body[0]!)
-          : `(\n${node.body.map((c) => emitNode(c, `${indent}  `)).join('\n')}\n${indent})`
-      return `${indent}{${emitExpr(node.source)}.map(${params} => ${body})}`
+          ? emitNodeInline(node.body[0]!, ctx)
+          : `(\n${node.body.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')}\n${indent})`
+      return `${indent}{${emitExpr(mapExpr(node.source, ctx))}.map(${params} => ${body})}`
     }
     case 'element':
     case 'component': {
       if (node.kind === 'element' && node.tag === 'fragment') {
         if (!node.children.length) return `${indent}<></>`
-        const inner = node.children.map((c) => emitNode(c, `${indent}  `)).join('\n')
+        const inner = node.children.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')
         return `${indent}<>\n${inner}\n${indent}</>`
       }
       const tag = node.kind === 'component' ? node.name : node.tag
-      const attrs = emitAttrs(node.props)
+      const attrs = emitAttrs(node.props, ctx)
       if (!node.children.length) {
         return `${indent}<${tag}${attrs} />`
       }
-      const inner = node.children.map((c) => emitNode(c, `${indent}  `)).join('\n')
+      const inner = node.children.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')
       return `${indent}<${tag}${attrs}>\n${inner}\n${indent}</${tag}>`
     }
   }
 }
 
-function emitNodeInline(node: IrNode): string {
-  return emitNode(node, '').trim()
+function emitNodeInline(node: IrNode, ctx: EmitCtx): string {
+  return emitNode(node, '', ctx).trim()
 }
 
 function emitStmt(stmt: IrStmt): string {
@@ -131,6 +147,14 @@ function hasSlot(node: IrNode): boolean {
   return false
 }
 
+function emitHandlerFn(handler: IrDocument['handlers'][number], ctx: EmitCtx, indent: string): string[] {
+  const params = handler.params.join(', ')
+  const body = handler.body
+    .map((s) => `${indent}  ${emitStmt(rewriteReactStmt(s, ctx.states, ctx.reactives))}`)
+    .join('\n')
+  return [`${indent}function ${handler.name}(${params}) {`, body, `${indent}}`, '']
+}
+
 /**
  * Emit IR → React TSX body (no headers / `'use client'` / hash).
  */
@@ -140,7 +164,19 @@ export function emitReact(doc: IrDocument, opts?: { cssFileName?: string }): str
     lines.push(`import './${opts.cssFileName}'`, '')
   }
 
+  const ctx: EmitCtx = {
+    states: stateNames(doc.state),
+    reactives: reactiveNames(doc.state, doc.derived),
+  }
+  const withState = doc.state.length > 0 || doc.derived.length > 0
   const withChildren = hasSlot(doc.template)
+
+  if (withState) {
+    const hooks: string[] = []
+    if (doc.state.length) hooks.push('useState')
+    if (doc.derived.length) hooks.push('useMemo')
+    lines.push(`import { ${hooks.join(', ')} } from 'react'`, '')
+  }
 
   if (doc.props.length || withChildren) {
     const fields = doc.props.map((p) => {
@@ -151,10 +187,11 @@ export function emitReact(doc: IrDocument, opts?: { cssFileName?: string }): str
     lines.push('type Props = {', ...fields, '}', '')
   }
 
-  for (const handler of doc.handlers) {
-    const params = handler.params.join(', ')
-    const body = handler.body.map((s) => `  ${emitStmt(s)}`).join('\n')
-    lines.push(`function ${handler.name}(${params}) {`, body, '}', '')
+  // v0: handlers outside component when no reactive state (stable goldens)
+  if (!withState) {
+    for (const handler of doc.handlers) {
+      lines.push(...emitHandlerFn(handler, ctx, ''))
+    }
   }
 
   let propsArg = ''
@@ -166,15 +203,30 @@ export function emitReact(doc: IrDocument, opts?: { cssFileName?: string }): str
     propsArg = `{ ${parts.join(', ')} }: Props`
   }
 
-  const template = rewritePropsAccess(emitNode(doc.template, '    '), doc.props)
+  const inner: string[] = []
+  for (const s of doc.state) {
+    inner.push(
+      `  const [${s.name}, ${reactSetterName(s.name)}] = useState(${emitExpr(mapExpr(s.initial, ctx))})`,
+    )
+  }
+  for (const d of doc.derived) {
+    // Simple deps: all state names referenced loosely via useMemo without custom deps API
+    const deps = doc.state.map((s) => s.name).join(', ')
+    inner.push(
+      `  const ${d.name} = useMemo(() => ${emitExpr(mapExpr(d.from, ctx))}, [${deps}])`,
+    )
+  }
+  if (withState && doc.handlers.length) {
+    if (doc.state.length || doc.derived.length) inner.push('')
+    for (const handler of doc.handlers) {
+      inner.push(...emitHandlerFn(handler, ctx, '  '))
+    }
+  }
 
-  lines.push(
-    `export default function ${doc.name}(${propsArg}) {`,
-    '  return (',
-    template,
-    '  )',
-    '}',
-  )
+  const template = rewritePropsAccess(emitNode(doc.template, '    ', ctx), doc.props)
+  inner.push('  return (', template, '  )')
+
+  lines.push(`export default function ${doc.name}(${propsArg}) {`, ...inner, '}')
 
   return `${lines.join('\n').trim()}\n`
 }

@@ -1,6 +1,6 @@
 /** @nucleify/compiler public API — filled in later phases. */
 export const COMPILER_NAME = '@nucleify/compiler'
-export const COMPILER_PHASE = 6
+export const COMPILER_PHASE = 7
 
 export type {
   IrAttr,

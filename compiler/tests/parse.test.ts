@@ -15,7 +15,7 @@ function stripMeta(doc: IrDocument): IrDocument {
 }
 
 describe('parseTsxToIr golden', () => {
-  for (const name of ['hello', 'button', 'list', 'nui_cta'] as const) {
+  for (const name of ['hello', 'button', 'list', 'nui_cta', 'counter'] as const) {
     it(`${name}.nuc.tsx → portable/fixtures/ir/${name}.json`, () => {
       const source = readFileSync(join(sourceDir, `${name}.nuc.tsx`), 'utf8')
       const expected = JSON.parse(readFileSync(join(irDir, `${name}.json`), 'utf8')) as IrDocument
@@ -25,10 +25,18 @@ describe('parseTsxToIr golden', () => {
     })
   }
 
-  it('rejects state() before Faza 7', () => {
+  it('rejects async setup and effects outside subset', () => {
     expect(() =>
       parseTsxToIr(
-        `export default component({ name: 'X', render: () => <div /> })\nstate(0)\n`,
+        `import { component, state } from '#nuc-compiler/runtime'
+export default component({
+  name: 'X',
+  setup() {
+    watch(() => 1)
+    return () => <div />
+  },
+})
+`,
         'bad.nuc.tsx',
       ),
     ).toThrow(ParseError)

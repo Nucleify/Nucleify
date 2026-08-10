@@ -35,7 +35,7 @@ async function emitWithHeaders(name: string): Promise<string> {
 }
 
 describe('emitVue golden', () => {
-  for (const name of ['hello', 'button', 'list', 'nui_cta'] as const) {
+  for (const name of ['hello', 'button', 'list', 'nui_cta', 'counter'] as const) {
     it(`matches portable/fixtures/emit/vue/${name}.vue`, async () => {
       const expected = readFileSync(join(fixtures, `emit/vue/${name}.vue`), 'utf8')
       const actual = await emitWithHeaders(name)

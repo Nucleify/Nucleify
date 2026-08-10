@@ -1,12 +1,14 @@
 import { parseSync } from 'oxc-parser'
 import type {
   IrAttr,
+  IrDerived,
   IrDocument,
   IrExpr,
   IrHandler,
   IrNode,
   IrProp,
   IrPropType,
+  IrState,
   IrStmt,
 } from '../ir/types'
 import { parseIrDocument } from '../ir/schema'
@@ -46,24 +48,6 @@ function fail(filePath: string, source: string, node: LocNode | null | undefined
   throw new ParseError(message, filePath, line, column)
 }
 
-const PHASE7_CALLS = ['state(', 'derived(', 'handler(', 'setup('] as const
-
-function assertNoPhase7Apis(filePath: string, source: string): void {
-  for (const needle of PHASE7_CALLS) {
-    const idx = source.indexOf(needle)
-    if (idx !== -1) {
-      const before = source.slice(0, idx)
-      const lines = before.split('\n')
-      throw new ParseError(
-        `${needle.slice(0, -1)}() is not available until Faza 7`,
-        filePath,
-        lines.length,
-        (lines.at(-1)?.length ?? 0) + 1,
-      )
-    }
-  }
-}
-
 function propKeyName(key: any): string | null {
   if (!key) return null
   if (key.type === 'Identifier') return key.name
@@ -84,6 +68,10 @@ function eventNameFromJsx(attrName: string): string | null {
 
 function normalizeClassAttr(name: string): string {
   return name === 'className' ? 'class' : name
+}
+
+function isMarkerCall(node: any, name: string): boolean {
+  return node?.type === 'CallExpression' && node.callee?.type === 'Identifier' && node.callee.name === name
 }
 
 function parseExpr(filePath: string, source: string, node: any): IrExpr {
@@ -167,6 +155,39 @@ function parseStmt(filePath: string, source: string, node: any): IrStmt {
   }
 }
 
+function parseFnBodyStmts(filePath: string, source: string, fn: any): IrStmt[] {
+  const bodyNode = fn.body
+  if (bodyNode?.type === 'BlockStatement') {
+    return bodyNode.body.map((s: any) => parseStmt(filePath, source, s))
+  }
+  if (bodyNode) {
+    return [{ kind: 'expr', value: parseExpr(filePath, source, bodyNode) }]
+  }
+  return []
+}
+
+function parseFnParams(filePath: string, source: string, fn: any): string[] {
+  return (fn.params ?? []).map((p: any) => {
+    if (p.type !== 'Identifier') fail(filePath, source, p, 'params must be identifiers')
+    return p.name as string
+  })
+}
+
+function parseDerivedFrom(filePath: string, source: string, arg: any): IrExpr {
+  if (arg?.type !== 'ArrowFunctionExpression' && arg?.type !== 'FunctionExpression') {
+    fail(filePath, source, arg, 'derived() expects a function')
+  }
+  if (arg.async) fail(filePath, source, arg, 'async derived() is not supported in v0.1')
+  const body = unwrap(arg.body)
+  if (body?.type === 'BlockStatement') {
+    if (body.body.length !== 1 || body.body[0]?.type !== 'ReturnStatement' || !body.body[0].argument) {
+      fail(filePath, source, body, 'derived() block must be a single return expression')
+    }
+    return parseExpr(filePath, source, body.body[0].argument)
+  }
+  return parseExpr(filePath, source, body)
+}
+
 function parsePropsObject(filePath: string, source: string, node: any): IrProp[] {
   if (node?.type !== 'ObjectExpression') fail(filePath, source, node, 'props must be an object')
   const props: IrProp[] = []
@@ -214,18 +235,11 @@ function parseHandlersObject(filePath: string, source: string, node: any): IrHan
     if (fn?.type !== 'FunctionExpression' && fn?.type !== 'ArrowFunctionExpression') {
       fail(filePath, source, fn, `handler ${name} must be a function`)
     }
-    const params = (fn.params ?? []).map((p: any) => {
-      if (p.type !== 'Identifier') fail(filePath, source, p, 'handler params must be identifiers')
-      return p.name as string
+    handlers.push({
+      name,
+      params: parseFnParams(filePath, source, fn),
+      body: parseFnBodyStmts(filePath, source, fn),
     })
-    const bodyNode = fn.body
-    let stmts: IrStmt[] = []
-    if (bodyNode?.type === 'BlockStatement') {
-      stmts = bodyNode.body.map((s: any) => parseStmt(filePath, source, s))
-    } else if (bodyNode) {
-      stmts = [{ kind: 'expr', value: parseExpr(filePath, source, bodyNode) }]
-    }
-    handlers.push({ name, params, body: stmts })
   }
   return handlers
 }
@@ -378,6 +392,109 @@ function parseJsxNode(filePath: string, source: string, node: any): IrNode {
   return { kind: 'element', tag, props, children }
 }
 
+function parseRenderJsx(filePath: string, source: string, body: any): IrNode {
+  const unwrapped = unwrap(body)
+  if (unwrapped?.type === 'BlockStatement') {
+    fail(filePath, source, unwrapped, 'render/setup return must be JSX directly (expression body) in v0.1')
+  }
+  return parseJsxNode(filePath, source, unwrapped)
+}
+
+type SetupResult = {
+  state: IrState[]
+  derived: IrDerived[]
+  handlers: IrHandler[]
+  template: IrNode
+}
+
+function parseSetup(filePath: string, source: string, fn: any): SetupResult {
+  if (fn?.type !== 'ArrowFunctionExpression' && fn?.type !== 'FunctionExpression') {
+    fail(filePath, source, fn, 'setup must be a function')
+  }
+  if (fn.async) fail(filePath, source, fn, 'async setup() is not supported in v0.1')
+  if (fn.body?.type !== 'BlockStatement') {
+    fail(filePath, source, fn.body, 'setup() must use a block body')
+  }
+
+  const state: IrState[] = []
+  const derived: IrDerived[] = []
+  const handlers: IrHandler[] = []
+  let template: IrNode | null = null
+
+  for (const stmt of fn.body.body) {
+    if (stmt.type === 'VariableDeclaration') {
+      if (stmt.kind !== 'const') {
+        fail(filePath, source, stmt, 'setup() bindings must use const')
+      }
+      for (const decl of stmt.declarations) {
+        if (decl.id?.type !== 'Identifier') {
+          fail(filePath, source, decl.id, 'setup() binding must be a plain identifier')
+        }
+        const name = decl.id.name as string
+        const init = unwrap(decl.init)
+        if (isMarkerCall(init, 'state')) {
+          if (!init.arguments?.length) fail(filePath, source, init, 'state() requires an initial value')
+          if (init.arguments.length > 1) fail(filePath, source, init, 'state() takes a single initial value')
+          state.push({ name, initial: parseExpr(filePath, source, init.arguments[0]) })
+          continue
+        }
+        if (isMarkerCall(init, 'derived')) {
+          if (init.arguments?.length !== 1) {
+            fail(filePath, source, init, 'derived() takes a single compute function')
+          }
+          derived.push({ name, from: parseDerivedFrom(filePath, source, init.arguments[0]) })
+          continue
+        }
+        if (isMarkerCall(init, 'handler')) {
+          if (init.arguments?.length !== 1) {
+            fail(filePath, source, init, 'handler() takes a single function')
+          }
+          const hfn = init.arguments[0]
+          if (hfn?.type !== 'ArrowFunctionExpression' && hfn?.type !== 'FunctionExpression') {
+            fail(filePath, source, hfn, 'handler() expects a function')
+          }
+          if (hfn.async) fail(filePath, source, hfn, 'async handler() is not supported in v0.1')
+          handlers.push({
+            name,
+            params: parseFnParams(filePath, source, hfn),
+            body: parseFnBodyStmts(filePath, source, hfn),
+          })
+          continue
+        }
+        fail(
+          filePath,
+          source,
+          init,
+          'setup() only allows state(), derived(), and handler() bindings',
+        )
+      }
+      continue
+    }
+
+    if (stmt.type === 'ReturnStatement') {
+      if (!stmt.argument) fail(filePath, source, stmt, 'setup() must return a render function or JSX')
+      const arg = unwrap(stmt.argument)
+      if (arg.type === 'ArrowFunctionExpression' || arg.type === 'FunctionExpression') {
+        if (arg.async) fail(filePath, source, arg, 'async render return is not supported in v0.1')
+        template = parseRenderJsx(filePath, source, arg.body)
+      } else {
+        template = parseRenderJsx(filePath, source, arg)
+      }
+      continue
+    }
+
+    fail(
+      filePath,
+      source,
+      stmt,
+      'setup() only allows const bindings and a return (no effects / watch / await)',
+    )
+  }
+
+  if (!template) fail(filePath, source, fn, 'setup() must return JSX (or a render function)')
+  return { state, derived, handlers, template }
+}
+
 function findComponentCall(program: any): any | null {
   for (const stmt of program.body ?? []) {
     if (stmt.type === 'ExportDefaultDeclaration') {
@@ -407,8 +524,6 @@ function parseStyles(filePath: string, source: string, node: any): { css?: strin
  * Parse `*.nuc.tsx` authoring source into validated IR.
  */
 export function parseTsxToIr(source: string, filePath = 'anonymous.nuc.tsx'): IrDocument {
-  assertNoPhase7Apis(filePath, source)
-
   const result = parseSync(filePath, source, { lang: 'tsx', sourceType: 'module' })
   if (result.errors?.length) {
     const err = result.errors[0]
@@ -428,8 +543,12 @@ export function parseTsxToIr(source: string, filePath = 'anonymous.nuc.tsx'): Ir
   let name = 'Anonymous'
   let props: IrProp[] = []
   let handlers: IrHandler[] = []
+  let state: IrState[] = []
+  let derived: IrDerived[] = []
   let styles: { css?: string } | undefined
   let template: IrNode | null = null
+  let usedSetup = false
+  let usedRender = false
 
   for (const prop of config.properties) {
     if (prop.type !== 'Property') fail(filePath, source, prop, 'spread in component() is not supported')
@@ -445,41 +564,51 @@ export function parseTsxToIr(source: string, filePath = 'anonymous.nuc.tsx'): Ir
         props = parsePropsObject(filePath, source, prop.value)
         break
       case 'handlers':
+        if (usedSetup) {
+          fail(filePath, source, prop, 'handlers cannot be combined with setup() — use handler() inside setup')
+        }
         handlers = parseHandlersObject(filePath, source, prop.value)
         break
       case 'styles':
         styles = parseStyles(filePath, source, prop.value)
         break
       case 'render': {
+        if (usedSetup) fail(filePath, source, prop, 'render cannot be combined with setup()')
+        usedRender = true
         const fn = prop.value
         if (fn?.type !== 'ArrowFunctionExpression' && fn?.type !== 'FunctionExpression') {
           fail(filePath, source, fn, 'render must be a function')
         }
-        const body = unwrap(fn.body)
-        if (body?.type === 'BlockStatement') {
-          fail(filePath, source, body, 'render must return JSX directly (expression body) in v0.1')
-        }
-        template = parseJsxNode(filePath, source, body)
+        template = parseRenderJsx(filePath, source, fn.body)
         break
       }
-      case 'state':
-      case 'derived':
-        fail(filePath, source, prop, `${key} is not available until Faza 7`)
+      case 'setup': {
+        if (usedRender) fail(filePath, source, prop, 'setup cannot be combined with render')
+        if (handlers.length) {
+          fail(filePath, source, prop, 'setup cannot be combined with top-level handlers')
+        }
+        usedSetup = true
+        const parsed = parseSetup(filePath, source, prop.value)
+        state = parsed.state
+        derived = parsed.derived
+        handlers = parsed.handlers
+        template = parsed.template
         break
+      }
       default:
         if (key) fail(filePath, source, prop, `unknown component field "${key}"`)
     }
   }
 
-  if (!template) fail(filePath, source, config, 'component() requires render')
+  if (!template) fail(filePath, source, config, 'component() requires render or setup')
 
   const doc: IrDocument = {
     irVersion: '0.1.0',
     name,
     portable: true,
     props,
-    state: [],
-    derived: [],
+    state,
+    derived,
     handlers,
     template,
     ...(styles ? { styles } : {}),

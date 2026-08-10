@@ -1,0 +1,132 @@
+{
+  "irVersion": "0.1.0",
+  "name": "Counter",
+  "portable": true,
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "optional": true,
+      "default": "Count"
+    }
+  ],
+  "state": [
+    {
+      "name": "count",
+      "initial": {
+        "kind": "literal",
+        "value": 0
+      }
+    }
+  ],
+  "derived": [
+    {
+      "name": "double",
+      "from": {
+        "kind": "binary",
+        "op": "*",
+        "left": {
+          "kind": "member",
+          "object": {
+            "kind": "ident",
+            "name": "count"
+          },
+          "property": "value"
+        },
+        "right": {
+          "kind": "literal",
+          "value": 2
+        }
+      }
+    }
+  ],
+  "handlers": [
+    {
+      "name": "onInc",
+      "params": [],
+      "body": [
+        {
+          "kind": "expr",
+          "value": {
+            "kind": "call",
+            "callee": {
+              "kind": "member",
+              "object": {
+                "kind": "ident",
+                "name": "count"
+              },
+              "property": "set"
+            },
+            "args": [
+              {
+                "kind": "binary",
+                "op": "+",
+                "left": {
+                  "kind": "member",
+                  "object": {
+                    "kind": "ident",
+                    "name": "count"
+                  },
+                  "property": "value"
+                },
+                "right": {
+                  "kind": "literal",
+                  "value": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "template": {
+    "kind": "element",
+    "tag": "button",
+    "props": [
+      {
+        "kind": "static",
+        "name": "type",
+        "value": "button"
+      },
+      {
+        "kind": "event",
+        "name": "click",
+        "handler": "onInc"
+      }
+    ],
+    "children": [
+      {
+        "kind": "expr",
+        "value": {
+          "kind": "binary",
+          "op": "+",
+          "left": {
+            "kind": "binary",
+            "op": "+",
+            "left": {
+              "kind": "member",
+              "object": {
+                "kind": "ident",
+                "name": "props"
+              },
+              "property": "label"
+            },
+            "right": {
+              "kind": "literal",
+              "value": ": "
+            }
+          },
+          "right": {
+            "kind": "member",
+            "object": {
+              "kind": "ident",
+              "name": "double"
+            },
+            "property": "value"
+          }
+        }
+      }
+    ]
+  }
+}

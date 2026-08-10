@@ -27,6 +27,7 @@ SKIP_COMPILER=1 make setup
 portable/
   hello.nuc.tsx          # authoring (discovered by build)
   nui_cta.nuc.tsx        # nucleify-ui attrs demo (style / boolean / aria-*)
+  counter.nuc.tsx        # state / derived / handler (Faza 7)
   fixtures/
     source/              # golden *.nuc.tsx
     ir/                  # golden IR JSON
