@@ -1,0 +1,96 @@
+{
+  "irVersion": "0.1.0",
+  "name": "List",
+  "portable": true,
+  "props": [
+    {
+      "name": "items",
+      "type": "unknown"
+    },
+    {
+      "name": "showEmpty",
+      "type": "boolean",
+      "optional": true,
+      "default": true
+    }
+  ],
+  "state": [],
+  "derived": [],
+  "handlers": [],
+  "template": {
+    "kind": "element",
+    "tag": "div",
+    "props": [
+      {
+        "kind": "static",
+        "name": "class",
+        "value": "list"
+      }
+    ],
+    "children": [
+      {
+        "kind": "if",
+        "test": {
+          "kind": "member",
+          "object": { "kind": "ident", "name": "props" },
+          "property": "showEmpty"
+        },
+        "then": [
+          {
+            "kind": "element",
+            "tag": "p",
+            "props": [],
+            "children": [{ "kind": "text", "value": "Empty hint visible" }]
+          }
+        ],
+        "else": [
+          {
+            "kind": "element",
+            "tag": "p",
+            "props": [],
+            "children": [{ "kind": "text", "value": "No empty hint" }]
+          }
+        ]
+      },
+      {
+        "kind": "element",
+        "tag": "ul",
+        "props": [],
+        "children": [
+          {
+            "kind": "for",
+            "source": {
+              "kind": "member",
+              "object": { "kind": "ident", "name": "props" },
+              "property": "items"
+            },
+            "item": "item",
+            "index": "i",
+            "body": [
+              {
+                "kind": "element",
+                "tag": "li",
+                "props": [
+                  {
+                    "kind": "bind",
+                    "name": "key",
+                    "value": { "kind": "ident", "name": "i" }
+                  }
+                ],
+                "children": [
+                  {
+                    "kind": "expr",
+                    "value": { "kind": "ident", "name": "item" }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "meta": {
+    "sourcePath": "fixtures/source/list.nuc.tsx"
+  }
+}

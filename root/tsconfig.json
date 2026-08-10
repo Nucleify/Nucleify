@@ -26,6 +26,7 @@
 			"nuc_server": ["src/server/nuc_server.ts"],
 			"modules": ["../shared_modules"],
 			"modules/*": ["../shared_modules/*"],
+			"#nuc-compiler/runtime": ["../compiler/runtime/index.ts"],
 			"~/*": ["src/*"]
 		}
 	},
@@ -51,6 +52,7 @@
 		"../shared_modules/**/*.react.ts",
 		"../shared_modules/**/index.react.ts",
 		"../shared_modules/**/supabase/functions/**",
+		"**/*.nuc.tsx",
 		"../**/*.stories.ts",
 		"../**/*.stories.tsx",
 		"../**/*.spec.ts",

@@ -1,3 +1,11 @@
 # @nucleify/admin
 
-Nuxt admin app (Faza W scaffold). Feature modules move here from the monolith in a later step.
+Nuxt admin app — **canonical product shell** (`TARGET=nuxt`).
+
+```bash
+make admin
+make admin TARGET=nuxt
+pnpm --filter @nucleify/admin dev
+```
+
+`TARGET=next|…` is reserved for compiler tryb B (stub in Make until then).

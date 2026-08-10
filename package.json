@@ -16,7 +16,13 @@
     "prepare": "pnpm -s --filter @nucleify/root prepare && pnpm sync-rules",
     "admin": "pnpm -s --filter @nucleify/admin dev",
     "docs": "pnpm -s --filter @nucleify/docs dev",
-    "compiler": "pnpm -s --filter @nucleify/compiler build",
+    "compiler": "tsx compiler/src/cli.ts",
+    "compiler:scaffold": "tsx compiler/src/cli.ts scaffold",
+    "compiler:build": "tsx compiler/src/cli.ts build",
+    "compiler:build:vue": "tsx compiler/src/cli.ts build --target=vue",
+    "compiler:build:react": "tsx compiler/src/cli.ts build --target=react",
+    "compiler:check": "tsx compiler/src/cli.ts check",
+    "compiler:test": "vitest run --config .config/vitest.compiler.config.ts",
     "sync-rules": "node .config/scripts/sync-rules.js",
     "prepare:husky": "husky",
     "prepare:submodules": "sh .config/bash/prepare-submodules.sh",
@@ -41,18 +47,25 @@
     "supabase:setup:linked": "pnpm supabase:migrations:apply:linked && pnpm supabase:factories:apply:linked && pnpm supabase:seeders:apply:linked",
     "wrangler": "pnpm -s --filter @nucleify/root exec wrangler deploy"
   },
+  "imports": {
+    "#nuc-compiler/runtime": "./compiler/runtime/index.ts"
+  },
   "devDependencies": {
     "@biomejs/biome": "2.4.16",
     "@nuxt/test-utils": "3.23.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@vue/test-utils": "2.4.6",
+    "citty": "^0.1.6",
     "happy-dom": "20.0.10",
     "husky": "9.1.7",
     "jsdom": "29.0.2",
     "next": "^16.2.12",
+    "oxc-parser": "^0.75.0",
     "stylelint": "16.26.1",
     "stylelint-config-standard-scss": "14.0.0",
+    "tsx": "^4.20.3",
     "typescript": "5.8.3",
-    "vitest": "3.2.0"
+    "vitest": "3.2.0",
+    "zod": "^3.25.76"
   }
 }
