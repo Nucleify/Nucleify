@@ -26,7 +26,7 @@ function normalizeReactHint(source: string, name: string): string {
 }
 
 describe('emitReact golden', () => {
-  for (const name of ['hello', 'button', 'list'] as const) {
+  for (const name of ['hello', 'button', 'list', 'nui_cta'] as const) {
     it(`matches portable/fixtures/emit/react/${name}.tsx`, async () => {
       const ir = parseIrDocument(
         JSON.parse(readFileSync(join(fixtures, `ir/${name}.json`), 'utf8')),

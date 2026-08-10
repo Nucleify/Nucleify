@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "iconify-icon": "^3.0.0",
+    "lit": "^3.3.0",
+    "nucleify-ui": "^0.3.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

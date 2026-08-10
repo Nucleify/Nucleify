@@ -5,6 +5,9 @@ import { toVueClassAttr } from '../adapters/class-name'
 function emitExpr(expr: IrExpr): string {
   switch (expr.kind) {
     case 'literal':
+      if (typeof expr.value === 'string') {
+        return `'${expr.value.replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`
+      }
       return JSON.stringify(expr.value)
     case 'ident':
       return expr.name
@@ -14,6 +17,10 @@ function emitExpr(expr: IrExpr): string {
       return `(${emitExpr(expr.left)} ${expr.op} ${emitExpr(expr.right)})`
     case 'call':
       return `${emitExpr(expr.callee)}(${expr.args.map(emitExpr).join(', ')})`
+    case 'object': {
+      const body = expr.properties.map((p) => `${p.key}: ${emitExpr(p.value)}`).join(', ')
+      return `{ ${body} }`
+    }
   }
 }
 
@@ -36,7 +43,7 @@ function emitAttrs(attrs: IrAttr[]): string {
     if (attr.kind === 'static') {
       const name = toVueClassAttr(attr.name)
       if (typeof attr.value === 'boolean') {
-        if (attr.value) parts.push(name)
+        parts.push(attr.value ? name : `:${name}="false"`)
       } else if (typeof attr.value === 'number') {
         parts.push(`:${name}="${attr.value}"`)
       } else {

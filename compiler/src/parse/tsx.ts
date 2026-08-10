@@ -127,6 +127,21 @@ function parseExpr(filePath: string, source: string, node: any): IrExpr {
         callee: parseExpr(filePath, source, node.callee),
         args: (node.arguments ?? []).map((arg: any) => parseExpr(filePath, source, arg)),
       }
+    case 'ObjectExpression': {
+      const properties: { key: string; value: IrExpr }[] = []
+      for (const prop of node.properties ?? []) {
+        if (prop.type !== 'Property') {
+          fail(filePath, source, prop, 'object spreads are not supported in v0.1')
+        }
+        if (prop.computed) {
+          fail(filePath, source, prop, 'computed object keys are not supported in v0.1')
+        }
+        const key = propKeyName(prop.key)
+        if (!key) fail(filePath, source, prop, 'expected object property key')
+        properties.push({ key, value: parseExpr(filePath, source, prop.value) })
+      }
+      return { kind: 'object', properties }
+    }
     default:
       fail(filePath, source, node, `unsupported expression type ${node.type}`)
   }

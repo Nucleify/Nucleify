@@ -1,6 +1,6 @@
 /**
  * Nucleify compiler IR v0.1 — frozen contract (Faza 1).
- * Expressions / statements stay narrow: literal | ident | member | binary | call.
+ * Expressions / statements stay narrow: literal | ident | member | binary | call | object.
  */
 
 export type IrVersion = '0.1.0'
@@ -20,6 +20,7 @@ export type IrExpr =
   | { kind: 'member'; object: IrExpr; property: string }
   | { kind: 'binary'; op: IrBinaryOp; left: IrExpr; right: IrExpr }
   | { kind: 'call'; callee: IrExpr; args: IrExpr[] }
+  | { kind: 'object'; properties: { key: string; value: IrExpr }[] }
 
 export type IrBinaryOp = '==' | '!=' | '===' | '!==' | '&&' | '||' | '+' | '-' | '*' | '/' | '<' | '<=' | '>' | '>='
 

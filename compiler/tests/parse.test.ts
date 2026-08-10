@@ -15,7 +15,7 @@ function stripMeta(doc: IrDocument): IrDocument {
 }
 
 describe('parseTsxToIr golden', () => {
-  for (const name of ['hello', 'button', 'list'] as const) {
+  for (const name of ['hello', 'button', 'list', 'nui_cta'] as const) {
     it(`${name}.nuc.tsx → portable/fixtures/ir/${name}.json`, () => {
       const source = readFileSync(join(sourceDir, `${name}.nuc.tsx`), 'utf8')
       const expected = JSON.parse(readFileSync(join(irDir, `${name}.json`), 'utf8')) as IrDocument

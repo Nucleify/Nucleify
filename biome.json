@@ -25,8 +25,7 @@
       "!**/tsconfig.json",
       "!**/.env*",
       "!**/.git*",
-      "!**/markdown_bundle.generated.ts",
-      "!shared_modules/nuc_stores/**"
+      "!**/markdown_bundle.generated.ts"
     ]
   },
   "formatter": {

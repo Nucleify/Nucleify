@@ -1,7 +1,11 @@
+import { NucleifyUiProvider } from '@/lib/nucleify-ui-provider'
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <NucleifyUiProvider>{children}</NucleifyUiProvider>
+      </body>
     </html>
   )
 }

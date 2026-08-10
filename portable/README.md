@@ -26,6 +26,7 @@ SKIP_COMPILER=1 make setup
 ```text
 portable/
   hello.nuc.tsx          # authoring (discovered by build)
+  nui_cta.nuc.tsx        # nucleify-ui attrs demo (style / boolean / aria-*)
   fixtures/
     source/              # golden *.nuc.tsx
     ir/                  # golden IR JSON

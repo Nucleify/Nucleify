@@ -44,6 +44,15 @@ const irExprSchema: z.ZodType<import('./types').IrExpr> = z.lazy(() =>
       callee: irExprSchema,
       args: z.array(irExprSchema),
     }),
+    z.object({
+      kind: z.literal('object'),
+      properties: z.array(
+        z.object({
+          key: z.string().min(1),
+          value: irExprSchema,
+        }),
+      ),
+    }),
   ]),
 )
 

@@ -14,6 +14,10 @@ function emitExpr(expr: IrExpr): string {
       return `(${emitExpr(expr.left)} ${expr.op} ${emitExpr(expr.right)})`
     case 'call':
       return `${emitExpr(expr.callee)}(${expr.args.map(emitExpr).join(', ')})`
+    case 'object': {
+      const body = expr.properties.map((p) => `${p.key}: ${emitExpr(p.value)}`).join(', ')
+      return `{ ${body} }`
+    }
   }
 }
 
@@ -36,7 +40,7 @@ function emitAttrs(attrs: IrAttr[]): string {
     if (attr.kind === 'static') {
       const name = toReactClassName(attr.name)
       if (typeof attr.value === 'boolean') {
-        if (attr.value) parts.push(name)
+        parts.push(`${name}={${attr.value ? 'true' : 'false'}}`)
       } else if (typeof attr.value === 'number') {
         parts.push(`${name}={${attr.value}}`)
       } else {

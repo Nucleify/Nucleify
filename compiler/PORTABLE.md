@@ -12,7 +12,10 @@ Rules for `*.nuc.tsx` sources consumed by `@nucleify/compiler` (IR v0.1).
 - Text nodes and expression interpolations
 - `class` **or** `className` in JSX → IR always `class` → Vue `class` / React `className`
 - Plain CSS string → sibling `Foo.css` (shared by Vue and React emit)
-- Optional `style` object bind (Phase 6)
+- `style={{ … }}` object bind (string/number/boolean/null literals + ident/member/binary/call)
+- Boolean attributes (`disabled`, `disabled={false}`, `disabled={props.x}`)
+- Static and bound `aria-*` attributes (`aria-label`, `aria-hidden="true"`, …)
+- `nui-*` tags from **nucleify-ui** (Lit custom elements; demo templates register them)
 
 ## Forbidden
 
