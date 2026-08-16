@@ -12,7 +12,7 @@ Hooks live in `.husky/`. Both run `.config/bash/hook-checks.sh`:
 
 1. `pnpm btest` — bash test suite (`bash .config/bash/tests/run.sh`)
 2. `pnpm check` — Biome lint
-3. `pnpm typeslint` — `tsc` for `@nucleify/root`
+3. `pnpm typeslint` — `tsc` for `@nucleify/web`
 4. `pnpm slint` — Stylelint (SCSS)
 5. `pnpm tests` — Vitest
 
@@ -20,7 +20,7 @@ Hooks live in `.husky/`. Both run `.config/bash/hook-checks.sh`:
 
 ### `health-check.yml` (all branches)
 
-Node 22, pnpm. Parallel jobs after setup: biome, typeslint, stylelint, build, test — delegate via monorepo `pnpm run …` → `@nucleify/root`.
+Node 22, pnpm. Parallel jobs after setup: biome, typeslint, stylelint, build, test — delegate via monorepo `pnpm run …` → `@nucleify/web`.
 
 ### `bash.yaml`
 

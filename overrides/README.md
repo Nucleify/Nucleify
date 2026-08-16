@@ -6,7 +6,7 @@ Monorepo override layer. Each app/package has its own folder — put files that 
 overrides/
 ├── admin/              # @nucleify/admin
 ├── docs/              # @nucleify/docs
-├── root/               # @nucleify/root (landing)
+├── web/               # @nucleify/web (landing)
 └── shared_modules/     # @nucleify/shared-modules
 ```
 
@@ -14,4 +14,4 @@ overrides/
 
 - Paths must match originals exactly (relative to that package)
 - Overrides **fully replace** the original file (no merging)
-- Prefer package-scoped folders (`overrides/root/…`) over cross-package hacks
+- Prefer package-scoped folders (`overrides/web/…`) over cross-package hacks

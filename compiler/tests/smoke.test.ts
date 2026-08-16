@@ -4,7 +4,7 @@ import { COMPILER_NAME, COMPILER_PHASE, parseIrDocument } from '../src/index'
 describe('@nucleify/compiler smoke', () => {
   it('exports package identity', () => {
     expect(COMPILER_NAME).toBe('@nucleify/compiler')
-    expect(COMPILER_PHASE).toBe(7)
+    expect(COMPILER_PHASE).toBe(8)
   })
 
   it('parseIrDocument accepts minimal hello-shaped IR', () => {

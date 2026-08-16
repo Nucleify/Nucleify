@@ -16,7 +16,7 @@ const SKIP_DIRS = new Set([
  * Discover `*.nuc.tsx` under workspace apps / shared_modules (skip node_modules etc.).
  */
 export function discoverNucSources(cwd: string): string[] {
-  const roots = ['portable', 'root', 'admin', 'shared_modules'].map((p) => resolve(cwd, p))
+  const roots = ['portable', 'web', 'admin', 'shared_modules'].map((p) => resolve(cwd, p))
   const found: string[] = []
 
   function walk(dir: string): void {

@@ -2,21 +2,23 @@
 
 Committed sources for the compiler. Generated demo apps (`vue/`, `react/`, `nuxt/`, `next/`) are **gitignored** and rebuilt by Make.
 
-## Product apps vs emit demos
+Product apps vs emit demos
 
 | Command | What it is | Default |
 |---------|------------|---------|
-| `make root` | Landing product shell | **Nuxt** (`TARGET=nuxt`) |
+| `make web` | Landing product shell | **Nuxt** (`TARGET=nuxt`) |
 | `make admin` | Admin product shell | **Nuxt** |
 | `make docs` | Docs product shell | **Astro** (host today; `TARGET` reserved for later) |
 | `make nuxt` / `next` / `vue` / `react` | Throwaway emit demos | scaffold + portable UI |
 
-Multi-framework product shells (e.g. `make root TARGET=next`) are **planned** (compiler tryb B). Until then only `TARGET=nuxt` is implemented for `root` / `admin`; other values exit with a stub message.
+Home landing graph (`web/src/pages/home/sections/compiler_demo/`) is a **Vue product section**, not portable authoring. Author `*.nuc.tsx` under `portable/` (and optionally other product trees), then emit into gitignored demo apps.
+
+Multi-framework product shells (e.g. `make web TARGET=next`) are **planned** (compiler tryb B). Until then only `TARGET=nuxt` is implemented for `web` / `admin`; other values exit with a stub message.
 
 ```bash
-make root                 # Nuxt (default)
-make root TARGET=nuxt     # same
-make root TARGET=next     # stub — not yet
+make web                 # Nuxt (default)
+make web TARGET=nuxt     # same
+make web TARGET=next     # stub — not yet
 make admin
 SKIP_COMPILER=1 make setup
 ```

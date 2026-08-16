@@ -7,13 +7,12 @@
     "node": ">=20"
   },
   "scripts": {
-    "nuxt": "pnpm -s --filter @nucleify/root nuxt",
-    "dev": "pnpm -s --filter @nucleify/root nuxt",
-    "build": "pnpm -s --filter @nucleify/root build",
-    "start": "pnpm -s --filter @nucleify/root start",
-    "generate": "pnpm -s --filter @nucleify/root generate",
-    "preview": "pnpm -s --filter @nucleify/root preview",
-    "prepare": "pnpm -s --filter @nucleify/root prepare && pnpm sync-rules",
+    "dev": "pnpm -s --filter @nucleify/web dev",
+    "build": "pnpm -s --filter @nucleify/web build",
+    "start": "pnpm -s --filter @nucleify/web start",
+    "generate": "pnpm -s --filter @nucleify/web generate",
+    "preview": "pnpm -s --filter @nucleify/web preview",
+    "prepare": "pnpm -s --filter @nucleify/web prepare && pnpm sync-rules",
     "admin": "pnpm -s --filter @nucleify/admin dev",
     "docs": "pnpm -s --filter @nucleify/docs dev",
     "compiler": "tsx compiler/src/cli.ts",
@@ -29,13 +28,13 @@
     "btest": "node .config/scripts/run-check.js btest bash .config/bash/tests/run.sh",
     "check": "node .config/scripts/run-check.js biome biome check .",
     "write": "node .config/scripts/run-check.js biome biome check --write .",
-    "typeslint": "node .config/scripts/run-check.js typeslint tsc --noEmit -p root/tsconfig.json",
-    "slint": "node .config/scripts/run-check.js stylelint stylelint \"root/**/*.scss\" \"shared_modules/**/*.scss\"",
-    "slint:fix": "node .config/scripts/run-check.js stylelint stylelint \"root/**/*.scss\" \"shared_modules/**/*.scss\" --fix",
+    "typeslint": "node .config/scripts/run-check.js typeslint tsc --noEmit -p web/tsconfig.json",
+    "slint": "node .config/scripts/run-check.js stylelint stylelint \"web/**/*.scss\" \"shared_modules/**/*.scss\"",
+    "slint:fix": "node .config/scripts/run-check.js stylelint stylelint \"web/**/*.scss\" \"shared_modules/**/*.scss\" --fix",
     "tests": "node .config/scripts/run-check.js vitest vitest run",
     "test:watch": "vitest",
     "test:shared": "node .config/scripts/run-check.js vitest vitest run --project shared",
-    "test:root": "node .config/scripts/run-check.js vitest vitest run --project root",
+    "test:web": "node .config/scripts/run-check.js vitest vitest run --project web",
     "supabase:merge-sql": "bash .config/bash/merge-module-supabase-sql.sh all",
     "supabase:factories:apply:local": "bash .config/bash/apply-module-sql.sh factories local",
     "supabase:factories:apply:linked": "bash .config/bash/apply-module-sql.sh factories linked",
@@ -45,7 +44,7 @@
     "supabase:migrations:apply:linked": "bash .config/bash/apply-module-migrations.sh linked",
     "supabase:setup:local": "pnpm supabase:migrations:apply:local && pnpm supabase:factories:apply:local && pnpm supabase:seeders:apply:local",
     "supabase:setup:linked": "pnpm supabase:migrations:apply:linked && pnpm supabase:factories:apply:linked && pnpm supabase:seeders:apply:linked",
-    "wrangler": "pnpm -s --filter @nucleify/root exec wrangler deploy"
+    "wrangler": "pnpm -s --filter @nucleify/web exec wrangler deploy"
   },
   "imports": {
     "#nuc-compiler/runtime": "./compiler/runtime/index.ts"

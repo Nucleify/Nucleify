@@ -65,6 +65,10 @@ export default component({
 | `Foo.css` | Generated styles sibling |
 | `Foo.ir.json` | Optional dump (`--dump-ir`), gitignored |
 
+### Product apps (`web/`, `admin/`)
+
+Authoring under these trees also emits **siblings next to the source** (committed), in addition to gitignored demo apps (`vue/`, `react/`, `nuxt/`, `next/`). Do not put `*.nuc.tsx` in the home landing section (`web/src/pages/home/sections/compiler_demo/`) — that folder is Vue-only.
+
 ## Runtime import
 
 ```tsx

@@ -513,8 +513,18 @@ function parseStyles(filePath: string, source: string, node: any): { css?: strin
   let css: string | undefined
   for (const prop of node.properties) {
     if (prop.type !== 'Property') continue
-    if (propKeyName(prop.key) === 'css' && prop.value?.type === 'Literal' && typeof prop.value.value === 'string') {
-      css = prop.value.value
+    if (propKeyName(prop.key) !== 'css') continue
+    const value = prop.value
+    if (value?.type === 'Literal' && typeof value.value === 'string') {
+      css = value.value
+    } else if (
+      value?.type === 'TemplateLiteral' &&
+      (!value.expressions || value.expressions.length === 0) &&
+      value.quasis?.length === 1
+    ) {
+      css = String(value.quasis[0]?.value?.cooked ?? value.quasis[0]?.value?.raw ?? '')
+    } else {
+      fail(filePath, source, value, 'styles.css must be a string literal (no interpolations)')
     }
   }
   return css !== undefined ? { css } : {}

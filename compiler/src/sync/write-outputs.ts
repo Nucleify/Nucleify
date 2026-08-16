@@ -1,5 +1,5 @@
 import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
-import { basename, join, resolve } from 'node:path'
+import { basename, dirname, join, resolve } from 'node:path'
 import type { IrDocument } from '../ir/types'
 import { emitReact } from '../emit/react'
 import { emitCssBody, emitVue } from '../emit/vue'
@@ -34,6 +34,8 @@ const APP_FRAME: Record<EmitApp, 'vue' | 'react'> = {
   react: 'react',
   next: 'react',
 }
+
+const PRODUCT_SOURCE_PREFIXES = ['web/', 'admin/'] as const
 
 export type WriteOutputsOpts = {
   cwd: string
@@ -119,6 +121,11 @@ function emitBaseName(sourcePath: string): string {
   return basename(sourcePath).replace(/\.nuc\.tsx$/, '')
 }
 
+function isProductSource(cwd: string, sourcePath: string): boolean {
+  const rel = toRepoRelative(cwd, sourcePath)
+  return PRODUCT_SOURCE_PREFIXES.some((prefix) => rel.startsWith(prefix))
+}
+
 function resolveApps(cwd: string, target: WriteTarget, apps?: EmitApp[]): EmitApp[] {
   const all = (Object.keys(EMIT_APP_DIRS) as EmitApp[]).filter((app) => {
     const frame = APP_FRAME[app]
@@ -144,8 +151,62 @@ async function writeFileEmit(
   written.push(filePath)
 }
 
+async function writeProductSiblings(opts: {
+  cwd: string
+  sourcePath: string
+  ir: IrDocument
+  target: WriteTarget
+  base: string
+  cssFileName?: string
+  cssBody?: string
+  written: string[]
+}): Promise<void> {
+  if (!isProductSource(opts.cwd, opts.sourcePath)) return
+
+  const dir = dirname(opts.sourcePath)
+  const writeVue = opts.target === 'all' || opts.target === 'vue'
+  const writeReact = opts.target === 'all' || opts.target === 'react'
+
+  if (opts.cssFileName && opts.cssBody && (writeVue || writeReact)) {
+    await writeFileEmit(
+      opts.cwd,
+      join(dir, opts.cssFileName),
+      'css',
+      opts.cssBody,
+      (hash) => cssHeader(hash),
+      opts.written,
+    )
+  }
+
+  if (writeVue) {
+    const vuePath = join(dir, `${opts.base}.vue`)
+    const hint = toRepoRelative(opts.cwd, vuePath)
+    await writeFileEmit(
+      opts.cwd,
+      vuePath,
+      'vue',
+      emitVue(opts.ir, { cssFileName: opts.cssFileName }),
+      (hash) => vueHeader(hint, hash),
+      opts.written,
+    )
+  }
+
+  if (writeReact) {
+    const reactPath = join(dir, `${opts.base}.tsx`)
+    const hint = toRepoRelative(opts.cwd, reactPath)
+    await writeFileEmit(
+      opts.cwd,
+      reactPath,
+      'react',
+      emitReact(opts.ir, { cssFileName: opts.cssFileName }),
+      (hash) => reactHeader(hint, hash),
+      opts.written,
+    )
+  }
+}
+
 /**
- * Write emit into existing (or requested) demo apps under cwd.
+ * Write emit into existing demo apps and, for web/admin authoring, siblings next to source.
  */
 export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult> {
   const cwd = resolve(opts.cwd)
@@ -156,12 +217,19 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
   const skipped: string[] = []
   const apps = resolveApps(cwd, target, opts.apps)
 
-  if (apps.length === 0) {
-    return { written, skipped }
-  }
-
   const cssFileName = opts.ir.styles?.css ? `${base}.css` : undefined
   const cssBody = opts.ir.styles?.css ? emitCssBody(opts.ir.styles.css) : undefined
+
+  await writeProductSiblings({
+    cwd,
+    sourcePath,
+    ir: opts.ir,
+    target,
+    base,
+    cssFileName,
+    cssBody,
+    written,
+  })
 
   for (const app of apps) {
     const componentsDir = join(cwd, EMIT_APP_DIRS[app])

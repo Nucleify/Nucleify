@@ -7,7 +7,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-PKG_DIR="$ROOT_DIR/root"
+PKG_DIR="$ROOT_DIR/web"
 TARGET="${1:-all}"
 if [[ "$TARGET" != "migrations" && "$TARGET" != "factories" && "$TARGET" != "seeders" && "$TARGET" != "all" ]]; then
   echo "Usage: bash .config/bash/merge-module-supabase-sql.sh [migrations|factories|seeders|all]"

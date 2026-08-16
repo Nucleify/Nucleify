@@ -15,7 +15,7 @@ Astro documentation app.
 - Categories defined in `docs/src/lib/constants/docs.ts`
 - Overrides: `overrides/docs/`
 - Rules: `docs/.config/rules/`
-- Agents: `root/.cursor/agents/`
+- Agents: `web/.cursor/agents/`
 
 ## Commands
 

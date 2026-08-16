@@ -13,8 +13,8 @@ IR-first portable UI compiler for Nucleify (option C — custom IR, no Mitosis).
 | Product apps | `root` / `admin` / `docs` — **default shell Nuxt** (docs: Astro); `TARGET=next|…` later (tryb B) |
 
 ```text
-make root                 # product → Nuxt
-make root TARGET=next     # stub until tryb B
+make web                 # product → Nuxt
+make web TARGET=next     # stub until tryb B
 make nuxt                 # emit demo scaffold (not product root)
 ```
 

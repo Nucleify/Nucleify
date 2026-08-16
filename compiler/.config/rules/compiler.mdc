@@ -13,6 +13,6 @@ IR-first portable UI compiler (`.nuc.tsx` → Vue + React emit).
 - Source: `compiler/src/`
 - Tests: `compiler/tests/`
 - Fixtures: `compiler/fixtures/`
-- Keep compiler logic self-contained — do not import from `root/`, `admin/`, `docs/`
+- Keep compiler logic self-contained — do not import from `web/`, `admin/`, `docs/`
 - Rules: `compiler/.config/rules/`
-- Agents: `root/.cursor/agents/`
+- Agents: `web/.cursor/agents/`

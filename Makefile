@@ -1,14 +1,15 @@
-.PHONY: setup root admin docs compiler vue react nuxt next help
+.PHONY: run setup web admin docs compiler vue react nuxt next help
 
 # Product apps: default shell is Nuxt. Other frameworks = tryb B (stub for now).
-#   make root
-#   make root TARGET=next    # not implemented yet
+#   make run                 # bootstrap whole workspace
+#   make web                 # start web only
+#   make web TARGET=next     # not implemented yet
 #   make admin TARGET=nuxt
 #
 # Portable emit demos (gitignored scaffolds):
 #   make nuxt / make next / make vue / make react
 #
-# SKIP_COMPILER=1  → skip portable codegen on setup / demos that call compiler
+# SKIP_COMPILER=1  → skip portable codegen on run/setup / demos that call compiler
 
 TARGET ?= nuxt
 SKIP_COMPILER ?= 0
@@ -16,16 +17,20 @@ SKIP_COMPILER ?= 0
 SUPPORTED_PRODUCT_TARGETS := nuxt
 
 help:
+	@echo "Workspace:"
+	@echo "  make run                # install, husky, .env, prepare, sync-rules, compiler"
+	@echo "  make setup              # same as run without creating .env"
+	@echo ""
 	@echo "Product apps (default TARGET=nuxt):"
-	@echo "  make root | admin | docs"
-	@echo "  make root TARGET=next   # stub — compiler tryb B later"
+	@echo "  make web | admin | docs"
+	@echo "  make web TARGET=next    # stub — compiler tryb B later"
 	@echo ""
 	@echo "Portable emit demos (gitignored):"
 	@echo "  make vue | react | nuxt | next"
 	@echo ""
 	@echo "Other:"
-	@echo "  make setup | compiler"
-	@echo "  SKIP_COMPILER=1 make setup"
+	@echo "  make compiler"
+	@echo "  SKIP_COMPILER=1 make run"
 
 compiler:
 	pnpm compiler:build
@@ -50,21 +55,25 @@ define require_product_target
 	fi
 endef
 
+run:
+	@if [ ! -f .env ]; then \
+		cp web/.config/.env.example .env; \
+		echo "Created .env from web/.config/.env.example — fill in SUPABASE_* before using the API."; \
+	fi
+	$(MAKE) setup
+
 setup:
 	pnpm install
 	pnpm prepare:husky
-	pnpm --filter @nucleify/root prepare
+	pnpm --filter @nucleify/web prepare
 	pnpm sync-rules
 ifeq ($(SKIP_COMPILER),0)
 	$(MAKE) compiler
 endif
 
-root:
+web:
 	$(call require_product_target)
-	cp root/.config/.env.example .env
-	pnpm install
-	pnpm prepare:husky
-	pnpm --filter @nucleify/root nuxt
+	pnpm --filter @nucleify/web dev
 
 admin:
 	$(call require_product_target)
