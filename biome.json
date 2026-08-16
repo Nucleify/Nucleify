@@ -9,7 +9,7 @@
   "files": {
     "ignoreUnknown": false,
     "includes": [
-      "root/**",
+      "web/**",
       "shared_modules/**",
       "!**/node_modules",
       "!**/vendor",

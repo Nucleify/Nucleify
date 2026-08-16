@@ -1,0 +1,16 @@
+---
+description: Biome and Stylelint for the monorepo
+globs: biome.json,.stylelintrc.json,web/**/*.{ts,vue,scss},shared_modules/**/*.{ts,vue,scss}
+alwaysApply: false
+---
+
+# Linting
+
+Configs and tooling live at monorepo root. Run from there:
+
+```bash
+pnpm check / write   # biome.json
+pnpm slint           # .stylelintrc.json
+pnpm typeslint       # web/tsconfig.json
+pnpm tests           # vitest.config.ts (projects: web + shared)
+```

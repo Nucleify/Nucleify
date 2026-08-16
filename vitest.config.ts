@@ -6,7 +6,7 @@ import { defineConfig } from 'vitest/config'
 
 const monorepo = path.dirname(fileURLToPath(import.meta.url))
 const setupFile = path.join(monorepo, '.config/vitest_setup.ts')
-const rootPkg = path.join(monorepo, 'root')
+const webPkg = path.join(monorepo, 'web')
 const sharedPkg = path.join(monorepo, 'shared_modules')
 
 const sharedTestDefaults = {
@@ -24,15 +24,15 @@ export default defineConfig({
   test: {
     projects: [
       await defineVitestProject({
-        root: rootPkg,
+        root: webPkg,
         resolve: {
           alias: {
-            nucleify: path.join(rootPkg, 'src/nucleify.ts'),
+            nucleify: path.join(webPkg, 'src/nucleify.ts'),
           },
         },
         test: {
           ...sharedTestDefaults,
-          name: 'root',
+          name: 'web',
           environment: 'nuxt',
           include: ['vitests/**/*.{test,spec}.{js,ts,jsx,tsx}'],
           testTimeout: 30000,

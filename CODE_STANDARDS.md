@@ -8,7 +8,7 @@ Following these standards ensures code is readable, consistent, and maintainable
 - [Monorepo Structure](#monorepo-structure)
 - [Package Overview](#package-overview)
 - [Shared Module Structure](#shared-module-structure)
-- [Root App Structure](#root-app-structure)
+- [Web App Structure](#web-app-structure)
 - [File and Folder Naming](#file-and-folder-naming)
 - [Component Architecture](#component-architecture)
 - [Coding Rules](#coding-rules)
@@ -23,7 +23,7 @@ Following these standards ensures code is readable, consistent, and maintainable
 
 ```
 nucleify/
-├── root/               ← @nucleify/root — Nuxt landing app
+├── web/               ← @nucleify/web — Nuxt landing app
 ├── admin/              ← @nucleify/admin — Nuxt admin app
 ├── docs/               ← @nucleify/docs — Astro documentation
 ├── compiler/           ← @nucleify/compiler — IR/portable UI compiler
@@ -40,7 +40,7 @@ nucleify/
 
 | Package | Name | Tech | Dev command |
 |---------|------|------|-------------|
-| `root/` | `@nucleify/root` | Nuxt 3 | `pnpm nuxt` |
+| `web/` | `@nucleify/web` | Nuxt 3 | `pnpm nuxt` |
 | `admin/` | `@nucleify/admin` | Nuxt 3 | `pnpm admin` |
 | `docs/` | `@nucleify/docs` | Astro | `pnpm docs` |
 | `compiler/` | `@nucleify/compiler` | TypeScript | — |
@@ -82,10 +82,10 @@ Frontend-only modules omit `supabase/`. API-only modules omit UI folders.
 
 ---
 
-## Root App Structure
+## Web App Structure
 
 ```
-root/src/
+web/src/
 ├── pages/
 │   ├── [lang]/         ← Thin i18n route wrappers
 │   └── home/           ← Landing sections
@@ -100,7 +100,7 @@ root/src/
 └── nucleify.ts         ← Re-exports from shared_modules
 ```
 
-Config pieces split in `root/.config/nuxt/`. Entry: `root/nuxt.config.ts`.
+Config pieces split in `web/.config/nuxt/`. Entry: `web/nuxt.config.ts`.
 
 ---
 
@@ -169,8 +169,8 @@ UI comes from **`nucleify-ui`** Lit web components (`nui-*`). Feature screens in
 
 ### Frontend (Vitest)
 
-- Config: `root/.config/vitest.config.ts`; entry: `root/vitest.config.ts`
-- Tests in `shared_modules/nuc_*/vitests/` or `root/vitests/`
+- Config: `web/.config/vitest.config.ts`; entry: `web/vitest.config.ts`
+- Tests in `shared_modules/nuc_*/vitests/` or `web/vitests/`
 - Filename: `*.test.ts`
 - `vi.clearAllMocks()` in `beforeEach`
 - Mock external dependencies; test behavior, not implementation
@@ -184,11 +184,11 @@ pnpm test:watch   # vitest watch
 
 ## Module Guidelines
 
-- Each module must be **self-contained** — no imports from app packages (`root`, `admin`, `docs`)
+- Each module must be **self-contained** — no imports from app packages (`web`, `admin`, `docs`)
 - Do not import `from 'nucleify'` inside modules (circular barrel)
 - Backend logic: `supabase/api/`, `supabase/migrations/`, `supabase/seeders/`
 - Frontend: `constants/`, `types/`, `utils/`, `pages/`, `components/`
-- Register in: `shared_modules/index.ts`, `root/src/plugins/modules.ts`, and the API gateway
+- Register in: `shared_modules/index.ts`, `web/src/plugins/modules.ts`, and the API gateway
 - Use `config.json` for module metadata
 
 ---
@@ -197,7 +197,7 @@ pnpm test:watch   # vitest watch
 
 - Aligns with Nuxt 3, Astro, and Supabase patterns
 - Enables horizontal scaling via isolated `nuc_*` modules
-- Clear separation: shared logic in `shared_modules/`, app shell in `root/`/`admin/`/`docs/`
+- Clear separation: shared logic in `shared_modules/`, app shell in `web/`/`admin/`/`docs/`
 - UI via `nucleify-ui` (`nui-*`) — no framework-specific coupling
 - Easy onboarding for new contributors
 

@@ -7,13 +7,15 @@ Standards for code, structure, and naming in Nucleify. Following these ensures r
 ## Project Structure
 
 ```txt
-root/
-├── modules/                # Self-contained feature modules (supabase/, atomic/)
-├── nuxt/                   # Nuxt frontend
-├── next/                   # Next.js frontend (optional)
-├── supabase/               # Merged SQL temp, local Supabase config
-├── .config/                # Nuxt/Next/tooling configuration
-└── vitests/                # Global frontend tests
+nucleify/
+├── web/                    # @nucleify/web — Nuxt landing app
+├── admin/                  # @nucleify/admin — Nuxt admin
+├── docs/                   # @nucleify/docs — Astro docs
+├── compiler/               # portable UI compiler
+├── shared_modules/         # shared nuc_* packages
+├── overrides/              # per-package override layers
+├── .config/                # monorepo tooling / bash / CI helpers
+└── supabase/               # Supabase config and merged SQL
 ```
 
 ---

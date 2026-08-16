@@ -9,7 +9,7 @@ mkdirSync(dest, { recursive: true })
 
 const sources = [
   { src: '.config/rules', prefix: '' },
-  { src: 'root/.config/rules', prefix: 'root.' },
+  { src: 'web/.config/rules', prefix: 'web.' },
   { src: 'admin/.config/rules', prefix: '' },
   { src: 'docs/.config/rules', prefix: '' },
   { src: 'compiler/.config/rules', prefix: '' },

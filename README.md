@@ -71,7 +71,7 @@ That's it! Now, you can enter http://localhost:3000
 
 <details><summary> Harder way </summary> <br>
 
-- Copy ```root/.config/.env.example``` to ```.env``` in root directory
+- Copy ```web/.config/.env.example``` to ```.env``` in root directory
 - Run ```composer install```
 
 - Build & run Docker image 

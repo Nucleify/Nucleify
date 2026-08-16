@@ -1,6 +1,6 @@
 # Nuxt Configuration
 
-Frontend configuration in `.config/nuxt.config.ts`, re-exported from root `nuxt.config.ts`.
+Frontend configuration in `web/.config/nuxt/`, assembled by `web/nuxt.config.ts`.
 
 ## SSR & Prerendering
 

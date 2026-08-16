@@ -4,7 +4,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-PKG_DIR="$ROOT_DIR/root"
+PKG_DIR="$ROOT_DIR/web"
 SUPABASE_LOCAL_BIN="${PKG_DIR}/node_modules/.bin/supabase"
 if [[ ! -x "$SUPABASE_LOCAL_BIN" ]]; then SUPABASE_LOCAL_BIN="$ROOT_DIR/node_modules/.bin/supabase"; fi
 MODE="${1:-linked}"

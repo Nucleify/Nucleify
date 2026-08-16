@@ -1,6 +1,6 @@
 ---
 description: Supabase API handlers, gateway, migrations for shared_modules
-globs: shared_modules/*/supabase/**,root/src/server/**,shared_modules/nuc_api/**
+globs: shared_modules/*/supabase/**,web/src/server/**,shared_modules/nuc_api/**
 alwaysApply: false
 ---
 
@@ -10,7 +10,7 @@ Backend logic in `shared_modules/nuc_*/supabase/`. Gateway dispatches to handler
 
 ## Gateway
 
-- Entry: `root/src/server/api/[...slug].ts` → `dispatchSupabaseApiGateway`
+- Entry: `web/src/server/api/[...slug].ts` → `dispatchSupabaseApiGateway`
 - Registry: `shared_modules/nuc_api/supabase/api/gateway_dispatch.ts`
 
 ## handle.ts pattern

@@ -1,6 +1,6 @@
 # Konfiguracja Nuxt
 
-Konfiguracja frontendu w `.config/nuxt.config.ts`, reeksportowana z root `nuxt.config.ts`.
+Konfiguracja frontendu w `web/.config/nuxt/`, składana przez `web/nuxt.config.ts`.
 
 ## SSR i Prerendering
 

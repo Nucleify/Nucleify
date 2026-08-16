@@ -1,0 +1,360 @@
+.nuc-home-compiler {
+  --emit-color: var(--home-accent);
+
+  &-copy {
+    .nuc-home-support {
+      max-width: 38rem;
+    }
+  }
+
+  &-stage {
+    position: relative;
+    margin-top: clamp(0.95rem, 2.4vw, 1.45rem);
+    min-height: 22rem;
+    padding: 1rem 0.75rem 3.6rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgb(255 255 255 / 8%);
+    overflow: visible;
+    isolation: isolate;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(
+          42% 48% at 50% 48%,
+          color-mix(in srgb, var(--emit-color) 16%, transparent),
+          transparent 72%
+        ),
+        linear-gradient(180deg, rgb(6 10 8 / 88%), rgb(3 5 4 / 92%));
+      pointer-events: none;
+    }
+
+    @media (min-width: $md) {
+      min-height: 26rem;
+      padding: 1.15rem 1rem 3.85rem;
+    }
+  }
+
+  &-edges {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  &-edge-base {
+    fill: none;
+    stroke: rgb(255 255 255 / 9%);
+    stroke-width: 0.35;
+    stroke-linecap: round;
+  }
+
+  &-edge-flow {
+    fill: none;
+    stroke-width: 0.45;
+    stroke-linecap: round;
+    stroke-dasharray: none;
+    opacity: 0;
+    transition:
+      opacity 0.35s ease,
+      stroke-width 0.35s ease;
+
+    &.is-active {
+      opacity: 1;
+      stroke-width: 0.95;
+      stroke-dasharray: 4 10;
+      stroke-dashoffset: 40;
+      filter: drop-shadow(0 0 0.35rem color-mix(in srgb, var(--emit-color) 55%, transparent));
+      animation: nuc-home-emit-flow 1.35s linear infinite;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+
+      &.is-active {
+        opacity: 0.95;
+        stroke-dasharray: none;
+      }
+    }
+  }
+
+  &-hub {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    z-index: 4;
+    width: 4rem;
+    height: 4rem;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  &-hub-glow {
+    position: absolute;
+    inset: -2.25rem;
+    z-index: 0;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--home-accent) 40%, transparent),
+      transparent 70%
+    );
+    animation: nuc-home-emit-hub-glow 2.8s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+      opacity: 0.7;
+    }
+  }
+
+  &-hub-cube {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.9rem;
+    overflow: hidden;
+  }
+
+  &-hub-face {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.85rem;
+    border: 1px solid color-mix(in srgb, var(--home-accent) 55%, #fff);
+    background: linear-gradient(145deg, #123528 0%, #07110c 72%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 10%),
+      0 0 0 1px rgb(0 0 0 / 40%),
+      0 16px 36px rgb(0 0 0 / 45%),
+      0 0 32px color-mix(in srgb, var(--home-accent) 35%, transparent);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.95rem;
+    font-weight: 650;
+    letter-spacing: -0.04em;
+    color: #e7ebe8;
+    text-shadow: 0 0 16px color-mix(in srgb, var(--home-accent) 50%, transparent);
+  }
+
+  &-hub-label {
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    left: 50%;
+    z-index: 1;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--home-dim);
+  }
+
+  &-node {
+    position: absolute;
+    z-index: 3;
+    width: 3.15rem;
+    height: 3.15rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+
+    &:hover,
+    &:focus-visible,
+    &.is-active {
+      transform: translate(-50%, -50%) scale(1.06);
+      outline: none;
+    }
+
+    &.is-active .nuc-home-compiler-cube-face {
+      border-color: color-mix(in srgb, var(--node-color) 70%, transparent);
+      box-shadow:
+        0 0 0 1px color-mix(in srgb, var(--node-color) 28%, transparent),
+        0 14px 32px rgb(0 0 0 / 40%),
+        0 0 28px color-mix(in srgb, var(--node-color) 38%, transparent);
+      color: var(--node-color);
+    }
+
+    &.is-active .nuc-home-compiler-node-name {
+      color: #e7ebe8;
+    }
+  }
+
+  &-cube {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-14deg);
+    transition: transform 0.35s ease;
+    overflow: hidden;
+    border-radius: 0.78rem;
+
+    .nuc-home-compiler-node.is-active & {
+      transform: rotate(-8deg) scale(1.04);
+    }
+  }
+
+  &-cube-face {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 0.72rem;
+    border: 1px solid rgb(255 255 255 / 12%);
+    background: linear-gradient(160deg, rgb(18 24 21 / 96%), rgb(6 9 8 / 96%));
+    color: var(--home-muted);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 6%),
+      0 12px 28px rgb(0 0 0 / 35%);
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      color 0.25s ease;
+
+    nui-icon,
+    iconify-icon {
+      font-size: 1.25rem;
+    }
+  }
+
+  &-node-meta {
+    position: absolute;
+    top: calc(100% + 0.45rem);
+    left: 50%;
+    display: grid;
+    gap: 0.12rem;
+    justify-items: center;
+    width: max-content;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  &-node-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--home-muted);
+    transition: color 0.25s ease;
+  }
+
+  &-node-cmd {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.62rem;
+    color: var(--home-dim);
+    opacity: 0;
+    transform: translateY(-2px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+
+    .nuc-home-compiler-node.is-active & {
+      opacity: 1;
+      transform: translateY(0);
+      color: color-mix(in srgb, var(--node-color) 70%, #8b968f);
+    }
+  }
+
+  &-status {
+    position: absolute;
+    left: 1rem;
+    bottom: 0.85rem;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0.35rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgb(255 255 255 / 8%);
+    background: rgb(0 0 0 / 42%);
+    color: var(--home-muted);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+
+    strong {
+      color: var(--emit-color);
+      font-weight: 650;
+    }
+  }
+
+  &-status-dot {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: var(--emit-color);
+    box-shadow: 0 0 10px color-mix(in srgb, var(--emit-color) 70%, transparent);
+    animation: nuc-home-emit-pulse 1.6s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: reduce) {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    &-stage {
+      min-height: 24rem;
+      padding-bottom: 3.75rem;
+    }
+
+    &-node {
+      width: 2.7rem;
+      height: 2.7rem;
+    }
+
+    &-cube-face nui-icon,
+    &-cube-face iconify-icon {
+      font-size: 1.15rem;
+      height: 1.15rem;
+    }
+
+    &-node-cmd {
+      display: none;
+    }
+
+    &-hub,
+    &-hub-cube {
+      width: 3.4rem;
+      height: 3.4rem;
+    }
+  }
+}
+
+@keyframes nuc-home-emit-flow {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes nuc-home-emit-hub-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.95;
+  }
+}
+
+@keyframes nuc-home-emit-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

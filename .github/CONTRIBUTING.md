@@ -58,7 +58,7 @@ make setup
 Start the landing app:
 
 ```bash
-make root       # http://localhost:3000
+make web       # http://localhost:3000
 make admin      # admin panel
 make docs       # documentation
 ```
@@ -74,7 +74,7 @@ pnpm tests
 pnpm test:watch
 ```
 
-Tests live in `root/vitests/` and `shared_modules/nuc_*/vitests/`.
+Tests live in `web/vitests/` and `shared_modules/nuc_*/vitests/`.
 
 ---
 

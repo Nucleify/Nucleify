@@ -7,13 +7,15 @@ Standardy dla kodu, struktury i nazewnictwa w Nucleify. Przestrzeganie ich zapew
 ## Struktura projektu
 
 ```txt
-root/
-├── modules/                # Samowystarczalne moduły (supabase/, atomic/)
-├── nuxt/                   # Frontend Nuxt
-├── next/                   # Frontend Next.js (opcjonalnie)
-├── supabase/               # Scalone SQL, lokalna konfiguracja Supabase
-├── .config/                # Konfiguracja Nuxt/Next/narzędzi
-└── vitests/                # Globalne testy frontendu
+nucleify/
+├── web/                    # @nucleify/web — landing Nuxt
+├── admin/                  # @nucleify/admin — panel Nuxt
+├── docs/                   # @nucleify/docs — dokumentacja Astro
+├── compiler/               # kompilator portable UI
+├── shared_modules/         # wspólne pakiety nuc_*
+├── overrides/              # warstwy override per pakiet
+├── .config/                # tooling / bash / CI monorepo
+└── supabase/               # konfiguracja Supabase i scalone SQL
 ```
 
 ---

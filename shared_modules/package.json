@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "version": "0.0.0",
-  "description": "Thin shared packages across root/admin/docs/compiler.",
+  "description": "Thin shared packages across web/admin/docs/compiler.",
   "exports": {
     ".": "./index.ts",
     "./nuc_api": "./nuc_api/index.ts",
