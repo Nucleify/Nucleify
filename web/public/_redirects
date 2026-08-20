@@ -1,4 +1,6 @@
 /pl/* /pl/404 404
+/en /en/home 302
+/en/ /en/home 302
 /en/* /en/404 404
 / /en/home 302
 /home /en/home 302
