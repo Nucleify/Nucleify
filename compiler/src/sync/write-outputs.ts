@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { basename, dirname, join, resolve } from 'node:path'
 import type { IrDocument } from '../ir/types'
 import { emitReact } from '../emit/react'
@@ -7,6 +7,7 @@ import { biomeFormat } from './biome-format'
 import {
   contentHash,
   cssHeader,
+  isDirty,
   normalizeBody,
   reactHeader,
   stripEmitHeaders,
@@ -45,6 +46,8 @@ export type WriteOutputsOpts = {
   /** Limit to these demo apps (default: every app folder that already exists). */
   apps?: EmitApp[]
   force?: boolean
+  /** Always emit vue/react/css siblings next to the source (import path). */
+  siblings?: boolean
 }
 
 export type WriteResult = {
@@ -144,9 +147,18 @@ async function writeFileEmit(
   rawBody: string,
   headerFn: (hash: string) => string,
   written: string[],
+  skipped: string[],
+  force: boolean,
 ): Promise<void> {
+  if (existsSync(filePath) && !force) {
+    const existing = readFileSync(filePath, 'utf8')
+    if (isDirty(existing, kind)) {
+      skipped.push(filePath)
+      return
+    }
+  }
   const out = await finalizeEmit(cwd, filePath, kind, rawBody, headerFn)
-  mkdirSync(join(filePath, '..'), { recursive: true })
+  mkdirSync(dirname(filePath), { recursive: true })
   writeFileSync(filePath, out, 'utf8')
   written.push(filePath)
 }
@@ -160,8 +172,11 @@ async function writeProductSiblings(opts: {
   cssFileName?: string
   cssBody?: string
   written: string[]
+  skipped: string[]
+  force: boolean
+  siblings: boolean
 }): Promise<void> {
-  if (!isProductSource(opts.cwd, opts.sourcePath)) return
+  if (!opts.siblings && !isProductSource(opts.cwd, opts.sourcePath)) return
 
   const dir = dirname(opts.sourcePath)
   const writeVue = opts.target === 'all' || opts.target === 'vue'
@@ -175,6 +190,8 @@ async function writeProductSiblings(opts: {
       opts.cssBody,
       (hash) => cssHeader(hash),
       opts.written,
+      opts.skipped,
+      opts.force,
     )
   }
 
@@ -188,6 +205,8 @@ async function writeProductSiblings(opts: {
       emitVue(opts.ir, { cssFileName: opts.cssFileName }),
       (hash) => vueHeader(hint, hash),
       opts.written,
+      opts.skipped,
+      opts.force,
     )
   }
 
@@ -201,6 +220,8 @@ async function writeProductSiblings(opts: {
       emitReact(opts.ir, { cssFileName: opts.cssFileName }),
       (hash) => reactHeader(hint, hash),
       opts.written,
+      opts.skipped,
+      opts.force,
     )
   }
 }
@@ -215,6 +236,8 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
   const base = emitBaseName(sourcePath)
   const written: string[] = []
   const skipped: string[] = []
+  const force = Boolean(opts.force)
+  const siblings = Boolean(opts.siblings)
   const apps = resolveApps(cwd, target, opts.apps)
 
   const cssFileName = opts.ir.styles?.css ? `${base}.css` : undefined
@@ -229,6 +252,9 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
     cssFileName,
     cssBody,
     written,
+    skipped,
+    force,
+    siblings,
   })
 
   for (const app of apps) {
@@ -237,7 +263,16 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
 
     if (cssFileName && cssBody) {
       const cssPath = join(componentsDir, cssFileName)
-      await writeFileEmit(cwd, cssPath, 'css', cssBody, (hash) => cssHeader(hash), written)
+      await writeFileEmit(
+        cwd,
+        cssPath,
+        'css',
+        cssBody,
+        (hash) => cssHeader(hash),
+        written,
+        skipped,
+        force,
+      )
     }
 
     if (frame === 'vue') {
@@ -250,6 +285,8 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
         emitVue(opts.ir, { cssFileName }),
         (hash) => vueHeader(hint, hash),
         written,
+        skipped,
+        force,
       )
     } else {
       const reactPath = join(componentsDir, `${base}.tsx`)
@@ -261,6 +298,8 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
         emitReact(opts.ir, { cssFileName }),
         (hash) => reactHeader(hint, hash),
         written,
+        skipped,
+        force,
       )
     }
   }

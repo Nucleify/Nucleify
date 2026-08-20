@@ -76,3 +76,14 @@ import { component, state, derived, handler } from '#nuc-compiler/runtime'
 ```
 
 Helpers exposed here must stay host-agnostic. See `compiler/README.md` for CLI cycles A/B.
+
+## Import policy
+
+- `@generated` emit may be edited; then run `pnpm compiler -- import --from=vue|react PATH`
+- Winner = `--from` (required when both `.vue` and `.tsx` are dirty)
+- Infer `--from` when exactly one of the pair is dirty; CSS-only dirty defaults to the path’s frame (or vue)
+- `build --force` overwrites dirty emit from authoring (emit edits lost)
+- `import --force` re-imports even when hashes are clean
+- `overrides/` is Nuxt-only and is **not** part of `import`
+- Round-trip may change formatting of `*.nuc.tsx` — OK
+

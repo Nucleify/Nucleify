@@ -43,7 +43,7 @@ function locOf(source: string, node: LocNode | null | undefined): { line?: numbe
   return {}
 }
 
-function fail(filePath: string, source: string, node: LocNode | null | undefined, message: string): never {
+export function fail(filePath: string, source: string, node: LocNode | null | undefined, message: string): never {
   const { line, column } = locOf(source, node)
   throw new ParseError(message, filePath, line, column)
 }
@@ -74,7 +74,7 @@ function isMarkerCall(node: any, name: string): boolean {
   return node?.type === 'CallExpression' && node.callee?.type === 'Identifier' && node.callee.name === name
 }
 
-function parseExpr(filePath: string, source: string, node: any): IrExpr {
+export function parseExpr(filePath: string, source: string, node: any): IrExpr {
   node = unwrap(node)
   if (!node) fail(filePath, source, node, 'expected expression')
 
@@ -135,10 +135,19 @@ function parseExpr(filePath: string, source: string, node: any): IrExpr {
   }
 }
 
-function parseStmt(filePath: string, source: string, node: any): IrStmt {
+export function parseStmt(filePath: string, source: string, node: any): IrStmt {
   switch (node.type) {
-    case 'ExpressionStatement':
+    case 'ExpressionStatement': {
+      const expr = unwrap(node.expression)
+      if (expr?.type === 'AssignmentExpression') {
+        return {
+          kind: 'assign',
+          target: parseExpr(filePath, source, expr.left),
+          value: parseExpr(filePath, source, expr.right),
+        }
+      }
       return { kind: 'expr', value: parseExpr(filePath, source, node.expression) }
+    }
     case 'ReturnStatement':
       return {
         kind: 'return',
@@ -371,7 +380,7 @@ function jsxTagName(nameNode: any): string {
   return 'unknown'
 }
 
-function parseJsxNode(filePath: string, source: string, node: any): IrNode {
+export function parseJsxNode(filePath: string, source: string, node: any): IrNode {
   node = unwrap(node)
   if (node.type === 'JSXFragment') {
     return {

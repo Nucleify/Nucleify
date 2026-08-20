@@ -26,6 +26,11 @@ export function irEventToReact(irName: string): string {
   return IR_TO_REACT[irName] ?? `on${irName.charAt(0).toUpperCase()}${irName.slice(1)}`
 }
 
+export function vueEventToIr(directiveName: string, arg?: string | null): string {
+  if (directiveName === 'on' && arg) return arg
+  return directiveName
+}
+
 export function reactEventToIr(reactName: string): string {
   return REACT_TO_IR[reactName] ?? reactName.replace(/^on/, '').replace(/^./, (c) => c.toLowerCase())
 }

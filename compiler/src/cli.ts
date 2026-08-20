@@ -5,6 +5,8 @@ import { defineCommand, runMain } from 'citty'
 import { COMPILER_NAME, COMPILER_PHASE } from './index'
 import { ParseError, parseTsxToIr } from './parse/tsx'
 import { discoverNucSources, toRepoRelative } from './sync/discover'
+import { checkWorkspace } from './sync/check'
+import { runImport } from './sync/import'
 import { SCAFFOLD_APPS, scaffoldApp, type ScaffoldApp } from './sync/scaffold'
 import { writeOutputs, type EmitApp } from './sync/write-outputs'
 
@@ -117,7 +119,10 @@ const main = defineCommand({
             })
             ok += 1
             for (const w of written) console.log(`wrote ${toRepoRelative(cwd, w)}`)
-            for (const s of skipped) console.log(`skipped ${toRepoRelative(cwd, s)}`)
+            for (const s of skipped) {
+              console.error(`skipped dirty ${toRepoRelative(cwd, s)} (use import or --force)`)
+              process.exitCode = 1
+            }
             console.log(`parsed ${rel} → ${ir.name}`)
           } catch (err) {
             const message = err instanceof ParseError ? err.message : String(err)
@@ -138,8 +143,26 @@ const main = defineCommand({
         name: 'check',
         description: 'Validate IR and emit fingerprints (Faza 9 fills dirty)',
       },
-      async run() {
-        console.log('check: stub OK (full dirty check from Faza 9)')
+      args: {
+        cwd: {
+          type: 'string',
+          description: 'Workspace root (default: process.cwd())',
+        },
+      },
+      async run({ args }) {
+        const cwd = resolve(String(args.cwd || process.cwd()))
+        const { dirty, orphans } = checkWorkspace(cwd)
+        for (const path of dirty) console.error(`dirty ${path}`)
+        for (const path of orphans) console.warn(`orphan emit ${path}`)
+        if (dirty.length) {
+          console.error(`check: ${dirty.length} dirty emit file(s)`)
+          process.exitCode = 1
+          return
+        }
+        if (orphans.length) {
+          console.warn(`check: ${orphans.length} orphan emit file(s)`)
+        }
+        console.log('check: ok')
       },
     }),
     watch: defineCommand({
@@ -172,9 +195,28 @@ const main = defineCommand({
           description: 'Path to .vue / .tsx / sibling .css',
         },
       },
-      async run() {
-        console.error('not implemented')
-        process.exitCode = 1
+      async run({ args }) {
+        const cwd = resolve(String(process.cwd()))
+        const inputPath = args.path ? String(args.path) : ''
+        if (!inputPath) {
+          console.error('import: path required (.vue / .tsx / .css)')
+          process.exitCode = 1
+          return
+        }
+        const fromArg = args.from ? String(args.from) : undefined
+        try {
+          const { nucPath, written, from } = await runImport({
+            cwd,
+            path: inputPath,
+            from: fromArg as 'vue' | 'react' | undefined,
+            force: Boolean(args.force),
+          })
+          console.log(`imported --from=${from} ${inputPath} → ${toRepoRelative(cwd, nucPath)}`)
+          for (const w of written) console.log(`wrote ${toRepoRelative(cwd, w)}`)
+        } catch (err) {
+          console.error(err instanceof Error ? err.message : String(err))
+          process.exitCode = 1
+        }
       },
     }),
   },
