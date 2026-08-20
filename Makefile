@@ -33,6 +33,7 @@ help:
 	@echo "  SKIP_COMPILER=1 make run"
 
 compiler:
+	pnpm compiler:check
 	pnpm compiler:build
 
 # Rebuild a gitignored demo app from templates + portable emit, then start it.

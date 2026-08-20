@@ -53,6 +53,8 @@
     "@biomejs/biome": "2.4.16",
     "@nuxt/test-utils": "3.23.0",
     "@testing-library/jest-dom": "^6.9.1",
+    "@vue/compiler-dom": "^3.5.41",
+    "@vue/compiler-sfc": "^3.5.41",
     "@vue/test-utils": "2.4.6",
     "citty": "^0.1.6",
     "happy-dom": "20.0.10",

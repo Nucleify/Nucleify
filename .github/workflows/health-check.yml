@@ -132,3 +132,33 @@ jobs:
 
       - name: Execute tests via Vitest
         run: pnpm run tests
+
+  compiler:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install Node.js Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Compiler tests
+        run: pnpm compiler:test
+
+      - name: Compiler check (emit fingerprints)
+        run: pnpm compiler:check
+
+      - name: Compiler build is idempotent on tracked tree
+        run: |
+          pnpm compiler:build
+          git diff --exit-code -- . ':(exclude)vue' ':(exclude)react' ':(exclude)nuxt' ':(exclude)next'
