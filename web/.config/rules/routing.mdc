@@ -8,7 +8,7 @@ alwaysApply: false
 
 ## i18n
 
-Routes live under `[lang]/` (`en`, `pl`, …). `web/src/pages/index.vue` redirects → `/${locale}/home`.
+Routes live under `[lang]/` (`en`, `pl`, …). `/` and `/en` redirect → `/en/home`.
 
 ## Page convention
 

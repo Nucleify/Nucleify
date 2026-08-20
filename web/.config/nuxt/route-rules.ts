@@ -9,7 +9,9 @@ export function getRouteRules(locales: readonly { code: string }[]) {
 	const prerender = isPrerenderEnabled();
 
 	return {
-		"/": { prerender: false },
+		"/": { prerender: false, redirect: { to: "/en/home", statusCode: 302 } },
+		"/en": { redirect: { to: "/en/home", statusCode: 302 } },
+		"/en/": { redirect: { to: "/en/home", statusCode: 302 } },
 		...(isLocal
 			? {}
 			: {
