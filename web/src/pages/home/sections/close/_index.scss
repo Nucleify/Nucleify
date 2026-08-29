@@ -14,6 +14,10 @@
     place-content: center space-between;
     gap: 2rem;
     flex: 1;
+
+    nui-button {
+      --nui-primary-white-text-color: var(--home-on-accent, #04110c);
+    }
   }
 
   &-copy {
@@ -39,7 +43,8 @@
     --home-muted: #8b968f;
     --home-dim: #5c665f;
     --home-line: rgb(255 255 255 / 8%);
-    --home-accent: #10b981;
+    --home-accent: var(--nui-primary-color);
+    --home-accent-rgb: var(--nui-primary-color-rgb);
     --nui-bg-dark-color: #070908;
     --nui-card-background: #0b100d;
     --nui-content-background: #101612;
@@ -47,12 +52,6 @@
     --nui-primary-text-color: var(--home-fg);
     --nui-secondary-text-color: var(--home-muted);
     --nui-white-text-color: var(--home-fg);
-    --nui-primary-color: #10b981;
-    --nui-primary-hover-color: #34d399;
-    --nui-primary-color-darker: #0d9668;
-    --nui-primary-white-text-color: #04110c;
-    --nui-primary-highlight-color: rgb(16 185 129 / 14%);
-    --nui-primary-focus-color: rgb(16 185 129 / 45%);
     --nui-dialog-width: 26rem;
     --spacing-md: 1rem;
     --spacing-sm: 0.7rem;
@@ -66,17 +65,11 @@
       --nui-card-border: rgb(255 255 255 / 10%);
       --nui-white-text-color: var(--home-fg);
       --nui-secondary-text-color: var(--home-muted);
-      --nui-primary-color: #10b981;
-      --nui-primary-focus-color: rgb(16 185 129 / 48%);
       --border-radius-sm: 0.75rem;
     }
 
     nui-button {
-      --nui-primary-color: #10b981;
-      --nui-primary-hover-color: #34d399;
-      --nui-primary-color-darker: #0d9668;
-      --nui-primary-white-text-color: #04110c;
-      --nui-primary-focus-color: rgb(16 185 129 / 48%);
+      --nui-primary-white-text-color: var(--home-on-accent, #04110c);
       --border-radius-sm: 0.75rem;
     }
   }

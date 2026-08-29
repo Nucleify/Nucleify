@@ -35,7 +35,11 @@
             :x2="node.x"
             :y2="node.y"
           >
-            <stop offset="0%" stop-color="rgb(16 185 129 / 55%)" />
+            <stop
+              offset="0%"
+              stop-color="var(--home-accent)"
+              stop-opacity="0.55"
+            />
             <stop offset="100%" :stop-color="node.color" />
           </linearGradient>
         </defs>

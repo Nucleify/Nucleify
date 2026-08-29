@@ -2,7 +2,7 @@
 
 Nuxt landing app (marketing site) — **canonical product shell** (`TARGET=nuxt`).
 
-Other frameworks (`make web TARGET=next`, …) are reserved for compiler tryb B (not implemented yet).
+Alternate shell (tryb B): `make web TARGET=next` → gitignored `next/web/`.
 
 - `.cursor/agents/` — shared agents for the monorepo
 - Rules: monorepo `.config/rules/` + `web/.config/rules/`
@@ -12,6 +12,7 @@ Other frameworks (`make web TARGET=next`, …) are reserved for compiler tryb B 
 ```bash
 make web                 # Nuxt (default TARGET=nuxt)
 make web TARGET=nuxt
+make web TARGET=next     # → next/web
 pnpm --filter @nucleify/web nuxt
 ```
 

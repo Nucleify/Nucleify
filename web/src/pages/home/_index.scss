@@ -5,7 +5,11 @@
   --home-dim: #5c665f;
   --home-line: rgb(255 255 255 / 8%);
   --home-accent: var(--nui-primary-color, #10b981);
-  --home-accent-soft: rgb(var(--nui-primary-color-rgb, 16, 185, 129) / 16%);
+  --home-accent-rgb: var(--nui-primary-color-rgb, 16, 185, 129);
+  --home-accent-soft: rgba(var(--home-accent-rgb), 0.16);
+
+  // Dark marketing surface: filled primary CTAs need dark label on bright accent.
+  --home-on-accent: var(--nui-on-primary, #04110c);
   --home-max: 1200px;
   --home-pad: 1rem;
   --home-mx: 0;
@@ -13,6 +17,10 @@
   --home-iris: 0%;
   --home-iris-x: 18%;
   --home-iris-y: 40%;
+
+  nui-button {
+    --nui-primary-white-text-color: var(--home-on-accent);
+  }
 
   position: relative;
   height: 100svh;
@@ -47,7 +55,7 @@
       radial-gradient(
         36% 30% at calc(18% + var(--home-mx) * -4%),
         calc(72% + var(--home-my) * 3%),
-        rgb(16 185 129 / 7%),
+        rgba(var(--home-accent-rgb), 0.07),
         transparent 72%
       );
   }
@@ -261,7 +269,7 @@
 
     &.is-active {
       color: var(--home-accent);
-      background: rgb(16 185 129 / 14%);
+      background: rgba(var(--home-accent-rgb), 0.14);
 
       &::before {
         width: 2rem;
@@ -518,7 +526,7 @@
   font-synthesis: none;
   font-variant-ligatures: none;
   color: var(--home-accent);
-  text-shadow: 0 0 18px rgb(var(--nui-primary-color-rgb, 16, 185, 129) / 35%);
+  text-shadow: 0 0 18px rgba(var(--home-accent-rgb), 0.35);
   transition: color 0.2s ease, text-shadow 0.2s ease;
 
   &.is-locked {

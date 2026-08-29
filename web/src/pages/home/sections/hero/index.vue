@@ -48,7 +48,7 @@
 
       <aside
         class="nuc-home-hero-panel"
-        :style="{ '--shell-color': activeShell?.color || '#10b981' }"
+        :style="activeShell?.color ? { '--shell-color': activeShell.color } : undefined"
         aria-label="Framework shell preview"
       >
         <div class="nuc-home-hero-chrome">

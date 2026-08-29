@@ -70,9 +70,9 @@
     &.is-on {
       opacity: 1;
       color: var(--home-fg);
-      border-color: rgb(16 185 129 / 32%);
-      background: rgb(16 185 129 / 10%);
-      box-shadow: 0 0 14px rgb(16 185 129 / 12%);
+      border-color: rgba(var(--home-accent-rgb), 0.32);
+      background: rgba(var(--home-accent-rgb), 0.1);
+      box-shadow: 0 0 14px rgba(var(--home-accent-rgb), 0.12);
     }
   }
 
@@ -139,10 +139,10 @@
     &-flat {
       background: linear-gradient(
         90deg,
-        rgb(16 185 129 / 55%),
+        rgba(var(--home-accent-rgb), 0.55),
         rgb(52 211 153 / 90%)
       );
-      box-shadow: 0 0 16px rgb(16 185 129 / 30%);
+      box-shadow: 0 0 16px rgba(var(--home-accent-rgb), 0.3);
     }
   }
 
@@ -179,7 +179,7 @@
     height: 0.4rem;
     border-radius: 50%;
     background: var(--home-accent);
-    box-shadow: 0 0 10px rgb(16 185 129 / 55%);
+    box-shadow: 0 0 10px rgba(var(--home-accent-rgb), 0.55);
   }
 
   &-status.is-on &-status-dot {

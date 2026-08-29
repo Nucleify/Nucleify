@@ -4,6 +4,7 @@ export const structureConfig = {
 	alias: {
 		nucleify: "~/nucleify",
 		modules: resolve(process.cwd(), "../shared_modules"),
+		"portable/nui": resolve(process.cwd(), "../portable/nui"),
 		nuc_client: "~/nuc_client",
 		nuc_server: "~/server/nuc_server",
 		"#nuc-compiler/runtime": resolve(

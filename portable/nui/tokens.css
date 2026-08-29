@@ -1,0 +1,25 @@
+/**
+ * Shell → nucleify-ui token bridge.
+ * Lit `nui-*` reads `--nui-*`. Product shells use `.nuc-nuxt` / `.nuc-next`.
+ * No components here — only CSS variables.
+ */
+
+.nuc-nuxt {
+  --nui-primary-color: #10b981;
+  --nui-primary-color-rgb: 16, 185, 129;
+  --nui-primary-hover-color: #1bbd79;
+  --nui-primary-color-darker: #0d9668;
+  --nui-primary-highlight-color: #10b98115;
+  --nui-primary-focus-color: #10b98180;
+  --nui-on-primary: #04110c;
+}
+
+.nuc-next {
+  --nui-primary-color: #60a5fa;
+  --nui-primary-color-rgb: 96, 165, 250;
+  --nui-primary-hover-color: #3b82f6;
+  --nui-primary-color-darker: #4d94e8;
+  --nui-primary-highlight-color: #60a5fa15;
+  --nui-primary-focus-color: #60a5fa80;
+  --nui-on-primary: #04110c;
+}
