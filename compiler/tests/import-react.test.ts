@@ -20,7 +20,7 @@ import { emitReact } from '../src/emit/react'
 import { emitVue } from '../src/emit/vue'
 
 const monorepo = join(dirname(fileURLToPath(import.meta.url)), '../..')
-const fixtures = join(monorepo, 'portable/fixtures')
+const fixtures = join(monorepo, 'compiler/tests/fixtures')
 
 describe('parseReactToIr roundtrip', () => {
   for (const name of ['hello', 'button', 'counter', 'list'] as const) {
@@ -165,6 +165,6 @@ describe('fresh emit biome idempotent', () => {
 describe('checkWorkspace', () => {
   it('reports no portable dirty in monorepo fixtures path', () => {
     const { dirty } = checkWorkspace(monorepo)
-    expect(dirty.filter((p) => p.includes('portable/fixtures'))).toEqual([])
+    expect(dirty.filter((p) => p.includes('compiler/tests/fixtures'))).toEqual([])
   })
 })

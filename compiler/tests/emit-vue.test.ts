@@ -13,7 +13,7 @@ import {
 } from '../src/sync/fingerprint'
 
 const monorepo = join(dirname(fileURLToPath(import.meta.url)), '../..')
-const fixtures = join(monorepo, 'portable/fixtures')
+const fixtures = join(monorepo, 'compiler/tests/fixtures')
 
 async function emitWithHeaders(name: string): Promise<string> {
   const ir = parseIrDocument(
@@ -36,7 +36,7 @@ async function emitWithHeaders(name: string): Promise<string> {
 
 describe('emitVue golden', () => {
   for (const name of ['hello', 'button', 'list', 'nui_cta', 'counter'] as const) {
-    it(`matches portable/fixtures/emit/vue/${name}.vue`, async () => {
+    it(`matches compiler/tests/fixtures/emit/vue/${name}.vue`, async () => {
       const expected = readFileSync(join(fixtures, `emit/vue/${name}.vue`), 'utf8')
       const actual = await emitWithHeaders(name)
       expect(actual).toBe(expected)

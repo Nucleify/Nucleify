@@ -20,20 +20,40 @@ export type WriteTarget = 'vue' | 'react' | 'all'
 export type EmitApp = 'vue' | 'react' | 'nuxt' | 'next'
 
 /**
- * Emit destinations under the monorepo root (gitignored demo apps).
+ * Emit destinations for throwaway demos under `{framework}/demo` (gitignored).
  */
 export const EMIT_APP_DIRS: Record<EmitApp, string> = {
-  vue: 'vue/src/components',
-  react: 'react/src/components',
-  nuxt: 'nuxt/components',
-  next: 'next/src/components',
+  vue: 'vue/demo/src/components',
+  react: 'react/demo/src/components',
+  nuxt: 'nuxt/demo/components',
+  next: 'next/demo/src/components',
 }
+
+/** Product shells `{framework}/{product}` that receive the same emit when present. */
+export const PRODUCT_SHELL_EMIT: {
+  framework: EmitApp
+  product: string
+  componentsDir: string
+  frame: 'vue' | 'react'
+}[] = [
+  {
+    framework: 'next',
+    product: 'web',
+    componentsDir: 'next/web/src/components',
+    frame: 'react',
+  },
+]
 
 const APP_FRAME: Record<EmitApp, 'vue' | 'react'> = {
   vue: 'vue',
   nuxt: 'vue',
   react: 'react',
   next: 'react',
+}
+
+/** Root dir that must exist for a demo emit target (`vue/demo`, …). */
+function demoRoot(app: EmitApp): string {
+  return `${app}/demo`
 }
 
 const PRODUCT_SOURCE_PREFIXES = ['web/', 'admin/'] as const
@@ -135,9 +155,22 @@ function resolveApps(cwd: string, target: WriteTarget, apps?: EmitApp[]): EmitAp
     if (target === 'vue' && frame !== 'vue') return false
     if (target === 'react' && frame !== 'react') return false
     if (apps?.length) return apps.includes(app)
-    return existsSync(join(cwd, app))
+    return existsSync(join(cwd, demoRoot(app)))
   })
   return all
+}
+
+function resolveProductShells(
+  cwd: string,
+  target: WriteTarget,
+  apps?: EmitApp[],
+): (typeof PRODUCT_SHELL_EMIT)[number][] {
+  return PRODUCT_SHELL_EMIT.filter((shell) => {
+    if (target === 'vue' && shell.frame !== 'vue') return false
+    if (target === 'react' && shell.frame !== 'react') return false
+    if (apps?.length && !apps.includes(shell.framework)) return false
+    return existsSync(join(cwd, shell.framework, shell.product))
+  })
 }
 
 async function writeFileEmit(
@@ -297,6 +330,47 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
         'react',
         emitReact(opts.ir, { cssFileName }),
         (hash) => reactHeader(hint, hash),
+        written,
+        skipped,
+        force,
+      )
+    }
+  }
+
+  for (const shell of resolveProductShells(cwd, target, opts.apps)) {
+    const componentsDir = join(cwd, shell.componentsDir)
+    if (cssFileName && cssBody) {
+      await writeFileEmit(
+        cwd,
+        join(componentsDir, cssFileName),
+        'css',
+        cssBody,
+        (hash) => cssHeader(hash),
+        written,
+        skipped,
+        force,
+      )
+    }
+    if (shell.frame === 'vue') {
+      const vuePath = join(componentsDir, `${base}.vue`)
+      await writeFileEmit(
+        cwd,
+        vuePath,
+        'vue',
+        emitVue(opts.ir, { cssFileName }),
+        (hash) => vueHeader(toRepoRelative(cwd, vuePath), hash),
+        written,
+        skipped,
+        force,
+      )
+    } else {
+      const reactPath = join(componentsDir, `${base}.tsx`)
+      await writeFileEmit(
+        cwd,
+        reactPath,
+        'react',
+        emitReact(opts.ir, { cssFileName }),
+        (hash) => reactHeader(toRepoRelative(cwd, reactPath), hash),
         written,
         skipped,
         force,

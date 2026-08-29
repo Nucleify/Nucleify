@@ -41,7 +41,7 @@
     border: 1px solid rgb(255 255 255 / 9%);
     border-radius: 1.1rem;
     background:
-      linear-gradient(160deg, rgb(16 185 129 / 8%), transparent 55%),
+      linear-gradient(160deg, rgba(var(--home-accent-rgb), 0.08), transparent 55%),
       rgb(0 0 0 / 28%);
   }
 
@@ -86,7 +86,7 @@
     width: 1px;
     background: linear-gradient(
       180deg,
-      rgb(16 185 129 / 45%),
+      rgba(var(--home-accent-rgb), 0.45),
       rgb(255 255 255 / 8%)
     );
   }
@@ -115,7 +115,7 @@
       box-shadow 0.25s ease;
 
     &:hover {
-      border-color: rgb(16 185 129 / 28%);
+      border-color: rgba(var(--home-accent-rgb), 0.28);
       box-shadow: 0 16px 36px rgb(0 0 0 / 22%);
     }
   }
@@ -133,8 +133,8 @@
     width: 2.35rem;
     height: 2.35rem;
     border-radius: 0.75rem;
-    border: 1px solid rgb(16 185 129 / 24%);
-    background: rgb(16 185 129 / 10%);
+    border: 1px solid rgba(var(--home-accent-rgb), 0.24);
+    background: rgba(var(--home-accent-rgb), 0.1);
     color: var(--home-accent);
   }
 

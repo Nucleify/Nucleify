@@ -80,8 +80,8 @@ This merges SQL from all enabled modules under `modules/*/supabase/` and applies
 
 | Service | URL |
 |---------|-----|
-| **Nuxt** | `http://localhost:3000` |
-| **Next** | `http://localhost:3001` (if port 3000 is taken) |
+| **Nuxt** | `http://localhost:3000` (default) |
+| **Next** | first free port from `3000` (`next dev` auto-increments) |
 | **API gateway** | `http://localhost:3000/api/test` |
 | **Supabase Studio** | Local: `http://localhost:54323` (with `supabase start`) |
 
@@ -95,7 +95,7 @@ Ensure `SUPABASE_URL`, `SUPABASE_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` are set i
 
 ### Port conflicts
 
-Stop other apps on 3000/3001 or set a custom port for Next/Nuxt.
+Nuxt/Next pick the next free port from 3000 when the default is taken. Check the terminal for the actual Local URL.
 
 ### Migration errors
 

@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import { irDocumentSchema, parseIrDocument } from '../src/ir/schema'
 
-const fixturesDir = join(dirname(fileURLToPath(import.meta.url)), '../../portable/fixtures/ir')
+const fixturesDir = join(dirname(fileURLToPath(import.meta.url)), 'fixtures/ir')
 
 function loadFixture(name: string): unknown {
   return JSON.parse(readFileSync(join(fixturesDir, `${name}.json`), 'utf8'))
@@ -12,7 +12,7 @@ function loadFixture(name: string): unknown {
 
 describe('IR v0.1 schema', () => {
   for (const name of ['hello', 'button', 'list'] as const) {
-    it(`parses portable/fixtures/ir/${name}.json`, () => {
+    it(`parses compiler/tests/fixtures/ir/${name}.json`, () => {
       const raw = loadFixture(name)
       const doc = parseIrDocument(raw)
       expect(doc.irVersion).toBe('0.1.0')

@@ -7,7 +7,14 @@ import { ParseError, parseTsxToIr } from './parse/tsx'
 import { discoverNucSources, toRepoRelative } from './sync/discover'
 import { checkWorkspace } from './sync/check'
 import { runImport } from './sync/import'
-import { SCAFFOLD_APPS, scaffoldApp, type ScaffoldApp } from './sync/scaffold'
+import {
+  PRODUCT_IDS,
+  SCAFFOLD_APPS,
+  scaffoldApp,
+  type ProductId,
+  type ScaffoldApp,
+} from './sync/scaffold'
+import { convertProduct } from './sync/convert'
 import { writeOutputs, type EmitApp } from './sync/write-outputs'
 
 const main = defineCommand({
@@ -29,7 +36,7 @@ const main = defineCommand({
     scaffold: defineCommand({
       meta: {
         name: 'scaffold',
-        description: 'Recreate a gitignored demo app from compiler/templates',
+        description: 'Recreate gitignored demo at {framework}/demo from templates',
       },
       args: {
         app: {
@@ -51,7 +58,62 @@ const main = defineCommand({
           return
         }
         const dest = scaffoldApp(app, cwd)
-        console.log(`scaffold: ${app} → ${toRepoRelative(cwd, dest)}`)
+        console.log(`scaffold: ${app}/demo → ${toRepoRelative(cwd, dest)}`)
+      },
+    }),
+    convert: defineCommand({
+      meta: {
+        name: 'convert',
+        description: 'Scaffold product shell at {framework}/{product} (tryb B)',
+      },
+      args: {
+        product: {
+          type: 'positional',
+          required: true,
+          description: PRODUCT_IDS.join(' | '),
+        },
+        target: {
+          type: 'string',
+          description: 'Framework: next | react | vue | nuxt',
+          required: true,
+        },
+        force: {
+          type: 'boolean',
+          description: 'Wipe and recreate product shell',
+          default: false,
+        },
+        cwd: {
+          type: 'string',
+          description: 'Workspace root (default: process.cwd())',
+        },
+      },
+      async run({ args }) {
+        const cwd = resolve(String(args.cwd || process.cwd()))
+        const product = String(args.product) as ProductId
+        const framework = String(args.target) as ScaffoldApp
+        if (!PRODUCT_IDS.includes(product)) {
+          console.error(`convert: unknown product "${product}"`)
+          process.exitCode = 1
+          return
+        }
+        if (!SCAFFOLD_APPS.includes(framework)) {
+          console.error(`convert: unknown target "${framework}"`)
+          process.exitCode = 1
+          return
+        }
+        try {
+          const { dest, copied } = convertProduct({
+            product,
+            framework,
+            cwd,
+            force: Boolean(args.force),
+          })
+          console.log(`convert: ${product} → ${toRepoRelative(cwd, dest)}`)
+          for (const c of copied) console.log(`  copied ${c}`)
+        } catch (err) {
+          console.error(err instanceof Error ? err.message : String(err))
+          process.exitCode = 1
+        }
       },
     }),
     build: defineCommand({

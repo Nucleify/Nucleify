@@ -14,7 +14,7 @@ import { isDirty } from '../src/sync/fingerprint'
 import { runImport } from '../src/sync/import'
 
 const monorepo = join(dirname(fileURLToPath(import.meta.url)), '../..')
-const fixtures = join(monorepo, 'portable/fixtures')
+const fixtures = join(monorepo, 'compiler/tests/fixtures')
 
 describe('parseVueToIr roundtrip', () => {
   for (const name of ['hello', 'button', 'counter'] as const) {

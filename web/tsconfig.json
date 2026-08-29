@@ -26,6 +26,8 @@
 			"nuc_server": ["src/server/nuc_server.ts"],
 			"modules": ["../shared_modules"],
 			"modules/*": ["../shared_modules/*"],
+			"portable/nui": ["../portable/nui/index.ts"],
+			"portable/nui/*": ["../portable/nui/*"],
 			"#nuc-compiler/runtime": ["../compiler/runtime/index.ts"],
 			"~/*": ["src/*"]
 		}
@@ -38,7 +40,8 @@
 		"./**/*.js",
 		"./**/*.jsx",
 		"../shared_modules/**/*.ts",
-		"../shared_modules/**/*.vue"
+		"../shared_modules/**/*.vue",
+		"../portable/nui/**/*.ts"
 	],
 	"exclude": [
 		"../node_modules",

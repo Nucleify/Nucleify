@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest'
 import { parseIrDocument } from '../src/ir/schema'
 import { writeOutputs } from '../src/sync/write-outputs'
 
-const fixtures = join(dirname(fileURLToPath(import.meta.url)), '../../portable/fixtures')
+const fixtures = join(dirname(fileURLToPath(import.meta.url)), 'fixtures')
 
 describe('product sibling emit', () => {
   it('writes vue/react/css next to web authoring even without demo apps', async () => {

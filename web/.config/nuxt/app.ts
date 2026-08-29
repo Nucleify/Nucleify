@@ -1,6 +1,7 @@
 export const appConfig = {
 	head: {
-		htmlAttrs: {},
+		htmlAttrs: { class: "nuc-nuxt p-dark" },
+		bodyAttrs: { class: "nuc-nuxt p-dark" },
 		title: "Nucleify - Modular Web Framework for Laravel & Nuxt",
 		titleTemplate: "%s",
 		meta: [
@@ -15,6 +16,11 @@ export const appConfig = {
 		link: [
 			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
 			{ rel: "apple-touch-icon", href: "/favicon.ico" },
+		],
+		style: [
+			{
+				children: "html,body{margin:0;background:#070908;color:#e7ebe8;}",
+			},
 		],
 	},
 };

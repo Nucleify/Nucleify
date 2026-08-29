@@ -8,11 +8,11 @@ import { EMIT_APP_DIRS, writeOutputs, type EmitApp } from '../src/sync/write-out
 
 const compilerRoot = join(dirname(fileURLToPath(import.meta.url)), '..')
 const monorepo = join(compilerRoot, '..')
-const fixtures = join(monorepo, 'portable/fixtures')
+const fixtures = join(monorepo, 'compiler/tests/fixtures')
 
 function prepareEmitApps(tmp: string, apps: EmitApp[] = ['vue', 'react', 'nuxt', 'next']): void {
   for (const app of apps) {
-    mkdirSync(join(tmp, app), { recursive: true })
+    mkdirSync(join(tmp, app, 'demo'), { recursive: true })
     mkdirSync(join(tmp, EMIT_APP_DIRS[app]), { recursive: true })
   }
   mkdirSync(join(tmp, 'portable'), { recursive: true })
@@ -27,7 +27,7 @@ function normalizeReactHint(source: string, name: string): string {
 
 describe('emitReact golden', () => {
   for (const name of ['hello', 'button', 'list', 'nui_cta', 'counter'] as const) {
-    it(`matches portable/fixtures/emit/react/${name}.tsx`, async () => {
+    it(`matches compiler/tests/fixtures/emit/react/${name}.tsx`, async () => {
       const ir = parseIrDocument(
         JSON.parse(readFileSync(join(fixtures, `ir/${name}.json`), 'utf8')),
       )

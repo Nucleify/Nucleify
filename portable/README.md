@@ -1,60 +1,59 @@
-# Portable authoring
+# Portable
 
-Committed sources for the compiler. Generated demo apps (`vue/`, `react/`, `nuxt/`, `next/`) are **gitignored** and rebuilt by Make.
+Shared **NUI** wiring for product shells — tokens, fonts, and Lit `nui-*` registration.
 
-Product apps vs emit demos
-
-| Command | What it is | Default |
-|---------|------------|---------|
-| `make web` | Landing product shell | **Nuxt** (`TARGET=nuxt`) |
-| `make admin` | Admin product shell | **Nuxt** |
-| `make docs` | Docs product shell | **Astro** (host today; `TARGET` reserved for later) |
-| `make nuxt` / `next` / `vue` / `react` | Throwaway emit demos | scaffold + portable UI |
-
-Home landing graph (`web/src/pages/home/sections/compiler_demo/`) is a **Vue product section**, not portable authoring. Author `*.nuc.tsx` under `portable/` (and optionally other product trees), then emit into gitignored demo apps.
-
-Multi-framework product shells (e.g. `make web TARGET=next`) are **planned** (compiler tryb B). Until then only `TARGET=nuxt` is implemented for `web` / `admin`; other values exit with a stub message.
-
-```bash
-make web                 # Nuxt (default)
-make web TARGET=nuxt     # same
-make web TARGET=next     # stub — not yet
-make admin
-SKIP_COMPILER=1 make setup
-```
+No demo components and no compiler golden fixtures live here. Authoring `*.nuc.tsx` and emit
+goldens for tests live under `compiler/tests/fixtures/` (and optional future authoring trees).
 
 ## Layout
 
 ```text
 portable/
-  hello.nuc.tsx          # authoring (discovered by build)
-  nui_cta.nuc.tsx        # nucleify-ui attrs demo (style / boolean / aria-*)
-  counter.nuc.tsx        # state / derived / handler (Faza 7)
-  fixtures/
-    source/              # golden *.nuc.tsx
-    ir/                  # golden IR JSON
-    emit/vue|react|css/  # golden emit snapshots
+  nui/                 # tokens + fonts + register/theme
+    tokens.css
+    tokens.scss
+    fonts.css
+    register.ts
+    theme.ts
+    index.ts
+    README.md
   README.md
 ```
 
-## Emit demo commands
+## Product shells
+
+| Command | What it is | Default |
+|---------|------------|---------|
+| `make web` | Landing product shell | **Nuxt** (`TARGET=nuxt`) |
+| `make admin` | Admin product shell | **Nuxt** |
+| `make docs` | Docs product shell | **Astro** |
+| `make nuxt` / `next` / `vue` / `react` | Throwaway emit demos | `{framework}/demo` (gitignored) |
+
+**Tryb B:** `make web TARGET=next` runs `convert`, which copies `web/` into `next/web/` and hosts
+Vue SFCs via vue-loader under the Next App Router.
 
 ```bash
-make nuxt    # rm -rf nuxt → scaffold → emit → pnpm install → dev
-make next
-make vue
-make react
-pnpm compiler:build
-pnpm compiler -- scaffold nuxt
+make web                 # Nuxt top-level web/
+make web TARGET=next     # next/web
+make next                # demo only → next/demo
 ```
 
-Demo apps use **pnpm** everywhere. Settings live in `pnpm.json`; `package.json` is only the app manifest (deps/scripts).
+Product shells import `portable/nui` for `--nui-*` tokens and Lit registration — they do not
+duplicate palettes.
+
+## Emit demos
+
+```bash
+make nuxt | next | vue | react
+pnpm compiler:build
+```
 
 | Emit demo | Output (gitignored) |
 |-----------|---------------------|
-| Vue | `vue/src/components/` |
-| React | `react/src/components/` |
-| Nuxt | `nuxt/components/` |
-| Next | `next/src/components/` |
+| Vue | `vue/demo/src/components/` |
+| React | `react/demo/src/components/` |
+| Nuxt | `nuxt/demo/components/` |
+| Next | `next/demo/src/components/` |
 
-Templates: `compiler/templates/{vue,react,nuxt,next}/`.
+Templates: `compiler/templates/{vue,react,nuxt,next}/{demo,web}/`.
+Compiler test fixtures: `compiler/tests/fixtures/{source,ir,emit}/`.

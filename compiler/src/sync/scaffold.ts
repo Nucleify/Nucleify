@@ -2,32 +2,91 @@ import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-export const SCAFFOLD_APPS = ['vue', 'react', 'nuxt', 'next'] as const
-export type ScaffoldApp = (typeof SCAFFOLD_APPS)[number]
+export const SCAFFOLD_FRAMEWORKS = ['vue', 'react', 'nuxt', 'next'] as const
+export type ScaffoldFramework = (typeof SCAFFOLD_FRAMEWORKS)[number]
+
+/** @deprecated use SCAFFOLD_FRAMEWORKS */
+export const SCAFFOLD_APPS = SCAFFOLD_FRAMEWORKS
+/** @deprecated use ScaffoldFramework */
+export type ScaffoldApp = ScaffoldFramework
+
+export const PRODUCT_IDS = ['web', 'admin', 'docs'] as const
+export type ProductId = (typeof PRODUCT_IDS)[number]
 
 function templatesRoot(): string {
   return join(dirname(fileURLToPath(import.meta.url)), '../../templates')
 }
 
 /**
- * Wipe and recreate a simple demo app from `compiler/templates/<app>`.
- * Output dirs (`vue/`, `react/`, `nuxt/`, `next/`) are gitignored.
+ * Wipe and recreate a throwaway demo app at `{framework}/demo`
+ * from `compiler/templates/{framework}/demo`.
  */
-export function scaffoldApp(app: ScaffoldApp, cwd = process.cwd()): string {
-  if (!SCAFFOLD_APPS.includes(app)) {
-    throw new Error(`unknown app "${app}"; expected one of ${SCAFFOLD_APPS.join(', ')}`)
+export function scaffoldDemo(framework: ScaffoldFramework, cwd = process.cwd()): string {
+  if (!SCAFFOLD_FRAMEWORKS.includes(framework)) {
+    throw new Error(
+      `unknown framework "${framework}"; expected one of ${SCAFFOLD_FRAMEWORKS.join(', ')}`,
+    )
   }
-  const src = join(templatesRoot(), app)
+  const src = join(templatesRoot(), framework, 'demo')
   if (!existsSync(src)) {
-    throw new Error(`missing template: ${src}`)
+    throw new Error(`missing demo template: ${src}`)
   }
-  const dest = resolve(cwd, app)
+  const dest = resolve(cwd, framework, 'demo')
   rmSync(dest, { recursive: true, force: true })
   mkdirSync(dirname(dest), { recursive: true })
   cpSync(src, dest, { recursive: true })
   return dest
 }
 
-export function scaffoldApps(apps: ScaffoldApp[], cwd = process.cwd()): string[] {
-  return apps.map((app) => scaffoldApp(app, cwd))
+/** @deprecated use scaffoldDemo */
+export function scaffoldApp(app: ScaffoldFramework, cwd = process.cwd()): string {
+  return scaffoldDemo(app, cwd)
+}
+
+export function scaffoldApps(apps: ScaffoldFramework[], cwd = process.cwd()): string[] {
+  return apps.map((app) => scaffoldDemo(app, cwd))
+}
+
+/**
+ * Ensure product shell at `{framework}/{product}` from
+ * `compiler/templates/{framework}/{product}`.
+ * Does not wipe existing tree unless `force`.
+ */
+export function scaffoldProduct(opts: {
+  product: ProductId
+  framework: ScaffoldFramework
+  cwd?: string
+  force?: boolean
+}): string {
+  const cwd = resolve(opts.cwd ?? process.cwd())
+  const { product, framework, force } = opts
+  if (!PRODUCT_IDS.includes(product)) {
+    throw new Error(`unknown product "${product}"; expected one of ${PRODUCT_IDS.join(', ')}`)
+  }
+  if (!SCAFFOLD_FRAMEWORKS.includes(framework)) {
+    throw new Error(
+      `unknown framework "${framework}"; expected one of ${SCAFFOLD_FRAMEWORKS.join(', ')}`,
+    )
+  }
+  const src = join(templatesRoot(), framework, product)
+  if (!existsSync(src)) {
+    throw new Error(
+      `missing product template: ${src} (tryb B slice may not support ${framework}/${product} yet)`,
+    )
+  }
+  const dest = join(cwd, framework, product)
+  if (existsSync(dest) && force) {
+    rmSync(dest, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 })
+  }
+  if (existsSync(dest) && !force) {
+    return dest
+  }
+  rmSync(dest, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 })
+  mkdirSync(dirname(dest), { recursive: true })
+  cpSync(src, dest, { recursive: true })
+  return dest
+}
+
+export function productShellPath(framework: ScaffoldFramework, product: ProductId, cwd = process.cwd()): string {
+  return resolve(cwd, framework, product)
 }

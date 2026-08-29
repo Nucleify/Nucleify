@@ -6,23 +6,24 @@ IR-first portable UI compiler for Nucleify (option C — custom IR, no Mitosis).
 
 | Role | Files |
 |------|--------|
-| Authoring | `portable/*.nuc.tsx` |
-| Fixtures | `portable/fixtures/{source,ir,emit}` |
-| Templates | `compiler/templates/{vue,react,nuxt,next}` |
-| Emit demos | `vue/` `react/` `nuxt/` `next/` — **gitignored** |
-| Product apps | `web` / `admin` / `docs` — **default shell Nuxt** (docs: Astro); `TARGET=next|…` later (tryb B) |
+| NUI tokens / register | `portable/nui/` |
+| Test fixtures | `compiler/tests/fixtures/{source,ir,emit}` |
+| Templates | `compiler/templates/{vue,react,nuxt,next}/{demo,web}` |
+| Emit demos | `{vue,react,nuxt,next}/demo/` — **gitignored** |
+| Product apps | `web/` (Nuxt default); tryb B → `{framework}/{product}` e.g. `next/web/` |
 
 ```text
-make web                 # product → Nuxt
-make web TARGET=next     # stub until tryb B
-make nuxt                 # emit demo scaffold (not product root)
+make web                 # product → top-level Nuxt web/
+make web TARGET=next     # product → next/web (tryb B)
+make next                # throwaway emit demo → next/demo
 ```
 
 ## CLI
 
 ```bash
-pnpm compiler -- scaffold nuxt
-pnpm compiler -- build --app=nuxt
+pnpm compiler -- scaffold next          # → next/demo
+pnpm compiler -- convert web --target=next   # → next/web
+pnpm compiler -- build --app=next
 pnpm compiler:check
 pnpm compiler:build
 pnpm compiler:test
@@ -30,10 +31,17 @@ pnpm compiler -- import --from=vue path/to/Component.vue
 pnpm compiler -- import --from=react path/to/Component.tsx
 ```
 
+### Tryb A vs B
+
+| | Tryb A | Tryb B |
+|---|--------|--------|
+| What | `*.nuc.tsx` → IR → emit | product shell under `{framework}/{product}` |
+| Example | `build` → `next/demo/src/components` | `convert web --target=next` → `next/web` |
+| Not | full app convert | single-component emit |
 ### Cycle A — authoring first
 
 ```bash
-# edit portable/Foo.nuc.tsx
+# optional: add Foo.nuc.tsx under a discover root (e.g. web/ or portable/)
 pnpm compiler:build          # → .vue + .tsx (+ .css) with content-hash
 pnpm compiler:check          # dirty → exit 1
 ```

@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest'
 import type { IrDocument } from '../src/ir/types'
 import { ParseError, parseTsxToIr } from '../src/parse/tsx'
 
-const fixtures = join(dirname(fileURLToPath(import.meta.url)), '../../portable/fixtures')
+const fixtures = join(dirname(fileURLToPath(import.meta.url)), 'fixtures')
 const sourceDir = join(fixtures, 'source')
 const irDir = join(fixtures, 'ir')
 
@@ -16,7 +16,7 @@ function stripMeta(doc: IrDocument): IrDocument {
 
 describe('parseTsxToIr golden', () => {
   for (const name of ['hello', 'button', 'list', 'nui_cta', 'counter'] as const) {
-    it(`${name}.nuc.tsx → portable/fixtures/ir/${name}.json`, () => {
+    it(`${name}.nuc.tsx → compiler/tests/fixtures/ir/${name}.json`, () => {
       const source = readFileSync(join(sourceDir, `${name}.nuc.tsx`), 'utf8')
       const expected = JSON.parse(readFileSync(join(irDir, `${name}.json`), 'utf8')) as IrDocument
       const actual = parseTsxToIr(source, `fixtures/source/${name}.nuc.tsx`)

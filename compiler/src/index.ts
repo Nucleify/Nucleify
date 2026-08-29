@@ -37,6 +37,14 @@ export { checkWorkspace } from './sync/check'
 export { runImport } from './sync/import'
 export { emitVue } from './emit/vue'
 export { emitReact } from './emit/react'
-export { writeOutputs, EMIT_APP_DIRS } from './sync/write-outputs'
-export { scaffoldApp, SCAFFOLD_APPS } from './sync/scaffold'
+export { writeOutputs, EMIT_APP_DIRS, PRODUCT_SHELL_EMIT } from './sync/write-outputs'
+export {
+  scaffoldApp,
+  scaffoldDemo,
+  scaffoldProduct,
+  SCAFFOLD_APPS,
+  PRODUCT_IDS,
+} from './sync/scaffold'
+export { convertProduct } from './sync/convert'
+
 export { irEventToReact, irEventToVue } from './adapters/events'
