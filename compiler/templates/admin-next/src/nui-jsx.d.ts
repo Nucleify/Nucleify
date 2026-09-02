@@ -1,7 +1,5 @@
-import type { DetailedHTMLProps, HTMLAttributes } from 'react'
-
-type NuiProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> &
-  Record<string, unknown>
+/** Lit `nui-*` tags — avoid clashing with React DOM handler types. */
+type NuiProps = Record<string, unknown>
 
 declare module 'react' {
   namespace JSX {

@@ -77,8 +77,16 @@ function normalizeSrcRel(rel: string): string {
   return rel.replace(/\\/g, '/')
 }
 
+/** Nuxt app shells — Next App Router layout/provider owns the document shell. */
+const SKIP_VUE_APP_SHELLS = new Set(['app.vue', 'layouts/default.vue'])
+
 function shouldSkipVueRouteShell(product: NextConvertProduct, relFromSrc: string): boolean {
   return SKIP_VUE_ROUTE_SHELLS[product]?.includes(normalizeSrcRel(relFromSrc)) ?? false
+}
+
+function shouldSkipVueEmit(product: NextConvertProduct, relFromSrc: string): boolean {
+  const rel = normalizeSrcRel(relFromSrc)
+  return SKIP_VUE_APP_SHELLS.has(rel) || shouldSkipVueRouteShell(product, rel)
 }
 
 /** Vue `src/pages/**` → Next `src/views/**` (no Pages Router clash with `src/app/`). */
@@ -227,7 +235,7 @@ function emitVueTreeToReact(
 
   for (const vuePath of walkFiles(sourceSrc).filter((f) => f.endsWith('.vue'))) {
     const rel = relative(sourceSrc, vuePath)
-    if (shouldSkipVueRouteShell(product, rel)) {
+    if (shouldSkipVueEmit(product, rel)) {
       skipped.push(rel)
       continue
     }
@@ -242,6 +250,17 @@ function emitVueTreeToReact(
   }
 
   return { converted, failures, skipped }
+}
+
+function purgeNuxtAppShellEmit(destSrc: string): number {
+  let n = 0
+  for (const rel of ['app.tsx', 'layouts/default.tsx']) {
+    const file = join(destSrc, rel)
+    if (!existsSync(file)) continue
+    unlinkSync(file)
+    n += 1
+  }
+  return n
 }
 
 function purgeLegacyPagesRouterEmit(dest: string): number {
@@ -438,6 +457,8 @@ import { fileURLToPath } from 'node:url'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const monorepo = join(here, '..')
+const litRoot = join(monorepo, 'node_modules/lit')
+const litReactive = join(monorepo, 'node_modules/@lit/reactive-element')
 const assetsScss = join(here, 'src/assets/_index.scss').replace(/\\\\/g, '/')
 
 function scssAdditionalData(
@@ -465,6 +486,8 @@ const nextConfig: NextConfig = {
     resolveAlias: {
       modules: join(monorepo, 'shared_modules'),
       portable: join(monorepo, 'portable'),
+      lit: litRoot,
+      '@lit/reactive-element': litReactive,
     },
   },
   webpack: (config) => {
@@ -473,6 +496,8 @@ const nextConfig: NextConfig = {
       ...config.resolve.alias,
       modules: join(monorepo, 'shared_modules'),
       portable: join(monorepo, 'portable'),
+      lit: litRoot,
+      '@lit/reactive-element': litReactive,
     }
     return config
   },
@@ -544,6 +569,9 @@ export function convertProduct(opts: {
   const purgedPages = purgeLegacyPagesRouterEmit(dest)
   if (purgedPages) copied.push(`removed ${purgedPages} legacy src/pages emit file(s)`)
 
+  const purgedAppShell = purgeNuxtAppShellEmit(destSrc)
+  if (purgedAppShell) copied.push(`removed ${purgedAppShell} Nuxt app shell emit file(s)`)
+
   if (failures.length) {
     throw new Error(
       `convert: ${failures.length} Vue file(s) could not be emitted to React — extend compiler parser/emit or simplify source:\n${failures.map((f) => `  - ${f}`).join('\n')}`,
@@ -558,11 +586,8 @@ export function convertProduct(opts: {
 
   writeText(
     join(destSrc, 'nucleify.ts'),
-    `/** Next host barrel — API/globals/stores/colors only (no Nuxt app runtime). */
-export * from 'modules/nuc_api'
-export * from 'modules/nuc_colors'
-export * from 'modules/nuc_globals'
-export * from 'modules/nuc_stores'
+    `/** Next host barrel — landing imports only (no full nuc_api type surface). */
+export { flashToast, closeToast, setToastInstance } from 'modules/nuc_api/utils/use_toast'
 `,
   )
   copied.push('src/nucleify.ts (next-safe barrel)')

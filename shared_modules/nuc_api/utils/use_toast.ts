@@ -21,13 +21,12 @@ function getToastInstance(): ToastInstance | null {
 }
 
 export function closeToast(): void {
-  if (import.meta.client) {
-    document
-      .querySelectorAll('.p-toast-message')
-      .forEach((element: Element): void => {
-        element.remove()
-      })
-  }
+  if (typeof document === 'undefined') return
+  document
+    .querySelectorAll('.p-toast-message')
+    .forEach((element: Element): void => {
+      element.remove()
+    })
 }
 
 export function flashToast(

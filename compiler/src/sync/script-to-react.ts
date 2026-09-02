@@ -24,13 +24,22 @@ function isDomRef(source: string, name: string, init: any): boolean {
 function collectRefInfo(script: string): {
   refNames: Set<string>
   domRefNames: Set<string>
+  letRefNames: Set<string>
   usesReactive: boolean
 } {
   const refNames = new Set<string>()
   const domRefNames = new Set<string>()
+  const letRefNames = new Set<string>()
   let usesReactive = false
   const result = parseSync('script.ts', script, { lang: 'ts', sourceType: 'module' })
   for (const stmt of result.program.body ?? []) {
+    if (stmt.type === 'VariableDeclaration' && stmt.kind === 'let') {
+      for (const decl of stmt.declarations ?? []) {
+        if (decl.id?.type !== 'Identifier') continue
+        if (decl.init == null) letRefNames.add(decl.id.name)
+      }
+      continue
+    }
     if (stmt.type !== 'VariableDeclaration' || stmt.kind !== 'const') continue
     for (const decl of stmt.declarations) {
       if (decl.id?.type !== 'Identifier') continue
@@ -49,7 +58,7 @@ function collectRefInfo(script: string): {
       }
     }
   }
-  return { refNames, domRefNames, usesReactive }
+  return { refNames, domRefNames, letRefNames, usesReactive }
 }
 
 /** Collect reactive binding names for template parsing (no `.value` wrapping). */
@@ -57,10 +66,31 @@ export function extractReactiveNames(script: string): Set<string> {
   return collectRefInfo(script).refNames
 }
 
+function rewriteLetRefAccess(source: string, letRefNames: Set<string>): string {
+  if (letRefNames.size === 0) return source
+  let out = source
+  for (const name of letRefNames) {
+    const guard = `__LETREF_${name}__`
+    out = out.replaceAll(new RegExp(`\\b${name}\\.current\\b`, 'g'), guard)
+    out = out.replaceAll(new RegExp(`\\b${name}\\?\\.`, 'g'), `${name}.current?.`)
+    out = out.replaceAll(new RegExp(`\\b${name}\\.`, 'g'), `${name}.current.`)
+    out = out.replaceAll(new RegExp(guard, 'g'), `${name}.current`)
+  }
+  out = out.replace(/\.current\.current/g, '.current')
+  for (const name of letRefNames) {
+    out = out.replace(
+      new RegExp(`(?<![.\\w])${name}\\b(?!\\.current\\b)(?!\\s*=)`, 'g'),
+      `${name}.current`,
+    )
+  }
+  return out
+}
+
 function rewriteValueAccess(
   source: string,
   refNames: Set<string>,
   domRefNames: Set<string>,
+  letRefNames: Set<string> = new Set(),
 ): string {
   let out = source
     .replace(/\bawait nextTick\(\)/g, 'await Promise.resolve()')
@@ -72,7 +102,7 @@ function rewriteValueAccess(
     if (domRefNames.has(name)) continue
     out = out.replaceAll(new RegExp(`\\b${name}\\.value\\b`, 'g'), name)
   }
-  return out
+  return rewriteLetRefAccess(out, letRefNames)
 }
 
 function rewriteNuxtInBody(line: string): string {
@@ -82,14 +112,32 @@ function rewriteNuxtInBody(line: string): string {
     .replace(/\bconst route\b/g, 'const params')
 }
 
-function rewriteStateAssignment(line: string, refNames: Set<string>, domRefNames: Set<string>): string {
+function rewriteStateAssignment(
+  line: string,
+  refNames: Set<string>,
+  domRefNames: Set<string>,
+  letRefNames: Set<string> = new Set(),
+): string {
   let out = line
+  for (const name of letRefNames) {
+    out = out.replace(new RegExp(`\\b${name}\\s*=\\s*([^;\\n]+)`, 'g'), `${name}.current = $1`)
+  }
   for (const name of refNames) {
-    if (domRefNames.has(name)) continue
+    if (domRefNames.has(name) || letRefNames.has(name)) continue
     const setter = `set${name.charAt(0).toUpperCase()}${name.slice(1)}`
     out = out.replace(new RegExp(`\\b${name}\\s*=\\s*([^;\\n]+)`, 'g'), `${setter}($1)`)
   }
   return out
+}
+
+function emitLetRefBinding(script: string, decl: any): string {
+  const name = decl.id.name as string
+  const ann = decl.id.typeAnnotation
+  const typeParam =
+    ann?.type === 'TSTypeAnnotation' && ann.typeAnnotation?.start != null
+      ? slice(script, ann.typeAnnotation.start, ann.typeAnnotation.end)
+      : 'unknown'
+  return `const ${name} = useRef<${typeParam}>(undefined)`
 }
 
 function formatConstDecl(script: string, stmt: any, decl: any): string {
@@ -121,7 +169,10 @@ function emitRefBinding(source: string, name: string, init: any): string {
     init?.start != null && init?.end != null ? slice(source, init.start, init.end) : 'null'
   if (isDomRef(source, name, init)) {
     const typeMatch = source.match(new RegExp(`const ${name} = ref<([^>]+)>`))
-    const typeParam = typeMatch?.[1] ?? 'HTMLElement | null'
+    let typeParam = typeMatch?.[1] ?? 'HTMLElement | null'
+    if (/\bHTMLElement\b/.test(typeParam) && !/\bHTML[A-Z]/.test(typeParam.replace('HTMLElement', ''))) {
+      typeParam = typeParam.replace(/\bHTMLElement\b/, 'HTMLDivElement')
+    }
     return `const ${name} = useRef<${typeParam}>(${initText === 'null' ? 'null' : initText})`
   }
   const setter = `set${name.charAt(0).toUpperCase()}${name.slice(1)}`
@@ -141,12 +192,13 @@ function emitComputedBinding(
   init: any,
   refNames: Set<string>,
   domRefNames: Set<string>,
+  letRefNames: Set<string>,
 ): string {
   const arg = init.arguments?.[0]
   let body = 'undefined'
   if (arg?.start != null && arg?.end != null) body = slice(source, arg.start, arg.end)
   body = unwrapArrowBody(body)
-  body = rewriteNuxtInBody(rewriteValueAccess(body, refNames, domRefNames))
+  body = rewriteNuxtInBody(rewriteValueAccess(body, refNames, domRefNames, letRefNames))
   // Extract only refs that are actually referenced in the computed body
   const deps = [...refNames]
     .filter((n) => n !== name && !domRefNames.has(n) && new RegExp(`\\b${n}\\b`).test(body))
@@ -154,12 +206,18 @@ function emitComputedBinding(
   return `const ${name} = useMemo(() => ${body}, [${deps}])`
 }
 
-function emitReactiveBinding(source: string, name: string, init: any): string {
+function emitReactiveBinding(source: string, name: string, init: any, decl: any): string {
   const initText =
     init?.arguments?.[0]?.start != null
       ? slice(source, init.arguments[0].start, init.arguments[0].end)
       : '{}'
-  return `const ${name} = useReactive(${initText})`
+  const typeParams = init.typeArguments?.params ?? init.typeParameters?.params
+  const typeArg =
+    typeParams?.[0]?.start != null && typeParams[0].end != null
+      ? slice(source, typeParams[0].start, typeParams[0].end)
+      : ''
+  const generic = typeArg ? `<${typeArg}>` : ''
+  return `const ${name} = useReactive${generic}(${initText})`
 }
 
 function rewriteLifecycleCall(
@@ -167,18 +225,22 @@ function rewriteLifecycleCall(
   node: any,
   refNames: Set<string>,
   domRefNames: Set<string>,
+  letRefNames: Set<string>,
 ): string {
   const callee = node.callee?.name
   const arg = node.arguments?.[0]
-  if (!arg) return rewriteValueAccess(slice(source, node.start, node.end), refNames, domRefNames)
+  if (!arg) {
+    return rewriteValueAccess(slice(source, node.start, node.end), refNames, domRefNames, letRefNames)
+  }
 
   if (callee === 'onMounted') {
     const fnText =
       arg.start != null && arg.end != null ? slice(source, arg.start, arg.end) : '() => {}'
     const body = rewriteStateAssignment(
-      rewriteNuxtInBody(rewriteValueAccess(fnText, refNames, domRefNames)),
+      rewriteNuxtInBody(rewriteValueAccess(fnText, refNames, domRefNames, letRefNames)),
       refNames,
       domRefNames,
+      letRefNames,
     )
     return `useEffect(() => {\n  void (${body})()\n}, [])`
   }
@@ -187,9 +249,10 @@ function rewriteLifecycleCall(
     const fnText =
       arg.start != null && arg.end != null ? slice(source, arg.start, arg.end) : '() => {}'
     const body = rewriteStateAssignment(
-      rewriteNuxtInBody(rewriteValueAccess(fnText, refNames, domRefNames)),
+      rewriteNuxtInBody(rewriteValueAccess(fnText, refNames, domRefNames, letRefNames)),
       refNames,
       domRefNames,
+      letRefNames,
     )
     return `useEffect(() => {\n  return ${body}\n}, [])`
   }
@@ -202,15 +265,18 @@ function rewriteLifecycleCall(
     let cbText =
       cb?.start != null && cb?.end != null ? slice(source, cb.start, cb.end) : '() => {}'
     cbText = rewriteStateAssignment(
-      rewriteNuxtInBody(rewriteValueAccess(cbText, refNames, domRefNames)),
+      rewriteNuxtInBody(rewriteValueAccess(cbText, refNames, domRefNames, letRefNames)),
       refNames,
       domRefNames,
+      letRefNames,
     )
-    const deps = rewriteNuxtInBody(rewriteValueAccess(srcText, refNames, domRefNames))
+    const deps = rewriteNuxtInBody(
+      rewriteValueAccess(srcText, refNames, domRefNames, letRefNames),
+    )
     return `useEffect(() => {\n  void (${cbText})(${deps})\n}, [${deps}])`
   }
 
-  return rewriteValueAccess(slice(source, node.start, node.end), refNames, domRefNames)
+  return rewriteValueAccess(slice(source, node.start, node.end), refNames, domRefNames, letRefNames)
 }
 
 /**
@@ -222,7 +288,7 @@ export function rewriteScriptSetupToReact(script: string): { body: string[]; imp
     throw new Error(result.errors.map((e) => e.message).join('; '))
   }
 
-  const { refNames, domRefNames, usesReactive } = collectRefInfo(script)
+  const { refNames, domRefNames, letRefNames, usesReactive } = collectRefInfo(script)
   const imports: string[] = []
   const body: string[] = []
   let vueImportEmitted = false
@@ -245,21 +311,36 @@ export function rewriteScriptSetupToReact(script: string): { body: string[]; imp
 
     if (stmt.type === 'VariableDeclaration') {
       if (stmt.kind === 'let') {
-        body.push(
-          rewriteStateAssignment(
-            rewriteNuxtInBody(
-              rewriteValueAccess(slice(script, stmt.start!, stmt.end!), refNames, domRefNames),
+        for (const decl of stmt.declarations ?? []) {
+          if (decl.id?.type !== 'Identifier') continue
+          if (decl.init == null) {
+            body.push(emitLetRefBinding(script, decl))
+            continue
+          }
+          body.push(
+            rewriteStateAssignment(
+              rewriteNuxtInBody(
+                rewriteValueAccess(
+                  formatConstDecl(script, stmt, decl),
+                  refNames,
+                  domRefNames,
+                  letRefNames,
+                ),
+              ),
+              refNames,
+              domRefNames,
+              letRefNames,
             ),
-            refNames,
-            domRefNames,
-          ),
-        )
+          )
+        }
         continue
       }
       if (stmt.kind === 'const') {
         for (const decl of stmt.declarations) {
           if (decl.id?.type !== 'Identifier') {
-            body.push(rewriteValueAccess(slice(script, stmt.start!, stmt.end!), refNames, domRefNames))
+            body.push(
+              rewriteValueAccess(slice(script, stmt.start!, stmt.end!), refNames, domRefNames, letRefNames),
+            )
             continue
           }
           const name = decl.id.name
@@ -270,20 +351,21 @@ export function rewriteScriptSetupToReact(script: string): { body: string[]; imp
               continue
             }
             if (init.callee.name === 'computed') {
-              body.push(emitComputedBinding(script, name, init, refNames, domRefNames))
+              body.push(emitComputedBinding(script, name, init, refNames, domRefNames, letRefNames))
               continue
             }
             if (init.callee.name === 'reactive') {
-              body.push(emitReactiveBinding(script, name, init))
+              body.push(emitReactiveBinding(script, name, init, decl))
               continue
             }
           }
           const line = formatConstDecl(script, stmt, decl)
           body.push(
             rewriteStateAssignment(
-              rewriteNuxtInBody(rewriteValueAccess(line, refNames, domRefNames)),
+              rewriteNuxtInBody(rewriteValueAccess(line, refNames, domRefNames, letRefNames)),
               refNames,
               domRefNames,
+              letRefNames,
             ),
           )
         }
@@ -298,10 +380,16 @@ export function rewriteScriptSetupToReact(script: string): { body: string[]; imp
       body.push(
         rewriteStateAssignment(
           rewriteNuxtInBody(
-            rewriteValueAccess(`${fnKw} ${stmt.id.name}(${params}) ${fnBody}`, refNames, domRefNames),
+            rewriteValueAccess(
+              `${fnKw} ${stmt.id.name}(${params}) ${fnBody}`,
+              refNames,
+              domRefNames,
+              letRefNames,
+            ),
           ),
           refNames,
           domRefNames,
+          letRefNames,
         ),
       )
       continue
@@ -311,7 +399,7 @@ export function rewriteScriptSetupToReact(script: string): { body: string[]; imp
       const expr = stmt.expression
       if (expr?.type === 'CallExpression' && expr.callee?.type === 'Identifier') {
         if (['onMounted', 'onBeforeUnmount', 'watch'].includes(expr.callee.name)) {
-          body.push(rewriteLifecycleCall(script, expr, refNames, domRefNames))
+          body.push(rewriteLifecycleCall(script, expr, refNames, domRefNames, letRefNames))
           continue
         }
       }
@@ -326,10 +414,11 @@ export function rewriteScriptSetupToReact(script: string): { body: string[]; imp
       body.push(
         rewriteStateAssignment(
           rewriteNuxtInBody(
-            rewriteValueAccess(slice(script, stmt.start, stmt.end), refNames, domRefNames),
+            rewriteValueAccess(slice(script, stmt.start, stmt.end), refNames, domRefNames, letRefNames),
           ),
           refNames,
           domRefNames,
+          letRefNames,
         ),
       )
     }

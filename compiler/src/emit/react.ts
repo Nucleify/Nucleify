@@ -135,13 +135,15 @@ function emitClassNameAttr(
   return `className={\`${prefix}${fragments}\`.trim()}`
 }
 
-function emitAttrs(attrs: IrAttr[], ctx: EmitCtx): string {
+function emitAttrs(attrs: IrAttr[], ctx: EmitCtx, tag?: string): string {
   const parts: string[] = []
   let staticClass: string | undefined
   let bindClass: IrExpr | undefined
+  let hasMode = false
 
   for (const attr of attrs) {
     const reactName = toReactClassName(attr.name)
+    if (attr.name === 'mode' || reactName === 'mode') hasMode = true
     if (reactName === 'className' || attr.name === 'class') {
       if (attr.kind === 'static' && typeof attr.value === 'string') {
         staticClass = staticClass ? `${staticClass} ${attr.value}` : attr.value
@@ -175,6 +177,8 @@ function emitAttrs(attrs: IrAttr[], ctx: EmitCtx): string {
 
   const classAttr = emitClassNameAttr(staticClass, bindClass, ctx)
   if (classAttr) parts.unshift(classAttr)
+
+  if (tag === 'nui-icon' && !hasMode) parts.push('mode="svg"')
 
   return parts.length ? ` ${parts.join(' ')}` : ''
 }
@@ -240,7 +244,7 @@ function emitNode(node: IrNode, indent: string, ctx: EmitCtx): string {
         return `${indent}<>\n${inner}\n${indent}</>`
       }
       const tag = node.kind === 'component' ? node.name : node.tag
-      const attrs = emitAttrs(node.props, ctx)
+      const attrs = emitAttrs(node.props, ctx, tag)
       const shw = node.kind === 'element' && node.tag.includes('-') ? ' suppressHydrationWarning' : ''
       if (!node.children.length) {
         return `${indent}<${tag}${attrs}${shw} />`
