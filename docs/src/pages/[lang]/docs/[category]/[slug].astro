@@ -1,0 +1,52 @@
+---
+import DocsLayout from '../../../../layouts/DocsLayout.astro'
+import DocsSidebar from '../../../../components/DocsSidebar.astro'
+import DocsToc from '../../../../components/DocsToc.astro'
+import LangSwitcher from '../../../../components/LangSwitcher.astro'
+import { getAllDocRoutes, findDocPage } from '../../../../lib/doc_paths'
+import { loadDocContentServer } from '../../../../lib/utils/load_doc_content.server'
+import type { DocHeadingInterface } from '../../../../lib/types/interfaces'
+
+export async function getStaticPaths() {
+  const routes = getAllDocRoutes()
+
+  return Promise.all(
+    routes.map(async ({ lang, category, slug }) => {
+      const meta = findDocPage(category, slug)
+      const { html, headings } = await loadDocContentServer(category, slug, lang)
+
+      return {
+        params: { lang, category, slug },
+        props: {
+          title: meta?.page.title ?? slug,
+          categoryName: meta?.categoryName ?? category,
+          html,
+          headings,
+        },
+      }
+    }),
+  )
+}
+
+interface Props {
+  title: string
+  categoryName: string
+  html: string
+  headings: DocHeadingInterface[]
+}
+
+const { lang, category, slug } = Astro.params
+const { title, categoryName, html, headings } = Astro.props
+---
+
+<DocsLayout title={title} lang={lang!} category={category!} slug={slug!}>
+  <LangSwitcher slot="header-extra" lang={lang!} category={category!} slug={slug!} />
+  <DocsSidebar slot="sidebar" lang={lang!} category={category!} slug={slug!} />
+  <DocsToc slot="toc" headings={headings} />
+
+  <header class="docs-article__header">
+    <p class="docs-article__eyebrow">{categoryName}</p>
+    <h1 class="docs-article__title">{title}</h1>
+  </header>
+  <div class="docs-content" set:html={html} />
+</DocsLayout>

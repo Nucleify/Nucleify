@@ -27,6 +27,17 @@ export function useHeadings(): UseHeadingsInterface {
 
   function apply(): void {
     if (!heads.length) return
+
+    const viewportBottom = window.scrollY + window.innerHeight
+    const docBottom = document.documentElement.scrollHeight
+    const atPageBottom = viewportBottom >= docBottom - 4
+
+    if (atPageBottom) {
+      const last = heads[heads.length - 1]!
+      if (last.id !== activeHeadingId.value) activeHeadingId.value = last.id
+      return
+    }
+
     let cur = heads[0]
     for (const h of heads) {
       if (h.getBoundingClientRect().top > LINE) break

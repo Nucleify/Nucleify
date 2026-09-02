@@ -1,213 +1,130 @@
 # Philosophy
 
-> *"Stop reinventing the wheel. Start building your product. Now!"*
+> *"Write once, run everywhere. Stop reinventing — start building."*
 
-The core principles, values, and vision behind Nucleify.
-
----
-
-## The Vision
-
-Nucleify exists because **modern web development is unnecessarily complex**. Developers spend weeks configuring tools, months rebuilding the same features, and years untangling monolithic codebases. We believe there's a better way.
-
-Nucleify is designed to be the **foundation you wish you had** – modular, scalable, performant, and beautiful. A framework that lets you focus on what matters: **building your product**.
+The principles, values, and vision behind Nucleify.
 
 ---
 
-## The Nucleus Metaphor
+## The problem
 
-Like the nucleus of a cell, Nucleify serves as the **core command center** of your application. Each module is a self-contained unit with its own DNA – complete, functional, and able to exist independently while contributing to the greater organism.
+Modern web development forces premature framework commitment. Pick Vue or React, build features, then rebuild when requirements change. Shared concerns — auth, i18n, theming, API shape — get reimplemented in every project.
 
-This isn't just branding. It's architecture:
-
-- **Self-contained modules** – Each feature is complete on its own
-- **Clear boundaries** – Modules communicate through defined interfaces
-- **Organic growth** – Add or remove modules without breaking the system
-- **Collective strength** – Together, modules form something greater
+Nucleify treats **portability** and **modularity** as first-class goals, not afterthoughts.
 
 ---
 
-## Core Principles
+## The vision
 
-### 1. Modularity is Non-Negotiable
+Nucleify is a modular full-stack monorepo with a portable UI compiler at its center:
 
-> *"The secret to building large apps is never build large apps."* – Justin Meyer
+1. **Develop in Nuxt** (Tryb A) — the canonical product shell
+2. **Share logic in modules** — six domain packages in `shared_modules/`
+3. **Emit React when needed** (Tryb B) — compiler converts shells and components
+4. **One Supabase backend** — gateway-mediated, module-owned SQL
 
-Everything in Nucleify is a module. Not because it's trendy, but because it works:
+One team, one domain model, multiple deployment targets.
 
-| Benefit | Why It Matters |
-|---------|----------------|
-| **Isolation** | Change one module without fear of breaking others |
-| **Reusability** | Use the same module across multiple projects |
-| **Scalability** | Add features without exponential complexity |
-| **Testability** | Test modules independently with confidence |
-| **Team Velocity** | Teams own modules, not files scattered everywhere |
+---
 
-### 2. Full-Stack Unity
+## The nucleus metaphor
 
-Backend and frontend belong together. In Nucleify, every module contains both:
+Like a cell nucleus, Nucleify is the **coordination point** of the application. Each `nuc_*` module is a self-contained unit — frontend utils, API handlers, migrations, tests — that can be understood, tested, and replaced independently.
 
-```txt
-modules/nuc_users/
-├── supabase/           # Migrations, seeders, API handlers
-├── atomic/             # Nuxt / Next UI
-└── vitests/            # Vitest tests
+- **Self-contained modules** — complete vertical slices, not scattered layers
+- **Clear boundaries** — apps compose; modules do not import apps
+- **Organic growth** — add or remove modules without rewiring the monorepo
+- **Collective strength** — shared modules amortize cost across web, admin, and Next outputs
+
+---
+
+## Core principles
+
+### 1. Write once, run everywhere
+
+Portable `*.nuc.tsx` components compile to Vue SFCs and React TSX from one IR. Product shells convert with a single command:
+
+```bash
+make web TARGET=next
 ```
 
-No more context-switching between repositories. No more API contract confusion. **One module, one feature, one truth.**
+Framework choice becomes a **build target**, not an architectural fork.
 
-### 3. Convention Over Configuration
+### 2. Modules over monoliths
 
-We follow Nuxt, Next, and Supabase conventions. Why?
+Domain logic lives in `shared_modules/nuc_*`, not duplicated across apps. See [Feature-Sliced Design](/en/docs/core-concepts/feature-sliced-design).
 
-- **Zero decision fatigue** – Focus on building, not configuring
-- **Instant familiarity** – Modern full-stack developers feel at home
-- **Community wisdom** – Battle-tested patterns over reinvention
-- **Predictable structure** – Find any file in seconds
+### 3. Gateway, not spaghetti
 
-### 4. Performance by Default
+All privileged server access flows through `web/src/server/api/[...slug].ts`. Clients never hold service keys. Modules register handlers; the gateway dispatches.
 
-Nucleify ships with **94+ PageSpeed scores** out of the box:
+### 4. Convention over configuration
 
-- SSR & Prerendering with intelligent hydration
-- Atomic Design enables surgical code-splitting
-- Font optimization via `@nuxtjs/google-fonts`
-- Image lazy-loading and format optimization
-- Deferred content loading with `nui-deferred-content`
-- Vite-powered builds with optimal chunking
+Split Nuxt config, consistent module layout, Makefile shortcuts, Husky-enforced checks — predictable paths reduce decision fatigue.
 
-**Performance isn't an afterthought. It's baked in.**
+### 5. Overrides for forks, modules for sharing
 
-### 5. Developer Experience First
+White-label or deployment-specific diffs use `overrides/`. Cross-product behavior belongs in `shared_modules/`.
 
-Great DX isn't a luxury – it's a multiplier:
+### 6. Compiler honesty
 
-- `make` – One command to start everything
-- Clear error messages that point to solutions
-- Hot reload that actually works
-- Type safety across the full stack
-- Documentation that respects your time
+Portable authoring has explicit allowed/forbidden lists (`compiler/PORTABLE.md`). No pretending Vue and React are identical — the IR handles the gap.
 
 ---
 
-## Quality Philosophy
+## Dual-mode philosophy
 
-### Code Quality
+| Tryb A | Tryb B |
+|--------|--------|
+| Where humans edit daily | What CI or clients may require |
+| Nuxt + Vue in `web/` | Next + React in `web-next/` |
+| Source of truth | Generated mirror |
 
-> *"Always code as if the person who ends up maintaining your code is a violent psychopath who knows where you live."* – John Woods
-
-- **Readable over clever** – Code is read 10x more than written
-- **Explicit over implicit** – No magic, no surprises
-- **Small, focused functions** – One function, one job
-- **Meaningful names** – `getUserById()` not `get()`
-- **Type everything** – TypeScript w całym stacku
-
-### Testing Philosophy
-
-- **Test behavior, not implementation** – What it does, not how
-- **High coverage for critical paths** – Auth, payments, data integrity
-- **Fast, reliable tests** – Slow tests don't get run
-- **Vitest** – Frontend and composable tests
-
-### Documentation Philosophy
-
-- **Document the "why"** – Code shows "what", docs explain "why"
-- **Keep docs close to code** – README.md in every module
-- **Update with changes** – Stale docs are worse than no docs
-- **Respect developer time** – Concise, scannable, actionable
+Tryb B is not a second codebase to maintain by hand. Drift is resolved by re-running convert, or by fixing Tryb A and rebuilding.
 
 ---
 
-## Open Source Values
+## Design system stance
 
-### Transparency
-
-Development happens in the open. Decisions are documented. Roadmaps are public. No black boxes.
-
-### Inclusivity
-
-Every contribution matters:
-- 🐛 Bug reports improve quality
-- 💡 Feature suggestions shape direction
-- 📝 Documentation helps everyone
-- 🔧 Code contributions build features
-
-### Collaboration
-
-We build together. Code reviews are learning opportunities. Discussions are respectful. Everyone has a voice.
-
-### Respect
-
-Time is precious. We don't waste yours with:
-- Unnecessary complexity
-- Poor documentation
-- Breaking changes without migration paths
-- Gatekeeping contributions
+UI primitives are **framework-agnostic Lit components** (`nui-*` from `nucleify-ui`). Tokens live in `portable/nui/`. Vue and React shells wrap the same custom elements — no duplicate button implementations.
 
 ---
 
-## The Future
+## Quality bar
 
-Nucleify evolves through:
+The monorepo enforces quality at commit time:
 
-- **Community feedback** – You shape the roadmap
-- **Continuous refinement** – Regular refactoring, never stagnation
-- **Adopting best practices** – Learning from the ecosystem
-- **Maintaining compatibility** – Upgrades shouldn't break your app
+- Biome for lint/format
+- TypeScript strict checking on web
+- Stylelint on SCSS
+- Vitest on web and shared modules
+- Compiler check ensuring emit matches authoring
 
-> *"The only constant is change."* – Heraclitus
-
-But some things never change: **modularity, performance, developer experience, and respect for your time.**
-
----
-
-## Mindset
-
-The approach that drives every line of code in Nucleify:
+Fast feedback beats manual review for mechanical correctness.
 
 ---
 
-> *"This man of little learning grows old like an ox; only his flesh grows but not his wisdom."* \
-> ~ Siddhartha Gautama
+## Open source ethos
 
-Never stop learning. Technology evolves – so must we.
+Nucleify is MIT-licensed. We optimize for:
 
----
-
-> *"He who has a why to live can bear almost any how."* \
-> ~ Friedrich Nietzsche
-
-Purpose drives persistence. Know why you're building, and obstacles become solvable.
+- **Readable docs** — accurate paths, real examples
+- **Contributor-friendly structure** — one module, one PR
+- **Respectful collaboration** — see [Code of Conduct](/en/docs/about/code-of-conduct)
 
 ---
 
-> *"Don't wish it was easier. Wish you were better."* \
-> ~ Jim Rohn
+## What Nucleify is not
 
-Complexity is inevitable. Grow your skills instead of avoiding challenges.
-
----
-
-> *"Fear has never reached the highest goal."* \
-> ~ Bô Yin Râ
-
-Don't fear refactoring, new technologies, or ambitious changes. Courage in code leads to breakthroughs.
+- Not a meta-framework that hides Vue/React entirely — both remain visible
+- Not a low-code builder — you write real TypeScript
+- Not a hosted SaaS — you own Supabase and deployment
+- Not finished — the compiler and module set evolve with the product
 
 ---
 
-> *"Even the idea of resting aggravates my mind."* 
+## Related docs
 
-Passion fuels excellence. Build because you can't not build.
-
----
-
-Build with purpose. Ship with confidence.
-
----
-
-## Join Us
-
-**Build modern. Scale effortlessly. Ship with confidence.**
-
-We're building something incredible. [Join us.](https://github.com/nucleify/nucleify)
-
+- [Introduction](/en/docs/getting-started/introduction) — technical overview
+- [Philosophy in practice](/en/docs/core-concepts/modules) — module architecture
+- [Coding Standards](/en/docs/about/coding-standards) — day-to-day conventions

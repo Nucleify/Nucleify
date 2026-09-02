@@ -1,172 +1,174 @@
 # Introduction
 
-## Build faster. Scale effortlessly. Ship with confidence.
+## Write Vue. Ship React when you need it.
 
-**Nucleify** is the modular full-stack framework that eliminates the chaos of modern web development. One command to start. 40+ battle-tested modules ready to deploy. Zero configuration overhead.
+**Nucleify** is a modular full-stack monorepo: develop in Nuxt 4 (Tryb A), share logic through six feature modules, and optionally emit a Next.js mirror (Tryb B) with the portable UI compiler. Supabase powers the backend; a Nitro API gateway in `web/` dispatches to module handlers.
 
-> *"Stop reinventing the wheel. Start building your product. Now!"*
-
-Powered by **Supabase** + **Nuxt 3** / **Next.js** — Nucleify gives you a modular full-stack app with PostgreSQL, Auth, and a unified module API gateway, plus 94+ PageSpeed scores out of the box.
+> *"Stop choosing between frameworks. Ship both."*
 
 ---
 
 ## What is Nucleify?
 
-Behind the speed is a **nucleus-inspired modular architecture** - every feature lives as a self-contained, independently testable module. No more tangled dependencies. No more "it works on my machine". Just clean, predictable code that scales with your team and your ambitions.
+Nucleify is a **pnpm workspace** that bundles everything for a modern product:
 
-**Supabase** stores data, authenticates users, and serves files. **Nuxt 3** or **Next.js** delivers SSR and a reactive UI. Module handlers in `supabase/api/` connect the two through `/api/*` — one codebase, one workflow.
+| Package | Path | Role |
+|---------|------|------|
+| `@nucleify/web` | `web/` | Nuxt 4 landing app (Tryb A canonical) |
+| `@nucleify/admin` | `admin/` | Nuxt 4 admin panel |
+| `@nucleify/docs` | `docs/` | Astro 5 documentation site |
+| `@nucleify/compiler` | `compiler/` | IR portable UI compiler |
+| `@nucleify/shared-modules` | `shared_modules/` | Six feature modules |
 
-### The Numbers
+Supporting directories:
 
-| Metric | Value |
-|--------|-------|
-| **Time to MVP** | < 5 minutes setup |
-| **Accessibility** | WCAG 2.1 AA compliant |
-| **PageSpeed Score** | 94/100 |
-| **SEO Score** | 100/100 |
-| **Test Coverage** | 92% |
-| **Production-Ready Modules** | 40+ |
-| **UI Components** | 100+ |
-
-### What You Get
-
-- **40+ Production-Ready Modules** - Auth, files, charts, datatables, animations - all pre-built
-- **Full-Stack Type Safety** - TypeScript end to end, typed API composables
-- **Atomic Design System** - 100+ components following industry best practices
-- **Override System** - Customize any module without forking, preserve upgrade paths
-- **One-Command Setup** - `make` and you're running
+- `portable/nui/` — design tokens and Lit `nui-*` registration
+- `overrides/` — per-package file overrides (`overrides/{web,admin,docs,shared_modules}/`)
+- `supabase/` — DB config, migrations, edge functions
+- `.config/` — Biome, Vitest, bash scripts
 
 ---
 
-## Why Choose Nucleify?
+## Dual-mode architecture: Tryb A & Tryb B
 
-| Challenge | ❌ Traditional Approach | ✅ Nucleify Solution |
-|-----------|---------------------|-------------------|
-| **Growing Complexity** | Monolithic codebase becomes unmanageable | Self-contained modules scale independently |
-| **Code Reusability** | Copy-paste across projects | Modules are portable and shareable |
-| **Testing Difficulty** | Tightly coupled code is hard to test | Isolated modules enable focused testing |
-| **Team Collaboration** | Merge conflicts and stepping on toes | Teams own specific modules |
+| Mode | Stack | Command | Output |
+|------|-------|---------|--------|
+| **Tryb A** (default) | Nuxt 4 + Vue 3.5 | `make web` | `web/` |
+| **Tryb B** (generated) | Next 15 + React 19 | `make web TARGET=next` | gitignored emit tree (see [Compiler](/en/docs/core-concepts/compiler)) |
+
+**Tryb A** is where you develop daily — pages, composables, and shared modules live in Vue. **Tryb B** converts the product shell to React when you need a Next deployment or want to validate compiler output.
+
+Both modes share `shared_modules/`, Supabase, and design tokens. You do not maintain two unrelated codebases.
 
 ---
 
-## Architecture Overview
+## The compiler
 
-Nucleify connects the **frontend** to **Supabase** through a module API gateway:
+The compiler (`@nucleify/compiler`) is Nucleify's differentiator. It works at two levels:
+
+### 1. Portable components (`*.nuc.tsx`)
+
+Author framework-agnostic UI with `#nuc-compiler/runtime`. The compiler emits sibling `.vue`, `.tsx`, and `.css` files:
+
+```tsx
+import { component, state, handler } from '#nuc-compiler/runtime'
+
+export default component({
+  name: 'Counter',
+  props: { label: { type: 'string', default: 'Count' } },
+  setup(props) {
+    const count = state(0)
+    const onInc = handler(() => count.set(count.value + 1))
+    return () => (
+      <button type="button" onClick={onInc}>
+        {props.label}: {count.value}
+      </button>
+    )
+  },
+})
+```
+
+See [Compiler](/en/docs/core-concepts/compiler) and `compiler/PORTABLE.md` for the full authoring rules.
+
+### 2. Product shell conversion
+
+Convert an entire Nuxt app to Next:
+
+```bash
+pnpm compiler -- convert web --target=next
+make web TARGET=next
+```
+
+This scaffolds a Next.js mirror from the Vue source tree. Same routes, shared modules, different framework shell. Output is generated by the compiler — not part of the canonical monorepo layout.
+
+---
+
+## Shared modules
+
+Six self-contained feature modules live in `shared_modules/`:
+
+| Module | Domain |
+|--------|--------|
+| `nuc_api` | API client, gateway dispatch, auth forms, entity requests |
+| `nuc_colors` | Theme/color system, SCSS variables |
+| `nuc_dark_mode` | Dark mode preference |
+| `nuc_globals` | Media queries, global styles, shared types |
+| `nuc_languages` | i18n, locale messages, translations API |
+| `nuc_stores` | Pinia/Zustand helpers, cookie/localStorage utils |
+
+Apps import modules directly or via the `modules` alias (configured in `web/.config/nuxt/structure.ts`). Registration for the web app happens in `web/src/plugins/modules.ts`.
+
+Read more: [Modules](/en/docs/core-concepts/modules) · [Feature-Sliced Design](/en/docs/core-concepts/feature-sliced-design)
+
+---
+
+## API gateway
+
+All server API traffic flows through one Nitro catch-all:
+
+```
+web/src/server/api/[...slug].ts
+  → dispatchSupabaseApiGateway()
+  → shared_modules/nuc_*/supabase/api/handle.ts
+```
+
+Module handlers register in `shared_modules/nuc_api/supabase/api/gateway_dispatch.ts`. Client code calls `/api/...` — never Supabase directly from the browser for privileged operations.
+
+---
+
+## Design system
+
+UI primitives are **Lit web components** from `nucleify-ui` (`nui-button`, `nui-icon`, …). Design tokens and registration live in `portable/nui/`. Vue and React apps consume the same custom elements; the compiler maps `nui-*` tags in `*.nuc.tsx` to both emit targets.
+
+---
+
+## Monorepo layout
 
 ```txt
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                          NUXT 3 / NEXT (frontend + /api routes)                        │
-│                                                                                        │
-│  ┌────────────────────┐  ┌────────────────────┐  ┌──────────────────────────────────┐  │
-│  │       Pages        │  │      Layouts       │  │        Atomic Components         │  │
-│  │      (Router)      │  │  (Default, Admin)  │  │  (Atoms, Molecules, Organisms)   │  │
-│  └────────────────────┘  └────────────────────┘  └──────────────────────────────────┘  │
-│                                           │                                            │
-│  ┌────────────────────────────────────────▼─────────────────────────────────────────┐  │
-│  │                        PINIA / ZUSTAND STATE MANAGEMENT                         │  │
-│  └────────────────────────────────────────┬─────────────────────────────────────────┘  │
-│                                           │                                            │
-│  ┌────────────────────────────────────────▼─────────────────────────────────────────┐  │
-│  │                    nuc_api — apiRequest, Supabase Auth (client)                  │  │
-│  └────────────────────────────────────────┬─────────────────────────────────────────┘  │
-└───────────────────────────────────────────┼────────────────────────────────────────────┘
-                                            │  /api/*
-┌───────────────────────────────────────────▼────────────────────────────────────────────┐
-│                        MODULE HANDLERS (supabase/api/handle.ts)                        │
-│                         nuc_api gateway — service role client                          │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-┌───────────────────────────────────────────▼────────────────────────────────────────────┐
-│                                  SUPABASE (PostgreSQL)                                 │
-│                         Auth · Storage · RLS · Edge Functions                          │
-└────────────────────────────────────────────────────────────────────────────────────────┘
+nucleify/
+├── web/                    # @nucleify/web — Nuxt 4 landing (Tryb A)
+│   ├── nuxt.config.ts
+│   ├── .config/nuxt/       # split Nuxt config
+│   └── src/
+│       ├── pages/          # Vue pages (e.g. home/sections/)
+│       ├── plugins/        # modules.ts, nucleify-ui.client.ts
+│       ├── composables/
+│       ├── layouts/
+│       └── server/api/     # Nitro API gateway [...slug].ts
+├── admin/                  # @nucleify/admin — Nuxt 4 admin
+├── docs/                   # @nucleify/docs — Astro 5 docs
+├── compiler/               # @nucleify/compiler — IR portable UI compiler
+├── shared_modules/         # six nuc_* feature modules
+├── portable/nui/           # design tokens, Lit nui-* registration
+├── overrides/              # overrides/{web,admin,docs,shared_modules}/
+├── supabase/
+├── .config/
+├── Makefile
+└── package.json
 ```
+
+Full breakdown: [Monorepo Layout](/en/docs/core-concepts/monorepo)
 
 ---
 
-## Core Design Principles
+## Quick commands
 
-### Atomic Design
+| Command | What it does |
+|---------|--------------|
+| `make run` | Create `.env`, install deps, husky, sync rules, build compiler |
+| `make web` | Start Nuxt dev server (`web/`) |
+| `make web TARGET=next` | Convert Vue shell to Next, start dev (generated output) |
+| `make admin` | Start admin Nuxt dev |
+| `make docs` | Start Astro docs dev |
+| `make compiler` | Run `pnpm compiler:check` + `pnpm compiler:build` |
 
-UI components organized into a hierarchical structure for maximum reusability. All components use the `ad-` prefix (Atomic Design):
-
-| Level | Description | Examples |
-|-------|-------------|----------|
-| **Boson** | Utility functions, constants, types | `camelToKebab()`, `API_BASE_URL` |
-| **Atom** | Fundamental UI elements | `<ad-button>`, `<ad-input-text>`, `<ad-avatar>` |
-| **Molecule** | Combinations of atoms | `<ad-float-label>`, `<ad-anchor>`, `<ad-tile>` |
-| **Organism** | Complex component structures | `<ad-data-table>`, `<ad-dialog>`, `<ad-chart>` |
-
-### Modular Architecture
-
-Nucleify ships with production-ready modules organized by domain:
-
-| Category | Modules |
-|----------|---------|
-| **Core** | `nuc_modules`, `nuc_api`, `nuc_stores`, `nuc_globals` |
-| **Auth** | `nuc_users`, `nuc_activity` |
-| **Data** | `nuc_entities` |
-| **UI** | `nuc_templates` (charts, dock, dialog, datatable, sections) |
-| **Visual** | `nuc_globals` (animations), `nuc_colors` |
-| **Layout** | `nuc_pages`, `nuc_templates` |
-
-Each module is self-contained, independently testable, and can be enabled/disabled as needed.
-
-### Feature-Sliced Design
-
-Each module encapsulates all related code within a single directory:
-
-```txt
-modules/nuc_users/
-├── atomic/                 # Vue/React components & composables
-├── supabase/               # SQL migrations, seeders, API handlers
-│   ├── migrations/
-│   ├── seeders/
-│   └── api/handle.ts
-├── vitests/                # Vitest frontend tests
-└── config.json             # Module metadata
-```
-
-### Override System
-
-The `nuc_overrides` module provides a powerful customization layer without modifying core code:
-
-```
-overrides/
-├── modules/
-│   └── nuc_settings/       # Override nuc_settings module
-│       ├── components/     # Custom components
-│       └── constants/      # Custom constants
-└── nuxt/
-    └── atomic/             # Override global Nuxt atomic components
-        ├── atom/           # Custom atoms
-        ├── molecule/       # Custom molecules
-        └── organism/       # Custom organisms
-```
-
-Overrides are automatically merged at build time, allowing you to:
-- **Customize UI components** without forking modules
-- **Extend functionality** while preserving upgrade paths
-- **Project-specific modifications** that stay isolated from core code
-- **Update framework freely** - your customizations survive `git pull`
+Equivalent pnpm shortcuts: `pnpm dev`, `pnpm admin`, `pnpm docs`.
 
 ---
 
-## Technology Stack
+## Next steps
 
-| Layer | Technologies |
-|-------|-------------|
-| **Backend** | Supabase (PostgreSQL, Auth, Storage), module API gateway |
-| **Frontend** | Nuxt 3 / Next.js, Vue 3 / React, TypeScript, Pinia / Zustand, nucleify-ui |
-| **Styling** | SCSS, GSAP, Chart.js |
-| **DevOps** | Supabase CLI, Vite, Husky, Biome, TSC, Stylelint |
-| **Testing** | Vitest |
-
----
-
-## Next Steps
-
-1. **[Installation](/en/docs/getting-started/installation)** - Set up your development environment
-2. **[Quick Start](/en/docs/getting-started/quick-start)** - Create your first component
-3. **[Modules](/en/docs/modules/overview)** - Explore available modules
-4. **[Architecture](/en/docs/architecture/overview)** - Deep dive into system design
+1. [Installation](/en/docs/getting-started/installation) — prerequisites and first setup
+2. [Quick Start](/en/docs/getting-started/quick-start) — run the landing app in minutes
+3. [Monorepo Layout](/en/docs/core-concepts/monorepo) — where everything lives
+4. [Environment](/en/docs/configuration/environment) — configure Supabase and app vars

@@ -4,15 +4,13 @@ The people and projects that make Nucleify possible.
 
 ---
 
-## Core Team
+## Core team
 
-### Maintainers
-
-The people responsible for Nucleify's development and direction.
+### Creator & lead
 
 | Name | Role | GitHub |
 |------|------|--------|
-| Szymon Radomski | Creator & Lead | [@szymcode](https://github.com/szymcode) |
+| Szymon Wieczorek | Architecture, compiler, modules, full-stack development | [@szymcode](https://github.com/szymcode) |
 
 ---
 
@@ -22,25 +20,22 @@ Thank you to everyone who has contributed to Nucleify!
 
 | Name | GitHub |
 |------|--------|
-| Mścibor Srebrny | [@Mmesek](https://github.com/Mmesek) |
-| Katarzyna Śmierzchalska | [@KatarzynaS97](https://github.com/KatarzynaS97) |
-| Damian Kamyszek | [@K4mD4m](https://github.com/K4mD4m) |
-| Marcin Fuks | [@J0jeQ](https://github.com/J0jeQ) |
+| Kamil Błoski | [@kbloski](https://github.com/kbloski) |
 | Jakub Malik | [@JakubMalik](https://github.com/JakubMalik) |
 | Kacper Bujak | [@kbujak09](https://github.com/kbujak09) |
-| – | [@karol199393](https://github.com/karol199393) |
-| Dominika Zalewska | [@domizalewska](https://github.com/domizalewska) |
-| Kamil Błoński | [@kbloski](https://github.com/kbloski) |
-| – | [@Kacper658](https://github.com/Kacper658) |
+| Kamil D. | [@K4mD4m](https://github.com/K4mD4m) |
 | – | [@pysifu](https://github.com/pysifu) |
+| Katarzyna Śmierzchalska | [@KatarzynaS97](https://github.com/KatarzynaS97) |
+| Marcin Fuks | [@J0jeQ](https://github.com/J0jeQ) |
+| – | [@karol199393](https://github.com/karol199393) |
 
 All contributors are listed on our [GitHub Contributors](https://github.com/nucleify/nucleify/graphs/contributors) page.
 
 ---
 
-## Built With
+## Built with
 
-Nucleify is built on top of amazing open source projects:
+Nucleify is built on top of open source projects:
 
 ### Backend & data
 
@@ -53,56 +48,58 @@ Nucleify is built on top of amazing open source projects:
 
 | Project | Description |
 |---------|-------------|
-| [Nuxt](https://nuxt.com) | Vue.js framework |
-| [Vue.js](https://vuejs.org) | JavaScript framework |
+| [Vue 3](https://vuejs.org) | Canonical UI framework (Tryb A) |
+| [Nuxt 4](https://nuxt.com) | Vue full-stack framework |
+| [React 19](https://react.dev) | Compiler-generated UI target (Tryb B) |
+| [Next.js 15](https://nextjs.org) | React full-stack framework |
 | [nucleify-ui](https://www.npmjs.com/package/nucleify-ui) | Lit web component library (`nui-*`) |
-| [Vitest](https://vitest.dev) | Testing framework |
+| [Lit](https://lit.dev) | Web components for design system primitives |
 
-### Tooling
+### Compiler & tooling
 
 | Project | Description |
 |---------|-------------|
-| [Vite](https://vitejs.dev) | Build tool |
-| [TypeScript](https://www.typescriptlang.org) | Type safety |
+| [TypeScript](https://www.typescriptlang.org) | Type safety across the stack |
+| [Vite](https://vitejs.dev) | Build tool (Nuxt / Vitest) |
 | [SCSS](https://sass-lang.com) | CSS preprocessor |
-| [ESLint](https://eslint.org) | JavaScript linting |
-| [Biome](https://biomejs.dev) | Formatting & linting |
+| [Biome](https://biomejs.dev) | Formatting and linting |
+| [Vitest](https://vitest.dev) | Unit and integration tests |
+| [pnpm](https://pnpm.io) | Monorepo package manager |
+| [Astro](https://astro.build) | Documentation site (`@nucleify/docs`) |
 
 ---
 
-## Inspiration
+## Architecture influences
 
-Projects and resources that inspired Nucleify:
-
-- [Nucleify modules](/en/docs/core-concepts/modules) – Modular architecture
-- [Feature-Sliced Design](https://feature-sliced.design) – Frontend architecture
-- [Atomic Design](https://atomicdesign.bradfrost.com) – Component hierarchy
+| Idea | Source |
+|------|--------|
+| Feature-Sliced Design | [feature-sliced.design](https://feature-sliced.design) — domain-first module layout |
+| Atomic Design | [Brad Frost](https://atomicdesign.bradfrost.com) — SCSS component hierarchy in `nuc_colors` |
+| Portable UI / IR compilers | Nucleify's own `@nucleify/compiler` — `*.nuc.tsx` → Vue + React |
 
 ---
 
-## Special Thanks
+## Special thanks
 
-- The Supabase, Vue.js, and React communities
+- The Supabase, Vue, React, Nuxt, and Astro communities
 - Everyone who has reported bugs or suggested features
 - Open source maintainers everywhere
 
 ---
 
-## Want to Contribute?
+## Want to contribute?
 
 We welcome contributions of all kinds:
 
-- 🐛 Bug reports
-- 💡 Feature suggestions
-- 📝 Documentation improvements
-- 🔧 Code contributions
+- Bug reports
+- Feature suggestions
+- Documentation improvements
+- Code contributions
 
-See our [Coding Standards](/en/docs/about/coding-standards) to get started.
+Start with [Coding Standards](/en/docs/about/coding-standards) and [Code of Conduct](/en/docs/about/code-of-conduct).
 
 ---
 
 ## License
 
 Nucleify is open source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
-
-

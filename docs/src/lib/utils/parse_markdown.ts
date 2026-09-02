@@ -1,8 +1,5 @@
-import {
-  dedupeLeadingDocumentationHeadings,
-  marked,
-  resetHeadingSlugCounters,
-} from 'nucleify'
+import { marked, resetHeadingSlugCounters } from '../markdown/markdown_renderer'
+import { dedupeLeadingDocumentationHeadings } from './dedupe_doc_headings'
 
 export async function parseMarkdown(markdown: string): Promise<string> {
   resetHeadingSlugCounters()
@@ -10,7 +7,5 @@ export async function parseMarkdown(markdown: string): Promise<string> {
   const html = dedupeLeadingDocumentationHeadings(rawHtml)
   const appUrl = typeof window !== 'undefined' ? window.location.origin : ''
 
-  return html
-    .replaceAll('/public', appUrl)
-    .replaceAll('/documentation/', '/docs/')
+  return html.replaceAll('/public', appUrl).replaceAll('/documentation/', '/docs/')
 }

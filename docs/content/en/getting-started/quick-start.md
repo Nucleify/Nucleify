@@ -1,227 +1,157 @@
 # Quick Start
 
-Get up and running with Nucleify in minutes.
+Run Nucleify, explore the repo, and make your first change in under ten minutes.
 
-## Understanding Atomic Design
+---
 
-Nucleify uses Atomic Design methodology to organize components:
+## 1. Bootstrap
 
-| Level | Description | Examples |
-|-------|-------------|----------|
-| **Bosons** | Reusable logic, types, utilities | Constants, interfaces, helper functions |
-| **Atoms** | Smallest UI building blocks | Button, Input, Icon, Label |
-| **Molecules** | Simple combinations of atoms | FloatLabel, Anchor, Tile |
-| **Organisms** | Complex UI structures | DataTable, Dialog, Menu, Card |
+```bash
+git clone https://github.com/nucleify/nucleify.git
+cd nucleify
+make run
+```
 
-## Creating Your First Component
+Fill in `SUPABASE_*` values in the root `.env` if you plan to hit module API routes.
 
-### 1. Create the Component Folder
+---
 
-Navigate to the appropriate atomic level in `nuxt/atomic/`:
+## 2. Start the landing app
+
+```bash
+make web
+```
+
+Visit [http://localhost:3000/en/home](http://localhost:3000/en/home).
+
+The landing page source lives in `web/src/pages/home/` — a set of section components composed by `web/src/pages/home/index.vue`. Routes are thin wrappers under `web/src/pages/[lang]/`:
+
+```vue
+<!-- web/src/pages/[lang]/home.vue -->
+<script setup lang="ts">
+import NucHomePage from '../home/index.vue'
+</script>
+<template><NucHomePage /></template>
+```
+
+---
+
+## 3. Understand the request flow
 
 ```txt
-nuxt/atomic/atom/my-component/
-├── index.ts            # Exports
-├── index.vue           # Component
-└── types/
-    ├── index.ts        # Type exports
-    └── interfaces.ts   # Component interfaces
+Browser  →  Nuxt page (web/src/pages/)
+         →  shared_modules/nuc_*/utils/   (composables, API client)
+         →  /api/*                         (Nitro gateway)
+         →  nuc_*/supabase/api/handle.ts   (module handlers)
+         →  Supabase (PostgreSQL, Auth, Edge Functions)
 ```
 
-### 2. Define the Interface
+Smoke-test the gateway:
 
-Create your component's type definitions in `types/interfaces.ts`:
+```bash
+curl http://localhost:3000/api
+curl http://localhost:3000/api/test
+```
+
+---
+
+## 4. Import a shared module
+
+Modules resolve via the `modules` alias (`web/.config/nuxt/structure.ts` → `shared_modules/`):
 
 ```typescript
-export interface MyComponentInterface {
-  label?: string
-  variant?: 'primary' | 'secondary'
-  disabled?: boolean
-}
+import { useDarkMode } from 'modules/nuc_dark_mode/utils/use_dark_mode'
+import { apiRequest } from 'modules/nuc_api/utils/api_request'
 ```
 
-Export types in `types/index.ts`:
+Four modules register automatically at app startup in `web/src/plugins/modules.ts`:
 
-```typescript
-export * from './interfaces'
+- `nuc_globals`
+- `nuc_colors`
+- `nuc_dark_mode`
+- `nuc_languages`
+
+`nuc_api` and `nuc_stores` are imported where needed — no global plugin registration.
+
+---
+
+## 5. Try the compiler
+
+Build portable emit from any `*.nuc.tsx` under discover roots (`web/`, `admin/`, `shared_modules/`, `portable/`):
+
+```bash
+pnpm compiler:build
+pnpm compiler:check   # exits 1 if emit is dirty vs authoring
 ```
 
-### 3. Build the Component
+Convert the entire web product to Next (Tryb B):
 
-Create your Vue component in `index.vue`:
-
-```html
-<template>
-  <div :class="$style['my-component']">
-    {{ props.label }}
-    <slot />
-  </div>
-</template>
-
-<script setup lang="ts">
-import type { MyComponentInterface } from '.'
-
-const props = defineProps<MyComponentInterface>()
-</script>
-
-<style lang="scss" module>
-.my-component {
-  // Your styles
-}
-</style>
+```bash
+make web TARGET=next
 ```
 
-### 4. Export the Component
+This runs `pnpm compiler -- convert web --target=next`, builds, installs, and starts `web-next/`.
 
-Create `index.ts` to export everything:
+---
 
-```typescript
-export { default as AdMyComponent } from './index.vue'
-export * from './types'
+## 6. Run other apps
+
+```bash
+make admin    # Nuxt admin at admin/src/pages/
+make docs     # Astro docs at http://localhost:4321 (default Astro port)
 ```
 
-### 5. Register in Parent Index
+Docs content is Markdown under `docs/content/{en,pl}/{category}/{slug}.md`.
 
-Add export to the parent `index.ts` (e.g., `nuxt/atomic/atom/index.ts`):
+---
 
-```typescript
-export * from './my-component'
+## 7. Run checks
+
+Before committing, the Husky hooks run the same suite as CI:
+
+```bash
+pnpm check       # Biome
+pnpm typeslint   # TypeScript (web)
+pnpm slint       # Stylelint (SCSS)
+pnpm tests       # Vitest (web + shared projects)
+pnpm compiler:test  # Compiler unit tests
 ```
 
-## Auto-Import & Registration
+---
 
-Components in `nuxt/atomic/` are **automatically registered** by Nuxt with the `ad-` prefix. No manual imports needed in templates!
+## Common tasks
 
-```html
-<template>
-  <!-- These work automatically - no imports required -->
-  <ad-button label="Click me" />
-  <ad-my-component label="Hello" />
-</template>
+### Add an API route to an existing module
 
-<script setup lang="ts">
-// No imports needed for template usage!
-</script>
-```
+1. Add handler functions in `shared_modules/nuc_example/supabase/api/example_handlers.ts`
+2. Export `handleExampleApi` from `handle.ts`
+3. Register the handler in `shared_modules/nuc_api/supabase/api/gateway_dispatch.ts`
+4. Call `/api/example/...` from the client via `nuc_api` request helpers
 
-**How it works:**
-- Components from `atom/`, `molecule/`, `organism/` folders are scanned automatically
-- Each component gets the `ad-` prefix (e.g., `button/index.vue` → `<ad-button>`)
-- Types and utilities from `nucleify` alias are also auto-imported
+### Override a file without editing upstream
 
-### Explicit Imports
-
-When you need to use components or types in script (not template), import from `nucleify`:
-
-```html
-<script setup lang="ts">
-import { AdButton, type ButtonInterface } from 'nucleify'
-
-// Use in script logic
-const buttonRef = ref<InstanceType<typeof AdButton>>()
-</script>
-```
-
-### What Gets Auto-Imported
-
-| Source | Auto-Import |
-|--------|-------------|
-| `~/atomic/atom/*` | Components with `ad-` prefix |
-| `~/atomic/molecule/*` | Components with `ad-` prefix |
-| `~/atomic/organism/*` | Components with `ad-` prefix |
-| `~/composables/**` | Composables |
-
-## Styling Components
-
-For Atomic Design components we recommend using **CSS Modules** - they provide automatic scoping, prevent naming collisions, and work great with TypeScript.
-
-### Option 1: CSS Modules (Recommended)
-
-Use `module` attribute on the style tag. Access classes via `$style` object:
-
-```html
-<template>
-  <div :class="$style['my-component']">
-    <span :class="$style.label">{{ label }}</span>
-  </div>
-</template>
-
-<style lang="scss" module>
-.my-component {
-  display: flex;
-  padding: 1rem;
-
-  .label {
-    font-weight: 600;
-  }
-}
-</style>
-```
-
-**Benefits:**
-- Automatic unique class names (no collisions)
-- TypeScript support via `$style`
-- Better encapsulation for reusable components
-
-### Option 2: Normal SCSS
-
-Global styles without scoping. Classes are used directly in template:
-
-```html
-<template>
-  <div class="my-component">
-    <span class="label">{{ label }}</span>
-  </div>
-</template>
-
-<style lang="scss">
-.my-component {
-  display: flex;
-  padding: 1rem;
-
-  .label {
-    font-weight: 600;
-  }
-}
-</style>
-```
-
-**When to use:**
-- Global styles and overrides
-- Styles that need to affect child components
-- Pages and layouts
-
-### External SCSS Files
-
-For complex components, extract styles to `_index.scss`:
+Mirror the path under `overrides/`:
 
 ```txt
-my-component/
-├── _index.scss   # Styles
-├── index.ts
-└── index.vue
+web/src/composables/useAuth.ts
+  → overrides/web/src/composables/useAuth.ts
 ```
 
-Import in your component:
+See [Overriding](/en/docs/core-concepts/overriding).
 
-```html
-<style lang="scss">
-@import 'index';
-</style>
-```
+### Author a portable component
 
-## Naming Conventions
+Create `Foo.nuc.tsx` next to where it will be consumed. Run `pnpm compiler:build`. Commit the `.nuc.tsx` and generated siblings. Do not hand-edit `.vue`/`.tsx` as source of truth — use `pnpm compiler -- import` if you edited emit.
 
-| Item | Convention | Example |
-|------|------------|---------|
-| Folder names | kebab-case | `my-component/` |
-| Component exports | PascalCase with `Ad` prefix | `AdMyComponent` |
-| Interfaces | PascalCase with `Interface` suffix | `MyComponentInterface` |
-| CSS classes | kebab-case | `.my-component` |
-| SCSS files | underscore prefix | `_index.scss` |
+---
 
-## Next Steps
+## Where to go next
 
-- Learn about [Modules](/en/docs/core-concepts/modules) for organizing features
-- Explore [Atomic Design](/en/docs/core-concepts/atomic-design) methodology
-- Read [Code Standards](/en/docs/contributing/code-standards) for best practices
+| Topic | Doc |
+|-------|-----|
+| Directory map | [Monorepo Layout](/en/docs/core-concepts/monorepo) |
+| Module anatomy | [Modules](/en/docs/core-concepts/modules) |
+| Compiler cycles | [Compiler](/en/docs/core-concepts/compiler) |
+| Nuxt config | [Web & Admin](/en/docs/configuration/web) |
+| Supabase workflow | [Supabase](/en/docs/configuration/supabase) |
+| Testing | [Vitest](/en/docs/tests/vitest) |

@@ -1,144 +1,118 @@
 # Nadpisywanie
 
-Nadpisywanie pozwala zastąpić oryginalne pliki bez modyfikowania kodu źródłowego. Umożliwia to wdrożenia customowe u klienta bez edytowania plików core, przy zachowaniu czystej ścieżki aktualizacji.
+Nadpisania pozwalają zastąpić dowolny plik w `web/`, `admin/`, `docs/` lub `shared_modules/` bez edycji oryginału. Przy buildzie Nuxt rozwiązuje ścieżkę override zamiast źródła.
 
-Obsługiwane nadpisania:
-- **Frontend** (Vue, TypeScript): `nuxt/`, `modules/*`
-- **Backend** (Supabase SQL, API handlers): `modules/*/supabase/`
+Nadpisania są **tylko dla Nuxt**. Nie dotyczą cyklu import kompilatora, produkcyjnych buildów Astro poza Nuxt ani generowanego outputu Next — chyba że skonfigurujesz to osobno.
 
-## Kluczowe zasady
-
-- Pliki nadpisujące muszą mieć **dokładnie taką samą ścieżkę** jak oryginały
-- Pliki nadpisujące **całkowicie zastępują** oryginały (bez łączenia)
-- Skopiuj oryginalny folder, usuń pliki których nie nadpisujesz, **zostaw tylko te które zmieniasz**
-- Nadpisuj tylko to, co **musisz zmienić**
-- Testuj dokładnie - nadpisania mogą przestać działać po aktualizacjach
+---
 
 ## Jak to działa
 
-Umieść pliki w katalogu `overrides/` z taką samą strukturą jak oryginał:
+1. Odzwierciedl oryginalną ścieżkę pliku pod `overrides/{package}/`
+2. Nuxt dev/build skanuje `overrides/` przy starcie
+3. Gdy jest dopasowanie, override **całkowicie zastępuje** oryginał — bez merge, bez częściowego patcha
+
+```txt
+Oryginał:  web/src/composables/useAuth.ts
+Override:  overrides/web/src/composables/useAuth.ts
+```
+
+---
+
+## Układ katalogów
 
 ```txt
 overrides/
-├── nuxt/                    # Nadpisania dla katalogu nuxt/
-│   ├── composables/
-│   ├── pages/
-│   └── ...
-└── modules/                 # Nadpisania dla katalogu modules/
-    └── nuc_users/
-        ├── atomic/
-        └── supabase/
+├── web/
+│   └── src/…               # odzwierciedla web/src/…
+├── admin/
+│   └── src/…
+├── docs/
+│   └── src/…
+└── shared_modules/
+    └── nuc_colors/…
 ```
 
-System automatycznie:
-- **Frontend**: Przekierowuje importy, wyklucza oryginały z buildu, obsługuje wszystkie typy importów
-- **Backend**: Ta sama mechanika dla handlerów `supabase/api/*.ts` importowanych przez bramkę API
+Każdy podkatalog ma `README.md` z przykładami dla pakietu.
 
-## Typowe przypadki użycia
+---
 
-### Własna autentykacja
+## Przykłady
+
+### Nadpisanie sekcji landing
 
 ```txt
-overrides/
-└── modules/
-    └── nuc_users/
-        ├── atomic/
-        │   └── pages/
-        │       └── Login/
-        │           └── index.vue      # Własny UI logowania
-        └── supabase/
-            └── api/
-                └── handle.ts              # Własna logika API
+Oryginał:  web/src/pages/home/index.vue
+Override:  overrides/web/src/pages/home/index.vue
 ```
 
-### Własny handler API
+Gdy forkujesz branding lub layout dla white-label, zachowując drzewo upstream `web/`.
+
+### Nadpisanie composable
 
 ```txt
-overrides/
-└── modules/
-    └── nuc_entities/
-        └── supabase/
-            └── api/
-                └── handle.ts           # Dodatkowa walidacja lub zapytania
+Oryginał:  web/src/composables/useAuth.ts
+Override:  overrides/web/src/composables/useAuth.ts
 ```
 
-### Własny dashboard
+Gdy flow auth różni się per wdrożenie, reszta app zostaje ta sama.
+
+### Nadpisanie handlera API modułu
 
 ```txt
-overrides/
-└── nuxt/
-    └── pages/
-        └── dashboard.vue              # Własny layout dashboardu
+Oryginał:  shared_modules/nuc_colors/supabase/api/handle.ts
+Override:  overrides/shared_modules/nuc_colors/supabase/api/handle.ts
 ```
 
-## Nadpisywanie frontendu
+Gdy backend musi się różnić bez forkowania całego modułu `nuc_colors`.
 
-### Komponenty Vue
+### Nadpisanie layoutu docs
 
-Oryginał: `modules/nuc_users/auth/pages/login.vue`
-
-Nadpisanie: `overrides/modules/nuc_users/auth/pages/login.vue`
-
-```html
-<template>
-  <div class="custom-login">
-    <!-- Twój własny UI logowania -->
-  </div>
-</template>
-
-<script setup lang="ts">
-// Twoja własna logika
-</script>
+```txt
+Oryginał:  docs/src/layouts/DocsLayout.astro
+Override:  overrides/docs/src/layouts/DocsLayout.astro
 ```
 
-### Pliki TypeScript
+Uwaga: rozwiązywanie override w Astro zależy od setupu build docs — zweryfikuj w dev po dodaniu pliku.
 
-Oryginał: `nuxt/composables/useAuth.ts`
+---
 
-Nadpisanie: `overrides/nuxt/composables/useAuth.ts`
+## Debugowanie nadpisań
 
-```typescript
-export function useAuth() {
-  // Twoja własna logika autentykacji
-}
-```
+Gdy zachowanie różni się od tego, co widzisz w źródle:
 
-### Strony Nuxt
+1. Sprawdź `overrides/{package}/` pod kątem ścieżki pasującej do czytanego pliku
+2. Tymczasowo przenieś lub usuń override, żeby potwierdzić, że to aktywna wersja
+3. Pamiętaj: override zasłania **całe pliki** — jedna linia zmiany nadal wymaga skopiowania pełnego pliku
 
-Oryginał: `nuxt/pages/dashboard.vue`
+---
 
-Nadpisanie: `overrides/nuxt/pages/dashboard.vue`
+## Czym nadpisania nie są
 
-## Nadpisywanie backendu
+| Potrzeba | Override? | Alternatywa |
+|----------|-----------|-------------|
+| Emit komponentu portable | Nie | Edytuj `*.nuc.tsx`, uruchom `pnpm compiler:build` |
+| Import emit z powrotem do authoring | Nie | `pnpm compiler -- import --from=vue\|react` |
+| Generowana powłoka Next.js | Nie* | Edytuj `web/`, konwertuj przez `make web TARGET=next` |
+| Konfiguracja per środowisko | Nie | Root `.env`, `web/.config/nuxt/runtime.ts` |
+| Schemat bazy | Nie | Migracje modułów w `shared_modules/nuc_*/supabase/` |
 
-### Handlery API
+\*Chyba że dodasz osobne narzędzie override dla Next — poza domyślnym skanerem Nuxt.
 
-Oryginał: `modules/nuc_users/supabase/api/handle.ts`
+---
 
-Nadpisanie: `overrides/modules/nuc_users/supabase/api/handle.ts`
+## Dobre praktyki
 
-```typescript
-import { apiNotHandled } from 'nuc_api'
-import type { ApiContext, ApiHandlerResult } from 'nuc_server'
+1. **Mało nadpisań** — wiele override utrudnia upgrade
+2. **Dokumentuj dlaczego** — komentarz na górze pliku override z powodem forka
+3. **Preferuj moduły** — jeśli wiele app potrzebuje zmiany, rozszerz `shared_modules/`
+4. **Sync upstream** — przy merge upstream Nucleify diffuj override z oryginałami
+5. **Bez sekretów** — override to pliki źródłowe; klucze w `.env`
 
-export async function handleAuthApi(ctx: ApiContext): Promise<ApiHandlerResult> {
-  // Twoja własna logika handlera
-  return apiNotHandled()
-}
-```
+---
 
-### Migracje SQL
+## Powiązane docs
 
-Dla zmian schematu specyficznych dla wdrożenia preferuj nowe pliki migracji we własnym module zamiast nadpisywania core SQL. Jeśli musisz nadpisać dane seed, odwzoruj ścieżkę w `overrides/modules/<module>/supabase/seeders/`.
-
-## Szczegóły techniczne
-
-### Frontend (Vite Plugin)
-
-System nadpisywania używa pluginu Vite który:
-1. Skanuje `overrides/nuxt/` i `overrides/modules/` przy starcie
-2. Tworzy mapowanie oryginał → ścieżka nadpisania
-3. Przechwytuje ładowanie plików i zwraca zawartość nadpisania
-4. Obserwuje zmiany i hot-reloaduje
-
-Handlery API po stronie serwera w `modules/*/supabase/api/` korzystają z tego samego rozwiązywania ścieżek przy imporcie w buildzie Nuxt/Next.
+- [Układ monorepo](/pl/docs/core-concepts/monorepo) — `overrides/` w kontekście
+- [Moduły](/pl/docs/core-concepts/modules) — kiedy rozszerzyć moduł vs nadpisać
+- [Kompilator](/pl/docs/core-concepts/compiler) — override poza cyklem import

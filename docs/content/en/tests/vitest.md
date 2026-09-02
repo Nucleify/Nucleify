@@ -1,346 +1,153 @@
-# Vitest (Frontend Testing)
+# Vitest
 
-Vitest is the frontend testing framework for Vue/TypeScript in Nucleify.
-
----
-
-## Configuration
-
-### vitest.config.ts
-
-```typescript
-import { defineVitestConfig } from '@nuxt/test-utils/config'
-import { resolve } from 'path'
-
-export default defineVitestConfig({
-  resolve: {
-    alias: {
-      nucleify: resolve(__dirname, 'nuxt/atomic'),
-    },
-  },
-  test: {
-    environment: 'nuxt',
-    setupFiles: ['./vitests/setup.ts'],
-    include: [
-      'vitests/**/*.{test,spec}.{js,ts,jsx,tsx}',
-      'modules/**/*.{test,spec}.{js,ts,jsx,tsx}',
-    ],
-    testTimeout: 30000,
-    pool: 'threads',
-  },
-})
-```
+Nucleify uses [Vitest](https://vitest.dev) for unit and integration tests across the monorepo. Root config defines two projects — **web** (Nuxt environment) and **shared** (happy-dom) — plus a separate compiler test suite.
 
 ---
 
-## Structure
-
-### Global Tests
-
-```
-vitests/
-├── setup.ts              # Global setup
-├── example.test.ts       # Example test
-└── plugins/              # Plugin tests
-```
-
-### Module Tests
-
-```
-modules/nuc_example/vitests/
-├── api/
-│   └── User/
-│       └── 200.test.ts
-├── components/
-└── constants/
-    └── api/
-        ├── user.ts
-        └── article.ts
-```
-
----
-
-## Setup File
-
-### vitests/setup.ts
-
-```typescript
-import { afterEach } from 'vitest'
-
-const activeTimeouts = new Set<NodeJS.Timeout>()
-const activeIntervals = new Set<NodeJS.Timeout>()
-
-const originalSetTimeout = globalThis.setTimeout
-const trackedSetTimeout = (callback: Function, delay?: number) => {
-  const id = originalSetTimeout(() => {
-    activeTimeouts.delete(id)
-    callback()
-  }, delay)
-  activeTimeouts.add(id)
-  return id
-}
-
-globalThis.setTimeout = trackedSetTimeout as typeof setTimeout
-
-afterEach(() => {
-  activeTimeouts.forEach((id) => clearTimeout(id))
-  activeTimeouts.clear()
-  activeIntervals.forEach((id) => clearInterval(id))
-  activeIntervals.clear()
-})
-```
-
----
-
-## Mocking
-
-### mockGlobalFetch()
-
-```typescript
-// modules/nuc_api/utils/__mocks__/mock_global_fetch.ts
-
-import type { Mock, vi } from 'vitest'
-
-export function mockGlobalFetch(
-  vi: { fn: typeof vi.fn; stubGlobal: typeof vi.stubGlobal },
-  response: unknown
-): Mock {
-  const mockFetch: Mock = vi.fn().mockResolvedValue(response)
-  vi.stubGlobal('$fetch', mockFetch)
-  return mockFetch
-}
-```
-
-### Usage
-
-```typescript
-import { beforeEach, vi } from 'vitest'
-import * as nucleify from 'nucleify'
-
-beforeEach((): void => {
-  vi.clearAllMocks()
-  nucleify.mockGlobalFetch(vi, mockResponse)
-})
-```
-
----
-
-## Mock Data
-
-```typescript
-// vitests/constants/api/user.ts
-
-import type { NucUserObjectInterface } from 'nucleify'
-
-export const mockUser: NucUserObjectInterface = {
-  id: 999999,
-  name: 'Test User',
-  email: 'test@example.com',
-  role: 'user',
-  created_at: new Date().toISOString(),
-  updated_at: new Date().toISOString(),
-}
-```
-
----
-
-## Writing Tests
-
-### Basic Test
-
-```typescript
-import { expect, test } from 'vitest'
-
-test('example', (): void => {
-  expect(true).toBe(true)
-})
-```
-
-### API Request Tests
-
-```typescript
-import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest'
-import * as nucleify from 'nucleify'
-
-describe('userRequests', (): void => {
-  const { closeDialog } = nucleify.useNucDialog()
-  const requests = nucleify.userRequests(closeDialog)
-  const mockResponse = [nucleify.mockUser]
-
-  beforeEach((): void => {
-    vi.clearAllMocks()
-    nucleify.mockGlobalFetch(vi, mockResponse)
-  })
-
-  it('getAllUsers', async (): Promise<void> => {
-    await requests.getAllUsers()
-    expect(
-      (globalThis as unknown as { $fetch: Mock }).$fetch
-    ).toHaveBeenCalledWith(
-      expect.stringContaining('users'),
-      expect.objectContaining({ method: 'GET' })
-    )
-    expect(requests.results.value).toEqual(mockResponse)
-  })
-
-  it('storeUser', async (): Promise<void> => {
-    await requests.storeUser(nucleify.mockUser)
-    expect(
-      (globalThis as unknown as { $fetch: Mock }).$fetch
-    ).toHaveBeenCalledWith(
-      expect.stringContaining('users'),
-      expect.objectContaining({ method: 'POST' })
-    )
-  })
-
-  it('deleteUser', async (): Promise<void> => {
-    await requests.deleteUser(nucleify.mockUser.id ?? 0)
-    expect(
-      (globalThis as unknown as { $fetch: Mock }).$fetch
-    ).toHaveBeenCalledWith(
-      expect.stringContaining('users'),
-      expect.objectContaining({ method: 'DELETE' })
-    )
-  })
-})
-```
-
-### Composable Tests
-
-```typescript
-import { beforeEach, describe, expect, it, vi } from 'vitest'
-import * as nucleify from 'nucleify'
-
-describe('useAddFriend', (): void => {
-  let instance: ReturnType<typeof nucleify.useAddFriend>
-
-  beforeEach((): void => {
-    vi.clearAllMocks()
-    instance = nucleify.useAddFriend()
-  })
-
-  it('should add friend', async (): Promise<void> => {
-    nucleify.mockGlobalFetch(vi, [{ id: 1, name: 'Test' }])
-    const spy = vi.spyOn(friendship, 'sendRequest')
-
-    await instance.handleAddFriend()
-
-    expect(spy).toHaveBeenCalled()
-  })
-})
-```
-
-### Testing with Spies
-
-```typescript
-import { describe, expect, it, vi } from 'vitest'
-
-describe('spies', (): void => {
-  it('should track calls', (): void => {
-    const callback = vi.fn()
-    callback('arg1', 'arg2')
-    
-    expect(callback).toHaveBeenCalledTimes(1)
-    expect(callback).toHaveBeenCalledWith('arg1', 'arg2')
-  })
-
-  it('should spy on methods', (): void => {
-    const obj = { method: (x: number) => x * 2 }
-    const spy = vi.spyOn(obj, 'method')
-    
-    obj.method(5)
-    
-    expect(spy).toHaveBeenCalledWith(5)
-    expect(spy).toHaveReturnedWith(10)
-  })
-})
-```
-
----
-
-## Assertions
-
-### Common Matchers
-
-```typescript
-// Equality
-expect(value).toBe(expected)
-expect(value).toEqual(expected)
-
-// Truthiness
-expect(value).toBeTruthy()
-expect(value).toBeFalsy()
-expect(value).toBeNull()
-expect(value).toBeDefined()
-
-// Numbers
-expect(value).toBeGreaterThan(3)
-expect(value).toBeLessThan(5)
-
-// Strings
-expect(value).toMatch(/regex/)
-expect(value).toContain('substring')
-
-// Arrays/Objects
-expect(array).toContain(item)
-expect(array).toHaveLength(3)
-expect(obj).toHaveProperty('key')
-
-// Functions
-expect(fn).toHaveBeenCalled()
-expect(fn).toHaveBeenCalledWith(arg)
-expect(fn).toHaveBeenCalledTimes(2)
-
-// Async
-await expect(promise).resolves.toBe(value)
-await expect(promise).rejects.toThrow(Error)
-
-// Partial matching
-expect(obj).toMatchObject({ key: 'value' })
-expect('test').stringContaining('est')
-expect({ a: 1 }).objectContaining({ a: 1 })
-```
-
----
-
-## Commands
+## Running tests
 
 ```bash
-# Run all tests
-pnpm run tests
+pnpm tests              # all root projects (web + shared)
+pnpm test:watch         # watch mode
+pnpm test:web           # Nuxt project only
+pnpm test:shared        # shared_modules only
+pnpm compiler:test      # compiler unit tests
+```
 
-# Watch mode
-pnpm run test:watch
+CI and Husky hooks run `pnpm tests` as part of `.config/bash/hook-checks.sh` alongside Biome, TypeScript, and Stylelint.
 
-# Run once
-pnpm run tests
+---
 
-# Specific file
-pnpm exec vitest modules/nuc_entities/vitests/api/User/200.test.ts
+## Project configuration
 
-# With pattern
-pnpm exec vitest --filter="userRequests"
+Root `vitest.config.ts` defines workspace projects:
 
-# With coverage
-pnpm run test:coverage
+### `web` project
 
-# With UI
-pnpm exec vitest --ui
+- **Root:** `web/`
+- **Environment:** `nuxt` (via `@nuxt/test-utils`)
+- **Include:** `vitests/**/*.{test,spec}.{js,ts,jsx,tsx}`
+- **Timeout:** 30s
+- **Alias:** `nucleify` → `web/src/nucleify.ts`
 
-# Update snapshots
-pnpm exec vitest --update
+### `shared` project
+
+- **Root:** `shared_modules/`
+- **Environment:** `happy-dom`
+- **Include:** `**/vitests/**/*.{test,spec}.{js,ts}`
+- **Timeout:** 15s
+- **Alias:** `nucleify` → `shared_modules/nucleify.ts`
+- **Define:** `import.meta.client` / `import.meta.server` shims
+
+Both projects share setup from `.config/vitest_setup.ts` and use threaded pools.
+
+### Compiler project
+
+Separate config at `.config/vitest.compiler.config.ts`:
+
+```bash
+pnpm compiler:test
+```
+
+Tests live in `compiler/tests/`.
+
+---
+
+## Where to put tests
+
+| Location | Pattern | Project |
+|----------|---------|---------|
+| `web/vitests/` | `*.test.ts` | web |
+| `shared_modules/nuc_*/vitests/` | `*.test.ts` | shared |
+| `compiler/tests/` | fixtures + unit | compiler |
+
+Co-locate module tests inside the module (`shared_modules/nuc_colors/vitests/`). Do not put shared module tests under `web/vitests/` unless they require Nuxt runtime.
+
+---
+
+## Writing module tests
+
+Example under `shared_modules/nuc_colors/vitests/`:
+
+```typescript
+import { describe, expect, it } from 'vitest'
+import { darkenColor } from '../../utils/darken_color'
+
+describe('darkenColor', () => {
+  it('darkens a hex color', () => {
+    expect(darkenColor('#ffffff', 0.1)).toMatch(/^#[0-9a-f]{6}$/i)
+  })
+})
+```
+
+Run only shared module tests while iterating:
+
+```bash
+pnpm test:shared
 ```
 
 ---
 
-## Best Practices
+## Writing Nuxt tests
 
-1. **Use `nucleify` alias** - Import from `nuxt/atomic`
-2. **Mock global fetch** - `nucleify.mockGlobalFetch(vi, response)`
-3. **Clear mocks** - `vi.clearAllMocks()` in `beforeEach`
-4. **Use `describe` blocks** - Group related tests
-5. **Keep module tests** in `modules/*/vitests/`
-6. **Test async** with `async/await`
-7. **Use mock data** - Constants in `vitests/constants/`
-8. **Test CRUD** - GET, POST, PUT, DELETE
-9. **Use partial matchers** - `stringContaining()`, `objectContaining()`
+Place files in `web/vitests/`. The Nuxt test environment mounts components with `@nuxt/test-utils`:
+
+```typescript
+import { describe, expect, it } from 'vitest'
+import { mountSuspended } from '@nuxt/test-utils/runtime'
+import MyComponent from '~/components/MyComponent.vue'
+
+describe('MyComponent', () => {
+  it('renders', async () => {
+    const wrapper = await mountSuspended(MyComponent)
+    expect(wrapper.text()).toContain('expected')
+  })
+})
+```
+
+---
+
+## Setup file
+
+`.config/vitest_setup.ts` configures global test behavior (mocks, matchers from `@testing-library/jest-dom` where used). Both web and shared projects import it via `setupFiles`.
+
+Console log suppression is enabled (`onConsoleLog: () => false`) to reduce noise in CI.
+
+---
+
+## Pre-commit hook suite
+
+Husky runs, in order:
+
+1. `pnpm btest` — bash test suite
+2. `pnpm check` — Biome
+3. `pnpm typeslint` — TypeScript (`web/tsconfig.json`)
+4. `pnpm slint` — Stylelint on SCSS
+5. `pnpm tests` — Vitest
+
+Fix failures locally before pushing.
+
+---
+
+## Coverage & debugging
+
+Run a single file:
+
+```bash
+pnpm vitest run shared_modules/nuc_stores/cookie/get_item/index.test.ts
+pnpm vitest run --project web web/vitests/some.test.ts
+```
+
+Enable watch during development:
+
+```bash
+pnpm test:watch
+```
+
+---
+
+## Related docs
+
+- [Modules](/en/docs/core-concepts/modules) — `vitests/` folder convention
+- [Coding Standards](/en/docs/about/coding-standards) — naming and structure rules
+- [Compiler](/en/docs/core-concepts/compiler) — `pnpm compiler:test`

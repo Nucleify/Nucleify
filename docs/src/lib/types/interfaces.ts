@@ -15,6 +15,7 @@ export interface DocCategoryInterface {
 export interface DocHeadingInterface {
   id: string
   text: string
+  html?: string
   level: number
   children?: DocHeadingInterface[]
 }

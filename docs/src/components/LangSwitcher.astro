@@ -1,0 +1,25 @@
+---
+import { DOC_LANGUAGES } from '../lib/constants/languages'
+import { docHref } from '../lib/doc_paths'
+
+interface Props {
+  lang: string
+  category: string
+  slug: string
+}
+
+const { lang, category, slug } = Astro.props
+---
+
+<div class="docs-lang-switch">
+  {DOC_LANGUAGES.map((item) => (
+    <a
+      class:list={['docs-lang-switch__link', { 'is-active': item.code === lang }]}
+      href={docHref(item.code, category, slug)}
+      data-lang={item.code}
+      hreflang={item.code}
+    >
+      {item.code.toUpperCase()}
+    </a>
+  ))}
+</div>
