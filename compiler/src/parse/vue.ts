@@ -228,19 +228,6 @@ function wrapReactiveInTemplate(expr: IrExpr, reactives: Set<string>): IrExpr {
           value: wrapReactiveInTemplate(p.value, reactives),
         })),
       }
-    case 'index':
-      return {
-        ...expr,
-        object: wrapReactiveInTemplate(expr.object, reactives),
-        index: wrapReactiveInTemplate(expr.index, reactives),
-      }
-    case 'conditional':
-      return {
-        ...expr,
-        test: wrapReactiveInTemplate(expr.test, reactives),
-        consequent: wrapReactiveInTemplate(expr.consequent, reactives),
-        alternate: wrapReactiveInTemplate(expr.alternate, reactives),
-      }
     case 'array':
       return {
         ...expr,

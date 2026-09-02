@@ -140,18 +140,24 @@ function emitAttrs(attrs: IrAttr[], ctx: EmitCtx, tag?: string): string {
   let staticClass: string | undefined
   let bindClass: IrExpr | undefined
   let hasMode = false
+  let classSlotIndex: number | null = null
+
+  const mergeClassAttr = (attr: IrAttr): void => {
+    if (attr.kind === 'static' && typeof attr.value === 'string') {
+      staticClass = staticClass ? `${staticClass} ${attr.value}` : attr.value
+    } else if (attr.kind === 'bind') {
+      bindClass = attr.value
+    } else if (attr.kind === 'static') {
+      staticClass = staticClass ? `${staticClass} ${String(attr.value)}` : String(attr.value)
+    }
+  }
 
   for (const attr of attrs) {
     const reactName = toReactClassName(attr.name)
     if (attr.name === 'mode' || reactName === 'mode') hasMode = true
     if (reactName === 'className' || attr.name === 'class') {
-      if (attr.kind === 'static' && typeof attr.value === 'string') {
-        staticClass = staticClass ? `${staticClass} ${attr.value}` : attr.value
-      } else if (attr.kind === 'bind') {
-        bindClass = attr.value
-      } else if (attr.kind === 'static') {
-        staticClass = staticClass ? `${staticClass} ${String(attr.value)}` : String(attr.value)
-      }
+      mergeClassAttr(attr)
+      if (classSlotIndex === null) classSlotIndex = parts.length
       continue
     }
     if (attr.kind === 'bind' && attr.name === 'ref') {
@@ -176,7 +182,9 @@ function emitAttrs(attrs: IrAttr[], ctx: EmitCtx, tag?: string): string {
   }
 
   const classAttr = emitClassNameAttr(staticClass, bindClass, ctx)
-  if (classAttr) parts.unshift(classAttr)
+  if (classAttr) {
+    parts.splice(classSlotIndex ?? parts.length, 0, classAttr)
+  }
 
   if (tag === 'nui-icon' && !hasMode) parts.push('mode="svg"')
 

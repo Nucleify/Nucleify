@@ -75,6 +75,46 @@ importers:
         specifier: 5.2.0
         version: 5.2.0(@vue/compiler-sfc@3.5.41)(esbuild@0.28.1)(pinia@3.0.4(typescript@5.8.3)(vue@3.5.40(typescript@5.8.3)))(rollup@4.60.4)(vite@7.3.6(@types/node@25.4.0)(jiti@2.7.0)(sass@1.89.0)(terser@5.46.0)(tsx@4.23.1)(yaml@2.9.0))(vue@3.5.40(typescript@5.8.3))(webpack@5.105.4(esbuild@0.28.1))
 
+  admin-next:
+    dependencies:
+      '@supabase/supabase-js':
+        specifier: ^2.105.1
+        version: 2.105.1
+      iconify-icon:
+        specifier: ^3.0.0
+        version: 3.0.0
+      lit:
+        specifier: ^3.3.0
+        version: 3.3.3
+      next:
+        specifier: ^15.2.0
+        version: 15.5.24(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(sass@1.89.0)
+      nucleify-ui:
+        specifier: ^0.3.7
+        version: 0.3.7(iconify-icon@3.0.0)(lit@3.3.3)(rollup@4.60.4)
+      react:
+        specifier: ^19.0.0
+        version: 19.2.8
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.8(react@19.2.8)
+    devDependencies:
+      '@types/node':
+        specifier: ^22.13.10
+        version: 22.20.1
+      '@types/react':
+        specifier: ^19.0.10
+        version: 19.2.18
+      '@types/react-dom':
+        specifier: ^19.0.4
+        version: 19.2.5(@types/react@19.2.18)
+      sass:
+        specifier: 1.89.0
+        version: 1.89.0
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+
   compiler: {}
 
   docs:
