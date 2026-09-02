@@ -1,251 +1,202 @@
 # Modules
 
-Modules are the core organizational unit in Nucleify. They encapsulate related functionality into reusable packages that work across **Supabase** (backend SQL + API handlers) and **Vue/Nuxt** or **React/Next** (frontend).
+Nucleify ships six feature modules in `shared_modules/`. Each module is a self-contained domain package with frontend utilities, optional Supabase API handlers, migrations, types, and tests — consumed by `web/`, `admin/`, and generated Next shells.
 
-## Naming Convention
+There is no root-level `modules/` folder. Apps import via relative paths or the Nuxt alias `modules` → `shared_modules/`.
 
-| Type | Prefix | Example |
-|------|--------|---------|
-| Core modules | `nuc_` | `nuc_users`, `nuc_entities` |
-| Custom modules | `your_prefix_` | `ex_payments`, `my_blog` |
+---
 
-Core modules (`nuc_*`) are maintained by Nucleify. Custom modules should use a unique prefix to avoid conflicts.
+## The six modules
 
-## Module Structure
+| Module | Domain | Key paths |
+|--------|--------|-----------|
+| `nuc_api` | API client, gateway dispatch, auth forms, entity requests, toasts | `supabase/api/gateway_dispatch.ts`, `utils/api_request.ts` |
+| `nuc_colors` | Theme/color system, SCSS variables, color utilities | `styles/`, `supabase/api/handle.ts` |
+| `nuc_dark_mode` | Dark mode preference (load, persist, apply) | `utils/use_dark_mode.ts`, `nuc_dark_mode.ts` |
+| `nuc_globals` | Media queries, image helpers, global styles, shared types | `media/`, `styles/`, `nuc_globals.ts` |
+| `nuc_languages` | i18n, locale messages, translations API | `plugins/nuc_translations.ts`, `supabase/api/handle.ts` |
+| `nuc_stores` | Pinia/Zustand helpers, cookie/localStorage/session utils | `pinia/`, `zustand/`, `cookie/` |
+
+Modules **not** in the monorepo: `nuc_users`, `nuc_auth` — auth flows live inside `nuc_api`.
+
+---
+
+## Module anatomy
+
+Every `nuc_*` directory follows a consistent layout:
 
 ```txt
-modules/ex_example/
-├── config.json              # Module metadata (required)
-├── ex_example.ts            # Vue component registration
-├── ex_example.react.ts      # React registration (optional)
-├── index.ts                 # TypeScript barrel export
-├── _index.scss              # SCSS entry point
+shared_modules/nuc_example/
+├── config.json              # name, version, category, enabled
+├── nuc_example.ts           # Vue plugin (registerNucExample)
+├── index.ts                 # Vue barrel export
+├── index.react.ts           # React barrel export (when needed)
+├── _index.scss              # optional global module styles
 ├── README.md
-├── atomic/                  # UI components & composables
-├── supabase/                # Backend: SQL + API handlers
+├── constants/
+├── types/
+│   ├── interfaces.ts
+│   ├── interfaces.react.ts  # when React types diverge
+│   └── variables.ts
+├── utils/                   # composables, hooks, pure functions
+├── components/              # optional reusable UI
+├── supabase/
+│   ├── api/
+│   │   ├── handle.ts        # gateway entry (handleExampleApi)
+│   │   └── *_handlers.ts    # route tables
 │   ├── migrations/
-│   ├── seeders/
 │   ├── factories/
-│   └── api/handle.ts
-└── vitests/                 # Vitest tests
+│   └── seeders/
+└── vitests/
 ```
 
-## Required Files
+---
 
-### `config.json`
+## Registration in Nuxt
 
-Module metadata and state:
-
-```json
-{
-  "name": "ex_example",
-  "description": "Example module description",
-  "version": "0.0.1",
-  "category": "feature",
-  "installed": true,
-  "enabled": true
-}
-```
-
-| Field | Description |
-|-------|-------------|
-| `name` | Unique identifier, must match folder name |
-| `description` | Brief module purpose |
-| `version` | Semantic version |
-| `category` | `core`, `feature`, or `utility` |
-| `installed` | Whether module is installed |
-| `enabled` | Whether module is active |
-
-### `ex_example.ts`
-
-Vue global component registration:
+`web/src/plugins/modules.ts` registers four modules at app startup:
 
 ```typescript
-import type { App } from 'vue'
-import { ExExamplePage } from './atomic'
+import { registerNucColors } from '../../../shared_modules/nuc_colors/nuc_colors'
+import { registerNucDarkMode } from '../../../shared_modules/nuc_dark_mode/nuc_dark_mode'
+import { registerNucGlobals } from '../../../shared_modules/nuc_globals/nuc_globals'
+import { registerNucLanguages } from '../../../shared_modules/nuc_languages/nuc_languages'
 
-export function registerExExample(app: App<Element>): void {
-  app.component('ex-example-page', ExExamplePage)
-}
+export default defineNuxtPlugin({
+  name: 'modules-registration',
+  enforce: 'pre',
+  setup(nuxtApp) {
+    registerNucGlobals(nuxtApp.vueApp)
+    registerNucColors(nuxtApp.vueApp)
+    registerNucDarkMode(nuxtApp.vueApp)
+    registerNucLanguages(nuxtApp)
+  },
+})
 ```
 
-Register in `nuxt/plugins/modules.ts` via `registerExExample`.
+`nuc_api` and `nuc_stores` are imported on demand — no global plugin.
 
-### `supabase/api/handle.ts`
-
-API handler for the module gateway:
+Translations also load via a Nuxt plugin path in config:
 
 ```typescript
-import { apiNotHandled, trySimpleCrud } from 'nuc_api'
+// web/.config/nuxt/structure.ts
+plugins: [
+  resolve(process.cwd(), '../shared_modules/nuc_languages/plugins/nuc_translations.ts'),
+],
+```
+
+---
+
+## Import rules
+
+**Inside a module** — relative imports only. Never import from `web/`, `admin/`, or `docs/`.
+
+**From an app** — use the alias or relative path:
+
+```typescript
+// via alias (Nuxt)
+import { useDarkMode } from 'modules/nuc_dark_mode/utils/use_dark_mode'
+
+// explicit relative (also valid)
+import { apiRequest } from '../../../shared_modules/nuc_api/utils/api_request'
+```
+
+**Public surface** — export through `index.ts` and the root barrel `shared_modules/index.ts`. Do not import `from 'nucleify'` inside modules (circular dependency).
+
+---
+
+## API gateway integration
+
+Module handlers export an async `handle*Api(ctx)` function. Register it in the gateway registry:
+
+```typescript
+// shared_modules/nuc_api/supabase/api/gateway_dispatch.ts
+export const supabaseApiGatewayHandlers = [
+  handleColorsApi,
+  handleLanguagesApi,
+] as const
+```
+
+Nitro entry point:
+
+```txt
+web/src/server/api/[...slug].ts
+  → parseApiSlug()
+  → dispatchSupabaseApiGateway(ctx)
+  → first handler where result.handled === true
+```
+
+### Handler pattern
+
+```typescript
+import { apiMethodNotAllowed, apiNotHandled, withGatewayUser } from 'nuc_api'
 import type { ApiContext, ApiHandlerResult } from 'nuc_server'
 
 export async function handleExampleApi(ctx: ApiContext): Promise<ApiHandlerResult> {
-  if (ctx.segments[0] !== 'examples') return apiNotHandled()
-  return (await trySimpleCrud(ctx, { table: 'examples' })) ?? apiNotHandled()
+  if (ctx.segments[0] !== 'example') return apiNotHandled()
+  return withGatewayUser(ctx, async (gatewayCtx, userId) => {
+    // route table dispatch …
+    return apiMethodNotAllowed()
+  })
 }
 ```
 
-Add `handleExampleApi` to `nuxt/server/api/[...slug].ts` handlers array.
+Client code calls `/api/example/...` through `nuc_api` request helpers — not Supabase service keys in the browser.
 
-### `index.ts`
+---
 
-Barrel export for all module exports:
+## Supabase per module
 
-```typescript
-export * from './ex_example'
-export * from './atomic'
-export * from './vitests'
+Each module can own SQL artifacts:
+
+| Directory | Purpose |
+|-----------|---------|
+| `supabase/migrations/` | Schema changes |
+| `supabase/factories/` | Test/dev factory SQL |
+| `supabase/seeders/` | Seed data |
+
+Apply locally:
+
+```bash
+pnpm supabase:migrations:apply:local
+pnpm supabase:seeders:apply:local
+# or combined:
+pnpm supabase:setup:local
 ```
 
-Add to `modules/index.ts`:
+Scripts merge all module SQL via `.config/bash/merge-module-supabase-sql.sh`.
 
-```typescript
-export * from './ex_example'
-```
+---
 
-## Backend Structure (`supabase/`)
+## React variants
 
-```txt
-supabase/
-├── migrations/                     # PostgreSQL schema (*.sql)
-├── seeders/                        # Seed data
-├── factories/                      # Demo/test data
-├── api/
-│   ├── handle.ts                   # Gateway entry: handleExampleApi
-│   └── *_helpers.ts                # Table names, row mapping
-└── functions/                      # Optional Edge Functions
-```
+Modules that support Tryb B expose `.react.ts` siblings:
 
-Handlers use `nuc_api` helpers (`trySimpleCrud`, `tryScopedCrud`) and the Supabase JS client passed in `ApiContext`.
+- `index.react.ts` — React barrel
+- `utils/use_*.react.ts` — React hooks mirroring Vue composables
+- `types/interfaces.react.ts` — React-specific types when needed
 
-## Frontend Structure (`atomic/`)
+The compiler and product convert use these when emitting Next shells.
 
-Uses Atomic Design methodology:
+---
 
-```txt
-atomic/
-├── index.ts                        # Barrel export
-├── _index.scss                     # SCSS imports
-├── bosons/                         # Utilities & types (smallest units)
-│   ├── constants/                  # Static values
-│   │   └── fields/                 # Form field definitions
-│   ├── types/                      # TypeScript interfaces
-│   │   ├── api/                    # API response types
-│   │   └── object/                 # Domain object types
-│   └── utils/                      # Helper functions
-│       └── api/                    # API request functions
-├── pages/                          # Full page components
-│   └── General/
-│       ├── index.ts
-│       └── index.vue
-└── templates/                      # Page sections/layouts
-    └── Dashboard/
-        ├── index.ts
-        └── General.vue
-```
+## Creating a new module
 
-### Bosons
+1. Copy the structure from an existing `nuc_*` module
+2. Add `config.json` metadata
+3. Implement `nuc_example.ts` with `registerNucExample`
+4. Export public API from `index.ts`
+5. Add to `shared_modules/index.ts` if needed globally
+6. Register plugin in `web/src/plugins/modules.ts` if it needs app-wide setup
+7. Add gateway handler to `gateway_dispatch.ts` if it exposes API routes
+8. Add `vitests/` and run `pnpm test:shared`
 
-Smallest building blocks - types, constants, utilities:
+See [Feature-Sliced Design](/en/docs/core-concepts/feature-sliced-design) for architectural rationale.
 
-```typescript
-// types/api/interfaces.ts
-export interface ExampleApiResponse {
-  id: number
-  name: string
-  created_at: string
-}
+---
 
-// utils/api.ts
-export async function getExamples(): Promise<ExampleApiResponse[]> {
-  return await api.get('/api/examples')
-}
-```
+## Related docs
 
-### Pages
-
-Full-page Vue components:
-
-```html
-<!-- pages/General/index.vue -->
-<template>
-  <ExExampleDashboard />
-</template>
-
-<script setup lang="ts">
-import { ExExampleDashboard } from '../../templates'
-</script>
-```
-
-### Templates
-
-Reusable page sections:
-
-```html
-<!-- components/Dashboard/General.vue -->
-<template>
-  <section class="ex-example-dashboard">
-    <slot />
-  </section>
-</template>
-```
-
-## Database (`supabase/migrations/`)
-
-```txt
-supabase/migrations/
-└── 20260501000000_nuc_example.sql
-```
-
-Apply with `bash .config/bash/apply-module-migrations.sh` (merges all module SQL).
-
-## API routes
-
-The gateway maps `/api/{segments}` to module handlers. Example: `GET /api/examples` → `handleExampleApi` → `supabase.from('examples').select()`.
-
-## Testing
-
-### Vitest (`vitests/`)
-
-Frontend unit tests:
-
-```txt
-vitests/
-├── index.ts                        # Barrel export
-├── api/                            # API request tests
-│   └── Example/
-│       └── 200.test.ts
-└── constants/                      # Test constants
-    └── api/
-        └── example.ts
-```
-
-## Creating a Module
-
-1. **Create folder**: `modules/yourprefix_modulename/`
-
-2. **Add `config.json`** with module metadata
-
-3. **Create entry points**:
-   - `yourprefix_modulename.ts` (Vue) and/or `.react.ts` (React)
-   - `index.ts` (always required)
-   - `supabase/api/handle.ts` (if API needed)
-
-4. **Register module**:
-   - Add handler to `nuxt/server/api/[...slug].ts` (and Next gateway if used)
-   - Add to `modules/index.ts` and `nuxt/plugins/modules.ts`
-
-5. **Add structure** as needed:
-   - `atomic/` for UI
-   - `supabase/migrations`, `seeders` for database
-   - `vitests/` for tests
-
-## Best Practices
-
-- **Naming**: Use unique prefix (`nuc_` is reserved for core modules)
-- **Exports**: Export everything through `index.ts` files
-- **Types**: Define all TypeScript types in `types/`
-- **API**: Keep API logic in `utils/api.ts`
-- **Testing**: Prefer Vitest for UI and API composables
-- **SCSS**: Use `_index.scss` for module-specific styles
-- **Documentation**: Include `README.md` in each module
+- [Feature-Sliced Design](/en/docs/core-concepts/feature-sliced-design)
+- [Supabase](/en/docs/configuration/supabase)
+- [Overriding](/en/docs/core-concepts/overriding) — patch module files without editing upstream

@@ -1,9 +1,7 @@
-import {
-  DEFAULT_LANG,
-  type DocContent,
-  docMarkdownNotFoundError,
-  markdownRawToDocContent,
-} from 'nucleify'
+import { DEFAULT_LANG } from '../constants/languages'
+import type { DocContent } from './doc_content'
+import { markdownRawToDocContent } from './doc_content'
+import { docMarkdownNotFoundError } from './fetch_doc_markdown'
 
 import { getBundledMarkdown } from './markdown_bundle.generated'
 

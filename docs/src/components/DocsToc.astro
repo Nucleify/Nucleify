@@ -1,0 +1,114 @@
+---
+import type { DocHeadingInterface } from '../lib/types/interfaces'
+
+interface Props {
+  headings: DocHeadingInterface[]
+}
+
+const { headings } = Astro.props
+
+type FlatHeading = DocHeadingInterface & { depth: number }
+
+function flattenHeadings(
+  items: DocHeadingInterface[],
+  depth = 0,
+  out: FlatHeading[] = [],
+): FlatHeading[] {
+  for (const item of items) {
+    out.push({ ...item, depth })
+    if (item.children?.length) {
+      flattenHeadings(item.children, depth + 1, out)
+    }
+  }
+  return out
+}
+
+const flatHeadings = flattenHeadings(headings)
+---
+
+{flatHeadings.length > 0 ? (
+  <div class="docs-toc">
+    <p class="docs-toc__title">On this page</p>
+    <ul class="docs-toc__list">
+      {flatHeadings.map((item) => (
+        <li
+          class:list={[
+            item.depth > 0 && 'docs-toc__item--nested',
+          ]}
+          style={item.depth > 0 ? `--toc-depth: ${item.depth}` : undefined}
+        >
+          <a class="docs-toc__link" href={`#${item.id}`} data-heading-id={item.id}>
+            <span class="docs-toc__label" set:html={item.html ?? item.text} />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+) : null}
+
+<script>
+  const LINE = 160
+  const SEL = 'h2, h3, h4, h5, h6'
+  const main = document.querySelector('.docs-content')
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.docs-toc__link'))
+
+  if (main && links.length) {
+    let raf = 0
+
+    function getHeadings(): HTMLElement[] {
+      return Array.from(main!.querySelectorAll<HTMLElement>(SEL)).filter((h) => h.id)
+    }
+
+    function setActive(id: string) {
+      links.forEach((link) => {
+        link.classList.toggle('is-active', link.dataset.headingId === id)
+      })
+    }
+
+    function apply() {
+      const heads = getHeadings()
+      if (!heads.length) return
+
+      const viewportBottom = window.scrollY + window.innerHeight
+      const docBottom = document.documentElement.scrollHeight
+      const atPageBottom = viewportBottom >= docBottom - 4
+
+      if (atPageBottom) {
+        setActive(heads[heads.length - 1]!.id)
+        return
+      }
+
+      let current = heads[0]!
+      for (const h of heads) {
+        if (h.getBoundingClientRect().top > LINE) break
+        current = h
+      }
+      setActive(current.id)
+    }
+
+    function schedule() {
+      if (!raf) {
+        raf = requestAnimationFrame(() => {
+          raf = 0
+          apply()
+        })
+      }
+    }
+
+    window.addEventListener('scroll', schedule, { passive: true })
+    document.getElementById('docs-main')?.addEventListener('scroll', schedule, { passive: true })
+    apply()
+
+    links.forEach((link) => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault()
+        const id = link.dataset.headingId
+        if (!id) return
+        const el = document.getElementById(id)
+        if (!el) return
+        setActive(id)
+        el.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      })
+    })
+  }
+</script>

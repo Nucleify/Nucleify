@@ -1,144 +1,118 @@
 # Overriding
 
-Overrides allow you to replace original files without modifying source code. This enables custom client implementations without editing core files, while maintaining clean upgrade paths.
+Overrides let you replace any file in `web/`, `admin/`, `docs/`, or `shared_modules/` without editing the original. At build time, Nuxt resolves the override path instead of the source path.
 
-Supported overrides:
-- **Frontend** (Vue, TypeScript): `nuxt/`, `modules/*`
-- **Backend** (Supabase SQL, API handlers): `modules/*/supabase/`
+Overrides are **Nuxt-only**. They do not apply to the compiler import cycle, Astro in production builds outside Nuxt, or generated `web-next/` unless separately configured.
 
-## Key Rules
+---
 
-- Override files must have the **exact same path** as originals
-- Override files **completely replace** originals (no merging)
-- Copy the original folder, delete files you don't override, **keep only what you change**
-- Only override what you **need to change**
-- Test thoroughly - overrides may break with updates
+## How it works
 
-## How It Works
+1. Mirror the original file path under `overrides/{package}/`
+2. Nuxt dev/build scans `overrides/` at startup
+3. When a match exists, the override **fully replaces** the original — no merge, no partial patch
 
-Place files in the `overrides/` directory with the same structure as the original:
+```txt
+Original:  web/src/composables/useAuth.ts
+Override:  overrides/web/src/composables/useAuth.ts
+```
+
+---
+
+## Directory layout
 
 ```txt
 overrides/
-├── nuxt/                    # Overrides for nuxt/ directory
-│   ├── composables/
-│   ├── pages/
-│   └── ...
-└── modules/                 # Overrides for modules/ directory
-    └── nuc_users/
-        ├── atomic/
-        └── supabase/
+├── web/
+│   └── src/…               # mirrors web/src/…
+├── admin/
+│   └── src/…
+├── docs/
+│   └── src/…
+└── shared_modules/
+    └── nuc_colors/…
 ```
 
-The system automatically:
-- **Frontend**: Redirects imports, excludes originals from build, handles all import types
-- **Backend**: Same mechanism for `supabase/api/*.ts` handlers imported by the API gateway (TypeScript overrides)
+Each subdirectory has a `README.md` with examples for that package.
 
-## Common Use Cases
+---
 
-### Custom Authentication
+## Examples
+
+### Override a landing page section
 
 ```txt
-overrides/
-└── modules/
-    └── nuc_users/
-        ├── atomic/
-        │   └── pages/
-        │       └── Login/
-        │           └── index.vue      # Custom login UI
-        └── supabase/
-            └── api/
-                └── handle.ts              # Custom API logic
+Original:  web/src/pages/home/index.vue
+Override:  overrides/web/src/pages/home/index.vue
 ```
 
-### Custom API handler
+Use when you fork branding or layout for a white-label deployment while keeping the upstream `web/` tree intact.
+
+### Override a composable
 
 ```txt
-overrides/
-└── modules/
-    └── nuc_entities/
-        └── supabase/
-            └── api/
-                └── handle.ts           # Extra validation or custom queries
+Original:  web/src/composables/useAuth.ts
+Override:  overrides/web/src/composables/useAuth.ts
 ```
 
-### Custom Dashboard
+Use when auth flow differs per deployment but the rest of the app stays the same.
+
+### Override a module API handler
 
 ```txt
-overrides/
-└── nuxt/
-    └── pages/
-        └── dashboard.vue              # Custom dashboard layout
+Original:  shared_modules/nuc_colors/supabase/api/handle.ts
+Override:  overrides/shared_modules/nuc_colors/supabase/api/handle.ts
 ```
 
-## Frontend Overrides
+Use when backend behavior must diverge without forking the entire `nuc_colors` module.
 
-### Vue Components
+### Override docs layout
 
-Original: `modules/nuc_users/auth/pages/login.vue`
-
-Override: `overrides/modules/nuc_users/auth/pages/login.vue`
-
-```html
-<template>
-  <div class="custom-login">
-    <!-- Your custom login UI -->
-  </div>
-</template>
-
-<script setup lang="ts">
-// Your custom logic
-</script>
+```txt
+Original:  docs/src/layouts/DocsLayout.astro
+Override:  overrides/docs/src/layouts/DocsLayout.astro
 ```
 
-### TypeScript Files
+Note: Astro override resolution depends on your docs build setup — verify in dev after adding the file.
 
-Original: `nuxt/composables/useAuth.ts`
+---
 
-Override: `overrides/nuxt/composables/useAuth.ts`
+## Debugging overrides
 
-```typescript
-export function useAuth() {
-  // Your custom authentication logic
-}
-```
+When behavior differs from what you expect in source:
 
-### Nuxt Pages
+1. Check `overrides/{package}/` for a path matching the file you are reading
+2. Temporarily rename or remove the override to confirm it is the active version
+3. Remember: overrides shadow **entire files** — a one-line change still requires copying the full file
 
-Original: `nuxt/pages/dashboard.vue`
+---
 
-Override: `overrides/nuxt/pages/dashboard.vue`
+## What overrides are not
 
-## Backend Overrides
+| Concern | Override? | Alternative |
+|---------|-----------|-------------|
+| Portable component emit | No | Edit `*.nuc.tsx`, run `pnpm compiler:build` |
+| Import emit back to authoring | No | `pnpm compiler -- import --from=vue\|react` |
+| Next.js generated shell | No* | Edit `web/`, convert with `make web TARGET=next` |
+| Environment-specific config | No | Root `.env`, `web/.config/nuxt/runtime.ts` |
+| Database schema | No | Module migrations in `shared_modules/nuc_*/supabase/` |
 
-### API handlers
+\*Unless you add separate override tooling for Next — not part of the default Nuxt override scanner.
 
-Original: `modules/nuc_users/supabase/api/handle.ts`
+---
 
-Override: `overrides/modules/nuc_users/supabase/api/handle.ts`
+## Best practices
 
-```typescript
-import { apiNotHandled } from 'nuc_api'
-import type { ApiContext, ApiHandlerResult } from 'nuc_server'
+1. **Keep overrides small in count** — many overrides make upgrades hard
+2. **Document why** — add a comment at the top of override files explaining the fork reason
+3. **Prefer modules** — if multiple apps need the change, extend `shared_modules/` instead
+4. **Sync upstream** — when merging upstream Nucleify changes, diff override files against originals
+5. **Do not commit secrets** — overrides are source files; use `.env` for keys
 
-export async function handleAuthApi(ctx: ApiContext): Promise<ApiHandlerResult> {
-  // Your custom handler logic
-  return apiNotHandled()
-}
-```
+---
 
-### SQL migrations
+## Related docs
 
-For schema changes specific to your deployment, prefer new migration files in your own module rather than overriding core SQL. If you must override seed data, mirror the path under `overrides/modules/<module>/supabase/seeders/`.
-
-## Technical Details
-
-### Frontend (Vite Plugin)
-
-The override system uses a Vite plugin that:
-1. Scans `overrides/nuxt/` and `overrides/modules/` on startup
-2. Creates a mapping of original → override paths
-3. Intercepts file loads and returns override content
-4. Watches for changes and hot-reloads
-
-Server-side API handlers under `modules/*/supabase/api/` use the same resolution when imported through the Nuxt/Next build.
+- [Monorepo Layout](/en/docs/core-concepts/monorepo) — `overrides/` in context
+- [Modules](/en/docs/core-concepts/modules) — when to extend a module vs override
+- [Compiler](/en/docs/core-concepts/compiler) — overrides excluded from import cycle

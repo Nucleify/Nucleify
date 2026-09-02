@@ -1,173 +1,174 @@
 # Wprowadzenie
 
-## Buduj szybciej. Skaluj bez wysiłku. Wdrażaj z pewnością.
+## Pisz w Vue. Wdrażaj React, gdy tego potrzebujesz.
 
-**Nucleify** to modularny full-stack framework, który eliminuje chaos współczesnego web developmentu. Jedna komenda do startu. Ponad 40 sprawdzonych modułów gotowych do wdrożenia. Zero nadmiarowej konfiguracji.
+**Nucleify** to modularne monorepo full-stack: rozwijaj w Nuxt 4 (Tryb A), współdziel logikę przez sześć modułów funkcjonalnych i opcjonalnie generuj lustrzane odbicie Next.js (Tryb B) za pomocą przenośnego kompilatora UI. Backend opiera się na Supabase; bramka API Nitro w `web/` kieruje żądania do handlerów modułów.
 
-> *"Przestań wymyślać koło na nowo. Zacznij budować swój produkt. Teraz!"*
-
-Napędzany przez **Supabase** + **Nuxt 3** / **Next.js** — Nucleify to modularna aplikacja full-stack z PostgreSQL, Auth i bramką API modułów.
+> *"Przestań wybierać między frameworkami. Wdrażaj oba."*
 
 ---
 
 ## Czym jest Nucleify?
 
-Za szybkością stoi **modularna architektura inspirowana jądrem atomu** - każda funkcjonalność żyje jako samodzielny, niezależnie testowalny moduł. Koniec z poplątanymi zależnościami. Koniec z "u mnie działa". Tylko czysty, przewidywalny kod, który skaluje się wraz z Twoim zespołem i ambicjami.
+Nucleify to **workspace pnpm**, który łączy wszystko, czego potrzebuje nowoczesny produkt:
 
-**Supabase** przechowuje dane i uwierzytelnia użytkowników. **Nuxt 3** lub **Next.js** dostarcza SSR i reaktywny UI. Handlery w `supabase/api/` łączą oba światy przez `/api/*`.
+| Pakiet | Ścieżka | Rola |
+|--------|---------|------|
+| `@nucleify/web` | `web/` | Aplikacja landingowa Nuxt 4 (Tryb A, kanoniczna) |
+| `@nucleify/admin` | `admin/` | Panel administracyjny Nuxt 4 |
+| `@nucleify/docs` | `docs/` | Strona dokumentacji Astro 5 |
+| `@nucleify/compiler` | `compiler/` | Przenośny kompilator UI oparty na IR |
+| `@nucleify/shared-modules` | `shared_modules/` | Sześć modułów funkcjonalnych |
 
-### Liczby
+Katalogi wspierające:
 
-| Metryka | Wartość |
+- `portable/nui/` — design tokeny i rejestracja Lit `nui-*`
+- `overrides/` — nadpisania plików per pakiet (`overrides/{web,admin,docs,shared_modules}/`)
+- `supabase/` — konfiguracja DB, migracje, edge functions
+- `.config/` — Biome, Vitest, skrypty bash
+
+---
+
+## Architektura dual-mode: Tryb A i Tryb B
+
+| Tryb | Stack | Komenda | Wynik |
+|------|-------|---------|-------|
+| **Tryb A** (domyślny) | Nuxt 4 + Vue 3.5 | `make web` | `web/` |
+| **Tryb B** (generowany) | Next 15 + React 19 | `make web TARGET=next` | wygenerowane drzewo emit (zob. [Kompilator](/pl/docs/core-concepts/compiler)) |
+
+**Tryb A** to codzienna praca — strony, composables i współdzielone moduły w Vue. **Tryb B** konwertuje powłokę produktu na React, gdy potrzebujesz wdrożenia Next lub chcesz zweryfikować output kompilatora.
+
+Oba tryby współdzielą `shared_modules/`, Supabase i design tokeny. Nie utrzymujesz dwóch niezależnych baz kodu.
+
+---
+
+## Kompilator
+
+Kompilator (`@nucleify/compiler`) to wyróżnik Nucleify. Działa na dwóch poziomach:
+
+### 1. Przenośne komponenty (`*.nuc.tsx`)
+
+Twórz UI niezależne od frameworka z `#nuc-compiler/runtime`. Kompilator emituje sąsiednie pliki `.vue`, `.tsx` i `.css`:
+
+```tsx
+import { component, state, handler } from '#nuc-compiler/runtime'
+
+export default component({
+  name: 'Counter',
+  props: { label: { type: 'string', default: 'Count' } },
+  setup(props) {
+    const count = state(0)
+    const onInc = handler(() => count.set(count.value + 1))
+    return () => (
+      <button type="button" onClick={onInc}>
+        {props.label}: {count.value}
+      </button>
+    )
+  },
+})
+```
+
+Zobacz [Kompilator](/pl/docs/core-concepts/compiler) i `compiler/PORTABLE.md` po pełne reguły autorskie.
+
+### 2. Konwersja powłoki produktu
+
+Konwertuj całą aplikację Nuxt na Next:
+
+```bash
+pnpm compiler -- convert web --target=next
+make web TARGET=next
+```
+
+To generuje mirror Next.js z drzewa źródeł Vue. Te same trasy, współdzielone moduły, inna powłoka frameworka. Output jest generowany przez kompilator — nie wchodzi w kanoniczny układ monorepo.
+
+---
+
+## Współdzielone moduły
+
+Sześć samodzielnych modułów funkcjonalnych w `shared_modules/`:
+
+| Moduł | Domena |
+|-------|--------|
+| `nuc_api` | Klient API, dispatch bramki, formularze auth, żądania encji |
+| `nuc_colors` | System motywów/kolorów, zmienne SCSS |
+| `nuc_dark_mode` | Preferencja trybu ciemnego |
+| `nuc_globals` | Media queries, style globalne, współdzielone typy |
+| `nuc_languages` | i18n, komunikaty locale, API tłumaczeń |
+| `nuc_stores` | Pomocniki Pinia/Zustand, utils cookie/localStorage |
+
+Aplikacje importują moduły bezpośrednio lub przez alias `modules` (skonfigurowany w `web/.config/nuxt/structure.ts`). Rejestracja dla aplikacji web odbywa się w `web/src/plugins/modules.ts`.
+
+Więcej: [Moduły](/pl/docs/core-concepts/modules) · [Feature-Sliced Design](/pl/docs/core-concepts/feature-sliced-design)
+
+---
+
+## Bramka API
+
+Cały ruch API serwera przechodzi przez jeden catch-all Nitro:
+
+```
+web/src/server/api/[...slug].ts
+  → dispatchSupabaseApiGateway()
+  → shared_modules/nuc_*/supabase/api/handle.ts
+```
+
+Handlery modułów rejestrują się w `shared_modules/nuc_api/supabase/api/gateway_dispatch.ts`. Kod klienta wywołuje `/api/...` — nigdy Supabase bezpośrednio z przeglądarki dla operacji uprzywilejowanych.
+
+---
+
+## System designu
+
+Prymitywy UI to **komponenty web Lit** z `nucleify-ui` (`nui-button`, `nui-icon`, …). Design tokeny i rejestracja są w `portable/nui/`. Aplikacje Vue i React konsumują te same custom elements; kompilator mapuje tagi `nui-*` w `*.nuc.tsx` na oba cele emisji.
+
+---
+
+## Układ monorepo
+
+```txt
+nucleify/
+├── web/                    # @nucleify/web — landing Nuxt 4 (Tryb A)
+│   ├── nuxt.config.ts
+│   ├── .config/nuxt/       # rozdzielona konfiguracja Nuxt
+│   └── src/
+│       ├── pages/          # strony Vue (np. home/sections/)
+│       ├── plugins/        # modules.ts, nucleify-ui.client.ts
+│       ├── composables/
+│       ├── layouts/
+│       └── server/api/     # bramka API Nitro [...slug].ts
+├── admin/                  # @nucleify/admin — admin Nuxt 4
+├── docs/                   # @nucleify/docs — dokumentacja Astro 5
+├── compiler/               # @nucleify/compiler — przenośny kompilator UI IR
+├── shared_modules/         # sześć modułów nuc_*
+├── portable/nui/           # design tokeny, rejestracja Lit nui-*
+├── overrides/              # overrides/{web,admin,docs,shared_modules}/
+├── supabase/
+├── .config/
+├── Makefile
+└── package.json
+```
+
+Pełny opis: [Układ monorepo](/pl/docs/core-concepts/monorepo)
+
+---
+
+## Szybkie komendy
+
+| Komenda | Co robi |
 |---------|---------|
-| **Czas do MVP** | < 5 minut setup |
-| **Dostępność** | Zgodność z WCAG 2.1 AA |
-| **Wynik PageSpeed** | 94/100 |
-| **Wynik SEO** | 100/100 |
-| **Pokrycie testami** | 92% |
-| **Moduły produkcyjne** | 40+ |
-| **Komponenty UI** | 100+ |
+| `make run` | Tworzy `.env`, instaluje deps, husky, sync rules, buduje kompilator |
+| `make web` | Uruchamia serwer dev Nuxt (`web/`) |
+| `make web TARGET=next` | Konwertuje powłokę Vue do Next, uruchamia dev (generowany output) |
+| `make admin` | Uruchamia dev admin Nuxt |
+| `make docs` | Uruchamia dev dokumentacji Astro |
+| `make compiler` | Uruchamia `pnpm compiler:check` + `pnpm compiler:build` |
 
-### Co otrzymujesz
-
-- **40+ gotowych modułów produkcyjnych** - Auth, pliki, wykresy, datatables, animacje - wszystko wbudowane
-- **Pełne typowanie** - TypeScript w całym stacku = zero niespodzianek w runtime
-- **System Atomic Design** - 100+ komponentów zgodnych z najlepszymi praktykami branży
-- **System Override** - Dostosuj dowolny moduł bez forkowania, zachowaj ścieżki aktualizacji
-- **Setup jedną komendą** - `make` i już działasz
-
----
-
-## Dlaczego wybrać Nucleify?
-
-| Wyzwanie | ❌ Tradycyjne podejście | ✅ Rozwiązanie Nucleify |
-|----------|-------------------------|-------------------------|
-| **Rosnąca złożoność** | Monolityczny codebase staje się niemożliwy do zarządzania | Samodzielne moduły skalują się niezależnie |
-| **Ponowne użycie kodu** | Kopiuj-wklej między projektami | Moduły są przenośne i współdzielone |
-| **Trudności z testowaniem** | Ściśle powiązany kod trudno testować | Izolowane moduły umożliwiają skupione testy |
-| **Współpraca zespołowa** | Konflikty merge i wzajemne przeszkadzanie | Zespoły są właścicielami konkretnych modułów |
-
----
-
-## Przegląd architektury
-
-Nucleify łączy **frontend** z **Supabase** przez bramkę API modułów:
-
-```txt
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                          NUXT 3 / NEXT (frontend + trasy /api)                         │
-│                                                                                        │
-│  ┌────────────────────┐  ┌────────────────────┐  ┌──────────────────────────────────┐  │
-│  │       Pages        │  │      Layouts       │  │        Atomic Components         │  │
-│  │      (Router)      │  │  (Default, Admin)  │  │  (Atoms, Molecules, Organisms)   │  │
-│  └────────────────────┘  └────────────────────┘  └──────────────────────────────────┘  │
-│                                           │                                            │
-│  ┌────────────────────────────────────────▼─────────────────────────────────────────┐  │
-│  │                       ZARZĄDZANIE STANEM PINIA / ZUSTAND                        │  │
-│  └────────────────────────────────────────┬─────────────────────────────────────────┘  │
-│                                           │                                            │
-│  ┌────────────────────────────────────────▼─────────────────────────────────────────┐  │
-│  │              nuc_api — apiRequest, Supabase Auth (klient)                        │  │
-│  └────────────────────────────────────────┬─────────────────────────────────────────┘  │
-└───────────────────────────────────────────┼────────────────────────────────────────────┘
-                                            │  /api/*
-┌───────────────────────────────────────────▼────────────────────────────────────────────┐
-│                       HANDLERY MODUŁÓW (supabase/api/handle.ts)                        │
-│                    Bramka nuc_api — klient Supabase (service role)                     │
-└───────────────────────────────────────────┬────────────────────────────────────────────┘
-                                            │
-┌───────────────────────────────────────────▼────────────────────────────────────────────┐
-│                                    SUPABASE (PostgreSQL)                               │
-│                         Auth · Storage · RLS · Edge Functions                          │
-└────────────────────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## Podstawowe zasady projektowe
-
-### Atomic Design
-
-Komponenty UI zorganizowane w hierarchiczną strukturę dla maksymalnej wielokrotnego użycia. Wszystkie komponenty używają prefiksu `ad-` (Atomic Design):
-
-| Poziom | Opis | Przykłady |
-|--------|------|-----------|
-| **Boson** | Funkcje użytkowe, stałe, typy | `camelToKebab()`, `API_BASE_URL` |
-| **Atom** | Podstawowe elementy UI | `<ad-button>`, `<ad-input-text>`, `<ad-avatar>` |
-| **Molecule** | Kombinacje atomów | `<ad-float-label>`, `<ad-anchor>`, `<ad-tile>` |
-| **Organism** | Złożone struktury komponentów | `<ad-data-table>`, `<ad-dialog>`, `<ad-chart>` |
-
-### Architektura modularna
-
-Nucleify zawiera gotowe moduły produkcyjne zorganizowane według domeny:
-
-| Kategoria | Moduły |
-|-----------|--------|
-| **Core** | `nuc_modules`, `nuc_api`, `nuc_stores`, `nuc_globals` |
-| **Auth** | `nuc_users`, `nuc_activity` |
-| **Data** | `nuc_entities` |
-| **UI** | `nuc_templates` (charts, dock, dialog, datatable, sections) |
-| **Visual** | `nuc_globals` (animations), `nuc_colors` |
-| **Layout** | `nuc_pages`, `nuc_templates` |
-
-Każdy moduł jest samodzielny, niezależnie testowalny i może być włączany/wyłączany w razie potrzeby.
-
-### Feature-Sliced Design
-
-Każdy moduł zawiera cały powiązany kod w jednym katalogu:
-
-```txt
-modules/nuc_users/
-├── atomic/                 # Komponenty Vue/React i composables
-├── supabase/               # Migracje SQL, seedery, handlery API
-│   ├── migrations/
-│   ├── seeders/
-│   └── api/handle.ts
-├── vitests/                # Testy Vitest (frontend)
-└── config.json             # Metadane modułu
-```
-
-### System nadpisań
-
-Moduł `nuc_overrides` zapewnia potężną warstwę nadpisywania bez modyfikacji kodu źródłowego:
-
-```
-overrides/
-├── modules/
-│   └── nuc_settings/       # Nadpisz moduł nuc_settings
-│       ├── components/     # Własne komponenty
-│       └── constants/      # Własne stałe
-└── nuxt/
-    └── atomic/             # Nadpisz globalne komponenty Nuxt atomic
-        ├── atom/           # Własne atomy
-        ├── molecule/       # Własne molekuły
-        └── organism/       # Własne organizmy
-```
-
-Nadpisania są automatycznie scalane podczas budowania, co pozwala na:
-- **Dostosowanie komponentów UI** bez forkowania modułów
-- **Rozszerzanie funkcjonalności** zachowując ścieżki aktualizacji
-- **Modyfikacje specyficzne dla projektu** pozostające izolowane od kodu źródłowego
-- **Swobodne aktualizacje frameworka** - Twoje dostosowania przetrwają `git pull`
-
----
-
-## Stack technologiczny
-
-| Warstwa | Technologie |
-|---------|-------------|
-| **Backend** | Supabase (PostgreSQL, Auth, Storage, Edge Functions) |
-| **Frontend** | Nuxt 3 / Next.js, Vue 3 / React, TypeScript, Pinia / Zustand, nucleify-ui |
-| **Stylowanie** | SCSS, GSAP, Chart.js |
-| **DevOps** | Supabase CLI, Vite, Husky, Biome, TSC, Stylelint |
-| **Testowanie** | Vitest |
+Odpowiedniki pnpm: `pnpm dev`, `pnpm admin`, `pnpm docs`.
 
 ---
 
 ## Następne kroki
 
-1. **[Instalacja](/pl/docs/getting-started/installation)** - Skonfiguruj środowisko deweloperskie
-2. **[Szybki start](/pl/docs/getting-started/quick-start)** - Stwórz swój pierwszy komponent
-3. **[Moduły](/pl/docs/modules/overview)** - Odkryj dostępne moduły
-4. **[Architektura](/pl/docs/architecture/overview)** - Głębokie zanurzenie w projektowanie systemu
-
+1. [Instalacja](/pl/docs/getting-started/installation) — wymagania i pierwsza konfiguracja
+2. [Szybki start](/pl/docs/getting-started/quick-start) — uruchom landing w kilka minut
+3. [Układ monorepo](/pl/docs/core-concepts/monorepo) — gdzie co się znajduje
+4. [Zmienne środowiskowe](/pl/docs/configuration/environment) — konfiguracja Supabase i zmiennych aplikacji

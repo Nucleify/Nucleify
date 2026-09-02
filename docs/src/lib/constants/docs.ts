@@ -16,14 +16,11 @@ export const DOC_CATEGORIES: DocCategoryInterface[] = [
     slug: 'core-concepts',
     order: 2,
     pages: [
-      { slug: 'atomic-design', title: 'Atomic Design', order: 1 },
-      {
-        slug: 'feature-sliced-design',
-        title: 'Feature Sliced Design',
-        order: 2,
-      },
+      { slug: 'monorepo', title: 'Monorepo Layout', order: 1 },
+      { slug: 'compiler', title: 'Compiler', order: 2 },
       { slug: 'modules', title: 'Modules', order: 3 },
-      { slug: 'overriding', title: 'Overriding', order: 4 },
+      { slug: 'feature-sliced-design', title: 'Feature Sliced Design', order: 4 },
+      { slug: 'overriding', title: 'Overriding', order: 5 },
     ],
   },
   {
@@ -32,7 +29,7 @@ export const DOC_CATEGORIES: DocCategoryInterface[] = [
     order: 3,
     pages: [
       { slug: 'environment', title: 'Environment', order: 1 },
-      { slug: 'nuxt', title: 'Nuxt', order: 2 },
+      { slug: 'web', title: 'Web & Admin', order: 2 },
       { slug: 'supabase', title: 'Supabase', order: 3 },
     ],
   },

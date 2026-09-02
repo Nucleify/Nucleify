@@ -1,0 +1,39 @@
+---
+import { DOC_CATEGORIES } from '../lib/constants/docs'
+import { docHref } from '../lib/doc_paths'
+
+interface Props {
+  lang: string
+  category: string
+  slug: string
+}
+
+const { lang, category, slug } = Astro.props
+---
+
+<nav class="docs-nav">
+  {
+    DOC_CATEGORIES.map((cat) => (
+      <section class="docs-nav__section">
+        <h2 class="docs-nav__heading">{cat.name}</h2>
+        <ul class="docs-nav__list">
+          {cat.pages.map((page) => {
+            const href = docHref(lang, cat.slug, page.slug)
+            const isActive = cat.slug === category && page.slug === slug
+            return (
+              <li>
+                <a
+                  class:list={['docs-nav__link', { 'is-active': isActive }]}
+                  href={href}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {page.title}
+                </a>
+              </li>
+            )
+          })}
+        </ul>
+      </section>
+    ))
+  }
+</nav>

@@ -1,201 +1,262 @@
-# Konfiguracja Supabase
+# Supabase
 
-Nucleify używa **Supabase** jako backendu: **PostgreSQL** do danych, **Auth** do użytkowników, **Storage** do plików oraz opcjonalnie **Edge Functions**. Frontend komunikuje się z **bramką API modułów** na trasach serwerowych Nuxt/Next, która używa klienta Supabase z **service role**.
+Supabase to warstwa backendowa dla wszystkich aplikacji Nucleify. Dostarcza PostgreSQL, uwierzytelnianie, storage plików i Edge Functions. Zarówno `web/` (Nuxt), jak i `web-next/` (Next.js) łączą się z tą samą instancją Supabase.
 
----
+## Przegląd architektury
 
-## Jak to działa
-
-```txt
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                       NUXT 3 / NEXT (frontend + trasy serwerowe)                       │
-│                                                                                        │
-│ ┌────────────────────────┐    ┌────────────────────────┐    ┌────────────────────────┐ │
-│ │     UI Vue / React     │───►│    nuc_api (klient)    │───►│     bramka /api/*      │ │
-│ │     Pinia / Zustand    │───►│    apiRequest, auth    │───►│    (Nitro / Route)     │ │
-│ └────────────────────────┘    └────────────────────────┘    └────────────────────────┘ │
-└────────────────────────────────────────────────────────────────────────────────────────┘
-                                            │
-                            modules/*/supabase/api/handle.ts
-                               (handlery tras per moduł)
-                                            ▼
-┌────────────────────────────────────────────────────────────────────────────────────────┐
-│                                        SUPABASE                                        │
-│                                                                                        │
-│     ┌────────────────┐  ┌────────────────┐  ┌────────────────┐  ┌────────────────┐     │
-│     │   PostgreSQL   │  │      Auth      │  │    Storage     │  │ Edge Functions │     │
-│     │     + RLS      │  │     (JWT)      │  │   (buckety)    │  │ (opcjonalnie)  │     │
-│     └────────────────┘  └────────────────┘  └────────────────┘  └────────────────┘     │
-└────────────────────────────────────────────────────────────────────────────────────────┘
 ```
+┌──────────────┐     ┌──────────────────┐     ┌───────────────────────────┐
+│  Aplikacja   │────▶│  Serwer Nitro    │────▶│  Supabase                 │
+│  (Vue/React) │     │  Bramka API      │     │  ├── PostgreSQL           │
+│              │     │  [...slug].ts    │     │  ├── Auth (GoTrue)        │
+└──────────────┘     └──────────────────┘     │  ├── Storage              │
+                                               │  └── Edge Functions       │
+                                               └───────────────────────────┘
+```
+
+Aplikacje klienckie nigdy nie komunikują się z Supabase bezpośrednio dla mutacji danych. Zamiast tego wszystkie żądania API przechodzą przez trasę catch-all Nitro, która kieruje do handlerów specyficznych dla modułu. To trzyma klucz service role na serwerze i zapewnia spójną powierzchnię API.
+
+Dla operacji tylko do odczytu po stronie klienta (stan auth, subskrypcje realtime) klient Supabase SDK używa klucza anon bezpośrednio.
+
+## Wzorzec bramki API
 
 ### Przepływ żądania
 
-1. **Przeglądarka** wywołuje `apiRequest('/api/contacts', …)` z `nuc_api`.
-2. **Trasa serwerowa** `nuxt/server/api/[...slug].ts` (lub odpowiednik w Next) odbiera żądanie.
-3. Tworzony jest klient Supabase z `SUPABASE_SERVICE_ROLE_KEY` (tylko serwer).
-4. Bramka iteruje po **handlerach modułów** (`handleEntitiesApi`, `handleUsersApi`, …). Pierwszy rozpoznający ścieżkę zwraca JSON.
-5. Handlery używają helperów z `nuc_api` (`tryScopedCrud`, `trySimpleCrud`) i wykonują zapytania przez klient JS (`supabase.from('tabela').select()` itd.).
-6. **Auth:** przeglądarka używa klucza anon (`SUPABASE_KEY`) przez `getSupabaseClient()` — np. `supabase.auth.signInWithPassword`, potem profil w `user_profiles`.
+```
+Klient → /api/user-colors (PUT)
+       → web/src/server/api/[...slug].ts       # catch-all Nitro
+       → gateway_dispatch.ts                     # Parsuje slug, iteruje handlery
+       → nuc_colors/supabase/api/handle.ts       # Handler modułu
+       → Supabase PostgreSQL                     # Operacja bazy danych
+       ← Odpowiedź JSON
+```
 
-### Dlaczego bramka API, a nie tylko RLS z przeglądarki?
+### Trasa catch-all
 
-- Spójny **kształt REST** dla wszystkich modułów.
-- **Service role** na serwerze — operacje administracyjne bez ujawniania klucza w kliencie.
-- **Walidacja i scope** (`user_id`) w handlerach modułów.
-- Te same handlery na **Nuxt** i **Next**.
+Punkt wejścia to `web/src/server/api/[...slug].ts`. On:
 
----
+1. Wywołuje `ensureServerEnv()` aby załadować zmienne `.env` na serwerze
+2. Parsuje slug URL na segmenty ścieżki
+3. Obsługuje wbudowane trasy (`/api/` → sprawdzenie gotowości, `/api/test` → hello world)
+4. Tworzy klienta Supabase z **kluczem service role** (omija RLS)
+5. Deleguje do `dispatchSupabaseApiGateway()` z kontekstem żądania
 
-## Zmienne środowiskowe
+### Dispatch bramki
 
-Skopiuj `.config/.env.nuxt.example` lub `.config/.env.next.example` do `.env` w katalogu głównym.
-
-| Zmienna | Wymagana | Opis |
-|---------|----------|------|
-| `SUPABASE_URL` | Tak | URL projektu |
-| `SUPABASE_KEY` | Tak | Klucz anon — bezpieczny w przeglądarce |
-| `SUPABASE_SERVICE_ROLE_KEY` | Tak (serwer) | Service role — **tylko serwer** |
-| `SUPABASE_EDGE_BASE` | Opcjonalnie | Bazowy URL Edge Functions |
-| `NUXT_PUBLIC_APP_URL` | Nuxt | Publiczny URL aplikacji |
-
-Nuxt udostępnia wartości publiczne przez `runtimeConfig.public` w `.config/nuxt/runtime.ts`:
+`shared_modules/nuc_api/supabase/api/gateway_dispatch.ts` utrzymuje rejestr wszystkich handlerów modułów:
 
 ```typescript
-public: {
-  supabaseUrl: process.env.SUPABASE_URL || '',
-  supabaseKey: process.env.SUPABASE_KEY || '',
-}
+export const supabaseApiGatewayHandlers = [
+  handleColorsApi,
+  handleLanguagesApi,
+] as const
 ```
 
-Konfiguracja prywatna (serwer):
+Gdy przychodzi żądanie, bramka iteruje przez każdy handler. Handler albo przejmuje żądanie (zwraca `{ handled: true, ... }`), albo przekazuje (`apiNotHandled()`). Jeśli żaden handler nie pasuje, bramka zwraca 404.
 
-```typescript
-supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
-```
+### Obiekt ApiContext
 
-Next odczytuje `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_KEY` z fallbackiem do `SUPABASE_*` w `next.config.ts`.
-
----
-
-## Struktura modułu (`supabase/`)
-
-Każdy moduł z logiką backendową trzyma SQL i handlery obok frontendu:
-
-```txt
-modules/nuc_example/
-├── config.json
-├── nuc_example.ts              # registerNucExample (Vue)
-├── index.ts                    # barrel
-├── atomic/                     # UI + composables API
-└── supabase/
-    ├── migrations/             # DDL PostgreSQL (*.sql)
-    ├── seeders/                # Dane seed (*.sql)
-    ├── factories/              # Dane demo/test (*.sql)
-    ├── api/
-    │   ├── handle.ts           # export handleExampleApi(ctx)
-    │   └── *_helpers.ts        # nazwy tabel, mapowanie wierszy
-    └── functions/              # Opcjonalne Edge Functions (Deno)
-```
-
-### Rejestracja handlerów API
-
-**Nuxt** — dodaj handler do `nuxt/server/api/[...slug].ts`:
-
-```typescript
-import { handleExampleApi } from '../../../modules/nuc_example/supabase/api/handle'
-
-const handlers = [
-  // …istniejące handlery
-  handleExampleApi,
-]
-```
-
-**Next** — zarejestruj w `modules/nuc_api/supabase/api/gateway_dispatch.ts` (`supabaseApiGatewayHandlers`).
-
-Każdy handler otrzymuje `ApiContext`:
+Każdy handler otrzymuje `ApiContext` zawierający:
 
 ```typescript
 type ApiContext = {
-  event: H3Event          // lub wrapper żądania Next
-  method: string          // GET, POST, PUT, DELETE
-  segments: string[]      // ścieżka po /api/
-  supabase: SupabaseClient
-  ok: (data, extra?) => object
+  event: H3Event          // Zdarzenie Nitro (nagłówki, body itd.)
+  method: string          // Metoda HTTP (GET, POST, PUT, ...)
+  segments: string[]      // Sparsowane segmenty URL
+  supabase: SupabaseClient // Klient service-role
+  ok: (data, extra?) => object  // Helper odpowiedzi
 }
 ```
 
-Zwróć `apiNotHandled()`, jeśli ścieżka nie należy do modułu; `apiOk(ctx, data)` lub `apiError(status, message)` gdy obsłużysz żądanie.
+## Tworzenie handlerów API
 
-### Helpery CRUD (`nuc_api`)
-
-| Helper | Zastosowanie |
-|--------|--------------|
-| `trySimpleCrud` | Publiczne tabele, zagnieżdżone ścieżki jak `/api/modules` |
-| `tryScopedCrud` | Wiersze z `user_id` (kontakty, pliki, …) |
-| Własne trasy | `dispatchRoutes` / handlery specyficzne (auth, uploady) |
-
----
-
-## Migracje i seedery
-
-Pliki SQL w `supabase/migrations/` i `supabase/seeders/` per moduł. Repozytorium scala je w jeden plik i stosuje przez Supabase CLI:
-```bash
-# Scal migracje ze wszystkich modułów (sortowanie po nazwie pliku)
-bash .config/bash/merge-module-supabase-sql.sh migrations
-
-# Zastosuj na lokalnym Supabase (wymaga CLI + uruchomionej instancji)
-bash .config/bash/apply-module-migrations.sh
-
-# Seedery
-bash .config/bash/merge-module-supabase-sql.sh seeders
-bash .config/bash/apply-module-sql.sh seeders
-```
-
-Wynik merge: `supabase/.temp/merged_migrations.sql`, `merged_seeders.sql`.
-
-**Nazewnictwo:** `YYYYMMDDHHMMSS_nuc_modulename_opis.sql` — ta sama kolejność we wszystkich modułach.
-
-**RLS:** Migracje zwykle włączają `row level security` i polityki. Bramka API używa service role; bezpośredni dostęp klienta z kluczem anon nadal respektuje polityki.
-
----
-
-## Uwierzytelnianie
-
-- **Rejestracja / logowanie:** `nuc_users` (`auth/`) używa `getSupabaseClient().auth` (email/hasło, sesja JWT).
-- **Profil:** Po auth ładowany jest wiersz `user_profiles` (`getAndSetUser` w `nuc_users/auth`).
-- **Wywołania API:** `apiRequest` wysyła cookies/nagłówki; serwer weryfikuje scope przez uid z Supabase Auth w handlerach.
-- Sesje to **JWT Supabase Auth**.
-
----
-
-## Klient (`nuc_client`)
+Każdy moduł implementuje plik `handle.ts` w `shared_modules/nuc_*/supabase/api/`. Oto standardowy wzorzec:
 
 ```typescript
-import { getSupabaseClient } from 'nuc_client'
+import { apiMethodNotAllowed, apiNotHandled, tryJwtUserTable } from 'nuc_api'
+import type { ApiContext, ApiHandlerResult } from 'nuc_server'
 
-const supabase = getSupabaseClient()
-const { data } = await supabase.from('contacts').select('*')
+export async function handleExampleApi(
+  ctx: ApiContext
+): Promise<ApiHandlerResult> {
+  // Obsługuj tylko żądania zaczynające się od naszego prefiksu trasy
+  if (ctx.segments[0] !== 'example') return apiNotHandled()
+
+  // tryJwtUserTable: weryfikuje JWT, rozwiązuje userId, obsługuje GET/PUT
+  const result = await tryJwtUserTable(ctx, {
+    table: 'example_table',
+    onPut: handleExamplePut,
+  })
+
+  return result ?? apiMethodNotAllowed()
+}
 ```
 
-`modules/nuc_api/supabase/client.ts` rozwiązuje URL/klucz z `runtimeConfig` Nuxt lub `process.env` w Next.
+Po utworzeniu handlera zarejestruj go w `gateway_dispatch.ts`:
 
----
+```typescript
+import { handleExampleApi } from '../../../nuc_example/supabase/api/handle'
 
-## Checklist lokalny
+export const supabaseApiGatewayHandlers = [
+  handleColorsApi,
+  handleLanguagesApi,
+  handleExampleApi,  // Dodaj tutaj
+] as const
+```
 
-1. Utwórz projekt na [supabase.com](https://supabase.com) (lub `supabase start` lokalnie).
-2. Ustaw `SUPABASE_URL`, `SUPABASE_KEY`, `SUPABASE_SERVICE_ROLE_KEY` w `.env`.
-3. Uruchom migracje: `bash .config/bash/apply-module-migrations.sh`
-4. Uruchom seedery: `bash .config/bash/apply-module-sql.sh seeders`
-5. Uruchom frontend: `make nuxt` lub `make next`
-6. Sprawdź bramkę: `GET /api/test` → `{ "message": "Hello World" }`
+### Helpery uwierzytelniania
 
----
+- **`withGatewayUser(ctx, fn)`** — Wyciąga i weryfikuje JWT z nagłówka `Authorization` żądania. Wywołuje `fn(ctx, userId)` jeśli ważny, lub zwraca błąd auth.
+- **`tryJwtUserTable(ctx, opts)`** — Helper wyższego poziomu łączący weryfikację JWT ze standardowymi operacjami CRUD na tabeli scoped do użytkownika. Automatycznie obsługuje GET (pobierz wiersze) i PUT/PATCH (przez callback `onPut`).
 
-## Produkcja
+## Przepływ auth
 
-- Nigdy nie commituj kluczy **service role**; używaj sekretów CI/hosta.
-- Ustaw `NITRO_PRESET` (np. `cloudflare`) przy wdrożeniu Nuxt; bramka działa jako funkcje serverless.
-- Dopasuj CORS i `NUXT_PUBLIC_APP_URL` do domeny produkcyjnej.
-- Uruchom scalone migracje na produkcyjnej bazie przed deployem.
+Uwierzytelnianie używa Supabase Auth (GoTrue) przez `@supabase/supabase-js`:
+
+1. **Rejestracja** — Klient wywołuje `supabase.auth.signUp({ email, password })` używając klucza anon
+2. **Logowanie** — Klient wywołuje `supabase.auth.signInWithPassword({ email, password })`
+3. **Sesja** — Supabase zwraca tokeny access + refresh; SDK zarządza odświeżaniem automatycznie
+4. **Wywołania API** — Token dostępu jest wysyłany jako `Authorization: Bearer <token>` do bramki Nitro
+5. **Weryfikacja serwera** — `withGatewayUser()` weryfikuje JWT względem Supabase i wyciąga ID użytkownika
+
+Stan formularza auth zarządza `create_auth_form_state` w `shared_modules/nuc_api/`, który dostarcza typowane reaktywne pola formularza dla logowania i rejestracji.
+
+## Konfiguracja lokalnego developmentu
+
+### Wymagania
+
+- Docker (Supabase uruchamia PostgreSQL, GoTrue i inne usługi w kontenerach)
+- Supabase CLI (`npx supabase`)
+
+### Uruchamianie Supabase
+
+```bash
+npx supabase start
+```
+
+To uruchamia pełny stack Supabase lokalnie. CLI wypisuje lokalny URL i klucze:
+
+```
+API URL:   http://127.0.0.1:54321
+anon key:  eyJ...
+service_role key: eyJ...
+```
+
+Skopiuj te wartości do pliku `.env`:
+
+```env
+SUPABASE_URL=http://127.0.0.1:54321
+SUPABASE_KEY=eyJ...              # klucz anon
+SUPABASE_SERVICE_ROLE_KEY=eyJ...  # klucz service_role
+```
+
+### Zatrzymywanie Supabase
+
+```bash
+npx supabase stop
+```
+
+## Migracje bazy danych
+
+Migracje są w dwóch miejscach:
+
+1. **Globalne** — `supabase/migrations/` (np. `20260430000000_initial_schema.sql`)
+2. **Per moduł** — `shared_modules/nuc_*/supabase/migrations/` (np. `nuc_colors/supabase/migrations/20260430000002_user_colors.sql`)
+
+### Stosowanie migracji
+
+```bash
+# Zastosuj wszystkie migracje modułów do lokalnego Supabase
+pnpm supabase:migrations:apply:local
+
+# Zastosuj do połączonego projektu zdalnego
+pnpm supabase:migrations:apply:linked
+```
+
+### Pełna konfiguracja lokalna
+
+Aby zastosować migracje, fabryki i seedery jednym razem:
+
+```bash
+pnpm supabase:setup:local
+```
+
+To uruchamia:
+
+1. `supabase:migrations:apply:local` — Zmiany schematu
+2. `supabase:factories:apply:local` — Dane fabryk/fixture
+3. `supabase:seeders:apply:local` — Dane seed
+
+### Skrypt merge
+
+Migracje modułów są scalane do `supabase/migrations/` przez skrypt `.config/bash/merge-module-supabase-sql.sh`. Uruchom go przez:
+
+```bash
+pnpm supabase:merge-sql
+```
+
+### Pisanie migracji
+
+Pliki migracji podążają za konwencją nazewnictwa `YYYYMMDDHHMMSS_description.sql`. Zawsze włącz RLS i dodaj polityki dla roli `authenticated`:
+
+```sql
+CREATE TABLE IF NOT EXISTS public.example_items (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+ALTER TABLE public.example_items ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can manage their own items"
+  ON public.example_items
+  FOR ALL
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+```
+
+## Edge Functions
+
+Edge Functions działają na Deno i są w `supabase/functions/`:
+
+```
+supabase/functions/
+├── health/index.ts        # Endpoint health check
+├── test/index.ts          # Endpoint testowy
+├── contact-form/index.ts  # Handler formularza kontaktowego
+└── terminal/index.ts      # Narzędzie terminala
+```
+
+Edge Functions specyficzne dla modułów są w odpowiednich katalogach modułów:
+
+```
+shared_modules/nuc_colors/supabase/functions/user-colors/index.ts
+shared_modules/nuc_languages/supabase/functions/languages/index.ts
+```
+
+Edge Functions używają standardowej biblioteki Deno:
+
+```typescript
+import { serve } from 'https://deno.land/std@0.224.0/http/server.ts'
+
+serve(() => {
+  return new Response(
+    JSON.stringify({ ok: true, service: 'nucleify-backend' }),
+    { headers: { 'content-type': 'application/json' } }
+  )
+})
+```
+
+Bazowy URL Edge Functions jest konfigurowany przez zmienną środowiskową `SUPABASE_EDGE_BASE`, która domyślnie to `{SUPABASE_URL}/functions/v1`.
+
+## Zmienne środowiskowe
+
+Zobacz [Zmienne środowiskowe](/pl/docs/configuration/environment) po pełną referencję. Zmienne specyficzne dla Supabase to:
+
+| Zmienna | Wymagana | Opis |
+| --- | --- | --- |
+| `SUPABASE_URL` | Tak | URL projektu (`http://127.0.0.1:54321` lokalnie) |
+| `SUPABASE_KEY` | Tak | Klucz anon dla SDK po stronie klienta |
+| `SUPABASE_SERVICE_ROLE_KEY` | Tak | Klucz service dla operacji serwerowych (omija RLS) |
+| `SUPABASE_EDGE_BASE` | Nie | Bazowy URL Edge Functions (auto-derivowany z `SUPABASE_URL`) |
