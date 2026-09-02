@@ -13,6 +13,11 @@ export type ScaffoldApp = ScaffoldFramework
 export const PRODUCT_IDS = ['web', 'admin', 'docs'] as const
 export type ProductId = (typeof PRODUCT_IDS)[number]
 
+/** Flat product shell dir at repo root, e.g. `web-next`, `admin-next`. */
+export function productShellSlug(product: ProductId, framework: ScaffoldFramework): string {
+  return `${product}-${framework}`
+}
+
 function templatesRoot(): string {
   return join(dirname(fileURLToPath(import.meta.url)), '../../templates')
 }
@@ -48,8 +53,8 @@ export function scaffoldApps(apps: ScaffoldFramework[], cwd = process.cwd()): st
 }
 
 /**
- * Ensure product shell at `{framework}/{product}` from
- * `compiler/templates/{framework}/{product}`.
+ * Ensure product shell at `{product}-{framework}` from
+ * `compiler/templates/{product}-{framework}`.
  * Does not wipe existing tree unless `force`.
  */
 export function scaffoldProduct(opts: {
@@ -68,13 +73,14 @@ export function scaffoldProduct(opts: {
       `unknown framework "${framework}"; expected one of ${SCAFFOLD_FRAMEWORKS.join(', ')}`,
     )
   }
-  const src = join(templatesRoot(), framework, product)
+  const slug = productShellSlug(product, framework)
+  const src = join(templatesRoot(), slug)
   if (!existsSync(src)) {
     throw new Error(
-      `missing product template: ${src} (tryb B slice may not support ${framework}/${product} yet)`,
+      `missing product template: ${src} (tryb B slice may not support ${slug} yet)`,
     )
   }
-  const dest = join(cwd, framework, product)
+  const dest = join(cwd, slug)
   if (existsSync(dest) && force) {
     rmSync(dest, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 })
   }
@@ -87,6 +93,6 @@ export function scaffoldProduct(opts: {
   return dest
 }
 
-export function productShellPath(framework: ScaffoldFramework, product: ProductId, cwd = process.cwd()): string {
-  return resolve(cwd, framework, product)
+export function productShellPath(product: ProductId, framework: ScaffoldFramework, cwd = process.cwd()): string {
+  return resolve(cwd, productShellSlug(product, framework))
 }

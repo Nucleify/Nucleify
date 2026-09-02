@@ -29,17 +29,20 @@ export const EMIT_APP_DIRS: Record<EmitApp, string> = {
   next: 'next/demo/src/components',
 }
 
-/** Product shells `{framework}/{product}` that receive the same emit when present. */
+/** Product shells `{product}-{framework}` that receive the same emit when present. */
 export const PRODUCT_SHELL_EMIT: {
-  framework: EmitApp
-  product: string
+  slug: string
   componentsDir: string
   frame: 'vue' | 'react'
 }[] = [
   {
-    framework: 'next',
-    product: 'web',
-    componentsDir: 'next/web/src/components',
+    slug: 'web-next',
+    componentsDir: 'web-next/src/components',
+    frame: 'react',
+  },
+  {
+    slug: 'admin-next',
+    componentsDir: 'admin-next/src/components',
     frame: 'react',
   },
 ]
@@ -168,8 +171,8 @@ function resolveProductShells(
   return PRODUCT_SHELL_EMIT.filter((shell) => {
     if (target === 'vue' && shell.frame !== 'vue') return false
     if (target === 'react' && shell.frame !== 'react') return false
-    if (apps?.length && !apps.includes(shell.framework)) return false
-    return existsSync(join(cwd, shell.framework, shell.product))
+    if (apps?.length && !apps.some((app) => shell.slug.endsWith(`-${app}`))) return false
+    return existsSync(join(cwd, shell.slug))
   })
 }
 

@@ -63,6 +63,26 @@ export function stripReactiveValue(expr: IrExpr, names: Set<string>): IrExpr {
           value: stripReactiveValue(p.value, names),
         })),
       }
+    case 'index':
+      return {
+        ...expr,
+        object: stripReactiveValue(expr.object, names),
+        index: stripReactiveValue(expr.index, names),
+      }
+    case 'conditional':
+      return {
+        ...expr,
+        test: stripReactiveValue(expr.test, names),
+        consequent: stripReactiveValue(expr.consequent, names),
+        alternate: stripReactiveValue(expr.alternate, names),
+      }
+    case 'array':
+      return {
+        ...expr,
+        elements: expr.elements.map((e) => stripReactiveValue(e, names)),
+      }
+    case 'raw':
+      return expr
   }
 }
 
@@ -175,6 +195,26 @@ export function rewriteReactExpr(expr: IrExpr, states: Set<string>, reactives: S
           value: rewriteReactExpr(p.value, states, reactives),
         })),
       }
+    case 'index':
+      return {
+        ...expr,
+        object: rewriteReactExpr(expr.object, states, reactives),
+        index: rewriteReactExpr(expr.index, states, reactives),
+      }
+    case 'conditional':
+      return {
+        ...expr,
+        test: rewriteReactExpr(expr.test, states, reactives),
+        consequent: rewriteReactExpr(expr.consequent, states, reactives),
+        alternate: rewriteReactExpr(expr.alternate, states, reactives),
+      }
+    case 'array':
+      return {
+        ...expr,
+        elements: expr.elements.map((e) => rewriteReactExpr(e, states, reactives)),
+      }
+    case 'raw':
+      return expr
   }
 }
 

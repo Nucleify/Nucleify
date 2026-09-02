@@ -11,7 +11,8 @@ Shared **nucleify-ui** wiring for product shells and compiler demos.
 |------|------|
 | `fonts.css` | Instrument Sans + JetBrains Mono (same families as Nuxt google-fonts) |
 | `tokens.css` / `tokens.scss` | `.nuc-nuxt` / `.nuc-next` → `--nui-*` |
-| `register.ts` | Fonts + nucleify-ui CSS + Lit elements |
+| `styles.ts` | Fonts + nucleify-ui CSS (SSR-safe) |
+| `register.ts` | Client-only `ensureNuiRegistered()` for Lit elements |
 | `theme.ts` | `setupNui({ palette, mode })` |
 | `index.ts` | Public entry |
 

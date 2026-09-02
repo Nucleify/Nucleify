@@ -195,6 +195,19 @@ function wrapReactiveInTemplate(expr: IrExpr, reactives: Set<string>): IrExpr {
       return expr
     case 'member':
       return { ...expr, object: wrapReactiveInTemplate(expr.object, reactives) }
+    case 'index':
+      return {
+        ...expr,
+        object: wrapReactiveInTemplate(expr.object, reactives),
+        index: wrapReactiveInTemplate(expr.index, reactives),
+      }
+    case 'conditional':
+      return {
+        ...expr,
+        test: wrapReactiveInTemplate(expr.test, reactives),
+        consequent: wrapReactiveInTemplate(expr.consequent, reactives),
+        alternate: wrapReactiveInTemplate(expr.alternate, reactives),
+      }
     case 'binary':
       return {
         ...expr,
@@ -215,6 +228,28 @@ function wrapReactiveInTemplate(expr: IrExpr, reactives: Set<string>): IrExpr {
           value: wrapReactiveInTemplate(p.value, reactives),
         })),
       }
+    case 'index':
+      return {
+        ...expr,
+        object: wrapReactiveInTemplate(expr.object, reactives),
+        index: wrapReactiveInTemplate(expr.index, reactives),
+      }
+    case 'conditional':
+      return {
+        ...expr,
+        test: wrapReactiveInTemplate(expr.test, reactives),
+        consequent: wrapReactiveInTemplate(expr.consequent, reactives),
+        alternate: wrapReactiveInTemplate(expr.alternate, reactives),
+      }
+    case 'array':
+      return {
+        ...expr,
+        elements: expr.elements.map((e) => wrapReactiveInTemplate(e, reactives)),
+      }
+    case 'raw':
+      return expr
+    default:
+      return expr
   }
 }
 
@@ -223,6 +258,14 @@ function parseElementAttrs(filePath: string, props: any[], reactives: Set<string
   for (const prop of props ?? []) {
     if (prop.type === NodeTypes.ATTRIBUTE) {
       const name = toVueClassAttr(prop.name)
+      if (name === 'ref' && prop.value?.content != null) {
+        attrs.push({
+          kind: 'bind',
+          name: 'ref',
+          value: { kind: 'ident', name: prop.value.content.trim() },
+        })
+        continue
+      }
       if (prop.value?.content != null) {
         attrs.push({ kind: 'static', name, value: prop.value.content })
       } else {
@@ -234,6 +277,14 @@ function parseElementAttrs(filePath: string, props: any[], reactives: Set<string
       if (prop.name === 'bind' && prop.arg?.content) {
         const name = toVueClassAttr(prop.arg.content)
         attrs.push({ kind: 'bind', name, value: wrapReactiveInTemplate(parseExprSource(filePath, prop.exp.content), reactives) })
+        continue
+      }
+      if (prop.name === 'ref' && prop.exp?.content) {
+        attrs.push({
+          kind: 'bind',
+          name: 'ref',
+          value: { kind: 'ident', name: prop.exp.content.trim() },
+        })
         continue
       }
       if (prop.name === 'on' && prop.arg?.content) {
@@ -273,19 +324,43 @@ function parseTemplateNodes(filePath: string, nodes: any[], reactives: Set<strin
       if (ifDir) {
         const test = wrapReactiveInTemplate(parseExprSource(filePath, ifDir.exp.content), reactives)
         const thenNodes: IrNode[] = []
-        const elseNodes: IrNode[] = []
         const element = parseElementWithoutFlow(filePath, node, reactives)
         thenNodes.push(element)
         let j = i + 1
+        const elseIfBranches: { test: IrExpr; then: IrNode[] }[] = []
+        let elseNodes: IrNode[] | undefined
+
         while (j < nodes.length) {
           const next = nodes[j]
           if (next.type !== NodeTypes.ELEMENT) break
-          const elseDir = next.props?.find((p: any) => p.type === NodeTypes.DIRECTIVE && p.name === 'else')
-          if (!elseDir) break
-          elseNodes.push(parseElementWithoutFlow(filePath, next, reactives))
-          j += 1
+          const elseIfDir = next.props?.find(
+            (p: any) => p.type === NodeTypes.DIRECTIVE && p.name === 'else-if',
+          )
+          if (elseIfDir) {
+            elseIfBranches.push({
+              test: wrapReactiveInTemplate(parseExprSource(filePath, elseIfDir.exp.content), reactives),
+              then: [parseElementWithoutFlow(filePath, next, reactives)],
+            })
+            j += 1
+            continue
+          }
+          const elseDir = next.props?.find(
+            (p: any) => p.type === NodeTypes.DIRECTIVE && p.name === 'else',
+          )
+          if (elseDir) {
+            elseNodes = [parseElementWithoutFlow(filePath, next, reactives)]
+            j += 1
+          }
+          break
         }
-        out.push({ kind: 'if', test, then: thenNodes, else: elseNodes.length ? elseNodes : undefined })
+
+        let elseBranch: IrNode[] | undefined = elseNodes
+        for (let k = elseIfBranches.length - 1; k >= 0; k -= 1) {
+          const branch = elseIfBranches[k]!
+          elseBranch = [{ kind: 'if', test: branch.test, then: branch.then, else: elseBranch }]
+        }
+
+        out.push({ kind: 'if', test, then: thenNodes, else: elseBranch })
         i = j - 1
         continue
       }
@@ -314,7 +389,10 @@ function parseElementWithoutFlow(filePath: string, node: any, reactives: Set<str
   const tag = node.tag as string
   const attrs = parseElementAttrs(
     filePath,
-    (node.props ?? []).filter((p: any) => !(p.type === NodeTypes.DIRECTIVE && ['if', 'else', 'for'].includes(p.name))),
+    (node.props ?? []).filter(
+      (p: any) =>
+        !(p.type === NodeTypes.DIRECTIVE && ['if', 'else', 'else-if', 'for'].includes(p.name)),
+    ),
     reactives,
   )
   if (tag === 'slot') {
@@ -398,15 +476,20 @@ export function parseVueToIr(source: string, filePath: string, opts?: { name?: s
   if (errors.length) {
     throw new ParseError(errors.map((e) => e.message).join('; '), filePath)
   }
-  const script = descriptor.scriptSetup?.content
-  if (!script) {
-    throw new ParseError('expected <script setup> in vue emit', filePath)
-  }
+  const script = descriptor.scriptSetup?.content?.trim()
   if (!descriptor.template?.content) {
     throw new ParseError('expected <template> in vue emit', filePath)
   }
 
-  const parsed = parseScriptSetup(filePath, script)
+  const parsed = script
+    ? parseScriptSetup(filePath, script)
+    : {
+        props: [] as IrProp[],
+        state: [] as IrState[],
+        derived: [] as IrDerived[],
+        handlers: [] as IrHandler[],
+        cssImport: undefined as string | undefined,
+      }
   const reactives = new Set([...parsed.state.map((s) => s.name), ...parsed.derived.map((d) => d.name)])
   const template = parseTemplateRoot(filePath, descriptor.template.content, reactives)
   const base = emitBaseName(filePath.replace(/\.vue$/, '.nuc.tsx'))
@@ -428,6 +511,15 @@ export function parseVueToIr(source: string, filePath: string, opts?: { name?: s
   }
 
   return parseIrDocument(doc)
+}
+
+/** Parse `<template>` only (product convert — script rewritten separately). */
+export function parseVueTemplateToIr(
+  template: string,
+  filePath: string,
+  reactives: Set<string> = new Set(),
+): IrNode {
+  return parseTemplateRoot(filePath, template, reactives)
 }
 
 /** @deprecated alias */

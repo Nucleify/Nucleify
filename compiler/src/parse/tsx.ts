@@ -43,6 +43,10 @@ function locOf(source: string, node: LocNode | null | undefined): { line?: numbe
   return {}
 }
 
+function slice(source: string, start: number, end: number): string {
+  return source.slice(start, end)
+}
+
 export function fail(filePath: string, source: string, node: LocNode | null | undefined, message: string): never {
   const { line, column } = locOf(source, node)
   throw new ParseError(message, filePath, line, column)
@@ -80,6 +84,9 @@ export function parseExpr(filePath: string, source: string, node: any): IrExpr {
 
   switch (node.type) {
     case 'Literal':
+      if (node.regex) {
+        return { kind: 'raw', code: slice(source, node.start, node.end) }
+      }
       if (
         typeof node.value === 'string' ||
         typeof node.value === 'number' ||
@@ -92,7 +99,13 @@ export function parseExpr(filePath: string, source: string, node: any): IrExpr {
     case 'Identifier':
       return { kind: 'ident', name: node.name }
     case 'MemberExpression': {
-      if (node.computed) fail(filePath, source, node, 'computed member expressions are not supported in v0.1')
+      if (node.computed) {
+        return {
+          kind: 'index',
+          object: parseExpr(filePath, source, node.object),
+          index: parseExpr(filePath, source, node.property),
+        }
+      }
       const property = node.property?.name
       if (!property) fail(filePath, source, node, 'expected member property')
       return {
@@ -101,6 +114,36 @@ export function parseExpr(filePath: string, source: string, node: any): IrExpr {
         property,
       }
     }
+    case 'ConditionalExpression':
+      return {
+        kind: 'conditional',
+        test: parseExpr(filePath, source, node.test),
+        consequent: parseExpr(filePath, source, node.consequent),
+        alternate: parseExpr(filePath, source, node.alternate),
+      }
+    case 'TSAsExpression':
+    case 'TSNonNullExpression':
+    case 'TSSatisfiesExpression':
+      return parseExpr(filePath, source, node.expression)
+    case 'UnaryExpression':
+      if (node.operator === '!' && node.prefix) {
+        return parseExpr(filePath, source, node.argument)
+      }
+      fail(filePath, source, node, `unsupported unary operator ${node.operator}`)
+    case 'TemplateLiteral': {
+      if (node.expressions?.length) {
+        return { kind: 'raw', code: slice(source, node.start, node.end) }
+      }
+      const cooked = node.quasis?.[0]?.value?.cooked ?? node.quasis?.[0]?.value?.raw
+      return { kind: 'literal', value: cooked ?? '' }
+    }
+    case 'ArrayExpression':
+      return {
+        kind: 'array',
+        elements: (node.elements ?? []).map((el: any) => parseExpr(filePath, source, el)),
+      }
+    case 'ChainExpression':
+      return { kind: 'raw', code: slice(source, node.start, node.end) }
     case 'BinaryExpression':
     case 'LogicalExpression':
       return {
@@ -159,6 +202,20 @@ export function parseStmt(filePath: string, source: string, node: any): IrStmt {
         target: parseExpr(filePath, source, node.left),
         value: parseExpr(filePath, source, node.right),
       }
+    case 'VariableDeclaration': {
+      if (node.kind !== 'const' || node.declarations.length !== 1) {
+        fail(filePath, source, node, 'only single `const` declarations are supported in handler bodies')
+      }
+      const decl = node.declarations[0]
+      if (decl.id?.type !== 'Identifier' || !decl.init) {
+        fail(filePath, source, node, 'handler const must be a simple identifier assignment')
+      }
+      return {
+        kind: 'const',
+        name: decl.id.name as string,
+        value: parseExpr(filePath, source, decl.init),
+      }
+    }
     default:
       fail(filePath, source, node, `unsupported statement type ${node.type}`)
   }

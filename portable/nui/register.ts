@@ -1,15 +1,24 @@
 /**
- * Side-effect registration of nucleify-ui Lit elements used across products.
- * No Nucleify-authored components — only upstream `nui-*`.
+ * Client-only Lit element registration for nucleify-ui `nui-*` tags.
+ * Use `ensureNuiRegistered()` — never static-import components (SSR would double-register).
  */
-import './fonts.css'
-import 'nucleify-ui/styles/variables.css'
-import 'nucleify-ui/styles/global.css'
-import './tokens.css'
+let registered = false
+let loading: Promise<void> | undefined
 
-import 'nucleify-ui/components/nui-button'
-import 'nucleify-ui/components/nui-dialog'
-import 'nucleify-ui/components/nui-icon'
-import 'nucleify-ui/components/nui-input-text'
-import 'nucleify-ui/components/nui-select'
-import 'nucleify-ui/components/nui-toast'
+export function ensureNuiRegistered(): Promise<void> {
+  if (typeof window === 'undefined') return Promise.resolve()
+  if (registered) return Promise.resolve()
+  if (!loading) {
+    loading = Promise.all([
+      import('nucleify-ui/components/nui-button'),
+      import('nucleify-ui/components/nui-dialog'),
+      import('nucleify-ui/components/nui-icon'),
+      import('nucleify-ui/components/nui-input-text'),
+      import('nucleify-ui/components/nui-select'),
+      import('nucleify-ui/components/nui-toast'),
+    ]).then(() => {
+      registered = true
+    })
+  }
+  return loading
+}

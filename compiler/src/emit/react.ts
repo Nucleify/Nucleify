@@ -12,6 +12,24 @@ import {
 type EmitCtx = {
   states: Set<string>
   reactives: Set<string>
+  /** Product convert: rewrite `count = x` inline handlers → `setCount(x)`. */
+  stateNames?: Set<string>
+}
+
+function rewriteInlineEventHandler(code: string, stateNames?: Set<string>): string {
+  let inner = code.trim()
+  if (stateNames) {
+    for (const name of stateNames) {
+      const m = inner.match(new RegExp(`^${name}\\s*=\\s*(.+)$`))
+      if (m) {
+        inner = `${reactSetterName(name)}(${m[1]!.trim()})`
+        break
+      }
+    }
+  }
+  if (/^[a-zA-Z_$][\w$]*$/.test(inner)) return inner
+  if (/=[^=]/.test(inner) && !inner.includes('=>')) return `() => { ${inner} }`
+  return `() => ${inner}`
 }
 
 function emitExpr(expr: IrExpr): string {
@@ -22,14 +40,27 @@ function emitExpr(expr: IrExpr): string {
       return expr.name
     case 'member':
       return `${emitExpr(expr.object)}.${expr.property}`
+    case 'index':
+      return `${emitExpr(expr.object)}[${emitExpr(expr.index)}]`
+    case 'conditional':
+      return `(${emitExpr(expr.test)} ? ${emitExpr(expr.consequent)} : ${emitExpr(expr.alternate)})`
     case 'binary':
       return `(${emitExpr(expr.left)} ${expr.op} ${emitExpr(expr.right)})`
     case 'call':
       return `${emitExpr(expr.callee)}(${expr.args.map(emitExpr).join(', ')})`
     case 'object': {
-      const body = expr.properties.map((p) => `${p.key}: ${emitExpr(p.value)}`).join(', ')
+      const body = expr.properties
+        .map((p) => {
+          const key = /^[a-zA-Z_$][\w$]*$/.test(p.key) ? p.key : JSON.stringify(p.key)
+          return `${key}: ${emitExpr(p.value)}`
+        })
+        .join(', ')
       return `{ ${body} }`
     }
+    case 'array':
+      return `[${expr.elements.map(emitExpr).join(', ')}]`
+    case 'raw':
+      return expr.code
   }
 }
 
@@ -50,11 +81,83 @@ function mapExpr(expr: IrExpr, ctx: EmitCtx): IrExpr {
   return rewriteReactExpr(expr, ctx.states, ctx.reactives)
 }
 
+/** Convert a single class-binding expr element into a template-literal fragment. */
+function emitClassFragment(expr: IrExpr, ctx: EmitCtx): string {
+  const mapped = mapExpr(expr, ctx)
+  switch (mapped.kind) {
+    case 'object':
+      return mapped.properties
+        .map((p) => `\${${emitExpr(p.value)} ? ' ${p.key}' : ''}`)
+        .join('')
+    case 'literal':
+      if (typeof mapped.value === 'string') return ` ${mapped.value}`
+      return ''
+    case 'raw':
+      return ` \${${mapped.code}}`
+    default:
+      return ` \${${emitExpr(mapped)}}`
+  }
+}
+
+function emitClassNameAttr(
+  staticClass: string | undefined,
+  bindExpr: IrExpr | undefined,
+  ctx: EmitCtx,
+): string | null {
+  if (!staticClass && !bindExpr) return null
+  if (staticClass && !bindExpr) return `className=${JSON.stringify(staticClass)}`
+
+  const mapped = bindExpr ? mapExpr(bindExpr, ctx) : undefined
+  if (!mapped) return `className=${JSON.stringify(staticClass)}`
+
+  // Single object without static: `className={\`${cond ? 'cls' : ''}\`}`
+  // Single object with static: `className={\`static${cond ? ' cls' : ''}\`}`
+  // Array: merge all fragments
+  // Raw/other: fallback to expression
+
+  let fragments = ''
+
+  if (mapped.kind === 'array') {
+    fragments = mapped.elements.map((el) => emitClassFragment(el, ctx)).join('')
+  } else if (mapped.kind === 'object') {
+    fragments = mapped.properties
+      .map((p) => `\${${emitExpr(p.value)} ? ' ${p.key}' : ''}`)
+      .join('')
+  } else {
+    // Fallback — can't merge into template literal safely
+    if (staticClass) {
+      return `className={\`${staticClass} \${${emitExpr(mapped)}}\`}`
+    }
+    return `className={${emitExpr(mapped)}}`
+  }
+
+  const prefix = staticClass ?? ''
+  return `className={\`${prefix}${fragments}\`.trim()}`
+}
+
 function emitAttrs(attrs: IrAttr[], ctx: EmitCtx): string {
   const parts: string[] = []
+  let staticClass: string | undefined
+  let bindClass: IrExpr | undefined
+
   for (const attr of attrs) {
+    const reactName = toReactClassName(attr.name)
+    if (reactName === 'className' || attr.name === 'class') {
+      if (attr.kind === 'static' && typeof attr.value === 'string') {
+        staticClass = staticClass ? `${staticClass} ${attr.value}` : attr.value
+      } else if (attr.kind === 'bind') {
+        bindClass = attr.value
+      } else if (attr.kind === 'static') {
+        staticClass = staticClass ? `${staticClass} ${String(attr.value)}` : String(attr.value)
+      }
+      continue
+    }
+    if (attr.kind === 'bind' && attr.name === 'ref') {
+      parts.push(`ref={${emitExpr(mapExpr(attr.value, ctx))}}`)
+      continue
+    }
     if (attr.kind === 'static') {
-      const name = toReactClassName(attr.name)
+      const name = reactName
       if (typeof attr.value === 'boolean') {
         parts.push(`${name}={${attr.value ? 'true' : 'false'}}`)
       } else if (typeof attr.value === 'number') {
@@ -63,13 +166,36 @@ function emitAttrs(attrs: IrAttr[], ctx: EmitCtx): string {
         parts.push(`${name}=${JSON.stringify(attr.value)}`)
       }
     } else if (attr.kind === 'bind') {
-      const name = toReactClassName(attr.name)
+      const name = reactName
       parts.push(`${name}={${emitExpr(mapExpr(attr.value, ctx))}}`)
     } else if (attr.kind === 'event') {
-      parts.push(`${irEventToReact(attr.name)}={${attr.handler}}`)
+      parts.push(`${irEventToReact(attr.name)}={${rewriteInlineEventHandler(attr.handler, ctx.stateNames)}}`)
     }
   }
+
+  const classAttr = emitClassNameAttr(staticClass, bindClass, ctx)
+  if (classAttr) parts.unshift(classAttr)
+
   return parts.length ? ` ${parts.join(' ')}` : ''
+}
+
+/** Emit a chained if (v-else-if) as a bare ternary without extra {…} wrapper. */
+function emitChainedTernary(node: IrNode & { kind: 'if' }, indent: string, ctx: EmitCtx): string {
+  const thenExpr =
+    node.then.length === 1
+      ? emitNodeInline(node.then[0]!, ctx)
+      : `(\n${node.then.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')}\n${indent})`
+  if (!node.else?.length) {
+    return `${emitExpr(mapExpr(node.test, ctx))} ? ${thenExpr} : null`
+  }
+  const elseChild = node.else.length === 1 ? node.else[0]! : undefined
+  const elseExpr =
+    elseChild?.kind === 'if'
+      ? emitChainedTernary(elseChild, indent, ctx)
+      : node.else.length === 1
+        ? emitNodeInline(node.else[0]!, ctx)
+        : `(\n${node.else.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')}\n${indent})`
+  return `${emitExpr(mapExpr(node.test, ctx))} ? ${thenExpr} : ${elseExpr}`
 }
 
 function emitNode(node: IrNode, indent: string, ctx: EmitCtx): string {
@@ -88,10 +214,14 @@ function emitNode(node: IrNode, indent: string, ctx: EmitCtx): string {
       if (!node.else?.length) {
         return `${indent}{${emitExpr(mapExpr(node.test, ctx))} ? ${thenExpr} : null}`
       }
+      // Chained v-else-if: emit the inner ternary without extra {…} wrapper
+      const elseChild = node.else.length === 1 ? node.else[0]! : undefined
       const elseExpr =
-        node.else.length === 1
-          ? emitNodeInline(node.else[0]!, ctx)
-          : `(\n${node.else.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')}\n${indent})`
+        elseChild?.kind === 'if'
+          ? emitChainedTernary(elseChild, indent, ctx)
+          : node.else.length === 1
+            ? emitNodeInline(node.else[0]!, ctx)
+            : `(\n${node.else.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')}\n${indent})`
       return `${indent}{${emitExpr(mapExpr(node.test, ctx))} ? ${thenExpr} : ${elseExpr}}`
     }
     case 'for': {
@@ -111,11 +241,12 @@ function emitNode(node: IrNode, indent: string, ctx: EmitCtx): string {
       }
       const tag = node.kind === 'component' ? node.name : node.tag
       const attrs = emitAttrs(node.props, ctx)
+      const shw = node.kind === 'element' && node.tag.includes('-') ? ' suppressHydrationWarning' : ''
       if (!node.children.length) {
-        return `${indent}<${tag}${attrs} />`
+        return `${indent}<${tag}${attrs}${shw} />`
       }
       const inner = node.children.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')
-      return `${indent}<${tag}${attrs}>\n${inner}\n${indent}</${tag}>`
+      return `${indent}<${tag}${attrs}${shw}>\n${inner}\n${indent}</${tag}>`
     }
   }
 }
@@ -132,6 +263,8 @@ function emitStmt(stmt: IrStmt): string {
       return stmt.value ? `return ${emitExpr(stmt.value)}` : 'return'
     case 'assign':
       return `${emitExpr(stmt.target)} = ${emitExpr(stmt.value)}`
+    case 'const':
+      return `const ${stmt.name} = ${emitExpr(stmt.value)}`
   }
 }
 
@@ -228,6 +361,33 @@ export function emitReact(doc: IrDocument, opts?: { cssFileName?: string }): str
 
   lines.push(`export default function ${doc.name}(${propsArg}) {`, ...inner, '}')
 
+  return `${lines.join('\n').trim()}\n`
+}
+
+/** Product convert: template IR + rewritten `<script setup>` body. */
+export function emitReactProduct(
+  doc: IrDocument,
+  script: { imports: string[]; body: string[] },
+  opts?: { cssFileName?: string; stateNames?: Set<string> },
+): string {
+  const lines: string[] = []
+  lines.push(...script.imports)
+  if (opts?.cssFileName) {
+    lines.push(`import './${opts.cssFileName}'`, '')
+  } else if (script.imports.length) {
+    lines.push('')
+  }
+
+  const ctx: EmitCtx = {
+    states: new Set(),
+    reactives: new Set(),
+    stateNames: opts?.stateNames,
+  }
+  const inner: string[] = script.body.flatMap((line) => line.split('\n').map((l) => `  ${l}`))
+  if (inner.length) inner.push('')
+  inner.push('  return (', emitNode(doc.template, '    ', ctx), '  )')
+
+  lines.push(`export default function ${doc.name}() {`, ...inner, '}')
   return `${lines.join('\n').trim()}\n`
 }
 

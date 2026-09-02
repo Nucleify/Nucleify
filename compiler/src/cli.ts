@@ -64,7 +64,7 @@ const main = defineCommand({
     convert: defineCommand({
       meta: {
         name: 'convert',
-        description: 'Scaffold product shell at {framework}/{product} (tryb B)',
+        description: 'Scaffold product shell at {product}-{framework} (tryb B)',
       },
       args: {
         product: {

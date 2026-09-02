@@ -16,6 +16,7 @@ const irBinaryOpSchema = z.enum([
   '<=',
   '>',
   '>=',
+  '??',
 ])
 
 const irExprSchema: z.ZodType<import('./types').IrExpr> = z.lazy(() =>
@@ -32,6 +33,17 @@ const irExprSchema: z.ZodType<import('./types').IrExpr> = z.lazy(() =>
       kind: z.literal('member'),
       object: irExprSchema,
       property: z.string().min(1),
+    }),
+    z.object({
+      kind: z.literal('index'),
+      object: irExprSchema,
+      index: irExprSchema,
+    }),
+    z.object({
+      kind: z.literal('conditional'),
+      test: irExprSchema,
+      consequent: irExprSchema,
+      alternate: irExprSchema,
     }),
     z.object({
       kind: z.literal('binary'),
@@ -53,6 +65,14 @@ const irExprSchema: z.ZodType<import('./types').IrExpr> = z.lazy(() =>
         }),
       ),
     }),
+    z.object({
+      kind: z.literal('array'),
+      elements: z.array(irExprSchema),
+    }),
+    z.object({
+      kind: z.literal('raw'),
+      code: z.string(),
+    }),
   ]),
 )
 
@@ -70,6 +90,11 @@ const irStmtSchema: z.ZodType<import('./types').IrStmt> = z.lazy(() =>
     z.object({
       kind: z.literal('return'),
       value: irExprSchema.optional(),
+    }),
+    z.object({
+      kind: z.literal('const'),
+      name: z.string().min(1),
+      value: irExprSchema,
     }),
   ]),
 )

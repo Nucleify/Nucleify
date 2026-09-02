@@ -2,7 +2,7 @@
 
 # Product apps: default shell is Nuxt. Tryb B nests products under frameworks:
 #   make web                 # top-level web/ (Nuxt)
-#   make web TARGET=next     # next/web (scaffolded product shell)
+#   make web TARGET=next     # web-next (scaffolded product shell)
 #
 # Portable emit demos (gitignored):
 #   make nuxt / make next / make vue / make react  → {framework}/demo
@@ -19,7 +19,8 @@ help:
 	@echo ""
 	@echo "Product apps:"
 	@echo "  make web | admin | docs           # default TARGET=nuxt (top-level web/)"
-	@echo "  make web TARGET=next              # next/web product shell (tryb B)"
+	@echo "  make web TARGET=next              # web-next product shell (tryb B)"
+	@echo "  make admin TARGET=next            # admin-next product shell (tryb B)"
 	@echo ""
 	@echo "Portable emit demos (gitignored {framework}/demo):"
 	@echo "  make vue | react | nuxt | next"
@@ -62,7 +63,7 @@ ifeq ($(TARGET),nuxt)
 else ifeq ($(TARGET),next)
 	pnpm exec tsx compiler/src/cli.ts convert web --target=next
 	pnpm exec tsx compiler/src/cli.ts build --app=next
-	cd next/web && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+	cd web-next && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "TARGET=$(TARGET) is not implemented for web yet."
 	@echo "Supported: TARGET=nuxt (default) | TARGET=next"
@@ -73,8 +74,12 @@ endif
 admin:
 ifeq ($(TARGET),nuxt)
 	pnpm --filter @nucleify/admin dev
+else ifeq ($(TARGET),next)
+	pnpm exec tsx compiler/src/cli.ts convert admin --target=next
+	cd admin-next && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
-	@echo "TARGET=$(TARGET) is not implemented for admin yet (only nuxt)."
+	@echo "TARGET=$(TARGET) is not implemented for admin yet."
+	@echo "Supported: TARGET=nuxt (default) | TARGET=next"
 	@exit 1
 endif
 

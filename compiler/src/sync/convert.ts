@@ -5,17 +5,59 @@ import {
   readFileSync,
   readdirSync,
   statSync,
+  unlinkSync,
   writeFileSync,
 } from 'node:fs'
 import { dirname, join, relative, resolve } from 'node:path'
+import { parse as parseSfc } from '@vue/compiler-sfc'
+import { convertVueSfcToReact } from './vue-sfc-to-tsx'
+import { emitBaseName } from './paths'
 import {
   PRODUCT_IDS,
   SCAFFOLD_FRAMEWORKS,
+  productShellPath,
   scaffoldProduct,
   type ProductId,
   type ScaffoldFramework,
 } from './scaffold'
 import { toRepoRelative } from './discover'
+
+/** Products with a full Nuxt→Next convert pipeline (tryb B). */
+export const NEXT_CONVERT_PRODUCTS = ['web', 'admin'] as const
+export type NextConvertProduct = (typeof NEXT_CONVERT_PRODUCTS)[number]
+
+type NextConvertConfig = {
+  packageName: string
+  title: string
+  description: string
+  entryModule: string
+  redirectRoot?: string
+  shellBg: string
+  shellFg: string
+  extraDeps: Record<string, string>
+}
+
+const NEXT_CONVERT: Record<NextConvertProduct, NextConvertConfig> = {
+  web: {
+    packageName: '@nucleify/next-web',
+    title: 'Nucleify',
+    description: 'Nucleify web (Next host + React emit from Vue sources)',
+    entryModule: '@/views/home/index',
+    redirectRoot: '/en/home',
+    shellBg: '#070908',
+    shellFg: '#e7ebe8',
+    extraDeps: { animejs: '^4.5.0' },
+  },
+  admin: {
+    packageName: '@nucleify/next-admin',
+    title: 'Nucleify Admin',
+    description: 'Nucleify admin (Next host + React emit from Vue sources)',
+    entryModule: '@/views/index',
+    shellBg: '#0f1419',
+    shellFg: '#e7ebe8',
+    extraDeps: {},
+  },
+}
 
 const SKIP_COPY_NAMES = new Set([
   'node_modules',
@@ -26,20 +68,23 @@ const SKIP_COPY_NAMES = new Set([
   '.turbo',
 ])
 
-function copyDirFiltered(src: string, dest: string): void {
-  if (!existsSync(src)) return
-  mkdirSync(dest, { recursive: true })
-  for (const name of readdirSync(src)) {
-    if (SKIP_COPY_NAMES.has(name)) continue
-    const from = join(src, name)
-    const to = join(dest, name)
-    const st = statSync(from)
-    if (st.isDirectory()) copyDirFiltered(from, to)
-    else {
-      mkdirSync(dirname(to), { recursive: true })
-      cpSync(from, to)
-    }
-  }
+/** Nuxt route shells — App Router in `src/app/` owns these URLs. */
+const SKIP_VUE_ROUTE_SHELLS: Partial<Record<NextConvertProduct, string[]>> = {
+  web: ['pages/index.vue', 'pages/[lang]/home.vue', 'pages/[lang]/index.vue'],
+}
+
+function normalizeSrcRel(rel: string): string {
+  return rel.replace(/\\/g, '/')
+}
+
+function shouldSkipVueRouteShell(product: NextConvertProduct, relFromSrc: string): boolean {
+  return SKIP_VUE_ROUTE_SHELLS[product]?.includes(normalizeSrcRel(relFromSrc)) ?? false
+}
+
+/** Vue `src/pages/**` → Next `src/views/**` (no Pages Router clash with `src/app/`). */
+function viewsRelFromPagesRel(relFromSrc: string): string {
+  const normalized = normalizeSrcRel(relFromSrc)
+  return normalized.startsWith('pages/') ? normalized.replace(/^pages\//, 'views/') : normalized
 }
 
 function writeText(path: string, body: string): void {
@@ -59,37 +104,52 @@ function walkFiles(dir: string, out: string[] = []): string[] {
   return out
 }
 
-/** `web/src/...` is 3 levels to repo root; `next/web/src/...` needs 4. */
-function bumpSharedModulesImports(root: string): number {
+function copyDirFiltered(src: string, dest: string, skipExt?: Set<string>): void {
+  if (!existsSync(src)) return
+  mkdirSync(dest, { recursive: true })
+  for (const name of readdirSync(src)) {
+    if (SKIP_COPY_NAMES.has(name)) continue
+    const from = join(src, name)
+    const to = join(dest, name)
+    const st = statSync(from)
+    if (st.isDirectory()) copyDirFiltered(from, to, skipExt)
+    else if (!skipExt?.has(name.slice(name.lastIndexOf('.')))) {
+      mkdirSync(dirname(to), { recursive: true })
+      cpSync(from, to)
+    }
+  }
+}
+
+/** Normalize monorepo imports to tsconfig aliases (`modules/`, `portable/`). */
+function rewriteMonorepoImports(root: string): number {
   let n = 0
   for (const file of walkFiles(root)) {
-    if (!/\.(scss|sass|vue|css|ts|tsx|js|jsx)$/.test(file)) continue
+    if (!/\.(scss|sass|css|ts|tsx|js|jsx)$/.test(file)) continue
     const before = readFileSync(file, 'utf8')
     const after = before
       .replace(
         /(@use|@import)\s+(['"])((?:\.\.\/)+)shared_modules\//g,
-        (_m, at, quote, ups) => `${at} ${quote}../${ups}shared_modules/`,
+        (_m, at, quote) => `${at} ${quote}modules/`,
       )
       .replace(
         /(@use|@import)\s+(['"])((?:\.\.\/)+)portable\//g,
-        (_m, at, quote, ups) => `${at} ${quote}../${ups}portable/`,
+        (_m, at, quote) => `${at} ${quote}portable/`,
       )
       .replace(
         /(from\s+['"])((?:\.\.\/)+)shared_modules(\/|['"])/g,
-        (_m, pref, ups, end) => `${pref}../${ups}shared_modules${end}`,
+        (_m, pref, end) => `${pref}modules${end}`,
       )
-      // JS side-effect import — do not match SCSS `@import`.
       .replace(
         /(?<!@)import\s+(['"])((?:\.\.\/)+)shared_modules(\/|['"])/g,
-        (_m, pref, ups, end) => `${pref}../${ups}shared_modules${end}`,
+        (_m, pref, end) => `${pref}modules${end}`,
       )
       .replace(
         /(from\s+['"])((?:\.\.\/)+)portable(\/|['"])/g,
-        (_m, pref, ups, end) => `${pref}../${ups}portable${end}`,
+        (_m, pref, end) => `${pref}portable${end}`,
       )
       .replace(
         /(?<!@)import\s+(['"])((?:\.\.\/)+)portable(\/|['"])/g,
-        (_m, pref, ups, end) => `${pref}../${ups}portable${end}`,
+        (_m, pref, end) => `${pref}portable${end}`,
       )
     if (after !== before) {
       writeFileSync(file, after, 'utf8')
@@ -99,123 +159,139 @@ function bumpSharedModulesImports(root: string): number {
   return n
 }
 
-/**
- * Merge Next product template + full copy of Nuxt `web/` sources into `next/web`.
- * Vue SFCs run via vue-loader inside the Next webpack pipeline (migration host).
- */
-export function convertProduct(opts: {
-  product: ProductId
-  framework: ScaffoldFramework
-  cwd?: string
-  force?: boolean
-}): { dest: string; copied: string[] } {
-  const cwd = resolve(opts.cwd ?? process.cwd())
-  const { product, framework, force } = opts
+function rewriteVueImportPaths(source: string): string {
+  return source.replace(/from\s+(['"])([^'"]+)\.vue\1/g, (_m, q, path) => `from ${q}${path}${q}`)
+}
 
-  if (!PRODUCT_IDS.includes(product)) {
-    throw new Error(`convert: unknown product "${product}"`)
-  }
-  if (!SCAFFOLD_FRAMEWORKS.includes(framework)) {
-    throw new Error(`convert: unknown framework "${framework}"`)
-  }
-  if (framework !== 'next' || product !== 'web') {
-    throw new Error(
-      `convert: only web→next is implemented (got ${product}→${framework})`,
-    )
+function convertVueFileToTsx(vuePath: string, destTsxPath: string): string {
+  const source = readFileSync(vuePath, 'utf8')
+  const base = emitBaseName(vuePath)
+
+  let body: string
+  let name: string
+  let stylesCss: string | undefined
+
+  // Always use the SFC-aware converter for product pages (handles <script setup>).
+  {
+    const converted = convertVueSfcToReact(source, vuePath)
+    body = rewriteVueImportPaths(converted.body)
+    name = converted.name
+    const { descriptor } = parseVueSfc(source, vuePath)
+    stylesCss = loadSiblingCssFromVue(vuePath, descriptor.scriptSetup?.content)
   }
 
-  const sourceRoot = join(cwd, product)
-  if (!existsSync(sourceRoot)) {
-    throw new Error(`convert: missing source product at ${product}/`)
+  if (stylesCss) {
+    writeText(join(dirname(destTsxPath), `${base}.css`), `${stylesCss.trim()}\n`)
   }
 
-  const dest = join(cwd, framework, product)
-  const copied: string[] = []
-
-  if (!existsSync(join(dest, 'package.json')) || force) {
-    scaffoldProduct({
-      product,
-      framework,
-      cwd,
-      force: Boolean(force || !existsSync(dest)),
-    })
-  } else {
-    scaffoldProduct({ product, framework, cwd, force: false })
+  const scssSibling = join(dirname(vuePath), '_index.scss')
+  if (existsSync(scssSibling)) {
+    writeText(join(dirname(destTsxPath), '_index.scss'), readFileSync(scssSibling, 'utf8'))
   }
 
-  const transfers: [string, string][] = [
-    ['public', 'public'],
-    ['src/pages', 'src/pages'],
-    ['src/assets', 'src/assets'],
-    ['src/composables', 'src/composables'],
-    ['src/plugins', 'src/plugins'],
-    ['src/layouts', 'src/layouts'],
-    ['src/server', 'src/server'],
-    ['src/components', 'src/components'],
+  writeText(destTsxPath, `'use client'\n\n${body}`)
+  return name
+}
+
+function parseVueSfc(source: string, filePath: string) {
+  return parseSfc(source, { filename: filePath })
+}
+
+function loadSiblingCssFromVue(filePath: string, script?: string): string | undefined {
+  const cssImport = script?.match(/import\s+['"](\.\/[^'"]+\.css)['"]/)?.[1]
+  if (!cssImport) return undefined
+  const normalized = cssImport.replace(/^\.\//, '')
+  const candidates = [
+    join(dirname(filePath), normalized),
+    join(dirname(filePath), '../css', normalized),
   ]
-
-  for (const [fromRel, toRel] of transfers) {
-    const from = join(sourceRoot, fromRel)
-    if (!existsSync(from)) continue
-    copyDirFiltered(from, join(dest, toRel))
-    copied.push(`${fromRel} → ${toRel}`)
-  }
-
-  for (const file of ['src/nuc_client.ts', 'src/nucleify.ts', 'src/app.vue']) {
-    const from = join(sourceRoot, file)
-    if (!existsSync(from)) continue
-    mkdirSync(dirname(join(dest, file)), { recursive: true })
-    cpSync(from, join(dest, file))
-    copied.push(file)
-  }
-
-  const bumped = bumpSharedModulesImports(dest)
-  if (bumped) copied.push(`rewrote shared_modules imports in ${bumped} file(s)`)
-
-  // After path bump — avoid `export *` of Nuxt-bound modules (languages/dark_mode).
-  writeText(
-    join(dest, 'src/nucleify.ts'),
-    `/** Next host barrel — API/globals/stores/colors only (no Nuxt app runtime). */
-export * from '../../../shared_modules/nuc_api'
-export * from '../../../shared_modules/nuc_colors'
-export * from '../../../shared_modules/nuc_globals'
-export * from '../../../shared_modules/nuc_stores'
-`,
-  )
-  copied.push('src/nucleify.ts (next-safe barrel)')
-  const homePage = join(dest, 'src/pages/home/index.vue')
-  if (existsSync(homePage)) {
-    let src = readFileSync(homePage, 'utf8')
-    src = src.replace(
-      /import\s+\{\s*useRoute\s*\}\s+from\s+['"]nuxt\/app['"]/,
-      "import { useRoute } from '@/shims/nuxt-app'",
-    )
-    writeFileSync(homePage, src, 'utf8')
-  }
-
-  let sassIndexRewrites = 0
-  for (const file of walkFiles(join(dest, 'src'))) {
-    if (!/\.(ts|tsx|vue|js|scss|sass)$/.test(file)) continue
-    const before = readFileSync(file, 'utf8')
-    let after = before
-      .replace(/from\s+['"]nuxt\/app['"]/g, "from '@/shims/nuxt-app'")
-      .replace(/from\s+['"]nitropack\/runtime['"]/g, "from '@/shims/nuxt-app'")
-    // Vite/Nuxt resolve bare `@import 'index'` next to the SFC; webpack sass needs `./`.
-    const withRelativeIndex = after.replace(
-      /@import\s+(['"])index\1/g,
-      "@import './index'",
-    )
-    if (withRelativeIndex !== after) {
-      after = withRelativeIndex
-      sassIndexRewrites += 1
+  for (const cssPath of candidates) {
+    try {
+      const raw = readFileSync(cssPath, 'utf8')
+      return raw.replace(/^\/\*[\s\S]*?\*\/\s*/gm, '').replace(/\s+/g, ' ').trim()
+    } catch {
+      // try next
     }
-    if (after !== before) writeFileSync(file, after, 'utf8')
   }
-  if (sassIndexRewrites) {
-    copied.push(`rewrote @import 'index' → './index' in ${sassIndexRewrites} file(s)`)
+  return undefined
+}
+
+function emitVueTreeToReact(
+  sourceSrc: string,
+  destSrc: string,
+  product: NextConvertProduct,
+): { converted: string[]; failures: string[]; skipped: string[] } {
+  const converted: string[] = []
+  const failures: string[] = []
+  const skipped: string[] = []
+
+  for (const vuePath of walkFiles(sourceSrc).filter((f) => f.endsWith('.vue'))) {
+    const rel = relative(sourceSrc, vuePath)
+    if (shouldSkipVueRouteShell(product, rel)) {
+      skipped.push(rel)
+      continue
+    }
+    const destTsxPath = join(destSrc, viewsRelFromPagesRel(rel.replace(/\.vue$/, '.tsx')))
+    try {
+      convertVueFileToTsx(vuePath, destTsxPath)
+      converted.push(`${rel} → ${relative(destSrc, destTsxPath)}`)
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err)
+      failures.push(`${rel}: ${msg}`)
+    }
   }
 
-  // Next's CSS pipeline cannot host Vue SFC <style>; hoist sibling _index.scss into one bundle.
+  return { converted, failures, skipped }
+}
+
+function purgeLegacyPagesRouterEmit(dest: string): number {
+  const pagesDir = join(dest, 'src/pages')
+  if (!existsSync(pagesDir)) return 0
+  let n = 0
+  for (const file of walkFiles(pagesDir)) {
+    if (!/\.(tsx|ts|vue)$/.test(file)) continue
+    unlinkSync(file)
+    n += 1
+  }
+  return n
+}
+
+function copyStaticAssets(sourceRoot: string, dest: string, copied: string[]): void {
+  const publicSrc = join(sourceRoot, 'public')
+  if (existsSync(publicSrc)) {
+    copyDirFiltered(publicSrc, join(dest, 'public'))
+    copied.push('public → public')
+  }
+
+  const assetsSrc = join(sourceRoot, 'src/assets')
+  if (existsSync(assetsSrc)) {
+    copyDirFiltered(assetsSrc, join(dest, 'src/assets'))
+    copied.push('src/assets → src/assets')
+  }
+
+  const sourceSrc = join(sourceRoot, 'src')
+  if (!existsSync(sourceSrc)) return
+
+  for (const file of walkFiles(sourceSrc)) {
+    const rel = relative(sourceSrc, file)
+    if (rel.endsWith('.vue')) continue
+    if (/^composables\//.test(rel)) continue
+    if (/^plugins\//.test(rel)) continue
+    if (/^layouts\//.test(rel)) continue
+    if (/^server\//.test(rel)) continue
+    if (rel === 'app.vue' || rel === 'nucleify.ts' || rel === 'nuc_client.ts') continue
+    if (!/\.(scss|sass|css|ts|tsx|js|json|svg|png|jpg|webp)$/.test(file)) continue
+
+    const destPath = join(dest, 'src', viewsRelFromPagesRel(rel))
+    mkdirSync(dirname(destPath), { recursive: true })
+    cpSync(file, destPath)
+    if (/\.(ts|scss|sass)$/.test(file)) {
+      copied.push(`src/${rel}`)
+    }
+  }
+}
+
+function buildScssBundle(dest: string): number {
   const styleBundle = join(dest, 'src/styles/migrated-product.scss')
   const scssPartials = walkFiles(join(dest, 'src')).filter(
     (f) =>
@@ -226,7 +302,7 @@ export * from '../../../shared_modules/nuc_stores'
   writeText(
     styleBundle,
     [
-      '// Generated by convert — styles hoisted from Vue SFCs for Next CSS pipeline.',
+      '// Generated by convert — product SCSS for Next global CSS pipeline.',
       ...scssPartials.map((abs) => {
         let rel = relative(dirname(styleBundle), abs).replace(/\\/g, '/')
         if (!rel.startsWith('.')) rel = `./${rel}`
@@ -239,167 +315,24 @@ export * from '../../../shared_modules/nuc_stores'
       '',
     ].join('\n'),
   )
-  let strippedStyles = 0
+  return scssPartials.length
+}
+
+function purgeVueFiles(dest: string): number {
+  let n = 0
   for (const file of walkFiles(join(dest, 'src'))) {
     if (!file.endsWith('.vue')) continue
-    const before = readFileSync(file, 'utf8')
-    const after = before.replace(/<style\b[^>]*>[\s\S]*?<\/style>\s*/gi, '')
-    if (after !== before) {
-      writeFileSync(file, after, 'utf8')
-      strippedStyles += 1
-    }
+    unlinkSync(file)
+    n += 1
   }
-  copied.push(
-    `hoisted ${scssPartials.length} scss partial(s), stripped <style> from ${strippedStyles} vue file(s)`,
-  )
-
-  writeText(
-    join(dest, 'src/shims/nuxt-app.ts'),
-    `/** Shims so migrated Vue/TS + shared_modules compile without Nuxt/Nitro. */
-'use client'
-
-import { ref, type Ref } from 'vue'
-
-export function useRoute() {
-  if (typeof window === 'undefined') {
-    return { params: { lang: 'en' } as Record<string, string>, path: '/en/home', query: {} as Record<string, string> }
-  }
-  const parts = window.location.pathname.split('/').filter(Boolean)
-  const lang = parts[0] || 'en'
-  return {
-    params: { lang },
-    path: window.location.pathname,
-    query: Object.fromEntries(new URLSearchParams(window.location.search)),
-  }
+  return n
 }
 
-export function useRuntimeConfig() {
-  return {
-    public: {
-      appUrl: process.env.NEXT_PUBLIC_APP_URL || '',
-      apiUrl: process.env.NEXT_PUBLIC_API_URL || '/api',
-      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL || '',
-      supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_KEY || '',
-      appEnv: process.env.NEXT_PUBLIC_APP_ENV || 'local',
-    },
-  }
-}
-
-export function defineNuxtPlugin(plugin: unknown) {
-  return plugin
-}
-
-export function defineNuxtRouteMiddleware(mw: unknown) {
-  return mw
-}
-
-export function addRouteMiddleware(_name: string, _mw?: unknown) {
-  /* no-op outside Nuxt */
-}
-
-export function useNuxtApp(): NuxtApp {
-  return {
-    _route: useRoute(),
-    $i18n: { locale: { value: 'en' } },
-  } as NuxtApp
-}
-
-const stateBag = new Map<string, Ref<unknown>>()
-export function useState<T>(key: string, init?: () => T): Ref<T> {
-  if (!stateBag.has(key)) {
-    stateBag.set(key, ref(init ? init() : (undefined as T)) as Ref<unknown>)
-  }
-  return stateBag.get(key) as Ref<T>
-}
-
-export function useCookie<T>(
-  _name: string,
-  opts?: { default?: () => T },
-): { value: T | undefined } {
-  let current = opts?.default?.()
-  return {
-    get value() {
-      return current
-    },
-    set value(v: T | undefined) {
-      current = v
-    },
-  }
-}
-
-export function useHead(_meta: unknown) {
-  /* no-op — Next owns document head */
-}
-
-export function useRequestEvent() {
-  return undefined
-}
-
-export type NuxtApp = Record<string, unknown> & {
-  _route?: ReturnType<typeof useRoute>
-  $i18n?: { locale: { value: string } }
-}
-`,
-  )
-
-  writeText(
-    join(dest, 'src/shims/nuxt-build-config.ts'),
-    `/** Stub for Nuxt \`#build/nuxt.config.mjs\` imports. */
-export const clientNodePlaceholder = false
-export default {}
-`,
-  )
-
-  writeText(
-    join(dest, 'src/lib/vue-home-root.client.tsx'),
-    `'use client'
-
-import { useEffect, useRef } from 'react'
-import { createApp, type App } from 'vue'
-import HomePage from '@/pages/home/index.vue'
-
-export function VueHomeRoot() {
-  const host = useRef<HTMLDivElement>(null)
-  const appRef = useRef<App | null>(null)
-
-  useEffect(() => {
-    if (!host.current || appRef.current) return
-    const app = createApp(HomePage)
-    app.mount(host.current)
-    appRef.current = app
-    return () => {
-      appRef.current?.unmount()
-      appRef.current = null
-    }
-  }, [])
-
-  return <div ref={host} className="nuc-next-vue-host" style={{ minHeight: '100vh' }} />
-}
-`,
-  )
-
-  writeText(
-    join(dest, 'src/app/[lang]/home/page.tsx'),
-    `import { VueHomeRoot } from '@/lib/vue-home-root.client'
-
-type Props = { params: Promise<{ lang: string }> }
-
-export default async function HomePage(_props: Props) {
-  return <VueHomeRoot />
-}
-`,
-  )
-
-  writeText(
-    join(dest, 'src/app/page.tsx'),
-    `import { redirect } from 'next/navigation'
-
-export default function RootPage() {
-  redirect('/en/home')
-}
-`,
-  )
-
+function writeNextShell(
+  dest: string,
+  product: NextConvertProduct,
+  cfg: NextConvertConfig,
+): void {
   writeText(
     join(dest, 'src/lib/nucleify-ui-provider.tsx'),
     `'use client'
@@ -407,7 +340,6 @@ export default function RootPage() {
 import { useEffect } from 'react'
 import { setupNui } from 'portable/nui'
 
-/** Only after mount — module-level setupNui reorders html/body classes and breaks hydration. */
 export function NucleifyUiProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setupNui({ palette: 'next', mode: 'dark' })
@@ -431,8 +363,8 @@ import 'portable/nui/fonts.css'
 import '@/styles/migrated-product.scss'
 
 export const metadata: Metadata = {
-  title: 'Nucleify',
-  description: 'Nucleify web (Next host + migrated Vue product)',
+  title: '${cfg.title}',
+  description: '${cfg.description}',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -440,7 +372,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="nuc-next p-dark" suppressHydrationWarning>
       <body
         className="nuc-next p-dark"
-        style={{ margin: 0, background: '#070908', color: '#e7ebe8' }}
+        style={{ margin: 0, background: '${cfg.shellBg}', color: '${cfg.shellFg}' }}
         suppressHydrationWarning
       >
         <NucleifyUiProvider>{children}</NucleifyUiProvider>
@@ -451,27 +383,63 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 `,
   )
 
+  const entryImport = cfg.entryModule
+  if (product === 'web') {
+    writeText(
+      join(dest, 'src/app/[lang]/home/page.tsx'),
+      `import Page from '${entryImport}'
+
+type Props = { params: Promise<{ lang: string }> }
+
+export default async function HomeRoute(_props: Props) {
+  return <Page />
+}
+`,
+    )
+    writeText(
+      join(dest, 'src/app/[lang]/page.tsx'),
+      `import { redirect } from 'next/navigation'
+
+type Props = { params: Promise<{ lang: string }> }
+
+export default async function LangIndexRoute({ params }: Props) {
+  const { lang } = await params
+  redirect(\`/\${lang}/home\`)
+}
+`,
+    )
+    writeText(
+      join(dest, 'src/app/page.tsx'),
+      `import { redirect } from 'next/navigation'
+
+export default function RootPage() {
+  redirect('${cfg.redirectRoot}')
+}
+`,
+    )
+  } else {
+    writeText(
+      join(dest, 'src/app/page.tsx'),
+      `import Page from '${entryImport}'
+
+export default function AdminRoute() {
+  return <Page />
+}
+`,
+    )
+  }
+
   writeText(
     join(dest, 'next.config.ts'),
-    `import type { NextConfig } from 'next'
-import { createRequire } from 'node:module'
+    `import { existsSync } from 'node:fs'
+import type { NextConfig } from 'next'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const require = createRequire(import.meta.url)
 const here = dirname(fileURLToPath(import.meta.url))
-const monorepo = join(here, '../..')
+const monorepo = join(here, '..')
 const assetsScss = join(here, 'src/assets/_index.scss').replace(/\\\\/g, '/')
 
-type WebpackUse = string | { loader?: string; options?: unknown }
-type WebpackRule = {
-  oneOf?: WebpackRule[]
-  rules?: WebpackRule[]
-  use?: WebpackUse | WebpackUse[]
-  test?: unknown
-}
-
-/** Same as Nuxt \`additionalData: @import "~/assets/index"\` — skip self-import. */
 function scssAdditionalData(
   content: string,
   loaderContext: { resourcePath: string },
@@ -480,106 +448,31 @@ function scssAdditionalData(
   if (p.includes('/assets/_index.scss') || p.includes('/assets/index.scss')) {
     return content
   }
+  if (!existsSync(assetsScss)) return content
   return \`@import \${JSON.stringify(assetsScss)};\\n\${content}\`
 }
-
-/** next-swc treats \`.vue?type=script|template\` as JS and chokes on TS/render output. */
-function replaceNextSwcForVueScripts(rules: WebpackRule[]): void {
-  const probes = [
-    '?vue&type=script&lang=ts&setup=true',
-    '?vue&type=script&lang=js',
-    '?vue&type=template&ts=true',
-    '?vue&type=template',
-    '?vue&lang=ts',
-  ]
-  for (const rule of rules) {
-    if (Array.isArray(rule.oneOf)) replaceNextSwcForVueScripts(rule.oneOf)
-    if (Array.isArray(rule.rules)) replaceNextSwcForVueScripts(rule.rules)
-    if (!rule.use) continue
-
-    // vue-loader cloneRule() stamps resource + resourceQuery functions.
-    const resource = (rule as { resource?: (r: string) => boolean }).resource
-    const resourceQuery = (rule as { resourceQuery?: (q: string) => boolean }).resourceQuery
-    if (typeof resource !== 'function' || typeof resourceQuery !== 'function') continue
-    let isVueBlock = false
-    try {
-      resource('/tmp/foo.vue')
-      isVueBlock = probes.some((q) => Boolean(resourceQuery(q)))
-    } catch {
-      continue
-    }
-    if (!isVueBlock) continue
-
-    const uses = Array.isArray(rule.use) ? rule.use : [rule.use]
-    let changed = false
-    for (let i = 0; i < uses.length; i++) {
-      const u = uses[i]
-      const loader = typeof u === 'string' ? u : u?.loader
-      if (typeof loader !== 'string' || !loader.includes('next-swc-loader')) continue
-      uses[i] = {
-        loader: require.resolve('esbuild-loader'),
-        options: { loader: 'tsx', target: 'es2020' },
-      }
-      changed = true
-    }
-    if (changed) rule.use = Array.isArray(rule.use) ? uses : uses[0]
-  }
-}
-
-const sassIncludePaths = [
-  join(monorepo, 'shared_modules'),
-  join(monorepo, 'portable'),
-  join(here, 'src'),
-]
 
 const nextConfig: NextConfig = {
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
   transpilePackages: ['nucleify-ui'],
-  outputFileTracingRoot: here,
   sassOptions: {
-    includePaths: sassIncludePaths,
-    silenceDeprecations: ['mixed-decls', 'import', 'color-functions', 'global-builtin'],
+    includePaths: [join(monorepo, 'shared_modules'), join(monorepo, 'portable'), join(here, 'src')],
+    silenceDeprecations: ['mixed-decls', 'import', 'color-functions', 'global-builtin', 'legacy-js-api'],
+    quietDeps: true,
     additionalData: scssAdditionalData,
   },
+  turbopack: {
+    resolveAlias: {
+      modules: join(monorepo, 'shared_modules'),
+      portable: join(monorepo, 'portable'),
+    },
+  },
   webpack: (config) => {
-    config.resolve.extensions = ['.vue', ...(config.resolve.extensions || [])]
-
-    // VueLoaderPlugin picks the *first* root rule that matches foo.vue.
-    // Next's catch-all \`oneOf\` matches everything — unshift so our rule wins.
-    config.module.rules.unshift({
-      test: /\\.vue$/,
-      use: [
-        {
-          loader: require.resolve('vue-loader'),
-          options: {
-            compilerOptions: {
-              isCustomElement: (tag: string) => tag.startsWith('nui-'),
-            },
-          },
-        },
-      ],
-    })
-
-    const { VueLoaderPlugin } = require('vue-loader')
-    config.plugins.push(new VueLoaderPlugin())
-    config.plugins.push({
-      apply(compiler: { options: { module: { rules: WebpackRule[] } } }) {
-        replaceNextSwcForVueScripts(compiler.options.module.rules)
-      },
-    })
-
+    config.resolve ??= {}
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': join(here, 'src'),
-      // Exact \`vue\` only — do not break \`vue/server-renderer\` subpath.
-      vue$: 'vue/dist/vue.esm-bundler.js',
       modules: join(monorepo, 'shared_modules'),
-      'portable/nui': join(monorepo, 'portable/nui'),
-      nucleify: join(here, 'src/nucleify.ts'),
-      '~': join(here, 'src'),
-      'nuxt/app': join(here, 'src/shims/nuxt-app.ts'),
-      '#app': join(here, 'src/shims/nuxt-app.ts'),
-      '#build/nuxt.config.mjs': join(here, 'src/shims/nuxt-build-config.ts'),
+      portable: join(monorepo, 'portable'),
     }
     return config
   },
@@ -588,6 +481,96 @@ const nextConfig: NextConfig = {
 export default nextConfig
 `,
   )
+}
+
+/**
+ * Tryb B: scaffold Next product shell and emit React TSX from Nuxt Vue SFCs.
+ * Output must contain **no** `.vue` files — only native Next/React sources.
+ */
+export function convertProduct(opts: {
+  product: ProductId
+  framework: ScaffoldFramework
+  cwd?: string
+  force?: boolean
+}): { dest: string; copied: string[] } {
+  const cwd = resolve(opts.cwd ?? process.cwd())
+  const { product, framework, force } = opts
+
+  if (!PRODUCT_IDS.includes(product)) {
+    throw new Error(`convert: unknown product "${product}"`)
+  }
+  if (!SCAFFOLD_FRAMEWORKS.includes(framework)) {
+    throw new Error(`convert: unknown framework "${framework}"`)
+  }
+  if (framework !== 'next' || !NEXT_CONVERT_PRODUCTS.includes(product as NextConvertProduct)) {
+    throw new Error(
+      `convert: only ${NEXT_CONVERT_PRODUCTS.join('|')}→next is implemented (got ${product}→${framework})`,
+    )
+  }
+
+  const cfg = NEXT_CONVERT[product as NextConvertProduct]
+  const sourceRoot = join(cwd, product)
+  if (!existsSync(sourceRoot)) {
+    throw new Error(`convert: missing source product at ${product}/`)
+  }
+
+  const dest = productShellPath(product, framework, cwd)
+  const copied: string[] = []
+
+  scaffoldProduct({
+    product,
+    framework,
+    cwd,
+    force: Boolean(force || !existsSync(join(dest, 'package.json'))),
+  })
+
+  const sourceSrc = join(sourceRoot, 'src')
+  const destSrc = join(dest, 'src')
+
+  copyStaticAssets(sourceRoot, dest, copied)
+
+  const assetsScss = join(destSrc, 'assets/_index.scss')
+  if (!existsSync(assetsScss)) {
+    writeText(assetsScss, `@import '../../../portable/nui/tokens';\n`)
+    copied.push('src/assets/_index.scss (minimal stub)')
+  }
+
+  const { converted, failures, skipped } = emitVueTreeToReact(sourceSrc, destSrc, product as NextConvertProduct)
+  copied.push(...converted.map((c) => `vue→tsx ${c}`))
+  if (skipped.length) {
+    copied.push(`skipped ${skipped.length} Nuxt route shell(s): ${skipped.join(', ')}`)
+  }
+
+  const purgedPages = purgeLegacyPagesRouterEmit(dest)
+  if (purgedPages) copied.push(`removed ${purgedPages} legacy src/pages emit file(s)`)
+
+  if (failures.length) {
+    throw new Error(
+      `convert: ${failures.length} Vue file(s) could not be emitted to React — extend compiler parser/emit or simplify source:\n${failures.map((f) => `  - ${f}`).join('\n')}`,
+    )
+  }
+
+  const purged = purgeVueFiles(dest)
+  if (purged) copied.push(`removed ${purged} stray .vue file(s)`)
+
+  const scssCount = buildScssBundle(dest)
+  copied.push(`bundled ${scssCount} scss partial(s) into migrated-product.scss`)
+
+  writeText(
+    join(destSrc, 'nucleify.ts'),
+    `/** Next host barrel — API/globals/stores/colors only (no Nuxt app runtime). */
+export * from 'modules/nuc_api'
+export * from 'modules/nuc_colors'
+export * from 'modules/nuc_globals'
+export * from 'modules/nuc_stores'
+`,
+  )
+  copied.push('src/nucleify.ts (next-safe barrel)')
+
+  const bumped = rewriteMonorepoImports(dest)
+  if (bumped) copied.push(`rewrote monorepo imports in ${bumped} file(s)`)
+
+  writeNextShell(dest, product as NextConvertProduct, cfg)
 
   const tsconfigPath = join(dest, 'tsconfig.json')
   if (existsSync(tsconfigPath)) {
@@ -597,9 +580,12 @@ export default nextConfig
     tsconfig.compilerOptions = tsconfig.compilerOptions || {}
     tsconfig.compilerOptions.paths = {
       '@/*': ['./src/*'],
-      modules: ['../../shared_modules'],
-      'portable/nui': ['../../portable/nui'],
-      'portable/nui/*': ['../../portable/nui/*'],
+      modules: ['../shared_modules'],
+      'modules/*': ['../shared_modules/*'],
+      portable: ['../portable'],
+      'portable/*': ['../portable/*'],
+      'portable/nui': ['../portable/nui'],
+      'portable/nui/*': ['../portable/nui/*'],
       nucleify: ['./src/nucleify.ts'],
     }
     writeFileSync(tsconfigPath, `${JSON.stringify(tsconfig, null, 2)}\n`, 'utf8')
@@ -611,17 +597,14 @@ export default nextConfig
     dependencies?: Record<string, string>
     devDependencies?: Record<string, string>
   }
+  pkg.name = cfg.packageName
   pkg.dependencies = {
     ...pkg.dependencies,
-    vue: '^3.5.39',
-    'vue-router': '^4.5.0',
-    animejs: '^4.5.0',
     '@supabase/supabase-js': '^2.105.1',
+    ...cfg.extraDeps,
   }
   pkg.devDependencies = {
     ...pkg.devDependencies,
-    'vue-loader': '^17.4.2',
-    'esbuild-loader': '^4.3.0',
     sass: '1.89.0',
   }
   writeFileSync(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`, 'utf8')
@@ -635,20 +618,20 @@ export default nextConfig
   writeText(
     join(dest, 'MIGRATION.md'),
     [
-      '# next/web — full product migrate',
+      `# ${product}-next — Vue SFC → React TSX`,
       '',
-      'Generated by `pnpm compiler -- convert web --target=next`.',
+      `\`pnpm compiler -- convert ${product} --target=next\``,
       '',
-      '- **Source of truth:** top-level `web/` (Nuxt)',
-      '- **Host:** Next App Router + vue-loader',
-      '- **UI:** copied Vue SFCs/SCSS/utils/assets/public from `web/`, mounted via `VueHomeRoot`',
+      `- **Source of truth:** top-level \`${product}/\` (Nuxt/Vue)`,
+      '- **Host:** Next App Router with **native React** components (no vue-loader, no .vue in output)',
+      '- **Pipeline:** each \`.vue\` → IR → \`.tsx\` via compiler emit',
       '',
       '```bash',
-      'make web TARGET=next',
-      'pnpm compiler -- convert web --target=next --force',
+      `make ${product} TARGET=next`,
+      `pnpm compiler -- convert ${product} --target=next --force`,
       '```',
       '',
-      'Copied:',
+      'Copied / converted:',
       ...copied.map((c) => `- ${c}`),
       '',
     ].join('\n'),

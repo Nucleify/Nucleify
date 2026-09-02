@@ -18,16 +18,21 @@ export type IrExpr =
   | { kind: 'literal'; value: string | number | boolean | null }
   | { kind: 'ident'; name: string }
   | { kind: 'member'; object: IrExpr; property: string }
+  | { kind: 'index'; object: IrExpr; index: IrExpr }
+  | { kind: 'conditional'; test: IrExpr; consequent: IrExpr; alternate: IrExpr }
   | { kind: 'binary'; op: IrBinaryOp; left: IrExpr; right: IrExpr }
   | { kind: 'call'; callee: IrExpr; args: IrExpr[] }
   | { kind: 'object'; properties: { key: string; value: IrExpr }[] }
+  | { kind: 'array'; elements: IrExpr[] }
+  | { kind: 'raw'; code: string }
 
-export type IrBinaryOp = '==' | '!=' | '===' | '!==' | '&&' | '||' | '+' | '-' | '*' | '/' | '<' | '<=' | '>' | '>='
+export type IrBinaryOp = '==' | '!=' | '===' | '!==' | '&&' | '||' | '+' | '-' | '*' | '/' | '<' | '<=' | '>' | '>=' | '??'
 
 export type IrStmt =
   | { kind: 'expr'; value: IrExpr }
   | { kind: 'assign'; target: IrExpr; value: IrExpr }
   | { kind: 'return'; value?: IrExpr }
+  | { kind: 'const'; name: string; value: IrExpr }
 
 export type IrState = { name: string; initial: IrExpr }
 export type IrDerived = { name: string; from: IrExpr }
@@ -57,5 +62,9 @@ export type IrDocument = {
   handlers: IrHandler[]
   template: IrNode
   styles?: { css?: string }
+  /** Preserved import lines from `<script setup>` (product convert). */
+  imports?: string[]
+  /** Raw setup statements (onMounted, watch, module `let`, …) pasted into emit. */
+  sideEffects?: string[]
   meta?: { sourcePath?: string }
 }

@@ -26,16 +26,16 @@ portable/
 |---------|------------|---------|
 | `make web` | Landing product shell | **Nuxt** (`TARGET=nuxt`) |
 | `make admin` | Admin product shell | **Nuxt** |
+| `make admin TARGET=next` | Admin on Next (tryb B) | `next/admin/` |
 | `make docs` | Docs product shell | **Astro** |
 | `make nuxt` / `next` / `vue` / `react` | Throwaway emit demos | `{framework}/demo` (gitignored) |
 
-**Tryb B:** `make web TARGET=next` runs `convert`, which copies `web/` into `next/web/` and hosts
-Vue SFCs via vue-loader under the Next App Router.
+**Tryb B:** `convert` emits each Nuxt `.vue` to React `.tsx` (IR pipeline). Output under
+`next/{product}/` has **no `.vue` files** — native Next App Router only.
 
 ```bash
-make web                 # Nuxt top-level web/
-make web TARGET=next     # next/web
-make next                # demo only → next/demo
+make web TARGET=next     # next/web (fails until compiler subset covers all home SFCs)
+make admin TARGET=next   # next/admin
 ```
 
 Product shells import `portable/nui` for `--nui-*` tokens and Lit registration — they do not
@@ -55,5 +55,5 @@ pnpm compiler:build
 | Nuxt | `nuxt/demo/components/` |
 | Next | `next/demo/src/components/` |
 
-Templates: `compiler/templates/{vue,react,nuxt,next}/{demo,web}/`.
+Templates: `compiler/templates/{vue,react,nuxt,next}/{demo,web,admin}/`.
 Compiler test fixtures: `compiler/tests/fixtures/{source,ir,emit}/`.

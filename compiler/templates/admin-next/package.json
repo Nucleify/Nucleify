@@ -1,0 +1,24 @@
+{
+  "name": "@nucleify/next-admin",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "iconify-icon": "^3.0.0",
+    "lit": "^3.3.0",
+    "next": "^15.2.0",
+    "nucleify-ui": "^0.3.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "typescript": "^5.8.3"
+  }
+}
