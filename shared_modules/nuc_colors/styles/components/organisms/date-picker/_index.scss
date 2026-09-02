@@ -1,0 +1,33 @@
+@use 'sass:list';
+@import 'mixins';
+
+.p-datepicker[nui-type],
+.p-calendar[nui-type] {
+  @include entity-calendar-styles(
+    var(--inp-item) !important,
+    var(--inp-focus) !important
+  );
+}
+
+.p-datepicker-panel[nui-type] {
+  @include entity-datepicker-styles(
+    var(--ddp-item) !important,
+    var(--ddp-focus) !important,
+    var(--ddp-selected) !important,
+    var(--ddp-highlight) !important
+  );
+}
+
+$ddp-selectors: ();
+
+@each $type in $nui-types {
+  $ddp-selectors: list.append($ddp-selectors, '.p-datepicker-panel.#{$type}', comma);
+}
+#{$ddp-selectors} {
+  @include entity-datepicker-styles(
+    var(--ddp-item) !important,
+    var(--ddp-focus) !important,
+    var(--ddp-selected) !important,
+    var(--ddp-highlight) !important
+  );
+}

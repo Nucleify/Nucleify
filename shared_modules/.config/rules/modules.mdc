@@ -1,0 +1,37 @@
+---
+description: shared_modules nuc_* structure, barrels, and plugin registration
+globs: shared_modules/**
+alwaysApply: false
+---
+
+# Shared modules
+
+Packages in `shared_modules/nuc_*` — absorbed into monorepo (not git submodules).
+
+Barrel: `shared_modules/index.ts`
+Plugin registration (web): `web/src/plugins/modules.ts` → `registerNuc*(app)`
+API gateway: `shared_modules/nuc_api/supabase/api/gateway_dispatch.ts`
+
+## Module structure
+
+```
+shared_modules/nuc_example/
+├── config.json
+├── nuc_example.ts      # Vue plugin
+├── index.ts            # Vue barrel
+├── _index.scss
+├── supabase/api/       # handle.ts, *_handlers.ts
+├── supabase/migrations/
+├── supabase/seeders/
+├── constants/
+├── types/
+├── utils/
+└── vitests/
+```
+
+## Import rules
+
+- Inside a module: relative imports only
+- Do not import from app packages (`web`, `admin`, `docs`)
+- Public surface via `index.ts` and `shared_modules/index.ts`
+- Do not import `from 'nucleify'` inside modules (circular)

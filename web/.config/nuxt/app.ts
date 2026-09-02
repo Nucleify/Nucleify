@@ -1,0 +1,26 @@
+export const appConfig = {
+	head: {
+		htmlAttrs: { class: "nuc-nuxt p-dark" },
+		bodyAttrs: { class: "nuc-nuxt p-dark" },
+		title: "Nucleify - Modular Web Framework for Laravel & Nuxt",
+		titleTemplate: "%s",
+		meta: [
+			{ charset: "utf-8" },
+			{ name: "viewport", content: "width=device-width, initial-scale=1" },
+			{
+				name: "description",
+				content:
+					"Create scalable web apps faster with Nucleify - a modular, core-driven framework with unique modules for Laravel & Nuxt developers.",
+			},
+		],
+		link: [
+			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+			{ rel: "apple-touch-icon", href: "/favicon.ico" },
+		],
+		style: [
+			{
+				children: "html,body{margin:0;background:#070908;color:#e7ebe8;}",
+			},
+		],
+	},
+};

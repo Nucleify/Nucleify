@@ -1,0 +1,50 @@
+/** @nucleify/compiler public API — filled in later phases. */
+export const COMPILER_NAME = '@nucleify/compiler'
+export const COMPILER_PHASE = 11
+
+export type {
+  IrAttr,
+  IrBinaryOp,
+  IrDerived,
+  IrDocument,
+  IrExpr,
+  IrHandler,
+  IrNode,
+  IrProp,
+  IrPropType,
+  IrState,
+  IrStmt,
+  IrVersion,
+} from './ir/types'
+
+export {
+  irAttrSchema,
+  irDocumentSchema,
+  irExprSchema,
+  irHandlerSchema,
+  irNodeSchema,
+  irPropSchema,
+  irStmtSchema,
+  parseIrDocument,
+} from './ir/schema'
+
+export { ParseError, parseNucTsx, parseTsxToIr } from './parse/tsx'
+export { parseVueToIr } from './parse/vue'
+export { parseReactToIr } from './parse/react'
+export { emitNucTsx } from './emit/nuc'
+export { discoverNucSources } from './sync/discover'
+export { checkWorkspace } from './sync/check'
+export { runImport } from './sync/import'
+export { emitVue } from './emit/vue'
+export { emitReact } from './emit/react'
+export { writeOutputs, EMIT_APP_DIRS, PRODUCT_SHELL_EMIT } from './sync/write-outputs'
+export {
+  scaffoldApp,
+  scaffoldDemo,
+  scaffoldProduct,
+  SCAFFOLD_APPS,
+  PRODUCT_IDS,
+} from './sync/scaffold'
+export { convertProduct } from './sync/convert'
+
+export { irEventToReact, irEventToVue } from './adapters/events'

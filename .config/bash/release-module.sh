@@ -2,7 +2,8 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+ROOT_DIR="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
+PKG_DIR="$ROOT_DIR/web"
 
 . "$SCRIPT_DIR/utils/print_separator.sh"
 . "$SCRIPT_DIR/utils/colors.sh"
@@ -19,9 +20,9 @@ usage() {
   echo "  --dry-run   Show what would be done without making changes"
   echo ""
   echo "Examples:"
-  echo "  $0 nuc_media"
-  echo "  $0 media"
-  echo "  $0 nuc_media --dry-run"
+  echo "  $0 nuc_globals"
+  echo "  $0 globals"
+  echo "  $0 nuc_globals --dry-run"
   echo "  $0 --all"
   exit 1
 }

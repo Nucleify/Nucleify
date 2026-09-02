@@ -2,7 +2,8 @@
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-ROOT_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
+ROOT_DIR="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
+PKG_DIR="$ROOT_DIR/web"
 
 . "$SCRIPT_DIR/utils/print_separator.sh"
 . "$SCRIPT_DIR/utils/colors.sh"
@@ -42,7 +43,7 @@ get_remote_version() {
 has_local_modules() {
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
-    [ -f "modules/nuc_$name/config.json" ] && return 0
+    [ -f "shared_modules/nuc_$name/config.json" ] && return 0
   done < "$SUBMODULES_FILE"
   return 1
 }
@@ -50,7 +51,7 @@ has_local_modules() {
 cleanup_empty_modules() {
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
-    local dir="modules/nuc_$name"
+    local dir="shared_modules/nuc_$name"
 
     if [ -d "$dir" ] && [ ! -f "$dir/config.json" ]; then
       log_warn "nuc_$name: empty module detected, removing"
@@ -73,7 +74,7 @@ check_versions() {
 
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
-    local dir="modules/nuc_$name"
+    local dir="shared_modules/nuc_$name"
     local url="$GITHUB_URL/nuc_$name.git"
     local local_ver=$(get_version "$dir")
 
@@ -162,7 +163,7 @@ main() {
 
   while IFS= read -r name || [ -n "$name" ]; do
     [ -z "$name" ] && continue
-    clone_repo "nuc_$name" "$GITHUB_URL/nuc_$name.git" "modules/nuc_$name"
+    clone_repo "nuc_$name" "$GITHUB_URL/nuc_$name.git" "shared_modules/nuc_$name"
   done < "$SUBMODULES_FILE"
 
   configure_submodule_hooks "$ROOT_DIR" "$SUBMODULES_FILE"

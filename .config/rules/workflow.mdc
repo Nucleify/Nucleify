@@ -1,0 +1,49 @@
+---
+description: Multi-agent feature implementation pipeline (plan → implement → test → review)
+alwaysApply: true
+---
+
+# Feature Workflow
+
+When the user asks to implement a feature, follow this multi-agent pipeline.
+
+Agents: `web/.cursor/agents/`
+Rules: `.cursor/rules/` (monorepo) + per-package `<pkg>/.config/rules/`
+
+---
+
+## Phase 1 — PLAN
+
+Act as the **Planner** (`web/.cursor/agents/planner.md`).
+
+1. Read relevant rules: `shared_modules/.config/rules/`, `web/.config/rules/`, target package (`admin`/`docs`/`compiler`)
+2. Read affected module code if applicable
+3. Write structured plan → `.ai/specs/plan.md`
+4. Present and **wait for approval**
+
+---
+
+## Phase 2 — IMPLEMENT
+
+Parallel when both API and UI needed:
+
+- **Backend** — `web/.cursor/agents/backend.md`
+- **Frontend** — `web/.cursor/agents/frontend.md`
+
+Single agent for frontend-only or API-only work.
+
+---
+
+## Phase 3 — TEST
+
+**Tester** — `web/.cursor/agents/tester.md`
+
+---
+
+## Phase 4 — REVIEW
+
+**Reviewer** — `web/.cursor/agents/reviewer.md`
+
+1. Check convention compliance; fix issues
+2. Run: `pnpm check`, `pnpm typeslint`, `pnpm slint`, `pnpm tests`
+3. Summary: passed / fixed / incomplete

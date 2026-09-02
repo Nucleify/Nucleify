@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "paths": {
+      "nucleify": ["."],
+      "#nuc-compiler/runtime": ["../compiler/runtime/index.ts"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}

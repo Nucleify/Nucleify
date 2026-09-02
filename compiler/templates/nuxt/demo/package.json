@@ -1,0 +1,18 @@
+{
+  "name": "@nucleify/nuxt",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "prepare": "nuxt prepare"
+  },
+  "dependencies": {
+    "iconify-icon": "^3.0.0",
+    "lit": "^3.3.0",
+    "nucleify-ui": "^0.3.7",
+    "nuxt": "^3.16.0",
+    "vue": "^3.5.13"
+  }
+}

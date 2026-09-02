@@ -1,0 +1,31 @@
+---
+description: Husky hooks and GitHub Actions CI pipeline
+globs: .github/**,.config/bash/**,package.json
+alwaysApply: false
+---
+
+# CI / Hooks
+
+## Pre-commit & Pre-push (Husky)
+
+Hooks live in `.husky/`. Both run `.config/bash/hook-checks.sh`:
+
+1. `pnpm btest` — bash test suite (`bash .config/bash/tests/run.sh`)
+2. `pnpm check` — Biome lint
+3. `pnpm typeslint` — `tsc` for `@nucleify/web`
+4. `pnpm slint` — Stylelint (SCSS)
+5. `pnpm tests` — Vitest
+
+## GitHub Actions
+
+### `health-check.yml` (all branches)
+
+Node 22, pnpm. Parallel jobs after setup: biome, typeslint, stylelint, build, test — delegate via monorepo `pnpm run …` → `@nucleify/web`.
+
+### `bash.yaml`
+
+Runs `bash .config/bash/tests/run.sh` on push.
+
+### `release-modules.yml`
+
+Reads `.config/bash/config/submodules.txt` for module release names.

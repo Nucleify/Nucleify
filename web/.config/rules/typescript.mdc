@@ -1,0 +1,23 @@
+---
+description: TypeScript aliases and conventions for @nucleify/web
+globs: web/**/*.{ts,tsx,vue}
+alwaysApply: false
+---
+
+# TypeScript — web
+
+Strict mode, ESNext, bundler resolution. Config: `web/.config/tsconfig.json`.
+
+## Path aliases
+
+| Alias | Resolves to |
+|-------|-------------|
+| `nucleify` | `web/src/nucleify.ts` |
+| `modules` / `modules/*` | `shared_modules` / `shared_modules/*` |
+| `nuc_api` | `shared_modules/nuc_api/supabase/api/server.ts` |
+| `nuc_server` | `web/src/server/nuc_server.ts` |
+| `~/*` | `web/src/*` |
+
+```bash
+pnpm typeslint   # tsc --noEmit
+```

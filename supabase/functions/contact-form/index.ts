@@ -17,10 +17,14 @@ const json = (status: number, body: Record<string, unknown>) =>
     headers: { ...corsHeaders, 'content-type': 'application/json' },
   })
 
-const renderHtmlEmail = (email: string, websiteType: string) => {
-  const formattedType =
-    websiteType.charAt(0).toUpperCase() + websiteType.slice(1)
+const renderHtmlEmail = (email: string, message: string) => {
   const now = new Date().toISOString().replace('T', ' ').slice(0, 19)
+  const safeMessage = String(message)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/\n/g, '<br>')
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -28,7 +32,7 @@ const renderHtmlEmail = (email: string, websiteType: string) => {
 <body style="font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;color:#333;max-width:600px;margin:0 auto;padding:20px;background:#f5f5f5">
   <div style="background:#fff;border-radius:8px;padding:30px;box-shadow:0 2px 10px rgba(0,0,0,.1)">
     <div style="text-align:center;padding-bottom:20px;border-bottom:2px solid #10b981;margin-bottom:20px">
-      <h1 style="color:#10b981;margin:0;font-size:24px">📬 New Contact Form Submission</h1>
+      <h1 style="color:#10b981;margin:0;font-size:24px">New Contact Form Submission</h1>
     </div>
     <div style="margin-bottom:15px">
       <span style="font-weight:600;color:#555;display:block;margin-bottom:5px">Email:</span>
@@ -37,8 +41,8 @@ const renderHtmlEmail = (email: string, websiteType: string) => {
       </div>
     </div>
     <div style="margin-bottom:15px">
-      <span style="font-weight:600;color:#555;display:block;margin-bottom:5px">Website Type:</span>
-      <div style="background:#f9f9f9;padding:12px;border-radius:4px;border-left:3px solid #10b981">${formattedType}</div>
+      <span style="font-weight:600;color:#555;display:block;margin-bottom:5px">What they need:</span>
+      <div style="background:#f9f9f9;padding:12px;border-radius:4px;border-left:3px solid #10b981">${safeMessage}</div>
     </div>
     <div style="text-align:center;margin-top:30px;padding-top:20px;border-top:1px solid #eee;color:#888;font-size:12px">
       <p>This message was sent from the contact form on your website.</p>
@@ -52,7 +56,7 @@ const renderHtmlEmail = (email: string, websiteType: string) => {
 async function sendEmailWithResend(
   to: string,
   email: string,
-  websiteType: string
+  message: string
 ): Promise<void> {
   const resendApiKey = Deno.env.get('RESEND_API_KEY')
   if (!resendApiKey) return
@@ -68,7 +72,7 @@ async function sendEmailWithResend(
       to: [to],
       reply_to: email,
       subject: `New Contact Form Submission - ${email}`,
-      html: renderHtmlEmail(email, websiteType),
+      html: renderHtmlEmail(email, message),
     }),
   })
 
@@ -92,7 +96,11 @@ serve(async (request) => {
     const email = String(payload?.email || '')
       .trim()
       .toLowerCase()
-    const websiteType = String(payload?.website_type || '').trim()
+    const message = String(payload?.message || '').trim()
+    const websiteTypeRaw = String(payload?.website_type || 'help').trim()
+    const websiteType = validWebsiteTypes.has(websiteTypeRaw)
+      ? websiteTypeRaw
+      : 'help'
 
     if (!email) {
       return json(422, {
@@ -111,11 +119,15 @@ serve(async (request) => {
       })
     }
 
-    if (!validWebsiteTypes.has(websiteType)) {
+    if (!message || message.length > 4000) {
       return json(422, {
         success: false,
         error: 'Validation error.',
-        errors: { website_type: ['Please select a valid website type.'] },
+        errors: {
+          message: [
+            message ? 'Message is too long.' : 'Please tell us what you need.',
+          ],
+        },
       })
     }
 
@@ -138,7 +150,7 @@ serve(async (request) => {
     const recipientEmail =
       Deno.env.get('CONTACT_FORM_EMAIL') || 'business@nucleify.io'
 
-    await sendEmailWithResend(recipientEmail, email, websiteType)
+    await sendEmailWithResend(recipientEmail, email, message)
 
     return json(200, {
       success: true,

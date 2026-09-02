@@ -1,0 +1,8 @@
+@import 'mixins';
+
+.p-colorpicker[nui-type] {
+  @include entity-colorpicker-styles(
+    var(--inp-item) !important,
+    var(--inp-focus) !important
+  );
+}

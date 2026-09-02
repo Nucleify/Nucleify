@@ -10,9 +10,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
@@ -32,9 +29,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
@@ -51,15 +45,12 @@ jobs:
       - name: Biome
         run: pnpm run check
 
-  nuxt-typeslint:
+  typeslint:
     runs-on: ubuntu-latest
     needs: setup
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
@@ -74,32 +65,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Nuxt Typeslint
-        run: pnpm run nuxt:typeslint
-
-  next-typeslint:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'pnpm'
-
-      - name: Install Node.js Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Next Typeslint
-        run: pnpm run next:typeslint
+        run: pnpm run typeslint
 
   stylelint:
     runs-on: ubuntu-latest
@@ -107,9 +73,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
@@ -126,15 +89,12 @@ jobs:
       - name: Stylelint
         run: pnpm run slint
 
-  nuxt-build:
+  build:
     runs-on: ubuntu-latest
     needs: setup
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
@@ -149,32 +109,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build Nuxt Assets
-        run: pnpm run nuxt:build
-
-  next-build:
-    runs-on: ubuntu-latest
-    needs: setup
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
-
-      - name: Set up pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'pnpm'
-
-      - name: Install Node.js Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build Next Assets
-        run: pnpm run next:build
+        run: pnpm run build
 
   test:
     runs-on: ubuntu-latest
@@ -182,9 +117,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
@@ -200,3 +132,33 @@ jobs:
 
       - name: Execute tests via Vitest
         run: pnpm run tests
+
+  compiler:
+    runs-on: ubuntu-latest
+    needs: setup
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install Node.js Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Compiler tests
+        run: pnpm compiler:test
+
+      - name: Compiler check (emit fingerprints)
+        run: pnpm compiler:check
+
+      - name: Compiler build is idempotent on tracked tree
+        run: |
+          pnpm compiler:build
+          git diff --exit-code -- . ':(exclude)vue' ':(exclude)react' ':(exclude)nuxt' ':(exclude)next'

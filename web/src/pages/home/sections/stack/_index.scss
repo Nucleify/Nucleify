@@ -1,0 +1,358 @@
+.nuc-home-stack {
+  --stack-color: var(--home-accent);
+
+  &-head .nuc-home-support {
+    max-width: 40rem;
+  }
+
+  /* —— Mobile: stacked, compact —— */
+  &-stage {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    margin-top: 1.15rem;
+    align-items: stretch;
+  }
+
+  &-spotlight {
+    position: relative;
+    display: grid;
+    align-content: center;
+    gap: 0.85rem;
+    min-height: 0;
+    padding: 1.1rem 1.05rem;
+    border: 1px solid color-mix(in srgb, var(--stack-color) 28%, transparent);
+    border-radius: 1.05rem;
+    background:
+      linear-gradient(
+        155deg,
+        color-mix(in srgb, var(--stack-color) 14%, transparent),
+        transparent 55%
+      ),
+      rgb(4 7 6 / 72%);
+    overflow: hidden;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 4%),
+      0 0 0 1px color-mix(in srgb, var(--stack-color) 8%, transparent),
+      0 20px 48px rgb(0 0 0 / 24%);
+  }
+
+  &-glow {
+    position: absolute;
+    width: 14rem;
+    height: 14rem;
+    top: -3rem;
+    right: -3rem;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--stack-color) 35%, transparent),
+      transparent 70%
+    );
+    filter: blur(6px);
+    pointer-events: none;
+  }
+
+  &-badge {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 0.9rem;
+    border: 1px solid color-mix(in srgb, var(--stack-color) 42%, transparent);
+    background: rgb(0 0 0 / 40%);
+    color: var(--stack-color);
+    box-shadow: 0 0 28px color-mix(in srgb, var(--stack-color) 28%, transparent);
+
+    nui-icon,
+    iconify-icon {
+      font-size: 1.55rem;
+      width: 1.55rem;
+      height: 1.55rem;
+    }
+  }
+
+  &-spotlight-copy {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  &-kicker {
+    margin: 0;
+    color: color-mix(in srgb, var(--stack-color) 85%, #fff);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &-name {
+    margin: 0;
+    font-size: clamp(1.55rem, 6vw, 2rem);
+    font-weight: 650;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  &-detail {
+    margin: 0.15rem 0 0;
+    color: var(--home-muted);
+    font-size: 0.92rem;
+  }
+
+  &-command {
+    margin: 0.55rem 0 0;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid rgb(255 255 255 / 8%);
+    border-radius: 0.65rem;
+    background: rgb(0 0 0 / 42%);
+    color: var(--home-fg);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.8rem;
+
+    span {
+      color: var(--stack-color);
+      margin-right: 0.45rem;
+    }
+  }
+
+  &-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  &-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.1rem 0.55rem;
+    align-items: center;
+    min-height: 3.6rem;
+    margin: 0;
+    padding: 0.65rem 0.7rem;
+    border: 1px solid rgb(255 255 255 / 8%);
+    border-radius: 0.75rem;
+    background: rgb(4 7 6 / 55%);
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transform: none;
+    transition:
+      border-color 0.2s ease,
+      background-color 0.2s ease,
+      box-shadow 0.2s ease;
+
+    &:nth-child(7) {
+      grid-column: 1 / -1;
+    }
+
+    &:hover {
+      border-color: color-mix(in srgb, var(--item-color) 35%, transparent);
+    }
+
+    &.is-active {
+      border-color: color-mix(in srgb, var(--item-color) 55%, transparent);
+      background:
+        linear-gradient(
+          135deg,
+          color-mix(in srgb, var(--item-color) 14%, transparent),
+          transparent 60%
+        ),
+        rgb(0 0 0 / 45%);
+      box-shadow: 0 0 24px color-mix(in srgb, var(--item-color) 16%, transparent);
+    }
+  }
+
+  &-item-icon {
+    grid-row: 1 / span 2;
+    display: grid;
+    place-items: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 0.65rem;
+    border: 1px solid color-mix(in srgb, var(--item-color) 30%, transparent);
+    background: rgb(0 0 0 / 35%);
+    color: var(--item-color);
+
+    nui-icon,
+    iconify-icon {
+      font-size: 1.05rem;
+      width: 1.05rem;
+      height: 1.05rem;
+    }
+  }
+
+  &-label {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.82rem;
+    font-weight: 550;
+    letter-spacing: -0.02em;
+  }
+
+  &-item-detail {
+    color: var(--home-dim);
+    font-size: 0.68rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* —— Desktop: spotlight left + shell grid right (as designed) —— */
+  @media (min-width: $md) {
+    &-stage {
+      grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.2fr);
+      gap: 1rem;
+      margin-top: clamp(1.75rem, 4vw, 2.5rem);
+    }
+
+    &-spotlight {
+      min-height: 18rem;
+      gap: 1.25rem;
+      padding: 1.5rem 1.4rem;
+      border-radius: 1.2rem;
+    }
+
+    &-badge {
+      width: 4.25rem;
+      height: 4.25rem;
+      border-radius: 1.15rem;
+
+      nui-icon,
+      iconify-icon {
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    &-name {
+      font-size: clamp(2rem, 4vw, 2.75rem);
+    }
+
+    &-detail {
+      font-size: 1rem;
+    }
+
+    &-command {
+      margin-top: 0.85rem;
+      padding: 0.7rem 0.85rem;
+      border-radius: 0.7rem;
+      font-size: 0.88rem;
+    }
+
+    &-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.95rem 1.15rem;
+      align-content: start;
+      padding: 0.85rem 0.55rem 1.1rem;
+    }
+
+    &-item {
+      --sx: 0px;
+      --sy: 0px;
+      --sr: 0deg;
+
+      position: relative;
+      z-index: 1;
+      min-height: 4.4rem;
+      padding: 0.85rem 0.9rem;
+      border-radius: 0.9rem;
+      column-gap: 0.7rem;
+      transform: translate3d(var(--sx), var(--sy), 0) rotate(var(--sr));
+      transition:
+        border-color 0.2s ease,
+        background-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        z-index 0s;
+
+      /* Loose cascade: left column settles down-left, right lifts up-right. */
+      &:nth-child(1) {
+        --sx: -8px;
+        --sy: 2px;
+        --sr: -3.5deg;
+
+        z-index: 3;
+      }
+
+      &:nth-child(2) {
+        --sx: 12px;
+        --sy: -18px;
+        --sr: 3deg;
+
+        z-index: 4;
+      }
+
+      &:nth-child(3) {
+        --sx: 6px;
+        --sy: 6px;
+        --sr: 2deg;
+
+        z-index: 2;
+      }
+
+      &:nth-child(4) {
+        --sx: -6px;
+        --sy: -10px;
+        --sr: -2.5deg;
+
+        z-index: 3;
+      }
+
+      &:nth-child(5) {
+        --sx: -14px;
+        --sy: 10px;
+        --sr: -2deg;
+
+        z-index: 1;
+      }
+
+      &:nth-child(6) {
+        --sx: 10px;
+        --sy: 0px;
+        --sr: 3.5deg;
+
+        z-index: 2;
+      }
+
+      &:nth-child(7) {
+        --sx: 0px;
+        --sy: 6px;
+        --sr: -1.5deg;
+
+        z-index: 2;
+        grid-column: 1 / -1;
+        justify-self: center;
+        width: min(100%, 13.5rem);
+        margin-top: 0.15rem;
+      }
+
+      &:hover,
+      &.is-active {
+        z-index: 5;
+      }
+
+      &:hover {
+        transform: translate3d(var(--sx), calc(var(--sy) - 3px), 0)
+          rotate(var(--sr));
+      }
+    }
+
+    &-label {
+      font-size: 0.92rem;
+    }
+
+    &-item-detail {
+      font-size: 0.78rem;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+    }
+  }
+}

@@ -1,0 +1,196 @@
+.nuc-home-pillars {
+  &-head {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 4vw, 3rem);
+    align-items: start;
+  }
+
+  &-pitch .nuc-home-support {
+    max-width: 38rem;
+  }
+
+  &-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-top: 1.4rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--home-accent);
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+    transition: color 0.2s ease, gap 0.2s ease;
+
+    &:hover {
+      color: var(--home-fg);
+      gap: 0.65rem;
+    }
+  }
+
+  &-flow {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0;
+    padding: 1.15rem 1.2rem;
+    list-style: none;
+    border: 1px solid rgb(255 255 255 / 9%);
+    border-radius: 1.1rem;
+    background:
+      linear-gradient(160deg, rgba(var(--home-accent-rgb), 0.08), transparent 55%),
+      rgb(0 0 0 / 28%);
+  }
+
+  &-flow-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    align-items: start;
+  }
+
+  &-flow-index {
+    color: var(--home-accent);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+  }
+
+  &-flow-copy {
+    display: grid;
+    gap: 0.15rem;
+
+    strong {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    span {
+      color: var(--home-dim);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+  }
+
+  &-flow-join {
+    position: absolute;
+    left: 0.55rem;
+    top: 1.45rem;
+    bottom: -0.85rem;
+    width: 1px;
+    background: linear-gradient(
+      180deg,
+      rgba(var(--home-accent-rgb), 0.45),
+      rgb(255 255 255 / 8%)
+    );
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin-top: clamp(1.75rem, 4vw, 2.5rem);
+  }
+
+  &-item {
+    display: grid;
+    align-content: start;
+    gap: 0.7rem;
+    min-height: 100%;
+    padding: 1.25rem 1.2rem 1.3rem;
+    border: 1px solid rgb(255 255 255 / 8%);
+    border-radius: 1.05rem;
+    background:
+      linear-gradient(180deg, rgb(255 255 255 / 3%), transparent 40%),
+      rgb(4 7 6 / 55%);
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+
+    &:hover {
+      border-color: rgba(var(--home-accent-rgb), 0.28);
+      box-shadow: 0 16px 36px rgb(0 0 0 / 22%);
+    }
+  }
+
+  &-item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  &-icon {
+    display: inline-grid;
+    place-items: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(var(--home-accent-rgb), 0.24);
+    background: rgba(var(--home-accent-rgb), 0.1);
+    color: var(--home-accent);
+  }
+
+  &-index {
+    color: var(--home-dim);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+
+  &-outcome {
+    margin: 0;
+    color: var(--home-accent);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  &-title {
+    margin: 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+
+  &-desc {
+    margin: 0;
+    color: var(--home-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  &-proof {
+    margin: 0.35rem 0 0;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgb(255 255 255 / 7%);
+    color: var(--home-dim);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+  }
+
+  @media (min-width: $md) {
+    &-head {
+      grid-template-columns: minmax(0, 1.15fr) minmax(16rem, 0.9fr);
+      align-items: end;
+    }
+
+    &-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    &-item:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
