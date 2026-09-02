@@ -50,6 +50,8 @@
 /react/
 /nuxt/
 /next/
+/web-next/
+/admin-next/
 
 # AI workflow
 .ai/specs/*

@@ -5,3 +5,4 @@ export {
   type ThemeMode,
   type SetupNuiOptions,
 } from './theme'
+export { ensureNuiRegistered } from './register'
