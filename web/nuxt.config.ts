@@ -15,6 +15,7 @@ import { performanceConfig } from './.config/nuxt/performance'
 import { getRouteRules } from './.config/nuxt/route-rules'
 import { runtimeConfig } from './.config/nuxt/runtime'
 import { schemaOrgConfig } from './.config/nuxt/schema-org'
+import { siteConfig } from './.config/nuxt/site'
 import { structureConfig } from './.config/nuxt/structure'
 import { viteConfig } from './.config/nuxt/vite'
 
@@ -24,6 +25,7 @@ export default defineNuxtConfig({
   ...devConfig,
   modules,
   runtimeConfig,
+  site: siteConfig,
   app: appConfig,
   routeRules: getRouteRules(LOCALES),
   schemaOrg: schemaOrgConfig,

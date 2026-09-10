@@ -9,9 +9,32 @@
 </template>
 
 <script setup lang="ts">
+import { joinURL } from 'ufo'
+import { computed } from 'vue'
+
+const route = useRoute()
+const config = useRuntimeConfig()
+
+/** Never strip path slashes — that caused GSC smash URLs like /enhometerms-of-service. */
+const canonicalHref = computed(() => {
+  const base = String(config.public.appUrl || 'https://nucleify.io').replace(
+    /\/$/,
+    ''
+  )
+  const path = route.path.startsWith('/') ? route.path : `/${route.path}`
+  return joinURL(base, path)
+})
+
 useHead({
   htmlAttrs: { class: 'nuc-nuxt p-dark' },
   bodyAttrs: { class: 'nuc-nuxt p-dark' },
+  link: [
+    {
+      key: 'canonical',
+      rel: 'canonical',
+      href: canonicalHref,
+    },
+  ],
   // Critical: before CSS chunks — dark shell so mobile never flashes white.
   style: [
     {
