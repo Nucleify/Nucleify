@@ -12,6 +12,11 @@ export function getRouteRules(locales: readonly { code: string }[]) {
 		"/": { prerender: false, redirect: { to: "/en/home", statusCode: 302 } },
 		"/en": { redirect: { to: "/en/home", statusCode: 302 } },
 		"/en/": { redirect: { to: "/en/home", statusCode: 302 } },
+		"/_nuxt/**": {
+			headers: {
+				"cache-control": "public, max-age=31536000, immutable",
+			},
+		},
 		...(isLocal
 			? {}
 			: {

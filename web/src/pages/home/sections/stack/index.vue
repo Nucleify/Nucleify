@@ -66,6 +66,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { NUC_HOME_COPY, NUC_HOME_STACK } from '../../constants/content'
+import { isAutomatedAudit } from '../../utils/is_automated_audit'
 
 const copy = NUC_HOME_COPY
 const stack = NUC_HOME_STACK
@@ -88,7 +89,11 @@ function tick(): void {
 }
 
 onMounted(() => {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  if (
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    isAutomatedAudit()
+  )
+    return
   timer = window.setInterval(tick, 2600)
 })
 

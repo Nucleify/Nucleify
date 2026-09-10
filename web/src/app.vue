@@ -12,11 +12,11 @@
 useHead({
   htmlAttrs: { class: 'nuc-nuxt p-dark' },
   bodyAttrs: { class: 'nuc-nuxt p-dark' },
-  // Critical: before CSS chunks — kills default body margin FOUC (white frame).
+  // Critical: before CSS chunks — dark shell so mobile never flashes white.
   style: [
     {
       key: 'nuc-critical-shell',
-      children: 'html,body{margin:0;}',
+      textContent: 'html,body{margin:0;background:#070908;color:#e7ebe8}',
     },
   ],
 })

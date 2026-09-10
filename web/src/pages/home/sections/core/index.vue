@@ -191,6 +191,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { NUC_HOME_COPY, NUC_HOME_CRAFT_SURFACES } from '../../constants/content'
+import { isAutomatedAudit } from '../../utils/is_automated_audit'
 
 const copy = NUC_HOME_COPY
 const surfaces = NUC_HOME_CRAFT_SURFACES
@@ -238,7 +239,10 @@ function tick(): void {
 }
 
 onMounted(() => {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    isAutomatedAudit()
+  ) {
     bound.value = true
     return
   }

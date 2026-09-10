@@ -10,6 +10,8 @@ export type SetupNuiOptions = {
   mode?: ThemeMode
   /** When true (default), toggle `p-dark` on html/body from `mode`. */
   syncDarkClass?: boolean
+  /** When false, skip portable Google Fonts (Nuxt shells use @nuxtjs/google-fonts). */
+  loadFonts?: boolean
 }
 
 const SHELL_CLASSES = new Set(['nuc-nuxt', 'nuc-next'])
@@ -41,6 +43,10 @@ function applySetup(opts: SetupNuiOptions): void {
   const mode = opts.mode ?? 'dark'
   const syncDark = opts.syncDarkClass !== false
   const shell = opts.palette === 'next' ? 'nuc-next' : 'nuc-nuxt'
+
+  if (opts.loadFonts !== false) {
+    void import('./fonts.css')
+  }
 
   applyShellClasses(document.documentElement, shell, syncDark, mode === 'dark')
   applyShellClasses(document.body, shell, syncDark, mode === 'dark')

@@ -7,6 +7,6 @@ export default defineNuxtPlugin({
   name: 'nucleify-ui',
   enforce: 'pre',
   setup() {
-    setupNui({ palette: 'nuxt', mode: resolveThemeMode() })
+    setupNui({ palette: 'nuxt', mode: resolveThemeMode(), loadFonts: false })
   },
 })

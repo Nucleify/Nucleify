@@ -18,6 +18,11 @@
   --home-iris-x: 18%;
   --home-iris-y: 40%;
 
+  @media (max-width: 959px) {
+    --home-iris-x: 12%;
+    --home-iris-y: 16%;
+  }
+
   nui-button {
     --nui-primary-white-text-color: var(--home-on-accent);
   }
@@ -40,6 +45,12 @@
       translate3d(calc(var(--home-mx) * 18px), calc(var(--home-my) * 14px), 0);
     transform-origin: 50% 35%;
     will-change: transform;
+    clip-path: circle(var(--home-iris) at var(--home-iris-x) var(--home-iris-y));
+  }
+
+  &-ready &-shear,
+  &-booting#{&}-ready &-shear {
+    clip-path: none;
   }
 
   &-aura {
@@ -215,8 +226,21 @@
 
   &:not(.nuc-home-ready) {
     .nuc-home-nav,
-    .nuc-home-rail {
+    .nuc-home-rail,
+    .nuc-home-hero-eyebrow,
+    .nuc-home-hero-mark,
+    .nuc-home-hero-cta,
+    .nuc-home-hero-proof,
+    .nuc-home-hero-panel {
       opacity: 0;
+    }
+
+    .nuc-home-hero-headline {
+      clip-path: inset(0 100% 0 0);
+    }
+
+    .nuc-home-hero-support {
+      clip-path: inset(100% 0 0 0);
     }
   }
 

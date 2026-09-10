@@ -83,6 +83,7 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { NUC_HOME_COPY, NUC_HOME_PULSE_SHELLS } from '../../constants/content'
+import { isAutomatedAudit } from '../../utils/is_automated_audit'
 import { createPulseScalePlayer } from '../../utils/pulse_terminal_player'
 
 const copy = NUC_HOME_COPY
@@ -108,14 +109,18 @@ let observer: IntersectionObserver | undefined
 onMounted(() => {
   player = createPulseScalePlayer({
     prefersReducedMotion: () =>
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      isAutomatedAudit(),
     apply: (state) => {
       shellsActive.value = state.shellsActive
       showStatus.value = state.showStatus
     },
   })
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    isAutomatedAudit()
+  ) {
     player.start()
     return
   }

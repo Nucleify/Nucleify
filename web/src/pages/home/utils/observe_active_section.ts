@@ -1,14 +1,15 @@
+import { scrollSectionOffset } from './scroll_section_offset'
+
 export function scrollHomeSection(root: HTMLElement, sectionId: string): void {
   const scroller = root.querySelector<HTMLElement>('.nuc-home-scroller')
   const target = root.querySelector<HTMLElement>(`#${sectionId}`)
   if (!target) return
 
   if (scroller) {
-    const top =
-      target.getBoundingClientRect().top -
-      scroller.getBoundingClientRect().top +
-      scroller.scrollTop
-    scroller.scrollTo({ top, behavior: 'smooth' })
+    scroller.scrollTo({
+      top: scrollSectionOffset(scroller, target),
+      behavior: 'smooth',
+    })
     return
   }
 

@@ -12,7 +12,7 @@ export const viteConfig = {
 	build: {
 		chunkSizeWarningLimit: 1600,
 		minify: "terser",
-		cssCodeSplit: true,
+		cssCodeSplit: false,
 		terserOptions: {
 			compress: {
 				drop_console: true,
@@ -26,6 +26,7 @@ export const viteConfig = {
 					vue: ["vue", "vue-router", "vue-i18n"],
 					"nucleify-ui": ["lit"],
 					iconify: ["@iconify/vue", "@iconify/utils", "@iconify/types"],
+					animejs: ["animejs"],
 				},
 			},
 		},

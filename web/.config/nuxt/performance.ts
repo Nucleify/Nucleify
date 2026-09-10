@@ -2,14 +2,10 @@
 export const performanceConfig = {
 	critters: {
 		config: {
-			preload: "media",
+			preload: "swap",
 			inlineFonts: false,
-			preloadFonts: false,
-			pruneSource: false,
-			mergeStylesheets: true,
-			reduceInlineStyles: true,
-			keyframes: "all",
-			compress: false,
+			preloadFonts: true,
+			inlineThreshold: 20480,
 		},
 	},
 

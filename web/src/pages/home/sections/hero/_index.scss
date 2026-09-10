@@ -48,7 +48,7 @@
     align-items: center;
     gap: 1rem;
     margin-bottom: 0.55rem;
-    transform-origin: left center;
+    transform-origin: left 0.55em;
   }
 
   &-brand {
@@ -402,6 +402,7 @@
 
     &-mark {
       margin-bottom: clamp(1.1rem, 3vw, 1.75rem);
+      transform-origin: left center;
     }
 
     &-brand {

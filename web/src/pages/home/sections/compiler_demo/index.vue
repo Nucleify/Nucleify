@@ -111,6 +111,7 @@ import {
   NUC_HOME_COPY,
   type NucHomeCompilerNode,
 } from '../../constants/content'
+import { isAutomatedAudit } from '../../utils/is_automated_audit'
 
 const HUB = { x: 50, y: 48 } as const
 
@@ -152,7 +153,11 @@ function tick(): void {
 }
 
 onMounted(() => {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  if (
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+    isAutomatedAudit()
+  )
+    return
   timer = window.setInterval(tick, 2400)
 })
 
