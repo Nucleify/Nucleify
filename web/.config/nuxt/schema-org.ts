@@ -6,7 +6,7 @@ import {
 } from "nuxt-schema-org/schema";
 
 const baseDescription =
-	"Create scalable web apps faster with Nucleify - a modular, core-driven framework with unique modules for Laravel & Nuxt developers.";
+	"Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, and Supabase from one install.";
 
 const person = definePerson({
 	name: "Szymon Radomski",
@@ -75,7 +75,7 @@ export const schemaOrgConfig = {
 			priceCurrency: "USD",
 		},
 
-		programmingLanguage: ["TypeScript", "PHP"],
-		runtimePlatform: ["Node.js", "PHP"],
+		programmingLanguage: ["TypeScript", "Vue", "React"],
+		runtimePlatform: ["Node.js", "Nuxt", "Next.js"],
 	}),
 };

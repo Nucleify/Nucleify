@@ -1,12 +1,12 @@
 # Moduły
 
-Nucleify dostarcza sześć modułów funkcjonalnych w `shared_modules/`. Każdy moduł to samodzielny pakiet domenowy z narzędziami frontendowymi, opcjonalnymi handlerami API Supabase, migracjami, typami i testami — konsumowany przez `web/`, `admin/` i generowane powłoki Next.
+Nucleify dostarcza moduły funkcjonalne w `shared_modules/`. Każdy moduł to samodzielny pakiet domenowy z narzędziami frontendowymi, opcjonalnymi handlerami API Supabase, migracjami, typami i testami — konsumowany przez `web/`, `admin/` i generowane powłoki Next.
 
 Nie ma katalogu `modules/` w root. Aplikacje importują przez ścieżki względne lub alias Nuxt `modules` → `shared_modules/`.
 
 ---
 
-## Sześć modułów
+## Moduły
 
 | Moduł | Domena | Kluczowe ścieżki |
 |-------|--------|------------------|

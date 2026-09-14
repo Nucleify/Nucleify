@@ -11,131 +11,81 @@
         {{ copy.compilerTitle }}
       </h2>
       <p class="nuc-home-support">{{ copy.compilerSupport }}</p>
+      <a :href="docsHref" class="nuc-home-next">
+        <span>{{ copy.compilerCta }}</span>
+        <nui-icon icon="mdi:arrow-right" />
+      </a>
     </div>
 
     <div
-      class="nuc-home-compiler-stage"
+      class="nuc-home-compiler-board"
       @mouseenter="hovering = true"
       @mouseleave="hovering = false"
     >
-      <svg
-        class="nuc-home-compiler-edges"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <defs>
-          <linearGradient
-            v-for="node in nodes"
-            :id="`emit-grad-${node.id}`"
-            :key="`g-${node.id}`"
-            gradientUnits="userSpaceOnUse"
-            :x1="HUB.x"
-            :y1="HUB.y"
-            :x2="node.x"
-            :y2="node.y"
+      <div class="nuc-home-compiler-window">
+        <ol class="nuc-home-compiler-code" :key="active.id">
+          <li
+            v-for="(line, index) in active.snippet"
+            :key="`${active.id}-${index}`"
           >
-            <stop
-              offset="0%"
-              stop-color="var(--home-accent)"
-              stop-opacity="0.55"
-            />
-            <stop offset="100%" :stop-color="node.color" />
-          </linearGradient>
-        </defs>
+            <span>{{ String(index + 1).padStart(2, '0') }}</span>
+            <code :class="{ 'is-tag': isTag(line) }">{{ line || ' ' }}</code>
+          </li>
+        </ol>
 
-        <path
-          v-for="node in nodes"
-          :key="`base-${node.id}`"
-          class="nuc-home-compiler-edge-base"
-          :d="edgePath(node)"
-        />
-        <path
-          v-for="node in nodes"
-          :key="`flow-${node.id}`"
-          class="nuc-home-compiler-edge-flow"
-          :class="{ 'is-active': node.id === active.id }"
-          :d="edgePath(node)"
-          :stroke="`url(#emit-grad-${node.id})`"
-        />
-      </svg>
-
-      <div class="nuc-home-compiler-hub" aria-hidden="true">
-        <span class="nuc-home-compiler-hub-glow" />
-        <span class="nuc-home-compiler-hub-cube">
-          <span class="nuc-home-compiler-hub-face">{{ copy.compilerHub }}</span>
-        </span>
-        <span class="nuc-home-compiler-hub-label"
-          >{{ copy.compilerHubLabel }}</span
-        >
-      </div>
-
-      <button
-        v-for="node in nodes"
-        :key="node.id"
-        type="button"
-        class="nuc-home-compiler-node"
-        :class="{ 'is-active': node.id === active.id }"
-        :style="nodeStyle(node)"
-        :aria-pressed="node.id === active.id"
-        :aria-label="`${copy.compilerEmitLabel} ${node.label}`"
-        @mouseenter="select(node.id, false)"
-        @focus="select(node.id, false)"
-        @click="select(node.id, true)"
-      >
-        <span class="nuc-home-compiler-cube" aria-hidden="true">
-          <span class="nuc-home-compiler-cube-face">
+        <div class="nuc-home-compiler-shells" role="tablist">
+          <button
+            v-for="node in NUC_HOME_COMPILER_NODES"
+            :key="node.id"
+            type="button"
+            role="tab"
+            class="nuc-home-compiler-shell"
+            :class="{ 'is-active': node.id === active.id }"
+            :style="{ '--node-color': node.color }"
+            :aria-selected="node.id === active.id"
+            @mouseenter="select(node.id, false)"
+            @focus="select(node.id, false)"
+            @click="select(node.id, true)"
+          >
             <nui-icon :icon="node.icon" />
-          </span>
-        </span>
-        <span class="nuc-home-compiler-node-meta">
-          <span class="nuc-home-compiler-node-name">{{ node.label }}</span>
-          <span class="nuc-home-compiler-node-cmd">${{ node.command }}</span>
-        </span>
-      </button>
-
-      <p class="nuc-home-compiler-status" aria-live="polite">
-        <span class="nuc-home-compiler-status-dot" />
-        {{ copy.compilerEmitLabel }}
-        <strong>{{ active.label }}</strong>
-      </p>
+            <span>{{ node.label }}</span>
+          </button>
+        </div>
+      </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'nuxt/app'
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import {
+  homeDocsHref,
   NUC_HOME_COMPILER_NODES,
   NUC_HOME_COPY,
-  type NucHomeCompilerNode,
 } from '../../constants/content'
 import { isAutomatedAudit } from '../../utils/is_automated_audit'
 
-const HUB = { x: 50, y: 48 } as const
-
 const copy = NUC_HOME_COPY
-const nodes = NUC_HOME_COMPILER_NODES
-const activeId = ref(nodes[0]!.id)
+const route = useRoute()
+const lang = computed(() => (route.params.lang as string) || 'en')
+const docsHref = computed(() => homeDocsHref(lang.value, 'compiler'))
+const activeId = ref(NUC_HOME_COMPILER_NODES[0]!.id)
 const paused = ref(false)
 const hovering = ref(false)
 
 const active = computed(
-  () => nodes.find((n) => n.id === activeId.value) ?? nodes[0]!
+  () =>
+    NUC_HOME_COMPILER_NODES.find((n) => n.id === activeId.value) ??
+    NUC_HOME_COMPILER_NODES[0]!
 )
 
-function nodeStyle(node: NucHomeCompilerNode): Record<string, string> {
-  return {
-    left: `${node.x}%`,
-    top: `${node.y}%`,
-    '--node-color': node.color,
-  }
-}
-
-/** Straight spoke from hub center → shell cube center. */
-function edgePath(node: NucHomeCompilerNode): string {
-  return `M ${HUB.x} ${HUB.y} L ${node.x} ${node.y}`
+function isTag(line: string): boolean {
+  return (
+    /<\/?(script|template|nui-button|NuiButton)\b/.test(line) ||
+    line.trim() === '---'
+  )
 }
 
 function select(id: string, lock = false): void {
@@ -147,8 +97,9 @@ let timer: number | undefined
 
 function tick(): void {
   if (paused.value || hovering.value) return
-  const idx = nodes.findIndex((n) => n.id === activeId.value)
-  const next = nodes[(idx + 1) % nodes.length]
+  const list = NUC_HOME_COMPILER_NODES
+  const idx = list.findIndex((n) => n.id === activeId.value)
+  const next = list[(idx + 1) % list.length]
   if (next) activeId.value = next.id
 }
 

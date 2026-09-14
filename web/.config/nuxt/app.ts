@@ -1,8 +1,8 @@
 export const appConfig = {
 	head: {
 		htmlAttrs: { class: "nuc-nuxt p-dark" },
-		bodyAttrs: { class: "nuc-nuxt p-dark" },
-		title: "Nucleify - Modular Web Framework for Laravel & Nuxt",
+		bodyAttrs: { class: "nuc-nuxt p-dark nui-rainbow" },
+		title: "Nucleify — Modular monorepo for Vue, React, Nuxt & Next",
 		titleTemplate: "%s",
 		meta: [
 			{ charset: "utf-8" },
@@ -10,7 +10,7 @@ export const appConfig = {
 			{
 				name: "description",
 				content:
-					"Create scalable web apps faster with Nucleify - a modular, core-driven framework with unique modules for Laravel & Nuxt developers.",
+					"Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, and Supabase from one install — without rewriting the product.",
 			},
 		],
 		link: [

@@ -24,6 +24,45 @@
     max-width: 34rem;
   }
 
+  &-install {
+    display: grid;
+    gap: 0.28rem;
+    margin: 1.15rem 0 0;
+    padding: 0.65rem 0.75rem;
+    list-style: none;
+    border: 1px solid var(--home-card-border);
+    border-radius: 1.1rem;
+    background: var(--home-card-bg);
+    box-shadow: var(--home-card-shadow);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    line-height: 1.45;
+    color: var(--home-muted);
+
+    span {
+      color: var(--home-accent);
+      margin-right: 0.4rem;
+    }
+  }
+
+  &-cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+
+    nui-button {
+      width: 100%;
+    }
+
+    @media (min-width: $md) {
+      nui-button {
+        width: auto;
+      }
+    }
+  }
+
   &-footer {
     display: flex;
     flex-direction: column;
@@ -34,7 +73,23 @@
     padding-top: 2rem;
     color: var(--home-dim);
     font-size: 0.8rem;
-    border-top: 1px solid var(--home-line);
+    border-top: 1px solid var(--home-holo-line-soft);
+  }
+
+  &-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+
+    a {
+      color: var(--home-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--home-fg);
+      }
+    }
   }
 
   &-dialog-host,
@@ -43,12 +98,11 @@
     --home-muted: #8b968f;
     --home-dim: #5c665f;
     --home-line: rgb(255 255 255 / 8%);
-    --home-accent: var(--nui-primary-color);
-    --home-accent-rgb: var(--nui-primary-color-rgb);
-    --nui-bg-dark-color: #070908;
+    --home-accent: hsl(var(--rainbow-hue) 55% 52%);
+    --nui-bg-dark-color: #040706;
     --nui-card-background: #0b100d;
     --nui-content-background: #101612;
-    --nui-card-border: rgb(255 255 255 / 9%);
+    --nui-card-border: color-mix(in srgb, var(--home-accent) 28%, rgb(255 255 255 / 12%));
     --nui-primary-text-color: var(--home-fg);
     --nui-secondary-text-color: var(--home-muted);
     --nui-white-text-color: var(--home-fg);

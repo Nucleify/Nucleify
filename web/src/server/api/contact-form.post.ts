@@ -4,6 +4,12 @@ import { createError, defineEventHandler, readBody } from 'h3'
 import { useRuntimeConfig } from 'nitropack/runtime'
 
 const WEBSITE_TYPES = new Set(['landing', 'business', 'blog', 'help'])
+const WEBSITE_TYPE_LABELS: Record<string, string> = {
+  landing: 'Open source / eval',
+  business: 'Contribute',
+  blog: 'Consulting',
+  help: 'Other',
+}
 const MAX_MESSAGE = 4000
 
 function escapeHtml(s: string): string {
@@ -21,6 +27,7 @@ function renderHtmlEmail(
 ): string {
   const safeEmail = escapeHtml(email)
   const formattedType =
+    WEBSITE_TYPE_LABELS[websiteType] ||
     websiteType.charAt(0).toUpperCase() + websiteType.slice(1)
   const safeType = escapeHtml(formattedType)
   const safeMessage = escapeHtml(message).replace(/\n/g, '<br>')

@@ -11,6 +11,10 @@
         {{ copy.stackTitle }}
       </h2>
       <p class="nuc-home-support">{{ copy.stackSupport }}</p>
+      <button type="button" class="nuc-home-next" @click="onCta">
+        <span>{{ copy.stackCta }}</span>
+        <nui-icon icon="mdi:arrow-down" />
+      </button>
     </div>
 
     <div
@@ -67,6 +71,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { NUC_HOME_COPY, NUC_HOME_STACK } from '../../constants/content'
 import { isAutomatedAudit } from '../../utils/is_automated_audit'
+import { scrollHomeSection } from '../../utils/observe_active_section'
 
 const copy = NUC_HOME_COPY
 const stack = NUC_HOME_STACK
@@ -77,6 +82,12 @@ const hovering = ref(false)
 const active = computed(() => stack[activeIndex.value] ?? stack[0]!)
 
 let timer: number | undefined
+
+function onCta(): void {
+  const root = document.querySelector<HTMLElement>('.nuc-home')
+  if (!root) return
+  scrollHomeSection(root, 'compiler')
+}
 
 function select(index: number, lock = false): void {
   activeIndex.value = index

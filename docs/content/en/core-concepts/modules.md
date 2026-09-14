@@ -1,12 +1,12 @@
 # Modules
 
-Nucleify ships six feature modules in `shared_modules/`. Each module is a self-contained domain package with frontend utilities, optional Supabase API handlers, migrations, types, and tests — consumed by `web/`, `admin/`, and generated Next shells.
+Nucleify ships feature modules in `shared_modules/`. Each module is a self-contained domain package with frontend utilities, optional Supabase API handlers, migrations, types, and tests — consumed by `web/`, `admin/`, and generated Next shells.
 
 There is no root-level `modules/` folder. Apps import via relative paths or the Nuxt alias `modules` → `shared_modules/`.
 
 ---
 
-## The six modules
+## The modules
 
 | Module | Domain | Key paths |
 |--------|--------|-----------|

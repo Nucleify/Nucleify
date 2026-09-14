@@ -1,12 +1,24 @@
 .nuc-home {
-  --home-bg: #070908;
+  --home-bg: #03050c;
   --home-fg: #e7ebe8;
   --home-muted: #8b968f;
   --home-dim: #5c665f;
-  --home-line: rgb(255 255 255 / 8%);
-  --home-accent: var(--nui-primary-color, #10b981);
-  --home-accent-rgb: var(--nui-primary-color-rgb, 16, 185, 129);
-  --home-accent-soft: rgba(var(--home-accent-rgb), 0.16);
+  --home-line: rgb(255 255 255 / 4%);
+  --home-accent: hsl(var(--rainbow-hue) 55% 52%);
+  --home-accent-hover: hsl(var(--rainbow-hue) 58% 46%);
+  --home-accent-soft: hsl(var(--rainbow-hue) 55% 52% / 16%);
+  --home-cyan: hsl(var(--rainbow-hue) 95% 62%);
+  --home-violet: hsl(calc(var(--rainbow-hue) + 96deg) 95% 60%);
+  --home-holo-line: hsl(var(--rainbow-hue) 80% 62% / 55%);
+  --home-holo-line-soft: hsl(var(--rainbow-hue) 70% 58% / 32%);
+  --home-card-border: color-mix(in srgb, var(--home-accent) 38%, var(--home-holo-line));
+  --home-card-bg: rgb(6 10 18 / 78%);
+  --home-card-shadow: 0 0 32px color-mix(in srgb, var(--home-accent) 10%, transparent);
+  --nui-primary-color: var(--home-accent);
+  --nui-primary-hover-color: var(--home-accent-hover);
+  --nui-primary-color-darker: hsl(var(--rainbow-hue) 58% 40%);
+  --nui-primary-highlight-color: hsl(var(--rainbow-hue) 55% 52% / 12%);
+  --nui-primary-focus-color: hsl(var(--rainbow-hue) 55% 52% / 50%);
 
   // Dark marketing surface: filled primary CTAs need dark label on bright accent.
   --home-on-accent: var(--nui-on-primary, #04110c);
@@ -23,7 +35,12 @@
     --home-iris-y: 16%;
   }
 
-  nui-button {
+    nui-button {
+    --nui-primary-color: var(--home-accent);
+    --nui-primary-hover-color: var(--home-accent-hover);
+    --nui-primary-color-darker: hsl(var(--rainbow-hue) 58% 40%);
+    --nui-primary-highlight-color: hsl(var(--rainbow-hue) 55% 52% / 12%);
+    --nui-primary-focus-color: hsl(var(--rainbow-hue) 55% 52% / 50%);
     --nui-primary-white-text-color: var(--home-on-accent);
   }
 
@@ -58,32 +75,73 @@
     inset: 0;
     background:
       radial-gradient(
-        48% 42% at calc(70% + var(--home-mx) * 6%),
-        calc(18% + var(--home-my) * 4%),
-        var(--home-accent-soft),
+        18% 16% at calc(58% + var(--home-mx) * 3%),
+        calc(38% + var(--home-my) * 2%),
+        rgb(255 255 255 / 8%),
         transparent 70%
       ),
       radial-gradient(
-        36% 30% at calc(18% + var(--home-mx) * -4%),
-        calc(72% + var(--home-my) * 3%),
-        rgba(var(--home-accent-rgb), 0.07),
+        42% 38% at calc(68% + var(--home-mx) * 5%),
+        calc(22% + var(--home-my) * 3%),
+        hsl(var(--rainbow-hue) 80% 60% / 22%),
         transparent 72%
+      ),
+      radial-gradient(
+        38% 34% at calc(22% + var(--home-mx) * -4%),
+        calc(74% + var(--home-my) * 3%),
+        hsl(calc(var(--rainbow-hue) + 96deg) 80% 58% / 16%),
+        transparent 74%
       );
+  }
+
+  &-stars {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 8% 18%, rgb(255 255 255 / 70%), transparent),
+      radial-gradient(1px 1px at 22% 42%, rgb(122 240 255 / 55%), transparent),
+      radial-gradient(1.2px 1.2px at 36% 12%, rgb(255 255 255 / 45%), transparent),
+      radial-gradient(1px 1px at 48% 28%, rgb(192 132 252 / 45%), transparent),
+      radial-gradient(1px 1px at 62% 8%, rgb(255 255 255 / 55%), transparent),
+      radial-gradient(1px 1px at 74% 36%, rgb(122 240 255 / 40%), transparent),
+      radial-gradient(1.4px 1.4px at 88% 16%, rgb(255 255 255 / 50%), transparent),
+      radial-gradient(1px 1px at 12% 68%, rgb(255 255 255 / 40%), transparent),
+      radial-gradient(1px 1px at 28% 82%, rgb(122 240 255 / 35%), transparent),
+      radial-gradient(1px 1px at 44% 74%, rgb(255 255 255 / 50%), transparent),
+      radial-gradient(1px 1px at 58% 90%, rgb(192 132 252 / 40%), transparent),
+      radial-gradient(1.2px 1.2px at 71% 64%, rgb(255 255 255 / 45%), transparent),
+      radial-gradient(1px 1px at 84% 78%, rgb(122 240 255 / 40%), transparent),
+      radial-gradient(1px 1px at 93% 52%, rgb(255 255 255 / 35%), transparent),
+      radial-gradient(1px 1px at 5% 48%, rgb(255 255 255 / 40%), transparent),
+      radial-gradient(1px 1px at 33% 56%, rgb(122 240 255 / 30%), transparent),
+      radial-gradient(1px 1px at 51% 48%, rgb(255 255 255 / 28%), transparent),
+      radial-gradient(1px 1px at 66% 50%, rgb(192 132 252 / 30%), transparent),
+      radial-gradient(1px 1px at 79% 88%, rgb(255 255 255 / 38%), transparent),
+      radial-gradient(1px 1px at 16% 8%, rgb(255 255 255 / 32%), transparent);
+    pointer-events: none;
+    opacity: 0.85;
   }
 
   &-grid {
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(var(--home-line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--home-line) 1px, transparent 1px);
+      linear-gradient(
+        color-mix(in srgb, hsl(var(--rainbow-hue) 55% 52%) 20%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in srgb, hsl(var(--rainbow-hue) 55% 52%) 20%, transparent) 1px,
+        transparent 1px
+      );
     background-size: 72px 72px;
     mask-image: radial-gradient(
       circle at var(--home-iris-x) var(--home-iris-y),
       #000 var(--home-iris),
       transparent calc(var(--home-iris) + 18%)
     );
-    opacity: 0.7;
+    opacity: 0.55;
     transform: translate3d(
       calc(var(--home-mx) * -10px),
       calc(var(--home-my) * -8px),
@@ -139,9 +197,9 @@
     place-items: center;
     width: 2.4rem;
     height: 2.4rem;
-    border: 1px solid rgb(255 255 255 / 12%);
+    border: 1px solid var(--home-holo-line-soft);
     border-radius: 0.7rem;
-    background: rgb(7 9 8 / 72%);
+    background: transparent;
     color: var(--home-fg);
     cursor: pointer;
   }
@@ -158,10 +216,9 @@
     gap: 0.15rem;
     margin-left: 0;
     padding: 0.55rem;
-    border: 1px solid rgb(255 255 255 / 10%);
+    border: 1px solid var(--home-holo-line);
     border-radius: 0.9rem;
-    background: rgb(7 9 8 / 94%);
-    box-shadow: 0 16px 40px rgb(0 0 0 / 45%);
+    background: rgb(3 5 12 / 72%);
     pointer-events: auto;
 
     &.is-open {
@@ -201,9 +258,10 @@
         background-color 0.2s ease;
 
       &:hover {
-        color: var(--home-bg);
-        border-color: var(--home-accent);
-        background: var(--home-accent);
+        color: var(--home-fg);
+        border-color: var(--home-holo-line);
+        background: transparent;
+        box-shadow: none;
       }
     }
   }
@@ -252,10 +310,9 @@
     margin: 0;
     padding: 0.35rem 0.45rem;
     list-style: none;
-    border: 1px solid rgb(255 255 255 / 10%);
+    border: 1px solid var(--home-holo-line-soft);
     border-radius: 999px;
-    background: rgb(7 9 8 / 88%);
-    backdrop-filter: blur(10px);
+    background: rgb(3 5 12 / 55%);
     pointer-events: auto;
   }
 
@@ -293,12 +350,14 @@
 
     &.is-active {
       color: var(--home-accent);
-      background: rgba(var(--home-accent-rgb), 0.14);
+      background: hsl(var(--rainbow-hue) 55% 52% / 10%);
+      box-shadow: 0 0 18px hsl(var(--rainbow-hue) 55% 52% / 16%);
 
       &::before {
         width: 2rem;
         opacity: 1;
         background: var(--home-accent);
+        box-shadow: 0 0 12px hsl(var(--rainbow-hue) 55% 52% / 70%);
       }
     }
   }
@@ -426,6 +485,7 @@
 
       &.is-active {
         background: transparent;
+        box-shadow: none;
       }
     }
 
@@ -459,6 +519,36 @@
       scroll-behavior: auto;
     }
   }
+}
+
+@property --home-wipe {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+.nuc-home-anim-mask {
+  --home-wipe: 0;
+
+  mask-image: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 100%) calc(var(--home-wipe) * 145% - 45%),
+    rgb(0 0 0 / 0%) calc(var(--home-wipe) * 145% + 8%)
+  );
+  /* stylelint-disable-next-line property-no-vendor-prefix -- Safari mask wipe */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    rgb(0 0 0 / 100%) calc(var(--home-wipe) * 145% - 45%),
+    rgb(0 0 0 / 0%) calc(var(--home-wipe) * 145% + 8%)
+  );
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+}
+
+.nuc-home-anim-mask,
+.nuc-home-anim-mask * {
+  box-shadow: none !important;
+  text-shadow: none !important;
 }
 
 .sr-only {
@@ -515,6 +605,7 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  text-shadow: 0 0 18px hsl(var(--rainbow-hue) 55% 52% / 28%);
 }
 
 .nuc-home-title {
@@ -541,6 +632,29 @@
   }
 }
 
+.nuc-home-next {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1.15rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--home-accent);
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease, gap 0.2s ease;
+
+  &:hover {
+    color: hsl(var(--rainbow-hue) 62% 64%);
+    gap: 0.65rem;
+  }
+}
+
 .nuc-home-hero-glyph {
   display: inline;
   margin: 0;
@@ -550,7 +664,7 @@
   font-synthesis: none;
   font-variant-ligatures: none;
   color: var(--home-accent);
-  text-shadow: 0 0 18px rgba(var(--home-accent-rgb), 0.35);
+  text-shadow: 0 0 18px hsl(var(--rainbow-hue) 55% 52% / 35%);
   transition: color 0.2s ease, text-shadow 0.2s ease;
 
   &.is-locked {

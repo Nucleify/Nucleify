@@ -1,0 +1,79 @@
+.nuc-home-clone {
+  @media (min-width: $md) {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 1.05fr);
+    gap: clamp(1.75rem, 4vw, 3.25rem);
+    align-items: center;
+  }
+
+  &-copy {
+    .nuc-home-support {
+      max-width: 34rem;
+    }
+  }
+
+  &-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin-top: 1.25rem;
+
+    nui-button {
+      --nui-primary-white-text-color: var(--home-on-accent, #04110c);
+    }
+
+    .nuc-home-next {
+      margin-top: 0;
+    }
+  }
+
+  &-term {
+    display: grid;
+    gap: 0.08rem;
+    margin: 1.25rem 0 0;
+    padding: 0.85rem 0.9rem;
+    list-style: none;
+    border: 1px solid var(--home-card-border);
+    border-radius: 1.1rem;
+    background: var(--home-card-bg);
+    box-shadow: var(--home-card-shadow);
+
+    @media (min-width: $md) {
+      margin-top: 0;
+    }
+
+    li {
+      display: grid;
+      grid-template-columns: 1.6rem 1fr;
+      gap: 0.7rem;
+      align-items: baseline;
+      min-width: 0;
+    }
+
+    span {
+      color: var(--home-dim);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+    }
+
+    code {
+      min-width: 0;
+      color: var(--home-muted);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.74rem;
+      line-height: 1.5;
+      letter-spacing: 0;
+      white-space: pre;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    em {
+      margin-right: 0.45rem;
+      color: var(--home-accent);
+      font-style: normal;
+    }
+  }
+}

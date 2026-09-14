@@ -11,17 +11,24 @@
         </h2>
         <p class="nuc-home-support">{{ copy.closeSupport }}</p>
       </div>
-      <nui-button
-        :label="copy.closeCta"
-        variant="primary"
-        icon="mdi:email-outline"
-        icon-pos="right"
-        @click="openModal"
-      />
+      <div class="nuc-home-close-cta">
+        <nui-button
+          :label="copy.closeCta"
+          variant="primary"
+          icon="mdi:email-outline"
+          icon-pos="right"
+          @click="openModal"
+        />
+      </div>
     </div>
     <footer class="nuc-home-close-footer">
       <span>© {{ year }} Nucleify</span>
-      <span>Modular. Typed. Ready.</span>
+      <nav class="nuc-home-close-footer-links" aria-label="Footer">
+        <a :href="docsHref">{{ copy.navDocs }}</a>
+        <a :href="copy.githubHref" target="_blank" rel="noopener noreferrer">
+          {{ copy.navGitHub }}
+        </a>
+      </nav>
     </footer>
 
     <nui-dialog
@@ -101,9 +108,14 @@
 </template>
 
 <script setup lang="ts">
-import { nextTick, onMounted, reactive, ref, watch } from 'vue'
+import { useRoute } from 'nuxt/app'
+import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
 
-import { NUC_HOME_CONTACT_TYPES, NUC_HOME_COPY } from '../../constants/content'
+import {
+  homeDocsHref,
+  NUC_HOME_CONTACT_TYPES,
+  NUC_HOME_COPY,
+} from '../../constants/content'
 import { setHomeContactDialogOverflow } from '../../utils/contact_dialog_overflow'
 import {
   type HomeContactWebsiteType,
@@ -116,6 +128,9 @@ type NuiDialogHost = HTMLElement & { visible?: boolean }
 const copy = NUC_HOME_COPY
 const year = new Date().getFullYear()
 const typeOptions = [...NUC_HOME_CONTACT_TYPES]
+const route = useRoute()
+const lang = computed(() => (route.params.lang as string) || 'en')
+const docsHref = computed(() => homeDocsHref(lang.value, 'intro'))
 
 const dialogReady = ref(false)
 const dialogOpen = ref(false)
