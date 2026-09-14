@@ -4,3 +4,8 @@
 @import '../../../shared_modules/nuc_globals/styles/variables';
 @import '../../../shared_modules/nuc_globals/styles/mixins';
 @import '../../../portable/nui/tokens';
+
+body.nui-rainbow {
+  --nui-rainbow-duration: 30s;
+  --nui-rainbow-anim-name: nui-rainbow-hue-cycle-linear;
+}

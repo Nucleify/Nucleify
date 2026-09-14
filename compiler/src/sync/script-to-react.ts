@@ -148,18 +148,75 @@ function formatConstDecl(script: string, stmt: any, decl: any): string {
 }
 
 function rewriteNuxtImports(line: string): string {
-  return line
-    .replace(
-      /import\s+\{\s*useRoute\s*\}\s+from\s+(['"])nuxt\/app\1/g,
-      "import { useParams } from 'next/navigation'",
-    )
-    .replace(/\buseRoute\(\)/g, 'useParams()')
-    .replace(/\broute\.params\.(\w+)/g, 'params.$1')
-    .replace(/\bconst route = useParams\(\)/g, 'const params = useParams()')
+  if (!line.includes('nuxt/app')) return line
+  return /\buseRoute\b/.test(line) ? "import { useParams } from 'next/navigation'" : ''
 }
 
-function rewriteVueImport(needsReactive: boolean): string {
-  const lines = [`import { useEffect, useMemo, useRef, useState } from 'react'`]
+function typeArgFromCall(call: any): any {
+  return call?.typeArguments?.params?.[0] ?? call?.typeParameters?.params?.[0]
+}
+
+function onHandlerName(event: string): string {
+  return `on${event.charAt(0).toUpperCase()}${event.slice(1)}`
+}
+
+function memberKeyName(member: any): string | null {
+  const key = member?.key
+  if (!key) return null
+  if (key.type === 'Identifier') return key.name
+  if (key.type === 'Literal' && typeof key.value === 'string') return key.value
+  return null
+}
+
+function parseDefineProps(script: string, call: any): { typeLiteral: string; names: string[] } | null {
+  const typeArg = typeArgFromCall(call)
+  if (typeArg?.start == null || typeArg?.end == null) return null
+  const names: string[] = []
+  for (const member of typeArg.members ?? []) {
+    const name = memberKeyName(member)
+    if (name) names.push(name)
+  }
+  return { typeLiteral: slice(script, typeArg.start, typeArg.end), names }
+}
+
+function parseDefineEmits(
+  script: string,
+  call: any,
+): { event: string; handler: string; field: string }[] {
+  const typeArg = typeArgFromCall(call)
+  const out: { event: string; handler: string; field: string }[] = []
+  for (const member of typeArg?.members ?? []) {
+    const event = memberKeyName(member)
+    if (!event) continue
+    const handler = onHandlerName(event)
+    const ann = member.typeAnnotation?.typeAnnotation
+    let payload = '() => void'
+    if (ann?.start != null && ann?.end != null) {
+      const raw = slice(script, ann.start, ann.end).trim()
+      payload =
+        raw.startsWith('[') && raw.endsWith(']')
+          ? `(${raw.slice(1, -1)}) => void`
+          : `(...args: ${raw}) => void`
+    }
+    out.push({ event, handler, field: `${handler}?: ${payload}` })
+  }
+  return out
+}
+
+export type ScriptToReactResult = {
+  body: string[]
+  imports: string[]
+  propsType?: string
+  propNames: string[]
+  emitFields: string[]
+  emitHandlers: string[]
+}
+
+function rewriteVueImport(needsReactive: boolean, needsLazy = false, needsUseId = false): string {
+  const hooks = ['useEffect', 'useMemo', 'useRef', 'useState']
+  if (needsUseId) hooks.push('useId')
+  if (needsLazy) hooks.push('lazy', 'Suspense')
+  const lines = [`import { ${hooks.join(', ')} } from 'react'`]
   if (needsReactive) lines.push(`import { useReactive } from '@/lib/vue-reactivity-shim'`)
   return lines.join('\n')
 }
@@ -181,7 +238,9 @@ function emitRefBinding(source: string, name: string, init: any): string {
 
 function unwrapArrowBody(body: string): string {
   const trimmed = body.trim()
-  const match = trimmed.match(/^(?:async\s*)?\([^)]*\)\s*=>\s*([\s\S]+)$/)
+  const match = trimmed.match(
+    /^(?:async\s*)?(?:\([^)]*\)|[A-Za-z_$][\w$]*)(?:\s*:\s*[^=]+?)?\s*=>\s*([\s\S]+)$/,
+  )
   if (match) return match[1]!.trim()
   return trimmed
 }
@@ -282,25 +341,47 @@ function rewriteLifecycleCall(
 /**
  * Rewrite `<script setup>` to React hooks + statements (product convert).
  */
-export function rewriteScriptSetupToReact(script: string): { body: string[]; imports: string[] } {
+export function rewriteScriptSetupToReact(script: string): ScriptToReactResult {
   const result = parseSync('script.ts', script, { lang: 'ts', sourceType: 'module' })
   if (result.errors?.length) {
     throw new Error(result.errors.map((e) => e.message).join('; '))
   }
 
   const { refNames, domRefNames, letRefNames, usesReactive } = collectRefInfo(script)
+  const usesLazy = /\bdefineAsyncComponent\b/.test(script)
+  const usesUseId = /\buseId\s*\(/.test(script)
   const imports: string[] = []
   const body: string[] = []
   let vueImportEmitted = false
+  let propsType: string | undefined
+  const propNames: string[] = []
+  const emitFields: string[] = []
+  const emitHandlers: string[] = []
+
+  function captureProps(call: any): boolean {
+    const parsed = parseDefineProps(script, call)
+    if (!parsed) return false
+    propsType = parsed.typeLiteral
+    propNames.push(...parsed.names)
+    return true
+  }
+
+  function captureEmits(call: any): void {
+    for (const item of parseDefineEmits(script, call)) {
+      emitFields.push(item.field)
+      emitHandlers.push(item.handler)
+    }
+  }
 
   for (const stmt of result.program.body ?? []) {
     if (stmt.type === 'ImportDeclaration') {
       const line = slice(script, stmt.start!, stmt.end!)
       if (line.includes('nuxt/app')) {
-        imports.push(rewriteNuxtImports(line))
+        const rewritten = rewriteNuxtImports(line)
+        if (rewritten) imports.push(rewritten)
       } else if (line.includes("'vue'") || line.includes('"vue"')) {
         if (!vueImportEmitted) {
-          imports.push(rewriteVueImport(usesReactive))
+          imports.push(rewriteVueImport(usesReactive, usesLazy, usesUseId))
           vueImportEmitted = true
         }
       } else {
@@ -358,6 +439,28 @@ export function rewriteScriptSetupToReact(script: string): { body: string[]; imp
               body.push(emitReactiveBinding(script, name, init, decl))
               continue
             }
+            if (init.callee.name === 'defineAsyncComponent') {
+              const arg = init.arguments?.[0]
+              const loader =
+                arg?.start != null && arg?.end != null
+                  ? rewriteValueAccess(
+                      slice(script, arg.start, arg.end),
+                      refNames,
+                      domRefNames,
+                      letRefNames,
+                    )
+                  : '() => Promise.resolve({ default: () => null })'
+              body.push(`const ${name} = lazy(${loader})`)
+              continue
+            }
+            if (init.callee.name === 'defineProps') {
+              captureProps(init)
+              continue
+            }
+            if (init.callee.name === 'defineEmits') {
+              captureEmits(init)
+              continue
+            }
           }
           const line = formatConstDecl(script, stmt, decl)
           body.push(
@@ -398,6 +501,15 @@ export function rewriteScriptSetupToReact(script: string): { body: string[]; imp
     if (stmt.type === 'ExpressionStatement') {
       const expr = stmt.expression
       if (expr?.type === 'CallExpression' && expr.callee?.type === 'Identifier') {
+        if (expr.callee.name === 'useSeoMeta') continue
+        if (expr.callee.name === 'defineProps') {
+          captureProps(expr)
+          continue
+        }
+        if (expr.callee.name === 'defineEmits') {
+          captureEmits(expr)
+          continue
+        }
         if (['onMounted', 'onBeforeUnmount', 'watch'].includes(expr.callee.name)) {
           body.push(rewriteLifecycleCall(script, expr, refNames, domRefNames, letRefNames))
           continue
@@ -424,5 +536,12 @@ export function rewriteScriptSetupToReact(script: string): { body: string[]; imp
     }
   }
 
-  return { body, imports }
+  if (usesLazy && !imports.some((line) => /\blazy\b/.test(line))) {
+    imports.unshift("import { lazy, Suspense } from 'react'")
+  }
+  if (usesUseId && !imports.some((line) => /\buseId\b/.test(line))) {
+    imports.unshift("import { useId } from 'react'")
+  }
+
+  return { body, imports, propsType, propNames, emitFields, emitHandlers }
 }

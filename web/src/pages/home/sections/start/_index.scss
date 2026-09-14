@@ -1,0 +1,32 @@
+.nuc-home-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.15rem;
+
+  &-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+
+    .nuc-home-title {
+      max-width: 18ch;
+    }
+
+    .nuc-home-next {
+      margin-top: 0;
+    }
+  }
+
+  @media (min-width: $md) {
+    gap: 1.35rem;
+  }
+
+  @media (max-width: 959px) and (max-height: 720px) {
+    &-head .nuc-home-eyebrow {
+      display: none;
+    }
+  }
+}

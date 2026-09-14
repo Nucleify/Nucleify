@@ -387,6 +387,9 @@ function parseElementWithoutFlow(filePath: string, node: any, reactives: Set<str
     return children.length ? { kind: 'slot', children } : { kind: 'slot' }
   }
   const children = parseTemplateNodes(filePath, node.children ?? [], reactives)
+  if (tag === 'template') {
+    return { kind: 'element', tag: 'fragment', props: [], children }
+  }
   const isComponent = /^[A-Z]/.test(tag) || tag.includes('.')
   if (isComponent) {
     return { kind: 'component', name: tag, props: attrs, children }

@@ -9,8 +9,10 @@
 </template>
 
 <script setup lang="ts">
+import { applyRainbow } from 'nui-rainbow'
+import 'nui-rainbow/styles.css'
 import { joinURL } from 'ufo'
-import { computed } from 'vue'
+import { computed, onBeforeUnmount, onMounted } from 'vue'
 
 const route = useRoute()
 const config = useRuntimeConfig()
@@ -27,7 +29,7 @@ const canonicalHref = computed(() => {
 
 useHead({
   htmlAttrs: { class: 'nuc-nuxt p-dark' },
-  bodyAttrs: { class: 'nuc-nuxt p-dark' },
+  bodyAttrs: { class: 'nuc-nuxt p-dark nui-rainbow' },
   link: [
     {
       key: 'canonical',
@@ -42,6 +44,20 @@ useHead({
       textContent: 'html,body{margin:0;background:#070908;color:#e7ebe8}',
     },
   ],
+})
+
+let stopRainbow: (() => void) | undefined
+
+onMounted(() => {
+  stopRainbow = applyRainbow(document.body, {
+    cycle: 'linear',
+    duration: 30,
+    reducedMotion: 'ignore',
+  })
+})
+
+onBeforeUnmount(() => {
+  stopRainbow?.()
 })
 </script>
 

@@ -172,6 +172,9 @@ importers:
       nucleify-ui:
         specifier: ^0.3.7
         version: 0.3.7(iconify-icon@3.0.0)(lit@3.3.3)(rollup@4.60.4)
+      nui-rainbow:
+        specifier: 0.1.0
+        version: 0.1.0
       nuxt:
         specifier: 4.4.8
         version: 4.4.8(@babel/plugin-syntax-jsx@7.28.6(@babel/core@7.29.0))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.0))(@biomejs/biome@2.4.16)(@parcel/watcher@2.5.6)(@types/node@25.4.0)(@vue/compiler-sfc@3.5.40)(cac@6.7.14)(db0@0.3.4)(esbuild@0.28.1)(eslint@10.0.3(jiti@2.7.0))(ioredis@5.10.1)(magicast@0.5.4)(meow@13.2.0)(optionator@0.9.4)(pinia@3.0.4(typescript@5.8.3)(vue@3.5.40(typescript@5.8.3)))(rollup-plugin-visualizer@7.0.1(rollup@4.60.4))(rollup@4.60.4)(sass@1.89.0)(stylelint@16.26.1(typescript@5.8.3))(terser@5.46.0)(tsx@4.23.1)(typescript@5.8.3)(vite@7.3.6(@types/node@25.4.0)(jiti@2.7.0)(sass@1.89.0)(terser@5.46.0)(tsx@4.23.1)(yaml@2.9.0))(vue-tsc@2.2.12(typescript@5.8.3))(webpack@5.105.4(esbuild@0.28.1))(yaml@2.9.0)
@@ -233,6 +236,9 @@ importers:
       nucleify-ui:
         specifier: ^0.3.7
         version: 0.3.7(iconify-icon@3.0.0)(lit@3.3.3)(rollup@4.60.4)
+      nui-rainbow:
+        specifier: ^0.1.0
+        version: 0.1.0
       react:
         specifier: ^19.0.0
         version: 19.2.8
@@ -5778,6 +5784,9 @@ packages:
     peerDependenciesMeta:
       chart.js:
         optional: true
+
+  nui-rainbow@0.1.0:
+    resolution: {integrity: sha512-4clVkAf3EEL18fJGDd/ISkutAQojX71XlFOShJQNGcU4ox4kTUVl2U4cVAOWhES9oZysoCQVeDLPY5xdTK1mgQ==}
 
   nuxt-define@1.0.0:
     resolution: {integrity: sha512-CYZ2WjU+KCyCDVzjYUM4eEpMF0rkPmkpiFrybTqqQCRpUbPt2h3snswWIpFPXTi+osRCY6Og0W/XLAQgDL4FfQ==}
@@ -13909,6 +13918,8 @@ snapshots:
       - rollup
       - supports-color
       - utf-8-validate
+
+  nui-rainbow@0.1.0: {}
 
   nuxt-define@1.0.0: {}
 

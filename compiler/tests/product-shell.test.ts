@@ -115,7 +115,31 @@ describe('tryb B product shells', () => {
       mkdirSync(join(web, 'public/img'), { recursive: true })
       writeFileSync(
         join(web, 'src/pages/home/index.vue'),
-        '<template><div>home</div></template>\n',
+        `<template>
+  <div>
+    <NucHomeHero />
+    <NucHomePillars />
+  </div>
+</template>
+<script setup lang="ts">
+import { defineAsyncComponent } from 'vue'
+import NucHomeHero from './sections/hero/index.vue'
+const NucHomePillars = defineAsyncComponent(
+  () => import('./sections/pillars/index.vue')
+)
+</script>
+`,
+      )
+      mkdirSync(join(web, 'src/pages/home/sections/pillars'), { recursive: true })
+      mkdirSync(join(web, 'src/pages/home/sections/core'), { recursive: true })
+      writeFileSync(
+        join(web, 'src/pages/home/sections/pillars/index.vue'),
+        '<template><section>pillars</section></template>\n',
+      )
+      writeFileSync(join(web, 'src/pages/home/sections/core/_cube.scss'), '.cube { display: block; }\n')
+      writeFileSync(
+        join(web, 'src/pages/home/sections/core/holo_cube.vue'),
+        '<template><div class="cube" /></template>\n<style lang="scss">@import "cube";</style>\n',
       )
       writeFileSync(
         join(web, 'src/pages/home/sections/hero/index.vue'),
@@ -137,10 +161,35 @@ describe('tryb B product shells', () => {
       expect(existsSync(join(dest, 'src/views/home/sections/hero/index.tsx'))).toBe(true)
       expect(existsSync(join(dest, 'src/views/home/index.tsx'))).toBe(true)
       expect(existsSync(join(dest, 'src/views/home/sections/hero/index.vue'))).toBe(false)
+      const homeTsx = readFileSync(join(dest, 'src/views/home/index.tsx'), 'utf8')
+      expect(homeTsx).toContain("from './sections/hero/index'")
+      expect(homeTsx).toContain("lazy(() => import('./sections/pillars/index'))")
+      expect(homeTsx).not.toContain('.vue')
+      expect(homeTsx).not.toContain('nuxt/app')
+      const lazyIdx = homeTsx.indexOf('const NucHomePillars = lazy')
+      const fnIdx = homeTsx.indexOf('export default function')
+      expect(lazyIdx).toBeGreaterThan(-1)
+      expect(fnIdx).toBeGreaterThan(-1)
+      expect(lazyIdx).toBeLessThan(fnIdx)
+      expect(homeTsx).toContain('<Suspense fallback={null}>')
+      expect(homeTsx).toContain('<NucHomePillars />')
+      expect(homeTsx).not.toMatch(/<Suspense fallback=\{null\}>\s*<div/)
+      expect(readFileSync(join(dest, 'src/styles/migrated-product.scss'), 'utf8')).toContain(
+        'sections/core/_cube',
+      )
       expect(existsSync(join(dest, 'src/pages/home/index.tsx'))).toBe(false)
       expect(existsSync(join(dest, 'src/app/[lang]/page.tsx'))).toBe(true)
       expect(existsSync(join(dest, 'public/img/logo.svg'))).toBe(true)
       expect(readFileSync(join(dest, 'src/assets/_index.scss'), 'utf8')).toContain("modules/nuc_colors")
+      expect(readFileSync(join(dest, 'src/assets/_index.scss'), 'utf8')).not.toContain(
+        'nui-rainbow/styles.css',
+      )
+      expect(readFileSync(join(dest, 'src/app/layout.tsx'), 'utf8')).toContain(
+        "import 'nui-rainbow/styles.css'",
+      )
+      expect(readFileSync(join(dest, 'next.config.ts'), 'utf8')).toContain(
+        "p.endsWith('.css')",
+      )
       expect(copied.some((c) => c.startsWith('vue→tsx'))).toBe(true)
     } finally {
       rmSync(tmp, { recursive: true, force: true })

@@ -10,9 +10,14 @@
         {{ copy.pulseTitle }}
       </h2>
       <p class="nuc-home-support">{{ copy.pulseSupport }}</p>
+      <p class="nuc-home-pulse-compare">{{ copy.pulseCompare }}</p>
+      <button type="button" class="nuc-home-next" @click="onCta">
+        <span>{{ copy.pulseCta }}</span>
+        <nui-icon icon="mdi:arrow-down" />
+      </button>
     </div>
 
-    <div ref="stageEl" class="nuc-home-pulse-stage" aria-hidden="true">
+    <div ref="stageEl" class="nuc-home-pulse-stage">
       <div class="nuc-home-pulse-axis">
         <span class="nuc-home-pulse-axis-label">
           {{ copy.pulseShellsAxis }}
@@ -39,7 +44,7 @@
               {{ copy.pulseCostSuffix }}{{ traditionalCost }}
             </span>
           </div>
-          <div class="nuc-home-pulse-track">
+          <div class="nuc-home-pulse-track" aria-hidden="true">
             <span
               class="nuc-home-pulse-fill nuc-home-pulse-fill-tax"
               :style="{ width: traditionalWidth }"
@@ -59,7 +64,7 @@
               {{ copy.pulseCostSuffix }}{{ nucleifyCost }}
             </span>
           </div>
-          <div class="nuc-home-pulse-track">
+          <div class="nuc-home-pulse-track" aria-hidden="true">
             <span
               class="nuc-home-pulse-fill nuc-home-pulse-fill-flat"
               :style="{ width: nucleifyWidth }"
@@ -71,9 +76,21 @@
         </div>
       </div>
 
-      <p class="nuc-home-pulse-status" :class="{ 'is-on': showStatus }">
-        <span class="nuc-home-pulse-status-dot" />
-        {{ copy.pulseStatus }}
+      <p
+        class="nuc-home-pulse-status"
+        :class="{ 'is-on': isScaling || showStatus, 'is-scaling': isScaling }"
+      >
+        <template v-if="isScaling">
+          <nui-icon icon="mdi:loading" class="nuc-home-pulse-status-spin" />
+          <span>
+            {{ copy.pulseScaling }}
+            <span class="nuc-home-pulse-status-dots" aria-hidden="true" />
+          </span>
+        </template>
+        <template v-else>
+          <span class="nuc-home-pulse-status-dot" />
+          {{ copy.pulseStatus }}
+        </template>
       </p>
     </div>
   </section>
@@ -84,6 +101,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import { NUC_HOME_COPY, NUC_HOME_PULSE_SHELLS } from '../../constants/content'
 import { isAutomatedAudit } from '../../utils/is_automated_audit'
+import { scrollHomeSection } from '../../utils/observe_active_section'
 import { createPulseScalePlayer } from '../../utils/pulse_terminal_player'
 
 const copy = NUC_HOME_COPY
@@ -93,6 +111,7 @@ const maxShells = shells.length
 const stageEl = ref<HTMLElement | null>(null)
 const shellsActive = ref(0)
 const showStatus = ref(false)
+const isScaling = ref(false)
 
 const traditionalCost = computed(() => Math.max(shellsActive.value, 0))
 const nucleifyCost = computed(() => (shellsActive.value > 0 ? 1 : 0))
@@ -106,6 +125,12 @@ const nucleifyWidth = computed(
 let player: ReturnType<typeof createPulseScalePlayer> | undefined
 let observer: IntersectionObserver | undefined
 
+function onCta(): void {
+  const root = document.querySelector<HTMLElement>('.nuc-home')
+  if (!root) return
+  scrollHomeSection(root, 'start')
+}
+
 onMounted(() => {
   player = createPulseScalePlayer({
     prefersReducedMotion: () =>
@@ -114,6 +139,7 @@ onMounted(() => {
     apply: (state) => {
       shellsActive.value = state.shellsActive
       showStatus.value = state.showStatus
+      isScaling.value = !state.showStatus
     },
   })
 

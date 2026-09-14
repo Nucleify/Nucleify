@@ -5,12 +5,11 @@
  */
 
 .nuc-nuxt {
-  --nui-primary-color: #10b981;
-  --nui-primary-color-rgb: 16, 185, 129;
-  --nui-primary-hover-color: #1bbd79;
-  --nui-primary-color-darker: #0d9668;
-  --nui-primary-highlight-color: #10b98115;
-  --nui-primary-focus-color: #10b98180;
+  --nui-primary-color: hsl(var(--rainbow-hue) 55% 52%);
+  --nui-primary-hover-color: hsl(var(--rainbow-hue) 58% 46%);
+  --nui-primary-color-darker: hsl(var(--rainbow-hue) 58% 40%);
+  --nui-primary-highlight-color: hsl(var(--rainbow-hue) 55% 52% / 12%);
+  --nui-primary-focus-color: hsl(var(--rainbow-hue) 55% 52% / 50%);
   --nui-on-primary: #04110c;
 }
 

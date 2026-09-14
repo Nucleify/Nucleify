@@ -1,5 +1,7 @@
 import { isAutomatedAudit } from './is_automated_audit'
 
+import type { TweenParamValue } from 'animejs'
+
 type Revertible = {
   revert?: () => unknown
   pause?: () => unknown
@@ -20,6 +22,41 @@ function q(root: HTMLElement, selector: string): HTMLElement | null {
 
 function qa(root: HTMLElement, selector: string): HTMLElement[] {
   return Array.from(root.querySelectorAll(selector))
+}
+
+const WIPE_SHIFT = -28
+const WIPE_SKEW = -10
+
+function prepareFadeWipe(item: HTMLElement): void {
+  item.classList.add('nuc-home-anim-mask')
+  item.style.setProperty('--home-wipe', '0')
+  item.style.transform = `translate3d(${WIPE_SHIFT}px, 0, 0) skewX(${WIPE_SKEW}deg)`
+  item.style.removeProperty('clip-path')
+  item.style.removeProperty('filter')
+}
+
+function fadeWipeAnimation(duration: number, delay: TweenParamValue) {
+  return {
+    '--home-wipe': [0, 1],
+    x: [WIPE_SHIFT, 0],
+    skewX: [WIPE_SKEW, 0],
+    duration,
+    delay,
+    ease: 'outExpo' as const,
+  }
+}
+
+function clearFadeWipe(item: HTMLElement): void {
+  item.classList.remove('nuc-home-anim-mask')
+  item.style.removeProperty('--home-wipe')
+  item.style.removeProperty('--home-wipe-l')
+  item.style.removeProperty('--home-wipe-r')
+  item.style.removeProperty('mask-image')
+  item.style.removeProperty('-webkit-mask-image')
+  item.style.clipPath = 'none'
+  item.style.filter = 'none'
+  item.style.transform = 'none'
+  item.style.opacity = '1'
 }
 
 function track(
@@ -105,6 +142,11 @@ function clearMotionStyles(el: HTMLElement | null | undefined): void {
   el.style.removeProperty('filter')
   el.style.removeProperty('transform')
   el.style.removeProperty('clip-path')
+  el.style.removeProperty('--home-wipe')
+  el.style.removeProperty('--home-wipe-l')
+  el.style.removeProperty('--home-wipe-r')
+  el.style.removeProperty('mask-image')
+  el.style.removeProperty('-webkit-mask-image')
   el.style.removeProperty('translate')
   el.style.removeProperty('rotate')
   el.style.removeProperty('scale')
@@ -631,10 +673,7 @@ async function runHomeMotionEngine(
 
   const settleMaskItems = (items: HTMLElement[]) => {
     for (const item of items) {
-      item.style.clipPath = 'none'
-      item.style.filter = 'none'
-      item.style.transform = 'none'
-      item.style.opacity = '1'
+      clearFadeWipe(item)
     }
   }
 
@@ -643,11 +682,7 @@ async function runHomeMotionEngine(
 
     const prepare = () => {
       for (const item of items) {
-        item.classList.add('nuc-home-anim-mask')
-        item.style.clipPath = 'inset(0 100% 0 -8%)'
-        item.style.filter = 'blur(10px)'
-        item.style.transform = 'translate3d(-28px, 0, 0) skewX(-10deg)'
-        item.style.opacity = '1'
+        prepareFadeWipe(item)
       }
     }
 
@@ -658,13 +693,7 @@ async function runHomeMotionEngine(
         trackLocal(
           local,
           animate(items, {
-            clipPath: ['inset(0 100% 0 -8%)', 'inset(0 0% 0 0%)'],
-            filter: ['blur(10px)', 'blur(0px)'],
-            x: [-28, 0],
-            skewX: [-10, 0],
-            duration: 1150,
-            delay: stagger(100),
-            ease: 'outExpo',
+            ...fadeWipeAnimation(1150, stagger(100)),
             onComplete: () => settleMaskItems(items),
           })
         )
@@ -725,14 +754,14 @@ async function runHomeMotionEngine(
         root,
         '.nuc-home-pillars .nuc-home-eyebrow, .nuc-home-pillars .nuc-home-title, .nuc-home-pillars .nuc-home-support, .nuc-home-pillars-cta'
       ),
-      ...qa(root, '.nuc-home-pillars-flow-item'),
+      ...qa(root, '.nuc-home-pillars-share'),
       ...qa(root, '.nuc-home-pillars-item'),
     ])
 
     const stack = q(root, '.nuc-home-stack')
     const stackMask = qa(
       root,
-      '.nuc-home-stack .nuc-home-eyebrow, .nuc-home-stack .nuc-home-title, .nuc-home-stack .nuc-home-support, .nuc-home-stack-spotlight'
+      '.nuc-home-stack .nuc-home-eyebrow, .nuc-home-stack .nuc-home-title, .nuc-home-stack .nuc-home-support, .nuc-home-stack .nuc-home-next, .nuc-home-stack-spotlight'
     )
     const stackLattice = qa(root, '.nuc-home-stack-item')
     /** Desktop rest pose — matches CSS --sx/--sy/--sr on .nuc-home-stack-item */
@@ -752,7 +781,7 @@ async function runHomeMotionEngine(
         for (const item of stackLattice) {
           item.style.opacity = '1'
           item.style.filter = 'none'
-          // Drop anime inline transform so CSS scatter (desktop) or grid (mobile) wins.
+          // Drop anime inline transform so CSS scatter wins on every viewport.
           item.style.removeProperty('transform')
           item.style.removeProperty('translate')
           item.style.removeProperty('rotate')
@@ -764,22 +793,7 @@ async function runHomeMotionEngine(
       bindSection(stack, {
         prepare: () => {
           for (const item of stackMask) {
-            item.classList.add('nuc-home-anim-mask')
-            item.style.clipPath = 'inset(0 100% 0 -8%)'
-            item.style.filter = 'blur(10px)'
-            item.style.transform = 'translate3d(-28px, 0, 0) skewX(-10deg)'
-            item.style.opacity = '1'
-          }
-
-          // Mobile: no lattice fly-in (rotate/translate left cards stuck mid-air).
-          if (isCompactViewport()) {
-            for (const item of stackLattice) {
-              item.style.opacity = '0'
-              item.style.transform = 'none'
-              item.style.filter = 'none'
-              item.style.clipPath = ''
-            }
-            return
+            prepareFadeWipe(item)
           }
 
           stackLattice.forEach((item, index) => {
@@ -793,8 +807,24 @@ async function runHomeMotionEngine(
         },
         settle: settleStack,
         play: (local) => {
+          const compact = isCompactViewport()
+          const maskStagger = compact ? 60 : 100
+          const maskDuration = compact ? 700 : 1150
+          const spotlightIndex = stackMask.findIndex((el) =>
+            el.classList.contains('nuc-home-stack-spotlight')
+          )
+          const spotlightAt = Math.max(0, spotlightIndex) * maskStagger
+          // Left card leads; chips follow as soon as the spotlight wipe is on screen.
+          const latticeStart = spotlightAt + (compact ? 120 : 200)
+          const latticeStep = compact ? 50 : 90
+          const latticeDuration = compact ? 900 : 1300
+          const latticeDone =
+            latticeStart +
+            Math.max(0, stackLattice.length - 1) * latticeStep +
+            latticeDuration
+
           const armSettle = () => {
-            const id = window.setTimeout(settleStack, 1400)
+            const id = window.setTimeout(settleStack, latticeDone + 80)
             local.push(() => window.clearTimeout(id))
           }
 
@@ -802,50 +832,31 @@ async function runHomeMotionEngine(
             trackLocal(
               local,
               animate(stackMask, {
-                clipPath: ['inset(0 100% 0 -8%)', 'inset(0 0% 0 0%)'],
-                filter: ['blur(10px)', 'blur(0px)'],
-                x: [-28, 0],
-                skewX: [-10, 0],
-                duration: isCompactViewport() ? 700 : 1150,
-                delay: stagger(isCompactViewport() ? 60 : 100),
-                ease: 'outExpo',
+                ...fadeWipeAnimation(maskDuration, stagger(maskStagger)),
                 onComplete: () => settleMaskItems(stackMask),
               })
             )
           }
 
           if (stackLattice.length) {
-            if (isCompactViewport()) {
+            stackLattice.forEach((item, index) => {
+              const rest = stackLatticeRest[index] ?? stackLatticeRest[0]!
+              const isLast = index === stackLattice.length - 1
               trackLocal(
                 local,
-                animate(stackLattice, {
+                animate(item, {
                   opacity: [0, 1],
-                  duration: 500,
-                  delay: stagger(40),
-                  ease: 'outExpo',
-                  onComplete: settleStack,
+                  x: [rest.x * 5, rest.x],
+                  y: [rest.y + 64, rest.y],
+                  rotate: [rest.r * 2.4, rest.r],
+                  scale: [0.84, 1],
+                  duration: latticeDuration,
+                  delay: latticeStart + index * latticeStep,
+                  ease: 'outElastic',
+                  ...(isLast ? { onComplete: settleStack } : {}),
                 })
               )
-            } else {
-              stackLattice.forEach((item, index) => {
-                const rest = stackLatticeRest[index] ?? stackLatticeRest[0]!
-                const isLast = index === stackLattice.length - 1
-                trackLocal(
-                  local,
-                  animate(item, {
-                    opacity: [0, 1],
-                    x: [rest.x * 5, rest.x],
-                    y: [rest.y + 64, rest.y],
-                    rotate: [rest.r * 2.4, rest.r],
-                    scale: [0.84, 1],
-                    duration: 1300,
-                    delay: index * 90,
-                    ease: 'outElastic',
-                    ...(isLast ? { onComplete: settleStack } : {}),
-                  })
-                )
-              })
-            }
+            })
           }
 
           armSettle()
@@ -857,159 +868,8 @@ async function runHomeMotionEngine(
     const pulseStage = q(root, '.nuc-home-pulse-stage')
     const pulseCopy = qa(
       root,
-      '.nuc-home-pulse-copy .nuc-home-eyebrow, .nuc-home-pulse-copy .nuc-home-title, .nuc-home-pulse-copy .nuc-home-support'
+      '.nuc-home-pulse-copy .nuc-home-eyebrow, .nuc-home-pulse-copy .nuc-home-title, .nuc-home-pulse-copy .nuc-home-support, .nuc-home-pulse-copy .nuc-home-pulse-compare, .nuc-home-pulse-copy .nuc-home-next'
     )
-
-    const craft = q(root, '.nuc-home-core')
-    const craftMask = qa(
-      root,
-      '.nuc-home-core .nuc-home-eyebrow, .nuc-home-core .nuc-home-title, .nuc-home-core .nuc-home-support'
-    )
-    const craftBoard = q(root, '.nuc-home-core-board')
-    const craftTrees = qa(root, '.nuc-home-core-tree')
-    const craftSurface = q(root, '.nuc-home-core-surface')
-    const craftPicks = qa(root, '.nuc-home-core-pick')
-
-    if (craft && (craftMask.length || craftBoard)) {
-      const settleCraft = () => {
-        settleMaskItems(craftMask)
-        if (craftBoard) {
-          craftBoard.style.opacity = '1'
-          craftBoard.style.filter = 'none'
-          craftBoard.style.transform = 'none'
-        }
-        if (craftSurface) {
-          craftSurface.style.opacity = '1'
-          craftSurface.style.transform = 'none'
-        }
-        for (const item of craftTrees) {
-          item.style.opacity = '1'
-          item.style.transform = 'none'
-        }
-        for (const item of craftPicks) {
-          item.style.opacity = '1'
-          item.style.transform = 'none'
-        }
-      }
-
-      bindSection(craft, {
-        prepare: () => {
-          for (const item of craftMask) {
-            item.classList.add('nuc-home-anim-mask')
-            item.style.clipPath = 'inset(0 100% 0 -8%)'
-            item.style.filter = 'blur(10px)'
-            item.style.transform = 'translate3d(-28px, 0, 0) skewX(-10deg)'
-            item.style.opacity = '1'
-          }
-
-          if (craftBoard) {
-            craftBoard.style.opacity = '0'
-            craftBoard.style.filter = 'blur(12px)'
-            craftBoard.style.transform = 'translate3d(0, 32px, 0) scale(0.97)'
-          }
-
-          if (craftSurface) {
-            craftSurface.style.opacity = '0'
-            craftSurface.style.transform = 'translate3d(0, 18px, 0) scale(0.96)'
-          }
-
-          craftTrees.forEach((item, index) => {
-            item.style.opacity = '0'
-            item.style.transform = `translate3d(${index === 0 ? -24 : 24}px, 0, 0)`
-          })
-
-          craftPicks.forEach((item, index) => {
-            item.classList.add('nuc-home-anim-lattice')
-            item.style.opacity = '0'
-            item.style.transform = `translate3d(0, 22px, 0) scale(0.9) rotate(${index % 2 === 0 ? -5 : 5}deg)`
-          })
-        },
-        settle: settleCraft,
-        play: (local) => {
-          if (craftMask.length) {
-            trackLocal(
-              local,
-              animate(craftMask, {
-                clipPath: ['inset(0 100% 0 -8%)', 'inset(0 0% 0 0%)'],
-                filter: ['blur(10px)', 'blur(0px)'],
-                x: [-28, 0],
-                skewX: [-10, 0],
-                duration: 1150,
-                delay: stagger(100),
-                ease: 'outExpo',
-                onComplete: () => settleMaskItems(craftMask),
-              })
-            )
-          }
-
-          if (craftBoard) {
-            trackLocal(
-              local,
-              animate(craftBoard, {
-                opacity: [0, 1],
-                filter: ['blur(12px)', 'blur(0px)'],
-                y: [32, 0],
-                scale: [0.97, 1],
-                duration: 1100,
-                delay: 160,
-                ease: 'outExpo',
-              })
-            )
-          }
-
-          if (craftTrees.length) {
-            craftTrees.forEach((item) => {
-              const fromX = item.classList.contains('nuc-home-core-tree-module')
-                ? -24
-                : 24
-              trackLocal(
-                local,
-                animate(item, {
-                  opacity: [0, 1],
-                  x: [fromX, 0],
-                  duration: 1000,
-                  delay: 280,
-                  ease: 'outExpo',
-                })
-              )
-            })
-          }
-
-          if (craftSurface) {
-            trackLocal(
-              local,
-              animate(craftSurface, {
-                opacity: [0, 1],
-                y: [18, 0],
-                scale: [0.96, 1],
-                duration: 1050,
-                delay: 320,
-                ease: 'outExpo',
-              })
-            )
-          }
-
-          if (craftPicks.length) {
-            trackLocal(
-              local,
-              animate(craftPicks, {
-                opacity: [0, 1],
-                y: [22, 0],
-                scale: [0.9, 1],
-                rotate: stagger([-5, 5]),
-                duration: 1000,
-                delay: stagger(70),
-                ease: 'outElastic',
-                onComplete: settleCraft,
-              })
-            )
-          } else {
-            const settleTimer = window.setTimeout(settleCraft, 1400)
-            local.push(() => window.clearTimeout(settleTimer))
-          }
-        },
-      })
-    }
 
     if (pulse) {
       const settlePulse = () => {
@@ -1024,17 +884,12 @@ async function runHomeMotionEngine(
       bindSection(pulse, {
         prepare: () => {
           for (const item of pulseCopy) {
-            item.classList.add('nuc-home-anim-mask')
-            item.style.clipPath = 'inset(0 100% 0 -8%)'
-            item.style.filter = 'blur(10px)'
-            item.style.transform = 'translate3d(-28px, 0, 0) skewX(-10deg)'
-            item.style.opacity = '1'
+            prepareFadeWipe(item)
           }
 
           if (pulseStage) {
             pulseStage.style.opacity = '0'
-            pulseStage.style.filter = 'blur(10px)'
-            pulseStage.style.transform = 'translate3d(0, 24px, 0)'
+            pulseStage.style.transform = `translate3d(${WIPE_SHIFT}px, 0, 0) skewX(${WIPE_SKEW}deg)`
           }
         },
         settle: settlePulse,
@@ -1043,13 +898,7 @@ async function runHomeMotionEngine(
             trackLocal(
               local,
               animate(pulseCopy, {
-                clipPath: ['inset(0 100% 0 -8%)', 'inset(0 0% 0 0%)'],
-                filter: ['blur(10px)', 'blur(0px)'],
-                x: [-28, 0],
-                skewX: [-10, 0],
-                duration: 1150,
-                delay: stagger(100),
-                ease: 'outExpo',
+                ...fadeWipeAnimation(1150, stagger(100)),
                 onComplete: () => settleMaskItems(pulseCopy),
               })
             )
@@ -1060,10 +909,10 @@ async function runHomeMotionEngine(
               local,
               animate(pulseStage, {
                 opacity: [0, 1],
-                filter: ['blur(10px)', 'blur(0px)'],
-                y: [24, 0],
-                duration: 1050,
-                delay: 180,
+                x: [WIPE_SHIFT, 0],
+                skewX: [WIPE_SKEW, 0],
+                duration: 1150,
+                delay: 400,
                 ease: 'outExpo',
                 onComplete: settlePulse,
               })
@@ -1077,13 +926,13 @@ async function runHomeMotionEngine(
     }
 
     const compiler = q(root, '.nuc-home-compiler')
-    if (compiler) {
-      const compilerCopy = qa(
-        root,
-        '.nuc-home-compiler-copy .nuc-home-eyebrow, .nuc-home-compiler-copy .nuc-home-title, .nuc-home-compiler-copy .nuc-home-support'
-      )
-      const compilerStage = q(root, '.nuc-home-compiler-stage')
+    const compilerCopy = qa(
+      root,
+      '.nuc-home-compiler-copy .nuc-home-eyebrow, .nuc-home-compiler-copy .nuc-home-title, .nuc-home-compiler-copy .nuc-home-support, .nuc-home-compiler-copy .nuc-home-next'
+    )
+    const compilerStage = q(root, '.nuc-home-compiler-board')
 
+    if (compiler) {
       const settleCompiler = () => {
         settleMaskItems(compilerCopy)
         if (compilerStage) {
@@ -1096,14 +945,11 @@ async function runHomeMotionEngine(
       bindSection(compiler, {
         prepare: () => {
           for (const item of compilerCopy) {
-            item.style.opacity = '0'
-            item.style.filter = 'blur(8px)'
-            item.style.transform = 'translate3d(0, 18px, 0)'
+            prepareFadeWipe(item)
           }
           if (compilerStage) {
             compilerStage.style.opacity = '0'
-            compilerStage.style.filter = 'blur(10px)'
-            compilerStage.style.transform = 'translate3d(0, 22px, 0)'
+            compilerStage.style.transform = `translate3d(${WIPE_SHIFT}px, 0, 0) skewX(${WIPE_SKEW}deg)`
           }
         },
         settle: settleCompiler,
@@ -1112,12 +958,7 @@ async function runHomeMotionEngine(
             trackLocal(
               local,
               animate(compilerCopy, {
-                opacity: [0, 1],
-                filter: ['blur(8px)', 'blur(0px)'],
-                y: [18, 0],
-                duration: 900,
-                delay: stagger(70),
-                ease: 'outExpo',
+                ...fadeWipeAnimation(1150, stagger(100)),
                 onComplete: () => settleMaskItems(compilerCopy),
               })
             )
@@ -1127,17 +968,73 @@ async function runHomeMotionEngine(
               local,
               animate(compilerStage, {
                 opacity: [0, 1],
-                filter: ['blur(10px)', 'blur(0px)'],
-                y: [22, 0],
-                duration: 1050,
-                delay: 140,
+                x: [WIPE_SHIFT, 0],
+                skewX: [WIPE_SKEW, 0],
+                duration: 1150,
+                delay: 400,
                 ease: 'outExpo',
                 onComplete: settleCompiler,
               })
             )
           } else {
-            const settleTimer = window.setTimeout(settleCompiler, 1200)
+            const settleTimer = window.setTimeout(settleCompiler, 1400)
             local.push(() => window.clearTimeout(settleTimer))
+          }
+        },
+      })
+    }
+
+    const clone = q(root, '.nuc-home-clone')
+    const cloneCopy = qa(
+      root,
+      '.nuc-home-clone-copy .nuc-home-eyebrow, .nuc-home-clone-copy .nuc-home-title, .nuc-home-clone-copy .nuc-home-support, .nuc-home-clone-actions'
+    )
+    const cloneTerm = q(root, '.nuc-home-clone-term')
+
+    if (clone) {
+      const settleClone = () => {
+        settleMaskItems(cloneCopy)
+        if (cloneTerm) {
+          cloneTerm.style.opacity = '1'
+          cloneTerm.style.filter = 'none'
+          cloneTerm.style.transform = 'none'
+        }
+      }
+
+      bindSection(clone, {
+        prepare: () => {
+          for (const item of cloneCopy) {
+            prepareFadeWipe(item)
+          }
+          if (cloneTerm) {
+            cloneTerm.style.opacity = '0'
+            cloneTerm.style.transform = `translate3d(${WIPE_SHIFT}px, 0, 0) skewX(${WIPE_SKEW}deg)`
+          }
+        },
+        settle: settleClone,
+        play: (local) => {
+          if (cloneCopy.length) {
+            trackLocal(
+              local,
+              animate(cloneCopy, {
+                ...fadeWipeAnimation(1150, stagger(100)),
+                onComplete: () => settleMaskItems(cloneCopy),
+              })
+            )
+          }
+          if (cloneTerm) {
+            trackLocal(
+              local,
+              animate(cloneTerm, {
+                opacity: [0, 1],
+                x: [WIPE_SHIFT, 0],
+                skewX: [WIPE_SKEW, 0],
+                duration: 1150,
+                delay: 400,
+                ease: 'outExpo',
+                onComplete: settleClone,
+              })
+            )
           }
         },
       })
@@ -1147,7 +1044,7 @@ async function runHomeMotionEngine(
       q(root, '.nuc-home-close'),
       qa(
         root,
-        '.nuc-home-close-copy, .nuc-home-close-panel nui-button, .nuc-home-close-footer'
+        '.nuc-home-close-copy, .nuc-home-close-cta, .nuc-home-close-footer'
       )
     )
   }

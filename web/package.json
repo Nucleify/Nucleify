@@ -24,6 +24,7 @@
 		"animejs": "^4.5.0",
 		"lit": "^3.3.3",
 		"nucleify-ui": "^0.3.7",
+		"nui-rainbow": "0.1.0",
 		"nuxt": "4.4.8",
 		"nuxt-schema-org": "5.0.5",
 		"nuxt-seo-utils": "7.0.11",

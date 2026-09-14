@@ -14,6 +14,8 @@ type EmitCtx = {
   reactives: Set<string>
   /** Product convert: rewrite `count = x` inline handlers → `setCount(x)`. */
   stateNames?: Set<string>
+  /** `lazy()` components — wrap each usage in its own Suspense, not the whole tree. */
+  lazyNames?: Set<string>
 }
 
 function rewriteInlineEventHandler(code: string, stateNames?: Set<string>): string {
@@ -246,7 +248,7 @@ function emitNode(node: IrNode, indent: string, ctx: EmitCtx): string {
     }
     case 'element':
     case 'component': {
-      if (node.kind === 'element' && node.tag === 'fragment') {
+      if (node.kind === 'element' && (node.tag === 'fragment' || node.tag === 'template')) {
         if (!node.children.length) return `${indent}<></>`
         const inner = node.children.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')
         return `${indent}<>\n${inner}\n${indent}</>`
@@ -254,11 +256,15 @@ function emitNode(node: IrNode, indent: string, ctx: EmitCtx): string {
       const tag = node.kind === 'component' ? node.name : node.tag
       const attrs = emitAttrs(node.props, ctx, tag)
       const shw = node.kind === 'element' && node.tag.includes('-') ? ' suppressHydrationWarning' : ''
-      if (!node.children.length) {
-        return `${indent}<${tag}${attrs}${shw} />`
+      const wrapLazy = node.kind === 'component' && Boolean(ctx.lazyNames?.has(tag))
+      const elIndent = wrapLazy ? `${indent}  ` : indent
+      const jsx = !node.children.length
+        ? `${elIndent}<${tag}${attrs}${shw} />`
+        : `${elIndent}<${tag}${attrs}${shw}>\n${node.children.map((c) => emitNode(c, `${elIndent}  `, ctx)).join('\n')}\n${elIndent}</${tag}>`
+      if (wrapLazy) {
+        return `${indent}<Suspense fallback={null}>\n${jsx}\n${indent}</Suspense>`
       }
-      const inner = node.children.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')
-      return `${indent}<${tag}${attrs}${shw}>\n${inner}\n${indent}</${tag}>`
+      return jsx
     }
   }
 }
@@ -379,7 +385,14 @@ export function emitReact(doc: IrDocument, opts?: { cssFileName?: string }): str
 /** Product convert: template IR + rewritten `<script setup>` body. */
 export function emitReactProduct(
   doc: IrDocument,
-  script: { imports: string[]; body: string[] },
+  script: {
+    imports: string[]
+    body: string[]
+    propsType?: string
+    propNames?: string[]
+    emitFields?: string[]
+    emitHandlers?: string[]
+  },
   opts?: { cssFileName?: string; stateNames?: Set<string> },
 ): string {
   const lines: string[] = []
@@ -390,17 +403,69 @@ export function emitReactProduct(
     lines.push('')
   }
 
+  const lazyDeclRe = /^\s*const\s+(\w+)\s*=\s*lazy\s*\(/
+  const lazyDecls: string[] = []
+  const restBody: string[] = []
+  const lazyNames = new Set<string>()
+  for (const line of script.body) {
+    const m = line.match(lazyDeclRe)
+    if (m) {
+      lazyDecls.push(line)
+      lazyNames.add(m[1]!)
+    } else {
+      restBody.push(line)
+    }
+  }
+  if (lazyDecls.length) {
+    lines.push(...lazyDecls, '')
+  }
+
   const ctx: EmitCtx = {
     states: new Set(),
     reactives: new Set(),
     stateNames: opts?.stateNames,
+    lazyNames,
   }
-  const inner: string[] = script.body.flatMap((line) => line.split('\n').map((l) => `  ${l}`))
+  const inner: string[] = restBody.flatMap((line) => line.split('\n').map((l) => `  ${l}`))
   if (inner.length) inner.push('')
-  inner.push('  return (', emitNode(doc.template, '    ', ctx), '  )')
+  const template = rewriteVueEmitCalls(emitNode(doc.template, '    ', ctx))
+  inner.push('  return (', template, '  )')
 
-  lines.push(`export default function ${doc.name}() {`, ...inner, '}')
+  const propsType = mergeReactPropsType(script.propsType, script.emitFields ?? [])
+  const propsArg = reactProductPropsArg(script.propNames ?? [], script.emitHandlers ?? [])
+  if (propsType) {
+    lines.push(`type Props = ${propsType}`, '')
+  }
+  lines.push(`export default function ${doc.name}(${propsArg}) {`, ...inner, '}')
   return `${lines.join('\n').trim()}\n`
+}
+
+function reactOnHandler(event: string): string {
+  return `on${event.charAt(0).toUpperCase()}${event.slice(1)}`
+}
+
+function mergeReactPropsType(typeLiteral: string | undefined, emitFields: string[]): string | undefined {
+  if (!typeLiteral && emitFields.length === 0) return undefined
+  const base = (typeLiteral ?? '{}').trim()
+  if (!emitFields.length) return base
+  if (!base.endsWith('}')) {
+    return `{ ${[base, ...emitFields].join('; ')} }`
+  }
+  const inner = base.slice(0, -1).trimEnd()
+  const pad = inner.includes('\n') ? '\n  ' : ' '
+  return `${inner}${pad}${emitFields.join(pad)}\n}`
+}
+
+function reactProductPropsArg(propNames: string[], emitHandlers: string[]): string {
+  const names = [...propNames, ...emitHandlers]
+  if (names.length === 0) return ''
+  return `{ ${names.join(', ')} }: Props`
+}
+
+function rewriteVueEmitCalls(code: string): string {
+  return code.replace(/\$emit\(\s*(['"])(\w+)\1\s*(?:,\s*)?/g, (_m, _q, event: string) => {
+    return `${reactOnHandler(event)}?.(`
+  })
 }
 
 /** After destructuring props, rewrite `props.foo` → `foo` in emitted JSX text. */

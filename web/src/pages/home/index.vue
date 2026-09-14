@@ -6,6 +6,7 @@
   >
     <div class="nuc-home-shear" aria-hidden="true">
       <div class="nuc-home-aura" />
+      <div class="nuc-home-stars" />
       <div class="nuc-home-grid" />
     </div>
 
@@ -33,10 +34,10 @@
       <div class="nuc-home-scroller">
         <NucHomeHero />
         <NucHomePillars />
+        <NucHomeClone />
         <NucHomeStack />
-        <NucHomeCore />
-        <NucHomePulse />
         <NucHomeCompilerDemo />
+        <NucHomePulse />
         <NucHomeClose />
       </div>
     </main>
@@ -44,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'nuxt/app'
+import { useRoute, useSeoMeta } from 'nuxt/app'
 import {
   computed,
   defineAsyncComponent,
@@ -57,6 +58,7 @@ import {
 import {
   NUC_HOME_COPY,
   NUC_HOME_SECTIONS,
+  NUC_HOME_SEO,
   type NucHomeSectionId,
 } from './constants/content'
 import NucHomeHero from './sections/hero/index.vue'
@@ -67,14 +69,14 @@ const NucHomePillars = defineAsyncComponent(
 const NucHomeStack = defineAsyncComponent(
   () => import('./sections/stack/index.vue')
 )
-const NucHomeCore = defineAsyncComponent(
-  () => import('./sections/core/index.vue')
-)
 const NucHomePulse = defineAsyncComponent(
   () => import('./sections/pulse/index.vue')
 )
 const NucHomeCompilerDemo = defineAsyncComponent(
   () => import('./sections/compiler_demo/index.vue')
+)
+const NucHomeClone = defineAsyncComponent(
+  () => import('./sections/clone/index.vue')
 )
 const NucHomeClose = defineAsyncComponent(
   () => import('./sections/close/index.vue')
@@ -86,6 +88,21 @@ const copy = NUC_HOME_COPY
 const sections = NUC_HOME_SECTIONS
 const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
+const seoUrl = computed(() => `https://nucleify.io/${lang.value}/home`)
+
+useSeoMeta({
+  title: NUC_HOME_SEO.title,
+  description: NUC_HOME_SEO.description,
+  ogTitle: NUC_HOME_SEO.title,
+  ogDescription: NUC_HOME_SEO.description,
+  ogType: 'website',
+  ogUrl: seoUrl,
+  ogImage: NUC_HOME_SEO.ogImage,
+  twitterCard: 'summary',
+  twitterTitle: NUC_HOME_SEO.title,
+  twitterDescription: NUC_HOME_SEO.description,
+  twitterImage: NUC_HOME_SEO.ogImage,
+})
 const rootEl = ref<HTMLElement | null>(null)
 const activeSection = ref<NucHomeSectionId>('intro')
 const menuOpen = ref(false)
