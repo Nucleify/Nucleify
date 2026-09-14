@@ -187,6 +187,9 @@ const NucHomePillars = defineAsyncComponent(
       expect(readFileSync(join(dest, 'src/app/layout.tsx'), 'utf8')).toContain(
         "import 'nui-rainbow/styles.css'",
       )
+      expect(readFileSync(join(dest, 'src/lib/nucleify-ui-provider.tsx'), 'utf8')).toContain(
+        "applyRainbow(document.body",
+      )
       expect(readFileSync(join(dest, 'next.config.ts'), 'utf8')).toContain(
         "p.endsWith('.css')",
       )

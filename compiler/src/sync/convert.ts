@@ -371,7 +371,33 @@ function writeNextShell(
 ): void {
   writeText(
     join(dest, 'src/lib/nucleify-ui-provider.tsx'),
-    `'use client'
+    product === 'web'
+      ? `'use client'
+
+import { useEffect } from 'react'
+import { applyRainbow } from 'nui-rainbow'
+import { setupNui } from 'portable/nui'
+
+export function NucleifyUiProvider({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    setupNui({ palette: 'next', mode: 'dark' })
+    const stopRainbow = applyRainbow(document.body, {
+      cycle: 'linear',
+      duration: 30,
+      reducedMotion: 'ignore',
+    })
+    return () => stopRainbow()
+  }, [])
+
+  return (
+    <>
+      <nui-toast position="top-right" />
+      {children}
+    </>
+  )
+}
+`
+      : `'use client'
 
 import { useEffect } from 'react'
 import { setupNui } from 'portable/nui'
@@ -409,6 +435,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="nuc-next p-dark" suppressHydrationWarning>
       <body
         className="nuc-next p-dark nui-rainbow"
+        {...{ 'reduced-motion': 'ignore' }}
         style={{ margin: 0, background: '${cfg.shellBg}', color: '${cfg.shellFg}' }}
         suppressHydrationWarning
       >
