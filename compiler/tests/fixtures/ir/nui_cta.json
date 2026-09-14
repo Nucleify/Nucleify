@@ -1,0 +1,152 @@
+{
+  "irVersion": "0.1.0",
+  "name": "NuiCta",
+  "portable": true,
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "optional": true,
+      "default": "Continue"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "optional": true,
+      "default": false
+    },
+    {
+      "name": "accent",
+      "type": "string",
+      "optional": true,
+      "default": "#0ea5e9"
+    }
+  ],
+  "state": [],
+  "derived": [],
+  "handlers": [
+    {
+      "name": "onClick",
+      "params": [],
+      "body": [
+        {
+          "kind": "expr",
+          "value": {
+            "kind": "call",
+            "callee": {
+              "kind": "member",
+              "object": {
+                "kind": "ident",
+                "name": "console"
+              },
+              "property": "log"
+            },
+            "args": [
+              {
+                "kind": "literal",
+                "value": "nui-cta"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "template": {
+    "kind": "element",
+    "tag": "nui-button",
+    "props": [
+      {
+        "kind": "static",
+        "name": "type",
+        "value": "button"
+      },
+      {
+        "kind": "bind",
+        "name": "disabled",
+        "value": {
+          "kind": "member",
+          "object": {
+            "kind": "ident",
+            "name": "props"
+          },
+          "property": "disabled"
+        }
+      },
+      {
+        "kind": "bind",
+        "name": "aria-label",
+        "value": {
+          "kind": "member",
+          "object": {
+            "kind": "ident",
+            "name": "props"
+          },
+          "property": "label"
+        }
+      },
+      {
+        "kind": "bind",
+        "name": "style",
+        "value": {
+          "kind": "object",
+          "properties": [
+            {
+              "key": "color",
+              "value": {
+                "kind": "member",
+                "object": {
+                  "kind": "ident",
+                  "name": "props"
+                },
+                "property": "accent"
+              }
+            },
+            {
+              "key": "gap",
+              "value": {
+                "kind": "literal",
+                "value": "0.5rem"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "kind": "event",
+        "name": "click",
+        "handler": "onClick"
+      }
+    ],
+    "children": [
+      {
+        "kind": "element",
+        "tag": "nui-icon",
+        "props": [
+          {
+            "kind": "static",
+            "name": "icon",
+            "value": "mdi:rocket-launch-outline"
+          },
+          {
+            "kind": "static",
+            "name": "aria-hidden",
+            "value": "true"
+          }
+        ],
+        "children": []
+      },
+      {
+        "kind": "expr",
+        "value": {
+          "kind": "member",
+          "object": {
+            "kind": "ident",
+            "name": "props"
+          },
+          "property": "label"
+        }
+      }
+    ]
+  }
+}

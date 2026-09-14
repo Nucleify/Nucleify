@@ -1,0 +1,7 @@
+{
+  "$schema": "https://pnpm.io/schema.json",
+  "packageManager": "pnpm@10.33.0",
+  "dangerouslyAllowAllBuilds": true,
+  "ignoreWorkspace": true,
+  "verifyDepsBeforeRun": false
+}

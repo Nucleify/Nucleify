@@ -1,0 +1,61 @@
+@mixin entity-button-styles($item-color, $focus-color, $selected-color) {
+  transition:
+    all 0.1s,
+    background-color 0.5s,
+    box-shadow 0.5s,
+    color 0.2s;
+
+  .iconify,
+  g,
+  path {
+    transition:
+      all 0.1s,
+      color 0.2s !important;
+  }
+
+  &:not(.p-button-text) {
+    background-color: $item-color;
+    border-color: $item-color;
+    color: black !important;
+
+    .iconify {
+      color: black !important;
+    }
+
+    &:hover {
+      background-color: $selected-color;
+      color: $item-color;
+      
+      .iconify {
+        color: $item-color;
+      }
+
+      svg,
+      g {
+        fill: $item-color;
+      }
+    }
+  }
+
+  &.p-datatable-column-filter-button,
+  &.p-button-text {
+    background-color: transparent !important;
+    color: $item-color;
+
+    &:active,
+    &:focus-visible {
+      background-color: $selected-color;
+      color: $item-color;
+      box-shadow: none !important;
+    }
+
+    &:hover {
+      background-color: $selected-color;
+
+      svg,
+      g {
+        fill: $item-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+@import 'variables';
+
+@media (width >= $lg) {
+  .mobile {
+    display: none !important;
+  }
+}
+
+@media (width < $lg) {
+  .desktop {
+    display: none !important;
+  }
+}

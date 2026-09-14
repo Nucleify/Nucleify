@@ -1,0 +1,131 @@
+@mixin nuc-primary-palette-nuxt {
+  --nuc-primary-color: #10b981;
+  --nuc-primary-color-rgb: 16, 185, 129;
+  --nuc-primary-dark-color: #125148;
+  --nuc-primary-hover-color: #1bbd79;
+  --nuc-primary-focus-color: #10b98180;
+  --nuc-primary-secondary-color: #10b98135;
+  --nuc-primary-selected-color: #10b98126;
+  --nuc-primary-highlight-color: #10b98115;
+  --nuc-primary-color-darker: #0d9668;
+}
+
+@mixin nuc-primary-palette-next {
+  --nuc-primary-color: #60a5fa;
+  --nuc-primary-color-rgb: 96, 165, 250;
+  --nuc-primary-dark-color: #1e40af;
+  --nuc-primary-hover-color: #3b82f6;
+  --nuc-primary-focus-color: #60a5fa80;
+  --nuc-primary-secondary-color: #60a5fa35;
+  --nuc-primary-selected-color: #60a5fa26;
+  --nuc-primary-highlight-color: #60a5fa15;
+  --nuc-primary-color-darker: #4d94e8;
+}
+
+@mixin nuc-theme-light-nuxt {
+  --nuc-primary-border-color: #d1d5db;
+  --nuc-primary-white-text-color: #000;
+  --nuc-primary-white-green-text-color: #047857;
+  --nuc-bg-dark-color: #fff;
+  --nuc-bg-black-color: #fffd;
+  --nuc-bg-dark-green-color: #eafff6;
+  --nuc-bg-green-color-05: #10b98118;
+  --nuc-p-card-background: #f7f8f7;
+  --nuc-p-card-border: color-mix(in srgb, #10b981 12%, #e2e8e5);
+  --nuc-p-card-box-shadow: #c5cbc8;
+  --nuc-input-border: color-mix(in srgb, #10b981 6%, #ecefec);
+  --nuc-content-background: #fffc;
+  --nuc-dark-text-color: #14332a;
+  --nuc-primary-text-color: #1a3d30;
+  --nuc-secondary-text-color: #2d5a49;
+  --nuc-white-text-color: #0f2e23;
+  --nuc-white-text-rgb: 15, 46, 35;
+}
+
+@mixin nuc-theme-light-next {
+  --nuc-primary-border-color: #d1d5db;
+  --nuc-primary-white-text-color: #000;
+  --nuc-primary-white-green-text-color: #1d4ed8;
+  --nuc-bg-dark-color: #fff;
+  --nuc-bg-black-color: #fffd;
+  --nuc-bg-dark-green-color: #eff6ff;
+  --nuc-bg-green-color-05: #60a5fa18;
+  --nuc-p-card-background: #f7f8fb;
+  --nuc-p-card-border: color-mix(in srgb, #60a5fa 12%, #e2e5eb);
+  --nuc-p-card-box-shadow: #c5cbc8;
+  --nuc-input-border: color-mix(in srgb, #60a5fa 6%, #eceef3);
+  --nuc-content-background: #fffc;
+  --nuc-dark-text-color: #1e293b;
+  --nuc-primary-text-color: #1e3a5f;
+  --nuc-secondary-text-color: #334155;
+  --nuc-white-text-color: #0f172a;
+  --nuc-white-text-rgb: 15, 23, 42;
+}
+
+@mixin nuc-theme-dark-nuxt {
+  --nuc-primary-border-color: #f5f5f5;
+  --nuc-primary-white-text-color: #e6e6e6;
+  --nuc-primary-white-green-text-color: #cce4dd;
+  --nuc-bg-dark-color: #080808;
+  --nuc-bg-black-color: #000a;
+  --nuc-bg-dark-green-color: #020806;
+  --nuc-bg-green-color-05: #10b98108;
+  --nuc-p-card-background: #0b0d0c;
+  --nuc-p-card-border: color-mix(in srgb, #10b981 18%, #ffffff18);
+  --nuc-p-card-box-shadow: #050605;
+  --nuc-input-border: color-mix(in srgb, #10b981 8%, #ffffff0d);
+  --nuc-content-background: #090a09;
+  --nuc-dark-text-color: #d1d5db;
+  --nuc-primary-text-color: #9ca3af;
+  --nuc-secondary-text-color: #a1a1aa;
+  --nuc-white-text-color: #f5f4f4;
+  --nuc-white-text-rgb: 245, 244, 244;
+}
+
+@mixin nuc-theme-dark-next {
+  --nuc-primary-border-color: #f5f5f5;
+  --nuc-primary-white-text-color: #e6e6e6;
+  --nuc-primary-white-green-text-color: #d8e8fd;
+  --nuc-bg-dark-color: #080808;
+  --nuc-bg-black-color: #000a;
+  --nuc-bg-dark-green-color: #02040c;
+  --nuc-bg-green-color-05: #60a5fa08;
+  --nuc-p-card-background: #0b0c10;
+  --nuc-p-card-border: color-mix(in srgb, #60a5fa 18%, #ffffff18);
+  --nuc-p-card-box-shadow: #05060a;
+  --nuc-input-border: color-mix(in srgb, #60a5fa 8%, #ffffff0d);
+  --nuc-content-background: #09090c;
+  --nuc-dark-text-color: #d1d5db;
+  --nuc-primary-text-color: #9ca3af;
+  --nuc-secondary-text-color: #a1a1aa;
+  --nuc-white-text-color: #f5f4f4;
+  --nuc-white-text-rgb: 245, 244, 244;
+}
+
+.nuc-nuxt,
+.nuc-next {
+  --nuc-font-ui: 'Instrument Sans', system-ui, sans-serif;
+  --nuc-font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.nuc-nuxt {
+  @include nuc-primary-palette-nuxt;
+  @include nuc-theme-light-nuxt;
+}
+
+.nuc-nuxt.p-dark,
+.p-dark .nuc-nuxt {
+  @include nuc-primary-palette-nuxt;
+  @include nuc-theme-dark-nuxt;
+}
+
+.nuc-next {
+  @include nuc-primary-palette-next;
+  @include nuc-theme-light-next;
+}
+
+.nuc-next.p-dark,
+.p-dark .nuc-next {
+  @include nuc-primary-palette-next;
+  @include nuc-theme-dark-next;
+}
