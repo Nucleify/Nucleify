@@ -29,7 +29,10 @@ const canonicalHref = computed(() => {
 
 useHead({
   htmlAttrs: { class: 'nuc-nuxt p-dark' },
-  bodyAttrs: { class: 'nuc-nuxt p-dark nui-rainbow' },
+  bodyAttrs: {
+    class: 'nuc-nuxt p-dark nui-rainbow',
+    'reduced-motion': 'ignore',
+  },
   link: [
     {
       key: 'canonical',

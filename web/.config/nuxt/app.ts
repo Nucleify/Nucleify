@@ -1,7 +1,7 @@
 export const appConfig = {
 	head: {
 		htmlAttrs: { class: "nuc-nuxt p-dark" },
-		bodyAttrs: { class: "nuc-nuxt p-dark nui-rainbow" },
+		bodyAttrs: { class: "nuc-nuxt p-dark nui-rainbow", "reduced-motion": "ignore" },
 		title: "Nucleify — Modular monorepo for Vue, React, Nuxt & Next",
 		titleTemplate: "%s",
 		meta: [
