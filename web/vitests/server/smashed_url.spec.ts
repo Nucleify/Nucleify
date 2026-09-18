@@ -39,10 +39,16 @@ describe('smashed_url', () => {
   it('leaves living routes alone', () => {
     expect(redirectTargetForPath('/en/home')).toBeNull()
     expect(redirectTargetForPath('/pl/home')).toBeNull()
+    expect(redirectTargetForPath('/en/investor')).toBeNull()
+    expect(redirectTargetForPath('/pl/investor')).toBeNull()
     expect(
       redirectTargetForPath('/en/docs/core-concepts/overriding')
     ).toBeNull()
     expect(redirectTargetForPath('/_nuxt/entry.js')).toBeNull()
     expect(redirectTargetForPath('/api/test')).toBeNull()
+  })
+
+  it('collapses investor extras to the investor root', () => {
+    expect(redirectTargetForPath('/en/investor/deck')).toBe('/en/investor')
   })
 })
