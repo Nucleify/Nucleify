@@ -15,7 +15,24 @@
         viewBox="0 0 200 188"
         aria-hidden="true"
       >
-        <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <defs>
+          <filter
+            :id="`${uid}-bloom`"
+            x="-45%"
+            y="-45%"
+            width="190%"
+            height="190%"
+            color-interpolation-filters="sRGB"
+          >
+            <feGaussianBlur stdDeviation="4.2" />
+          </filter>
+        </defs>
+        <g
+          fill="none"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          :filter="`url(#${uid}-bloom)`"
+        >
           <path class="is-ui" d="M100 34 L162 68 L100 102 L38 68 Z" />
           <path class="is-sdk" d="M38 68 L100 102 L100 170 L38 136 Z" />
           <path class="is-data" d="M162 68 L100 102 L100 170 L162 136 Z" />
@@ -48,7 +65,7 @@
           <clipPath :id="`${uid}-c`">
             <path d="M100 34 L162 68 L162 136 L100 170 L38 136 L38 68 Z" />
           </clipPath>
-          <filter :id="`${uid}-b`" x="-8%" y="-8%" width="116%" height="116%">
+          <filter :id="`${uid}-b`" x="-28%" y="-28%" width="156%" height="156%">
             <feGaussianBlur stdDeviation="3.2" />
           </filter>
           <linearGradient
