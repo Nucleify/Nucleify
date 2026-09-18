@@ -55,9 +55,13 @@
 
 # AI workflow
 .ai/specs/*
+!.ai/docs/
+!.ai/docs/**
 
-# Cursor generated rules (synced from .config/rules via sync-rules)
-.cursor
+# Cursor: ignore synced rules; track project skills
+.cursor/*
+!.cursor/skills/
+!.cursor/skills/**
 
 # Supabase
 supabase/.temp

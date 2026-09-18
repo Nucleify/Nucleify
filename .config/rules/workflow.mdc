@@ -21,6 +21,8 @@ Act as the **Planner** (`web/.cursor/agents/planner.md`).
 3. Write structured plan → `.ai/specs/plan.md`
 4. Present and **wait for approval**
 
+Pipeline skills (`/.cursor/skills/plan*`, `do*`, …) share steps in `nui-workflow`. Agent change notes go to `.ai/docs/` (not the Astro `docs/` site).
+
 ---
 
 ## Phase 2 — IMPLEMENT
@@ -31,6 +33,8 @@ Parallel when both API and UI needed:
 - **Frontend** — `web/.cursor/agents/frontend.md`
 
 Single agent for frontend-only or API-only work.
+
+After implementation, write or update a short note under `.ai/docs/` when behaviour or process changed.
 
 ---
 
