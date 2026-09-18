@@ -151,6 +151,15 @@ export function redirectTargetForPath(pathname: string): string | null {
     return null
   }
 
+  // Exact living investor pitch.
+  if (
+    LOCALE_CODES.has(first) &&
+    parts[1] === 'investor' &&
+    parts.length === 2
+  ) {
+    return null
+  }
+
   // Bare locale is handled by routeRules.
   if (LOCALE_CODES.has(first) && parts.length === 1) return null
 
@@ -176,12 +185,18 @@ export function redirectTargetForPath(pathname: string): string | null {
     return homeForLocale(first)
   }
 
+  // `/{lang}/investor/...` extras — collapse to investor root.
+  if (LOCALE_CODES.has(first) && parts[1] === 'investor' && parts.length > 2) {
+    return `/${first}/investor`
+  }
+
   // `/{lang}/services|legal|about-us|...` — dead marketing tree.
   if (
     LOCALE_CODES.has(first) &&
     parts[1] &&
     parts[1] !== 'home' &&
-    parts[1] !== 'docs'
+    parts[1] !== 'docs' &&
+    parts[1] !== 'investor'
   ) {
     return homeForLocale(first)
   }

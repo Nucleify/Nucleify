@@ -5,6 +5,9 @@ const siteUrl =
 
 /** Public marketing routes for sitemap / SEO. */
 export const SITE_HOME_PATHS = LOCALES.map((locale) => `/${locale.code}/home`)
+export const SITE_INVESTOR_PATHS = LOCALES.map(
+	(locale) => `/${locale.code}/investor`,
+)
 
 export const siteConfig = {
 	url: siteUrl,
@@ -25,4 +28,6 @@ export const smashedUrlRedirects: Record<
 > = {
 	'/home': { redirect: { to: '/en/home', statusCode: 301 } },
 	'/home/**': { redirect: { to: '/en/home', statusCode: 301 } },
+	'/investor': { redirect: { to: '/en/investor', statusCode: 301 } },
+	'/investor/**': { redirect: { to: '/en/investor', statusCode: 301 } },
 }
