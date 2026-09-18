@@ -12,7 +12,7 @@ Designed with [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/), [M
 ⭐ **Project setup with a single command** <br>
 ⭐ **Unique Laravel/Nuxt modules & overrides functionality** <br>
 ⭐ Atomic Design components + CSS modules <br>
-⭐ Futuristic UI made with [PrimeVue](https://primevue.org/) + [Chart.js](https://www.chartjs.org/) + [GSAP](https://gsap.com/) + [SCSS](https://sass-lang.com/) <br>
+⭐ Futuristic UI made with [nucleify-ui](https://www.npmjs.com/package/nucleify-ui) + [Chart.js](https://www.chartjs.org/) + [GSAP](https://gsap.com/) + [SCSS](https://sass-lang.com/) <br>
 
 <br>
 
@@ -26,7 +26,7 @@ Designed with [Atomic Design](https://atomicdesign.bradfrost.com/chapter-2/), [M
 - Fetching website's content like questions, or technologies from database on prerender, making them editable and accessible instantly without load time
 - [nuxt-vitalizer](https://nuxt.com/modules/vitalizer) - this module is just perfect
 - [@nuxtjs/google-fonts](https://nuxt.com/modules/google-fonts) - downloading fonts on building & serving them on prerender, reducing third-party sources
-- I also recommend ```<deferred-content>``` tag from PrimeVue - it impacts performance extremely well
+- I also recommend ```<nui-deferred-content>``` — it impacts performance extremely well
 - and some other magic tricks that we keep secret :D
 
 <br>
@@ -71,7 +71,7 @@ That's it! Now, you can enter http://localhost:3000
 
 <details><summary> Harder way </summary> <br>
 
-- Copy ```.config/.env.docker.example``` to ```.env``` in root directory
+- Copy ```web/.config/.env.example``` to ```.env``` in root directory
 - Run ```composer install```
 
 - Build & run Docker image 

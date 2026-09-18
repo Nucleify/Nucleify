@@ -1,0 +1,5 @@
+@mixin disabled-item {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+  color: #5e5e5eff !important;
+}

@@ -1,0 +1,15 @@
+---
+import { getAllDocRoutes } from '../../lib/doc_paths'
+
+export function getStaticPaths() {
+  return getAllDocRoutes()
+    .filter((route) => route.lang === 'en')
+    .map((route) => ({
+      params: { path: `${route.category}/${route.slug}` },
+    }))
+}
+
+const { path } = Astro.params
+
+return Astro.redirect(`/en/docs/${path}`)
+---

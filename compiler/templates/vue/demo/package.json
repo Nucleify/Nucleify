@@ -1,0 +1,21 @@
+{
+  "name": "@nucleify/vue",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "iconify-icon": "^3.0.0",
+    "lit": "^3.3.0",
+    "nucleify-ui": "^0.3.7",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "vite": "^6.2.0"
+  }
+}

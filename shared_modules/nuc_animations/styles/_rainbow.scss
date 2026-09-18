@@ -1,0 +1,9 @@
+@import 'nui-rainbow/styles.css';
+
+@mixin nuc-rainbow-cycle($duration: 60s) {
+  --nui-rainbow-duration: #{$duration};
+}
+
+.nuc-rainbow {
+  @include nuc-rainbow-cycle;
+}

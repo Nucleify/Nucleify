@@ -4,8 +4,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
-SUPABASE_LOCAL_BIN="$ROOT_DIR/node_modules/.bin/supabase"
-
+PKG_DIR="$ROOT_DIR/web"
+SUPABASE_LOCAL_BIN="${PKG_DIR}/node_modules/.bin/supabase"
+if [[ ! -x "$SUPABASE_LOCAL_BIN" ]]; then SUPABASE_LOCAL_BIN="$ROOT_DIR/node_modules/.bin/supabase"; fi
 KIND="${1:-}"
 MODE="${2:-linked}"
 
@@ -27,7 +28,7 @@ fi
 shopt -s nullglob
 if [[ "$KIND" == "seeders" ]]; then
   found_any=0
-  for module_dir in "$ROOT_DIR"/modules/*; do
+  for module_dir in "$ROOT_DIR"/shared_modules/*; do
     [[ -d "$module_dir" ]] || continue
     module_seeder="$module_dir/supabase/seeders/module_seeder.sql"
     if [[ -f "$module_seeder" ]]; then
@@ -42,13 +43,13 @@ if [[ "$KIND" == "seeders" ]]; then
   done
 
   if [[ "$found_any" -eq 0 ]]; then
-    echo "No module seeders found under modules/*/supabase/seeders."
+    echo "No module seeders found under shared_modules/*/supabase/seeders."
     exit 0
   fi
 else
-  sources=( "$ROOT_DIR"/modules/*/supabase/"$KIND"/*.sql )
+  sources=( "$ROOT_DIR"/shared_modules/*/supabase/"$KIND"/*.sql )
   if [[ ${#sources[@]} -eq 0 ]]; then
-    echo "No module $KIND found under modules/*/supabase/$KIND."
+    echo "No module $KIND found under shared_modules/*/supabase/$KIND."
     exit 0
   fi
 fi

@@ -1,0 +1,55 @@
+---
+import '../styles/docs.css'
+import 'highlight.js/styles/github-dark.min.css'
+
+interface Props {
+  title: string
+  lang: string
+  category: string
+  slug: string
+}
+
+const { title, lang, category, slug } = Astro.props
+const pageTitle = `${title} · Nucleify Docs`
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Nucleify documentation" />
+    <title>{pageTitle}</title>
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/favicon.ico" />
+  </head>
+  <body class="docs-body">
+    <header class="docs-header">
+      <div class="docs-header__inner">
+        <a class="docs-brand" href={`/${lang}/docs/getting-started/introduction`}>
+          <img class="docs-brand__logo" src="/img/logo.svg" alt="" width="28" height="32" decoding="async" />
+          <span class="docs-brand__text">Nucleify Docs</span>
+        </a>
+        <slot name="header-extra" />
+      </div>
+    </header>
+    <div class="docs-shell">
+      <aside class="docs-sidebar" aria-label="Documentation navigation">
+        <slot name="sidebar" />
+      </aside>
+      <main class="docs-main" id="docs-main">
+        <article class="docs-article">
+          <slot />
+        </article>
+      </main>
+      <aside class="docs-toc-panel" aria-label="On this page">
+        <slot name="toc" />
+      </aside>
+    </div>
+    <script define:vars={{ lang, category, slug }}>
+      document.querySelectorAll('.docs-lang-switch a').forEach((link) => {
+        if (link.dataset.lang === lang) link.setAttribute('aria-current', 'page')
+      })
+    </script>
+  </body>
+</html>

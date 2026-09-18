@@ -1,0 +1,29 @@
+---
+description: Admin Nuxt app — conventions and structure
+globs: admin/**
+alwaysApply: false
+---
+
+# Admin (`@nucleify/admin`)
+
+Separate Nuxt app for admin UI. Source under `admin/src/`.
+
+## Conventions
+
+- Shared code: import from `shared_modules/nuc_*/…`
+- Admin-only UI: keep in `admin/src/` — do not put in `web/` or `shared_modules/`
+- Overrides: `overrides/admin/`
+- Rules: `admin/.config/rules/`
+- Agents: `web/.cursor/agents/`
+
+## Structure
+
+```
+admin/
+├── src/
+│   ├── pages/[lang]/
+│   ├── plugins/
+│   └── …
+├── .config/          # Nuxt config, rules
+└── package.json
+```

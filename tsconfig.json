@@ -1,8 +1,0 @@
-{
-  "extends": "./.config/tsconfig.nuxt.json",
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.nuxt.json" },
-    { "path": "./tsconfig.next.json" }
-  ]
-}
