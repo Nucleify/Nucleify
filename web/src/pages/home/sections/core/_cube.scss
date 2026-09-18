@@ -9,6 +9,7 @@
   min-height: 0;
   aspect-ratio: 200 / 188;
   margin: 0 auto;
+  overflow: visible;
   perspective: 900px;
 
   @media (min-width: $md) {
@@ -16,9 +17,16 @@
     min-height: 10rem;
   }
 
+  @media (max-width: $md) {
+    .nuc-home-holo-cube-bloom path {
+      stroke-width: 3.1;
+    }
+  }
+
   &-spin {
     position: absolute;
     inset: 0;
+    overflow: visible;
     transform-origin: 50% 50%;
     animation: nuc-home-holo-yaw 9s ease-in-out infinite;
   }
@@ -33,10 +41,6 @@
 
     .nuc-home-holo-cube-spin {
       animation-duration: 11s;
-    }
-
-    .nuc-home-holo-cube-bloom {
-      filter: blur(7px) brightness(1.55) saturate(1.45);
     }
 
     .nuc-home-holo-cube-bloom path {
@@ -58,12 +62,7 @@
   }
 
   &-glob {
-    filter: blur(5px);
     pointer-events: none;
-  }
-
-  &.is-compact &-glob {
-    filter: blur(3.5px);
   }
 
   &-bloom,
@@ -77,7 +76,6 @@
 
   &-bloom {
     z-index: 0;
-    filter: blur(14px) brightness(1.85) saturate(1.6);
     opacity: 1;
     pointer-events: none;
 
