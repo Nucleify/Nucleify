@@ -1,5 +1,11 @@
 packages:
-  - "."
+  - "web"
+  - "admin"
+  - "docs"
+  - "compiler"
+  - "shared_modules"
+  - "web-next"
+  - "admin-next"
 
 # pnpm-only (npm ignores this file — avoids unknown .npmrc key warnings)
 publicHoistPattern:

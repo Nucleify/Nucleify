@@ -1,0 +1,38 @@
+{
+  "irVersion": "0.1.0",
+  "name": "Hello",
+  "portable": true,
+  "props": [
+    {
+      "name": "title",
+      "type": "string"
+    }
+  ],
+  "state": [],
+  "derived": [],
+  "handlers": [],
+  "template": {
+    "kind": "element",
+    "tag": "h1",
+    "props": [
+      {
+        "kind": "static",
+        "name": "class",
+        "value": "hello"
+      }
+    ],
+    "children": [
+      {
+        "kind": "expr",
+        "value": {
+          "kind": "member",
+          "object": { "kind": "ident", "name": "props" },
+          "property": "title"
+        }
+      }
+    ]
+  },
+  "meta": {
+    "sourcePath": "fixtures/source/hello.nuc.tsx"
+  }
+}

@@ -1,0 +1,7 @@
+---
+import { DEFAULT_DOC_ROUTE } from '../../lib/doc_paths'
+
+return Astro.redirect(
+  `/en/docs/${DEFAULT_DOC_ROUTE.category}/${DEFAULT_DOC_ROUTE.slug}`,
+)
+---

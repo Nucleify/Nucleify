@@ -1,0 +1,49 @@
+.panel-container {
+  position: relative;
+  padding: 0.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  opacity: 0;
+  animation: fade-in .3s .5s ease-in forwards;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+body:has(.p-dock.p-dock-top) {
+  .panel-container {
+    padding-top: 5em;
+  }
+}
+
+body:has(.p-dock.p-dock-right) {
+  .panel-container {
+    padding-top: 0.5em;
+    padding-right: 5em;
+  }
+}
+
+body:has(.p-dock.p-dock-left) {
+  .panel-container {
+    padding-top: 0.5em;
+    padding-left: 5em;
+  }
+}
+
+body:has(.p-dock.p-dock-bottom) {
+  .panel-container {
+    padding-bottom: 5em;
+
+    @media (min-width: $lg) {
+      padding-top: 0.5em;
+    }
+  }
+}

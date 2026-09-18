@@ -1,0 +1,121 @@
+.nuc-home-compiler {
+  --emit-color: var(--home-accent);
+
+  @media (min-width: $md) {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 1.15fr);
+    gap: clamp(1.75rem, 4vw, 3.25rem);
+    align-items: center;
+  }
+
+  &-copy {
+    .nuc-home-support {
+      max-width: 34rem;
+    }
+
+    .nuc-home-next {
+      margin-top: 0.75rem;
+    }
+  }
+
+  &-board {
+    margin-top: 1.35rem;
+
+    @media (min-width: $md) {
+      margin-top: 0;
+    }
+  }
+
+  &-window {
+    min-width: 0;
+    padding: 0.85rem 0.9rem 0.8rem;
+    border: 1px solid var(--home-card-border);
+    border-radius: 1.1rem;
+    background: var(--home-card-bg);
+    box-shadow: var(--home-card-shadow);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  &-code {
+    display: grid;
+    gap: 0.08rem;
+    margin: 0;
+    padding: 0 0 0.85rem;
+    list-style: none;
+
+    li {
+      display: grid;
+      grid-template-columns: 1.6rem 1fr;
+      gap: 0.7rem;
+      align-items: baseline;
+      min-width: 0;
+    }
+
+    span {
+      color: var(--home-dim);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+    }
+
+    code {
+      min-width: 0;
+      color: var(--home-muted);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.74rem;
+      line-height: 1.5;
+      white-space: pre;
+
+      &.is-tag {
+        color: var(--home-accent);
+      }
+    }
+  }
+
+  &-shells {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgb(255 255 255 / 5%);
+  }
+
+  &-shell {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.32rem 0.5rem;
+    border: 1px solid rgb(255 255 255 / 6%);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--home-dim);
+    cursor: pointer;
+    transition:
+      color 0.25s ease,
+      border-color 0.25s ease,
+      background 0.25s ease;
+
+    span {
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.04em;
+    }
+
+    nui-icon,
+    iconify-icon {
+      font-size: 0.85rem;
+    }
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+      color: var(--node-color);
+    }
+
+    &.is-active {
+      color: var(--node-color);
+      border-color: color-mix(in srgb, var(--node-color) 50%, transparent);
+      background: color-mix(in srgb, var(--node-color) 10%, transparent);
+    }
+  }
+}

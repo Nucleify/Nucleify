@@ -1,0 +1,14 @@
+{
+  "name": "@nucleify/compiler",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./runtime": "./runtime/index.ts"
+  },
+  "scripts": {
+    "compiler": "tsx src/cli.ts",
+    "tests": "vitest run --config ../.config/vitest.compiler.config.ts"
+  }
+}

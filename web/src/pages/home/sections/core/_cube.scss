@@ -1,0 +1,238 @@
+.nuc-home-holo-cube {
+  --holo-cyan: hsl(var(--rainbow-hue) 95% 62%);
+  --holo-blue: hsl(calc(var(--rainbow-hue) + 48deg) 90% 62%);
+  --holo-violet: hsl(calc(var(--rainbow-hue) + 72deg) 88% 62%);
+  --holo-mag: hsl(calc(var(--rainbow-hue) + 96deg) 95% 60%);
+
+  position: relative;
+  width: min(100%, 11.5rem);
+  min-height: 0;
+  aspect-ratio: 200 / 188;
+  margin: 0 auto;
+  overflow: visible;
+  perspective: 900px;
+
+  @media (min-width: $md) {
+    width: min(100%, 22rem);
+    min-height: 10rem;
+  }
+
+  @media (max-width: $md) {
+    .nuc-home-holo-cube-bloom path {
+      stroke-width: 3.1;
+    }
+  }
+
+  &-spin {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    transform-origin: 50% 50%;
+    animation: nuc-home-holo-yaw 9s ease-in-out infinite;
+  }
+
+  &.is-paused &-spin,
+  &:hover &-spin {
+    animation-play-state: paused;
+  }
+
+  &.is-compact {
+    width: 100%;
+
+    .nuc-home-holo-cube-spin {
+      animation-duration: 11s;
+    }
+
+    .nuc-home-holo-cube-bloom path {
+      stroke-width: 3.1;
+    }
+
+    .nuc-home-holo-cube-rim {
+      stroke-width: 2.2;
+    }
+
+    .nuc-home-holo-cube-near.is-hi {
+      stroke-width: 2.55;
+    }
+
+    .nuc-home-holo-cube-back-edge {
+      stroke-width: 0.9;
+      opacity: 0.32;
+    }
+  }
+
+  &-glob {
+    pointer-events: none;
+  }
+
+  &-bloom,
+  &-solid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  &-bloom {
+    z-index: 0;
+    opacity: 1;
+    pointer-events: none;
+
+    path {
+      fill: none;
+      stroke-width: 4.2;
+
+      &.is-ui {
+        stroke: var(--holo-cyan);
+      }
+
+      &.is-sdk {
+        stroke: var(--holo-blue);
+      }
+
+      &.is-data {
+        stroke: var(--holo-mag);
+      }
+    }
+  }
+
+  &-solid {
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &-back-edge {
+    fill: none;
+    stroke: hsl(calc(var(--rainbow-hue) + 72deg) 40% 42%);
+    stroke-width: 1.05;
+    opacity: 0.38;
+  }
+
+  &-face {
+    stroke: none;
+    transition: opacity 0.28s ease;
+  }
+
+  &-rim {
+    fill: none;
+
+    &.is-top {
+      stroke: var(--holo-cyan);
+      stroke-width: 2.05;
+      opacity: 0.7;
+    }
+
+    &.is-left {
+      stroke: var(--holo-blue);
+      stroke-width: 2.15;
+      opacity: 0.84;
+    }
+
+    &.is-right {
+      stroke: var(--holo-mag);
+      stroke-width: 2;
+      opacity: 0.58;
+    }
+
+    &.is-bottom-left {
+      stroke: var(--holo-blue);
+      stroke-width: 2.3;
+      opacity: 0.92;
+    }
+
+    &.is-bottom-right {
+      stroke: var(--holo-mag);
+      stroke-width: 2.15;
+      opacity: 0.68;
+    }
+  }
+
+  &-near {
+    fill: none;
+
+    &.is-hi {
+      stroke: var(--holo-blue);
+      stroke-width: 2.5;
+      opacity: 1;
+    }
+
+    &.is-mid {
+      stroke: hsl(calc(var(--rainbow-hue) + 48deg) 92% 72%);
+      stroke-width: 2.3;
+      opacity: 0.86;
+    }
+
+    &.is-lo {
+      stroke: hsl(calc(var(--rainbow-hue) + 96deg) 88% 62%);
+      stroke-width: 2.1;
+      opacity: 0.66;
+    }
+  }
+
+  &.is-focus-ui &-face.is-sdk,
+  &.is-focus-ui &-face.is-data,
+  &.is-focus-sdk &-face.is-ui,
+  &.is-focus-sdk &-face.is-data,
+  &.is-focus-data &-face.is-ui,
+  &.is-focus-data &-face.is-sdk {
+    opacity: 0.72;
+  }
+
+  &-wire {
+    fill: none;
+    stroke: url("#nuc-home-holo-wire");
+    stroke-width: 0.7;
+  }
+
+  &-hits {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+  }
+
+  &-hit {
+    position: absolute;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+
+    &.is-ui {
+      inset: 14% 18% 48%;
+      clip-path: polygon(50% 8%, 100% 52%, 50% 100%, 0 52%);
+    }
+
+    &.is-sdk {
+      inset: 30% 50% 12% 16%;
+      clip-path: polygon(0 0, 100% 22%, 100% 100%, 0 78%);
+    }
+
+    &.is-data {
+      inset: 30% 16% 12% 50%;
+      clip-path: polygon(0 22%, 100% 0, 100% 78%, 0 100%);
+    }
+  }
+
+  &.is-compact &-hits {
+    display: none;
+  }
+}
+
+@keyframes nuc-home-holo-yaw {
+  0%,
+  100% {
+    transform: rotateY(-8deg);
+  }
+
+  50% {
+    transform: rotateY(8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nuc-home-holo-cube-spin {
+    animation: none;
+    transform: rotateY(-4deg);
+  }
+}
