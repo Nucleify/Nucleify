@@ -6,9 +6,12 @@
 |---------|---------------------|
 | `pnpm compiler -- convert web --target=next` | `web-next/` |
 | `pnpm compiler -- convert admin --target=next` | `admin-next/` |
-| `make web TARGET=next` | same as convert web |
+| `pnpm compiler -- convert web --target=solid` | `web-solid/` |
+| `pnpm compiler -- convert admin --target=solid` | `admin-solid/` |
+| `make web TARGET=next` / `TARGET=solid` | convert + install + dev |
+| `make admin TARGET=next` / `TARGET=solid` | same for admin |
 
-Flat `{product}-next/` at repo root (not `next/web`).
+Solid product convert: Vue SFC → React emit → `reactTsxToSolidBody` (best-effort). Complex Next/React-only APIs still need follow-up; admin stubs convert cleanly.
 
 ## Emit demos (Tryb A)
 
@@ -16,25 +19,14 @@ Flat `{product}-next/` at repo root (not `next/web`).
 |---------|---------------------|
 | `make vue` / `react` / `nuxt` / `next` / `solid` | `{framework}/demo` |
 
-Solid (Faza 12): `emitSolid` → `createSignal` / `createMemo`, JSX `class`, `make solid`.
-
-## DoD v1
-
-| Item | Status |
-|------|--------|
-| Golden fixtures (incl. counter) + emit tests | done |
-| Dirty / import Vue+React + CI check/build | done |
-| Solid emit + demo scaffold | done (this batch) |
-
 ## Now
 
-**Faza 12+ continued** — Svelte next, then Astro islands.
+Faza 12+ — Solid emit + product convert (web/admin). Next: Svelte.
 
 ## Verify
 
 ```bash
 pnpm compiler:test
-pnpm compiler:check
-pnpm -s check && pnpm -s typeslint && pnpm -s slint && pnpm -s tests
-make solid   # optional smoke
+pnpm compiler -- convert admin --target=solid --force
+make admin TARGET=solid   # optional smoke
 ```
