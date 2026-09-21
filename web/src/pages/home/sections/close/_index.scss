@@ -6,6 +6,69 @@
   margin: 0 auto;
   padding: 4.75rem var(--home-pad) 4.5rem;
   box-sizing: border-box;
+  overflow: hidden;
+
+  &-stage {
+    position: relative;
+    display: grid;
+    flex: 1;
+    align-items: center;
+    width: 100%;
+    min-height: 14rem;
+    isolation: isolate;
+  }
+
+  &-pitch,
+  &-commerce {
+    grid-area: 1 / 1;
+    width: 100%;
+  }
+
+  &-pitch {
+    z-index: 1;
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0s;
+  }
+
+  &-commerce {
+    z-index: 2;
+    transform: translateX(14%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    background: transparent;
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0.5s;
+  }
+
+  &.is-form &-pitch {
+    transform: translateX(-16%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0.5s;
+  }
+
+  &.is-form &-commerce {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0s;
+  }
 
   &-panel {
     display: flex;
@@ -13,7 +76,6 @@
     align-items: flex-end;
     place-content: center space-between;
     gap: 2rem;
-    flex: 1;
 
     nui-button {
       --nui-primary-white-text-color: var(--home-on-accent, #04110c);
@@ -22,27 +84,6 @@
 
   &-copy {
     max-width: 34rem;
-  }
-
-  &-install {
-    display: grid;
-    gap: 0.28rem;
-    margin: 1.15rem 0 0;
-    padding: 0.65rem 0.75rem;
-    list-style: none;
-    border: 1px solid var(--home-card-border);
-    border-radius: 1.1rem;
-    background: var(--home-card-bg);
-    box-shadow: var(--home-card-shadow);
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 0.72rem;
-    line-height: 1.45;
-    color: var(--home-muted);
-
-    span {
-      color: var(--home-accent);
-      margin-right: 0.4rem;
-    }
   }
 
   &-cta {
@@ -59,6 +100,200 @@
     @media (min-width: $md) {
       nui-button {
         width: auto;
+      }
+    }
+  }
+
+  &-eyebrow {
+    margin: 0 0 0.45rem;
+    color: var(--home-accent);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  &-commerce-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem 1.5rem;
+    margin-bottom: 1.35rem;
+  }
+
+  &-commerce-title {
+    margin: 0;
+    color: var(--home-fg);
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+    font-weight: 650;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  &-commerce-support {
+    max-width: 36rem;
+    margin: 0.55rem 0 0;
+    color: var(--home-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  &-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0.45rem 0.55rem;
+    border: 0;
+    border-radius: 0.55rem;
+    background: transparent;
+    color: var(--home-muted);
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: color 0.2s ease, background 0.2s ease;
+
+    &:hover {
+      color: var(--home-fg);
+      background: rgb(255 255 255 / 4%);
+    }
+
+    nui-icon {
+      font-size: 1rem;
+    }
+  }
+
+  &-form {
+    display: grid;
+    gap: 1.15rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+
+    nui-input-text,
+    nui-select {
+      --nui-card-background: #0d1310;
+      --nui-content-background: #121915;
+      --nui-card-border: rgb(255 255 255 / 10%);
+      --nui-white-text-color: var(--home-fg);
+      --nui-secondary-text-color: var(--home-muted);
+      --border-radius-sm: 0.75rem;
+    }
+
+    nui-button {
+      --nui-primary-white-text-color: var(--home-on-accent, #04110c);
+      --border-radius-sm: 0.75rem;
+    }
+  }
+
+  &-grid {
+    display: grid;
+    gap: 0.95rem;
+
+    @media (min-width: $md) {
+      grid-template-columns: 1fr 1fr;
+
+      .nuc-home-close-field-wide {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+
+  &-field {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  &-label {
+    color: var(--home-dim, #5c665f);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  &-textarea {
+    width: 100%;
+    min-height: 6.5rem;
+    margin: 0;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid rgb(255 255 255 / 10%);
+    border-radius: 0.75rem;
+    background: #0d1310;
+    color: var(--home-fg);
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+
+    &::placeholder {
+      color: var(--home-dim);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: color-mix(in srgb, var(--home-accent) 55%, rgb(255 255 255 / 18%));
+    }
+
+    &[aria-invalid='true'] {
+      border-color: #f87171;
+    }
+  }
+
+  &-error {
+    color: #f87171;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  &-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.65rem;
+
+    nui-button[variant='primary'] {
+      min-width: 10.5rem;
+    }
+  }
+
+  &-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem 1.1rem;
+    margin: 0.15rem 0 0;
+    padding: 0.85rem 0 0;
+    list-style: none;
+    border-top: 1px solid rgb(255 255 255 / 7%);
+    color: var(--home-dim);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+
+      &::before {
+        content: '';
+        width: 0.35rem;
+        height: 0.35rem;
+        border-radius: 50%;
+        background: var(--home-accent);
+        opacity: 0.85;
       }
     }
   }
@@ -92,93 +327,6 @@
     }
   }
 
-  &-dialog-host,
-  nui-dialog {
-    --home-fg: #e7ebe8;
-    --home-muted: #8b968f;
-    --home-dim: #5c665f;
-    --home-line: rgb(255 255 255 / 8%);
-    --home-accent: hsl(var(--rainbow-hue) 55% 52%);
-    --nui-bg-dark-color: #040706;
-    --nui-card-background: #0b100d;
-    --nui-content-background: #101612;
-    --nui-card-border: color-mix(in srgb, var(--home-accent) 28%, rgb(255 255 255 / 12%));
-    --nui-primary-text-color: var(--home-fg);
-    --nui-secondary-text-color: var(--home-muted);
-    --nui-white-text-color: var(--home-fg);
-    --nui-dialog-width: 26rem;
-    --spacing-md: 1rem;
-    --spacing-sm: 0.7rem;
-    --border-radius-sm: 0.95rem;
-    --border-radius-md: 1.1rem;
-
-    nui-input-text,
-    nui-select {
-      --nui-card-background: #0d1310;
-      --nui-content-background: #121915;
-      --nui-card-border: rgb(255 255 255 / 10%);
-      --nui-white-text-color: var(--home-fg);
-      --nui-secondary-text-color: var(--home-muted);
-      --border-radius-sm: 0.75rem;
-    }
-
-    nui-button {
-      --nui-primary-white-text-color: var(--home-on-accent, #04110c);
-      --border-radius-sm: 0.75rem;
-    }
-  }
-
-  &-dialog-title {
-    margin: 0;
-    color: var(--home-fg, #e7ebe8);
-    font-family: 'Instrument Sans', system-ui, sans-serif;
-    font-size: 1.15rem;
-    font-weight: 650;
-    letter-spacing: -0.03em;
-    line-height: 1.25;
-  }
-
-  &-form {
-    display: grid;
-    gap: 0.95rem;
-    margin: 0;
-    padding: 0;
-  }
-
-  &-form-support {
-    margin: 0 0 0.1rem;
-    color: var(--home-muted, #8b968f);
-    font-size: 0.88rem;
-    line-height: 1.45;
-  }
-
-  &-field {
-    display: grid;
-    gap: 0.4rem;
-  }
-
-  &-label {
-    color: var(--home-dim, #5c665f);
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    line-height: 1.3;
-    text-transform: uppercase;
-  }
-
-  &-error {
-    color: #f87171;
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 0.72rem;
-    line-height: 1.35;
-  }
-
-  &-actions {
-    display: grid;
-    width: 100%;
-  }
-
   @media (min-width: $md) {
     justify-content: center;
     padding: 5.5rem var(--home-pad) 2rem;
@@ -187,5 +335,35 @@
       flex-direction: row;
       align-items: center;
     }
+  }
+
+  @media (max-width: $md) {
+    &.is-form &-pitch {
+      transform: translateY(-8%);
+    }
+
+    &-commerce {
+      transform: translateY(8%);
+    }
+
+    &.is-form &-commerce {
+      transform: translateY(0);
+    }
+
+    &-actions {
+      flex-direction: column-reverse;
+      align-items: stretch;
+
+      nui-button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nuc-home-close-pitch,
+  .nuc-home-close-commerce {
+    transition: none;
   }
 }

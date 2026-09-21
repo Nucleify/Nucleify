@@ -260,19 +260,30 @@ export const NUC_HOME_COPY = {
   compilerHubLabel: 'author',
   compilerEmitLabel: 'emit',
   compilerCta: 'Read compiler docs',
-  closeModalTitle: 'Send a message',
+  closeModalTitle: 'Start a conversation',
   closeModalSupport:
-    'Open source, contribute, or consulting — drop an email and we will reply.',
-  closeEmailLabel: 'Email',
+    'Tell us who you are and what you need. We reply with a concrete next step — no sales theatre.',
+  closeNameLabel: 'Name / organisation',
+  closeNamePlaceholder: 'Alex at Acme',
+  closeEmailLabel: 'Work email',
   closeEmailPlaceholder: 'you@company.com',
   closeTypeLabel: 'What do you need?',
   closeTypePlaceholder: 'Choose one',
+  closeNoteLabel: 'Project note',
+  closeNotePlaceholder: 'Stack today, timeline, and what success looks like…',
   closeSubmit: 'Send message',
+  closeCancel: 'Back',
   closeSending: 'Sending…',
   closeSuccess: 'Message sent. We will reply soon.',
   closeErrorGeneric: 'Could not send. Please try again.',
   closeErrorEmail: 'Enter a valid email address.',
   closeErrorType: 'Pick what you need.',
+  closeErrorMessage: 'Message is too long.',
+  closeTrust: [
+    'Reply within 2 business days',
+    'No spam, no drip sequences',
+    'Open-source friendly',
+  ],
 } as const
 
 export const NUC_HOME_INSTALL_STEPS = [

@@ -4,6 +4,7 @@ import {
   investorDocsHref,
   investorHomeHref,
   NUC_INVESTOR_CONTACT_TYPES,
+  NUC_INVESTOR_DEAL,
   NUC_INVESTOR_SAVINGS,
   NUC_INVESTOR_SECTIONS,
   NUC_INVESTOR_SURFACE,
@@ -34,7 +35,7 @@ describe('investor pitch content', () => {
       'intro',
       'thesis',
       'savings',
-      'moat',
+      'wedge',
       'surface',
       'ask',
     ])
@@ -47,5 +48,16 @@ describe('investor pitch content', () => {
     )
     const dollars = NUC_INVESTOR_SAVINGS.find((item) => item.id === 'dollars')
     expect(dollars?.detail.toLowerCase()).toMatch(/not a forecast|blended/)
+  })
+
+  it('keeps the intro snapshot on the same model, labeled illustrative', () => {
+    const dollars = NUC_INVESTOR_SAVINGS.find((item) => item.id === 'dollars')
+    expect(NUC_INVESTOR_DEAL.figure).toBe(dollars?.value)
+    expect(
+      `${NUC_INVESTOR_DEAL.figureLead}${NUC_INVESTOR_DEAL.figureTrail}`
+    ).toBe(NUC_INVESTOR_DEAL.figure)
+    expect(NUC_INVESTOR_DEAL.note.toLowerCase()).toMatch(
+      /illustrative|not a forecast/
+    )
   })
 })

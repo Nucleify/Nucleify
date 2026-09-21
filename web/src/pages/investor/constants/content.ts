@@ -2,7 +2,7 @@ export type NucInvestorSectionId =
   | 'intro'
   | 'thesis'
   | 'savings'
-  | 'moat'
+  | 'wedge'
   | 'surface'
   | 'ask'
 
@@ -10,7 +10,7 @@ export const NUC_INVESTOR_SECTIONS = [
   { id: 'intro', label: 'Pitch' },
   { id: 'thesis', label: 'Thesis' },
   { id: 'savings', label: 'Savings' },
-  { id: 'moat', label: 'Moat' },
+  { id: 'wedge', label: 'Wedge' },
   { id: 'surface', label: 'Surface' },
   { id: 'ask', label: 'Ask' },
 ] as const satisfies ReadonlyArray<{ id: NucInvestorSectionId; label: string }>
@@ -26,7 +26,7 @@ export const NUC_INVESTOR_COPY = {
   brand: 'Nucleify',
   sectionsLabel: 'Investor sections',
   heroEyebrow: 'Investor brief',
-  headline: 'One nucleus. Every modern shell.',
+  headline: 'One nucleus.',
   support:
     'Teams burn quarters rewriting the same product across Vue, React, Nuxt, and Next. Nucleify keeps domain logic, APIs, and portable UI in one shared layer — then emits into the stack the market asks for.',
   ctaPrimary: 'Talk to us',
@@ -42,10 +42,10 @@ export const NUC_INVESTOR_COPY = {
   savingsSupport:
     'Planning model for a mid-size product team maintaining two shells. Not audited financials — a diligence frame for eng hours and duplicate platform spend.',
   savingsNote: 'Illustrative model · mid-size product · two concurrent shells',
-  moatEyebrow: 'Defensibility',
-  moatTitle: 'Shared modules beat stack loyalty.',
-  moatSupport:
-    'The hard part is not another starter kit. It is keeping typed APIs, migrations, and UI primitives coherent while the host framework changes.',
+  wedgeEyebrow: 'Go-to-market',
+  wedgeTitle: 'Distribution first. Margin second.',
+  wedgeSupport:
+    'Capital compounds when adoption is free and exit is expensive. We open the door with open source, lock the nucleus into production, then monetize the layers that only scale after the install.',
   surfaceEyebrow: 'Emit surface',
   surfaceTitle: 'Seven shells. One install.',
   surfaceSupport:
@@ -54,14 +54,25 @@ export const NUC_INVESTOR_COPY = {
   askSupport:
     'Open-source nucleus with a consulting edge. If you are mapping the multi-framework developer tooling space, we will walk the architecture end to end.',
   askCta: 'Request intro',
-  askModalTitle: 'Investor intro',
+  askModalTitle: 'Request an intro',
   askModalSupport:
-    'Tell us how to reach you. We reply with a short brief and next step.',
+    'Share context for diligence. We reply with a short brief, architecture walkthrough options, and a clear next step.',
+  askNameLabel: 'Name / fund',
+  askNamePlaceholder: 'Jordan at Northpeak',
   askEmailLabel: 'Work email',
   askEmailPlaceholder: 'you@fund.com',
   askTypeLabel: 'Context',
   askTypePlaceholder: 'Choose one',
+  askNoteLabel: 'Diligence note',
+  askNotePlaceholder:
+    'Stage, check size range, and what you want to pressure-test…',
   askSubmit: 'Send intro',
+  askCancel: 'Back',
+  askTrust: [
+    'Founder reply',
+    'Diligence brief included',
+    'Confidential by default',
+  ],
   navDocs: 'Docs',
   navGitHub: 'GitHub',
   navHome: 'Product',
@@ -92,14 +103,14 @@ export const NUC_INVESTOR_THESIS = [
 ] as const
 
 /**
- * Planning model — eng weeks / year avoided vs dual-shell maintenance.
+ * Planning model — sprints / year avoided vs dual-shell maintenance.
  * Dollars use a blended fully-loaded eng cost for diligence framing only.
  */
 export const NUC_INVESTOR_SAVINGS = [
   {
-    id: 'weeks',
+    id: 'sprints',
     value: '18–30',
-    unit: 'eng-weeks / year',
+    unit: 'sprints / year',
     label: 'Avoided dual-stack glue',
     detail: 'Shared API + UI primitives instead of parallel feature work.',
   },
@@ -107,7 +118,7 @@ export const NUC_INVESTOR_SAVINGS = [
     id: 'dollars',
     value: '$180k–$320k',
     unit: 'modeled / year',
-    label: 'At ~$10k / eng-week loaded',
+    label: 'At ~$10k / sprint loaded',
     detail: 'Blended cost frame for a mid-size product org — not a forecast.',
   },
   {
@@ -119,26 +130,52 @@ export const NUC_INVESTOR_SAVINGS = [
   },
 ] as const
 
-export const NUC_INVESTOR_MOAT = [
+function investorSaving(
+  id: (typeof NUC_INVESTOR_SAVINGS)[number]['id']
+): (typeof NUC_INVESTOR_SAVINGS)[number] {
+  const item = NUC_INVESTOR_SAVINGS.find((entry) => entry.id === id)
+  if (!item) {
+    throw new Error(`Missing investor saving: ${id}`)
+  }
+  return item
+}
+
+/** Intro snapshot. Dollars stay tied to the savings model. Shells = Surface. */
+export const NUC_INVESTOR_DEAL = {
+  source: 'nucleus',
+  sourceFile: '*.nuc.tsx',
+  figure: investorSaving('dollars').value,
+  figureLead: '$180k',
+  figureTrail: '–$320k',
+  unit: 'kept / year',
+  caption: 'Second team never staffed',
+  note: 'Illustrative model · not a forecast',
+} as const
+
+export const NUC_INVESTOR_WEDGE = [
   {
-    icon: 'mdi:package-variant-closed',
-    title: 'shared_modules nucleus',
-    body: 'Domain packages own SQL, gateway handlers, and UI logic. Apps stay thin shells.',
+    phase: 'Land',
+    title: 'CAC approaches zero',
+    body: 'The product installs itself. Engineers pull the nucleus because it kills rewrite work — not because a salesperson booked a demo.',
+    signal: 'Self-serve demand',
   },
   {
-    icon: 'mdi:compiler',
-    title: 'Portable UI compiler',
-    body: 'Author once in *.nuc.tsx. Emit native Vue / React trees without a second design system.',
+    phase: 'Stick',
+    title: 'Switching cost compounds',
+    body: 'Once domain logic lives in the nucleus, rip-and-replace means rewriting the business. That is lock-in earned by architecture, not by contracts.',
+    signal: 'Retention by design',
   },
   {
-    icon: 'mdi:swap-horizontal',
-    title: 'Tryb B product convert',
-    body: 'Nuxt product → Next host without rewriting the landing or admin surface by hand.',
+    phase: 'Expand',
+    title: 'TAM multiplies without headcount',
+    body: 'Every new shell is market coverage, not another platform team. Vue today, React tomorrow — same capital base, wider addressable surface.',
+    signal: 'Leverage, not linear cost',
   },
   {
-    icon: 'mdi:database-outline',
-    title: 'Supabase-shaped backend',
-    body: 'Migrations and edge functions travel with modules — not stranded in one app folder.',
+    phase: 'Monetize',
+    title: 'Revenue rides the install base',
+    body: 'Convert and consulting attach after the nucleus is already in production. Paid work follows usage — high intent, short sales cycle, rising attach rate.',
+    signal: 'High-intent monetization',
   },
 ] as const
 

@@ -23,8 +23,8 @@ const NucInvestorThesis = defineAsyncComponent(
 const NucInvestorSavings = defineAsyncComponent(
   () => import('./sections/savings/index.vue')
 )
-const NucInvestorMoat = defineAsyncComponent(
-  () => import('./sections/moat/index.vue')
+const NucInvestorWedge = defineAsyncComponent(
+  () => import('./sections/wedge/index.vue')
 )
 const NucInvestorSurface = defineAsyncComponent(
   () => import('./sections/surface/index.vue')
@@ -65,6 +65,7 @@ const lastSectionId = sections[sections.length - 1]!.id
 let stopAnimations: (() => void) | undefined
 let stopObserver: (() => void) | undefined
 let stopScrollLoop: (() => void) | undefined
+let stopScrollGate: (() => void) | undefined
 
 function goToSection(id: NucInvestorSectionId): void {
   if (!rootEl.value) return
@@ -146,10 +147,17 @@ onMounted(() => {
         })
       }
     )
+
+    void import('../home/utils/bind_home_section_scroll_gate').then(
+      ({ bindHomeSectionScrollGate }) => {
+        stopScrollGate = bindHomeSectionScrollGate(root)
+      }
+    )
   })
 })
 
 onBeforeUnmount(() => {
+  stopScrollGate?.()
   stopScrollLoop?.()
   stopObserver?.()
   stopAnimations?.()
@@ -193,7 +201,7 @@ onBeforeUnmount(() => {
         <NucInvestorIntro />
         <NucInvestorThesis />
         <NucInvestorSavings />
-        <NucInvestorMoat />
+        <NucInvestorWedge />
         <NucInvestorSurface />
         <NucInvestorAsk />
       </div>

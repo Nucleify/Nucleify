@@ -1,4 +1,6 @@
 .nuc-home-clone {
+  justify-content: center;
+
   @media (min-width: $md) {
     display: grid;
     grid-template-columns: minmax(0, 0.95fr) minmax(18rem, 1.05fr);

@@ -51,20 +51,39 @@
       </div>
 
       <aside
-        class="nuc-home-hero-panel is-metrics"
-        aria-label="Modeled savings preview"
+        class="nuc-home-hero-panel is-deal"
+        aria-label="Investment thesis snapshot"
       >
-        <div class="nuc-investor-metrics">
-          <p class="nuc-investor-metrics-kicker">Modeled / year</p>
-          <p class="nuc-investor-metrics-value">$180k–$320k</p>
-          <p class="nuc-investor-metrics-unit">
-            dual-shell rewrite tax avoided
+        <div class="nuc-inv-emit" role="img" :aria-label="emitLabel">
+          <p class="nuc-inv-emit-source">
+            <span>{{ deal.source }}</span>
+            <code>{{ deal.sourceFile }}</code>
           </p>
-          <div class="nuc-investor-metrics-rings" aria-hidden="true">
-            <span class="nuc-investor-metrics-ring" />
-            <span class="nuc-investor-metrics-ring" />
-            <span class="nuc-investor-metrics-ring" />
-            <span class="nuc-investor-metrics-core" />
+
+          <div class="nuc-inv-emit-stem" aria-hidden="true" />
+
+          <ul class="nuc-inv-emit-field" aria-hidden="true">
+            <li
+              v-for="shell in shells"
+              :key="shell.id"
+              class="nuc-inv-emit-cube"
+              :class="`is-${shell.id}`"
+            >
+              <span class="nuc-inv-emit-cube-mark">
+                <nui-icon :icon="shell.icon" />
+              </span>
+              <strong>{{ shell.label }}</strong>
+            </li>
+          </ul>
+
+          <div class="nuc-inv-emit-stamp">
+            <p class="nuc-inv-emit-figure">
+              <span>{{ deal.figureLead }}</span>
+              <span>{{ deal.figureTrail }}</span>
+            </p>
+            <p class="nuc-inv-emit-unit">{{ deal.unit }}</p>
+            <p class="nuc-inv-emit-caption">{{ deal.caption }}</p>
+            <p class="nuc-inv-emit-note">{{ deal.note }}</p>
           </div>
         </div>
       </aside>
@@ -79,14 +98,24 @@ import { computed } from 'vue'
 import {
   investorHomeHref,
   NUC_INVESTOR_COPY,
+  NUC_INVESTOR_DEAL,
   NUC_INVESTOR_PROOF,
+  NUC_INVESTOR_SURFACE,
 } from '../../constants/content'
 import { scrollHomeSection } from '../../../home/utils/observe_active_section'
 
 const copy = NUC_INVESTOR_COPY
 const proof = NUC_INVESTOR_PROOF
+const deal = NUC_INVESTOR_DEAL
+const shells = NUC_INVESTOR_SURFACE
 const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
+const shellNames = shells.map((shell) => shell.label).join(', ')
+const emitLabel = [
+  `${deal.source} ${deal.sourceFile} emits ${shellNames}.`,
+  `${deal.figure} ${deal.unit}.`,
+  `${deal.caption}.`,
+].join(' ')
 
 function onPrimary(): void {
   const root = document.querySelector<HTMLElement>('.nuc-investor')
