@@ -1,0 +1,30 @@
+---
+description: Commit message language and what not to reference
+alwaysApply: true
+---
+
+# Commits
+
+## Language
+
+- Commit **subject and body: English only**. Never Polish (or other languages) in `git commit` messages.
+- Chat with the user may stay in the user's language; that does not apply to commits.
+
+## Do not reference workflow artefacts
+
+- Do **not** mention `plan.md`, `.ai/specs/plan.md`, “tor A/B”, pipeline skill names, or other internal planning paths in commit messages.
+- Commits describe the product/repo change and **why**, not how the agent planned it.
+
+```text
+# ❌ BAD
+docs: align paths (tor A z plan.md)
+chore: follow plan.md cleanup
+
+# ✅ GOOD
+docs: align Tryb B paths to web-next and note compiler DoD
+```
+
+## Style (unchanged)
+
+- Conventional prefixes: `feat:` / `fix:` / `chore:` / `docs:` (optional scope, e.g. `fix(web): …`)
+- 1–2 sentences on **why**; HEREDOC for the message body
