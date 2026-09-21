@@ -70,8 +70,15 @@ const SKIP_COPY_NAMES = new Set([
 
 /** Nuxt route shells — App Router in `src/app/` owns these URLs. */
 const SKIP_VUE_ROUTE_SHELLS: Partial<Record<NextConvertProduct, string[]>> = {
-  web: ['pages/index.vue', 'pages/[lang]/home.vue', 'pages/[lang]/index.vue'],
+  web: [
+    'pages/index.vue',
+    'pages/[lang]/home.vue',
+    'pages/[lang]/investor.vue',
+    'pages/[lang]/index.vue',
+  ],
 }
+
+const WEB_LOCALES = ['en', 'pl', 'vn'] as const
 
 function normalizeSrcRel(rel: string): string {
   return rel.replace(/\\/g, '/')
@@ -375,18 +382,25 @@ function writeNextShell(
       ? `'use client'
 
 import { useEffect } from 'react'
-import { applyRainbow } from 'nui-rainbow'
 import { setupNui } from 'portable/nui'
 
 export function NucleifyUiProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setupNui({ palette: 'next', mode: 'dark' })
-    const stopRainbow = applyRainbow(document.body, {
-      cycle: 'linear',
-      duration: 30,
-      reducedMotion: 'ignore',
+    let stopRainbow: (() => void) | undefined
+    let cancelled = false
+    void import('nui-rainbow').then(({ applyRainbow }) => {
+      if (cancelled) return
+      stopRainbow = applyRainbow(document.body, {
+        cycle: 'linear',
+        duration: 30,
+        reducedMotion: 'ignore',
+      })
     })
-    return () => stopRainbow()
+    return () => {
+      cancelled = true
+      stopRainbow?.()
+    }
   }, [])
 
   return (
@@ -450,24 +464,68 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const entryImport = cfg.entryModule
   if (product === 'web') {
     writeText(
+      join(dest, 'src/lib/locales.ts'),
+      `export const WEB_LOCALES = ${JSON.stringify(WEB_LOCALES)} as const
+export type WebLocale = (typeof WEB_LOCALES)[number]
+export const WEB_LOCALE_SET = new Set<string>(WEB_LOCALES)
+
+export function isWebLocale(value: string): value is WebLocale {
+  return WEB_LOCALE_SET.has(value)
+}
+`,
+    )
+    writeText(
       join(dest, 'src/app/[lang]/home/page.tsx'),
       `import Page from '${entryImport}'
+import { isWebLocale } from '@/lib/locales'
+import { notFound } from 'next/navigation'
 
 type Props = { params: Promise<{ lang: string }> }
 
-export default async function HomeRoute(_props: Props) {
+export function generateStaticParams() {
+  return ${JSON.stringify(WEB_LOCALES.map((lang) => ({ lang })))}
+}
+
+export default async function HomeRoute({ params }: Props) {
+  const { lang } = await params
+  if (!isWebLocale(lang)) notFound()
+  return <Page />
+}
+`,
+    )
+    writeText(
+      join(dest, 'src/app/[lang]/investor/page.tsx'),
+      `import Page from '@/views/investor/index'
+import { isWebLocale } from '@/lib/locales'
+import { notFound } from 'next/navigation'
+
+type Props = { params: Promise<{ lang: string }> }
+
+export function generateStaticParams() {
+  return ${JSON.stringify(WEB_LOCALES.map((lang) => ({ lang })))}
+}
+
+export default async function InvestorRoute({ params }: Props) {
+  const { lang } = await params
+  if (!isWebLocale(lang)) notFound()
   return <Page />
 }
 `,
     )
     writeText(
       join(dest, 'src/app/[lang]/page.tsx'),
-      `import { redirect } from 'next/navigation'
+      `import { isWebLocale } from '@/lib/locales'
+import { notFound, redirect } from 'next/navigation'
 
 type Props = { params: Promise<{ lang: string }> }
 
+export function generateStaticParams() {
+  return ${JSON.stringify(WEB_LOCALES.map((lang) => ({ lang })))}
+}
+
 export default async function LangIndexRoute({ params }: Props) {
   const { lang } = await params
+  if (!isWebLocale(lang)) notFound()
   redirect(\`/\${lang}/home\`)
 }
 `,
@@ -524,6 +582,14 @@ function scssAdditionalData(
 const nextConfig: NextConfig = {
   pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
   transpilePackages: ['nucleify-ui'],
+  async redirects() {
+    return [
+      { source: '/home', destination: '/en/home', permanent: true },
+      { source: '/home/:path*', destination: '/en/home', permanent: true },
+      { source: '/investor', destination: '/en/investor', permanent: true },
+      { source: '/investor/:path*', destination: '/en/investor', permanent: true },
+    ]
+  },
   sassOptions: {
     includePaths: [join(monorepo, 'shared_modules'), join(monorepo, 'portable'), join(here, 'src')],
     silenceDeprecations: ['mixed-decls', 'import', 'color-functions', 'global-builtin', 'legacy-js-api'],
