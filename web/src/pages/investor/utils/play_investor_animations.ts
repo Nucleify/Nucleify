@@ -644,12 +644,12 @@ export async function playInvestorAnimations(
     ...qa(root, '.nuc-investor-savings-card'),
   ])
 
-  revealMask(q(root, '.nuc-investor-moat'), [
+  revealMask(q(root, '.nuc-investor-wedge'), [
     ...qa(
       root,
-      '.nuc-investor-moat .nuc-home-eyebrow, .nuc-investor-moat .nuc-home-title, .nuc-investor-moat .nuc-home-support'
+      '.nuc-investor-wedge .nuc-home-eyebrow, .nuc-investor-wedge .nuc-home-title, .nuc-investor-wedge .nuc-home-support'
     ),
-    ...qa(root, '.nuc-investor-moat-card'),
+    ...qa(root, '.nuc-investor-wedge-step'),
   ])
 
   revealMask(q(root, '.nuc-investor-surface'), [

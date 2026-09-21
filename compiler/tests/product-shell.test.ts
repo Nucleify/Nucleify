@@ -179,6 +179,14 @@ const NucHomePillars = defineAsyncComponent(
       )
       expect(existsSync(join(dest, 'src/pages/home/index.tsx'))).toBe(false)
       expect(existsSync(join(dest, 'src/app/[lang]/page.tsx'))).toBe(true)
+      expect(existsSync(join(dest, 'src/app/[lang]/investor/page.tsx'))).toBe(true)
+      expect(existsSync(join(dest, 'src/lib/locales.ts'))).toBe(true)
+      expect(readFileSync(join(dest, 'src/app/[lang]/page.tsx'), 'utf8')).toContain(
+        'isWebLocale',
+      )
+      expect(readFileSync(join(dest, 'next.config.ts'), 'utf8')).toContain(
+        "source: '/investor'",
+      )
       expect(existsSync(join(dest, 'public/img/logo.svg'))).toBe(true)
       expect(readFileSync(join(dest, 'src/assets/_index.scss'), 'utf8')).toContain("modules/nuc_colors")
       expect(readFileSync(join(dest, 'src/assets/_index.scss'), 'utf8')).not.toContain(
@@ -188,7 +196,10 @@ const NucHomePillars = defineAsyncComponent(
         "import 'nui-rainbow/styles.css'",
       )
       expect(readFileSync(join(dest, 'src/lib/nucleify-ui-provider.tsx'), 'utf8')).toContain(
-        "applyRainbow(document.body",
+        "import('nui-rainbow')",
+      )
+      expect(readFileSync(join(dest, 'src/lib/nucleify-ui-provider.tsx'), 'utf8')).toContain(
+        'applyRainbow(document.body',
       )
       expect(readFileSync(join(dest, 'next.config.ts'), 'utf8')).toContain(
         "p.endsWith('.css')",
