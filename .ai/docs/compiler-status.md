@@ -1,4 +1,4 @@
-# Compiler + convert status (2026-09-21)
+# Compiler + convert status
 
 ## Paths (Tryb B)
 
@@ -8,7 +8,15 @@
 | `pnpm compiler -- convert admin --target=next` | `admin-next/` |
 | `make web TARGET=next` | same as convert web |
 
-Old docs said `next/web` / `next/admin` — **wrong**. Flat `{product}-next/` at repo root.
+Flat `{product}-next/` at repo root (not `next/web`).
+
+## Emit demos (Tryb A)
+
+| Command | Output (gitignored) |
+|---------|---------------------|
+| `make vue` / `react` / `nuxt` / `next` / `solid` | `{framework}/demo` |
+
+Solid (Faza 12): `emitSolid` → `createSignal` / `createMemo`, JSX `class`, `make solid`.
 
 ## DoD v1
 
@@ -16,18 +24,17 @@ Old docs said `next/web` / `next/admin` — **wrong**. Flat `{product}-next/` at
 |------|--------|
 | Golden fixtures (incl. counter) + emit tests | done |
 | Dirty / import Vue+React + CI check/build | done |
-| `compiler/README.md` paths | fixed (this batch) |
-| Portable `*.nuc.tsx` demo **in product** (`web/`) | **open** |
+| Solid emit + demo scaffold | done (this batch) |
 
-## Housekeeping (this batch)
+## Now
 
-- Removed empty `web/src/pages/investor/sections/moat/`
-- Aligned READMEs: `compiler`, `web`, `admin`, `portable`, templates
-- Refreshed compiler roadmap footer so it no longer points at an already-finished phase
+**Faza 12+ continued** — Svelte next, then Astro islands.
 
 ## Verify
 
 ```bash
-pnpm -s compiler:check
+pnpm compiler:test
+pnpm compiler:check
 pnpm -s check && pnpm -s typeslint && pnpm -s slint && pnpm -s tests
+make solid   # optional smoke
 ```

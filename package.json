@@ -20,6 +20,7 @@
     "compiler:build": "tsx compiler/src/cli.ts build",
     "compiler:build:vue": "tsx compiler/src/cli.ts build --target=vue",
     "compiler:build:react": "tsx compiler/src/cli.ts build --target=react",
+    "compiler:build:solid": "tsx compiler/src/cli.ts build --target=solid",
     "compiler:check": "tsx compiler/src/cli.ts check",
     "compiler:test": "vitest run --config .config/vitest.compiler.config.ts",
     "sync-rules": "node .config/scripts/sync-rules.js",

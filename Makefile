@@ -1,11 +1,11 @@
-.PHONY: run setup web admin docs compiler vue react nuxt next help
+.PHONY: run setup web admin docs compiler vue react nuxt next solid help
 
 # Product apps: default shell is Nuxt. Tryb B nests products under frameworks:
 #   make web                 # top-level web/ (Nuxt)
 #   make web TARGET=next     # web-next (scaffolded product shell)
 #
 # Portable emit demos (gitignored):
-#   make nuxt / make next / make vue / make react  → {framework}/demo
+#   make nuxt / make next / make vue / make react / make solid  → {framework}/demo
 #
 # SKIP_COMPILER=1  → skip portable codegen on run/setup / demos that call compiler
 
@@ -23,7 +23,7 @@ help:
 	@echo "  make admin TARGET=next            # admin-next product shell (tryb B)"
 	@echo ""
 	@echo "Portable emit demos (gitignored {framework}/demo):"
-	@echo "  make vue | react | nuxt | next"
+	@echo "  make vue | react | nuxt | next | solid"
 	@echo ""
 	@echo "Other:"
 	@echo "  make compiler"
@@ -65,9 +65,10 @@ else ifeq ($(TARGET),next)
 	pnpm exec tsx compiler/src/cli.ts build --app=next
 	cd web-next && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
-	@echo "TARGET=$(TARGET) is not implemented for web yet."
+	@echo "TARGET=$(TARGET) is not implemented for web product shell."
 	@echo "Supported: TARGET=nuxt (default) | TARGET=next"
-	@echo "See portable/README.md and .ai/specs/plan.md"
+	@echo "Solid emit demo (not product convert): make solid"
+	@echo "See portable/README.md"
 	@exit 1
 endif
 
@@ -78,8 +79,9 @@ else ifeq ($(TARGET),next)
 	pnpm exec tsx compiler/src/cli.ts convert admin --target=next
 	cd admin-next && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
-	@echo "TARGET=$(TARGET) is not implemented for admin yet."
+	@echo "TARGET=$(TARGET) is not implemented for admin product shell."
 	@echo "Supported: TARGET=nuxt (default) | TARGET=next"
+	@echo "Solid emit demo (not product convert): make solid"
 	@exit 1
 endif
 
@@ -101,3 +103,6 @@ nuxt:
 
 next:
 	$(call rebuild_demo,next,dev)
+
+solid:
+	$(call rebuild_demo,solid,dev)
