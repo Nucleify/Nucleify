@@ -113,6 +113,7 @@ const lastSectionId = sections[sections.length - 1]!.id
 let stopAnimations: (() => void) | undefined
 let stopObserver: (() => void) | undefined
 let stopScrollLoop: (() => void) | undefined
+let stopScrollGate: (() => void) | undefined
 
 function goToSection(id: NucHomeSectionId): void {
   if (!rootEl.value) return
@@ -193,10 +194,17 @@ onMounted(() => {
         })
       }
     )
+
+    void import('./utils/bind_home_section_scroll_gate').then(
+      ({ bindHomeSectionScrollGate }) => {
+        stopScrollGate = bindHomeSectionScrollGate(root)
+      }
+    )
   })
 })
 
 onBeforeUnmount(() => {
+  stopScrollGate?.()
   stopScrollLoop?.()
   stopObserver?.()
   stopAnimations?.()
