@@ -26,16 +26,16 @@ portable/
 |---------|------------|---------|
 | `make web` | Landing product shell | **Nuxt** (`TARGET=nuxt`) |
 | `make admin` | Admin product shell | **Nuxt** |
-| `make admin TARGET=next` | Admin on Next (tryb B) | `next/admin/` |
+| `make admin TARGET=next` | Admin on Next (tryb B) | `admin-next/` |
 | `make docs` | Docs product shell | **Astro** |
 | `make nuxt` / `next` / `vue` / `react` | Throwaway emit demos | `{framework}/demo` (gitignored) |
 
 **Tryb B:** `convert` emits each Nuxt `.vue` to React `.tsx` (IR pipeline). Output under
-`next/{product}/` has **no `.vue` files** — native Next App Router only.
+`{product}-next/` has **no `.vue` files** — native Next App Router only.
 
 ```bash
-make web TARGET=next     # next/web (fails until compiler subset covers all home SFCs)
-make admin TARGET=next   # next/admin
+make web TARGET=next     # → web-next/
+make admin TARGET=next   # → admin-next/
 ```
 
 Product shells import `portable/nui` for `--nui-*` tokens and Lit registration — they do not
