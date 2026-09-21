@@ -2,6 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { basename, dirname, join, resolve } from 'node:path'
 import type { IrDocument } from '../ir/types'
 import { emitReact } from '../emit/react'
+import { emitSolid } from '../emit/solid'
 import { emitCssBody, emitVue } from '../emit/vue'
 import { biomeFormat } from './biome-format'
 import {
@@ -10,14 +11,16 @@ import {
   isDirty,
   normalizeBody,
   reactHeader,
+  solidHeader,
   stripEmitHeaders,
   vueHeader,
   type EmitKind,
 } from './fingerprint'
 import { toRepoRelative } from './discover'
 
-export type WriteTarget = 'vue' | 'react' | 'all'
-export type EmitApp = 'vue' | 'react' | 'nuxt' | 'next'
+export type WriteTarget = 'vue' | 'react' | 'solid' | 'all'
+export type EmitApp = 'vue' | 'react' | 'nuxt' | 'next' | 'solid'
+export type EmitFrame = 'vue' | 'react' | 'solid'
 
 /**
  * Emit destinations for throwaway demos under `{framework}/demo` (gitignored).
@@ -27,13 +30,14 @@ export const EMIT_APP_DIRS: Record<EmitApp, string> = {
   react: 'react/demo/src/components',
   nuxt: 'nuxt/demo/components',
   next: 'next/demo/src/components',
+  solid: 'solid/demo/src/components',
 }
 
 /** Product shells `{product}-{framework}` that receive the same emit when present. */
 export const PRODUCT_SHELL_EMIT: {
   slug: string
   componentsDir: string
-  frame: 'vue' | 'react'
+  frame: EmitFrame
 }[] = [
   {
     slug: 'web-next',
@@ -47,11 +51,12 @@ export const PRODUCT_SHELL_EMIT: {
   },
 ]
 
-const APP_FRAME: Record<EmitApp, 'vue' | 'react'> = {
+const APP_FRAME: Record<EmitApp, EmitFrame> = {
   vue: 'vue',
   nuxt: 'vue',
   react: 'react',
   next: 'react',
+  solid: 'solid',
 }
 
 /** Root dir that must exist for a demo emit target (`vue/demo`, …). */
@@ -157,6 +162,7 @@ function resolveApps(cwd: string, target: WriteTarget, apps?: EmitApp[]): EmitAp
     const frame = APP_FRAME[app]
     if (target === 'vue' && frame !== 'vue') return false
     if (target === 'react' && frame !== 'react') return false
+    if (target === 'solid' && frame !== 'solid') return false
     if (apps?.length) return apps.includes(app)
     return existsSync(join(cwd, demoRoot(app)))
   })
@@ -171,6 +177,7 @@ function resolveProductShells(
   return PRODUCT_SHELL_EMIT.filter((shell) => {
     if (target === 'vue' && shell.frame !== 'vue') return false
     if (target === 'react' && shell.frame !== 'react') return false
+    if (target === 'solid' && shell.frame !== 'solid') return false
     if (apps?.length && !apps.some((app) => shell.slug.endsWith(`-${app}`))) return false
     return existsSync(join(cwd, shell.slug))
   })
@@ -296,6 +303,7 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
   for (const app of apps) {
     const componentsDir = join(cwd, EMIT_APP_DIRS[app])
     const frame = APP_FRAME[app]
+    const ir = opts.ir
 
     if (cssFileName && cssBody) {
       const cssPath = join(componentsDir, cssFileName)
@@ -318,8 +326,21 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
         cwd,
         vuePath,
         'vue',
-        emitVue(opts.ir, { cssFileName }),
+        emitVue(ir, { cssFileName }),
         (hash) => vueHeader(hint, hash),
+        written,
+        skipped,
+        force,
+      )
+    } else if (frame === 'solid') {
+      const solidPath = join(componentsDir, `${base}.tsx`)
+      const hint = toRepoRelative(cwd, solidPath)
+      await writeFileEmit(
+        cwd,
+        solidPath,
+        'solid',
+        emitSolid(ir, { cssFileName }),
+        (hash) => solidHeader(hint, hash),
         written,
         skipped,
         force,
@@ -331,7 +352,7 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
         cwd,
         reactPath,
         'react',
-        emitReact(opts.ir, { cssFileName }),
+        emitReact(ir, { cssFileName }),
         (hash) => reactHeader(hint, hash),
         written,
         skipped,
@@ -342,6 +363,7 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
 
   for (const shell of resolveProductShells(cwd, target, opts.apps)) {
     const componentsDir = join(cwd, shell.componentsDir)
+    const ir = opts.ir
     if (cssFileName && cssBody) {
       await writeFileEmit(
         cwd,
@@ -360,8 +382,20 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
         cwd,
         vuePath,
         'vue',
-        emitVue(opts.ir, { cssFileName }),
+        emitVue(ir, { cssFileName }),
         (hash) => vueHeader(toRepoRelative(cwd, vuePath), hash),
+        written,
+        skipped,
+        force,
+      )
+    } else if (shell.frame === 'solid') {
+      const solidPath = join(componentsDir, `${base}.tsx`)
+      await writeFileEmit(
+        cwd,
+        solidPath,
+        'solid',
+        emitSolid(ir, { cssFileName }),
+        (hash) => solidHeader(toRepoRelative(cwd, solidPath), hash),
         written,
         skipped,
         force,
@@ -372,7 +406,7 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
         cwd,
         reactPath,
         'react',
-        emitReact(opts.ir, { cssFileName }),
+        emitReact(ir, { cssFileName }),
         (hash) => reactHeader(toRepoRelative(cwd, reactPath), hash),
         written,
         skipped,

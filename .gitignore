@@ -44,12 +44,13 @@
 # Compiler IR dumps (--dump-ir)
 **/*.ir.json
 
-# Generated simple emit demos at monorepo root only (recreated by `make vue|react|nuxt|next`)
+# Generated simple emit demos at monorepo root only (recreated by `make vue|react|nuxt|next|solid`)
 # Use anchored paths so compiler/templates/* and portable/fixtures/emit/* stay tracked.
 /vue/
 /react/
 /nuxt/
 /next/
+/solid/
 /web-next/
 /admin-next/
 

@@ -2,7 +2,7 @@ import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-export const SCAFFOLD_FRAMEWORKS = ['vue', 'react', 'nuxt', 'next'] as const
+export const SCAFFOLD_FRAMEWORKS = ['vue', 'react', 'nuxt', 'next', 'solid'] as const
 export type ScaffoldFramework = (typeof SCAFFOLD_FRAMEWORKS)[number]
 
 /** @deprecated use SCAFFOLD_FRAMEWORKS */

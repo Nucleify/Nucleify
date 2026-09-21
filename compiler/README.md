@@ -17,15 +17,19 @@ make web                 # product → top-level Nuxt web/
 make web TARGET=next     # product → web-next/ (tryb B)
 make admin TARGET=next   # product → admin-next/ (tryb B)
 make next                # throwaway emit demo → next/demo
+make solid               # throwaway emit demo → solid/demo
 ```
 
 ## CLI
 
 ```bash
 pnpm compiler -- scaffold next          # → next/demo
+pnpm compiler -- scaffold solid         # → solid/demo
 pnpm compiler -- convert web --target=next    # → web-next/
 pnpm compiler -- convert admin --target=next  # → admin-next/
 pnpm compiler -- build --app=next
+pnpm compiler -- build --app=solid
+pnpm compiler -- build --target=solid
 pnpm compiler:check
 pnpm compiler:build
 pnpm compiler:test
@@ -38,7 +42,7 @@ pnpm compiler -- import --from=react path/to/Component.tsx
 | | Tryb A | Tryb B |
 |---|--------|--------|
 | What | `*.nuc.tsx` → IR → emit | product shell under `{product}-{framework}/` |
-| Example | `build` → `next/demo/src/components` | `convert web --target=next` → `web-next/` (Vue SFC → React TSX, no `.vue` in output) |
+| Example | `build` → `next/demo` / `solid/demo` / … | `convert web --target=next` → `web-next/` (Vue SFC → React TSX, no `.vue` in output) |
 | Not | full app convert | vue-loader host / Vue-in-React bridge |
 ### Cycle A — authoring first
 

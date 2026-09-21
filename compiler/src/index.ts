@@ -1,6 +1,6 @@
 /** @nucleify/compiler public API — filled in later phases. */
 export const COMPILER_NAME = '@nucleify/compiler'
-export const COMPILER_PHASE = 11
+export const COMPILER_PHASE = 12
 
 export type {
   IrAttr,
@@ -37,6 +37,7 @@ export { checkWorkspace } from './sync/check'
 export { runImport } from './sync/import'
 export { emitVue } from './emit/vue'
 export { emitReact } from './emit/react'
+export { emitSolid } from './emit/solid'
 export { writeOutputs, EMIT_APP_DIRS, PRODUCT_SHELL_EMIT } from './sync/write-outputs'
 export {
   scaffoldApp,
