@@ -89,6 +89,72 @@ describe('tryb B product shells', () => {
     }
   })
 
+  it('scaffolds admin-solid product shell', () => {
+    const tmp = mkdtempSync(join(tmpdir(), 'nuc-admin-solid-shell-'))
+    try {
+      const dest = scaffoldProduct({ product: 'admin', framework: 'solid', cwd: tmp })
+      expect(dest.replace(/\\/g, '/')).toMatch(/admin-solid$/)
+      expect(existsSync(join(dest, 'package.json'))).toBe(true)
+    } finally {
+      rmSync(tmp, { recursive: true, force: true })
+    }
+  })
+
+  it('convert admin→solid emits Solid TSX with no .vue files', () => {
+    const tmp = mkdtempSync(join(tmpdir(), 'nuc-convert-admin-solid-'))
+    try {
+      const admin = join(tmp, 'admin')
+      mkdirSync(join(admin, 'src/pages'), { recursive: true })
+      writeFileSync(
+        join(admin, 'src/pages/index.vue'),
+        '<template><main>admin</main></template>\n',
+      )
+
+      const { dest, copied } = convertProduct({
+        product: 'admin',
+        framework: 'solid',
+        cwd: tmp,
+        force: true,
+      })
+      expect(dest.replace(/\\/g, '/')).toMatch(/admin-solid$/)
+      expect(existsSync(join(dest, 'src/views/index.tsx'))).toBe(true)
+      expect(existsSync(join(dest, 'src/views/index.vue'))).toBe(false)
+      const view = readFileSync(join(dest, 'src/views/index.tsx'), 'utf8')
+      expect(view).not.toContain("'use client'")
+      expect(view).not.toContain('className')
+      expect(readFileSync(join(dest, 'src/App.tsx'), 'utf8')).toContain("from '@/views/index'")
+      expect(copied.some((c) => c.startsWith('vue→solid'))).toBe(true)
+    } finally {
+      rmSync(tmp, { recursive: true, force: true })
+    }
+  })
+
+  it('scaffolds web-solid product and receives emit', async () => {
+    const ir = parseIrDocument(
+      JSON.parse(readFileSync(join(fixtures, 'ir/hello.json'), 'utf8')),
+    )
+    const tmp = mkdtempSync(join(tmpdir(), 'nuc-b-solid-'))
+    try {
+      const dest = scaffoldProduct({ product: 'web', framework: 'solid', cwd: tmp })
+      expect(dest.replace(/\\/g, '/')).toMatch(/web-solid$/)
+      mkdirSync(join(tmp, 'portable'), { recursive: true })
+      const sourcePath = join(tmp, 'portable', 'hello.nuc.tsx')
+      writeFileSync(sourcePath, '//')
+      const { written } = await writeOutputs({
+        cwd: tmp,
+        sourcePath,
+        ir,
+        target: 'solid',
+        apps: ['solid'],
+        force: true,
+      })
+      const rel = written.map((p) => p.replace(/\\/g, '/'))
+      expect(rel.some((p) => p.endsWith('web-solid/src/components/hello.tsx'))).toBe(true)
+    } finally {
+      rmSync(tmp, { recursive: true, force: true })
+    }
+  }, 60_000)
+
   it('convert web→next fails clearly when Vue sources exceed compiler subset', () => {
     const tmp = mkdtempSync(join(tmpdir(), 'nuc-convert-web-fail-'))
     try {
@@ -100,7 +166,7 @@ describe('tryb B product shells', () => {
       )
       expect(() =>
         convertProduct({ product: 'web', framework: 'next', cwd: tmp, force: true }),
-      ).toThrow(/could not be emitted to React/)
+      ).toThrow(/could not be emitted/)
     } finally {
       rmSync(tmp, { recursive: true, force: true })
     }

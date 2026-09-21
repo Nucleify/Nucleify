@@ -11,6 +11,7 @@ import {
 import { dirname, join, relative, resolve } from 'node:path'
 import { parse as parseSfc } from '@vue/compiler-sfc'
 import { convertVueSfcToReact } from './vue-sfc-to-tsx'
+import { reactTsxToSolidBody } from './react-to-solid'
 import { emitBaseName } from './paths'
 import {
   PRODUCT_IDS,
@@ -22,11 +23,15 @@ import {
 } from './scaffold'
 import { toRepoRelative } from './discover'
 
-/** Products with a full Nuxt→Next convert pipeline (tryb B). */
-export const NEXT_CONVERT_PRODUCTS = ['web', 'admin'] as const
-export type NextConvertProduct = (typeof NEXT_CONVERT_PRODUCTS)[number]
+/** Products with a full Nuxt→{next|solid} convert pipeline (tryb B). */
+export const CONVERT_PRODUCTS = ['web', 'admin'] as const
+/** @deprecated use CONVERT_PRODUCTS */
+export const NEXT_CONVERT_PRODUCTS = CONVERT_PRODUCTS
+export type ConvertProductId = (typeof CONVERT_PRODUCTS)[number]
+/** @deprecated use ConvertProductId */
+export type NextConvertProduct = ConvertProductId
 
-type NextConvertConfig = {
+type ConvertConfig = {
   packageName: string
   title: string
   description: string
@@ -37,7 +42,10 @@ type NextConvertConfig = {
   extraDeps: Record<string, string>
 }
 
-const NEXT_CONVERT: Record<NextConvertProduct, NextConvertConfig> = {
+/** @deprecated use ConvertConfig */
+type NextConvertConfig = ConvertConfig
+
+const NEXT_CONVERT: Record<ConvertProductId, ConvertConfig> = {
   web: {
     packageName: '@nucleify/next-web',
     title: 'Nucleify',
@@ -52,6 +60,28 @@ const NEXT_CONVERT: Record<NextConvertProduct, NextConvertConfig> = {
     packageName: '@nucleify/next-admin',
     title: 'Nucleify Admin',
     description: 'Nucleify admin (Next host + React emit from Vue sources)',
+    entryModule: '@/views/index',
+    shellBg: '#0f1419',
+    shellFg: '#e7ebe8',
+    extraDeps: {},
+  },
+}
+
+const SOLID_CONVERT: Record<ConvertProductId, ConvertConfig> = {
+  web: {
+    packageName: '@nucleify/solid-web',
+    title: 'Nucleify',
+    description: 'Nucleify web (Solid host + Solid emit from Vue sources)',
+    entryModule: '@/views/home/index',
+    redirectRoot: '/en/home',
+    shellBg: '#070908',
+    shellFg: '#e7ebe8',
+    extraDeps: { animejs: '^4.5.0', 'nui-rainbow': '^0.1.0' },
+  },
+  admin: {
+    packageName: '@nucleify/solid-admin',
+    title: 'Nucleify Admin',
+    description: 'Nucleify admin (Solid host + Solid emit from Vue sources)',
     entryModule: '@/views/index',
     shellBg: '#0f1419',
     shellFg: '#e7ebe8',
@@ -215,6 +245,34 @@ function convertVueFileToTsx(vuePath: string, destTsxPath: string): string {
   return name
 }
 
+function convertVueFileToSolid(vuePath: string, destTsxPath: string): string {
+  const source = readFileSync(vuePath, 'utf8')
+  const base = emitBaseName(vuePath)
+
+  const converted = convertVueSfcToReact(source, vuePath)
+  const body = reactTsxToSolidBody(rewriteVueImportPaths(converted.body))
+  const name = converted.name
+  const { descriptor } = parseVueSfc(source, vuePath)
+  const stylesCss = loadSiblingCssFromVue(vuePath, descriptor.scriptSetup?.content)
+
+  if (stylesCss) {
+    writeText(join(dirname(destTsxPath), `${base}.css`), `${stylesCss.trim()}\n`)
+  }
+
+  const vueDir = dirname(vuePath)
+  const destDir = dirname(destTsxPath)
+  if (existsSync(vueDir)) {
+    for (const fileName of readdirSync(vueDir)) {
+      if (fileName.startsWith('_') && fileName.endsWith('.scss')) {
+        writeText(join(destDir, fileName), readFileSync(join(vueDir, fileName), 'utf8'))
+      }
+    }
+  }
+
+  writeText(destTsxPath, body)
+  return name
+}
+
 function parseVueSfc(source: string, filePath: string) {
   return parseSfc(source, { filename: filePath })
 }
@@ -256,6 +314,34 @@ function emitVueTreeToReact(
     const destTsxPath = join(destSrc, viewsRelFromPagesRel(rel.replace(/\.vue$/, '.tsx')))
     try {
       convertVueFileToTsx(vuePath, destTsxPath)
+      converted.push(`${rel} → ${relative(destSrc, destTsxPath)}`)
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err)
+      failures.push(`${rel}: ${msg}`)
+    }
+  }
+
+  return { converted, failures, skipped }
+}
+
+function emitVueTreeToSolid(
+  sourceSrc: string,
+  destSrc: string,
+  product: ConvertProductId,
+): { converted: string[]; failures: string[]; skipped: string[] } {
+  const converted: string[] = []
+  const failures: string[] = []
+  const skipped: string[] = []
+
+  for (const vuePath of walkFiles(sourceSrc).filter((f) => f.endsWith('.vue'))) {
+    const rel = relative(sourceSrc, vuePath)
+    if (shouldSkipVueEmit(product, rel)) {
+      skipped.push(rel)
+      continue
+    }
+    const destTsxPath = join(destSrc, viewsRelFromPagesRel(rel.replace(/\.vue$/, '.tsx')))
+    try {
+      convertVueFileToSolid(vuePath, destTsxPath)
       converted.push(`${rel} → ${relative(destSrc, destTsxPath)}`)
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err)
@@ -622,9 +708,186 @@ export default nextConfig
   )
 }
 
+function writeSolidShell(dest: string, product: ConvertProductId, cfg: ConvertConfig): void {
+  const src = join(dest, 'src')
+
+  writeText(
+    join(src, 'lib/nucleify-ui-provider.tsx'),
+    product === 'web'
+      ? `import { onMount, type JSX } from 'solid-js'
+import { setupNui } from 'portable/nui'
+
+export function NucleifyUiProvider(props: { children: JSX.Element }) {
+  onMount(() => {
+    setupNui({ palette: 'next', mode: 'dark' })
+    void import('nui-rainbow').then(({ applyRainbow }) => {
+      applyRainbow(document.body, {
+        cycle: 'linear',
+        duration: 30,
+        reducedMotion: 'ignore',
+      })
+    })
+  })
+  return (
+    <>
+      {props.children}
+      <nui-toast position="top-right" />
+    </>
+  )
+}
+`
+      : `import { onMount, type JSX } from 'solid-js'
+import { setupNui } from 'portable/nui'
+
+export function NucleifyUiProvider(props: { children: JSX.Element }) {
+  onMount(() => {
+    setupNui({ palette: 'next', mode: 'dark' })
+  })
+  return (
+    <>
+      {props.children}
+      <nui-toast position="top-right" />
+    </>
+  )
+}
+`,
+  )
+
+  if (product === 'web') {
+    writeText(
+      join(src, 'lib/locales.ts'),
+      `export const WEB_LOCALES = ${JSON.stringify(WEB_LOCALES)} as const
+export type WebLocale = (typeof WEB_LOCALES)[number]
+export const WEB_LOCALE_SET = new Set<string>(WEB_LOCALES)
+
+export function isWebLocale(value: string): value is WebLocale {
+  return WEB_LOCALE_SET.has(value)
+}
+`,
+    )
+  }
+
+  writeText(
+    join(src, 'App.tsx'),
+    product === 'web'
+      ? `import { Navigate, Route, Router } from '@solidjs/router'
+import { NucleifyUiProvider } from '@/lib/nucleify-ui-provider'
+import { isWebLocale } from '@/lib/locales'
+import Home from '${cfg.entryModule}'
+import Investor from '@/views/investor/index'
+
+function LangGate(props: { params: { lang: string }; children: any }) {
+  if (!isWebLocale(props.params.lang)) return <Navigate href="${cfg.redirectRoot}" />
+  return props.children
+}
+
+export default function App() {
+  return (
+    <NucleifyUiProvider>
+      <Router>
+        <Route path="/" component={() => <Navigate href="${cfg.redirectRoot}" />} />
+        <Route path="/:lang" component={(p) => <Navigate href={\`/\${p.params.lang}/home\`} />} />
+        <Route
+          path="/:lang/home"
+          component={(p) => (
+            <LangGate params={p.params}>
+              <Home />
+            </LangGate>
+          )}
+        />
+        <Route
+          path="/:lang/investor"
+          component={(p) => (
+            <LangGate params={p.params}>
+              <Investor />
+            </LangGate>
+          )}
+        />
+      </Router>
+    </NucleifyUiProvider>
+  )
+}
+`
+      : `import { Route, Router } from '@solidjs/router'
+import { NucleifyUiProvider } from '@/lib/nucleify-ui-provider'
+import Page from '${cfg.entryModule}'
+
+export default function App() {
+  return (
+    <NucleifyUiProvider>
+      <Router>
+        <Route path="*" component={Page} />
+      </Router>
+    </NucleifyUiProvider>
+  )
+}
+`,
+  )
+
+  writeText(
+    join(src, 'main.tsx'),
+    `import { render } from 'solid-js/web'
+import App from './App'
+import 'portable/nui/fonts.css'
+${product === 'web' ? "import 'nui-rainbow/styles.css'\n" : ''}import '@/styles/migrated-product.scss'
+
+document.body.style.margin = '0'
+document.body.style.background = '${cfg.shellBg}'
+document.body.style.color = '${cfg.shellFg}'
+document.body.classList.add('nuc-solid', 'p-dark', 'nui-rainbow')
+
+render(() => <App />, document.getElementById('root')!)
+`,
+  )
+
+  writeText(
+    join(dest, 'vite.config.ts'),
+    `import { defineConfig } from 'vite'
+import solid from 'vite-plugin-solid'
+import { existsSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const here = dirname(fileURLToPath(import.meta.url))
+const monorepo = join(here, '..')
+const assetsScss = join(here, 'src/assets/_index.scss').replace(/\\\\/g, '/')
+
+export default defineConfig({
+  plugins: [solid()],
+  resolve: {
+    alias: {
+      '@': join(here, 'src'),
+      modules: join(monorepo, 'shared_modules'),
+      portable: join(monorepo, 'portable'),
+      nucleify: join(here, 'src/nucleify.ts'),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        includePaths: [
+          join(monorepo, 'shared_modules'),
+          join(monorepo, 'portable'),
+          join(here, 'src'),
+        ],
+        additionalData: (content: string, fp: string) => {
+          const p = fp.replace(/\\\\/g, '/')
+          if (p.includes('/node_modules/') || p.endsWith('.css')) return content
+          if (p.includes('/assets/_index.scss')) return content
+          if (!existsSync(assetsScss)) return content
+          return \`@import \${JSON.stringify(assetsScss)};\\n\${content}\`
+        },
+      },
+    },
+  },
+})
+`,
+  )
+}
+
 /**
- * Tryb B: scaffold Next product shell and emit React TSX from Nuxt Vue SFCs.
- * Output must contain **no** `.vue` files — only native Next/React sources.
+ * Tryb B: scaffold Next or Solid product shell and emit TSX from Nuxt Vue SFCs.
+ * Output must contain **no** `.vue` files.
  */
 export function convertProduct(opts: {
   product: ProductId
@@ -641,13 +904,17 @@ export function convertProduct(opts: {
   if (!SCAFFOLD_FRAMEWORKS.includes(framework)) {
     throw new Error(`convert: unknown framework "${framework}"`)
   }
-  if (framework !== 'next' || !NEXT_CONVERT_PRODUCTS.includes(product as NextConvertProduct)) {
+  const isNext = framework === 'next'
+  const isSolid = framework === 'solid'
+  if ((!isNext && !isSolid) || !CONVERT_PRODUCTS.includes(product as ConvertProductId)) {
     throw new Error(
-      `convert: only ${NEXT_CONVERT_PRODUCTS.join('|')}→next is implemented (got ${product}→${framework})`,
+      `convert: only ${CONVERT_PRODUCTS.join('|')}→next|solid is implemented (got ${product}→${framework})`,
     )
   }
 
-  const cfg = NEXT_CONVERT[product as NextConvertProduct]
+  const cfg = isSolid
+    ? SOLID_CONVERT[product as ConvertProductId]
+    : NEXT_CONVERT[product as ConvertProductId]
   const sourceRoot = join(cwd, product)
   if (!existsSync(sourceRoot)) {
     throw new Error(`convert: missing source product at ${product}/`)
@@ -674,21 +941,26 @@ export function convertProduct(opts: {
     copied.push('src/assets/_index.scss (minimal stub)')
   }
 
-  const { converted, failures, skipped } = emitVueTreeToReact(sourceSrc, destSrc, product as NextConvertProduct)
-  copied.push(...converted.map((c) => `vue→tsx ${c}`))
+  const tree = isSolid
+    ? emitVueTreeToSolid(sourceSrc, destSrc, product as ConvertProductId)
+    : emitVueTreeToReact(sourceSrc, destSrc, product as ConvertProductId)
+  const { converted, failures, skipped } = tree
+  copied.push(...converted.map((c) => `${isSolid ? 'vue→solid' : 'vue→tsx'} ${c}`))
   if (skipped.length) {
     copied.push(`skipped ${skipped.length} Nuxt route shell(s): ${skipped.join(', ')}`)
   }
 
-  const purgedPages = purgeLegacyPagesRouterEmit(dest)
-  if (purgedPages) copied.push(`removed ${purgedPages} legacy src/pages emit file(s)`)
+  if (isNext) {
+    const purgedPages = purgeLegacyPagesRouterEmit(dest)
+    if (purgedPages) copied.push(`removed ${purgedPages} legacy src/pages emit file(s)`)
 
-  const purgedAppShell = purgeNuxtAppShellEmit(destSrc)
-  if (purgedAppShell) copied.push(`removed ${purgedAppShell} Nuxt app shell emit file(s)`)
+    const purgedAppShell = purgeNuxtAppShellEmit(destSrc)
+    if (purgedAppShell) copied.push(`removed ${purgedAppShell} Nuxt app shell emit file(s)`)
+  }
 
   if (failures.length) {
     throw new Error(
-      `convert: ${failures.length} Vue file(s) could not be emitted to React — extend compiler parser/emit or simplify source:\n${failures.map((f) => `  - ${f}`).join('\n')}`,
+      `convert: ${failures.length} Vue file(s) could not be emitted — extend compiler parser/emit or simplify source:\n${failures.map((f) => `  - ${f}`).join('\n')}`,
     )
   }
 
@@ -700,21 +972,25 @@ export function convertProduct(opts: {
 
   writeText(
     join(destSrc, 'nucleify.ts'),
-    `/** Next host barrel — landing imports only (no full nuc_api type surface). */
+    `/** ${isSolid ? 'Solid' : 'Next'} host barrel — landing imports only (no full nuc_api type surface). */
 export { flashToast, closeToast, setToastInstance } from 'modules/nuc_api/utils/use_toast'
 `,
   )
-  copied.push('src/nucleify.ts (next-safe barrel)')
+  copied.push(`src/nucleify.ts (${isSolid ? 'solid' : 'next'}-safe barrel)`)
 
   const bumped = rewriteMonorepoImports(dest)
   if (bumped) copied.push(`rewrote monorepo imports in ${bumped} file(s)`)
 
-  writeNextShell(dest, product as NextConvertProduct, cfg)
+  if (isSolid) {
+    writeSolidShell(dest, product as ConvertProductId, cfg)
+  } else {
+    writeNextShell(dest, product as ConvertProductId, cfg)
+  }
 
   const tsconfigPath = join(dest, 'tsconfig.json')
   if (existsSync(tsconfigPath)) {
     const tsconfig = JSON.parse(readFileSync(tsconfigPath, 'utf8')) as {
-      compilerOptions?: { paths?: Record<string, string[]> }
+      compilerOptions?: { paths?: Record<string, string[]>; jsxImportSource?: string }
     }
     tsconfig.compilerOptions = tsconfig.compilerOptions || {}
     tsconfig.compilerOptions.paths = {
@@ -727,6 +1003,7 @@ export { flashToast, closeToast, setToastInstance } from 'modules/nuc_api/utils/
       'portable/nui/*': ['../portable/nui/*'],
       nucleify: ['./src/nucleify.ts'],
     }
+    if (isSolid) tsconfig.compilerOptions.jsxImportSource = 'solid-js'
     writeFileSync(tsconfigPath, `${JSON.stringify(tsconfig, null, 2)}\n`, 'utf8')
   }
 
@@ -757,17 +1034,16 @@ export { flashToast, closeToast, setToastInstance } from 'modules/nuc_api/utils/
   writeText(
     join(dest, 'MIGRATION.md'),
     [
-      `# ${product}-next — Vue SFC → React TSX`,
+      `# ${product}-${framework} — Vue SFC → ${isSolid ? 'Solid' : 'React'} TSX`,
       '',
-      `\`pnpm compiler -- convert ${product} --target=next\``,
+      `\`pnpm compiler -- convert ${product} --target=${framework}\``,
       '',
       `- **Source of truth:** top-level \`${product}/\` (Nuxt/Vue)`,
-      '- **Host:** Next App Router with **native React** components (no vue-loader, no .vue in output)',
-      '- **Pipeline:** each \`.vue\` → IR → \`.tsx\` via compiler emit',
+      `- **Host:** ${isSolid ? 'Vite + Solid + @solidjs/router' : 'Next App Router with native React'}`,
       '',
       '```bash',
-      `make ${product} TARGET=next`,
-      `pnpm compiler -- convert ${product} --target=next --force`,
+      `make ${product} TARGET=${framework}`,
+      `pnpm compiler -- convert ${product} --target=${framework} --force`,
       '```',
       '',
       'Copied / converted:',

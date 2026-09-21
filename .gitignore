@@ -53,6 +53,8 @@
 /solid/
 /web-next/
 /admin-next/
+/web-solid/
+/admin-solid/
 
 # AI workflow
 .ai/specs/*

@@ -6,6 +6,8 @@ packages:
   - "shared_modules"
   - "web-next"
   - "admin-next"
+  - "web-solid"
+  - "admin-solid"
 
 # pnpm-only (npm ignores this file — avoids unknown .npmrc key warnings)
 publicHoistPattern:

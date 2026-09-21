@@ -49,6 +49,16 @@ export const PRODUCT_SHELL_EMIT: {
     componentsDir: 'admin-next/src/components',
     frame: 'react',
   },
+  {
+    slug: 'web-solid',
+    componentsDir: 'web-solid/src/components',
+    frame: 'solid',
+  },
+  {
+    slug: 'admin-solid',
+    componentsDir: 'admin-solid/src/components',
+    frame: 'solid',
+  },
 ]
 
 const APP_FRAME: Record<EmitApp, EmitFrame> = {

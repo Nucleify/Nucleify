@@ -27,6 +27,8 @@ pnpm compiler -- scaffold next          # → next/demo
 pnpm compiler -- scaffold solid         # → solid/demo
 pnpm compiler -- convert web --target=next    # → web-next/
 pnpm compiler -- convert admin --target=next  # → admin-next/
+pnpm compiler -- convert web --target=solid   # → web-solid/
+pnpm compiler -- convert admin --target=solid # → admin-solid/
 pnpm compiler -- build --app=next
 pnpm compiler -- build --app=solid
 pnpm compiler -- build --target=solid

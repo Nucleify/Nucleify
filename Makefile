@@ -20,7 +20,9 @@ help:
 	@echo "Product apps:"
 	@echo "  make web | admin | docs           # default TARGET=nuxt (top-level web/)"
 	@echo "  make web TARGET=next              # web-next product shell (tryb B)"
+	@echo "  make web TARGET=solid             # web-solid product shell (tryb B)"
 	@echo "  make admin TARGET=next            # admin-next product shell (tryb B)"
+	@echo "  make admin TARGET=solid           # admin-solid product shell (tryb B)"
 	@echo ""
 	@echo "Portable emit demos (gitignored {framework}/demo):"
 	@echo "  make vue | react | nuxt | next | solid"
@@ -64,10 +66,14 @@ else ifeq ($(TARGET),next)
 	pnpm exec tsx compiler/src/cli.ts convert web --target=next
 	pnpm exec tsx compiler/src/cli.ts build --app=next
 	cd web-next && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+else ifeq ($(TARGET),solid)
+	pnpm exec tsx compiler/src/cli.ts convert web --target=solid
+	pnpm exec tsx compiler/src/cli.ts build --app=solid
+	cd web-solid && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "TARGET=$(TARGET) is not implemented for web product shell."
-	@echo "Supported: TARGET=nuxt (default) | TARGET=next"
-	@echo "Solid emit demo (not product convert): make solid"
+	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid"
+	@echo "Emit-only Solid demo (not product): make solid"
 	@echo "See portable/README.md"
 	@exit 1
 endif
@@ -78,10 +84,13 @@ ifeq ($(TARGET),nuxt)
 else ifeq ($(TARGET),next)
 	pnpm exec tsx compiler/src/cli.ts convert admin --target=next
 	cd admin-next && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+else ifeq ($(TARGET),solid)
+	pnpm exec tsx compiler/src/cli.ts convert admin --target=solid
+	cd admin-solid && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "TARGET=$(TARGET) is not implemented for admin product shell."
-	@echo "Supported: TARGET=nuxt (default) | TARGET=next"
-	@echo "Solid emit demo (not product convert): make solid"
+	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid"
+	@echo "Emit-only Solid demo (not product): make solid"
 	@exit 1
 endif
 
