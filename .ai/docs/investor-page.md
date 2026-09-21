@@ -18,10 +18,21 @@ Full-viewport investor pitch at `web/src/pages/investor/`, routed via `web/src/p
 - Scroll gate (`bind_home_section_scroll_gate.ts`): on mobile, only sections taller than the viewport must reach bottom before the next gesture advances; short sections keep normal snap (Nuxt + Next home/investor)
 
 ## Next (Tryb B)
+- **Source of truth:** `web/` (Nuxt/Vue). `web-next/` is gitignored — regenerate after Vue polish:
+  ```bash
+  pnpm compiler -- convert web --target=next
+  ```
 - App route: `web-next/src/app/[lang]/investor/page.tsx` → `@/views/investor`
 - Bare `/investor` redirects to `/en/investor` (next.config)
 - `[lang]` is constrained to `en|pl|vn` so `/investor` is not treated as a locale
-- `nui-rainbow` is loaded via dynamic `import()` inside `useEffect` (top-level import extends `HTMLElement` and breaks SSR)
+- `nui-rainbow` CE: dynamic `import()` in `web-next/src/lib/nucleify-ui-provider.tsx` (top-level import extends `HTMLElement` and breaks SSR); layout only loads `nui-rainbow/styles.css` + body class
+
+### Parity check (2026-09-21)
+Re-ran convert after investor polish. Verified on Next emit:
+- Intro emit cubes + `NUC_INVESTOR_DEAL.source*` (no Without/Nucleus panel)
+- `content.ts` / scroll gate / wedge (no moat) match Vue
+- Ask + home Close `is-form` slide + Escape + trust
+- Investor `_index.scss` includes emit cubes, wedge rail, form stage
 
 ## Motion
 `play_investor_animations.ts` — slim home engine: cipher brand, iris wipe, magnetic shear, section wipe reveals. Reuses home scroll loop / section observer / contact helpers.
@@ -31,8 +42,6 @@ Full-viewport investor pitch at `web/src/pages/investor/`, routed via `web/src/p
 - Smash middleware leaves `/{lang}/investor` alone; extras collapse to that root
 
 ## Verify
-- Open `/en/investor` (bare `/investor` 301 → `/en/investor`)
-- Rail jumps + scroll-past-end loop replay boot
-- Ask CTA slides to form; Escape returns; submit with email + type
-- Same slide form on `/en/home` Close section
+- Nuxt: `/en/investor` (bare `/investor` 301 → `/en/investor`)
+- Next (local host): same paths after convert; rail + scroll-past-end loop; Ask/Close slide forms
 - `pnpm -s check && pnpm -s typeslint && pnpm -s slint && pnpm -s tests`
