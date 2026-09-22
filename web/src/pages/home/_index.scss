@@ -30,20 +30,6 @@
   --home-iris-x: 18%;
   --home-iris-y: 40%;
 
-  @media (max-width: 959px) {
-    --home-iris-x: 12%;
-    --home-iris-y: 16%;
-  }
-
-    nui-button {
-    --nui-primary-color: var(--home-accent);
-    --nui-primary-hover-color: var(--home-accent-hover);
-    --nui-primary-color-darker: hsl(var(--rainbow-hue) 58% 40%);
-    --nui-primary-highlight-color: hsl(var(--rainbow-hue) 55% 52% / 12%);
-    --nui-primary-focus-color: hsl(var(--rainbow-hue) 55% 52% / 50%);
-    --nui-primary-white-text-color: var(--home-on-accent);
-  }
-
   position: relative;
   height: 100svh;
   color: var(--home-fg);
@@ -51,6 +37,20 @@
   font-family: 'Instrument Sans', system-ui, sans-serif;
   overflow: hidden;
   isolation: isolate;
+
+  @media (max-width: 959px) {
+    --home-iris-x: 12%;
+    --home-iris-y: 16%;
+  }
+
+  nui-button {
+    --nui-primary-color: var(--home-accent);
+    --nui-primary-hover-color: var(--home-accent-hover);
+    --nui-primary-color-darker: hsl(var(--rainbow-hue) 58% 40%);
+    --nui-primary-highlight-color: hsl(var(--rainbow-hue) 55% 52% / 12%);
+    --nui-primary-focus-color: hsl(var(--rainbow-hue) 55% 52% / 50%);
+    --nui-primary-white-text-color: var(--home-on-accent);
+  }
 
   &-shear {
     pointer-events: none;

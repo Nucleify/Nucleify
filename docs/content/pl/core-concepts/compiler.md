@@ -1,6 +1,6 @@
 # Kompilator
 
-Pakiet `@nucleify/compiler` to wyróżnik Nucleify: przenośny kompilator UI oparty na IR, który zamienia źródła `*.nuc.tsx` na Vue SFC, komponenty React i współdzielony CSS — oraz może konwertować całe powłoki produktu Nuxt na Next.js (Tryb B).
+Pakiet `@nucleify/compiler` to wyróżnik Nucleify: przenośny kompilator UI oparty na IR, który zamienia źródła `*.nuc.tsx` na Vue SFC, komponenty React i Solid oraz współdzielony CSS — oraz może konwertować całe powłoki produktu Nuxt na Next.js lub Solid.
 
 ---
 
@@ -8,10 +8,10 @@ Pakiet `@nucleify/compiler` to wyróżnik Nucleify: przenośny kompilator UI opa
 
 | Tryb | Co robi | Przykład |
 |------|---------|----------|
-| **Tryb A** (emisja komponentów) | `*.nuc.tsx` → IR → `.vue` + `.tsx` + `.css` | `pnpm compiler:build` |
-| **Tryb B** (powłoka produktu) | Aplikacja Nuxt → aplikacja Next.js | `pnpm compiler -- convert web --target=next` |
+| **Emisja przenośna** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + `.css` | `pnpm compiler:build` / `make solid` |
+| **Konwersja produktu** | Aplikacja Nuxt → Next.js lub Solid | `pnpm compiler -- convert web --target=next` |
 
-**Tryb A** służy przenośnym komponentom prezentacyjnym. **Tryb B** generuje `web-next/` lub `admin-next/` z drzewa źródeł Vue — te same trasy, współdzielone moduły, inna powłoka frameworka.
+**Emisja przenośna** służy komponentom prezentacyjnym. **Konwersja produktu** generuje `web-next/`, `admin-next/`, `web-solid/` lub `admin-solid/` z drzewa źródeł Vue — te same trasy, współdzielone moduły, inna powłoka frameworka.
 
 ---
 
@@ -76,9 +76,12 @@ pnpm compiler -- import --from=vue path/Foo.vue  # importuj edycje emisji z powr
 pnpm compiler -- import --from=react path/Foo.tsx
 pnpm compiler -- build --force                   # odrzuć edycje emisji; regeneruj
 
-pnpm compiler -- convert web --target=next       # Tryb B → web-next/
-pnpm compiler -- convert admin --target=next     # Tryb B → admin-next/
+pnpm compiler -- convert web --target=next       # konwersja produktu → web-next/
+pnpm compiler -- convert admin --target=next     # konwersja produktu → admin-next/
+pnpm compiler -- convert web --target=solid      # konwersja produktu → web-solid/
+pnpm compiler -- scaffold solid                  # throwaway demo → solid/demo/
 pnpm compiler -- scaffold next                   # throwaway demo → next/demo/
+pnpm compiler -- build --app=solid               # emisja do solid/demo
 ```
 
 Pomiń kompilator podczas bootstrapu:
@@ -113,7 +116,7 @@ compiler/
 ├── src/
 │   ├── parse/              # *.nuc.tsx → AST
 │   ├── ir/                 # reprezentacja pośrednia
-│   ├── emit/               # IR → .vue / .tsx / .css
+│   ├── emit/               # IR → .vue / React .tsx / Solid .tsx / .css
 │   └── sync/               # import zwrotny, konwersja powłok produktu
 ├── runtime/                # #nuc-compiler/runtime
 ├── templates/              # źródła scaffold dla gitignored demo
@@ -122,22 +125,25 @@ compiler/
 └── PORTABLE.md             # reguły autorskie
 ```
 
-Gitignored demo emisji: `{vue,react,nuxt,next}/demo/` (przez `make vue`, `make next` itd.).
+Gitignored demo emisji: `{vue,react,nuxt,next,solid}/demo/` (przez `make vue`, `make next`, `make solid` itd.).
 
 ---
 
-## Konwersja powłoki produktu (Tryb B)
+## Konwersja powłoki produktu
 
 ```bash
 make web TARGET=next
 # równoważne:
 pnpm compiler -- convert web --target=next
 cd web-next && pnpm dev
+
+make web TARGET=solid
+pnpm compiler -- convert web --target=solid
 ```
 
-Konwerter czyta drzewo źródeł Nuxt w `web/`, mapuje strony i composables na odpowiedniki React i zapisuje output do `web-next/`. Moduły współdzielone są konsumowane przez barrel `index.react.ts`.
+Konwerter czyta drzewo źródeł Nuxt w `web/`, mapuje strony i composables na odpowiedniki React (lub Solid) i zapisuje output do `web-next/` lub `web-solid/`. Moduły współdzielone są konsumowane przez barrel frameworka.
 
-Traktuj `web-next/` i `admin-next/` jako **generowany output**. Rozwijaj w `web/` lub `admin/`, potem konwertuj.
+Traktuj `web-next/`, `admin-next/`, `web-solid/` i `admin-solid/` jako **generowany output**. Rozwijaj w `web/` lub `admin/`, potem konwertuj.
 
 ---
 

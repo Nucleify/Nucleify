@@ -1,3 +1,4 @@
+import { isHomeProgrammaticScroll } from './observe_active_section'
 import { scrollSectionOffset } from './scroll_section_offset'
 
 const END_SLACK_PX = 8
@@ -86,6 +87,9 @@ export function bindHomeSectionScrollGate(root: HTMLElement): () => void {
 
   const sync = () => {
     observePanels()
+
+    // Rail / CTA owns snap while programmatic — do not re-enable mid-jump.
+    if (isHomeProgrammaticScroll(scroller)) return
 
     if (!mq.matches) {
       releaseSnap()

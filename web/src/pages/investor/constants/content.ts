@@ -11,7 +11,7 @@ export const NUC_INVESTOR_SECTIONS = [
   { id: 'thesis', label: 'Thesis' },
   { id: 'savings', label: 'Savings' },
   { id: 'wedge', label: 'Wedge' },
-  { id: 'surface', label: 'Surface' },
+  { id: 'surface', label: 'Coverage' },
   { id: 'ask', label: 'Ask' },
 ] as const satisfies ReadonlyArray<{ id: NucInvestorSectionId; label: string }>
 
@@ -46,10 +46,12 @@ export const NUC_INVESTOR_COPY = {
   wedgeTitle: 'Distribution first. Margin second.',
   wedgeSupport:
     'Capital compounds when adoption is free and exit is expensive. We open the door with open source, lock the nucleus into production, then monetize the layers that only scale after the install.',
-  surfaceEyebrow: 'Emit surface',
-  surfaceTitle: 'Seven shells. One install.',
+  surfaceEyebrow: 'Coverage',
+  surfaceTitle: 'Four surfaces. One capital base.',
   surfaceSupport:
-    'Product boots with make web. Portable *.nuc.tsx emits Vue, React, Nuxt, Next, Astro, Svelte, and Solid — same props, same primitives.',
+    'The same nucleus compounds across buyers, channel, timing, and attach — without a second platform payroll.',
+  surfaceTabsLabel: 'Coverage surfaces',
+  surfaceStageLabel: 'Surface detail',
   askTitle: 'Diligence starts with a conversation.',
   askSupport:
     'Open-source nucleus with a consulting edge. If you are mapping the multi-framework developer tooling space, we will walk the architecture end to end.',
@@ -140,7 +142,7 @@ function investorSaving(
   return item
 }
 
-/** Intro snapshot. Dollars stay tied to the savings model. Shells = Surface. */
+/** Intro snapshot. Dollars stay tied to the savings model. Shells = emit diagram. */
 export const NUC_INVESTOR_DEAL = {
   source: 'nucleus',
   sourceFile: '*.nuc.tsx',
@@ -179,7 +181,8 @@ export const NUC_INVESTOR_WEDGE = [
   },
 ] as const
 
-export const NUC_INVESTOR_SURFACE = [
+/** Framework shells for the intro emit diagram only — not the Surface rail. */
+export const NUC_INVESTOR_SHELLS = [
   {
     id: 'vue',
     label: 'Vue',
@@ -228,6 +231,50 @@ export const NUC_INVESTOR_SURFACE = [
     detail: 'Fine-grained',
     icon: 'simple-icons:solid',
     color: '#2c4f7c',
+  },
+] as const
+
+/** Coverage strip — interactive tabs + detail stage. */
+export const NUC_INVESTOR_SURFACE = [
+  {
+    id: 'beachhead',
+    index: '01',
+    title: 'Beachhead buyers',
+    description:
+      'Mid-size product orgs already paying dual-shell tax. They feel rewrite burn in the current quarter — not as a roadmap idea.',
+    outcome: 'Pull demand',
+    proof: 'Dual-shell product teams',
+    metric: 'Now',
+  },
+  {
+    id: 'agency',
+    index: '02',
+    title: 'Agency channel',
+    description:
+      'Agencies sell migrations. A nucleus story lets them keep the brief and drop the second platform team — pull, not cold outbound.',
+    outcome: 'Channel leverage',
+    proof: 'Rewrite budgets to nucleus',
+    metric: 'Pull',
+  },
+  {
+    id: 'timing',
+    index: '03',
+    title: 'Fashion-cycle timing',
+    description:
+      'Framework waves every 18–36 months reopen budgets. Each cycle widens TAM without hiring a new platform org.',
+    outcome: 'Timing alpha',
+    proof: '18–36 month stack waves',
+    metric: '18–36mo',
+  },
+  {
+    id: 'attach',
+    index: '04',
+    title: 'Attach after install',
+    description:
+      'Convert and consulting attach once the nucleus is already in production. High intent, short cycle, rising attach on an installed base.',
+    outcome: 'High-intent ARR',
+    proof: 'Usage to paid attach',
+    metric: 'Attach',
   },
 ] as const
 
