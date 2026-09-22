@@ -122,7 +122,7 @@
                 :value="note"
                 class="nuc-home-close-textarea"
                 name="message"
-                rows="4"
+                :rows="4"
                 :placeholder="copy.closeNotePlaceholder"
                 :aria-invalid="Boolean(errors.message)"
                 @input="onNoteInput"
@@ -282,7 +282,7 @@ function onTypeChange(event: CustomEvent<{ value: string }>): void {
   delete errors.website_type
 }
 
-function onNoteInput(event: Event): void {
+function onNoteInput(event: { target: EventTarget | null }): void {
   const target = event.target
   if (target instanceof HTMLTextAreaElement) {
     note.value = target.value

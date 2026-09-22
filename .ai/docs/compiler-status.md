@@ -10,6 +10,10 @@ Workflow: [`.github/workflows/compiler.yaml`](../../.github/workflows/compiler.y
 | `emit` | matrix `vue` / `react` / `nuxt` / `next` / `solid` — scaffold + build + demo `pnpm build` |
 | `convert` | matrix `web\|admin` × `next\|solid` — convert + emit + product shell `pnpm build` |
 
+Next shells need CSS module types for `portable/nui` (`fonts.css.d.ts` / `tokens.css.d.ts`, plus `nui-jsx.d.ts` in templates) so `next build` typechecks `theme.ts` font CSS imports.
+
+React emit folds static CSS `style="…"` strings into style objects (SVG `<stop>` etc.). Product convert maps Vue `watch(() => expr, cb)` → `useEffect(cb, [expr])`, preserves `ref<T>` as `useState<T>`, and rewrites DOM `KeyboardEvent`/`MouseEvent` params to structural shapes React accepts.
+
 ## Paths (product convert)
 
 | Command | Output (gitignored) |
