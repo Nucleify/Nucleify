@@ -32,10 +32,11 @@
           :aria-selected="activeId === item.id"
           :aria-controls="`nuc-surface-panel-${item.id}`"
           :tabindex="activeId === item.id ? 0 : -1"
+          :data-index="i"
           @mouseenter="activeId = item.id"
           @focus="activeId = item.id"
           @click="activeId = item.id"
-          @keydown="onTabKey($event, i)"
+          @keydown="onTabKey"
         >
           <span class="nuc-investor-surface-tab-index">{{ item.index }}</span>
           <span class="nuc-investor-surface-tab-title">{{ item.title }}</span>
@@ -93,7 +94,11 @@ const active = computed(
   () => surface.find((item) => item.id === activeId.value) ?? surface[0]!
 )
 
-function onTabKey(event: KeyboardEvent, index: number): void {
+function onTabKey(event: KeyboardEvent): void {
+  const target = event.currentTarget as HTMLElement | null
+  const index = Number(target?.dataset.index ?? Number.NaN)
+  if (!Number.isFinite(index)) return
+
   let next = index
   if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
     next = (index + 1) % surface.length
