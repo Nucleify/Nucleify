@@ -120,4 +120,29 @@ export default component({
     expect(solid).toContain('aria-hidden="true"')
     expect(solid).toContain('style={{ gap: "0.5rem" }}')
   })
+
+  it('folds static CSS style strings into React style objects', () => {
+    const doc: IrDocument = {
+      ...base,
+      name: 'Stop',
+      template: {
+        kind: 'element',
+        tag: 'stop',
+        props: [
+          { kind: 'static', name: 'offset', value: '0%' },
+          {
+            kind: 'static',
+            name: 'style',
+            value: 'stop-color: hsl(var(--hue) 88% 68%); stop-opacity: 0.55',
+          },
+        ],
+        children: [],
+      },
+    }
+    const react = emitReact(doc)
+    expect(react).toContain(
+      'style={{ stopColor: "hsl(var(--hue) 88% 68%)", stopOpacity: "0.55" }}',
+    )
+    expect(react).not.toContain('style="stop-color:')
+  })
 })
