@@ -909,6 +909,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
+        // Product SCSS still uses @import (Nuxt/Vite shared tree + converted bundle).
+        silenceDeprecations: ['import'],
         includePaths: [
           join(monorepo, 'shared_modules'),
           join(monorepo, 'portable'),

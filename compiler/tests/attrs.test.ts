@@ -53,6 +53,36 @@ export default component({
     })
   })
 
+  it('parses unary minus as a numeric literal', () => {
+    const ir = parseTsxToIr(
+      `import { component } from '#nuc-compiler/runtime'
+export default component({
+  name: 'Tab',
+  props: { active: { type: 'boolean', default: false } },
+  render: (props) => (
+    <button tabindex={props.active ? 0 : -1} />
+  ),
+})
+`,
+      'tab.nuc.tsx',
+    )
+    expect(ir.template).toMatchObject({
+      kind: 'element',
+      tag: 'button',
+      props: [
+        {
+          kind: 'bind',
+          name: 'tabindex',
+          value: {
+            kind: 'conditional',
+            consequent: { kind: 'literal', value: 0 },
+            alternate: { kind: 'literal', value: -1 },
+          },
+        },
+      ],
+    })
+  })
+
   it('emits boolean false explicitly and style object quotes safely in Vue', () => {
     const doc: IrDocument = {
       ...base,
