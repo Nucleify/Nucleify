@@ -100,14 +100,14 @@ import {
   NUC_INVESTOR_COPY,
   NUC_INVESTOR_DEAL,
   NUC_INVESTOR_PROOF,
-  NUC_INVESTOR_SURFACE,
+  NUC_INVESTOR_SHELLS,
 } from '../../constants/content'
 import { scrollHomeSection } from '../../../home/utils/observe_active_section'
 
 const copy = NUC_INVESTOR_COPY
 const proof = NUC_INVESTOR_PROOF
 const deal = NUC_INVESTOR_DEAL
-const shells = NUC_INVESTOR_SURFACE
+const shells = NUC_INVESTOR_SHELLS
 const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
 const shellNames = shells.map((shell) => shell.label).join(', ')

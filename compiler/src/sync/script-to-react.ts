@@ -13,6 +13,27 @@ function paramText(source: string, param: any): string {
   return 'arg'
 }
 
+/** DOM event types clash with React's synthetic events — fold to structural shapes. */
+function rewriteDomEventTypes(text: string): string {
+  return text
+    .replace(
+      /\bKeyboardEvent\b/g,
+      '{ key: string; preventDefault(): void; currentTarget: EventTarget | null }',
+    )
+    .replace(
+      /\bMouseEvent\b/g,
+      '{ preventDefault(): void; currentTarget: EventTarget | null; target: EventTarget | null }',
+    )
+    .replace(
+      /\bFocusEvent\b/g,
+      '{ currentTarget: EventTarget | null; target: EventTarget | null }',
+    )
+    .replace(
+      /\bInputEvent\b/g,
+      '{ target: EventTarget | null; currentTarget: EventTarget | null }',
+    )
+}
+
 function isDomRef(source: string, name: string, init: any): boolean {
   const initText =
     init?.start != null && init?.end != null ? slice(source, init.start, init.end) : ''
@@ -233,6 +254,11 @@ function emitRefBinding(source: string, name: string, init: any): string {
     return `const ${name} = useRef<${typeParam}>(${initText === 'null' ? 'null' : initText})`
   }
   const setter = `set${name.charAt(0).toUpperCase()}${name.slice(1)}`
+  const typeMatch = source.match(new RegExp(`const ${name} = ref<([^>]+)>`))
+  const typeParam = typeMatch?.[1]?.trim()
+  if (typeParam) {
+    return `const [${name}, ${setter}] = useState<${typeParam}>(${initText})`
+  }
   return `const [${name}, ${setter}] = useState(${initText})`
 }
 
@@ -329,10 +355,13 @@ function rewriteLifecycleCall(
       domRefNames,
       letRefNames,
     )
-    const deps = rewriteNuxtInBody(
+    let deps = rewriteNuxtInBody(
       rewriteValueAccess(srcText, refNames, domRefNames, letRefNames),
     )
-    return `useEffect(() => {\n  void (${cbText})(${deps})\n}, [${deps}])`
+    // Vue getters (`() => expr`) become React dependency values, not functions.
+    const getter = deps.match(/^\(\)\s*=>\s*([\s\S]+)$/)
+    if (getter?.[1]) deps = getter[1].trim()
+    return `useEffect(() => {\n  void (${cbText})()\n}, [${deps}])`
   }
 
   return rewriteValueAccess(slice(source, node.start, node.end), refNames, domRefNames, letRefNames)
@@ -543,5 +572,12 @@ export function rewriteScriptSetupToReact(script: string): ScriptToReactResult {
     imports.unshift("import { useId } from 'react'")
   }
 
-  return { body, imports, propsType, propNames, emitFields, emitHandlers }
+  return {
+    body: body.map(rewriteDomEventTypes),
+    imports,
+    propsType,
+    propNames,
+    emitFields,
+    emitHandlers,
+  }
 }

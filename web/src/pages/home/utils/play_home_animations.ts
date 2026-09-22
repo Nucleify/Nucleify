@@ -722,7 +722,8 @@ async function runHomeMotionEngine(
           for (const item of heroBits) {
             item.style.opacity = '0'
             item.style.filter = 'blur(10px)'
-            item.style.translate = '0 24px'
+            // No translate on leave — avoids “too low then jump” when rail returns to intro.
+            item.style.removeProperty('translate')
           }
         },
         settle: () => settleHeroBits(heroBits),
@@ -733,9 +734,8 @@ async function runHomeMotionEngine(
             animate(heroBits, {
               opacity: [0, 1],
               filter: ['blur(10px)', 'blur(0px)'],
-              y: [24, 0],
-              duration: 900,
-              delay: stagger(70),
+              duration: 700,
+              delay: stagger(60),
               ease: 'outExpo',
               onComplete: () => settleHeroBits(heroBits),
             })

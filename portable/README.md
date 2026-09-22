@@ -26,16 +26,16 @@ portable/
 |---------|------------|---------|
 | `make web` | Landing product shell | **Nuxt** (`TARGET=nuxt`) |
 | `make admin` | Admin product shell | **Nuxt** |
-| `make admin TARGET=next` | Admin on Next (tryb B) | `next/admin/` |
+| `make admin TARGET=next` | Admin on Next (tryb B) | `admin-next/` |
 | `make docs` | Docs product shell | **Astro** |
-| `make nuxt` / `next` / `vue` / `react` | Throwaway emit demos | `{framework}/demo` (gitignored) |
+| `make nuxt` / `next` / `vue` / `react` / `solid` | Throwaway emit demos | `{framework}/demo` (gitignored) |
 
 **Tryb B:** `convert` emits each Nuxt `.vue` to React `.tsx` (IR pipeline). Output under
-`next/{product}/` has **no `.vue` files** — native Next App Router only.
+`{product}-next/` has **no `.vue` files** — native Next App Router only.
 
 ```bash
-make web TARGET=next     # next/web (fails until compiler subset covers all home SFCs)
-make admin TARGET=next   # next/admin
+make web TARGET=next     # → web-next/
+make admin TARGET=next   # → admin-next/
 ```
 
 Product shells import `portable/nui` for `--nui-*` tokens and Lit registration — they do not
@@ -44,7 +44,7 @@ duplicate palettes.
 ## Emit demos
 
 ```bash
-make nuxt | next | vue | react
+make nuxt | next | vue | react | solid
 pnpm compiler:build
 ```
 
@@ -54,6 +54,7 @@ pnpm compiler:build
 | React | `react/demo/src/components/` |
 | Nuxt | `nuxt/demo/components/` |
 | Next | `next/demo/src/components/` |
+| Solid | `solid/demo/src/components/` |
 
-Templates: `compiler/templates/{vue,react,nuxt,next}/{demo,web,admin}/`.
+Templates: `compiler/templates/{vue,react,nuxt,next,solid}/{demo,…}`.
 Compiler test fixtures: `compiler/tests/fixtures/{source,ir,emit}/`.

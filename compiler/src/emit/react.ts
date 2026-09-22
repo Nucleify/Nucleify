@@ -137,6 +137,23 @@ function emitClassNameAttr(
   return `className={\`${prefix}${fragments}\`.trim()}`
 }
 
+function cssStringToReactStyleObject(css: string): string {
+  const props = css
+    .split(';')
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const idx = part.indexOf(':')
+      if (idx < 0) return null
+      const key = part.slice(0, idx).trim()
+      const val = part.slice(idx + 1).trim()
+      const camel = key.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase())
+      return `${camel}: ${JSON.stringify(val)}`
+    })
+    .filter((entry): entry is string => Boolean(entry))
+  return `{ ${props.join(', ')} }`
+}
+
 function emitAttrs(attrs: IrAttr[], ctx: EmitCtx, tag?: string): string {
   const parts: string[] = []
   let staticClass: string | undefined
@@ -172,6 +189,9 @@ function emitAttrs(attrs: IrAttr[], ctx: EmitCtx, tag?: string): string {
         parts.push(`${name}={${attr.value ? 'true' : 'false'}}`)
       } else if (typeof attr.value === 'number') {
         parts.push(`${name}={${attr.value}}`)
+      } else if (name === 'style' && typeof attr.value === 'string') {
+        // React rejects CSS strings on DOM/SVG — fold to a style object.
+        parts.push(`style={${cssStringToReactStyleObject(attr.value)}}`)
       } else {
         parts.push(`${name}=${JSON.stringify(attr.value)}`)
       }

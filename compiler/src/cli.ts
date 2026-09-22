@@ -124,12 +124,12 @@ const main = defineCommand({
       args: {
         target: {
           type: 'string',
-          description: 'vue | react | all (default all)',
+          description: 'vue | react | solid | all (default all)',
           default: 'all',
         },
         app: {
           type: 'string',
-          description: 'vue | react | nuxt | next (only this demo app)',
+          description: 'vue | react | nuxt | next | solid (only this demo app)',
         },
         force: {
           type: 'boolean',
@@ -149,7 +149,7 @@ const main = defineCommand({
       async run({ args }) {
         const cwd = resolve(String(args.cwd || process.cwd()))
         const dumpIr = Boolean(args['dump-ir'])
-        const target = String(args.target || 'all') as 'vue' | 'react' | 'all'
+        const target = String(args.target || 'all') as 'vue' | 'react' | 'solid' | 'all'
         const force = Boolean(args.force)
         const appArg = args.app ? (String(args.app) as EmitApp) : undefined
         const apps = appArg ? [appArg] : undefined

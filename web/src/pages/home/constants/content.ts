@@ -242,6 +242,9 @@ export const NUC_HOME_COPY = {
   coreLaneUi: 'ui',
   coreLive: 'vue · react · one module',
   coreInspect: 'live slice',
+  startEyebrow: 'One installable unit',
+  startTitle: 'A module is a product slice.',
+  startCta: 'Get in touch',
   cloneEyebrow: 'Get running',
   cloneTitle: 'Clone the nucleus. Ship today.',
   cloneSupport:

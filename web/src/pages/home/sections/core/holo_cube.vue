@@ -10,6 +10,7 @@
     }"
   >
     <div class="nuc-home-holo-cube-spin">
+      <div class="nuc-home-holo-cube-aura" aria-hidden="true" />
       <svg
         class="nuc-home-holo-cube-bloom"
         viewBox="0 0 200 188"
@@ -24,7 +25,7 @@
             height="190%"
             color-interpolation-filters="sRGB"
           >
-            <feGaussianBlur stdDeviation="4.2" />
+            <feGaussianBlur stdDeviation="5" />
           </filter>
         </defs>
         <g
@@ -45,28 +46,25 @@
         aria-hidden="true"
       >
         <defs>
-          <radialGradient :id="`${uid}-g`" cx="58%" cy="58%" r="46%">
+          <radialGradient :id="`${uid}-g`" cx="58%" cy="58%" r="52%">
             <stop
               offset="0%"
-              stop-color="hsl(var(--rainbow-hue) 88% 68%)"
-              stop-opacity="0.22"
+              style="stop-color: hsl(var(--rainbow-hue) 88% 68%); stop-opacity: 0.55"
             />
             <stop
               offset="55%"
-              stop-color="hsl(calc(var(--rainbow-hue) + 48deg) 86% 58%)"
-              stop-opacity="0.1"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 48deg) 86% 58%); stop-opacity: 0.28"
             />
             <stop
               offset="100%"
-              stop-color="hsl(calc(var(--rainbow-hue) + 96deg) 88% 54%)"
-              stop-opacity="0"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 96deg) 88% 54%); stop-opacity: 0"
             />
           </radialGradient>
           <clipPath :id="`${uid}-c`">
             <path d="M100 34 L162 68 L162 136 L100 170 L38 136 L38 68 Z" />
           </clipPath>
           <filter :id="`${uid}-b`" x="-28%" y="-28%" width="156%" height="156%">
-            <feGaussianBlur stdDeviation="3.2" />
+            <feGaussianBlur stdDeviation="2.2" />
           </filter>
           <linearGradient
             :id="`${uid}-top`"
@@ -77,13 +75,11 @@
           >
             <stop
               offset="0%"
-              stop-color="hsl(var(--rainbow-hue) 95% 72%)"
-              stop-opacity="0.38"
+              style="stop-color: hsl(var(--rainbow-hue) 95% 72%); stop-opacity: 0.52"
             />
             <stop
               offset="100%"
-              stop-color="hsl(var(--rainbow-hue) 90% 58%)"
-              stop-opacity="0.12"
+              style="stop-color: hsl(var(--rainbow-hue) 90% 58%); stop-opacity: 0.22"
             />
           </linearGradient>
           <linearGradient
@@ -95,13 +91,11 @@
           >
             <stop
               offset="0%"
-              stop-color="hsl(calc(var(--rainbow-hue) + 48deg) 90% 62%)"
-              stop-opacity="0.22"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 48deg) 90% 62%); stop-opacity: 0.36"
             />
             <stop
               offset="100%"
-              stop-color="hsl(calc(var(--rainbow-hue) + 48deg) 80% 42%)"
-              stop-opacity="0.06"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 48deg) 80% 42%); stop-opacity: 0.12"
             />
           </linearGradient>
           <linearGradient
@@ -113,13 +107,11 @@
           >
             <stop
               offset="0%"
-              stop-color="hsl(calc(var(--rainbow-hue) + 96deg) 90% 58%)"
-              stop-opacity="0.14"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 96deg) 90% 58%); stop-opacity: 0.28"
             />
             <stop
               offset="100%"
-              stop-color="hsl(calc(var(--rainbow-hue) + 96deg) 70% 32%)"
-              stop-opacity="0.04"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 96deg) 70% 32%); stop-opacity: 0.1"
             />
           </linearGradient>
         </defs>

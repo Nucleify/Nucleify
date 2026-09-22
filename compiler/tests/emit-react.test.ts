@@ -49,13 +49,13 @@ describe('emitReact golden', () => {
     }, 30_000)
   }
 
-  it('writes only into existing apps (vue+nuxt+react+next + css)', async () => {
+  it('writes only into existing apps (vue+nuxt+react+next+solid + css)', async () => {
     const ir = parseIrDocument(
       JSON.parse(readFileSync(join(fixtures, 'ir/button.json'), 'utf8')),
     )
     const tmp = mkdtempSync(join(tmpdir(), 'nuc-all-'))
     try {
-      prepareEmitApps(tmp)
+      prepareEmitApps(tmp, ['vue', 'react', 'nuxt', 'next', 'solid'])
       const sourcePath = join(tmp, 'portable', 'button.nuc.tsx')
       writeFileSync(sourcePath, '//')
       const { written } = await writeOutputs({
@@ -69,6 +69,7 @@ describe('emitReact golden', () => {
       expect(rel.some((p) => p.endsWith(`${EMIT_APP_DIRS.nuxt}/button.vue`))).toBe(true)
       expect(rel.some((p) => p.endsWith(`${EMIT_APP_DIRS.react}/button.tsx`))).toBe(true)
       expect(rel.some((p) => p.endsWith(`${EMIT_APP_DIRS.next}/button.tsx`))).toBe(true)
+      expect(rel.some((p) => p.endsWith(`${EMIT_APP_DIRS.solid}/button.tsx`))).toBe(true)
       expect(rel.some((p) => p.endsWith(`${EMIT_APP_DIRS.vue}/button.css`))).toBe(true)
     } finally {
       rmSync(tmp, { recursive: true, force: true })
