@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { emitReact } from '../src/emit/react'
+import { emitSolid } from '../src/emit/solid'
 import { emitVue } from '../src/emit/vue'
 import type { IrDocument } from '../src/ir/types'
 import { parseTsxToIr } from '../src/parse/tsx'
@@ -83,5 +84,10 @@ export default component({
     expect(react).toContain('disabled={false}')
     expect(react).toContain('aria-hidden="true"')
     expect(react).toContain('style={{ gap: "0.5rem" }}')
+
+    const solid = emitSolid(doc)
+    expect(solid).toContain('disabled={false}')
+    expect(solid).toContain('aria-hidden="true"')
+    expect(solid).toContain('style={{ gap: "0.5rem" }}')
   })
 })

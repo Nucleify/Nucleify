@@ -10,8 +10,8 @@ Rules for `*.nuc.tsx` sources consumed by `@nucleify/compiler` (IR v0.1).
 - Control flow: `if` / `for` (mapped to IR `if` / `for`)
 - Events from the fixed map (e.g. `onClick` → IR `click`)
 - Text nodes and expression interpolations
-- `class` **or** `className` in JSX → IR always `class` → Vue `class` / React `className`
-- Plain CSS string → sibling `Foo.css` (shared by Vue and React emit)
+- `class` **or** `className` in JSX → IR always `class` → Vue `class` / React `className` / Solid `class`
+- Plain CSS string → sibling `Foo.css` (shared by Vue, React, and Solid emit)
 - `style={{ … }}` object bind (string/number/boolean/null literals + ident/member/binary/call)
 - Boolean attributes (`disabled`, `disabled={false}`, `disabled={props.x}`)
 - Static and bound `aria-*` attributes (`aria-label`, `aria-hidden="true"`, …)
@@ -41,7 +41,7 @@ export default component({
 })
 ```
 
-- Emit: Vue `ref` / `computed`; React `useState` / `useMemo` (deps = all state names)
+- Emit: Vue `ref` / `computed`; React `useState` / `useMemo`; Solid `createSignal` / `createMemo` (deps = all state names for React)
 - v0 `render` + top-level `handlers` still works; **do not** mix with `setup`
 - Runtime markers are compile-time only — they must not appear in emitted bundles
 
@@ -62,12 +62,13 @@ export default component({
 |------|------|
 | `Foo.nuc.tsx` | Authoring (commit) |
 | `Foo.vue` / `Foo.tsx` | Generated emit (editable → `import`) |
+| Solid demo emit | `solid/demo/src/components/Foo.tsx` (rebuild; no product sibling yet) |
 | `Foo.css` | Generated styles sibling |
 | `Foo.ir.json` | Optional dump (`--dump-ir`), gitignored |
 
 ### Product apps (`web/`, `admin/`)
 
-Authoring under these trees also emits **siblings next to the source** (committed), in addition to gitignored demo apps (`vue/`, `react/`, `nuxt/`, `next/`). Do not put `*.nuc.tsx` in the home landing section (`web/src/pages/home/sections/compiler_demo/`) — that folder is Vue-only.
+Authoring under these trees also emits **siblings next to the source** (committed), in addition to gitignored demo apps (`vue/`, `react/`, `nuxt/`, `next/`, `solid/`). Do not put `*.nuc.tsx` in the home landing section (`web/src/pages/home/sections/compiler_demo/`) — that folder is Vue-only.
 
 ## Runtime import
 
@@ -75,7 +76,7 @@ Authoring under these trees also emits **siblings next to the source** (committe
 import { component, state, derived, handler } from '#nuc-compiler/runtime'
 ```
 
-Helpers exposed here must stay host-agnostic. See `compiler/README.md` for CLI cycles A/B.
+Helpers exposed here must stay host-agnostic. See `compiler/README.md` for CLI cycles.
 
 ## Import policy
 

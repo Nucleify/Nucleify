@@ -161,4 +161,12 @@ jobs:
       - name: Compiler build is idempotent on tracked tree
         run: |
           pnpm compiler:build
-          git diff --exit-code -- . ':(exclude)vue' ':(exclude)react' ':(exclude)nuxt' ':(exclude)next'
+          git diff --exit-code -- . ':(exclude)vue' ':(exclude)react' ':(exclude)nuxt' ':(exclude)next' ':(exclude)solid'
+
+      - name: Solid emit demo smoke (scaffold + vite build)
+        run: |
+          pnpm exec tsx compiler/src/cli.ts scaffold solid
+          pnpm exec tsx compiler/src/cli.ts build --app=solid --force
+          cd solid/demo
+          pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true
+          pnpm run --ignore-workspace build

@@ -1,6 +1,6 @@
 # Compiler
 
-The `@nucleify/compiler` package is Nucleify's differentiator: an IR-first portable UI compiler that turns `*.nuc.tsx` sources into Vue SFCs, React components, and shared CSS — and can convert entire Nuxt product shells to Next.js (Tryb B).
+The `@nucleify/compiler` package is Nucleify's differentiator: an IR-first portable UI compiler that turns `*.nuc.tsx` sources into Vue SFCs, React and Solid components, and shared CSS — and can convert entire Nuxt product shells to Next.js or Solid.
 
 ---
 
@@ -8,10 +8,10 @@ The `@nucleify/compiler` package is Nucleify's differentiator: an IR-first porta
 
 | Mode | What it does | Example |
 |------|--------------|---------|
-| **Tryb A** (component emit) | `*.nuc.tsx` → IR → `.vue` + `.tsx` + `.css` | `pnpm compiler:build` |
-| **Tryb B** (product shell) | Nuxt app → Next.js app | `pnpm compiler -- convert web --target=next` |
+| **Portable emit** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + `.css` | `pnpm compiler:build` / `make solid` |
+| **Product convert** | Nuxt app → Next.js or Solid app | `pnpm compiler -- convert web --target=next` |
 
-**Tryb A** is for portable presentational components. **Tryb B** scaffolds `web-next/` or `admin-next/` from the Vue source tree — same routes, shared modules, different framework shell.
+**Portable emit** is for presentational components. **Product convert** scaffolds `web-next/`, `admin-next/`, `web-solid/`, or `admin-solid/` from the Vue source tree — same routes, shared modules, different framework shell.
 
 ---
 
@@ -76,9 +76,12 @@ pnpm compiler -- import --from=vue path/Foo.vue  # import emit edits back to sou
 pnpm compiler -- import --from=react path/Foo.tsx
 pnpm compiler -- build --force                   # discard emit edits; regenerate
 
-pnpm compiler -- convert web --target=next       # Tryb B → web-next/
-pnpm compiler -- convert admin --target=next     # Tryb B → admin-next/
+pnpm compiler -- convert web --target=next       # product convert → web-next/
+pnpm compiler -- convert admin --target=next     # product convert → admin-next/
+pnpm compiler -- convert web --target=solid      # product convert → web-solid/
+pnpm compiler -- scaffold solid                  # throwaway demo → solid/demo/
 pnpm compiler -- scaffold next                   # throwaway demo → next/demo/
+pnpm compiler -- build --app=solid               # emit into solid/demo
 ```
 
 Skip compiler during bootstrap:
@@ -113,7 +116,7 @@ compiler/
 ├── src/
 │   ├── parse/              # *.nuc.tsx → AST
 │   ├── ir/                 # intermediate representation
-│   ├── emit/               # IR → .vue / .tsx / .css
+│   ├── emit/               # IR → .vue / React .tsx / Solid .tsx / .css
 │   └── sync/               # import back, convert product shells
 ├── runtime/                # #nuc-compiler/runtime
 ├── templates/              # scaffold sources for gitignored demos
@@ -122,22 +125,25 @@ compiler/
 └── PORTABLE.md             # authoring rules
 ```
 
-Gitignored emit demos: `{vue,react,nuxt,next}/demo/` (via `make vue`, `make next`, etc.).
+Gitignored emit demos: `{vue,react,nuxt,next,solid}/demo/` (via `make vue`, `make next`, `make solid`, etc.).
 
 ---
 
-## Product shell conversion (Tryb B)
+## Product shell conversion
 
 ```bash
 make web TARGET=next
 # equivalent:
 pnpm compiler -- convert web --target=next
 cd web-next && pnpm dev
+
+make web TARGET=solid
+pnpm compiler -- convert web --target=solid
 ```
 
-The converter reads the Nuxt source tree in `web/`, maps pages and composables to React equivalents, and writes output to `web-next/`. Shared modules are consumed via `index.react.ts` barrels.
+The converter reads the Nuxt source tree in `web/`, maps pages and composables to React (or Solid) equivalents, and writes output to `web-next/` or `web-solid/`. Shared modules are consumed via framework barrels.
 
-Treat `web-next/` and `admin-next/` as **generated output**. Develop in `web/` or `admin/`, then convert.
+Treat `web-next/`, `admin-next/`, `web-solid/`, and `admin-solid/` as **generated output**. Develop in `web/` or `admin/`, then convert.
 
 ---
 

@@ -589,16 +589,15 @@ export async function playInvestorAnimations(
             for (const item of heroBits) {
               item.style.opacity = '0'
               item.style.filter = 'blur(10px)'
-              item.style.translate = '0 24px'
+              item.style.removeProperty('translate')
             }
             track(
               local,
               animate(heroBits, {
                 opacity: [0, 1],
                 filter: ['blur(10px)', 'blur(0px)'],
-                y: [24, 0],
-                duration: 900,
-                delay: stagger(70),
+                duration: 700,
+                delay: stagger(60),
                 ease: 'outExpo',
                 onComplete: () => settleHeroBits(heroBits),
               })
@@ -610,10 +609,12 @@ export async function playInvestorAnimations(
               settleHeroBits(heroBits)
               continue
             }
+            // Opacity/blur only — keep translate at 0 so rail jumps to intro
+            // do not flash content 24px low before the re-entry tween.
             for (const item of heroBits) {
               item.style.opacity = '0'
               item.style.filter = 'blur(10px)'
-              item.style.translate = '0 24px'
+              item.style.removeProperty('translate')
             }
           }
         }
@@ -655,9 +656,8 @@ export async function playInvestorAnimations(
   revealMask(q(root, '.nuc-investor-surface'), [
     ...qa(
       root,
-      '.nuc-investor-surface .nuc-home-eyebrow, .nuc-investor-surface .nuc-home-title, .nuc-investor-surface .nuc-home-support'
+      '.nuc-investor-surface .nuc-home-eyebrow, .nuc-investor-surface .nuc-home-title, .nuc-investor-surface .nuc-home-support, .nuc-investor-surface-board'
     ),
-    ...qa(root, '.nuc-investor-surface-chip'),
   ])
 
   revealMask(q(root, '.nuc-investor-ask'), [

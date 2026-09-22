@@ -1,4 +1,4 @@
-.nuc-home-clone {
+.nuc-home-section.nuc-home-clone {
   justify-content: center;
 
   @media (min-width: $md) {
@@ -8,13 +8,13 @@
     align-items: center;
   }
 
-  &-copy {
+  .nuc-home-clone-copy {
     .nuc-home-support {
       max-width: 34rem;
     }
   }
 
-  &-actions {
+  .nuc-home-clone-actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -30,7 +30,7 @@
     }
   }
 
-  &-term {
+  .nuc-home-clone-term {
     display: grid;
     gap: 0.08rem;
     margin: 1.25rem 0 0;

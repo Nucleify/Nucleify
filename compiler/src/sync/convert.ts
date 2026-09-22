@@ -712,6 +712,50 @@ function writeSolidShell(dest: string, product: ConvertProductId, cfg: ConvertCo
   const src = join(dest, 'src')
 
   writeText(
+    join(src, 'lib/react-compat.ts'),
+    `/** React-shaped ref that is also a Solid \`ref={fn}\` callback. */
+export type SolidCompatRef<T> = ((el: T) => void) & { current: T }
+
+export function useRef<T>(initial: T): SolidCompatRef<T> {
+  const ref = ((el: T) => {
+    ref.current = el
+  }) as SolidCompatRef<T>
+  ref.current = initial
+  return ref
+}
+`,
+  )
+
+  writeText(
+    join(src, 'lib/vue-reactivity-shim.ts'),
+    `import { createSignal } from 'solid-js'
+
+/** Minimal \`reactive()\` for migrated Vue setup scripts (Solid product convert). */
+export function useReactive<T extends Record<string, unknown>>(initial: T): T {
+  const [get, set] = createSignal({ ...initial } as T, { equals: false })
+  return new Proxy({} as T, {
+    get(_target, prop: string | symbol) {
+      return get()[prop as keyof T]
+    },
+    set(_target, prop: string | symbol, value) {
+      set({ ...get(), [prop]: value } as T)
+      return true
+    },
+    deleteProperty(_target, prop: string | symbol) {
+      const next = { ...get() }
+      delete next[prop as keyof T]
+      set(next)
+      return true
+    },
+  })
+}
+
+/** @deprecated use useReactive — kept for import compatibility */
+export const reactive = useReactive
+`,
+  )
+
+  writeText(
     join(src, 'lib/nucleify-ui-provider.tsx'),
     product === 'web'
       ? `import { onMount, type JSX } from 'solid-js'

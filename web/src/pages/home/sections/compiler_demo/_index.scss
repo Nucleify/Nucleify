@@ -1,11 +1,14 @@
 .nuc-home-compiler {
   --emit-color: var(--home-accent);
 
-  @media (min-width: $md) {
-    display: grid;
-    grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 1.15fr);
-    gap: clamp(1.75rem, 4vw, 3.25rem);
-    align-items: center;
+  // Beat `.nuc-home-section { display: flex }` on Solid global CSS (no Vue scoped).
+  &.nuc-home-section {
+    @media (min-width: $md) {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(22rem, 1.15fr);
+      gap: clamp(1.75rem, 4vw, 3.25rem);
+      align-items: center;
+    }
   }
 
   &-copy {

@@ -1,8 +1,16 @@
 .nuc-home-pulse {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  align-items: start;
+  &.nuc-home-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: start;
+
+    @media (min-width: $md) {
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+      gap: clamp(1.75rem, 4vw, 3rem);
+      align-items: center;
+    }
+  }
 
   &-copy {
     max-width: 34rem;
@@ -227,12 +235,6 @@
     &-shells {
       flex-wrap: nowrap;
     }
-  }
-
-  @media (min-width: $md) {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
-    gap: clamp(1.75rem, 4vw, 3rem);
-    align-items: center;
   }
 
   @media (prefers-reduced-motion: reduce) {

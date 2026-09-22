@@ -8,14 +8,14 @@ IR-first portable UI compiler for Nucleify (option C — custom IR, no Mitosis).
 |------|--------|
 | NUI tokens / register | `portable/nui/` |
 | Test fixtures | `compiler/tests/fixtures/{source,ir,emit}` |
-| Templates | `compiler/templates/{vue,react,nuxt,next}/{demo,web}` |
-| Emit demos | `{vue,react,nuxt,next}/demo/` — **gitignored** |
-| Product apps | `web/` (Nuxt default); tryb B → flat `{product}-{framework}/` e.g. `web-next/` |
+| Templates | `compiler/templates/{vue,react,nuxt,next,solid}/{demo,…}` |
+| Emit demos | `{vue,react,nuxt,next,solid}/demo/` — **gitignored** |
+| Product apps | `web/` (Nuxt default); product convert → flat `{product}-{framework}/` e.g. `web-next/` |
 
 ```text
 make web                 # product → top-level Nuxt web/
-make web TARGET=next     # product → web-next/ (tryb B)
-make admin TARGET=next   # product → admin-next/ (tryb B)
+make web TARGET=next     # product → web-next/
+make admin TARGET=next   # product → admin-next/
 make next                # throwaway emit demo → next/demo
 make solid               # throwaway emit demo → solid/demo
 ```
@@ -39,19 +39,31 @@ pnpm compiler -- import --from=vue path/to/Component.vue
 pnpm compiler -- import --from=react path/to/Component.tsx
 ```
 
-### Tryb A vs B
+### Portable emit vs product convert
 
-| | Tryb A | Tryb B |
+| | Portable emit | Product convert |
 |---|--------|--------|
-| What | `*.nuc.tsx` → IR → emit | product shell under `{product}-{framework}/` |
+| What | `*.nuc.tsx` → IR → Vue / React / Solid (+ CSS) | product shell under `{product}-{framework}/` |
 | Example | `build` → `next/demo` / `solid/demo` / … | `convert web --target=next` → `web-next/` (Vue SFC → React TSX, no `.vue` in output) |
 | Not | full app convert | vue-loader host / Vue-in-React bridge |
+
+**Parity rule:** when IR, adapters, attrs, or state emit grow for Vue/React, update Solid emit + `compiler/tests/fixtures/emit/solid/` + tests in the same change.
+
 ### Cycle A — authoring first
 
 ```bash
 # optional: add Foo.nuc.tsx under a discover root (e.g. web/ or portable/)
-pnpm compiler:build          # → .vue + .tsx (+ .css) with content-hash
+pnpm compiler:build          # → .vue + .tsx (+ .css) with content-hash; Solid → solid/demo when scaffolded
 pnpm compiler:check          # dirty → exit 1
+```
+
+### Solid demo smoke
+
+```bash
+pnpm compiler -- scaffold solid
+pnpm compiler -- build --app=solid --force
+cd solid/demo && pnpm install --ignore-workspace && pnpm run --ignore-workspace build
+# or: make solid
 ```
 
 ### Cycle B — edit emit first

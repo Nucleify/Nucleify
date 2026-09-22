@@ -289,7 +289,7 @@ function emitNode(node: IrNode, indent: string, ctx: EmitCtx): string {
     case 'expr':
       return `${indent}{${emitExpr(mapExpr(node.value, ctx))}}`
     case 'slot':
-      return `${indent}{props.children}`
+      return `${indent}{children}`
     case 'if': {
       const thenExpr =
         node.then.length === 1

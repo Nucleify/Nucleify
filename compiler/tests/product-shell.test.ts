@@ -124,6 +124,8 @@ describe('tryb B product shells', () => {
       expect(view).not.toContain('className')
       expect(readFileSync(join(dest, 'src/App.tsx'), 'utf8')).toContain("from '@/views/index'")
       expect(copied.some((c) => c.startsWith('vue→solid'))).toBe(true)
+      expect(existsSync(join(dest, 'src/lib/vue-reactivity-shim.ts'))).toBe(true)
+      expect(existsSync(join(dest, 'src/lib/react-compat.ts'))).toBe(true)
     } finally {
       rmSync(tmp, { recursive: true, force: true })
     }

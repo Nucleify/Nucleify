@@ -3,6 +3,7 @@ import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
+import { emitSolid } from '../src/emit/solid'
 import { parseIrDocument } from '../src/ir/schema'
 import { EMIT_APP_DIRS, writeOutputs, type EmitApp } from '../src/sync/write-outputs'
 
@@ -48,4 +49,27 @@ describe('emitSolid golden', () => {
       }
     }, 30_000)
   }
+
+  it('emits default slot as {children} (destructured prop)', () => {
+    const doc = {
+      irVersion: '0.1.0' as const,
+      portable: true as const,
+      name: 'Wrap',
+      props: [],
+      state: [],
+      derived: [],
+      handlers: [],
+      template: {
+        kind: 'element' as const,
+        tag: 'div',
+        props: [],
+        children: [{ kind: 'slot' as const }],
+      },
+    }
+    const out = emitSolid(doc)
+    expect(out).toContain('children?: JSX.Element')
+    expect(out).toContain('{ children }')
+    expect(out).toContain('{children}')
+    expect(out).not.toContain('props.children')
+  })
 })

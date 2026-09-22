@@ -7,6 +7,7 @@ import {
   NUC_INVESTOR_DEAL,
   NUC_INVESTOR_SAVINGS,
   NUC_INVESTOR_SECTIONS,
+  NUC_INVESTOR_SHELLS,
   NUC_INVESTOR_SURFACE,
 } from '../../src/pages/investor/constants/content'
 
@@ -30,7 +31,7 @@ describe('investor contact types', () => {
 })
 
 describe('investor pitch content', () => {
-  it('covers six rail sections and seven emit shells', () => {
+  it('covers six rail sections, seven emit shells, and four capital surfaces', () => {
     expect(NUC_INVESTOR_SECTIONS.map((s) => s.id)).toEqual([
       'intro',
       'thesis',
@@ -39,7 +40,19 @@ describe('investor pitch content', () => {
       'surface',
       'ask',
     ])
-    expect(NUC_INVESTOR_SURFACE).toHaveLength(7)
+    expect(NUC_INVESTOR_SHELLS).toHaveLength(7)
+    expect(NUC_INVESTOR_SURFACE).toHaveLength(4)
+    expect(
+      NUC_INVESTOR_SURFACE.every(
+        (item) =>
+          item.id &&
+          item.index &&
+          item.title &&
+          item.outcome &&
+          item.proof &&
+          item.metric
+      )
+    ).toBe(true)
   })
 
   it('labels savings as a planning model, not audited financials', () => {
