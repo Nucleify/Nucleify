@@ -1,5 +1,15 @@
 # Compiler + convert status
 
+## CI
+
+Workflow: [`.github/workflows/compiler.yaml`](../../.github/workflows/compiler.yaml) (split out of health-check).
+
+| Job | What |
+|-----|------|
+| `unit` | `compiler:test`, `compiler:check`, idempotent `compiler:build` |
+| `emit` | matrix `vue` / `react` / `nuxt` / `next` / `solid` — scaffold + build + demo `pnpm build` |
+| `convert` | matrix `web\|admin` × `next\|solid` — convert + emit + product shell `pnpm build` |
+
 ## Paths (product convert)
 
 | Command | Output (gitignored) |

@@ -1,0 +1,138 @@
+name: 🧩 Compiler
+
+on:
+  push:
+    branches: ['*']
+
+concurrency:
+  group: compiler-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit:
+    name: unit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install Node.js Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Compiler tests
+        run: pnpm compiler:test
+
+      - name: Compiler check (emit fingerprints)
+        run: pnpm compiler:check
+
+      - name: Compiler build is idempotent on tracked tree
+        run: |
+          pnpm compiler:build
+          git diff --exit-code -- . \
+            ':(exclude)vue' \
+            ':(exclude)react' \
+            ':(exclude)nuxt' \
+            ':(exclude)next' \
+            ':(exclude)solid' \
+            ':(exclude)web-next' \
+            ':(exclude)web-solid' \
+            ':(exclude)admin-next' \
+            ':(exclude)admin-solid'
+
+  emit:
+    name: emit (${{ matrix.app }})
+    runs-on: ubuntu-latest
+    needs: unit
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [vue, react, nuxt, next, solid]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install Node.js Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Scaffold + emit into ${{ matrix.app }}/demo
+        run: |
+          pnpm exec tsx compiler/src/cli.ts scaffold ${{ matrix.app }}
+          pnpm exec tsx compiler/src/cli.ts build --app=${{ matrix.app }} --force
+
+      - name: Install demo deps
+        working-directory: ${{ matrix.app }}/demo
+        run: pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true
+
+      - name: Build demo
+        working-directory: ${{ matrix.app }}/demo
+        run: pnpm run --ignore-workspace build
+
+  convert:
+    name: convert (${{ matrix.product }} → ${{ matrix.target }})
+    runs-on: ubuntu-latest
+    needs: unit
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - product: web
+            target: next
+            dir: web-next
+          - product: web
+            target: solid
+            dir: web-solid
+          - product: admin
+            target: next
+            dir: admin-next
+          - product: admin
+            target: solid
+            dir: admin-solid
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+
+      - name: Install Node.js Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Convert ${{ matrix.product }} → ${{ matrix.target }}
+        run: |
+          pnpm exec tsx compiler/src/cli.ts convert ${{ matrix.product }} --target=${{ matrix.target }} --force
+
+      - name: Emit portable into converted shell (next / solid)
+        if: matrix.target == 'next' || matrix.target == 'solid'
+        run: pnpm exec tsx compiler/src/cli.ts build --app=${{ matrix.target }} --force
+
+      - name: Install product shell deps
+        working-directory: ${{ matrix.dir }}
+        run: pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true
+
+      - name: Build product shell
+        working-directory: ${{ matrix.dir }}
+        run: pnpm run --ignore-workspace build
