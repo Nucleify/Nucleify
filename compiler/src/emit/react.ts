@@ -1,6 +1,7 @@
 import type { IrAttr, IrDocument, IrExpr, IrNode, IrProp, IrStmt } from '../ir/types'
 import { irEventToReact } from '../adapters/events'
 import { toReactClassName } from '../adapters/class-name'
+import { mapNuxtIconTag } from '../adapters/nuxt-icon'
 import {
   reactiveNames,
   reactSetterName,
@@ -273,10 +274,13 @@ function emitNode(node: IrNode, indent: string, ctx: EmitCtx): string {
         const inner = node.children.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')
         return `${indent}<>\n${inner}\n${indent}</>`
       }
-      const tag = node.kind === 'component' ? node.name : node.tag
-      const attrs = emitAttrs(node.props, ctx, tag)
-      const shw = node.kind === 'element' && node.tag.includes('-') ? ' suppressHydrationWarning' : ''
-      const wrapLazy = node.kind === 'component' && Boolean(ctx.lazyNames?.has(tag))
+      const rawTag = node.kind === 'component' ? node.name : node.tag
+      const { tag, props } = mapNuxtIconTag(rawTag, node.props)
+      const attrs = emitAttrs(props, ctx, tag)
+      const shw = (node.kind === 'element' && node.tag.includes('-')) || tag.includes('-')
+        ? ' suppressHydrationWarning'
+        : ''
+      const wrapLazy = node.kind === 'component' && Boolean(ctx.lazyNames?.has(rawTag))
       const elIndent = wrapLazy ? `${indent}  ` : indent
       const jsx = !node.children.length
         ? `${elIndent}<${tag}${attrs}${shw} />`
