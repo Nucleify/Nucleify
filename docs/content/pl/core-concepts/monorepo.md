@@ -1,6 +1,6 @@
 # Układ monorepo
 
-Nucleify to workspace pnpm. Każdy pakiet ma wyraźną granicę, współdzielone narzędzia są w `.config/`, a aplikacje produktowe konsumują logikę funkcjonalną z `shared_modules/` — nigdy odwrotnie.
+Nucleify to workspace pnpm zbudowany pod **migrację między frameworkami**. Każdy pakiet ma wyraźną granicę, współdzielone narzędzia są w `.config/`, a aplikacje produktowe (`web/`, `admin/`, `docs/`) konsumują logikę funkcjonalną z `shared_modules/` — nigdy odwrotnie. Generowane shelle (Next, Solid, …) to output, nie drugie źródło prawdy.
 
 ---
 
@@ -12,7 +12,7 @@ nucleify/
 ├── admin/                  # @nucleify/admin — panel admin Nuxt 4
 ├── docs/                   # @nucleify/docs — dokumentacja Astro 5
 ├── compiler/               # @nucleify/compiler — przenośny kompilator UI IR
-├── shared_modules/         # @nucleify/shared-modules — sześć modułów funkcjonalnych
+├── shared_modules/         # @nucleify/shared-modules — sześć eksportowanych modułów nuc_*
 ├── portable/nui/           # design tokeny, rejestracja Lit nui-*
 ├── overrides/              # overrides/{web,admin,docs,shared_modules}/
 ├── supabase/               # konfiguracja DB, migracje, edge functions
@@ -110,7 +110,7 @@ Gitignored demo emisji: `{vue,react,nuxt,next}/demo/` (przez `make vue`, `make n
 
 ## `shared_modules/` — `@nucleify/shared-modules`
 
-Sześć wchłoniętych modułów funkcjonalnych (nie submoduły git):
+Sześć eksportowanych modułów funkcjonalnych (nie submoduły git):
 
 | Moduł | Ścieżka |
 |-------|---------|
@@ -121,9 +121,7 @@ Sześć wchłoniętych modułów funkcjonalnych (nie submoduły git):
 | i18n i tłumaczenia | `shared_modules/nuc_languages/` |
 | Storage i helpery stanu | `shared_modules/nuc_stores/` |
 
-Barrel export: `shared_modules/index.ts`. Każdy moduł jest samodzielny z opcjonalnym `supabase/`, `utils/`, `types/` i `vitests/`.
-
-**Nie ma** katalogu `modules/` na poziomie root ani pakietów `nuc_users` czy `nuc_auth`.
+Barrel export: `shared_modules/index.ts` + `exports` w package. Każdy moduł jest samodzielny z opcjonalnym `supabase/`, `utils/`, `types/` i `vitests/`. Auth żyje w `nuc_api`.
 
 ---
 
@@ -191,12 +189,13 @@ web / admin / docs
 |---------|-------|
 | `make run` | `.env` + setup + kompilator |
 | `make setup` | install, husky, prepare, sync-rules, kompilator |
-| `make web` | dev Nuxt (`TARGET=nuxt` domyślnie) |
-| `make web TARGET=next` | konwersja + dev Next |
-| `make admin` / `make admin TARGET=next` | odpowiedniki admin |
+| `make web` | dev produktu Nuxt (`TARGET=nuxt` domyślnie) |
+| `make web TARGET=next` | konwersja + shell Next (`web-next/`) |
+| `make web TARGET=solid` | konwersja + shell Solid (`web-solid/`) |
+| `make admin` / `make admin TARGET=next\|solid` | odpowiedniki admin |
 | `make docs` | dev dokumentacji Astro |
 | `make compiler` | check + build |
-| `make vue` / `make react` / `make nuxt` / `make next` | gitignored demo przenośne |
+| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` | gitignored demo portable (`{framework}/demo`) |
 
 ---
 

@@ -39,7 +39,7 @@ FSD naprawia to, czyniąc **moduł jednostką zmiany**.
 
 ### Moduły współdzielone = slice domeny
 
-Sześć modułów mapuje się na cross-cutting domeny produktu:
+Sześć eksportowanych modułów mapuje się na cross-cutting domeny produktu:
 
 | Moduł | Slice |
 |-------|-------|

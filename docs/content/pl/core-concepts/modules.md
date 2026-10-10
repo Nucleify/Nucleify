@@ -1,8 +1,8 @@
 # Moduły
 
-Nucleify dostarcza moduły funkcjonalne w `shared_modules/`. Każdy moduł to samodzielny pakiet domenowy z narzędziami frontendowymi, opcjonalnymi handlerami API Supabase, migracjami, typami i testami — konsumowany przez `web/`, `admin/` i generowane powłoki Next.
+Nucleify dostarcza **sześć eksportowanych** modułów funkcjonalnych z `@nucleify/shared-modules`. Każdy to samodzielny pakiet domenowy z narzędziami frontendowymi, opcjonalnymi handlerami API Supabase, migracjami, typami i testami — konsumowany przez `web/`, `admin/`, `docs/` i generowane shelle (Next, Solid, …), żeby migrować frameworki bez przepisywania biznesu.
 
-Nie ma katalogu `modules/` w root. Aplikacje importują przez ścieżki względne lub alias Nuxt `modules` → `shared_modules/`.
+Nie ma katalogu `modules/` w root. Aplikacje importują przez ścieżki względne lub alias Nuxt `modules` → `shared_modules/`. Flow auth żyje w `nuc_api` (nie ma osobnego `nuc_users` / `nuc_auth`).
 
 ---
 
@@ -17,7 +17,7 @@ Nie ma katalogu `modules/` w root. Aplikacje importują przez ścieżki względn
 | `nuc_languages` | i18n, komunikaty locale, API tłumaczeń | `plugins/nuc_translations.ts`, `supabase/api/handle.ts` |
 | `nuc_stores` | Helpery Pinia/Zustand, utils cookie/localStorage/session | `pinia/`, `zustand/`, `cookie/` |
 
-Modułów **nie ma** w monorepo: `nuc_users`, `nuc_auth` — flow auth żyje w `nuc_api`.
+Te sześć jest w `shared_modules/index.ts` i w `exports` w `package.json`. Inne foldery pod `shared_modules/` bez publicznego barrela nie są jeszcze częścią wspieranego API.
 
 ---
 

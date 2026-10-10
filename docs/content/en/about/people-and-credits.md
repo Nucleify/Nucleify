@@ -29,7 +29,7 @@ Thank you to everyone who has contributed to Nucleify!
 | Marcin Fuks | [@J0jeQ](https://github.com/J0jeQ) |
 | – | [@karol199393](https://github.com/karol199393) |
 
-All contributors are listed on our [GitHub Contributors](https://github.com/nucleify/nucleify/graphs/contributors) page.
+All contributors are listed on our [GitHub Contributors](https://github.com/Nucleify/Nucleify/graphs/contributors) page.
 
 ---
 

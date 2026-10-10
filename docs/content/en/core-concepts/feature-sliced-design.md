@@ -39,7 +39,7 @@ FSD fixes this by making **the module the unit of change**.
 
 ### Shared modules = domain slices
 
-The six modules map to cross-cutting product domains:
+The six exported modules map to cross-cutting product domains:
 
 | Module | Slice |
 |--------|-------|

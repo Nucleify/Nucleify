@@ -1,6 +1,6 @@
 # Monorepo Layout
 
-Nucleify is a pnpm workspace. Every package has a clear boundary, shared tooling lives in `.config/`, and product apps consume feature logic from `shared_modules/` — never the other way around.
+Nucleify is a pnpm workspace built for **migration across frameworks**. Every package has a clear boundary, shared tooling lives in `.config/`, and product apps (`web/`, `admin/`, `docs/`) consume feature logic from `shared_modules/` — never the other way around. Generated shells (Next, Solid, …) are output, not a second source of truth.
 
 ---
 
@@ -12,7 +12,7 @@ nucleify/
 ├── admin/                  # @nucleify/admin — Nuxt 4 admin panel
 ├── docs/                   # @nucleify/docs — Astro 5 documentation
 ├── compiler/               # @nucleify/compiler — IR portable UI compiler
-├── shared_modules/         # @nucleify/shared-modules — six feature modules
+├── shared_modules/         # @nucleify/shared-modules — six exported nuc_* modules
 ├── portable/nui/           # design tokens, Lit nui-* registration
 ├── overrides/              # overrides/{web,admin,docs,shared_modules}/
 ├── supabase/               # DB config, migrations, edge functions
@@ -110,7 +110,7 @@ Gitignored emit demos: `{vue,react,nuxt,next}/demo/` (via `make vue`, `make next
 
 ## `shared_modules/` — `@nucleify/shared-modules`
 
-Six absorbed feature modules (not git submodules):
+Six exported feature modules (not git submodules):
 
 | Module | Path |
 |--------|------|
@@ -121,9 +121,7 @@ Six absorbed feature modules (not git submodules):
 | i18n & translations | `shared_modules/nuc_languages/` |
 | Storage & state helpers | `shared_modules/nuc_stores/` |
 
-Barrel export: `shared_modules/index.ts`. Each module is self-contained with optional `supabase/`, `utils/`, `types/`, and `vitests/`.
-
-There is **no** root-level `modules/` directory and **no** `nuc_users` or `nuc_auth` packages.
+Barrel export: `shared_modules/index.ts` + package `exports`. Each module is self-contained with optional `supabase/`, `utils/`, `types/`, and `vitests/`. Auth lives in `nuc_api`.
 
 ---
 
@@ -191,12 +189,13 @@ web / admin / docs
 |---------|--------|
 | `make run` | `.env` + setup + compiler |
 | `make setup` | install, husky, prepare, sync-rules, compiler |
-| `make web` | Nuxt dev (`TARGET=nuxt` default) |
-| `make web TARGET=next` | convert + Next dev |
-| `make admin` / `make admin TARGET=next` | admin equivalents |
+| `make web` | Nuxt product dev (`TARGET=nuxt` default) |
+| `make web TARGET=next` | convert + Next product shell (`web-next/`) |
+| `make web TARGET=solid` | convert + Solid product shell (`web-solid/`) |
+| `make admin` / `make admin TARGET=next\|solid` | admin equivalents |
 | `make docs` | Astro docs dev |
 | `make compiler` | check + build |
-| `make vue` / `make react` / `make nuxt` / `make next` | gitignored portable demos |
+| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` | gitignored portable demos (`{framework}/demo`) |
 
 ---
 

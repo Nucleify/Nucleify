@@ -1,8 +1,8 @@
 # Compiler
 
-The `@nucleify/compiler` package is Nucleify's differentiator: an IR-first portable UI compiler that turns `*.nuc.tsx` sources into Vue SFCs, React and Solid components, and shared CSS — and can convert entire Nuxt product shells to Next.js or Solid.
+The `@nucleify/compiler` package is how Nucleify migrates UI across shells: an IR-first portable compiler that turns `*.nuc.tsx` into Vue SFCs, React and Solid components, and shared CSS — and can convert entire Nuxt product shells (`web/`, `admin/`) to Next.js or Solid.
 
-**Coverage story:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. Product messaging must not shrink this to React/Next or Vue/Nuxt alone — those are beachheads, not the boundary.
+**Coverage:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next or Vue/Nuxt are beachheads, not the boundary.
 
 ---
 
