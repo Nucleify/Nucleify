@@ -1,6 +1,8 @@
 # Kompilator
 
-Pakiet `@nucleify/compiler` to wyróżnik Nucleify: przenośny kompilator UI oparty na IR, który zamienia źródła `*.nuc.tsx` na Vue SFC, komponenty React i Solid oraz współdzielony CSS — oraz może konwertować całe powłoki produktu Nuxt na Next.js lub Solid.
+Pakiet `@nucleify/compiler` to sposób Nucleify na migrację UI między shellami: przenośny kompilator oparty na IR, który zamienia `*.nuc.tsx` na Vue SFC, komponenty React i Solid oraz współdzielony CSS — oraz może konwertować całe powłoki produktu Nuxt (`web/`, `admin/`) na Next.js lub Solid.
+
+**Pokrycie:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next lub Vue/Nuxt to beachheady, nie granica.
 
 ---
 

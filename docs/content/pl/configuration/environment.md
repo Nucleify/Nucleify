@@ -1,157 +1,140 @@
 # Zmienne środowiskowe
 
-Nucleify używa jednego pliku `.env` w root monorepo. Wszystkie pakiety — `web/`, `admin/`, `docs/`, `compiler/` — czytają z tego współdzielonego pliku.
+Nucleify czyta zmienne środowiskowe z jednego pliku `.env` w **root repozytorium**. `make run` tworzy go z `web/.config/.env.example`. Nuxt ładuje zmienne przez `web/.config/nuxt/load-env.ts` przed ewaluacją configu.
 
-## Tworzenie pliku .env
+---
 
-Uruchomienie `make run` automatycznie kopiuje plik przykładowy, jeśli `.env` nie istnieje:
+## Setup
 
 ```bash
 make run
-# → Created .env from web/.config/.env.example — fill in SUPABASE_* before using the API.
+# edytuj .env w root repozytorium
 ```
 
-Możesz też skopiować ręcznie:
+Nigdy nie commituj `.env`. Szablony są w `web/.config/`:
+
+| Plik | Cel |
+|------|-----|
+| `.env.example` | Lokalny development (kopiowany przez `make run`) |
+| `.env.ci.example` | Referencja CI |
+| `.env.test.example` | Referencja środowiska testowego |
+
+---
+
+## Aplikacja
+
+| Zmienna | Przykład | Opis |
+|---------|----------|------|
+| `APP_NAME` | `Nucleify` | Wyświetlana nazwa aplikacji |
+| `APP_ENV` | `local` | `local` / `production` / `testing` |
+| `APP_DEBUG` | `true` | Flaga debug |
+| `NUXT_PUBLIC_APP_URL` | `http://localhost:3000` | Publiczny URL aplikacji (też w runtime config) |
+
+---
+
+## Supabase
+
+| Zmienna | Wymagane | Opis |
+|---------|----------|------|
+| `SUPABASE_URL` | Tak (dla tras API) | URL projektu |
+| `SUPABASE_KEY` | Klient | Klucz anon/public — bezpieczny w przeglądarce przez runtime config |
+| `SUPABASE_SERVICE_ROLE_KEY` | Serwer | Service role — **nigdy** nie eksponuj klientowi |
+| `SUPABASE_EDGE_BASE` | Opcjonalnie | Bazowy URL Edge Functions (domyślnie z `SUPABASE_URL`) |
+
+Bramka Nitro w `web/src/server/api/[...slug].ts` czyta `SUPABASE_URL` i `SUPABASE_SERVICE_ROLE_KEY` z runtime config Nitro. Brak wartości → HTTP 503 dla tras modułów; smoke `/api` i `/api/test` nadal odpowiadają.
+
+Mapowanie runtime (`web/.config/nuxt/runtime.ts`):
+
+```typescript
+export const runtimeConfig = {
+  supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+  public: {
+    supabaseUrl: process.env.SUPABASE_URL || '',
+    supabaseKey: process.env.SUPABASE_KEY || '',
+    supabaseEdgeBase: process.env.SUPABASE_EDGE_BASE || `${process.env.SUPABASE_URL || ''}/functions/v1`,
+    appUrl: process.env.NUXT_PUBLIC_APP_URL || 'https://nucleify.io',
+    apiUrl: process.env.NUXT_PUBLIC_API_URL || '/api',
+    appEnv: process.env.APP_ENV || 'production',
+  },
+}
+```
+
+---
+
+## Nuxt / Nitro
+
+| Zmienna | Przykład | Opis |
+|---------|----------|------|
+| `SSR` | `true` | Server-side rendering |
+| `NITRO_PRESET` | `cloudflare` | Preset wdrożenia Nitro |
+| `PRERENDER_ROUTES` | `/home,/docs,…` | Trasy statyczne, przecinkami |
+| `PRERENDER_CRAWL_LINKS` | `true` | Podążaj za linkami przy prerender |
+| `PRERENDER_IGNORE` | `/settings` | Trasy do pominięcia |
+| `PRERENDER_LOCALES` | `en,pl,vn` | Locale w prerender |
+| `DEV_TOOLS` | | Przełącznik Nuxt DevTools |
+
+---
+
+## Specyficzne dla Nucleify
+
+| Zmienna | Przykład | Opis |
+|---------|----------|------|
+| `NUC_SUBMODULES_BRANCH` | `main` | Branch dla `prepare:submodules` |
+| `NUC_SUBMODULES_CHECK` | `1` | Pomiń istniejące katalogi przy prepare submodules |
+| `NUC_ALLOWED_ORIGINS` | | Allowlista CORS |
+| `NUC_ALLOWED_ORIGINS_PATTERNS` | | Wzorce allowlisty CORS |
+| `NUC_CONVERT_DOCUMENTS_URL` | | Zewnętrzna usługa konwersji dokumentów |
+
+---
+
+## Integracje (opcjonalne)
+
+Przykładowe `.env` zawiera placeholdery Calendly i Google Calendar OAuth. Uzupełnij tylko, gdy włączysz te integracje we wdrożeniu.
+
+| Grupa | Zmienne |
+|-------|---------|
+| Calendly | `CALENDLY_CLIENT_ID`, `CALENDLY_CLIENT_SECRET`, `CALENDLY_WEBHOOK_SIGNING_KEY`, … |
+| Google Calendar | `GOOGLE_CALENDAR_CLIENT_ID`, `GOOGLE_CALENDAR_CLIENT_SECRET`, … |
+
+---
+
+## Next.js / Tryb B
+
+Wygenerowane shelle Next czytają zmienne Supabase w obu konwencjach nazewnictwa, gdzie to wspierane:
+
+- `NEXT_PUBLIC_SUPABASE_URL` lub `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY` (tylko serwer)
+
+Trzymaj jedno root `.env` — zarówno Nuxt, jak i ścieżki codegen Next rozwiązują je z root monorepo.
+
+---
+
+## Lokalny workflow Supabase
+
+Przy Supabase CLI zlinkowanym do projektu:
 
 ```bash
-cp web/.config/.env.example .env
+pnpm supabase:migrations:apply:local
+pnpm supabase:seeders:apply:local
+# lub:
+pnpm supabase:setup:local
 ```
 
-Plik przykładowy jest w `web/.config/.env.example`. Dodatkowe pliki przykładowe (`.env.ci.example`, `.env.test.example`) są dostępne w tym samym katalogu dla środowisk CI i testowych.
+Szczegóły merge migracji: [Supabase](/pl/docs/configuration/supabase).
 
-## Jak ładowany jest dotenv
+---
 
-Wbudowane wsparcie dotenv w Nuxt obsługuje większość ładowania, ale Nucleify ma też własny skrypt `load-env.ts`, który uruchamia się przed ewaluacją konfiguracji Nuxt:
+## Checklist bezpieczeństwa
 
-```
-web/.config/nuxt/load-env.ts
-```
+1. **Nigdy** nie commituj `SUPABASE_SERVICE_ROLE_KEY`
+2. Eksponuj klientowi tylko `SUPABASE_KEY` (anon) przez `runtimeConfig.public`
+3. Uprzywilejowane operacje DB idą przez handlery bramki `/api/*`
+4. Przejrzyj `NUC_ALLOWED_ORIGINS*` przed deployem produkcyjnym
 
-Ten skrypt rozwiązuje root monorepo i wywołuje `dotenv.config()` z poprawną ścieżką. Preferuje `.env` na poziomie monorepo; jeśli ten plik nie istnieje, wraca do `web/.env`.
+---
 
-Po stronie serwera (handlery API Nitro) `ensureServerEnv()` z `shared_modules/nuc_api/supabase/api/server_env.ts` ładuje następujące pliki w kolejności:
+## Powiązana dokumentacja
 
-1. `.env`
-2. `.env.local`
-3. `.env.{NODE_ENV}` (np. `.env.development`)
-4. `.env.{NODE_ENV}.local`
-
-W trybie development późniejsze pliki nadpisują wcześniejsze wartości. W produkcji uzupełniane są tylko brakujące klucze.
-
-## Referencja zmiennych
-
-### Aplikacja
-
-| Zmienna | Przykład | Opis |
-| --- | --- | --- |
-| `APP_NAME` | `Nucleify` | Wyświetlana nazwa aplikacji |
-| `APP_ENV` | `local` | Środowisko: `local`, `production` lub `testing` |
-| `APP_DEBUG` | `true` | Włącz output debug w development |
-| `NUXT_PUBLIC_APP_URL` | `http://localhost:3000` | Publiczny URL aplikacji, używany w SSR i po stronie klienta |
-
-### SSR i prerendering
-
-| Zmienna | Przykład | Opis |
-| --- | --- | --- |
-| `SSR` | `true` | Włącz server-side rendering (`true` / `false`) |
-| `NITRO_PRESET` | `cloudflare` | Preset wdrożenia Nitro (np. `cloudflare`, `node-server`) |
-| `PRERENDER_ROUTES` | `/home,/dev,/login,...` | Trasy do prerenderowania w czasie buildu, rozdzielone przecinkami |
-| `PRERENDER_CRAWL_LINKS` | `true` | Crawl linków ze stron prerenderowanych, aby odkryć więcej tras |
-| `PRERENDER_IGNORE` | `/settings` | Trasy wykluczone z prerenderowania |
-| `PRERENDER_LOCALES` | `en,pl,vn` | Prefiksy locale do prerenderowania |
-| `DEV_TOOLS` | `true` | Włącz Nuxt DevTools w lokalnym development |
-
-### Supabase
-
-| Zmienna | Przykład | Opis |
-| --- | --- | --- |
-| `SUPABASE_URL` | `http://127.0.0.1:54321` | URL projektu Supabase (lokalny lub hostowany) |
-| `SUPABASE_KEY` | _(klucz anon)_ | Klucz anon/public — bezpieczny po stronie klienta |
-| `SUPABASE_SERVICE_ROLE_KEY` | _(klucz service)_ | Klucz service role — **tylko serwer**, omija RLS |
-| `SUPABASE_EDGE_BASE` | `http://127.0.0.1:54321/functions/v1` | Bazowy URL Edge Functions |
-
-### Submoduły i build
-
-| Zmienna | Przykład | Opis |
-| --- | --- | --- |
-| `NUC_SUBMODULES_BRANCH` | `main` | Branch używany przez `prepare-submodules` |
-| `NUC_SUBMODULES_CHECK` | `1` | Pomiń katalogi submodułów, które już istnieją |
-| `NUC_ALLOWED_ORIGINS` | `https://nucleify.io` | Dozwolone originy CORS |
-| `NUC_ALLOWED_ORIGINS_PATTERNS` | | Wzorce regex dla originów CORS |
-| `NUC_CONVERT_DOCUMENTS_URL` | `https://convert-documents-nucleify.koyeb.app` | Zewnętrzny serwis konwersji dokumentów |
-
-### Integracje zewnętrzne
-
-| Zmienna | Opis |
-| --- | --- |
-| `CALENDLY_CLIENT_ID` | Calendly OAuth client ID |
-| `CALENDLY_CLIENT_SECRET` | Calendly OAuth client secret |
-| `CALENDLY_WEBHOOK_SIGNING_KEY` | Weryfikacja podpisu webhook Calendly |
-| `CALENDLY_OAUTH_REDIRECT_URI` | URL callback OAuth dla Calendly |
-| `CALENDLY_APP_REDIRECT_URL` | Przekierowanie po zakończeniu auth Calendly |
-| `CALENDLY_WEBHOOK_URL` | Endpoint webhook Calendly |
-| `GOOGLE_CALENDAR_CLIENT_ID` | Google Calendar OAuth client ID |
-| `GOOGLE_CALENDAR_CLIENT_SECRET` | Google Calendar OAuth client secret |
-| `GOOGLE_CALENDAR_OAUTH_REDIRECT_URI` | URL callback OAuth dla Google Calendar |
-| `GOOGLE_CALENDAR_APP_REDIRECT_URL` | Przekierowanie po auth Google Calendar |
-
-### Email
-
-| Zmienna | Przykład | Opis |
-| --- | --- | --- |
-| `AUTH_EMAIL_RESEND_KEY` | | Klucz API Resend dla emaili transakcyjnych |
-| `AUTH_EMAIL_FROM` | `business@nucleify.io` | Adres nadawcy dla emaili auth |
-| `CONTACT_FORM_EMAIL` | `business@nucleify.io` | Odbiorca zgłoszeń z formularza kontaktowego |
-
-## Development vs produkcja
-
-### Lokalny development
-
-```env
-APP_ENV=local
-APP_DEBUG=true
-SSR=true
-SUPABASE_URL=http://127.0.0.1:54321
-SUPABASE_KEY=eyJ...       # z `npx supabase start`
-SUPABASE_SERVICE_ROLE_KEY=eyJ...
-NUXT_PUBLIC_APP_URL=http://localhost:3000
-DEV_TOOLS=true
-```
-
-Gdy `APP_ENV=local`, Nuxt rejestruje dodatkowe moduły tylko dla dev (`@nuxt/test-utils/module`, `nuxt-link-checker`) i wyłącza reguły tras produkcyjnych jak cache SWR.
-
-### Produkcja
-
-```env
-APP_ENV=production
-APP_DEBUG=false
-SSR=true
-NITRO_PRESET=cloudflare
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_KEY=eyJ...
-SUPABASE_SERVICE_ROLE_KEY=eyJ...
-NUXT_PUBLIC_APP_URL=https://nucleify.io
-```
-
-W produkcji reguły tras włączają cache SWR i prerendering dla wszystkich ścieżek locale. Output konsoli jest usuwany przez Terser podczas buildu Vite. DevTools i moduły debug są wykluczone.
-
-## Runtime config
-
-Zmienne środowiskowe są udostępniane aplikacji Nuxt przez `runtimeConfig` (zdefiniowany w `web/.config/nuxt/runtime.ts`):
-
-- **Prywatne** (tylko serwer): `supabaseServiceRoleKey`, `authEmailResendKey`, `authEmailFrom`, `contactFormRecipient`
-- **Publiczne** (klient + serwer): `appUrl`, `apiUrl`, `supabaseEdgeBase`, `supabaseUrl`, `supabaseKey`, `appEnv`
-
-Uzyskaj do nich dostęp w composables przez `useRuntimeConfig()`:
-
-```typescript
-const config = useRuntimeConfig()
-const apiUrl = config.public.apiUrl  // '/api'
-```
-
-Po stronie serwera klucze prywatne są też dostępne:
-
-```typescript
-const config = useRuntimeConfig(event)
-const serviceKey = config.supabaseServiceRoleKey
-```
+- [Instalacja](/pl/docs/getting-started/installation) — pierwsze utworzenie `.env`
+- [Web & Admin](/pl/docs/configuration/web) — runtime config i rozdzielona konfiguracja Nuxt
+- [Supabase](/pl/docs/configuration/supabase) — baza i migracje

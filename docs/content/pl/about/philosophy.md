@@ -1,224 +1,119 @@
 # Filozofia
 
-> *"Napisz raz, uruchom wszędzie. Przestań wymyślać na nowo — zacznij budować."*
+> Zbuduj raz. Przenieś na dowolny framework — bez przepisywania produktu.
 
-Podstawowe zasady, wartości i wizja stojąca za Nucleify.
+Przenośność na pierwszym miejscu. Wspólne moduły jako jądro. Siedem nowoczesnych shelli webowych.
+
+---
+
+## Problem
+
+Zespoły wcześnie wiążą się ze stackiem — Vue albo React, Nuxt albo Next — a potem płacą podatek od przepisywania, gdy rynek, rekrutacja albo klient wymagają innego frameworka. Auth, i18n, theming i kształt API są kopiowane między projektami.
+
+Nucleify traktuje **migrację między technologiami** jako cel pierwszorzędny. Pokrycie to siedem shelli: **Vue · React · Nuxt · Next · Astro · Svelte · Solid**.
 
 ---
 
 ## Wizja
 
-Nowoczesny development webowy jest rozdrobniony. Wybierasz framework (Vue, React, Svelte, Solid albo host Nuxt/Next/Astro), wiążesz się z jego ekosystemem i za każdym razem budujesz te same funkcje od zera. Gdy wymagania się zmieniają — wszystko przepisujesz. Wierzymy, że jest lepszy sposób.
+Jedno jądro. Trzy powierzchnie produktu. Siedem shelli.
 
-Nucleify to **modularny framework full-stack** z przenośnym kompilatorem UI w sercu. Napisz komponenty raz w Vue lub `*.nuc.tsx`, a kompilator emituje cele pod nowoczesne shelle. Bez ręcznych przepisań. Bez uzależnienia od jednego frameworka. **Jedna baza kodu, siedem shelli: Vue · React · Nuxt · Next · Astro · Svelte · Solid** — nie tylko React/Next ani Vue/Nuxt.
+1. **Współdzielone moduły** — API, SQL, UI i logika domenowa w `shared_modules/`
+2. **Trzy powierzchnie** — `web/`, `admin/` i `docs/` z tego samego jądra
+3. **Migracja, gdy trzeba** — konwersja lub emit do innego frameworka bez przepisywania biznesu
+4. **Jeden backend Supabase** — gateway, SQL w modułach
+
+Codzienna edycja zostaje na Nuxt (`web/`). Zmiana shella to komenda, nie projekt przepisywania.
 
 ---
 
 ## Metafora jądra
 
-Jak jądro komórki, Nucleify jest **centrum dowodzenia** Twojej aplikacji. Każdy moduł (`nuc_*`) to samodzielna jednostka — kompletna z własnym backendem, frontendem i testami — zdolna do niezależnego funkcjonowania, jednocześnie wnosząca wkład w większy organizm.
+Jak jądro komórki, Nucleify koordynuje produkt. Każdy eksportowany moduł `nuc_*` to samodzielna jednostka — utils frontendu, opcjonalne handlery API, migracje, testy.
 
-To nie tylko branding. To architektura:
-
-- **Samodzielne moduły** — Każda funkcja jest kompletna sama w sobie
-- **Wyraźne granice** — Moduły komunikują się przez zdefiniowane interfejsy
-- **Organiczny wzrost** — Dodawaj lub usuwaj moduły bez psucia systemu
-- **Siła zbiorowa** — Razem moduły tworzą coś większego niż suma części
+- **Samodzielne moduły** — pionowe plastry, nie rozrzucone warstwy
+- **Wyraźne granice** — aplikacje komponują; moduły nie importują aplikacji
+- **Organiczny wzrost** — dodawaj lub usuwaj moduły bez przebudowy monorepo
+- **Siła zbiorowa** — jeden model domenowy na web, admin, docs i każdy shell
 
 ---
 
 ## Podstawowe zasady
 
-### 1. Napisz raz, uruchom wszędzie
+### 1. Dowolny stack → dowolny inny
 
-Kompilator Nucleify ucieleśnia naszą filozofię „buduj szybciej". Pisz przenośne komponenty `*.nuc.tsx` — lub twórz bezpośrednio w Vue — i emituj / konwertuj powłoki (Next, Solid, demo Vue/React/Nuxt/Next/Solid). Konwertuj produkt jedną komendą:
+Przenośne komponenty `*.nuc.tsx` emitują do Vue, React i Solid. Shelle produktu konwertujesz jedną komendą:
 
 ```bash
 make web TARGET=next
 make web TARGET=solid
+make admin TARGET=next
+make admin TARGET=solid
 ```
 
-Koniec z utrzymywaniem równoległych baz kodu dla każdego shella. **Kompilator rozwiązuje problem przenośności na siedem celów, nie na dwa.**
+Wybór frameworka staje się **celem builda**, nie forkiem architektury.
 
-### 2. Modułowość jest niepodlegotna
+### 2. Moduły zamiast monolitów
 
-> *"Sekret budowania dużych aplikacji to nigdy nie budować dużych aplikacji."* — Justin Meyer
+Logika domenowa żyje w `shared_modules/nuc_*`, nie jest kopiowana między aplikacjami. Zobacz [Feature-Sliced Design](/pl/docs/core-concepts/feature-sliced-design).
 
-Wszystko w Nucleify to moduł. Nie dlatego, że to modne, ale dlatego, że działa:
+### 3. Gateway, nie spaghetti
 
-| Korzyść | Dlaczego to ważne |
-|---------|-------------------|
-| **Izolacja** | Zmień jeden moduł bez strachu o zepsucie innych |
-| **Wielokrotne użycie** | Używaj tego samego modułu w wielu projektach |
-| **Skalowalność** | Dodawaj funkcje bez wykładniczej złożoności |
-| **Testowalność** | Testuj moduły niezależnie z pewnością |
-| **Prędkość zespołu** | Zespoły posiadają moduły, nie pliki rozrzucone wszędzie |
-
-### 3. Jedność full-stack
-
-Backend i frontend należą do siebie. Każdy moduł zawiera oba:
-
-```txt
-shared_modules/nuc_languages/
-├── supabase/           # Migracje, seedery, handlery API
-├── utils/              # Composables i helpery
-├── vitests/            # Testy
-└── config.json         # Metadane modułu
-```
-
-Bez przełączania kontekstu między repozytoriami. Bez zamieszania w kontraktach API. **Jeden moduł, jedna funkcja, jedno źródło prawdy.**
+Uprzywilejowany dostęp serwerowy idzie przez `web/src/server/api/[...slug].ts`. Klient nie trzyma service key. Moduły rejestrują handlery; gateway je dispatchuje.
 
 ### 4. Konwencja zamiast konfiguracji
 
-Nucleify podąża za konwencjami Nuxt, Next i Supabase. Dlaczego?
+Podzielona konfiguracja Nuxt, spójny layout modułów, skróty Makefile, checki Husky — przewidywalne ścieżki zmniejszają zmęczenie decyzjami.
 
-- **Zero zmęczenia decyzjami** — Skup się na budowaniu, nie konfigurowaniu
-- **Natychmiastowa znajomość** — Full-stack developerzy czują się jak u siebie
-- **Mądrość społeczności** — Sprawdzone wzorce zamiast wymyślania na nowo
-- **Przewidywalna struktura** — Znajdź dowolny plik w sekundy
+### 5. Overrides do forków, moduły do współdzielenia
 
-### 5. Type safety full-stack
+Różnice white-label idą do `overrides/`. Zachowanie między produktami należy do `shared_modules/`.
 
-TypeScript wszędzie — od typów bazy Supabase po props komponentów Vue po wygenerowany output React. Typy przepływają przez cały stack, łapiąc błędy w czasie kompilacji zamiast w produkcji.
+### 6. Uczciwość kompilatora
 
-### 6. Wydajność domyślnie
-
-Nucleify dostarcza **94+ wyników PageSpeed** od razu po starcie:
-
-- SSR i prerendering z inteligentną hydracją
-- Atomic Design umożliwia chirurgiczny code-splitting
-- Zoptymalizowane fonty, obrazy i lazy-loading
-- Odroczone ładowanie treści przez `nui-deferred-content`
-- Buildy napędzane Vite z optymalnym chunkingiem
-
-**Wydajność nie jest dodatkiem. Jest wbudowana.**
-
-### 7. Developer Experience na pierwszym miejscu
-
-Świetne DX to nie luksus — to mnożnik:
-
-- `make` — Jedna komenda, aby uruchomić wszystko
-- Jasne komunikaty błędów wskazujące rozwiązania
-- Hot reload, który naprawdę działa
-- Type safety przez cały stack
-- Dokumentacja szanująca Twój czas
+Przenośne autorstwo ma jawne listy dozwolone/zabronione (`compiler/PORTABLE.md`). IR mostkuje frameworki — nie udajemy, że Vue i React są identyczne.
 
 ---
 
-## Filozofia jakości
+## Filozofia dual-mode
 
-### Jakość kodu
+| Codziennie (Tryb A) | Migracja / emit (Tryb B) |
+|---------------------|--------------------------|
+| Edycja Nuxt + Vue w `web/` | Next (`web-next/`), Solid (`web-solid/`), demo portable |
+| Źródło prawdy | Wygenerowane lustra, gdy klient lub zespół potrzebuje innego shella |
 
-> *"Zawsze koduj tak, jakby osoba utrzymująca Twój kod była agresywnym psychopatą, który wie, gdzie mieszkasz."* — John Woods
-
-- **Czytelność nad sprytem** — Kod czyta się 10× częściej niż pisze
-- **Jawność nad domyślnością** — Bez magii, bez niespodzianek
-- **Małe, skupione funkcje** — Jedna funkcja, jedno zadanie
-- **Znaczące nazwy** — `getUserById()` a nie `get()`
-- **Typuj wszystko** — TypeScript przez cały stack
-
-### Filozofia testowania
-
-- **Testuj zachowanie, nie implementację** — Co robi, nie jak
-- **Wysokie pokrycie dla krytycznych ścieżek** — Auth, płatności, integralność danych
-- **Szybkie, niezawodne testy** — Wolne testy nie są uruchamiane
-- **Vitest** — Ujednolicone testowanie w modułach
-
-### Filozofia dokumentacji
-
-- **Dokumentuj „dlaczego"** — Kod pokazuje „co", docs wyjaśniają „dlaczego"
-- **Trzymaj docs blisko kodu** — README.md w każdym module
-- **Aktualizuj ze zmianami** — Nieaktualne docs są gorsze niż brak docs
-- **Szanuj czas developera** — Zwięźle, skanowalnie, actionable
+Tryb B to nie druga baza kodu utrzymywana ręcznie. Napraw jądro, odpal convert ponownie. Komunikacja produktu zawsze wymienia **wszystkie siedem shelli**, nawet gdy codzienna edycja zostaje na Nuxt.
 
 ---
 
-## Wartości open source
+## Design system
 
-### Transparentność
-
-Rozwój odbywa się otwarcie. Decyzje są dokumentowane. Roadmapy są publiczne. Bez czarnych skrzynek.
-
-### Inkluzywność
-
-Każdy wkład ma znaczenie:
-
-- 🐛 Raporty błędów poprawiają jakość
-- 💡 Sugestie funkcji kształtują kierunek
-- 📝 Dokumentacja pomaga wszystkim
-- 🔧 Wkład kodowy buduje funkcje
-
-### Współpraca
-
-Budujemy razem. Code review to okazje do nauki. Dyskusje są pełne szacunku. Każdy ma głos.
-
-### Szacunek
-
-Czas jest cenny. Nie marnujemy Twojego przez:
-
-- Niepotrzebną złożoność
-- Słabą dokumentację
-- Breaking changes bez ścieżek migracji
-- Gatekeeping wkładów
+Prymitywy UI to **niezależne od frameworka komponenty Lit** (`nui-*` z `nucleify-ui`). Tokeny w `portable/nui/`. Każdy shell owija te same custom elements.
 
 ---
 
-## Przyszłość
+## Jakość
 
-Nucleify ewoluuje przez:
+Monorepo egzekwuje jakość na pre-commit (pre-push jest no-op):
 
-- **Feedback społeczności** — Ty kształtujesz roadmapę
-- **Ciągłe doskonalenie** — Regularny refactoring, nigdy stagnacja
-- **Innowacje kompilatora** — Rozszerzanie przenośności na nowe cele
-- **Adopcja best practices** — Uczenie się od ekosystemu
-- **Utrzymanie kompatybilności** — Aktualizacje nie powinny psuć Twojej aplikacji
-
-> *"Jedyną stałą jest zmiana."* — Heraklit
-
-Ale niektóre rzeczy się nie zmieniają: **modułowość, przenośność, wydajność, developer experience i szacunek dla Twojego czasu.**
+- Suite bash, Biome, TypeScript (web), Stylelint
+- Produkcyjny build Nuxt
+- Vitest (web + shared) oraz testy / check kompilatora
 
 ---
 
-## Nastawienie
+## Czym Nucleify nie jest
 
-Podejście, które napędza każdą linię kodu w Nucleify:
-
----
-
-> *"Ten człowiek o małej wiedzy starzeje się jak wół; tylko jego ciało rośnie, ale nie jego mądrość."*
-> — Siddhartha Gautama
-
-Nigdy nie przestawaj się uczyć. Technologia ewoluuje — my też musimy.
+- Nie meta-framework ukrywający hosty — siedem shelli pozostaje widocznych
+- Nie low-code — piszesz prawdziwy TypeScript
+- Nie hosted SaaS — Ty trzymasz Supabase i deployment
+- Nie „tajemnicze moduły” — dziś produkt napędza sześć eksportowanych pakietów `nuc_*`
 
 ---
 
-> *"Kto ma po co żyć, zniesie prawie każde jak."*
-> — Friedrich Nietzsche
+## Powiązane
 
-Cel napędza wytrwałość. Wiedz, dlaczego budujesz, a przeszkody stają się rozwiązywalne.
-
----
-
-> *"Nie życz sobie, żeby było łatwiej. Życz sobie, żebyś był lepszy."*
-> — Jim Rohn
-
-Złożoność jest nieunikniona. Rozwijaj umiejętności zamiast unikać wyzwań.
-
----
-
-> *"Strach nigdy nie osiągnął najwyższego celu."*
-> — Bô Yin Râ
-
-Nie bój się refactoringu, nowych technologii ani ambitnych zmian. Odwaga w kodzie prowadzi do przełomów.
-
----
-
-Buduj z celem. Wdrażaj wszędzie. Skaluj z pewnością.
-
----
-
-## Dołącz do nas
-
-**Napisz raz. Uruchom wszędzie. Buduj nowocześnie. Wdrażaj z pewnością.**
-
-Budujemy coś niesamowitego. [Dołącz do nas.](https://github.com/nucleify/nucleify)
+- [Wprowadzenie](/pl/docs/getting-started/introduction) — przegląd techniczny
+- [Moduły](/pl/docs/core-concepts/modules) — architektura modułów
+- [Kompilator](/pl/docs/core-concepts/compiler) — emit i convert
+- [Standardy kodu](/pl/docs/about/coding-standards) — konwencje dnia codziennego

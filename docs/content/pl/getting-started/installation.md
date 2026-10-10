@@ -19,8 +19,8 @@ Uruchom monorepo Nucleify na swoim komputerze.
 ## Klonowanie repozytorium
 
 ```bash
-git clone https://github.com/nucleify/nucleify.git
-cd nucleify
+git clone https://github.com/Nucleify/Nucleify.git
+cd Nucleify
 ```
 
 ---

@@ -7,8 +7,8 @@ Run Nucleify, explore the repo, and make your first change in under ten minutes.
 ## 1. Bootstrap
 
 ```bash
-git clone https://github.com/nucleify/nucleify.git
-cd nucleify
+git clone https://github.com/Nucleify/Nucleify.git
+cd Nucleify
 make run
 ```
 
@@ -107,14 +107,17 @@ Docs content is Markdown under `docs/content/{en,pl}/{category}/{slug}.md`.
 
 ## 7. Run checks
 
-Before committing, the Husky hooks run the same suite as CI:
+Before committing, the Husky pre-commit hook runs the same suite as CI (pre-push is a no-op):
 
 ```bash
-pnpm check       # Biome
-pnpm typeslint   # TypeScript (web)
-pnpm slint       # Stylelint (SCSS)
-pnpm tests       # Vitest (web + shared projects)
+pnpm btest          # bash suite
+pnpm check          # Biome
+pnpm typeslint      # TypeScript (web)
+pnpm slint          # Stylelint (SCSS)
+pnpm build          # Nuxt production build
+pnpm tests          # Vitest (web + shared)
 pnpm compiler:test  # Compiler unit tests
+pnpm compiler:check # Emit fingerprints
 ```
 
 ---

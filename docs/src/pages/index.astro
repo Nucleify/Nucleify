@@ -1,7 +1,180 @@
 ---
-import { DEFAULT_DOC_ROUTE } from '../lib/doc_paths'
+import '../styles/docs.css'
+import { DOC_LANGUAGES, DEFAULT_LANG } from '../lib/constants/languages'
+import { DEFAULT_DOC_ROUTE, docHref } from '../lib/doc_paths'
 
-return Astro.redirect(
-  `/${DEFAULT_DOC_ROUTE.lang}/docs/${DEFAULT_DOC_ROUTE.category}/${DEFAULT_DOC_ROUTE.slug}`,
+const startHref = docHref(
+  DEFAULT_DOC_ROUTE.lang,
+  DEFAULT_DOC_ROUTE.category,
+  DEFAULT_DOC_ROUTE.slug,
 )
+const installHref = docHref(DEFAULT_LANG, 'getting-started', 'installation')
+
+const shellCommands = [
+  {
+    cmd: 'git clone https://github.com/Nucleify/Nucleify.git && cd Nucleify',
+    note: 'clone',
+  },
+  {
+    cmd: 'make run',
+    note: '.env · install · husky · compiler',
+  },
+  {
+    cmd: 'make web',
+    note: 'Nuxt product → localhost:3000',
+  },
+  {
+    cmd: 'make docs',
+    note: 'this documentation app',
+  },
+] as const
+
+const copyText = shellCommands.map((row) => row.cmd).join('\n')
 ---
+
+<!doctype html>
+<html lang={DEFAULT_LANG}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Nucleify documentation — build once, move to any framework."
+    />
+    <title>Nucleify Docs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600&family=JetBrains+Mono:wght@600;700&display=optional"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/img/logo.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/img/logo.svg" />
+  </head>
+  <body class="docs-body docs-home">
+    <header class="docs-header">
+      <div class="docs-header__inner">
+        <a class="docs-brand" href="/">
+          <img
+            class="docs-brand__logo"
+            src="/img/logo.svg"
+            alt=""
+            width="32"
+            height="32"
+            decoding="async"
+          />
+          <span class="docs-brand__text">Nucleify Docs</span>
+        </a>
+        <nav class="docs-home__nav" aria-label="Quick links">
+          <a href={startHref}>Docs</a>
+          <a href={installHref}>Install</a>
+          <a href="https://nucleify.io" rel="noopener noreferrer">Site</a>
+          <div class="docs-lang-switch" aria-label="Language">
+            {
+              DOC_LANGUAGES.map((item) => (
+                <a
+                  class:list={[
+                    'docs-lang-switch__link',
+                    { 'is-active': item.code === DEFAULT_LANG },
+                  ]}
+                  href={docHref(
+                    item.code,
+                    DEFAULT_DOC_ROUTE.category,
+                    DEFAULT_DOC_ROUTE.slug,
+                  )}
+                  hreflang={item.code}
+                >
+                  {item.code.toUpperCase()}
+                </a>
+              ))
+            }
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="docs-home__main">
+      <section class="docs-home__panel">
+        <div class="docs-home__intro">
+          <p class="docs-home__eyebrow">Documentation</p>
+          <h1 class="docs-home__title">
+            <img
+              class="docs-home__mark"
+              src="/img/logo.svg"
+              alt=""
+              width="48"
+              height="48"
+              decoding="async"
+            />
+            <span>Nucleify</span>
+          </h1>
+          <p class="docs-home__lede">
+            Build once. Move to any framework — web, admin, and docs from one
+            nucleus.
+          </p>
+          <div class="docs-home__actions">
+            <a class="docs-home__btn is-primary" href={startHref}>Get started</a>
+            <a class="docs-home__btn is-ghost" href={installHref}>Full install guide</a>
+          </div>
+        </div>
+
+        <div class="docs-home__shell" aria-label="Quick start">
+          <div class="docs-home__shell-bar">
+            <span class="docs-home__shell-label">Terminal</span>
+            <button
+              type="button"
+              class="docs-home__copy"
+              data-copy={copyText}
+              aria-label="Copy commands"
+            >
+              Copy
+            </button>
+          </div>
+          <ol class="docs-home__shell-list">
+            {
+              shellCommands.map((row, i) => (
+                <li class="docs-home__shell-row">
+                  <span class="docs-home__shell-step" aria-hidden="true">
+                    {i + 1}
+                  </span>
+                  <div class="docs-home__shell-cmd">
+                    <code>
+                      <span class="docs-home__shell-ps">$</span>
+                      {row.cmd}
+                    </code>
+                    <span class="docs-home__shell-note">{row.note}</span>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+
+        <p class="docs-home__foot">
+          Vue · React · Nuxt · Next · Astro · Svelte · Solid
+        </p>
+      </section>
+    </main>
+
+    <script>
+      document.querySelectorAll<HTMLButtonElement>('.docs-home__copy').forEach((btn) => {
+        btn.addEventListener('click', async () => {
+          const text = btn.dataset.copy ?? ''
+          try {
+            await navigator.clipboard.writeText(text)
+            const prev = btn.textContent
+            btn.textContent = 'Copied'
+            btn.classList.add('is-done')
+            window.setTimeout(() => {
+              btn.textContent = prev
+              btn.classList.remove('is-done')
+            }, 1400)
+          } catch {
+            btn.textContent = 'Failed'
+          }
+        })
+      })
+    </script>
+  </body>
+</html>

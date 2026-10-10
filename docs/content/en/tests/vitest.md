@@ -14,7 +14,7 @@ pnpm test:shared        # shared_modules only
 pnpm compiler:test      # compiler unit tests
 ```
 
-CI and Husky hooks run `pnpm tests` as part of `.config/bash/hook-checks.sh` alongside Biome, TypeScript, and Stylelint.
+CI and the Husky pre-commit hook run `pnpm tests` as part of `.config/bash/hook-checks.sh` alongside bash tests, Biome, TypeScript, Stylelint, Nuxt build, and compiler checks (pre-push is a no-op).
 
 ---
 
@@ -117,15 +117,18 @@ Console log suppression is enabled (`onConsoleLog: () => false`) to reduce noise
 
 ## Pre-commit hook suite
 
-Husky runs, in order:
+Husky pre-commit runs (via `.config/bash/hook-checks.sh`), in order:
 
 1. `pnpm btest` — bash test suite
 2. `pnpm check` — Biome
 3. `pnpm typeslint` — TypeScript (`web/tsconfig.json`)
 4. `pnpm slint` — Stylelint on SCSS
-5. `pnpm tests` — Vitest
+5. `pnpm build` — Nuxt production build
+6. `pnpm tests` — Vitest
+7. `pnpm compiler:test` — compiler unit tests
+8. `pnpm compiler:check` — emit fingerprints
 
-Fix failures locally before pushing.
+Pre-push is a no-op. Fix failures locally before committing.
 
 ---
 

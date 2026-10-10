@@ -29,13 +29,13 @@ Dziękujemy wszystkim, którzy przyczynili się do Nucleify!
 | Marcin Fuks | [@J0jeQ](https://github.com/J0jeQ) |
 | – | [@karol199393](https://github.com/karol199393) |
 
-Wszyscy kontrybutorzy są wymienieni na naszej stronie [GitHub Contributors](https://github.com/nucleify/nucleify/graphs/contributors).
+Wszyscy kontrybutorzy są wymienieni na stronie [GitHub Contributors](https://github.com/Nucleify/Nucleify/graphs/contributors).
 
 ---
 
 ## Zbudowane z
 
-Nucleify jest zbudowany na niesamowitych projektach open source:
+Nucleify stoi na projektach open source:
 
 ### Backend i dane
 
@@ -48,45 +48,40 @@ Nucleify jest zbudowany na niesamowitych projektach open source:
 
 | Projekt | Opis |
 |---------|------|
-| [Vue 3](https://vuejs.org) | Kanoniczny framework UI |
+| [Vue 3](https://vuejs.org) | Kanoniczny framework UI (Tryb A) |
 | [Nuxt 4](https://nuxt.com) | Full-stack framework Vue |
-| [React 19](https://react.dev) | Cel UI generowany kompilatorem |
+| [React 19](https://react.dev) | Cel UI kompilatora (Tryb B) |
 | [Next.js 15](https://nextjs.org) | Full-stack framework React |
 | [nucleify-ui](https://www.npmjs.com/package/nucleify-ui) | Biblioteka web components Lit (`nui-*`) |
+| [Lit](https://lit.dev) | Web components dla prymitywów design systemu |
 
 ### Kompilator i narzędzia
 
 | Projekt | Opis |
 |---------|------|
-| [Nucleify Compiler](https://github.com/nucleify/nucleify) | Przenośny kompilator UI oparty na IR (Vue ↔ React) |
-| [TypeScript](https://www.typescriptlang.org) | Type safety przez cały stack |
-| [Vite](https://vitejs.dev) | Narzędzie build |
+| [TypeScript](https://www.typescriptlang.org) | Type safety w całym stacku |
+| [Vite](https://vitejs.dev) | Narzędzie build (Nuxt / Vitest) |
 | [SCSS](https://sass-lang.com) | Preprocesor CSS |
 | [Biome](https://biomejs.dev) | Formatowanie i linting |
-| [Vitest](https://vitest.dev) | Framework testowy |
-| [pnpm](https://pnpm.io) | Menedżer pakietów (workspace monorepo) |
-
-### Dokumentacja
-
-| Projekt | Opis |
-|---------|------|
-| [Astro](https://astro.build) | Framework strony dokumentacji |
+| [Vitest](https://vitest.dev) | Testy jednostkowe i integracyjne |
+| [pnpm](https://pnpm.io) | Menedżer pakietów monorepo |
+| [Astro](https://astro.build) | Strona dokumentacji (`@nucleify/docs`) |
 
 ---
 
-## Inspiracje
+## Wpływy architektoniczne
 
-Projekty i idee, które ukształtowały Nucleify:
-
-- [Feature-Sliced Design](https://feature-sliced.design) — Metodologia architektury frontendowej
-- [Atomic Design](https://atomicdesign.bradfrost.com) — Filozofia hierarchii komponentów
-- Przekonanie, że wybór frameworka nie powinien dyktować architektury
+| Idea | Źródło |
+|------|--------|
+| Feature-Sliced Design | [feature-sliced.design](https://feature-sliced.design) — układ modułów domena-first |
+| Atomic Design | [Brad Frost](https://atomicdesign.bradfrost.com) — hierarchia SCSS w `nuc_colors` |
+| Portable UI / IR | `@nucleify/compiler` — `*.nuc.tsx` → Vue + React (+ Solid) |
 
 ---
 
 ## Specjalne podziękowania
 
-- Społeczności Supabase, Vue.js, React i Astro
+- Społecznościom Supabase, Vue, React, Nuxt i Astro
 - Wszystkim, którzy zgłaszali błędy lub sugerowali funkcje
 - Maintainerom open source wszędzie
 
@@ -96,12 +91,12 @@ Projekty i idee, które ukształtowały Nucleify:
 
 Zapraszamy wkłady wszelkiego rodzaju:
 
-- 🐛 Raporty błędów
-- 💡 Sugestie funkcji
-- 📝 Ulepszenia dokumentacji
-- 🔧 Wkład kodowy
+- Raporty błędów
+- Sugestie funkcji
+- Ulepszenia dokumentacji
+- Wkład kodowy
 
-Zobacz nasze [Standardy kodowania](/pl/docs/about/coding-standards), aby zacząć.
+Zacznij od [Standardów kodowania](/pl/docs/about/coding-standards) i [Kodeksu postępowania](/pl/docs/about/code-of-conduct).
 
 ---
 
