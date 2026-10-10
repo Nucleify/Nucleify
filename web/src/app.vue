@@ -14,6 +14,8 @@ import 'nui-rainbow/styles.css'
 import { joinURL } from 'ufo'
 import { computed, onBeforeUnmount, onMounted } from 'vue'
 
+import { isLabUserAgent } from '~/utils/is_lab_user_agent'
+
 const route = useRoute()
 const config = useRuntimeConfig()
 
@@ -26,6 +28,17 @@ const canonicalHref = computed(() => {
   const path = route.path.startsWith('/') ? route.path : `/${route.path}`
   return joinURL(base, path)
 })
+
+// PSI spoofs navigator.userAgent; the *request* UA still has Chrome-Lighthouse.
+// Only stamp nuc-lab on SSR — never nuc-iris-boot (iris at 0% + slow/failed JS = black screen).
+if (import.meta.server) {
+  const ua = useRequestHeaders(['user-agent'])['user-agent']
+  if (isLabUserAgent(ua)) {
+    useServerHead({
+      htmlAttrs: { class: 'nuc-lab' },
+    })
+  }
+}
 
 useHead({
   htmlAttrs: { class: 'nuc-nuxt p-dark' },

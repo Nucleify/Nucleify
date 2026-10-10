@@ -59,12 +59,8 @@ const rootEl = ref<HTMLElement | null>(null)
 const activeSection = ref<NucInvestorSectionId>('intro')
 const menuOpen = ref(false)
 
-const firstSectionId = sections[0]!.id
-const lastSectionId = sections[sections.length - 1]!.id
-
 let stopAnimations: (() => void) | undefined
 let stopObserver: (() => void) | undefined
-let stopScrollLoop: (() => void) | undefined
 let stopScrollGate: (() => void) | undefined
 
 function goToSection(id: NucInvestorSectionId): void {
@@ -77,21 +73,6 @@ function goToSection(id: NucInvestorSectionId): void {
   )
 }
 
-async function replayBoot(root: HTMLElement): Promise<void> {
-  if (isAutomatedAudit()) return
-  activeSection.value = firstSectionId
-  stopAnimations?.()
-  stopAnimations = undefined
-  root.classList.remove('nuc-home-ready', 'nuc-home-booting')
-  root.style.setProperty('--home-iris', '0%')
-  const { playInvestorAnimations } = await import(
-    './utils/play_investor_animations'
-  )
-  stopAnimations = await playInvestorAnimations(root)
-  const scroller = root.querySelector<HTMLElement>('.nuc-home-scroller')
-  if (scroller) scroller.scrollTop = 0
-}
-
 onMounted(() => {
   void nextTick().then(() => {
     if (!rootEl.value) return
@@ -99,6 +80,7 @@ onMounted(() => {
 
     if (isAutomatedAudit()) {
       root.style.setProperty('--home-iris', '165%')
+      root.style.setProperty('--home-shear-iris', '165%')
       root.classList.remove('nuc-home-booting')
       root.classList.add('nuc-home-ready')
       void import('../home/utils/observe_active_section').then(
@@ -123,42 +105,32 @@ onMounted(() => {
       }
     )
 
-    void import('../home/utils/observe_active_section').then(
-      ({ observeActiveSection }) => {
-        stopObserver = observeActiveSection(
-          root,
-          sections.map((section) => section.id),
-          (id) => {
-            activeSection.value = id as NucInvestorSectionId
+    void import('../home/utils/when_home_ready').then(({ whenHomeReady }) => {
+      void whenHomeReady(root).then(() => {
+        void import('../home/utils/observe_active_section').then(
+          ({ observeActiveSection }) => {
+            stopObserver = observeActiveSection(
+              root,
+              sections.map((section) => section.id),
+              (id) => {
+                activeSection.value = id as NucInvestorSectionId
+              }
+            )
           }
         )
-      }
-    )
 
-    void import('../home/utils/bind_home_scroll_loop').then(
-      ({ bindHomeScrollLoop }) => {
-        stopScrollLoop = bindHomeScrollLoop(root, {
-          firstSectionId,
-          lastSectionId,
-          onLoop: () => {
-            if (!rootEl.value) return
-            return replayBoot(rootEl.value)
-          },
-        })
-      }
-    )
-
-    void import('../home/utils/bind_home_section_scroll_gate').then(
-      ({ bindHomeSectionScrollGate }) => {
-        stopScrollGate = bindHomeSectionScrollGate(root)
-      }
-    )
+        void import('../home/utils/bind_home_section_scroll_gate').then(
+          ({ bindHomeSectionScrollGate }) => {
+            stopScrollGate = bindHomeSectionScrollGate(root)
+          }
+        )
+      })
+    })
   })
 })
 
 onBeforeUnmount(() => {
   stopScrollGate?.()
-  stopScrollLoop?.()
   stopObserver?.()
   stopAnimations?.()
 })

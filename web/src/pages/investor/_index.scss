@@ -5,8 +5,8 @@
 .nuc-investor {
   .nuc-home-hero-panel.is-deal {
     display: flex;
-    align-self: stretch;
-    height: 100%;
+    align-self: center;
+    height: auto;
     padding: 0;
     border: 0;
     border-radius: 0;
@@ -20,221 +20,178 @@
   }
 
   .nuc-home-hero-headline {
-    font-size: clamp(1.55rem, 5.5vw, 2.15rem);
+    max-width: 20ch;
+    font-size: clamp(1.5rem, 5.2vw, 2.05rem);
   }
 }
 
-/* ─── Emit cubes — nucleus → seven shells → stamp ──────────── */
+/* ─── At-a-glance plate ─────────────────────────────────────── */
 
-.nuc-inv-emit {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  min-height: 100%;
+.nuc-inv-glance {
+  position: relative;
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
+  width: 100%;
+  max-width: 26rem;
+  padding: 1.35rem 1.4rem 1.25rem;
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 1.15rem;
+  background:
+    radial-gradient(
+      120% 90% at 0% 0%,
+      hsl(var(--rainbow-hue) 70% 50% / 12%),
+      transparent 58%
+    ),
+    linear-gradient(165deg, rgb(13 17 28 / 90%), rgb(5 8 15 / 96%));
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 2%) inset,
+    0 24px 48px rgb(0 0 0 / 34%);
   font-family: 'Instrument Sans', system-ui, sans-serif;
+  opacity: 0;
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 
-  &-source {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
+  &.is-on {
+    opacity: 1;
+    transform: none;
+  }
+
+  &-eyebrow {
     margin: 0;
-    padding: 0.45rem 0.85rem;
-    border: 1px solid var(--home-holo-line);
-    border-radius: 999px;
-    background:
-      linear-gradient(
-        180deg,
-        rgb(14 18 30 / 88%),
-        rgb(6 10 18 / 88%)
-      );
-    box-shadow:
-      0 0 0 1px rgb(255 255 255 / 3%) inset,
-      0 0 28px hsl(var(--rainbow-hue) 80% 50% / 22%);
-    color: var(--home-fg);
+    color: var(--home-accent);
     font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.02em;
-    z-index: 2;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
 
-    span {
+  &-ratio {
+    display: grid;
+    grid-template-columns: auto minmax(2.5rem, 1fr) auto;
+    align-items: center;
+    gap: 0.85rem;
+    width: 100%;
+    margin: 0.45rem 0 0;
+  }
+
+  &-col {
+    display: grid;
+    gap: 0.2rem;
+    justify-items: start;
+
+    &.is-accent .nuc-inv-glance-num {
       color: var(--home-accent);
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    code {
-      color: rgb(255 255 255 / 72%);
-      font: inherit;
     }
   }
 
-  &-stem {
-    width: 1.5px;
-    height: 1.35rem;
-    margin: 0;
+  &-num {
+    color: var(--home-fg);
+    font-size: clamp(3.2rem, 9vw, 4.6rem);
+    font-weight: 650;
+    letter-spacing: -0.08em;
+    line-height: 0.9;
+  }
+
+  &-label {
+    color: var(--home-dim);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &-arrow {
+    position: relative;
+    align-self: center;
+    height: 1px;
+    margin-top: -1.1rem;
     background: linear-gradient(
-      to bottom,
-      hsl(var(--rainbow-hue) 90% 62% / 90%),
-      hsl(var(--rainbow-hue) 80% 55% / 25%)
+      90deg,
+      rgb(255 255 255 / 28%),
+      color-mix(in srgb, var(--home-accent) 70%, transparent)
     );
-    box-shadow: 0 0 12px hsl(var(--rainbow-hue) 90% 58% / 55%);
-  }
 
-  &-field {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 0.75rem 0.85rem;
-    width: 100%;
-    max-width: 22rem;
-    margin: 0.15rem 0 1.15rem;
-    padding: 0.85rem 0.25rem 0.35rem;
-    list-style: none;
-  }
-
-  &-cube {
-    --cube: var(--home-accent);
-
-    position: relative;
-    display: grid;
-    gap: 0.45rem;
-    justify-items: center;
-    width: 3.6rem;
-    margin: 0;
-    padding: 0;
-    z-index: 1;
-
-    &.is-vue { --cube: #42b883; }
-    &.is-nuxt { --cube: #00dc82; }
-    &.is-react { --cube: #61dafb; }
-    &.is-next { --cube: #e8e8e8; }
-    &.is-astro { --cube: #ff5d01; }
-    &.is-svelte { --cube: #ff3e00; }
-    &.is-solid { --cube: #76b3ef; }
-
-    strong {
-      color: var(--home-fg);
-      font-size: 0.68rem;
-      font-weight: 650;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      text-shadow: 0 1px 8px rgb(0 0 0 / 55%);
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: -1px;
+      width: 0.45rem;
+      height: 0.45rem;
+      border-top: 1px solid color-mix(in srgb, var(--home-accent) 80%, #fff);
+      border-right: 1px solid color-mix(in srgb, var(--home-accent) 80%, #fff);
+      transform: translateY(-50%) rotate(45deg);
     }
-  }
-
-  &-cube-mark {
-    position: relative;
-    display: grid;
-    place-items: center;
-    width: 2.85rem;
-    height: 2.85rem;
-    border: 1px solid color-mix(in srgb, var(--cube) 45%, rgb(255 255 255 / 14%));
-    border-radius: 0.85rem;
-    background:
-      linear-gradient(
-        155deg,
-        color-mix(in srgb, var(--cube) 18%, rgb(12 16 28)),
-        rgb(4 8 16 / 94%) 70%
-      );
-    box-shadow:
-      0 10px 18px rgb(0 0 0 / 35%),
-      0 0 0 1px rgb(255 255 255 / 3%) inset;
-    color: var(--cube);
-    font-size: 1.35rem;
-    line-height: 1;
-
-    nui-icon {
-      display: block;
-    }
-  }
-
-  &-stamp {
-    display: grid;
-    gap: 0.35rem;
-    justify-items: center;
-    width: 100%;
-    max-width: 26rem;
-    text-align: center;
   }
 
   &-figure {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    justify-content: center;
-    gap: 0.1em;
-    margin: 0;
-    font-size: clamp(2.35rem, 6.5vw, 3.6rem);
-    font-weight: 650;
-    letter-spacing: -0.07em;
-    line-height: 0.9;
-    background: linear-gradient(
-      115deg,
-      #fff 0%,
-      #f4f7f5 36%,
-      var(--home-accent) 140%
-    );
-    /* stylelint-disable-next-line property-no-vendor-prefix -- Safari gradient text */
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    filter: drop-shadow(0 0 22px hsl(var(--rainbow-hue) 70% 52% / 42%));
-  }
-
-  &-unit {
-    margin: 0;
-    color: var(--home-muted);
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 0.66rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  &-caption {
-    margin: 0.2rem 0 0;
+    gap: 0.08em;
+    margin: 1rem 0 0;
+    padding-top: 0.95rem;
+    border-top: 1px solid rgb(255 255 255 / 8%);
     color: var(--home-fg);
-    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    font-size: clamp(1.85rem, 4.8vw, 2.45rem);
+    font-weight: 650;
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+
+    small {
+      margin-left: 0.4rem;
+      color: var(--home-muted);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  }
+
+  &-line {
+    margin: 0.15rem 0 0;
+    color: var(--home-fg);
+    font-size: clamp(1rem, 2.1vw, 1.15rem);
     font-weight: 600;
     letter-spacing: -0.03em;
+    line-height: 1.3;
+  }
+
+  &-stacks {
+    margin: 0.35rem 0 0;
+    color: var(--home-muted);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    line-height: 1.45;
   }
 
   &-note {
-    margin: 0.15rem 0 0;
+    margin: 0.55rem 0 0;
     color: var(--home-dim);
     font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 0.58rem;
+    font-size: 0.52rem;
     letter-spacing: 0.04em;
   }
 }
 
 @media (min-width: $md) {
-  .nuc-inv-emit-field {
-    max-width: 24rem;
-    gap: 0.9rem 1rem;
-  }
-
-  .nuc-inv-emit-cube {
-    width: 3.85rem;
-  }
-
-  .nuc-inv-emit-cube-mark {
-    width: 3.05rem;
-    height: 3.05rem;
-    font-size: 1.45rem;
-  }
-
-  .nuc-inv-emit-figure {
-    font-size: clamp(2.75rem, 4.8vw, 3.85rem);
-  }
-
-  .nuc-inv-emit-stamp {
+  .nuc-inv-glance {
     max-width: 28rem;
+    padding: 1.6rem 1.7rem 1.45rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nuc-inv-glance {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

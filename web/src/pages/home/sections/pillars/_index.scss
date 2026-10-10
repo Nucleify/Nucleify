@@ -1,4 +1,14 @@
 .nuc-home-pillars {
+  /* Hidden until scroll reveal — avoids visible→prepare→play flash on refresh. */
+  .nuc-home-eyebrow,
+  .nuc-home-title,
+  .nuc-home-support,
+  &-cta,
+  &-share,
+  &-item {
+    opacity: 0;
+  }
+
   &-head {
     display: grid;
     grid-template-columns: 1fr;
@@ -152,6 +162,33 @@
     grid-template-columns: 1fr;
     gap: 0.85rem;
     margin-top: clamp(1.75rem, 4vw, 2.5rem);
+
+    /* Mobile: horizontal snap slides (one card per flick + peek). */
+    @media (max-width: 767px) {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: stretch;
+      gap: 0.75rem;
+      box-sizing: border-box;
+      width: 100vw;
+      max-width: 100vw;
+      margin-top: 1.5rem;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-inline: var(--home-pad);
+      padding-bottom: 0.5rem;
+      overflow: auto hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--home-pad);
+      overscroll-behavior-x: contain;
+      touch-action: pan-x pan-y;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
   }
 
   &-item {
@@ -168,6 +205,16 @@
       border-color 0.25s ease,
       transform 0.25s ease,
       box-shadow 0.25s ease;
+
+    @media (max-width: 767px) {
+      /* ~1 card in view, next peeks — classic slide rail. */
+      flex: 0 0 calc(100vw - 2 * var(--home-pad) - 1.35rem);
+      width: calc(100vw - 2 * var(--home-pad) - 1.35rem);
+      max-width: none;
+      min-height: 0;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+    }
 
     &:hover {
       border-color: var(--home-holo-line);
@@ -276,5 +323,28 @@
 @media (prefers-reduced-motion: reduce) {
   .nuc-home-pillars-share-slice {
     animation: none;
+  }
+
+  .nuc-home-pillars {
+    .nuc-home-eyebrow,
+    .nuc-home-title,
+    .nuc-home-support,
+    .nuc-home-pillars-cta,
+    .nuc-home-pillars-share,
+    .nuc-home-pillars-item {
+      opacity: 1;
+    }
+  }
+}
+
+/* Quiet boot / PSI — no animejs reveal, keep content painted. */
+.nuc-home-static .nuc-home-pillars {
+  .nuc-home-eyebrow,
+  .nuc-home-title,
+  .nuc-home-support,
+  .nuc-home-pillars-cta,
+  .nuc-home-pillars-share,
+  .nuc-home-pillars-item {
+    opacity: 1;
   }
 }

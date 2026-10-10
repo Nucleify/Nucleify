@@ -4,7 +4,7 @@ import {
   investorDocsHref,
   investorHomeHref,
   NUC_INVESTOR_CONTACT_TYPES,
-  NUC_INVESTOR_DEAL,
+  NUC_INVESTOR_GLANCE,
   NUC_INVESTOR_SAVINGS,
   NUC_INVESTOR_SECTIONS,
   NUC_INVESTOR_SHELLS,
@@ -63,13 +63,15 @@ describe('investor pitch content', () => {
     expect(dollars?.detail.toLowerCase()).toMatch(/not a forecast|blended/)
   })
 
-  it('keeps the intro snapshot on the same model, labeled illustrative', () => {
+  it('keeps the intro glance plate on the savings model', () => {
     const dollars = NUC_INVESTOR_SAVINGS.find((item) => item.id === 'dollars')
-    expect(NUC_INVESTOR_DEAL.figure).toBe(dollars?.value)
+    expect(NUC_INVESTOR_GLANCE.figure).toBe(dollars?.value)
     expect(
-      `${NUC_INVESTOR_DEAL.figureLead}${NUC_INVESTOR_DEAL.figureTrail}`
-    ).toBe(NUC_INVESTOR_DEAL.figure)
-    expect(NUC_INVESTOR_DEAL.note.toLowerCase()).toMatch(
+      `${NUC_INVESTOR_GLANCE.figureLead}${NUC_INVESTOR_GLANCE.figureTrail}`
+    ).toBe(NUC_INVESTOR_GLANCE.figure)
+    expect(NUC_INVESTOR_GLANCE.from).toBe('7')
+    expect(NUC_INVESTOR_GLANCE.to).toBe('1')
+    expect(NUC_INVESTOR_GLANCE.note.toLowerCase()).toMatch(
       /illustrative|not a forecast/
     )
   })

@@ -11,6 +11,9 @@ export function isHomeProgrammaticScroll(scroller: HTMLElement): boolean {
  * Rail / CTA section jumps. Mandatory snap + CSS `scroll-behavior: smooth`
  * fight mid-flight and re-snap after land. Long jumps (e.g. ask → intro) use
  * instant scroll; short jumps stay smooth with snap held off until locked.
+ *
+ * Always clear inline snap on finish — never restore a stale `none` from the
+ * tall-section gate (that left section slides broken until hard refresh).
  */
 export function scrollHomeSection(root: HTMLElement, sectionId: string): void {
   const scroller = root.querySelector<HTMLElement>('.nuc-home-scroller')
@@ -24,21 +27,15 @@ export function scrollHomeSection(root: HTMLElement, sectionId: string): void {
 
   const top = scrollSectionOffset(scroller, target)
   const distance = Math.abs(scroller.scrollTop - top)
-  // Long rail jumps land short then snap-correct — skip smooth for those.
   const useSmooth = distance <= scroller.clientHeight * 1.35
-  const heldSnap = scroller.style.scrollSnapType
-  const heldBehavior = scroller.style.scrollBehavior
   let done = false
 
   const restoreChrome = () => {
     scroller.removeAttribute(PROGRAMMATIC_ATTR)
-    if (heldSnap) scroller.style.scrollSnapType = heldSnap
-    else scroller.style.removeProperty('scroll-snap-type')
-    // Keep behavior auto one frame after snap restore so any residual snap
-    // settle is not animated by CSS scroll-behavior: smooth.
+    // Drop inline override so stylesheet `y mandatory` (and the gate) apply.
+    scroller.style.removeProperty('scroll-snap-type')
     requestAnimationFrame(() => {
-      if (heldBehavior) scroller.style.scrollBehavior = heldBehavior
-      else scroller.style.removeProperty('scroll-behavior')
+      scroller.style.removeProperty('scroll-behavior')
     })
   }
 

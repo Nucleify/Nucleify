@@ -7,61 +7,17 @@ import {
 } from "node:fs";
 import { join } from "node:path";
 
-const STYLESHEET_LINK_RE =
-	/<link\b(?=[^>]*\brel=["']stylesheet["'])[^>]*\bhref=["']([^"']+)["'][^>]*>/gi;
+const PLACEHOLDER = "__NUC_FONT_PRELOADS_JSON__";
 
-const INLINE_MAX_BYTES = 20_480;
+function collectFontHrefs(cssDir: string): string[] {
+	const urls = new Set<string>();
+	if (!existsSync(cssDir)) return [];
 
-function collectCssMap(cssDir: string): Record<string, string> {
-	const map: Record<string, string> = {};
-	if (!existsSync(cssDir)) return map;
+	const fontUrlRe = /url\(\s*['"]?([^'")\s]+\.woff2)['"]?\s*\)/gi;
 
 	for (const name of readdirSync(cssDir)) {
 		if (!name.endsWith(".css")) continue;
 		const css = readFileSync(join(cssDir, name), "utf-8");
-		if (css.length > INLINE_MAX_BYTES) continue;
-		map[`/_nuxt/${name}`] = css;
-	}
-	return map;
-}
-
-function resolveClientCssDir(rootDir: string): string {
-	const candidates = [
-		join(rootDir, ".nuxt/dist/client/_nuxt"),
-		join(rootDir, ".output/public/_nuxt"),
-	];
-	return candidates.find((dir) => existsSync(dir)) ?? candidates[0]!;
-}
-
-function inlineStylesheetsInHtml(
-	html: string,
-	map: Record<string, string>,
-): string {
-	return html.replace(STYLESHEET_LINK_RE, (full, href: string) => {
-		const css = map[href];
-		if (!css) return full;
-		return `<style data-inline-css="${href}">${css}</style>`;
-	});
-}
-
-function walkHtml(dir: string, map: Record<string, string>): void {
-	for (const entry of readdirSync(dir, { withFileTypes: true })) {
-		const fullPath = join(dir, entry.name);
-		if (entry.isDirectory()) {
-			walkHtml(fullPath, map);
-			continue;
-		}
-		if (!entry.name.endsWith(".html")) continue;
-		const contents = readFileSync(fullPath, "utf-8");
-		writeFileSync(fullPath, inlineStylesheetsInHtml(contents, map));
-	}
-}
-
-function fontPreloadTags(map: Record<string, string>): string[] {
-	const urls = new Set<string>();
-	const fontUrlRe = /url\(\s*['"]?([^'")\s]+\.woff2)['"]?\s*\)/gi;
-
-	for (const css of Object.values(map)) {
 		for (const match of css.matchAll(fontUrlRe)) {
 			const raw = match[1];
 			if (!raw) continue;
@@ -74,27 +30,29 @@ function fontPreloadTags(map: Record<string, string>): string[] {
 
 	const preferred = [...urls].filter(
 		(u) =>
-			u.includes("JetBrains_Mono-normal-650") ||
-			u.includes("JetBrains_Mono-normal-600") ||
-			u.includes("Instrument_Sans-normal-400") ||
-			u.includes("Instrument_Sans-normal-600"),
+			/Instrument_Sans|JetBrains_Mono/i.test(u) &&
+			/(400|600|700|650)/.test(u),
 	);
-	const list = (preferred.length ? preferred : [...urls]).slice(0, 4);
-
-	return list.map(
-		(href) =>
-			`<link rel="preload" as="font" type="font/woff2" href="${href}" crossorigin>`,
-	);
+	return (preferred.length ? preferred : [...urls]).slice(0, 4);
 }
 
-function injectFontPreloads(dir: string, map: Record<string, string>): void {
-	const preloads = fontPreloadTags(map).join("");
+function fontPreloadTags(hrefs: string[]): string {
+	return hrefs
+		.map(
+			(href) =>
+				`<link rel="preload" as="font" type="font/woff2" href="${href}" crossorigin>`,
+		)
+		.join("");
+}
+
+function injectFontPreloadsIntoHtml(dir: string, hrefs: string[]): void {
+	const preloads = fontPreloadTags(hrefs);
 	if (!preloads) return;
 
 	for (const entry of readdirSync(dir, { withFileTypes: true })) {
 		const fullPath = join(dir, entry.name);
 		if (entry.isDirectory()) {
-			injectFontPreloads(fullPath, map);
+			injectFontPreloadsIntoHtml(fullPath, hrefs);
 			continue;
 		}
 		if (!entry.name.endsWith(".html")) continue;
@@ -105,23 +63,67 @@ function injectFontPreloads(dir: string, map: Record<string, string>): void {
 	}
 }
 
+/** Splice the tiny font-href JSON into the minify-safe placeholder. */
+function injectFontPreloadsIntoServerBundle(
+	serverDir: string,
+	hrefs: string[],
+): number {
+	if (!existsSync(serverDir)) return 0;
+
+	const payload = JSON.stringify(JSON.stringify(hrefs));
+	let patched = 0;
+
+	const visit = (dir: string) => {
+		for (const entry of readdirSync(dir, { withFileTypes: true })) {
+			const fullPath = join(dir, entry.name);
+			if (entry.isDirectory()) {
+				visit(fullPath);
+				continue;
+			}
+			if (!/\.(mjs|js)$/.test(entry.name)) continue;
+			const source = readFileSync(fullPath, "utf-8");
+			if (!source.includes(PLACEHOLDER)) continue;
+
+			const next = source
+				.replaceAll(`"${PLACEHOLDER}"`, payload)
+				.replaceAll(`'${PLACEHOLDER}'`, payload);
+			if (next === source) continue;
+			writeFileSync(fullPath, next);
+			patched += 1;
+		}
+	};
+
+	visit(serverDir);
+	return patched;
+}
+
+/** Runs after worker emit — public-assets is too early on Cloudflare. */
+export function injectFontPreloadsFromOutput(nitro: {
+	options: { output: { publicDir: string; serverDir: string } };
+}): void {
+	const hrefs = collectFontHrefs(join(nitro.options.output.publicDir, "_nuxt"));
+	const patched = injectFontPreloadsIntoServerBundle(
+		nitro.options.output.serverDir,
+		hrefs,
+	);
+	if (hrefs.length > 0 && patched === 0) {
+		console.warn(
+			"[nuc-font-preload] font list ready but placeholder not found in server bundle",
+		);
+	} else if (patched > 0) {
+		console.info(
+			`[nuc-font-preload] injected ${hrefs.length} font preload(s) into ${patched} server chunk(s)`,
+		);
+	}
+}
+
 export const hooksConfig = {
 	hooks: {
-		"nitro:config": (nitroConfig: {
-			rootDir?: string;
-			virtual?: Record<string, string | (() => string)>;
-		}) => {
-			nitroConfig.virtual ??= {};
-			// Lazily evaluate after Vite client CSS exists (nitro rollup resolves this).
-			nitroConfig.virtual["#nuc-inline-css"] = () => {
-				const root = nitroConfig.rootDir ?? process.cwd();
-				const map = collectCssMap(resolveClientCssDir(root));
-				return `export const INLINE_CSS_MAP = ${JSON.stringify(map)}`;
-			};
-		},
-
 		"nitro:build:public-assets": (nitro: {
-			options: { rootDir: string; output: { publicDir: string } };
+			options: {
+				rootDir: string;
+				output: { publicDir: string; serverDir: string };
+			};
 		}) => {
 			const publicDir = join(nitro.options.rootDir, "public");
 			const outputDir = nitro.options.output.publicDir;
@@ -134,9 +136,10 @@ export const hooksConfig = {
 				}
 			}
 
-			const map = collectCssMap(join(outputDir, "_nuxt"));
-			walkHtml(outputDir, map);
-			injectFontPreloads(outputDir, map);
+			const hrefs = collectFontHrefs(join(outputDir, "_nuxt"));
+			injectFontPreloadsIntoHtml(outputDir, hrefs);
 		},
+
+		"nitro:compiled": injectFontPreloadsFromOutput,
 	},
 } as const;

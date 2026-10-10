@@ -1,10 +1,12 @@
 # Wprowadzenie
 
-## Pisz w Vue. Wdrażaj React, gdy tego potrzebujesz.
+## Jeden nucleus. Siedem shelli.
 
-**Nucleify** to modularne monorepo full-stack: rozwijaj w Nuxt 4 (Tryb A), współdziel logikę przez sześć modułów funkcjonalnych i opcjonalnie generuj lustrzane odbicie Next.js (Tryb B) za pomocą przenośnego kompilatora UI. Backend opiera się na Supabase; bramka API Nitro w `web/` kieruje żądania do handlerów modułów.
+**Nucleify** to modularne monorepo full-stack: rozwijaj w Nuxt 4 (Tryb A), współdziel logikę przez sześć modułów funkcjonalnych i emituj / konwertuj powłoki produktu na nowoczesne frameworki webowe dzięki przenośnemu kompilatorowi UI. Backend opiera się na Supabase; bramka API Nitro w `web/` kieruje żądania do handlerów modułów.
 
-> *"Przestań wybierać między frameworkami. Wdrażaj oba."*
+**Emit / shelle:** Vue · React · Nuxt · Next · Astro · Svelte · Solid — to nie jest produkt „tylko React/Next” ani „tylko Vue/Nuxt”.
+
+> *"Przestań wybierać między frameworkami. Zbuduj nucleus raz — odpal każdy shell."*
 
 ---
 
@@ -34,11 +36,12 @@ Katalogi wspierające:
 | Tryb | Stack | Komenda | Wynik |
 |------|-------|---------|-------|
 | **Tryb A** (domyślny) | Nuxt 4 + Vue 3.5 | `make web` | `web/` |
-| **Tryb B** (generowany) | Next 15 + React 19 | `make web TARGET=next` | wygenerowane drzewo emit (zob. [Kompilator](/pl/docs/core-concepts/compiler)) |
+| **Tryb B** (generowany) | Next / Solid | `make web TARGET=next` · `TARGET=solid` | wygenerowane drzewo emit (zob. [Kompilator](/pl/docs/core-concepts/compiler)) |
+| **Demo emit** | Vue · React · Nuxt · Next · Solid | `make vue` · `react` · `nuxt` · `next` · `solid` | `{framework}/demo` |
 
-**Tryb A** to codzienna praca — strony, composables i współdzielone moduły w Vue. **Tryb B** konwertuje powłokę produktu na React, gdy potrzebujesz wdrożenia Next lub chcesz zweryfikować output kompilatora.
+**Tryb A** to codzienna praca — strony, composables i współdzielone moduły w Vue. **Tryb B** i demo emit rozprowadzają ten sam nucleus na kolejne shelle (Next, Solid oraz demo Vue/React/Nuxt/Next/Solid). Astro hostuje dokumentację; Svelte i Solid są pełnoprawnymi celami emit/surface.
 
-Oba tryby współdzielą `shared_modules/`, Supabase i design tokeny. Nie utrzymujesz dwóch niezależnych baz kodu.
+Wszystkie ścieżki współdzielą `shared_modules/`, Supabase i design tokeny. Nie utrzymujesz siedmiu niezależnych baz kodu.
 
 ---
 
@@ -118,7 +121,7 @@ Handlery modułów rejestrują się w `shared_modules/nuc_api/supabase/api/gatew
 
 ## System designu
 
-Prymitywy UI to **komponenty web Lit** z `nucleify-ui` (`nui-button`, `nui-icon`, …). Design tokeny i rejestracja są w `portable/nui/`. Aplikacje Vue i React konsumują te same custom elements; kompilator mapuje tagi `nui-*` w `*.nuc.tsx` na oba cele emisji.
+Prymitywy UI to **komponenty web Lit** z `nucleify-ui` (`nui-button`, `nui-icon`, …). Design tokeny i rejestracja są w `portable/nui/`. Każdy shell konsumuje te same custom elements; kompilator mapuje tagi `nui-*` w `*.nuc.tsx` na cele emisji (Vue, React, Solid i pokrewne shelle).
 
 ---
 

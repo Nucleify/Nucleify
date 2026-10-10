@@ -8,9 +8,9 @@ The principles, values, and vision behind Nucleify.
 
 ## The problem
 
-Modern web development forces premature framework commitment. Pick Vue or React, build features, then rebuild when requirements change. Shared concerns — auth, i18n, theming, API shape — get reimplemented in every project.
+Modern web development forces premature framework commitment. Pick Vue, React, Svelte, Solid — or a Nuxt/Next/Astro host — build features, then rebuild when requirements change. Shared concerns — auth, i18n, theming, API shape — get reimplemented in every project.
 
-Nucleify treats **portability** and **modularity** as first-class goals, not afterthoughts.
+Nucleify treats **portability** and **modularity** as first-class goals, not afterthoughts. Coverage is **seven shells**: Vue, React, Nuxt, Next, Astro, Svelte, and Solid — not a two-stack niche.
 
 ---
 
@@ -20,10 +20,10 @@ Nucleify is a modular full-stack monorepo with a portable UI compiler at its cen
 
 1. **Develop in Nuxt** (Tryb A) — the canonical product shell
 2. **Share logic in modules** — six domain packages in `shared_modules/`
-3. **Emit React when needed** (Tryb B) — compiler converts shells and components
+3. **Emit / convert shells when needed** (Tryb B + demos) — Next, Solid, and portable Vue/React/Nuxt/Next/Solid demos from the same nucleus
 4. **One Supabase backend** — gateway-mediated, module-owned SQL
 
-One team, one domain model, multiple deployment targets.
+One team, one domain model, seven modern web targets.
 
 ---
 
@@ -34,7 +34,7 @@ Like a cell nucleus, Nucleify is the **coordination point** of the application. 
 - **Self-contained modules** — complete vertical slices, not scattered layers
 - **Clear boundaries** — apps compose; modules do not import apps
 - **Organic growth** — add or remove modules without rewiring the monorepo
-- **Collective strength** — shared modules amortize cost across web, admin, and Next outputs
+- **Collective strength** — shared modules amortize cost across web, admin, docs (Astro), and every emit shell
 
 ---
 
@@ -42,13 +42,14 @@ Like a cell nucleus, Nucleify is the **coordination point** of the application. 
 
 ### 1. Write once, run everywhere
 
-Portable `*.nuc.tsx` components compile to Vue SFCs and React TSX from one IR. Product shells convert with a single command:
+Portable `*.nuc.tsx` components compile to Vue, React, and Solid (and related shell demos) from one IR. Product shells convert with a single command:
 
 ```bash
 make web TARGET=next
+make web TARGET=solid
 ```
 
-Framework choice becomes a **build target**, not an architectural fork.
+Framework choice becomes a **build target**, not an architectural fork — across Vue, React, Nuxt, Next, Astro, Svelte, and Solid.
 
 ### 2. Modules over monoliths
 
@@ -74,19 +75,19 @@ Portable authoring has explicit allowed/forbidden lists (`compiler/PORTABLE.md`)
 
 ## Dual-mode philosophy
 
-| Tryb A | Tryb B |
+| Tryb A | Tryb B / emit |
 |--------|--------|
 | Where humans edit daily | What CI or clients may require |
-| Nuxt + Vue in `web/` | Next + React in `web-next/` |
-| Source of truth | Generated mirror |
+| Nuxt + Vue in `web/` | Next (`web-next/`), Solid (`web-solid/`), portable demos |
+| Source of truth | Generated mirrors / demos |
 
-Tryb B is not a second codebase to maintain by hand. Drift is resolved by re-running convert, or by fixing Tryb A and rebuilding.
+Tryb B is not a second codebase to maintain by hand. Drift is resolved by re-running convert, or by fixing Tryb A and rebuilding. Messaging always lists **all seven shells**, even when day-to-day editing stays on Nuxt.
 
 ---
 
 ## Design system stance
 
-UI primitives are **framework-agnostic Lit components** (`nui-*` from `nucleify-ui`). Tokens live in `portable/nui/`. Vue and React shells wrap the same custom elements — no duplicate button implementations.
+UI primitives are **framework-agnostic Lit components** (`nui-*` from `nucleify-ui`). Tokens live in `portable/nui/`. Every shell wraps the same custom elements — no duplicate button implementations per framework.
 
 ---
 
@@ -116,7 +117,7 @@ Nucleify is MIT-licensed. We optimize for:
 
 ## What Nucleify is not
 
-- Not a meta-framework that hides Vue/React entirely — both remain visible
+- Not a meta-framework that hides host frameworks — Vue, React, Nuxt, Next, Astro, Svelte, and Solid remain visible as shells
 - Not a low-code builder — you write real TypeScript
 - Not a hosted SaaS — you own Supabase and deployment
 - Not finished — the compiler and module set evolve with the product

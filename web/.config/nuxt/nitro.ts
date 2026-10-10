@@ -1,6 +1,8 @@
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { injectFontPreloadsFromOutput } from "./hooks";
+
 const root = resolve(fileURLToPath(import.meta.url), "../../..");
 
 /** Lit/`nucleify-ui` must not run in Workers; stub DOM globals if anything leaks in. */
@@ -61,6 +63,10 @@ export const nitroConfig = {
 			crawlLinks: process.env.PRERENDER_CRAWL_LINKS === "true",
 			failOnError: isPrerenderEnabled(),
 			routes: [],
+		},
+		// Runs after worker `index.mjs` is written (public-assets is too early on CF).
+		hooks: {
+			compiled: injectFontPreloadsFromOutput,
 		},
 	},
 };

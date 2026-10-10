@@ -2,6 +2,8 @@
 
 IR-first portable UI compiler for Nucleify (option C — custom IR, no Mitosis).
 
+**Product coverage:** Vue · React · Nuxt · Next · Astro · Svelte · Solid — emit and shell demos are not limited to React/Next or Vue/Nuxt.
+
 ## Authoring & emit
 
 | Role | Files |

@@ -8,9 +8,9 @@ Podstawowe zasady, wartości i wizja stojąca za Nucleify.
 
 ## Wizja
 
-Nowoczesny development webowy jest rozdrobniony. Wybierasz framework, wiążesz się z jego ekosystemem i za każdym razem budujesz te same funkcje od zera. Gdy wymagania się zmieniają — na przykład migracja z Vue do React — wszystko przepisujesz. Wierzymy, że jest lepszy sposób.
+Nowoczesny development webowy jest rozdrobniony. Wybierasz framework (Vue, React, Svelte, Solid albo host Nuxt/Next/Astro), wiążesz się z jego ekosystemem i za każdym razem budujesz te same funkcje od zera. Gdy wymagania się zmieniają — wszystko przepisujesz. Wierzymy, że jest lepszy sposób.
 
-Nucleify to **modularny framework full-stack** z przenośnym kompilator UI UI w sercu. Napisz komponenty raz w Vue lub `*.nuc.tsx`, a kompilator automatycznie generuje gotowy do produkcji React (lub odwrotnie). Bez ręcznych przepisań. Bez uzależnienia od frameworka. **Jedna baza kodu, każdy cel.**
+Nucleify to **modularny framework full-stack** z przenośnym kompilatorem UI w sercu. Napisz komponenty raz w Vue lub `*.nuc.tsx`, a kompilator emituje cele pod nowoczesne shelle. Bez ręcznych przepisań. Bez uzależnienia od jednego frameworka. **Jedna baza kodu, siedem shelli: Vue · React · Nuxt · Next · Astro · Svelte · Solid** — nie tylko React/Next ani Vue/Nuxt.
 
 ---
 
@@ -31,13 +31,14 @@ To nie tylko branding. To architektura:
 
 ### 1. Napisz raz, uruchom wszędzie
 
-Kompilator Nucleify ucieleśnia naszą filozofię „buduj szybciej". Pisz przenośne komponenty `*.nuc.tsx` — lub twórz bezpośrednio w Vue — i otrzymuj automatycznie output React jakości produkcyjnej. Konwertuj całe powłoki produktu jedną komendą:
+Kompilator Nucleify ucieleśnia naszą filozofię „buduj szybciej". Pisz przenośne komponenty `*.nuc.tsx` — lub twórz bezpośrednio w Vue — i emituj / konwertuj powłoki (Next, Solid, demo Vue/React/Nuxt/Next/Solid). Konwertuj produkt jedną komendą:
 
 ```bash
-pnpm compiler -- convert
+make web TARGET=next
+make web TARGET=solid
 ```
 
-Koniec z utrzymywaniem równoległych baz kodu. Koniec z ręcznymi migracjami frameworków. **Kompilator rozwiązuje problem przenośności.**
+Koniec z utrzymywaniem równoległych baz kodu dla każdego shella. **Kompilator rozwiązuje problem przenośności na siedem celów, nie na dwa.**
 
 ### 2. Modułowość jest niepodlegotna
 
