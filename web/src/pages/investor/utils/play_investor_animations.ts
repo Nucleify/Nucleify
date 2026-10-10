@@ -76,61 +76,15 @@ function setVar(el: HTMLElement, name: string, value: string): void {
   el.style.setProperty(name, value)
 }
 
-function offsetFromAncestor(
-  el: HTMLElement,
-  ancestor: HTMLElement
-): { x: number; y: number } {
-  let x = 0
-  let y = 0
-  let node: HTMLElement | null = el
-  while (node && node !== ancestor) {
-    x += node.offsetLeft
-    y += node.offsetTop
-    const parent: Element | null = node.offsetParent
-    if (!(parent instanceof HTMLElement) || parent === node) break
-    if (parent !== ancestor && !ancestor.contains(parent)) {
-      node = node.parentElement
-      continue
-    }
-    node = parent
-  }
-  return { x, y }
-}
-
-function clampPercent(value: number, min: number, max: number): string {
-  return `${Math.min(max, Math.max(min, value)).toFixed(2)}%`
-}
-
-function setIrisOrigin(
-  root: HTMLElement,
-  mark: HTMLElement | null,
-  compact: boolean
-): void {
+/** CSS defaults only — no layout reads (avoids boot forced reflow). */
+function setIrisOrigin(root: HTMLElement, compact: boolean): void {
   if (!compact) {
     setVar(root, '--home-iris-x', '18%')
     setVar(root, '--home-iris-y', '40%')
     return
   }
-
-  if (!mark) {
-    setVar(root, '--home-iris-x', '12%')
-    setVar(root, '--home-iris-y', '16%')
-    return
-  }
-
-  const { x, y } = offsetFromAncestor(mark, root)
-  const w = root.offsetWidth || 1
-  const h = root.offsetHeight || 1
-  setVar(
-    root,
-    '--home-iris-x',
-    clampPercent(((x + mark.offsetWidth * 0.08) / w) * 100, 6, 72)
-  )
-  setVar(
-    root,
-    '--home-iris-y',
-    clampPercent(((y + mark.offsetHeight * 0.4) / h) * 100, 8, 42)
-  )
+  setVar(root, '--home-iris-x', '12%')
+  setVar(root, '--home-iris-y', '18%')
 }
 
 function clearMotionStyles(el: HTMLElement | null | undefined): void {
@@ -157,7 +111,7 @@ function settleHeroBits(items: HTMLElement[]): void {
 
 function warmBrandFonts(): void {
   void Promise.all([
-    document.fonts.load("650 4rem 'JetBrains Mono'"),
+    document.fonts.load("700 4rem 'JetBrains Mono'"),
     document.fonts.load("600 4rem 'JetBrains Mono'"),
   ]).catch(() => {
     /* fallback stack is fine */
@@ -205,7 +159,7 @@ export async function playInvestorAnimations(
   const headline = q(root, '.nuc-home-hero-headline')
   const support = q(root, '.nuc-home-hero-support')
   const cta = q(root, '.nuc-home-hero-cta')
-  const proof = q(root, '.nuc-home-hero-proof')
+  const proof = q(root, '.nuc-inv-glance') ?? q(root, '.nuc-home-hero-proof')
   const panel = q(root, '.nuc-home-hero-panel')
 
   for (const el of [
@@ -223,15 +177,17 @@ export async function playInvestorAnimations(
     clearMotionStyles(el)
   }
 
-  for (const el of [rail, eyebrow, mark, cta, proof, panel]) {
+  for (const el of compact ? [] : [rail, eyebrow, mark, cta, proof, panel]) {
     if (el) el.style.opacity = '0'
   }
-  if (headline) headline.style.clipPath = 'inset(0 100% 0 0)'
-  if (support) support.style.clipPath = 'inset(100% 0 0 0)'
+  if (!compact) {
+    if (headline) headline.style.clipPath = 'inset(0 100% 0 0)'
+    if (support) support.style.clipPath = 'inset(100% 0 0 0)'
+  }
 
   const finalBrand = brand?.textContent?.trim() || 'Nucleify'
   const glyphs = '01<>{}[]/\\|#$%#_entropynucleus'
-  if (brand) {
+  if (brand && !compact) {
     const startCipher = () => {
       brand.textContent = ''
       brand.setAttribute('aria-label', finalBrand)
@@ -296,23 +252,20 @@ export async function playInvestorAnimations(
     cleanups.push(() => cancelAnimationFrame(cipherRaf))
   }
 
-  setVar(root, '--home-iris', '0%')
-  setIrisOrigin(root, mark, compact)
-  if (compact && mark) {
-    mark.style.transformOrigin = 'left 0.55em'
+  setIrisOrigin(root, compact)
+  const irisBoot = document.documentElement.classList.contains('nuc-iris-boot')
+  if (irisBoot) {
+    setVar(root, '--home-iris', '0%')
+    const irisOpenTimer = window.setTimeout(
+      () => {
+        setVar(root, '--home-iris', '165%')
+      },
+      compact ? 40 : 80
+    )
+    cleanups.push(() => window.clearTimeout(irisOpenTimer))
+  } else {
+    setVar(root, '--home-iris', '165%')
   }
-
-  const iris = { r: 0 }
-  track(
-    cleanups,
-    animate(iris, {
-      r: 165,
-      duration: 1700,
-      delay: 80,
-      ease: 'inOutCubic',
-      onUpdate: () => setVar(root, '--home-iris', `${iris.r}%`),
-    })
-  )
 
   const clearHeroFilters = () => {
     for (const el of [eyebrow, mark, headline, support, cta, proof, panel]) {
@@ -331,11 +284,12 @@ export async function playInvestorAnimations(
           (el): el is HTMLElement => Boolean(el)
         )
       )
+      armSectionObservers()
     },
   })
   track(cleanups, timeline)
 
-  if (rail) {
+  if (!compact && rail) {
     timeline.add(
       rail,
       {
@@ -348,7 +302,7 @@ export async function playInvestorAnimations(
     )
   }
 
-  if (eyebrow) {
+  if (eyebrow && !compact) {
     timeline.add(
       eyebrow,
       {
@@ -361,21 +315,23 @@ export async function playInvestorAnimations(
   }
 
   if (mark) {
-    mark.style.opacity = '0'
-    timeline.add(
-      mark,
-      {
-        opacity: [0, 1],
-        scale: [0.55, 1],
-        rotate: [-10, 0],
-        duration: 1150,
-        ease: 'outBack',
-      },
-      60
-    )
+    if (!compact) {
+      mark.style.opacity = '0'
+      timeline.add(
+        mark,
+        {
+          opacity: [0, 1],
+          scale: [0.55, 1],
+          rotate: [-10, 0],
+          duration: 1150,
+          ease: 'outBack',
+        },
+        60
+      )
+    }
   }
 
-  if (headline) {
+  if (headline && !compact) {
     timeline.add(
       headline,
       {
@@ -386,7 +342,7 @@ export async function playInvestorAnimations(
     )
   }
 
-  if (support) {
+  if (support && !compact) {
     timeline.add(
       support,
       {
@@ -397,7 +353,7 @@ export async function playInvestorAnimations(
     )
   }
 
-  if (cta) {
+  if (cta && !compact) {
     timeline.add(
       cta,
       {
@@ -410,7 +366,7 @@ export async function playInvestorAnimations(
     )
   }
 
-  if (proof) {
+  if (proof && !compact) {
     timeline.add(
       proof,
       {
@@ -422,7 +378,7 @@ export async function playInvestorAnimations(
     )
   }
 
-  if (panel) {
+  if (panel && !compact) {
     timeline.add(
       panel,
       {
@@ -484,7 +440,7 @@ export async function playInvestorAnimations(
   }
 
   const viewportShare = (entry: IntersectionObserverEntry): number => {
-    const rootHeight = entry.rootBounds?.height ?? scroller.clientHeight
+    const rootHeight = entry.rootBounds?.height
     if (!rootHeight) return 0
     return entry.intersectionRect.height / rootHeight
   }
@@ -557,115 +513,159 @@ export async function playInvestorAnimations(
     })
   }
 
-  // Hero re-entry
-  const hero = q(root, '.nuc-home-hero')
-  const heroBits = [eyebrow, mark, headline, support, cta, proof, panel].filter(
-    (el): el is HTMLElement => Boolean(el)
-  )
+  // Hero re-entry + section reveals — after intro boot (avoids IO reflow thrash).
+  let sectionObserversArmed = false
+  const armSectionObservers = () => {
+    if (sectionObserversArmed) return
+    sectionObserversArmed = true
 
-  {
-    let visible = false
-    let revealed = false
-    let local: Array<() => void> = []
+    // Hero re-entry
+    const hero = q(root, '.nuc-home-hero')
+    const heroBits = [
+      eyebrow,
+      mark,
+      headline,
+      support,
+      cta,
+      proof,
+      panel,
+    ].filter((el): el is HTMLElement => Boolean(el))
 
-    const clearLocal = () => {
-      for (const fn of local.reverse()) fn()
-      local = []
-    }
+    {
+      let visible = false
+      let revealed = false
+      let local: Array<() => void> = []
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const share = viewportShare(entry)
-          if (entry.isIntersecting && share >= 0.22) {
-            if (visible) continue
-            visible = true
-            clearLocal()
-            if (!revealed) {
-              revealed = true
-              continue
-            }
-            if (!heroBooted) continue
-            for (const item of heroBits) {
-              item.style.opacity = '0'
-              item.style.filter = 'blur(10px)'
-              item.style.removeProperty('translate')
-            }
-            track(
-              local,
-              animate(heroBits, {
-                opacity: [0, 1],
-                filter: ['blur(10px)', 'blur(0px)'],
-                duration: 700,
-                delay: stagger(60),
-                ease: 'outExpo',
-                onComplete: () => settleHeroBits(heroBits),
-              })
-            )
-          } else if (share <= 0.1 && visible) {
-            visible = false
-            clearLocal()
-            if (compact) {
-              settleHeroBits(heroBits)
-              continue
-            }
-            // Opacity/blur only — keep translate at 0 so rail jumps to intro
-            // do not flash content 24px low before the re-entry tween.
-            for (const item of heroBits) {
-              item.style.opacity = '0'
-              item.style.filter = 'blur(10px)'
-              item.style.removeProperty('translate')
+      const clearLocal = () => {
+        for (const fn of local.reverse()) fn()
+        local = []
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            const share = viewportShare(entry)
+            if (entry.isIntersecting && share >= 0.22) {
+              if (visible) continue
+              visible = true
+              clearLocal()
+              if (!revealed) {
+                revealed = true
+                continue
+              }
+              if (!heroBooted) continue
+              for (const item of heroBits) {
+                item.style.opacity = '0'
+                item.style.filter = 'blur(10px)'
+                item.style.removeProperty('translate')
+              }
+              track(
+                local,
+                animate(heroBits, {
+                  opacity: [0, 1],
+                  filter: ['blur(10px)', 'blur(0px)'],
+                  duration: 700,
+                  delay: stagger(60),
+                  ease: 'outExpo',
+                  onComplete: () => settleHeroBits(heroBits),
+                })
+              )
+            } else if (share <= 0.1 && visible) {
+              visible = false
+              clearLocal()
+              if (compact) {
+                settleHeroBits(heroBits)
+                continue
+              }
+              // Opacity/blur only — keep translate at 0 so rail jumps to intro
+              // do not flash content 24px low before the re-entry tween.
+              for (const item of heroBits) {
+                item.style.opacity = '0'
+                item.style.filter = 'blur(10px)'
+                item.style.removeProperty('translate')
+              }
             }
           }
-        }
-      },
-      { root: scroller, threshold: ioThresholds }
-    )
+        },
+        { root: scroller, threshold: ioThresholds }
+      )
 
-    if (hero) observer.observe(hero)
-    cleanups.push(() => {
-      observer.disconnect()
-      clearLocal()
-    })
+      if (hero) observer.observe(hero)
+      cleanups.push(() => {
+        observer.disconnect()
+        clearLocal()
+      })
+    }
+
+    revealMask(q(root, '.nuc-investor-thesis'), [
+      ...qa(
+        root,
+        '.nuc-investor-thesis .nuc-home-eyebrow, .nuc-investor-thesis .nuc-home-title, .nuc-investor-thesis .nuc-home-support'
+      ),
+      ...qa(root, '.nuc-investor-thesis-card'),
+    ])
+
+    revealMask(q(root, '.nuc-investor-savings'), [
+      ...qa(
+        root,
+        '.nuc-investor-savings .nuc-home-eyebrow, .nuc-investor-savings .nuc-home-title, .nuc-investor-savings .nuc-home-support, .nuc-investor-savings-note'
+      ),
+      ...qa(root, '.nuc-investor-savings-card'),
+    ])
+
+    revealMask(q(root, '.nuc-investor-wedge'), [
+      ...qa(
+        root,
+        '.nuc-investor-wedge .nuc-home-eyebrow, .nuc-investor-wedge .nuc-home-title, .nuc-investor-wedge .nuc-home-support'
+      ),
+      ...qa(root, '.nuc-investor-wedge-step'),
+    ])
+
+    revealMask(q(root, '.nuc-investor-surface'), [
+      ...qa(
+        root,
+        '.nuc-investor-surface .nuc-home-eyebrow, .nuc-investor-surface .nuc-home-title, .nuc-investor-surface .nuc-home-support, .nuc-investor-surface-board'
+      ),
+    ])
+
+    revealMask(q(root, '.nuc-investor-ask'), [
+      ...qa(
+        root,
+        '.nuc-investor-ask .nuc-home-title, .nuc-investor-ask .nuc-home-support, .nuc-investor-ask-cta, .nuc-investor-ask-footer'
+      ),
+    ])
   }
 
-  revealMask(q(root, '.nuc-investor-thesis'), [
-    ...qa(
-      root,
-      '.nuc-investor-thesis .nuc-home-eyebrow, .nuc-investor-thesis .nuc-home-title, .nuc-investor-thesis .nuc-home-support'
-    ),
-    ...qa(root, '.nuc-investor-thesis-card'),
-  ])
+  if (compact) {
+    const irisBoot =
+      document.documentElement.classList.contains('nuc-iris-boot')
+    const irisDone = window.setTimeout(
+      () => {
+        finishBoot()
+        heroBooted = true
+        armSectionObservers()
+      },
+      irisBoot ? 1150 : 0
+    )
+    cleanups.push(() => window.clearTimeout(irisDone))
+    return () => {
+      for (const fn of cleanups.reverse()) fn()
+      root.classList.remove('nuc-home-ready', 'nuc-home-booting')
+    }
+  }
 
-  revealMask(q(root, '.nuc-investor-savings'), [
-    ...qa(
-      root,
-      '.nuc-investor-savings .nuc-home-eyebrow, .nuc-investor-savings .nuc-home-title, .nuc-investor-savings .nuc-home-support, .nuc-investor-savings-note'
-    ),
-    ...qa(root, '.nuc-investor-savings-card'),
-  ])
-
-  revealMask(q(root, '.nuc-investor-wedge'), [
-    ...qa(
-      root,
-      '.nuc-investor-wedge .nuc-home-eyebrow, .nuc-investor-wedge .nuc-home-title, .nuc-investor-wedge .nuc-home-support'
-    ),
-    ...qa(root, '.nuc-investor-wedge-step'),
-  ])
-
-  revealMask(q(root, '.nuc-investor-surface'), [
-    ...qa(
-      root,
-      '.nuc-investor-surface .nuc-home-eyebrow, .nuc-investor-surface .nuc-home-title, .nuc-investor-surface .nuc-home-support, .nuc-investor-surface-board'
-    ),
-  ])
-
-  revealMask(q(root, '.nuc-investor-ask'), [
-    ...qa(
-      root,
-      '.nuc-investor-ask .nuc-home-title, .nuc-investor-ask .nuc-home-support, .nuc-investor-ask-cta, .nuc-investor-ask-footer'
-    ),
-  ])
+  const safety = window.setTimeout(() => {
+    finishBoot()
+    heroBooted = true
+    clearHeroFilters()
+    settleHeroBits(
+      [eyebrow, mark, brand, headline, support, cta, proof, panel].filter(
+        (el): el is HTMLElement => Boolean(el)
+      )
+    )
+    armSectionObservers()
+  }, 3000)
+  cleanups.push(() => window.clearTimeout(safety))
 
   return () => {
     for (const fn of cleanups.reverse()) fn()

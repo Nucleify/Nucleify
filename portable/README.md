@@ -22,9 +22,13 @@ portable/
 
 ## Product shells
 
+Coverage story for marketing and docs: **Vue · React · Nuxt · Next · Astro · Svelte · Solid** (seven shells, one nucleus — not React/Next-only or Vue/Nuxt-only).
+
 | Command | What it is | Default |
 |---------|------------|---------|
 | `make web` | Landing product shell | **Nuxt** (`TARGET=nuxt`) |
+| `make web TARGET=next` | Landing on Next (tryb B) | `web-next/` |
+| `make web TARGET=solid` | Landing on Solid (tryb B) | `web-solid/` |
 | `make admin` | Admin product shell | **Nuxt** |
 | `make admin TARGET=next` | Admin on Next (tryb B) | `admin-next/` |
 | `make docs` | Docs product shell | **Astro** |

@@ -16,20 +16,20 @@ export const NUC_INVESTOR_SECTIONS = [
 ] as const satisfies ReadonlyArray<{ id: NucInvestorSectionId; label: string }>
 
 export const NUC_INVESTOR_SEO = {
-  title: 'Investor — Nucleify',
+  title: 'Nucleify Investor Brief — One Codebase, Every Framework',
   description:
-    'One shared nucleus for modern web stacks. Cut rewrite tax, ship Vue, React, Nuxt, Next, and more from a single install.',
-  ogImage: '/img/logo.svg',
+    'Investor brief for Nucleify: one shared codebase ships to Vue, React, Nuxt, Next, Astro, Svelte and Solid. Modeled $180k–$320k per year kept when teams stop rewriting for each framework.',
+  ogImage: '/img/holo-cube.svg',
 } as const
 
 export const NUC_INVESTOR_COPY = {
   brand: 'Nucleify',
   sectionsLabel: 'Investor sections',
   heroEyebrow: 'Investor brief',
-  headline: 'One nucleus.',
+  headline: 'Stop paying for rewrites.',
   support:
-    'Teams burn quarters rewriting the same product across Vue, React, Nuxt, and Next. Nucleify keeps domain logic, APIs, and portable UI in one shared layer — then emits into the stack the market asks for.',
-  ctaPrimary: 'Talk to us',
+    'One shared codebase. Seven frameworks. No second platform team when the stack changes.',
+  ctaPrimary: 'Request intro',
   ctaSecondary: 'See product',
   ctaTertiary: 'Read the thesis',
   githubHref: 'https://github.com/Nucleify/Nucleify',
@@ -80,22 +80,16 @@ export const NUC_INVESTOR_COPY = {
   navHome: 'Product',
 } as const
 
-export const NUC_INVESTOR_PROOF = [
-  'Open source',
-  'Multi-shell emit',
-  'Supabase-ready',
-] as const
-
 export const NUC_INVESTOR_THESIS = [
   {
     index: '01',
     title: 'Stack churn is structural',
-    body: 'Vue ↔ React migrations and Nuxt ↔ Next host swaps keep recurring. Each cycle duplicates domain work that should have lived once.',
+    body: 'Vue ↔ React, Nuxt ↔ Next, and Astro / Svelte / Solid host swaps keep recurring. Each cycle duplicates domain work that should have lived once.',
   },
   {
     index: '02',
     title: 'Hiring follows frameworks',
-    body: 'Talent markets price React and Vue separately. A nucleus that ships both without a second product org widens the hiring funnel.',
+    body: 'Talent markets price React, Vue, Svelte, and Solid separately. A nucleus that ships seven shells without a second product org widens the hiring funnel.',
   },
   {
     index: '03',
@@ -142,16 +136,20 @@ function investorSaving(
   return item
 }
 
-/** Intro snapshot. Dollars stay tied to the savings model. Shells = emit diagram. */
-export const NUC_INVESTOR_DEAL = {
-  source: 'nucleus',
-  sourceFile: '*.nuc.tsx',
+/** Intro plate — three numbers, one sentence. Dollars from savings model. */
+export const NUC_INVESTOR_GLANCE = {
+  eyebrow: 'At a glance',
+  from: '7',
+  to: '1',
+  fromLabel: 'frameworks',
+  toLabel: 'codebase',
   figure: investorSaving('dollars').value,
   figureLead: '$180k',
   figureTrail: '–$320k',
-  unit: 'kept / year',
-  caption: 'Second team never staffed',
-  note: 'Illustrative model · not a forecast',
+  figureUnit: '/ year kept',
+  line: 'One team. No rewrite when the stack changes.',
+  stacks: 'Vue · React · Nuxt · Next · Astro · Svelte · Solid',
+  note: 'Illustrative · mid-size product · not a forecast',
 } as const
 
 export const NUC_INVESTOR_WEDGE = [
@@ -170,7 +168,7 @@ export const NUC_INVESTOR_WEDGE = [
   {
     phase: 'Expand',
     title: 'TAM multiplies without headcount',
-    body: 'Every new shell is market coverage, not another platform team. Vue today, React tomorrow — same capital base, wider addressable surface.',
+    body: 'Every new shell is market coverage, not another platform team. Vue or Nuxt today, Next or Astro tomorrow, Svelte or Solid when the brief asks — same capital base, wider addressable surface.',
     signal: 'Leverage, not linear cost',
   },
   {
@@ -181,7 +179,7 @@ export const NUC_INVESTOR_WEDGE = [
   },
 ] as const
 
-/** Framework shells for the intro emit diagram only — not the Surface rail. */
+/** Framework shells — shared labels for investor surfaces / stack lists. */
 export const NUC_INVESTOR_SHELLS = [
   {
     id: 'vue',
@@ -241,7 +239,7 @@ export const NUC_INVESTOR_SURFACE = [
     index: '01',
     title: 'Beachhead buyers',
     description:
-      'Mid-size product orgs already paying dual-shell tax. They feel rewrite burn in the current quarter — not as a roadmap idea.',
+      'Mid-size product orgs already paying multi-shell tax (often React/Next + Vue/Nuxt, also Astro docs, Svelte/Solid experiments). They feel rewrite burn in the current quarter — not as a roadmap idea.',
     outcome: 'Pull demand',
     proof: 'Dual-shell product teams',
     metric: 'Now',

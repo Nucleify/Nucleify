@@ -1,10 +1,12 @@
 # Introduction
 
-## Write Vue. Ship React when you need it.
+## One nucleus. Seven shells.
 
-**Nucleify** is a modular full-stack monorepo: develop in Nuxt 4 (Tryb A), share logic through six feature modules, and optionally emit a Next.js mirror (Tryb B) with the portable UI compiler. Supabase powers the backend; a Nitro API gateway in `web/` dispatches to module handlers.
+**Nucleify** is a modular full-stack monorepo: develop in Nuxt 4 (Tryb A), share logic through six feature modules, and emit or convert product shells across modern web frameworks with the portable UI compiler. Supabase powers the backend; a Nitro API gateway in `web/` dispatches to module handlers.
 
-> *"Stop choosing between frameworks. Ship both."*
+**Emit / shells:** Vue · React · Nuxt · Next · Astro · Svelte · Solid — not a React/Next-only or Vue/Nuxt-only product.
+
+> *"Stop choosing between frameworks. Ship the nucleus once — boot every shell."*
 
 ---
 
@@ -34,11 +36,12 @@ Supporting directories:
 | Mode | Stack | Command | Output |
 |------|-------|---------|--------|
 | **Tryb A** (default) | Nuxt 4 + Vue 3.5 | `make web` | `web/` |
-| **Tryb B** (generated) | Next 15 + React 19 | `make web TARGET=next` | gitignored emit tree (see [Compiler](/en/docs/core-concepts/compiler)) |
+| **Tryb B** (generated) | Next / Solid product shells | `make web TARGET=next` · `make web TARGET=solid` | gitignored emit tree (see [Compiler](/en/docs/core-concepts/compiler)) |
+| **Emit demos** | Vue · React · Nuxt · Next · Solid | `make vue` · `react` · `nuxt` · `next` · `solid` | `{framework}/demo` |
 
-**Tryb A** is where you develop daily — pages, composables, and shared modules live in Vue. **Tryb B** converts the product shell to React when you need a Next deployment or want to validate compiler output.
+**Tryb A** is where you develop daily — pages, composables, and shared modules live in Vue. **Tryb B** and portable emit demos fan the same nucleus into other shells (Next, Solid, and framework demos including React/Vue/Nuxt). Astro hosts the docs site; Svelte and Solid are first-class emit/surface targets in product messaging and compiler work.
 
-Both modes share `shared_modules/`, Supabase, and design tokens. You do not maintain two unrelated codebases.
+All paths share `shared_modules/`, Supabase, and design tokens. You do not maintain seven unrelated codebases.
 
 ---
 
@@ -118,7 +121,7 @@ Module handlers register in `shared_modules/nuc_api/supabase/api/gateway_dispatc
 
 ## Design system
 
-UI primitives are **Lit web components** from `nucleify-ui` (`nui-button`, `nui-icon`, …). Design tokens and registration live in `portable/nui/`. Vue and React apps consume the same custom elements; the compiler maps `nui-*` tags in `*.nuc.tsx` to both emit targets.
+UI primitives are **Lit web components** from `nucleify-ui` (`nui-button`, `nui-icon`, …). Design tokens and registration live in `portable/nui/`. Every shell consumes the same custom elements; the compiler maps `nui-*` tags in `*.nuc.tsx` across emit targets (Vue, React, Solid, and sibling shells).
 
 ---
 
@@ -158,6 +161,8 @@ Full breakdown: [Monorepo Layout](/en/docs/core-concepts/monorepo)
 | `make run` | Create `.env`, install deps, husky, sync rules, build compiler |
 | `make web` | Start Nuxt dev server (`web/`) |
 | `make web TARGET=next` | Convert Vue shell to Next, start dev (generated output) |
+| `make web TARGET=solid` | Convert Vue shell to Solid, start dev (generated output) |
+| `make vue` / `react` / `nuxt` / `next` / `solid` | Portable emit demos |
 | `make admin` | Start admin Nuxt dev |
 | `make docs` | Start Astro docs dev |
 | `make compiler` | Run `pnpm compiler:check` + `pnpm compiler:build` |

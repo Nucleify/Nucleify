@@ -1,4 +1,4 @@
-# <img src="https://nucleify.io/favicon.ico" width="17" height="17" /> &nbsp; nuc_globals
+# <img src="https://nucleify.io/img/holo-cube.svg" width="22" height="22" alt="" /> &nbsp; nuc_globals
 
 Module that contains global functions, constants, animations, loading, and media utilities.
 

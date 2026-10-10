@@ -161,10 +161,11 @@ export interface NucHomeStackItem {
 }
 
 export const NUC_HOME_SEO = {
-  title: 'Nucleify — Modular monorepo for Vue, React, Nuxt & Next',
+  title:
+    'Nucleify — One nucleus for Vue, React, Nuxt, Next, Astro, Svelte & Solid',
   description:
-    'Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, and Supabase from one install — without rewriting the product.',
-  ogImage: 'https://nucleify.io/img/logo.svg',
+    'Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, Astro, Svelte, and Solid from one install — without rewriting the product.',
+  ogImage: 'https://nucleify.io/img/holo-cube.svg',
 } as const
 
 export const NUC_HOME_DOCS = {
@@ -187,7 +188,7 @@ export const NUC_HOME_COPY = {
   heroEyebrow: 'Open-source nucleus',
   headline: 'Ship one module. Boot every shell.',
   support:
-    'shared_modules carry API, SQL, and UI. The portable compiler emits Vue, React, Nuxt, and Next — Supabase already on the gateway.',
+    'shared_modules carry API, SQL, and UI. The portable compiler emits Vue, React, Nuxt, Next, Astro, Svelte, and Solid — Supabase already on the gateway.',
   ctaPrimary: 'Read the docs',
   ctaSecondary: 'Star on GitHub',
   ctaTertiary: 'Why Nucleify',
@@ -214,7 +215,7 @@ export const NUC_HOME_COPY = {
   stackEyebrow: 'Runtime surface',
   stackTitle: 'Pick a shell. Keep the nucleus.',
   stackSupport:
-    'One domain in shared_modules. Product shells boot with make web; emit demos fan the same nucleus into Vue, React, Nuxt, and Next.',
+    'One domain in shared_modules. Product shells boot with make web; emit demos fan the same nucleus into Vue, React, Nuxt, Next, Astro, Svelte, and Solid.',
   stackCta: 'See the emit',
   stackStageLabel: 'active shell',
   pulseEyebrow: 'Scale without rewrite',
@@ -234,13 +235,13 @@ export const NUC_HOME_COPY = {
   coreEyebrow: 'One installable unit',
   coreTitle: 'A module is a product slice.',
   coreSupport:
-    'API, SQL, and UI in one nuc_* package. Drop it on the gateway — Vue and React stay aligned.',
+    'API, SQL, and UI in one nuc_* package. Drop it on the gateway — every shell stays aligned.',
   coreCta: 'See the cost stay flat',
   coreDocsCta: 'Read modules docs',
   coreLaneSdk: 'sdk',
   coreLaneData: 'data',
   coreLaneUi: 'ui',
-  coreLive: 'vue · react · one module',
+  coreLive: 'seven shells · one module',
   coreInspect: 'live slice',
   startEyebrow: 'One installable unit',
   startTitle: 'A module is a product slice.',
@@ -258,7 +259,7 @@ export const NUC_HOME_COPY = {
   compilerEyebrow: 'Portable compiler',
   compilerTitle: 'Author once. Open the emit.',
   compilerSupport:
-    'Write the component in *.nuc.tsx. The IR prints Vue, React, Nuxt, Next, Astro, and Svelte in native syntax — same props, same primitive.',
+    'Write the component in *.nuc.tsx. The IR prints Vue, React, Nuxt, Next, Astro, Svelte, and Solid in native syntax — same props, same primitive.',
   compilerHub: '.nuc',
   compilerHubLabel: 'author',
   compilerEmitLabel: 'emit',
@@ -399,7 +400,7 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
         id: 'sdk',
         title: 'Typed client',
         path: 'shared_modules/nuc_api/utils/api_request.ts',
-        detail: 'One request helper. Vue and React stay on the same types.',
+        detail: 'One request helper. Every shell stays on the same types.',
       },
       {
         id: 'data',
@@ -451,7 +452,7 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
         id: 'sdk',
         title: 'Locale load',
         path: 'shared_modules/nuc_languages/utils/fetch_locale_messages.ts',
-        detail: 'Load catalogs once. Same keys on Vue and React.',
+        detail: 'Load catalogs once. Same keys on every shell.',
       },
       {
         id: 'data',
@@ -555,7 +556,7 @@ export const NUC_HOME_PILLARS: NucHomePillar[] = [
     index: '01',
     title: 'A module is a product slice',
     description:
-      'Install the feature, not a rewrite. A nuc_* package drops API, SQL, and UI on one gateway — ready in Vue and React from the same unit.',
+      'Install the feature, not a rewrite. A nuc_* package drops API, SQL, and UI on one gateway — ready across Vue, React, Nuxt, Next, Astro, Svelte, and Solid from the same unit.',
     outcome: 'Weeks of scaffolding → hours',
     proof: 'api · sql · ui in one unit',
   },
@@ -688,6 +689,18 @@ const SNIPPET_ASTRO = [
   '</nui-button>',
 ]
 
+const SNIPPET_SOLID = [
+  'type Props = { label: string }',
+  '',
+  'export function Button(props: Props) {',
+  '  return (',
+  '    <nui-button variant="filled">',
+  '      {props.label}',
+  '    </nui-button>',
+  '  )',
+  '}',
+]
+
 export const NUC_HOME_COMPILER_SOURCE = {
   file: 'Button.nuc.tsx',
   snippet: [
@@ -768,6 +781,17 @@ export const NUC_HOME_COMPILER_NODES: NucHomeCompilerNode[] = [
     snippet: SNIPPET_SVELTE,
     x: 66,
     y: 74,
+  },
+  {
+    id: 'solid',
+    label: 'Solid',
+    icon: 'simple-icons:solid',
+    color: '#72b7eb',
+    command: 'make web target=SOLID',
+    file: 'Button.tsx',
+    snippet: SNIPPET_SOLID,
+    x: 50,
+    y: 88,
   },
 ]
 

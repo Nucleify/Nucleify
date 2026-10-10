@@ -1,14 +1,16 @@
 /** Konfiguracja fontów (Google Fonts) i ikon (@nuxt/icon) */
 export const googleFontsConfig = {
 	families: {
-		"Instrument Sans": [400, 500, 600, 700],
-		"JetBrains Mono": [500, 600, 650],
+		// Keep weight set small — each weight is another woff2 on the critical path.
+		"Instrument Sans": [400, 600],
+		// No 650 on Google Fonts; 600/700 cover brand + UI mono.
+		"JetBrains Mono": [600, 700],
 	},
-	display: "swap" as const,
+	display: "optional" as const,
 	subsets: ["latin"],
 	preload: true,
 	prefetch: false,
-	preconnect: false,
+	preconnect: true,
 	download: true,
 	base64: false,
 };

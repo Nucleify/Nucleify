@@ -81,8 +81,8 @@ a:hover {
 
 .docs-brand__logo {
   display: block;
-  width: 1.75rem;
-  height: auto;
+  width: 2rem;
+  height: 2rem;
   flex-shrink: 0;
 }
 

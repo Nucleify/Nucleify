@@ -6,7 +6,7 @@ import {
 } from "nuxt-schema-org/schema";
 
 const baseDescription =
-	"Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, and Supabase from one install.";
+	"Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, Astro, Svelte, and Solid from one install.";
 
 const person = definePerson({
 	name: "Szymon Radomski",
@@ -19,7 +19,7 @@ const person = definePerson({
 const organization = defineOrganization({
 	name: "Nucleify",
 	url: "https://nucleify.io",
-	logo: "https://nucleify.io/img/logo.svg",
+	logo: "https://nucleify.io/img/holo-cube.svg",
 	description: baseDescription,
 	sameAs: [
 		"https://github.com/Nucleify/Nucleify",
