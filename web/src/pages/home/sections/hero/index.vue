@@ -31,9 +31,10 @@
             class="nuc-home-btn is-primary"
             @click="onPrimary"
           >
-            <Icon
-              name="mdi:book-open-page-variant-outline"
+            <nui-icon
+              icon="mdi:book-open-page-variant-outline"
               class="nuc-home-btn-icon"
+              mode="svg"
             />
             <span>{{ copy.ctaPrimary }}</span>
           </button>
@@ -42,12 +43,16 @@
             class="nuc-home-btn is-outlined"
             @click="onSecondary"
           >
-            <Icon name="mdi:github" class="nuc-home-btn-icon" />
+            <nui-icon icon="mdi:github" class="nuc-home-btn-icon" mode="svg" />
             <span>{{ copy.ctaSecondary }}</span>
           </button>
           <button type="button" class="nuc-home-next" @click="onWhy">
             <span>{{ copy.ctaTertiary }}</span>
-            <Icon name="mdi:arrow-down" class="nuc-home-next-icon" />
+            <nui-icon
+              icon="mdi:arrow-down"
+              class="nuc-home-next-icon"
+              mode="svg"
+            />
           </button>
         </div>
 

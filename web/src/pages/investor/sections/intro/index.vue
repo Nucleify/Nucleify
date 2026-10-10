@@ -31,7 +31,11 @@
             class="nuc-home-btn is-primary"
             @click="onPrimary"
           >
-            <Icon name="mdi:email-outline" class="nuc-home-btn-icon" />
+            <nui-icon
+              icon="mdi:email-outline"
+              class="nuc-home-btn-icon"
+              mode="svg"
+            />
             <span>{{ copy.ctaPrimary }}</span>
           </button>
           <button
@@ -39,12 +43,20 @@
             class="nuc-home-btn is-outlined"
             @click="onSecondary"
           >
-            <Icon name="mdi:rocket-launch-outline" class="nuc-home-btn-icon" />
+            <nui-icon
+              icon="mdi:rocket-launch-outline"
+              class="nuc-home-btn-icon"
+              mode="svg"
+            />
             <span>{{ copy.ctaSecondary }}</span>
           </button>
           <button type="button" class="nuc-home-next" @click="onThesis">
             <span>{{ copy.ctaTertiary }}</span>
-            <Icon name="mdi:arrow-down" class="nuc-home-next-icon" />
+            <nui-icon
+              icon="mdi:arrow-down"
+              class="nuc-home-next-icon"
+              mode="svg"
+            />
           </button>
         </div>
       </div>
