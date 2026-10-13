@@ -1,20 +1,20 @@
 <template>
   <section
     id="ask"
-    class="nuc-investor-ask nuc-home-panel"
+    class="nuc-home-close nuc-home-panel"
     :class="{ 'is-form': formOpen }"
     aria-labelledby="nuc-investor-ask-title"
   >
-    <div class="nuc-investor-ask-stage">
-      <div class="nuc-investor-ask-pitch" :aria-hidden="formOpen">
-        <div class="nuc-investor-ask-panel">
-          <div class="nuc-investor-ask-copy">
+    <div class="nuc-home-close-stage">
+      <div class="nuc-home-close-pitch" :aria-hidden="formOpen">
+        <div class="nuc-home-close-panel">
+          <div class="nuc-home-close-copy">
             <h2 id="nuc-investor-ask-title" class="nuc-home-title">
               {{ copy.askTitle }}
             </h2>
             <p class="nuc-home-support">{{ copy.askSupport }}</p>
           </div>
-          <div class="nuc-investor-ask-cta">
+          <div class="nuc-home-close-cta">
             <nui-button
               :label="copy.askCta"
               variant="primary"
@@ -27,23 +27,23 @@
       </div>
 
       <div
-        class="nuc-investor-ask-commerce"
+        class="nuc-home-close-commerce"
         :aria-hidden="!formOpen"
         :inert="!formOpen"
       >
-        <header class="nuc-investor-ask-commerce-head">
+        <header class="nuc-home-close-commerce-head">
           <div>
-            <p class="nuc-investor-ask-eyebrow">Investor desk</p>
-            <h3 class="nuc-investor-ask-commerce-title">
+            <p class="nuc-home-close-eyebrow">{{ copy.askDeskEyebrow }}</p>
+            <h3 class="nuc-home-close-commerce-title">
               {{ copy.askModalTitle }}
             </h3>
-            <p class="nuc-investor-ask-commerce-support">
+            <p class="nuc-home-close-commerce-support">
               {{ copy.askModalSupport }}
             </p>
           </div>
           <button
             type="button"
-            class="nuc-investor-ask-back"
+            class="nuc-home-close-back"
             :aria-label="copy.askCancel"
             @click="closeForm"
           >
@@ -52,16 +52,10 @@
           </button>
         </header>
 
-        <form
-          class="nuc-investor-ask-form"
-          novalidate
-          @submit.prevent="onSubmit"
-        >
-          <div class="nuc-investor-ask-grid">
-            <label class="nuc-investor-ask-field">
-              <span class="nuc-investor-ask-label"
-                >{{ copy.askNameLabel }}</span
-              >
+        <form class="nuc-home-close-form" novalidate @submit.prevent="onSubmit">
+          <div class="nuc-home-close-grid">
+            <label class="nuc-home-close-field">
+              <span class="nuc-home-close-label">{{ copy.askNameLabel }}</span>
               <nui-input-text
                 :value="name"
                 type="text"
@@ -73,10 +67,8 @@
               />
             </label>
 
-            <label class="nuc-investor-ask-field">
-              <span class="nuc-investor-ask-label"
-                >{{ copy.askEmailLabel }}</span
-              >
+            <label class="nuc-home-close-field">
+              <span class="nuc-home-close-label">{{ copy.askEmailLabel }}</span>
               <nui-input-text
                 ref="emailInput"
                 :value="email"
@@ -90,17 +82,15 @@
               />
               <span
                 v-if="errors.email"
-                class="nuc-investor-ask-error"
+                class="nuc-home-close-error"
                 role="alert"
               >
                 {{ errors.email }}
               </span>
             </label>
 
-            <label class="nuc-investor-ask-field nuc-investor-ask-field-wide">
-              <span class="nuc-investor-ask-label"
-                >{{ copy.askTypeLabel }}</span
-              >
+            <label class="nuc-home-close-field nuc-home-close-field-wide">
+              <span class="nuc-home-close-label">{{ copy.askTypeLabel }}</span>
               <nui-select
                 :value="websiteType"
                 :options="typeOptions"
@@ -111,20 +101,18 @@
               />
               <span
                 v-if="errors.website_type"
-                class="nuc-investor-ask-error"
+                class="nuc-home-close-error"
                 role="alert"
               >
                 {{ errors.website_type }}
               </span>
             </label>
 
-            <label class="nuc-investor-ask-field nuc-investor-ask-field-wide">
-              <span class="nuc-investor-ask-label"
-                >{{ copy.askNoteLabel }}</span
-              >
+            <label class="nuc-home-close-field nuc-home-close-field-wide">
+              <span class="nuc-home-close-label">{{ copy.askNoteLabel }}</span>
               <textarea
                 :value="note"
-                class="nuc-investor-ask-textarea"
+                class="nuc-home-close-textarea"
                 name="message"
                 :rows="4"
                 :placeholder="copy.askNotePlaceholder"
@@ -133,7 +121,7 @@
               />
               <span
                 v-if="errors.message"
-                class="nuc-investor-ask-error"
+                class="nuc-home-close-error"
                 role="alert"
               >
                 {{ errors.message }}
@@ -141,7 +129,7 @@
             </label>
           </div>
 
-          <div class="nuc-investor-ask-actions">
+          <div class="nuc-home-close-actions">
             <nui-button
               type="button"
               variant="outlined"
@@ -161,16 +149,16 @@
             />
           </div>
 
-          <ul class="nuc-investor-ask-trust" aria-label="What to expect">
+          <ul class="nuc-home-close-trust" aria-label="What to expect">
             <li v-for="item in copy.askTrust" :key="item">{{ item }}</li>
           </ul>
         </form>
       </div>
     </div>
 
-    <footer class="nuc-investor-ask-footer">
+    <footer class="nuc-home-close-footer">
       <span>© {{ year }} Nucleify</span>
-      <nav class="nuc-investor-ask-footer-links" aria-label="Footer">
+      <nav class="nuc-home-close-footer-links" aria-label="Footer">
         <a :href="homeHref">{{ copy.navHome }}</a>
         <a :href="docsHref">{{ copy.navDocs }}</a>
         <a :href="copy.githubHref" target="_blank" rel="noopener noreferrer">

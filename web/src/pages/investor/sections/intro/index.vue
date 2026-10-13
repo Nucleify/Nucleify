@@ -17,13 +17,8 @@
           </h1>
         </div>
 
-        <p class="nuc-home-hero-headline">
-          {{ copy.headline }}
-        </p>
-
-        <p class="nuc-home-hero-support">
-          {{ copy.support }}
-        </p>
+        <p class="nuc-home-hero-headline">{{ copy.headline }}</p>
+        <p class="nuc-home-hero-support">{{ copy.support }}</p>
 
         <div class="nuc-home-hero-cta">
           <button
@@ -63,37 +58,32 @@
 
       <aside
         class="nuc-home-hero-panel is-deal"
-        aria-label="Investment thesis at a glance"
+        :aria-label="copy.glanceAria"
+        @mouseenter="hovering = true"
+        @mouseleave="hovering = false"
       >
-        <div
-          class="nuc-inv-glance"
-          role="img"
-          :aria-label="glanceLabel"
-          :class="{ 'is-on': ready }"
-        >
-          <p class="nuc-inv-glance-eyebrow">{{ glance.eyebrow }}</p>
+        <div class="nuc-inv-deal">
+          <div class="nuc-inv-deal-stage">
+            <NucHomeHoloCube
+              :focus="focusId"
+              :faces="faces"
+              :paused="hovering"
+              @focus="focusId = $event"
+            />
 
-          <div class="nuc-inv-glance-ratio" aria-hidden="true">
-            <div class="nuc-inv-glance-col">
-              <span class="nuc-inv-glance-num">{{ glance.from }}</span>
-              <span class="nuc-inv-glance-label">{{ glance.fromLabel }}</span>
-            </div>
-            <span class="nuc-inv-glance-arrow" />
-            <div class="nuc-inv-glance-col is-accent">
-              <span class="nuc-inv-glance-num">{{ glance.to }}</span>
-              <span class="nuc-inv-glance-label">{{ glance.toLabel }}</span>
+            <div class="nuc-inv-deal-readout" aria-live="polite">
+              <p class="nuc-inv-deal-kicker">
+                {{ glance.eyebrow }}
+                <em>{{ activeFace.label }}</em>
+              </p>
+              <p class="nuc-inv-deal-money">
+                <span>{{ glance.figureLead }}{{ glance.figureTrail }}</span>
+                <small>{{ glance.figureUnit }}</small>
+              </p>
+              <p class="nuc-inv-deal-line">{{ glance.line }}</p>
+              <p class="nuc-inv-deal-note">{{ glance.note }}</p>
             </div>
           </div>
-
-          <p class="nuc-inv-glance-figure">
-            <span>{{ glance.figureLead }}</span>
-            <span>{{ glance.figureTrail }}</span>
-            <small>{{ glance.figureUnit }}</small>
-          </p>
-
-          <p class="nuc-inv-glance-line">{{ glance.line }}</p>
-          <p class="nuc-inv-glance-stacks">{{ glance.stacks }}</p>
-          <p class="nuc-inv-glance-note">{{ glance.note }}</p>
         </div>
       </aside>
     </div>
@@ -102,43 +92,34 @@
 
 <script setup lang="ts">
 import { useRoute } from 'nuxt/app'
-import { computed, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import {
   investorHomeHref,
   NUC_INVESTOR_COPY,
   NUC_INVESTOR_GLANCE,
 } from '../../constants/content'
-import { isAutomatedAudit } from '../../../home/utils/is_automated_audit'
+import type { NucHomeModuleLaneId } from '../../../home/constants/content'
 import { scrollHomeSection } from '../../../home/utils/observe_active_section'
+import NucHomeHoloCube from '../../../home/sections/core/holo_cube.vue'
 
 const copy = NUC_INVESTOR_COPY
 const glance = NUC_INVESTOR_GLANCE
 const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
-const ready = ref(false)
 
-const glanceLabel = [
-  `${glance.eyebrow}.`,
-  `${glance.from} ${glance.fromLabel} to ${glance.to} ${glance.toLabel}.`,
-  `${glance.figure} ${glance.figureUnit}.`,
-  glance.line,
-  glance.stacks,
-  glance.note,
-].join(' ')
+const faces = [
+  { id: 'ui' as const, label: 'Product' },
+  { id: 'sdk' as const, label: 'Nucleus' },
+  { id: 'data' as const, label: 'Capital' },
+]
 
-onMounted(() => {
-  if (
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
-    isAutomatedAudit()
-  ) {
-    ready.value = true
-    return
-  }
-  requestAnimationFrame(() => {
-    ready.value = true
-  })
-})
+const focusId = ref<NucHomeModuleLaneId>('sdk')
+const hovering = ref(false)
+
+const activeFace = computed(
+  () => faces.find((face) => face.id === focusId.value) ?? faces[1]!
+)
 
 function onPrimary(): void {
   const root = document.querySelector<HTMLElement>('.nuc-investor')

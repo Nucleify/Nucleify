@@ -1,38 +1,36 @@
 <template>
   <section
     id="wedge"
-    class="nuc-home-section nuc-investor-wedge nuc-home-panel"
+    class="nuc-home-section nuc-inv-plan nuc-home-panel"
     aria-labelledby="nuc-investor-wedge-title"
   >
-    <p class="nuc-home-eyebrow">{{ copy.wedgeEyebrow }}</p>
-    <h2 id="nuc-investor-wedge-title" class="nuc-home-title">
-      {{ copy.wedgeTitle }}
-    </h2>
-    <p class="nuc-home-support">{{ copy.wedgeSupport }}</p>
+    <header class="nuc-inv-plan-head">
+      <p class="nuc-home-eyebrow">{{ copy.wedgeEyebrow }}</p>
+      <h2 id="nuc-investor-wedge-title" class="nuc-home-title">
+        {{ copy.wedgeTitle }}
+      </h2>
+      <p class="nuc-home-support">{{ copy.wedgeSupport }}</p>
+    </header>
 
-    <ol class="nuc-investor-wedge-rail" aria-label="Go-to-market stages">
+    <ol class="nuc-inv-plan-grid" aria-label="Growth stages">
       <li
         v-for="(item, index) in wedge"
         :key="item.phase"
-        class="nuc-investor-wedge-step"
+        class="nuc-inv-plan-card"
         :style="{ '--step-i': index }"
       >
-        <div class="nuc-investor-wedge-node" aria-hidden="true">
-          <span class="nuc-investor-wedge-dot" />
-          <span
-            v-if="index < wedge.length - 1"
-            class="nuc-investor-wedge-link"
-          />
-        </div>
-        <div class="nuc-investor-wedge-copy">
-          <p class="nuc-investor-wedge-phase">
+        <div class="nuc-inv-plan-card-top">
+          <span class="nuc-inv-plan-icon" aria-hidden="true">
+            <nui-icon :icon="item.icon" mode="svg" />
+          </span>
+          <p class="nuc-inv-plan-phase">
             <span>{{ String(index + 1).padStart(2, '0') }}</span>
             {{ item.phase }}
           </p>
-          <h3 class="nuc-investor-wedge-title">{{ item.title }}</h3>
-          <p class="nuc-investor-wedge-body">{{ item.body }}</p>
-          <p class="nuc-investor-wedge-signal">{{ item.signal }}</p>
         </div>
+        <h3>{{ item.title }}</h3>
+        <p class="nuc-inv-plan-body">{{ item.body }}</p>
+        <p class="nuc-inv-plan-signal">{{ item.signal }}</p>
       </li>
     </ol>
   </section>

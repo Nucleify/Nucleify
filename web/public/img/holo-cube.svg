@@ -1,6 +1,6 @@
 <svg
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="-28 -28 256 256"
+  viewBox="20 22 160 160"
   fill="none"
   overflow="visible"
   role="img"
@@ -162,7 +162,7 @@
     </linearGradient>
   </defs>
 
-  <rect x="-28" y="-28" width="256" height="256" fill="#000000" fill-opacity="0" />
+  <rect x="20" y="22" width="160" height="160" fill="#000000" fill-opacity="0" />
 
   <ellipse cx="100" cy="102" rx="58" ry="48" fill="#14b8a6" opacity="0.06" filter="url(#haze)" />
   <ellipse cx="118" cy="88" rx="40" ry="36" fill="#7c3aed" opacity="0.05" filter="url(#haze)" />

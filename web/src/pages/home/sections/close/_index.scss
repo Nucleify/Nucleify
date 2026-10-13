@@ -178,11 +178,14 @@
 
     nui-input-text,
     nui-select {
-      --nui-card-background: #0d1310;
-      --nui-content-background: #121915;
-      --nui-card-border: rgb(255 255 255 / 10%);
+      --nui-card-background: color-mix(in srgb, var(--home-accent) 7%, #0a0c12);
+      --nui-content-background: color-mix(in srgb, var(--home-accent) 11%, #0e1018);
+      --nui-card-border: color-mix(in srgb, var(--home-accent) 28%, rgb(255 255 255 / 8%));
       --nui-white-text-color: var(--home-fg);
       --nui-secondary-text-color: var(--home-muted);
+      --nui-primary-color: var(--home-accent);
+      --nui-primary-focus-color: hsl(var(--rainbow-hue) 55% 52% / 45%);
+      --nui-primary-highlight-color: hsl(var(--rainbow-hue) 55% 52% / 12%);
       --border-radius-sm: 0.75rem;
     }
 
@@ -225,16 +228,16 @@
     min-height: 6.5rem;
     margin: 0;
     padding: 0.75rem 0.85rem;
-    border: 1px solid rgb(255 255 255 / 10%);
+    border: 1px solid color-mix(in srgb, var(--home-accent) 28%, rgb(255 255 255 / 8%));
     border-radius: 0.75rem;
-    background: #0d1310;
+    background: color-mix(in srgb, var(--home-accent) 7%, #0a0c12);
     color: var(--home-fg);
     font-family: 'Instrument Sans', system-ui, sans-serif;
     font-size: 0.95rem;
     line-height: 1.45;
     resize: vertical;
     box-sizing: border-box;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
     &::placeholder {
       color: var(--home-dim);
@@ -243,6 +246,7 @@
     &:focus {
       outline: none;
       border-color: color-mix(in srgb, var(--home-accent) 55%, rgb(255 255 255 / 18%));
+      box-shadow: 0 0 0 1px hsl(var(--rainbow-hue) 55% 52% / 28%);
     }
 
     &[aria-invalid='true'] {

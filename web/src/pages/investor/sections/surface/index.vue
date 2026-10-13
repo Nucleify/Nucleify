@@ -1,10 +1,11 @@
 <template>
   <section
     id="surface"
-    class="nuc-home-section nuc-investor-surface nuc-home-panel"
+    class="nuc-home-section nuc-inv-reach nuc-home-panel"
     aria-labelledby="nuc-investor-surface-title"
+    :style="{ '--reach-i': activeIndex, '--reach-color': active.color }"
   >
-    <header class="nuc-investor-surface-intro">
+    <header class="nuc-inv-reach-head">
       <p class="nuc-home-eyebrow">{{ copy.surfaceEyebrow }}</p>
       <h2 id="nuc-investor-surface-title" class="nuc-home-title">
         {{ copy.surfaceTitle }}
@@ -12,25 +13,47 @@
       <p class="nuc-home-support">{{ copy.surfaceSupport }}</p>
     </header>
 
-    <div
-      class="nuc-investor-surface-board"
-      :style="{ '--active-i': activeIndex }"
-    >
+    <div class="nuc-inv-reach-stage">
       <div
-        class="nuc-investor-surface-tabs"
+        class="nuc-inv-reach-spotlight"
+        role="tabpanel"
+        :aria-label="copy.surfaceStageLabel"
+        :aria-labelledby="`nuc-reach-tab-${active.id}`"
+      >
+        <div class="nuc-inv-reach-glow" aria-hidden="true" />
+        <div
+          v-for="item in surface"
+          :key="item.id"
+          class="nuc-inv-reach-panel"
+          :class="{ 'is-active': activeId === item.id }"
+          :aria-hidden="activeId !== item.id"
+        >
+          <div class="nuc-inv-reach-badge" aria-hidden="true">
+            <nui-icon :icon="item.icon" mode="svg" />
+          </div>
+          <p class="nuc-inv-reach-kicker">{{ item.metric }}</p>
+          <h3 class="nuc-inv-reach-name">{{ item.title }}</h3>
+          <p class="nuc-inv-reach-outcome">{{ item.outcome }}</p>
+          <p class="nuc-inv-reach-desc">{{ item.description }}</p>
+          <p class="nuc-inv-reach-proof">{{ item.proof }}</p>
+        </div>
+      </div>
+
+      <div
+        class="nuc-inv-reach-list"
         role="tablist"
         :aria-label="copy.surfaceTabsLabel"
       >
         <button
           v-for="(item, i) in surface"
-          :id="`nuc-surface-tab-${item.id}`"
+          :id="`nuc-reach-tab-${item.id}`"
           :key="item.id"
           type="button"
-          class="nuc-investor-surface-tab"
+          class="nuc-inv-reach-tab"
           :class="{ 'is-active': activeId === item.id }"
+          :style="{ '--tab-color': item.color }"
           role="tab"
           :aria-selected="activeId === item.id"
-          :aria-controls="`nuc-surface-panel-${item.id}`"
           :tabindex="activeId === item.id ? 0 : -1"
           :data-index="i"
           @mouseenter="activeId = item.id"
@@ -38,34 +61,15 @@
           @click="activeId = item.id"
           @keydown="onTabKey"
         >
-          <span class="nuc-investor-surface-tab-index">{{ item.index }}</span>
-          <span class="nuc-investor-surface-tab-title">{{ item.title }}</span>
-          <span class="nuc-investor-surface-tab-metric">{{ item.metric }}</span>
+          <span class="nuc-inv-reach-tab-icon" aria-hidden="true">
+            <nui-icon :icon="item.icon" mode="svg" />
+          </span>
+          <span class="nuc-inv-reach-tab-copy">
+            <span class="nuc-inv-reach-tab-index">{{ item.index }}</span>
+            <span class="nuc-inv-reach-tab-title">{{ item.title }}</span>
+          </span>
+          <span class="nuc-inv-reach-tab-metric">{{ item.metric }}</span>
         </button>
-        <span class="nuc-investor-surface-tabs-track" aria-hidden="true">
-          <span class="nuc-investor-surface-tabs-thumb" />
-        </span>
-      </div>
-
-      <div
-        :id="`nuc-surface-panel-${active.id}`"
-        class="nuc-investor-surface-stage"
-        role="tabpanel"
-        :aria-label="copy.surfaceStageLabel"
-        :aria-labelledby="`nuc-surface-tab-${active.id}`"
-      >
-        <div class="nuc-investor-surface-stage-head">
-          <p class="nuc-investor-surface-stage-index">{{ active.index }}</p>
-          <div class="nuc-investor-surface-stage-copy">
-            <h3 class="nuc-investor-surface-stage-title">{{ active.title }}</h3>
-            <p class="nuc-investor-surface-stage-outcome">
-              {{ active.outcome }}
-            </p>
-          </div>
-          <p class="nuc-investor-surface-stage-metric">{{ active.metric }}</p>
-        </div>
-        <p class="nuc-investor-surface-stage-desc">{{ active.description }}</p>
-        <p class="nuc-investor-surface-stage-proof">{{ active.proof }}</p>
       </div>
     </div>
   </section>
@@ -115,7 +119,6 @@ function onTabKey(event: KeyboardEvent): void {
   const item = surface[next]
   if (!item) return
   activeId.value = item.id
-  const el = document.getElementById(`nuc-surface-tab-${item.id}`)
-  el?.focus()
+  document.getElementById(`nuc-reach-tab-${item.id}`)?.focus()
 }
 </script>

@@ -1,0 +1,123 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="20 22 160 160"
+  fill="none"
+  overflow="visible"
+  role="img"
+  aria-label="Nucleify holographic cube"
+>
+  <!--
+    Matches favicon.ico: top green, left turquoise, right pink, bottom tip blue.
+    Transparent background.
+  -->
+  <defs>
+    <filter
+      id="bloom"
+      filterUnits="userSpaceOnUse"
+      x="8"
+      y="8"
+      width="184"
+      height="184"
+      color-interpolation-filters="sRGB"
+    >
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.2" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <linearGradient id="face-top" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#5cff6a" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#5cff6a" stop-opacity="0.05" />
+    </linearGradient>
+    <linearGradient id="face-left" x1="0%" y1="20%" x2="100%" y2="90%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.04" />
+    </linearGradient>
+    <linearGradient id="face-right" x1="100%" y1="20%" x2="0%" y2="90%">
+      <stop offset="0%" stop-color="#ff4db8" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#ff4db8" stop-opacity="0.05" />
+    </linearGradient>
+
+    <linearGradient id="g-ridge-tl" x1="38" y1="68" x2="100" y2="102" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00e5ff" />
+      <stop offset="100%" stop-color="#5cff6a" />
+    </linearGradient>
+    <linearGradient id="g-ridge-tr" x1="162" y1="68" x2="100" y2="102" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff4db8" />
+      <stop offset="100%" stop-color="#5cff6a" />
+    </linearGradient>
+    <linearGradient id="g-ridge-bot" x1="100" y1="102" x2="100" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5cff6a" />
+      <stop offset="45%" stop-color="#00e5ff" />
+      <stop offset="100%" stop-color="#3d9fff" />
+    </linearGradient>
+    <linearGradient id="g-bot-l" x1="38" y1="136" x2="100" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00e5ff" />
+      <stop offset="100%" stop-color="#3d9fff" />
+    </linearGradient>
+    <linearGradient id="g-bot-r" x1="162" y1="136" x2="100" y2="170" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff4db8" />
+      <stop offset="100%" stop-color="#3d9fff" />
+    </linearGradient>
+  </defs>
+
+  <path d="M100 34 L162 68 L100 102 L38 68 Z" fill="url(#face-top)" />
+  <path d="M38 68 L100 102 L100 170 L38 136 Z" fill="url(#face-left)" />
+  <path d="M162 68 L100 102 L100 170 L162 136 Z" fill="url(#face-right)" />
+
+  <path
+    d="M100 34 L162 68 L162 136 L100 170 L38 136 L38 68 Z"
+    stroke="#5cff6a"
+    stroke-width="5"
+    stroke-linecap="butt"
+    stroke-linejoin="miter"
+    opacity="0.35"
+    filter="url(#bloom)"
+  />
+
+  <g stroke="#5cff6a" stroke-linecap="butt" stroke-linejoin="miter" filter="url(#bloom)" opacity="0.55">
+    <path d="M38 68 L100 34" stroke-width="5.2" />
+    <path d="M100 34 L162 68" stroke-width="5.2" />
+  </g>
+  <g stroke="#5cff6a" stroke-width="3.6" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M38 68 L100 34" />
+    <path d="M100 34 L162 68" />
+  </g>
+
+  <g stroke-linecap="butt" stroke-linejoin="miter" filter="url(#bloom)" opacity="0.55">
+    <path d="M38 68 L38 136" stroke="#00e5ff" stroke-width="5.2" />
+    <path d="M38 136 L100 170" stroke="url(#g-bot-l)" stroke-width="5.2" />
+  </g>
+  <g stroke-linecap="butt" stroke-linejoin="miter" stroke-width="3.6">
+    <path d="M38 68 L38 136" stroke="#00e5ff" />
+    <path d="M38 136 L100 170" stroke="url(#g-bot-l)" />
+  </g>
+
+  <g stroke-linecap="butt" stroke-linejoin="miter" filter="url(#bloom)" opacity="0.55">
+    <path d="M162 68 L162 136" stroke="#ff4db8" stroke-width="5.2" />
+    <path d="M162 136 L100 170" stroke="url(#g-bot-r)" stroke-width="5.2" />
+  </g>
+  <g stroke-linecap="butt" stroke-linejoin="miter" stroke-width="3.6">
+    <path d="M162 68 L162 136" stroke="#ff4db8" />
+    <path d="M162 136 L100 170" stroke="url(#g-bot-r)" />
+  </g>
+
+  <g stroke-linecap="butt" stroke-linejoin="miter" stroke-width="5.8" opacity="0.65" filter="url(#bloom)">
+    <path d="M38 68 L100 102" stroke="url(#g-ridge-tl)" />
+    <path d="M162 68 L100 102" stroke="url(#g-ridge-tr)" />
+    <path d="M100 102 L100 170" stroke="url(#g-ridge-bot)" />
+  </g>
+  <g stroke-linecap="butt" stroke-linejoin="miter" stroke-width="4.3">
+    <path d="M38 68 L100 102" stroke="url(#g-ridge-tl)" />
+    <path d="M162 68 L100 102" stroke="url(#g-ridge-tr)" />
+    <path d="M100 102 L100 170" stroke="url(#g-ridge-bot)" />
+  </g>
+
+  <g stroke-linecap="butt" stroke-linejoin="miter" stroke-width="1.5" opacity="0.45">
+    <path d="M100 34 L100 102" stroke="#5cff6a" />
+    <path d="M38 136 L100 102" stroke="#00e5ff" />
+    <path d="M162 136 L100 102" stroke="#ff4db8" />
+  </g>
+</svg>
