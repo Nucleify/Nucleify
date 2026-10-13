@@ -14,7 +14,7 @@ import {
   type ProductId,
   type ScaffoldApp,
 } from './sync/scaffold'
-import { convertProduct } from './sync/convert'
+import { cloneConvertSource, convertProduct } from './sync/convert'
 import { writeOutputs, type EmitApp } from './sync/write-outputs'
 
 const main = defineCommand({
@@ -70,17 +70,29 @@ const main = defineCommand({
         product: {
           type: 'positional',
           required: true,
-          description: PRODUCT_IDS.join(' | '),
+          description: `${PRODUCT_IDS.join(' | ')} (shell profile; docs convert not yet)`,
         },
         target: {
           type: 'string',
-          description: 'Framework: next | react | vue | nuxt',
+          description: 'Framework: next | solid',
           required: true,
         },
         force: {
           type: 'boolean',
           description: 'Wipe and recreate product shell',
           default: false,
+        },
+        path: {
+          type: 'string',
+          description: 'External Nuxt app folder (must contain src/)',
+        },
+        git: {
+          type: 'string',
+          description: 'Git URL to shallow-clone as convert source',
+        },
+        out: {
+          type: 'string',
+          description: 'Output dir name under cwd (default {product}-{target})',
         },
         cwd: {
           type: 'string',
@@ -101,18 +113,36 @@ const main = defineCommand({
           process.exitCode = 1
           return
         }
+        if (args.path && args.git) {
+          console.error('convert: pass only one of --path or --git')
+          process.exitCode = 1
+          return
+        }
+        let cleanup: (() => void) | undefined
         try {
+          let sourceRoot: string | undefined
+          if (args.git) {
+            const cloned = cloneConvertSource(String(args.git), cwd)
+            sourceRoot = cloned.sourceRoot
+            cleanup = cloned.cleanup
+          } else if (args.path) {
+            sourceRoot = resolve(cwd, String(args.path))
+          }
           const { dest, copied } = convertProduct({
             product,
             framework,
             cwd,
             force: Boolean(args.force),
+            sourceRoot,
+            outName: args.out ? String(args.out) : undefined,
           })
           console.log(`convert: ${product} → ${toRepoRelative(cwd, dest)}`)
           for (const c of copied) console.log(`  copied ${c}`)
         } catch (err) {
           console.error(err instanceof Error ? err.message : String(err))
           process.exitCode = 1
+        } finally {
+          cleanup?.()
         }
       },
     }),

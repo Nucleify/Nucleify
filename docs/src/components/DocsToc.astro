@@ -1,11 +1,14 @@
 ---
 import type { DocHeadingInterface } from '../lib/types/interfaces'
+import { docsOnThisPageLabel } from '../lib/constants/docs_ui'
 
 interface Props {
   headings: DocHeadingInterface[]
+  lang: string
 }
 
-const { headings } = Astro.props
+const { headings, lang } = Astro.props
+const onThisPage = docsOnThisPageLabel(lang)
 
 type FlatHeading = DocHeadingInterface & { depth: number }
 
@@ -28,7 +31,7 @@ const flatHeadings = flattenHeadings(headings)
 
 {flatHeadings.length > 0 ? (
   <div class="docs-toc">
-    <p class="docs-toc__title">On this page</p>
+    <p class="docs-toc__title">{onThisPage}</p>
     <ul class="docs-toc__list">
       {flatHeadings.map((item) => (
         <li

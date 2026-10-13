@@ -1,12 +1,14 @@
+import type { LocalizedString } from '../utils/resolve_localized'
+
 export interface DocPageInterface {
   slug: string
-  title: string
+  title: LocalizedString
   category?: string
   order?: number
 }
 
 export interface DocCategoryInterface {
-  name: string
+  name: LocalizedString
   slug: string
   pages: DocPageInterface[]
   order?: number

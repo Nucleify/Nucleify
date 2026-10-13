@@ -1,17 +1,18 @@
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { parseSync } from 'oxc-parser'
-import type {
-  IrAttr,
-  IrDerived,
-  IrDocument,
-  IrExpr,
-  IrHandler,
-  IrNode,
-  IrProp,
-  IrPropType,
-  IrState,
-  IrStmt,
+import {
+  IR_VERSION,
+  type IrAttr,
+  type IrDerived,
+  type IrDocument,
+  type IrExpr,
+  type IrHandler,
+  type IrNode,
+  type IrProp,
+  type IrPropType,
+  type IrState,
+  type IrStmt,
 } from '../ir/types'
 import { parseIrDocument } from '../ir/schema'
 import { ParseError, fail, parseExpr, parseJsxNode, parseStmt } from './tsx'
@@ -411,7 +412,7 @@ export function parseReactToIr(
   const name = componentName ?? inferComponentName(base)
 
   const doc: IrDocument = {
-    irVersion: '0.1.0',
+    irVersion: IR_VERSION,
     name,
     portable: true,
     props,

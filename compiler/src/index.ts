@@ -2,19 +2,20 @@
 export const COMPILER_NAME = '@nucleify/compiler'
 export const COMPILER_PHASE = 13
 
-export type {
-  IrAttr,
-  IrBinaryOp,
-  IrDerived,
-  IrDocument,
-  IrExpr,
-  IrHandler,
-  IrNode,
-  IrProp,
-  IrPropType,
-  IrState,
-  IrStmt,
-  IrVersion,
+export {
+  IR_VERSION,
+  type IrAttr,
+  type IrBinaryOp,
+  type IrDerived,
+  type IrDocument,
+  type IrExpr,
+  type IrHandler,
+  type IrNode,
+  type IrProp,
+  type IrPropType,
+  type IrState,
+  type IrStmt,
+  type IrVersion,
 } from './ir/types'
 
 export {

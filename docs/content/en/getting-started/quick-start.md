@@ -84,13 +84,15 @@ pnpm compiler:build
 pnpm compiler:check   # exits 1 if emit is dirty vs authoring
 ```
 
-Convert the entire web product to Next (Tryb B):
+Convert the entire web product to Next, Solid, or Svelte (Tryb B):
 
 ```bash
-make web TARGET=next
+make web TARGET=next    # → web-next/
+make web TARGET=solid   # → web-solid/
+make web TARGET=svelte  # → web-svelte/
 ```
 
-This runs `pnpm compiler -- convert web --target=next`, builds, installs, and starts `web-next/`.
+This runs `pnpm compiler -- convert web --target=…`, builds, installs, and starts the generated shell. Portable Svelte emit demo: `make svelte`. External Nuxt-like apps: `--path` / `--git` + `--out` from the monorepo root (see [Compiler](/en/docs/core-concepts/compiler)).
 
 ---
 
@@ -144,7 +146,7 @@ See [Overriding](/en/docs/core-concepts/overriding).
 
 ### Author a portable component
 
-Create `Foo.nuc.tsx` next to where it will be consumed. Run `pnpm compiler:build`. Commit the `.nuc.tsx` and generated siblings. Do not hand-edit `.vue`/`.tsx` as source of truth — use `pnpm compiler -- import` if you edited emit.
+Create `Foo.nuc.tsx` next to where it will be consumed. Run `pnpm compiler:build`. Commit the `.nuc.tsx` and generated siblings (`.vue`, React/Solid `.tsx`, Svelte `.svelte`, `.css`). Do not hand-edit emit as source of truth — use `pnpm compiler -- import --from=vue|react|solid|svelte` if you edited emit.
 
 ---
 

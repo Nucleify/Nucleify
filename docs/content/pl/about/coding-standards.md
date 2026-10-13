@@ -133,7 +133,9 @@ Autoruj w `*.nuc.tsx` zgodnie z `compiler/PORTABLE.md`:
 - Bez store, routerów ani Supabase w plikach przenośnych
 - Na zewnątrz tylko props + events
 - Po zmianach: `pnpm compiler:build`; commituj autorstwo + emit
-- Import edycji: `pnpm compiler -- import --from=vue|react`
+- Import edycji: `pnpm compiler -- import --from=vue|react|solid|svelte`
+- Nie re-eksportuj `*.nuc.tsx` z publicznych barreli (`index.ts`, `modules.ts`, …)
+- Łamiące zmiany IR podnoszą `IR_VERSION` i migrują fixture’y w tym samym PR
 
 ---
 

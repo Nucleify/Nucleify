@@ -1,6 +1,13 @@
 # Portable UI authoring
 
-Rules for `*.nuc.tsx` sources consumed by `@nucleify/compiler` (IR v0.1).
+Rules for `*.nuc.tsx` sources consumed by `@nucleify/compiler` (IR `IR_VERSION` — currently **0.1.0**).
+
+## IR versioning
+
+- Canonical constant: `IR_VERSION` in `compiler/src/ir/types.ts` (schema + parsers + fixtures must match).
+- **Breaking** IR shape changes → bump `IR_VERSION`, migrate `compiler/tests/fixtures/ir/*.json`, update tests in the **same PR**.
+- Additive optional fields may stay on the same version until a breaking cut.
+- Enforcement: `compiler/tests/ir-version.test.ts` + `pnpm compiler:test`.
 
 ## Allowed
 

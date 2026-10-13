@@ -4,11 +4,15 @@ import {
   mkdirSync,
   readFileSync,
   readdirSync,
+  renameSync,
+  rmSync,
   statSync,
   unlinkSync,
   writeFileSync,
 } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { dirname, join, relative, resolve } from 'node:path'
+import { execFileSync } from 'node:child_process'
 import { parse as parseSfc } from '@vue/compiler-sfc'
 import { convertVueSfcToReact } from './vue-sfc-to-tsx'
 import { convertVueSfcToSvelte } from './vue-sfc-to-svelte'
@@ -1355,20 +1359,58 @@ export default {
 }
 
 /**
+ * Shallow-clone a git URL into a temp dir (same filesystem as `cwd` when possible).
+ * Caller should delete when done if `cleanup` is true.
+ */
+export function cloneConvertSource(gitUrl: string, cwd: string): { sourceRoot: string; cleanup: () => void } {
+  const park = join(cwd, `.nucleify-convert-git-${process.pid}`)
+  rmSync(park, { recursive: true, force: true })
+  mkdirSync(park, { recursive: true })
+  try {
+    execFileSync('git', ['clone', '--depth', '1', gitUrl, park], {
+      stdio: 'pipe',
+      cwd: tmpdir(),
+    })
+  } catch (err) {
+    rmSync(park, { recursive: true, force: true })
+    throw new Error(
+      `convert: git clone failed (${gitUrl}): ${err instanceof Error ? err.message : String(err)}`,
+    )
+  }
+  return {
+    sourceRoot: park,
+    cleanup: () => rmSync(park, { recursive: true, force: true }),
+  }
+}
+
+/**
  * Tryb B: scaffold Next / Solid / Svelte product shell and emit from Nuxt Vue SFCs.
  * Output must contain **no** `.vue` files.
+ *
+ * External sources: pass `sourceRoot` (folder with `src/`) and optional `outName`
+ * (default `{product}-{framework}`). Run from the Nucleify monorepo so
+ * `../shared_modules` / `../portable` path aliases resolve.
  */
 export function convertProduct(opts: {
   product: ProductId
   framework: ScaffoldFramework
   cwd?: string
   force?: boolean
+  /** Override Nuxt product root (default `{cwd}/{product}`). */
+  sourceRoot?: string
+  /** Output directory name under cwd (default `{product}-{framework}`). */
+  outName?: string
 }): { dest: string; copied: string[] } {
   const cwd = resolve(opts.cwd ?? process.cwd())
   const { product, framework, force } = opts
 
   if (!PRODUCT_IDS.includes(product)) {
     throw new Error(`convert: unknown product "${product}"`)
+  }
+  if (product === 'docs') {
+    throw new Error(
+      'convert: docs (Astro) → next|solid is not implemented yet — use web|admin, or track #696',
+    )
   }
   if (!SCAFFOLD_FRAMEWORKS.includes(framework)) {
     throw new Error(`convert: unknown framework "${framework}"`)
@@ -1390,21 +1432,49 @@ export function convertProduct(opts: {
     : isSolid
       ? SOLID_CONVERT[product as ConvertProductId]
       : NEXT_CONVERT[product as ConvertProductId]
-  const sourceRoot = join(cwd, product)
+  const sourceRoot = resolve(opts.sourceRoot ?? join(cwd, product))
   if (!existsSync(sourceRoot)) {
-    throw new Error(`convert: missing source product at ${product}/`)
+    throw new Error(`convert: missing source product at ${sourceRoot}`)
+  }
+  if (!existsSync(join(sourceRoot, 'src'))) {
+    throw new Error(`convert: source needs a src/ directory (${sourceRoot})`)
   }
 
-  const dest = productShellPath(product, framework, cwd)
+  const destName = (opts.outName ?? `${product}-${framework}`).replace(/[/\\]/g, '')
+  if (!destName || destName === '.' || destName === '..') {
+    throw new Error('convert: invalid --out name')
+  }
+  const templateDest = productShellPath(product, framework, cwd)
+  const dest = join(cwd, destName)
   const copied: string[] = []
 
   scaffoldProduct({
     product,
     framework,
     cwd,
-    force: Boolean(force || !existsSync(join(dest, 'package.json'))),
+    force: Boolean(force || !existsSync(join(templateDest, 'package.json'))),
   })
 
+  if (dest !== templateDest) {
+    const nm = join(dest, 'node_modules')
+    let nmPark: string | null = null
+    if (existsSync(dest) && force) {
+      if (existsSync(nm)) {
+        nmPark = join(cwd, `.nucleify-nm-${destName}-${process.pid}`)
+        rmSync(nmPark, { recursive: true, force: true })
+        renameSync(nm, nmPark)
+      }
+      rmSync(dest, { recursive: true, force: true })
+    }
+    if (!existsSync(dest)) {
+      cpSync(templateDest, dest, { recursive: true })
+      copied.push(`scaffolded template → ${destName}/`)
+    }
+    if (nmPark && existsSync(nmPark)) {
+      rmSync(join(dest, 'node_modules'), { recursive: true, force: true })
+      renameSync(nmPark, join(dest, 'node_modules'))
+    }
+  }
   const sourceSrc = join(sourceRoot, 'src')
   const destSrc = join(dest, 'src')
 
@@ -1518,19 +1588,21 @@ export { flashToast, closeToast, setToastInstance } from 'modules/nuc_api/utils/
     : isSolid
       ? 'Vite + Solid + @solidjs/router'
       : 'Next App Router with native React'
+  const sourceLabel = relative(cwd, sourceRoot).replace(/\\/g, '/') || sourceRoot
   writeText(
     join(dest, 'MIGRATION.md'),
     [
-      `# ${product}-${framework} — Vue SFC → ${emitKind}`,
+      `# ${destName} — Vue SFC → ${emitKind}`,
       '',
-      `\`pnpm compiler -- convert ${product} --target=${framework}\``,
-      '',
-      `- **Source of truth:** top-level \`${product}/\` (Nuxt/Vue)`,
+      `- **Shell profile:** \`${product}\` → \`${framework}\``,
+      `- **Source:** \`${sourceLabel}\` (Nuxt/Vue \`src/\`)`,
       `- **Host:** ${hostDesc}`,
+      `- **Monorepo:** run convert from Nucleify root so \`modules\` / \`portable\` aliases resolve`,
       '',
       '```bash',
-      `make ${product} TARGET=${framework}`,
-      `pnpm compiler -- convert ${product} --target=${framework} --force`,
+      opts.sourceRoot
+        ? `pnpm compiler -- convert ${product} --target=${framework} --path=${sourceLabel} --out=${destName} --force`
+        : `pnpm compiler -- convert ${product} --target=${framework} --force`,
       '```',
       '',
       'Copied / converted:',

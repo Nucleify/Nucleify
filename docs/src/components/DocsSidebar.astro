@@ -1,6 +1,7 @@
 ---
 import { DOC_CATEGORIES } from '../lib/constants/docs'
 import { docHref } from '../lib/doc_paths'
+import { resolveLocalized } from '../lib/utils/resolve_localized'
 
 interface Props {
   lang: string
@@ -15,7 +16,7 @@ const { lang, category, slug } = Astro.props
   {
     DOC_CATEGORIES.map((cat) => (
       <section class="docs-nav__section">
-        <h2 class="docs-nav__heading">{cat.name}</h2>
+        <h2 class="docs-nav__heading">{resolveLocalized(cat.name, lang)}</h2>
         <ul class="docs-nav__list">
           {cat.pages.map((page) => {
             const href = docHref(lang, cat.slug, page.slug)
@@ -27,7 +28,7 @@ const { lang, category, slug } = Astro.props
                   href={href}
                   aria-current={isActive ? 'page' : undefined}
                 >
-                  {page.title}
+                  {resolveLocalized(page.title, lang)}
                 </a>
               </li>
             )

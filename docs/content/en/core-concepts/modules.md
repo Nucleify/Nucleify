@@ -1,6 +1,6 @@
 # Modules
 
-Nucleify ships **six exported** feature modules from `@nucleify/shared-modules`. Each is a self-contained domain package with frontend utilities, optional Supabase API handlers, migrations, types, and tests — consumed by `web/`, `admin/`, `docs/`, and generated shells (Next, Solid, …) so you can migrate frameworks without rewriting the business.
+Nucleify ships **six exported** feature modules from `@nucleify/shared-modules`. Each is a self-contained domain package with frontend utilities, optional Supabase API handlers, migrations, types, and tests — consumed by `web/`, `admin/`, `docs/`, and generated shells (Next, Solid, Svelte, …) so you can migrate frameworks without rewriting the business.
 
 There is no root-level `modules/` folder. Apps import via relative paths or the Nuxt alias `modules` → `shared_modules/`. Auth flows live inside `nuc_api` (there is no separate `nuc_users` / `nuc_auth` package).
 

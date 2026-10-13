@@ -1,15 +1,16 @@
 import { parseSync } from 'oxc-parser'
-import type {
-  IrAttr,
-  IrDerived,
-  IrDocument,
-  IrExpr,
-  IrHandler,
-  IrNode,
-  IrProp,
-  IrPropType,
-  IrState,
-  IrStmt,
+import {
+  IR_VERSION,
+  type IrAttr,
+  type IrDerived,
+  type IrDocument,
+  type IrExpr,
+  type IrHandler,
+  type IrNode,
+  type IrProp,
+  type IrPropType,
+  type IrState,
+  type IrStmt,
 } from '../ir/types'
 import { parseIrDocument } from '../ir/schema'
 
@@ -693,7 +694,7 @@ export function parseTsxToIr(source: string, filePath = 'anonymous.nuc.tsx'): Ir
   if (!template) fail(filePath, source, config, 'component() requires render or setup')
 
   const doc: IrDocument = {
-    irVersion: '0.1.0',
+    irVersion: IR_VERSION,
     name,
     portable: true,
     props,

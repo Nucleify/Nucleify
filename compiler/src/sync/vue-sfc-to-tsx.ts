@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { parse as parseSfc } from '@vue/compiler-sfc'
 import { emitReactProduct } from '../emit/react'
 import { parseIrDocument } from '../ir/schema'
-import type { IrDocument } from '../ir/types'
+import { IR_VERSION, type IrDocument } from '../ir/types'
 import { ParseError } from '../parse/tsx'
 import { parseVueTemplateToIr } from '../parse/vue'
 import { rewriteScriptSetupToReact, extractReactiveNames } from './script-to-react'
@@ -26,7 +26,7 @@ export function convertVueSfcToReact(source: string, filePath: string): { body: 
   const name = inferComponentName(base)
 
   const doc: IrDocument = parseIrDocument({
-    irVersion: '0.1.0',
+    irVersion: IR_VERSION,
     name,
     portable: true,
     props: [],

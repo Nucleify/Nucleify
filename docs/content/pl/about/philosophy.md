@@ -42,13 +42,15 @@ Jak jądro komórki, Nucleify koordynuje produkt. Każdy eksportowany moduł `nu
 
 ### 1. Dowolny stack → dowolny inny
 
-Przenośne komponenty `*.nuc.tsx` emitują do Vue, React i Solid. Shelle produktu konwertujesz jedną komendą:
+Przenośne komponenty `*.nuc.tsx` emitują do Vue, React, Solid i Svelte. Shelle produktu (`web` / `admin`) konwertujesz jedną komendą — także zewnętrzny folder Nuxt-like lub URL git przez `--path` / `--git` (zob. [Kompilator](/pl/docs/core-concepts/compiler)):
 
 ```bash
 make web TARGET=next
 make web TARGET=solid
+make web TARGET=svelte
 make admin TARGET=next
 make admin TARGET=solid
+make admin TARGET=svelte
 ```
 
 Wybór frameworka staje się **celem builda**, nie forkiem architektury.
@@ -79,7 +81,7 @@ Przenośne autorstwo ma jawne listy dozwolone/zabronione (`compiler/PORTABLE.md`
 
 | Codziennie (Tryb A) | Migracja / emit (Tryb B) |
 |---------------------|--------------------------|
-| Edycja Nuxt + Vue w `web/` | Next (`web-next/`), Solid (`web-solid/`), demo portable |
+| Edycja Nuxt + Vue w `web/` | Next (`web-next/`), Solid (`web-solid/`), Svelte (`web-svelte/`), demo portable |
 | Źródło prawdy | Wygenerowane lustra, gdy klient lub zespół potrzebuje innego shella |
 
 Tryb B to nie druga baza kodu utrzymywana ręcznie. Napraw jądro, odpal convert ponownie. Komunikacja produktu zawsze wymienia **wszystkie siedem shelli**, nawet gdy codzienna edycja zostaje na Nuxt.

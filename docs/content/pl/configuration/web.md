@@ -154,15 +154,20 @@ Prefiksy locale do prerenderowania kontroluje `PRERENDER_LOCALES` w `.env`.
 
 ## Tryb B — migracja shelli
 
-Wygenerowane aplikacje: `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`:
+Wygenerowane aplikacje: `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/` (lub własna nazwa `--out`):
 
 ```bash
 make web TARGET=next      # konwersja + start dev Next
 make web TARGET=solid     # konwersja + start dev Solid
+make web TARGET=svelte    # konwersja + start dev Svelte
 make admin TARGET=next    # odpowiednik admin
+
+# Zewnętrzne drzewo Nuxt-like (z roota monorepo):
+pnpm compiler -- convert web --target=next --path=/path/to/app --out=my-next --force
+pnpm compiler -- convert web --target=svelte --path=/path/to/app --out=my-svelte --force
 ```
 
-Rozwijaj w Nuxt (`web/`, `admin/`), konwertuj gdy potrzebujesz innego frameworka. Zobacz [Kompilator](/pl/docs/core-concepts/compiler).
+Rozwijaj w Nuxt (`web/`, `admin/`), konwertuj gdy potrzebujesz innego frameworka. Konwersja Astro `docs/` nie jest jeszcze dostępna. Zobacz [Kompilator](/pl/docs/core-concepts/compiler).
 
 ---
 
