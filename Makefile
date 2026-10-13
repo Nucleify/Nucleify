@@ -1,11 +1,11 @@
-.PHONY: run setup web admin docs compiler vue react nuxt next solid help
+.PHONY: run setup web admin docs compiler vue react nuxt next solid svelte help
 
 # Product apps: default shell is Nuxt. Tryb B nests products under frameworks:
 #   make web                 # top-level web/ (Nuxt)
 #   make web TARGET=next     # web-next (scaffolded product shell)
 #
 # Portable emit demos (gitignored):
-#   make nuxt / make next / make vue / make react / make solid  → {framework}/demo
+#   make nuxt / make next / make vue / make react / make solid / make svelte  → {framework}/demo
 #
 # SKIP_COMPILER=1  → skip portable codegen on run/setup / demos that call compiler
 
@@ -21,11 +21,13 @@ help:
 	@echo "  make web | admin | docs           # default TARGET=nuxt (top-level web/)"
 	@echo "  make web TARGET=next              # web-next product shell (tryb B)"
 	@echo "  make web TARGET=solid             # web-solid product shell (tryb B)"
+	@echo "  make web TARGET=svelte            # web-svelte product shell (tryb B)"
 	@echo "  make admin TARGET=next            # admin-next product shell (tryb B)"
 	@echo "  make admin TARGET=solid           # admin-solid product shell (tryb B)"
+	@echo "  make admin TARGET=svelte          # admin-svelte product shell (tryb B)"
 	@echo ""
 	@echo "Portable emit demos (gitignored {framework}/demo):"
-	@echo "  make vue | react | nuxt | next | solid"
+	@echo "  make vue | react | nuxt | next | solid | svelte"
 	@echo ""
 	@echo "Other:"
 	@echo "  make compiler"
@@ -70,10 +72,14 @@ else ifeq ($(TARGET),solid)
 	pnpm exec tsx compiler/src/cli.ts convert web --target=solid
 	pnpm exec tsx compiler/src/cli.ts build --app=solid
 	cd web-solid && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+else ifeq ($(TARGET),svelte)
+	pnpm exec tsx compiler/src/cli.ts convert web --target=svelte
+	pnpm exec tsx compiler/src/cli.ts build --app=svelte
+	cd web-svelte && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "TARGET=$(TARGET) is not implemented for web product shell."
-	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid"
-	@echo "Emit-only Solid demo (not product): make solid"
+	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid | TARGET=svelte"
+	@echo "Emit-only demos (not product): make solid | make svelte"
 	@echo "See portable/README.md"
 	@exit 1
 endif
@@ -87,10 +93,13 @@ else ifeq ($(TARGET),next)
 else ifeq ($(TARGET),solid)
 	pnpm exec tsx compiler/src/cli.ts convert admin --target=solid
 	cd admin-solid && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+else ifeq ($(TARGET),svelte)
+	pnpm exec tsx compiler/src/cli.ts convert admin --target=svelte
+	cd admin-svelte && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "TARGET=$(TARGET) is not implemented for admin product shell."
-	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid"
-	@echo "Emit-only Solid demo (not product): make solid"
+	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid | TARGET=svelte"
+	@echo "Emit-only demos (not product): make solid | make svelte"
 	@exit 1
 endif
 
@@ -115,3 +124,6 @@ next:
 
 solid:
 	$(call rebuild_demo,solid,dev)
+
+svelte:
+	$(call rebuild_demo,svelte,dev)

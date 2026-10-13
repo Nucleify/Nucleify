@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { emitReact } from '../src/emit/react'
 import { emitSolid } from '../src/emit/solid'
+import { emitSvelte } from '../src/emit/svelte'
 import { emitVue } from '../src/emit/vue'
 import { parseTsxToIr } from '../src/parse/tsx'
 import { derived, handler, state } from '../runtime/index'
@@ -16,7 +17,7 @@ describe('phase 7 state', () => {
     expect(fn()).toBe(4)
   })
 
-  it('emits Vue ref/computed, React useState/useMemo, Solid createSignal/createMemo', () => {
+  it('emits Vue/React/Solid/Svelte state idioms', () => {
     const ir = parseTsxToIr(
       `import { component, state, derived, handler } from '#nuc-compiler/runtime'
 export default component({
@@ -48,5 +49,11 @@ export default component({
     expect(solid).toContain('const [n, setN] = createSignal(0)')
     expect(solid).toContain('createMemo(() =>')
     expect(solid).toContain('setN(')
+
+    const svelte = emitSvelte(ir)
+    expect(svelte).toContain('let n = $state(0)')
+    expect(svelte).toContain('let d = $derived(')
+    expect(svelte).toContain('n = ')
+    expect(svelte).toContain('onclick={onInc}')
   })
 })

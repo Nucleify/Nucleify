@@ -21,8 +21,8 @@ function prepareEmitApps(tmp: string, apps: EmitApp[] = ['solid']): void {
 
 function normalizeSolidHint(source: string, name: string): string {
   return source.replace(
-    /\/\/ editable; rebuild: pnpm compiler -- build --app=solid --force \(.+\)\n/,
-    `// editable; rebuild: pnpm compiler -- build --app=solid --force (fixtures/source/${name}.tsx)\n`,
+    /\/\/ editable; after edits: pnpm compiler -- import --from=solid .+\n/,
+    `// editable; after edits: pnpm compiler -- import --from=solid fixtures/source/${name}.tsx\n`,
   )
 }
 

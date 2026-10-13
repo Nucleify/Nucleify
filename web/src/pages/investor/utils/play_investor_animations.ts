@@ -29,6 +29,8 @@ const WIPE_SKEW = -10
 function prepareFadeWipe(item: HTMLElement): void {
   item.classList.add('nuc-home-anim-mask')
   item.style.setProperty('--home-wipe', '0')
+  // Opacity 0 with wipe — mask alone can still paint card borders (esp. Svelte host).
+  item.style.opacity = '0'
   item.style.transform = `translate3d(${WIPE_SHIFT}px, 0, 0) skewX(${WIPE_SKEW}deg)`
   item.style.removeProperty('clip-path')
   item.style.removeProperty('filter')
@@ -37,6 +39,7 @@ function prepareFadeWipe(item: HTMLElement): void {
 function fadeWipeAnimation(duration: number, delay: TweenParamValue) {
   return {
     '--home-wipe': [0, 1],
+    opacity: [0, 1],
     x: [WIPE_SHIFT, 0],
     skewX: [WIPE_SKEW, 0],
     duration,

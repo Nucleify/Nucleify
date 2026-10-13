@@ -124,12 +124,12 @@ const main = defineCommand({
       args: {
         target: {
           type: 'string',
-          description: 'vue | react | solid | all (default all)',
+          description: 'vue | react | solid | svelte | all (default all)',
           default: 'all',
         },
         app: {
           type: 'string',
-          description: 'vue | react | nuxt | next | solid (only this demo app)',
+          description: 'vue | react | nuxt | next | solid | svelte (only this demo app)',
         },
         force: {
           type: 'boolean',
@@ -149,7 +149,7 @@ const main = defineCommand({
       async run({ args }) {
         const cwd = resolve(String(args.cwd || process.cwd()))
         const dumpIr = Boolean(args['dump-ir'])
-        const target = String(args.target || 'all') as 'vue' | 'react' | 'solid' | 'all'
+        const target = String(args.target || 'all') as 'vue' | 'react' | 'solid' | 'svelte' | 'all'
         const force = Boolean(args.force)
         const appArg = args.app ? (String(args.app) as EmitApp) : undefined
         const apps = appArg ? [appArg] : undefined
@@ -245,7 +245,7 @@ const main = defineCommand({
       args: {
         from: {
           type: 'string',
-          description: 'vue | react',
+          description: 'vue | react | solid | svelte',
         },
         force: {
           type: 'boolean',
@@ -254,14 +254,14 @@ const main = defineCommand({
         path: {
           type: 'positional',
           required: false,
-          description: 'Path to .vue / .tsx / sibling .css',
+          description: 'Path to .vue / .tsx / .svelte / sibling .css',
         },
       },
       async run({ args }) {
         const cwd = resolve(String(process.cwd()))
         const inputPath = args.path ? String(args.path) : ''
         if (!inputPath) {
-          console.error('import: path required (.vue / .tsx / .css)')
+          console.error('import: path required (.vue / .tsx / .svelte / .css)')
           process.exitCode = 1
           return
         }
@@ -270,7 +270,7 @@ const main = defineCommand({
           const { nucPath, written, from } = await runImport({
             cwd,
             path: inputPath,
-            from: fromArg as 'vue' | 'react' | undefined,
+            from: fromArg as 'vue' | 'react' | 'solid' | 'svelte' | undefined,
             force: Boolean(args.force),
           })
           console.log(`imported --from=${from} ${inputPath} → ${toRepoRelative(cwd, nucPath)}`)

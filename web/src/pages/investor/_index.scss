@@ -987,3 +987,37 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
   }
 }
 
+/*
+ * Below-fold investor reveal targets — hide until play_investor_animations
+ * arms fade-wipe (avoids card border ghosts before opacity/mask land).
+ */
+.nuc-home.nuc-investor:not(.nuc-home-static) {
+  .nuc-inv-why-head .nuc-home-eyebrow,
+  .nuc-inv-why-head .nuc-home-title,
+  .nuc-inv-why-head .nuc-home-support,
+  .nuc-inv-why-cta,
+  .nuc-inv-why-viz,
+  .nuc-inv-why-card,
+  .nuc-inv-keep-head .nuc-home-eyebrow,
+  .nuc-inv-keep-head .nuc-home-title,
+  .nuc-inv-keep-head .nuc-home-support,
+  .nuc-inv-keep-cta,
+  .nuc-inv-keep-focus,
+  .nuc-inv-keep-rail,
+  .nuc-inv-keep-note,
+  .nuc-inv-plan-head .nuc-home-eyebrow,
+  .nuc-inv-plan-head .nuc-home-title,
+  .nuc-inv-plan-head .nuc-home-support,
+  .nuc-inv-plan-card,
+  .nuc-inv-reach-head .nuc-home-eyebrow,
+  .nuc-inv-reach-head .nuc-home-title,
+  .nuc-inv-reach-head .nuc-home-support,
+  .nuc-inv-reach-stage,
+  #ask .nuc-home-title,
+  #ask .nuc-home-support,
+  #ask .nuc-home-close-cta,
+  #ask .nuc-home-close-footer {
+    opacity: 0;
+  }
+}
+
