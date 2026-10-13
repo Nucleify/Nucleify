@@ -8,8 +8,10 @@ cd "$ROOT"
 matrix=(
   "web:next:web-next"
   "web:solid:web-solid"
+  "web:svelte:web-svelte"
   "admin:next:admin-next"
   "admin:solid:admin-solid"
+  "admin:svelte:admin-svelte"
 )
 
 for entry in "${matrix[@]}"; do
@@ -17,7 +19,7 @@ for entry in "${matrix[@]}"; do
   echo "==> convert ${product} → ${target} (${dir})"
   pnpm exec tsx compiler/src/cli.ts convert "${product}" --target="${target}" --force
 
-  if [[ "${target}" == "next" || "${target}" == "solid" ]]; then
+  if [[ "${target}" == "next" || "${target}" == "solid" || "${target}" == "svelte" ]]; then
     echo "==> emit portable into ${target}"
     pnpm exec tsx compiler/src/cli.ts build --app="${target}" --force
   fi

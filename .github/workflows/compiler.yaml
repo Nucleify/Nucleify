@@ -43,10 +43,13 @@ jobs:
             ':(exclude)nuxt' \
             ':(exclude)next' \
             ':(exclude)solid' \
+            ':(exclude)svelte' \
             ':(exclude)web-next' \
             ':(exclude)web-solid' \
+            ':(exclude)web-svelte' \
             ':(exclude)admin-next' \
-            ':(exclude)admin-solid'
+            ':(exclude)admin-solid' \
+            ':(exclude)admin-svelte'
 
   emit:
     name: emit (${{ matrix.app }})
@@ -55,7 +58,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        app: [vue, react, nuxt, next, solid]
+        app: [vue, react, nuxt, next, solid, svelte]
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -99,12 +102,18 @@ jobs:
           - product: web
             target: solid
             dir: web-solid
+          - product: web
+            target: svelte
+            dir: web-svelte
           - product: admin
             target: next
             dir: admin-next
           - product: admin
             target: solid
             dir: admin-solid
+          - product: admin
+            target: svelte
+            dir: admin-svelte
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -125,8 +134,8 @@ jobs:
         run: |
           pnpm exec tsx compiler/src/cli.ts convert ${{ matrix.product }} --target=${{ matrix.target }} --force
 
-      - name: Emit portable into converted shell (next / solid)
-        if: matrix.target == 'next' || matrix.target == 'solid'
+      - name: Emit portable into converted shell (next / solid / svelte)
+        if: matrix.target == 'next' || matrix.target == 'solid' || matrix.target == 'svelte'
         run: pnpm exec tsx compiler/src/cli.ts build --app=${{ matrix.target }} --force
 
       - name: Install product shell deps

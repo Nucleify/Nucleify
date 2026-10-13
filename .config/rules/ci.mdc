@@ -18,7 +18,7 @@ alwaysApply: false
 6. `pnpm tests` — Vitest
 7. `pnpm compiler:test` — compiler unit tests
 8. `pnpm compiler:check` — emit fingerprints
-9. `pnpm compiler:convert:check` — convert matrix (web|admin × next|solid) + shell builds
+9. `pnpm compiler:convert:check` — convert matrix (web|admin × next|solid|svelte) + shell builds
 
 Same convert matrix also runs in `.github/workflows/compiler.yaml`.
 
