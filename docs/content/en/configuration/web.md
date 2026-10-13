@@ -154,15 +154,20 @@ Prerender locale prefixes are controlled by `PRERENDER_LOCALES` in `.env`.
 
 ## Tryb B — migrate shells
 
-Generated apps live at `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`:
+Generated apps live at `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/` (or a custom `--out` name):
 
 ```bash
 make web TARGET=next      # convert + start Next dev
 make web TARGET=solid     # convert + start Solid dev
+make web TARGET=svelte    # convert + start Svelte dev
 make admin TARGET=next    # admin equivalent
+
+# External Nuxt-like tree (from monorepo root):
+pnpm compiler -- convert web --target=next --path=/path/to/app --out=my-next --force
+pnpm compiler -- convert web --target=svelte --path=/path/to/app --out=my-svelte --force
 ```
 
-Develop in Nuxt (`web/`, `admin/`), convert when you need another framework deployment. See [Compiler](/en/docs/core-concepts/compiler).
+Develop in Nuxt (`web/`, `admin/`), convert when you need another framework deployment. Astro `docs/` convert is not available yet. See [Compiler](/en/docs/core-concepts/compiler).
 
 ---
 

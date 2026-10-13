@@ -109,7 +109,7 @@ Kompilator dodaje drugą oś:
 
 | Warstwa | Lokalizacja | Powiązanie z frameworkiem |
 |---------|-------------|---------------------------|
-| Portable UI | `*.nuc.tsx` | Brak — emit Vue + React |
+| Portable UI | `*.nuc.tsx` | Brak — emit Vue + React + Solid + Svelte |
 | Logika domeny | `shared_modules/nuc_*/utils/` | Composables Vue + hooki `.react.ts` |
 | Powłoka app | `web/src/pages/` | Nuxt (Tryb A) lub Next (Tryb B, generowany) |
 

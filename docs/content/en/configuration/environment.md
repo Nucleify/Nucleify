@@ -98,14 +98,14 @@ The example `.env` includes placeholders for Calendly and Google Calendar OAuth.
 
 ---
 
-## Next.js / Tryb B
+## Tryb B shells (Next / Solid / Svelte)
 
 Generated Next shells read Supabase vars with both naming conventions where supported:
 
 - `NEXT_PUBLIC_SUPABASE_URL` or `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY` (server only)
 
-Keep one root `.env` — both Nuxt and Next codegen paths resolve from the monorepo root.
+Solid and Svelte product shells (`web-solid/`, `web-svelte/`, …) use the same root `SUPABASE_*` names via Vite `import.meta.env`. Keep one root `.env` — Nuxt and all Tryb B codegen paths resolve from the monorepo root.
 
 ---
 

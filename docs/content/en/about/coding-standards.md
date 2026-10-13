@@ -133,7 +133,9 @@ Author in `*.nuc.tsx` per `compiler/PORTABLE.md`:
 - No stores, routers, or Supabase inside portable files
 - Props + events only for external coupling
 - Run `pnpm compiler:build` after changes; commit authoring + emit
-- Import edits: `pnpm compiler -- import --from=vue|react`
+- Import edits: `pnpm compiler -- import --from=vue|react|solid|svelte`
+- Do not re-export `*.nuc.tsx` from public barrels (`index.ts`, `modules.ts`, …)
+- Breaking IR changes bump `IR_VERSION` and migrate fixtures in the same PR
 
 ---
 

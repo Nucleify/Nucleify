@@ -49,7 +49,7 @@ Separate config at `.config/vitest.compiler.config.ts`:
 pnpm compiler:test
 ```
 
-Tests live in `compiler/tests/`.
+Tests live in `compiler/tests/` (including emit/import goldens for Vue, React, Solid, and Svelte).
 
 ---
 

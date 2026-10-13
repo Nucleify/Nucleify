@@ -109,7 +109,7 @@ The compiler adds a second axis:
 
 | Layer | Location | Framework coupling |
 |-------|----------|-------------------|
-| Portable UI | `*.nuc.tsx` | None — emits Vue + React |
+| Portable UI | `*.nuc.tsx` | None — emits Vue + React + Solid + Svelte |
 | Domain logic | `shared_modules/nuc_*/utils/` | Vue composables + `.react.ts` hooks |
 | App shell | `web/src/pages/` | Nuxt (Tryb A) or Next (Tryb B) |
 

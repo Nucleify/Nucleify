@@ -1,6 +1,6 @@
 # Compiler
 
-The `@nucleify/compiler` package is how Nucleify migrates UI across shells: an IR-first portable compiler that turns `*.nuc.tsx` into Vue SFCs, React and Solid components, and shared CSS — and can convert entire Nuxt product shells (`web/`, `admin/`) to Next.js or Solid.
+The `@nucleify/compiler` package is how Nucleify migrates UI across shells: an IR-first portable compiler that turns `*.nuc.tsx` into Vue SFCs, React, Solid, and Svelte components, and shared CSS — and can convert Nuxt product shells (`web/`, `admin/`) or an external Nuxt-like tree to Next.js, Solid, or Svelte.
 
 **Coverage:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next or Vue/Nuxt are beachheads, not the boundary.
 
@@ -10,10 +10,22 @@ The `@nucleify/compiler` package is how Nucleify migrates UI across shells: an I
 
 | Mode | What it does | Example |
 |------|--------------|---------|
-| **Portable emit** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + `.css` | `pnpm compiler:build` / `make solid` |
-| **Product convert** | Nuxt app → Next.js or Solid app | `pnpm compiler -- convert web --target=next` |
+| **Portable emit** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + Svelte `.svelte` + `.css` | `pnpm compiler:build` / `make solid` / `make svelte` |
+| **Product convert** | Nuxt app (or external folder/git) → Next.js, Solid, or Svelte app | `pnpm compiler -- convert web --target=next` |
 
-**Portable emit** is for presentational components. **Product convert** scaffolds `web-next/`, `admin-next/`, `web-solid/`, or `admin-solid/` from the Vue source tree — same routes, shared modules, different framework shell.
+**Portable emit** is for presentational components. **Product convert** scaffolds `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, or `admin-svelte/` from the Vue source tree — same routes, shared modules, different framework shell. Converting the Astro `docs/` product is **not** implemented yet.
+
+Do **not** re-export `*.nuc.tsx` from public barrels (`index.ts`, `modules.ts`, …) — authoring stays out of app entrypoints.
+
+---
+
+## IR version
+
+Portable IR is versioned as `IR_VERSION` (currently **0.1.0**) in `compiler/src/ir/types.ts`.
+
+- Schema, parsers, and `compiler/tests/fixtures/ir/*.json` must stay in sync.
+- **Breaking** IR shape changes → bump the version and migrate fixtures/tests in the **same PR**.
+- Policy: `compiler/PORTABLE.md` § IR versioning.
 
 ---
 
@@ -46,6 +58,7 @@ portable/components/
 ├── Counter.nuc.tsx     # source (committed)
 ├── Counter.vue         # generated Vue SFC
 ├── Counter.tsx         # generated React component
+├── Counter.svelte      # generated Svelte 5 SFC (when siblings enabled)
 └── Counter.css         # extracted styles
 ```
 
@@ -81,16 +94,24 @@ pnpm compiler -- build --force                   # discard emit edits; regenerat
 pnpm compiler -- convert web --target=next       # product convert → web-next/
 pnpm compiler -- convert admin --target=next     # product convert → admin-next/
 pnpm compiler -- convert web --target=solid      # product convert → web-solid/
+pnpm compiler -- convert web --target=svelte     # product convert → web-svelte/
+pnpm compiler -- convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
+pnpm compiler -- convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
 pnpm compiler -- scaffold solid                  # throwaway demo → solid/demo/
+pnpm compiler -- scaffold svelte                 # throwaway demo → svelte/demo/
 pnpm compiler -- scaffold next                   # throwaway demo → next/demo/
 pnpm compiler -- build --app=solid               # emit into solid/demo
+pnpm compiler -- build --app=svelte              # emit into svelte/demo
 ```
 
-Skip compiler during bootstrap:
+Skip compiler during bootstrap / skip hooks when needed:
 
 ```bash
 SKIP_COMPILER=1 make run
+HUSKY=0 git commit -m "…"   # skip pre-commit suite
 ```
+
+Pre-commit already runs `compiler:check` (and related compiler checks) via Husky.
 
 ---
 
@@ -117,8 +138,8 @@ If both `.vue` and `.tsx` are dirty, you must pass `--from=`. Use `pnpm compiler
 compiler/
 ├── src/
 │   ├── parse/              # *.nuc.tsx → AST
-│   ├── ir/                 # intermediate representation
-│   ├── emit/               # IR → .vue / React .tsx / Solid .tsx / .css
+│   ├── ir/                 # intermediate representation (IR_VERSION)
+│   ├── emit/               # IR → .vue / React .tsx / Solid .tsx / Svelte .svelte / .css
 │   └── sync/               # import back, convert product shells
 ├── runtime/                # #nuc-compiler/runtime
 ├── templates/              # scaffold sources for gitignored demos
@@ -127,7 +148,7 @@ compiler/
 └── PORTABLE.md             # authoring rules
 ```
 
-Gitignored emit demos: `{vue,react,nuxt,next,solid}/demo/` (via `make vue`, `make next`, `make solid`, etc.).
+Gitignored emit demos: `{vue,react,nuxt,next,solid,svelte}/demo/` (via `make vue`, `make next`, `make solid`, `make svelte`, etc.).
 
 ---
 
@@ -141,11 +162,28 @@ cd web-next && pnpm dev
 
 make web TARGET=solid
 pnpm compiler -- convert web --target=solid
+
+make web TARGET=svelte
+pnpm compiler -- convert web --target=svelte
 ```
 
-The converter reads the Nuxt source tree in `web/`, maps pages and composables to React (or Solid) equivalents, and writes output to `web-next/` or `web-solid/`. Shared modules are consumed via framework barrels.
+Svelte product shells are Vite SPAs with Svelte 5 runes (not SvelteKit SSR yet). Portable Svelte emit uses `$state` / `$derived` / `$props` and DOM events like `onclick`.
 
-Treat `web-next/`, `admin-next/`, `web-solid/`, and `admin-solid/` as **generated output**. Develop in `web/` or `admin/`, then convert.
+### External folder or git URL
+
+Use the same `web|admin` shell profile with an external Nuxt-like tree (`src/` required). Run from the **Nucleify monorepo root** so `modules` / `portable` aliases resolve:
+
+```bash
+pnpm compiler -- convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
+pnpm compiler -- convert admin --target=solid --git=https://github.com/org/app.git --out=fork-admin-solid --force
+pnpm compiler -- convert web --target=svelte --path=/path/to/nuxt-app --out=my-svelte --force
+```
+
+Product shells install with `pnpm install --ignore-workspace` — template dependency versions stay pinned; they do not join the monorepo workspace graph.
+
+The converter reads Vue SFCs under `src/`, maps pages and composables to React, Solid, or Svelte equivalents, and writes output with **no** source `.vue` files. Shared modules are consumed via framework barrels.
+
+Treat `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, and `admin-svelte/` (and custom `--out` dirs) as **generated output**. Develop in `web/` or `admin/`, then convert.
 
 ---
 
@@ -163,12 +201,14 @@ Runtime helpers (`component`, `state`, `derived`, `handler`) are compile-time ma
 
 ## Testing
 
-Compiler tests live in `compiler/tests/` with a dedicated Vitest config (`.config/vitest.compiler.config.ts`). Golden tests compare emit output against fixtures in `compiler/tests/fixtures/`.
+Compiler tests live in `compiler/tests/` with a dedicated Vitest config (`.config/vitest.compiler.config.ts`). Golden tests compare emit output against fixtures in `compiler/tests/fixtures/`. Guards include IR version sync and barrel scans (no `*.nuc.tsx` in public entrypoints).
 
 ```bash
 pnpm compiler:test
 pnpm compiler:check
 ```
+
+Product smoke (manual): `make web`, `make vue` / `make solid` / `make svelte` for emit demos.
 
 See [Vitest](/en/docs/tests/vitest) for the full testing setup.
 

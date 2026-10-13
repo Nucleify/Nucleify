@@ -59,7 +59,9 @@
 /web-svelte/
 /admin-svelte/
 .nucleify-nm-*/
-
+.nucleify-convert-git-*/
+.nucleify-fixture-ext-*/
+/ext-web-next-*/
 # AI workflow
 .ai/specs/*
 !.ai/docs/

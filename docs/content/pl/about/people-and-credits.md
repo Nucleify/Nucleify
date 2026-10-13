@@ -75,13 +75,13 @@ Nucleify stoi na projektach open source:
 |------|--------|
 | Feature-Sliced Design | [feature-sliced.design](https://feature-sliced.design) — układ modułów domena-first |
 | Atomic Design | [Brad Frost](https://atomicdesign.bradfrost.com) — hierarchia SCSS w `nuc_colors` |
-| Portable UI / IR | `@nucleify/compiler` — `*.nuc.tsx` → Vue + React (+ Solid) |
+| Portable UI / IR | `@nucleify/compiler` — `*.nuc.tsx` → Vue + React + Solid + Svelte |
 
 ---
 
 ## Specjalne podziękowania
 
-- Społecznościom Supabase, Vue, React, Nuxt i Astro
+- Społecznościom Supabase, Vue, React, Nuxt, Astro, Svelte i Solid
 - Wszystkim, którzy zgłaszali błędy lub sugerowali funkcje
 - Maintainerom open source wszędzie
 

@@ -2,7 +2,7 @@
 
 Nucleify używa [Supabase](https://supabase.com) do PostgreSQL, Auth, Storage i Edge Functions. Schemat bazy i seedery są **własnością modułów funkcjonalnych** w `shared_modules/nuc_*/supabase/` i scalane na poziomie monorepo pod `supabase/`.
 
-Dostęp serwerowy z Nuxt idzie przez bramkę API Nitro — nie przez bezpośrednie wywołania service-role z przeglądarki. To samo dotyczy wygenerowanych shelli (Next, Solid): współdzielą tę samą instancję Supabase i ten sam model modułów.
+Dostęp serwerowy z Nuxt idzie przez bramkę API Nitro — nie przez bezpośrednie wywołania service-role z przeglądarki. To samo dotyczy wygenerowanych shelli (Next, Solid, Svelte): współdzielą tę samą instancję Supabase i ten sam model modułów.
 
 ---
 

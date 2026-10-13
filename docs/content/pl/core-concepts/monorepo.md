@@ -1,6 +1,6 @@
 # Układ monorepo
 
-Nucleify to workspace pnpm zbudowany pod **migrację między frameworkami**. Każdy pakiet ma wyraźną granicę, współdzielone narzędzia są w `.config/`, a aplikacje produktowe (`web/`, `admin/`, `docs/`) konsumują logikę funkcjonalną z `shared_modules/` — nigdy odwrotnie. Generowane shelle (Next, Solid, …) to output, nie drugie źródło prawdy.
+Nucleify to workspace pnpm zbudowany pod **migrację między frameworkami**. Każdy pakiet ma wyraźną granicę, współdzielone narzędzia są w `.config/`, a aplikacje produktowe (`web/`, `admin/`, `docs/`) konsumują logikę funkcjonalną z `shared_modules/` — nigdy odwrotnie. Generowane shelle (Next, Solid, Svelte, …) to output, nie drugie źródło prawdy.
 
 ---
 
@@ -95,7 +95,7 @@ compiler/
 ├── src/
 │   ├── parse/              # *.nuc.tsx → AST
 │   ├── ir/                 # reprezentacja pośrednia
-│   ├── emit/               # IR → .vue / .tsx / .css
+│   ├── emit/               # IR → .vue / React .tsx / Solid .tsx / Svelte .svelte / .css
 │   └── sync/               # import zwrotny z emisji, konwersja powłok produktu
 ├── runtime/                # #nuc-compiler/runtime (component, state, handler, …)
 ├── templates/              # źródła scaffold dla gitignored demo
@@ -104,7 +104,7 @@ compiler/
 └── PORTABLE.md             # reguły autorskie dla *.nuc.tsx
 ```
 
-Gitignored demo emisji: `{vue,react,nuxt,next}/demo/` (przez `make vue`, `make next` itd.).
+Gitignored demo emisji: `{vue,react,nuxt,next,solid,svelte}/demo/` (przez `make vue`, `make next`, `make solid`, `make svelte` itd.).
 
 ---
 
@@ -192,10 +192,11 @@ web / admin / docs
 | `make web` | dev produktu Nuxt (`TARGET=nuxt` domyślnie) |
 | `make web TARGET=next` | konwersja + shell Next (`web-next/`) |
 | `make web TARGET=solid` | konwersja + shell Solid (`web-solid/`) |
-| `make admin` / `make admin TARGET=next\|solid` | odpowiedniki admin |
+| `make web TARGET=svelte` | konwersja + shell Svelte (`web-svelte/`) |
+| `make admin` / `make admin TARGET=next|solid|svelte` | odpowiedniki admin |
 | `make docs` | dev dokumentacji Astro |
 | `make compiler` | check + build |
-| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` | gitignored demo portable (`{framework}/demo`) |
+| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` / `make svelte` | gitignored demo portable (`{framework}/demo`) |
 
 ---
 

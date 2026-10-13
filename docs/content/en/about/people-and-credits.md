@@ -75,13 +75,13 @@ Nucleify is built on top of open source projects:
 |------|--------|
 | Feature-Sliced Design | [feature-sliced.design](https://feature-sliced.design) — domain-first module layout |
 | Atomic Design | [Brad Frost](https://atomicdesign.bradfrost.com) — SCSS component hierarchy in `nuc_colors` |
-| Portable UI / IR compilers | Nucleify's own `@nucleify/compiler` — `*.nuc.tsx` → Vue + React |
+| Portable UI / IR compilers | Nucleify's own `@nucleify/compiler` — `*.nuc.tsx` → Vue + React + Solid + Svelte |
 
 ---
 
 ## Special thanks
 
-- The Supabase, Vue, React, Nuxt, and Astro communities
+- The Supabase, Vue, React, Nuxt, Astro, Svelte, and Solid communities
 - Everyone who has reported bugs or suggested features
 - Open source maintainers everywhere
 

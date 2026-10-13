@@ -41,14 +41,29 @@ Solid product convert: Vue SFC → React emit → `reactTsxToSolidBody`. Svelte:
 
 Portable emit targets: **Vue + React + Solid + Svelte** (+ shared CSS). Product siblings next to `*.nuc.tsx`: Vue/React/Svelte; Solid stays in `solid/demo` (+ convert shells) and is importable with `--from=solid`.
 
+## Portable emit vs product convert
+
+| | Portable emit | Product convert |
+|--|---------------|-----------------|
+| Input | `*.nuc.tsx` | Nuxt `web/` / `admin/` (or `--path` / `--git`) |
+| Output | siblings + `{fw}/demo` | `{product}-{framework}/` or `--out` |
+| CLI | `build` / `import` / `check` | `convert … --target=next\|solid\|svelte` |
+
+Details: `compiler/README.md`, `.ai/docs/compiler-ir-barrels-convert.md`.
+
 ## Now
 
-Faza 13 — Svelte portable emit ([#694](https://github.com/Nucleify/Nucleify/issues/694): `emitSvelte`, runes, `svelte/demo`, `make svelte`, goldens, PORTABLE limits) + Tryb B SPA convert for web/admin (beyond #694’s original “product convert later”; still **not** SvelteKit SSR). Astro emit later.
+Faza 13 — Svelte portable emit ([#694](https://github.com/Nucleify/Nucleify/issues/694): `emitSvelte`, runes, `svelte/demo`, `make svelte`, goldens, PORTABLE limits) + Tryb B SPA convert for web/admin (beyond #694’s original “product convert later”; still **not** SvelteKit SSR). Leftovers #698 / #697 / #696 (IR version sync, barrel guard, external `--path`/`--git`). Docs Astro convert deferred.
 
 ## Verify
 
 ```bash
 pnpm compiler:test
+pnpm compiler:check
+# Solid portable demo smoke:
+pnpm exec tsx compiler/src/cli.ts scaffold solid
+pnpm exec tsx compiler/src/cli.ts build --app=solid --force
+cd solid/demo && pnpm install --ignore-workspace && pnpm run --ignore-workspace build
 # Svelte portable demo smoke:
 pnpm exec tsx compiler/src/cli.ts scaffold svelte
 pnpm exec tsx compiler/src/cli.ts build --app=svelte --force
@@ -57,4 +72,5 @@ cd svelte/demo && pnpm install --ignore-workspace && pnpm run --ignore-workspace
 pnpm compiler -- convert admin --target=svelte --force
 pnpm compiler -- convert web --target=svelte --force
 make admin TARGET=svelte
+# External: --path=… --out=… --force (from monorepo root)
 ```

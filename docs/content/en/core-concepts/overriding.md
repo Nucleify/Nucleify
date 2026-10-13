@@ -2,7 +2,7 @@
 
 Overrides let you replace any file in `web/`, `admin/`, `docs/`, or `shared_modules/` without editing the original. At build time, Nuxt resolves the override path instead of the source path.
 
-Overrides are **Nuxt-only**. They do not apply to the compiler import cycle, Astro in production builds outside Nuxt, or generated `web-next/` unless separately configured.
+Overrides are **Nuxt-only**. They do not apply to the compiler import cycle, Astro in production builds outside Nuxt, or generated shells (`web-next/`, `web-solid/`, `web-svelte/`, …) unless separately configured.
 
 ---
 

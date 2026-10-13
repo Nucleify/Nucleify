@@ -2,7 +2,7 @@
 
 Nadpisania pozwalają zastąpić dowolny plik w `web/`, `admin/`, `docs/` lub `shared_modules/` bez edycji oryginału. Przy buildzie Nuxt rozwiązuje ścieżkę override zamiast źródła.
 
-Nadpisania są **tylko dla Nuxt**. Nie dotyczą cyklu import kompilatora, produkcyjnych buildów Astro poza Nuxt ani generowanych shelli (`web-next/`, `web-solid/`, …) — chyba że skonfigurujesz to osobno.
+Nadpisania są **tylko dla Nuxt**. Nie dotyczą cyklu import kompilatora, produkcyjnych buildów Astro poza Nuxt ani generowanych shelli (`web-next/`, `web-solid/`, `web-svelte/`, …) — chyba że skonfigurujesz to osobno.
 
 ---
 
