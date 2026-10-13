@@ -165,7 +165,7 @@ export const NUC_HOME_SEO = {
     'Nucleify — One nucleus for Vue, React, Nuxt, Next, Astro, Svelte & Solid',
   description:
     'Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, Astro, Svelte, and Solid from one install — without rewriting the product.',
-  ogImage: 'https://nucleify.io/img/holo-cube.svg',
+  ogImage: 'https://nucleify.io/img/og-image.png',
 } as const
 
 export const NUC_HOME_DOCS = {

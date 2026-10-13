@@ -3,9 +3,10 @@ main = ".output/server/index.mjs"
 compatibility_date = "2026-04-06"
 account_id = "7c5285307cec0088f9f25c2388e5558e"
 
+# zone_name required when the account has SSL for SaaS / wildcard host entitlement (CF 10082).
 routes = [
-  "nucleify.io/*",
-  "www.nucleify.io/*"
+  { pattern = "nucleify.io/*", zone_name = "nucleify.io" },
+  { pattern = "www.nucleify.io/*", zone_name = "nucleify.io" },
 ]
 
 [site]

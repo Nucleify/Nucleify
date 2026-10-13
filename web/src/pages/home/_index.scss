@@ -26,7 +26,8 @@ html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
     .nuc-home-hero-eyebrow,
     .nuc-home-hero-cta,
     .nuc-home-hero-proof,
-    .nuc-home-hero-panel {
+    /* Investor deal panel stays painted — iris clip alone covers → reveals it. */
+    .nuc-home-hero-panel:not(.is-deal) {
       opacity: 0;
     }
 

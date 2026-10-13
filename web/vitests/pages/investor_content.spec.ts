@@ -4,9 +4,11 @@ import {
   investorDocsHref,
   investorHomeHref,
   NUC_INVESTOR_CONTACT_TYPES,
+  NUC_INVESTOR_COPY,
   NUC_INVESTOR_GLANCE,
   NUC_INVESTOR_SAVINGS,
   NUC_INVESTOR_SECTIONS,
+  NUC_INVESTOR_SEO,
   NUC_INVESTOR_SHELLS,
   NUC_INVESTOR_SURFACE,
 } from '../../src/pages/investor/constants/content'
@@ -55,12 +57,20 @@ describe('investor pitch content', () => {
     ).toBe(true)
   })
 
+  it('leads with investor capital messaging', () => {
+    expect(NUC_INVESTOR_COPY.headline).toMatch(/rewrite|capital|burn/i)
+    expect(NUC_INVESTOR_COPY.support.toLowerCase()).toMatch(
+      /capital|budget|migrations|durable/
+    )
+    expect(NUC_INVESTOR_SEO.title).toMatch(/investors|framework/i)
+  })
+
   it('labels savings as a planning model, not audited financials', () => {
     expect(NUC_INVESTOR_SAVINGS.some((item) => item.id === 'dollars')).toBe(
       true
     )
     const dollars = NUC_INVESTOR_SAVINGS.find((item) => item.id === 'dollars')
-    expect(dollars?.detail.toLowerCase()).toMatch(/not a forecast|blended/)
+    expect(dollars?.detail.toLowerCase()).toMatch(/not a forecast|rough cost/)
   })
 
   it('keeps the intro glance plate on the savings model', () => {
@@ -72,7 +82,7 @@ describe('investor pitch content', () => {
     expect(NUC_INVESTOR_GLANCE.from).toBe('7')
     expect(NUC_INVESTOR_GLANCE.to).toBe('1')
     expect(NUC_INVESTOR_GLANCE.note.toLowerCase()).toMatch(
-      /illustrative|not a forecast/
+      /example only|not a forecast/
     )
   })
 })

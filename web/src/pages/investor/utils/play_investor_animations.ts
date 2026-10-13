@@ -159,8 +159,10 @@ export async function playInvestorAnimations(
   const headline = q(root, '.nuc-home-hero-headline')
   const support = q(root, '.nuc-home-hero-support')
   const cta = q(root, '.nuc-home-hero-cta')
-  const proof = q(root, '.nuc-inv-glance') ?? q(root, '.nuc-home-hero-proof')
-  const panel = q(root, '.nuc-home-hero-panel')
+  // Deal panel stays opacity 1 — iris clip alone covers → reveals the cube.
+  // Do not set inline opacity:0 on it (home CSS already fades other hero bits).
+  const panel = q(root, '.nuc-home-hero-panel.is-deal')
+  const board = q(root, '.nuc-inv-deal')
 
   for (const el of [
     rail,
@@ -169,17 +171,19 @@ export async function playInvestorAnimations(
     brand,
     headline,
     support,
-    cta,
-    proof,
     panel,
+    board,
+    cta,
     ...qa(root, '.nuc-home-anim-mask'),
   ]) {
     clearMotionStyles(el)
   }
 
-  for (const el of compact ? [] : [rail, eyebrow, mark, cta, proof, panel]) {
+  for (const el of compact ? [] : [rail, eyebrow, mark, cta]) {
     if (el) el.style.opacity = '0'
   }
+  if (panel) panel.style.opacity = '1'
+  if (board) board.style.opacity = '1'
   if (!compact) {
     if (headline) headline.style.clipPath = 'inset(0 100% 0 0)'
     if (support) support.style.clipPath = 'inset(100% 0 0 0)'
@@ -268,7 +272,7 @@ export async function playInvestorAnimations(
   }
 
   const clearHeroFilters = () => {
-    for (const el of [eyebrow, mark, headline, support, cta, proof, panel]) {
+    for (const el of [eyebrow, mark, headline, support, cta]) {
       el?.style.removeProperty('filter')
     }
   }
@@ -280,7 +284,7 @@ export async function playInvestorAnimations(
       heroBooted = true
       clearHeroFilters()
       settleHeroBits(
-        [eyebrow, mark, brand, headline, support, cta, proof, panel].filter(
+        [eyebrow, mark, brand, headline, support, cta, panel, board].filter(
           (el): el is HTMLElement => Boolean(el)
         )
       )
@@ -362,33 +366,7 @@ export async function playInvestorAnimations(
         rotateX: [62, 0],
         duration: 950,
       },
-      680
-    )
-  }
-
-  if (proof && !compact) {
-    timeline.add(
-      proof,
-      {
-        opacity: [0, 1],
-        y: [16, 0],
-        duration: 800,
-      },
-      820
-    )
-  }
-
-  if (panel && !compact) {
-    timeline.add(
-      panel,
-      {
-        opacity: [0, 1],
-        x: [48, 0],
-        filter: ['blur(14px)', 'blur(0px)'],
-        duration: 1100,
-        ease: 'outExpo',
-      },
-      320
+      700
     )
   }
 
@@ -521,15 +499,9 @@ export async function playInvestorAnimations(
 
     // Hero re-entry
     const hero = q(root, '.nuc-home-hero')
-    const heroBits = [
-      eyebrow,
-      mark,
-      headline,
-      support,
-      cta,
-      proof,
-      panel,
-    ].filter((el): el is HTMLElement => Boolean(el))
+    const heroBits = [eyebrow, mark, headline, support, cta].filter(
+      (el): el is HTMLElement => Boolean(el)
+    )
 
     {
       let visible = false
@@ -597,41 +569,40 @@ export async function playInvestorAnimations(
       })
     }
 
-    revealMask(q(root, '.nuc-investor-thesis'), [
+    revealMask(q(root, '.nuc-inv-why'), [
       ...qa(
         root,
-        '.nuc-investor-thesis .nuc-home-eyebrow, .nuc-investor-thesis .nuc-home-title, .nuc-investor-thesis .nuc-home-support'
+        '.nuc-inv-why-head .nuc-home-eyebrow, .nuc-inv-why-head .nuc-home-title, .nuc-inv-why-head .nuc-home-support, .nuc-inv-why-cta, .nuc-inv-why-viz'
       ),
-      ...qa(root, '.nuc-investor-thesis-card'),
+      ...qa(root, '.nuc-inv-why-card'),
     ])
 
-    revealMask(q(root, '.nuc-investor-savings'), [
+    revealMask(q(root, '.nuc-inv-keep'), [
       ...qa(
         root,
-        '.nuc-investor-savings .nuc-home-eyebrow, .nuc-investor-savings .nuc-home-title, .nuc-investor-savings .nuc-home-support, .nuc-investor-savings-note'
-      ),
-      ...qa(root, '.nuc-investor-savings-card'),
-    ])
-
-    revealMask(q(root, '.nuc-investor-wedge'), [
-      ...qa(
-        root,
-        '.nuc-investor-wedge .nuc-home-eyebrow, .nuc-investor-wedge .nuc-home-title, .nuc-investor-wedge .nuc-home-support'
-      ),
-      ...qa(root, '.nuc-investor-wedge-step'),
-    ])
-
-    revealMask(q(root, '.nuc-investor-surface'), [
-      ...qa(
-        root,
-        '.nuc-investor-surface .nuc-home-eyebrow, .nuc-investor-surface .nuc-home-title, .nuc-investor-surface .nuc-home-support, .nuc-investor-surface-board'
+        '.nuc-inv-keep-head .nuc-home-eyebrow, .nuc-inv-keep-head .nuc-home-title, .nuc-inv-keep-head .nuc-home-support, .nuc-inv-keep-cta, .nuc-inv-keep-focus, .nuc-inv-keep-rail, .nuc-inv-keep-note'
       ),
     ])
 
-    revealMask(q(root, '.nuc-investor-ask'), [
+    revealMask(q(root, '.nuc-inv-plan'), [
       ...qa(
         root,
-        '.nuc-investor-ask .nuc-home-title, .nuc-investor-ask .nuc-home-support, .nuc-investor-ask-cta, .nuc-investor-ask-footer'
+        '.nuc-inv-plan-head .nuc-home-eyebrow, .nuc-inv-plan-head .nuc-home-title, .nuc-inv-plan-head .nuc-home-support'
+      ),
+      ...qa(root, '.nuc-inv-plan-card'),
+    ])
+
+    revealMask(q(root, '.nuc-inv-reach'), [
+      ...qa(
+        root,
+        '.nuc-inv-reach-head .nuc-home-eyebrow, .nuc-inv-reach-head .nuc-home-title, .nuc-inv-reach-head .nuc-home-support, .nuc-inv-reach-stage'
+      ),
+    ])
+
+    revealMask(q(root, '#ask.nuc-home-close'), [
+      ...qa(
+        root,
+        '#ask .nuc-home-title, #ask .nuc-home-support, #ask .nuc-home-close-cta, #ask .nuc-home-close-footer'
       ),
     ])
   }
@@ -659,7 +630,7 @@ export async function playInvestorAnimations(
     heroBooted = true
     clearHeroFilters()
     settleHeroBits(
-      [eyebrow, mark, brand, headline, support, cta, proof, panel].filter(
+      [eyebrow, mark, brand, headline, support, cta, panel, board].filter(
         (el): el is HTMLElement => Boolean(el)
       )
     )

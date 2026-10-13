@@ -1,9 +1,23 @@
-# Brand — holo-cube logo
+# Brand — holo-cube + favicon
 
-Canonical mark: `web/public/img/holo-cube.svg` (transparent bg, glow on front + side verticals, dark back spokes).
+## Canonical marks
 
-Synced copies / aliases:
-- `web/public/img/logo.svg` + `logo.png` + `favicon.ico`
-- `docs/public/img/holo-cube.svg` + `logo.svg` + `favicon.ico`
+| Asset | Role |
+|-------|------|
+| `web/public/img/holo-cube.svg` | Classic holo wireframe (READMEs, schema-org, OG source) |
+| `web/public/img/favicon.svg` | Tab / apple / docs chrome — face colors: top green, left turquoise, right pink, bottom tip blue; transparent bg |
+| `web/public/favicon.ico` | RGBA multi-size ICO from `favicon.svg` |
 
-Wired in: root README, package READMEs, docs header/favicon, Nuxt favicon + schema-org + home/investor OG.
+`favicon` viewBox: `20 22 160 160`.
+
+## Synced copies
+
+- `web/public/img/logo.svg` / `logo.png` — logo alias (may still be classic holo; docs UI uses `favicon.svg`)
+- `docs/public/img/favicon.svg` + `favicon.ico` + `logo.svg` / `logo.png` (logo aliased to favicon for docs)
+- `docs/public/img/holo-cube.svg` — synced from web classic mark
+
+## Wired in
+
+- Nuxt: `web/.config/nuxt/app.ts` → favicon.svg + favicon.ico
+- Docs: `DocsLayout.astro`, `index.astro` → favicon.svg (icon, apple-touch, header, home mark)
+- Package READMEs / root README may still reference `holo-cube.svg`
