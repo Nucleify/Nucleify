@@ -23,6 +23,7 @@
     "compiler:build:solid": "tsx compiler/src/cli.ts build --target=solid",
     "compiler:check": "tsx compiler/src/cli.ts check",
     "compiler:test": "vitest run --config .config/vitest.compiler.config.ts",
+    "compiler:convert:check": "bash .config/bash/convert-check.sh",
     "sync-rules": "node .config/scripts/sync-rules.js",
     "prepare:husky": "husky",
     "prepare:submodules": "sh .config/bash/prepare-submodules.sh",

@@ -31,8 +31,11 @@ function rewriteInlineEventHandler(code: string, stateNames?: Set<string>): stri
     }
   }
   if (/^[a-zA-Z_$][\w$]*$/.test(inner)) return inner
-  if (/=[^=]/.test(inner) && !inner.includes('=>')) return `() => { ${inner} }`
-  return `() => ${inner}`
+  // Vue `$event` must stay a parameter — `() => setX($event)` leaves `$event` unbound.
+  // Do not use `\b` before `$` (`$` is non-word, so `\b\$event` fails after `(`).
+  const args = /\$event\b/.test(inner) ? '$event' : ''
+  if (/=[^=]/.test(inner) && !inner.includes('=>')) return `(${args}) => { ${inner} }`
+  return `(${args}) => ${inner}`
 }
 
 function emitExpr(expr: IrExpr): string {

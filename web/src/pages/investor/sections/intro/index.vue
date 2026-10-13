@@ -68,7 +68,7 @@
               :focus="focusId"
               :faces="faces"
               :paused="hovering"
-              @focus="focusId = $event"
+              @focus="onCubeFocus"
             />
 
             <div class="nuc-inv-deal-readout" aria-live="polite">
@@ -120,6 +120,10 @@ const hovering = ref(false)
 const activeFace = computed(
   () => faces.find((face) => face.id === focusId.value) ?? faces[1]!
 )
+
+function onCubeFocus(id: NucHomeModuleLaneId): void {
+  focusId.value = id
+}
 
 function onPrimary(): void {
   const root = document.querySelector<HTMLElement>('.nuc-investor')

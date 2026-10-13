@@ -207,8 +207,10 @@ function toSolidAttrName(name: string): string {
 function rewriteInlineEventHandler(code: string): string {
   const inner = code.trim()
   if (/^[a-zA-Z_$][\w$]*$/.test(inner)) return inner
-  if (/=[^=]/.test(inner) && !inner.includes('=>')) return `() => { ${inner} }`
-  return `() => ${inner}`
+  // Do not use `\b` before `$` (`$` is non-word, so `\b\$event` fails after `(`).
+  const args = /\$event\b/.test(inner) ? '$event' : ''
+  if (/=[^=]/.test(inner) && !inner.includes('=>')) return `(${args}) => { ${inner} }`
+  return `(${args}) => ${inner}`
 }
 
 function emitAttrs(attrs: IrAttr[], ctx: EmitCtx, tag?: string): string {

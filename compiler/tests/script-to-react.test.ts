@@ -142,4 +142,21 @@ describe('convertVueSfcToReact', () => {
     expect(body).toContain('<>')
     expect(body).toContain('</>')
   })
+
+  it('binds Vue $event as an arrow parameter for state setters', () => {
+    const { body } = convertVueSfcToReact(
+      [
+        '<template>',
+        '  <NucHomeHoloCube :focus="focusId" @focus="focusId = $event" />',
+        '</template>',
+        '<script setup lang="ts">',
+        "import { ref } from 'vue'",
+        "const focusId = ref('sdk')",
+        '</script>',
+      ].join('\n'),
+      'intro.vue',
+    )
+    expect(body).toContain('onFocus={($event) => setFocusId($event)}')
+    expect(body).not.toMatch(/onFocus=\{\(\)\s*=>/)
+  })
 })
