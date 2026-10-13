@@ -4,9 +4,12 @@ import {
   investorDocsHref,
   investorHomeHref,
   NUC_INVESTOR_CONTACT_TYPES,
-  NUC_INVESTOR_DEAL,
+  NUC_INVESTOR_COPY,
+  NUC_INVESTOR_GLANCE,
   NUC_INVESTOR_SAVINGS,
   NUC_INVESTOR_SECTIONS,
+  NUC_INVESTOR_SEO,
+  NUC_INVESTOR_SHELLS,
   NUC_INVESTOR_SURFACE,
 } from '../../src/pages/investor/constants/content'
 
@@ -30,7 +33,7 @@ describe('investor contact types', () => {
 })
 
 describe('investor pitch content', () => {
-  it('covers six rail sections and seven emit shells', () => {
+  it('covers six rail sections, seven emit shells, and four capital surfaces', () => {
     expect(NUC_INVESTOR_SECTIONS.map((s) => s.id)).toEqual([
       'intro',
       'thesis',
@@ -39,7 +42,27 @@ describe('investor pitch content', () => {
       'surface',
       'ask',
     ])
-    expect(NUC_INVESTOR_SURFACE).toHaveLength(7)
+    expect(NUC_INVESTOR_SHELLS).toHaveLength(7)
+    expect(NUC_INVESTOR_SURFACE).toHaveLength(4)
+    expect(
+      NUC_INVESTOR_SURFACE.every(
+        (item) =>
+          item.id &&
+          item.index &&
+          item.title &&
+          item.outcome &&
+          item.proof &&
+          item.metric
+      )
+    ).toBe(true)
+  })
+
+  it('leads with investor capital messaging', () => {
+    expect(NUC_INVESTOR_COPY.headline).toMatch(/rewrite|capital|burn/i)
+    expect(NUC_INVESTOR_COPY.support.toLowerCase()).toMatch(
+      /capital|budget|migrations|durable/
+    )
+    expect(NUC_INVESTOR_SEO.title).toMatch(/investors|framework/i)
   })
 
   it('labels savings as a planning model, not audited financials', () => {
@@ -47,17 +70,19 @@ describe('investor pitch content', () => {
       true
     )
     const dollars = NUC_INVESTOR_SAVINGS.find((item) => item.id === 'dollars')
-    expect(dollars?.detail.toLowerCase()).toMatch(/not a forecast|blended/)
+    expect(dollars?.detail.toLowerCase()).toMatch(/not a forecast|rough cost/)
   })
 
-  it('keeps the intro snapshot on the same model, labeled illustrative', () => {
+  it('keeps the intro glance plate on the savings model', () => {
     const dollars = NUC_INVESTOR_SAVINGS.find((item) => item.id === 'dollars')
-    expect(NUC_INVESTOR_DEAL.figure).toBe(dollars?.value)
+    expect(NUC_INVESTOR_GLANCE.figure).toBe(dollars?.value)
     expect(
-      `${NUC_INVESTOR_DEAL.figureLead}${NUC_INVESTOR_DEAL.figureTrail}`
-    ).toBe(NUC_INVESTOR_DEAL.figure)
-    expect(NUC_INVESTOR_DEAL.note.toLowerCase()).toMatch(
-      /illustrative|not a forecast/
+      `${NUC_INVESTOR_GLANCE.figureLead}${NUC_INVESTOR_GLANCE.figureTrail}`
+    ).toBe(NUC_INVESTOR_GLANCE.figure)
+    expect(NUC_INVESTOR_GLANCE.from).toBe('7')
+    expect(NUC_INVESTOR_GLANCE.to).toBe('1')
+    expect(NUC_INVESTOR_GLANCE.note.toLowerCase()).toMatch(
+      /example only|not a forecast/
     )
   })
 })

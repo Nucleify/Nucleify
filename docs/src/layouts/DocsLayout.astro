@@ -20,14 +20,21 @@ const pageTitle = `${title} · Nucleify Docs`
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Nucleify documentation" />
     <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600&family=JetBrains+Mono:wght@600;700&display=optional"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/img/favicon.svg" />
   </head>
   <body class="docs-body">
     <header class="docs-header">
       <div class="docs-header__inner">
-        <a class="docs-brand" href={`/${lang}/docs/getting-started/introduction`}>
-          <img class="docs-brand__logo" src="/img/logo.svg" alt="" width="28" height="32" decoding="async" />
+        <a class="docs-brand" href="/">
+          <img class="docs-brand__logo" src="/img/favicon.svg" alt="" width="32" height="32" decoding="async" />
           <span class="docs-brand__text">Nucleify Docs</span>
         </a>
         <slot name="header-extra" />

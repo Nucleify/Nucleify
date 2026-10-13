@@ -6,26 +6,36 @@ alwaysApply: false
 
 # CI / Hooks
 
-## Pre-commit & Pre-push (Husky)
+## Pre-commit (Husky)
 
-Hooks live in `.husky/`. Both run `.config/bash/hook-checks.sh`:
+`.husky/pre-commit` → `.config/bash/hook-checks.sh` (parity with GHA health + bash + compiler unit):
 
-1. `pnpm btest` — bash test suite (`bash .config/bash/tests/run.sh`)
-2. `pnpm check` — Biome lint
+1. `pnpm btest` — bash suite (`bash.yaml`)
+2. `pnpm check` — Biome
 3. `pnpm typeslint` — `tsc` for `@nucleify/web`
-4. `pnpm slint` — Stylelint (SCSS)
-5. `pnpm tests` — Vitest
+4. `pnpm slint` — Stylelint
+5. `pnpm build` — Nuxt production build (`health-check` build job)
+6. `pnpm tests` — Vitest
+7. `pnpm compiler:test` — compiler unit tests
+8. `pnpm compiler:check` — emit fingerprints
+9. `pnpm compiler:convert:check` — convert matrix (web|admin × next|solid) + shell builds
+
+Same convert matrix also runs in `.github/workflows/compiler.yaml`.
+
+## Pre-push
+
+`.husky/pre-push` is a no-op (`exit 0`). Do not re-run the suite here.
 
 ## GitHub Actions
 
 ### `health-check.yml` (all branches)
 
-Node 22, pnpm. Parallel jobs after setup: biome, typeslint, stylelint, build, test — delegate via monorepo `pnpm run …` → `@nucleify/web`.
+Node 22, pnpm. Parallel jobs after setup: biome, typeslint, stylelint, build, test.
 
 ### `bash.yaml`
 
 Runs `bash .config/bash/tests/run.sh` on push.
 
-### `release-modules.yml`
+### `compiler.yaml`
 
-Reads `.config/bash/config/submodules.txt` for module release names.
+Unit (`compiler:test` / `compiler:check` / idempotent build) plus emit + convert product-shell matrices.

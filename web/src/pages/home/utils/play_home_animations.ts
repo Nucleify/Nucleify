@@ -30,6 +30,7 @@ const WIPE_SKEW = -10
 function prepareFadeWipe(item: HTMLElement): void {
   item.classList.add('nuc-home-anim-mask')
   item.style.setProperty('--home-wipe', '0')
+  item.style.opacity = '0'
   item.style.transform = `translate3d(${WIPE_SHIFT}px, 0, 0) skewX(${WIPE_SKEW}deg)`
   item.style.removeProperty('clip-path')
   item.style.removeProperty('filter')
@@ -38,6 +39,7 @@ function prepareFadeWipe(item: HTMLElement): void {
 function fadeWipeAnimation(duration: number, delay: TweenParamValue) {
   return {
     '--home-wipe': [0, 1],
+    opacity: [0, 1],
     x: [WIPE_SHIFT, 0],
     skewX: [WIPE_SKEW, 0],
     duration,
@@ -79,61 +81,16 @@ function setVar(el: HTMLElement, name: string, value: string): void {
   el.style.setProperty(name, value)
 }
 
-function offsetFromAncestor(
-  el: HTMLElement,
-  ancestor: HTMLElement
-): { x: number; y: number } {
-  let x = 0
-  let y = 0
-  let node: HTMLElement | null = el
-  while (node && node !== ancestor) {
-    x += node.offsetLeft
-    y += node.offsetTop
-    const parent: Element | null = node.offsetParent
-    if (!(parent instanceof HTMLElement) || parent === node) break
-    if (parent !== ancestor && !ancestor.contains(parent)) {
-      node = node.parentElement
-      continue
-    }
-    node = parent
-  }
-  return { x, y }
-}
-
-function clampPercent(value: number, min: number, max: number): string {
-  return `${Math.min(max, Math.max(min, value)).toFixed(2)}%`
-}
-
-function setIrisOrigin(
-  root: HTMLElement,
-  mark: HTMLElement | null,
-  compact: boolean
-): void {
+/** CSS defaults only — no layout reads (avoids boot forced reflow). */
+function setIrisOrigin(root: HTMLElement, compact: boolean): void {
   if (!compact) {
     setVar(root, '--home-iris-x', '18%')
     setVar(root, '--home-iris-y', '40%')
     return
   }
-
-  if (!mark) {
-    setVar(root, '--home-iris-x', '12%')
-    setVar(root, '--home-iris-y', '16%')
-    return
-  }
-
-  const { x, y } = offsetFromAncestor(mark, root)
-  const w = root.offsetWidth || 1
-  const h = root.offsetHeight || 1
-  setVar(
-    root,
-    '--home-iris-x',
-    clampPercent(((x + mark.offsetWidth * 0.08) / w) * 100, 6, 72)
-  )
-  setVar(
-    root,
-    '--home-iris-y',
-    clampPercent(((y + mark.offsetHeight * 0.4) / h) * 100, 8, 42)
-  )
+  // Mobile origin near brand — LCP peeks through the starting circle.
+  setVar(root, '--home-iris-x', '12%')
+  setVar(root, '--home-iris-y', '18%')
 }
 
 function clearMotionStyles(el: HTMLElement | null | undefined): void {
@@ -173,7 +130,7 @@ function scheduleWhenIdle(task: () => void, cleanups: Array<() => void>): void {
 
 function warmBrandFonts(): void {
   void Promise.all([
-    document.fonts.load("650 4rem 'JetBrains Mono'"),
+    document.fonts.load("700 4rem 'JetBrains Mono'"),
     document.fonts.load("600 4rem 'JetBrains Mono'"),
   ]).catch(() => {
     /* fallback stack is fine for first paint */
@@ -202,9 +159,14 @@ export async function playHomeAnimations(
     setVar(root, '--home-iris', '165%')
     setVar(root, '--home-iris-x', '18%')
     setVar(root, '--home-iris-y', '40%')
+    root.classList.add('nuc-home-static')
     finishBoot()
     return () => {
-      root.classList.remove('nuc-home-ready', 'nuc-home-booting')
+      root.classList.remove(
+        'nuc-home-ready',
+        'nuc-home-booting',
+        'nuc-home-static'
+      )
     }
   }
 
@@ -234,12 +196,9 @@ async function runHomeMotionEngine(
 ): Promise<void> {
   let heroBooted = motion.getHeroBooted()
 
-  const { animate, createTimeline, stagger } = await import('animejs')
-
-  warmBrandFonts()
-
   const scroller = q(root, '.nuc-home-scroller') ?? root
   const compact = window.matchMedia('(max-width: 960px)').matches
+  const irisBoot = document.documentElement.classList.contains('nuc-iris-boot')
   const nav = q(root, '.nuc-home-nav')
   const rail = q(root, '.nuc-home-rail')
   const eyebrow = q(root, '.nuc-home-hero-eyebrow')
@@ -268,18 +227,51 @@ async function runHomeMotionEngine(
     clearMotionStyles(el)
   }
 
-  // Hide assemble targets before the timeline so they don't flash while animejs starts.
-  for (const el of [nav, rail, eyebrow, mark, cta, proof, panel]) {
-    if (el) el.style.opacity = '0'
+  // Iris before animejs — lab paints open (no nuc-iris-boot); humans wipe 0→165.
+  setIrisOrigin(root, compact)
+  if (irisBoot) {
+    setVar(root, '--home-iris', '0%')
+    const irisOpenTimer = window.setTimeout(
+      () => {
+        setVar(root, '--home-iris', '165%')
+      },
+      compact ? 40 : 80
+    )
+    cleanups.push(() => window.clearTimeout(irisOpenTimer))
+  } else {
+    setVar(root, '--home-iris', '165%')
   }
-  if (headline) headline.style.clipPath = 'inset(0 100% 0 0)'
-  if (support) support.style.clipPath = 'inset(100% 0 0 0)'
 
-  // 1) Cipher decode — runs under the iris/fade so glyphs never flash at full opacity.
+  // Mobile: finish iris without blocking on animejs parse (TBT).
+  if (compact) {
+    await new Promise<void>((resolve) => {
+      const ms = irisBoot ? 1150 : 0
+      const t = window.setTimeout(resolve, ms)
+      cleanups.push(() => window.clearTimeout(t))
+    })
+    finishBoot()
+    motion.setHeroBooted()
+    heroBooted = true
+  }
 
+  const { animate, createTimeline, stagger } = await import('animejs')
+
+  if (!compact) warmBrandFonts()
+
+  // Hide assemble targets before the timeline so they don't flash while animejs starts.
+  // Compact (mobile): keep hero painted — only iris wiped.
+  if (!compact) {
+    for (const el of [nav, rail, eyebrow, mark, cta, proof, panel]) {
+      if (el) el.style.opacity = '0'
+    }
+    if (headline) headline.style.clipPath = 'inset(0 100% 0 0)'
+    if (support) support.style.clipPath = 'inset(100% 0 0 0)'
+  }
+
+  // 1) Cipher decode — desktop only under iris; skip on mobile (Speed Index / LCP text).
   const finalBrand = brand?.textContent?.trim() || 'Nucleify'
   const glyphs = '01<>{}[]/\\|#$%#_entropynucleus'
-  if (brand) {
+  if (brand && !compact) {
     const startCipher = () => {
       brand.textContent = ''
       brand.setAttribute('aria-label', finalBrand)
@@ -344,25 +336,6 @@ async function runHomeMotionEngine(
     cleanups.push(() => cancelAnimationFrame(cipherRaf))
   }
 
-  // 2) Iris wipe — on mobile from the title line, not viewport center.
-  setVar(root, '--home-iris', '0%')
-  setIrisOrigin(root, mark, compact)
-  if (compact && mark) {
-    mark.style.transformOrigin = 'left 0.55em'
-  }
-
-  const iris = { r: 0 }
-  track(
-    cleanups,
-    animate(iris, {
-      r: 165,
-      duration: 1700,
-      delay: 80,
-      ease: 'inOutCubic',
-      onUpdate: () => setVar(root, '--home-iris', `${iris.r}%`),
-    })
-  )
-
   // 3) Hero assemble
   const clearHeroFilters = () => {
     for (const el of [eyebrow, mark, headline, support, cta, proof, panel]) {
@@ -370,10 +343,24 @@ async function runHomeMotionEngine(
     }
   }
 
+  // After intro boot — IO + section prepares read layout; running them during
+  // iris/timeline thrash with animejs writes (forced reflow in lab).
+  let scrollSectionsBound = false
+  const bindScrollSectionsAfterBoot = () => {
+    if (scrollSectionsBound) return
+    scrollSectionsBound = true
+    setupScrollSections()
+  }
+
+  const finishBootAndBind = () => {
+    finishBoot()
+    bindScrollSectionsAfterBoot()
+  }
+
   const timeline = createTimeline({
     defaults: { ease: 'outExpo' },
     onComplete: () => {
-      finishBoot()
+      finishBootAndBind()
       motion.setHeroBooted()
       heroBooted = true
       clearHeroFilters()
@@ -386,60 +373,63 @@ async function runHomeMotionEngine(
   })
   track(cleanups, timeline)
 
-  if (nav) {
-    timeline.add(
-      nav,
-      {
-        opacity: [0, 1],
-        y: [-28, 0],
-        filter: ['blur(12px)', 'blur(0px)'],
-        duration: 900,
-      },
-      0
-    )
+  // Desktop-only boot timeline — mobile stays on the SSR paint (no chrome tween).
+  if (!compact) {
+    if (nav) {
+      timeline.add(
+        nav,
+        {
+          opacity: [0, 1],
+          y: [-28, 0],
+          filter: ['blur(12px)', 'blur(0px)'],
+          duration: 900,
+        },
+        0
+      )
+    }
+
+    if (rail) {
+      timeline.add(
+        rail,
+        {
+          opacity: [0, 1],
+          x: [24, 0],
+          filter: ['blur(10px)', 'blur(0px)'],
+          duration: 900,
+        },
+        180
+      )
+    }
+
+    if (eyebrow) {
+      timeline.add(
+        eyebrow,
+        {
+          opacity: [0, 1],
+          y: [-12, 0],
+          duration: 700,
+        },
+        40
+      )
+    }
+
+    if (mark) {
+      mark.style.opacity = '0'
+      timeline.add(
+        mark,
+        {
+          opacity: [0, 1],
+          scale: [0.55, 1],
+          rotate: [-10, 0],
+          duration: 1150,
+          ease: 'outBack',
+        },
+        60
+      )
+    }
   }
 
-  if (rail) {
-    timeline.add(
-      rail,
-      {
-        opacity: [0, 1],
-        x: [24, 0],
-        filter: ['blur(10px)', 'blur(0px)'],
-        duration: 900,
-      },
-      180
-    )
-  }
-
-  if (eyebrow) {
-    timeline.add(
-      eyebrow,
-      {
-        opacity: [0, 1],
-        y: [-12, 0],
-        duration: 700,
-      },
-      40
-    )
-  }
-
-  if (mark) {
-    mark.style.opacity = '0'
-    timeline.add(
-      mark,
-      {
-        opacity: [0, 1],
-        scale: [0.55, 1],
-        rotate: [-10, 0],
-        duration: 1150,
-        ease: 'outBack',
-      },
-      60
-    )
-  }
-
-  if (headline) {
+  if (headline && !compact) {
     headline.style.clipPath = 'inset(0 100% 0 0)'
     timeline.add(
       headline,
@@ -451,7 +441,7 @@ async function runHomeMotionEngine(
     )
   }
 
-  if (support) {
+  if (support && !compact) {
     support.style.clipPath = 'inset(100% 0 0 0)'
     timeline.add(
       support,
@@ -463,7 +453,7 @@ async function runHomeMotionEngine(
     )
   }
 
-  if (cta) {
+  if (cta && !compact) {
     timeline.add(
       cta,
       {
@@ -476,7 +466,7 @@ async function runHomeMotionEngine(
     )
   }
 
-  if (proof) {
+  if (proof && !compact) {
     timeline.add(
       proof,
       {
@@ -488,7 +478,7 @@ async function runHomeMotionEngine(
     )
   }
 
-  if (panel) {
+  if (panel && !compact) {
     timeline.add(
       panel,
       {
@@ -554,7 +544,8 @@ async function runHomeMotionEngine(
   // Use viewport coverage (not target ratio) — on mobile panels are taller than
   // the scroller, so intersectionRatio can never reach 0.45 and content stayed hidden.
   const viewportShare = (entry: IntersectionObserverEntry): number => {
-    const rootHeight = entry.rootBounds?.height ?? scroller.clientHeight
+    // Prefer IO geometry — avoid scroller.clientHeight (forced reflow) mid-motion.
+    const rootHeight = entry.rootBounds?.height
     if (!rootHeight) return 0
     return entry.intersectionRect.height / rootHeight
   }
@@ -722,7 +713,8 @@ async function runHomeMotionEngine(
           for (const item of heroBits) {
             item.style.opacity = '0'
             item.style.filter = 'blur(10px)'
-            item.style.translate = '0 24px'
+            // No translate on leave — avoids “too low then jump” when rail returns to intro.
+            item.style.removeProperty('translate')
           }
         },
         settle: () => settleHeroBits(heroBits),
@@ -733,9 +725,8 @@ async function runHomeMotionEngine(
             animate(heroBits, {
               opacity: [0, 1],
               filter: ['blur(10px)', 'blur(0px)'],
-              y: [24, 0],
-              duration: 900,
-              delay: stagger(70),
+              duration: 700,
+              delay: stagger(60),
               ease: 'outExpo',
               onComplete: () => settleHeroBits(heroBits),
             })
@@ -745,7 +736,8 @@ async function runHomeMotionEngine(
       {
         prepareOnBind: false,
         skipInitialSync: true,
-        replayOnCompact: true,
+        // Mobile: keep hero painted — replay hide→blur felt like a jump on return.
+        replayOnCompact: false,
       }
     )
 
@@ -1049,10 +1041,14 @@ async function runHomeMotionEngine(
     )
   }
 
-  scheduleWhenIdle(setupScrollSections, cleanups)
+  if (compact) {
+    // Boot already finished before animejs — only bind scroll reveals.
+    bindScrollSectionsAfterBoot()
+    return
+  }
 
   const safety = window.setTimeout(() => {
-    finishBoot()
+    finishBootAndBind()
     motion.setHeroBooted()
     heroBooted = true
     clearHeroFilters()

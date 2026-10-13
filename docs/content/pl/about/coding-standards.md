@@ -1,266 +1,205 @@
 # Standardy kodowania
 
-Standardy kodu, struktury i nazewnictwa w Nucleify. Ich przestrzeganie zapewnia czytelny, spójny i łatwy w utrzymaniu kod w całym monorepo.
+Konwencje czytelnego, spójnego kodu w monorepo Nucleify. W razie wątpliwości dopasuj się do sąsiednich plików w pakiecie, który edytujesz.
 
 ---
 
-## Struktura projektu
+## Struktura monorepo
 
 ```txt
 nucleify/
-├── web/                    # @nucleify/web — aplikacja landingowa Nuxt 4 (kanoniczna)
-├── admin/                  # @nucleify/admin — panel admin Nuxt 4
-├── docs/                   # @nucleify/docs — strona dokumentacji Astro
-├── compiler/               # Przenośny kompilator UI (Vue ↔ React)
-├── portable/               # Przenośne komponenty *.nuc.tsx
-├── shared_modules/         # Współdzielone pakiety funkcjonalne nuc_*
-├── overrides/              # Warstwy nadpisań per pakiet
-├── supabase/               # Konfiguracja Supabase i scalone SQL
-└── .config/                # Narzędzia monorepo / bash / helpery CI
+├── web/               # @nucleify/web — landing Nuxt
+├── admin/             # @nucleify/admin — admin Nuxt
+├── docs/              # @nucleify/docs — docs Astro
+├── compiler/          # @nucleify/compiler — przenośny kompilator UI
+├── shared_modules/    # sześć eksportowanych modułów nuc_*
+├── portable/nui/      # design tokeny
+├── overrides/         # nadpisania plików per pakiet
+├── supabase/          # scalona konfiguracja DB
+└── .config/           # wspólne narzędzia
 ```
+
+Kanoniczne ścieżki produktu: `web/src/` (nie root `modules/` ani `nuxt/` jako srcDir). Prymitywy UI to `nui-*`, nie drzewo `ad-*`. Auth żyje w `nuc_api`.
 
 ---
 
-## Struktura modułu
+## Komendy pakietów
 
-Każdy moduł w `shared_modules/` to samodzielny pakiet funkcjonalny:
+| Pakiet | Komenda dev |
+|--------|-------------|
+| `web/` | `make web` lub `pnpm dev` |
+| `admin/` | `make admin` lub `pnpm admin` |
+| `docs/` | `make docs` lub `pnpm docs` |
+| `compiler/` | `make compiler` |
+
+Bootstrap: `make run`. Shell produktu: `make web`. (`make nuxt` / `make next` / … to demo emit portable, nie aplikacja produktu.)
+
+---
+
+## Struktura modułu współdzielonego
 
 ```txt
-shared_modules/nuc_<feature>/
-├── supabase/               # Migracje, seedery, handlery API
-│   ├── migrations/         # Migracje SQL z timestampem
-│   └── api/                # Handlery edge functions
-├── utils/                  # Composables, hooki, helpery
-├── types/                  # Interfejsy TypeScript
-├── vitests/                # Testy frontendowe (Vitest)
-├── config.json             # Metadane modułu
-├── index.ts                # Barrel export Vue
-├── index.react.ts          # Barrel export React
-├── nuc_<feature>.ts        # Rejestracja Vue
-└── README.md               # Dokumentacja modułu
+shared_modules/nuc_example/
+├── config.json
+├── nuc_example.ts           # registerNucExample (plugin Vue)
+├── index.ts                 # barrel Vue
+├── index.react.ts           # barrel React (gdy potrzebny)
+├── _index.scss
+├── supabase/api/handle.ts
+├── constants/
+├── types/
+├── utils/
+├── components/              # opcjonalnie
+└── vitests/
 ```
 
----
+**Reguły importu:**
 
-## Konwencje nazewnictwa
-
-### Pliki i katalogi
-
-| Typ | Konwencja | Przykład |
-|-----|-----------|----------|
-| Foldery modułów | `snake_case` | `nuc_api`, `nuc_languages` |
-| Pliki TypeScript | `snake_case` | `use_auth.ts`, `parse_headings.ts` |
-| Komponenty Vue | foldery `kebab-case` | `input-text/index.vue` |
-| Pliki SCSS | prefiks `_` | `_index.scss` |
-| Migracje SQL | prefiks timestamp | `20260501000000_nuc_languages.sql` |
-| Punkty wejścia | `index.*` | `index.ts`, `index.vue` |
-
-### Identyfikatory kodu
-
-| Typ | Konwencja | Przykład |
-|-----|-----------|----------|
-| Komponenty | `PascalCase` | `InputText`, `DataTable` |
-| Definicje typów | `PascalCase` | `UserProps`, `ButtonEmits` |
-| Composables | prefiks `use`, `camelCase` | `useAuth`, `useHeadings` |
-| Stałe | `SCREAMING_SNAKE_CASE` | `API_BASE_URL`, `MAX_RETRIES` |
-| Funkcje | `camelCase` | `getUserById`, `parseMarkdown` |
-| Klasy CSS | BEM / `kebab-case` | `nui-button`, `card__header--active` |
-| Trasy API | URL `kebab-case` | `/api/user-profile` |
+- Wewnątrz modułów: tylko importy względne
+- Nigdy nie importuj z `web/`, `admin/` ani `docs/` wewnątrz modułów
+- Nigdy `import from 'nucleify'` wewnątrz modułów (cykl)
+- Aplikacje importują przez alias `modules/…` lub ścieżki `shared_modules/…`
 
 ---
 
-## Hierarchia Atomic Design
-
-Komponenty podążają za ścisłą hierarchią Atomic Design:
-
-1. **Boson** — Funkcje narzędziowe, helpery, design tokeny
-2. **Atom** — Podstawowe elementy UI (`Button`, `Input`, `Icon`)
-3. **Molecule** — Połączone atomy (`FloatLabel`, `Anchor`, `SearchBar`)
-4. **Organism** — Złożone komponenty (`DataTable`, `Dialog`, `NavBar`)
-5. **Template** — Layouty stron (`DashboardLayout`, `AuthLayout`)
-
-### Struktura plików komponentu
+## Struktura aplikacji web
 
 ```txt
-<component>/
-├── index.vue               # Główny komponent
-├── index.ts                # Eksporty
-├── _index.scss             # Style (opcjonalne)
-└── types/
-    ├── index.ts            # Barrel export
-    ├── interfaces.ts       # Props, emits, slots
-    └── variables.ts        # Zmienne CSS, stałe
+web/src/
+├── pages/[lang]/            # cienkie wrappery i18n
+├── pages/home/              # kompozycja landingu
+├── plugins/modules.ts       # registerNuc*
+├── composables/             # tylko app-specific
+├── layouts/
+├── assets/                  # wejście SCSS
+├── nucleify.ts              # re-eksporty
+└── server/api/[...slug].ts  # bramka
 ```
 
-Komponenty aplikacji web znajdują się w `web/src/components/{atom,molecule,organism}/` z prefiksem `ad-`.
+- Vue SFC: `<script setup lang="ts">`
+- UI: `nui-*` z `nucleify-ui`
+- Logika domenowa: `shared_modules/`, nie `web/src/`
 
 ---
 
-## Konwencje TypeScript
+## Nazewnictwo plików i folderów
 
-### Preferuj interfejsy nad typami
-
-```typescript
-// ✅ Dobrze — używaj interfejsów dla kształtów obiektów
-interface UserData {
-  id: number
-  name: string
-  email: string
-}
-
-// ❌ Unikaj — aliasy typów dla prostych kształtów obiektów
-type UserData = {
-  id: number
-  name: string
-  email: string
-}
-```
-
-### Tryb strict
-
-- Włącz `strict: true` we wszystkich plikach `tsconfig.json`
-- Bez `any` — używaj `unknown`, gdy typ jest naprawdę nieznany
-- Jawne typy zwracane dla eksportowanych funkcji
-
-```typescript
-// ✅ Dobrze — jawne typy, bez any
-function getUser(id: number): UserData {
-  // ...
-}
-
-// ❌ Źle — unikaj any
-function getUser(id: any): any {
-  // ...
-}
-```
-
-### Handlery API
-
-```typescript
-// ✅ Dobrze — typowany wynik handlera
-export async function handle(ctx: ApiContext): Promise<ApiHandlerResult> {
-  const crud = await trySimpleCrud(ctx)
-  if (crud.handled) return crud
-  return apiNotHandled()
-}
-```
+| Rodzaj | Konwencja | Przykład |
+|--------|-----------|----------|
+| Vue SFC | PascalCase | `NucHomeHero.vue` |
+| Composable | `use_` + snake_case | `use_dark_mode.ts` |
+| Sibling hook React | `.react.ts` | `use_dark_mode.react.ts` |
+| Komponent przenośny | PascalCase + `.nuc.tsx` | `Counter.nuc.tsx` |
+| Utils | snake_case | `api_request.ts` |
+| Typy | pliki snake_case | `interfaces.ts`, `variables.ts` |
+| Testy | `*.test.ts` w `vitests/` | `darken_color.test.ts` |
+| Partiale SCSS | `_name.scss` | `_mixins.scss` |
 
 ---
 
-## Najlepsze praktyki komponentów
+## TypeScript
 
-### Komponenty Vue
+- Strict typing — unikaj `any`, chyba że config Nuxt wymusza (dokumentuj biome-ignore)
+- Eksportuj typy z `types/` — nie duplikuj interfejsów między plikami
+- Używaj siblingów typów `.react.ts`, gdy props React odbiegają od Vue
+
+---
+
+## Komponenty Vue
 
 ```vue
 <script setup lang="ts">
-// ✅ Props w dół, zdarzenia w górę — z interfejsami TypeScript
-interface Props {
-  label: string
-  disabled?: boolean
-}
+import { ref } from 'vue'
+import type { SomeType } from 'modules/nuc_example/types/interfaces'
 
-const props = defineProps<Props>()
-
-const emit = defineEmits<{
-  click: []
-  update: [value: string]
-}>()
+const props = defineProps<{ id: string }>()
+const open = ref(false)
 </script>
+
+<template>
+  <nui-button @click="open = !open">{{ props.id }}</nui-button>
+</template>
 ```
 
-### Reguły
-
-- **Props w dół, zdarzenia w górę** — Jednokierunkowy przepływ danych
-- **Pojedyncza odpowiedzialność** — Jeden komponent, jeden cel
-- **Interfejsy TypeScript dla props** — Zawsze definiuj interfejsy `Props` i `Emits`
-- **Tylko Composition API** — Bez Options API w nowym kodzie
-- **`<script setup>`** — Preferowana składnia dla komponentów Vue
-- **Małe szablony** — Wyciągaj złożoną logikę do composables
+- Preferuj Composition API z `<script setup>`
+- Prymitywy: `nui-*`; UI domenowe: komponenty modułów
 
 ---
 
-## Konwencje importów
+## Komponenty przenośne
 
-- Używaj **barrel exports** (`index.ts`) dla publicznych API modułów
-- Używaj **importów względnych** wewnątrz modułu
-- Używaj **aliasów pakietów** między modułami (`nuc_api`, `modules`)
-- Grupuj importy: zewnętrzne → pakiety monorepo → względne
+Autoruj w `*.nuc.tsx` zgodnie z `compiler/PORTABLE.md`:
 
-```typescript
-// Zewnętrzne
-import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
-
-// Monorepo
-import { apiRequest } from 'nuc_api'
-
-// Względne
-import type { UserData } from './types'
-import { formatName } from './utils'
-```
+- Bez store, routerów ani Supabase w plikach przenośnych
+- Na zewnątrz tylko props + events
+- Po zmianach: `pnpm compiler:build`; commituj autorstwo + emit
+- Import edycji: `pnpm compiler -- import --from=vue|react`
 
 ---
 
-## Konwencje Git
+## Handlery API
 
-### Conventional Commits
-
-```txt
-feat(nuc_languages): add translation preload middleware
-fix(compiler): resolve JSX attribute conversion edge case
-docs: update getting started guide
-refactor(admin): simplify dashboard data fetching
-test(nuc_api): add API error handling tests
-chore: update dependencies
-```
-
-### Nazewnictwo branchy
-
-```txt
-feat/nuc-languages-preload
-fix/compiler-jsx-attributes
-docs/getting-started-update
-refactor/admin-dashboard
-```
+- Wejście: `handle.ts` eksportuje `handle*Api`
+- Rejestracja w `shared_modules/nuc_api/supabase/api/gateway_dispatch.ts`
+- Zwracaj `apiNotHandled()` dla niedopasowanych prefiksów
+- Używaj `withGatewayUser` dla tras uwierzytelnionych
+- Włącz RLS na eksponowanych tabelach
 
 ---
 
-## Narzędzia jakości kodu
+## SCSS
 
-| Narzędzie | Cel | Komenda |
-|-----------|-----|---------|
-| [Biome](https://biomejs.dev) | Formatowanie i linting (JS/TS) | `pnpm check`, `pnpm typeslint` |
-| [Stylelint](https://stylelint.io) | Linting SCSS/CSS | `pnpm slint` |
-| [Vitest](https://vitest.dev) | Testy jednostkowe i komponentów | `pnpm tests` |
-| TypeScript | Sprawdzanie typów | `pnpm check` |
+- Style modułów: `shared_modules/nuc_*/styles/`
+- Wejście aplikacji importuje pliki `_index.scss` modułów
+- Lint: `pnpm slint`
 
-### Checklist pre-commit
+---
+
+## Testy
+
+- Testy modułów: `shared_modules/nuc_*/vitests/`
+- Testy Nuxt: `web/vitests/`
+- Przed commitem: `pnpm tests`
+- Testuj zachowanie — unikaj asercji szczegółów implementacji
+
+---
+
+## Lint i format
 
 ```bash
-pnpm check          # Sprawdzanie typów + Biome
-pnpm typeslint      # Lint TypeScript
-pnpm slint          # Stylelint
-pnpm tests          # Uruchom zestaw testów
+pnpm check       # Biome (lint + format check)
+pnpm write       # Biome auto-fix
+pnpm typeslint   # tsc --noEmit -p web/tsconfig.json
+pnpm slint       # Stylelint na SCSS
+pnpm tests       # Vitest
 ```
 
----
-
-## Wytyczne modułów
-
-- Każdy moduł musi być **samodzielny** — backend, frontend i testy razem
-- Logika backendowa jest w `shared_modules/<module>/supabase/`
-- UI frontendowe jest w `shared_modules/<module>/utils/` lub komponentach aplikacji
-- Komponenty globalne/współdzielone trafiają do `web/src/components/`
-- Używaj `config.json` dla metadanych modułu
-- Dokumentuj każdy moduł przez `README.md`
+Husky uruchamia to na pre-commit przez `.config/bash/hook-checks.sh` (pre-push jest no-op).
 
 ---
 
-## Dlaczego te standardy
+## Git i commity
 
-- Zgodność z konwencjami Nuxt, Next i Supabase
-- Umożliwia skalowanie horyzontalne przez izolowane moduły
-- Wyraźny podział odpowiedzialności backend/frontend
-- Spójne UI z Atomic Design
-- Łatwy onboarding nowych kontrybutorów
-- Kompilator polega na przewidywalnej strukturze, aby generować poprawny output
+- Skupione commity — jedna sprawa na zmianę, gdy to możliwe
+- Nie commituj `.env`, demo emit (`vue/demo` itd.) ani `*.ir.json`
+- Trzymaj się istniejącego stylu wiadomości commitów w repo
+
+---
+
+## Reguły Cursor i agenci
+
+- Reguły monorepo: `.cursor/rules/`
+- Reguły pakietu: `{pkg}/.config/rules/`
+- Sync: `pnpm sync-rules`
+- Agenci workflow feature: `web/.cursor/agents/`
+
+---
+
+## Powiązana dokumentacja
+
+- [Moduły](/pl/docs/core-concepts/modules)
+- [Feature-Sliced Design](/pl/docs/core-concepts/feature-sliced-design)
+- [Vitest](/pl/docs/tests/vitest)
+- [Kodeks postępowania](/pl/docs/about/code-of-conduct)
+
+Referencja root: `CODE_STANDARDS.md` w repozytorium (utrzymuj w sync z tą stroną).

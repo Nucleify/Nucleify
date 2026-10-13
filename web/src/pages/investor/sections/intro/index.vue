@@ -1,7 +1,7 @@
 <template>
   <section
     id="intro"
-    class="nuc-home-hero nuc-home-panel"
+    class="nuc-home-hero nuc-home-panel nuc-inv-hero"
     aria-labelledby="nuc-investor-brand"
   >
     <div class="nuc-home-hero-layout">
@@ -17,73 +17,72 @@
           </h1>
         </div>
 
-        <p class="nuc-home-hero-headline">
-          {{ copy.headline }}
-        </p>
-
-        <p class="nuc-home-hero-support">
-          {{ copy.support }}
-        </p>
+        <p class="nuc-home-hero-headline">{{ copy.headline }}</p>
+        <p class="nuc-home-hero-support">{{ copy.support }}</p>
 
         <div class="nuc-home-hero-cta">
-          <nui-button
-            :label="copy.ctaPrimary"
-            variant="primary"
-            icon="mdi:email-outline"
-            icon-pos="right"
+          <button
+            type="button"
+            class="nuc-home-btn is-primary"
             @click="onPrimary"
-          />
-          <nui-button
-            :label="copy.ctaSecondary"
-            variant="outlined"
-            icon="mdi:rocket-launch-outline"
+          >
+            <nui-icon
+              icon="mdi:email-outline"
+              class="nuc-home-btn-icon"
+              mode="svg"
+            />
+            <span>{{ copy.ctaPrimary }}</span>
+          </button>
+          <button
+            type="button"
+            class="nuc-home-btn is-outlined"
             @click="onSecondary"
-          />
+          >
+            <nui-icon
+              icon="mdi:rocket-launch-outline"
+              class="nuc-home-btn-icon"
+              mode="svg"
+            />
+            <span>{{ copy.ctaSecondary }}</span>
+          </button>
           <button type="button" class="nuc-home-next" @click="onThesis">
             <span>{{ copy.ctaTertiary }}</span>
-            <nui-icon icon="mdi:arrow-down" />
+            <nui-icon
+              icon="mdi:arrow-down"
+              class="nuc-home-next-icon"
+              mode="svg"
+            />
           </button>
         </div>
-
-        <ul class="nuc-home-hero-proof" aria-label="Highlights">
-          <li v-for="item in proof" :key="item">{{ item }}</li>
-        </ul>
       </div>
 
       <aside
         class="nuc-home-hero-panel is-deal"
-        aria-label="Investment thesis snapshot"
+        :aria-label="copy.glanceAria"
+        @mouseenter="hovering = true"
+        @mouseleave="hovering = false"
       >
-        <div class="nuc-inv-emit" role="img" :aria-label="emitLabel">
-          <p class="nuc-inv-emit-source">
-            <span>{{ deal.source }}</span>
-            <code>{{ deal.sourceFile }}</code>
-          </p>
+        <div class="nuc-inv-deal">
+          <div class="nuc-inv-deal-stage">
+            <NucHomeHoloCube
+              :focus="focusId"
+              :faces="faces"
+              :paused="hovering"
+              @focus="onCubeFocus"
+            />
 
-          <div class="nuc-inv-emit-stem" aria-hidden="true" />
-
-          <ul class="nuc-inv-emit-field" aria-hidden="true">
-            <li
-              v-for="shell in shells"
-              :key="shell.id"
-              class="nuc-inv-emit-cube"
-              :class="`is-${shell.id}`"
-            >
-              <span class="nuc-inv-emit-cube-mark">
-                <nui-icon :icon="shell.icon" />
-              </span>
-              <strong>{{ shell.label }}</strong>
-            </li>
-          </ul>
-
-          <div class="nuc-inv-emit-stamp">
-            <p class="nuc-inv-emit-figure">
-              <span>{{ deal.figureLead }}</span>
-              <span>{{ deal.figureTrail }}</span>
-            </p>
-            <p class="nuc-inv-emit-unit">{{ deal.unit }}</p>
-            <p class="nuc-inv-emit-caption">{{ deal.caption }}</p>
-            <p class="nuc-inv-emit-note">{{ deal.note }}</p>
+            <div class="nuc-inv-deal-readout" aria-live="polite">
+              <p class="nuc-inv-deal-kicker">
+                {{ glance.eyebrow }}
+                <em>{{ activeFace.label }}</em>
+              </p>
+              <p class="nuc-inv-deal-money">
+                <span>{{ glance.figureLead }}{{ glance.figureTrail }}</span>
+                <small>{{ glance.figureUnit }}</small>
+              </p>
+              <p class="nuc-inv-deal-line">{{ glance.line }}</p>
+              <p class="nuc-inv-deal-note">{{ glance.note }}</p>
+            </div>
           </div>
         </div>
       </aside>
@@ -93,29 +92,38 @@
 
 <script setup lang="ts">
 import { useRoute } from 'nuxt/app'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 import {
   investorHomeHref,
   NUC_INVESTOR_COPY,
-  NUC_INVESTOR_DEAL,
-  NUC_INVESTOR_PROOF,
-  NUC_INVESTOR_SURFACE,
+  NUC_INVESTOR_GLANCE,
 } from '../../constants/content'
+import type { NucHomeModuleLaneId } from '../../../home/constants/content'
 import { scrollHomeSection } from '../../../home/utils/observe_active_section'
+import NucHomeHoloCube from '../../../home/sections/core/holo_cube.vue'
 
 const copy = NUC_INVESTOR_COPY
-const proof = NUC_INVESTOR_PROOF
-const deal = NUC_INVESTOR_DEAL
-const shells = NUC_INVESTOR_SURFACE
+const glance = NUC_INVESTOR_GLANCE
 const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
-const shellNames = shells.map((shell) => shell.label).join(', ')
-const emitLabel = [
-  `${deal.source} ${deal.sourceFile} emits ${shellNames}.`,
-  `${deal.figure} ${deal.unit}.`,
-  `${deal.caption}.`,
-].join(' ')
+
+const faces = [
+  { id: 'ui' as const, label: 'Product' },
+  { id: 'sdk' as const, label: 'Nucleus' },
+  { id: 'data' as const, label: 'Capital' },
+]
+
+const focusId = ref<NucHomeModuleLaneId>('sdk')
+const hovering = ref(false)
+
+const activeFace = computed(
+  () => faces.find((face) => face.id === focusId.value) ?? faces[1]!
+)
+
+function onCubeFocus(id: NucHomeModuleLaneId): void {
+  focusId.value = id
+}
 
 function onPrimary(): void {
   const root = document.querySelector<HTMLElement>('.nuc-investor')

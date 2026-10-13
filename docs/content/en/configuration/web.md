@@ -42,10 +42,6 @@ web/src/
 │   └── nucleify-ui.client.ts
 ├── composables/            # auto-imported
 ├── layouts/
-├── components/
-│   ├── atom/               # ad-* prefixed components
-│   ├── molecule/
-│   └── organism/
 ├── assets/styles/          # SCSS entry (imports shared_modules styles)
 ├── nucleify.ts             # re-exports shared surface + app helpers
 └── server/
@@ -53,7 +49,7 @@ web/src/
         └── [...slug].ts    # Nitro catch-all → gateway_dispatch
 ```
 
-Components under `web/src/components/` are auto-imported with the `ad-` prefix.
+UI primitives are Lit custom elements (`nui-*`) from `nucleify-ui` / `portable/nui/`. Landing composition lives under `web/src/pages/` — there is no `ad-*` component tree.
 
 ---
 
@@ -150,22 +146,23 @@ Prerender locale prefixes are controlled by `PRERENDER_LOCALES` in `.env`.
 ## UI system
 
 - **Lit web components** from `nucleify-ui` (`nui-button`, `nui-icon`, …)
-- **Design tokens** in `portable/nui/`
-- **Atomic Design** components with `ad-` prefix in `web/src/components/`
+- **Design tokens** and registration in `portable/nui/`
 - Registered via `nucleify-ui.client.ts` plugin
+- Portable authoring (`*.nuc.tsx`) maps `nui-*` across emit targets
 
 ---
 
-## Tryb B — Next.js shells
+## Tryb B — migrate shells
 
-Generated Next.js apps live at `web-next/` and `admin-next/`:
+Generated apps live at `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`:
 
 ```bash
 make web TARGET=next      # convert + start Next dev
+make web TARGET=solid     # convert + start Solid dev
 make admin TARGET=next    # admin equivalent
 ```
 
-Develop in Nuxt (`web/`, `admin/`), convert when you need a React deployment. See [Compiler](/en/docs/core-concepts/compiler).
+Develop in Nuxt (`web/`, `admin/`), convert when you need another framework deployment. See [Compiler](/en/docs/core-concepts/compiler).
 
 ---
 

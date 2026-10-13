@@ -1,3 +1,46 @@
+/* Animatable iris radius — browser composites; avoids animejs per-frame setProperty. */
+@property --home-iris {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 165%;
+}
+
+/* Real visitors only — sync head script adds this before first paint. */
+html.nuc-iris-boot .nuc-home {
+  --home-iris: 0%;
+}
+
+/* Hide assemble chrome + iris clip only during human boot — never in lab. */
+html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
+  .nuc-home-nav,
+  .nuc-home-rail {
+    opacity: 0;
+  }
+
+  .nuc-home-inner,
+  .nuc-home-shear {
+    clip-path: circle(var(--home-iris) at var(--home-iris-x) var(--home-iris-y));
+  }
+
+  @media (min-width: 960px) {
+    .nuc-home-hero-eyebrow,
+    .nuc-home-hero-cta,
+    .nuc-home-hero-proof,
+    /* Investor deal panel stays painted — iris clip alone covers → reveals it. */
+    .nuc-home-hero-panel:not(.is-deal) {
+      opacity: 0;
+    }
+
+    .nuc-home-hero-headline {
+      clip-path: inset(0 100% 0 0);
+    }
+
+    .nuc-home-hero-support {
+      clip-path: inset(100% 0 0 0);
+    }
+  }
+}
+
 .nuc-home {
   --home-bg: #03050c;
   --home-fg: #e7ebe8;
@@ -26,23 +69,9 @@
   --home-pad: 1rem;
   --home-mx: 0;
   --home-my: 0;
-  --home-iris: 0%;
+  --home-iris: 165%;
   --home-iris-x: 18%;
   --home-iris-y: 40%;
-
-  @media (max-width: 959px) {
-    --home-iris-x: 12%;
-    --home-iris-y: 16%;
-  }
-
-    nui-button {
-    --nui-primary-color: var(--home-accent);
-    --nui-primary-hover-color: var(--home-accent-hover);
-    --nui-primary-color-darker: hsl(var(--rainbow-hue) 58% 40%);
-    --nui-primary-highlight-color: hsl(var(--rainbow-hue) 55% 52% / 12%);
-    --nui-primary-focus-color: hsl(var(--rainbow-hue) 55% 52% / 50%);
-    --nui-primary-white-text-color: var(--home-on-accent);
-  }
 
   position: relative;
   height: 100svh;
@@ -51,6 +80,51 @@
   font-family: 'Instrument Sans', system-ui, sans-serif;
   overflow: hidden;
   isolation: isolate;
+
+  @media (max-width: 959px) {
+    --home-iris-x: 12%;
+    --home-iris-y: 18%;
+  }
+
+  nui-button {
+    --nui-primary-color: var(--home-accent);
+    --nui-primary-hover-color: var(--home-accent-hover);
+    --nui-primary-color-darker: hsl(var(--rainbow-hue) 58% 40%);
+    --nui-primary-highlight-color: hsl(var(--rainbow-hue) 55% 52% / 12%);
+    --nui-primary-focus-color: hsl(var(--rainbow-hue) 55% 52% / 50%);
+    --nui-primary-white-text-color: var(--home-on-accent);
+  }
+
+  /*
+   * Lit `nui-button` is empty until customElements.define — host has no shadow
+   * content, so mobile CTAs were invisible then popped in (layout jump).
+   * Paint a same-size shell from the `label` attribute until upgrade.
+   */
+  nui-button:not(:defined) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-height: 2.625rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--home-accent);
+    border-radius: 0.375rem;
+    background: var(--home-accent);
+    color: var(--home-on-accent);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.25;
+    text-align: center;
+
+    &::before {
+      content: attr(label);
+    }
+
+    &[variant='outlined'] {
+      background: transparent;
+      color: var(--home-accent);
+    }
+  }
 
   &-shear {
     pointer-events: none;
@@ -62,12 +136,6 @@
       translate3d(calc(var(--home-mx) * 18px), calc(var(--home-my) * 14px), 0);
     transform-origin: 50% 35%;
     will-change: transform;
-    clip-path: circle(var(--home-iris) at var(--home-iris-x) var(--home-iris-y));
-  }
-
-  &-ready &-shear,
-  &-booting#{&}-ready &-shear {
-    clip-path: none;
   }
 
   &-aura {
@@ -282,26 +350,6 @@
     pointer-events: none;
   }
 
-  &:not(.nuc-home-ready) {
-    .nuc-home-nav,
-    .nuc-home-rail,
-    .nuc-home-hero-eyebrow,
-    .nuc-home-hero-mark,
-    .nuc-home-hero-cta,
-    .nuc-home-hero-proof,
-    .nuc-home-hero-panel {
-      opacity: 0;
-    }
-
-    .nuc-home-hero-headline {
-      clip-path: inset(0 100% 0 0);
-    }
-
-    .nuc-home-hero-support {
-      clip-path: inset(100% 0 0 0);
-    }
-  }
-
   &-rail-list {
     display: flex;
     flex-direction: row;
@@ -387,12 +435,6 @@
     position: relative;
     z-index: 1;
     height: 100%;
-    clip-path: circle(var(--home-iris) at var(--home-iris-x) var(--home-iris-y));
-  }
-
-  &-ready &-inner,
-  &-booting#{&}-ready &-inner {
-    clip-path: none;
   }
 
   &-scroller {
@@ -403,6 +445,11 @@
     overscroll-behavior-y: contain;
     scrollbar-width: none;
     scroll-padding-bottom: 3.5rem;
+
+    /* Mobile: keep section-as-slide snap; gate holds snap off inside tall panels. */
+    @media (max-width: 767px) {
+      scroll-behavior: auto;
+    }
 
     &::-webkit-scrollbar {
       display: none;
@@ -521,6 +568,28 @@
   }
 }
 
+/* Iris wipe transition while booting (humans only). */
+html.nuc-iris-boot .nuc-home.nuc-home-booting:not(.nuc-home-ready) {
+  .nuc-home-inner,
+  .nuc-home-shear {
+    transition: --home-iris 1.7s cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: clip-path;
+
+    @media (max-width: 959px) {
+      transition: --home-iris 1.05s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+  }
+}
+
+html.nuc-iris-boot .nuc-home.nuc-home-ready {
+  .nuc-home-inner,
+  .nuc-home-shear {
+    clip-path: none;
+    will-change: auto;
+    transition: none;
+  }
+}
+
 @property --home-wipe {
   syntax: '<number>';
   inherits: true;
@@ -572,6 +641,21 @@
 
   @media (min-width: $md) {
     height: 100%;
+  }
+}
+
+/*
+ * Below-fold reveal targets — hide in the eager home sheet so async section
+ * chunks cannot paint visible for a frame before scoped opacity:0 arrives.
+ */
+.nuc-home:not(.nuc-home-static) {
+  .nuc-home-pillars .nuc-home-eyebrow,
+  .nuc-home-pillars .nuc-home-title,
+  .nuc-home-pillars .nuc-home-support,
+  .nuc-home-pillars-cta,
+  .nuc-home-pillars-share,
+  .nuc-home-pillars-item {
+    opacity: 0;
   }
 }
 
@@ -630,6 +714,67 @@
   @media (min-width: $md) {
     font-size: 1.05rem;
   }
+}
+
+.nuc-home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  box-sizing: border-box;
+  min-height: 2.625rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  background: var(--home-accent);
+  color: var(--home-on-accent);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+
+  @media (min-width: $md) {
+    gap: 0.45rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
+  }
+
+  &.is-primary {
+    background: var(--home-accent);
+    border-color: var(--home-accent);
+    color: var(--home-on-accent);
+
+    &:hover {
+      background: var(--home-accent-hover);
+      border-color: var(--home-accent-hover);
+    }
+  }
+
+  &.is-outlined {
+    background: transparent;
+    border-color: var(--home-accent);
+    color: var(--home-accent);
+
+    &:hover {
+      background: var(--home-accent-soft);
+    }
+  }
+}
+
+.nuc-home-btn-icon,
+.nuc-home-next-icon {
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+  flex-shrink: 0;
+  font-size: 1.15em;
 }
 
 .nuc-home-next {

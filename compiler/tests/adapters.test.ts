@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { irEventToReact, irEventToVue, reactEventToIr } from '../src/adapters/events'
 import { toReactClassName, toVueClassAttr } from '../src/adapters/class-name'
+import { mapNuxtIconTag } from '../src/adapters/nuxt-icon'
 import { contentHash, isDirty, normalizeBody, stripEmitHeaders } from '../src/sync/fingerprint'
 
 describe('adapters', () => {
@@ -14,6 +15,19 @@ describe('adapters', () => {
     expect(toVueClassAttr('className')).toBe('class')
     expect(toVueClassAttr('class')).toBe('class')
     expect(toReactClassName('class')).toBe('className')
+  })
+
+  it('maps Nuxt Icon to portable nui-icon', () => {
+    const mapped = mapNuxtIconTag('Icon', [
+      { kind: 'static', name: 'name', value: 'mdi:github' },
+      { kind: 'static', name: 'class', value: 'x' },
+    ])
+    expect(mapped.tag).toBe('nui-icon')
+    expect(mapped.props).toEqual([
+      { kind: 'static', name: 'icon', value: 'mdi:github' },
+      { kind: 'static', name: 'class', value: 'x' },
+    ])
+    expect(mapNuxtIconTag('div', []).tag).toBe('div')
   })
 })
 

@@ -18,6 +18,56 @@ describe('rewriteScriptSetupToReact', () => {
     expect(joined).not.toContain('() => (): Lane =>')
   })
 
+  it('maps watch getters onto useEffect with value deps', () => {
+    const { body } = rewriteScriptSetupToReact(
+      [
+        "import { computed, ref, watch } from 'vue'",
+        'const focusId = ref("sdk")',
+        'const active = computed(() => modules[0]!)',
+        'watch(',
+        '  () => active.value.id,',
+        '  () => {',
+        '    focusId.value = "sdk"',
+        '  }',
+        ')',
+      ].join('\n'),
+    )
+    const joined = body.join('\n')
+    expect(joined).toContain('useEffect(() => {')
+    expect(joined).toContain('void (() => {')
+    expect(joined).toContain('setFocusId("sdk")')
+    expect(joined).toContain('}, [active.id])')
+    expect(joined).not.toContain('})(() => active.id)')
+    expect(joined).not.toContain('[() => active.id]')
+  })
+
+  it('preserves ref type params on useState', () => {
+    const { body } = rewriteScriptSetupToReact(
+      [
+        "import { ref } from 'vue'",
+        "import type { NucHomeModuleLaneId } from './content'",
+        "const focusId = ref<NucHomeModuleLaneId>('sdk')",
+      ].join('\n'),
+    )
+    expect(body.join('\n')).toContain(
+      "const [focusId, setFocusId] = useState<NucHomeModuleLaneId>('sdk')",
+    )
+  })
+
+  it('rewrites KeyboardEvent params for React handlers', () => {
+    const { body } = rewriteScriptSetupToReact(
+      [
+        "import { ref } from 'vue'",
+        'function onTabKey(event: KeyboardEvent): void {',
+        '  event.preventDefault()',
+        '}',
+      ].join('\n'),
+    )
+    const joined = body.join('\n')
+    expect(joined).toContain('currentTarget: EventTarget | null')
+    expect(joined).not.toMatch(/event: KeyboardEvent\b/)
+  })
+
   it('maps defineProps and defineEmits onto React props', () => {
     const rewritten = rewriteScriptSetupToReact(
       [
@@ -91,5 +141,22 @@ describe('convertVueSfcToReact', () => {
     expect(body).not.toMatch(/<template[\s>]/)
     expect(body).toContain('<>')
     expect(body).toContain('</>')
+  })
+
+  it('binds Vue $event as an arrow parameter for state setters', () => {
+    const { body } = convertVueSfcToReact(
+      [
+        '<template>',
+        '  <NucHomeHoloCube :focus="focusId" @focus="focusId = $event" />',
+        '</template>',
+        '<script setup lang="ts">',
+        "import { ref } from 'vue'",
+        "const focusId = ref('sdk')",
+        '</script>',
+      ].join('\n'),
+      'intro.vue',
+    )
+    expect(body).toContain('onFocus={($event) => setFocusId($event)}')
+    expect(body).not.toMatch(/onFocus=\{\(\)\s*=>/)
   })
 })

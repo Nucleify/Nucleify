@@ -19,7 +19,7 @@
 
   @media (max-width: $md) {
     .nuc-home-holo-cube-bloom path {
-      stroke-width: 3.1;
+      stroke-width: 3.6;
     }
   }
 
@@ -44,7 +44,7 @@
     }
 
     .nuc-home-holo-cube-bloom path {
-      stroke-width: 3.1;
+      stroke-width: 3.6;
     }
 
     .nuc-home-holo-cube-rim {
@@ -63,6 +63,25 @@
 
   &-glob {
     pointer-events: none;
+
+    // Sass rewrites `hsl(a b c / α)` → invalid comma form; keep modern syntax via #{}
+    fill: #{'hsl(var(--rainbow-hue) 88% 68% / 0.08)'} !important;
+  }
+
+  &-aura {
+    position: absolute;
+    inset: 16% 18% 14%;
+    z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(
+      circle at 52% 48%,
+      #{'hsl(var(--rainbow-hue) 88% 68% / 0.16)'} 0%,
+      #{'hsl(calc(var(--rainbow-hue) + 40deg) 86% 58% / 0.07)'} 45%,
+      transparent 72%
+    );
+    clip-path: polygon(50% 6%, 100% 28%, 100% 72%, 50% 94%, 0 72%, 0 28%);
+    filter: blur(7px);
+    opacity: 0.7;
   }
 
   &-bloom,
@@ -74,14 +93,19 @@
     overflow: visible;
   }
 
+  &-solid {
+    z-index: 1;
+    pointer-events: none;
+  }
+
   &-bloom {
-    z-index: 0;
-    opacity: 1;
+    z-index: 3;
+    opacity: 0.82;
     pointer-events: none;
 
     path {
       fill: none;
-      stroke-width: 4.2;
+      stroke-width: 4.8;
 
       &.is-ui {
         stroke: var(--holo-cyan);
@@ -97,11 +121,6 @@
     }
   }
 
-  &-solid {
-    z-index: 1;
-    pointer-events: none;
-  }
-
   &-back-edge {
     fill: none;
     stroke: hsl(calc(var(--rainbow-hue) + 72deg) 40% 42%);
@@ -112,6 +131,18 @@
   &-face {
     stroke: none;
     transition: opacity 0.28s ease;
+
+    &.is-ui {
+      fill: #{'hsl(var(--rainbow-hue) 95% 72% / 0.12)'} !important;
+    }
+
+    &.is-sdk {
+      fill: #{'hsl(calc(var(--rainbow-hue) + 48deg) 90% 62% / 0.08)'} !important;
+    }
+
+    &.is-data {
+      fill: #{'hsl(calc(var(--rainbow-hue) + 96deg) 90% 58% / 0.05)'} !important;
+    }
   }
 
   &-rim {

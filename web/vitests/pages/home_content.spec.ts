@@ -103,5 +103,15 @@ describe('home compiler emit snippets', () => {
     expect(byId.next?.snippet).toEqual(byId.react?.snippet)
     expect(byId.svelte?.snippet.join('\n')).toContain('<script lang="ts">')
     expect(byId.astro?.snippet[0]).toBe('---')
+    expect(byId.solid?.snippet.join('\n')).toContain('props.label')
+    expect(NUC_HOME_COMPILER_NODES.map((node) => node.id)).toEqual([
+      'vue',
+      'react',
+      'nuxt',
+      'next',
+      'astro',
+      'svelte',
+      'solid',
+    ])
   })
 })

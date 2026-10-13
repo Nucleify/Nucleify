@@ -1,8 +1,13 @@
+import { isHomeProgrammaticScroll } from './observe_active_section'
 import { scrollSectionOffset } from './scroll_section_offset'
 
-const END_SLACK_PX = 8
+const END_SLACK_PX = 12
+/** Only gate when clearly taller than one viewport — near-fit panels stay snappy. */
+const TALL_EXTRA_PX = 48
 /** Match `.nuc-home-panel` mobile `height: auto` (`$md: 768px`). */
 const MOBILE_MQ = '(max-width: 767px)'
+/** Stylesheet default — never persist inline `none` from a prior hold. */
+const SNAP_CSS = 'y mandatory'
 
 function getScroller(root: HTMLElement): HTMLElement {
   return root.querySelector<HTMLElement>('.nuc-home-scroller') ?? root
@@ -35,7 +40,7 @@ function sectionMaxScroll(scroller: HTMLElement, section: HTMLElement): number {
 }
 
 function isTallSection(scroller: HTMLElement, section: HTMLElement): boolean {
-  return section.offsetHeight > scroller.clientHeight + END_SLACK_PX
+  return section.offsetHeight > scroller.clientHeight + TALL_EXTRA_PX
 }
 
 function isPastSectionBottom(
@@ -48,11 +53,11 @@ function isPastSectionBottom(
 }
 
 /**
- * Mobile snap gate for tall `.nuc-home-panel` sections only (home / investor,
- * Nuxt + Next). Short sections keep normal snap — no extra scroll.
+ * Mobile snap gate for tall `.nuc-home-panel` sections only (home / investor).
  *
- * While mid tall section, CSS scroll-snap is disabled and overshoot is clamped
- * so one flick cannot both scroll within and advance.
+ * Mid tall section → snap off so content can scroll.
+ * At/ past section bottom (or short sections) → snap **must** be on so the
+ * next flick always advances to the following slide.
  */
 export function bindHomeSectionScrollGate(root: HTMLElement): () => void {
   const scroller = getScroller(root)
@@ -60,14 +65,16 @@ export function bindHomeSectionScrollGate(root: HTMLElement): () => void {
   let snapHeld = false
   const observedPanels = new WeakSet<Element>()
 
-  const releaseSnap = () => {
-    if (!snapHeld) return
-    scroller.style.removeProperty('scroll-snap-type')
-    snapHeld = false
-  }
-
-  const holdSnap = () => {
-    if (snapHeld) return
+  const applySnap = (on: boolean) => {
+    if (on) {
+      // Always write the CSS value — removeProperty alone can leave a stale
+      // inline `none` from rail/loop restores that blocked section slides.
+      if (scroller.style.scrollSnapType === SNAP_CSS && !snapHeld) return
+      scroller.style.scrollSnapType = SNAP_CSS
+      snapHeld = false
+      return
+    }
+    if (scroller.style.scrollSnapType === 'none' && snapHeld) return
     scroller.style.scrollSnapType = 'none'
     snapHeld = true
   }
@@ -85,24 +92,25 @@ export function bindHomeSectionScrollGate(root: HTMLElement): () => void {
   }
 
   const sync = () => {
+    if (root.classList.contains('nuc-home-booting')) return
+
     observePanels()
 
+    if (isHomeProgrammaticScroll(scroller)) return
+
     if (!mq.matches) {
-      releaseSnap()
+      scroller.style.removeProperty('scroll-snap-type')
+      snapHeld = false
       return
     }
 
     const section = leadingSection(scroller)
-    if (
-      section &&
-      isTallSection(scroller, section) &&
-      !isPastSectionBottom(scroller, section)
-    ) {
-      holdSnap()
-      return
-    }
+    const hold =
+      Boolean(section) &&
+      isTallSection(scroller, section!) &&
+      !isPastSectionBottom(scroller, section!)
 
-    releaseSnap()
+    applySnap(!hold)
   }
 
   const onWheel = (event: WheelEvent) => {
@@ -112,14 +120,18 @@ export function bindHomeSectionScrollGate(root: HTMLElement): () => void {
     if (!section || !isTallSection(scroller, section)) return
 
     const max = sectionMaxScroll(scroller, section)
-    if (scroller.scrollTop >= max - END_SLACK_PX) return
+    if (scroller.scrollTop >= max - END_SLACK_PX) {
+      // At bottom — ensure snap is on before this wheel can advance.
+      applySnap(true)
+      return
+    }
 
-    // Clamp so one wheel tick cannot overshoot into the next section.
     if (scroller.scrollTop + event.deltaY > max) {
       event.preventDefault()
-      holdSnap()
+      applySnap(false)
       scroller.scrollTop = max
-      sync()
+      // Next gesture should snap to the following section.
+      applySnap(true)
     }
   }
 
@@ -129,6 +141,8 @@ export function bindHomeSectionScrollGate(root: HTMLElement): () => void {
   const onTouchStart = (event: TouchEvent) => {
     touchStartY = event.touches[0]?.clientY ?? 0
     touchStartScroll = scroller.scrollTop
+    // If the finger goes down already at a tall-section bottom, snap must be on.
+    sync()
   }
 
   const onTouchMove = (event: TouchEvent) => {
@@ -142,38 +156,56 @@ export function bindHomeSectionScrollGate(root: HTMLElement): () => void {
     if (!section || !isTallSection(scroller, section)) return
 
     const max = sectionMaxScroll(scroller, section)
-    // Gesture began already at section bottom → allow snap / loop to proceed.
-    if (touchStartScroll >= max - END_SLACK_PX) return
+    if (touchStartScroll >= max - END_SLACK_PX) {
+      applySnap(true)
+      return
+    }
 
     if (touchStartScroll + dy <= max) return
 
-    // Keep this gesture inside the section until finger lifts.
     event.preventDefault()
-    holdSnap()
+    applySnap(false)
     scroller.scrollTop = max
+  }
+
+  const onTouchEnd = () => {
+    // After the gesture, land snap state for the *next* flick.
+    sync()
   }
 
   const mutationObserver = new MutationObserver(() => {
     observePanels()
     sync()
   })
-  mutationObserver.observe(scroller, { childList: true, subtree: false })
+  mutationObserver.observe(scroller, {
+    childList: true,
+    subtree: false,
+    attributes: true,
+    attributeFilter: ['data-nuc-programmatic-scroll'],
+  })
 
   scroller.addEventListener('scroll', sync, { passive: true })
+  scroller.addEventListener('scrollend', sync, { passive: true })
   scroller.addEventListener('wheel', onWheel, { passive: false })
   scroller.addEventListener('touchstart', onTouchStart, { passive: true })
   scroller.addEventListener('touchmove', onTouchMove, { passive: false })
+  scroller.addEventListener('touchend', onTouchEnd, { passive: true })
+  scroller.addEventListener('touchcancel', onTouchEnd, { passive: true })
   mq.addEventListener('change', sync)
   resizeObserver.observe(scroller)
   observePanels()
   sync()
 
   return () => {
-    releaseSnap()
+    scroller.style.removeProperty('scroll-snap-type')
+    snapHeld = false
     scroller.removeEventListener('scroll', sync)
+    scroller.removeEventListener('scrollend', sync)
     scroller.removeEventListener('wheel', onWheel)
     scroller.removeEventListener('touchstart', onTouchStart)
     scroller.removeEventListener('touchmove', onTouchMove)
+    scroller.removeEventListener('touchend', onTouchEnd)
+    scroller.removeEventListener('touchcancel', onTouchEnd)
     mq.removeEventListener('change', sync)
     resizeObserver.disconnect()
     mutationObserver.disconnect()

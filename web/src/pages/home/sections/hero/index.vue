@@ -26,22 +26,33 @@
         </p>
 
         <div class="nuc-home-hero-cta">
-          <nui-button
-            :label="copy.ctaPrimary"
-            variant="primary"
-            icon="mdi:book-open-page-variant-outline"
-            icon-pos="right"
+          <button
+            type="button"
+            class="nuc-home-btn is-primary"
             @click="onPrimary"
-          />
-          <nui-button
-            :label="copy.ctaSecondary"
-            variant="outlined"
-            icon="mdi:github"
+          >
+            <nui-icon
+              icon="mdi:book-open-page-variant-outline"
+              class="nuc-home-btn-icon"
+              mode="svg"
+            />
+            <span>{{ copy.ctaPrimary }}</span>
+          </button>
+          <button
+            type="button"
+            class="nuc-home-btn is-outlined"
             @click="onSecondary"
-          />
+          >
+            <nui-icon icon="mdi:github" class="nuc-home-btn-icon" mode="svg" />
+            <span>{{ copy.ctaSecondary }}</span>
+          </button>
           <button type="button" class="nuc-home-next" @click="onWhy">
             <span>{{ copy.ctaTertiary }}</span>
-            <nui-icon icon="mdi:arrow-down" />
+            <nui-icon
+              icon="mdi:arrow-down"
+              class="nuc-home-next-icon"
+              mode="svg"
+            />
           </button>
         </div>
 

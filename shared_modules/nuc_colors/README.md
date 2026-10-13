@@ -1,4 +1,4 @@
-# <img src="https://nucleify.io/favicon.ico" width="17" height="17" /> &nbsp; nuc_colors
+# <img src="https://nucleify.io/img/holo-cube.svg" width="22" height="22" alt="" /> &nbsp; nuc_colors
 
 Module that contains color related CSS/SCSS variables and utils.
 

@@ -1,6 +1,7 @@
 import type { IrAttr, IrDocument, IrExpr, IrNode, IrProp, IrStmt } from '../ir/types'
 import { irEventToReact } from '../adapters/events'
 import { toReactClassName } from '../adapters/class-name'
+import { mapNuxtIconTag } from '../adapters/nuxt-icon'
 import {
   reactiveNames,
   reactSetterName,
@@ -30,8 +31,11 @@ function rewriteInlineEventHandler(code: string, stateNames?: Set<string>): stri
     }
   }
   if (/^[a-zA-Z_$][\w$]*$/.test(inner)) return inner
-  if (/=[^=]/.test(inner) && !inner.includes('=>')) return `() => { ${inner} }`
-  return `() => ${inner}`
+  // Vue `$event` must stay a parameter — `() => setX($event)` leaves `$event` unbound.
+  // Do not use `\b` before `$` (`$` is non-word, so `\b\$event` fails after `(`).
+  const args = /\$event\b/.test(inner) ? '$event' : ''
+  if (/=[^=]/.test(inner) && !inner.includes('=>')) return `(${args}) => { ${inner} }`
+  return `(${args}) => ${inner}`
 }
 
 function emitExpr(expr: IrExpr): string {
@@ -137,6 +141,23 @@ function emitClassNameAttr(
   return `className={\`${prefix}${fragments}\`.trim()}`
 }
 
+function cssStringToReactStyleObject(css: string): string {
+  const props = css
+    .split(';')
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const idx = part.indexOf(':')
+      if (idx < 0) return null
+      const key = part.slice(0, idx).trim()
+      const val = part.slice(idx + 1).trim()
+      const camel = key.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase())
+      return `${camel}: ${JSON.stringify(val)}`
+    })
+    .filter((entry): entry is string => Boolean(entry))
+  return `{ ${props.join(', ')} }`
+}
+
 function emitAttrs(attrs: IrAttr[], ctx: EmitCtx, tag?: string): string {
   const parts: string[] = []
   let staticClass: string | undefined
@@ -172,6 +193,9 @@ function emitAttrs(attrs: IrAttr[], ctx: EmitCtx, tag?: string): string {
         parts.push(`${name}={${attr.value ? 'true' : 'false'}}`)
       } else if (typeof attr.value === 'number') {
         parts.push(`${name}={${attr.value}}`)
+      } else if (name === 'style' && typeof attr.value === 'string') {
+        // React rejects CSS strings on DOM/SVG — fold to a style object.
+        parts.push(`style={${cssStringToReactStyleObject(attr.value)}}`)
       } else {
         parts.push(`${name}=${JSON.stringify(attr.value)}`)
       }
@@ -253,10 +277,13 @@ function emitNode(node: IrNode, indent: string, ctx: EmitCtx): string {
         const inner = node.children.map((c) => emitNode(c, `${indent}  `, ctx)).join('\n')
         return `${indent}<>\n${inner}\n${indent}</>`
       }
-      const tag = node.kind === 'component' ? node.name : node.tag
-      const attrs = emitAttrs(node.props, ctx, tag)
-      const shw = node.kind === 'element' && node.tag.includes('-') ? ' suppressHydrationWarning' : ''
-      const wrapLazy = node.kind === 'component' && Boolean(ctx.lazyNames?.has(tag))
+      const rawTag = node.kind === 'component' ? node.name : node.tag
+      const { tag, props } = mapNuxtIconTag(rawTag, node.props)
+      const attrs = emitAttrs(props, ctx, tag)
+      const shw = (node.kind === 'element' && node.tag.includes('-')) || tag.includes('-')
+        ? ' suppressHydrationWarning'
+        : ''
+      const wrapLazy = node.kind === 'component' && Boolean(ctx.lazyNames?.has(rawTag))
       const elIndent = wrapLazy ? `${indent}  ` : indent
       const jsx = !node.children.length
         ? `${elIndent}<${tag}${attrs}${shw} />`

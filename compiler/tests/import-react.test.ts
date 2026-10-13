@@ -12,11 +12,13 @@ import {
   contentHash,
   normalizeBody,
   reactHeader,
+  solidHeader,
   stripEmitHeaders,
   vueHeader,
 } from '../src/sync/fingerprint'
 import { biomeFormat } from '../src/sync/biome-format'
 import { emitReact } from '../src/emit/react'
+import { emitSolid } from '../src/emit/solid'
 import { emitVue } from '../src/emit/vue'
 
 const monorepo = join(dirname(fileURLToPath(import.meta.url)), '../..')
@@ -140,21 +142,17 @@ describe('check css dirty', () => {
 })
 
 describe('fresh emit biome idempotent', () => {
-  it('vue and react emit are stable under biome --write', async () => {
+  it('vue, react, and solid emit are stable under biome --write', async () => {
     const ir = parseIrDocument(JSON.parse(readFileSync(join(fixtures, 'ir/hello.json'), 'utf8')))
-    for (const [kind, emit, header] of [
-      ['vue', emitVue(ir), vueHeader] as const,
-      ['react', emitReact(ir), reactHeader] as const,
+    for (const [kind, emit, header, ext] of [
+      ['vue', emitVue(ir), vueHeader, 'vue'] as const,
+      ['react', emitReact(ir), reactHeader, 'tsx'] as const,
+      ['solid', emitSolid(ir), solidHeader, 'tsx'] as const,
     ]) {
-      let body = normalizeBody(await biomeFormat(emit, `hello.${kind === 'vue' ? 'vue' : 'tsx'}`, monorepo))
+      let body = normalizeBody(await biomeFormat(emit, `hello.${ext}`, monorepo))
       let assembled = `${header('x', contentHash(body))}${body}\n`
-      assembled = (await biomeFormat(assembled, `hello.${kind === 'vue' ? 'vue' : 'tsx'}`, monorepo)).replace(
-        /\r\n/g,
-        '\n',
-      )
-      const again = (
-        await biomeFormat(assembled, `hello.${kind === 'vue' ? 'vue' : 'tsx'}`, monorepo)
-      ).replace(/\r\n/g, '\n')
+      assembled = (await biomeFormat(assembled, `hello.${ext}`, monorepo)).replace(/\r\n/g, '\n')
+      const again = (await biomeFormat(assembled, `hello.${ext}`, monorepo)).replace(/\r\n/g, '\n')
       expect(again).toBe(assembled)
       expect(isDirty(assembled, kind)).toBe(false)
       expect(normalizeBody(stripEmitHeaders(assembled, kind))).toBe(body)

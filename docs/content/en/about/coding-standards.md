@@ -12,14 +12,14 @@ nucleify/
 ├── admin/             # @nucleify/admin — Nuxt admin
 ├── docs/              # @nucleify/docs — Astro docs
 ├── compiler/          # @nucleify/compiler — portable UI compiler
-├── shared_modules/    # six nuc_* feature modules
+├── shared_modules/    # six exported nuc_* feature modules
 ├── portable/nui/      # design tokens
 ├── overrides/         # per-package file overrides
 ├── supabase/          # merged DB config
 └── .config/           # shared tooling
 ```
 
-Do **not** use obsolete paths: root `modules/`, `nuxt/` as srcDir, `~/atomic`, or fictional modules like `nuc_users` / `nuc_auth`.
+Canonical product paths: `web/src/` (not root `modules/` or `nuxt/` as srcDir). UI primitives are `nui-*`, not an `ad-*` tree. Auth lives in `nuc_api`.
 
 ---
 
@@ -32,7 +32,7 @@ Do **not** use obsolete paths: root `modules/`, `nuxt/` as srcDir, `~/atomic`, o
 | `docs/` | `make docs` or `pnpm docs` |
 | `compiler/` | `make compiler` |
 
-Install/bootstrap: `make run` (not legacy `make nuxt`).
+Bootstrap: `make run`. Product shell: `make web`. (`make nuxt` / `make next` / … are portable emit demos, not the product app.)
 
 ---
 
@@ -150,7 +150,6 @@ Author in `*.nuc.tsx` per `compiler/PORTABLE.md`:
 ## SCSS
 
 - Module styles: `shared_modules/nuc_*/styles/`
-- Atomic hierarchy under `components/atoms|molecules|organisms/`
 - App entry imports module `_index.scss` files
 - Lint: `pnpm slint`
 
@@ -175,7 +174,7 @@ pnpm slint       # Stylelint on SCSS
 pnpm tests       # Vitest
 ```
 
-Husky runs these on commit/push via `.config/bash/hook-checks.sh`.
+Husky runs these on pre-commit via `.config/bash/hook-checks.sh` (pre-push is a no-op).
 
 ---
 

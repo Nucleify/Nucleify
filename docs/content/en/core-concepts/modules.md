@@ -1,8 +1,8 @@
 # Modules
 
-Nucleify ships feature modules in `shared_modules/`. Each module is a self-contained domain package with frontend utilities, optional Supabase API handlers, migrations, types, and tests — consumed by `web/`, `admin/`, and generated Next shells.
+Nucleify ships **six exported** feature modules from `@nucleify/shared-modules`. Each is a self-contained domain package with frontend utilities, optional Supabase API handlers, migrations, types, and tests — consumed by `web/`, `admin/`, `docs/`, and generated shells (Next, Solid, …) so you can migrate frameworks without rewriting the business.
 
-There is no root-level `modules/` folder. Apps import via relative paths or the Nuxt alias `modules` → `shared_modules/`.
+There is no root-level `modules/` folder. Apps import via relative paths or the Nuxt alias `modules` → `shared_modules/`. Auth flows live inside `nuc_api` (there is no separate `nuc_users` / `nuc_auth` package).
 
 ---
 
@@ -17,7 +17,7 @@ There is no root-level `modules/` folder. Apps import via relative paths or the 
 | `nuc_languages` | i18n, locale messages, translations API | `plugins/nuc_translations.ts`, `supabase/api/handle.ts` |
 | `nuc_stores` | Pinia/Zustand helpers, cookie/localStorage/session utils | `pinia/`, `zustand/`, `cookie/` |
 
-Modules **not** in the monorepo: `nuc_users`, `nuc_auth` — auth flows live inside `nuc_api`.
+These six are listed in `shared_modules/index.ts` and `package.json` `exports`. Other folders under `shared_modules/` without a public barrel are not part of the supported API yet.
 
 ---
 

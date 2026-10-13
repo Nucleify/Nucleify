@@ -129,6 +129,20 @@ export function parseExpr(filePath: string, source: string, node: any): IrExpr {
       if (node.operator === '!' && node.prefix) {
         return parseExpr(filePath, source, node.argument)
       }
+      if ((node.operator === '-' || node.operator === '+') && node.prefix) {
+        const arg = parseExpr(filePath, source, node.argument)
+        if (node.operator === '+') return arg
+        if (arg.kind === 'literal' && typeof arg.value === 'number') {
+          return { kind: 'literal', value: -arg.value }
+        }
+        // Emit as `0 - arg` so IR stays binary-only.
+        return {
+          kind: 'binary',
+          op: '-',
+          left: { kind: 'literal', value: 0 },
+          right: arg,
+        }
+      }
       fail(filePath, source, node, `unsupported unary operator ${node.operator}`)
     case 'TemplateLiteral': {
       if (node.expressions?.length) {

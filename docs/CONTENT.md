@@ -1,4 +1,4 @@
-# <img src="https://nucleify.io/favicon.ico" width="17" height="17" /> &nbsp; nuc_documentation
+# <img src="https://nucleify.io/img/favicon.svg" width="22" height="22" alt="" /> &nbsp; nuc_documentation
 
 Module that provides Markdown-based documentation pages with SSR/prerendering support.
 

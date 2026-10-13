@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Compiler (`@nucleify/compiler`)
 
-IR-first portable UI compiler (`.nuc.tsx` → Vue + React emit).
+IR-first portable UI compiler (`.nuc.tsx` → Vue + React + Solid emit).
 
 ## Conventions
 
@@ -16,3 +16,4 @@ IR-first portable UI compiler (`.nuc.tsx` → Vue + React emit).
 - Keep compiler logic self-contained — do not import from `web/`, `admin/`, `docs/`
 - Rules: `compiler/.config/rules/`
 - Agents: `web/.cursor/agents/`
+- When portable emit grows (IR / adapters / attrs / state), update **Vue, React, and Solid** emit + goldens in the same change

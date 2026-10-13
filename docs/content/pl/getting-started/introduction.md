@@ -1,10 +1,12 @@
 # Wprowadzenie
 
-## Pisz w Vue. Wdrażaj React, gdy tego potrzebujesz.
+## Zbuduj raz. Przenieś na dowolny framework.
 
-**Nucleify** to modularne monorepo full-stack: rozwijaj w Nuxt 4 (Tryb A), współdziel logikę przez sześć modułów funkcjonalnych i opcjonalnie generuj lustrzane odbicie Next.js (Tryb B) za pomocą przenośnego kompilatora UI. Backend opiera się na Supabase; bramka API Nitro w `web/` kieruje żądania do handlerów modułów.
+**Nucleify** to modularne monorepo full-stack. Trzymaj produkt we współdzielonych modułach, rozwijaj codziennie w Nuxt (`web/`) i migruj web, admin lub docs na inny framework, gdy trzeba — bez przepisywania biznesu.
 
-> *"Przestań wybierać między frameworkami. Wdrażaj oba."*
+**Shelle:** Vue · React · Nuxt · Next · Astro · Svelte · Solid — to nie jest produkt „tylko React/Next” ani „tylko Vue/Nuxt”.
+
+> Zbuduj nucleus raz. Odpal każdy shell.
 
 ---
 
@@ -18,7 +20,7 @@ Nucleify to **workspace pnpm**, który łączy wszystko, czego potrzebuje nowocz
 | `@nucleify/admin` | `admin/` | Panel administracyjny Nuxt 4 |
 | `@nucleify/docs` | `docs/` | Strona dokumentacji Astro 5 |
 | `@nucleify/compiler` | `compiler/` | Przenośny kompilator UI oparty na IR |
-| `@nucleify/shared-modules` | `shared_modules/` | Sześć modułów funkcjonalnych |
+| `@nucleify/shared-modules` | `shared_modules/` | Sześć eksportowanych modułów funkcjonalnych |
 
 Katalogi wspierające:
 
@@ -34,17 +36,18 @@ Katalogi wspierające:
 | Tryb | Stack | Komenda | Wynik |
 |------|-------|---------|-------|
 | **Tryb A** (domyślny) | Nuxt 4 + Vue 3.5 | `make web` | `web/` |
-| **Tryb B** (generowany) | Next 15 + React 19 | `make web TARGET=next` | wygenerowane drzewo emit (zob. [Kompilator](/pl/docs/core-concepts/compiler)) |
+| **Tryb B** (generowany) | Next / Solid | `make web TARGET=next` · `make web TARGET=solid` | wygenerowane drzewo (zob. [Kompilator](/pl/docs/core-concepts/compiler)) |
+| **Demo emit** | Vue · React · Nuxt · Next · Solid | `make vue` · `react` · `nuxt` · `next` · `solid` | `{framework}/demo` |
 
-**Tryb A** to codzienna praca — strony, composables i współdzielone moduły w Vue. **Tryb B** konwertuje powłokę produktu na React, gdy potrzebujesz wdrożenia Next lub chcesz zweryfikować output kompilatora.
+**Tryb A** to codzienna praca — strony, composables i współdzielone moduły w Vue. **Tryb B** i demo emit rozprowadzają ten sam nucleus na kolejne shelle. Astro hostuje dokumentację; Svelte i Solid są pełnoprawnymi celami emit/surface.
 
-Oba tryby współdzielą `shared_modules/`, Supabase i design tokeny. Nie utrzymujesz dwóch niezależnych baz kodu.
+Wszystkie ścieżki współdzielą `shared_modules/`, Supabase i design tokeny. Nie utrzymujesz siedmiu niezależnych baz kodu.
 
 ---
 
 ## Kompilator
 
-Kompilator (`@nucleify/compiler`) to wyróżnik Nucleify. Działa na dwóch poziomach:
+Kompilator (`@nucleify/compiler`) to sposób migracji UI między shellami. Działa na dwóch poziomach:
 
 ### 1. Przenośne komponenty (`*.nuc.tsx`)
 
@@ -72,20 +75,20 @@ Zobacz [Kompilator](/pl/docs/core-concepts/compiler) i `compiler/PORTABLE.md` po
 
 ### 2. Konwersja powłoki produktu
 
-Konwertuj całą aplikację Nuxt na Next:
+Konwertuj całą aplikację Nuxt na Next lub Solid:
 
 ```bash
-pnpm compiler -- convert web --target=next
-make web TARGET=next
+make web TARGET=next    # → web-next/
+make web TARGET=solid   # → web-solid/
 ```
 
-To generuje mirror Next.js z drzewa źródeł Vue. Te same trasy, współdzielone moduły, inna powłoka frameworka. Output jest generowany przez kompilator — nie wchodzi w kanoniczny układ monorepo.
+Te same trasy, współdzielone moduły, inna powłoka frameworka. Output generuje kompilator — nie wchodzi w kanoniczny układ monorepo.
 
 ---
 
 ## Współdzielone moduły
 
-Sześć samodzielnych modułów funkcjonalnych w `shared_modules/`:
+Sześć eksportowanych modułów funkcjonalnych w `shared_modules/`:
 
 | Moduł | Domena |
 |-------|--------|
@@ -118,7 +121,7 @@ Handlery modułów rejestrują się w `shared_modules/nuc_api/supabase/api/gatew
 
 ## System designu
 
-Prymitywy UI to **komponenty web Lit** z `nucleify-ui` (`nui-button`, `nui-icon`, …). Design tokeny i rejestracja są w `portable/nui/`. Aplikacje Vue i React konsumują te same custom elements; kompilator mapuje tagi `nui-*` w `*.nuc.tsx` na oba cele emisji.
+Prymitywy UI to **komponenty web Lit** z `nucleify-ui` (`nui-button`, `nui-icon`, …). Design tokeny i rejestracja są w `portable/nui/`. Każdy shell konsumuje te same custom elements; kompilator mapuje tagi `nui-*` w `*.nuc.tsx` na cele emisji (Vue, React, Solid i pokrewne shelle).
 
 ---
 
@@ -138,7 +141,7 @@ nucleify/
 ├── admin/                  # @nucleify/admin — admin Nuxt 4
 ├── docs/                   # @nucleify/docs — dokumentacja Astro 5
 ├── compiler/               # @nucleify/compiler — przenośny kompilator UI IR
-├── shared_modules/         # sześć modułów nuc_*
+├── shared_modules/         # sześć eksportowanych modułów nuc_*
 ├── portable/nui/           # design tokeny, rejestracja Lit nui-*
 ├── overrides/              # overrides/{web,admin,docs,shared_modules}/
 ├── supabase/
@@ -157,7 +160,9 @@ Pełny opis: [Układ monorepo](/pl/docs/core-concepts/monorepo)
 |---------|---------|
 | `make run` | Tworzy `.env`, instaluje deps, husky, sync rules, buduje kompilator |
 | `make web` | Uruchamia serwer dev Nuxt (`web/`) |
-| `make web TARGET=next` | Konwertuje powłokę Vue do Next, uruchamia dev (generowany output) |
+| `make web TARGET=next` | Konwertuje powłokę Vue do Next, uruchamia dev |
+| `make web TARGET=solid` | Konwertuje powłokę Vue do Solid, uruchamia dev |
+| `make vue` / `react` / `nuxt` / `next` / `solid` | Demo emit portable |
 | `make admin` | Uruchamia dev admin Nuxt |
 | `make docs` | Uruchamia dev dokumentacji Astro |
 | `make compiler` | Uruchamia `pnpm compiler:check` + `pnpm compiler:build` |

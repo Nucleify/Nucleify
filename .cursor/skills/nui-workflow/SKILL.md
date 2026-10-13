@@ -55,6 +55,8 @@ The user invoked commit — create the commit (include `.ai/docs/` updates from 
 1. Run in parallel: `git status`, `git diff`, `git diff --cached`, `git log -8 --oneline`.
 2. Stage only this batch. Never stage `.env`, credentials, or secrets.
 3. Message via HEREDOC, 1–2 sentences on **why**. Repo style: `feat:` / `fix:` / `chore:` / `docs:` (optionally scoped, e.g. `fix(web): …`).
+   - **English only** — never Polish in the commit subject/body.
+   - Do **not** reference `plan.md`, `.ai/specs/plan.md`, tor labels, or other workflow artefacts in the message.
 4. No `--no-verify`, no force, no amend unless the user asked and amend rules pass.
 5. Failed hook: fix and make a **new** commit. Do not amend.
 6. If there is nothing to commit, say so and skip.

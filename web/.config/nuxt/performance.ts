@@ -2,10 +2,12 @@
 export const performanceConfig = {
 	critters: {
 		config: {
-			preload: "swap",
+			// Keep leftover sheets as normal stylesheets — preload:"media" FOUCs on first paint.
+			preload: false,
 			inlineFonts: false,
 			preloadFonts: true,
-			inlineThreshold: 20480,
+			inlineThreshold: 160000,
+			reduceInlineStyles: false,
 		},
 	},
 

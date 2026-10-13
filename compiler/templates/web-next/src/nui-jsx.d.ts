@@ -1,6 +1,8 @@
 /** Lit `nui-*` tags — avoid clashing with React DOM handler types. */
 type NuiProps = Record<string, unknown>
 
+declare module '*.css'
+
 declare module 'react' {
   namespace JSX {
     interface IntrinsicElements {
