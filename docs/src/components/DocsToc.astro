@@ -52,14 +52,26 @@ const flatHeadings = flattenHeadings(headings)
 <script>
   const LINE = 160
   const SEL = 'h2, h3, h4, h5, h6'
-  const main = document.querySelector('.docs-content')
-  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.docs-toc__link'))
 
-  if (main && links.length) {
+  type TocCleanup = () => void
+  let cleanup: TocCleanup | null = null
+
+  function bindToc(): void {
+    cleanup?.()
+    cleanup = null
+
+    const main = document.querySelector('.docs-content')
+    const links = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>('.docs-toc__link'),
+    )
+    if (!main || !links.length) return
+
     let raf = 0
 
     function getHeadings(): HTMLElement[] {
-      return Array.from(main!.querySelectorAll<HTMLElement>(SEL)).filter((h) => h.id)
+      return Array.from(main!.querySelectorAll<HTMLElement>(SEL)).filter(
+        (h) => h.id,
+      )
     }
 
     function setActive(id: string) {
@@ -98,20 +110,32 @@ const flatHeadings = flattenHeadings(headings)
       }
     }
 
+    const mainScroll = document.getElementById('docs-main')
     window.addEventListener('scroll', schedule, { passive: true })
-    document.getElementById('docs-main')?.addEventListener('scroll', schedule, { passive: true })
+    mainScroll?.addEventListener('scroll', schedule, { passive: true })
     apply()
 
-    links.forEach((link) => {
-      link.addEventListener('click', (event) => {
-        event.preventDefault()
-        const id = link.dataset.headingId
-        if (!id) return
-        const el = document.getElementById(id)
-        if (!el) return
-        setActive(id)
-        el.scrollIntoView({ block: 'start', behavior: 'smooth' })
-      })
-    })
+    const onClick = (event: Event) => {
+      const link = event.currentTarget as HTMLAnchorElement
+      event.preventDefault()
+      const id = link.dataset.headingId
+      if (!id) return
+      const el = document.getElementById(id)
+      if (!el) return
+      setActive(id)
+      el.scrollIntoView({ block: 'start', behavior: 'smooth' })
+    }
+
+    links.forEach((link) => link.addEventListener('click', onClick))
+
+    cleanup = () => {
+      window.removeEventListener('scroll', schedule)
+      mainScroll?.removeEventListener('scroll', schedule)
+      links.forEach((link) => link.removeEventListener('click', onClick))
+      if (raf) cancelAnimationFrame(raf)
+    }
   }
+
+  document.addEventListener('astro:page-load', bindToc)
+  bindToc()
 </script>
