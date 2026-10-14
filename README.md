@@ -18,7 +18,7 @@ UI with [nucleify-ui](https://www.npmjs.com/package/nucleify-ui).
 
 **Build portable products. Join the nucleus.**
 
-<br><a href="https://nucleify.io">Live preview</a> · <a href="https://nucleify.io/en/docs/getting-started/introduction">Docs</a> · <a href="https://nucleify.io/en/investor">Investor brief</a><br><br>
+<br><a href="https://nucleify.io">Live preview</a> · <a href="https://docs.nucleify.io/en/docs/getting-started/introduction">Docs</a> · <a href="https://nucleify.io/en/investor">Investor brief</a><br><br>
 
 ⭐ **Any stack → any other** — migrate without rewriting the business <br>
 ⭐ **Shared modules** — API, SQL, and UI stay one product across shells <br>
@@ -44,7 +44,7 @@ make web          # Nuxt product shell (default)
 
 Open http://localhost:3000 after `make web`. Fill `SUPABASE_*` in `.env` (from `web/.config/.env.example`) before using the API.
 
-Full guide: [Installation](https://nucleify.io/en/docs/getting-started/installation).
+Full guide: [Installation](https://docs.nucleify.io/en/docs/getting-started/installation).
 
 <hr>
 <br>

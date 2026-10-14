@@ -67,7 +67,7 @@ export const runtimeConfig = {
 |----------|---------|-------------|
 | `SSR` | `true` | Server-side rendering |
 | `NITRO_PRESET` | `cloudflare` | Deployment preset for Nitro |
-| `PRERENDER_ROUTES` | `/home,/docs,…` | Comma-separated static routes |
+| `PRERENDER_ROUTES` | `/home,/investor,/404` | Comma-separated static routes (docs live on docs.nucleify.io) |
 | `PRERENDER_CRAWL_LINKS` | `true` | Follow links during prerender |
 | `PRERENDER_IGNORE` | `/settings` | Routes to skip |
 | `PRERENDER_LOCALES` | `en,pl,vn` | Locales included in prerender |

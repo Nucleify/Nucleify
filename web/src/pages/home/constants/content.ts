@@ -1,3 +1,5 @@
+import { docsPageHref } from '../../../utils/docs_origin'
+
 export interface NucHomePillar {
   icon: string
   index: string
@@ -180,7 +182,7 @@ export function homeDocsHref(
   lang: string,
   page: keyof typeof NUC_HOME_DOCS
 ): string {
-  return `/${lang}/docs/${NUC_HOME_DOCS[page]}`
+  return docsPageHref(lang, NUC_HOME_DOCS[page])
 }
 
 export const NUC_HOME_COPY = {

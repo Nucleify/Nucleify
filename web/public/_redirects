@@ -17,3 +17,15 @@
 / /en/home 302
 /home /en/home 301
 /home/* /en/home 301
+/en/docs https://docs.nucleify.io/en/docs/getting-started/introduction 301
+/en/docs/ https://docs.nucleify.io/en/docs/getting-started/introduction 301
+/en/docs/* https://docs.nucleify.io/en/docs/:splat 301
+/pl/docs https://docs.nucleify.io/pl/docs/getting-started/introduction 301
+/pl/docs/ https://docs.nucleify.io/pl/docs/getting-started/introduction 301
+/pl/docs/* https://docs.nucleify.io/pl/docs/:splat 301
+/vn/docs https://docs.nucleify.io/en/docs/getting-started/introduction 301
+/vn/docs/ https://docs.nucleify.io/en/docs/getting-started/introduction 301
+/vn/docs/* https://docs.nucleify.io/en/docs/:splat 301
+/docs https://docs.nucleify.io/en/docs/getting-started/introduction 301
+/docs/ https://docs.nucleify.io/en/docs/getting-started/introduction 301
+/docs/* https://docs.nucleify.io/en/docs/:splat 301

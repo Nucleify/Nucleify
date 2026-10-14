@@ -16,7 +16,9 @@ import {
 describe('investor routes', () => {
   it('builds locale-prefixed product and docs paths', () => {
     expect(investorHomeHref('en')).toBe('/en/home')
-    expect(investorDocsHref('pl')).toBe('/pl/docs/getting-started/introduction')
+    expect(investorDocsHref('pl')).toBe(
+      'https://docs.nucleify.io/pl/docs/getting-started/introduction'
+    )
   })
 })
 

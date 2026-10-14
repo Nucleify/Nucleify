@@ -82,7 +82,7 @@ docs/
     └── lib/                # ścieżki doc, renderer markdown, nawigacja
 ```
 
-Kategorie są zdefiniowane w `docs/src/lib/constants/docs.ts`. Trasy mają postać `/pl/docs/{category}/{slug}`.
+Kategorie są zdefiniowane w `docs/src/lib/constants/docs.ts`. Host produkcyjny: [docs.nucleify.io](https://docs.nucleify.io). Trasy mają postać `/pl/docs/{category}/{slug}`.
 
 ---
 

@@ -30,4 +30,16 @@ export const smashedUrlRedirects: Record<
 	'/home/**': { redirect: { to: '/en/home', statusCode: 301 } },
 	'/investor': { redirect: { to: '/en/investor', statusCode: 301 } },
 	'/investor/**': { redirect: { to: '/en/investor', statusCode: 301 } },
+	'/docs': {
+		redirect: {
+			to: 'https://docs.nucleify.io/en/docs/getting-started/introduction',
+			statusCode: 301,
+		},
+	},
+	'/docs/**': {
+		redirect: {
+			to: 'https://docs.nucleify.io/en/docs/getting-started/introduction',
+			statusCode: 301,
+		},
+	},
 }

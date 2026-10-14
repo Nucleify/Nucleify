@@ -11,14 +11,16 @@ import {
 } from '../../src/pages/home/constants/content'
 
 describe('homeDocsHref', () => {
-  it('builds locale-prefixed docs paths without smashing slashes', () => {
+  it('builds absolute docs.nucleify.io URLs without smashing slashes', () => {
     expect(homeDocsHref('en', 'intro')).toBe(
-      '/en/docs/getting-started/introduction'
+      'https://docs.nucleify.io/en/docs/getting-started/introduction'
     )
     expect(homeDocsHref('pl', 'compiler')).toBe(
-      '/pl/docs/core-concepts/compiler'
+      'https://docs.nucleify.io/pl/docs/core-concepts/compiler'
     )
-    expect(homeDocsHref('en', 'modules')).toBe('/en/docs/core-concepts/modules')
+    expect(homeDocsHref('en', 'modules')).toBe(
+      'https://docs.nucleify.io/en/docs/core-concepts/modules'
+    )
   })
 })
 

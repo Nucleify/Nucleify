@@ -1,6 +1,6 @@
 # Docs content (`@nucleify/docs`)
 
-Astro documentation site. Markdown lives under `content/{en,pl}/{category}/{slug}.md`.
+Astro documentation site at [https://docs.nucleify.io](https://docs.nucleify.io). Markdown lives under `content/{en,pl}/{category}/{slug}.md`.
 
 ## Layout
 
