@@ -50,92 +50,102 @@ const flatHeadings = flattenHeadings(headings)
 ) : null}
 
 <script>
-  const LINE = 160
-  const SEL = 'h2, h3, h4, h5, h6'
-
-  type TocCleanup = () => void
-  let cleanup: TocCleanup | null = null
-
-  function bindToc(): void {
-    cleanup?.()
-    cleanup = null
-
-    const main = document.querySelector('.docs-content')
-    const links = Array.from(
-      document.querySelectorAll<HTMLAnchorElement>('.docs-toc__link'),
-    )
-    if (!main || !links.length) return
-
-    let raf = 0
-
-    function getHeadings(): HTMLElement[] {
-      return Array.from(main!.querySelectorAll<HTMLElement>(SEL)).filter(
-        (h) => h.id,
-      )
-    }
-
-    function setActive(id: string) {
-      links.forEach((link) => {
-        link.classList.toggle('is-active', link.dataset.headingId === id)
-      })
-    }
-
-    function apply() {
-      const heads = getHeadings()
-      if (!heads.length) return
-
-      const viewportBottom = window.scrollY + window.innerHeight
-      const docBottom = document.documentElement.scrollHeight
-      const atPageBottom = viewportBottom >= docBottom - 4
-
-      if (atPageBottom) {
-        setActive(heads[heads.length - 1]!.id)
-        return
-      }
-
-      let current = heads[0]!
-      for (const h of heads) {
-        if (h.getBoundingClientRect().top > LINE) break
-        current = h
-      }
-      setActive(current.id)
-    }
-
-    function schedule() {
-      if (!raf) {
-        raf = requestAnimationFrame(() => {
-          raf = 0
-          apply()
-        })
-      }
-    }
-
-    const mainScroll = document.getElementById('docs-main')
-    window.addEventListener('scroll', schedule, { passive: true })
-    mainScroll?.addEventListener('scroll', schedule, { passive: true })
-    apply()
-
-    const onClick = (event: Event) => {
-      const link = event.currentTarget as HTMLAnchorElement
-      event.preventDefault()
-      const id = link.dataset.headingId
-      if (!id) return
-      const el = document.getElementById(id)
-      if (!el) return
-      setActive(id)
-      el.scrollIntoView({ block: 'start', behavior: 'smooth' })
-    }
-
-    links.forEach((link) => link.addEventListener('click', onClick))
-
-    cleanup = () => {
-      window.removeEventListener('scroll', schedule)
-      mainScroll?.removeEventListener('scroll', schedule)
-      links.forEach((link) => link.removeEventListener('click', onClick))
-      if (raf) cancelAnimationFrame(raf)
+  declare global {
+    interface Window {
+      __nucDocsToc?: boolean
     }
   }
 
-  document.addEventListener('astro:page-load', bindToc)
-  bindToc()
+  if (!window.__nucDocsToc) {
+    window.__nucDocsToc = true
+
+    const LINE = 160
+    const SEL = 'h2, h3, h4, h5, h6'
+
+    type TocCleanup = () => void
+    let cleanup: TocCleanup | null = null
+
+    function bindToc(): void {
+      cleanup?.()
+      cleanup = null
+
+      const main = document.querySelector('.docs-content')
+      const links = Array.from(
+        document.querySelectorAll<HTMLAnchorElement>('.docs-toc__link'),
+      )
+      if (!main || !links.length) return
+
+      let raf = 0
+
+      function getHeadings(): HTMLElement[] {
+        return Array.from(main!.querySelectorAll<HTMLElement>(SEL)).filter(
+          (h) => h.id,
+        )
+      }
+
+      function setActive(id: string) {
+        links.forEach((link) => {
+          link.classList.toggle('is-active', link.dataset.headingId === id)
+        })
+      }
+
+      function apply() {
+        const heads = getHeadings()
+        if (!heads.length) return
+
+        const viewportBottom = window.scrollY + window.innerHeight
+        const docBottom = document.documentElement.scrollHeight
+        const atPageBottom = viewportBottom >= docBottom - 4
+
+        if (atPageBottom) {
+          setActive(heads[heads.length - 1]!.id)
+          return
+        }
+
+        let current = heads[0]!
+        for (const h of heads) {
+          if (h.getBoundingClientRect().top > LINE) break
+          current = h
+        }
+        setActive(current.id)
+      }
+
+      function schedule() {
+        if (!raf) {
+          raf = requestAnimationFrame(() => {
+            raf = 0
+            apply()
+          })
+        }
+      }
+
+      const mainScroll = document.getElementById('docs-main')
+      window.addEventListener('scroll', schedule, { passive: true })
+      mainScroll?.addEventListener('scroll', schedule, { passive: true })
+      apply()
+
+      const onClick = (event: Event) => {
+        const link = event.currentTarget as HTMLAnchorElement
+        event.preventDefault()
+        const id = link.dataset.headingId
+        if (!id) return
+        const el = document.getElementById(id)
+        if (!el) return
+        setActive(id)
+        el.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      }
+
+      links.forEach((link) => link.addEventListener('click', onClick))
+
+      cleanup = () => {
+        window.removeEventListener('scroll', schedule)
+        mainScroll?.removeEventListener('scroll', schedule)
+        links.forEach((link) => link.removeEventListener('click', onClick))
+        if (raf) cancelAnimationFrame(raf)
+      }
+    }
+
+    document.addEventListener('astro:page-load', bindToc)
+    bindToc()
+  }
 </script>

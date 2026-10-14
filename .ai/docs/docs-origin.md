@@ -14,4 +14,4 @@ In-content Markdown links stay relative (`/en/docs/…`) so they work on the doc
 
 ## Soft navigation
 
-Docs use Astro `ClientRouter` (view transitions) + `prefetch` so sidebar/home links swap content without a full MPA reload. Brand mark uses `transition:persist`. Critical `#03050c` CSS is inlined to avoid white flash.
+Docs use a custom `DocsSoftNav` interceptor (capture-phase click → `fetch` HTML → replace `<body>` + `history.pushState`) so sidebar/home links never hard-reload the document. Prefetch on hover warms the cache. Critical `#03050c` CSS is inlined to avoid white flash.
