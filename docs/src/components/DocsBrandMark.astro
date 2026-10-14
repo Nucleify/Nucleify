@@ -1,0 +1,37 @@
+---
+/**
+ * Inline brand mark so MPA navigations never flash an empty <img>.
+ * Paint ids are suffixed so multiple marks on one page do not collide.
+ */
+import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
+
+interface Props {
+  class?: string
+  width?: number
+  height?: number
+  /** Suffix for SVG paint-server ids (unique per instance on the page). */
+  idSuffix?: string
+}
+
+const {
+  class: className = 'docs-brand__logo',
+  width = 32,
+  height = 32,
+  idSuffix = 'brand',
+} = Astro.props
+
+const raw = readFileSync(join(process.cwd(), 'public/img/favicon.svg'), 'utf8')
+const svg = raw
+  .replace(/<!--[\s\S]*?-->/g, '')
+  .replace(/\bid="([^"]+)"/g, `id="$1-${idSuffix}"`)
+  .replace(/url\(#([^)]+)\)/g, `url(#$1-${idSuffix})`)
+  .replace(
+    /<svg\b([^>]*)>/,
+    `<svg$1 class="${className}" width="${width}" height="${height}" focusable="false" aria-hidden="true">`,
+  )
+  .replace(/\srole="img"/, '')
+  .replace(/\saria-label="[^"]*"/, '')
+---
+
+<Fragment set:html={svg} />

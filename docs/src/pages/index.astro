@@ -1,5 +1,6 @@
 ---
 import '../styles/docs.css'
+import DocsBrandMark from '../components/DocsBrandMark.astro'
 import { DOC_LANGUAGES, DEFAULT_LANG } from '../lib/constants/languages'
 import { DEFAULT_DOC_ROUTE, docHref } from '../lib/doc_paths'
 
@@ -42,6 +43,13 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
       content="Nucleify documentation — build once, move to any framework."
     />
     <title>Nucleify Docs</title>
+    <link
+      rel="preload"
+      href="/img/favicon.svg"
+      as="image"
+      type="image/svg+xml"
+      fetchpriority="high"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -56,14 +64,7 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
     <header class="docs-header">
       <div class="docs-header__inner">
         <a class="docs-brand" href="/">
-          <img
-            class="docs-brand__logo"
-            src="/img/favicon.svg"
-            alt=""
-            width="32"
-            height="32"
-            decoding="async"
-          />
+          <DocsBrandMark class="docs-brand__logo" width={32} height={32} idSuffix="home-header" />
           <span class="docs-brand__text">Nucleify Docs</span>
         </a>
         <nav class="docs-home__nav" aria-label="Quick links">
@@ -99,14 +100,7 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
         <div class="docs-home__intro">
           <p class="docs-home__eyebrow">Documentation</p>
           <h1 class="docs-home__title">
-            <img
-              class="docs-home__mark"
-              src="/img/favicon.svg"
-              alt=""
-              width="48"
-              height="48"
-              decoding="async"
-            />
+            <DocsBrandMark class="docs-home__mark" width={48} height={48} idSuffix="home-hero" />
             <span>Nucleify</span>
           </h1>
           <p class="docs-home__lede">
