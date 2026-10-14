@@ -64,7 +64,7 @@ const main = defineCommand({
     convert: defineCommand({
       meta: {
         name: 'convert',
-        description: 'Scaffold product shell at {product}-{framework} (tryb B)',
+        description: 'Scaffold product shell at {product}-{framework}',
       },
       args: {
         product: {
@@ -233,7 +233,7 @@ const main = defineCommand({
     check: defineCommand({
       meta: {
         name: 'check',
-        description: 'Validate IR and emit fingerprints (Faza 9 fills dirty)',
+        description: 'Validate IR and emit fingerprints (dirty emit fails)',
       },
       args: {
         cwd: {
@@ -260,17 +260,17 @@ const main = defineCommand({
     watch: defineCommand({
       meta: {
         name: 'watch',
-        description: 'Watch *.nuc.tsx and rebuild (Faza 5+)',
+        description: 'Watch *.nuc.tsx and rebuild (not implemented yet)',
       },
       async run() {
-        console.error('watch: not implemented yet (Faza 5)')
+        console.error('watch: not implemented yet')
         process.exitCode = 1
       },
     }),
     import: defineCommand({
       meta: {
         name: 'import',
-        description: 'Import dirty emit back to *.nuc.tsx (Faza 9+)',
+        description: 'Import dirty emit back to *.nuc.tsx',
       },
       args: {
         from: {

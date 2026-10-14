@@ -99,3 +99,10 @@ Ten Kodeks postępowania jest adaptacją [Contributor Covenant](https://www.cont
 Wytyczne wpływu społeczności zostały zainspirowane [drabiną egzekwowania kodeksu postępowania Mozilli](https://github.com/mozilla/diversity).
 
 Odpowiedzi na często zadawane pytania dotyczące tego kodeksu postępowania znajdują się w FAQ pod adresem [https://www.contributor-covenant.org/faq](https://www.contributor-covenant.org/faq). Tłumaczenia są dostępne pod adresem [https://www.contributor-covenant.org/translations](https://www.contributor-covenant.org/translations).
+
+---
+
+## Powiązane
+
+- [Standardy kodowania](/pl/docs/about/coding-standards) — wytyczne techniczne dla kontrybucji
+- [Ludzie i podziękowania](/pl/docs/about/people-and-credits) — zespół i podziękowania

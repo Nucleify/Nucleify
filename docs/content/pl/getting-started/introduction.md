@@ -16,7 +16,7 @@ Nucleify to **workspace pnpm**, który łączy wszystko, czego potrzebuje nowocz
 
 | Pakiet | Ścieżka | Rola |
 |--------|---------|------|
-| `@nucleify/web` | `web/` | Aplikacja landingowa Nuxt 4 (Tryb A, kanoniczna) |
+| `@nucleify/web` | `web/` | Aplikacja landingowa Nuxt 4 (kanoniczna) |
 | `@nucleify/admin` | `admin/` | Panel administracyjny Nuxt 4 |
 | `@nucleify/docs` | `docs/` | Strona dokumentacji Astro 5 |
 | `@nucleify/compiler` | `compiler/` | Przenośny kompilator UI oparty na IR |
@@ -31,15 +31,15 @@ Katalogi wspierające:
 
 ---
 
-## Architektura dual-mode: Tryb A i Tryb B
+## Kanoniczny Nuxt i wygenerowane shelle
 
-| Tryb | Stack | Komenda | Wynik |
+| Rodzaj | Stack | Komenda | Wynik |
 |------|-------|---------|-------|
-| **Tryb A** (domyślny) | Nuxt 4 + Vue 3.5 | `make web` | `web/` |
-| **Tryb B** (generowany) | Next / Solid / Svelte | `make web TARGET=next` · `solid` · `svelte` | wygenerowane drzewo (zob. [Kompilator](/pl/docs/core-concepts/compiler)) |
+| **Kanoniczny** (domyślny) | Nuxt 4 + Vue 3.5 | `make web` | `web/` |
+| **Skonwertowany** (generowany) | Next / Solid / Svelte | `make web TARGET=next` · `solid` · `svelte` | wygenerowane drzewo (zob. [Kompilator](/pl/docs/core-concepts/compiler)) |
 | **Demo emit** | Vue · React · Nuxt · Next · Solid · Svelte | `make vue` · `react` · `nuxt` · `next` · `solid` · `svelte` | `{framework}/demo` |
 
-**Tryb A** to codzienna praca — strony, composables i współdzielone moduły w Vue. **Tryb B** i demo emit rozprowadzają ten sam nucleus na kolejne shelle. Astro hostuje dokumentację; Svelte i Solid są pełnoprawnymi celami emit/surface.
+**Kanoniczny Nuxt** to codzienna praca — strony, composables i współdzielone moduły w Vue. **Konwersja produktu** i demo emisji rozprowadzają to samo jądro na kolejne shelle. Astro hostuje dokumentację; Svelte i Solid są pełnoprawnymi celami emisji i konwersji.
 
 Wszystkie ścieżki współdzielą `shared_modules/`, Supabase i design tokeny. Nie utrzymujesz siedmiu niezależnych baz kodu.
 
@@ -130,7 +130,7 @@ Prymitywy UI to **komponenty web Lit** z `nucleify-ui` (`nui-button`, `nui-icon`
 
 ```txt
 nucleify/
-├── web/                    # @nucleify/web — landing Nuxt 4 (Tryb A)
+├── web/                    # @nucleify/web — landing Nuxt 4 (kanoniczny)
 │   ├── nuxt.config.ts
 │   ├── .config/nuxt/       # rozdzielona konfiguracja Nuxt
 │   └── src/
@@ -164,8 +164,7 @@ Pełny opis: [Układ monorepo](/pl/docs/core-concepts/monorepo)
 | `make web TARGET=next` | Konwertuje powłokę Vue do Next, uruchamia dev |
 | `make web TARGET=solid` | Konwertuje powłokę Vue do Solid, uruchamia dev |
 | `make web TARGET=svelte` | Konwertuje powłokę Vue do Svelte, uruchamia dev |
-| `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` | Demo emit portable |
-| `make svelte` | Demo emit portable Svelte (`svelte/demo`) |
+| `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` | Demo emit portable (`{framework}/demo`) |
 | `make admin` | Uruchamia dev admin Nuxt |
 | `make docs` | Uruchamia dev dokumentacji Astro |
 | `make compiler` | Uruchamia `pnpm compiler:check` + `pnpm compiler:build` |

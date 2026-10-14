@@ -16,7 +16,7 @@ Nucleify is a **pnpm workspace** that bundles everything for a modern product:
 
 | Package | Path | Role |
 |---------|------|------|
-| `@nucleify/web` | `web/` | Nuxt 4 landing app (Tryb A canonical) |
+| `@nucleify/web` | `web/` | Nuxt 4 landing app (canonical) |
 | `@nucleify/admin` | `admin/` | Nuxt 4 admin panel |
 | `@nucleify/docs` | `docs/` | Astro 5 documentation site |
 | `@nucleify/compiler` | `compiler/` | IR portable UI compiler |
@@ -31,15 +31,15 @@ Supporting directories:
 
 ---
 
-## Dual-mode architecture: Tryb A & Tryb B
+## Canonical Nuxt and generated shells
 
 | Mode | Stack | Command | Output |
 |------|-------|---------|--------|
-| **Tryb A** (default) | Nuxt 4 + Vue 3.5 | `make web` | `web/` |
-| **Tryb B** (generated) | Next / Solid / Svelte product shells | `make web TARGET=next` · `solid` · `svelte` | gitignored emit tree (see [Compiler](/en/docs/core-concepts/compiler)) |
+| **Canonical** (default) | Nuxt 4 + Vue 3.5 | `make web` | `web/` |
+| **Converted** (generated) | Next / Solid / Svelte product shells | `make web TARGET=next` · `solid` · `svelte` | gitignored emit tree (see [Compiler](/en/docs/core-concepts/compiler)) |
 | **Emit demos** | Vue · React · Nuxt · Next · Solid · Svelte | `make vue` · `react` · `nuxt` · `next` · `solid` · `svelte` | `{framework}/demo` |
 
-**Tryb A** is where you develop daily — pages, composables, and shared modules live in Vue. **Tryb B** and portable emit demos fan the same nucleus into other shells (Next, Solid, Svelte, and framework demos including React/Vue/Nuxt). Astro hosts the docs site; **Svelte** and Solid are first-class emit and convert targets.
+**Canonical Nuxt** is where you develop daily — pages, composables, and shared modules live in Vue. **Product convert** and portable emit demos fan the same nucleus into other shells (Next, Solid, Svelte, and framework demos including React/Vue/Nuxt). Astro hosts the docs site; **Svelte** and Solid are first-class emit and convert targets.
 
 All paths share `shared_modules/`, Supabase, and design tokens. You do not maintain seven unrelated codebases.
 
@@ -130,7 +130,7 @@ UI primitives are **Lit web components** from `nucleify-ui` (`nui-button`, `nui-
 
 ```txt
 nucleify/
-├── web/                    # @nucleify/web — Nuxt 4 landing (Tryb A)
+├── web/                    # @nucleify/web — Nuxt 4 landing (canonical)
 │   ├── nuxt.config.ts
 │   ├── .config/nuxt/       # split Nuxt config
 │   └── src/
@@ -164,8 +164,7 @@ Full breakdown: [Monorepo Layout](/en/docs/core-concepts/monorepo)
 | `make web TARGET=next` | Convert Vue shell to Next, start dev (generated output) |
 | `make web TARGET=solid` | Convert Vue shell to Solid, start dev (generated output) |
 | `make web TARGET=svelte` | Convert Vue shell to Svelte, start dev (generated output) |
-| `make svelte` | Portable Svelte emit demo (`svelte/demo`) |
-| `make vue` / `react` / `nuxt` / `next` / `solid` | Portable emit demos |
+| `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` | Portable emit demos (`{framework}/demo`) |
 | `make admin` | Start admin Nuxt dev |
 | `make docs` | Start Astro docs dev |
 | `make compiler` | Run `pnpm compiler:check` + `pnpm compiler:build` |

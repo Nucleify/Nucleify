@@ -28,7 +28,7 @@ import {
 } from './scaffold'
 import { toRepoRelative } from './discover'
 
-/** Products with a full Nuxt→{next|solid|svelte} convert pipeline (tryb B). */
+/** Products with a full Nuxt→{next|solid|svelte} convert pipeline. */
 export const CONVERT_PRODUCTS = ['web', 'admin'] as const
 /** @deprecated use CONVERT_PRODUCTS */
 export const NEXT_CONVERT_PRODUCTS = CONVERT_PRODUCTS
@@ -1384,7 +1384,7 @@ export function cloneConvertSource(gitUrl: string, cwd: string): { sourceRoot: s
 }
 
 /**
- * Tryb B: scaffold Next / Solid / Svelte product shell and emit from Nuxt Vue SFCs.
+ * Product convert: scaffold Next / Solid / Svelte product shell and emit from Nuxt Vue SFCs.
  * Output must contain **no** `.vue` files.
  *
  * External sources: pass `sourceRoot` (folder with `src/`) and optional `outName`
@@ -1409,7 +1409,7 @@ export function convertProduct(opts: {
   }
   if (product === 'docs') {
     throw new Error(
-      'convert: docs (Astro) → next|solid is not implemented yet — use web|admin, or track #696',
+      'convert: docs (Astro) → next|solid|svelte is not implemented yet — use web|admin',
     )
   }
   if (!SCAFFOLD_FRAMEWORKS.includes(framework)) {

@@ -1,5 +1,5 @@
 /**
- * Nucleify compiler IR — frozen contract (Faza 1+).
+ * Nucleify compiler IR — frozen contract.
  * Expressions / statements stay narrow: literal | ident | member | binary | call | object.
  *
  * **Versioning:** bump `IR_VERSION` on any breaking IR shape change, then migrate

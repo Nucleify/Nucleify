@@ -10,4 +10,4 @@
 
 ## Skills
 
-Pipeline skills live in `.cursor/skills/` and share steps via `nui-workflow` (formerly `ww-workflow`). DO writes notes here under `.ai/docs/`.
+Pipeline skills live in `.cursor/skills/` and share steps via `nui-workflow`. DO writes notes here under `.ai/docs/`.

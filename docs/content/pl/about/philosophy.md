@@ -77,14 +77,14 @@ Przenośne autorstwo ma jawne listy dozwolone/zabronione (`compiler/PORTABLE.md`
 
 ---
 
-## Filozofia dual-mode
+## Kanoniczny Nuxt vs wygenerowane shelle
 
-| Codziennie (Tryb A) | Migracja / emit (Tryb B) |
+| Codziennie (Nuxt) | Migracja / emit (convert) |
 |---------------------|--------------------------|
 | Edycja Nuxt + Vue w `web/` | Next (`web-next/`), Solid (`web-solid/`), Svelte (`web-svelte/`), demo portable |
 | Źródło prawdy | Wygenerowane lustra, gdy klient lub zespół potrzebuje innego shella |
 
-Tryb B to nie druga baza kodu utrzymywana ręcznie. Napraw jądro, odpal convert ponownie. Komunikacja produktu zawsze wymienia **wszystkie siedem shelli**, nawet gdy codzienna edycja zostaje na Nuxt.
+Wygenerowane shelle to nie druga baza kodu utrzymywana ręcznie. Napraw jądro, uruchom convert ponownie. Komunikacja produktu zawsze wymienia **wszystkie siedem shelli**, nawet gdy codzienna edycja zostaje na Nuxt.
 
 ---
 

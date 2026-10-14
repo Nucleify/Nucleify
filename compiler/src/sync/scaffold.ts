@@ -76,7 +76,7 @@ export function scaffoldProduct(opts: {
   const src = join(templatesRoot(), slug)
   if (!existsSync(src)) {
     throw new Error(
-      `missing product template: ${src} (tryb B slice may not support ${slug} yet)`,
+      `missing product template: ${src} (product convert may not support ${slug} yet)`,
     )
   }
   const dest = join(cwd, slug)

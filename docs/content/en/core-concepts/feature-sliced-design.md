@@ -111,7 +111,7 @@ The compiler adds a second axis:
 |-------|----------|-------------------|
 | Portable UI | `*.nuc.tsx` | None — emits Vue + React + Solid + Svelte |
 | Domain logic | `shared_modules/nuc_*/utils/` | Vue composables + `.react.ts` hooks |
-| App shell | `web/src/pages/` | Nuxt (Tryb A) or Next (Tryb B) |
+| App shell | `web/src/pages/` | Nuxt (canonical) or Next / Solid / Svelte (converted) |
 
 Keep stores, routers, i18n containers, and API calls **out of** `*.nuc.tsx`. Portable components receive data via props and emit events — domain slices own the wiring in app or module utils.
 

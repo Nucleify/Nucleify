@@ -31,7 +31,7 @@ Svelte portable emit is **Svelte 5 runes** (`.svelte` SFC): `$state` / `$derived
 | `make web TARGET=next` / `TARGET=solid` / `TARGET=svelte` | convert + install + dev |
 | `make admin TARGET=next` / `TARGET=solid` / `TARGET=svelte` | same for admin |
 
-Solid product convert: Vue SFC → React emit → `reactTsxToSolidBody`. Svelte: Vue SFC → template IR + runes script → `.svelte`. Complex Vue/React-only APIs still need follow-up; smoke-build is the bar.
+Solid product convert: Vue SFC → React emit → `reactTsxToSolidBody`. Svelte: Vue SFC → template IR + runes script → `.svelte`. Complex Vue/React-only APIs may not convert yet; smoke-build is the bar.
 
 ## Emit demos (portable)
 
@@ -53,7 +53,7 @@ Details: `compiler/README.md`, `.ai/docs/compiler-ir-barrels-convert.md`.
 
 ## Now
 
-Faza 13 — Svelte portable emit ([#694](https://github.com/Nucleify/Nucleify/issues/694): `emitSvelte`, runes, `svelte/demo`, `make svelte`, goldens, PORTABLE limits) + Tryb B SPA convert for web/admin (beyond #694’s original “product convert later”; still **not** SvelteKit SSR). Leftovers #698 / #697 / #696 (IR version sync, barrel guard, external `--path`/`--git`). Docs Astro convert deferred.
+Svelte portable emit + product SPA convert for web/admin are in. Still **not** SvelteKit SSR. IR version sync, barrel guard, and external `--path`/`--git` convert are in. Docs Astro product convert is not implemented yet (CLI errors).
 
 ## Verify
 

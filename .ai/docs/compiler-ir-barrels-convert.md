@@ -1,6 +1,6 @@
-# Compiler leftovers (#698 / #697 / #696)
+# Compiler IR, barrels, and external convert
 
-## IR version (#698)
+## IR version
 
 - `IR_VERSION` in `compiler/src/ir/types.ts` is the single source of truth.
 - Schema + parsers + `fixtures/ir/*.json` must match (`compiler/tests/ir-version.test.ts`).
@@ -17,7 +17,7 @@ HUSKY=0 git commit -m "…"   # skip all husky hooks
 SKIP_COMPILER=1 make setup  # skip codegen on bootstrap
 ```
 
-## Barrels (#697)
+## Barrels
 
 `compiler/tests/barrel-no-nuc.test.ts` scans package barrels — no `*.nuc.tsx` import/export.
 
@@ -30,13 +30,13 @@ make web                  # Nuxt product
 make vue / make solid / make svelte   # portable emit demos
 ```
 
-## Product convert polish (#696)
+## Product convert
 
 | Item | Status |
 |------|--------|
 | `web\|admin` → `next\|solid\|svelte` (CI) | done |
 | External `--path` / `--git` + `--out` | done |
-| Docs Astro → next/solid/svelte | **deferred** (explicit error) |
+| Docs Astro → next/solid/svelte | **not implemented** (CLI returns an explicit error) |
 | Portable vs convert docs | README + this note |
 | Template pin / ignore-workspace | documented in README |
 

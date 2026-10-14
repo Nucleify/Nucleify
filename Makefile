@@ -1,6 +1,6 @@
 .PHONY: run setup web admin docs compiler vue react nuxt next solid svelte help
 
-# Product apps: default shell is Nuxt. Tryb B nests products under frameworks:
+# Product apps: default shell is Nuxt. Product convert nests products under frameworks:
 #   make web                 # top-level web/ (Nuxt)
 #   make web TARGET=next     # web-next (scaffolded product shell)
 #
@@ -19,12 +19,12 @@ help:
 	@echo ""
 	@echo "Product apps:"
 	@echo "  make web | admin | docs           # default TARGET=nuxt (top-level web/)"
-	@echo "  make web TARGET=next              # web-next product shell (tryb B)"
-	@echo "  make web TARGET=solid             # web-solid product shell (tryb B)"
-	@echo "  make web TARGET=svelte            # web-svelte product shell (tryb B)"
-	@echo "  make admin TARGET=next            # admin-next product shell (tryb B)"
-	@echo "  make admin TARGET=solid           # admin-solid product shell (tryb B)"
-	@echo "  make admin TARGET=svelte          # admin-svelte product shell (tryb B)"
+	@echo "  make web TARGET=next              # web-next product shell"
+	@echo "  make web TARGET=solid             # web-solid product shell"
+	@echo "  make web TARGET=svelte            # web-svelte product shell"
+	@echo "  make admin TARGET=next            # admin-next product shell"
+	@echo "  make admin TARGET=solid           # admin-solid product shell"
+	@echo "  make admin TARGET=svelte          # admin-svelte product shell"
 	@echo ""
 	@echo "Portable emit demos (gitignored {framework}/demo):"
 	@echo "  make vue | react | nuxt | next | solid | svelte"

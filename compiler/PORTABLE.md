@@ -23,9 +23,9 @@ Rules for `*.nuc.tsx` sources consumed by `@nucleify/compiler` (IR `IR_VERSION` 
 - Boolean attributes (`disabled`, `disabled={false}`, `disabled={props.x}`)
 - Static and bound `aria-*` attributes (`aria-label`, `aria-hidden="true"`, …)
 - `nui-*` tags from **nucleify-ui** (Lit custom elements; demo templates register them)
-- Local UI state via `setup` + `state` / `derived` / `handler` (Phase 7)
+- Local UI state via `setup` + `state` / `derived` / `handler`
 
-## State (Phase 7)
+## Local UI state
 
 ```tsx
 import { component, state, derived, handler } from '#nuc-compiler/runtime'
@@ -52,7 +52,7 @@ export default component({
 - v0 `render` + top-level `handlers` still works; **do not** mix with `setup`
 - Runtime markers are compile-time only — they must not appear in emitted bundles
 
-## Svelte emit limits ([#694](https://github.com/Nucleify/Nucleify/issues/694))
+## Svelte emit limits
 
 Portable target: **Svelte 5** `.svelte` SFC (Vite demo under `svelte/demo` — Kit-friendly markup/runes, **not** a SvelteKit app shell).
 
@@ -67,7 +67,7 @@ Portable target: **Svelte 5** `.svelte` SFC (Vite demo under `svelte/demo` — K
 | empty non-void tags | `<div></div>` / `<nui-icon …></nui-icon>` (Svelte rejects ambiguous self-closing) |
 | a11y (static / CE hosts) | `role` + `tabindex` + Enter/Space `onkeydown` for click; `role="group"` for hover; `<!-- svelte-ignore … -->` for labels wrapping `nui-*` |
 
-**Not in portable v1:** named slots/snippets, SvelteKit `+page` / SSR. Product Tryb B (`web-svelte` / `admin-svelte`) is a separate SPA convert path — see `.ai/docs/compiler-status.md`. Solid emit lives in `solid/demo` (not a product sibling next to `*.nuc.tsx`); use `import --from=solid` on that `.tsx` (headers / `solid-js` distinguish it from React).
+**Not in portable v1:** named slots/snippets, SvelteKit `+page` / SSR. Product shells (`web-svelte` / `admin-svelte`) use a separate SPA convert path — see `.ai/docs/compiler-status.md`. Solid emit lives in `solid/demo` (not a product sibling next to `*.nuc.tsx`); use `import --from=solid` on that `.tsx` (headers / `solid-js` distinguish it from React).
 
 ## Forbidden
 

@@ -33,7 +33,7 @@ Full-viewport investor pitch at `web/src/pages/investor/`, routed via `web/src/p
 - Home Close mirrors the same pattern with product-facing copy
 - Scroll gate (`bind_home_section_scroll_gate.ts`): on mobile, only sections taller than the viewport must reach bottom before the next gesture advances; short sections keep normal snap (Nuxt + Next home/investor)
 
-## Next (Tryb B)
+## Next (product convert)
 - **Source of truth:** `web/` (Nuxt/Vue). `web-next/` is gitignored — regenerate after Vue polish:
   ```bash
   pnpm compiler -- convert web --target=next

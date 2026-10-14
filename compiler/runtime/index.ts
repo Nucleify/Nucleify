@@ -28,7 +28,7 @@ export type ComponentDesc = {
   styles?: { css?: string }
   /** v0 form — mutually exclusive with `setup`. */
   render?: (...args: never[]) => unknown
-  /** Faza 7 form — mutually exclusive with `render` / top-level `handlers`. */
+  /** `setup` form — mutually exclusive with `render` / top-level `handlers`. */
   setup?: (props: never) => unknown
 }
 

@@ -1,6 +1,6 @@
 # @nucleify/compiler
 
-IR-first portable UI compiler for Nucleify (option C — custom IR, no Mitosis).
+IR-first portable UI compiler for Nucleify (custom IR).
 
 **Product coverage:** Vue · React · Nuxt · Next · Astro · Svelte · Solid — emit and shell demos are not limited to React/Next or Vue/Nuxt.
 
@@ -17,8 +17,10 @@ IR-first portable UI compiler for Nucleify (option C — custom IR, no Mitosis).
 ```text
 make web                 # product → top-level Nuxt web/
 make web TARGET=next     # product → web-next/
+make web TARGET=solid    # product → web-solid/
 make web TARGET=svelte   # product → web-svelte/
 make admin TARGET=next   # product → admin-next/
+make admin TARGET=solid  # product → admin-solid/
 make admin TARGET=svelte # product → admin-svelte/
 make next                # throwaway emit demo → next/demo
 make solid               # throwaway emit demo → solid/demo
@@ -70,11 +72,11 @@ Run from the Nucleify monorepo root so `modules` / `portable` aliases resolve. `
 
 **Template deps:** product shells install with `pnpm install --ignore-workspace` (see `convert-check` / Make). Keep template `package.json` versions pinned; do not rely on the monorepo workspace graph inside `{product}-{framework}/`.
 
-**Parity rule:** when IR, adapters, attrs, or state emit grow for Vue/React, update Solid **and Svelte** emit + goldens + tests in the same change. Svelte portable limits: [`PORTABLE.md`](./PORTABLE.md) § Svelte ([#694](https://github.com/Nucleify/Nucleify/issues/694)).
+**Parity rule:** when IR, adapters, attrs, or state emit grow for Vue/React, update Solid **and Svelte** emit + goldens + tests in the same change. Svelte portable limits: [`PORTABLE.md`](./PORTABLE.md) § Svelte.
 
 **Barrels:** public `index.ts` / `index.react.ts` / `modules.ts` must never export `*.nuc.tsx` (see `compiler/tests/barrel-no-nuc.test.ts`).
 
-### Cycle A — authoring first
+### Authoring-first cycle
 
 ```bash
 # optional: add Foo.nuc.tsx under a discover root (e.g. web/ or portable/)
@@ -96,7 +98,7 @@ cd svelte/demo && pnpm install --ignore-workspace && pnpm run --ignore-workspace
 # or: make svelte
 ```
 
-### Cycle B — edit emit first
+### Emit-first cycle
 
 ```bash
 # edit generated Foo.vue, Foo.tsx, or Foo.svelte (or sibling Foo.css)
@@ -115,10 +117,10 @@ pnpm compiler -- build --force   # discard emit edits; regenerate from *.nuc.tsx
 
 ```text
 compiler/
-  templates/        # sources for gitignored demos
-  runtime/
-  src/
+  templates/        # sources for gitignored demos + product shells
+  runtime/          # #nuc-compiler/runtime
+  src/              # parse / ir / emit / sync
+  tests/fixtures/   # portable authoring + IR + emit goldens
 portable/
-  *.nuc.tsx
-  fixtures/
+  nui/              # design tokens + Lit nui-* registration
 ```

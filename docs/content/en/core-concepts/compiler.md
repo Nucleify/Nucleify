@@ -2,7 +2,7 @@
 
 The `@nucleify/compiler` package is how Nucleify migrates UI across shells: an IR-first portable compiler that turns `*.nuc.tsx` into Vue SFCs, React, Solid, and Svelte components, and shared CSS — and can convert Nuxt product shells (`web/`, `admin/`) or an external Nuxt-like tree to Next.js, Solid, or Svelte.
 
-**Coverage:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next or Vue/Nuxt are beachheads, not the boundary.
+**Coverage:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next or Vue/Nuxt are starting points, not the limit.
 
 ---
 
@@ -97,9 +97,9 @@ pnpm compiler -- convert web --target=solid      # product convert → web-solid
 pnpm compiler -- convert web --target=svelte     # product convert → web-svelte/
 pnpm compiler -- convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
 pnpm compiler -- convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
-pnpm compiler -- scaffold solid                  # throwaway demo → solid/demo/
-pnpm compiler -- scaffold svelte                 # throwaway demo → svelte/demo/
-pnpm compiler -- scaffold next                   # throwaway demo → next/demo/
+pnpm compiler -- scaffold solid                  # temporary demo → solid/demo/
+pnpm compiler -- scaffold svelte                 # temporary demo → svelte/demo/
+pnpm compiler -- scaffold next                   # temporary demo → next/demo/
 pnpm compiler -- build --app=solid               # emit into solid/demo
 pnpm compiler -- build --app=svelte              # emit into svelte/demo
 ```
@@ -115,20 +115,20 @@ Pre-commit already runs `compiler:check` (and related compiler checks) via Husky
 
 ---
 
-## Cycle A — author first
+## Authoring-first cycle
 
 1. Create or edit `Foo.nuc.tsx`
 2. Run `pnpm compiler:build`
 3. Commit source + generated siblings
 4. CI runs `pnpm compiler:check` to ensure emit is up to date
 
-## Cycle B — edit emit first
+## Emit-first cycle
 
-1. Tweak generated `Foo.vue` or `Foo.tsx` directly
-2. Import changes back: `pnpm compiler -- import --from=vue path/Foo.vue`
+1. Tweak generated `Foo.vue`, `Foo.tsx`, or `Foo.svelte` directly
+2. Import changes back: `pnpm compiler -- import --from=vue|react|solid|svelte path/Foo.…`
 3. Source of truth returns to `Foo.nuc.tsx`
 
-If both `.vue` and `.tsx` are dirty, you must pass `--from=`. Use `pnpm compiler -- build --force` to discard emit edits.
+If more than one emit sibling is dirty, you must pass `--from=`. Use `pnpm compiler -- build --force` to discard emit edits.
 
 ---
 
