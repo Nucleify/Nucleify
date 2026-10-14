@@ -1,0 +1,29 @@
+---
+/**
+ * Server-rendered preload hints for every docs route.
+ * Browser HTTP cache warms before SoftNav JS; first paint stays full HTML (SSG/SSR).
+ */
+import { getAllDocRoutes, docHref } from '../lib/doc_paths'
+
+const hrefs = [
+  '/',
+  ...getAllDocRoutes().map((r) => docHref(r.lang, r.category, r.slug)),
+]
+
+const speculation = JSON.stringify({
+  prefetch: [
+    {
+      source: 'list',
+      urls: hrefs,
+      eagerness: 'eager',
+    },
+  ],
+})
+---
+
+{
+  hrefs.map((href) => (
+    <link rel="prefetch" href={href} as="document" />
+  ))
+}
+<script is:inline type="speculationrules" set:html={speculation} />

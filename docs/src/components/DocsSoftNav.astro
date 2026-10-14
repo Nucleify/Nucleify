@@ -1,12 +1,18 @@
 ---
 /**
- * SPA-style docs navigation: intercept same-origin clicks, fetch HTML,
- * swap only [data-spa-chrome] + [data-spa-page], pushState the URL.
- * Header brand and this bootstrap never unload.
+ * Client soft router on top of SSR/SSG HTML.
+ * DocsRoutePreload (in <head>) warms the browser cache; this layer keeps an
+ * in-memory copy and swaps [data-spa-chrome] + [data-spa-page] without unload.
  */
+import { getAllDocRoutes, docHref } from '../lib/doc_paths'
+
+const preloadHrefs = [
+  '/',
+  ...getAllDocRoutes().map((r) => docHref(r.lang, r.category, r.slug)),
+]
 ---
 
-<script>
+<script define:vars={{ preloadHrefs }}>
   declare global {
     interface Window {
       __nucDocsSoftNav?: boolean
@@ -19,6 +25,18 @@
     window.__nucDocsScripts = new Set()
 
     type SoftState = { softNav?: boolean }
+    type CacheEntry = { html: string; url: string }
+
+    const cache = new Map<string, CacheEntry>()
+    const inflightFetch = new Map<string, Promise<CacheEntry>>()
+    const CONCURRENCY = 8
+
+    function normalizeKey(href: string): string {
+      const url = new URL(href, location.href)
+      let path = url.pathname
+      if (path.length > 1 && path.endsWith('/')) path = path.slice(0, -1)
+      return path || '/'
+    }
 
     function scriptKey(el: HTMLScriptElement): string {
       if (el.src) return `src:${el.src}`
@@ -55,6 +73,37 @@
       return true
     }
 
+    async function fetchPage(href: string, signal?: AbortSignal): Promise<CacheEntry> {
+      const key = normalizeKey(href)
+      const hit = cache.get(key)
+      if (hit) return hit
+
+      const pending = inflightFetch.get(key)
+      if (pending) return pending
+
+      const job = (async (): Promise<CacheEntry> => {
+        const res = await fetch(href, {
+          signal,
+          headers: { Accept: 'text/html' },
+          credentials: 'same-origin',
+        })
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const html = await res.text()
+        const entry: CacheEntry = {
+          html,
+          url: res.redirected ? res.url : href,
+        }
+        cache.set(key, entry)
+        cache.set(normalizeKey(entry.url), entry)
+        return entry
+      })().finally(() => {
+        inflightFetch.delete(key)
+      })
+
+      inflightFetch.set(key, job)
+      return job
+    }
+
     async function activateScripts(root: ParentNode): Promise<void> {
       const seen = window.__nucDocsScripts!
       const pending: Promise<void>[] = []
@@ -87,6 +136,7 @@
         old.replaceWith(next)
       })
 
+      if (!pending.length) return
       await Promise.all(pending)
       await new Promise<void>((r) => requestAnimationFrame(() => r()))
     }
@@ -120,7 +170,6 @@
       return imported
     }
 
-    /** Prefer SPA partial swap; fall back to body replace if markers missing. */
     async function applyDocument(doc: Document): Promise<void> {
       const nextBody = doc.body
       if (!nextBody?.classList.contains('docs-body')) {
@@ -149,37 +198,33 @@
         return
       }
 
-      // Fallback: full body swap (keeps SoftNav listeners on document).
       const imported = document.importNode(nextBody, true) as HTMLBodyElement
       document.body.replaceWith(imported)
       await activateScripts(document.body)
     }
 
-    let inflight: AbortController | null = null
+    let navToken = 0
 
     async function softNavigate(href: string, push: boolean): Promise<void> {
-      inflight?.abort()
-      inflight = new AbortController()
-      const { signal } = inflight
-      document.documentElement.dataset.softNav = 'loading'
+      const token = ++navToken
+      const key = normalizeKey(href)
+      const cached = cache.get(key)
+      const waiting = !cached
+
+      if (waiting) {
+        document.documentElement.dataset.softNav = 'loading'
+      }
 
       try {
-        const res = await fetch(href, {
-          signal,
-          headers: { Accept: 'text/html' },
-          credentials: 'same-origin',
-        })
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
-        const html = await res.text()
-        if (signal.aborted) return
+        const entry = cached ?? (await fetchPage(href))
+        if (token !== navToken) return
 
-        const doc = new DOMParser().parseFromString(html, 'text/html')
+        const doc = new DOMParser().parseFromString(entry.html, 'text/html')
         await applyDocument(doc)
-        if (signal.aborted) return
+        if (token !== navToken) return
 
-        const finalUrl = res.redirected ? res.url : href
         if (push) {
-          history.pushState({ softNav: true } satisfies SoftState, '', finalUrl)
+          history.pushState({ softNav: true } satisfies SoftState, '', entry.url)
         }
 
         document.dispatchEvent(new Event('astro:page-load'))
@@ -188,10 +233,36 @@
         window.scrollTo(0, 0)
       } catch (error) {
         if ((error as Error)?.name === 'AbortError') return
+        if (token !== navToken) return
         location.href = href
       } finally {
-        document.documentElement.removeAttribute('data-soft-nav')
+        if (token === navToken) {
+          document.documentElement.removeAttribute('data-soft-nav')
+        }
       }
+    }
+
+    async function warmCache(hrefs: string[]): Promise<void> {
+      const queue = hrefs
+        .filter((h) => sameOrigin(h))
+        .map((h) => normalizeKey(h))
+        .filter((key, i, arr) => arr.indexOf(key) === i)
+        .filter((key) => !cache.has(key) && !inflightFetch.has(key))
+
+      let cursor = 0
+      async function worker(): Promise<void> {
+        while (cursor < queue.length) {
+          const key = queue[cursor++]!
+          try {
+            await fetchPage(key)
+          } catch {
+            // Ignore preload failures — click will retry / hard-navigate.
+          }
+        }
+      }
+
+      const workers = Array.from({ length: Math.min(CONCURRENCY, queue.length) }, () => worker())
+      await Promise.all(workers)
     }
 
     document.addEventListener(
@@ -205,6 +276,20 @@
         event.preventDefault()
         event.stopImmediatePropagation()
         void softNavigate(anchor.href, true)
+      },
+      true,
+    )
+
+    // Hover / focus: prioritize that page if still warming.
+    document.addEventListener(
+      'pointerover',
+      (event) => {
+        const el = event.target
+        if (!(el instanceof Element)) return
+        const anchor = el.closest('a')
+        if (!(anchor instanceof HTMLAnchorElement)) return
+        if (!sameOrigin(anchor.href)) return
+        void fetchPage(anchor.href).catch(() => {})
       },
       true,
     )
@@ -228,5 +313,12 @@
     }
     syncLang()
     document.addEventListener('astro:page-load', syncLang)
+
+    // Seed current page + preload every docs route immediately.
+    cache.set(normalizeKey(location.href), {
+      html: '<!doctype html>' + document.documentElement.outerHTML,
+      url: location.href,
+    })
+    void warmCache(preloadHrefs as string[])
   }
 </script>

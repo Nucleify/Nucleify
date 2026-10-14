@@ -12,6 +12,6 @@ Marketing app (`nucleify.io`) no longer serves documentation. Astro docs live at
 
 In-content Markdown links stay relative (`/en/docs/…`) so they work on the docs host and in local `make docs`.
 
-## Soft navigation (SPA shell)
+## Soft navigation (SSR + preload)
 
-Docs use `DocsSoftNav`: capture-phase click → `fetch` HTML → swap only `[data-spa-chrome]` (header actions) and `[data-spa-page]` (sidebar/article/toc or home main) + `history.pushState`. The brand header and document never unload. Prefetch on hover warms the cache. Critical `#03050c` CSS is inlined to avoid white flash.
+Every docs URL is still full HTML from the server (Astro static prerender — first paint / no-JS = normal document). `DocsRoutePreload` emits `<link rel="prefetch" as="document">` plus Speculation Rules (`eagerness: eager`) in `<head>` so the browser warms HTTP cache during SSR HTML parse. `DocsSoftNav` then mirrors routes into an in-memory cache and swaps only `[data-spa-chrome]` / `[data-spa-page]` + `pushState` (no document unload). Astro `prefetch` strategy is `load`. Critical `#03050c` CSS is inlined to avoid white flash.
