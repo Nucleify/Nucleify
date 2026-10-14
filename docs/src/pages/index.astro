@@ -52,8 +52,7 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
         background: #03050c;
         color: #e7ebe8;
       }
-      html[data-soft-nav='loading'] .docs-shell,
-      html[data-soft-nav='loading'] .docs-home__main {
+      html[data-soft-nav='loading'] [data-spa-page] {
         opacity: 0.72;
         transition: opacity 0.12s ease;
       }
@@ -76,123 +75,127 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
           <DocsBrandMark class="docs-brand__logo" width={32} height={32} idSuffix="header" />
           <span class="docs-brand__text">Nucleify Docs</span>
         </a>
-        <nav class="docs-home__nav" aria-label="Quick links">
-          <a href={startHref}>Docs</a>
-          <a href={installHref}>Install</a>
-          <a href="https://nucleify.io" rel="noopener noreferrer">Site</a>
-          <div class="docs-lang-switch" aria-label="Language">
-            {
-              DOC_LANGUAGES.map((item) => (
-                <a
-                  class:list={[
-                    'docs-lang-switch__link',
-                    { 'is-active': item.code === DEFAULT_LANG },
-                  ]}
-                  href={docHref(
-                    item.code,
-                    DEFAULT_DOC_ROUTE.category,
-                    DEFAULT_DOC_ROUTE.slug,
-                  )}
-                  hreflang={item.code}
-                >
-                  {item.code.toUpperCase()}
-                </a>
-              ))
-            }
-          </div>
-        </nav>
+        <div data-spa-chrome>
+          <nav class="docs-home__nav" aria-label="Quick links">
+            <a href={startHref}>Docs</a>
+            <a href={installHref}>Install</a>
+            <a href="https://nucleify.io" rel="noopener noreferrer">Site</a>
+            <div class="docs-lang-switch" aria-label="Language">
+              {
+                DOC_LANGUAGES.map((item) => (
+                  <a
+                    class:list={[
+                      'docs-lang-switch__link',
+                      { 'is-active': item.code === DEFAULT_LANG },
+                    ]}
+                    href={docHref(
+                      item.code,
+                      DEFAULT_DOC_ROUTE.category,
+                      DEFAULT_DOC_ROUTE.slug,
+                    )}
+                    data-lang={item.code}
+                    hreflang={item.code}
+                  >
+                    {item.code.toUpperCase()}
+                  </a>
+                ))
+              }
+            </div>
+          </nav>
+        </div>
       </div>
     </header>
 
-    <main class="docs-home__main">
-      <section class="docs-home__panel">
-        <div class="docs-home__intro">
-          <p class="docs-home__eyebrow">Documentation</p>
-          <h1 class="docs-home__title">
-            <DocsBrandMark class="docs-home__mark" width={48} height={48} idSuffix="home-hero" />
-            <span>Nucleify</span>
-          </h1>
-          <p class="docs-home__lede">
-            Build once. Move to any framework — web, admin, and docs from one
-            nucleus.
-          </p>
-          <div class="docs-home__actions">
-            <a class="docs-home__btn is-primary" href={startHref}>Get started</a>
-            <a class="docs-home__btn is-ghost" href={installHref}>Full install guide</a>
+    <div data-spa-page>
+      <main class="docs-home__main">
+        <section class="docs-home__panel">
+          <div class="docs-home__intro">
+            <p class="docs-home__eyebrow">Documentation</p>
+            <h1 class="docs-home__title">
+              <DocsBrandMark class="docs-home__mark" width={48} height={48} idSuffix="home-hero" />
+              <span>Nucleify</span>
+            </h1>
+            <p class="docs-home__lede">
+              Build once. Move to any framework — web, admin, and docs from one
+              nucleus.
+            </p>
+            <div class="docs-home__actions">
+              <a class="docs-home__btn is-primary" href={startHref}>Get started</a>
+              <a class="docs-home__btn is-ghost" href={installHref}>Full install guide</a>
+            </div>
           </div>
-        </div>
 
-        <div class="docs-home__shell" aria-label="Quick start">
-          <div class="docs-home__shell-bar">
-            <span class="docs-home__shell-label">Terminal</span>
-            <button
-              type="button"
-              class="docs-home__copy"
-              data-copy={copyText}
-              aria-label="Copy commands"
-            >
-              Copy
-            </button>
-          </div>
-          <ol class="docs-home__shell-list">
-            {
-              shellCommands.map((row, i) => (
-                <li class="docs-home__shell-row">
-                  <span class="docs-home__shell-step" aria-hidden="true">
-                    {i + 1}
-                  </span>
-                  <div class="docs-home__shell-cmd">
-                    <code>
-                      <span class="docs-home__shell-ps">$</span>
-                      {row.cmd}
-                    </code>
-                    <span class="docs-home__shell-note">{row.note}</span>
-                  </div>
-                </li>
-              ))
-            }
-          </ol>
-        </div>
-
-        <p class="docs-home__foot">
-          Vue · React · Nuxt · Next · Astro · Svelte · Solid
-        </p>
-      </section>
-    </main>
-
-    <script>
-      declare global {
-        interface Window {
-          __nucDocsHomeCopy?: boolean
-        }
-      }
-
-      if (!window.__nucDocsHomeCopy) {
-        window.__nucDocsHomeCopy = true
-        function bindCopy() {
-          document.querySelectorAll<HTMLButtonElement>('.docs-home__copy').forEach((btn) => {
-            if (btn.dataset.bound === '1') return
-            btn.dataset.bound = '1'
-            btn.addEventListener('click', async () => {
-              const text = btn.dataset.copy ?? ''
-              try {
-                await navigator.clipboard.writeText(text)
-                const prev = btn.textContent
-                btn.textContent = 'Copied'
-                btn.classList.add('is-done')
-                window.setTimeout(() => {
-                  btn.textContent = prev
-                  btn.classList.remove('is-done')
-                }, 1400)
-              } catch {
-                btn.textContent = 'Failed'
+          <div class="docs-home__shell" aria-label="Quick start">
+            <div class="docs-home__shell-bar">
+              <span class="docs-home__shell-label">Terminal</span>
+              <button
+                type="button"
+                class="docs-home__copy"
+                data-copy={copyText}
+                aria-label="Copy commands"
+              >
+                Copy
+              </button>
+            </div>
+            <ol class="docs-home__shell-list">
+              {
+                shellCommands.map((row, i) => (
+                  <li class="docs-home__shell-row">
+                    <span class="docs-home__shell-step" aria-hidden="true">
+                      {i + 1}
+                    </span>
+                    <div class="docs-home__shell-cmd">
+                      <code>
+                        <span class="docs-home__shell-ps">$</span>
+                        {row.cmd}
+                      </code>
+                      <span class="docs-home__shell-note">{row.note}</span>
+                    </div>
+                  </li>
+                ))
               }
-            })
-          })
+            </ol>
+          </div>
+
+          <p class="docs-home__foot">
+            Vue · React · Nuxt · Next · Astro · Svelte · Solid
+          </p>
+        </section>
+      </main>
+      <script>
+        declare global {
+          interface Window {
+            __nucDocsHomeCopy?: boolean
+          }
         }
-        document.addEventListener('astro:page-load', bindCopy)
-        bindCopy()
-      }
-    </script>
+
+        if (!window.__nucDocsHomeCopy) {
+          window.__nucDocsHomeCopy = true
+          function bindCopy() {
+            document.querySelectorAll<HTMLButtonElement>('.docs-home__copy').forEach((btn) => {
+              if (btn.dataset.bound === '1') return
+              btn.dataset.bound = '1'
+              btn.addEventListener('click', async () => {
+                const text = btn.dataset.copy ?? ''
+                try {
+                  await navigator.clipboard.writeText(text)
+                  const prev = btn.textContent
+                  btn.textContent = 'Copied'
+                  btn.classList.add('is-done')
+                  window.setTimeout(() => {
+                    btn.textContent = prev
+                    btn.classList.remove('is-done')
+                  }, 1400)
+                } catch {
+                  btn.textContent = 'Failed'
+                }
+              })
+            })
+          }
+          document.addEventListener('astro:page-load', bindCopy)
+          bindCopy()
+        }
+      </script>
+    </div>
   </body>
 </html>

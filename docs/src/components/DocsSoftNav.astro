@@ -1,7 +1,8 @@
 ---
 /**
- * Same-origin soft navigation: fetch HTML + replace <body> without unloading
- * the document (no hard reload). Capture-phase click interceptor.
+ * SPA-style docs navigation: intercept same-origin clicks, fetch HTML,
+ * swap only [data-spa-chrome] + [data-spa-page], pushState the URL.
+ * Header brand and this bootstrap never unload.
  */
 ---
 
@@ -13,7 +14,7 @@
     }
   }
 
-    if (!window.__nucDocsSoftNav) {
+  if (!window.__nucDocsSoftNav) {
     window.__nucDocsSoftNav = true
     window.__nucDocsScripts = new Set()
 
@@ -24,7 +25,6 @@
       return `inline:${el.textContent ?? ''}`
     }
 
-    // Scripts that already ran on the initial SSR/MPA load.
     document.querySelectorAll('script').forEach((el) => {
       if (el.textContent?.includes('__nucDocsSoftNav')) return
       window.__nucDocsScripts!.add(scriptKey(el))
@@ -49,7 +49,6 @@
       if (target && target !== '_self') return false
       if (!anchor.href || !sameOrigin(anchor.href)) return false
       const url = new URL(anchor.href)
-      // Same document: let the browser handle hash jumps; skip no-op navigations.
       if (url.pathname === location.pathname && url.search === location.search) {
         return false
       }
@@ -63,7 +62,6 @@
       root.querySelectorAll('script').forEach((old) => {
         const type = old.getAttribute('type')
         if (type && type !== 'module' && type !== 'text/javascript') return
-        // Soft-nav bootstrap must stay a singleton.
         if (old.textContent?.includes('__nucDocsSoftNav')) {
           old.remove()
           return
@@ -71,7 +69,6 @@
 
         const key = scriptKey(old)
         if (seen.has(key)) {
-          // Already evaluated once — page scripts rebind via astro:page-load.
           old.remove()
           return
         }
@@ -84,8 +81,7 @@
           new Promise<void>((resolve) => {
             next.addEventListener('load', () => resolve(), { once: true })
             next.addEventListener('error', () => resolve(), { once: true })
-            // Inline modules may not fire load in every browser — settle next task.
-            queue.setTimeout(() => resolve(), 0)
+            setTimeout(() => resolve(), 0)
           }),
         )
         old.replaceWith(next)
@@ -115,6 +111,50 @@
       })
     }
 
+    function swapRegion(selector: string, nextRoot: ParentNode): HTMLElement | null {
+      const current = document.querySelector(selector)
+      const incoming = nextRoot.querySelector(selector)
+      if (!current || !incoming) return null
+      const imported = document.importNode(incoming, true) as HTMLElement
+      current.replaceWith(imported)
+      return imported
+    }
+
+    /** Prefer SPA partial swap; fall back to body replace if markers missing. */
+    async function applyDocument(doc: Document): Promise<void> {
+      const nextBody = doc.body
+      if (!nextBody?.classList.contains('docs-body')) {
+        throw new Error('not a docs page')
+      }
+
+      document.title = doc.title
+      const lang = doc.documentElement.getAttribute('lang')
+      if (lang) document.documentElement.setAttribute('lang', lang)
+      mergeHead(doc.head)
+
+      const canSpa =
+        Boolean(document.querySelector('[data-spa-page]')) &&
+        Boolean(nextBody.querySelector('[data-spa-page]'))
+
+      if (canSpa) {
+        document.body.className = nextBody.className
+        const swapped: HTMLElement[] = []
+        const chrome = swapRegion('[data-spa-chrome]', nextBody)
+        const page = swapRegion('[data-spa-page]', nextBody)
+        if (chrome) swapped.push(chrome)
+        if (page) swapped.push(page)
+        for (const node of swapped) {
+          await activateScripts(node)
+        }
+        return
+      }
+
+      // Fallback: full body swap (keeps SoftNav listeners on document).
+      const imported = document.importNode(nextBody, true) as HTMLBodyElement
+      document.body.replaceWith(imported)
+      await activateScripts(document.body)
+    }
+
     let inflight: AbortController | null = null
 
     async function softNavigate(href: string, push: boolean): Promise<void> {
@@ -134,20 +174,7 @@
         if (signal.aborted) return
 
         const doc = new DOMParser().parseFromString(html, 'text/html')
-        const nextBody = doc.body
-        if (!nextBody?.classList.contains('docs-body')) {
-          throw new Error('not a docs page')
-        }
-
-        document.title = doc.title
-        const lang = doc.documentElement.getAttribute('lang')
-        if (lang) document.documentElement.setAttribute('lang', lang)
-
-        mergeHead(doc.head)
-
-        const imported = document.importNode(nextBody, true) as HTMLBodyElement
-        document.body.replaceWith(imported)
-        await activateScripts(document.body)
+        await applyDocument(doc)
         if (signal.aborted) return
 
         const finalUrl = res.redirected ? res.url : href
@@ -156,6 +183,8 @@
         }
 
         document.dispatchEvent(new Event('astro:page-load'))
+        const main = document.getElementById('docs-main')
+        if (main) main.scrollTop = 0
         window.scrollTo(0, 0)
       } catch (error) {
         if ((error as Error)?.name === 'AbortError') return
@@ -187,5 +216,17 @@
     if (!(history.state as SoftState | null)?.softNav) {
       history.replaceState({ softNav: true } satisfies SoftState, '', location.href)
     }
+
+    const syncLang = () => {
+      const lang = location.pathname.split('/').filter(Boolean)[0] || 'en'
+      document.querySelectorAll('.docs-lang-switch a').forEach((link) => {
+        const active = (link as HTMLElement).dataset.lang === lang
+        if (active) link.setAttribute('aria-current', 'page')
+        else link.removeAttribute('aria-current')
+        link.classList.toggle('is-active', active)
+      })
+    }
+    syncLang()
+    document.addEventListener('astro:page-load', syncLang)
   }
 </script>

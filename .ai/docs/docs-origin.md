@@ -12,6 +12,6 @@ Marketing app (`nucleify.io`) no longer serves documentation. Astro docs live at
 
 In-content Markdown links stay relative (`/en/docs/…`) so they work on the docs host and in local `make docs`.
 
-## Soft navigation
+## Soft navigation (SPA shell)
 
-Docs use a custom `DocsSoftNav` interceptor (capture-phase click → `fetch` HTML → replace `<body>` + `history.pushState`) so sidebar/home links never hard-reload the document. Prefetch on hover warms the cache. Critical `#03050c` CSS is inlined to avoid white flash.
+Docs use `DocsSoftNav`: capture-phase click → `fetch` HTML → swap only `[data-spa-chrome]` (header actions) and `[data-spa-page]` (sidebar/article/toc or home main) + `history.pushState`. The brand header and document never unload. Prefetch on hover warms the cache. Critical `#03050c` CSS is inlined to avoid white flash.

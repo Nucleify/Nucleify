@@ -33,8 +33,7 @@ const tocLabel = docsOnThisPageLabel(lang)
         background: #03050c;
         color: #e7ebe8;
       }
-      html[data-soft-nav='loading'] .docs-shell,
-      html[data-soft-nav='loading'] .docs-home__main {
+      html[data-soft-nav='loading'] [data-spa-page] {
         opacity: 0.72;
         transition: opacity 0.12s ease;
       }
@@ -57,10 +56,12 @@ const tocLabel = docsOnThisPageLabel(lang)
           <DocsBrandMark class="docs-brand__logo" width={32} height={32} idSuffix="header" />
           <span class="docs-brand__text">Nucleify Docs</span>
         </a>
-        <slot name="header-extra" />
+        <div data-spa-chrome>
+          <slot name="header-extra" />
+        </div>
       </div>
     </header>
-    <div class="docs-shell">
+    <div class="docs-shell" data-spa-page>
       <aside class="docs-sidebar" aria-label={navLabel}>
         <slot name="sidebar" />
       </aside>
@@ -73,27 +74,5 @@ const tocLabel = docsOnThisPageLabel(lang)
         <slot name="toc" />
       </aside>
     </div>
-    <script>
-      declare global {
-        interface Window {
-          __nucDocsLangSync?: boolean
-        }
-      }
-
-      if (!window.__nucDocsLangSync) {
-        window.__nucDocsLangSync = true
-        const syncLang = () => {
-          const lang = location.pathname.split('/').filter(Boolean)[0] || 'en'
-          document.querySelectorAll('.docs-lang-switch a').forEach((link) => {
-            const active = link.dataset.lang === lang
-            if (active) link.setAttribute('aria-current', 'page')
-            else link.removeAttribute('aria-current')
-            link.classList.toggle('is-active', active)
-          })
-        }
-        syncLang()
-        document.addEventListener('astro:page-load', syncLang)
-      }
-    </script>
   </body>
 </html>
