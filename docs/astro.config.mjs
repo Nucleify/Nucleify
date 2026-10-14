@@ -3,7 +3,8 @@ import { defineConfig } from 'astro/config'
 export default defineConfig({
   site: 'https://docs.nucleify.io',
   srcDir: 'src',
-  // Soft navigations via ClientRouter — prefetch linked docs on hover.
+  trailingSlash: 'never',
+  // Prefetch docs HTML on hover for DocsSoftNav fetches.
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'hover',
