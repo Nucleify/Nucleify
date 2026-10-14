@@ -1,6 +1,6 @@
 # Moduły
 
-Nucleify dostarcza **sześć eksportowanych** modułów funkcjonalnych z `@nucleify/shared-modules`. Każdy to samodzielny pakiet domenowy z narzędziami frontendowymi, opcjonalnymi handlerami API Supabase, migracjami, typami i testami — konsumowany przez `web/`, `admin/`, `docs/` i generowane shelle (Next, Solid, …), żeby migrować frameworki bez przepisywania biznesu.
+Nucleify dostarcza **sześć eksportowanych** modułów funkcjonalnych z `@nucleify/shared-modules`. Każdy to samodzielny pakiet domenowy z narzędziami frontendowymi, opcjonalnymi handlerami API Supabase, migracjami, typami i testami — konsumowany przez `web/`, `admin/`, `docs/` i generowane shelle (Next, Solid, Svelte, …), żeby migrować frameworki bez przepisywania biznesu.
 
 Nie ma katalogu `modules/` w root. Aplikacje importują przez ścieżki względne lub alias Nuxt `modules` → `shared_modules/`. Flow auth żyje w `nuc_api` (nie ma osobnego `nuc_users` / `nuc_auth`).
 
@@ -170,13 +170,13 @@ Skrypty scalają SQL modułów przez `.config/bash/merge-module-supabase-sql.sh`
 
 ## Warianty React
 
-Moduły wspierające Tryb B eksponują odpowiedniki `.react.ts`:
+Moduły wspierające konwersję produktu eksponują odpowiedniki `.react.ts`:
 
 - `index.react.ts` — barrel React
 - `utils/use_*.react.ts` — hooki React odzwierciedlające composables Vue
 - `types/interfaces.react.ts` — typy React gdy potrzebne
 
-Kompilator i convert produktu używają ich przy emisji powłok Next.
+Kompilator i convert produktu używają ich przy emisji powłok Next, Solid i Svelte.
 
 ---
 

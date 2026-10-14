@@ -126,7 +126,7 @@ describe('import react', () => {
           'className="b"',
         ),
       )
-      expect(() => inferImportFrom(tmp, 'portable/hello.vue')).toThrow(/both .* dirty/)
+      expect(() => inferImportFrom(tmp, 'portable/hello.vue')).toThrow(/multiple emits dirty/)
     } finally {
       rmSync(tmp, { recursive: true, force: true })
     }

@@ -233,13 +233,14 @@ export type ScriptToReactResult = {
   emitHandlers: string[]
 }
 
-function rewriteVueImport(needsReactive: boolean, needsLazy = false, needsUseId = false): string {
+/** One import statement per entry — Svelte convert strips `from 'react'` by whole array item. */
+function rewriteVueImport(needsReactive: boolean, needsLazy = false, needsUseId = false): string[] {
   const hooks = ['useEffect', 'useMemo', 'useRef', 'useState']
   if (needsUseId) hooks.push('useId')
   if (needsLazy) hooks.push('lazy', 'Suspense')
   const lines = [`import { ${hooks.join(', ')} } from 'react'`]
   if (needsReactive) lines.push(`import { useReactive } from '@/lib/vue-reactivity-shim'`)
-  return lines.join('\n')
+  return lines
 }
 
 function emitRefBinding(source: string, name: string, init: any): string {
@@ -410,7 +411,7 @@ export function rewriteScriptSetupToReact(script: string): ScriptToReactResult {
         if (rewritten) imports.push(rewritten)
       } else if (line.includes("'vue'") || line.includes('"vue"')) {
         if (!vueImportEmitted) {
-          imports.push(rewriteVueImport(usesReactive, usesLazy, usesUseId))
+          imports.push(...rewriteVueImport(usesReactive, usesLazy, usesUseId))
           vueImportEmitted = true
         }
       } else {

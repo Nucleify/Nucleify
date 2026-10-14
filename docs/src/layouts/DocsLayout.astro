@@ -1,6 +1,10 @@
 ---
 import '../styles/docs.css'
 import 'highlight.js/styles/github-dark.min.css'
+import DocsBrandMark from '../components/DocsBrandMark.astro'
+import DocsRoutePreload from '../components/DocsRoutePreload.astro'
+import DocsSoftNav from '../components/DocsSoftNav.astro'
+import { docsNavAriaLabel, docsOnThisPageLabel } from '../lib/constants/docs_ui'
 
 interface Props {
   title: string
@@ -11,6 +15,8 @@ interface Props {
 
 const { title, lang, category, slug } = Astro.props
 const pageTitle = `${title} · Nucleify Docs`
+const navLabel = docsNavAriaLabel(lang)
+const tocLabel = docsOnThisPageLabel(lang)
 ---
 
 <!doctype html>
@@ -20,6 +26,19 @@ const pageTitle = `${title} · Nucleify Docs`
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Nucleify documentation" />
     <title>{pageTitle}</title>
+    <style is:inline>
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #03050c;
+        color: #e7ebe8;
+      }
+      html[data-soft-nav='loading'] [data-spa-page] {
+        opacity: 0.72;
+        transition: opacity 0.12s ease;
+      }
+    </style>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,19 +48,23 @@ const pageTitle = `${title} · Nucleify Docs`
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/img/favicon.svg" />
+    <DocsRoutePreload />
   </head>
   <body class="docs-body">
+    <DocsSoftNav />
     <header class="docs-header">
       <div class="docs-header__inner">
         <a class="docs-brand" href="/">
-          <img class="docs-brand__logo" src="/img/favicon.svg" alt="" width="32" height="32" decoding="async" />
+          <DocsBrandMark class="docs-brand__logo" width={32} height={32} idSuffix="header" />
           <span class="docs-brand__text">Nucleify Docs</span>
         </a>
-        <slot name="header-extra" />
+        <div data-spa-chrome>
+          <slot name="header-extra" />
+        </div>
       </div>
     </header>
-    <div class="docs-shell">
-      <aside class="docs-sidebar" aria-label="Documentation navigation">
+    <div class="docs-shell" data-spa-page>
+      <aside class="docs-sidebar" aria-label={navLabel}>
         <slot name="sidebar" />
       </aside>
       <main class="docs-main" id="docs-main">
@@ -49,14 +72,9 @@ const pageTitle = `${title} · Nucleify Docs`
           <slot />
         </article>
       </main>
-      <aside class="docs-toc-panel" aria-label="On this page">
+      <aside class="docs-toc-panel" aria-label={tocLabel}>
         <slot name="toc" />
       </aside>
     </div>
-    <script define:vars={{ lang, category, slug }}>
-      document.querySelectorAll('.docs-lang-switch a').forEach((link) => {
-        if (link.dataset.lang === lang) link.setAttribute('aria-current', 'page')
-      })
-    </script>
   </body>
 </html>

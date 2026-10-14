@@ -36,16 +36,22 @@ describe('smashed_url', () => {
     expect(redirectTargetForPath('/modules/{module}/{file}')).toBe('/en/home')
   })
 
-  it('leaves living routes alone', () => {
+  it('leaves living marketing routes alone', () => {
     expect(redirectTargetForPath('/en/home')).toBeNull()
     expect(redirectTargetForPath('/pl/home')).toBeNull()
     expect(redirectTargetForPath('/en/investor')).toBeNull()
     expect(redirectTargetForPath('/pl/investor')).toBeNull()
-    expect(
-      redirectTargetForPath('/en/docs/core-concepts/overriding')
-    ).toBeNull()
     expect(redirectTargetForPath('/_nuxt/entry.js')).toBeNull()
     expect(redirectTargetForPath('/api/test')).toBeNull()
+  })
+
+  it('sends legacy same-host docs paths to docs.nucleify.io', () => {
+    expect(redirectTargetForPath('/en/docs/core-concepts/overriding')).toBe(
+      'https://docs.nucleify.io/en/docs/core-concepts/overriding'
+    )
+    expect(redirectTargetForPath('/pl/docs/getting-started/introduction')).toBe(
+      'https://docs.nucleify.io/pl/docs/getting-started/introduction'
+    )
   })
 
   it('collapses investor extras to the investor root', () => {

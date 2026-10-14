@@ -14,7 +14,7 @@ import {
   type ProductId,
   type ScaffoldApp,
 } from './sync/scaffold'
-import { convertProduct } from './sync/convert'
+import { cloneConvertSource, convertProduct } from './sync/convert'
 import { writeOutputs, type EmitApp } from './sync/write-outputs'
 
 const main = defineCommand({
@@ -64,23 +64,35 @@ const main = defineCommand({
     convert: defineCommand({
       meta: {
         name: 'convert',
-        description: 'Scaffold product shell at {product}-{framework} (tryb B)',
+        description: 'Scaffold product shell at {product}-{framework}',
       },
       args: {
         product: {
           type: 'positional',
           required: true,
-          description: PRODUCT_IDS.join(' | '),
+          description: `${PRODUCT_IDS.join(' | ')} (shell profile; docs convert not yet)`,
         },
         target: {
           type: 'string',
-          description: 'Framework: next | react | vue | nuxt',
+          description: 'Framework: next | solid',
           required: true,
         },
         force: {
           type: 'boolean',
           description: 'Wipe and recreate product shell',
           default: false,
+        },
+        path: {
+          type: 'string',
+          description: 'External Nuxt app folder (must contain src/)',
+        },
+        git: {
+          type: 'string',
+          description: 'Git URL to shallow-clone as convert source',
+        },
+        out: {
+          type: 'string',
+          description: 'Output dir name under cwd (default {product}-{target})',
         },
         cwd: {
           type: 'string',
@@ -101,18 +113,36 @@ const main = defineCommand({
           process.exitCode = 1
           return
         }
+        if (args.path && args.git) {
+          console.error('convert: pass only one of --path or --git')
+          process.exitCode = 1
+          return
+        }
+        let cleanup: (() => void) | undefined
         try {
+          let sourceRoot: string | undefined
+          if (args.git) {
+            const cloned = cloneConvertSource(String(args.git), cwd)
+            sourceRoot = cloned.sourceRoot
+            cleanup = cloned.cleanup
+          } else if (args.path) {
+            sourceRoot = resolve(cwd, String(args.path))
+          }
           const { dest, copied } = convertProduct({
             product,
             framework,
             cwd,
             force: Boolean(args.force),
+            sourceRoot,
+            outName: args.out ? String(args.out) : undefined,
           })
           console.log(`convert: ${product} → ${toRepoRelative(cwd, dest)}`)
           for (const c of copied) console.log(`  copied ${c}`)
         } catch (err) {
           console.error(err instanceof Error ? err.message : String(err))
           process.exitCode = 1
+        } finally {
+          cleanup?.()
         }
       },
     }),
@@ -124,12 +154,12 @@ const main = defineCommand({
       args: {
         target: {
           type: 'string',
-          description: 'vue | react | solid | all (default all)',
+          description: 'vue | react | solid | svelte | all (default all)',
           default: 'all',
         },
         app: {
           type: 'string',
-          description: 'vue | react | nuxt | next | solid (only this demo app)',
+          description: 'vue | react | nuxt | next | solid | svelte (only this demo app)',
         },
         force: {
           type: 'boolean',
@@ -149,7 +179,7 @@ const main = defineCommand({
       async run({ args }) {
         const cwd = resolve(String(args.cwd || process.cwd()))
         const dumpIr = Boolean(args['dump-ir'])
-        const target = String(args.target || 'all') as 'vue' | 'react' | 'solid' | 'all'
+        const target = String(args.target || 'all') as 'vue' | 'react' | 'solid' | 'svelte' | 'all'
         const force = Boolean(args.force)
         const appArg = args.app ? (String(args.app) as EmitApp) : undefined
         const apps = appArg ? [appArg] : undefined
@@ -203,7 +233,7 @@ const main = defineCommand({
     check: defineCommand({
       meta: {
         name: 'check',
-        description: 'Validate IR and emit fingerprints (Faza 9 fills dirty)',
+        description: 'Validate IR and emit fingerprints (dirty emit fails)',
       },
       args: {
         cwd: {
@@ -230,22 +260,22 @@ const main = defineCommand({
     watch: defineCommand({
       meta: {
         name: 'watch',
-        description: 'Watch *.nuc.tsx and rebuild (Faza 5+)',
+        description: 'Watch *.nuc.tsx and rebuild (not implemented yet)',
       },
       async run() {
-        console.error('watch: not implemented yet (Faza 5)')
+        console.error('watch: not implemented yet')
         process.exitCode = 1
       },
     }),
     import: defineCommand({
       meta: {
         name: 'import',
-        description: 'Import dirty emit back to *.nuc.tsx (Faza 9+)',
+        description: 'Import dirty emit back to *.nuc.tsx',
       },
       args: {
         from: {
           type: 'string',
-          description: 'vue | react',
+          description: 'vue | react | solid | svelte',
         },
         force: {
           type: 'boolean',
@@ -254,14 +284,14 @@ const main = defineCommand({
         path: {
           type: 'positional',
           required: false,
-          description: 'Path to .vue / .tsx / sibling .css',
+          description: 'Path to .vue / .tsx / .svelte / sibling .css',
         },
       },
       async run({ args }) {
         const cwd = resolve(String(process.cwd()))
         const inputPath = args.path ? String(args.path) : ''
         if (!inputPath) {
-          console.error('import: path required (.vue / .tsx / .css)')
+          console.error('import: path required (.vue / .tsx / .svelte / .css)')
           process.exitCode = 1
           return
         }
@@ -270,7 +300,7 @@ const main = defineCommand({
           const { nucPath, written, from } = await runImport({
             cwd,
             path: inputPath,
-            from: fromArg as 'vue' | 'react' | undefined,
+            from: fromArg as 'vue' | 'react' | 'solid' | 'svelte' | undefined,
             force: Boolean(args.force),
           })
           console.log(`imported --from=${from} ${inputPath} → ${toRepoRelative(cwd, nucPath)}`)

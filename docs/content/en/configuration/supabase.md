@@ -2,7 +2,7 @@
 
 Nucleify uses [Supabase](https://supabase.com) for PostgreSQL, Auth, Storage, and Edge Functions. Database schema and seed data are **owned by feature modules** in `shared_modules/nuc_*/supabase/` and merged at the monorepo level under `supabase/`.
 
-Server access from Nuxt goes through the Nitro API gateway — not direct service-role calls from the browser.
+Server access from Nuxt goes through the Nitro API gateway — not direct service-role calls from the browser. The same applies to generated shells (Next, Solid, Svelte): they share the same Supabase instance and module model.
 
 ---
 

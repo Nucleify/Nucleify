@@ -3,17 +3,18 @@ import { dirname, join } from 'node:path'
 import { parse as parseSfc } from '@vue/compiler-sfc'
 import { NodeTypes, parse as parseVueTemplate } from '@vue/compiler-dom'
 import { parseSync } from 'oxc-parser'
-import type {
-  IrAttr,
-  IrDerived,
-  IrDocument,
-  IrExpr,
-  IrHandler,
-  IrNode,
-  IrProp,
-  IrPropType,
-  IrState,
-  IrStmt,
+import {
+  IR_VERSION,
+  type IrAttr,
+  type IrDerived,
+  type IrDocument,
+  type IrExpr,
+  type IrHandler,
+  type IrNode,
+  type IrProp,
+  type IrPropType,
+  type IrState,
+  type IrStmt,
 } from '../ir/types'
 import { parseIrDocument } from '../ir/schema'
 import { vueEventToIr } from '../adapters/events'
@@ -488,7 +489,7 @@ export function parseVueToIr(source: string, filePath: string, opts?: { name?: s
   const handlers = normalizeStateHandlerStmts(parsed.handlers, parsed.state)
 
   const doc: IrDocument = {
-    irVersion: '0.1.0',
+    irVersion: IR_VERSION,
     name,
     portable: true,
     props: parsed.props,

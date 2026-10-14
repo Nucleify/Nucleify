@@ -23,6 +23,7 @@
 **/public/hot
 **/public/storage
 **/public/sitemap.xml
+!docs/public/sitemap.xml
 **/storage/*.key
 
 # Coverage / logs
@@ -44,18 +45,24 @@
 # Compiler IR dumps (--dump-ir)
 **/*.ir.json
 
-# Generated simple emit demos at monorepo root only (recreated by `make vue|react|nuxt|next|solid`)
+# Generated simple emit demos at monorepo root only (recreated by `make vue|react|nuxt|next|solid|svelte`)
 # Use anchored paths so compiler/templates/* and portable/fixtures/emit/* stay tracked.
 /vue/
 /react/
 /nuxt/
 /next/
 /solid/
+/svelte/
 /web-next/
 /admin-next/
 /web-solid/
 /admin-solid/
-
+/web-svelte/
+/admin-svelte/
+.nucleify-nm-*/
+.nucleify-convert-git-*/
+.nucleify-fixture-ext-*/
+/ext-web-next-*/
 # AI workflow
 .ai/specs/*
 !.ai/docs/

@@ -11,7 +11,7 @@ import { writeOutputs } from '../src/sync/write-outputs'
 const monorepo = join(dirname(fileURLToPath(import.meta.url)), '../..')
 const fixtures = join(monorepo, 'compiler/tests/fixtures')
 
-describe('tryb B product shells', () => {
+describe('product shells', () => {
   it('scaffolds demo under {framework}/demo', () => {
     const tmp = mkdtempSync(join(tmpdir(), 'nuc-demo-'))
     try {

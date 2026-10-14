@@ -1,37 +1,22 @@
-# <img src="https://nucleify.io/img/favicon.svg" width="22" height="22" alt="" /> &nbsp; nuc_documentation
+# Docs content (`@nucleify/docs`)
 
-Module that provides Markdown-based documentation pages with SSR/prerendering support.
+Astro documentation site at [https://docs.nucleify.io](https://docs.nucleify.io). Markdown lives under `content/{en,pl}/{category}/{slug}.md`.
 
-## Features
+## Layout
 
-- **Category-based organization** - Documentation organized by categories with nested pages
-- **SSR & Prerendering** - Content is prerendered for instant loading
-- **Table of Contents** - Auto-generated TOC with scroll tracking
-- **Syntax highlighting** - Code blocks with highlight.js
-- **Client-side navigation** - Fast navigation between pages via NuxtLink
-- **Prefetching** - Background prefetch of documentation content
-- **Responsive design** - Works on desktop and mobile
+| Path | Purpose |
+|------|---------|
+| `content/en/…` / `content/pl/…` | Localized Markdown |
+| `src/lib/constants/docs.ts` | Sidebar categories + page titles (EN/PL) |
+| `src/pages/[lang]/docs/[category]/[slug].astro` | Prerendered routes |
+| `scripts/generate-doc-markdown-bundle.mjs` | Regenerates `markdown_bundle.generated.ts` |
 
-## Usage
+After editing Markdown:
 
-1. Create `.md` files in `content/{category}/`
-2. Register pages in `DOC_CATEGORIES` constant (`constants/docs.ts`)
+```bash
+pnpm --filter @nucleify/docs run generate:markdown-bundle
+```
 
-## Utils
+Register new pages in `DOC_CATEGORIES` (`src/lib/constants/docs.ts`) with `title: { en, pl }`.
 
-| Function | Description |
-|----------|-------------|
-| `parseDocPath` | Parse URL path to category/slug |
-| `parseMarkdown` | Convert markdown to HTML |
-| `parseHeadings` | Extract headings from HTML |
-| `loadDocContentServer` | Load content during SSR |
-| `loadDocContentClient` | Load content on client |
-| `useHeadings` | Scroll tracking for TOC |
-| `useDocs` | Prefetch helpers |
-
-<br>
-
-<h2> &nbsp; <img src="https://nucleify.io/img/technologies/github.svg" width="25"> &nbsp; Contributors </h2> <br>
-
-<a href="https://github.com/SzymCode" target="_blank"><img src="https://nucleify.io/img/contributors/szymcode.svg" width="30" height="30" /></a>
-<a href="https://github.com/JakubMalik" target="_blank"><img src="https://nucleify.io/img/contributors/JakubMalik.svg" width="30" height="30" /></a>
+See `docs/README.md` for run commands.

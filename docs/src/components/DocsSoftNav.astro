@@ -1,0 +1,324 @@
+---
+/**
+ * Client soft router on top of SSR/SSG HTML.
+ * DocsRoutePreload (in <head>) warms the browser cache; this layer keeps an
+ * in-memory copy and swaps [data-spa-chrome] + [data-spa-page] without unload.
+ */
+import { getAllDocRoutes, docHref } from '../lib/doc_paths'
+
+const preloadHrefs = [
+  '/',
+  ...getAllDocRoutes().map((r) => docHref(r.lang, r.category, r.slug)),
+]
+---
+
+<script define:vars={{ preloadHrefs }}>
+  declare global {
+    interface Window {
+      __nucDocsSoftNav?: boolean
+      __nucDocsScripts?: Set<string>
+    }
+  }
+
+  if (!window.__nucDocsSoftNav) {
+    window.__nucDocsSoftNav = true
+    window.__nucDocsScripts = new Set()
+
+    type SoftState = { softNav?: boolean }
+    type CacheEntry = { html: string; url: string }
+
+    const cache = new Map<string, CacheEntry>()
+    const inflightFetch = new Map<string, Promise<CacheEntry>>()
+    const CONCURRENCY = 8
+
+    function normalizeKey(href: string): string {
+      const url = new URL(href, location.href)
+      let path = url.pathname
+      if (path.length > 1 && path.endsWith('/')) path = path.slice(0, -1)
+      return path || '/'
+    }
+
+    function scriptKey(el: HTMLScriptElement): string {
+      if (el.src) return `src:${el.src}`
+      return `inline:${el.textContent ?? ''}`
+    }
+
+    document.querySelectorAll('script').forEach((el) => {
+      if (el.textContent?.includes('__nucDocsSoftNav')) return
+      window.__nucDocsScripts!.add(scriptKey(el))
+    })
+
+    function sameOrigin(href: string): boolean {
+      try {
+        return new URL(href, location.href).origin === location.origin
+      } catch {
+        return false
+      }
+    }
+
+    function shouldIntercept(anchor: HTMLAnchorElement, event: MouseEvent): boolean {
+      if (event.defaultPrevented) return false
+      if (event.button !== 0) return false
+      if (event.metaKey || event.ctrlKey || event.altKey || event.shiftKey) return false
+      if (anchor.hasAttribute('download')) return false
+      if (anchor.dataset.astroReload !== undefined) return false
+      if (anchor.dataset.hardNav !== undefined) return false
+      const target = anchor.getAttribute('target')
+      if (target && target !== '_self') return false
+      if (!anchor.href || !sameOrigin(anchor.href)) return false
+      const url = new URL(anchor.href)
+      if (url.pathname === location.pathname && url.search === location.search) {
+        return false
+      }
+      return true
+    }
+
+    async function fetchPage(href: string, signal?: AbortSignal): Promise<CacheEntry> {
+      const key = normalizeKey(href)
+      const hit = cache.get(key)
+      if (hit) return hit
+
+      const pending = inflightFetch.get(key)
+      if (pending) return pending
+
+      const job = (async (): Promise<CacheEntry> => {
+        const res = await fetch(href, {
+          signal,
+          headers: { Accept: 'text/html' },
+          credentials: 'same-origin',
+        })
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const html = await res.text()
+        const entry: CacheEntry = {
+          html,
+          url: res.redirected ? res.url : href,
+        }
+        cache.set(key, entry)
+        cache.set(normalizeKey(entry.url), entry)
+        return entry
+      })().finally(() => {
+        inflightFetch.delete(key)
+      })
+
+      inflightFetch.set(key, job)
+      return job
+    }
+
+    async function activateScripts(root: ParentNode): Promise<void> {
+      const seen = window.__nucDocsScripts!
+      const pending: Promise<void>[] = []
+
+      root.querySelectorAll('script').forEach((old) => {
+        const type = old.getAttribute('type')
+        if (type && type !== 'module' && type !== 'text/javascript') return
+        if (old.textContent?.includes('__nucDocsSoftNav')) {
+          old.remove()
+          return
+        }
+
+        const key = scriptKey(old)
+        if (seen.has(key)) {
+          old.remove()
+          return
+        }
+        seen.add(key)
+
+        const next = document.createElement('script')
+        for (const attr of old.attributes) next.setAttribute(attr.name, attr.value)
+        next.textContent = old.textContent
+        pending.push(
+          new Promise<void>((resolve) => {
+            next.addEventListener('load', () => resolve(), { once: true })
+            next.addEventListener('error', () => resolve(), { once: true })
+            setTimeout(() => resolve(), 0)
+          }),
+        )
+        old.replaceWith(next)
+      })
+
+      if (!pending.length) return
+      await Promise.all(pending)
+      await new Promise<void>((r) => requestAnimationFrame(() => r()))
+    }
+
+    function mergeHead(nextHead: HTMLHeadElement): void {
+      nextHead.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]').forEach((link) => {
+        if (
+          [...document.head.querySelectorAll('link[rel="stylesheet"]')].some(
+            (c) => c.href === link.href,
+          )
+        ) {
+          return
+        }
+        document.head.appendChild(document.importNode(link, true))
+      })
+      nextHead.querySelectorAll('style').forEach((style) => {
+        const text = style.textContent ?? ''
+        if ([...document.head.querySelectorAll('style')].some((s) => s.textContent === text)) {
+          return
+        }
+        document.head.appendChild(document.importNode(style, true))
+      })
+    }
+
+    function swapRegion(selector: string, nextRoot: ParentNode): HTMLElement | null {
+      const current = document.querySelector(selector)
+      const incoming = nextRoot.querySelector(selector)
+      if (!current || !incoming) return null
+      const imported = document.importNode(incoming, true) as HTMLElement
+      current.replaceWith(imported)
+      return imported
+    }
+
+    async function applyDocument(doc: Document): Promise<void> {
+      const nextBody = doc.body
+      if (!nextBody?.classList.contains('docs-body')) {
+        throw new Error('not a docs page')
+      }
+
+      document.title = doc.title
+      const lang = doc.documentElement.getAttribute('lang')
+      if (lang) document.documentElement.setAttribute('lang', lang)
+      mergeHead(doc.head)
+
+      const canSpa =
+        Boolean(document.querySelector('[data-spa-page]')) &&
+        Boolean(nextBody.querySelector('[data-spa-page]'))
+
+      if (canSpa) {
+        document.body.className = nextBody.className
+        const swapped: HTMLElement[] = []
+        const chrome = swapRegion('[data-spa-chrome]', nextBody)
+        const page = swapRegion('[data-spa-page]', nextBody)
+        if (chrome) swapped.push(chrome)
+        if (page) swapped.push(page)
+        for (const node of swapped) {
+          await activateScripts(node)
+        }
+        return
+      }
+
+      const imported = document.importNode(nextBody, true) as HTMLBodyElement
+      document.body.replaceWith(imported)
+      await activateScripts(document.body)
+    }
+
+    let navToken = 0
+
+    async function softNavigate(href: string, push: boolean): Promise<void> {
+      const token = ++navToken
+      const key = normalizeKey(href)
+      const cached = cache.get(key)
+      const waiting = !cached
+
+      if (waiting) {
+        document.documentElement.dataset.softNav = 'loading'
+      }
+
+      try {
+        const entry = cached ?? (await fetchPage(href))
+        if (token !== navToken) return
+
+        const doc = new DOMParser().parseFromString(entry.html, 'text/html')
+        await applyDocument(doc)
+        if (token !== navToken) return
+
+        if (push) {
+          history.pushState({ softNav: true } satisfies SoftState, '', entry.url)
+        }
+
+        document.dispatchEvent(new Event('astro:page-load'))
+        const main = document.getElementById('docs-main')
+        if (main) main.scrollTop = 0
+        window.scrollTo(0, 0)
+      } catch (error) {
+        if ((error as Error)?.name === 'AbortError') return
+        if (token !== navToken) return
+        location.href = href
+      } finally {
+        if (token === navToken) {
+          document.documentElement.removeAttribute('data-soft-nav')
+        }
+      }
+    }
+
+    async function warmCache(hrefs: string[]): Promise<void> {
+      const queue = hrefs
+        .filter((h) => sameOrigin(h))
+        .map((h) => normalizeKey(h))
+        .filter((key, i, arr) => arr.indexOf(key) === i)
+        .filter((key) => !cache.has(key) && !inflightFetch.has(key))
+
+      let cursor = 0
+      async function worker(): Promise<void> {
+        while (cursor < queue.length) {
+          const key = queue[cursor++]!
+          try {
+            await fetchPage(key)
+          } catch {
+            // Ignore preload failures — click will retry / hard-navigate.
+          }
+        }
+      }
+
+      const workers = Array.from({ length: Math.min(CONCURRENCY, queue.length) }, () => worker())
+      await Promise.all(workers)
+    }
+
+    document.addEventListener(
+      'click',
+      (event) => {
+        const el = event.target
+        if (!(el instanceof Element)) return
+        const anchor = el.closest('a')
+        if (!(anchor instanceof HTMLAnchorElement)) return
+        if (!shouldIntercept(anchor, event)) return
+        event.preventDefault()
+        event.stopImmediatePropagation()
+        void softNavigate(anchor.href, true)
+      },
+      true,
+    )
+
+    // Hover / focus: prioritize that page if still warming.
+    document.addEventListener(
+      'pointerover',
+      (event) => {
+        const el = event.target
+        if (!(el instanceof Element)) return
+        const anchor = el.closest('a')
+        if (!(anchor instanceof HTMLAnchorElement)) return
+        if (!sameOrigin(anchor.href)) return
+        void fetchPage(anchor.href).catch(() => {})
+      },
+      true,
+    )
+
+    window.addEventListener('popstate', () => {
+      void softNavigate(location.href, false)
+    })
+
+    if (!(history.state as SoftState | null)?.softNav) {
+      history.replaceState({ softNav: true } satisfies SoftState, '', location.href)
+    }
+
+    const syncLang = () => {
+      const lang = location.pathname.split('/').filter(Boolean)[0] || 'en'
+      document.querySelectorAll('.docs-lang-switch a').forEach((link) => {
+        const active = (link as HTMLElement).dataset.lang === lang
+        if (active) link.setAttribute('aria-current', 'page')
+        else link.removeAttribute('aria-current')
+        link.classList.toggle('is-active', active)
+      })
+    }
+    syncLang()
+    document.addEventListener('astro:page-load', syncLang)
+
+    // Seed current page + preload every docs route immediately.
+    cache.set(normalizeKey(location.href), {
+      html: '<!doctype html>' + document.documentElement.outerHTML,
+      url: location.href,
+    })
+    void warmCache(preloadHrefs as string[])
+  }
+</script>

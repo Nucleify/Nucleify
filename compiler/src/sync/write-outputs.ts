@@ -3,6 +3,7 @@ import { basename, dirname, join, resolve } from 'node:path'
 import type { IrDocument } from '../ir/types'
 import { emitReact } from '../emit/react'
 import { emitSolid } from '../emit/solid'
+import { emitSvelte } from '../emit/svelte'
 import { emitCssBody, emitVue } from '../emit/vue'
 import { biomeFormat } from './biome-format'
 import {
@@ -12,15 +13,16 @@ import {
   normalizeBody,
   reactHeader,
   solidHeader,
+  svelteHeader,
   stripEmitHeaders,
   vueHeader,
   type EmitKind,
 } from './fingerprint'
 import { toRepoRelative } from './discover'
 
-export type WriteTarget = 'vue' | 'react' | 'solid' | 'all'
-export type EmitApp = 'vue' | 'react' | 'nuxt' | 'next' | 'solid'
-export type EmitFrame = 'vue' | 'react' | 'solid'
+export type WriteTarget = 'vue' | 'react' | 'solid' | 'svelte' | 'all'
+export type EmitApp = 'vue' | 'react' | 'nuxt' | 'next' | 'solid' | 'svelte'
+export type EmitFrame = 'vue' | 'react' | 'solid' | 'svelte'
 
 /**
  * Emit destinations for throwaway demos under `{framework}/demo` (gitignored).
@@ -31,6 +33,7 @@ export const EMIT_APP_DIRS: Record<EmitApp, string> = {
   nuxt: 'nuxt/demo/components',
   next: 'next/demo/src/components',
   solid: 'solid/demo/src/components',
+  svelte: 'svelte/demo/src/lib/components',
 }
 
 /** Product shells `{product}-{framework}` that receive the same emit when present. */
@@ -59,6 +62,16 @@ export const PRODUCT_SHELL_EMIT: {
     componentsDir: 'admin-solid/src/components',
     frame: 'solid',
   },
+  {
+    slug: 'web-svelte',
+    componentsDir: 'web-svelte/src/lib/components',
+    frame: 'svelte',
+  },
+  {
+    slug: 'admin-svelte',
+    componentsDir: 'admin-svelte/src/lib/components',
+    frame: 'svelte',
+  },
 ]
 
 const APP_FRAME: Record<EmitApp, EmitFrame> = {
@@ -67,6 +80,7 @@ const APP_FRAME: Record<EmitApp, EmitFrame> = {
   react: 'react',
   next: 'react',
   solid: 'solid',
+  svelte: 'svelte',
 }
 
 /** Root dir that must exist for a demo emit target (`vue/demo`, …). */
@@ -173,6 +187,7 @@ function resolveApps(cwd: string, target: WriteTarget, apps?: EmitApp[]): EmitAp
     if (target === 'vue' && frame !== 'vue') return false
     if (target === 'react' && frame !== 'react') return false
     if (target === 'solid' && frame !== 'solid') return false
+    if (target === 'svelte' && frame !== 'svelte') return false
     if (apps?.length) return apps.includes(app)
     return existsSync(join(cwd, demoRoot(app)))
   })
@@ -188,6 +203,7 @@ function resolveProductShells(
     if (target === 'vue' && shell.frame !== 'vue') return false
     if (target === 'react' && shell.frame !== 'react') return false
     if (target === 'solid' && shell.frame !== 'solid') return false
+    if (target === 'svelte' && shell.frame !== 'svelte') return false
     if (apps?.length && !apps.some((app) => shell.slug.endsWith(`-${app}`))) return false
     return existsSync(join(cwd, shell.slug))
   })
@@ -234,8 +250,9 @@ async function writeProductSiblings(opts: {
   const dir = dirname(opts.sourcePath)
   const writeVue = opts.target === 'all' || opts.target === 'vue'
   const writeReact = opts.target === 'all' || opts.target === 'react'
+  const writeSvelte = opts.target === 'all' || opts.target === 'svelte'
 
-  if (opts.cssFileName && opts.cssBody && (writeVue || writeReact)) {
+  if (opts.cssFileName && opts.cssBody && (writeVue || writeReact || writeSvelte)) {
     await writeFileEmit(
       opts.cwd,
       join(dir, opts.cssFileName),
@@ -272,6 +289,21 @@ async function writeProductSiblings(opts: {
       'react',
       emitReact(opts.ir, { cssFileName: opts.cssFileName }),
       (hash) => reactHeader(hint, hash),
+      opts.written,
+      opts.skipped,
+      opts.force,
+    )
+  }
+
+  if (writeSvelte) {
+    const sveltePath = join(dir, `${opts.base}.svelte`)
+    const hint = toRepoRelative(opts.cwd, sveltePath)
+    await writeFileEmit(
+      opts.cwd,
+      sveltePath,
+      'svelte',
+      emitSvelte(opts.ir, { cssFileName: opts.cssFileName }),
+      (hash) => svelteHeader(hint, hash),
       opts.written,
       opts.skipped,
       opts.force,
@@ -355,6 +387,19 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
         skipped,
         force,
       )
+    } else if (frame === 'svelte') {
+      const sveltePath = join(componentsDir, `${base}.svelte`)
+      const hint = toRepoRelative(cwd, sveltePath)
+      await writeFileEmit(
+        cwd,
+        sveltePath,
+        'svelte',
+        emitSvelte(ir, { cssFileName }),
+        (hash) => svelteHeader(hint, hash),
+        written,
+        skipped,
+        force,
+      )
     } else {
       const reactPath = join(componentsDir, `${base}.tsx`)
       const hint = toRepoRelative(cwd, reactPath)
@@ -406,6 +451,18 @@ export async function writeOutputs(opts: WriteOutputsOpts): Promise<WriteResult>
         'solid',
         emitSolid(ir, { cssFileName }),
         (hash) => solidHeader(toRepoRelative(cwd, solidPath), hash),
+        written,
+        skipped,
+        force,
+      )
+    } else if (shell.frame === 'svelte') {
+      const sveltePath = join(componentsDir, `${base}.svelte`)
+      await writeFileEmit(
+        cwd,
+        sveltePath,
+        'svelte',
+        emitSvelte(ir, { cssFileName }),
+        (hash) => svelteHeader(toRepoRelative(cwd, sveltePath), hash),
         written,
         skipped,
         force,

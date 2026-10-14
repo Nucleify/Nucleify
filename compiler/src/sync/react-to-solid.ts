@@ -1,5 +1,5 @@
 /**
- * Best-effort React TSX → Solid TSX for product convert (Tryb B).
+ * Best-effort React TSX → Solid TSX for product convert.
  * Complex React / Next patterns need follow-up; admin stubs convert cleanly.
  */
 

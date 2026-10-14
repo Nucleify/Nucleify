@@ -40,7 +40,7 @@ Ta komenda:
 3. **Przygotowuje Husky** — hooki git do lintu i testów
 4. **Przygotowuje web** — `pnpm --filter @nucleify/web prepare`
 5. **Synchronizuje reguły Cursor** — `pnpm sync-rules`
-6. **Buduje kompilator** — `pnpm compiler:check` + `pnpm compiler:build` (pomiń przez `SKIP_COMPILER=1 make run`)
+6. **Buduje kompilator** — `pnpm compiler:check` + `pnpm compiler:build` (emituje sąsiednie pliki Vue / React / Solid / Svelte; pomiń przez `SKIP_COMPILER=1 make run`)
 
 Jeśli masz już plik `.env`, użyj `make setup` — te same kroki bez nadpisywania konfiguracji środowiska.
 

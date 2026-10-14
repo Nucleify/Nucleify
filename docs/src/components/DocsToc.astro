@@ -1,11 +1,14 @@
 ---
 import type { DocHeadingInterface } from '../lib/types/interfaces'
+import { docsOnThisPageLabel } from '../lib/constants/docs_ui'
 
 interface Props {
   headings: DocHeadingInterface[]
+  lang: string
 }
 
-const { headings } = Astro.props
+const { headings, lang } = Astro.props
+const onThisPage = docsOnThisPageLabel(lang)
 
 type FlatHeading = DocHeadingInterface & { depth: number }
 
@@ -28,7 +31,7 @@ const flatHeadings = flattenHeadings(headings)
 
 {flatHeadings.length > 0 ? (
   <div class="docs-toc">
-    <p class="docs-toc__title">On this page</p>
+    <p class="docs-toc__title">{onThisPage}</p>
     <ul class="docs-toc__list">
       {flatHeadings.map((item) => (
         <li
@@ -47,60 +50,82 @@ const flatHeadings = flattenHeadings(headings)
 ) : null}
 
 <script>
-  const LINE = 160
-  const SEL = 'h2, h3, h4, h5, h6'
-  const main = document.querySelector('.docs-content')
-  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>('.docs-toc__link'))
-
-  if (main && links.length) {
-    let raf = 0
-
-    function getHeadings(): HTMLElement[] {
-      return Array.from(main!.querySelectorAll<HTMLElement>(SEL)).filter((h) => h.id)
+  declare global {
+    interface Window {
+      __nucDocsToc?: boolean
     }
+  }
 
-    function setActive(id: string) {
-      links.forEach((link) => {
-        link.classList.toggle('is-active', link.dataset.headingId === id)
-      })
-    }
+  if (!window.__nucDocsToc) {
+    window.__nucDocsToc = true
 
-    function apply() {
-      const heads = getHeadings()
-      if (!heads.length) return
+    const LINE = 160
+    const SEL = 'h2, h3, h4, h5, h6'
 
-      const viewportBottom = window.scrollY + window.innerHeight
-      const docBottom = document.documentElement.scrollHeight
-      const atPageBottom = viewportBottom >= docBottom - 4
+    type TocCleanup = () => void
+    let cleanup: TocCleanup | null = null
 
-      if (atPageBottom) {
-        setActive(heads[heads.length - 1]!.id)
-        return
+    function bindToc(): void {
+      cleanup?.()
+      cleanup = null
+
+      const main = document.querySelector('.docs-content')
+      const links = Array.from(
+        document.querySelectorAll<HTMLAnchorElement>('.docs-toc__link'),
+      )
+      if (!main || !links.length) return
+
+      let raf = 0
+
+      function getHeadings(): HTMLElement[] {
+        return Array.from(main!.querySelectorAll<HTMLElement>(SEL)).filter(
+          (h) => h.id,
+        )
       }
 
-      let current = heads[0]!
-      for (const h of heads) {
-        if (h.getBoundingClientRect().top > LINE) break
-        current = h
-      }
-      setActive(current.id)
-    }
-
-    function schedule() {
-      if (!raf) {
-        raf = requestAnimationFrame(() => {
-          raf = 0
-          apply()
+      function setActive(id: string) {
+        links.forEach((link) => {
+          link.classList.toggle('is-active', link.dataset.headingId === id)
         })
       }
-    }
 
-    window.addEventListener('scroll', schedule, { passive: true })
-    document.getElementById('docs-main')?.addEventListener('scroll', schedule, { passive: true })
-    apply()
+      function apply() {
+        const heads = getHeadings()
+        if (!heads.length) return
 
-    links.forEach((link) => {
-      link.addEventListener('click', (event) => {
+        const viewportBottom = window.scrollY + window.innerHeight
+        const docBottom = document.documentElement.scrollHeight
+        const atPageBottom = viewportBottom >= docBottom - 4
+
+        if (atPageBottom) {
+          setActive(heads[heads.length - 1]!.id)
+          return
+        }
+
+        let current = heads[0]!
+        for (const h of heads) {
+          if (h.getBoundingClientRect().top > LINE) break
+          current = h
+        }
+        setActive(current.id)
+      }
+
+      function schedule() {
+        if (!raf) {
+          raf = requestAnimationFrame(() => {
+            raf = 0
+            apply()
+          })
+        }
+      }
+
+      const mainScroll = document.getElementById('docs-main')
+      window.addEventListener('scroll', schedule, { passive: true })
+      mainScroll?.addEventListener('scroll', schedule, { passive: true })
+      apply()
+
+      const onClick = (event: Event) => {
+        const link = event.currentTarget as HTMLAnchorElement
         event.preventDefault()
         const id = link.dataset.headingId
         if (!id) return
@@ -108,7 +133,19 @@ const flatHeadings = flattenHeadings(headings)
         if (!el) return
         setActive(id)
         el.scrollIntoView({ block: 'start', behavior: 'smooth' })
-      })
-    })
+      }
+
+      links.forEach((link) => link.addEventListener('click', onClick))
+
+      cleanup = () => {
+        window.removeEventListener('scroll', schedule)
+        mainScroll?.removeEventListener('scroll', schedule)
+        links.forEach((link) => link.removeEventListener('click', onClick))
+        if (raf) cancelAnimationFrame(raf)
+      }
+    }
+
+    document.addEventListener('astro:page-load', bindToc)
+    bindToc()
   }
 </script>

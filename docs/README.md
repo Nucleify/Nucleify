@@ -19,14 +19,17 @@ pnpm --filter @nucleify/docs dev
 
 ## Monorepo packages documented
 
-- `web/` — Nuxt landing (Tryb A)
+- `web/` — Nuxt landing (canonical)
 - `admin/` — Nuxt admin
 - `docs/` — this Astro app
 - `compiler/` — portable UI compiler
 - `shared_modules/` — `nuc_*` feature modules
-- `web-next/` / `admin-next/` — Next.js shells (Tryb B)
+- `web-{next,solid,svelte}/` / `admin-{next,solid,svelte}/` — generated product shells
 
 ## URLs
 
+Production: [https://docs.nucleify.io](https://docs.nucleify.io)
+
 - `/` → `/en/docs/getting-started/introduction`
 - `/{lang}/docs/{category}/{slug}`
+- Sitemap: `public/sitemap.xml` · robots: `public/robots.txt`

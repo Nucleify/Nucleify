@@ -109,11 +109,11 @@ Kompilator dodaje drugą oś:
 
 | Warstwa | Lokalizacja | Powiązanie z frameworkiem |
 |---------|-------------|---------------------------|
-| Portable UI | `*.nuc.tsx` | Brak — emit Vue + React |
+| Portable UI | `*.nuc.tsx` | Brak — emit Vue + React + Solid + Svelte |
 | Logika domeny | `shared_modules/nuc_*/utils/` | Composables Vue + hooki `.react.ts` |
-| Powłoka app | `web/src/pages/` | Nuxt (Tryb A) lub Next (Tryb B, generowany) |
+| Powłoka app | `web/src/pages/` | Nuxt (kanoniczny) lub Next / Solid / Svelte (skonwertowany) |
 
-Trzymaj store, routery, kontenery i18n i wywołania API **poza** `*.nuc.tsx`. Komponenty portable dostają dane przez props i emitują eventy — slice domeny robi wiring w utils app lub modułu.
+Trzymaj store, routery, kontenery i18n i wywołania API **poza** `*.nuc.tsx`. Komponenty portable dostają dane przez props i emitują eventy — slice domeny łączy dane w utils aplikacji lub modułu.
 
 ---
 

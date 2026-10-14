@@ -1,8 +1,7 @@
-import { cpSync, existsSync, mkdirSync, rmSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, renameSync, rmSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-
-export const SCAFFOLD_FRAMEWORKS = ['vue', 'react', 'nuxt', 'next', 'solid'] as const
+export const SCAFFOLD_FRAMEWORKS = ['vue', 'react', 'nuxt', 'next', 'solid', 'svelte'] as const
 export type ScaffoldFramework = (typeof SCAFFOLD_FRAMEWORKS)[number]
 
 /** @deprecated use SCAFFOLD_FRAMEWORKS */
@@ -77,19 +76,29 @@ export function scaffoldProduct(opts: {
   const src = join(templatesRoot(), slug)
   if (!existsSync(src)) {
     throw new Error(
-      `missing product template: ${src} (tryb B slice may not support ${slug} yet)`,
+      `missing product template: ${src} (product convert may not support ${slug} yet)`,
     )
   }
   const dest = join(cwd, slug)
-  if (existsSync(dest) && force) {
-    rmSync(dest, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 })
-  }
   if (existsSync(dest) && !force) {
     return dest
+  }
+  // Keep installed deps across --force convert (template refresh only).
+  // Park beside `cwd` (same filesystem) — `os.tmpdir()` can be EXDEV vs the repo.
+  const nm = join(dest, 'node_modules')
+  let nmPark: string | null = null
+  if (existsSync(nm)) {
+    nmPark = join(cwd, `.nucleify-nm-${slug}-${process.pid}`)
+    rmSync(nmPark, { recursive: true, force: true })
+    renameSync(nm, nmPark)
   }
   rmSync(dest, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 })
   mkdirSync(dirname(dest), { recursive: true })
   cpSync(src, dest, { recursive: true })
+  if (nmPark && existsSync(nmPark)) {
+    rmSync(nm, { recursive: true, force: true })
+    renameSync(nmPark, nm)
+  }
   return dest
 }
 

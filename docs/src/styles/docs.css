@@ -93,6 +93,7 @@ a:hover {
   width: 2rem;
   height: 2rem;
   flex-shrink: 0;
+  overflow: visible;
 }
 
 .docs-brand__mark {
@@ -510,8 +511,10 @@ a:hover {
 }
 
 .docs-home__mark {
+  display: block;
   width: 2.75rem;
   height: 2.75rem;
+  overflow: visible;
   filter: drop-shadow(0 0 22px rgb(62 207 142 / 28%));
 }
 

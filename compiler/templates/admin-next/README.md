@@ -1,6 +1,6 @@
 # admin-next
 
-Product shell for **admin** on Next (`admin-next/`). Scaffolded by tryb B:
+Product shell for **admin** on Next (`admin-next/`). Scaffolded by product convert:
 
 ```bash
 make admin TARGET=next

@@ -67,7 +67,7 @@ export const runtimeConfig = {
 |---------|----------|------|
 | `SSR` | `true` | Server-side rendering |
 | `NITRO_PRESET` | `cloudflare` | Preset wdrożenia Nitro |
-| `PRERENDER_ROUTES` | `/home,/docs,…` | Trasy statyczne, przecinkami |
+| `PRERENDER_ROUTES` | `/home,/investor,/404` | Trasy statyczne, przecinkami (docs na docs.nucleify.io) |
 | `PRERENDER_CRAWL_LINKS` | `true` | Podążaj za linkami przy prerender |
 | `PRERENDER_IGNORE` | `/settings` | Trasy do pominięcia |
 | `PRERENDER_LOCALES` | `en,pl,vn` | Locale w prerender |
@@ -98,14 +98,14 @@ Przykładowe `.env` zawiera placeholdery Calendly i Google Calendar OAuth. Uzupe
 
 ---
 
-## Next.js / Tryb B
+## Shelle produktu (Next / Solid / Svelte)
 
 Wygenerowane shelle Next czytają zmienne Supabase w obu konwencjach nazewnictwa, gdzie to wspierane:
 
 - `NEXT_PUBLIC_SUPABASE_URL` lub `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY` (tylko serwer)
 
-Trzymaj jedno root `.env` — zarówno Nuxt, jak i ścieżki codegen Next rozwiązują je z root monorepo.
+Shelle produktu Solid i Svelte (`web-solid/`, `web-svelte/`, …) używają tych samych nazw `SUPABASE_*` z roota przez Vite `import.meta.env`. Trzymaj jedno root `.env` — Nuxt i wszystkie ścieżki codegen konwersji rozwiązują je z root monorepo.
 
 ---
 

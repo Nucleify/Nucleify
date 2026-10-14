@@ -1,9 +1,16 @@
 /**
- * Nucleify compiler IR v0.1 — frozen contract (Faza 1).
+ * Nucleify compiler IR — frozen contract.
  * Expressions / statements stay narrow: literal | ident | member | binary | call | object.
+ *
+ * **Versioning:** bump `IR_VERSION` on any breaking IR shape change, then migrate
+ * `compiler/tests/fixtures/ir/*.json`, schema literal, and parsers in the same PR.
+ * Additive optional fields may stay on the same minor until a breaking cut.
  */
 
-export type IrVersion = '0.1.0'
+/** Canonical IR version string — keep in sync with `irDocumentSchema` + fixtures. */
+export const IR_VERSION = '0.1.0' as const
+
+export type IrVersion = typeof IR_VERSION
 
 export type IrPropType = 'string' | 'number' | 'boolean' | 'unknown'
 

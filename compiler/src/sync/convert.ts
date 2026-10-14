@@ -4,13 +4,18 @@ import {
   mkdirSync,
   readFileSync,
   readdirSync,
+  renameSync,
+  rmSync,
   statSync,
   unlinkSync,
   writeFileSync,
 } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { dirname, join, relative, resolve } from 'node:path'
+import { execFileSync } from 'node:child_process'
 import { parse as parseSfc } from '@vue/compiler-sfc'
 import { convertVueSfcToReact } from './vue-sfc-to-tsx'
+import { convertVueSfcToSvelte } from './vue-sfc-to-svelte'
 import { reactTsxToSolidBody } from './react-to-solid'
 import { emitBaseName } from './paths'
 import {
@@ -23,7 +28,7 @@ import {
 } from './scaffold'
 import { toRepoRelative } from './discover'
 
-/** Products with a full Nuxt→{next|solid} convert pipeline (tryb B). */
+/** Products with a full Nuxt→{next|solid|svelte} convert pipeline. */
 export const CONVERT_PRODUCTS = ['web', 'admin'] as const
 /** @deprecated use CONVERT_PRODUCTS */
 export const NEXT_CONVERT_PRODUCTS = CONVERT_PRODUCTS
@@ -83,6 +88,28 @@ const SOLID_CONVERT: Record<ConvertProductId, ConvertConfig> = {
     title: 'Nucleify Admin',
     description: 'Nucleify admin (Solid host + Solid emit from Vue sources)',
     entryModule: '@/views/index',
+    shellBg: '#0f1419',
+    shellFg: '#e7ebe8',
+    extraDeps: {},
+  },
+}
+
+const SVELTE_CONVERT: Record<ConvertProductId, ConvertConfig> = {
+  web: {
+    packageName: '@nucleify/svelte-web',
+    title: 'Nucleify',
+    description: 'Nucleify web (Svelte host + Svelte emit from Vue sources)',
+    entryModule: '@/views/home/index.svelte',
+    redirectRoot: '/en/home',
+    shellBg: '#070908',
+    shellFg: '#e7ebe8',
+    extraDeps: { animejs: '^4.5.0', 'nui-rainbow': '^0.1.0' },
+  },
+  admin: {
+    packageName: '@nucleify/svelte-admin',
+    title: 'Nucleify Admin',
+    description: 'Nucleify admin (Svelte host + Svelte emit from Vue sources)',
+    entryModule: '@/views/index.svelte',
     shellBg: '#0f1419',
     shellFg: '#e7ebe8',
     extraDeps: {},
@@ -169,7 +196,7 @@ function copyDirFiltered(src: string, dest: string, skipExt?: Set<string>): void
 function rewriteMonorepoImports(root: string): number {
   let n = 0
   for (const file of walkFiles(root)) {
-    if (!/\.(scss|sass|css|ts|tsx|js|jsx)$/.test(file)) continue
+    if (!/\.(scss|sass|css|ts|tsx|js|jsx|svelte)$/.test(file)) continue
     const before = readFileSync(file, 'utf8')
     const after = before
       .replace(
@@ -208,6 +235,12 @@ function rewriteVueImportPaths(source: string): string {
   return source
     .replace(/from\s+(['"])([^'"]+)\.vue\1/g, (_m, q, path) => `from ${q}${path}${q}`)
     .replace(/\bimport\(\s*(['"])([^'"]+)\.vue\1\s*\)/g, (_m, q, path) => `import(${q}${path}${q})`)
+}
+
+function rewriteVueImportPathsToSvelte(source: string): string {
+  return source
+    .replace(/from\s+(['"])([^'"]+)\.vue\1/g, (_m, q, path) => `from ${q}${path}.svelte${q}`)
+    .replace(/\bimport\(\s*(['"])([^'"]+)\.vue\1\s*\)/g, (_m, q, path) => `import(${q}${path}.svelte${q})`)
 }
 
 function convertVueFileToTsx(vuePath: string, destTsxPath: string): string {
@@ -270,6 +303,34 @@ function convertVueFileToSolid(vuePath: string, destTsxPath: string): string {
   }
 
   writeText(destTsxPath, body)
+  return name
+}
+
+function convertVueFileToSvelte(vuePath: string, destSveltePath: string): string {
+  const source = readFileSync(vuePath, 'utf8')
+  const base = emitBaseName(vuePath)
+
+  const converted = convertVueSfcToSvelte(source, vuePath)
+  const body = rewriteVueImportPathsToSvelte(converted.body)
+  const name = converted.name
+  const { descriptor } = parseVueSfc(source, vuePath)
+  const stylesCss = loadSiblingCssFromVue(vuePath, descriptor.scriptSetup?.content)
+
+  if (stylesCss) {
+    writeText(join(dirname(destSveltePath), `${base}.css`), `${stylesCss.trim()}\n`)
+  }
+
+  const vueDir = dirname(vuePath)
+  const destDir = dirname(destSveltePath)
+  if (existsSync(vueDir)) {
+    for (const fileName of readdirSync(vueDir)) {
+      if (fileName.startsWith('_') && fileName.endsWith('.scss')) {
+        writeText(join(destDir, fileName), readFileSync(join(vueDir, fileName), 'utf8'))
+      }
+    }
+  }
+
+  writeText(destSveltePath, body)
   return name
 }
 
@@ -343,6 +404,34 @@ function emitVueTreeToSolid(
     try {
       convertVueFileToSolid(vuePath, destTsxPath)
       converted.push(`${rel} → ${relative(destSrc, destTsxPath)}`)
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err)
+      failures.push(`${rel}: ${msg}`)
+    }
+  }
+
+  return { converted, failures, skipped }
+}
+
+function emitVueTreeToSvelte(
+  sourceSrc: string,
+  destSrc: string,
+  product: ConvertProductId,
+): { converted: string[]; failures: string[]; skipped: string[] } {
+  const converted: string[] = []
+  const failures: string[] = []
+  const skipped: string[] = []
+
+  for (const vuePath of walkFiles(sourceSrc).filter((f) => f.endsWith('.vue'))) {
+    const rel = relative(sourceSrc, vuePath)
+    if (shouldSkipVueEmit(product, rel)) {
+      skipped.push(rel)
+      continue
+    }
+    const destSveltePath = join(destSrc, viewsRelFromPagesRel(rel.replace(/\.vue$/, '.svelte')))
+    try {
+      convertVueFileToSvelte(vuePath, destSveltePath)
+      converted.push(`${rel} → ${relative(destSrc, destSveltePath)}`)
     } catch (err) {
       const msg = err instanceof Error ? err.message : String(err)
       failures.push(`${rel}: ${msg}`)
@@ -491,7 +580,7 @@ export function NucleifyUiProvider({ children }: { children: React.ReactNode }) 
 
   return (
     <>
-      <nui-toast position="top-right" />
+      <nui-toast position="top-right"></nui-toast>
       {children}
     </>
   )
@@ -509,7 +598,7 @@ export function NucleifyUiProvider({ children }: { children: React.ReactNode }) 
 
   return (
     <>
-      <nui-toast position="top-right" />
+      <nui-toast position="top-right"></nui-toast>
       {children}
     </>
   )
@@ -775,7 +864,7 @@ export function NucleifyUiProvider(props: { children: JSX.Element }) {
   return (
     <>
       {props.children}
-      <nui-toast position="top-right" />
+      <nui-toast position="top-right"></nui-toast>
     </>
   )
 }
@@ -790,7 +879,7 @@ export function NucleifyUiProvider(props: { children: JSX.Element }) {
   return (
     <>
       {props.children}
-      <nui-toast position="top-right" />
+      <nui-toast position="top-right"></nui-toast>
     </>
   )
 }
@@ -931,15 +1020,386 @@ export default defineConfig({
   )
 }
 
+function writeSvelteShell(dest: string, product: ConvertProductId, cfg: ConvertConfig): void {
+  const src = join(dest, 'src')
+
+  writeText(
+    join(src, 'lib/vue-reactivity-shim.ts'),
+    `/** Minimal \`reactive()\` for migrated Vue setup scripts (Svelte product convert). */
+export function useReactive<T extends Record<string, unknown>>(initial: T): T {
+  const box = { value: { ...initial } as T }
+  return new Proxy({} as T, {
+    get(_target, prop: string | symbol) {
+      return box.value[prop as keyof T]
+    },
+    set(_target, prop: string | symbol, value) {
+      box.value = { ...box.value, [prop]: value } as T
+      return true
+    },
+    deleteProperty(_target, prop: string | symbol) {
+      const next = { ...box.value }
+      delete next[prop as keyof T]
+      box.value = next
+      return true
+    },
+  })
+}
+
+/** @deprecated use useReactive — kept for import compatibility */
+export const reactive = useReactive
+`,
+  )
+
+  writeText(
+    join(src, 'lib/svelte-navigation.ts'),
+    `/** History-API helpers for Vite SPA paths like \`/en/home\` (not hash). */
+
+function normalizePath(href: string): string {
+  const raw = href.startsWith('#') ? href.slice(1) : href
+  const path = raw.startsWith('/') ? raw : \`/\${raw}\`
+  return path.length > 1 && path.endsWith('/') ? path.slice(0, -1) : path || '/'
+}
+
+/** Notify \`svelte-path-router\` after pushState/replaceState. */
+function notifyPathChange(): void {
+  window.dispatchEvent(new PopStateEvent('popstate'))
+}
+
+export function navigate(href: string, opts?: { replace?: boolean }): void {
+  const path = normalizePath(href)
+  if (opts?.replace) history.replaceState(null, '', path)
+  else history.pushState(null, '', path)
+  notifyPathChange()
+}
+
+export function useParams(): { lang?: string } {
+  const path = typeof window !== 'undefined' ? window.location.pathname : ''
+  const m = String(path).match(/^\\/?([a-z]{2})(?:\\/|$)/i)
+  return { lang: m?.[1] }
+}
+
+export function usePathname(): string {
+  return typeof window !== 'undefined' ? normalizePath(window.location.pathname) : '/'
+}
+
+export function useRouter() {
+  return {
+    push: (href: string) => navigate(href),
+    replace: (href: string) => navigate(href, { replace: true }),
+  }
+}
+`,
+  )
+
+  writeText(
+    join(src, 'lib/svelte-path-router.svelte'),
+    `<script lang="ts">
+  import type { Component } from 'svelte'
+  import { onMount } from 'svelte'
+
+  type Routes = Record<string, Component<Record<string, never>>>
+
+  let { routes }: { routes: Routes } = $props()
+
+  function normalize(pathname: string): string {
+    const p = pathname || '/'
+    return p.length > 1 && p.endsWith('/') ? p.slice(0, -1) : p
+  }
+
+  function readPath(): string {
+    if (typeof window === 'undefined') return '/'
+    // Migrate leftover hash SPA URLs: /#/en/home → /en/home
+    const hash = window.location.hash
+    if (hash.startsWith('#/')) {
+      const next = normalize(hash.slice(1))
+      history.replaceState(null, '', next)
+      return next
+    }
+    return normalize(window.location.pathname)
+  }
+
+  let path = $state(readPath())
+
+  let Page = $derived.by(() => {
+    const exact = routes[path]
+    if (exact) return exact
+    return routes['*'] ?? null
+  })
+
+  onMount(() => {
+    path = readPath()
+    const onPop = () => {
+      path = normalize(window.location.pathname)
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  })
+</script>
+
+{#if Page}
+  <Page />
+{/if}
+`,
+  )
+
+  writeText(
+    join(src, 'lib/svelte-lazy.ts'),
+    `import type { Component } from 'svelte'
+
+/** React \`lazy(() => import(...))\` stand-in — resolves to the module default. */
+export function lazy<T extends Component<any>>(
+  loader: () => Promise<{ default: T } | T>,
+): () => Promise<T> {
+  return async () => {
+    const mod = await loader()
+    return (mod as { default?: T }).default ?? (mod as T)
+  }
+}
+`,
+  )
+
+  writeText(
+    join(src, 'lib/svelte-react-shims.ts'),
+    `let idSeq = 0
+
+/** React \`useId()\` stand-in for SVG filter / gradient ids in product convert. */
+export function useId(): string {
+  idSeq += 1
+  return \`n\${idSeq}-\${Math.random().toString(36).slice(2, 9)}\`
+}
+`,
+  )
+
+  writeText(
+    join(src, 'lib/nucleify-ui-provider.svelte'),
+    product === 'web'
+      ? `<script lang="ts">
+  import type { Snippet } from 'svelte'
+  import { onMount } from 'svelte'
+  import { setupNui } from 'portable/nui'
+
+  let { children }: { children?: Snippet } = $props()
+
+  onMount(() => {
+    setupNui({ palette: 'next', mode: 'dark' })
+    void import('nui-rainbow').then(({ applyRainbow }) => {
+      applyRainbow(document.body, {
+        cycle: 'linear',
+        duration: 30,
+        reducedMotion: 'ignore',
+      })
+    })
+  })
+</script>
+
+{@render children?.()}
+<nui-toast position="top-right"></nui-toast>
+`
+      : `<script lang="ts">
+  import type { Snippet } from 'svelte'
+  import { onMount } from 'svelte'
+  import { setupNui } from 'portable/nui'
+
+  let { children }: { children?: Snippet } = $props()
+
+  onMount(() => {
+    setupNui({ palette: 'next', mode: 'dark' })
+  })
+</script>
+
+{@render children?.()}
+<nui-toast position="top-right"></nui-toast>
+`,
+  )
+
+  if (product === 'web') {
+    writeText(
+      join(src, 'lib/locales.ts'),
+      `export const WEB_LOCALES = ${JSON.stringify(WEB_LOCALES)} as const
+export type WebLocale = (typeof WEB_LOCALES)[number]
+export const WEB_LOCALE_SET = new Set<string>(WEB_LOCALES)
+
+export function isWebLocale(value: string): value is WebLocale {
+  return WEB_LOCALE_SET.has(value)
+}
+`,
+    )
+  }
+
+  writeText(
+    join(src, 'App.svelte'),
+    product === 'web'
+      ? `<script lang="ts">
+  import { onMount } from 'svelte'
+  import PathRouter from '@/lib/svelte-path-router.svelte'
+  import { navigate } from '@/lib/svelte-navigation'
+  import NucleifyUiProvider from '@/lib/nucleify-ui-provider.svelte'
+  import Home from '${cfg.entryModule}'
+  import Investor from '@/views/investor/index.svelte'
+
+  const routes = {
+    '/en/home': Home,
+    '/pl/home': Home,
+    '/vn/home': Home,
+    '/en/investor': Investor,
+    '/pl/investor': Investor,
+    '/vn/investor': Investor,
+    '*': Home,
+  }
+
+  onMount(() => {
+    const path = window.location.pathname.replace(/\\/$/, '') || '/'
+    if (path === '/' || path === '') {
+      navigate('${cfg.redirectRoot}', { replace: true })
+    }
+  })
+</script>
+
+<NucleifyUiProvider>
+  <PathRouter {routes} />
+</NucleifyUiProvider>
+`
+      : `<script lang="ts">
+  import PathRouter from '@/lib/svelte-path-router.svelte'
+  import NucleifyUiProvider from '@/lib/nucleify-ui-provider.svelte'
+  import Page from '${cfg.entryModule}'
+
+  const routes = {
+    '/': Page,
+    '*': Page,
+  }
+</script>
+
+<NucleifyUiProvider>
+  <PathRouter {routes} />
+</NucleifyUiProvider>
+`,
+  )
+
+  writeText(
+    join(src, 'main.ts'),
+    `import { mount } from 'svelte'
+import App from './App.svelte'
+import 'portable/nui/fonts.css'
+${product === 'web' ? "import 'nui-rainbow/styles.css'\n" : ''}import '@/styles/migrated-product.scss'
+
+document.body.style.margin = '0'
+document.body.style.background = '${cfg.shellBg}'
+document.body.style.color = '${cfg.shellFg}'
+document.body.classList.add('nuc-svelte', 'p-dark', 'nui-rainbow')
+
+mount(App, { target: document.getElementById('app')! })
+`,
+  )
+
+  writeText(
+    join(dest, 'vite.config.ts'),
+    `import { defineConfig } from 'vite'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
+import { existsSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const here = dirname(fileURLToPath(import.meta.url))
+const monorepo = join(here, '..')
+const assetsScss = join(here, 'src/assets/_index.scss').replace(/\\\\/g, '/')
+
+export default defineConfig({
+  plugins: [svelte()],
+  // Dual-stack: avoid IPv6-only [::1] bind that breaks 127.0.0.1 browsers.
+  // appType spa → history fallback so /en/home serves index.html in dev/preview.
+  appType: 'spa',
+  server: { host: true },
+  resolve: {
+    alias: {
+      '@': join(here, 'src'),
+      modules: join(monorepo, 'shared_modules'),
+      portable: join(monorepo, 'portable'),
+      nucleify: join(here, 'src/nucleify.ts'),
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        silenceDeprecations: ['import'],
+        includePaths: [
+          join(monorepo, 'shared_modules'),
+          join(monorepo, 'portable'),
+          join(here, 'src'),
+        ],
+        additionalData: (content: string, fp: string) => {
+          const p = fp.replace(/\\\\/g, '/')
+          if (p.includes('/node_modules/') || p.endsWith('.css')) return content
+          if (p.includes('/assets/_index.scss')) return content
+          if (!existsSync(assetsScss)) return content
+          return \`@import \${JSON.stringify(assetsScss)};\\n\${content}\`
+        },
+      },
+    },
+  },
+})
+`,
+  )
+
+  writeText(
+    join(dest, 'svelte.config.js'),
+    `import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+
+/** @type {import('@sveltejs/vite-plugin-svelte').SvelteConfig} */
+export default {
+  preprocess: vitePreprocess(),
+  onwarn(warning, handler) {
+    // Lit \`nui-*\` CEs are interactive; Svelte still treats them as static hosts.
+    if (warning.code?.startsWith('a11y_') && /nui-/.test(warning.message ?? '')) return
+    handler(warning)
+  },
+}
+`,
+  )
+}
+
 /**
- * Tryb B: scaffold Next or Solid product shell and emit TSX from Nuxt Vue SFCs.
+ * Shallow-clone a git URL into a temp dir (same filesystem as `cwd` when possible).
+ * Caller should delete when done if `cleanup` is true.
+ */
+export function cloneConvertSource(gitUrl: string, cwd: string): { sourceRoot: string; cleanup: () => void } {
+  const park = join(cwd, `.nucleify-convert-git-${process.pid}`)
+  rmSync(park, { recursive: true, force: true })
+  mkdirSync(park, { recursive: true })
+  try {
+    execFileSync('git', ['clone', '--depth', '1', gitUrl, park], {
+      stdio: 'pipe',
+      cwd: tmpdir(),
+    })
+  } catch (err) {
+    rmSync(park, { recursive: true, force: true })
+    throw new Error(
+      `convert: git clone failed (${gitUrl}): ${err instanceof Error ? err.message : String(err)}`,
+    )
+  }
+  return {
+    sourceRoot: park,
+    cleanup: () => rmSync(park, { recursive: true, force: true }),
+  }
+}
+
+/**
+ * Product convert: scaffold Next / Solid / Svelte product shell and emit from Nuxt Vue SFCs.
  * Output must contain **no** `.vue` files.
+ *
+ * External sources: pass `sourceRoot` (folder with `src/`) and optional `outName`
+ * (default `{product}-{framework}`). Run from the Nucleify monorepo so
+ * `../shared_modules` / `../portable` path aliases resolve.
  */
 export function convertProduct(opts: {
   product: ProductId
   framework: ScaffoldFramework
   cwd?: string
   force?: boolean
+  /** Override Nuxt product root (default `{cwd}/{product}`). */
+  sourceRoot?: string
+  /** Output directory name under cwd (default `{product}-{framework}`). */
+  outName?: string
 }): { dest: string; copied: string[] } {
   const cwd = resolve(opts.cwd ?? process.cwd())
   const { product, framework, force } = opts
@@ -947,35 +1407,74 @@ export function convertProduct(opts: {
   if (!PRODUCT_IDS.includes(product)) {
     throw new Error(`convert: unknown product "${product}"`)
   }
+  if (product === 'docs') {
+    throw new Error(
+      'convert: docs (Astro) → next|solid|svelte is not implemented yet — use web|admin',
+    )
+  }
   if (!SCAFFOLD_FRAMEWORKS.includes(framework)) {
     throw new Error(`convert: unknown framework "${framework}"`)
   }
   const isNext = framework === 'next'
   const isSolid = framework === 'solid'
-  if ((!isNext && !isSolid) || !CONVERT_PRODUCTS.includes(product as ConvertProductId)) {
+  const isSvelte = framework === 'svelte'
+  if (
+    (!isNext && !isSolid && !isSvelte) ||
+    !CONVERT_PRODUCTS.includes(product as ConvertProductId)
+  ) {
     throw new Error(
-      `convert: only ${CONVERT_PRODUCTS.join('|')}→next|solid is implemented (got ${product}→${framework})`,
+      `convert: only ${CONVERT_PRODUCTS.join('|')}→next|solid|svelte is implemented (got ${product}→${framework})`,
     )
   }
 
-  const cfg = isSolid
-    ? SOLID_CONVERT[product as ConvertProductId]
-    : NEXT_CONVERT[product as ConvertProductId]
-  const sourceRoot = join(cwd, product)
+  const cfg = isSvelte
+    ? SVELTE_CONVERT[product as ConvertProductId]
+    : isSolid
+      ? SOLID_CONVERT[product as ConvertProductId]
+      : NEXT_CONVERT[product as ConvertProductId]
+  const sourceRoot = resolve(opts.sourceRoot ?? join(cwd, product))
   if (!existsSync(sourceRoot)) {
-    throw new Error(`convert: missing source product at ${product}/`)
+    throw new Error(`convert: missing source product at ${sourceRoot}`)
+  }
+  if (!existsSync(join(sourceRoot, 'src'))) {
+    throw new Error(`convert: source needs a src/ directory (${sourceRoot})`)
   }
 
-  const dest = productShellPath(product, framework, cwd)
+  const destName = (opts.outName ?? `${product}-${framework}`).replace(/[/\\]/g, '')
+  if (!destName || destName === '.' || destName === '..') {
+    throw new Error('convert: invalid --out name')
+  }
+  const templateDest = productShellPath(product, framework, cwd)
+  const dest = join(cwd, destName)
   const copied: string[] = []
 
   scaffoldProduct({
     product,
     framework,
     cwd,
-    force: Boolean(force || !existsSync(join(dest, 'package.json'))),
+    force: Boolean(force || !existsSync(join(templateDest, 'package.json'))),
   })
 
+  if (dest !== templateDest) {
+    const nm = join(dest, 'node_modules')
+    let nmPark: string | null = null
+    if (existsSync(dest) && force) {
+      if (existsSync(nm)) {
+        nmPark = join(cwd, `.nucleify-nm-${destName}-${process.pid}`)
+        rmSync(nmPark, { recursive: true, force: true })
+        renameSync(nm, nmPark)
+      }
+      rmSync(dest, { recursive: true, force: true })
+    }
+    if (!existsSync(dest)) {
+      cpSync(templateDest, dest, { recursive: true })
+      copied.push(`scaffolded template → ${destName}/`)
+    }
+    if (nmPark && existsSync(nmPark)) {
+      rmSync(join(dest, 'node_modules'), { recursive: true, force: true })
+      renameSync(nmPark, join(dest, 'node_modules'))
+    }
+  }
   const sourceSrc = join(sourceRoot, 'src')
   const destSrc = join(dest, 'src')
 
@@ -987,11 +1486,14 @@ export function convertProduct(opts: {
     copied.push('src/assets/_index.scss (minimal stub)')
   }
 
-  const tree = isSolid
-    ? emitVueTreeToSolid(sourceSrc, destSrc, product as ConvertProductId)
-    : emitVueTreeToReact(sourceSrc, destSrc, product as ConvertProductId)
+  const tree = isSvelte
+    ? emitVueTreeToSvelte(sourceSrc, destSrc, product as ConvertProductId)
+    : isSolid
+      ? emitVueTreeToSolid(sourceSrc, destSrc, product as ConvertProductId)
+      : emitVueTreeToReact(sourceSrc, destSrc, product as ConvertProductId)
   const { converted, failures, skipped } = tree
-  copied.push(...converted.map((c) => `${isSolid ? 'vue→solid' : 'vue→tsx'} ${c}`))
+  const label = isSvelte ? 'vue→svelte' : isSolid ? 'vue→solid' : 'vue→tsx'
+  copied.push(...converted.map((c) => `${label} ${c}`))
   if (skipped.length) {
     copied.push(`skipped ${skipped.length} Nuxt route shell(s): ${skipped.join(', ')}`)
   }
@@ -1016,18 +1518,21 @@ export function convertProduct(opts: {
   const scssCount = buildScssBundle(dest)
   copied.push(`bundled ${scssCount} scss partial(s) into migrated-product.scss`)
 
+  const hostLabel = isSvelte ? 'Svelte' : isSolid ? 'Solid' : 'Next'
   writeText(
     join(destSrc, 'nucleify.ts'),
-    `/** ${isSolid ? 'Solid' : 'Next'} host barrel — landing imports only (no full nuc_api type surface). */
+    `/** ${hostLabel} host barrel — landing imports only (no full nuc_api type surface). */
 export { flashToast, closeToast, setToastInstance } from 'modules/nuc_api/utils/use_toast'
 `,
   )
-  copied.push(`src/nucleify.ts (${isSolid ? 'solid' : 'next'}-safe barrel)`)
+  copied.push(`src/nucleify.ts (${hostLabel.toLowerCase()}-safe barrel)`)
 
   const bumped = rewriteMonorepoImports(dest)
   if (bumped) copied.push(`rewrote monorepo imports in ${bumped} file(s)`)
 
-  if (isSolid) {
+  if (isSvelte) {
+    writeSvelteShell(dest, product as ConvertProductId, cfg)
+  } else if (isSolid) {
     writeSolidShell(dest, product as ConvertProductId, cfg)
   } else {
     writeNextShell(dest, product as ConvertProductId, cfg)
@@ -1077,19 +1582,27 @@ export { flashToast, closeToast, setToastInstance } from 'modules/nuc_api/utils/
     copied.push('.config/.env.example → .env.example')
   }
 
+  const emitKind = isSvelte ? 'Svelte SFC' : isSolid ? 'Solid TSX' : 'React TSX'
+  const hostDesc = isSvelte
+    ? 'Vite + Svelte 5 + history path router (/en/…)'
+    : isSolid
+      ? 'Vite + Solid + @solidjs/router'
+      : 'Next App Router with native React'
+  const sourceLabel = relative(cwd, sourceRoot).replace(/\\/g, '/') || sourceRoot
   writeText(
     join(dest, 'MIGRATION.md'),
     [
-      `# ${product}-${framework} — Vue SFC → ${isSolid ? 'Solid' : 'React'} TSX`,
+      `# ${destName} — Vue SFC → ${emitKind}`,
       '',
-      `\`pnpm compiler -- convert ${product} --target=${framework}\``,
-      '',
-      `- **Source of truth:** top-level \`${product}/\` (Nuxt/Vue)`,
-      `- **Host:** ${isSolid ? 'Vite + Solid + @solidjs/router' : 'Next App Router with native React'}`,
+      `- **Shell profile:** \`${product}\` → \`${framework}\``,
+      `- **Source:** \`${sourceLabel}\` (Nuxt/Vue \`src/\`)`,
+      `- **Host:** ${hostDesc}`,
+      `- **Monorepo:** run convert from Nucleify root so \`modules\` / \`portable\` aliases resolve`,
       '',
       '```bash',
-      `make ${product} TARGET=${framework}`,
-      `pnpm compiler -- convert ${product} --target=${framework} --force`,
+      opts.sourceRoot
+        ? `pnpm compiler -- convert ${product} --target=${framework} --path=${sourceLabel} --out=${destName} --force`
+        : `pnpm compiler -- convert ${product} --target=${framework} --force`,
       '```',
       '',
       'Copied / converted:',

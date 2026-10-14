@@ -2,7 +2,7 @@
 
 Overrides let you replace any file in `web/`, `admin/`, `docs/`, or `shared_modules/` without editing the original. At build time, Nuxt resolves the override path instead of the source path.
 
-Overrides are **Nuxt-only**. They do not apply to the compiler import cycle, Astro in production builds outside Nuxt, or generated `web-next/` unless separately configured.
+Overrides are **Nuxt-only**. They do not apply to the compiler import cycle, Astro in production builds outside Nuxt, or generated shells (`web-next/`, `web-solid/`, `web-svelte/`, …) unless separately configured.
 
 ---
 
@@ -92,12 +92,12 @@ When behavior differs from what you expect in source:
 | Concern | Override? | Alternative |
 |---------|-----------|-------------|
 | Portable component emit | No | Edit `*.nuc.tsx`, run `pnpm compiler:build` |
-| Import emit back to authoring | No | `pnpm compiler -- import --from=vue\|react` |
-| Next.js generated shell | No* | Edit `web/`, convert with `make web TARGET=next` |
+| Import emit back to authoring | No | `pnpm compiler -- import --from=vue\|react\|solid\|svelte` |
+| Generated product shell (Next / Solid / Svelte) | No* | Edit `web/`, convert with `make web TARGET=next\|solid\|svelte` |
 | Environment-specific config | No | Root `.env`, `web/.config/nuxt/runtime.ts` |
 | Database schema | No | Module migrations in `shared_modules/nuc_*/supabase/` |
 
-\*Unless you add separate override tooling for Next — not part of the default Nuxt override scanner.
+\*Unless you add separate override tooling for converted shells — not part of the default Nuxt override scanner.
 
 ---
 

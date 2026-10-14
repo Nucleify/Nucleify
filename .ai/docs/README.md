@@ -11,5 +11,6 @@ Notes written by workflow skills after **DO** (what changed, why, how to verify)
 | Note | Topic |
 |------|--------|
 | `investor-page.md` | Investor pitch + Next convert parity |
-| `compiler-status.md` | Compiler DoD / `web-next` paths |
+| `compiler-status.md` | Compiler emit/convert status / shell paths |
+| `docs-origin.md` | Public docs host `docs.nucleify.io` + app redirects |
 | `nui-workflow-skills.md` | Pipeline skill paths |

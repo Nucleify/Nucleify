@@ -1,6 +1,6 @@
 # web-next
 
-Product shell for **web** on Next (`web-next/`). Scaffolded by tryb B:
+Product shell for **web** on Next (`web-next/`). Scaffolded by product convert:
 
 ```bash
 make web TARGET=next

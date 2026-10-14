@@ -46,7 +46,7 @@ Przeglądarka  →  strona Nuxt (web/src/pages/)
               →  Supabase (PostgreSQL, Auth, Edge Functions)
 ```
 
-Smoke-test bramki:
+Szybki test bramki:
 
 ```bash
 curl http://localhost:3000/api
@@ -84,13 +84,15 @@ pnpm compiler:build
 pnpm compiler:check   # exit 1, jeśli emit jest brudny względem autorstwa
 ```
 
-Skonwertuj cały produkt web na Next (Tryb B):
+Skonwertuj cały produkt web na Next, Solid lub Svelte:
 
 ```bash
-make web TARGET=next
+make web TARGET=next    # → web-next/
+make web TARGET=solid   # → web-solid/
+make web TARGET=svelte  # → web-svelte/
 ```
 
-To uruchamia `pnpm compiler -- convert web --target=next`, buduje, instaluje i startuje `web-next/`.
+To uruchamia `pnpm compiler -- convert web --target=…`, buduje, instaluje i startuje wygenerowany shell. Demo emit portable Svelte: `make svelte`. Zewnętrzne aplikacje Nuxt-like: `--path` / `--git` + `--out` z roota monorepo (zob. [Kompilator](/pl/docs/core-concepts/compiler)).
 
 ---
 
@@ -144,7 +146,7 @@ Zobacz [Nadpisywanie](/pl/docs/core-concepts/overriding).
 
 ### Autorsuj komponent przenośny
 
-Utwórz `Foo.nuc.tsx` obok miejsca użycia. Uruchom `pnpm compiler:build`. Commituj `.nuc.tsx` i wygenerowane siblingi. Nie edytuj ręcznie `.vue`/`.tsx` jako źródła prawdy — użyj `pnpm compiler -- import`, jeśli edytowałeś emit.
+Utwórz `Foo.nuc.tsx` obok miejsca użycia. Uruchom `pnpm compiler:build`. Commituj `.nuc.tsx` i wygenerowane sąsiednie pliki (`.vue`, React/Solid `.tsx`, Svelte `.svelte`, `.css`). Nie edytuj ręcznie emitu jako źródła prawdy — użyj `pnpm compiler -- import --from=vue|react|solid|svelte`, jeśli edytowałeś emit.
 
 ---
 

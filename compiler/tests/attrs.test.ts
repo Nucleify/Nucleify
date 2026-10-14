@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { emitReact } from '../src/emit/react'
 import { emitSolid } from '../src/emit/solid'
+import { emitSvelte } from '../src/emit/svelte'
 import { emitVue } from '../src/emit/vue'
 import type { IrDocument } from '../src/ir/types'
 import { parseTsxToIr } from '../src/parse/tsx'
@@ -119,6 +120,11 @@ export default component({
     expect(solid).toContain('disabled={false}')
     expect(solid).toContain('aria-hidden="true"')
     expect(solid).toContain('style={{ gap: "0.5rem" }}')
+
+    const svelte = emitSvelte(doc)
+    expect(svelte).toContain('disabled={false}')
+    expect(svelte).toContain('aria-hidden="true"')
+    expect(svelte).toContain('style="gap: 0.5rem"')
   })
 
   it('folds static CSS style strings into React style objects', () => {

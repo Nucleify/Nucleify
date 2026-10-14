@@ -2,7 +2,7 @@
 
 Nucleify używa [Supabase](https://supabase.com) do PostgreSQL, Auth, Storage i Edge Functions. Schemat bazy i seedery są **własnością modułów funkcjonalnych** w `shared_modules/nuc_*/supabase/` i scalane na poziomie monorepo pod `supabase/`.
 
-Dostęp serwerowy z Nuxt idzie przez bramkę API Nitro — nie przez bezpośrednie wywołania service-role z przeglądarki. To samo dotyczy wygenerowanych shelli (Next, Solid): współdzielą tę samą instancję Supabase i ten sam model modułów.
+Dostęp serwerowy z Nuxt idzie przez bramkę API Nitro — nie przez bezpośrednie wywołania service-role z przeglądarki. To samo dotyczy wygenerowanych shelli (Next, Solid, Svelte): współdzielą tę samą instancję Supabase i ten sam model modułów.
 
 ---
 
@@ -74,10 +74,10 @@ SQL modułów scala się do projektu Supabase monorepo skryptami bash w `.config
 | Skrypt | Komenda |
 |--------|---------|
 | Merge całego SQL modułów | `pnpm supabase:merge-sql` |
-| Apply migracji (local) | `pnpm supabase:migrations:apply:local` |
-| Apply migracji (linked remote) | `pnpm supabase:migrations:apply:linked` |
-| Apply factories (local) | `pnpm supabase:factories:apply:local` |
-| Apply seeders (local) | `pnpm supabase:seeders:apply:local` |
+| Zastosuj migracje (local) | `pnpm supabase:migrations:apply:local` |
+| Zastosuj migracje (linked remote) | `pnpm supabase:migrations:apply:linked` |
+| Zastosuj factories (local) | `pnpm supabase:factories:apply:local` |
+| Zastosuj seeders (local) | `pnpm supabase:seeders:apply:local` |
 | Pełny setup local | `pnpm supabase:setup:local` |
 | Pełny setup linked | `pnpm supabase:setup:linked` |
 

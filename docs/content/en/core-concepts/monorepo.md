@@ -1,6 +1,6 @@
 # Monorepo Layout
 
-Nucleify is a pnpm workspace built for **migration across frameworks**. Every package has a clear boundary, shared tooling lives in `.config/`, and product apps (`web/`, `admin/`, `docs/`) consume feature logic from `shared_modules/` — never the other way around. Generated shells (Next, Solid, …) are output, not a second source of truth.
+Nucleify is a pnpm workspace built for **migration across frameworks**. Every package has a clear boundary, shared tooling lives in `.config/`, and product apps (`web/`, `admin/`, `docs/`) consume feature logic from `shared_modules/` — never the other way around. Generated shells (Next, Solid, Svelte, …) are output, not a second source of truth.
 
 ---
 
@@ -8,7 +8,7 @@ Nucleify is a pnpm workspace built for **migration across frameworks**. Every pa
 
 ```txt
 nucleify/
-├── web/                    # @nucleify/web — Nuxt 4 landing (Tryb A canonical)
+├── web/                    # @nucleify/web — Nuxt 4 landing (canonical)
 ├── admin/                  # @nucleify/admin — Nuxt 4 admin panel
 ├── docs/                   # @nucleify/docs — Astro 5 documentation
 ├── compiler/               # @nucleify/compiler — IR portable UI compiler
@@ -28,7 +28,7 @@ nucleify/
 
 ### `web/` — `@nucleify/web`
 
-The canonical Nuxt 4 landing application (Tryb A).
+The canonical Nuxt 4 landing application.
 
 ```txt
 web/
@@ -82,7 +82,7 @@ docs/
     └── lib/                # doc paths, markdown renderer, nav
 ```
 
-Categories are defined in `docs/src/lib/constants/docs.ts`. Routes follow `/en/docs/{category}/{slug}`.
+Categories are defined in `docs/src/lib/constants/docs.ts`. Production host: [docs.nucleify.io](https://docs.nucleify.io). Routes follow `/en/docs/{category}/{slug}`.
 
 ---
 
@@ -95,7 +95,7 @@ compiler/
 ├── src/
 │   ├── parse/              # *.nuc.tsx → AST
 │   ├── ir/                 # intermediate representation
-│   ├── emit/               # IR → .vue / .tsx / .css
+│   ├── emit/               # IR → .vue / React .tsx / Solid .tsx / Svelte .svelte / .css
 │   └── sync/               # import back from emit, convert product shells
 ├── runtime/                # #nuc-compiler/runtime (component, state, handler, …)
 ├── templates/              # scaffold sources for gitignored demos
@@ -104,7 +104,7 @@ compiler/
 └── PORTABLE.md             # authoring rules for *.nuc.tsx
 ```
 
-Gitignored emit demos: `{vue,react,nuxt,next}/demo/` (via `make vue`, `make next`, etc.).
+Gitignored emit demos: `{vue,react,nuxt,next,solid,svelte}/demo/` (via `make vue`, `make next`, `make solid`, `make svelte`, etc.).
 
 ---
 
@@ -192,15 +192,16 @@ web / admin / docs
 | `make web` | Nuxt product dev (`TARGET=nuxt` default) |
 | `make web TARGET=next` | convert + Next product shell (`web-next/`) |
 | `make web TARGET=solid` | convert + Solid product shell (`web-solid/`) |
-| `make admin` / `make admin TARGET=next\|solid` | admin equivalents |
+| `make web TARGET=svelte` | convert + Svelte product shell (`web-svelte/`) |
+| `make admin` / `make admin TARGET=next\|solid\|svelte` | admin equivalents |
 | `make docs` | Astro docs dev |
 | `make compiler` | check + build |
-| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` | gitignored portable demos (`{framework}/demo`) |
+| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` / `make svelte` | gitignored portable demos (`{framework}/demo`) |
 
 ---
 
 ## Related docs
 
 - [Modules](/en/docs/core-concepts/modules) — module internal structure
-- [Compiler](/en/docs/core-concepts/compiler) — Tryb A vs Tryb B
+- [Compiler](/en/docs/core-concepts/compiler) — canonical Nuxt vs converted shells
 - [Web & Admin](/en/docs/configuration/web) — Nuxt config details

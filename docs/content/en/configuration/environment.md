@@ -67,7 +67,7 @@ export const runtimeConfig = {
 |----------|---------|-------------|
 | `SSR` | `true` | Server-side rendering |
 | `NITRO_PRESET` | `cloudflare` | Deployment preset for Nitro |
-| `PRERENDER_ROUTES` | `/home,/docs,…` | Comma-separated static routes |
+| `PRERENDER_ROUTES` | `/home,/investor,/404` | Comma-separated static routes (docs live on docs.nucleify.io) |
 | `PRERENDER_CRAWL_LINKS` | `true` | Follow links during prerender |
 | `PRERENDER_IGNORE` | `/settings` | Routes to skip |
 | `PRERENDER_LOCALES` | `en,pl,vn` | Locales included in prerender |
@@ -98,14 +98,14 @@ The example `.env` includes placeholders for Calendly and Google Calendar OAuth.
 
 ---
 
-## Next.js / Tryb B
+## Product shells (Next / Solid / Svelte)
 
 Generated Next shells read Supabase vars with both naming conventions where supported:
 
 - `NEXT_PUBLIC_SUPABASE_URL` or `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY` (server only)
 
-Keep one root `.env` — both Nuxt and Next codegen paths resolve from the monorepo root.
+Solid and Svelte product shells (`web-solid/`, `web-svelte/`, …) use the same root `SUPABASE_*` names via Vite `import.meta.env`. Keep one root `.env` — Nuxt and all product-convert codegen paths resolve from the monorepo root.
 
 ---
 

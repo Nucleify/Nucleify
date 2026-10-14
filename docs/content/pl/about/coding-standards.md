@@ -32,7 +32,7 @@ Kanoniczne ścieżki produktu: `web/src/` (nie root `modules/` ani `nuxt/` jako 
 | `docs/` | `make docs` lub `pnpm docs` |
 | `compiler/` | `make compiler` |
 
-Bootstrap: `make run`. Shell produktu: `make web`. (`make nuxt` / `make next` / … to demo emit portable, nie aplikacja produktu.)
+Uruchomienie: `make run`. Powłoka produktu: `make web`. Demo emit portable: `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` (to nie aplikacja produktu).
 
 ---
 
@@ -133,7 +133,9 @@ Autoruj w `*.nuc.tsx` zgodnie z `compiler/PORTABLE.md`:
 - Bez store, routerów ani Supabase w plikach przenośnych
 - Na zewnątrz tylko props + events
 - Po zmianach: `pnpm compiler:build`; commituj autorstwo + emit
-- Import edycji: `pnpm compiler -- import --from=vue|react`
+- Import edycji: `pnpm compiler -- import --from=vue|react|solid|svelte`
+- Nie re-eksportuj `*.nuc.tsx` z publicznych barreli (`index.ts`, `modules.ts`, …)
+- Łamiące zmiany IR podnoszą `IR_VERSION` i migrują fixture’y w tym samym PR
 
 ---
 

@@ -16,18 +16,21 @@ Ludzie i projekty, które czynią Nucleify możliwym.
 
 ## Kontrybutorzy
 
-Dziękujemy wszystkim, którzy przyczynili się do Nucleify!
+Dziękujemy wszystkim, którzy przyczynili się do Nucleify! (Tylko osoby — boty automatyzacji pomijamy.)
 
 | Imię i nazwisko | GitHub |
 |-----------------|--------|
-| Kamil Błoski | [@kbloski](https://github.com/kbloski) |
+| Katarzyna Śmierzchalska | [@KatarzynaS97](https://github.com/KatarzynaS97) |
+| Kamil D. | [@K4mD4m](https://github.com/K4mD4m) |
+| Marcin Fuks | [@J0jeQ](https://github.com/J0jeQ) |
 | Jakub Malik | [@JakubMalik](https://github.com/JakubMalik) |
 | Kacper Bujak | [@kbujak09](https://github.com/kbujak09) |
-| Kamil D. | [@K4mD4m](https://github.com/K4mD4m) |
-| – | [@pysifu](https://github.com/pysifu) |
-| Katarzyna Śmierzchalska | [@KatarzynaS97](https://github.com/KatarzynaS97) |
-| Marcin Fuks | [@J0jeQ](https://github.com/J0jeQ) |
 | – | [@karol199393](https://github.com/karol199393) |
+| – | [@domizalewska](https://github.com/domizalewska) |
+| Kamil Błoski | [@kbloski](https://github.com/kbloski) |
+| – | [@Kacper658](https://github.com/Kacper658) |
+| Mateusz Szymański | [@dezmerek](https://github.com/dezmerek) |
+| – | [@pysifoo](https://github.com/pysifoo) |
 
 Wszyscy kontrybutorzy są wymienieni na stronie [GitHub Contributors](https://github.com/Nucleify/Nucleify/graphs/contributors).
 
@@ -48,10 +51,12 @@ Nucleify stoi na projektach open source:
 
 | Projekt | Opis |
 |---------|------|
-| [Vue 3](https://vuejs.org) | Kanoniczny framework UI (Tryb A) |
-| [Nuxt 4](https://nuxt.com) | Full-stack framework Vue |
-| [React 19](https://react.dev) | Cel UI kompilatora (Tryb B) |
-| [Next.js 15](https://nextjs.org) | Full-stack framework React |
+| [Vue 3](https://vuejs.org) | Kanoniczny framework UI (źródło Nuxt/Vue) |
+| [Nuxt 4](https://nuxt.com) | Framework full-stack Vue |
+| [React 19](https://react.dev) | Cel UI kompilatora (convert / emit) |
+| [Next.js 15](https://nextjs.org) | Framework full-stack React |
+| [Solid](https://www.solidjs.com) | Cel convert / emit (sygnały) |
+| [Svelte](https://svelte.dev) | Cel convert / emit (runy Svelte 5) |
 | [nucleify-ui](https://www.npmjs.com/package/nucleify-ui) | Biblioteka web components Lit (`nui-*`) |
 | [Lit](https://lit.dev) | Web components dla prymitywów design systemu |
 
@@ -75,13 +80,13 @@ Nucleify stoi na projektach open source:
 |------|--------|
 | Feature-Sliced Design | [feature-sliced.design](https://feature-sliced.design) — układ modułów domena-first |
 | Atomic Design | [Brad Frost](https://atomicdesign.bradfrost.com) — hierarchia SCSS w `nuc_colors` |
-| Portable UI / IR | `@nucleify/compiler` — `*.nuc.tsx` → Vue + React (+ Solid) |
+| Portable UI / IR | `@nucleify/compiler` — `*.nuc.tsx` → Vue + React + Solid + Svelte |
 
 ---
 
 ## Specjalne podziękowania
 
-- Społecznościom Supabase, Vue, React, Nuxt i Astro
+- Społecznościom Supabase, Vue, React, Nuxt, Astro, Svelte i Solid
 - Wszystkim, którzy zgłaszali błędy lub sugerowali funkcje
 - Maintainerom open source wszędzie
 

@@ -1,6 +1,6 @@
 # Web & Admin
 
-`web/` and `admin/` are Nuxt 4 applications (Tryb A). Configuration is split across `web/.config/nuxt/` (and the equivalent in `admin/`) and composed by a thin `nuxt.config.ts` at each package root.
+`web/` and `admin/` are Nuxt 4 applications (canonical source). Configuration is split across `web/.config/nuxt/` (and the equivalent in `admin/`) and composed by a thin `nuxt.config.ts` at each package root.
 
 ---
 
@@ -152,17 +152,25 @@ Prerender locale prefixes are controlled by `PRERENDER_LOCALES` in `.env`.
 
 ---
 
-## Tryb B — migrate shells
+## Migrate product shells
 
-Generated apps live at `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`:
+Generated apps live at `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/` (or a custom `--out` name):
 
 ```bash
 make web TARGET=next      # convert + start Next dev
 make web TARGET=solid     # convert + start Solid dev
-make admin TARGET=next    # admin equivalent
+make web TARGET=svelte    # convert + start Svelte dev
+make admin TARGET=next    # admin → next|solid|svelte likewise
+make admin TARGET=solid
+make admin TARGET=svelte
+
+# External Nuxt-like tree (from monorepo root):
+pnpm compiler -- convert web --target=next --path=/path/to/app --out=my-next --force
+pnpm compiler -- convert web --target=solid --path=/path/to/app --out=my-solid --force
+pnpm compiler -- convert web --target=svelte --path=/path/to/app --out=my-svelte --force
 ```
 
-Develop in Nuxt (`web/`, `admin/`), convert when you need another framework deployment. See [Compiler](/en/docs/core-concepts/compiler).
+Develop in Nuxt (`web/`, `admin/`), convert when you need another framework deployment. Astro `docs/` convert is not available yet. See [Compiler](/en/docs/core-concepts/compiler).
 
 ---
 

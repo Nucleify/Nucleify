@@ -42,13 +42,15 @@ Like a cell nucleus, Nucleify coordinates the product. Each exported `nuc_*` mod
 
 ### 1. Any stack → any other
 
-Portable `*.nuc.tsx` components emit to Vue, React, and Solid. Product shells convert with a single command:
+Portable `*.nuc.tsx` components emit to Vue, React, Solid, and Svelte. Product shells (`web` / `admin`) convert with a single command — including an external Nuxt-like folder or git URL via `--path` / `--git` (see [Compiler](/en/docs/core-concepts/compiler)):
 
 ```bash
 make web TARGET=next
 make web TARGET=solid
+make web TARGET=svelte
 make admin TARGET=next
 make admin TARGET=solid
+make admin TARGET=svelte
 ```
 
 Framework choice becomes a **build target**, not an architectural fork.
@@ -75,14 +77,14 @@ Portable authoring has explicit allowed/forbidden lists (`compiler/PORTABLE.md`)
 
 ---
 
-## Dual-mode philosophy
+## Canonical vs generated shells
 
-| Day-to-day (Tryb A) | Migrate / emit (Tryb B) |
+| Day-to-day (Nuxt) | Migrate / emit (convert) |
 |---------------------|-------------------------|
-| Edit Nuxt + Vue in `web/` | Next (`web-next/`), Solid (`web-solid/`), portable demos |
+| Edit Nuxt + Vue in `web/` | Next (`web-next/`), Solid (`web-solid/`), Svelte (`web-svelte/`), portable demos |
 | Source of truth | Generated mirrors when a client or team needs another shell |
 
-Tryb B is not a second hand-maintained codebase. Fix the nucleus, re-run convert. Product messaging always lists **all seven shells**, even when daily editing stays on Nuxt.
+Converted shells are not a second hand-maintained codebase. Fix the nucleus, re-run convert. Product messaging always lists **all seven shells**, even when daily editing stays on Nuxt.
 
 ---
 

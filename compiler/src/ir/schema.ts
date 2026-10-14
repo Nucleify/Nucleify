@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import type { IrDocument } from './types'
+import { IR_VERSION, type IrDocument } from './types'
 
 const irBinaryOpSchema = z.enum([
   '==',
@@ -183,7 +183,7 @@ const irNodeSchema: z.ZodType<import('./types').IrNode> = z.lazy(() =>
 )
 
 export const irDocumentSchema: z.ZodType<IrDocument> = z.object({
-  irVersion: z.literal('0.1.0'),
+  irVersion: z.literal(IR_VERSION),
   name: z.string().min(1),
   portable: z.literal(true),
   props: z.array(irPropSchema),

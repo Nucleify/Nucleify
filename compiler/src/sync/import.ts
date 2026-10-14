@@ -2,6 +2,8 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { emitNucTsx } from '../emit/nuc'
 import { parseReactToIr } from '../parse/react'
+import { parseSolidToIr } from '../parse/solid'
+import { parseSvelteToIr } from '../parse/svelte'
 import { parseTsxToIr } from '../parse/tsx'
 import { parseVueToIr } from '../parse/vue'
 import { biomeFormat } from './biome-format'
@@ -11,12 +13,15 @@ import {
   emitBaseName,
   inferComponentName,
   isGeneratedEmit,
+  isSolidEmitSource,
   nucPathFromEmit,
   resolveImportPath,
   siblingPath,
 } from './paths'
 import { writeOutputs } from './write-outputs'
 import type { IrDocument } from '../ir/types'
+
+export type ImportFrom = 'vue' | 'react' | 'solid' | 'svelte'
 
 function readCssFile(cssPath: string): string | undefined {
   if (!existsSync(cssPath)) return undefined
@@ -27,12 +32,15 @@ function readCssFile(cssPath: string): string | undefined {
 function loadCssIntoIr(componentPath: string, ir: IrDocument): IrDocument {
   if (ir.styles?.css) return ir
   const base = emitBaseName(
-    componentPath.replace(/\.vue$/, '.nuc.tsx').replace(/\.tsx$/, '.nuc.tsx'),
+    componentPath
+      .replace(/\.vue$/, '.nuc.tsx')
+      .replace(/\.tsx$/, '.nuc.tsx')
+      .replace(/\.svelte$/, '.nuc.tsx'),
   )
   const candidates = [
     join(dirname(componentPath), `${base}.css`),
     join(dirname(componentPath), '../css', `${base}.css`),
-    siblingPath(componentPath.replace(/\.(vue|tsx)$/, '.nuc.tsx'), 'css'),
+    siblingPath(componentPath.replace(/\.(vue|tsx|svelte)$/, '.nuc.tsx'), 'css'),
   ]
   for (const cssPath of candidates) {
     const css = readCssFile(cssPath)
@@ -44,43 +52,88 @@ function loadCssIntoIr(componentPath: string, ir: IrDocument): IrDocument {
 function fileDirty(absPath: string, kind: EmitKind): boolean {
   if (!existsSync(absPath)) return false
   const contents = readFileSync(absPath, 'utf8')
-  if (!isGeneratedEmit(contents, kind === 'css' ? 'css' : kind)) return false
+  const emitKind =
+    kind === 'css' ? 'css' : kind === 'solid' ? 'solid' : (kind as 'vue' | 'react' | 'svelte')
+  if (!isGeneratedEmit(contents, emitKind)) {
+    return false
+  }
   return isDirty(contents, kind)
+}
+
+function parseEmitToIr(
+  from: ImportFrom,
+  source: string,
+  emitPath: string,
+  name: string,
+): IrDocument {
+  if (from === 'vue') return parseVueToIr(source, emitPath, { name })
+  if (from === 'react') return parseReactToIr(source, emitPath, { name })
+  if (from === 'solid') return parseSolidToIr(source, emitPath, { name })
+  return parseSvelteToIr(source, emitPath, { name })
 }
 
 export function inferImportFrom(
   cwd: string,
   inputPath: string,
   fromArg?: string,
-): 'vue' | 'react' {
-  if (fromArg === 'vue' || fromArg === 'react') return fromArg
+): ImportFrom {
+  if (
+    fromArg === 'vue' ||
+    fromArg === 'react' ||
+    fromArg === 'solid' ||
+    fromArg === 'svelte'
+  ) {
+    return fromArg
+  }
 
   const { componentPath, kind } = resolveImportPath(cwd, inputPath)
   const nucPath = nucPathFromEmit(componentPath)
   const vuePath = siblingPath(nucPath, 'vue')
   const reactPath = siblingPath(nucPath, 'react')
+  const sveltePath = siblingPath(nucPath, 'svelte')
   const cssPath = siblingPath(nucPath, 'css')
 
   const vueDirty = fileDirty(vuePath, 'vue')
-  const reactDirty = fileDirty(reactPath, 'react')
+  const reactDirty =
+    existsSync(reactPath) &&
+    !isSolidEmitSource(readFileSync(reactPath, 'utf8')) &&
+    fileDirty(reactPath, 'react')
+  const svelteDirty = fileDirty(sveltePath, 'svelte')
   const cssDirty = fileDirty(cssPath, 'css')
 
-  if (vueDirty && reactDirty) {
+  // Solid is demo-path (or explicit .tsx with solid headers), not a product sibling.
+  const solidDirty =
+    kind === 'solid' && existsSync(componentPath) && fileDirty(componentPath, 'solid')
+
+  const dirtyFrames = [
+    vueDirty && 'vue',
+    reactDirty && 'react',
+    solidDirty && 'solid',
+    svelteDirty && 'svelte',
+  ].filter(Boolean) as ImportFrom[]
+
+  if (dirtyFrames.length > 1) {
     throw new Error(
-      'import: both .vue and .tsx are dirty — pass --from=vue or --from=react',
+      `import: multiple emits dirty (${dirtyFrames.join(', ')}) — pass --from=vue|react|solid|svelte`,
     )
   }
-  if (vueDirty) return 'vue'
-  if (reactDirty) return 'react'
-  if (cssDirty) return kind === 'react' ? 'react' : 'vue'
+  if (dirtyFrames.length === 1) return dirtyFrames[0]!
+  if (cssDirty) {
+    if (kind === 'react') return 'react'
+    if (kind === 'solid') return 'solid'
+    if (kind === 'svelte') return 'svelte'
+    return 'vue'
+  }
   if (kind === 'react') return 'react'
+  if (kind === 'solid') return 'solid'
+  if (kind === 'svelte') return 'svelte'
   return 'vue'
 }
 
 function assertImportable(
   cwd: string,
   componentPath: string,
-  kind: 'vue' | 'react',
+  kind: ImportFrom,
   force: boolean,
 ): string {
   const abs = resolve(componentPath)
@@ -106,24 +159,26 @@ function assertImportable(
 export type RunImportOpts = {
   cwd: string
   path: string
-  from?: 'vue' | 'react'
+  from?: ImportFrom
   force?: boolean
 }
 
 /**
- * Import dirty Vue/React emit → IR → *.nuc.tsx + refreshed siblings.
+ * Import dirty Vue/React/Solid/Svelte emit → IR → *.nuc.tsx + refreshed siblings.
  */
 export async function runImport(
   opts: RunImportOpts,
-): Promise<{ nucPath: string; written: string[]; from: 'vue' | 'react' }> {
+): Promise<{ nucPath: string; written: string[]; from: ImportFrom }> {
   const cwd = resolve(opts.cwd)
   const from = inferImportFrom(cwd, opts.path, opts.from)
   const { componentPath } = resolveImportPath(cwd, opts.path)
 
-  // Prefer the emit matching --from when path was .css
   const nucPathGuess = nucPathFromEmit(componentPath)
+  // Solid has no product sibling next to *.nuc.tsx — import the resolved .tsx path.
   const preferred =
-    from === 'vue' ? siblingPath(nucPathGuess, 'vue') : siblingPath(nucPathGuess, 'react')
+    from === 'vue' || from === 'react' || from === 'svelte'
+      ? siblingPath(nucPathGuess, from)
+      : componentPath
   const emitPath = existsSync(preferred) ? preferred : componentPath
 
   const nucPath = assertImportable(cwd, emitPath, from, Boolean(opts.force))
@@ -138,10 +193,7 @@ export async function runImport(
     }
   }
 
-  let ir =
-    from === 'vue'
-      ? parseVueToIr(source, emitPath, { name })
-      : parseReactToIr(source, emitPath, { name })
+  let ir = parseEmitToIr(from, source, emitPath, name)
   ir = loadCssIntoIr(emitPath, ir)
 
   let nucBody = emitNucTsx(ir)

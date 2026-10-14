@@ -27,19 +27,25 @@ Coverage story for marketing and docs: **Vue · React · Nuxt · Next · Astro �
 | Command | What it is | Default |
 |---------|------------|---------|
 | `make web` | Landing product shell | **Nuxt** (`TARGET=nuxt`) |
-| `make web TARGET=next` | Landing on Next (tryb B) | `web-next/` |
-| `make web TARGET=solid` | Landing on Solid (tryb B) | `web-solid/` |
+| `make web TARGET=next` | Landing on Next | `web-next/` |
+| `make web TARGET=solid` | Landing on Solid | `web-solid/` |
+| `make web TARGET=svelte` | Landing on Svelte | `web-svelte/` |
 | `make admin` | Admin product shell | **Nuxt** |
-| `make admin TARGET=next` | Admin on Next (tryb B) | `admin-next/` |
+| `make admin TARGET=next` | Admin on Next | `admin-next/` |
+| `make admin TARGET=solid` | Admin on Solid | `admin-solid/` |
+| `make admin TARGET=svelte` | Admin on Svelte | `admin-svelte/` |
 | `make docs` | Docs product shell | **Astro** |
-| `make nuxt` / `next` / `vue` / `react` / `solid` | Throwaway emit demos | `{framework}/demo` (gitignored) |
+| `make nuxt` / `next` / `vue` / `react` / `solid` / `svelte` | Throwaway emit demos | `{framework}/demo` (gitignored) |
 
-**Tryb B:** `convert` emits each Nuxt `.vue` to React `.tsx` (IR pipeline). Output under
-`{product}-next/` has **no `.vue` files** — native Next App Router only.
+**Product convert:** `convert` turns Nuxt Vue SFCs into Next (React), Solid, or Svelte product trees. Output under `{product}-{framework}/` has **no source `.vue` files**.
 
 ```bash
-make web TARGET=next     # → web-next/
-make admin TARGET=next   # → admin-next/
+make web TARGET=next      # → web-next/
+make web TARGET=solid     # → web-solid/
+make web TARGET=svelte    # → web-svelte/
+make admin TARGET=next    # → admin-next/
+make admin TARGET=solid   # → admin-solid/
+make admin TARGET=svelte  # → admin-svelte/
 ```
 
 Product shells import `portable/nui` for `--nui-*` tokens and Lit registration — they do not
@@ -48,7 +54,7 @@ duplicate palettes.
 ## Emit demos
 
 ```bash
-make nuxt | next | vue | react | solid
+make nuxt | next | vue | react | solid | svelte
 pnpm compiler:build
 ```
 
@@ -59,6 +65,7 @@ pnpm compiler:build
 | Nuxt | `nuxt/demo/components/` |
 | Next | `next/demo/src/components/` |
 | Solid | `solid/demo/src/components/` |
+| Svelte | `svelte/demo/src/lib/components/` |
 
-Templates: `compiler/templates/{vue,react,nuxt,next,solid}/{demo,…}`.
+Templates: `compiler/templates/{vue,react,nuxt,next,solid,svelte}/{demo,…}`.
 Compiler test fixtures: `compiler/tests/fixtures/{source,ir,emit}/`.

@@ -2,7 +2,7 @@
 
 Nadpisania pozwalają zastąpić dowolny plik w `web/`, `admin/`, `docs/` lub `shared_modules/` bez edycji oryginału. Przy buildzie Nuxt rozwiązuje ścieżkę override zamiast źródła.
 
-Nadpisania są **tylko dla Nuxt**. Nie dotyczą cyklu import kompilatora, produkcyjnych buildów Astro poza Nuxt ani generowanych shelli (`web-next/`, `web-solid/`, …) — chyba że skonfigurujesz to osobno.
+Nadpisania są **tylko dla Nuxt**. Nie dotyczą cyklu import kompilatora, produkcyjnych buildów Astro poza Nuxt ani generowanych shelli (`web-next/`, `web-solid/`, `web-svelte/`, …) — chyba że skonfigurujesz to osobno.
 
 ---
 
@@ -73,7 +73,7 @@ Oryginał:  docs/src/layouts/DocsLayout.astro
 Override:  overrides/docs/src/layouts/DocsLayout.astro
 ```
 
-Uwaga: rozwiązywanie override w Astro zależy od setupu build docs — zweryfikuj w dev po dodaniu pliku.
+Uwaga: rozwiązywanie override w Astro zależy od konfiguracji builda docs — zweryfikuj w dev po dodaniu pliku.
 
 ---
 
@@ -92,12 +92,12 @@ Gdy zachowanie różni się od tego, co widzisz w źródle:
 | Potrzeba | Override? | Alternatywa |
 |----------|-----------|-------------|
 | Emit komponentu portable | Nie | Edytuj `*.nuc.tsx`, uruchom `pnpm compiler:build` |
-| Import emit z powrotem do authoring | Nie | `pnpm compiler -- import --from=vue\|react` |
-| Generowana powłoka Next.js | Nie* | Edytuj `web/`, konwertuj przez `make web TARGET=next` |
+| Import emit z powrotem do źródła autorstwa | Nie | `pnpm compiler -- import --from=vue\|react\|solid\|svelte` |
+| Generowana powłoka (Next / Solid / Svelte) | Nie* | Edytuj `web/`, konwertuj przez `make web TARGET=next\|solid\|svelte` |
 | Konfiguracja per środowisko | Nie | Root `.env`, `web/.config/nuxt/runtime.ts` |
 | Schemat bazy | Nie | Migracje modułów w `shared_modules/nuc_*/supabase/` |
 
-\*Chyba że dodasz osobne narzędzie override dla Next — poza domyślnym skanerem Nuxt.
+\*Chyba że dodasz osobne narzędzie override dla wygenerowanych shelli — poza domyślnym skanerem Nuxt.
 
 ---
 
@@ -106,7 +106,7 @@ Gdy zachowanie różni się od tego, co widzisz w źródle:
 1. **Mało nadpisań** — wiele override utrudnia upgrade
 2. **Dokumentuj dlaczego** — komentarz na górze pliku override z powodem forka
 3. **Preferuj moduły** — jeśli wiele app potrzebuje zmiany, rozszerz `shared_modules/`
-4. **Sync upstream** — przy merge upstream Nucleify diffuj override z oryginałami
+4. **Synchronizuj z upstream** — przy merge upstream Nucleify diffuj override z oryginałami
 5. **Bez sekretów** — override to pliki źródłowe; klucze w `.env`
 
 ---
