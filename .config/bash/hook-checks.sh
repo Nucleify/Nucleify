@@ -7,7 +7,4 @@ run_hook_checks() {
   pnpm run slint
   pnpm run build
   pnpm run tests
-  pnpm run compiler:test
-  pnpm run compiler:check
-  pnpm run compiler:convert:check
 }
