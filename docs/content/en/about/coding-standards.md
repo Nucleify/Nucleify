@@ -32,7 +32,7 @@ Canonical product paths: `web/src/` (not root `modules/` or `nuxt/` as srcDir). 
 | `docs/` | `make docs` or `pnpm docs` |
 | `compiler/` | `make compiler` |
 
-Bootstrap: `make run`. Product shell: `make web`. (`make nuxt` / `make next` / … are portable emit demos, not the product app.)
+Bootstrap: `make run`. Product shell: `make web`. Portable emit demos: `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` (not the product app).
 
 ---
 

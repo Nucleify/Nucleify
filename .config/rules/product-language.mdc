@@ -1,0 +1,50 @@
+---
+description: Ban planning jargon from product docs, READMEs, and code comments
+alwaysApply: true
+---
+
+# Product language (no planning artefacts)
+
+When writing **code comments**, **CLI/help strings**, **README**, **Astro docs** (`docs/content/`), **agent notes** (`.ai/docs/`), or other user/developer-facing text: use product vocabulary only.
+
+Plans and phase trackers belong only in `.ai/specs/` (or commit-rule BAD examples). Do **not** leak them into the product surface.
+
+## Never use
+
+| Ban | Why |
+|-----|-----|
+| `Tryb A` / `Tryb B` / `tryb A` / `tryb B` | Internal dual-mode plan labels |
+| `tor A` / `tor B` | Same idea in commit/plan slang |
+| `Faza 0`…`Faza 13` / `Faza W` / `DoD` as status labels | Compiler roadmap phases |
+| `option C`, “no Mitosis”, “formerly ww-workflow” | Decision-log / rename history |
+| “leftovers”, “slice”, “tracked separately”, “deferred” as roadmap voice | Agent/plan status phrasing |
+| Issue numbers as section titles (`## … (#694)`) unless the user asked for a changelog | Tracking noise |
+
+Polish docs may use ordinary words like **tryb pracy** (mode) or **tryb ciemny** (dark mode) — that is fine. Do not invent **Tryb A/B**.
+
+## Prefer instead
+
+| Instead of | Write |
+|------------|--------|
+| Tryb A | canonical Nuxt / day-to-day Nuxt (`web/`, `admin/`) |
+| Tryb B | product convert / generated shells (`web-next/`, `web-solid/`, `web-svelte/`, …) |
+| Faza / DoD chatter | concrete behaviour: emit, convert, import, CI matrix |
+| option C / Mitosis | custom IR / IR-first compiler |
+
+```text
+# ❌ BAD
+# Tryb B product shell (Faza 13 leftover)
+Scaffolded by tryb B:
+option C — custom IR, no Mitosis
+
+# ✅ GOOD
+# Generated Next/Solid/Svelte product shell (product convert)
+Scaffolded by product convert:
+IR-first portable UI compiler (custom IR)
+```
+
+## Scope notes
+
+- **Commits:** same ban — see `commits.mdc` (no `plan.md` / tor labels in messages).
+- **`.ai/specs/`:** planning language is allowed there only.
+- **Chat with the user:** may discuss plans; do not paste that jargon into repo files unless editing `.ai/specs/`.

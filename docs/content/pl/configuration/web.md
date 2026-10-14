@@ -1,6 +1,6 @@
 # Web & Admin
 
-`web/` i `admin/` to aplikacje Nuxt 4 (Tryb A). Konfiguracja jest rozdzielona między `web/.config/nuxt/` (i odpowiednik w `admin/`) i składana przez cienki `nuxt.config.ts` w root każdego pakietu.
+`web/` i `admin/` to aplikacje Nuxt 4 (kanoniczne źródło). Konfiguracja jest rozdzielona między `web/.config/nuxt/` (i odpowiednik w `admin/`) i składana przez cienki `nuxt.config.ts` w root każdego pakietu.
 
 ---
 
@@ -152,7 +152,7 @@ Prefiksy locale do prerenderowania kontroluje `PRERENDER_LOCALES` w `.env`.
 
 ---
 
-## Tryb B — migracja shelli
+## Migracja shelli produktu
 
 Wygenerowane aplikacje: `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/` (lub własna nazwa `--out`):
 
@@ -160,10 +160,13 @@ Wygenerowane aplikacje: `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`
 make web TARGET=next      # konwersja + start dev Next
 make web TARGET=solid     # konwersja + start dev Solid
 make web TARGET=svelte    # konwersja + start dev Svelte
-make admin TARGET=next    # odpowiednik admin
+make admin TARGET=next    # admin → next|solid|svelte analogicznie
+make admin TARGET=solid
+make admin TARGET=svelte
 
 # Zewnętrzne drzewo Nuxt-like (z roota monorepo):
 pnpm compiler -- convert web --target=next --path=/path/to/app --out=my-next --force
+pnpm compiler -- convert web --target=solid --path=/path/to/app --out=my-solid --force
 pnpm compiler -- convert web --target=svelte --path=/path/to/app --out=my-svelte --force
 ```
 

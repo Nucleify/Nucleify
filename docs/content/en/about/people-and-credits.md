@@ -16,18 +16,21 @@ The people and projects that make Nucleify possible.
 
 ## Contributors
 
-Thank you to everyone who has contributed to Nucleify!
+Thank you to everyone who has contributed to Nucleify! (Human contributors only — automation bots are omitted.)
 
 | Name | GitHub |
 |------|--------|
-| Kamil Błoski | [@kbloski](https://github.com/kbloski) |
+| Katarzyna Śmierzchalska | [@KatarzynaS97](https://github.com/KatarzynaS97) |
+| Kamil D. | [@K4mD4m](https://github.com/K4mD4m) |
+| Marcin Fuks | [@J0jeQ](https://github.com/J0jeQ) |
 | Jakub Malik | [@JakubMalik](https://github.com/JakubMalik) |
 | Kacper Bujak | [@kbujak09](https://github.com/kbujak09) |
-| Kamil D. | [@K4mD4m](https://github.com/K4mD4m) |
-| – | [@pysifu](https://github.com/pysifu) |
-| Katarzyna Śmierzchalska | [@KatarzynaS97](https://github.com/KatarzynaS97) |
-| Marcin Fuks | [@J0jeQ](https://github.com/J0jeQ) |
 | – | [@karol199393](https://github.com/karol199393) |
+| – | [@domizalewska](https://github.com/domizalewska) |
+| Kamil Błoski | [@kbloski](https://github.com/kbloski) |
+| – | [@Kacper658](https://github.com/Kacper658) |
+| Mateusz Szymański | [@dezmerek](https://github.com/dezmerek) |
+| – | [@pysifoo](https://github.com/pysifoo) |
 
 All contributors are listed on our [GitHub Contributors](https://github.com/Nucleify/Nucleify/graphs/contributors) page.
 
@@ -48,10 +51,12 @@ Nucleify is built on top of open source projects:
 
 | Project | Description |
 |---------|-------------|
-| [Vue 3](https://vuejs.org) | Canonical UI framework (Tryb A) |
+| [Vue 3](https://vuejs.org) | Canonical UI framework (Nuxt/Vue source) |
 | [Nuxt 4](https://nuxt.com) | Vue full-stack framework |
-| [React 19](https://react.dev) | Compiler-generated UI target (Tryb B) |
+| [React 19](https://react.dev) | Compiler-generated UI target (convert / emit) |
 | [Next.js 15](https://nextjs.org) | React full-stack framework |
+| [Solid](https://www.solidjs.com) | Convert / emit target (signals) |
+| [Svelte](https://svelte.dev) | Convert / emit target (Svelte 5 runes) |
 | [nucleify-ui](https://www.npmjs.com/package/nucleify-ui) | Lit web component library (`nui-*`) |
 | [Lit](https://lit.dev) | Web components for design system primitives |
 

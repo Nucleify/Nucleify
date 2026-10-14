@@ -8,7 +8,7 @@ Nucleify to workspace pnpm zbudowany pod **migrację między frameworkami**. Ka�
 
 ```txt
 nucleify/
-├── web/                    # @nucleify/web — landing Nuxt 4 (Tryb A, kanoniczny)
+├── web/                    # @nucleify/web — landing Nuxt 4 (kanoniczny)
 ├── admin/                  # @nucleify/admin — panel admin Nuxt 4
 ├── docs/                   # @nucleify/docs — dokumentacja Astro 5
 ├── compiler/               # @nucleify/compiler — przenośny kompilator UI IR
@@ -28,7 +28,7 @@ nucleify/
 
 ### `web/` — `@nucleify/web`
 
-Kanoniczna aplikacja landingowa Nuxt 4 (Tryb A).
+Kanoniczna aplikacja landingowa Nuxt 4.
 
 ```txt
 web/
@@ -203,5 +203,5 @@ web / admin / docs
 ## Powiązana dokumentacja
 
 - [Moduły](/pl/docs/core-concepts/modules) — wewnętrzna struktura modułu
-- [Kompilator](/pl/docs/core-concepts/compiler) — Tryb A vs Tryb B
+- [Kompilator](/pl/docs/core-concepts/compiler) — kanoniczny Nuxt vs konwersja produktu
 - [Web & Admin](/pl/docs/configuration/web) — szczegóły konfiguracji Nuxt

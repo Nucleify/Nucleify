@@ -32,4 +32,4 @@ import { setupNui } from 'portable/nui'
 setupNui({ palette: 'next', mode: 'dark' })
 ```
 
-Consumers: `web/`, `admin/`, `compiler/templates/*`, `convert` → `web-next/`.
+Consumers: `web/`, `admin/`, `compiler/templates/*`, `convert` → `web-next/` / `web-solid/` / `web-svelte/` (and `admin-*`).

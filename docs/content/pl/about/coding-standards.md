@@ -32,7 +32,7 @@ Kanoniczne ścieżki produktu: `web/src/` (nie root `modules/` ani `nuxt/` jako 
 | `docs/` | `make docs` lub `pnpm docs` |
 | `compiler/` | `make compiler` |
 
-Bootstrap: `make run`. Shell produktu: `make web`. (`make nuxt` / `make next` / … to demo emit portable, nie aplikacja produktu.)
+Uruchomienie: `make run`. Powłoka produktu: `make web`. Demo emit portable: `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` (to nie aplikacja produktu).
 
 ---
 

@@ -2,13 +2,13 @@
 
 Pakiet `@nucleify/compiler` to sposób Nucleify na migrację UI między shellami: przenośny kompilator oparty na IR, który zamienia `*.nuc.tsx` na Vue SFC, komponenty React, Solid i Svelte oraz współdzielony CSS — oraz może konwertować powłoki produktu Nuxt (`web/`, `admin/`) lub zewnętrzne drzewo Nuxt-like na Next.js, Solid lub Svelte.
 
-**Pokrycie:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next lub Vue/Nuxt to beachheady, nie granica.
+**Pokrycie:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next lub Vue/Nuxt to punkty startowe, nie granica.
 
 ---
 
 ## Dwa tryby pracy
 
-| Tryb | Co robi | Przykład |
+| Tryb pracy | Co robi | Przykład |
 |------|---------|----------|
 | **Emisja przenośna** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + Svelte `.svelte` + `.css` | `pnpm compiler:build` / `make solid` / `make svelte` |
 | **Konwersja produktu** | Aplikacja Nuxt (lub zewnętrzny folder/git) → Next.js, Solid lub Svelte | `pnpm compiler -- convert web --target=next` |
@@ -83,7 +83,7 @@ Pełne reguły: `compiler/PORTABLE.md`.
 
 ```bash
 pnpm compiler:build                              # emituj wszystkie *.nuc.tsx
-pnpm compiler:check                              # weryfikuj fingerprinty (exit 1 jeśli dirty)
+pnpm compiler:check                              # weryfikuj fingerprinty (exit 1 jeśli emisja nie jest zsynchronizowana)
 pnpm compiler:test                               # zestaw testów golden-file
 
 pnpm compiler -- import --from=vue path/Foo.vue  # importuj edycje emisji z powrotem do źródła
@@ -96,9 +96,9 @@ pnpm compiler -- convert web --target=solid      # konwersja produktu → web-so
 pnpm compiler -- convert web --target=svelte     # konwersja produktu → web-svelte/
 pnpm compiler -- convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
 pnpm compiler -- convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
-pnpm compiler -- scaffold solid                  # throwaway demo → solid/demo/
-pnpm compiler -- scaffold svelte                 # throwaway demo → svelte/demo/
-pnpm compiler -- scaffold next                   # throwaway demo → next/demo/
+pnpm compiler -- scaffold solid                  # tymczasowe demo → solid/demo/
+pnpm compiler -- scaffold svelte                 # tymczasowe demo → svelte/demo/
+pnpm compiler -- scaffold next                   # tymczasowe demo → next/demo/
 pnpm compiler -- build --app=solid               # emisja do solid/demo
 pnpm compiler -- build --app=svelte              # emisja do svelte/demo
 ```
@@ -114,20 +114,20 @@ Pre-commit już uruchamia `compiler:check` (i powiązane checki kompilatora) prz
 
 ---
 
-## Cykl A — autorstwo najpierw
+## Cykl: najpierw autorstwo
 
 1. Utwórz lub edytuj `Foo.nuc.tsx`
 2. Uruchom `pnpm compiler:build`
 3. Commituj źródło + wygenerowane sąsiednie pliki
 4. CI uruchamia `pnpm compiler:check`, aby upewnić się, że emisja jest aktualna
 
-## Cykl B — edycja emisji najpierw
+## Cykl: najpierw emisja
 
-1. Dopracuj wygenerowany `Foo.vue` lub `Foo.tsx` bezpośrednio
-2. Zaimportuj zmiany z powrotem: `pnpm compiler -- import --from=vue path/Foo.vue`
+1. Dopracuj wygenerowany `Foo.vue`, `Foo.tsx` lub `Foo.svelte` bezpośrednio
+2. Zaimportuj zmiany z powrotem: `pnpm compiler -- import --from=vue|react|solid|svelte path/Foo.…`
 3. Źródło prawdy wraca do `Foo.nuc.tsx`
 
-Jeśli oba `.vue` i `.tsx` są dirty, musisz podać `--from=`. Użyj `pnpm compiler -- build --force`, aby odrzucić edycje emisji.
+Jeśli więcej niż jeden sibling emisji jest niezsynchronizowany, musisz podać `--from=`. Użyj `pnpm compiler -- build --force`, aby odrzucić edycje emisji.
 
 ---
 
@@ -207,7 +207,7 @@ pnpm compiler:test
 pnpm compiler:check
 ```
 
-Smoke produktu (ręcznie): `make web`, `make vue` / `make solid` / `make svelte` dla demo emisji.
+Szybki test ręczny: `make web`, `make vue` / `make solid` / `make svelte` dla demo emisji.
 
 Zobacz [Vitest](/pl/docs/tests/vitest) po pełną konfigurację testów.
 

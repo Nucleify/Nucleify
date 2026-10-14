@@ -170,13 +170,13 @@ Skrypty scalają SQL modułów przez `.config/bash/merge-module-supabase-sql.sh`
 
 ## Warianty React
 
-Moduły wspierające Tryb B eksponują odpowiedniki `.react.ts`:
+Moduły wspierające konwersję produktu eksponują odpowiedniki `.react.ts`:
 
 - `index.react.ts` — barrel React
 - `utils/use_*.react.ts` — hooki React odzwierciedlające composables Vue
 - `types/interfaces.react.ts` — typy React gdy potrzebne
 
-Kompilator i convert produktu używają ich przy emisji powłok Next.
+Kompilator i convert produktu używają ich przy emisji powłok Next, Solid i Svelte.
 
 ---
 

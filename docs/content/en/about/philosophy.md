@@ -77,14 +77,14 @@ Portable authoring has explicit allowed/forbidden lists (`compiler/PORTABLE.md`)
 
 ---
 
-## Dual-mode philosophy
+## Canonical vs generated shells
 
-| Day-to-day (Tryb A) | Migrate / emit (Tryb B) |
+| Day-to-day (Nuxt) | Migrate / emit (convert) |
 |---------------------|-------------------------|
 | Edit Nuxt + Vue in `web/` | Next (`web-next/`), Solid (`web-solid/`), Svelte (`web-svelte/`), portable demos |
 | Source of truth | Generated mirrors when a client or team needs another shell |
 
-Tryb B is not a second hand-maintained codebase. Fix the nucleus, re-run convert. Product messaging always lists **all seven shells**, even when daily editing stays on Nuxt.
+Converted shells are not a second hand-maintained codebase. Fix the nucleus, re-run convert. Product messaging always lists **all seven shells**, even when daily editing stays on Nuxt.
 
 ---
 

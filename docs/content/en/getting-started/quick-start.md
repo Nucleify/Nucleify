@@ -84,7 +84,7 @@ pnpm compiler:build
 pnpm compiler:check   # exits 1 if emit is dirty vs authoring
 ```
 
-Convert the entire web product to Next, Solid, or Svelte (Tryb B):
+Convert the entire web product to Next, Solid, or Svelte:
 
 ```bash
 make web TARGET=next    # → web-next/

@@ -170,13 +170,13 @@ Scripts merge all module SQL via `.config/bash/merge-module-supabase-sql.sh`.
 
 ## React variants
 
-Modules that support Tryb B expose `.react.ts` siblings:
+Modules that support product convert expose `.react.ts` siblings:
 
 - `index.react.ts` — React barrel
 - `utils/use_*.react.ts` — React hooks mirroring Vue composables
 - `types/interfaces.react.ts` — React-specific types when needed
 
-The compiler and product convert use these when emitting Next shells.
+The compiler and product convert use these when emitting Next, Solid, and Svelte product shells.
 
 ---
 

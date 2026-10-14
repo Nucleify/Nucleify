@@ -74,10 +74,10 @@ SQL modułów scala się do projektu Supabase monorepo skryptami bash w `.config
 | Skrypt | Komenda |
 |--------|---------|
 | Merge całego SQL modułów | `pnpm supabase:merge-sql` |
-| Apply migracji (local) | `pnpm supabase:migrations:apply:local` |
-| Apply migracji (linked remote) | `pnpm supabase:migrations:apply:linked` |
-| Apply factories (local) | `pnpm supabase:factories:apply:local` |
-| Apply seeders (local) | `pnpm supabase:seeders:apply:local` |
+| Zastosuj migracje (local) | `pnpm supabase:migrations:apply:local` |
+| Zastosuj migracje (linked remote) | `pnpm supabase:migrations:apply:linked` |
+| Zastosuj factories (local) | `pnpm supabase:factories:apply:local` |
+| Zastosuj seeders (local) | `pnpm supabase:seeders:apply:local` |
 | Pełny setup local | `pnpm supabase:setup:local` |
 | Pełny setup linked | `pnpm supabase:setup:linked` |
 
