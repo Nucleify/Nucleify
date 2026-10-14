@@ -28,5 +28,8 @@ pnpm --filter @nucleify/docs dev
 
 ## URLs
 
+Production: [https://docs.nucleify.io](https://docs.nucleify.io)
+
 - `/` → `/en/docs/getting-started/introduction`
 - `/{lang}/docs/{category}/{slug}`
+- Sitemap: `public/sitemap.xml` · robots: `public/robots.txt`

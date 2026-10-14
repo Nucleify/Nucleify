@@ -82,7 +82,7 @@ docs/
     └── lib/                # doc paths, markdown renderer, nav
 ```
 
-Categories are defined in `docs/src/lib/constants/docs.ts`. Routes follow `/en/docs/{category}/{slug}`.
+Categories are defined in `docs/src/lib/constants/docs.ts`. Production host: [docs.nucleify.io](https://docs.nucleify.io). Routes follow `/en/docs/{category}/{slug}`.
 
 ---
 

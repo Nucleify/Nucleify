@@ -6,4 +6,5 @@ Astro `@nucleify/docs` `/` is a single centered panel: brand + pitch + CTAs, num
 - Docs article header logo links to `/`
 - Visual tokens aligned with web home: `#03050c`, Instrument Sans + JetBrains Mono
 - No browse-card grid — docs nav lives inside article pages
-- `/docs` and `/en/docs/...` routes unchanged
+- Public docs host: `https://docs.nucleify.io` (marketing app links + smashed-url redirects point there)
+- In-site routes stay `/{lang}/docs/...`

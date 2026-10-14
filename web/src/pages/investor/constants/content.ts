@@ -1,3 +1,5 @@
+import { docsPageHref } from '../../../utils/docs_origin'
+
 export type NucInvestorSectionId =
   | 'intro'
   | 'thesis'
@@ -315,7 +317,7 @@ export function investorHomeHref(lang: string): string {
 }
 
 export function investorDocsHref(lang: string): string {
-  return `/${lang}/docs/getting-started/introduction`
+  return docsPageHref(lang, 'getting-started/introduction')
 }
 
 export interface NucInvestorShellArc {

@@ -67,7 +67,7 @@ export const runtimeConfig = {
 |---------|----------|------|
 | `SSR` | `true` | Server-side rendering |
 | `NITRO_PRESET` | `cloudflare` | Preset wdrożenia Nitro |
-| `PRERENDER_ROUTES` | `/home,/docs,…` | Trasy statyczne, przecinkami |
+| `PRERENDER_ROUTES` | `/home,/investor,/404` | Trasy statyczne, przecinkami (docs na docs.nucleify.io) |
 | `PRERENDER_CRAWL_LINKS` | `true` | Podążaj za linkami przy prerender |
 | `PRERENDER_IGNORE` | `/settings` | Trasy do pominięcia |
 | `PRERENDER_LOCALES` | `en,pl,vn` | Locale w prerender |

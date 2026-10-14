@@ -23,6 +23,7 @@
 **/public/hot
 **/public/storage
 **/public/sitemap.xml
+!docs/public/sitemap.xml
 **/storage/*.key
 
 # Coverage / logs
