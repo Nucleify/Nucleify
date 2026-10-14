@@ -1,0 +1,4 @@
+[submodule "compiler"]
+	path = compiler
+	url = https://github.com/Nucleify/nucleify-compiler.git
+	branch = main

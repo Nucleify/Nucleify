@@ -32,8 +32,9 @@ UI with [nucleify-ui](https://www.npmjs.com/package/nucleify-ui).
 ### Quick start
 
 ```bash
-git clone https://github.com/Nucleify/Nucleify.git
+git clone --recurse-submodules https://github.com/Nucleify/Nucleify.git
 cd Nucleify
+# Private `compiler/` submodule: needs access to Nucleify/nucleify-compiler
 make run          # .env, install, husky, compiler
 make web          # Nuxt product shell (default)
 # make web TARGET=next     # Next product shell
