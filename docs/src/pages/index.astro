@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions'
 import '../styles/docs.css'
 import DocsBrandMark from '../components/DocsBrandMark.astro'
 import { DOC_LANGUAGES, DEFAULT_LANG } from '../lib/constants/languages'
@@ -43,13 +44,16 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
       content="Nucleify documentation — build once, move to any framework."
     />
     <title>Nucleify Docs</title>
-    <link
-      rel="preload"
-      href="/img/favicon.svg"
-      as="image"
-      type="image/svg+xml"
-      fetchpriority="high"
-    />
+    <style is:inline>
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #03050c;
+        color: #e7ebe8;
+      }
+    </style>
+    <ClientRouter />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -63,8 +67,8 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
   <body class="docs-body docs-home">
     <header class="docs-header">
       <div class="docs-header__inner">
-        <a class="docs-brand" href="/">
-          <DocsBrandMark class="docs-brand__logo" width={32} height={32} idSuffix="home-header" />
+        <a class="docs-brand" href="/" transition:persist="docs-brand">
+          <DocsBrandMark class="docs-brand__logo" width={32} height={32} idSuffix="header" />
           <span class="docs-brand__text">Nucleify Docs</span>
         </a>
         <nav class="docs-home__nav" aria-label="Quick links">
@@ -152,23 +156,29 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
     </main>
 
     <script>
-      document.querySelectorAll<HTMLButtonElement>('.docs-home__copy').forEach((btn) => {
-        btn.addEventListener('click', async () => {
-          const text = btn.dataset.copy ?? ''
-          try {
-            await navigator.clipboard.writeText(text)
-            const prev = btn.textContent
-            btn.textContent = 'Copied'
-            btn.classList.add('is-done')
-            window.setTimeout(() => {
-              btn.textContent = prev
-              btn.classList.remove('is-done')
-            }, 1400)
-          } catch {
-            btn.textContent = 'Failed'
-          }
+      function bindCopy() {
+        document.querySelectorAll<HTMLButtonElement>('.docs-home__copy').forEach((btn) => {
+          if (btn.dataset.bound === '1') return
+          btn.dataset.bound = '1'
+          btn.addEventListener('click', async () => {
+            const text = btn.dataset.copy ?? ''
+            try {
+              await navigator.clipboard.writeText(text)
+              const prev = btn.textContent
+              btn.textContent = 'Copied'
+              btn.classList.add('is-done')
+              window.setTimeout(() => {
+                btn.textContent = prev
+                btn.classList.remove('is-done')
+              }, 1400)
+            } catch {
+              btn.textContent = 'Failed'
+            }
+          })
         })
-      })
+      }
+      document.addEventListener('astro:page-load', bindCopy)
+      bindCopy()
     </script>
   </body>
 </html>

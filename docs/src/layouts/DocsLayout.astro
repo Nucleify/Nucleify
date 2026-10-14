@@ -1,4 +1,5 @@
 ---
+import { ClientRouter, fade } from 'astro:transitions'
 import '../styles/docs.css'
 import 'highlight.js/styles/github-dark.min.css'
 import DocsBrandMark from '../components/DocsBrandMark.astro'
@@ -24,13 +25,17 @@ const tocLabel = docsOnThisPageLabel(lang)
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Nucleify documentation" />
     <title>{pageTitle}</title>
-    <link
-      rel="preload"
-      href="/img/favicon.svg"
-      as="image"
-      type="image/svg+xml"
-      fetchpriority="high"
-    />
+    {/* Critical paint — avoid white flash before external docs.css */}
+    <style is:inline>
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        background: #03050c;
+        color: #e7ebe8;
+      }
+    </style>
+    <ClientRouter />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -44,14 +49,15 @@ const tocLabel = docsOnThisPageLabel(lang)
   <body class="docs-body">
     <header class="docs-header">
       <div class="docs-header__inner">
-        <a class="docs-brand" href="/">
+        {/* Persist brand only — LangSwitcher must still swap with the page locale. */}
+        <a class="docs-brand" href="/" transition:persist="docs-brand">
           <DocsBrandMark class="docs-brand__logo" width={32} height={32} idSuffix="header" />
           <span class="docs-brand__text">Nucleify Docs</span>
         </a>
         <slot name="header-extra" />
       </div>
     </header>
-    <div class="docs-shell">
+    <div class="docs-shell" transition:animate={fade({ duration: '0.12s' })}>
       <aside class="docs-sidebar" aria-label={navLabel}>
         <slot name="sidebar" />
       </aside>
@@ -65,9 +71,16 @@ const tocLabel = docsOnThisPageLabel(lang)
       </aside>
     </div>
     <script define:vars={{ lang, category, slug }}>
-      document.querySelectorAll('.docs-lang-switch a').forEach((link) => {
-        if (link.dataset.lang === lang) link.setAttribute('aria-current', 'page')
-      })
+      const syncLang = () => {
+        document.querySelectorAll('.docs-lang-switch a').forEach((link) => {
+          const active = link.dataset.lang === lang
+          if (active) link.setAttribute('aria-current', 'page')
+          else link.removeAttribute('aria-current')
+          link.classList.toggle('is-active', active)
+        })
+      }
+      syncLang()
+      document.addEventListener('astro:page-load', syncLang)
     </script>
   </body>
 </html>

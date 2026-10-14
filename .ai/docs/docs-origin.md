@@ -11,3 +11,7 @@ Marketing app (`nucleify.io`) no longer serves documentation. Astro docs live at
 - `web/public/_robots.txt` references both sitemaps
 
 In-content Markdown links stay relative (`/en/docs/…`) so they work on the docs host and in local `make docs`.
+
+## Soft navigation
+
+Docs use Astro `ClientRouter` (view transitions) + `prefetch` so sidebar/home links swap content without a full MPA reload. Brand mark uses `transition:persist`. Critical `#03050c` CSS is inlined to avoid white flash.
