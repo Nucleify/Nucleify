@@ -1,6 +1,7 @@
 ---
 import '../styles/docs.css'
 import DocsBrandMark from '../components/DocsBrandMark.astro'
+import DocsRoutePreload from '../components/DocsRoutePreload.astro'
 import DocsSoftNav from '../components/DocsSoftNav.astro'
 import { DOC_LANGUAGES, DEFAULT_LANG } from '../lib/constants/languages'
 import { DEFAULT_DOC_ROUTE, docHref } from '../lib/doc_paths'
@@ -66,6 +67,7 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/img/favicon.svg" />
+    <DocsRoutePreload />
   </head>
   <body class="docs-body docs-home">
     <DocsSoftNav />

@@ -4,9 +4,10 @@ export default defineConfig({
   site: 'https://docs.nucleify.io',
   srcDir: 'src',
   trailingSlash: 'never',
-  // Prefetch docs HTML on hover for DocsSoftNav fetches.
+  // Browser link prefetch on load; DocsSoftNav also warms an in-memory HTML cache.
   prefetch: {
     prefetchAll: true,
-    defaultStrategy: 'hover',
+    defaultStrategy: 'load',
   },
 })
+
