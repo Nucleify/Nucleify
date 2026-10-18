@@ -51,7 +51,7 @@ html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
   --home-accent-hover: hsl(var(--rainbow-hue) 58% 46%);
   --home-accent-soft: hsl(var(--rainbow-hue) 55% 52% / 16%);
   --home-cyan: hsl(var(--rainbow-hue) 95% 62%);
-  --home-violet: hsl(calc(var(--rainbow-hue) + 96deg) 95% 60%);
+  --home-violet: hsl(calc(var(--rainbow-hue) + 140deg) 95% 60%);
   --home-holo-line: hsl(var(--rainbow-hue) 80% 62% / 55%);
   --home-holo-line-soft: hsl(var(--rainbow-hue) 70% 58% / 32%);
   --home-card-border: color-mix(in srgb, var(--home-accent) 38%, var(--home-holo-line));
@@ -157,7 +157,7 @@ html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
       radial-gradient(
         38% 34% at calc(22% + var(--home-mx) * -4%),
         calc(74% + var(--home-my) * 3%),
-        hsl(calc(var(--rainbow-hue) + 96deg) 80% 58% / 16%),
+        hsl(calc(var(--rainbow-hue) + 140deg) 80% 58% / 16%),
         transparent 74%
       );
   }

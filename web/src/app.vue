@@ -66,7 +66,7 @@ let stopRainbow: (() => void) | undefined
 
 onMounted(() => {
   stopRainbow = applyRainbow(document.body, {
-    cycle: 'linear',
+    cycle: 'branded',
     duration: 30,
     reducedMotion: 'ignore',
   })
