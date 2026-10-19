@@ -22,6 +22,7 @@
     "compiler:build:react": "tsx compiler/src/cli.ts build --target=react",
     "compiler:build:solid": "tsx compiler/src/cli.ts build --target=solid",
     "compiler:build:svelte": "tsx compiler/src/cli.ts build --target=svelte",
+    "compiler:build:astro": "tsx compiler/src/cli.ts build --app=astro",
     "compiler:check": "tsx compiler/src/cli.ts check",
     "compiler:test": "vitest run --config compiler/vitest.config.ts",
     "compiler:convert:check": "bash compiler/scripts/convert-check.sh",

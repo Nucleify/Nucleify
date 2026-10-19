@@ -97,13 +97,23 @@ onMounted(() => {
       return
     }
 
-    void import('./utils/play_investor_animations').then(
-      ({ playInvestorAnimations }) => {
-        void playInvestorAnimations(root).then((stop) => {
-          stopAnimations = stop
-        })
-      }
-    )
+    void import('./utils/play_investor_animations')
+      .then(({ playInvestorAnimations }) => {
+        void playInvestorAnimations(root)
+          .then((stop) => {
+            stopAnimations = stop
+          })
+          .catch(() => {
+            root.style.setProperty('--home-iris', '165%')
+            root.classList.remove('nuc-home-booting')
+            root.classList.add('nuc-home-ready')
+          })
+      })
+      .catch(() => {
+        root.style.setProperty('--home-iris', '165%')
+        root.classList.remove('nuc-home-booting')
+        root.classList.add('nuc-home-ready')
+      })
 
     void import('../home/utils/when_home_ready').then(({ whenHomeReady }) => {
       void whenHomeReady(root).then(() => {

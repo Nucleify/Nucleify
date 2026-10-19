@@ -7,8 +7,8 @@ Workflow: [`.github/workflows/compiler.yaml`](../../.github/workflows/compiler.y
 | Job | What |
 |-----|------|
 | `unit` | `compiler:test`, `compiler:check`, idempotent `compiler:build` |
-| `emit` | matrix `vue` / `react` / `nuxt` / `next` / `solid` / `svelte` — scaffold + build + demo `pnpm build` |
-| `convert` | matrix `web\|admin` × `next\|solid\|svelte` — convert + emit + product shell `pnpm build` |
+| `emit` | matrix `vue` / `react` / `nuxt` / `next` / `solid` / `svelte` / `astro` — scaffold + build + demo `pnpm build` |
+| `convert` | matrix `web\|admin` × `next\|solid\|svelte\|astro` — convert + emit + product shell `pnpm build` |
 
 Next shells need CSS module types for `portable/nui` (`fonts.css.d.ts` / `tokens.css.d.ts`, plus `nui-jsx.d.ts` in templates) so `next build` typechecks `theme.ts` font CSS imports.
 
@@ -28,16 +28,18 @@ Svelte portable emit is **Svelte 5 runes** (`.svelte` SFC): `$state` / `$derived
 | `pnpm compiler -- convert admin --target=solid` | `admin-solid/` |
 | `pnpm compiler -- convert web --target=svelte` | `web-svelte/` |
 | `pnpm compiler -- convert admin --target=svelte` | `admin-svelte/` |
-| `make web TARGET=next` / `TARGET=solid` / `TARGET=svelte` | convert + install + dev |
-| `make admin TARGET=next` / `TARGET=solid` / `TARGET=svelte` | same for admin |
+| `pnpm compiler -- convert web --target=astro` | `web-astro/` (Astro host + React islands) |
+| `pnpm compiler -- convert admin --target=astro` | `admin-astro/` |
+| `make web TARGET=next` / `TARGET=solid` / `TARGET=svelte` / `TARGET=astro` | convert + install + dev |
+| `make admin TARGET=next` / `TARGET=solid` / `TARGET=svelte` / `TARGET=astro` | same for admin |
 
-Solid product convert: Vue SFC → React emit → `reactTsxToSolidBody`. Svelte: Vue SFC → template IR + runes script → `.svelte`. Complex Vue/React-only APIs may not convert yet; smoke-build is the bar.
+Solid product convert: Vue SFC → React emit → `reactTsxToSolidBody`. Svelte: Vue SFC → template IR + runes script → `.svelte`. Astro: same Vue→React path as Next, hosted under Astro pages with `client:load` islands. Complex Vue/React-only APIs may not convert yet; smoke-build is the bar. Tracked `docs/` is not `web-astro/`.
 
 ## Emit demos (portable)
 
 | Command | Output (gitignored) |
 |---------|---------------------|
-| `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` | `{framework}/demo` |
+| `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` / `astro` | `{framework}/demo` |
 
 Portable emit targets: **Vue + React + Solid + Svelte** (+ shared CSS). Product siblings next to `*.nuc.tsx`: Vue/React/Svelte; Solid stays in `solid/demo` (+ convert shells) and is importable with `--from=solid`.
 

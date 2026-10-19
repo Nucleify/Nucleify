@@ -254,7 +254,25 @@ async function runHomeMotionEngine(
     heroBooted = true
   }
 
-  const { animate, createTimeline, stagger } = await import('animejs')
+  let animate: typeof import('animejs').animate
+  let createTimeline: typeof import('animejs').createTimeline
+  let stagger: typeof import('animejs').stagger
+  try {
+    ;({ animate, createTimeline, stagger } = await import('animejs'))
+  } catch {
+    // Broken / missing client bundle must not leave iris at 0% (black screen).
+    setVar(root, '--home-iris', '165%')
+    finishBoot()
+    motion.setHeroBooted()
+    cleanups.push(() => {
+      root.classList.remove(
+        'nuc-home-ready',
+        'nuc-home-booting',
+        'nuc-home-static'
+      )
+    })
+    return
+  }
 
   if (!compact) warmBrandFonts()
 

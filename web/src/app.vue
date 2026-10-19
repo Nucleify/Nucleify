@@ -70,6 +70,8 @@ onMounted(() => {
     duration: 30,
     reducedMotion: 'ignore',
   })
+  // CSS shell cycle drives --rainbow-hue; drop the package keyframes to avoid dual-hue jitter.
+  document.body.style.setProperty('--nui-rainbow-animation', 'none')
 })
 
 onBeforeUnmount(() => {

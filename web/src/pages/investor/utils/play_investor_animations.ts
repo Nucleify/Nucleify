@@ -149,7 +149,18 @@ export async function playInvestorAnimations(
     }
   }
 
-  const { animate, createTimeline, stagger } = await import('animejs')
+  let animate: typeof import('animejs').animate
+  let createTimeline: typeof import('animejs').createTimeline
+  let stagger: typeof import('animejs').stagger
+  try {
+    ;({ animate, createTimeline, stagger } = await import('animejs'))
+  } catch {
+    setVar(root, '--home-iris', '165%')
+    finishBoot()
+    return () => {
+      root.classList.remove('nuc-home-ready', 'nuc-home-booting')
+    }
+  }
 
   warmBrandFonts()
 
