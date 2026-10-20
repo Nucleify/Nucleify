@@ -10,7 +10,7 @@ Workflow: [`.github/workflows/compiler.yaml`](../../.github/workflows/compiler.y
 | `emit` | matrix `vue` / `react` / `nuxt` / `next` / `solid` / `svelte` / `astro` - scaffold + build + demo `pnpm build` |
 | `convert` | matrix `web\|admin` × `next\|solid\|svelte\|astro` - convert + emit + product shell `pnpm build` |
 
-Next shells need CSS module types for `portable/nui` (`fonts.css.d.ts` / `tokens.css.d.ts`, plus `nui-jsx.d.ts` in templates) so `next build` typechecks `theme.ts` font CSS imports.
+Product convert hosts load Instrument Sans + JetBrains Mono via `<link>` (`portable/nui/fonts.ts` / convert layout heads) - not CSS `@import` in a bundled sheet. `setupNui({ loadFonts })` can call `ensureGoogleFontsLinked()` as a fallback. Templates still ship `tokens.css.d.ts` / `nui-jsx.d.ts` where Next typecheck needs them.
 
 React emit folds static CSS `style="…"` strings into style objects (SVG `<stop>` etc.). Product convert maps Vue `watch(() => expr, cb)` → `useEffect(cb, [expr])`, preserves `ref<T>` as `useState<T>`, and rewrites DOM `KeyboardEvent`/`MouseEvent` params to structural shapes React accepts.
 

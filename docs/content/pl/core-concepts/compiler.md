@@ -96,6 +96,7 @@ pnpm compiler -- convert web --target=next       # konwersja produktu → web-ne
 pnpm compiler -- convert admin --target=next     # konwersja produktu → admin-next/
 pnpm compiler -- convert web --target=solid      # konwersja produktu → web-solid/
 pnpm compiler -- convert web --target=svelte     # konwersja produktu → web-svelte/
+pnpm compiler -- convert web --target=astro      # konwersja produktu → web-astro/
 pnpm compiler -- convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
 pnpm compiler -- convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
 pnpm compiler -- scaffold solid                  # tymczasowe demo → solid/demo/
@@ -153,7 +154,7 @@ Gitignored demo emisji: `{vue,react,nuxt,next,solid,svelte}/demo/` (przez `make 
 
 ---
 
-## Konwersja powłoki produktu
+## Konwersja produktu
 
 ```bash
 make web TARGET=next
@@ -166,9 +167,14 @@ pnpm compiler -- convert web --target=solid
 
 make web TARGET=svelte
 pnpm compiler -- convert web --target=svelte
+
+make web TARGET=astro
+pnpm compiler -- convert web --target=astro
 ```
 
-Shelle produktu Svelte to Vite SPA z runami Svelte 5 (jeszcze nie SvelteKit SSR). Portable emit Svelte używa `$state` / `$derived` / `$props` i eventów DOM jak `onclick`.
+Aplikacje produktu Svelte to Vite SPA z runami Svelte 5 (jeszcze nie SvelteKit SSR). Portable emit Svelte używa `$state` / `$derived` / `$props` i eventów DOM jak `onclick`. Konwersja Astro hostuje te same wyspy React pod stronami Astro (`client:load`).
+
+Hosty po konwersji ładują **Instrument Sans** i **JetBrains Mono** przez tagi `<link>` w `<head>` (`portable/nui/fonts.ts`). Nie ładuj tych rodzin przez CSS `@import` w zbundlowanym arkuszu - bundlery sklejają CSS, a `@import` w środku pliku jest ignorowany, więc typografia spada na systemowy mono.
 
 ### Zewnętrzny folder lub URL git
 
@@ -180,11 +186,11 @@ pnpm compiler -- convert admin --target=solid --git=https://github.com/org/app.g
 pnpm compiler -- convert web --target=svelte --path=/path/to/nuxt-app --out=my-svelte --force
 ```
 
-Shelle produktu instalują się przez `pnpm install --ignore-workspace` - wersje w template `package.json` pozostają przypięte; nie wchodzą w graph workspace monorepo.
+Aplikacje po konwersji instalują się przez `pnpm install --ignore-workspace` - wersje w template `package.json` pozostają przypięte; nie wchodzą w graph workspace monorepo.
 
-Konwerter czyta Vue SFC pod `src/`, mapuje strony i composables na odpowiedniki React, Solid lub Svelte i zapisuje output **bez** plików `.vue`. Moduły współdzielone są konsumowane przez barrel frameworka.
+Konwerter czyta Vue SFC pod `src/`, mapuje strony i composables na hosty React, Solid, Svelte lub Astro i zapisuje output **bez** plików `.vue`. Moduły współdzielone są konsumowane przez barrel frameworka.
 
-Traktuj `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/` i `admin-svelte/` (oraz własne katalogi `--out`) jako **generowany output**. Rozwijaj w `web/` lub `admin/`, potem konwertuj.
+Traktuj `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/` i `admin-astro/` (oraz własne katalogi `--out`) jako **generowany output**. Edytuj `web/` lub `admin/`, potem konwertuj ponownie - nie ręcznie łataj drzewa emit.
 
 ---
 

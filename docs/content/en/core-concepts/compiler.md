@@ -97,6 +97,7 @@ pnpm compiler -- convert web --target=next       # product convert → web-next/
 pnpm compiler -- convert admin --target=next     # product convert → admin-next/
 pnpm compiler -- convert web --target=solid      # product convert → web-solid/
 pnpm compiler -- convert web --target=svelte     # product convert → web-svelte/
+pnpm compiler -- convert web --target=astro      # product convert → web-astro/
 pnpm compiler -- convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
 pnpm compiler -- convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
 pnpm compiler -- scaffold solid                  # temporary demo → solid/demo/
@@ -154,7 +155,7 @@ Gitignored emit demos: `{vue,react,nuxt,next,solid,svelte}/demo/` (via `make vue
 
 ---
 
-## Product shell conversion
+## Product convert
 
 ```bash
 make web TARGET=next
@@ -167,13 +168,18 @@ pnpm compiler -- convert web --target=solid
 
 make web TARGET=svelte
 pnpm compiler -- convert web --target=svelte
+
+make web TARGET=astro
+pnpm compiler -- convert web --target=astro
 ```
 
-Svelte product shells are Vite SPAs with Svelte 5 runes (not SvelteKit SSR yet). Portable Svelte emit uses `$state` / `$derived` / `$props` and DOM events like `onclick`.
+Svelte product apps are Vite SPAs with Svelte 5 runes (not SvelteKit SSR yet). Portable Svelte emit uses `$state` / `$derived` / `$props` and DOM events like `onclick`. Astro product convert hosts the same React islands under Astro pages (`client:load`).
+
+Converted hosts load **Instrument Sans** and **JetBrains Mono** with `<link>` tags in the document head (`portable/nui/fonts.ts`). Do not load those families via CSS `@import` inside a bundled stylesheet - bundlers concatenate CSS and mid-file `@import` is ignored, so typography falls back to system mono.
 
 ### External folder or git URL
 
-Use the same `web|admin` shell profile with an external Nuxt-like tree (`src/` required). Run from the **Nucleify monorepo root** so `modules` / `portable` aliases resolve:
+Use the same `web|admin` convert profile with an external Nuxt-like tree (`src/` required). Run from the **Nucleify monorepo root** so `modules` / `portable` aliases resolve:
 
 ```bash
 pnpm compiler -- convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
@@ -181,11 +187,11 @@ pnpm compiler -- convert admin --target=solid --git=https://github.com/org/app.g
 pnpm compiler -- convert web --target=svelte --path=/path/to/nuxt-app --out=my-svelte --force
 ```
 
-Product shells install with `pnpm install --ignore-workspace` - template dependency versions stay pinned; they do not join the monorepo workspace graph.
+Converted apps install with `pnpm install --ignore-workspace` - template dependency versions stay pinned; they do not join the monorepo workspace graph.
 
-The converter reads Vue SFCs under `src/`, maps pages and composables to React, Solid, or Svelte equivalents, and writes output with **no** source `.vue` files. Shared modules are consumed via framework barrels.
+The converter reads Vue SFCs under `src/`, maps pages and composables to React, Solid, Svelte, or Astro hosts, and writes output with **no** source `.vue` files. Shared modules are consumed via framework barrels.
 
-Treat `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, and `admin-svelte/` (and custom `--out` dirs) as **generated output**. Develop in `web/` or `admin/`, then convert.
+Treat `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/`, and `admin-astro/` (and custom `--out` dirs) as **generated output**. Edit `web/` or `admin/`, then reconvert - do not hand-patch the emit tree.
 
 ---
 

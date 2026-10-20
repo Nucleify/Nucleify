@@ -12,6 +12,10 @@ Product convert emits (Next, Solid, Svelte, Astro) diverged from Nuxt on fonts, 
 - **Investor:** per-glyph brand spans; cipher settle keeps glyph nodes for gradient clip.
 - **Compiler:** IR `unary` (`!`), convert head font links, rainbow shell animation ownership.
 
+## Docs
+
+Product site (EN/PL): [Compiler](../../docs/content/en/core-concepts/compiler.md) product convert section documents `<link>` fonts and Astro target; [Monorepo](../../docs/content/en/core-concepts/monorepo.md) / [Introduction](../../docs/content/en/getting-started/introduction.md) list `TARGET=astro`.
+
 ## Verify
 
 - Nuxt `/en/home` and `/en/investor`: JetBrains brand, cycling accent, contact Back, delayed pitch return.

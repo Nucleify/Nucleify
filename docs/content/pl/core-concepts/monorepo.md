@@ -190,13 +190,14 @@ web / admin / docs
 | `make run` | `.env` + setup + kompilator |
 | `make setup` | install, husky, prepare, sync-rules, kompilator |
 | `make web` | dev produktu Nuxt (`TARGET=nuxt` domyślnie) |
-| `make web TARGET=next` | konwersja + shell Next (`web-next/`) |
-| `make web TARGET=solid` | konwersja + shell Solid (`web-solid/`) |
-| `make web TARGET=svelte` | konwersja + shell Svelte (`web-svelte/`) |
-| `make admin` / `make admin TARGET=next|solid|svelte` | odpowiedniki admin |
-| `make docs` | dev dokumentacji Astro |
+| `make web TARGET=next` | konwersja + aplikacja Next (`web-next/`) |
+| `make web TARGET=solid` | konwersja + aplikacja Solid (`web-solid/`) |
+| `make web TARGET=svelte` | konwersja + aplikacja Svelte (`web-svelte/`) |
+| `make web TARGET=astro` | konwersja + host Astro + wyspy React (`web-astro/`) |
+| `make admin` / `make admin TARGET=next|solid|svelte|astro` | odpowiedniki admin |
+| `make docs` | witryna docs Astro (`docs/`) |
 | `make compiler` | check + build |
-| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` / `make svelte` | gitignored demo portable (`{framework}/demo`) |
+| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` / `make svelte` / `make astro` | gitignored demo portable (`{framework}/demo`) |
 
 ---
 

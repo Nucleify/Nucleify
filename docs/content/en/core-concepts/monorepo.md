@@ -190,18 +190,19 @@ web / admin / docs
 | `make run` | `.env` + setup + compiler |
 | `make setup` | install, husky, prepare, sync-rules, compiler |
 | `make web` | Nuxt product dev (`TARGET=nuxt` default) |
-| `make web TARGET=next` | convert + Next product shell (`web-next/`) |
-| `make web TARGET=solid` | convert + Solid product shell (`web-solid/`) |
-| `make web TARGET=svelte` | convert + Svelte product shell (`web-svelte/`) |
-| `make admin` / `make admin TARGET=next\|solid\|svelte` | admin equivalents |
-| `make docs` | Astro docs dev |
+| `make web TARGET=next` | convert + Next product app (`web-next/`) |
+| `make web TARGET=solid` | convert + Solid product app (`web-solid/`) |
+| `make web TARGET=svelte` | convert + Svelte product app (`web-svelte/`) |
+| `make web TARGET=astro` | convert + Astro host + React islands (`web-astro/`) |
+| `make admin` / `make admin TARGET=next\|solid\|svelte\|astro` | admin equivalents |
+| `make docs` | Astro docs site (`docs/`) |
 | `make compiler` | check + build |
-| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` / `make svelte` | gitignored portable demos (`{framework}/demo`) |
+| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` / `make svelte` / `make astro` | gitignored portable demos (`{framework}/demo`) |
 
 ---
 
 ## Related docs
 
 - [Modules](/en/docs/core-concepts/modules) - module internal structure
-- [Compiler](/en/docs/core-concepts/compiler) - canonical Nuxt vs converted shells
+- [Compiler](/en/docs/core-concepts/compiler) - canonical Nuxt vs converted product apps
 - [Web & Admin](/en/docs/configuration/web) - Nuxt config details
