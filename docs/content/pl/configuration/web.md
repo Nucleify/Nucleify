@@ -49,7 +49,7 @@ web/src/
         └── [...slug].ts    # catch-all Nitro → gateway_dispatch
 ```
 
-Prymitywy UI to custom elements Lit (`nui-*`) z `nucleify-ui` / `portable/nui/`. Kompozycja landingu jest w `web/src/pages/` — nie ma drzewa komponentów `ad-*`.
+Prymitywy UI to custom elements Lit (`nui-*`) z `nucleify-ui` / `portable/nui/`. Kompozycja landingu jest w `web/src/pages/` - nie ma drzewa komponentów `ad-*`.
 
 ---
 
@@ -66,7 +66,7 @@ Zdefiniowane w `web/.config/nuxt/structure.ts`:
 | `nuc_server` | `~/server/nuc_server` |
 | `#nuc-compiler/runtime` | `../compiler/runtime/index.ts` |
 
-Importuj moduły współdzielone po nazwie pakietu (np. `import { apiRequest } from 'nuc_api'`) — alias `modules` to umożliwia.
+Importuj moduły współdzielone po nazwie pakietu (np. `import { apiRequest } from 'nuc_api'`) - alias `modules` to umożliwia.
 
 ---
 
@@ -131,7 +131,7 @@ web/src/server/api/[...slug].ts
   → shared_modules/nuc_*/supabase/api/handle.ts
 ```
 
-Kod klienta wywołuje `/api/...` — nigdy Supabase bezpośrednio z przeglądarki dla operacji uprzywilejowanych.
+Kod klienta wywołuje `/api/...` - nigdy Supabase bezpośrednio z przeglądarki dla operacji uprzywilejowanych.
 
 ---
 
@@ -195,6 +195,6 @@ Domyślny port: `3000`. Środowisko ładowane z root `.env` monorepo przez `load
 
 ## Powiązana dokumentacja
 
-- [Zmienne środowiskowe](/pl/docs/configuration/environment) — zmienne `.env`
-- [Supabase](/pl/docs/configuration/supabase) — backend i handlery API
-- [Moduły](/pl/docs/core-concepts/modules) — struktura modułów współdzielonych
+- [Zmienne środowiskowe](/pl/docs/configuration/environment) - zmienne `.env`
+- [Supabase](/pl/docs/configuration/supabase) - backend i handlery API
+- [Moduły](/pl/docs/core-concepts/modules) - struktura modułów współdzielonych

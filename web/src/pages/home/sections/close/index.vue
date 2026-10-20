@@ -137,29 +137,23 @@
             </label>
           </div>
 
-          <div class="nuc-home-close-actions">
-            <nui-button
-              type="button"
-              variant="outlined"
-              :label="copy.closeCancel"
-              :disabled="loading"
-              @click="closeForm"
-            />
-            <nui-button
-              type="button"
-              variant="primary"
-              :label="copy.closeSubmit"
-              :loading="loading"
-              :disabled="loading"
-              icon="mdi:send-outline"
-              icon-pos="right"
-              @click="onSubmit"
-            />
+          <div class="nuc-home-close-foot">
+            <ul class="nuc-home-close-trust" aria-label="What to expect">
+              <li v-for="item in copy.closeTrust" :key="item">{{ item }}</li>
+            </ul>
+            <div class="nuc-home-close-actions">
+              <nui-button
+                type="button"
+                variant="primary"
+                :label="copy.closeSubmit"
+                :loading="loading"
+                :disabled="loading"
+                icon="mdi:send-outline"
+                icon-pos="right"
+                @click="onSubmit"
+              />
+            </div>
           </div>
-
-          <ul class="nuc-home-close-trust" aria-label="What to expect">
-            <li v-for="item in copy.closeTrust" :key="item">{{ item }}</li>
-          </ul>
         </form>
       </div>
     </div>

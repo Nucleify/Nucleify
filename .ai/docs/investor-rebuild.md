@@ -1,4 +1,4 @@
-# Investor page — home-grade redesign
+# Investor page - home-grade redesign
 
 Investor (`/[lang]/investor`) uses the same chrome as home (shear, rail, tokens, fonts) with investor-specific compositions under `nuc-inv-*`.
 
@@ -22,7 +22,7 @@ Investor (`/[lang]/investor`) uses the same chrome as home (shear, rail, tokens,
 
 ## Hero iris + cube
 
-Home boot used to set `.nuc-home-hero-panel { opacity: 0 }` until ready — that hid the investor deal cube through the whole iris wipe. Boot CSS now skips `.is-deal`; the panel stays painted and the iris clip alone covers → reveals the cube.
+Home boot used to set `.nuc-home-hero-panel { opacity: 0 }` until ready - that hid the investor deal cube through the whole iris wipe. Boot CSS now skips `.is-deal`; the panel stays painted and the iris clip alone covers → reveals the cube.
 
 ## Verify
 

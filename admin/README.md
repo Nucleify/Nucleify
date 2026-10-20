@@ -1,6 +1,6 @@
 # @nucleify/admin
 
-Nuxt admin app — **canonical product shell** (`TARGET=nuxt`).
+Nuxt admin app - **canonical product shell** (`TARGET=nuxt`).
 
 ```bash
 make admin

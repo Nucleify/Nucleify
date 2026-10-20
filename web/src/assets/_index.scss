@@ -7,9 +7,9 @@
 
 /* Shell brands drive --rainbow-hue (nui-rainbow cycle alone is not always painted into SVG). */
 @keyframes nuc-rainbow-shell-cycle {
-  /* Hold each brand, then ease across a short blend — avoids hard Hue jumps. */
+  /* Hold each brand, then ease across a short blend - avoids hard Hue jumps. */
   0% {
-    --rainbow-hue: 152deg; /* Vue / Nuxt — light green */
+    --rainbow-hue: 152deg; /* Vue / Nuxt - light green */
   }
 
   18% {
@@ -17,7 +17,7 @@
   }
 
   25% {
-    --rainbow-hue: 190deg; /* React / Next — cyan */
+    --rainbow-hue: 190deg; /* React / Next - cyan */
   }
 
   43% {
@@ -25,7 +25,7 @@
   }
 
   50% {
-    --rainbow-hue: 292deg; /* Astro — purple */
+    --rainbow-hue: 292deg; /* Astro - purple */
   }
 
   68% {
@@ -33,7 +33,7 @@
   }
 
   75% {
-    --rainbow-hue: 375deg; /* Svelte — red (15deg + 360) */
+    --rainbow-hue: 375deg; /* Svelte - red (15deg + 360) */
   }
 
   93% {

@@ -8,10 +8,10 @@ Konwencje czytelnego, spójnego kodu w monorepo Nucleify. W razie wątpliwości 
 
 ```txt
 nucleify/
-├── web/               # @nucleify/web — landing Nuxt
-├── admin/             # @nucleify/admin — admin Nuxt
-├── docs/              # @nucleify/docs — docs Astro
-├── compiler/          # @nucleify/compiler — przenośny kompilator UI
+├── web/               # @nucleify/web - landing Nuxt
+├── admin/             # @nucleify/admin - admin Nuxt
+├── docs/              # @nucleify/docs - docs Astro
+├── compiler/          # @nucleify/compiler - przenośny kompilator UI
 ├── shared_modules/    # sześć eksportowanych modułów nuc_*
 ├── portable/nui/      # design tokeny
 ├── overrides/         # nadpisania plików per pakiet
@@ -99,8 +99,8 @@ web/src/
 
 ## TypeScript
 
-- Strict typing — unikaj `any`, chyba że config Nuxt wymusza (dokumentuj biome-ignore)
-- Eksportuj typy z `types/` — nie duplikuj interfejsów między plikami
+- Strict typing - unikaj `any`, chyba że config Nuxt wymusza (dokumentuj biome-ignore)
+- Eksportuj typy z `types/` - nie duplikuj interfejsów między plikami
 - Używaj siblingów typów `.react.ts`, gdy props React odbiegają od Vue
 
 ---
@@ -162,7 +162,7 @@ Autoruj w `*.nuc.tsx` zgodnie z `compiler/PORTABLE.md`:
 - Testy modułów: `shared_modules/nuc_*/vitests/`
 - Testy Nuxt: `web/vitests/`
 - Przed commitem: `pnpm tests`
-- Testuj zachowanie — unikaj asercji szczegółów implementacji
+- Testuj zachowanie - unikaj asercji szczegółów implementacji
 
 ---
 
@@ -182,7 +182,7 @@ Husky uruchamia to na pre-commit przez `.config/bash/hook-checks.sh` (pre-push j
 
 ## Git i commity
 
-- Skupione commity — jedna sprawa na zmianę, gdy to możliwe
+- Skupione commity - jedna sprawa na zmianę, gdy to możliwe
 - Nie commituj `.env`, demo emit (`vue/demo` itd.) ani `*.ir.json`
 - Trzymaj się istniejącego stylu wiadomości commitów w repo
 

@@ -1,4 +1,4 @@
-# Agent docs — nui-workflow
+# Agent docs - nui-workflow
 
 ## Paths
 
@@ -6,7 +6,7 @@
 |----------|------|
 | Feature plan | `.ai/specs/plan.md` |
 | Session / change notes | `.ai/docs/` |
-| Product docs site | `docs/` (Astro — not for agent notes) |
+| Product docs site | `docs/` (Astro - not for agent notes) |
 
 ## Skills
 

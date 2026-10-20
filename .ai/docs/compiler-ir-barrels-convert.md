@@ -19,7 +19,7 @@ SKIP_COMPILER=1 make setup  # skip codegen on bootstrap
 
 ## Barrels
 
-`compiler/tests/barrel-no-nuc.test.ts` scans package barrels — no `*.nuc.tsx` import/export.
+`compiler/tests/barrel-no-nuc.test.ts` scans package barrels - no `*.nuc.tsx` import/export.
 
 Product smoke (manual / CI):
 

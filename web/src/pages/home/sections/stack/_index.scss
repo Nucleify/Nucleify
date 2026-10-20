@@ -5,7 +5,7 @@
     max-width: 40rem;
   }
 
-  /* —— Mobile: stacked, compact —— */
+  /* -- Mobile: stacked, compact -- */
   &-stage {
     display: grid;
     grid-template-columns: 1fr;
@@ -86,7 +86,7 @@
   &-name {
     margin: 0;
     font-size: clamp(1.55rem, 6vw, 2rem);
-    font-weight: 650;
+    font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1;
   }
@@ -205,6 +205,8 @@
 
       z-index: 2;
       grid-column: 1 / -1;
+      justify-self: center;
+      width: min(100%, 11.5rem);
     }
 
     &:hover {
@@ -253,7 +255,7 @@
     white-space: nowrap;
   }
 
-  /* —— Desktop: spotlight left + shell grid right (as designed) —— */
+  /* -- Desktop: spotlight left + shell grid right (as designed) -- */
   @media (min-width: $md) {
     &-stage {
       grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.2fr);
@@ -358,7 +360,7 @@
         --sr: -1.5deg;
 
         justify-self: center;
-        width: min(100%, 13.5rem);
+        width: calc((100% - 1.15rem) / 2);
         margin-top: 0.15rem;
       }
 

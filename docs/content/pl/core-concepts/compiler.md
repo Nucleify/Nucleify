@@ -1,6 +1,8 @@
 # Kompilator
 
-Pakiet `@nucleify/compiler` to sposób Nucleify na migrację UI między shellami: przenośny kompilator oparty na IR, który zamienia `*.nuc.tsx` na Vue SFC, komponenty React, Solid i Svelte oraz współdzielony CSS — oraz może konwertować powłoki produktu Nuxt (`web/`, `admin/`) lub zewnętrzne drzewo Nuxt-like na Next.js, Solid lub Svelte.
+Migracja między frameworkami to **rdzeń** Nucleify - nie doklejka. Pakiet `@nucleify/compiler` prowadzi tę ścieżkę: przenośny kompilator **oparty na IR**, który zamienia `*.nuc.tsx` na Vue SFC, React, Solid, Svelte i Astro (oraz współdzielony CSS), **importuje zmiany z emitów z powrotem** do źródła i **konwertuje całe powłoki produktu Nuxt** (`web/`, `admin/`) - albo zewnętrzne drzewo Nuxt-like - na Next.js, Solid, Svelte lub Astro.
+
+Ten zakres wykracza poza samą emisję komponentów: domena, trasy i współdzielone moduły idą razem z shellem. Framework staje się celem builda; produkt zostaje w `shared_modules/`.
 
 **Pokrycie:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next lub Vue/Nuxt to punkty startowe, nie granica.
 
@@ -10,12 +12,12 @@ Pakiet `@nucleify/compiler` to sposób Nucleify na migrację UI między shellami
 
 | Tryb pracy | Co robi | Przykład |
 |------|---------|----------|
-| **Emisja przenośna** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + Svelte `.svelte` + `.css` | `pnpm compiler:build` / `make solid` / `make svelte` |
-| **Konwersja produktu** | Aplikacja Nuxt (lub zewnętrzny folder/git) → Next.js, Solid lub Svelte | `pnpm compiler -- convert web --target=next` |
+| **Emisja przenośna** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + Svelte `.svelte` + `.astro` + `.css` | `pnpm compiler:build` / `make solid` / `make svelte` / `make astro` |
+| **Konwersja produktu** | Aplikacja Nuxt (lub zewnętrzny folder/git) → Next.js, Solid, Svelte lub Astro | `pnpm compiler -- convert web --target=next` |
 
-**Emisja przenośna** służy komponentom prezentacyjnym. **Konwersja produktu** generuje `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/` lub `admin-svelte/` z drzewa źródeł Vue — te same trasy, współdzielone moduły, inna powłoka frameworka. Konwersja produktu Astro `docs/` **nie** jest jeszcze zaimplementowana.
+**Emisja przenośna** służy komponentom prezentacyjnym z round-tripem (`import --from=…`). **Konwersja produktu** generuje `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/` lub `admin-astro/` z drzewa źródeł Vue - te same trasy, współdzielone moduły, inna powłoka frameworka. Konwersja produktu Astro `docs/` **nie** jest jeszcze zaimplementowana.
 
-Nie re-eksportuj `*.nuc.tsx` z publicznych barreli (`index.ts`, `modules.ts`, …) — autorstwo zostaje poza entrypointami aplikacji.
+Nie re-eksportuj `*.nuc.tsx` z publicznych barreli (`index.ts`, `modules.ts`, …) - autorstwo zostaje poza entrypointami aplikacji.
 
 ---
 
@@ -178,7 +180,7 @@ pnpm compiler -- convert admin --target=solid --git=https://github.com/org/app.g
 pnpm compiler -- convert web --target=svelte --path=/path/to/nuxt-app --out=my-svelte --force
 ```
 
-Shelle produktu instalują się przez `pnpm install --ignore-workspace` — wersje w template `package.json` pozostają przypięte; nie wchodzą w graph workspace monorepo.
+Shelle produktu instalują się przez `pnpm install --ignore-workspace` - wersje w template `package.json` pozostają przypięte; nie wchodzą w graph workspace monorepo.
 
 Konwerter czyta Vue SFC pod `src/`, mapuje strony i composables na odpowiedniki React, Solid lub Svelte i zapisuje output **bez** plików `.vue`. Moduły współdzielone są konsumowane przez barrel frameworka.
 
@@ -194,7 +196,7 @@ Nuxt rozwiązuje runtime przez `web/.config/nuxt/structure.ts`:
 '#nuc-compiler/runtime': resolve(process.cwd(), '../compiler/runtime/index.ts')
 ```
 
-Helpery runtime (`component`, `state`, `derived`, `handler`) to markery compile-time — nie mogą pojawiać się w wyemitowanych bundlach.
+Helpery runtime (`component`, `state`, `derived`, `handler`) to markery compile-time - nie mogą pojawiać się w wyemitowanych bundlach.
 
 ---
 
@@ -215,6 +217,6 @@ Zobacz [Vitest](/pl/docs/tests/vitest) po pełną konfigurację testów.
 
 ## Powiązana dokumentacja
 
-- [Układ monorepo](/pl/docs/core-concepts/monorepo) — gdzie kompilator pasuje w workspace
-- [Szybki start](/pl/docs/getting-started/quick-start) — zbuduj swój pierwszy komponent przenośny
-- [Web & Admin](/pl/docs/configuration/web) — konfiguracja Nuxt podłączająca alias runtime
+- [Układ monorepo](/pl/docs/core-concepts/monorepo) - gdzie kompilator pasuje w workspace
+- [Szybki start](/pl/docs/getting-started/quick-start) - zbuduj swój pierwszy komponent przenośny
+- [Web & Admin](/pl/docs/configuration/web) - konfiguracja Nuxt podłączająca alias runtime

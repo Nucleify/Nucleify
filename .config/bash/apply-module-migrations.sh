@@ -37,7 +37,7 @@ lines="$(wc -l < "$MERGED" | tr -d ' ')"
 bytes="$(wc -c < "$MERGED" | tr -d ' ')"
 echo "Applying merged module migrations ($MODE)..."
 echo " -> supabase/.temp/merged_migrations.sql (${lines} lines, ${bytes} bytes)"
-echo "    (pierwsze logi z CLI mogą pojawić się dopiero po stronie Supabase — to nie jest zawieszenie terminala)"
+echo "    (pierwsze logi z CLI mogą pojawić się dopiero po stronie Supabase - to nie jest zawieszenie terminala)"
 
 if [[ -x "$SUPABASE_LOCAL_BIN" ]]; then
   "$SUPABASE_LOCAL_BIN" db query "$DB_FLAG" -f "supabase/.temp/merged_migrations.sql"

@@ -5,7 +5,7 @@
   margin: 0 auto;
   padding: 3.75rem var(--home-pad) 3.75rem;
   perspective: 900px;
-  overflow: hidden;
+  overflow: visible;
 
   &-layout {
     display: grid;
@@ -14,11 +14,12 @@
     align-items: start;
     min-height: 0;
     max-height: 100%;
-    overflow: hidden;
+    overflow: visible;
   }
 
   &-copy {
     min-width: 0;
+    overflow: visible;
   }
 
   &-eyebrow {
@@ -49,42 +50,69 @@
     align-items: center;
     gap: 1rem;
     margin-bottom: 0.55rem;
+    overflow: visible;
     transform-origin: left 0.55em;
   }
 
   &-brand {
+    display: inline-block;
     margin: 0;
-    font-size: clamp(2rem, 10vw, 2.75rem);
-    font-weight: 650;
-    letter-spacing: -0.06em;
-    line-height: 0.92;
+    font-size: clamp(3.25rem, 15vw, 4.25rem);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.2;
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-synthesis: none;
-    white-space: normal;
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+    overflow: visible;
     max-width: 100%;
-    background: linear-gradient(
-      120deg,
-      #fff 0%,
-      #e7ebe8 42%,
-      var(--home-accent) 120%
-    );
-    /* stylelint-disable-next-line property-no-vendor-prefix -- Safari gradient text */
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    width: max-content;
+    color: var(--home-fg);
+
+    /*
+     * Gradient per glyph - parent background-clip + tracking clips the last
+     * letter (y) on the right / top-right arm.
+     */
+    &-ch,
+    .nuc-home-hero-glyph {
+      background: linear-gradient(
+        120deg,
+        #fff 0%,
+        #e7ebe8 42%,
+        var(--home-accent) 120%
+      );
+      /* stylelint-disable-next-line property-no-vendor-prefix -- Safari gradient text */
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    &-ch:not(.is-last),
+    .nuc-home-hero-glyph:not(:last-child) {
+      letter-spacing: -0.04em;
+    }
+
+    &-ch.is-last,
+    .nuc-home-hero-glyph:last-child {
+      margin-inline-end: 0.08em;
+    }
 
     &.is-decoding {
-      letter-spacing: -0.06em;
-      background: none;
-      /* stylelint-disable-next-line property-no-vendor-prefix -- Safari gradient text */
-      -webkit-background-clip: border-box;
-      background-clip: border-box;
-      color: var(--home-fg);
+      &-ch,
+      .nuc-home-hero-glyph {
+        background: none;
+        /* stylelint-disable-next-line property-no-vendor-prefix -- Safari gradient text */
+        -webkit-background-clip: border-box;
+        background-clip: border-box;
+        color: var(--home-fg);
+      }
     }
   }
 
   &-headline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     margin: 0;
     max-width: none;
     font-size: clamp(1.2rem, 5.5vw, 1.55rem);
@@ -93,6 +121,10 @@
     line-height: 1.15;
     color: var(--home-fg);
     will-change: clip-path;
+
+    &-line.is-nowrap {
+      white-space: nowrap;
+    }
   }
 
   &-support {
@@ -101,10 +133,8 @@
     color: var(--home-muted);
     font-size: 0.88rem;
     line-height: 1.45;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
+    display: block;
+    overflow: visible;
     will-change: clip-path;
   }
 
@@ -451,7 +481,7 @@
     }
 
     &-headline {
-      max-width: 12ch;
+      max-width: none;
       font-size: clamp(1.55rem, 3.4vw, 2.35rem);
     }
 
@@ -538,27 +568,10 @@
     }
   }
 
-  /* Short phones: drop secondary chrome so the slide stays one screen. */
-  @media (max-width: 959px) and (max-height: 720px) {
+  /* Mobile: keep the module cube; drop secondary chrome. */
+  @media (max-width: 959px) {
     &-proof,
     &-install {
-      display: none;
-    }
-
-    &-support {
-      -webkit-line-clamp: 2;
-    }
-  }
-
-  @media (max-width: 959px) and (max-height: 640px) {
-    padding-top: 3.25rem;
-    padding-bottom: 3.25rem;
-
-    &-layout {
-      gap: 0.65rem;
-    }
-
-    &-panel {
       display: none;
     }
   }

@@ -2,7 +2,7 @@ import type { App } from 'vue'
 
 import type { ApiContext, ApiHandlerResult } from 'nuc_server'
 
-/** Canonical module metadata — mirrors modules */
+/** Canonical module metadata - mirrors modules */
 export interface NucModuleConfig {
   name: string
   description: string

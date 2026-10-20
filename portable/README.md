@@ -1,6 +1,6 @@
 # Portable
 
-Shared **NUI** wiring for product shells — tokens, fonts, and Lit `nui-*` registration.
+Shared **NUI** wiring for product shells - tokens, fonts, and Lit `nui-*` registration.
 
 No demo components and no compiler golden fixtures live here. Authoring `*.nuc.tsx` and emit
 goldens for tests live under `compiler/tests/fixtures/` (and optional future authoring trees).
@@ -22,7 +22,7 @@ portable/
 
 ## Product shells
 
-Coverage story for marketing and docs: **Vue · React · Nuxt · Next · Astro · Svelte · Solid** (seven shells, one nucleus — not React/Next-only or Vue/Nuxt-only).
+Coverage story for marketing and docs: **Vue · React · Nuxt · Next · Astro · Svelte · Solid** (seven shells, one nucleus - not React/Next-only or Vue/Nuxt-only).
 
 | Command | What it is | Default |
 |---------|------------|---------|
@@ -52,7 +52,7 @@ make admin TARGET=svelte  # → admin-svelte/
 make admin TARGET=astro   # → admin-astro/
 ```
 
-Product shells import `portable/nui` for `--nui-*` tokens and Lit registration — they do not
+Product shells import `portable/nui` for `--nui-*` tokens and Lit registration - they do not
 duplicate palettes.
 
 ## Emit demos

@@ -7,14 +7,14 @@ Workflow: [`.github/workflows/compiler.yaml`](../../.github/workflows/compiler.y
 | Job | What |
 |-----|------|
 | `unit` | `compiler:test`, `compiler:check`, idempotent `compiler:build` |
-| `emit` | matrix `vue` / `react` / `nuxt` / `next` / `solid` / `svelte` / `astro` — scaffold + build + demo `pnpm build` |
-| `convert` | matrix `web\|admin` × `next\|solid\|svelte\|astro` — convert + emit + product shell `pnpm build` |
+| `emit` | matrix `vue` / `react` / `nuxt` / `next` / `solid` / `svelte` / `astro` - scaffold + build + demo `pnpm build` |
+| `convert` | matrix `web\|admin` × `next\|solid\|svelte\|astro` - convert + emit + product shell `pnpm build` |
 
 Next shells need CSS module types for `portable/nui` (`fonts.css.d.ts` / `tokens.css.d.ts`, plus `nui-jsx.d.ts` in templates) so `next build` typechecks `theme.ts` font CSS imports.
 
 React emit folds static CSS `style="…"` strings into style objects (SVG `<stop>` etc.). Product convert maps Vue `watch(() => expr, cb)` → `useEffect(cb, [expr])`, preserves `ref<T>` as `useState<T>`, and rewrites DOM `KeyboardEvent`/`MouseEvent` params to structural shapes React accepts.
 
-Inline Vue `$event` in `@focus="x = $event"` becomes `onFocus={($event) => setX($event)}` (React/Solid). Matching uses `/\$event\b/` — not `\b\$event`, because `$` is non-word and `\b` fails after `(`. Prefer named handlers (`@focus="onCubeFocus"`) when the payload type matters.
+Inline Vue `$event` in `@focus="x = $event"` becomes `onFocus={($event) => setX($event)}` (React/Solid). Matching uses `/\$event\b/` - not `\b\$event`, because `$` is non-word and `\b` fails after `(`. Prefer named handlers (`@focus="onCubeFocus"`) when the payload type matters.
 
 Svelte portable emit is **Svelte 5 runes** (`.svelte` SFC): `$state` / `$derived` / `$props`, `{#if}` / `{#each}`, DOM events as `onclick`. Product convert: Vue template IR + script→React rewrite → runes (`react-hooks-to-svelte`) → `emitSvelteProduct`. Host is Vite SPA with history paths (`/en/home`, not hash); not SvelteKit yet. Portable import: `import --from=vue|react|solid|svelte` (`parseSolidToIr` / `parseSvelteToIr`). Solid↔Svelte migrate via IR hub (Solid demo `.tsx`, not a product sibling).
 

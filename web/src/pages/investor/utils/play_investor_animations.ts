@@ -29,7 +29,7 @@ const WIPE_SKEW = -10
 function prepareFadeWipe(item: HTMLElement): void {
   item.classList.add('nuc-home-anim-mask')
   item.style.setProperty('--home-wipe', '0')
-  // Opacity 0 with wipe — mask alone can still paint card borders (esp. Svelte host).
+  // Opacity 0 with wipe - mask alone can still paint card borders (esp. Svelte host).
   item.style.opacity = '0'
   item.style.transform = `translate3d(${WIPE_SHIFT}px, 0, 0) skewX(${WIPE_SKEW}deg)`
   item.style.removeProperty('clip-path')
@@ -79,7 +79,7 @@ function setVar(el: HTMLElement, name: string, value: string): void {
   el.style.setProperty(name, value)
 }
 
-/** CSS defaults only — no layout reads (avoids boot forced reflow). */
+/** CSS defaults only - no layout reads (avoids boot forced reflow). */
 function setIrisOrigin(root: HTMLElement, compact: boolean): void {
   if (!compact) {
     setVar(root, '--home-iris-x', '18%')
@@ -122,7 +122,7 @@ function warmBrandFonts(): void {
 }
 
 /**
- * Investor motion — iris boot, cipher brand, shear, wipe reveals.
+ * Investor motion - iris boot, cipher brand, shear, wipe reveals.
  * Slimmer than home: no lattice / terminal / compiler stages.
  */
 export async function playInvestorAnimations(
@@ -173,7 +173,7 @@ export async function playInvestorAnimations(
   const headline = q(root, '.nuc-home-hero-headline')
   const support = q(root, '.nuc-home-hero-support')
   const cta = q(root, '.nuc-home-hero-cta')
-  // Deal panel stays opacity 1 — iris clip alone covers → reveals the cube.
+  // Deal panel stays opacity 1 - iris clip alone covers → reveals the cube.
   // Do not set inline opacity:0 on it (home CSS already fades other hero bits).
   const panel = q(root, '.nuc-home-hero-panel.is-deal')
   const board = q(root, '.nuc-inv-deal')
@@ -203,11 +203,21 @@ export async function playInvestorAnimations(
     if (support) support.style.clipPath = 'inset(100% 0 0 0)'
   }
 
-  const finalBrand = brand?.textContent?.trim() || 'Nucleify'
+  const finalBrand =
+    brand?.getAttribute('aria-label')?.trim() ||
+    Array.from(
+      brand?.querySelectorAll<HTMLElement>(
+        '.nuc-home-hero-brand-ch, .nuc-home-hero-glyph'
+      ) ?? []
+    )
+      .map((el) => el.textContent ?? '')
+      .join('')
+      .trim() ||
+    brand?.textContent?.replace(/\s+/g, '')?.trim() ||
+    'Nucleify'
   const glyphs = '01<>{}[]/\\|#$%#_entropynucleus'
   if (brand && !compact) {
     const startCipher = () => {
-      brand.textContent = ''
       brand.setAttribute('aria-label', finalBrand)
       brand.classList.add('is-decoding')
 
@@ -216,7 +226,16 @@ export async function playInvestorAnimations(
       const settleBrand = () => {
         if (settled) return
         settled = true
-        brand.textContent = finalBrand
+        // Keep glyph spans - plain textContent would drop gradient clip.
+        const slots = brand.querySelectorAll<HTMLElement>(
+          '.nuc-home-hero-brand-ch, .nuc-home-hero-glyph'
+        )
+        finalBrand.split('').forEach((char, index) => {
+          const slot = slots[index]
+          if (!slot) return
+          slot.textContent = char === ' ' ? '\u00a0' : char
+          slot.classList.add('is-locked')
+        })
         brand.classList.remove('is-decoding')
       }
 
@@ -228,12 +247,34 @@ export async function playInvestorAnimations(
         if (lockedCount >= finalBrand.length) settleBrand()
       }
 
+      const existingSlots = Array.from(
+        brand.querySelectorAll<HTMLSpanElement>(
+          '.nuc-home-hero-brand-ch, .nuc-home-hero-glyph'
+        )
+      )
+
+      // Prefer React/Vue glyph spans so hydration owns the tree; only create if absent.
+      const slots =
+        existingSlots.length === finalBrand.length
+          ? existingSlots
+          : finalBrand.split('').map((char) => {
+              const slot = document.createElement('span')
+              slot.className = 'nuc-home-hero-glyph'
+              slot.textContent = char === ' ' ? '\u00a0' : char
+              return slot
+            })
+
+      if (existingSlots.length !== finalBrand.length) {
+        brand.textContent = ''
+        for (const slot of slots) brand.appendChild(slot)
+      }
+
       finalBrand.split('').forEach((char, index) => {
-        const slot = document.createElement('span')
-        slot.className = 'nuc-home-hero-glyph'
+        const slot = slots[index]
+        if (!slot) return
+        slot.classList.remove('is-locked')
         slot.textContent =
           glyphs[Math.floor(Math.random() * glyphs.length)] || '·'
-        brand.appendChild(slot)
 
         const state = { p: 0 }
         track(
@@ -505,7 +546,7 @@ export async function playInvestorAnimations(
     })
   }
 
-  // Hero re-entry + section reveals — after intro boot (avoids IO reflow thrash).
+  // Hero re-entry + section reveals - after intro boot (avoids IO reflow thrash).
   let sectionObserversArmed = false
   const armSectionObservers = () => {
     if (sectionObserversArmed) return
@@ -563,7 +604,7 @@ export async function playInvestorAnimations(
                 settleHeroBits(heroBits)
                 continue
               }
-              // Opacity/blur only — keep translate at 0 so rail jumps to intro
+              // Opacity/blur only - keep translate at 0 so rail jumps to intro
               // do not flash content 24px low before the re-entry tween.
               for (const item of heroBits) {
                 item.style.opacity = '0'

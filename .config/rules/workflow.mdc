@@ -12,7 +12,7 @@ Rules: `.cursor/rules/` (monorepo) + per-package `<pkg>/.config/rules/`
 
 ---
 
-## Phase 1 — PLAN
+## Phase 1 - PLAN
 
 Act as the **Planner** (`web/.cursor/agents/planner.md`).
 
@@ -25,12 +25,12 @@ Pipeline skills (`/.cursor/skills/plan*`, `do*`, …) share steps in `nui-workfl
 
 ---
 
-## Phase 2 — IMPLEMENT
+## Phase 2 - IMPLEMENT
 
 Parallel when both API and UI needed:
 
-- **Backend** — `web/.cursor/agents/backend.md`
-- **Frontend** — `web/.cursor/agents/frontend.md`
+- **Backend** - `web/.cursor/agents/backend.md`
+- **Frontend** - `web/.cursor/agents/frontend.md`
 
 Single agent for frontend-only or API-only work.
 
@@ -38,15 +38,15 @@ After implementation, write or update a short note under `.ai/docs/` when behavi
 
 ---
 
-## Phase 3 — TEST
+## Phase 3 - TEST
 
-**Tester** — `web/.cursor/agents/tester.md`
+**Tester** - `web/.cursor/agents/tester.md`
 
 ---
 
-## Phase 4 — REVIEW
+## Phase 4 - REVIEW
 
-**Reviewer** — `web/.cursor/agents/reviewer.md`
+**Reviewer** - `web/.cursor/agents/reviewer.md`
 
 1. Check convention compliance; fix issues
 2. Run: `pnpm check`, `pnpm typeslint`, `pnpm slint`, `pnpm tests`

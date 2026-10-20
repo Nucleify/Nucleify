@@ -14,7 +14,7 @@ export function whenHomeReady(root: HTMLElement): Promise<void> {
     })
     mo.observe(root, { attributes: true, attributeFilter: ['class'] })
 
-    // Safety — match hero timeline upper bound.
+    // Safety - match hero timeline upper bound.
     const safety = window.setTimeout(done, 4000)
   })
 }

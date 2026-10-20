@@ -81,14 +81,14 @@ function setVar(el: HTMLElement, name: string, value: string): void {
   el.style.setProperty(name, value)
 }
 
-/** CSS defaults only — no layout reads (avoids boot forced reflow). */
+/** CSS defaults only - no layout reads (avoids boot forced reflow). */
 function setIrisOrigin(root: HTMLElement, compact: boolean): void {
   if (!compact) {
     setVar(root, '--home-iris-x', '18%')
     setVar(root, '--home-iris-y', '40%')
     return
   }
-  // Mobile origin near brand — LCP peeks through the starting circle.
+  // Mobile origin near brand - LCP peeks through the starting circle.
   setVar(root, '--home-iris-x', '12%')
   setVar(root, '--home-iris-y', '18%')
 }
@@ -138,7 +138,7 @@ function warmBrandFonts(): void {
 }
 
 /**
- * Nucleify motion system — intentionally non-generic:
+ * Nucleify motion system - intentionally non-generic:
  * cipher decode, iris wipe, magnetic shear, glitch-mask / lattice scroll.
  */
 export async function playHomeAnimations(
@@ -227,7 +227,7 @@ async function runHomeMotionEngine(
     clearMotionStyles(el)
   }
 
-  // Iris before animejs — lab paints open (no nuc-iris-boot); humans wipe 0→165.
+  // Iris before animejs - lab paints open (no nuc-iris-boot); humans wipe 0→165.
   setIrisOrigin(root, compact)
   if (irisBoot) {
     setVar(root, '--home-iris', '0%')
@@ -277,7 +277,7 @@ async function runHomeMotionEngine(
   if (!compact) warmBrandFonts()
 
   // Hide assemble targets before the timeline so they don't flash while animejs starts.
-  // Compact (mobile): keep hero painted — only iris wiped.
+  // Compact (mobile): keep hero painted - only iris wiped.
   if (!compact) {
     for (const el of [nav, rail, eyebrow, mark, cta, proof, panel]) {
       if (el) el.style.opacity = '0'
@@ -286,7 +286,7 @@ async function runHomeMotionEngine(
     if (support) support.style.clipPath = 'inset(100% 0 0 0)'
   }
 
-  // 1) Cipher decode — desktop only under iris; skip on mobile (Speed Index / LCP text).
+  // 1) Cipher decode - desktop only under iris; skip on mobile (Speed Index / LCP text).
   const finalBrand = brand?.textContent?.trim() || 'Nucleify'
   const glyphs = '01<>{}[]/\\|#$%#_entropynucleus'
   if (brand && !compact) {
@@ -300,7 +300,7 @@ async function runHomeMotionEngine(
       const settleBrand = () => {
         if (settled) return
         settled = true
-        brand.textContent = finalBrand
+        // Keep per-glyph spans so trailing letter-spacing does not clip the last char.
         brand.classList.remove('is-decoding')
       }
 
@@ -361,7 +361,7 @@ async function runHomeMotionEngine(
     }
   }
 
-  // After intro boot — IO + section prepares read layout; running them during
+  // After intro boot - IO + section prepares read layout; running them during
   // iris/timeline thrash with animejs writes (forced reflow in lab).
   let scrollSectionsBound = false
   const bindScrollSectionsAfterBoot = () => {
@@ -391,7 +391,7 @@ async function runHomeMotionEngine(
   })
   track(cleanups, timeline)
 
-  // Desktop-only boot timeline — mobile stays on the SSR paint (no chrome tween).
+  // Desktop-only boot timeline - mobile stays on the SSR paint (no chrome tween).
   if (!compact) {
     if (nav) {
       timeline.add(
@@ -510,7 +510,7 @@ async function runHomeMotionEngine(
     )
   }
 
-  // 4) Magnetic pointer shear (elastic) — desktop only; no layout reads.
+  // 4) Magnetic pointer shear (elastic) - desktop only; no layout reads.
   setVar(root, '--home-mx', '0')
   setVar(root, '--home-my', '0')
   if (!compact) {
@@ -559,10 +559,10 @@ async function runHomeMotionEngine(
   }
 
   // 5) Scroll: replay enter animations on every section visit.
-  // Use viewport coverage (not target ratio) — on mobile panels are taller than
+  // Use viewport coverage (not target ratio) - on mobile panels are taller than
   // the scroller, so intersectionRatio can never reach 0.45 and content stayed hidden.
   const viewportShare = (entry: IntersectionObserverEntry): number => {
-    // Prefer IO geometry — avoid scroller.clientHeight (forced reflow) mid-motion.
+    // Prefer IO geometry - avoid scroller.clientHeight (forced reflow) mid-motion.
     const rootHeight = entry.rootBounds?.height
     if (!rootHeight) return 0
     return entry.intersectionRect.height / rootHeight
@@ -600,7 +600,7 @@ async function runHomeMotionEngine(
       visible = true
       clearLocal()
 
-      // Boot already assembled this pass — don't replay y/translate on first observe.
+      // Boot already assembled this pass - don't replay y/translate on first observe.
       if (options?.skipInitialSync && !revealed) {
         revealed = true
         return
@@ -650,7 +650,9 @@ async function runHomeMotionEngine(
       }
     )
 
-    if (options?.prepareOnBind !== false) {
+    // Opt-in only. Eager prepare mutates SSR DOM before React/lazy islands
+    // hydrate (Next Suspense), which triggers hydration mismatches.
+    if (options?.prepareOnBind === true) {
       handlers.prepare()
     }
 
@@ -731,7 +733,7 @@ async function runHomeMotionEngine(
           for (const item of heroBits) {
             item.style.opacity = '0'
             item.style.filter = 'blur(10px)'
-            // No translate on leave — avoids “too low then jump” when rail returns to intro.
+            // No translate on leave - avoids “too low then jump” when rail returns to intro.
             item.style.removeProperty('translate')
           }
         },
@@ -754,7 +756,7 @@ async function runHomeMotionEngine(
       {
         prepareOnBind: false,
         skipInitialSync: true,
-        // Mobile: keep hero painted — replay hide→blur felt like a jump on return.
+        // Mobile: keep hero painted - replay hide→blur felt like a jump on return.
         replayOnCompact: false,
       }
     )
@@ -774,7 +776,7 @@ async function runHomeMotionEngine(
       '.nuc-home-stack .nuc-home-eyebrow, .nuc-home-stack .nuc-home-title, .nuc-home-stack .nuc-home-support, .nuc-home-stack .nuc-home-next, .nuc-home-stack-spotlight'
     )
     const stackLattice = qa(root, '.nuc-home-stack-item')
-    /** Desktop rest pose — matches CSS --sx/--sy/--sr on .nuc-home-stack-item */
+    /** Desktop rest pose - matches CSS --sx/--sy/--sr on .nuc-home-stack-item */
     const stackLatticeRest = [
       { x: -8, y: 2, r: -3.5 },
       { x: 12, y: -18, r: 3 },
@@ -1060,7 +1062,7 @@ async function runHomeMotionEngine(
   }
 
   if (compact) {
-    // Boot already finished before animejs — only bind scroll reveals.
+    // Boot already finished before animejs - only bind scroll reveals.
     bindScrollSectionsAfterBoot()
     return
   }

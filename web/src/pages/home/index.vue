@@ -177,7 +177,7 @@ onMounted(() => {
         root.classList.add('nuc-home-ready')
       })
 
-    // Layout readers (IO / ResizeObserver / offsetHeight) — after intro boot only.
+    // Layout readers (IO / ResizeObserver / offsetHeight) - after intro boot only.
     void import('./utils/when_home_ready').then(({ whenHomeReady }) => {
       void whenHomeReady(root).then(() => {
         if (generation !== motionGate.generation) return

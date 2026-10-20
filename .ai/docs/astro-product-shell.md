@@ -18,9 +18,9 @@ Markup-first without HTML duplication between static sections and orchestrators:
 
 | Vue class | `.astro` | `*.island.tsx` |
 |-----------|----------|----------------|
-| static | full template markup (via IR) | — |
+| static | full template markup (via IR) | - |
 | island (interactive) | thin mount (`<Island client:load />`) | React UI (Astro SSRs it) |
-| orchestrator (home/investor) | composes child `.astro` sections | `boot.island.tsx` — motion/rail only (`return null`) |
+| orchestrator (home/investor) | composes child `.astro` sections | `boot.island.tsx` - motion/rail only (`return null`) |
 
 Locale pages render `views/home/index.astro` (SSR) inside `ShellNui` (nui + params). Interactive sections hydrate as islands; static sections stay Astro-only.
 

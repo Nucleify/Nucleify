@@ -18,7 +18,7 @@ Follow `.cursor/rules/` and package rules under `web|admin|docs|compiler|shared_
 |----------|------|
 | Feature plan | `.ai/specs/plan.md` |
 | Session / change docs | `.ai/docs/` (markdown) |
-| Product docs site | `docs/` (`@nucleify/docs` — Astro; do not use for agent notes) |
+| Product docs site | `docs/` (`@nucleify/docs` - Astro; do not use for agent notes) |
 
 Never write agent notes into `docs/markdown/`, `docs/pdf/`, or the Astro content tree unless the user asked to change the product docs site.
 
@@ -44,18 +44,18 @@ Never write agent notes into `docs/markdown/`, `docs/pdf/`, or the Astro content
 pnpm -s check && pnpm -s typeslint && pnpm -s slint && pnpm -s tests
 ```
 
-Fix failures and re-run until green. Skip the suite only for pure docs/rules/markdown — say so.
+Fix failures and re-run until green. Skip the suite only for pure docs/rules/markdown - say so.
 5. Do **not** commit unless **COMMIT** is in this pipeline.
 6. Do **not** push unless **PUSH** is in this pipeline.
 
 ## COMMIT
 
-The user invoked commit — create the commit (include `.ai/docs/` updates from DO when present).
+The user invoked commit - create the commit (include `.ai/docs/` updates from DO when present).
 
 1. Run in parallel: `git status`, `git diff`, `git diff --cached`, `git log -8 --oneline`.
 2. Stage only this batch. Never stage `.env`, credentials, or secrets.
 3. Message via HEREDOC, 1–2 sentences on **why**. Repo style: `feat:` / `fix:` / `chore:` / `docs:` (optionally scoped, e.g. `fix(web): …`).
-   - **English only** — never Polish in the commit subject/body.
+   - **English only** - never Polish in the commit subject/body.
    - Do **not** reference `plan.md`, `.ai/specs/plan.md`, tor labels, or other workflow artefacts in the message.
 4. No `--no-verify`, no force, no amend unless the user asked and amend rules pass.
 5. Failed hook: fix and make a **new** commit. Do not amend.
@@ -64,7 +64,7 @@ The user invoked commit — create the commit (include `.ai/docs/` updates from 
 
 ## PUSH
 
-The user invoked push — publish the current branch.
+The user invoked push - publish the current branch.
 
 1. Never `push --force` to `main`, `master`, or `prod`. Never `--no-verify`.
 2. If no upstream: `git push -u origin HEAD`. Else `git push`.

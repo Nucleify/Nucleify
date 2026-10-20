@@ -1,6 +1,6 @@
 # Układ monorepo
 
-Nucleify to workspace pnpm zbudowany pod **migrację między frameworkami**. Każdy pakiet ma wyraźną granicę, współdzielone narzędzia są w `.config/`, a aplikacje produktowe (`web/`, `admin/`, `docs/`) konsumują logikę funkcjonalną z `shared_modules/` — nigdy odwrotnie. Generowane shelle (Next, Solid, Svelte, …) to output, nie drugie źródło prawdy.
+Nucleify to workspace pnpm zbudowany pod **migrację między frameworkami** jako pierwszorzędną zdolność produktu. Każdy pakiet ma wyraźną granicę, współdzielone narzędzia są w `.config/`, a aplikacje produktowe (`web/`, `admin/`, `docs/`) konsumują logikę funkcjonalną z `shared_modules/` - nigdy odwrotnie. Kompilator prowadzi emit, import i konwersję produktu; generowane shelle (Next, Solid, Svelte, Astro, …) to output, nie drugie źródło prawdy.
 
 ---
 
@@ -8,11 +8,11 @@ Nucleify to workspace pnpm zbudowany pod **migrację między frameworkami**. Ka�
 
 ```txt
 nucleify/
-├── web/                    # @nucleify/web — landing Nuxt 4 (kanoniczny)
-├── admin/                  # @nucleify/admin — panel admin Nuxt 4
-├── docs/                   # @nucleify/docs — dokumentacja Astro 5
-├── compiler/               # @nucleify/compiler — przenośny kompilator UI IR
-├── shared_modules/         # @nucleify/shared-modules — sześć eksportowanych modułów nuc_*
+├── web/                    # @nucleify/web - landing Nuxt 4 (kanoniczny)
+├── admin/                  # @nucleify/admin - panel admin Nuxt 4
+├── docs/                   # @nucleify/docs - dokumentacja Astro 5
+├── compiler/               # @nucleify/compiler - przenośny kompilator UI IR
+├── shared_modules/         # @nucleify/shared-modules - sześć eksportowanych modułów nuc_*
 ├── portable/nui/           # design tokeny, rejestracja Lit nui-*
 ├── overrides/              # overrides/{web,admin,docs,shared_modules}/
 ├── supabase/               # konfiguracja DB, migracje, edge functions
@@ -26,7 +26,7 @@ nucleify/
 
 ## Aplikacje produktowe
 
-### `web/` — `@nucleify/web`
+### `web/` - `@nucleify/web`
 
 Kanoniczna aplikacja landingowa Nuxt 4.
 
@@ -58,13 +58,13 @@ Kluczowe fakty:
 - Alias `modules` → `../shared_modules`
 - Alias `#nuc-compiler/runtime` → `../compiler/runtime/index.ts`
 
-### `admin/` — `@nucleify/admin`
+### `admin/` - `@nucleify/admin`
 
 Te same konwencje Nuxt co `web/`, skupione na stronach dashboardu pod `admin/src/pages/`.
 
 ---
 
-## `docs/` — `@nucleify/docs`
+## `docs/` - `@nucleify/docs`
 
 Statyczna strona dokumentacji Astro 5.
 
@@ -86,9 +86,9 @@ Kategorie są zdefiniowane w `docs/src/lib/constants/docs.ts`. Host produkcyjny:
 
 ---
 
-## `compiler/` — `@nucleify/compiler`
+## `compiler/` - `@nucleify/compiler`
 
-Przenośny kompilator UI oparty na IR. Samodzielny — nie importuje z `web/`, `admin/` ani `docs/`.
+Przenośny kompilator UI oparty na IR. Samodzielny - nie importuje z `web/`, `admin/` ani `docs/`.
 
 ```txt
 compiler/
@@ -108,7 +108,7 @@ Gitignored demo emisji: `{vue,react,nuxt,next,solid,svelte}/demo/` (przez `make 
 
 ---
 
-## `shared_modules/` — `@nucleify/shared-modules`
+## `shared_modules/` - `@nucleify/shared-modules`
 
 Sześć eksportowanych modułów funkcjonalnych (nie submoduły git):
 
@@ -143,7 +143,7 @@ overrides/
 └── shared_modules/nuc_*/…
 ```
 
-Nadpisania zastępują oryginalny plik w całości — bez merge. Tylko Nuxt; nie jest częścią importu kompilatora. Zobacz [Nadpisywanie](/pl/docs/core-concepts/overriding).
+Nadpisania zastępują oryginalny plik w całości - bez merge. Tylko Nuxt; nie jest częścią importu kompilatora. Zobacz [Nadpisywanie](/pl/docs/core-concepts/overriding).
 
 ---
 
@@ -158,7 +158,7 @@ Konfiguracja projektu Supabase na poziomie monorepo. SQL modułów jest w każdy
 Współdzielone narzędzia monorepo:
 
 - Biome (`pnpm check`, `pnpm write`)
-- Root config Vitest (`vitest.config.ts`) — projekty `web` i `shared`
+- Root config Vitest (`vitest.config.ts`) - projekty `web` i `shared`
 - Vitest kompilatora (`.config/vitest.compiler.config.ts`)
 - Skrypty bash: merge/apply Supabase, hook checks, prepare submodule
 - Hooki Husky delegują do `.config/bash/hook-checks.sh`
@@ -202,6 +202,6 @@ web / admin / docs
 
 ## Powiązana dokumentacja
 
-- [Moduły](/pl/docs/core-concepts/modules) — wewnętrzna struktura modułu
-- [Kompilator](/pl/docs/core-concepts/compiler) — kanoniczny Nuxt vs konwersja produktu
-- [Web & Admin](/pl/docs/configuration/web) — szczegóły konfiguracji Nuxt
+- [Moduły](/pl/docs/core-concepts/modules) - wewnętrzna struktura modułu
+- [Kompilator](/pl/docs/core-concepts/compiler) - kanoniczny Nuxt vs konwersja produktu
+- [Web & Admin](/pl/docs/configuration/web) - szczegóły konfiguracji Nuxt

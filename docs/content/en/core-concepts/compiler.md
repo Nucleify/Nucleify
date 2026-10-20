@@ -1,6 +1,8 @@
 # Compiler
 
-The `@nucleify/compiler` package is how Nucleify migrates UI across shells: an IR-first portable compiler that turns `*.nuc.tsx` into Vue SFCs, React, Solid, and Svelte components, and shared CSS — and can convert Nuxt product shells (`web/`, `admin/`) or an external Nuxt-like tree to Next.js, Solid, or Svelte.
+Framework migration is a **core capability** of Nucleify - not a bolt-on. The `@nucleify/compiler` package owns that path: an **IR-first** portable compiler that turns `*.nuc.tsx` into Vue SFCs, React, Solid, Svelte, and Astro output (plus shared CSS), **imports emit edits back** into source, and **converts whole Nuxt product shells** (`web/`, `admin/`) - or an external Nuxt-like tree - to Next.js, Solid, Svelte, or Astro.
+
+That scope goes beyond a component-only transpile: domains, routes, and shared modules move with the shell. The framework becomes a build target; the product stays in `shared_modules/`.
 
 **Coverage:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next or Vue/Nuxt are starting points, not the limit.
 
@@ -10,12 +12,12 @@ The `@nucleify/compiler` package is how Nucleify migrates UI across shells: an I
 
 | Mode | What it does | Example |
 |------|--------------|---------|
-| **Portable emit** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + Svelte `.svelte` + `.css` | `pnpm compiler:build` / `make solid` / `make svelte` |
-| **Product convert** | Nuxt app (or external folder/git) → Next.js, Solid, or Svelte app | `pnpm compiler -- convert web --target=next` |
+| **Portable emit** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + Svelte `.svelte` + `.astro` + `.css` | `pnpm compiler:build` / `make solid` / `make svelte` / `make astro` |
+| **Product convert** | Nuxt app (or external folder/git) → Next.js, Solid, Svelte, or Astro app | `pnpm compiler -- convert web --target=next` |
 
-**Portable emit** is for presentational components. **Product convert** scaffolds `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, or `admin-svelte/` from the Vue source tree — same routes, shared modules, different framework shell. Converting the Astro `docs/` product is **not** implemented yet.
+**Portable emit** is for presentational components with a round-trip import path (`import --from=…`). **Product convert** scaffolds `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/`, or `admin-astro/` from the Vue source tree - same routes, shared modules, different framework shell. Converting the Astro `docs/` product is **not** implemented yet.
 
-Do **not** re-export `*.nuc.tsx` from public barrels (`index.ts`, `modules.ts`, …) — authoring stays out of app entrypoints.
+Do **not** re-export `*.nuc.tsx` from public barrels (`index.ts`, `modules.ts`, …) - authoring stays out of app entrypoints.
 
 ---
 
@@ -179,7 +181,7 @@ pnpm compiler -- convert admin --target=solid --git=https://github.com/org/app.g
 pnpm compiler -- convert web --target=svelte --path=/path/to/nuxt-app --out=my-svelte --force
 ```
 
-Product shells install with `pnpm install --ignore-workspace` — template dependency versions stay pinned; they do not join the monorepo workspace graph.
+Product shells install with `pnpm install --ignore-workspace` - template dependency versions stay pinned; they do not join the monorepo workspace graph.
 
 The converter reads Vue SFCs under `src/`, maps pages and composables to React, Solid, or Svelte equivalents, and writes output with **no** source `.vue` files. Shared modules are consumed via framework barrels.
 
@@ -195,7 +197,7 @@ Nuxt resolves the runtime through `web/.config/nuxt/structure.ts`:
 '#nuc-compiler/runtime': resolve(process.cwd(), '../compiler/runtime/index.ts')
 ```
 
-Runtime helpers (`component`, `state`, `derived`, `handler`) are compile-time markers — they must not appear in emitted bundles.
+Runtime helpers (`component`, `state`, `derived`, `handler`) are compile-time markers - they must not appear in emitted bundles.
 
 ---
 
@@ -216,6 +218,6 @@ See [Vitest](/en/docs/tests/vitest) for the full testing setup.
 
 ## Related docs
 
-- [Monorepo Layout](/en/docs/core-concepts/monorepo) — where compiler fits in the workspace
-- [Quick Start](/en/docs/getting-started/quick-start) — build your first portable component
-- [Web & Admin](/en/docs/configuration/web) — Nuxt config that wires the runtime alias
+- [Monorepo Layout](/en/docs/core-concepts/monorepo) - where compiler fits in the workspace
+- [Quick Start](/en/docs/getting-started/quick-start) - build your first portable component
+- [Web & Admin](/en/docs/configuration/web) - Nuxt config that wires the runtime alias

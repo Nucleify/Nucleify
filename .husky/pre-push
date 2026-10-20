@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
-# Intentionally empty — quality gates run on pre-commit (+ GitHub Actions).
+# Intentionally empty - quality gates run on pre-commit (+ GitHub Actions).
 exit 0

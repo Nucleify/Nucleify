@@ -24,7 +24,7 @@ make web
 
 Otwórz [http://localhost:3000/en/home](http://localhost:3000/en/home).
 
-Źródło landingu jest w `web/src/pages/home/` — sekcje złożone przez `web/src/pages/home/index.vue`. Trasy to cienkie wrappery pod `web/src/pages/[lang]/`:
+Źródło landingu jest w `web/src/pages/home/` - sekcje złożone przez `web/src/pages/home/index.vue`. Trasy to cienkie wrappery pod `web/src/pages/[lang]/`:
 
 ```vue
 <!-- web/src/pages/[lang]/home.vue -->
@@ -71,7 +71,7 @@ Cztery moduły rejestrują się automatycznie przy starcie aplikacji w `web/src/
 - `nuc_dark_mode`
 - `nuc_languages`
 
-`nuc_api` i `nuc_stores` importujesz tam, gdzie są potrzebne — bez globalnej rejestracji pluginu.
+`nuc_api` i `nuc_stores` importujesz tam, gdzie są potrzebne - bez globalnej rejestracji pluginu.
 
 ---
 
@@ -146,7 +146,7 @@ Zobacz [Nadpisywanie](/pl/docs/core-concepts/overriding).
 
 ### Autorsuj komponent przenośny
 
-Utwórz `Foo.nuc.tsx` obok miejsca użycia. Uruchom `pnpm compiler:build`. Commituj `.nuc.tsx` i wygenerowane sąsiednie pliki (`.vue`, React/Solid `.tsx`, Svelte `.svelte`, `.css`). Nie edytuj ręcznie emitu jako źródła prawdy — użyj `pnpm compiler -- import --from=vue|react|solid|svelte`, jeśli edytowałeś emit.
+Utwórz `Foo.nuc.tsx` obok miejsca użycia. Uruchom `pnpm compiler:build`. Commituj `.nuc.tsx` i wygenerowane sąsiednie pliki (`.vue`, React/Solid `.tsx`, Svelte `.svelte`, `.css`). Nie edytuj ręcznie emitu jako źródła prawdy - użyj `pnpm compiler -- import --from=vue|react|solid|svelte`, jeśli edytowałeś emit.
 
 ---
 

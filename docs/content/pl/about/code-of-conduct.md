@@ -1,6 +1,6 @@
 # Kodeks postępowania
 
-## Contributor Covenant Code of Conduct — Wersja 2.1
+## Contributor Covenant Code of Conduct - Wersja 2.1
 
 Nucleify podąża za [Contributor Covenant Code of Conduct 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
 
@@ -104,5 +104,5 @@ Odpowiedzi na często zadawane pytania dotyczące tego kodeksu postępowania zna
 
 ## Powiązane
 
-- [Standardy kodowania](/pl/docs/about/coding-standards) — wytyczne techniczne dla kontrybucji
-- [Ludzie i podziękowania](/pl/docs/about/people-and-credits) — zespół i podziękowania
+- [Standardy kodowania](/pl/docs/about/coding-standards) - wytyczne techniczne dla kontrybucji
+- [Ludzie i podziękowania](/pl/docs/about/people-and-credits) - zespół i podziękowania

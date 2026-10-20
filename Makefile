@@ -51,7 +51,7 @@ endef
 run:
 	@if [ ! -f .env ]; then \
 		cp web/.config/.env.example .env; \
-		echo "Created .env from web/.config/.env.example — fill in SUPABASE_* before using the API."; \
+		echo "Created .env from web/.config/.env.example - fill in SUPABASE_* before using the API."; \
 	fi
 	$(MAKE) setup
 

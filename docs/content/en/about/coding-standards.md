@@ -8,10 +8,10 @@ Conventions for readable, consistent code across the Nucleify monorepo. When in 
 
 ```txt
 nucleify/
-├── web/               # @nucleify/web — Nuxt landing
-├── admin/             # @nucleify/admin — Nuxt admin
-├── docs/              # @nucleify/docs — Astro docs
-├── compiler/          # @nucleify/compiler — portable UI compiler
+├── web/               # @nucleify/web - Nuxt landing
+├── admin/             # @nucleify/admin - Nuxt admin
+├── docs/              # @nucleify/docs - Astro docs
+├── compiler/          # @nucleify/compiler - portable UI compiler
 ├── shared_modules/    # six exported nuc_* feature modules
 ├── portable/nui/      # design tokens
 ├── overrides/         # per-package file overrides
@@ -99,8 +99,8 @@ web/src/
 
 ## TypeScript
 
-- Strict typing — avoid `any` unless Nuxt config forces it (document with biome-ignore)
-- Export types from `types/` — do not duplicate interfaces across files
+- Strict typing - avoid `any` unless Nuxt config forces it (document with biome-ignore)
+- Export types from `types/` - do not duplicate interfaces across files
 - Use `.react.ts` type siblings when React props diverge from Vue
 
 ---
@@ -162,7 +162,7 @@ Author in `*.nuc.tsx` per `compiler/PORTABLE.md`:
 - Module tests: `shared_modules/nuc_*/vitests/`
 - Nuxt tests: `web/vitests/`
 - Run `pnpm tests` before commit
-- Meaningful behavior tests — avoid asserting implementation details
+- Meaningful behavior tests - avoid asserting implementation details
 
 ---
 
@@ -182,7 +182,7 @@ Husky runs these on pre-commit via `.config/bash/hook-checks.sh` (pre-push is a 
 
 ## Git & commits
 
-- Focused commits — one concern per change when possible
+- Focused commits - one concern per change when possible
 - Do not commit `.env`, emit demos (`vue/demo`, etc.), or `*.ir.json`
 - Follow existing commit message style in the repo
 

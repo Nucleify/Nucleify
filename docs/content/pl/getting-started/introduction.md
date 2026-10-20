@@ -2,11 +2,11 @@
 
 ## Zbuduj raz. Przenieś na dowolny framework.
 
-**Nucleify** to modularne monorepo full-stack. Trzymaj produkt we współdzielonych modułach, rozwijaj codziennie w Nuxt (`web/`) i migruj web, admin lub docs na inny framework, gdy trzeba — bez przepisywania biznesu.
+**Nucleify** to modularne monorepo full-stack zbudowane wokół **migracji między frameworkami**. Trzymaj produkt we współdzielonych modułach, rozwijaj codziennie w Nuxt (`web/`) i przenieś web lub admin na inny shell, gdy rekrutacja, kupujący albo klient tego wymagają - bez przepisywania biznesu. Kompilator oparty na IR prowadzi ten ruch: emit przenośny, konwersja produktu i import z powrotem z emitu.
 
-**Shelle:** Vue · React · Nuxt · Next · Astro · Svelte · Solid — to nie jest produkt „tylko React/Next” ani „tylko Vue/Nuxt”.
+**Shelle:** Vue · React · Nuxt · Next · Astro · Svelte · Solid - to nie jest produkt „tylko React/Next” ani „tylko Vue/Nuxt”.
 
-> Zbuduj nucleus raz. Odpal każdy shell.
+> Zostaw produkt. Migruj shell.
 
 ---
 
@@ -24,10 +24,10 @@ Nucleify to **workspace pnpm**, który łączy wszystko, czego potrzebuje nowocz
 
 Katalogi wspierające:
 
-- `portable/nui/` — design tokeny i rejestracja Lit `nui-*`
-- `overrides/` — nadpisania plików per pakiet (`overrides/{web,admin,docs,shared_modules}/`)
-- `supabase/` — konfiguracja DB, migracje, edge functions
-- `.config/` — Biome, Vitest, skrypty bash
+- `portable/nui/` - design tokeny i rejestracja Lit `nui-*`
+- `overrides/` - nadpisania plików per pakiet (`overrides/{web,admin,docs,shared_modules}/`)
+- `supabase/` - konfiguracja DB, migracje, edge functions
+- `.config/` - Biome, Vitest, skrypty bash
 
 ---
 
@@ -39,7 +39,7 @@ Katalogi wspierające:
 | **Skonwertowany** (generowany) | Next / Solid / Svelte | `make web TARGET=next` · `solid` · `svelte` | wygenerowane drzewo (zob. [Kompilator](/pl/docs/core-concepts/compiler)) |
 | **Demo emit** | Vue · React · Nuxt · Next · Solid · Svelte | `make vue` · `react` · `nuxt` · `next` · `solid` · `svelte` | `{framework}/demo` |
 
-**Kanoniczny Nuxt** to codzienna praca — strony, composables i współdzielone moduły w Vue. **Konwersja produktu** i demo emisji rozprowadzają to samo jądro na kolejne shelle. Astro hostuje dokumentację; Svelte i Solid są pełnoprawnymi celami emisji i konwersji.
+**Kanoniczny Nuxt** to codzienna praca - strony, composables i współdzielone moduły w Vue. **Konwersja produktu** i demo emisji rozprowadzają to samo jądro na kolejne shelle. Astro hostuje dokumentację; Svelte i Solid są pełnoprawnymi celami emisji i konwersji.
 
 Wszystkie ścieżki współdzielą `shared_modules/`, Supabase i design tokeny. Nie utrzymujesz siedmiu niezależnych baz kodu.
 
@@ -47,7 +47,7 @@ Wszystkie ścieżki współdzielą `shared_modules/`, Supabase i design tokeny. 
 
 ## Kompilator
 
-Kompilator (`@nucleify/compiler`) to sposób migracji UI między shellami. Działa na dwóch poziomach:
+Kompilator (`@nucleify/compiler`) to rdzeń migracji. Nie ogranicza się do snipetów prezentacyjnych - działa na dwóch poziomach:
 
 ### 1. Przenośne komponenty (`*.nuc.tsx`)
 
@@ -83,7 +83,7 @@ make web TARGET=solid   # → web-solid/
 make web TARGET=svelte  # → web-svelte/
 ```
 
-Te same trasy, współdzielone moduły, inna powłoka frameworka. Output generuje kompilator — nie wchodzi w kanoniczny układ monorepo.
+Te same trasy, współdzielone moduły, inna powłoka frameworka. Output generuje kompilator - nie wchodzi w kanoniczny układ monorepo.
 
 ---
 
@@ -116,7 +116,7 @@ web/src/server/api/[...slug].ts
   → shared_modules/nuc_*/supabase/api/handle.ts
 ```
 
-Handlery modułów rejestrują się w `shared_modules/nuc_api/supabase/api/gateway_dispatch.ts`. Kod klienta wywołuje `/api/...` — nigdy Supabase bezpośrednio z przeglądarki dla operacji uprzywilejowanych.
+Handlery modułów rejestrują się w `shared_modules/nuc_api/supabase/api/gateway_dispatch.ts`. Kod klienta wywołuje `/api/...` - nigdy Supabase bezpośrednio z przeglądarki dla operacji uprzywilejowanych.
 
 ---
 
@@ -130,7 +130,7 @@ Prymitywy UI to **komponenty web Lit** z `nucleify-ui` (`nui-button`, `nui-icon`
 
 ```txt
 nucleify/
-├── web/                    # @nucleify/web — landing Nuxt 4 (kanoniczny)
+├── web/                    # @nucleify/web - landing Nuxt 4 (kanoniczny)
 │   ├── nuxt.config.ts
 │   ├── .config/nuxt/       # rozdzielona konfiguracja Nuxt
 │   └── src/
@@ -139,9 +139,9 @@ nucleify/
 │       ├── composables/
 │       ├── layouts/
 │       └── server/api/     # bramka API Nitro [...slug].ts
-├── admin/                  # @nucleify/admin — admin Nuxt 4
-├── docs/                   # @nucleify/docs — dokumentacja Astro 5
-├── compiler/               # @nucleify/compiler — przenośny kompilator UI IR
+├── admin/                  # @nucleify/admin - admin Nuxt 4
+├── docs/                   # @nucleify/docs - dokumentacja Astro 5
+├── compiler/               # @nucleify/compiler - przenośny kompilator UI IR
 ├── shared_modules/         # sześć eksportowanych modułów nuc_*
 ├── portable/nui/           # design tokeny, rejestracja Lit nui-*
 ├── overrides/              # overrides/{web,admin,docs,shared_modules}/
@@ -175,7 +175,7 @@ Odpowiedniki pnpm: `pnpm dev`, `pnpm admin`, `pnpm docs`.
 
 ## Następne kroki
 
-1. [Instalacja](/pl/docs/getting-started/installation) — wymagania i pierwsza konfiguracja
-2. [Szybki start](/pl/docs/getting-started/quick-start) — uruchom landing w kilka minut
-3. [Układ monorepo](/pl/docs/core-concepts/monorepo) — gdzie co się znajduje
-4. [Zmienne środowiskowe](/pl/docs/configuration/environment) — konfiguracja Supabase i zmiennych aplikacji
+1. [Instalacja](/pl/docs/getting-started/installation) - wymagania i pierwsza konfiguracja
+2. [Szybki start](/pl/docs/getting-started/quick-start) - uruchom landing w kilka minut
+3. [Układ monorepo](/pl/docs/core-concepts/monorepo) - gdzie co się znajduje
+4. [Zmienne środowiskowe](/pl/docs/configuration/environment) - konfiguracja Supabase i zmiennych aplikacji
