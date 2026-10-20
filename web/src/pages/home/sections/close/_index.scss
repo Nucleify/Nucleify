@@ -6,7 +6,13 @@
   margin: 0 auto;
   padding: 4.75rem var(--home-pad) 4.5rem;
   box-sizing: border-box;
+
+  /* Clip pitch/commerce slide; allow select panel when the form is open. */
   overflow: hidden;
+
+  &.is-form {
+    overflow: hidden visible;
+  }
 
   &-stage {
     position: relative;
@@ -231,6 +237,18 @@
   &-field {
     display: grid;
     gap: 0.4rem;
+
+    /* nui-select panel is absolute inside the host; raise the field so the
+       following textarea does not paint over the open options list. */
+    &:has(nui-select) {
+      position: relative;
+      z-index: 5;
+    }
+
+    &:has(.nuc-home-close-textarea) {
+      position: relative;
+      z-index: 1;
+    }
   }
 
   &-label {

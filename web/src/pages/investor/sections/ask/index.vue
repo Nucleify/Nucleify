@@ -93,7 +93,7 @@
               <span class="nuc-home-close-label">{{ copy.askTypeLabel }}</span>
               <nui-select
                 :value="websiteType"
-                :options="typeOptions"
+                :options.prop="typeOptions"
                 fluid
                 :placeholder="copy.askTypePlaceholder"
                 :invalid="Boolean(errors.website_type)"
@@ -189,6 +189,7 @@ import {
 import {
   composeHomeContactMessage,
   type HomeContactWebsiteType,
+  nuiValueFromEvent,
   submitHomeContactForm,
   validateHomeContactForm,
 } from '../../../home/utils/submit_contact_form'
@@ -263,17 +264,23 @@ function closeForm(): void {
   resetForm()
 }
 
-function onNameInput(event: CustomEvent<{ value: string }>): void {
-  name.value = event.detail.value
+function onNameInput(event: Event): void {
+  const value = nuiValueFromEvent(event)
+  if (value === null) return
+  name.value = value
 }
 
-function onEmailInput(event: CustomEvent<{ value: string }>): void {
-  email.value = event.detail.value
+function onEmailInput(event: Event): void {
+  const value = nuiValueFromEvent(event)
+  if (value === null) return
+  email.value = value
   delete errors.email
 }
 
-function onTypeChange(event: CustomEvent<{ value: string }>): void {
-  websiteType.value = event.detail.value
+function onTypeChange(event: Event): void {
+  const value = nuiValueFromEvent(event)
+  if (value === null) return
+  websiteType.value = value
   delete errors.website_type
 }
 
