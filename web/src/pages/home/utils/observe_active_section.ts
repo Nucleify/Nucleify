@@ -12,7 +12,7 @@ export function isHomeProgrammaticScroll(scroller: HTMLElement): boolean {
  * fight mid-flight and re-snap after land. Long jumps (e.g. ask → intro) use
  * instant scroll; short jumps stay smooth with snap held off until locked.
  *
- * Always clear inline snap on finish — never restore a stale `none` from the
+ * Always clear inline snap on finish - never restore a stale `none` from the
  * tall-section gate (that left section slides broken until hard refresh).
  */
 export function scrollHomeSection(root: HTMLElement, sectionId: string): void {

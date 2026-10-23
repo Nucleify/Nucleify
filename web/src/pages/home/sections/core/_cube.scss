@@ -1,8 +1,9 @@
 .nuc-home-holo-cube {
+  /* Companions: React cyan (+38) and Astro purple (+140) from Vue/Nuxt green. */
   --holo-cyan: hsl(var(--rainbow-hue) 95% 62%);
-  --holo-blue: hsl(calc(var(--rainbow-hue) + 48deg) 90% 62%);
-  --holo-violet: hsl(calc(var(--rainbow-hue) + 72deg) 88% 62%);
-  --holo-mag: hsl(calc(var(--rainbow-hue) + 96deg) 95% 60%);
+  --holo-blue: hsl(calc(var(--rainbow-hue) + 38deg) 90% 62%);
+  --holo-violet: hsl(calc(var(--rainbow-hue) + 100deg) 88% 62%);
+  --holo-mag: hsl(calc(var(--rainbow-hue) + 140deg) 95% 60%);
 
   position: relative;
   width: min(100%, 11.5rem);
@@ -76,7 +77,7 @@
     background: radial-gradient(
       circle at 52% 48%,
       #{'hsl(var(--rainbow-hue) 88% 68% / 0.16)'} 0%,
-      #{'hsl(calc(var(--rainbow-hue) + 40deg) 86% 58% / 0.07)'} 45%,
+      #{'hsl(calc(var(--rainbow-hue) + 38deg) 86% 58% / 0.07)'} 45%,
       transparent 72%
     );
     clip-path: polygon(50% 6%, 100% 28%, 100% 72%, 50% 94%, 0 72%, 0 28%);
@@ -123,7 +124,7 @@
 
   &-back-edge {
     fill: none;
-    stroke: hsl(calc(var(--rainbow-hue) + 72deg) 40% 42%);
+    stroke: hsl(calc(var(--rainbow-hue) + 100deg) 40% 42%);
     stroke-width: 1.05;
     opacity: 0.38;
   }
@@ -137,11 +138,11 @@
     }
 
     &.is-sdk {
-      fill: #{'hsl(calc(var(--rainbow-hue) + 48deg) 90% 62% / 0.08)'} !important;
+      fill: #{'hsl(calc(var(--rainbow-hue) + 38deg) 90% 62% / 0.08)'} !important;
     }
 
     &.is-data {
-      fill: #{'hsl(calc(var(--rainbow-hue) + 96deg) 90% 58% / 0.05)'} !important;
+      fill: #{'hsl(calc(var(--rainbow-hue) + 140deg) 90% 58% / 0.05)'} !important;
     }
   }
 
@@ -189,13 +190,13 @@
     }
 
     &.is-mid {
-      stroke: hsl(calc(var(--rainbow-hue) + 48deg) 92% 72%);
+      stroke: hsl(calc(var(--rainbow-hue) + 38deg) 92% 72%);
       stroke-width: 2.3;
       opacity: 0.86;
     }
 
     &.is-lo {
-      stroke: hsl(calc(var(--rainbow-hue) + 96deg) 88% 62%);
+      stroke: hsl(calc(var(--rainbow-hue) + 140deg) 88% 62%);
       stroke-width: 2.1;
       opacity: 0.66;
     }

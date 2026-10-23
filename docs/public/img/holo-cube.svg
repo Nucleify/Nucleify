@@ -184,7 +184,7 @@
     <g opacity="0.95">
       <path d="M38 68 L100 34" stroke="#4ade80" stroke-width="5" filter="url(#glow-green)" opacity="0.55" />
       <path d="M100 34 L162 68" stroke="#a855f7" stroke-width="5" filter="url(#glow-purple)" opacity="0.5" />
-      <!-- outer verticals — same strength as other lit edges -->
+      <!-- outer verticals - same strength as other lit edges -->
       <path d="M38 68 L38 136" stroke="#22d3ee" stroke-width="5" filter="url(#glow-side)" opacity="0.5" />
       <path d="M162 68 L162 136" stroke="#a855f7" stroke-width="5" filter="url(#glow-side)" opacity="0.5" />
       <path d="M38 136 L100 170" stroke="#22d3ee" stroke-width="5" filter="url(#glow-cyan)" opacity="0.45" />

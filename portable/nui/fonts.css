@@ -1,2 +1,10 @@
-/* Same families as web/.config/nuxt/fonts-icon.ts — all product shells. */
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;650&display=swap');
+/*
+ * Product fonts - Instrument Sans + JetBrains Mono.
+ *
+ * Do NOT @import Google Fonts from this file. Bundlers (Next/Vite/Astro)
+ * concatenate CSS, so a mid-file @import is invalid and browsers ignore it -
+ * brand then falls back to ui-monospace and looks different per host.
+ *
+ * Hosts load the stylesheet via <link> (see portable/nui/fonts.ts /
+ * convert layout heads). Weights match web/.config/nuxt/fonts-icon.ts.
+ */

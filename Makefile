@@ -1,11 +1,12 @@
-.PHONY: run setup web admin docs compiler vue react nuxt next solid svelte help
+.PHONY: run setup web admin docs compiler vue react nuxt next solid svelte astro help
 
 # Product apps: default shell is Nuxt. Product convert nests products under frameworks:
 #   make web                 # top-level web/ (Nuxt)
 #   make web TARGET=next     # web-next (scaffolded product shell)
+#   make web TARGET=astro    # web-astro (Astro host + React islands)
 #
 # Portable emit demos (gitignored):
-#   make nuxt / make next / make vue / make react / make solid / make svelte  → {framework}/demo
+#   make nuxt / make next / make vue / make react / make solid / make svelte / make astro  → {framework}/demo
 #
 # SKIP_COMPILER=1  → skip portable codegen on run/setup / demos that call compiler
 
@@ -22,12 +23,14 @@ help:
 	@echo "  make web TARGET=next              # web-next product shell"
 	@echo "  make web TARGET=solid             # web-solid product shell"
 	@echo "  make web TARGET=svelte            # web-svelte product shell"
+	@echo "  make web TARGET=astro             # web-astro product shell"
 	@echo "  make admin TARGET=next            # admin-next product shell"
 	@echo "  make admin TARGET=solid           # admin-solid product shell"
 	@echo "  make admin TARGET=svelte          # admin-svelte product shell"
+	@echo "  make admin TARGET=astro           # admin-astro product shell"
 	@echo ""
 	@echo "Portable emit demos (gitignored {framework}/demo):"
-	@echo "  make vue | react | nuxt | next | solid | svelte"
+	@echo "  make vue | react | nuxt | next | solid | svelte | astro"
 	@echo ""
 	@echo "Other:"
 	@echo "  make compiler"
@@ -48,7 +51,7 @@ endef
 run:
 	@if [ ! -f .env ]; then \
 		cp web/.config/.env.example .env; \
-		echo "Created .env from web/.config/.env.example — fill in SUPABASE_* before using the API."; \
+		echo "Created .env from web/.config/.env.example - fill in SUPABASE_* before using the API."; \
 	fi
 	$(MAKE) setup
 
@@ -76,10 +79,14 @@ else ifeq ($(TARGET),svelte)
 	pnpm exec tsx compiler/src/cli.ts convert web --target=svelte
 	pnpm exec tsx compiler/src/cli.ts build --app=svelte
 	cd web-svelte && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+else ifeq ($(TARGET),astro)
+	pnpm exec tsx compiler/src/cli.ts convert web --target=astro
+	pnpm exec tsx compiler/src/cli.ts build --app=astro
+	cd web-astro && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "TARGET=$(TARGET) is not implemented for web product shell."
-	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid | TARGET=svelte"
-	@echo "Emit-only demos (not product): make solid | make svelte"
+	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid | TARGET=svelte | TARGET=astro"
+	@echo "Emit-only demos (not product): make solid | make svelte | make astro"
 	@echo "See portable/README.md"
 	@exit 1
 endif
@@ -96,10 +103,13 @@ else ifeq ($(TARGET),solid)
 else ifeq ($(TARGET),svelte)
 	pnpm exec tsx compiler/src/cli.ts convert admin --target=svelte
 	cd admin-svelte && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+else ifeq ($(TARGET),astro)
+	pnpm exec tsx compiler/src/cli.ts convert admin --target=astro
+	cd admin-astro && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "TARGET=$(TARGET) is not implemented for admin product shell."
-	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid | TARGET=svelte"
-	@echo "Emit-only demos (not product): make solid | make svelte"
+	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid | TARGET=svelte | TARGET=astro"
+	@echo "Emit-only demos (not product): make solid | make svelte | make astro"
 	@exit 1
 endif
 
@@ -127,3 +137,6 @@ solid:
 
 svelte:
 	$(call rebuild_demo,svelte,dev)
+
+astro:
+	$(call rebuild_demo,astro,dev)

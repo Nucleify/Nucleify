@@ -45,7 +45,7 @@
 # Compiler IR dumps (--dump-ir)
 **/*.ir.json
 
-# Generated simple emit demos at monorepo root only (recreated by `make vue|react|nuxt|next|solid|svelte`)
+# Generated simple emit demos at monorepo root only (recreated by `make vue|react|nuxt|next|solid|svelte|astro`)
 # Use anchored paths so compiler/templates/* and portable/fixtures/emit/* stay tracked.
 /vue/
 /react/
@@ -53,12 +53,15 @@
 /next/
 /solid/
 /svelte/
+/astro/
 /web-next/
 /admin-next/
 /web-solid/
 /admin-solid/
 /web-svelte/
 /admin-svelte/
+/web-astro/
+/admin-astro/
 .nucleify-nm-*/
 .nucleify-convert-git-*/
 .nucleify-fixture-ext-*/

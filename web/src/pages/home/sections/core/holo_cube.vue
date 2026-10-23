@@ -53,11 +53,11 @@
             />
             <stop
               offset="55%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 48deg) 86% 58%); stop-opacity: 0.28"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 38deg) 86% 58%); stop-opacity: 0.28"
             />
             <stop
               offset="100%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 96deg) 88% 54%); stop-opacity: 0"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 140deg) 88% 54%); stop-opacity: 0"
             />
           </radialGradient>
           <clipPath :id="`${uid}-c`">
@@ -91,11 +91,11 @@
           >
             <stop
               offset="0%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 48deg) 90% 62%); stop-opacity: 0.36"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 38deg) 90% 62%); stop-opacity: 0.36"
             />
             <stop
               offset="100%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 48deg) 80% 42%); stop-opacity: 0.12"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 38deg) 80% 42%); stop-opacity: 0.12"
             />
           </linearGradient>
           <linearGradient
@@ -107,11 +107,11 @@
           >
             <stop
               offset="0%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 96deg) 90% 58%); stop-opacity: 0.28"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 140deg) 90% 58%); stop-opacity: 0.28"
             />
             <stop
               offset="100%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 96deg) 70% 32%); stop-opacity: 0.1"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 140deg) 70% 32%); stop-opacity: 0.1"
             />
           </linearGradient>
         </defs>

@@ -99,7 +99,7 @@
               >
               <nui-select
                 :value="websiteType"
-                :options="typeOptions"
+                :options.prop="typeOptions"
                 fluid
                 :placeholder="copy.closeTypePlaceholder"
                 :invalid="Boolean(errors.website_type)"
@@ -137,29 +137,23 @@
             </label>
           </div>
 
-          <div class="nuc-home-close-actions">
-            <nui-button
-              type="button"
-              variant="outlined"
-              :label="copy.closeCancel"
-              :disabled="loading"
-              @click="closeForm"
-            />
-            <nui-button
-              type="button"
-              variant="primary"
-              :label="copy.closeSubmit"
-              :loading="loading"
-              :disabled="loading"
-              icon="mdi:send-outline"
-              icon-pos="right"
-              @click="onSubmit"
-            />
+          <div class="nuc-home-close-foot">
+            <ul class="nuc-home-close-trust" aria-label="What to expect">
+              <li v-for="item in copy.closeTrust" :key="item">{{ item }}</li>
+            </ul>
+            <div class="nuc-home-close-actions">
+              <nui-button
+                type="button"
+                variant="primary"
+                :label="copy.closeSubmit"
+                :loading="loading"
+                :disabled="loading"
+                icon="mdi:send-outline"
+                icon-pos="right"
+                @click="onSubmit"
+              />
+            </div>
           </div>
-
-          <ul class="nuc-home-close-trust" aria-label="What to expect">
-            <li v-for="item in copy.closeTrust" :key="item">{{ item }}</li>
-          </ul>
         </form>
       </div>
     </div>
@@ -195,6 +189,7 @@ import {
 import {
   composeHomeContactMessage,
   type HomeContactWebsiteType,
+  nuiValueFromEvent,
   submitHomeContactForm,
   validateHomeContactForm,
 } from '../../utils/submit_contact_form'
@@ -268,17 +263,23 @@ function closeForm(): void {
   resetForm()
 }
 
-function onNameInput(event: CustomEvent<{ value: string }>): void {
-  name.value = event.detail.value
+function onNameInput(event: Event): void {
+  const value = nuiValueFromEvent(event)
+  if (value === null) return
+  name.value = value
 }
 
-function onEmailInput(event: CustomEvent<{ value: string }>): void {
-  email.value = event.detail.value
+function onEmailInput(event: Event): void {
+  const value = nuiValueFromEvent(event)
+  if (value === null) return
+  email.value = value
   delete errors.email
 }
 
-function onTypeChange(event: CustomEvent<{ value: string }>): void {
-  websiteType.value = event.detail.value
+function onTypeChange(event: Event): void {
+  const value = nuiValueFromEvent(event)
+  if (value === null) return
+  websiteType.value = value
   delete errors.website_type
 }
 

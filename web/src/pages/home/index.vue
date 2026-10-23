@@ -110,6 +110,11 @@ const menuOpen = ref(false)
 let stopAnimations: (() => void) | undefined
 let stopObserver: (() => void) | undefined
 let stopScrollGate: (() => void) | undefined
+/**
+ * Plain object so product convert keeps a stable counter (not useState).
+ * Guards async animation start against remount / Strict Mode double-invoke.
+ */
+const motionGate = { generation: 0 }
 
 function goToSection(id: NucHomeSectionId): void {
   if (!rootEl.value) return
@@ -122,8 +127,9 @@ function goToSection(id: NucHomeSectionId): void {
 }
 
 onMounted(() => {
+  const generation = ++motionGate.generation
   void nextTick().then(() => {
-    if (!rootEl.value) return
+    if (generation !== motionGate.generation || !rootEl.value) return
     const root = rootEl.value
 
     // PageSpeed / Lighthouse: skip motion so the lab run can finish.
@@ -133,6 +139,7 @@ onMounted(() => {
       root.classList.add('nuc-home-ready', 'nuc-home-static')
       void import('./utils/observe_active_section').then(
         ({ observeActiveSection }) => {
+          if (generation !== motionGate.generation) return
           stopObserver = observeActiveSection(
             root,
             sections.map((section) => section.id),
@@ -145,19 +152,38 @@ onMounted(() => {
       return
     }
 
-    void import('./utils/play_home_animations').then(
-      ({ playHomeAnimations }) => {
-        void playHomeAnimations(root).then((stop) => {
-          stopAnimations = stop
-        })
-      }
-    )
+    void import('./utils/play_home_animations')
+      .then(({ playHomeAnimations }) => {
+        if (generation !== motionGate.generation) return
+        void playHomeAnimations(root)
+          .then((stop) => {
+            if (generation !== motionGate.generation) {
+              stop?.()
+              return
+            }
+            stopAnimations = stop
+          })
+          .catch(() => {
+            if (generation !== motionGate.generation) return
+            root.style.setProperty('--home-iris', '165%')
+            root.classList.remove('nuc-home-booting')
+            root.classList.add('nuc-home-ready')
+          })
+      })
+      .catch(() => {
+        if (generation !== motionGate.generation) return
+        root.style.setProperty('--home-iris', '165%')
+        root.classList.remove('nuc-home-booting')
+        root.classList.add('nuc-home-ready')
+      })
 
-    // Layout readers (IO / ResizeObserver / offsetHeight) — after intro boot only.
+    // Layout readers (IO / ResizeObserver / offsetHeight) - after intro boot only.
     void import('./utils/when_home_ready').then(({ whenHomeReady }) => {
       void whenHomeReady(root).then(() => {
+        if (generation !== motionGate.generation) return
         void import('./utils/observe_active_section').then(
           ({ observeActiveSection }) => {
+            if (generation !== motionGate.generation) return
             stopObserver = observeActiveSection(
               root,
               sections.map((section) => section.id),
@@ -170,6 +196,7 @@ onMounted(() => {
 
         void import('./utils/bind_home_section_scroll_gate').then(
           ({ bindHomeSectionScrollGate }) => {
+            if (generation !== motionGate.generation) return
             stopScrollGate = bindHomeSectionScrollGate(root)
           }
         )
@@ -179,6 +206,7 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => {
+  motionGate.generation += 1
   stopScrollGate?.()
   stopObserver?.()
   stopAnimations?.()

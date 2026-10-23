@@ -18,9 +18,9 @@ export const NUC_INVESTOR_SECTIONS = [
 ] as const satisfies ReadonlyArray<{ id: NucInvestorSectionId; label: string }>
 
 export const NUC_INVESTOR_SEO = {
-  title: 'Nucleify for investors — stop funding the rewrite',
+  title: 'Nucleify for investors - stop funding the rewrite',
   description:
-    'Investor brief for Nucleify: less rewrite tax, durable product architecture, and a planning model of about $180k–$320k a year kept when teams stop rebuilding for every stack wave.',
+    'Investor brief for Nucleify: less rewrite tax, durable product architecture, and a planning model of about $180k-$320k a year kept when teams stop rebuilding for every stack wave.',
   ogImage: '/img/og-image.png',
 } as const
 
@@ -30,7 +30,7 @@ export const NUC_INVESTOR_COPY = {
   heroEyebrow: 'For investors',
   headline: 'Stop funding the rewrite.',
   support:
-    'Every stack wave burns budget rebuilding the same product. Nucleify keeps the business durable — so capital funds growth, not migrations.',
+    'Every stack wave burns budget rebuilding the same product. Nucleify makes migration the durable layer - so capital funds growth, not another rewrite of the same business.',
   ctaPrimary: 'Talk to us',
   ctaSecondary: 'See the product',
   ctaTertiary: 'See the thesis',
@@ -38,22 +38,22 @@ export const NUC_INVESTOR_COPY = {
   thesisEyebrow: 'The problem',
   thesisTitle: 'Teams pay again every time the stack changes.',
   thesisSupport:
-    'Frameworks come and go. Products should not. Nucleify keeps the hard parts in one place so a stack change is a build target, not a rewrite project.',
+    'Frameworks come and go. Products should not. Nucleify keeps domain, API, and SQL in shared modules and moves whole apps with an IR-first compiler - a stack change is a build target, not a rewrite project.',
   savingsEyebrow: 'What you keep',
   savingsTitle: 'Less duplicate work. Less burn.',
   savingsSupport:
-    'Simple planning model for a mid-size team running two frameworks at once. Not audited numbers — a clear way to talk about saved engineering time.',
+    'Simple planning model for a mid-size team running two frameworks at once. Not audited numbers - a clear way to talk about saved engineering time.',
   savingsCta: 'See the growth plan',
   savingsNote: 'Example only · mid-size product · two frameworks side by side',
-  pulseShellsAxis: 'Shells from one nucleus',
+  pulseShellsAxis: 'Frameworks from one nucleus',
   wedgeEyebrow: 'How we grow',
   wedgeTitle: 'Start free. Stay because it works. Grow from there.',
   wedgeSupport:
-    'Engineers install Nucleify because it removes rewrite pain. Once the product lives in the nucleus, switching away means rewriting the business — then paid work can follow usage.',
+    'Engineers install Nucleify because it removes rewrite pain. Once the product lives in the nucleus, switching away means rewriting the business - then paid work can follow usage.',
   surfaceEyebrow: 'Where we win',
   surfaceTitle: 'One product. Four ways it reaches the market.',
   surfaceSupport:
-    'Same shared modules. Different buyers, partners, timing, and paid add-ons — without hiring a second platform team for every framework.',
+    'Same shared modules. Different buyers, partners, timing, and paid add-ons - without hiring a second platform team for every framework.',
   surfaceTabsLabel: 'Market reach',
   surfaceStageLabel: 'Reach detail',
   askTitle: 'Want the full walkthrough?',
@@ -81,7 +81,7 @@ export const NUC_INVESTOR_COPY = {
   navHome: 'Product',
   glanceAria: 'Investment snapshot',
   pulseTraditionalLabel: 'Two stacks, separate teams',
-  pulseNucleifyLabel: 'One nucleus, seven shells',
+  pulseNucleifyLabel: 'One nucleus, seven frameworks',
   pulseCostSuffix: '×',
   pulseUnitLabel: 'platform effort',
   pulseStatus: 'Same product. Far less rewrite tax.',
@@ -95,13 +95,13 @@ export const NUC_INVESTOR_THESIS = [
     title: 'Stacks keep changing',
     body: 'Vue or React. Nuxt or Next. Then Astro, Svelte, or Solid. Each change often means building the same product again.',
     outcome: 'Rewrite tax',
-    proof: '18–36 month cycles',
+    proof: '18-36 month cycles',
   },
   {
     index: '02',
     icon: 'mdi:account-group-outline',
     title: 'Hiring follows the framework',
-    body: 'Teams hire for one stack, then scramble for another. One nucleus that ships seven shells widens who you can hire without a second product org.',
+    body: 'Teams hire for one stack, then scramble for another. One nucleus that ships seven frameworks widens who you can hire without a second product org.',
     outcome: 'Wider funnel',
     proof: 'One hiring bar',
   },
@@ -109,35 +109,35 @@ export const NUC_INVESTOR_THESIS = [
     index: '03',
     icon: 'mdi:briefcase-outline',
     title: 'Agencies sell rewrites',
-    body: 'The usual pitch is still “rebuild it in X.” Nucleify flips that: keep the product, change the shell when the brief changes.',
+    body: 'The usual pitch is still “rebuild it in X.” Nucleify flips that: keep the product, change the framework when the brief changes.',
     outcome: 'Keep the brief',
-    proof: 'Shell, not rewrite',
+    proof: 'Framework, not rewrite',
   },
 ] as const
 
 /**
- * Planning model — sprints / year avoided vs dual-shell maintenance.
+ * Planning model - sprints / year avoided vs dual-framework maintenance.
  * Dollars use a blended fully-loaded eng cost for diligence framing only.
  */
 export const NUC_INVESTOR_SAVINGS = [
   {
     id: 'sprints',
-    value: '18–30',
+    value: '18-30',
     unit: 'sprints / year',
     label: 'Duplicate work you skip',
     detail: 'Shared API and UI instead of building the same feature twice.',
   },
   {
     id: 'dollars',
-    value: '$180k–$320k',
+    value: '$180k-$320k',
     unit: 'modeled / year',
     label: 'About $10k per sprint loaded',
-    detail: 'Rough cost for a mid-size product team — not a forecast.',
+    detail: 'Rough cost for a mid-size product team - not a forecast.',
   },
   {
     id: 'cycles',
     value: '1→7',
-    unit: 'shells from one install',
+    unit: 'frameworks from one install',
     label: 'One install, many stacks',
     detail: 'Vue, React, Nuxt, Next, Astro, Svelte, Solid from shared modules.',
   },
@@ -153,7 +153,7 @@ function investorSaving(
   return item
 }
 
-/** Intro plate — capital framing. Dollars from savings model. */
+/** Intro plate - capital framing. Dollars from savings model. */
 export const NUC_INVESTOR_GLANCE = {
   eyebrow: 'Planning model',
   from: '7',
@@ -162,7 +162,7 @@ export const NUC_INVESTOR_GLANCE = {
   toLabel: 'product core',
   figure: investorSaving('dollars').value,
   figureLead: '$180k',
-  figureTrail: '–$320k',
+  figureTrail: '-$320k',
   figureUnit: '/ year kept',
   line: 'One team. Capital stays on product.',
   note: 'Example only · mid-size product · not a forecast',
@@ -173,7 +173,7 @@ export const NUC_INVESTOR_WEDGE = [
     phase: 'Land',
     icon: 'mdi:download-outline',
     title: 'People install it themselves',
-    body: 'Engineers pull Nucleify because it kills rewrite work — not because a salesperson booked a demo.',
+    body: 'Engineers pull Nucleify because it kills rewrite work - not because a salesperson booked a demo.',
     signal: 'Low cost to start',
   },
   {
@@ -187,7 +187,7 @@ export const NUC_INVESTOR_WEDGE = [
     phase: 'Expand',
     icon: 'mdi:expand-all-outline',
     title: 'More stacks, same team',
-    body: 'Each new shell is more market reach, not another platform team. Nuxt today, Next or Solid tomorrow — same shared base.',
+    body: 'Each new framework is more market reach, not another platform team. Nuxt today, Next or Solid tomorrow - same shared base.',
     signal: 'Reach without headcount',
   },
   {
@@ -199,7 +199,7 @@ export const NUC_INVESTOR_WEDGE = [
   },
 ] as const
 
-/** Framework shells — shared labels for investor surfaces / stack lists. */
+/** Framework labels for investor surfaces / stack lists. */
 export const NUC_INVESTOR_SHELLS = [
   {
     id: 'vue',
@@ -252,7 +252,7 @@ export const NUC_INVESTOR_SHELLS = [
   },
 ] as const
 
-/** Coverage strip — interactive tabs + detail stage. */
+/** Coverage strip - interactive tabs + detail stage. */
 export const NUC_INVESTOR_SURFACE = [
   {
     id: 'beachhead',
@@ -261,7 +261,7 @@ export const NUC_INVESTOR_SURFACE = [
     color: '#00dc82',
     title: 'Teams already paying twice',
     description:
-      'Product teams stuck on two stacks at once (often React/Next plus Vue/Nuxt, plus docs or experiments). They feel rewrite cost this quarter — not someday.',
+      'Product teams stuck on two stacks at once (often React/Next plus Vue/Nuxt, plus docs or experiments). They feel rewrite cost this quarter - not someday.',
     outcome: 'They need it now',
     proof: 'Dual-stack product teams',
     metric: 'Now',
@@ -273,7 +273,7 @@ export const NUC_INVESTOR_SURFACE = [
     color: '#61dafb',
     title: 'Agencies that move stacks',
     description:
-      'Agencies sell migrations. With a nucleus story they keep the client brief and drop the second platform team — inbound, not cold outreach.',
+      'Agencies sell migrations. With a nucleus story they keep the client brief and drop the second platform team - inbound, not cold outreach.',
     outcome: 'Partners bring deals',
     proof: 'Rewrite budgets → nucleus',
     metric: 'Pull',
@@ -285,10 +285,10 @@ export const NUC_INVESTOR_SURFACE = [
     color: '#ff5d01',
     title: 'When frameworks shift',
     description:
-      'Every 18–36 months a new stack wave opens budgets. Each wave grows the market without hiring a new platform org.',
+      'Every 18-36 months a new stack wave opens budgets. Each wave grows the market without hiring a new platform org.',
     outcome: 'Timing helps us',
-    proof: '18–36 month stack waves',
-    metric: '18–36mo',
+    proof: '18-36 month stack waves',
+    metric: '18-36mo',
   },
   {
     id: 'attach',
@@ -363,7 +363,7 @@ function annularSector(
   ].join(' ')
 }
 
-/** Equal shell slices for the thesis donut (home pillars kinship). */
+/** Equal framework slices for the thesis donut (home pillars kinship). */
 export function nucInvestorShellArcs(): NucInvestorShellArc[] {
   const cx = 50
   const cy = 50

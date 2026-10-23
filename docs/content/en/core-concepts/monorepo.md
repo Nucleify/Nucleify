@@ -1,6 +1,6 @@
 # Monorepo Layout
 
-Nucleify is a pnpm workspace built for **migration across frameworks**. Every package has a clear boundary, shared tooling lives in `.config/`, and product apps (`web/`, `admin/`, `docs/`) consume feature logic from `shared_modules/` — never the other way around. Generated shells (Next, Solid, Svelte, …) are output, not a second source of truth.
+Nucleify is a pnpm workspace built for **migration across frameworks** as a first-class product capability. Every package has a clear boundary, shared tooling lives in `.config/`, and product apps (`web/`, `admin/`, `docs/`) consume feature logic from `shared_modules/` - never the other way around. The compiler owns emit, import, and product convert; generated shells (Next, Solid, Svelte, Astro, …) are output, not a second source of truth.
 
 ---
 
@@ -8,11 +8,11 @@ Nucleify is a pnpm workspace built for **migration across frameworks**. Every pa
 
 ```txt
 nucleify/
-├── web/                    # @nucleify/web — Nuxt 4 landing (canonical)
-├── admin/                  # @nucleify/admin — Nuxt 4 admin panel
-├── docs/                   # @nucleify/docs — Astro 5 documentation
-├── compiler/               # @nucleify/compiler — IR portable UI compiler
-├── shared_modules/         # @nucleify/shared-modules — six exported nuc_* modules
+├── web/                    # @nucleify/web - Nuxt 4 landing (canonical)
+├── admin/                  # @nucleify/admin - Nuxt 4 admin panel
+├── docs/                   # @nucleify/docs - Astro 5 documentation
+├── compiler/               # @nucleify/compiler - IR portable UI compiler
+├── shared_modules/         # @nucleify/shared-modules - six exported nuc_* modules
 ├── portable/nui/           # design tokens, Lit nui-* registration
 ├── overrides/              # overrides/{web,admin,docs,shared_modules}/
 ├── supabase/               # DB config, migrations, edge functions
@@ -26,7 +26,7 @@ nucleify/
 
 ## Product apps
 
-### `web/` — `@nucleify/web`
+### `web/` - `@nucleify/web`
 
 The canonical Nuxt 4 landing application.
 
@@ -58,13 +58,13 @@ Key facts:
 - Alias `modules` → `../shared_modules`
 - Alias `#nuc-compiler/runtime` → `../compiler/runtime/index.ts`
 
-### `admin/` — `@nucleify/admin`
+### `admin/` - `@nucleify/admin`
 
 Same Nuxt conventions as `web/`, focused on dashboard pages under `admin/src/pages/`.
 
 ---
 
-## `docs/` — `@nucleify/docs`
+## `docs/` - `@nucleify/docs`
 
 Astro 5 static documentation site.
 
@@ -86,9 +86,9 @@ Categories are defined in `docs/src/lib/constants/docs.ts`. Production host: [do
 
 ---
 
-## `compiler/` — `@nucleify/compiler`
+## `compiler/` - `@nucleify/compiler`
 
-IR-first portable UI compiler. Self-contained — does not import from `web/`, `admin/`, or `docs/`.
+IR-first portable UI compiler. Self-contained - does not import from `web/`, `admin/`, or `docs/`.
 
 ```txt
 compiler/
@@ -108,7 +108,7 @@ Gitignored emit demos: `{vue,react,nuxt,next,solid,svelte}/demo/` (via `make vue
 
 ---
 
-## `shared_modules/` — `@nucleify/shared-modules`
+## `shared_modules/` - `@nucleify/shared-modules`
 
 Six exported feature modules (not git submodules):
 
@@ -143,7 +143,7 @@ overrides/
 └── shared_modules/nuc_*/…
 ```
 
-Overrides replace the original file entirely — no merge. Nuxt-only; not part of compiler import. See [Overriding](/en/docs/core-concepts/overriding).
+Overrides replace the original file entirely - no merge. Nuxt-only; not part of compiler import. See [Overriding](/en/docs/core-concepts/overriding).
 
 ---
 
@@ -158,7 +158,7 @@ Monorepo-level Supabase project config. Module SQL lives inside each `shared_mod
 Shared monorepo tooling:
 
 - Biome (`pnpm check`, `pnpm write`)
-- Vitest root config (`vitest.config.ts`) — `web` and `shared` projects
+- Vitest root config (`vitest.config.ts`) - `web` and `shared` projects
 - Compiler Vitest (`.config/vitest.compiler.config.ts`)
 - Bash scripts: Supabase merge/apply, hook checks, submodule prepare
 - Husky hooks delegate to `.config/bash/hook-checks.sh`
@@ -190,18 +190,19 @@ web / admin / docs
 | `make run` | `.env` + setup + compiler |
 | `make setup` | install, husky, prepare, sync-rules, compiler |
 | `make web` | Nuxt product dev (`TARGET=nuxt` default) |
-| `make web TARGET=next` | convert + Next product shell (`web-next/`) |
-| `make web TARGET=solid` | convert + Solid product shell (`web-solid/`) |
-| `make web TARGET=svelte` | convert + Svelte product shell (`web-svelte/`) |
-| `make admin` / `make admin TARGET=next\|solid\|svelte` | admin equivalents |
-| `make docs` | Astro docs dev |
+| `make web TARGET=next` | convert + Next product app (`web-next/`) |
+| `make web TARGET=solid` | convert + Solid product app (`web-solid/`) |
+| `make web TARGET=svelte` | convert + Svelte product app (`web-svelte/`) |
+| `make web TARGET=astro` | convert + Astro host + React islands (`web-astro/`) |
+| `make admin` / `make admin TARGET=next\|solid\|svelte\|astro` | admin equivalents |
+| `make docs` | Astro docs site (`docs/`) |
 | `make compiler` | check + build |
-| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` / `make svelte` | gitignored portable demos (`{framework}/demo`) |
+| `make vue` / `make react` / `make nuxt` / `make next` / `make solid` / `make svelte` / `make astro` | gitignored portable demos (`{framework}/demo`) |
 
 ---
 
 ## Related docs
 
-- [Modules](/en/docs/core-concepts/modules) — module internal structure
-- [Compiler](/en/docs/core-concepts/compiler) — canonical Nuxt vs converted shells
-- [Web & Admin](/en/docs/configuration/web) — Nuxt config details
+- [Modules](/en/docs/core-concepts/modules) - module internal structure
+- [Compiler](/en/docs/core-concepts/compiler) - canonical Nuxt vs converted product apps
+- [Web & Admin](/en/docs/configuration/web) - Nuxt config details

@@ -6,7 +6,7 @@ export const appConfig = {
 			"reduced-motion": "ignore",
 		},
 		title:
-			"Nucleify — One nucleus for Vue, React, Nuxt, Next, Astro, Svelte & Solid",
+			"Nucleify - One nucleus for Vue, React, Nuxt, Next, Astro, Svelte & Solid",
 		titleTemplate: "%s",
 		meta: [
 			{ charset: "utf-8" },
@@ -14,11 +14,11 @@ export const appConfig = {
 			{
 				name: "description",
 				content:
-					"Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, Astro, Svelte, and Solid from one install — without rewriting the product.",
+					"Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, Astro, Svelte, and Solid from one install - without rewriting the product.",
 			},
 		],
 		link: [
-			// Brighter mark for tiny tab chrome — brand mark stays `/img/holo-cube.svg`.
+			// Brighter mark for tiny tab chrome - brand mark stays `/img/holo-cube.svg`.
 			{ rel: "icon", type: "image/svg+xml", href: "/img/favicon.svg" },
 			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
 			{ rel: "apple-touch-icon", href: "/img/favicon.svg" },
@@ -33,11 +33,11 @@ export const appConfig = {
 		],
 		style: [
 			{
-				// Thin critical shell only — full layout comes from blocking `/_nuxt/style.*.css`
+				// Thin critical shell only - full layout comes from blocking `/_nuxt/style.*.css`
 				textContent: [
 					"html,body{margin:0;background:#03050c;color:#e7ebe8}",
-					/* Default open, no clip-path — lab first paint must stay fully visible. */
-					".nuc-home{--home-iris:165%;--home-iris-x:18%;--home-iris-y:40%;--home-accent:hsl(152 55% 52%);--home-on-accent:#04110c;position:relative;height:100svh;color:#e7ebe8;background:#03050c;overflow:hidden}",
+					/* Default open, no clip-path - lab first paint must stay fully visible. */
+					".nuc-home{--home-iris:165%;--home-iris-x:18%;--home-iris-y:40%;--home-accent:hsl(var(--rainbow-hue,152deg) 55% 52%);--home-on-accent:#04110c;position:relative;height:100svh;color:#e7ebe8;background:#03050c;overflow:hidden}",
 					"@media(max-width:959px){.nuc-home{--home-iris-x:12%;--home-iris-y:18%}}",
 					"html.nuc-iris-boot .nuc-home{--home-iris:0%}",
 					"html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) .nuc-home-inner,html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) .nuc-home-shear{clip-path:circle(var(--home-iris) at var(--home-iris-x) var(--home-iris-y))}",

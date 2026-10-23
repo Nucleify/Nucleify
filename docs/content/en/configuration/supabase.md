@@ -2,7 +2,7 @@
 
 Nucleify uses [Supabase](https://supabase.com) for PostgreSQL, Auth, Storage, and Edge Functions. Database schema and seed data are **owned by feature modules** in `shared_modules/nuc_*/supabase/` and merged at the monorepo level under `supabase/`.
 
-Server access from Nuxt goes through the Nitro API gateway — not direct service-role calls from the browser. The same applies to generated shells (Next, Solid, Svelte): they share the same Supabase instance and module model.
+Server access from Nuxt goes through the Nitro API gateway - not direct service-role calls from the browser. The same applies to generated shells (Next, Solid, Svelte): they share the same Supabase instance and module model.
 
 ---
 
@@ -41,8 +41,8 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 SUPABASE_EDGE_BASE=
 ```
 
-- **`SUPABASE_KEY`** — exposed to client via `runtimeConfig.public`
-- **`SUPABASE_SERVICE_ROLE_KEY`** — server only, used by Nitro gateway
+- **`SUPABASE_KEY`** - exposed to client via `runtimeConfig.public`
+- **`SUPABASE_SERVICE_ROLE_KEY`** - server only, used by Nitro gateway
 
 ---
 
@@ -83,9 +83,9 @@ Module SQL is merged into the monorepo Supabase project by bash scripts in `.con
 
 Implementation:
 
-- `.config/bash/merge-module-supabase-sql.sh` — collects module SQL
-- `.config/bash/apply-module-migrations.sh` — runs migrations
-- `.config/bash/apply-module-sql.sh` — runs factories/seeders
+- `.config/bash/merge-module-supabase-sql.sh` - collects module SQL
+- `.config/bash/apply-module-migrations.sh` - runs migrations
+- `.config/bash/apply-module-sql.sh` - runs factories/seeders
 
 ---
 
@@ -104,7 +104,7 @@ export async function handleExampleApi(ctx: ApiContext): Promise<ApiHandlerResul
 }
 ```
 
-Return `apiNotHandled()` when the path prefix does not match — the gateway tries the next handler.
+Return `apiNotHandled()` when the path prefix does not match - the gateway tries the next handler.
 
 ### Auth-aware routes
 
@@ -177,12 +177,12 @@ curl http://localhost:3000/api/colors/…   # module-specific routes
 
 ## Monorepo `supabase/` directory
 
-Top-level `supabase/` holds project config, merged migration output, and shared edge function config — populated by merge scripts from module sources.
+Top-level `supabase/` holds project config, merged migration output, and shared edge function config - populated by merge scripts from module sources.
 
 ---
 
 ## Related docs
 
-- [Modules](/en/docs/core-concepts/modules) — module structure and gateway registration
-- [Environment](/en/docs/configuration/environment) — Supabase env vars
-- [Web & Admin](/en/docs/configuration/web) — Nitro gateway entry point
+- [Modules](/en/docs/core-concepts/modules) - module structure and gateway registration
+- [Environment](/en/docs/configuration/environment) - Supabase env vars
+- [Web & Admin](/en/docs/configuration/web) - Nitro gateway entry point

@@ -1,16 +1,16 @@
-/* Animatable iris radius — browser composites; avoids animejs per-frame setProperty. */
+/* Animatable iris radius - browser composites; avoids animejs per-frame setProperty. */
 @property --home-iris {
   syntax: '<percentage>';
   inherits: true;
   initial-value: 165%;
 }
 
-/* Real visitors only — sync head script adds this before first paint. */
+/* Real visitors only - sync head script adds this before first paint. */
 html.nuc-iris-boot .nuc-home {
   --home-iris: 0%;
 }
 
-/* Hide assemble chrome + iris clip only during human boot — never in lab. */
+/* Hide assemble chrome + iris clip only during human boot - never in lab. */
 html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
   .nuc-home-nav,
   .nuc-home-rail {
@@ -26,7 +26,7 @@ html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
     .nuc-home-hero-eyebrow,
     .nuc-home-hero-cta,
     .nuc-home-hero-proof,
-    /* Investor deal panel stays painted — iris clip alone covers → reveals it. */
+    /* Investor deal panel stays painted - iris clip alone covers → reveals it. */
     .nuc-home-hero-panel:not(.is-deal) {
       opacity: 0;
     }
@@ -51,7 +51,7 @@ html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
   --home-accent-hover: hsl(var(--rainbow-hue) 58% 46%);
   --home-accent-soft: hsl(var(--rainbow-hue) 55% 52% / 16%);
   --home-cyan: hsl(var(--rainbow-hue) 95% 62%);
-  --home-violet: hsl(calc(var(--rainbow-hue) + 96deg) 95% 60%);
+  --home-violet: hsl(calc(var(--rainbow-hue) + 140deg) 95% 60%);
   --home-holo-line: hsl(var(--rainbow-hue) 80% 62% / 55%);
   --home-holo-line-soft: hsl(var(--rainbow-hue) 70% 58% / 32%);
   --home-card-border: color-mix(in srgb, var(--home-accent) 38%, var(--home-holo-line));
@@ -96,7 +96,7 @@ html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
   }
 
   /*
-   * Lit `nui-button` is empty until customElements.define — host has no shadow
+   * Lit `nui-button` is empty until customElements.define - host has no shadow
    * content, so mobile CTAs were invisible then popped in (layout jump).
    * Paint a same-size shell from the `label` attribute until upgrade.
    */
@@ -157,7 +157,7 @@ html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
       radial-gradient(
         38% 34% at calc(22% + var(--home-mx) * -4%),
         calc(74% + var(--home-my) * 3%),
-        hsl(calc(var(--rainbow-hue) + 96deg) 80% 58% / 16%),
+        hsl(calc(var(--rainbow-hue) + 140deg) 80% 58% / 16%),
         transparent 74%
       );
   }
@@ -360,7 +360,7 @@ html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
     list-style: none;
     border: 1px solid var(--home-holo-line-soft);
     border-radius: 999px;
-    background: rgb(3 5 12 / 55%);
+    background: var(--home-bg);
     pointer-events: auto;
   }
 
@@ -645,8 +645,9 @@ html.nuc-iris-boot .nuc-home.nuc-home-ready {
 }
 
 /*
- * Below-fold reveal targets — hide in the eager home sheet so async section
+ * Below-fold reveal targets - hide in the eager home sheet so async section
  * chunks cannot paint visible for a frame before scoped opacity:0 arrives.
+ * Also covers scroll-reveal without prepareOnBind (safe for React hydration).
  */
 .nuc-home:not(.nuc-home-static) {
   .nuc-home-pillars .nuc-home-eyebrow,
@@ -654,12 +655,37 @@ html.nuc-iris-boot .nuc-home.nuc-home-ready {
   .nuc-home-pillars .nuc-home-support,
   .nuc-home-pillars-cta,
   .nuc-home-pillars-share,
-  .nuc-home-pillars-item {
+  .nuc-home-pillars-item,
+  .nuc-home-stack .nuc-home-eyebrow,
+  .nuc-home-stack .nuc-home-title,
+  .nuc-home-stack .nuc-home-support,
+  .nuc-home-stack .nuc-home-next,
+  .nuc-home-stack-spotlight,
+  .nuc-home-stack-item,
+  .nuc-home-pulse-copy .nuc-home-eyebrow,
+  .nuc-home-pulse-copy .nuc-home-title,
+  .nuc-home-pulse-copy .nuc-home-support,
+  .nuc-home-pulse-copy .nuc-home-pulse-compare,
+  .nuc-home-pulse-copy .nuc-home-next,
+  .nuc-home-pulse-stage,
+  .nuc-home-compiler-copy .nuc-home-eyebrow,
+  .nuc-home-compiler-copy .nuc-home-title,
+  .nuc-home-compiler-copy .nuc-home-support,
+  .nuc-home-compiler-copy .nuc-home-next,
+  .nuc-home-compiler-board,
+  .nuc-home-clone-copy .nuc-home-eyebrow,
+  .nuc-home-clone-copy .nuc-home-title,
+  .nuc-home-clone-copy .nuc-home-support,
+  .nuc-home-clone-actions,
+  .nuc-home-clone-term,
+  .nuc-home-close-copy,
+  .nuc-home-close-cta,
+  .nuc-home-close-footer {
     opacity: 0;
   }
 }
 
-/* First slide must be exactly one snap page — never taller than the scroller. */
+/* First slide must be exactly one snap page - never taller than the scroller. */
 .nuc-home-hero.nuc-home-panel {
   height: 100%;
   max-height: 100%;
@@ -805,7 +831,7 @@ html.nuc-iris-boot .nuc-home.nuc-home-ready {
   margin: 0;
   padding: 0;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
-  font-weight: 650;
+  font-weight: 700;
   font-synthesis: none;
   font-variant-ligatures: none;
   color: var(--home-accent);

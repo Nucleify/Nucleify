@@ -1,4 +1,4 @@
--- Same as migrations/20260501000001 — seed-only runs stay compatible with legacy tables.
+-- Same as migrations/20260501000001 - seed-only runs stay compatible with legacy tables.
 alter table public.user_colors add column if not exists user_id uuid references auth.users (id) on delete cascade;
 alter table public.user_colors add column if not exists name text;
 alter table public.user_colors add column if not exists value text;

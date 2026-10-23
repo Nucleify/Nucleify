@@ -19,7 +19,7 @@ import { isLabUserAgent } from '~/utils/is_lab_user_agent'
 const route = useRoute()
 const config = useRuntimeConfig()
 
-/** Never strip path slashes — that caused GSC smash URLs like /enhometerms-of-service. */
+/** Never strip path slashes - that caused GSC smash URLs like /enhometerms-of-service. */
 const canonicalHref = computed(() => {
   const base = String(config.public.appUrl || 'https://nucleify.io').replace(
     /\/$/,
@@ -30,7 +30,7 @@ const canonicalHref = computed(() => {
 })
 
 // PSI spoofs navigator.userAgent; the *request* UA still has Chrome-Lighthouse.
-// Only stamp nuc-lab on SSR — never nuc-iris-boot (iris at 0% + slow/failed JS = black screen).
+// Only stamp nuc-lab on SSR - never nuc-iris-boot (iris at 0% + slow/failed JS = black screen).
 if (import.meta.server) {
   const ua = useRequestHeaders(['user-agent'])['user-agent']
   if (isLabUserAgent(ua)) {
@@ -53,7 +53,7 @@ useHead({
       href: canonicalHref,
     },
   ],
-  // Critical: before CSS chunks — dark shell so mobile never flashes white.
+  // Critical: before CSS chunks - dark shell so mobile never flashes white.
   style: [
     {
       key: 'nuc-critical-shell',
@@ -66,10 +66,12 @@ let stopRainbow: (() => void) | undefined
 
 onMounted(() => {
   stopRainbow = applyRainbow(document.body, {
-    cycle: 'linear',
+    cycle: 'branded',
     duration: 30,
     reducedMotion: 'ignore',
   })
+  // CSS shell cycle drives --rainbow-hue; drop the package keyframes to avoid dual-hue jitter.
+  document.body.style.setProperty('--nui-rainbow-animation', 'none')
 })
 
 onBeforeUnmount(() => {

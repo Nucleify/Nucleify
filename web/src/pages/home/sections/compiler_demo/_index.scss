@@ -21,6 +21,16 @@
     }
   }
 
+  &-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &-line.is-nowrap {
+      white-space: nowrap;
+    }
+  }
+
   &-board {
     margin-top: 1.35rem;
 

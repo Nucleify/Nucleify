@@ -2,7 +2,7 @@
 
 Nadpisania pozwalają zastąpić dowolny plik w `web/`, `admin/`, `docs/` lub `shared_modules/` bez edycji oryginału. Przy buildzie Nuxt rozwiązuje ścieżkę override zamiast źródła.
 
-Nadpisania są **tylko dla Nuxt**. Nie dotyczą cyklu import kompilatora, produkcyjnych buildów Astro poza Nuxt ani generowanych shelli (`web-next/`, `web-solid/`, `web-svelte/`, …) — chyba że skonfigurujesz to osobno.
+Nadpisania są **tylko dla Nuxt**. Nie dotyczą cyklu import kompilatora, produkcyjnych buildów Astro poza Nuxt ani generowanych shelli (`web-next/`, `web-solid/`, `web-svelte/`, …) - chyba że skonfigurujesz to osobno.
 
 ---
 
@@ -10,7 +10,7 @@ Nadpisania są **tylko dla Nuxt**. Nie dotyczą cyklu import kompilatora, produk
 
 1. Odzwierciedl oryginalną ścieżkę pliku pod `overrides/{package}/`
 2. Nuxt dev/build skanuje `overrides/` przy starcie
-3. Gdy jest dopasowanie, override **całkowicie zastępuje** oryginał — bez merge, bez częściowego patcha
+3. Gdy jest dopasowanie, override **całkowicie zastępuje** oryginał - bez merge, bez częściowego patcha
 
 ```txt
 Oryginał:  web/src/composables/useAuth.ts
@@ -73,7 +73,7 @@ Oryginał:  docs/src/layouts/DocsLayout.astro
 Override:  overrides/docs/src/layouts/DocsLayout.astro
 ```
 
-Uwaga: rozwiązywanie override w Astro zależy od konfiguracji builda docs — zweryfikuj w dev po dodaniu pliku.
+Uwaga: rozwiązywanie override w Astro zależy od konfiguracji builda docs - zweryfikuj w dev po dodaniu pliku.
 
 ---
 
@@ -83,7 +83,7 @@ Gdy zachowanie różni się od tego, co widzisz w źródle:
 
 1. Sprawdź `overrides/{package}/` pod kątem ścieżki pasującej do czytanego pliku
 2. Tymczasowo przenieś lub usuń override, żeby potwierdzić, że to aktywna wersja
-3. Pamiętaj: override zasłania **całe pliki** — jedna linia zmiany nadal wymaga skopiowania pełnego pliku
+3. Pamiętaj: override zasłania **całe pliki** - jedna linia zmiany nadal wymaga skopiowania pełnego pliku
 
 ---
 
@@ -97,22 +97,22 @@ Gdy zachowanie różni się od tego, co widzisz w źródle:
 | Konfiguracja per środowisko | Nie | Root `.env`, `web/.config/nuxt/runtime.ts` |
 | Schemat bazy | Nie | Migracje modułów w `shared_modules/nuc_*/supabase/` |
 
-\*Chyba że dodasz osobne narzędzie override dla wygenerowanych shelli — poza domyślnym skanerem Nuxt.
+\*Chyba że dodasz osobne narzędzie override dla wygenerowanych shelli - poza domyślnym skanerem Nuxt.
 
 ---
 
 ## Dobre praktyki
 
-1. **Mało nadpisań** — wiele override utrudnia upgrade
-2. **Dokumentuj dlaczego** — komentarz na górze pliku override z powodem forka
-3. **Preferuj moduły** — jeśli wiele app potrzebuje zmiany, rozszerz `shared_modules/`
-4. **Synchronizuj z upstream** — przy merge upstream Nucleify diffuj override z oryginałami
-5. **Bez sekretów** — override to pliki źródłowe; klucze w `.env`
+1. **Mało nadpisań** - wiele override utrudnia upgrade
+2. **Dokumentuj dlaczego** - komentarz na górze pliku override z powodem forka
+3. **Preferuj moduły** - jeśli wiele app potrzebuje zmiany, rozszerz `shared_modules/`
+4. **Synchronizuj z upstream** - przy merge upstream Nucleify diffuj override z oryginałami
+5. **Bez sekretów** - override to pliki źródłowe; klucze w `.env`
 
 ---
 
 ## Powiązane docs
 
-- [Układ monorepo](/pl/docs/core-concepts/monorepo) — `overrides/` w kontekście
-- [Moduły](/pl/docs/core-concepts/modules) — kiedy rozszerzyć moduł vs nadpisać
-- [Kompilator](/pl/docs/core-concepts/compiler) — override poza cyklem import
+- [Układ monorepo](/pl/docs/core-concepts/monorepo) - `overrides/` w kontekście
+- [Moduły](/pl/docs/core-concepts/modules) - kiedy rozszerzyć moduł vs nadpisać
+- [Kompilator](/pl/docs/core-concepts/compiler) - override poza cyklem import

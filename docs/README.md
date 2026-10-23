@@ -19,12 +19,12 @@ pnpm --filter @nucleify/docs dev
 
 ## Monorepo packages documented
 
-- `web/` — Nuxt landing (canonical)
-- `admin/` — Nuxt admin
-- `docs/` — this Astro app
-- `compiler/` — portable UI compiler
-- `shared_modules/` — `nuc_*` feature modules
-- `web-{next,solid,svelte}/` / `admin-{next,solid,svelte}/` — generated product shells
+- `web/` - Nuxt landing (canonical)
+- `admin/` - Nuxt admin
+- `docs/` - this Astro app
+- `compiler/` - portable UI compiler
+- `shared_modules/` - `nuc_*` feature modules
+- `web-{next,solid,svelte}/` / `admin-{next,solid,svelte}/` - generated product shells
 
 ## URLs
 

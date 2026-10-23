@@ -5,20 +5,51 @@
 @import '../../../shared_modules/nuc_globals/styles/mixins';
 @import '../../../portable/nui/tokens';
 
-/* nui-rainbow animates --nui-rainbow-cycle; landing colors read --rainbow-hue. */
-@keyframes nuc-rainbow-hue-spin {
-  from {
-    --rainbow-hue: 132deg;
+/* Shell brands drive --rainbow-hue (nui-rainbow cycle alone is not always painted into SVG). */
+@keyframes nuc-rainbow-shell-cycle {
+  /* Hold each brand, then ease across a short blend - avoids hard Hue jumps. */
+  0% {
+    --rainbow-hue: 152deg; /* Vue / Nuxt - light green */
   }
 
-  to {
-    --rainbow-hue: 492deg;
+  18% {
+    --rainbow-hue: 152deg;
+  }
+
+  25% {
+    --rainbow-hue: 190deg; /* React / Next - cyan */
+  }
+
+  43% {
+    --rainbow-hue: 190deg;
+  }
+
+  50% {
+    --rainbow-hue: 292deg; /* Astro - purple */
+  }
+
+  68% {
+    --rainbow-hue: 292deg;
+  }
+
+  75% {
+    --rainbow-hue: 375deg; /* Svelte - red (15deg + 360) */
+  }
+
+  93% {
+    --rainbow-hue: 375deg;
+  }
+
+  100% {
+    --rainbow-hue: 512deg; /* back to Vue/Nuxt + 360 */
   }
 }
 
 body.nui-rainbow {
   --nui-rainbow-duration: 30s;
-  --nui-rainbow-anim-name: nui-rainbow-hue-cycle-linear;
-  --nui-rainbow-extra-animation: nuc-rainbow-hue-spin
-    var(--nui-rainbow-duration) linear infinite;
+
+  /* Shell cycle owns --rainbow-hue; keep the package cycle off so they do not fight. */
+  --nui-rainbow-animation: none;
+  --nui-rainbow-extra-animation: nuc-rainbow-shell-cycle
+    var(--nui-rainbow-duration) ease-in-out infinite;
 }
