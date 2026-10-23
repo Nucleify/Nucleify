@@ -1,53 +1,16 @@
 ---
-description: Multi-agent feature implementation pipeline (plan → implement → test → review)
-alwaysApply: true
+description: Feature work via /pipeline in this chat — not multi-agent fan-out
+alwaysApply: false
 ---
 
-# Feature Workflow
+# Feature workflow
 
-When the user asks to implement a feature, follow this multi-agent pipeline.
+Only when the user asks to **implement a non-trivial feature** (not Q&A, typos, or one-file tweaks).
 
-Agents: `web/.cursor/agents/`
-Rules: `.cursor/rules/` (monorepo) + per-package `<pkg>/.config/rules/`
+**One agent in this chat.** Do not spawn parallel explore / implement / review / Task subagents unless the user explicitly asks.
 
----
+1. **PLAN** — short plan → `.ai/specs/plan.md` when non-trivial; wait for approval if a rule says so.
+2. **DO** — implement; note behaviour changes in `.ai/docs/`; run `pnpm check`, `typeslint`, `slint`, `tests`.
+3. **COMMIT / PUSH** — only via `/pipeline …` steps or when the user asks.
 
-## Phase 1 - PLAN
-
-Act as the **Planner** (`web/.cursor/agents/planner.md`).
-
-1. Read relevant rules: `shared_modules/.config/rules/`, `web/.config/rules/`, target package (`admin`/`docs`/`compiler`)
-2. Read affected module code if applicable
-3. Write structured plan → `.ai/specs/plan.md`
-4. Present and **wait for approval**
-
-Pipeline skills (`/.cursor/skills/plan*`, `do*`, …) share steps in `nui-workflow`. Agent change notes go to `.ai/docs/` (not the Astro `docs/` site).
-
----
-
-## Phase 2 - IMPLEMENT
-
-Parallel when both API and UI needed:
-
-- **Backend** - `web/.cursor/agents/backend.md`
-- **Frontend** - `web/.cursor/agents/frontend.md`
-
-Single agent for frontend-only or API-only work.
-
-After implementation, write or update a short note under `.ai/docs/` when behaviour or process changed.
-
----
-
-## Phase 3 - TEST
-
-**Tester** - `web/.cursor/agents/tester.md`
-
----
-
-## Phase 4 - REVIEW
-
-**Reviewer** - `web/.cursor/agents/reviewer.md`
-
-1. Check convention compliance; fix issues
-2. Run: `pnpm check`, `pnpm typeslint`, `pnpm slint`, `pnpm tests`
-3. Summary: passed / fixed / incomplete
+Prefer `/pipeline plan-do` (or `plan-do-commit-push`). Shared steps: `nui-workflow`. Q&A: `/ask`.

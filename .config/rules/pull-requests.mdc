@@ -1,0 +1,20 @@
+---
+description: Creating GitHub pull requests with gh — use when the user asks for a PR
+alwaysApply: false
+---
+
+# Pull requests
+
+Use `gh`. Parallel first: `git status`, `git diff`, tracking vs remote, `git log` + `git diff [base]...HEAD`.
+
+Then: branch if needed → `git push -u origin HEAD` if needed → `gh pr create` with HEREDOC body:
+
+```text
+## Summary
+- …
+
+## Test plan
+- [ ] …
+```
+
+No force-push to main/master. Return the PR URL.
