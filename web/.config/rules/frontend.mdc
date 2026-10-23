@@ -1,10 +1,10 @@
 ---
-description: Nuxt landing app — structure, plugins, nucleify-ui
+description: Nuxt landing app - structure, plugins, nucleify-ui
 globs: web/src/**,web/.config/nuxt/**
 alwaysApply: false
 ---
 
-# Frontend — web (`@nucleify/web`)
+# Frontend - web (`@nucleify/web`)
 
 Landing Nuxt app. Source in `web/src/`. Shared code comes from `shared_modules/`.
 
@@ -29,4 +29,4 @@ web/src/
 
 ## Portable UI (`*.nuc.tsx`)
 
-Author portable presentational UI in `*.nuc.tsx` (not Vue/React APIs). The compiler emits sibling `.vue` / `.tsx` (+ `.css`). Do not hand-edit emit as source of truth — use `pnpm compiler -- import` after emit edits. Bundlers ignore `*.nuc.tsx`; see `compiler/PORTABLE.md` and `compiler/README.md`.
+Author portable presentational UI in `*.nuc.tsx` (not Vue/React APIs). The compiler emits sibling `.vue` / `.tsx` (+ `.css`). Do not hand-edit emit as source of truth - use `pnpm compiler -- import` after emit edits. Bundlers ignore `*.nuc.tsx`; see `compiler/PORTABLE.md` and `compiler/README.md`.

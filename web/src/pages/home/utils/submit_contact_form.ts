@@ -31,23 +31,36 @@ export function composeHomeContactMessage(input: {
   return note
 }
 
+/**
+ * Lit nui-* hosts emit a composed CustomEvent with `{ value }`, but the
+ * native shadow `input` also bubbles to Vue. Ignore non-CustomEvent so state
+ * is not wiped to `undefined` after a successful CustomEvent.
+ */
+export function nuiValueFromEvent(event: Event): string | null {
+  if (!(event instanceof CustomEvent)) return null
+  const value = (event as CustomEvent<{ value?: unknown }>).detail?.value
+  return typeof value === 'string' ? value : null
+}
+
 export function validateHomeContactForm(input: {
   email: string
   websiteType: string
   message?: string
 }): HomeContactValidation | null {
   const errors: HomeContactValidation = {}
-  const email = input.email.trim().toLowerCase()
+  const email = String(input.email ?? '')
+    .trim()
+    .toLowerCase()
 
   if (!email || !EMAIL_RE.test(email) || email.length > 255) {
     errors.email = NUC_HOME_COPY.closeErrorEmail
   }
 
-  if (!WEBSITE_TYPES.has(input.websiteType)) {
+  if (!WEBSITE_TYPES.has(String(input.websiteType ?? ''))) {
     errors.website_type = NUC_HOME_COPY.closeErrorType
   }
 
-  const message = (input.message ?? '').trim()
+  const message = String(input.message ?? '').trim()
   if (message.length > MAX_MESSAGE) {
     errors.message = NUC_HOME_COPY.closeErrorMessage
   }

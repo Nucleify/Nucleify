@@ -30,7 +30,7 @@ export interface NucHomeWebShareArc {
 }
 
 /**
- * Relative origin counts among Nucleify emit targets — not % of all websites.
+ * Relative origin counts among Nucleify emit targets - not % of all websites.
  * HTTP Archive (Jul 2026) for React / Next / Vue / Nuxt / Svelte / Astro;
  * Solid from Wappalyzer live-site count, scaled to the same unit (thousands).
  * Family pairs share one wedge and one color: React/Next blue, Vue/Nuxt green.
@@ -164,9 +164,9 @@ export interface NucHomeStackItem {
 
 export const NUC_HOME_SEO = {
   title:
-    'Nucleify — One nucleus for Vue, React, Nuxt, Next, Astro, Svelte & Solid',
+    'Nucleify - Migrate across Vue, React, Nuxt, Next, Astro, Svelte & Solid',
   description:
-    'Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, Astro, Svelte, and Solid from one install — without rewriting the product.',
+    'Open-source nucleus built for framework migration: shared_modules, typed APIs, and an IR-first compiler. Convert whole product apps - not only UI snippets - across Vue, React, Nuxt, Next, Astro, Svelte, and Solid.',
   ogImage: 'https://nucleify.io/img/og-image.png',
 } as const
 
@@ -187,17 +187,18 @@ export function homeDocsHref(
 
 export const NUC_HOME_COPY = {
   brand: 'Nucleify',
-  heroEyebrow: 'Open-source nucleus',
-  headline: 'Ship one module. Boot every shell.',
+  heroEyebrow: 'Migration is the product',
+  headlineLead: 'Keep the product.',
+  headlineTrail: 'Migrate the framework.',
   support:
-    'shared_modules carry API, SQL, and UI. The portable compiler emits Vue, React, Nuxt, Next, Astro, Svelte, and Solid — Supabase already on the gateway.',
+    'Domain, API, and SQL stay in shared_modules. An IR-first compiler emits portable UI and converts whole Nuxt apps across Vue, React, Nuxt, Next, Astro, Svelte, and Solid - full product move, not orphaned snippets.',
   ctaPrimary: 'Read the docs',
   ctaSecondary: 'Star on GitHub',
   ctaTertiary: 'Why Nucleify',
   githubHref: 'https://github.com/Nucleify/Nucleify',
   heroSignal: 'multi-runtime',
   heroPanelTitle: '~/nucleify',
-  heroPanelRunning: 'booting shell…',
+  heroPanelRunning: 'booting framework…',
   heroPanelDone: 'ready',
   heroInstallLabel: 'Get running',
   navDocs: 'Docs',
@@ -208,67 +209,70 @@ export const NUC_HOME_COPY = {
   navClose: 'Close',
   sectionsLabel: 'Sections',
   pillarsEyebrow: 'Why Nucleify',
-  pillarsTitle: 'One shared layer. Every modern stack.',
+  pillarsTitle: 'Business stays. Stack moves.',
   pillarsSupport:
-    'Framework used to be the product. Auth, entities, admin — rewritten for Vue, then React, then whatever ships next. Nucleify inverts the tax. One module. Seven emit targets. Same types on the gateway.',
+    'Routes, composables, components - rewritten for Vue, then React, then whatever ships next. Nucleify ends that loop. Shared modules own the product. The compiler owns the move: emit UI, convert whole apps, import edits back. Same types. Same gateway. Seven frameworks.',
   pillarsCta: 'Get running',
   pillarsShareUnit: 'top stacks',
   pillarsShareSource: 'Modern web. One emit surface.',
   stackEyebrow: 'Runtime surface',
-  stackTitle: 'Pick a shell. Keep the nucleus.',
+  stackTitle: 'Pick a framework. Keep the nucleus.',
   stackSupport:
-    'One domain in shared_modules. Product shells boot with make web; emit demos fan the same nucleus into Vue, React, Nuxt, Next, Astro, Svelte, and Solid.',
+    'One domain. Product convert and portable emit fan the same nucleus into Vue, React, Nuxt, Next, Astro, Svelte, and Solid - full apps, not orphaned snippets.',
   stackCta: 'See the emit',
-  stackStageLabel: 'active shell',
+  stackStageLabel: 'active framework',
   pulseEyebrow: 'Scale without rewrite',
-  pulseTitle: 'Add shells. Keep the cost flat.',
+  pulseTitleLead: 'Add frameworks.',
+  pulseTitleTrail: 'Keep the cost flat.',
   pulseSupport:
-    'A new framework usually means another rewrite of the same product. Nucleify ships the module once — rewrite tax stays at ×1 as shells come online.',
+    'A new framework usually means another rewrite of the same product. Nucleify treats migration as the durable layer - ship the module once, convert the framework when buyers or hiring shift. Rewrite tax stays at ×1.',
   pulseCta: 'Get in touch',
   pulseCompare:
-    'Traditional cost grows with each shell. Nucleify stays at one product surface.',
+    'Traditional cost grows with each framework. Nucleify keeps one product surface and moves the stack.',
   pulseTraditionalLabel: 'traditional',
   pulseNucleifyLabel: 'nucleify',
-  pulseShellsAxis: 'shells online',
-  pulseStatus: '7 shells · rewrite tax 0%',
+  pulseShellsAxis: 'frameworks online',
+  pulseStatus: '7 frameworks · rewrite tax 0%',
   pulseScaling: 'Scaling',
   pulseCostSuffix: '×',
   pulseUnitLabel: 'product surface',
   coreEyebrow: 'One installable unit',
   coreTitle: 'A module is a product slice.',
   coreSupport:
-    'API, SQL, and UI in one nuc_* package. Drop it on the gateway — every shell stays aligned.',
+    'API, SQL, and UI in one nuc_* package. Drop it on the gateway - every framework stays aligned.',
   coreCta: 'See the cost stay flat',
   coreDocsCta: 'Read modules docs',
   coreLaneSdk: 'sdk',
   coreLaneData: 'data',
   coreLaneUi: 'ui',
-  coreLive: 'seven shells · one module',
+  coreLive: 'seven frameworks · one module',
   coreInspect: 'live slice',
   startEyebrow: 'One installable unit',
   startTitle: 'A module is a product slice.',
   startCta: 'Get in touch',
   cloneEyebrow: 'Get running',
-  cloneTitle: 'Clone the nucleus. Ship today.',
+  cloneTitleLead: 'Clone the nucleus.',
+  cloneTitleTrail: 'Ship today.',
   cloneSupport:
-    'Three commands from the repo root. Then open localhost and read the docs — or ping us if you want in.',
+    'Three commands from the repo root. Then open localhost and read the docs - or ping us if you want in.',
   cloneCta: 'Read the docs',
-  cloneCtaNext: 'Pick a shell',
+  cloneCtaNext: 'Pick a framework',
   closeTitle: 'Get in touch.',
   closeSupport:
-    'Open source, contribute, or consulting — drop an email and we will reply.',
+    'Need a migration, a product convert, or a full implementation on Vue, React, Nuxt, Next, Astro, Svelte, or Solid? Drop an email - we will reply with a concrete next step.',
   closeCta: 'Get in touch',
-  compilerEyebrow: 'Portable compiler',
-  compilerTitle: 'Author once. Open the emit.',
+  compilerEyebrow: 'IR-first compiler',
+  compilerTitleLead: 'Any stack in.',
+  compilerTitleTrail: 'Any stack out.',
   compilerSupport:
-    'Write the component in *.nuc.tsx. The IR prints Vue, React, Nuxt, Next, Astro, Svelte, and Solid in native syntax — same props, same primitive.',
+    'Start from Vue, React, Nuxt, Next, Astro, Svelte, or Solid - or author portable UI in *.nuc.tsx. The IR converts between frameworks, emits native code, and imports emit edits back. Migration is the pipeline, not a side script.',
   compilerHub: '.nuc',
   compilerHubLabel: 'author',
   compilerEmitLabel: 'emit',
   compilerCta: 'Read compiler docs',
   closeModalTitle: 'Start a conversation',
   closeModalSupport:
-    'Tell us who you are and what you need. We reply with a concrete next step — no sales theatre.',
+    'A short note on your project and timing is enough. We reply within 24h with a clear next step.',
   closeNameLabel: 'Name / organisation',
   closeNamePlaceholder: 'Alex at Acme',
   closeEmailLabel: 'Work email',
@@ -285,11 +289,7 @@ export const NUC_HOME_COPY = {
   closeErrorEmail: 'Enter a valid email address.',
   closeErrorType: 'Pick what you need.',
   closeErrorMessage: 'Message is too long.',
-  closeTrust: [
-    'Reply within 2 business days',
-    'No spam, no drip sequences',
-    'Open-source friendly',
-  ],
+  closeTrust: ['Reply within 24h'],
 } as const
 
 export const NUC_HOME_INSTALL_STEPS = [
@@ -300,10 +300,10 @@ export const NUC_HOME_INSTALL_STEPS = [
 
 /** Values stay API-stable; labels are developer-intent. */
 export const NUC_HOME_CONTACT_TYPES = [
-  { label: 'Open source / eval', value: 'landing' },
-  { label: 'Contribute', value: 'business' },
-  { label: 'Consulting', value: 'blog' },
-  { label: 'Other', value: 'help' },
+  { label: 'Migrate a site to another framework', value: 'landing' },
+  { label: 'New site ready for migration', value: 'business' },
+  { label: 'Migration support', value: 'blog' },
+  { label: 'Contribute', value: 'help' },
 ] as const
 
 export const NUC_HOME_HERO_PROOF = [
@@ -326,7 +326,7 @@ export const NUC_HOME_HERO_SHELLS: NucHomeHeroShell[] = [
     id: 'nuxt',
     label: 'Nuxt',
     command: 'make web target=NUXT',
-    result: 'nuxt product shell · online',
+    result: 'nuxt product · online',
     icon: 'simple-icons:nuxtdotjs',
     color: '#00dc82',
   },
@@ -334,7 +334,7 @@ export const NUC_HOME_HERO_SHELLS: NucHomeHeroShell[] = [
     id: 'next',
     label: 'Next',
     command: 'make web target=NEXT',
-    result: 'next product shell · online',
+    result: 'next product · online',
     icon: 'simple-icons:nextdotjs',
     color: '#e8e8e8',
   },
@@ -368,7 +368,7 @@ export const NUC_HOME_SECTIONS = [
   { id: 'intro', label: 'Intro' },
   { id: 'architecture', label: 'Why' },
   { id: 'clone', label: 'Clone' },
-  { id: 'stack', label: 'Shells' },
+  { id: 'stack', label: 'Stack' },
   { id: 'compiler', label: 'Emit' },
   { id: 'pulse', label: 'Scale' },
   { id: 'start', label: 'Start' },
@@ -396,13 +396,13 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
     id: 'api',
     name: 'nuc_api',
     icon: 'mdi:api',
-    note: 'One client. One gateway. Every shell.',
+    note: 'One client. One gateway. Every framework.',
     lanes: [
       {
         id: 'sdk',
         title: 'Typed client',
         path: 'shared_modules/nuc_api/utils/api_request.ts',
-        detail: 'One request helper. Every shell stays on the same types.',
+        detail: 'One request helper. Every framework stays on the same types.',
       },
       {
         id: 'data',
@@ -414,7 +414,7 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
         id: 'ui',
         title: 'Feedback',
         path: 'shared_modules/nuc_api/utils/use_toast.ts',
-        detail: 'Auth forms and toasts ship with the API — not per app.',
+        detail: 'Auth forms and toasts ship with the API - not per app.',
       },
     ],
   },
@@ -428,7 +428,7 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
         id: 'sdk',
         title: 'Design tokens',
         path: 'shared_modules/nuc_colors/styles/variables/_index.scss',
-        detail: 'One token file. Nuxt green, Next blue — same names.',
+        detail: 'One token file. Nuxt green, Next blue - same names.',
       },
       {
         id: 'data',
@@ -454,7 +454,7 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
         id: 'sdk',
         title: 'Locale load',
         path: 'shared_modules/nuc_languages/utils/fetch_locale_messages.ts',
-        detail: 'Load catalogs once. Same keys on every shell.',
+        detail: 'Load catalogs once. Same keys on every framework.',
       },
       {
         id: 'data',
@@ -466,7 +466,7 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
         id: 'ui',
         title: 'Catalog',
         path: 'shared_modules/nuc_languages/constants/languages.ts',
-        detail: 'The locales the picker shows. One list, every shell.',
+        detail: 'The locales the picker shows. One list, every framework.',
       },
     ],
   },
@@ -486,7 +486,7 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
         id: 'data',
         title: 'Persist',
         path: 'shared_modules/nuc_stores/cookie/set_item/index.ts',
-        detail: 'Cookie, local, session — one set/get anywhere.',
+        detail: 'Cookie, local, session - one set/get anywhere.',
       },
       {
         id: 'ui',
@@ -544,7 +544,7 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
         id: 'ui',
         title: 'Global styles',
         path: 'shared_modules/nuc_globals/styles/_index.scss',
-        detail: 'Layout primitives every shell already speaks.',
+        detail: 'Layout primitives every framework already speaks.',
       },
     ],
   },
@@ -556,29 +556,29 @@ export const NUC_HOME_PILLARS: NucHomePillar[] = [
   {
     icon: 'mdi:cube-outline',
     index: '01',
-    title: 'A module is a product slice',
+    title: 'Ship the slice once',
     description:
-      'Install the feature, not a rewrite. A nuc_* package drops API, SQL, and UI on one gateway — ready across Vue, React, Nuxt, Next, Astro, Svelte, and Solid from the same unit.',
-    outcome: 'Weeks of scaffolding → hours',
-    proof: 'api · sql · ui in one unit',
+      'One shared module packs routes, UI, and data access. Product convert carries that slice across Vue, React, Nuxt, Next, Astro, Svelte, and Solid - install the feature, skip the rewrite.',
+    outcome: 'Scaffolding weeks → hours',
+    proof: 'routes · ui · data in one unit',
   },
   {
     icon: 'mdi:file-code-outline',
     index: '02',
-    title: 'The contract is the product',
+    title: 'The wire survives the move',
     description:
-      'Types and request helpers live beside the feature. Shells stay interchangeable. The wire does not drift when the framework does.',
-    outcome: 'One source of truth',
+      'Shared types and fetch helpers travel with the feature. Convert the framework - the client contract stays, only the stack changes.',
+    outcome: 'One contract across frameworks',
     proof: 'shared types · shared calls',
   },
   {
     icon: 'mdi:palette-swatch-outline',
     index: '03',
-    title: 'UI that outlives the framework',
+    title: 'Design system outlives the framework',
     description:
-      'nucleify-ui (Lit) is the premium system once — green for Nuxt, blue for Next, same primitives everywhere. Framework churn stops at the shell.',
-    outcome: 'One design system',
-    proof: 'nui-* · framework-agnostic',
+      'One Lit UI kit and shared CSS tokens on every framework - Vue, React, Nuxt, Next, Astro, Svelte, Solid. Theme stays put; stacks move without forking the kit.',
+    outcome: 'One UI kit, seven frameworks',
+    proof: 'tokens · theme · portable',
   },
 ]
 
@@ -599,7 +599,7 @@ export const NUC_HOME_STACK: NucHomeStackItem[] = [
   },
   {
     label: 'Nuxt',
-    detail: 'Vue SSR shell',
+    detail: 'Vue SSR',
     icon: 'simple-icons:nuxtdotjs',
     color: '#00dc82',
     command: 'make web target=NUXT',
@@ -642,7 +642,7 @@ export interface NucHomeCompilerNode {
   command: string
   file: string
   snippet: string[]
-  /** Percent position in the graph stage (0–100). */
+  /** Percent position in the graph stage (0-100). */
   x: number
   y: number
 }
@@ -716,7 +716,7 @@ export const NUC_HOME_COMPILER_SOURCE = {
   ],
 } as const
 
-/** Shells around the portable `.nuc` hub (Vite-style emit graph). */
+/** Framework targets around the portable `.nuc` hub (Vite-style emit graph). */
 export const NUC_HOME_COMPILER_NODES: NucHomeCompilerNode[] = [
   {
     id: 'vue',

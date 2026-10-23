@@ -3,7 +3,7 @@
 @import '../home/sections/core/cube';
 @import '../home/sections/close/index';
 
-/* Investor — home-grade chrome: holo cards, glow stages, interactive boards. */
+/* Investor - home-grade chrome: holo cards, glow stages, interactive boards. */
 
 .nuc-investor {
   .nuc-home-hero-panel.is-deal {
@@ -109,7 +109,7 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
     margin: 0.45rem 0 0;
     color: var(--home-fg);
     font-size: clamp(1.85rem, 4.5vw, 2.4rem);
-    font-weight: 650;
+    font-weight: 700;
     letter-spacing: -0.06em;
     line-height: 0.95;
 
@@ -215,7 +215,7 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
     strong {
       color: var(--home-fg);
       font-size: clamp(1.85rem, 5vw, 2.25rem);
-      font-weight: 650;
+      font-weight: 700;
       letter-spacing: -0.07em;
       line-height: 0.9;
     }
@@ -242,7 +242,7 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
         color: var(--home-accent);
         font-family: 'JetBrains Mono', ui-monospace, monospace;
         font-style: normal;
-        font-weight: 650;
+        font-weight: 700;
       }
     }
 
@@ -481,7 +481,7 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
 
     strong {
       font-size: clamp(2.6rem, 7vw, 3.4rem);
-      font-weight: 650;
+      font-weight: 700;
       letter-spacing: -0.08em;
       line-height: 0.9;
     }
@@ -519,7 +519,7 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
     border-top: 1px solid var(--home-holo-line-soft);
     color: var(--home-fg);
     font-size: clamp(1.7rem, 4vw, 2.15rem);
-    font-weight: 650;
+    font-weight: 700;
     letter-spacing: -0.05em;
     line-height: 1;
 
@@ -581,7 +581,7 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
     margin: 0;
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: clamp(1.4rem, 3vw, 1.8rem);
-    font-weight: 650;
+    font-weight: 700;
     letter-spacing: -0.05em;
   }
 
@@ -810,7 +810,7 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
     transition: background 0.35s ease;
   }
 
-  /* Stack all panels in one cell — height = tallest tab, no jump. */
+  /* Stack all panels in one cell - height = tallest tab, no jump. */
   &-panel {
     grid-area: 1 / 1;
     position: relative;
@@ -867,7 +867,7 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
   &-name {
     margin: 0;
     font-size: clamp(1.45rem, 3.2vw, 1.9rem);
-    font-weight: 650;
+    font-weight: 700;
     letter-spacing: -0.035em;
     line-height: 1.15;
   }
@@ -988,7 +988,7 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
 }
 
 /*
- * Below-fold investor reveal targets — hide until play_investor_animations
+ * Below-fold investor reveal targets - hide until play_investor_animations
  * arms fade-wipe (avoids card border ghosts before opacity/mask land).
  */
 .nuc-home.nuc-investor:not(.nuc-home-static) {

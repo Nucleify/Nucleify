@@ -136,7 +136,7 @@ function localeHint(parts: string[]): string | undefined {
 
 /**
  * Legacy / smashed paths → living home.
- * Docs live on docs.nucleify.io — rewrite old same-host `/…/docs/…` there.
+ * Docs live on docs.nucleify.io - rewrite old same-host `/…/docs/…` there.
  */
 export function redirectTargetForPath(pathname: string): string | null {
   const path = pathname.split('?')[0] || '/'
@@ -146,7 +146,7 @@ export function redirectTargetForPath(pathname: string): string | null {
   const first = parts[0]!
   if (ASSET_FIRST.has(first)) return null
 
-  // Docs moved off nucleify.io — send locale docs paths to the docs host.
+  // Docs moved off nucleify.io - send locale docs paths to the docs host.
   if (LOCALE_CODES.has(first) && parts[1] === 'docs') {
     const rest = parts.slice(1).join('/')
     return `${NUC_DOCS_ORIGIN}/${first}/${rest}`
@@ -191,12 +191,12 @@ export function redirectTargetForPath(pathname: string): string | null {
     return homeForLocale(first)
   }
 
-  // `/{lang}/investor/...` extras — collapse to investor root.
+  // `/{lang}/investor/...` extras - collapse to investor root.
   if (LOCALE_CODES.has(first) && parts[1] === 'investor' && parts.length > 2) {
     return `/${first}/investor`
   }
 
-  // `/{lang}/services|legal|about-us|...` — dead marketing tree.
+  // `/{lang}/services|legal|about-us|...` - dead marketing tree.
   if (
     LOCALE_CODES.has(first) &&
     parts[1] &&

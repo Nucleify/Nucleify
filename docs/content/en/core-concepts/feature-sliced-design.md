@@ -1,6 +1,6 @@
 # Feature-Sliced Design
 
-Feature-Sliced Design (FSD) organizes code **by business domain** instead of by technical layer. In Nucleify, each `shared_modules/nuc_*` package is one slice — frontend utilities, API handlers, database migrations, types, and tests co-located in a single directory.
+Feature-Sliced Design (FSD) organizes code **by business domain** instead of by technical layer. In Nucleify, each `shared_modules/nuc_*` package is one slice - frontend utilities, API handlers, database migrations, types, and tests co-located in a single directory.
 
 ---
 
@@ -83,7 +83,7 @@ Within a module, folders follow a lightweight FSD-inspired layout:
 | `styles/` | UI tokens | SCSS partials |
 | `vitests/` | Tests | Unit tests co-located with domain |
 
-There is no strict `entities/features/widgets` folder naming — Nucleify favors **flat domain modules** over deep FSD ceremony. The principle (co-location by feature) matters more than the folder labels.
+There is no strict `entities/features/widgets` folder naming - Nucleify favors **flat domain modules** over deep FSD ceremony. The principle (co-location by feature) matters more than the folder labels.
 
 ---
 
@@ -99,7 +99,7 @@ import { apiRequest } from 'modules/nuc_api/utils/api_request'
 import { internalHelper } from 'modules/nuc_colors/supabase/api/colors_helpers'
 ```
 
-Gateway dispatch in `nuc_api` is the orchestration point for HTTP — individual modules register handlers, but routing between domains happens at the gateway, not via cross-imports in `utils/`.
+Gateway dispatch in `nuc_api` is the orchestration point for HTTP - individual modules register handlers, but routing between domains happens at the gateway, not via cross-imports in `utils/`.
 
 ---
 
@@ -109,11 +109,11 @@ The compiler adds a second axis:
 
 | Layer | Location | Framework coupling |
 |-------|----------|-------------------|
-| Portable UI | `*.nuc.tsx` | None — emits Vue + React + Solid + Svelte |
+| Portable UI | `*.nuc.tsx` | None - emits Vue + React + Solid + Svelte |
 | Domain logic | `shared_modules/nuc_*/utils/` | Vue composables + `.react.ts` hooks |
 | App shell | `web/src/pages/` | Nuxt (canonical) or Next / Solid / Svelte (converted) |
 
-Keep stores, routers, i18n containers, and API calls **out of** `*.nuc.tsx`. Portable components receive data via props and emit events — domain slices own the wiring in app or module utils.
+Keep stores, routers, i18n containers, and API calls **out of** `*.nuc.tsx`. Portable components receive data via props and emit events - domain slices own the wiring in app or module utils.
 
 ---
 
@@ -121,8 +121,8 @@ Keep stores, routers, i18n containers, and API calls **out of** `*.nuc.tsx`. Por
 
 Nucleify uses **Atomic Design** inside SCSS (`atoms/`, `molecules/`, `organisms/` under `nuc_colors/styles/components/`) for visual hierarchy. FSD and Atomic Design solve different problems:
 
-- **FSD** — where feature code lives in the repo
-- **Atomic Design** — how UI components nest visually
+- **FSD** - where feature code lives in the repo
+- **Atomic Design** - how UI components nest visually
 
 They coexist: a `nuc_colors` organism partial is still part of the `nuc_colors` slice.
 
@@ -130,16 +130,16 @@ They coexist: a `nuc_colors` organism partial is still part of the `nuc_colors` 
 
 ## Adding a feature the FSD way
 
-1. **Identify the domain** — new slice or extend an existing `nuc_*`?
-2. **Co-locate** — API handler, types, utils, migrations, tests in one module folder
-3. **Export publicly** — `index.ts` / `index.react.ts`
-4. **Wire the app** — plugin registration, gateway handler, page composition
-5. **Avoid app-local copies** — if two apps need it, it belongs in `shared_modules/`
+1. **Identify the domain** - new slice or extend an existing `nuc_*`?
+2. **Co-locate** - API handler, types, utils, migrations, tests in one module folder
+3. **Export publicly** - `index.ts` / `index.react.ts`
+4. **Wire the app** - plugin registration, gateway handler, page composition
+5. **Avoid app-local copies** - if two apps need it, it belongs in `shared_modules/`
 
 ---
 
 ## Related docs
 
-- [Modules](/en/docs/core-concepts/modules) — module reference
-- [Monorepo Layout](/en/docs/core-concepts/monorepo) — app vs shared boundaries
-- [Compiler](/en/docs/core-concepts/compiler) — portable UI layer
+- [Modules](/en/docs/core-concepts/modules) - module reference
+- [Monorepo Layout](/en/docs/core-concepts/monorepo) - app vs shared boundaries
+- [Compiler](/en/docs/core-concepts/compiler) - portable UI layer

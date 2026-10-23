@@ -1,6 +1,6 @@
 /**
  * Client-only Lit element registration for nucleify-ui `nui-*` tags.
- * Use `ensureNuiRegistered()` — never static-import components (SSR would double-register).
+ * Use `ensureNuiRegistered()` - never static-import components (SSR would double-register).
  *
  * Hero CTAs need `nui-button` ASAP (empty host until define → layout jump). Load
  * button + icon first; defer dialog/input/select/toast.

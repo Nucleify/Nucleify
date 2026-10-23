@@ -6,8 +6,11 @@
   >
     <div class="nuc-home-pulse-copy">
       <p class="nuc-home-eyebrow">{{ copy.pulseEyebrow }}</p>
-      <h2 id="nuc-home-pulse-title" class="nuc-home-title">
-        {{ copy.pulseTitle }}
+      <h2 id="nuc-home-pulse-title" class="nuc-home-title nuc-home-pulse-title">
+        <span class="nuc-home-pulse-title-line">{{ copy.pulseTitleLead }}</span>
+        <span class="nuc-home-pulse-title-line is-nowrap"
+          >{{ copy.pulseTitleTrail }}</span
+        >
       </h2>
       <p class="nuc-home-support">{{ copy.pulseSupport }}</p>
       <p class="nuc-home-pulse-compare">{{ copy.pulseCompare }}</p>
@@ -35,26 +38,6 @@
       </div>
 
       <div class="nuc-home-pulse-chart">
-        <div class="nuc-home-pulse-row nuc-home-pulse-row-tax">
-          <div class="nuc-home-pulse-row-meta">
-            <span class="nuc-home-pulse-row-label">
-              {{ copy.pulseTraditionalLabel }}
-            </span>
-            <span class="nuc-home-pulse-row-value">
-              {{ copy.pulseCostSuffix }}{{ traditionalCost }}
-            </span>
-          </div>
-          <div class="nuc-home-pulse-track" aria-hidden="true">
-            <span
-              class="nuc-home-pulse-fill nuc-home-pulse-fill-tax"
-              :style="{ width: traditionalWidth }"
-            />
-          </div>
-          <p class="nuc-home-pulse-row-note">
-            {{ traditionalCost }}× {{ copy.pulseUnitLabel }}
-          </p>
-        </div>
-
         <div class="nuc-home-pulse-row nuc-home-pulse-row-flat">
           <div class="nuc-home-pulse-row-meta">
             <span class="nuc-home-pulse-row-label">
@@ -72,6 +55,26 @@
           </div>
           <p class="nuc-home-pulse-row-note">
             {{ nucleifyCost }}× {{ copy.pulseUnitLabel }}
+          </p>
+        </div>
+
+        <div class="nuc-home-pulse-row nuc-home-pulse-row-tax">
+          <div class="nuc-home-pulse-row-meta">
+            <span class="nuc-home-pulse-row-label">
+              {{ copy.pulseTraditionalLabel }}
+            </span>
+            <span class="nuc-home-pulse-row-value">
+              {{ copy.pulseCostSuffix }}{{ traditionalCost }}
+            </span>
+          </div>
+          <div class="nuc-home-pulse-track" aria-hidden="true">
+            <span
+              class="nuc-home-pulse-fill nuc-home-pulse-fill-tax"
+              :style="{ width: traditionalWidth }"
+            />
+          </div>
+          <p class="nuc-home-pulse-row-note">
+            {{ traditionalCost }}× {{ copy.pulseUnitLabel }}
           </p>
         </div>
       </div>

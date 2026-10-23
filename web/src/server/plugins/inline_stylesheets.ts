@@ -19,7 +19,7 @@ function readFontPreloads(): string[] {
 
 const FONT_PRELOADS = readFontPreloads()
 
-/** Nuxt renderer payload — not in base NitroRuntimeHooks used by web/tsconfig. */
+/** Nuxt renderer payload - not in base NitroRuntimeHooks used by web/tsconfig. */
 type HtmlRenderContext = {
   head: string[]
 }

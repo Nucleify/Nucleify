@@ -20,7 +20,7 @@ Plans and phase trackers belong only in `.ai/specs/` (or commit-rule BAD example
 | “leftovers”, “slice”, “tracked separately”, “deferred” as roadmap voice | Agent/plan status phrasing |
 | Issue numbers as section titles (`## … (#694)`) unless the user asked for a changelog | Tracking noise |
 
-Polish docs may use ordinary words like **tryb pracy** (mode) or **tryb ciemny** (dark mode) — that is fine. Do not invent **Tryb A/B**.
+Polish docs may use ordinary words like **tryb pracy** (mode) or **tryb ciemny** (dark mode) - that is fine. Do not invent **Tryb A/B**.
 
 ## Prefer instead
 
@@ -35,7 +35,7 @@ Polish docs may use ordinary words like **tryb pracy** (mode) or **tryb ciemny**
 # ❌ BAD
 # Tryb B product shell (Faza 13 leftover)
 Scaffolded by tryb B:
-option C — custom IR, no Mitosis
+option C - custom IR, no Mitosis
 
 # ✅ GOOD
 # Generated Next/Solid/Svelte product shell (product convert)
@@ -45,6 +45,6 @@ IR-first portable UI compiler (custom IR)
 
 ## Scope notes
 
-- **Commits:** same ban — see `commits.mdc` (no `plan.md` / tor labels in messages).
+- **Commits:** same ban - see `commits.mdc` (no `plan.md` / tor labels in messages).
 - **`.ai/specs/`:** planning language is allowed there only.
 - **Chat with the user:** may discuss plans; do not paste that jargon into repo files unless editing `.ai/specs/`.

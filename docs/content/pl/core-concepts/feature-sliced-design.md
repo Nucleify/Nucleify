@@ -1,6 +1,6 @@
 # Feature-Sliced Design
 
-Feature-Sliced Design (FSD) organizuje kod **według domeny biznesowej**, a nie według warstw technicznych. W Nucleify każdy pakiet `shared_modules/nuc_*` to jeden slice — narzędzia frontendowe, handlery API, migracje bazy, typy i testy w jednym katalogu.
+Feature-Sliced Design (FSD) organizuje kod **według domeny biznesowej**, a nie według warstw technicznych. W Nucleify każdy pakiet `shared_modules/nuc_*` to jeden slice - narzędzia frontendowe, handlery API, migracje bazy, typy i testy w jednym katalogu.
 
 ---
 
@@ -83,7 +83,7 @@ W module foldery mają lekki układ inspirowany FSD:
 | `styles/` | UI tokens | Partiale SCSS |
 | `vitests/` | Testy | Testy jednostkowe obok domeny |
 
-Nie ma sztywnego nazewnictwa `entities/features/widgets` — Nucleify preferuje **płaskie moduły domenowe** zamiast głębokiej ceremonii FSD. Liczy się zasada (co-lokacja po funkcji), nie etykiety folderów.
+Nie ma sztywnego nazewnictwa `entities/features/widgets` - Nucleify preferuje **płaskie moduły domenowe** zamiast głębokiej ceremonii FSD. Liczy się zasada (co-lokacja po funkcji), nie etykiety folderów.
 
 ---
 
@@ -99,7 +99,7 @@ import { apiRequest } from 'modules/nuc_api/utils/api_request'
 import { internalHelper } from 'modules/nuc_colors/supabase/api/colors_helpers'
 ```
 
-Dispatch gateway w `nuc_api` to punkt orkiestracji HTTP — moduły rejestrują handlery, ale routing między domenami dzieje się w gateway, nie przez cross-importy w `utils/`.
+Dispatch gateway w `nuc_api` to punkt orkiestracji HTTP - moduły rejestrują handlery, ale routing między domenami dzieje się w gateway, nie przez cross-importy w `utils/`.
 
 ---
 
@@ -109,11 +109,11 @@ Kompilator dodaje drugą oś:
 
 | Warstwa | Lokalizacja | Powiązanie z frameworkiem |
 |---------|-------------|---------------------------|
-| Portable UI | `*.nuc.tsx` | Brak — emit Vue + React + Solid + Svelte |
+| Portable UI | `*.nuc.tsx` | Brak - emit Vue + React + Solid + Svelte |
 | Logika domeny | `shared_modules/nuc_*/utils/` | Composables Vue + hooki `.react.ts` |
 | Powłoka app | `web/src/pages/` | Nuxt (kanoniczny) lub Next / Solid / Svelte (skonwertowany) |
 
-Trzymaj store, routery, kontenery i18n i wywołania API **poza** `*.nuc.tsx`. Komponenty portable dostają dane przez props i emitują eventy — slice domeny łączy dane w utils aplikacji lub modułu.
+Trzymaj store, routery, kontenery i18n i wywołania API **poza** `*.nuc.tsx`. Komponenty portable dostają dane przez props i emitują eventy - slice domeny łączy dane w utils aplikacji lub modułu.
 
 ---
 
@@ -121,8 +121,8 @@ Trzymaj store, routery, kontenery i18n i wywołania API **poza** `*.nuc.tsx`. Ko
 
 Nucleify używa **Atomic Design** w SCSS (`atoms/`, `molecules/`, `organisms/` pod `nuc_colors/styles/components/`) dla hierarchii wizualnej. FSD i Atomic Design rozwiązują różne problemy:
 
-- **FSD** — gdzie w repo żyje kod funkcji
-- **Atomic Design** — jak komponenty UI się zagnieżdżają wizualnie
+- **FSD** - gdzie w repo żyje kod funkcji
+- **Atomic Design** - jak komponenty UI się zagnieżdżają wizualnie
 
 Współistnieją: partial organismu `nuc_colors` nadal jest częścią slice `nuc_colors`.
 
@@ -130,16 +130,16 @@ Współistnieją: partial organismu `nuc_colors` nadal jest częścią slice `nu
 
 ## Dodawanie funkcji po FSD
 
-1. **Zidentyfikuj domenę** — nowy slice czy rozszerzenie istniejącego `nuc_*`?
-2. **Co-lokuj** — handler API, typy, utils, migracje, testy w jednym folderze modułu
-3. **Eksportuj publicznie** — `index.ts` / `index.react.ts`
-4. **Podłącz app** — rejestracja pluginu, handler gateway, kompozycja strony
-5. **Unikaj kopii w app** — jeśli dwie app tego potrzebują, należy do `shared_modules/`
+1. **Zidentyfikuj domenę** - nowy slice czy rozszerzenie istniejącego `nuc_*`?
+2. **Co-lokuj** - handler API, typy, utils, migracje, testy w jednym folderze modułu
+3. **Eksportuj publicznie** - `index.ts` / `index.react.ts`
+4. **Podłącz app** - rejestracja pluginu, handler gateway, kompozycja strony
+5. **Unikaj kopii w app** - jeśli dwie app tego potrzebują, należy do `shared_modules/`
 
 ---
 
 ## Powiązane docs
 
-- [Moduły](/pl/docs/core-concepts/modules) — referencja modułów
-- [Układ monorepo](/pl/docs/core-concepts/monorepo) — granice app vs shared
-- [Kompilator](/pl/docs/core-concepts/compiler) — warstwa portable UI
+- [Moduły](/pl/docs/core-concepts/modules) - referencja modułów
+- [Układ monorepo](/pl/docs/core-concepts/monorepo) - granice app vs shared
+- [Kompilator](/pl/docs/core-concepts/compiler) - warstwa portable UI

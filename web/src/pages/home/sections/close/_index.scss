@@ -6,13 +6,19 @@
   margin: 0 auto;
   padding: 4.75rem var(--home-pad) 4.5rem;
   box-sizing: border-box;
+
+  /* Clip pitch/commerce slide; allow select panel when the form is open. */
   overflow: hidden;
+
+  &.is-form {
+    overflow: hidden visible;
+  }
 
   &-stage {
     position: relative;
     display: grid;
     flex: 1;
-    align-items: center;
+    place-items: center;
     width: 100%;
     min-height: 14rem;
     isolation: isolate;
@@ -21,52 +27,70 @@
   &-pitch,
   &-commerce {
     grid-area: 1 / 1;
-    width: 100%;
   }
 
   &-pitch {
-    z-index: 1;
+    z-index: 2;
+    width: 100%;
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
+
+    /* Entering pitch (Back): hold until the form has fully faded out. */
     transition:
-      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      visibility 0s linear 0s;
+      transform 0.38s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
+      opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
+      visibility 0s linear 0.3s;
   }
 
   &-commerce {
-    z-index: 2;
+    z-index: 0;
+    place-self: center;
+    width: min(100%, 42rem);
+    max-width: 42rem;
+    margin-inline: auto;
+    padding: 1.25rem 1.2rem 1.35rem;
+    border: 1px solid var(--home-card-border);
+    border-radius: 1.15rem;
+    background: var(--home-card-bg);
+    box-shadow: var(--home-card-shadow);
     transform: translateX(14%);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    background: transparent;
+
+    /* Leaving form (Back): fade out first; pitch waits on its own delay. */
     transition:
-      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      visibility 0s linear 0.5s;
+      transform 0.2s cubic-bezier(0.4, 0, 1, 1),
+      opacity 0.18s cubic-bezier(0.4, 0, 1, 1),
+      visibility 0s linear 0.18s;
+
+    @media (min-width: $md) {
+      padding: 1.5rem 1.55rem 1.55rem;
+    }
   }
 
   &.is-form &-pitch {
+    z-index: 0;
     transform: translateX(-16%);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     transition:
-      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      visibility 0s linear 0.5s;
+      transform 0.24s cubic-bezier(0.4, 0, 1, 1),
+      opacity 0.2s cubic-bezier(0.4, 0, 1, 1),
+      visibility 0s linear 0.2s;
   }
 
   &.is-form &-commerce {
+    z-index: 3;
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
     transition:
-      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
+      opacity 0.36s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
       visibility 0s linear 0s;
   }
 
@@ -115,60 +139,62 @@
   }
 
   &-commerce-head {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem 1.5rem;
-    margin-bottom: 1.35rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.75rem 1.25rem;
+    align-items: start;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid rgb(255 255 255 / 7%);
   }
 
   &-commerce-title {
     margin: 0;
     color: var(--home-fg);
     font-family: 'Instrument Sans', system-ui, sans-serif;
-    font-size: clamp(1.45rem, 2.4vw, 1.85rem);
-    font-weight: 650;
+    font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+    font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.15;
   }
 
   &-commerce-support {
-    max-width: 36rem;
-    margin: 0.55rem 0 0;
+    max-width: none;
+    margin: 0.45rem 0 0;
     color: var(--home-muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.5;
   }
 
   &-back {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.35rem;
     margin: 0;
-    padding: 0.45rem 0.55rem;
-    border: 0;
-    border-radius: 0.55rem;
+    padding: 0.4rem 0.55rem;
+    border: 1px solid rgb(255 255 255 / 8%);
+    border-radius: 999px;
     background: transparent;
     color: var(--home-muted);
     font-family: 'Instrument Sans', system-ui, sans-serif;
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     cursor: pointer;
-    transition: color 0.2s ease, background 0.2s ease;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
 
     &:hover {
       color: var(--home-fg);
-      background: rgb(255 255 255 / 4%);
+      border-color: color-mix(in srgb, var(--home-accent) 35%, transparent);
+      background: hsl(var(--rainbow-hue) 55% 52% / 8%);
     }
 
     nui-icon {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
   }
 
   &-form {
     display: grid;
-    gap: 1.15rem;
+    gap: 1rem;
     margin: 0;
     padding: 0;
     border: 0;
@@ -197,7 +223,7 @@
 
   &-grid {
     display: grid;
-    gap: 0.95rem;
+    gap: 0.85rem;
 
     @media (min-width: $md) {
       grid-template-columns: 1fr 1fr;
@@ -211,6 +237,18 @@
   &-field {
     display: grid;
     gap: 0.4rem;
+
+    /* nui-select panel is absolute inside the host; raise the field so the
+       following textarea does not paint over the open options list. */
+    &:has(nui-select) {
+      position: relative;
+      z-index: 5;
+    }
+
+    &:has(.nuc-home-close-textarea) {
+      position: relative;
+      z-index: 1;
+    }
   }
 
   &-label {
@@ -225,7 +263,7 @@
 
   &-textarea {
     width: 100%;
-    min-height: 6.5rem;
+    min-height: 5.5rem;
     margin: 0;
     padding: 0.75rem 0.85rem;
     border: 1px solid color-mix(in srgb, var(--home-accent) 28%, rgb(255 255 255 / 8%));
@@ -235,7 +273,7 @@
     font-family: 'Instrument Sans', system-ui, sans-serif;
     font-size: 0.95rem;
     line-height: 1.45;
-    resize: vertical;
+    resize: none;
     box-sizing: border-box;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 
@@ -261,15 +299,27 @@
     line-height: 1.35;
   }
 
+  &-foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem 1.25rem;
+    margin-top: 0.15rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(255 255 255 / 7%);
+  }
+
   &-actions {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
     gap: 0.65rem;
+    margin-left: auto;
 
     nui-button[variant='primary'] {
-      min-width: 10.5rem;
+      min-width: 11rem;
     }
   }
 
@@ -277,10 +327,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.55rem 1.1rem;
-    margin: 0.15rem 0 0;
-    padding: 0.85rem 0 0;
+    margin: 0;
+    padding: 0;
     list-style: none;
-    border-top: 1px solid rgb(255 255 255 / 7%);
+    border: 0;
     color: var(--home-dim);
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 0.68rem;
@@ -347,6 +397,8 @@
     }
 
     &-commerce {
+      max-width: none;
+      padding: 1.1rem 1rem 1.2rem;
       transform: translateY(8%);
     }
 
@@ -354,9 +406,14 @@
       transform: translateY(0);
     }
 
-    &-actions {
-      flex-direction: column-reverse;
+    &-foot {
+      flex-direction: column;
       align-items: stretch;
+    }
+
+    &-actions {
+      width: 100%;
+      margin-left: 0;
 
       nui-button {
         width: 100%;

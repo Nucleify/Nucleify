@@ -35,14 +35,14 @@ make run
 
 This command:
 
-1. **Creates `.env`** — copies `web/.config/.env.example` to the repo root if `.env` is missing
-2. **Installs dependencies** — `pnpm install` across all workspace packages
-3. **Prepares Husky** — git hooks for lint and test checks
-4. **Prepares web** — `pnpm --filter @nucleify/web prepare`
-5. **Syncs Cursor rules** — `pnpm sync-rules`
-6. **Builds the compiler** — `pnpm compiler:check` + `pnpm compiler:build` (emits Vue / React / Solid / Svelte siblings; skip with `SKIP_COMPILER=1 make run`)
+1. **Creates `.env`** - copies `web/.config/.env.example` to the repo root if `.env` is missing
+2. **Installs dependencies** - `pnpm install` across all workspace packages
+3. **Prepares Husky** - git hooks for lint and test checks
+4. **Prepares web** - `pnpm --filter @nucleify/web prepare`
+5. **Syncs Cursor rules** - `pnpm sync-rules`
+6. **Builds the compiler** - `pnpm compiler:check` + `pnpm compiler:build` (emits Vue / React / Solid / Svelte siblings; skip with `SKIP_COMPILER=1 make run`)
 
-If you already have a `.env` file, use `make setup` instead — same steps without overwriting environment config.
+If you already have a `.env` file, use `make setup` instead - same steps without overwriting environment config.
 
 ---
 
@@ -148,6 +148,6 @@ corepack prepare pnpm@10.33.0 --activate
 
 ## Next steps
 
-- [Quick Start](/en/docs/getting-started/quick-start) — tour the repo and common workflows
-- [Web & Admin Configuration](/en/docs/configuration/web) — Nuxt config split and aliases
-- [Monorepo Layout](/en/docs/core-concepts/monorepo) — directory reference
+- [Quick Start](/en/docs/getting-started/quick-start) - tour the repo and common workflows
+- [Web & Admin Configuration](/en/docs/configuration/web) - Nuxt config split and aliases
+- [Monorepo Layout](/en/docs/core-concepts/monorepo) - directory reference

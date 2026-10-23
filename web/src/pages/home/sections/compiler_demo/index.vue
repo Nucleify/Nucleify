@@ -7,8 +7,16 @@
   >
     <div class="nuc-home-compiler-copy">
       <p class="nuc-home-eyebrow">{{ copy.compilerEyebrow }}</p>
-      <h2 id="nuc-home-compiler-title" class="nuc-home-title">
-        {{ copy.compilerTitle }}
+      <h2
+        id="nuc-home-compiler-title"
+        class="nuc-home-title nuc-home-compiler-title"
+      >
+        <span class="nuc-home-compiler-title-line"
+          >{{ copy.compilerTitleLead }}</span
+        >
+        <span class="nuc-home-compiler-title-line is-nowrap"
+          >{{ copy.compilerTitleTrail }}</span
+        >
       </h2>
       <p class="nuc-home-support">{{ copy.compilerSupport }}</p>
       <a :href="docsHref" class="nuc-home-next">

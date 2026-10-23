@@ -1,13 +1,13 @@
-/** Vue / Nuxt — light green (cycle origin; matches `nui-rainbow`). */
+/** Vue / Nuxt - light green (cycle origin; matches `nui-rainbow`). */
 export const NUC_RAINBOW_HUE_VUE = '152deg'
 
-/** React / Next — cyan. */
+/** React / Next - cyan. */
 export const NUC_RAINBOW_HUE_REACT = '190deg'
 
-/** Astro — purple. */
+/** Astro - purple. */
 export const NUC_RAINBOW_HUE_ASTRO = '292deg'
 
-/** Svelte — red (15deg + 360 for a continuous branded lap). */
+/** Svelte - red (15deg + 360 for a continuous branded lap). */
 export const NUC_RAINBOW_HUE_SVELTE = '375deg'
 
 /** Origin hue from `nui-rainbow` (`NUI_RAINBOW_HUE_INITIAL`). */

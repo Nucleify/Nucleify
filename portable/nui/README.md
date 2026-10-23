@@ -2,14 +2,14 @@
 
 Shared **nucleify-ui** wiring for product shells and compiler demos.
 
-- **No** Nucleify-authored components here — only tokens, fonts, and `nui-*` registration.
+- **No** Nucleify-authored components here - only tokens, fonts, and `nui-*` registration.
 - Compiler authoring / goldens live in `compiler/tests/fixtures/`, not under `portable/`.
 
 ## Contents
 
 | File | Role |
 |------|------|
-| `fonts.css` | Instrument Sans + JetBrains Mono (same families as Nuxt google-fonts) |
+| `fonts.css` / `fonts.ts` | Font contract - load via `<link>` (`NUC_GOOGLE_FONTS_HREF`), never CSS `@import` in a bundle |
 | `tokens.css` / `tokens.scss` | `.nuc-nuxt` / `.nuc-next` → `--nui-*` |
 | `styles.ts` | Fonts + nucleify-ui CSS (SSR-safe) |
 | `register.ts` | Client-only `ensureNuiRegistered()` for Lit elements |
