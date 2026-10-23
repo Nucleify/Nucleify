@@ -1,6 +1,10 @@
 .nuc-home-stack {
   --stack-color: var(--home-accent);
 
+  &-head .nuc-home-title {
+    white-space: pre-line;
+  }
+
   &-head .nuc-home-support {
     max-width: 40rem;
   }

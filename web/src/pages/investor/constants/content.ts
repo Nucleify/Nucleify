@@ -40,16 +40,16 @@ export const NUC_INVESTOR_COPY = {
   thesisSupport:
     'Frameworks come and go. Products should not. Nucleify keeps domain, API, and SQL in shared modules and moves whole apps with an IR-first compiler - a stack change is a build target, not a rewrite project.',
   savingsEyebrow: 'What you keep',
-  savingsTitle: 'Less duplicate work. Less burn.',
+  savingsTitle: 'Less duplicate work.\nLess burn.',
   savingsSupport:
-    'Simple planning model for a mid-size team running two frameworks at once. Not audited numbers - a clear way to talk about saved engineering time.',
+    'Simple planning model for a mid-size team running two frameworks at once.\nA clear way to talk about saved engineering time.',
   savingsCta: 'See the growth plan',
   savingsNote: 'Example only · mid-size product · two frameworks side by side',
   pulseShellsAxis: 'Frameworks from one nucleus',
   wedgeEyebrow: 'How we grow',
-  wedgeTitle: 'Start free. Stay because it works. Grow from there.',
+  wedgeTitle: 'Start free.\nStay because it works.',
   wedgeSupport:
-    'Engineers install Nucleify because it removes rewrite pain. Once the product lives in the nucleus, switching away means rewriting the business - then paid work can follow usage.',
+    'Engineers install Nucleify because it removes rewrite pain.\nOnce the product lives in the nucleus, switching away means rewriting the business - then paid work can follow usage.',
   surfaceEyebrow: 'Where we win',
   surfaceTitle: 'One product. Four ways it reaches the market.',
   surfaceSupport:
@@ -62,7 +62,7 @@ export const NUC_INVESTOR_COPY = {
   askCta: 'Request an intro',
   askModalTitle: 'Request an intro',
   askModalSupport:
-    'A few details help us prepare. You get a short brief, an architecture walkthrough option, and a clear next step.',
+    'You get a short brief, an architecture walkthrough option, and a clear next step.',
   askNameLabel: 'Name / fund',
   askNamePlaceholder: 'Jordan at Northpeak',
   askEmailLabel: 'Work email',
@@ -72,10 +72,8 @@ export const NUC_INVESTOR_COPY = {
   askNoteLabel: 'What to cover',
   askNotePlaceholder:
     'Stage, check size range, and what you want to pressure-test…',
-  askSubmit: 'Send',
+  askSubmit: 'Send request',
   askCancel: 'Back',
-  askTrust: ['Founder reply', 'Short brief included', 'Kept private'],
-  askDeskEyebrow: 'Investor desk',
   navDocs: 'Docs',
   navGitHub: 'GitHub',
   navHome: 'Product',
