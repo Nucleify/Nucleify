@@ -30,7 +30,19 @@ Manual: sign in with a Supabase Auth user → dashboard; sign out → login; una
 | Slice | Status |
 |-------|--------|
 | A Auth shell | done |
-| B Roles | pending |
+| B Roles | done (`nuc_admin` RBAC + `/roles`) |
 | C Users | pending |
 | D Settings | pending |
 | E CMS | pending |
+
+### Roles (B)
+
+- SQL: `shared_modules/nuc_admin/supabase/migrations/20261024000000_nuc_admin_roles.sql`
+- Seed: `…/seeders/20261024000001_nuc_admin_roles_seeder.sql`
+- Gate: `utils/permissions.ts` (empty `user_roles` → bootstrap full access)
+- API: `GET /api/admin/roles`, `GET /api/admin/permissions`, `PUT /api/admin/roles/:id/permissions`, `GET /api/admin/me`
+
+```sh
+pnpm supabase:migrations:apply:local
+pnpm supabase:seeders:apply:local
+```

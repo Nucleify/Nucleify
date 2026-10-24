@@ -47,8 +47,10 @@ const email = computed(() => auth.user.value?.email || 'Signed in')
 
 const nav = computed(() => {
   const base = `/${lang.value}`
-  // Collections appear as slices land (roles → users → settings → cms).
-  return [{ label: 'Dashboard', to: base }]
+  return [
+    { label: 'Dashboard', to: base },
+    { label: 'Roles', to: `${base}/roles` },
+  ]
 })
 
 const title = computed(() => {

@@ -2,10 +2,12 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
 import type { ApiContext, ApiHandlerResult, Json } from 'nuc_server'
 
+import { handleAdminApi } from '../../../nuc_admin/supabase/api/handle'
 import { handleColorsApi } from '../../../nuc_colors/supabase/api/handle'
 import { handleLanguagesApi } from '../../../nuc_languages/supabase/api/handle'
 
 export const supabaseApiGatewayHandlers = [
+  handleAdminApi,
   handleColorsApi,
   handleLanguagesApi,
 ] as const
