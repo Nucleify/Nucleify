@@ -6,7 +6,11 @@ import {
 } from 'nuc_api'
 import type { ApiContext, ApiHandlerResult } from 'nuc_server'
 
-import { requirePermission, resolveUserPermissions } from '../../utils/permissions'
+import {
+  clearUserPermissionsCache,
+  requirePermission,
+  resolveUserPermissions,
+} from '../../utils/permissions'
 
 export async function handleAdminMe(
   ctx: ApiContext,
@@ -170,6 +174,8 @@ export async function handleAdminRolePermissionsPut(
     .from('roles')
     .update({ updated_at: new Date().toISOString() })
     .eq('id', roleId)
+
+  clearUserPermissionsCache()
 
   return apiBody({
     data: {

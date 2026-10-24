@@ -6,6 +6,75 @@ export type PermissionCheckResult =
   | { ok: true; bootstrap: boolean; permissions: string[] }
   | { ok: false; status: number; error: string }
 
+type ResolvedPermissions = {
+  permissions: string[]
+  roles: string[]
+  bootstrap: boolean
+}
+
+const PERMISSIONS_TTL_MS = 60_000
+const BOOTSTRAP_TTL_MS = 60_000
+
+const permissionsCache = new Map<
+  string,
+  { expiresAt: number; value: ResolvedPermissions }
+>()
+let bootstrapEmptyCache: { expiresAt: number; empty: boolean } | null = null
+
+export function clearUserPermissionsCache(userId?: string): void {
+  if (userId) {
+    permissionsCache.delete(userId)
+    return
+  }
+  permissionsCache.clear()
+  bootstrapEmptyCache = null
+}
+
+function readPermissionsCache(userId: string): ResolvedPermissions | null {
+  const hit = permissionsCache.get(userId)
+  if (!hit) return null
+  if (hit.expiresAt <= Date.now()) {
+    permissionsCache.delete(userId)
+    return null
+  }
+  return hit.value
+}
+
+function writePermissionsCache(
+  userId: string,
+  value: ResolvedPermissions
+): void {
+  permissionsCache.set(userId, {
+    expiresAt: Date.now() + PERMISSIONS_TTL_MS,
+    value,
+  })
+}
+
+function nestedSlug(
+  nested: { slug?: string } | { slug?: string }[] | null | undefined
+): string | undefined {
+  if (Array.isArray(nested)) return nested[0]?.slug
+  return nested?.slug
+}
+
+async function isUserRolesTableEmpty(
+  supabase: SupabaseClient
+): Promise<boolean> {
+  if (bootstrapEmptyCache && bootstrapEmptyCache.expiresAt > Date.now()) {
+    return bootstrapEmptyCache.empty
+  }
+  const { count, error } = await supabase
+    .from('user_roles')
+    .select('user_id', { count: 'exact', head: true })
+  if (error) throw new Error(error.message)
+  const empty = (count ?? 0) === 0
+  bootstrapEmptyCache = {
+    expiresAt: Date.now() + BOOTSTRAP_TTL_MS,
+    empty,
+  }
+  return empty
+}
+
 /**
  * Resolve permission slugs for a user.
  * First-run bootstrap: when `user_roles` is empty, every authenticated user
@@ -14,26 +83,9 @@ export type PermissionCheckResult =
 export async function resolveUserPermissions(
   supabase: SupabaseClient,
   userId: string
-): Promise<{ permissions: string[]; roles: string[]; bootstrap: boolean }> {
-  const { count, error: countError } = await supabase
-    .from('user_roles')
-    .select('user_id', { count: 'exact', head: true })
-
-  if (countError) {
-    throw new Error(countError.message)
-  }
-
-  if ((count ?? 0) === 0) {
-    const { data: allPerms, error } = await supabase
-      .from('permissions')
-      .select('slug')
-    if (error) throw new Error(error.message)
-    return {
-      permissions: (allPerms ?? []).map((p) => String(p.slug)),
-      roles: [],
-      bootstrap: true,
-    }
-  }
+): Promise<ResolvedPermissions> {
+  const cached = readPermissionsCache(userId)
+  if (cached) return cached
 
   const { data: userRoles, error: urError } = await supabase
     .from('user_roles')
@@ -43,15 +95,38 @@ export async function resolveUserPermissions(
 
   const roleIds = (userRoles ?? []).map((row) => String(row.role_id))
   const roles = (userRoles ?? [])
-    .map((row) => {
-      const nested = row.roles as { slug?: string } | { slug?: string }[] | null
-      if (Array.isArray(nested)) return nested[0]?.slug
-      return nested?.slug
-    })
+    .map((row) =>
+      nestedSlug(row.roles as { slug?: string } | { slug?: string }[] | null)
+    )
     .filter((s): s is string => Boolean(s))
 
   if (roleIds.length === 0) {
-    return { permissions: [], roles: [], bootstrap: false }
+    if (await isUserRolesTableEmpty(supabase)) {
+      const { data: allPerms, error } = await supabase
+        .from('permissions')
+        .select('slug')
+      if (error) throw new Error(error.message)
+      const value: ResolvedPermissions = {
+        permissions: (allPerms ?? []).map((p) => String(p.slug)),
+        roles: [],
+        bootstrap: true,
+      }
+      writePermissionsCache(userId, value)
+      return value
+    }
+    const value: ResolvedPermissions = {
+      permissions: [],
+      roles: [],
+      bootstrap: false,
+    }
+    writePermissionsCache(userId, value)
+    return value
+  }
+
+  // Any assigned role means bootstrap is over.
+  bootstrapEmptyCache = {
+    expiresAt: Date.now() + BOOTSTRAP_TTL_MS,
+    empty: false,
   }
 
   const { data: rp, error: rpError } = await supabase
@@ -63,19 +138,22 @@ export async function resolveUserPermissions(
   const permissions = [
     ...new Set(
       (rp ?? [])
-        .map((row) => {
-          const nested = row.permissions as
-            | { slug?: string }
-            | { slug?: string }[]
-            | null
-          if (Array.isArray(nested)) return nested[0]?.slug
-          return nested?.slug
-        })
+        .map((row) =>
+          nestedSlug(
+            row.permissions as { slug?: string } | { slug?: string }[] | null
+          )
+        )
         .filter((s): s is string => Boolean(s))
     ),
   ]
 
-  return { permissions, roles, bootstrap: false }
+  const value: ResolvedPermissions = {
+    permissions,
+    roles,
+    bootstrap: false,
+  }
+  writePermissionsCache(userId, value)
+  return value
 }
 
 export async function requirePermission(

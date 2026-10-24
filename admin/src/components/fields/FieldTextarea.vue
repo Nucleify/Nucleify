@@ -5,7 +5,7 @@
       fluid
       :rows="rows"
       :placeholder="placeholder"
-      :value.prop="modelValue"
+      :value.prop="displayValue"
       @input="onInput"
     />
   </FieldShell>

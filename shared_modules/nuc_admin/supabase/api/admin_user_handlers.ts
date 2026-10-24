@@ -9,7 +9,10 @@ import {
 import type { ApiContext, ApiHandlerResult } from 'nuc_server'
 import { getQuery } from 'h3'
 
-import { requirePermission } from '../../utils/permissions'
+import {
+  clearUserPermissionsCache,
+  requirePermission,
+} from '../../utils/permissions'
 
 async function loadUserRoleSlugs(
   ctx: ApiContext,
@@ -239,6 +242,7 @@ export async function handleAdminUserPatch(
       const { error: insError } = await ctx.supabase.from('user_roles').insert(rows)
       if (insError) return fromSupabaseError(insError)
     }
+    clearUserPermissionsCache()
   }
 
   const rolesByUser = await loadUserRoleSlugs(ctx, [id])

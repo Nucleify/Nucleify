@@ -6,7 +6,11 @@ import { resolveThemeMode, setupNui } from 'portable/nui'
 export default defineNuxtPlugin({
   name: 'nucleify-ui',
   enforce: 'pre',
-  setup() {
-    setupNui({ palette: 'nuxt', mode: resolveThemeMode(), loadFonts: false })
+  async setup() {
+    await setupNui({
+      palette: 'nuxt',
+      mode: resolveThemeMode(),
+      loadFonts: false,
+    })
   },
 })

@@ -25,7 +25,7 @@
       <nui-button
         variant="filled"
         :label="uploading ? 'Uploading…' : 'Upload'"
-        :disabled="uploading || !pendingFile"
+        :disabled.prop="uploading || !pendingFile"
         @click="upload"
       />
     </div>

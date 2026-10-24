@@ -1,4 +1,5 @@
 export * from './gateway.server'
+export { resolveGatewayUserFromAccessToken } from './gateway_jwt'
 export * from './response'
 export * from './routes'
 export { ensureServerEnv, readServerEnv } from './server_env'

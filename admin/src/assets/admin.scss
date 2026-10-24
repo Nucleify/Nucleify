@@ -26,6 +26,8 @@
   --nui-primary-color: var(--admin-accent);
   --nui-primary-hover-color: var(--admin-accent-hover);
   --nui-on-primary: var(--admin-on-accent);
+  /* Filled primary uses white-text token, not --nui-on-primary. */
+  --nui-primary-white-text-color: var(--admin-on-accent);
 }
 
 .nuc-nuxt {
@@ -36,6 +38,7 @@
   --nui-primary-color: var(--admin-accent);
   --nui-primary-hover-color: var(--admin-accent-hover);
   --nui-on-primary: var(--admin-on-accent);
+  --nui-primary-white-text-color: var(--admin-on-accent);
 }
 
 *,
@@ -480,12 +483,36 @@ a {
   cursor: pointer;
 }
 
+/* Reserve CE host boxes before/while shadow sheets settle (avoids CLS). */
+nui-input-text,
+nui-textarea,
+nui-select {
+  display: block;
+  width: 100%;
+  min-height: 2.5625rem;
+  box-sizing: border-box;
+}
+
+nui-button {
+  box-sizing: border-box;
+  min-height: 2.25rem;
+}
+
+nui-button[fluid] {
+  display: block;
+  width: 100%;
+}
+
 .admin-login {
   min-height: 100vh;
   display: grid;
   place-items: center;
   padding: 1.5rem;
   background: var(--admin-bg);
+}
+
+.admin-login nui-button[fluid] {
+  width: 100%;
 }
 
 .admin-login__card {

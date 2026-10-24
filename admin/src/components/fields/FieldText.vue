@@ -6,8 +6,8 @@
       fluid
       :placeholder="placeholder"
       :autocomplete="autocomplete"
-      :value.prop="modelValue"
-      :disabled="disabled"
+      :value.prop="displayValue"
+      :disabled.prop="disabled"
       @input="onInput"
     />
   </FieldShell>

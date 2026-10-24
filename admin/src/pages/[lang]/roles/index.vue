@@ -45,7 +45,7 @@
               <nui-button
                 variant="filled"
                 label="Save"
-                :disabled="savingId === role.id"
+                :disabled.prop="savingId === role.id"
                 @click="save(role.id)"
               />
             </td>

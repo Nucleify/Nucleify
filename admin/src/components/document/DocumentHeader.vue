@@ -9,21 +9,21 @@
         type="button"
         variant="outlined"
         label="Preview"
-        :disabled="previewDisabled"
+        :disabled.prop="previewDisabled"
         @click="emit('preview')"
       />
       <nui-button
         type="button"
         variant="outlined"
         :label="draftLabel"
-        :disabled="draftDisabled"
+        :disabled.prop="draftDisabled"
         @click="emit('save-draft')"
       />
       <nui-button
         type="button"
         variant="filled"
         :label="publishLabel"
-        :disabled="publishDisabled"
+        :disabled.prop="publishDisabled"
         @click="emit('publish')"
       />
       <slot />

@@ -59,10 +59,11 @@ function applySetup(opts: SetupNuiOptions): void {
 /**
  * Apply shell class + nucleify-ui palette/mode.
  * Registers Lit elements on the client before applying theme.
+ * Resolves when every registered `nui-*` tag is defined.
  */
-export function setupNui(opts: SetupNuiOptions): void {
-  if (typeof document === 'undefined') return
-  void ensureNuiRegistered().then(() => applySetup(opts))
+export function setupNui(opts: SetupNuiOptions): Promise<void> {
+  if (typeof document === 'undefined') return Promise.resolve()
+  return ensureNuiRegistered().then(() => applySetup(opts))
 }
 
 export function resolveThemeMode(): ThemeMode {

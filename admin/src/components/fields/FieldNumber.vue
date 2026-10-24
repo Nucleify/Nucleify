@@ -4,7 +4,7 @@
       type="number"
       fluid
       :value.prop="String(modelValue ?? '')"
-      :disabled="disabled"
+      :disabled.prop="disabled"
       @input="onInput"
     />
   </FieldShell>

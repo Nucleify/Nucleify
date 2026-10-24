@@ -9,7 +9,18 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   srcDir: 'src',
   serverDir: 'src/server',
-  css: ['~/assets/admin.scss'],
+  // Bundle nui tokens with the render-blocking sheet (not only the client plugin chunk).
+  css: [
+    'nucleify-ui/styles/variables.css',
+    'nucleify-ui/styles/global.css',
+    resolve(root, 'portable/nui/tokens.css'),
+    '~/assets/admin.scss',
+  ],
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag: string) => tag.startsWith('nui-'),
+    },
+  },
   alias: {
     'portable/nui': resolve(root, 'portable/nui'),
     modules: resolve(root, 'shared_modules'),
@@ -29,6 +40,13 @@ export default defineNuxtConfig({
     },
   },
   vite: {
+    vue: {
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag: string) => tag.startsWith('nui-'),
+        },
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {

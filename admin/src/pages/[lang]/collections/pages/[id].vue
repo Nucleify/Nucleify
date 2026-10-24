@@ -15,7 +15,7 @@
         type="button"
         variant="outlined"
         label="Delete"
-        :disabled="saving"
+        :disabled.prop="saving"
         @click="onDelete"
       />
       <NuxtLink :to="`/${lang}/collections/pages`" class="admin-muted">

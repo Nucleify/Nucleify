@@ -1,6 +1,10 @@
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
-import { requirePermission, resolveUserPermissions } from '../utils/permissions'
+import {
+  clearUserPermissionsCache,
+  requirePermission,
+  resolveUserPermissions,
+} from '../utils/permissions'
 
 function mockSupabase(handlers: {
   userRolesCount?: number
@@ -55,9 +59,14 @@ function mockSupabase(handlers: {
 }
 
 describe('resolveUserPermissions', () => {
+  beforeEach(() => {
+    clearUserPermissionsCache()
+  })
+
   it('bootstraps when user_roles is empty', async () => {
     const supabase = mockSupabase({
       userRolesCount: 0,
+      userRoles: [],
       allPerms: [{ slug: 'roles.write' }, { slug: 'users.read' }],
     })
     const result = await resolveUserPermissions(supabase as never, 'u1')
@@ -74,12 +83,61 @@ describe('resolveUserPermissions', () => {
     expect(result.bootstrap).toBe(false)
     expect(result.permissions).toEqual([])
   })
+
+  it('caches permissions for the same user', async () => {
+    let userRolesCalls = 0
+    const supabase = {
+      from(table: string) {
+        if (table === 'user_roles') {
+          return {
+            select(_cols: string, opts?: { count?: string; head?: boolean }) {
+              if (opts?.head) {
+                return Promise.resolve({ count: 1, error: null })
+              }
+              userRolesCalls += 1
+              return {
+                eq: () =>
+                  Promise.resolve({
+                    data: [{ role_id: 'r1', roles: { slug: 'editor' } }],
+                    error: null,
+                  }),
+              }
+            },
+          }
+        }
+        if (table === 'role_permissions') {
+          return {
+            select: () => ({
+              in: () =>
+                Promise.resolve({
+                  data: [
+                    { permission_id: 'p1', permissions: { slug: 'cms.read' } },
+                  ],
+                  error: null,
+                }),
+            }),
+          }
+        }
+        throw new Error(`unexpected table ${table}`)
+      },
+    }
+    const a = await resolveUserPermissions(supabase as never, 'u1')
+    const b = await resolveUserPermissions(supabase as never, 'u1')
+    expect(a.permissions).toEqual(['cms.read'])
+    expect(b.permissions).toEqual(['cms.read'])
+    expect(userRolesCalls).toBe(1)
+  })
 })
 
 describe('requirePermission', () => {
+  beforeEach(() => {
+    clearUserPermissionsCache()
+  })
+
   it('allows bootstrap users any permission', async () => {
     const supabase = mockSupabase({
       userRolesCount: 0,
+      userRoles: [],
       allPerms: [{ slug: 'roles.write' }],
     })
     const result = await requirePermission(
