@@ -1,0 +1,56 @@
+# Token budget: bulky / generated / non-source. Keep .env and source readable.
+
+# Dependencies
+**/node_modules/
+
+# Package manager lockfiles (large, low signal for edits)
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+bun.lockb
+
+# Framework / bundler outputs & caches
+**/.nuxt/
+**/.output/
+**/.nitro/
+**/.data/
+**/.next/
+**/.astro/
+**/.svelte-kit/
+**/.turbo/
+**/.vercel/
+**/.wrangler/
+**/.cache/
+**/dist/
+**/build/
+**/out/
+**/coverage/
+**/*.tsbuildinfo
+**/.stylelintcache
+# Logs
+**/logs/
+**/*.log
+
+# Binary / media (indexed as noise; SVG stays available)
+**/*.png
+**/*.jpg
+**/*.jpeg
+**/*.webp
+**/*.gif
+**/*.ico
+**/*.mp4
+**/*.webm
+**/*.woff
+**/*.woff2
+**/*.ttf
+**/*.otf
+**/*.pdf
+**/*.zip
+**/*.tar
+**/*.gz
+
+# VCS / local tooling noise
+.git/
+.husky/_/
+supabase/.temp/
+
