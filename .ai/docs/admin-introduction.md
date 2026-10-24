@@ -31,9 +31,15 @@ Manual: sign in with a Supabase Auth user → dashboard; sign out → login; una
 |-------|--------|
 | A Auth shell | done |
 | B Roles | done (`nuc_admin` RBAC + `/roles`) |
-| C Users | pending |
+| C Users | done (profiles CRUD + role assign) |
 | D Settings | pending |
 | E CMS | pending |
+
+### Users (C)
+
+- SQL: `…/migrations/20261024000010_nuc_admin_user_profiles.sql`
+- API: `GET/POST /api/admin/users`, `GET/PATCH /api/admin/users/:id`
+- UI: `/[lang]/users`, `/[lang]/users/[id]`
 
 ### Roles (B)
 

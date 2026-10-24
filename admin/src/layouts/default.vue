@@ -49,6 +49,7 @@ const nav = computed(() => {
   const base = `/${lang.value}`
   return [
     { label: 'Dashboard', to: base },
+    { label: 'Users', to: `${base}/users` },
     { label: 'Roles', to: `${base}/roles` },
   ]
 })
