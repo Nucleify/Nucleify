@@ -20,7 +20,21 @@ export interface NucAdminRoleInterface {
 export interface NucAdminMeInterface {
   id: string
   email: string | null
+  display_name?: string
+  locale?: string
+  status?: string
   permissions: string[]
   roles: string[]
   bootstrap: boolean
+}
+
+export interface NucAdminCmsEntryInterface {
+  id: string
+  slug: string
+  locale: string
+  title: string
+  body: string
+  status: 'draft' | 'published' | string
+  created_at?: string
+  updated_at?: string
 }

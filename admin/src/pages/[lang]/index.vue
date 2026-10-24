@@ -12,8 +12,7 @@
         <strong>{{ auth.user.value?.email || '—' }}</strong>
       </p>
       <p class="admin-muted" style="margin: 0">
-        Use the left rail to open Users, Roles, CMS, or Settings once those
-        collections are available.
+        Use the left rail for Users, Roles, CMS, and Settings.
       </p>
     </div>
   </div>

@@ -33,7 +33,13 @@ Manual: sign in with a Supabase Auth user → dashboard; sign out → login; una
 | B Roles | done (`nuc_admin` RBAC + `/roles`) |
 | C Users | done (profiles CRUD + role assign) |
 | D Settings | done (`/settings` profile + password + theme) |
-| E CMS | pending |
+| E CMS | done (markdown entries CRUD) |
+
+### CMS (E)
+
+- SQL: `…/migrations/20261024000020_nuc_admin_cms.sql`
+- API: `GET/POST /api/admin/cms`, `GET/PATCH/DELETE /api/admin/cms/:slug?locale=`
+- UI: `/[lang]/cms`, `/[lang]/cms/[slug]`
 
 ### Settings (D)
 

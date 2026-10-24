@@ -13,6 +13,13 @@ import {
   handleAdminRolePermissionsPut,
   handleAdminRolesList,
 } from './admin_handlers'
+import {
+  handleAdminCmsCreate,
+  handleAdminCmsDelete,
+  handleAdminCmsGet,
+  handleAdminCmsList,
+  handleAdminCmsPatch,
+} from './admin_cms_handlers'
 import { handleAdminMePatch } from './admin_settings_handlers'
 import {
   handleAdminUserCreate,
@@ -31,6 +38,11 @@ const adminRoutes: ApiAuthRoute[] = [
   handleAdminUserGet,
   handleAdminUserPatch,
   handleAdminUsersList,
+  handleAdminCmsCreate,
+  handleAdminCmsDelete,
+  handleAdminCmsGet,
+  handleAdminCmsPatch,
+  handleAdminCmsList,
 ]
 
 export async function handleAdminApi(
