@@ -2,9 +2,9 @@
 
 ## What
 
-Nuxt `@nucleify/admin` backoffice foundation: Payload-like chrome, Supabase email/password auth, session middleware, and a gateway catch-all mirroring `web/`.
+Nuxt `@nucleify/admin` backoffice foundation: charcoal shell, Supabase email/password auth, session middleware, and a gateway catch-all mirroring `web/`.
 
-Domain logic lives in `shared_modules/nuc_admin` (roles, users, CMS) as later slices land.
+Domain logic lives in `shared_modules/nuc_admin` (roles, users, CMS). Schema-driven collections / JSON layout continue in later CMS v2 slices — see `admin-cms-v2-visual.md`.
 
 ## Why
 
@@ -12,7 +12,7 @@ Domain logic lives in `shared_modules/nuc_admin` (roles, users, CMS) as later sl
 
 ## Design
 
-Admin UI follows a **Payload CMS** layout: dark left rail, muted content plane, collection lists, blue accent. Controls use `nucleify-ui` via `portable/nui`.
+Dark left rail (Collections / Globals groups), muted content plane, **radius 0**, light primary actions. Controls use `nucleify-ui` via `portable/nui`.
 
 ## Verify
 
@@ -27,7 +27,7 @@ Admin `nuc_server` must re-export the same gateway helpers as `web` (including `
 
 Manual: sign in with a Supabase Auth user → dashboard; sign out → login; unauthenticated `/en` redirects to login.
 
-## Slices
+## Slices (foundation)
 
 | Slice | Status |
 |-------|--------|

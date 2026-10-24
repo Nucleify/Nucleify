@@ -10,7 +10,8 @@ Notes written by workflow skills after **DO** (what changed, why, how to verify)
 
 | Note | Topic |
 |------|--------|
-| `admin-introduction.md` | Admin backoffice foundation (Payload-like shell) |
+| `admin-introduction.md` | Admin backoffice foundation (auth, roles, users, CMS) |
+| `admin-cms-v2-visual.md` | Admin CMS v2 slice 1 — sharp shell, rail groups, document header |
 | `investor-page.md` | Investor pitch + Next convert parity |
 | `compiler-status.md` | Compiler emit/convert status / shell paths |
 | `docs-origin.md` | Public docs host `docs.nucleify.io` + app redirects |

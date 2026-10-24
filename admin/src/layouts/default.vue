@@ -1,36 +1,13 @@
 <template>
   <div class="admin-shell">
-    <aside class="admin-rail">
-      <div class="admin-rail__brand">
-        <span class="admin-rail__brand-name">Nucleify</span>
-        <span class="admin-rail__brand-meta">Admin</span>
-      </div>
-      <nav class="admin-rail__nav" aria-label="Admin">
-        <NuxtLink
-          v-for="item in nav"
-          :key="item.to"
-          :to="item.to"
-          class="admin-rail__link"
-          :class="{ 'is-active': isActive(item.to) }"
-        >
-          {{ item.label }}
-        </NuxtLink>
-      </nav>
-      <div class="admin-rail__footer">
-        <p class="admin-muted" style="margin: 0 0 0.75rem; font-size: 0.75rem">
-          {{ email }}
-        </p>
-        <nui-button
-          variant="outlined"
-          label="Sign out"
-          @click="onSignOut"
-        />
-      </div>
-    </aside>
+    <AdminRail
+      :lang="lang"
+      :email="email"
+      :groups="navGroups"
+      @sign-out="onSignOut"
+    />
     <div class="admin-main">
-      <header class="admin-topbar">
-        <h1 class="admin-topbar__title">{{ title }}</h1>
-      </header>
+      <AdminTopbar :title="title" />
       <main class="admin-content">
         <slot />
       </main>
@@ -39,37 +16,46 @@
 </template>
 
 <script setup lang="ts">
+import AdminRail from '../components/shell/AdminRail.vue'
+import AdminTopbar from '../components/shell/AdminTopbar.vue'
+import type { AdminRailGroup } from '../components/shell/AdminRail.vue'
+
 const route = useRoute()
 const auth = useAdminAuth()
 
 const lang = computed(() => auth.langFromPath(route.path))
 const email = computed(() => auth.user.value?.email || 'Signed in')
 
-const nav = computed(() => {
+const navGroups = computed((): AdminRailGroup[] => {
   const base = `/${lang.value}`
   return [
-    { label: 'Dashboard', to: base },
-    { label: 'Users', to: `${base}/users` },
-    { label: 'Roles', to: `${base}/roles` },
-    { label: 'CMS', to: `${base}/cms` },
-    { label: 'Settings', to: `${base}/settings` },
+    {
+      label: 'Collections',
+      items: [
+        { label: 'Users', to: `${base}/users` },
+        { label: 'Roles', to: `${base}/roles` },
+        { label: 'CMS', to: `${base}/cms` },
+      ],
+    },
+    {
+      label: 'Globals',
+      items: [{ label: 'Settings', to: `${base}/settings` }],
+    },
   ]
 })
 
 const title = computed(() => {
   const path = route.path.replace(/\/$/, '') || '/'
-  const item = nav.value.find((n) => n.to === path)
-  if (item) return item.label
+  const base = `/${lang.value}`
+  if (path === base) return 'Dashboard'
+  for (const group of navGroups.value) {
+    const item = group.items.find((n) => n.to === path)
+    if (item) return item.label
+  }
   if (path.includes('/users/')) return 'User'
   if (path.includes('/cms/')) return 'CMS entry'
   return 'Admin'
 })
-
-function isActive(to: string): boolean {
-  const path = route.path.replace(/\/$/, '') || '/'
-  if (to === `/${lang.value}`) return path === to
-  return path === to || path.startsWith(`${to}/`)
-}
 
 async function onSignOut() {
   await auth.signOut()

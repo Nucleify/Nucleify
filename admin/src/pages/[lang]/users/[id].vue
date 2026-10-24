@@ -148,14 +148,3 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
-.admin-status-select {
-  appearance: none;
-  padding: 0.55rem 0.75rem;
-  border-radius: 0.35rem;
-  border: 1px solid var(--admin-border);
-  background: var(--admin-surface-2);
-  color: var(--admin-text);
-  font: inherit;
-}
-</style>

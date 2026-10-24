@@ -1,22 +1,30 @@
 <template>
   <div>
-    <div class="admin-page-header">
-      <div>
-        <h1>{{ entry?.title || slug }}</h1>
-        <p class="admin-muted">
-          <span style="font-family: var(--admin-mono); font-size: 0.75rem">
-            {{ slug }} · {{ locale }}
-          </span>
-        </p>
-      </div>
+    <DocumentHeader
+      :title="entry?.title || slug"
+      :meta="`${slug} · ${locale}`"
+      :draft-disabled="saving || loading || !entry"
+      :publish-disabled="saving || loading || !entry"
+      :draft-label="saving && status === 'draft' ? 'Saving…' : 'Save draft'"
+      :publish-label="saving && status === 'published' ? 'Publishing…' : 'Publish'"
+      @save-draft="onSave('draft')"
+      @publish="onSave('published')"
+    >
+      <nui-button
+        type="button"
+        variant="outlined"
+        label="Delete"
+        :disabled="deleting || loading || !entry"
+        @click="onDelete"
+      />
       <NuxtLink :to="`/${lang}/cms`" class="admin-muted">← CMS</NuxtLink>
-    </div>
+    </DocumentHeader>
 
     <p v-if="error" class="admin-form__error">{{ error }}</p>
     <p v-if="ok" style="color: #86efac">{{ ok }}</p>
     <p v-if="loading" class="admin-muted">Loading…</p>
 
-    <form v-else-if="entry" class="admin-form" style="max-width: 48rem" @submit.prevent="onSave">
+    <form v-else-if="entry" class="admin-form" style="max-width: 48rem" @submit.prevent="onSave(status)">
       <div class="admin-form__field">
         <label class="admin-form__label">Title</label>
         <nui-input-text ref="titleInput" type="text" fluid />
@@ -32,21 +40,12 @@
         <label class="admin-form__label">Body (markdown)</label>
         <nui-textarea ref="bodyInput" fluid rows="16" />
       </div>
-      <div class="admin-actions">
-        <nui-button type="submit" variant="filled" :label="saving ? 'Saving…' : 'Save'" />
-        <nui-button
-          type="button"
-          variant="outlined"
-          label="Delete"
-          :disabled="deleting"
-          @click="onDelete"
-        />
-      </div>
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
+import DocumentHeader from '../../../components/document/DocumentHeader.vue'
 import { adminApiGet, adminApiSend } from '../../../composables/use_admin_api'
 import { nuiHostValue } from '../../../utils/nui_host'
 
@@ -101,10 +100,11 @@ async function load() {
   }
 }
 
-async function onSave() {
+async function onSave(nextStatus: string) {
   saving.value = true
   error.value = ''
   ok.value = ''
+  status.value = nextStatus
   try {
     entry.value = await adminApiSend<Entry>(
       `/api/admin/cms/${encodeURIComponent(slug.value)}?locale=${encodeURIComponent(locale.value)}`,
@@ -112,10 +112,10 @@ async function onSave() {
       {
         title: nuiHostValue(titleInput.value),
         body: nuiHostValue(bodyInput.value),
-        status: status.value,
+        status: nextStatus,
       }
     )
-    ok.value = 'Saved.'
+    ok.value = nextStatus === 'published' ? 'Published.' : 'Draft saved.'
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Save failed'
   } finally {
@@ -144,15 +144,3 @@ onMounted(() => {
   void load()
 })
 </script>
-
-<style scoped>
-.admin-status-select {
-  appearance: none;
-  padding: 0.55rem 0.75rem;
-  border-radius: 0.35rem;
-  border: 1px solid var(--admin-border);
-  background: var(--admin-surface-2);
-  color: var(--admin-text);
-  font: inherit;
-}
-</style>

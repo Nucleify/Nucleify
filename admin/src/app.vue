@@ -21,7 +21,7 @@ useHead({
   style: [
     {
       key: 'admin-critical-shell',
-      textContent: 'html,body{margin:0;background:#0b0b0f;color:#ececf1}',
+      textContent: 'html,body{margin:0;background:#0a0a0a;color:#f0f0f0}',
     },
   ],
 })

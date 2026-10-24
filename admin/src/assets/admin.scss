@@ -1,21 +1,38 @@
-/* Payload-like admin chrome: dark rail, muted plane, blue accent. */
+/* Nucleify admin: charcoal shell, hairline borders, radius 0. */
 
 :root {
-  --admin-bg: #0b0b0f;
-  --admin-rail: #111117;
-  --admin-rail-border: #1c1c24;
-  --admin-surface: #14141b;
-  --admin-surface-2: #1a1a22;
-  --admin-border: #2a2a35;
-  --admin-text: #ececf1;
-  --admin-muted: #9a9aab;
-  --admin-accent: #3b82f6;
-  --admin-accent-hover: #2563eb;
-  --admin-on-accent: #f8fafc;
+  --admin-bg: #0a0a0a;
+  --admin-rail: #0f0f0f;
+  --admin-rail-border: #2a2a2a;
+  --admin-surface: #141414;
+  --admin-surface-2: #1a1a1a;
+  --admin-border: #2a2a2a;
+  --admin-text: #f0f0f0;
+  --admin-muted: #8a8a8a;
+  --admin-accent: #f0f0f0;
+  --admin-accent-hover: #ffffff;
+  --admin-on-accent: #0a0a0a;
   --admin-danger: #ef4444;
   --admin-rail-width: 15.5rem;
   --admin-font: 'Instrument Sans', system-ui, sans-serif;
   --admin-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --admin-radius: 0;
+
+  /* Square nui controls inside admin */
+  --border-radius-sm: 0;
+  --border-radius-md: 0;
+  --border-radius-lg: 0;
+  --nui-card-border-radius: 0;
+  --nui-primary-color: var(--admin-accent);
+  --nui-primary-hover-color: var(--admin-accent-hover);
+  --nui-on-primary: var(--admin-on-accent);
+}
+
+.nuc-nuxt {
+  --border-radius-sm: 0;
+  --border-radius-md: 0;
+  --border-radius-lg: 0;
+  --nui-card-border-radius: 0;
   --nui-primary-color: var(--admin-accent);
   --nui-primary-hover-color: var(--admin-accent-hover);
   --nui-on-primary: var(--admin-on-accent);
@@ -48,6 +65,13 @@ a {
   display: flex;
   min-height: 100vh;
   background: var(--admin-bg);
+}
+
+.admin-shell,
+.admin-shell *,
+.admin-login,
+.admin-login * {
+  border-radius: var(--admin-radius) !important;
 }
 
 .admin-rail {
@@ -88,14 +112,32 @@ a {
 .admin-rail__nav {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 1rem;
   flex: 1;
+  overflow-y: auto;
+}
+
+.admin-rail__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.admin-rail__group-label {
+  margin: 0;
+  padding: 0.25rem 0.75rem 0.45rem;
+  font-family: var(--admin-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--admin-muted);
 }
 
 .admin-rail__link {
   display: block;
   padding: 0.55rem 0.75rem;
-  border-radius: 0.35rem;
+  border-radius: var(--admin-radius);
   color: var(--admin-muted);
   font-size: 0.875rem;
   transition:
@@ -110,7 +152,9 @@ a {
 
 .admin-rail__link.is-active {
   color: var(--admin-text);
-  background: color-mix(in srgb, var(--admin-accent) 18%, transparent);
+  background: var(--admin-surface-2);
+  border-left: 2px solid var(--admin-accent);
+  padding-left: calc(0.75rem - 2px);
 }
 
 .admin-rail__footer {
@@ -167,10 +211,41 @@ a {
   font-size: 0.875rem;
 }
 
+.admin-document-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-document-header__title {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.admin-document-header__meta {
+  margin: 0;
+  font-family: var(--admin-mono);
+  font-size: 0.75rem;
+  color: var(--admin-muted);
+}
+
+.admin-document-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .admin-panel {
   background: var(--admin-surface);
   border: 1px solid var(--admin-border);
-  border-radius: 0.35rem;
+  border-radius: var(--admin-radius);
 }
 
 .admin-table {
@@ -201,11 +276,13 @@ a {
 }
 
 .admin-table a {
-  color: var(--admin-accent);
+  color: var(--admin-text);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 
 .admin-table a:hover {
-  text-decoration: underline;
+  color: var(--admin-accent-hover);
 }
 
 .admin-form {
@@ -240,13 +317,7 @@ a {
   display: grid;
   place-items: center;
   padding: 1.5rem;
-  background:
-    radial-gradient(
-      ellipse 60% 40% at 50% 0%,
-      color-mix(in srgb, var(--admin-accent) 14%, transparent),
-      transparent
-    ),
-    var(--admin-bg);
+  background: var(--admin-bg);
 }
 
 .admin-login__card {
@@ -254,7 +325,7 @@ a {
   padding: 2rem 1.75rem;
   background: var(--admin-surface);
   border: 1px solid var(--admin-border);
-  border-radius: 0.4rem;
+  border-radius: var(--admin-radius);
 }
 
 .admin-login__brand {
@@ -289,7 +360,7 @@ a {
 .admin-badge {
   display: inline-block;
   padding: 0.15rem 0.45rem;
-  border-radius: 0.25rem;
+  border-radius: var(--admin-radius);
   font-family: var(--admin-mono);
   font-size: 0.65rem;
   letter-spacing: 0.04em;
@@ -309,6 +380,16 @@ a {
   border-color: color-mix(in srgb, #eab308 40%, var(--admin-border));
 }
 
+.admin-status-select {
+  appearance: none;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--admin-radius);
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface-2);
+  color: var(--admin-text);
+  font: inherit;
+}
+
 @media (max-width: 768px) {
   .admin-shell {
     flex-direction: column;
@@ -325,5 +406,10 @@ a {
   .admin-rail__nav {
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .admin-document-header {
+    flex-direction: column;
   }
 }

@@ -3,7 +3,7 @@ import { resolveThemeMode, setupNui } from 'portable/nui'
 
 /**
  * Admin shell - portable/nui tokens + Lit registration.
- * Visual chrome is Payload-like via admin.scss; nui controls share tokens.
+ * Visual chrome via admin.scss (charcoal, radius 0); nui controls share tokens.
  */
 export default defineNuxtPlugin({
   name: 'nucleify-ui',
