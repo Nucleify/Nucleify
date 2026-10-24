@@ -9,11 +9,16 @@
     "preview": "nuxt preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.105.1",
+    "lit": "^3.3.3",
+    "nucleify-ui": "^0.3.7",
     "nuxt": "4.4.8",
     "vue": "^3.5.39",
     "vue-router": "5.2.0"
   },
   "devDependencies": {
+    "dotenv": "^16.4.7",
+    "sass": "1.89.0",
     "wrangler": "4.80.0"
   }
 }

@@ -2,8 +2,8 @@ import { defineNuxtPlugin } from 'nuxt/app'
 import { resolveThemeMode, setupNui } from 'portable/nui'
 
 /**
- * Admin shell - same portable/nui tokens + Lit registration as web.
- * Palette stays Nuxt-green until an admin Next host exists.
+ * Admin shell - portable/nui tokens + Lit registration.
+ * Visual chrome is Payload-like via admin.scss; nui controls share tokens.
  */
 export default defineNuxtPlugin({
   name: 'nucleify-ui',

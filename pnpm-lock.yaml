@@ -68,6 +68,15 @@ importers:
 
   admin:
     dependencies:
+      '@supabase/supabase-js':
+        specifier: ^2.105.1
+        version: 2.105.1
+      lit:
+        specifier: ^3.3.3
+        version: 3.3.3
+      nucleify-ui:
+        specifier: ^0.3.7
+        version: 0.3.7(iconify-icon@3.0.0)(lit@3.3.3)(rollup@4.60.4)
       nuxt:
         specifier: 4.4.8
         version: 4.4.8(@babel/plugin-syntax-jsx@7.28.6(@babel/core@7.29.0))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.0))(@biomejs/biome@2.4.16)(@parcel/watcher@2.5.6)(@types/node@25.4.0)(@vue/compiler-sfc@3.5.41)(cac@6.7.14)(db0@0.3.4)(esbuild@0.28.1)(eslint@10.0.3(jiti@2.7.0))(ioredis@5.10.1)(magicast@0.5.4)(meow@13.2.0)(optionator@0.9.4)(pinia@3.0.4(typescript@5.8.3)(vue@3.5.40(typescript@5.8.3)))(rollup-plugin-visualizer@7.0.1(rollup@4.60.4))(rollup@4.60.4)(sass@1.89.0)(stylelint@16.26.1(typescript@5.8.3))(terser@5.46.0)(tsx@4.23.1)(typescript@5.8.3)(vite@7.3.6(@types/node@25.4.0)(jiti@2.7.0)(sass@1.89.0)(terser@5.46.0)(tsx@4.23.1)(yaml@2.9.0))(vue-tsc@2.2.12(typescript@5.8.3))(webpack@5.105.4(esbuild@0.28.1))(yaml@2.9.0)
@@ -78,6 +87,12 @@ importers:
         specifier: 5.2.0
         version: 5.2.0(@vue/compiler-sfc@3.5.41)(esbuild@0.28.1)(pinia@3.0.4(typescript@5.8.3)(vue@3.5.40(typescript@5.8.3)))(rollup@4.60.4)(vite@7.3.6(@types/node@25.4.0)(jiti@2.7.0)(sass@1.89.0)(terser@5.46.0)(tsx@4.23.1)(yaml@2.9.0))(vue@3.5.40(typescript@5.8.3))(webpack@5.105.4(esbuild@0.28.1))
     devDependencies:
+      dotenv:
+        specifier: ^16.4.7
+        version: 16.6.1
+      sass:
+        specifier: 1.89.0
+        version: 1.89.0
       wrangler:
         specifier: 4.80.0
         version: 4.80.0
@@ -4432,6 +4447,10 @@ packages:
   dot-prop@10.1.0:
     resolution: {integrity: sha512-MVUtAugQMOff5RnBy2d9N31iG0lNwg1qAoAOn7pOK5wf94WIaE3My2p3uwTQuvS2AcqchkcR3bHByjaM0mmi7Q==}
     engines: {node: '>=20'}
+
+  dotenv@16.6.1:
+    resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
 
   dotenv@17.3.1:
     resolution: {integrity: sha512-IO8C/dzEb6O3F9/twg6ZLXz164a2fhTnEWb95H23Dm4OuN+92NmEAlTrupP9VW6Jm3sO26tQlqyvyi4CsnY9GA==}
@@ -12067,6 +12086,8 @@ snapshots:
   dot-prop@10.1.0:
     dependencies:
       type-fest: 5.4.4
+
+  dotenv@16.6.1: {}
 
   dotenv@17.3.1: {}
 
