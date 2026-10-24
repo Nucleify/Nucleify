@@ -52,6 +52,15 @@
         @update:model-value="setField(field.name, $event)"
       />
 
+      <FieldArray
+        v-else-if="field.type === 'array' && 'name' in field"
+        :label="field.label || field.name"
+        :description="field.admin?.description"
+        :fields="field.fields"
+        :model-value="arrayValue(field.name)"
+        @update:model-value="setField(field.name, $event)"
+      />
+
       <FieldText
         v-else-if="(field.type === 'text' || field.type === 'email' || field.type === 'date') && 'name' in field"
         :label="field.label || field.name"
@@ -110,6 +119,7 @@
 import type { FieldConfig } from '../../../../shared_modules/nuc_admin/cms/fields/types'
 import { listWidgets } from '../../../../shared_modules/nuc_admin/cms/registry'
 
+import FieldArray from '../fields/FieldArray.vue'
 import FieldCheckbox from '../fields/FieldCheckbox.vue'
 import FieldGroup from '../fields/FieldGroup.vue'
 import FieldJson from '../fields/FieldJson.vue'
@@ -175,6 +185,16 @@ function groupValue(name: string): Record<string, unknown> {
 function blocksValue(name: string) {
   const v = props.modelValue[name]
   return Array.isArray(v) ? v : []
+}
+
+function arrayValue(name: string): Record<string, unknown>[] {
+  const v = props.modelValue[name]
+  if (!Array.isArray(v)) return []
+  return v.map((row) =>
+    row && typeof row === 'object' && !Array.isArray(row)
+      ? (row as Record<string, unknown>)
+      : {}
+  )
 }
 
 function setField(name: string, value: unknown) {

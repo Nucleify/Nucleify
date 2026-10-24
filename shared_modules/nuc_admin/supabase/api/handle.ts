@@ -30,6 +30,11 @@ import {
   handleAdminDocumentsCreate,
   handleAdminDocumentsList,
 } from './admin_documents_handlers'
+import {
+  handleAdminGlobalGet,
+  handleAdminGlobalPatch,
+  handleAdminGlobalsList,
+} from './admin_globals_handlers'
 import { handleAdminMePatch } from './admin_settings_handlers'
 import {
   handleAdminUserCreate,
@@ -49,6 +54,9 @@ const adminRoutes: ApiAuthRoute[] = [
   handleAdminUserPatch,
   handleAdminUsersList,
   handleAdminConfigGet,
+  handleAdminGlobalPatch,
+  handleAdminGlobalGet,
+  handleAdminGlobalsList,
   handleAdminDocumentPublish,
   handleAdminDocumentGet,
   handleAdminDocumentPatch,

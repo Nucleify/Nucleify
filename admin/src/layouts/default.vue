@@ -40,7 +40,12 @@ const navGroups = computed((): AdminRailGroup[] => {
     },
     {
       label: 'Globals',
-      items: [{ label: 'Settings', to: `${base}/settings` }],
+      items: [
+        { label: 'Site settings', to: `${base}/globals/settings` },
+        { label: 'Header', to: `${base}/globals/header` },
+        { label: 'Footer', to: `${base}/globals/footer` },
+        { label: 'Account', to: `${base}/settings` },
+      ],
     },
   ]
 })
@@ -54,6 +59,12 @@ const title = computed(() => {
     if (item) return item.label
   }
   if (path.includes('/collections/pages/')) return 'Page'
+  if (path.includes('/globals/')) {
+    const slug = path.split('/globals/')[1]?.split('/')[0]
+    if (slug === 'settings') return 'Site settings'
+    if (slug === 'header') return 'Header'
+    if (slug === 'footer') return 'Footer'
+  }
   if (path.includes('/users/')) return 'User'
   if (path.includes('/cms/')) return 'CMS entry'
   return 'Admin'

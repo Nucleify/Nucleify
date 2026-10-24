@@ -16,6 +16,7 @@ Notes written by workflow skills after **DO** (what changed, why, how to verify)
 | `admin-cms-v2-schema.md` | Admin CMS v2 slice 3 — JSON docs, FieldConfig, collections API |
 | `admin-cms-v2-pages-editor.md` | Admin CMS v2 slice 4 — SchemaFormRenderer + Pages document edit |
 | `admin-cms-v2-layout-editor.md` | Admin CMS v2 slice 5 — drag layout editor + widget picker |
+| `admin-cms-v2-globals.md` | Admin CMS v2 slice 6 — settings/header/footer globals |
 | `investor-page.md` | Investor pitch + Next convert parity |
 | `compiler-status.md` | Compiler emit/convert status / shell paths |
 | `docs-origin.md` | Public docs host `docs.nucleify.io` + app redirects |

@@ -365,6 +365,21 @@ a {
   border-color: var(--admin-text);
 }
 
+.admin-array {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.admin-array__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+}
+
 .admin-schema-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
