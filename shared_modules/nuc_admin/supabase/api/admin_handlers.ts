@@ -19,10 +19,18 @@ export async function handleAdminMe(
   try {
     const resolved = await resolveUserPermissions(ctx.supabase, userId)
     const { data: userData } = await ctx.supabase.auth.admin.getUserById(userId)
+    const { data: profile } = await ctx.supabase
+      .from('user_profiles')
+      .select('id, email, display_name, locale, status')
+      .eq('id', userId)
+      .maybeSingle()
     return apiBody({
       data: {
         id: userId,
-        email: userData.user?.email ?? null,
+        email: profile?.email ?? userData.user?.email ?? null,
+        display_name: profile?.display_name ?? '',
+        locale: profile?.locale ?? 'en',
+        status: profile?.status ?? 'active',
         permissions: resolved.permissions,
         roles: resolved.roles,
         bootstrap: resolved.bootstrap,

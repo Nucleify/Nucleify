@@ -13,6 +13,7 @@ import {
   handleAdminRolePermissionsPut,
   handleAdminRolesList,
 } from './admin_handlers'
+import { handleAdminMePatch } from './admin_settings_handlers'
 import {
   handleAdminUserCreate,
   handleAdminUserGet,
@@ -21,6 +22,7 @@ import {
 } from './admin_user_handlers'
 
 const adminRoutes: ApiAuthRoute[] = [
+  handleAdminMePatch,
   handleAdminMe,
   handleAdminRolePermissionsPut,
   handleAdminPermissionsList,

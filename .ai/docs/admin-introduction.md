@@ -32,8 +32,13 @@ Manual: sign in with a Supabase Auth user → dashboard; sign out → login; una
 | A Auth shell | done |
 | B Roles | done (`nuc_admin` RBAC + `/roles`) |
 | C Users | done (profiles CRUD + role assign) |
-| D Settings | pending |
+| D Settings | done (`/settings` profile + password + theme) |
 | E CMS | pending |
+
+### Settings (D)
+
+- API: `PATCH /api/admin/me` (display name, locale); password via Supabase Auth client
+- UI: `/[lang]/settings` — theme stored in `localStorage` (`admin-theme`)
 
 ### Users (C)
 
