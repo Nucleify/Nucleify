@@ -20,6 +20,16 @@ import {
   handleAdminCmsList,
   handleAdminCmsPatch,
 } from './admin_cms_handlers'
+import {
+  handleAdminCollectionsList,
+  handleAdminConfigGet,
+  handleAdminDocumentDelete,
+  handleAdminDocumentGet,
+  handleAdminDocumentPatch,
+  handleAdminDocumentPublish,
+  handleAdminDocumentsCreate,
+  handleAdminDocumentsList,
+} from './admin_documents_handlers'
 import { handleAdminMePatch } from './admin_settings_handlers'
 import {
   handleAdminUserCreate,
@@ -38,6 +48,14 @@ const adminRoutes: ApiAuthRoute[] = [
   handleAdminUserGet,
   handleAdminUserPatch,
   handleAdminUsersList,
+  handleAdminConfigGet,
+  handleAdminDocumentPublish,
+  handleAdminDocumentGet,
+  handleAdminDocumentPatch,
+  handleAdminDocumentDelete,
+  handleAdminDocumentsCreate,
+  handleAdminDocumentsList,
+  handleAdminCollectionsList,
   handleAdminCmsCreate,
   handleAdminCmsDelete,
   handleAdminCmsGet,

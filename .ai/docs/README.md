@@ -13,6 +13,7 @@ Notes written by workflow skills after **DO** (what changed, why, how to verify)
 | `admin-introduction.md` | Admin backoffice foundation (auth, roles, users, CMS) |
 | `admin-cms-v2-visual.md` | Admin CMS v2 slice 1 — sharp shell, rail groups, document header |
 | `admin-cms-v2-fields.md` | Admin CMS v2 slice 2 — FieldShell + nui-only form controls |
+| `admin-cms-v2-schema.md` | Admin CMS v2 slice 3 — JSON docs, FieldConfig, collections API |
 | `investor-page.md` | Investor pitch + Next convert parity |
 | `compiler-status.md` | Compiler emit/convert status / shell paths |
 | `docs-origin.md` | Public docs host `docs.nucleify.io` + app redirects |

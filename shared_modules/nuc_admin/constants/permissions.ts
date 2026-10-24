@@ -3,6 +3,9 @@ export const ADMIN_PERMISSIONS = [
   'users.write',
   'cms.read',
   'cms.write',
+  'cms.publish',
+  'media.read',
+  'media.write',
   'settings.write',
   'roles.write',
 ] as const
