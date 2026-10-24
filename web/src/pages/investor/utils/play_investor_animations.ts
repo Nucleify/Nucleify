@@ -26,14 +26,30 @@ function qa(root: HTMLElement, selector: string): HTMLElement[] {
 const WIPE_SHIFT = -28
 const WIPE_SKEW = -10
 
+/** Cards with border glow - CSS mask clips box-shadow and chops 1px borders. */
+function isChromeCard(item: HTMLElement): boolean {
+  const shadow = getComputedStyle(item).boxShadow
+  return Boolean(shadow && shadow !== 'none')
+}
+
 function prepareFadeWipe(item: HTMLElement): void {
-  item.classList.add('nuc-home-anim-mask')
-  item.style.setProperty('--home-wipe', '0')
-  // Opacity 0 with wipe - mask alone can still paint card borders (esp. Svelte host).
+  // Same wipe as home: translate + skew curve (mask skipped on chrome cards).
   item.style.opacity = '0'
   item.style.transform = `translate3d(${WIPE_SHIFT}px, 0, 0) skewX(${WIPE_SKEW}deg)`
   item.style.removeProperty('clip-path')
   item.style.removeProperty('filter')
+  item.style.removeProperty('box-shadow')
+
+  if (isChromeCard(item)) {
+    // Slide/skew only - keep border + glow painted for the whole enter.
+    item.classList.remove('nuc-home-anim-mask')
+    item.style.removeProperty('--home-wipe')
+    item.style.transition = 'none'
+    return
+  }
+
+  item.classList.add('nuc-home-anim-mask')
+  item.style.setProperty('--home-wipe', '0')
 }
 
 function fadeWipeAnimation(duration: number, delay: TweenParamValue) {
@@ -57,6 +73,8 @@ function clearFadeWipe(item: HTMLElement): void {
   item.style.filter = 'none'
   item.style.transform = 'none'
   item.style.opacity = '1'
+  item.style.removeProperty('box-shadow')
+  item.style.removeProperty('transition')
 }
 
 function track(
@@ -173,10 +191,8 @@ export async function playInvestorAnimations(
   const headline = q(root, '.nuc-home-hero-headline')
   const support = q(root, '.nuc-home-hero-support')
   const cta = q(root, '.nuc-home-hero-cta')
-  // Deal panel stays opacity 1 - iris clip alone covers → reveals the cube.
-  // Do not set inline opacity:0 on it (home CSS already fades other hero bits).
-  const panel = q(root, '.nuc-home-hero-panel.is-deal')
-  const board = q(root, '.nuc-inv-deal')
+  // Same target shape as home: the hero panel (cube + readout live inside).
+  const panel = q(root, '.nuc-home-hero-panel')
 
   for (const el of [
     rail,
@@ -186,38 +202,29 @@ export async function playInvestorAnimations(
     headline,
     support,
     panel,
-    board,
     cta,
     ...qa(root, '.nuc-home-anim-mask'),
   ]) {
     clearMotionStyles(el)
   }
 
-  for (const el of compact ? [] : [rail, eyebrow, mark, cta]) {
-    if (el) el.style.opacity = '0'
-  }
-  if (panel) panel.style.opacity = '1'
-  if (board) board.style.opacity = '1'
+  // Identical prep to home hero assemble (headline/support/CTA row = fade-wipe).
   if (!compact) {
-    if (headline) headline.style.clipPath = 'inset(0 100% 0 0)'
-    if (support) support.style.clipPath = 'inset(100% 0 0 0)'
+    for (const el of [rail, eyebrow, mark, panel]) {
+      if (el) el.style.opacity = '0'
+    }
+    if (headline) prepareFadeWipe(headline)
+    if (support) prepareFadeWipe(support)
+    if (cta) prepareFadeWipe(cta)
   }
 
-  const finalBrand =
-    brand?.getAttribute('aria-label')?.trim() ||
-    Array.from(
-      brand?.querySelectorAll<HTMLElement>(
-        '.nuc-home-hero-brand-ch, .nuc-home-hero-glyph'
-      ) ?? []
-    )
-      .map((el) => el.textContent ?? '')
-      .join('')
-      .trim() ||
-    brand?.textContent?.replace(/\s+/g, '')?.trim() ||
-    'Nucleify'
+  // Same cipher path as home: wipe Vue glyph spans and rebuild. Mutating
+  // `.nuc-home-hero-brand-ch` in place gets overwritten by Vue and looks static.
+  const finalBrand = brand?.textContent?.trim() || 'Nucleify'
   const glyphs = '01<>{}[]/\\|#$%#_entropynucleus'
   if (brand && !compact) {
     const startCipher = () => {
+      brand.textContent = ''
       brand.setAttribute('aria-label', finalBrand)
       brand.classList.add('is-decoding')
 
@@ -226,16 +233,6 @@ export async function playInvestorAnimations(
       const settleBrand = () => {
         if (settled) return
         settled = true
-        // Keep glyph spans - plain textContent would drop gradient clip.
-        const slots = brand.querySelectorAll<HTMLElement>(
-          '.nuc-home-hero-brand-ch, .nuc-home-hero-glyph'
-        )
-        finalBrand.split('').forEach((char, index) => {
-          const slot = slots[index]
-          if (!slot) return
-          slot.textContent = char === ' ' ? '\u00a0' : char
-          slot.classList.add('is-locked')
-        })
         brand.classList.remove('is-decoding')
       }
 
@@ -247,34 +244,12 @@ export async function playInvestorAnimations(
         if (lockedCount >= finalBrand.length) settleBrand()
       }
 
-      const existingSlots = Array.from(
-        brand.querySelectorAll<HTMLSpanElement>(
-          '.nuc-home-hero-brand-ch, .nuc-home-hero-glyph'
-        )
-      )
-
-      // Prefer React/Vue glyph spans so hydration owns the tree; only create if absent.
-      const slots =
-        existingSlots.length === finalBrand.length
-          ? existingSlots
-          : finalBrand.split('').map((char) => {
-              const slot = document.createElement('span')
-              slot.className = 'nuc-home-hero-glyph'
-              slot.textContent = char === ' ' ? '\u00a0' : char
-              return slot
-            })
-
-      if (existingSlots.length !== finalBrand.length) {
-        brand.textContent = ''
-        for (const slot of slots) brand.appendChild(slot)
-      }
-
       finalBrand.split('').forEach((char, index) => {
-        const slot = slots[index]
-        if (!slot) return
-        slot.classList.remove('is-locked')
+        const slot = document.createElement('span')
+        slot.className = 'nuc-home-hero-glyph'
         slot.textContent =
           glyphs[Math.floor(Math.random() * glyphs.length)] || '·'
+        brand.appendChild(slot)
 
         const state = { p: 0 }
         track(
@@ -306,7 +281,10 @@ export async function playInvestorAnimations(
     }
 
     const cipherRaf = requestAnimationFrame(() => {
-      requestAnimationFrame(startCipher)
+      requestAnimationFrame(() => {
+        const cipherDelay = window.setTimeout(startCipher, 100)
+        cleanups.push(() => window.clearTimeout(cipherDelay))
+      })
     })
     cleanups.push(() => cancelAnimationFrame(cipherRaf))
   }
@@ -327,7 +305,7 @@ export async function playInvestorAnimations(
   }
 
   const clearHeroFilters = () => {
-    for (const el of [eyebrow, mark, headline, support, cta]) {
+    for (const el of [eyebrow, mark, panel]) {
       el?.style.removeProperty('filter')
     }
   }
@@ -339,10 +317,11 @@ export async function playInvestorAnimations(
       heroBooted = true
       clearHeroFilters()
       settleHeroBits(
-        [eyebrow, mark, brand, headline, support, cta, panel, board].filter(
-          (el): el is HTMLElement => Boolean(el)
+        [eyebrow, mark, brand, panel].filter((el): el is HTMLElement =>
+          Boolean(el)
         )
       )
+      // Headline/support/CTA settle via their own wipe onComplete - do not clear mid-mask.
       armSectionObservers()
     },
   })
@@ -390,38 +369,50 @@ export async function playInvestorAnimations(
     }
   }
 
+  // Same path as section cards/copy: animate() + --home-wipe mask (not timeline fade).
   if (headline && !compact) {
-    timeline.add(
-      headline,
-      {
-        clipPath: ['inset(0 100% 0 0)', 'inset(0 0% 0 0)'],
-        duration: 1150,
-      },
-      380
+    track(
+      cleanups,
+      animate(headline, {
+        ...fadeWipeAnimation(1150, 240),
+        onComplete: () => clearFadeWipe(headline),
+      })
     )
   }
 
   if (support && !compact) {
-    timeline.add(
-      support,
-      {
-        clipPath: ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'],
-        duration: 1050,
-      },
-      520
+    track(
+      cleanups,
+      animate(support, {
+        ...fadeWipeAnimation(1150, 340),
+        onComplete: () => clearFadeWipe(support),
+      })
     )
   }
 
+  // Wipe whole CTA row - per-button mask sliced 1px borders into ghost lines.
   if (cta && !compact) {
+    track(
+      cleanups,
+      animate(cta, {
+        ...fadeWipeAnimation(1150, 440),
+        onComplete: () => clearFadeWipe(cta),
+      })
+    )
+  }
+
+  // Exact home hero-panel entrance (opacity + x + blur).
+  if (panel && !compact) {
     timeline.add(
-      cta,
+      panel,
       {
         opacity: [0, 1],
-        y: [48, 0],
-        rotateX: [62, 0],
-        duration: 950,
+        x: [48, 0],
+        filter: ['blur(14px)', 'blur(0px)'],
+        duration: 1100,
+        ease: 'outExpo',
       },
-      700
+      320
     )
   }
 
@@ -480,6 +471,111 @@ export async function playInvestorAnimations(
 
   const ioThresholds = Array.from({ length: 21 }, (_, i) => i / 20)
 
+  const isCompactViewport = () => compact
+
+  /** Same scroll reveal contract as home `bindSection` / `revealMask`. */
+  const bindSection = (
+    section: HTMLElement | null,
+    handlers: {
+      prepare: () => void
+      play: (local: Array<() => void>) => void
+      settle?: () => void
+    },
+    options?: {
+      prepareOnBind?: boolean
+      skipInitialSync?: boolean
+      replayOnCompact?: boolean
+    }
+  ) => {
+    if (!section) return
+
+    let visible = false
+    let revealed = false
+    let local: Array<() => void> = []
+
+    const clearLocal = () => {
+      for (const fn of local.reverse()) fn()
+      local = []
+    }
+
+    const enter = () => {
+      if (visible) return
+      visible = true
+      clearLocal()
+
+      if (options?.skipInitialSync && !revealed) {
+        revealed = true
+        return
+      }
+
+      if (
+        revealed &&
+        isCompactViewport() &&
+        options?.replayOnCompact !== true
+      ) {
+        handlers.settle?.()
+        return
+      }
+
+      handlers.prepare()
+      handlers.play(local)
+      revealed = true
+    }
+
+    const leave = () => {
+      if (!visible) return
+      visible = false
+      clearLocal()
+      if (isCompactViewport() && options?.replayOnCompact !== true) {
+        handlers.settle?.()
+        return
+      }
+      handlers.prepare()
+    }
+
+    const syncShare = (share: number, intersecting: boolean) => {
+      if (intersecting && share >= 0.22) enter()
+      else if (share <= 0.1) leave()
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          syncShare(viewportShare(entry), entry.isIntersecting)
+        }
+      },
+      { root: scroller, threshold: ioThresholds }
+    )
+
+    if (options?.prepareOnBind === true) {
+      handlers.prepare()
+    }
+
+    observer.observe(section)
+    cleanups.push(() => {
+      clearLocal()
+      visible = false
+      revealed = false
+      observer.disconnect()
+    })
+  }
+
+  const trackLocal = (
+    local: Array<() => void>,
+    item: Revertible | null | undefined
+  ) => {
+    if (!item) return
+    local.push(() => {
+      try {
+        item.pause?.()
+        item.cancel?.()
+        item.revert?.()
+      } catch {
+        /* noop */
+      }
+    })
+  }
+
   const settleMaskItems = (items: HTMLElement[]) => {
     for (const item of items) clearFadeWipe(item)
   }
@@ -487,62 +583,22 @@ export async function playInvestorAnimations(
   const revealMask = (section: HTMLElement | null, items: HTMLElement[]) => {
     if (!section || items.length === 0) return
 
-    let localBucket: Array<() => void> = []
-    let visible = false
-
     const prepare = () => {
       for (const item of items) prepareFadeWipe(item)
     }
 
-    const settle = () => settleMaskItems(items)
-
-    const clearLocal = () => {
-      for (const fn of localBucket.reverse()) fn()
-      localBucket = []
-    }
-
-    const enter = () => {
-      if (visible) return
-      visible = true
-      clearLocal()
-      prepare()
-      track(
-        localBucket,
-        animate(items, {
-          ...fadeWipeAnimation(1150, stagger(100)),
-          onComplete: settle,
-        })
-      )
-    }
-
-    const leave = () => {
-      if (!visible) return
-      visible = false
-      clearLocal()
-      if (compact) {
-        settle()
-        return
-      }
-      prepare()
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const share = viewportShare(entry)
-          if (entry.isIntersecting && share >= 0.22) enter()
-          else if (share <= 0.1) leave()
-        }
+    bindSection(section, {
+      prepare,
+      settle: () => settleMaskItems(items),
+      play: (local) => {
+        trackLocal(
+          local,
+          animate(items, {
+            ...fadeWipeAnimation(1150, stagger(100)),
+            onComplete: () => settleMaskItems(items),
+          })
+        )
       },
-      { root: scroller, threshold: ioThresholds }
-    )
-
-    prepare()
-    observer.observe(section)
-    cleanups.push(() => {
-      observer.disconnect()
-      clearLocal()
-      settle()
     })
   }
 
@@ -552,77 +608,64 @@ export async function playInvestorAnimations(
     if (sectionObserversArmed) return
     sectionObserversArmed = true
 
-    // Hero re-entry
     const hero = q(root, '.nuc-home-hero')
-    const heroBits = [eyebrow, mark, headline, support, cta].filter(
+    const heroBits = [eyebrow, mark, panel].filter((el): el is HTMLElement =>
+      Boolean(el)
+    )
+    const heroWipeBits = [headline, support, cta].filter(
       (el): el is HTMLElement => Boolean(el)
     )
 
-    {
-      let visible = false
-      let revealed = false
-      let local: Array<() => void> = []
-
-      const clearLocal = () => {
-        for (const fn of local.reverse()) fn()
-        local = []
-      }
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            const share = viewportShare(entry)
-            if (entry.isIntersecting && share >= 0.22) {
-              if (visible) continue
-              visible = true
-              clearLocal()
-              if (!revealed) {
-                revealed = true
-                continue
-              }
-              if (!heroBooted) continue
-              for (const item of heroBits) {
-                item.style.opacity = '0'
-                item.style.filter = 'blur(10px)'
-                item.style.removeProperty('translate')
-              }
-              track(
-                local,
-                animate(heroBits, {
-                  opacity: [0, 1],
-                  filter: ['blur(10px)', 'blur(0px)'],
-                  duration: 700,
-                  delay: stagger(60),
-                  ease: 'outExpo',
-                  onComplete: () => settleHeroBits(heroBits),
-                })
-              )
-            } else if (share <= 0.1 && visible) {
-              visible = false
-              clearLocal()
-              if (compact) {
-                settleHeroBits(heroBits)
-                continue
-              }
-              // Opacity/blur only - keep translate at 0 so rail jumps to intro
-              // do not flash content 24px low before the re-entry tween.
-              for (const item of heroBits) {
-                item.style.opacity = '0'
-                item.style.filter = 'blur(10px)'
-                item.style.removeProperty('translate')
-              }
-            }
+    bindSection(
+      hero,
+      {
+        prepare: () => {
+          if (!heroBooted) return
+          for (const item of heroBits) {
+            item.style.opacity = '0'
+            item.style.filter = 'blur(10px)'
+            item.style.removeProperty('translate')
+          }
+          for (const item of heroWipeBits) prepareFadeWipe(item)
+        },
+        settle: () => {
+          settleHeroBits(heroBits)
+          for (const item of heroWipeBits) clearFadeWipe(item)
+        },
+        play: (local) => {
+          if (!heroBooted) return
+          if (heroBits.length > 0) {
+            trackLocal(
+              local,
+              animate(heroBits, {
+                opacity: [0, 1],
+                filter: ['blur(10px)', 'blur(0px)'],
+                duration: 700,
+                delay: stagger(60),
+                ease: 'outExpo',
+                onComplete: () => settleHeroBits(heroBits),
+              })
+            )
+          }
+          if (heroWipeBits.length > 0) {
+            trackLocal(
+              local,
+              animate(heroWipeBits, {
+                ...fadeWipeAnimation(1150, stagger(100)),
+                onComplete: () => {
+                  for (const item of heroWipeBits) clearFadeWipe(item)
+                },
+              })
+            )
           }
         },
-        { root: scroller, threshold: ioThresholds }
-      )
-
-      if (hero) observer.observe(hero)
-      cleanups.push(() => {
-        observer.disconnect()
-        clearLocal()
-      })
-    }
+      },
+      {
+        prepareOnBind: false,
+        skipInitialSync: true,
+        replayOnCompact: false,
+      }
+    )
 
     revealMask(q(root, '.nuc-inv-why'), [
       ...qa(
@@ -647,19 +690,37 @@ export async function playInvestorAnimations(
       ...qa(root, '.nuc-inv-plan-card'),
     ])
 
+    // Spotlight + tabs separately (like card grids) - wiping the whole stage skewed the board.
     revealMask(q(root, '.nuc-inv-reach'), [
       ...qa(
         root,
-        '.nuc-inv-reach-head .nuc-home-eyebrow, .nuc-inv-reach-head .nuc-home-title, .nuc-inv-reach-head .nuc-home-support, .nuc-inv-reach-stage'
+        '.nuc-inv-reach-head .nuc-home-eyebrow, .nuc-inv-reach-head .nuc-home-title, .nuc-inv-reach-head .nuc-home-support'
       ),
+      ...qa(root, '.nuc-inv-reach-spotlight'),
+      ...qa(root, '.nuc-inv-reach-tab'),
     ])
 
-    revealMask(q(root, '#ask.nuc-home-close'), [
-      ...qa(
-        root,
-        '#ask .nuc-home-title, #ask .nuc-home-support, #ask .nuc-home-close-cta, #ask .nuc-home-close-footer'
-      ),
-    ])
+    // Match home close: animate copy/cta/footer containers (not title/support alone).
+    const bindAskReveal = () => {
+      const ask = q(root, '#ask.nuc-home-close')
+      if (!ask) return false
+      const items = qa(
+        ask,
+        '.nuc-home-close-copy, .nuc-home-close-cta, .nuc-home-close-footer'
+      )
+      if (items.length === 0) return false
+      revealMask(ask, items)
+      return true
+    }
+
+    if (!bindAskReveal()) {
+      const mo = new MutationObserver(() => {
+        if (!bindAskReveal()) return
+        mo.disconnect()
+      })
+      mo.observe(root, { childList: true, subtree: true })
+      cleanups.push(() => mo.disconnect())
+    }
   }
 
   if (compact) {
@@ -685,10 +746,13 @@ export async function playInvestorAnimations(
     heroBooted = true
     clearHeroFilters()
     settleHeroBits(
-      [eyebrow, mark, brand, headline, support, cta, panel, board].filter(
-        (el): el is HTMLElement => Boolean(el)
+      [eyebrow, mark, brand, panel].filter((el): el is HTMLElement =>
+        Boolean(el)
       )
     )
+    if (headline) clearFadeWipe(headline)
+    if (support) clearFadeWipe(support)
+    if (cta) clearFadeWipe(cta)
     armSectionObservers()
   }, 3000)
   cleanups.push(() => window.clearTimeout(safety))

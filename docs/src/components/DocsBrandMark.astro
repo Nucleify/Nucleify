@@ -21,7 +21,7 @@ const {
   idSuffix = 'brand',
 } = Astro.props
 
-const raw = readFileSync(join(process.cwd(), 'public/img/favicon.svg'), 'utf8')
+const raw = readFileSync(join(process.cwd(), 'public/img/logo.svg'), 'utf8')
 const svg = raw
   .replace(/<!--[\s\S]*?-->/g, '')
   .replace(/\bid="([^"]+)"/g, `id="$1-${idSuffix}"`)

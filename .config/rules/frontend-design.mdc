@@ -1,0 +1,15 @@
+---
+description: Landing/marketing UI composition — use for visual frontend design (not existing design-system edits)
+alwaysApply: false
+---
+
+# Frontend design
+
+For **new** landing/promotional UI (skip if matching an existing design system):
+
+- One first-viewport composition; brand as hero signal (brand test without nav).
+- Expressive fonts (not Inter/Roboto/Arial/system). Atmosphere bg (not flat).
+- Full-bleed hero; budget: brand + one headline + one line + CTAs + one dominant image. No overlays/chips/cards in hero.
+- One job per section. Real imagery > abstract gradients. Motion 2–3 purposeful.
+- Avoid AI-default looks: purple gradients, cream+serif+terracotta, broadsheet hairlines; also dark-mode/purple/glow/pill/emoji defaults unless the product already uses them.
+- Mobile + desktop. Prefer existing React patterns in-repo; no default `useMemo`/`useCallback` unless the codebase does.

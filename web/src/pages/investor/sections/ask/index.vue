@@ -33,13 +33,9 @@
       >
         <header class="nuc-home-close-commerce-head">
           <div>
-            <p class="nuc-home-close-eyebrow">{{ copy.askDeskEyebrow }}</p>
             <h3 class="nuc-home-close-commerce-title">
               {{ copy.askModalTitle }}
             </h3>
-            <p class="nuc-home-close-commerce-support">
-              {{ copy.askModalSupport }}
-            </p>
           </div>
           <button
             type="button"
@@ -51,33 +47,23 @@
             <span>{{ copy.askCancel }}</span>
           </button>
         </header>
+        <p class="nuc-home-close-commerce-support">
+          {{ copy.askModalSupport }}
+        </p>
 
         <form class="nuc-home-close-form" novalidate @submit.prevent="onSubmit">
           <div class="nuc-home-close-grid">
-            <label class="nuc-home-close-field">
-              <span class="nuc-home-close-label">{{ copy.askNameLabel }}</span>
-              <nui-input-text
-                :value="name"
-                type="text"
-                name="name"
-                fluid
-                autocomplete="organization"
-                :placeholder="copy.askNamePlaceholder"
-                @input="onNameInput"
-              />
-            </label>
-
-            <label class="nuc-home-close-field">
+            <div class="nuc-home-close-field">
               <span class="nuc-home-close-label">{{ copy.askEmailLabel }}</span>
               <nui-input-text
+                :key="`email-${formKey}`"
                 ref="emailInput"
-                :value="email"
                 type="email"
                 name="email"
                 fluid
                 autocomplete="email"
                 :placeholder="copy.askEmailPlaceholder"
-                :invalid="Boolean(errors.email)"
+                :invalid.prop="Boolean(errors.email)"
                 @input="onEmailInput"
               />
               <span
@@ -87,16 +73,22 @@
               >
                 {{ errors.email }}
               </span>
-            </label>
+            </div>
 
-            <label class="nuc-home-close-field nuc-home-close-field-wide">
+            <div
+              class="nuc-home-close-field"
+              :class="{ 'is-select-open': selectOpen }"
+            >
               <span class="nuc-home-close-label">{{ copy.askTypeLabel }}</span>
               <nui-select
-                :value="websiteType"
+                :key="`type-${formKey}`"
+                ref="typeSelect"
                 :options.prop="typeOptions"
+                :value.prop="websiteType"
                 fluid
                 :placeholder="copy.askTypePlaceholder"
-                :invalid="Boolean(errors.website_type)"
+                :invalid.prop="Boolean(errors.website_type)"
+                @nui-select-open="selectOpen = true"
                 @nui-change="onTypeChange"
               />
               <span
@@ -106,17 +98,18 @@
               >
                 {{ errors.website_type }}
               </span>
-            </label>
+            </div>
 
-            <label class="nuc-home-close-field nuc-home-close-field-wide">
+            <div class="nuc-home-close-field nuc-home-close-field-wide">
               <span class="nuc-home-close-label">{{ copy.askNoteLabel }}</span>
-              <textarea
-                :value="note"
-                class="nuc-home-close-textarea"
+              <nui-textarea
+                :key="`note-${formKey}`"
+                ref="noteInput"
                 name="message"
+                fluid
                 :rows="4"
                 :placeholder="copy.askNotePlaceholder"
-                :aria-invalid="Boolean(errors.message)"
+                :invalid.prop="Boolean(errors.message)"
                 @input="onNoteInput"
               />
               <span
@@ -126,32 +119,25 @@
               >
                 {{ errors.message }}
               </span>
-            </label>
+            </div>
           </div>
 
-          <div class="nuc-home-close-actions">
-            <nui-button
-              type="button"
-              variant="outlined"
-              :label="copy.askCancel"
-              :disabled="loading"
-              @click="closeForm"
-            />
-            <nui-button
-              type="button"
-              variant="primary"
-              :label="copy.askSubmit"
-              :loading="loading"
-              :disabled="loading"
-              icon="mdi:send-outline"
-              icon-pos="right"
-              @click="onSubmit"
-            />
+          <div class="nuc-home-close-foot">
+            <div class="nuc-home-close-actions">
+              <nui-button
+                type="button"
+                variant="primary"
+                :label="copy.askSubmit"
+                :loading="loading"
+                :disabled="loading"
+                fluid
+                width="100%"
+                icon="mdi:send-outline"
+                icon-pos="right"
+                @click="onSubmit"
+              />
+            </div>
           </div>
-
-          <ul class="nuc-home-close-trust" aria-label="What to expect">
-            <li v-for="item in copy.askTrust" :key="item">{{ item }}</li>
-          </ul>
         </form>
       </div>
     </div>
@@ -170,7 +156,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'nuxt/app'
+import { navigateTo, useRoute } from 'nuxt/app'
 import {
   computed,
   nextTick,
@@ -180,6 +166,7 @@ import {
   ref,
 } from 'vue'
 
+import { homeThankYouHref } from '../../../home/constants/content'
 import {
   investorDocsHref,
   investorHomeHref,
@@ -189,6 +176,7 @@ import {
 import {
   composeHomeContactMessage,
   type HomeContactWebsiteType,
+  nuiHostValue,
   nuiValueFromEvent,
   submitHomeContactForm,
   validateHomeContactForm,
@@ -196,19 +184,26 @@ import {
 
 const copy = NUC_INVESTOR_COPY
 const year = new Date().getFullYear()
-const typeOptions = [...NUC_INVESTOR_CONTACT_TYPES]
+const typeOptions = NUC_INVESTOR_CONTACT_TYPES.map((opt) => ({
+  label: opt.label,
+  value: opt.value,
+}))
+const defaultWebsiteType = NUC_INVESTOR_CONTACT_TYPES[0].value
 const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
 const docsHref = computed(() => investorDocsHref(lang.value))
 const homeHref = computed(() => investorHomeHref(lang.value))
 
 const formOpen = ref(false)
+const formKey = ref(0)
+const selectOpen = ref(false)
 const loading = ref(false)
-const name = ref('')
 const email = ref('')
-const websiteType = ref('')
+const websiteType = ref(defaultWebsiteType)
 const note = ref('')
 const emailInput = ref<HTMLElement | null>(null)
+const typeSelect = ref<HTMLElement | null>(null)
+const noteInput = ref<HTMLElement | null>(null)
 const errors = reactive<{
   email?: string
   website_type?: string
@@ -222,11 +217,12 @@ function clearErrors(): void {
 }
 
 function resetForm(): void {
-  name.value = ''
   email.value = ''
-  websiteType.value = ''
+  websiteType.value = defaultWebsiteType
   note.value = ''
+  selectOpen.value = false
   clearErrors()
+  formKey.value += 1
 }
 
 function focusEmail(): void {
@@ -238,19 +234,38 @@ function focusEmail(): void {
   if (input instanceof HTMLInputElement) input.focus()
 }
 
+function syncFromHosts(): void {
+  const liveEmail = nuiHostValue(emailInput.value as { value?: unknown } | null)
+  const liveType = nuiHostValue(typeSelect.value as { value?: unknown } | null)
+  const liveNote = nuiHostValue(noteInput.value as { value?: unknown } | null)
+  if (liveEmail) email.value = liveEmail
+  if (liveType) websiteType.value = liveType
+  if (liveNote) note.value = liveNote
+}
+
 function onKeydown(event: KeyboardEvent): void {
   if (event.key === 'Escape' && formOpen.value && !loading.value) {
     event.preventDefault()
     closeForm()
   }
+  if (event.key === 'Escape') selectOpen.value = false
+}
+
+function onDocClick(event: MouseEvent): void {
+  const host = typeSelect.value
+  if (!host || !selectOpen.value) return
+  if (event.composedPath().includes(host)) return
+  selectOpen.value = false
 }
 
 onMounted(() => {
   window.addEventListener('keydown', onKeydown)
+  document.addEventListener('click', onDocClick, true)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKeydown)
+  document.removeEventListener('click', onDocClick, true)
 })
 
 async function openForm(): Promise<void> {
@@ -264,12 +279,6 @@ function closeForm(): void {
   resetForm()
 }
 
-function onNameInput(event: Event): void {
-  const value = nuiValueFromEvent(event)
-  if (value === null) return
-  name.value = value
-}
-
 function onEmailInput(event: Event): void {
   const value = nuiValueFromEvent(event)
   if (value === null) return
@@ -281,24 +290,23 @@ function onTypeChange(event: Event): void {
   const value = nuiValueFromEvent(event)
   if (value === null) return
   websiteType.value = value
+  selectOpen.value = false
   delete errors.website_type
 }
 
-function onNoteInput(event: { target: EventTarget | null }): void {
-  const target = event.target
-  if (target instanceof HTMLTextAreaElement) {
-    note.value = target.value
-  }
+function onNoteInput(event: Event): void {
+  const value = nuiValueFromEvent(event)
+  if (value === null) return
+  note.value = value
   delete errors.message
 }
 
 async function onSubmit(): Promise<void> {
   if (loading.value) return
 
-  const message = composeHomeContactMessage({
-    name: name.value,
-    note: note.value,
-  })
+  syncFromHosts()
+
+  const message = composeHomeContactMessage({ note: note.value })
 
   clearErrors()
   const validation = validateHomeContactForm({
@@ -324,6 +332,7 @@ async function onSubmit(): Promise<void> {
   if (result.ok) {
     resetForm()
     formOpen.value = false
+    await navigateTo(homeThankYouHref(lang.value))
   }
 }
 </script>

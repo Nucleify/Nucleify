@@ -16,23 +16,16 @@
     background: none;
     box-shadow: none;
     overflow: visible;
+
+    @media (max-width: 959px) {
+      margin-top: 1.75rem;
+    }
   }
 
   .nuc-home-hero-headline {
-    max-width: 14ch;
+    max-width: none;
+    white-space: nowrap;
     font-size: clamp(1.55rem, 5.4vw, 2.2rem);
-  }
-}
-
-/*
- * Belt-and-suspenders: deal panel must stay painted under iris (home boot
- * already skips `:not(.is-deal)`; keep !important in case chunk order flips).
- */
-html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
-  @media (min-width: 960px) {
-    .nuc-home-hero-panel.is-deal {
-      opacity: 1 !important;
-    }
   }
 }
 
@@ -57,6 +50,10 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
 
   .nuc-home-holo-cube {
     width: min(100%, 14rem);
+
+    @media (max-width: 959px) {
+      display: none;
+    }
 
     @media (min-width: $md) {
       width: min(100%, 18rem);
@@ -287,24 +284,6 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
     @media (min-width: $md) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
-
-    @media (max-width: 767px) {
-      display: flex;
-      flex-flow: row nowrap;
-      gap: 0.75rem;
-      width: 100vw;
-      max-width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-right: calc(50% - 50vw);
-      padding-inline: var(--home-pad);
-      overflow: auto hidden;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
   }
 
   &-card {
@@ -321,13 +300,6 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
       border-color 0.25s ease,
       transform 0.25s ease,
       box-shadow 0.25s ease;
-
-    @media (max-width: 767px) {
-      flex: 0 0 calc(100vw - 2 * var(--home-pad) - 1.35rem);
-      width: calc(100vw - 2 * var(--home-pad) - 1.35rem);
-      max-width: none;
-      scroll-snap-align: start;
-    }
 
     @media (hover: hover) and (pointer: fine) {
       &:hover {
@@ -420,6 +392,11 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
 
   &-head {
     max-width: 36rem;
+
+    .nuc-home-title,
+    .nuc-home-support {
+      white-space: pre-line;
+    }
   }
 
   &-cta {
@@ -641,6 +618,11 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
 .nuc-inv-plan {
   &-head {
     max-width: 38rem;
+
+    .nuc-home-title,
+    .nuc-home-support {
+      white-space: pre-line;
+    }
   }
 
   &-grid {
@@ -653,24 +635,6 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
 
     @media (min-width: $md) {
       grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    @media (max-width: 767px) {
-      display: flex;
-      flex-flow: row nowrap;
-      gap: 0.75rem;
-      width: 100vw;
-      max-width: 100vw;
-      margin-left: calc(50% - 50vw);
-      margin-right: calc(50% - 50vw);
-      padding-inline: var(--home-pad);
-      overflow: auto hidden;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
     }
   }
 
@@ -689,11 +653,6 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
       ),
       var(--home-card-bg);
     box-shadow: var(--home-card-shadow);
-
-    @media (max-width: 767px) {
-      flex: 0 0 min(78vw, 18rem);
-      scroll-snap-align: start;
-    }
 
     h3 {
       margin: 0;
@@ -1012,9 +971,10 @@ html.nuc-iris-boot .nuc-home.nuc-investor:not(.nuc-home-ready) {
   .nuc-inv-reach-head .nuc-home-eyebrow,
   .nuc-inv-reach-head .nuc-home-title,
   .nuc-inv-reach-head .nuc-home-support,
-  .nuc-inv-reach-stage,
-  #ask .nuc-home-title,
-  #ask .nuc-home-support,
+  .nuc-inv-reach-spotlight,
+  .nuc-inv-reach-tab,
+  /* Same targets as home close reveal (copy unit, not title/support alone). */
+  #ask .nuc-home-close-copy,
   #ask .nuc-home-close-cta,
   #ask .nuc-home-close-footer {
     opacity: 0;

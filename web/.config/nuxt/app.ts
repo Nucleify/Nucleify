@@ -18,10 +18,8 @@ export const appConfig = {
 			},
 		],
 		link: [
-			// Brighter mark for tiny tab chrome - brand mark stays `/img/holo-cube.svg`.
-			{ rel: "icon", type: "image/svg+xml", href: "/img/favicon.svg" },
-			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-			{ rel: "apple-touch-icon", href: "/img/favicon.svg" },
+			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico", sizes: "any" },
+			{ rel: "apple-touch-icon", href: "/img/logo.svg" },
 		],
 		// Sync before first paint: lab stays iris-open (CWV); humans get 0→165 wipe.
 		script: [

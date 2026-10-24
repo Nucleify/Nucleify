@@ -27,13 +27,29 @@ function qa(root: HTMLElement, selector: string): HTMLElement[] {
 const WIPE_SHIFT = -28
 const WIPE_SKEW = -10
 
+/** Cards with border glow - CSS mask clips box-shadow and chops 1px borders. */
+function isChromeCard(item: HTMLElement): boolean {
+  const shadow = getComputedStyle(item).boxShadow
+  return Boolean(shadow && shadow !== 'none')
+}
+
 function prepareFadeWipe(item: HTMLElement): void {
-  item.classList.add('nuc-home-anim-mask')
-  item.style.setProperty('--home-wipe', '0')
   item.style.opacity = '0'
   item.style.transform = `translate3d(${WIPE_SHIFT}px, 0, 0) skewX(${WIPE_SKEW}deg)`
   item.style.removeProperty('clip-path')
   item.style.removeProperty('filter')
+  item.style.removeProperty('box-shadow')
+
+  if (isChromeCard(item)) {
+    // Slide/fade only - keep border + glow painted for the whole enter.
+    item.classList.remove('nuc-home-anim-mask')
+    item.style.removeProperty('--home-wipe')
+    item.style.transition = 'none'
+    return
+  }
+
+  item.classList.add('nuc-home-anim-mask')
+  item.style.setProperty('--home-wipe', '0')
 }
 
 function fadeWipeAnimation(duration: number, delay: TweenParamValue) {
@@ -59,6 +75,8 @@ function clearFadeWipe(item: HTMLElement): void {
   item.style.filter = 'none'
   item.style.transform = 'none'
   item.style.opacity = '1'
+  item.style.removeProperty('box-shadow')
+  item.style.removeProperty('transition')
 }
 
 function track(
@@ -207,7 +225,6 @@ async function runHomeMotionEngine(
   const headline = q(root, '.nuc-home-hero-headline')
   const support = q(root, '.nuc-home-hero-support')
   const cta = q(root, '.nuc-home-hero-cta')
-  const proof = q(root, '.nuc-home-hero-proof')
   const panel = q(root, '.nuc-home-hero-panel')
 
   // Strip leftover leave/prepare styles (blur/opacity) from a prior visit or replay.
@@ -220,7 +237,6 @@ async function runHomeMotionEngine(
     headline,
     support,
     cta,
-    proof,
     panel,
     ...qa(root, '.nuc-home-anim-mask, .nuc-home-anim-lattice'),
   ]) {
@@ -278,12 +294,14 @@ async function runHomeMotionEngine(
 
   // Hide assemble targets before the timeline so they don't flash while animejs starts.
   // Compact (mobile): keep hero painted - only iris wiped.
+  // Headline/support/CTA row: same fade-wipe as section reveals (CTA = wrapper).
   if (!compact) {
-    for (const el of [nav, rail, eyebrow, mark, cta, proof, panel]) {
+    for (const el of [nav, rail, eyebrow, mark, panel]) {
       if (el) el.style.opacity = '0'
     }
-    if (headline) headline.style.clipPath = 'inset(0 100% 0 0)'
-    if (support) support.style.clipPath = 'inset(100% 0 0 0)'
+    if (headline) prepareFadeWipe(headline)
+    if (support) prepareFadeWipe(support)
+    if (cta) prepareFadeWipe(cta)
   }
 
   // 1) Cipher decode - desktop only under iris; skip on mobile (Speed Index / LCP text).
@@ -349,14 +367,17 @@ async function runHomeMotionEngine(
     }
 
     const cipherRaf = requestAnimationFrame(() => {
-      requestAnimationFrame(startCipher)
+      requestAnimationFrame(() => {
+        const cipherDelay = window.setTimeout(startCipher, 100)
+        cleanups.push(() => window.clearTimeout(cipherDelay))
+      })
     })
     cleanups.push(() => cancelAnimationFrame(cipherRaf))
   }
 
   // 3) Hero assemble
   const clearHeroFilters = () => {
-    for (const el of [eyebrow, mark, headline, support, cta, proof, panel]) {
+    for (const el of [eyebrow, mark, panel]) {
       el?.style.removeProperty('filter')
     }
   }
@@ -383,10 +404,11 @@ async function runHomeMotionEngine(
       heroBooted = true
       clearHeroFilters()
       settleHeroBits(
-        [eyebrow, mark, brand, headline, support, cta, proof, panel].filter(
-          (el): el is HTMLElement => Boolean(el)
+        [eyebrow, mark, brand, panel].filter((el): el is HTMLElement =>
+          Boolean(el)
         )
       )
+      // Headline/support/CTA settle via their own wipe onComplete - do not clear mid-mask.
     },
   })
   track(cleanups, timeline)
@@ -447,52 +469,35 @@ async function runHomeMotionEngine(
     }
   }
 
+  // Same path as section cards/copy: animate() + --home-wipe mask (not timeline fade).
   if (headline && !compact) {
-    headline.style.clipPath = 'inset(0 100% 0 0)'
-    timeline.add(
-      headline,
-      {
-        clipPath: ['inset(0 100% 0 0)', 'inset(0 0% 0 0)'],
-        duration: 1150,
-      },
-      380
+    track(
+      cleanups,
+      animate(headline, {
+        ...fadeWipeAnimation(1150, 240),
+        onComplete: () => clearFadeWipe(headline),
+      })
     )
   }
 
   if (support && !compact) {
-    support.style.clipPath = 'inset(100% 0 0 0)'
-    timeline.add(
-      support,
-      {
-        clipPath: ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'],
-        duration: 1050,
-      },
-      520
+    track(
+      cleanups,
+      animate(support, {
+        ...fadeWipeAnimation(1150, 340),
+        onComplete: () => clearFadeWipe(support),
+      })
     )
   }
 
+  // Wipe whole CTA row - per-button mask sliced 1px borders into ghost lines.
   if (cta && !compact) {
-    timeline.add(
-      cta,
-      {
-        opacity: [0, 1],
-        y: [48, 0],
-        rotateX: [62, 0],
-        duration: 950,
-      },
-      680
-    )
-  }
-
-  if (proof && !compact) {
-    timeline.add(
-      proof,
-      {
-        opacity: [0, 1],
-        y: [16, 0],
-        duration: 800,
-      },
-      820
+    track(
+      cleanups,
+      animate(cta, {
+        ...fadeWipeAnimation(1150, 440),
+        onComplete: () => clearFadeWipe(cta),
+      })
     )
   }
 
@@ -715,15 +720,12 @@ async function runHomeMotionEngine(
   // Hero re-entry (boot already handled first paint; replay assemble after leave)
   const setupScrollSections = () => {
     const hero = q(root, '.nuc-home-hero')
-    const heroBits = [
-      eyebrow,
-      mark,
-      headline,
-      support,
-      cta,
-      proof,
-      panel,
-    ].filter((el): el is HTMLElement => Boolean(el))
+    const heroBits = [eyebrow, mark, panel].filter((el): el is HTMLElement =>
+      Boolean(el)
+    )
+    const heroWipeBits = [headline, support, cta].filter(
+      (el): el is HTMLElement => Boolean(el)
+    )
 
     bindSection(
       hero,
@@ -736,21 +738,38 @@ async function runHomeMotionEngine(
             // No translate on leave - avoids “too low then jump” when rail returns to intro.
             item.style.removeProperty('translate')
           }
+          for (const item of heroWipeBits) prepareFadeWipe(item)
         },
-        settle: () => settleHeroBits(heroBits),
+        settle: () => {
+          settleHeroBits(heroBits)
+          for (const item of heroWipeBits) clearFadeWipe(item)
+        },
         play: (local) => {
           if (!heroBooted) return
-          trackLocal(
-            local,
-            animate(heroBits, {
-              opacity: [0, 1],
-              filter: ['blur(10px)', 'blur(0px)'],
-              duration: 700,
-              delay: stagger(60),
-              ease: 'outExpo',
-              onComplete: () => settleHeroBits(heroBits),
-            })
-          )
+          if (heroBits.length > 0) {
+            trackLocal(
+              local,
+              animate(heroBits, {
+                opacity: [0, 1],
+                filter: ['blur(10px)', 'blur(0px)'],
+                duration: 700,
+                delay: stagger(60),
+                ease: 'outExpo',
+                onComplete: () => settleHeroBits(heroBits),
+              })
+            )
+          }
+          if (heroWipeBits.length > 0) {
+            trackLocal(
+              local,
+              animate(heroWipeBits, {
+                ...fadeWipeAnimation(1150, stagger(100)),
+                onComplete: () => {
+                  for (const item of heroWipeBits) clearFadeWipe(item)
+                },
+              })
+            )
+          }
         },
       },
       {
@@ -1073,10 +1092,13 @@ async function runHomeMotionEngine(
     heroBooted = true
     clearHeroFilters()
     settleHeroBits(
-      [eyebrow, mark, brand, headline, support, cta, proof, panel].filter(
-        (el): el is HTMLElement => Boolean(el)
+      [eyebrow, mark, brand, panel].filter((el): el is HTMLElement =>
+        Boolean(el)
       )
     )
+    if (headline) clearFadeWipe(headline)
+    if (support) clearFadeWipe(support)
+    if (cta) clearFadeWipe(cta)
   }, 3000)
   cleanups.push(() => window.clearTimeout(safety))
 }

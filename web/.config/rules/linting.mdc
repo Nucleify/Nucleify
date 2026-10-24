@@ -1,12 +1,12 @@
 ---
-description: Biome and Stylelint for the monorepo
-globs: biome.json,.stylelintrc.json,web/**/*.{ts,vue,scss},shared_modules/**/*.{ts,vue,scss}
+description: Biome and Stylelint for the monorepo — use when editing lint configs or fixing lint failures
+globs: biome.json,.stylelintrc.json
 alwaysApply: false
 ---
 
 # Linting
 
-Configs and tooling live at monorepo root. Run from there:
+From repo root:
 
 ```bash
 pnpm check / write   # biome.json
