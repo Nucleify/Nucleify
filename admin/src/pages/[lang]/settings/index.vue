@@ -15,18 +15,11 @@
       <section class="admin-panel" style="padding: 1.25rem">
         <h2 style="margin: 0 0 1rem; font-size: 1rem">Profile</h2>
         <form class="admin-form" @submit.prevent="onSaveProfile">
-          <div class="admin-form__field">
-            <label class="admin-form__label">Email</label>
+          <FieldShell label="Email">
             <p style="margin: 0">{{ me?.email || '—' }}</p>
-          </div>
-          <div class="admin-form__field">
-            <label class="admin-form__label">Display name</label>
-            <nui-input-text ref="nameInput" type="text" fluid />
-          </div>
-          <div class="admin-form__field">
-            <label class="admin-form__label">Locale</label>
-            <nui-input-text ref="localeInput" type="text" fluid placeholder="en" />
-          </div>
+          </FieldShell>
+          <FieldText ref="nameInput" label="Display name" />
+          <FieldText ref="localeInput" label="Locale" placeholder="en" />
           <nui-button type="submit" variant="filled" :label="saving ? 'Saving…' : 'Save profile'" />
         </form>
       </section>
@@ -34,15 +27,12 @@
       <section class="admin-panel" style="padding: 1.25rem">
         <h2 style="margin: 0 0 1rem; font-size: 1rem">Security</h2>
         <form class="admin-form" @submit.prevent="onChangePassword">
-          <div class="admin-form__field">
-            <label class="admin-form__label">New password</label>
-            <nui-input-text
-              ref="passwordInput"
-              type="password"
-              fluid
-              autocomplete="new-password"
-            />
-          </div>
+          <FieldText
+            ref="passwordInput"
+            label="New password"
+            type="password"
+            autocomplete="new-password"
+          />
           <nui-button
             type="submit"
             variant="outlined"
@@ -53,21 +43,12 @@
 
       <section class="admin-panel" style="padding: 1.25rem">
         <h2 style="margin: 0 0 1rem; font-size: 1rem">Preferences</h2>
-        <div class="admin-form__field">
-          <label class="admin-form__label">Theme</label>
-          <div class="admin-actions">
-            <nui-button
-              variant="outlined"
-              :label="theme === 'dark' ? 'Dark (active)' : 'Dark'"
-              @click="setTheme('dark')"
-            />
-            <nui-button
-              variant="outlined"
-              :label="theme === 'light' ? 'Light (active)' : 'Light'"
-              @click="setTheme('light')"
-            />
-          </div>
-        </div>
+        <FieldSelect
+          v-model="theme"
+          label="Theme"
+          :options="themeOptions"
+          @update:model-value="setTheme"
+        />
       </section>
     </div>
   </div>
@@ -77,8 +58,10 @@
 import { setupNui } from 'portable/nui'
 import { getSupabaseClient } from '../../../../../shared_modules/nuc_api/supabase/client'
 
+import FieldSelect from '../../../components/fields/FieldSelect.vue'
+import FieldShell from '../../../components/fields/FieldShell.vue'
+import FieldText from '../../../components/fields/FieldText.vue'
 import { adminApiGet, adminApiSend } from '../../../composables/use_admin_api'
-import { nuiHostValue } from '../../../utils/nui_host'
 
 useHead({ title: 'Settings' })
 
@@ -89,6 +72,8 @@ type Me = {
   locale: string
 }
 
+type FieldHost = { value: string }
+
 const me = ref<Me | null>(null)
 const loading = ref(true)
 const saving = ref(false)
@@ -97,15 +82,14 @@ const error = ref('')
 const ok = ref('')
 const theme = ref<'dark' | 'light'>('dark')
 
-const nameInput = ref<{ value?: unknown } | null>(null)
-const localeInput = ref<{ value?: unknown } | null>(null)
-const passwordInput = ref<{ value?: unknown } | null>(null)
+const nameInput = ref<FieldHost | null>(null)
+const localeInput = ref<FieldHost | null>(null)
+const passwordInput = ref<FieldHost | null>(null)
 
-function applyHostValue(host: { value?: unknown } | null | undefined, value: string) {
-  if (host && typeof host === 'object') {
-    ;(host as { value: string }).value = value
-  }
-}
+const themeOptions = [
+  { label: 'Dark', value: 'dark' },
+  { label: 'Light', value: 'light' },
+]
 
 async function load() {
   loading.value = true
@@ -113,8 +97,8 @@ async function load() {
   try {
     me.value = await adminApiGet<Me>('/api/admin/me')
     await nextTick()
-    applyHostValue(nameInput.value, me.value?.display_name || '')
-    applyHostValue(localeInput.value, me.value?.locale || 'en')
+    if (nameInput.value) nameInput.value.value = me.value?.display_name || ''
+    if (localeInput.value) localeInput.value.value = me.value?.locale || 'en'
     theme.value = document.documentElement.classList.contains('p-dark')
       ? 'dark'
       : 'light'
@@ -131,8 +115,8 @@ async function onSaveProfile() {
   ok.value = ''
   try {
     me.value = await adminApiSend<Me>('/api/admin/me', 'PATCH', {
-      display_name: nuiHostValue(nameInput.value),
-      locale: nuiHostValue(localeInput.value) || 'en',
+      display_name: nameInput.value?.value ?? '',
+      locale: localeInput.value?.value || 'en',
     })
     ok.value = 'Profile saved.'
   } catch (e) {
@@ -146,7 +130,7 @@ async function onChangePassword() {
   changingPw.value = true
   error.value = ''
   ok.value = ''
-  const password = nuiHostValue(passwordInput.value)
+  const password = passwordInput.value?.value ?? ''
   if (password.length < 8) {
     error.value = 'Password must be at least 8 characters'
     changingPw.value = false
@@ -158,7 +142,7 @@ async function onChangePassword() {
     })
     if (authError) throw authError
     ok.value = 'Password updated.'
-    applyHostValue(passwordInput.value, '')
+    if (passwordInput.value) passwordInput.value.value = ''
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Password update failed'
   } finally {
@@ -166,11 +150,12 @@ async function onChangePassword() {
   }
 }
 
-function setTheme(mode: 'dark' | 'light') {
-  theme.value = mode
-  setupNui({ palette: 'nuxt', mode })
+function setTheme(mode: string) {
+  const next = mode === 'light' ? 'light' : 'dark'
+  theme.value = next
+  setupNui({ palette: 'nuxt', mode: next })
   try {
-    localStorage.setItem('admin-theme', mode)
+    localStorage.setItem('admin-theme', next)
   } catch {
     /* ignore */
   }

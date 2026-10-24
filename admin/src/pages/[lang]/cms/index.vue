@@ -12,18 +12,9 @@
 
     <div v-if="showCreate" class="admin-panel" style="padding: 1.25rem; margin-bottom: 1rem">
       <form class="admin-form" @submit.prevent="onCreate">
-        <div class="admin-form__field">
-          <label class="admin-form__label">Slug</label>
-          <nui-input-text ref="slugInput" type="text" fluid placeholder="home-hero" />
-        </div>
-        <div class="admin-form__field">
-          <label class="admin-form__label">Locale</label>
-          <nui-input-text ref="localeInput" type="text" fluid placeholder="en" />
-        </div>
-        <div class="admin-form__field">
-          <label class="admin-form__label">Title</label>
-          <nui-input-text ref="titleInput" type="text" fluid placeholder="Title" />
-        </div>
+        <FieldText ref="slugInput" label="Slug" placeholder="home-hero" />
+        <FieldText ref="localeInput" label="Locale" placeholder="en" />
+        <FieldText ref="titleInput" label="Title" placeholder="Title" />
         <nui-button type="submit" variant="filled" :label="creating ? 'Creating…' : 'Create'" />
       </form>
     </div>
@@ -67,8 +58,8 @@
 </template>
 
 <script setup lang="ts">
+import FieldText from '../../../components/fields/FieldText.vue'
 import { adminApiGet, adminApiSend } from '../../../composables/use_admin_api'
-import { nuiHostValue } from '../../../utils/nui_host'
 
 useHead({ title: 'CMS' })
 
@@ -81,6 +72,8 @@ type EntryRow = {
   updated_at: string
 }
 
+type FieldHost = { value: string }
+
 const route = useRoute()
 const lang = computed(() => String(route.params.lang || 'en'))
 
@@ -90,9 +83,9 @@ const creating = ref(false)
 const showCreate = ref(false)
 const error = ref('')
 
-const slugInput = ref<{ value?: unknown } | null>(null)
-const localeInput = ref<{ value?: unknown } | null>(null)
-const titleInput = ref<{ value?: unknown } | null>(null)
+const slugInput = ref<FieldHost | null>(null)
+const localeInput = ref<FieldHost | null>(null)
+const titleInput = ref<FieldHost | null>(null)
 
 function formatDate(value: string): string {
   try {
@@ -118,12 +111,12 @@ async function onCreate() {
   creating.value = true
   error.value = ''
   try {
-    const slug = nuiHostValue(slugInput.value)
-    const locale = nuiHostValue(localeInput.value) || 'en'
+    const slug = slugInput.value?.value ?? ''
+    const locale = localeInput.value?.value || 'en'
     const created = await adminApiSend<EntryRow>('/api/admin/cms', 'POST', {
       slug,
       locale,
-      title: nuiHostValue(titleInput.value),
+      title: titleInput.value?.value ?? '',
       body: '',
       status: 'draft',
     })

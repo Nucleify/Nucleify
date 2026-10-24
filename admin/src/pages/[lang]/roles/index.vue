@@ -32,18 +32,13 @@
             </td>
             <td>
               <div class="admin-actions" style="flex-direction: column; align-items: flex-start">
-                <label
+                <FieldCheckbox
                   v-for="perm in permissions"
                   :key="perm.id"
-                  style="display: flex; gap: 0.4rem; align-items: center; font-size: 0.8125rem"
-                >
-                  <input
-                    type="checkbox"
-                    :checked="draft[role.id]?.includes(perm.slug)"
-                    @change="toggle(role.id, perm.slug, ($event.target as HTMLInputElement).checked)"
-                  />
-                  <span>{{ perm.slug }}</span>
-                </label>
+                  :label="perm.slug"
+                  :checked="draft[role.id]?.includes(perm.slug) ?? false"
+                  @update:checked="toggle(role.id, perm.slug, $event)"
+                />
               </div>
             </td>
             <td>
@@ -63,6 +58,7 @@
 </template>
 
 <script setup lang="ts">
+import FieldCheckbox from '../../../components/fields/FieldCheckbox.vue'
 import { adminApiGet, adminApiSend } from '../../../composables/use_admin_api'
 
 useHead({ title: 'Roles' })
@@ -81,8 +77,8 @@ const roles = ref<RoleRow[]>([])
 const permissions = ref<PermRow[]>([])
 const draft = ref<Record<string, string[]>>({})
 const loading = ref(true)
-const error = ref('')
 const savingId = ref<string | null>(null)
+const error = ref('')
 
 function toggle(roleId: string, slug: string, checked: boolean) {
   const current = new Set(draft.value[roleId] ?? [])

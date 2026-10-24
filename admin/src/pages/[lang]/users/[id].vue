@@ -14,63 +14,47 @@
     <p v-if="loading" class="admin-muted">Loading…</p>
 
     <form v-else-if="user" class="admin-form" style="max-width: 32rem" @submit.prevent="onSave">
-      <div class="admin-form__field">
-        <label class="admin-form__label">Display name</label>
-        <nui-input-text
-          ref="nameInput"
-          type="text"
-          fluid
-          :value.prop="user.display_name"
-        />
-      </div>
-      <div class="admin-form__field">
-        <label class="admin-form__label">Email (display)</label>
-        <nui-input-text
-          ref="emailInput"
-          type="email"
-          fluid
-          :value.prop="user.email || ''"
-        />
-      </div>
-      <div class="admin-form__field">
-        <label class="admin-form__label">Locale</label>
-        <nui-input-text
-          ref="localeInput"
-          type="text"
-          fluid
-          :value.prop="user.locale || 'en'"
-        />
-      </div>
-      <div class="admin-form__field">
-        <label class="admin-form__label">Status</label>
-        <select v-model="status" class="admin-status-select">
-          <option value="active">active</option>
-          <option value="disabled">disabled</option>
-        </select>
-      </div>
-      <div class="admin-form__field">
-        <label class="admin-form__label">Roles</label>
-        <label
+      <FieldText
+        ref="nameInput"
+        label="Display name"
+        :value="user.display_name"
+      />
+      <FieldText
+        ref="emailInput"
+        label="Email (display)"
+        type="email"
+        :value="user.email || ''"
+      />
+      <FieldText
+        ref="localeInput"
+        label="Locale"
+        :value="user.locale || 'en'"
+      />
+      <FieldSelect
+        v-model="status"
+        label="Status"
+        :options="statusOptions"
+      />
+      <FieldShell label="Roles">
+        <FieldCheckbox
           v-for="role in availableRoles"
           :key="role.id"
-          style="display: flex; gap: 0.4rem; align-items: center; font-size: 0.875rem"
-        >
-          <input
-            type="checkbox"
-            :checked="selectedRoles.includes(role.slug)"
-            @change="toggleRole(role.slug, ($event.target as HTMLInputElement).checked)"
-          />
-          <span>{{ role.name }} ({{ role.slug }})</span>
-        </label>
-      </div>
+          :label="`${role.name} (${role.slug})`"
+          :checked="selectedRoles.includes(role.slug)"
+          @update:checked="toggleRole(role.slug, $event)"
+        />
+      </FieldShell>
       <nui-button type="submit" variant="filled" :label="saving ? 'Saving…' : 'Save'" />
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
+import FieldCheckbox from '../../../components/fields/FieldCheckbox.vue'
+import FieldSelect from '../../../components/fields/FieldSelect.vue'
+import FieldShell from '../../../components/fields/FieldShell.vue'
+import FieldText from '../../../components/fields/FieldText.vue'
 import { adminApiGet, adminApiSend } from '../../../composables/use_admin_api'
-import { nuiHostValue } from '../../../utils/nui_host'
 
 useHead({ title: 'User' })
 
@@ -85,6 +69,8 @@ type UserDetail = {
   available_roles: RoleOpt[]
 }
 
+type FieldHost = { value: string }
+
 const route = useRoute()
 const lang = computed(() => String(route.params.lang || 'en'))
 const id = computed(() => String(route.params.id || ''))
@@ -97,9 +83,14 @@ const loading = ref(true)
 const saving = ref(false)
 const error = ref('')
 
-const nameInput = ref<{ value?: unknown } | null>(null)
-const emailInput = ref<{ value?: unknown } | null>(null)
-const localeInput = ref<{ value?: unknown } | null>(null)
+const nameInput = ref<FieldHost | null>(null)
+const emailInput = ref<FieldHost | null>(null)
+const localeInput = ref<FieldHost | null>(null)
+
+const statusOptions = [
+  { label: 'active', value: 'active' },
+  { label: 'disabled', value: 'disabled' },
+]
 
 function toggleRole(slug: string, checked: boolean) {
   const set = new Set(selectedRoles.value)
@@ -129,9 +120,9 @@ async function onSave() {
   error.value = ''
   try {
     await adminApiSend(`/api/admin/users/${id.value}`, 'PATCH', {
-      display_name: nuiHostValue(nameInput.value) || user.value?.display_name,
-      email: nuiHostValue(emailInput.value) || user.value?.email,
-      locale: nuiHostValue(localeInput.value) || user.value?.locale || 'en',
+      display_name: nameInput.value?.value || user.value?.display_name,
+      email: emailInput.value?.value || user.value?.email,
+      locale: localeInput.value?.value || user.value?.locale || 'en',
       status: status.value,
       role_slugs: selectedRoles.value,
     })
@@ -147,4 +138,3 @@ onMounted(() => {
   void load()
 })
 </script>
-

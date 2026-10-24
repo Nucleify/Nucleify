@@ -12,28 +12,28 @@
 
     <div v-if="showCreate" class="admin-panel" style="padding: 1.25rem; margin-bottom: 1rem">
       <form class="admin-form" @submit.prevent="onCreate">
-        <div class="admin-form__field">
-          <label class="admin-form__label">Email</label>
-          <nui-input-text ref="createEmail" type="email" fluid placeholder="user@example.com" />
-        </div>
-        <div class="admin-form__field">
-          <label class="admin-form__label">Password</label>
-          <nui-input-text ref="createPassword" type="password" fluid placeholder="min 8 chars" />
-        </div>
-        <div class="admin-form__field">
-          <label class="admin-form__label">Display name</label>
-          <nui-input-text ref="createName" type="text" fluid placeholder="Name" />
-        </div>
+        <FieldText
+          ref="createEmail"
+          label="Email"
+          type="email"
+          placeholder="user@example.com"
+        />
+        <FieldText
+          ref="createPassword"
+          label="Password"
+          type="password"
+          placeholder="min 8 chars"
+        />
+        <FieldText ref="createName" label="Display name" placeholder="Name" />
         <nui-button type="submit" variant="filled" :label="creating ? 'Creating…' : 'Create'" />
       </form>
     </div>
 
     <div class="admin-panel" style="padding: 0.75rem 1rem; margin-bottom: 1rem">
       <form class="admin-actions" @submit.prevent="load">
-        <nui-input-text
+        <FieldText
           ref="searchInput"
           type="search"
-          fluid
           placeholder="Search email or name"
           style="flex: 1; min-width: 12rem"
         />
@@ -76,8 +76,8 @@
 </template>
 
 <script setup lang="ts">
+import FieldText from '../../../components/fields/FieldText.vue'
 import { adminApiGet, adminApiSend } from '../../../composables/use_admin_api'
-import { nuiHostValue } from '../../../utils/nui_host'
 
 useHead({ title: 'Users' })
 
@@ -89,6 +89,8 @@ type UserRow = {
   role_slugs: string[]
 }
 
+type FieldHost = { value: string }
+
 const route = useRoute()
 const lang = computed(() => String(route.params.lang || 'en'))
 
@@ -98,16 +100,16 @@ const creating = ref(false)
 const showCreate = ref(false)
 const error = ref('')
 
-const searchInput = ref<{ value?: unknown } | null>(null)
-const createEmail = ref<{ value?: unknown } | null>(null)
-const createPassword = ref<{ value?: unknown } | null>(null)
-const createName = ref<{ value?: unknown } | null>(null)
+const searchInput = ref<FieldHost | null>(null)
+const createEmail = ref<FieldHost | null>(null)
+const createPassword = ref<FieldHost | null>(null)
+const createName = ref<FieldHost | null>(null)
 
 async function load() {
   loading.value = true
   error.value = ''
   try {
-    const search = nuiHostValue(searchInput.value)
+    const search = searchInput.value?.value ?? ''
     const path = search
       ? `/api/admin/users?search=${encodeURIComponent(search)}`
       : '/api/admin/users'
@@ -124,9 +126,9 @@ async function onCreate() {
   error.value = ''
   try {
     await adminApiSend('/api/admin/users', 'POST', {
-      email: nuiHostValue(createEmail.value),
-      password: nuiHostValue(createPassword.value),
-      display_name: nuiHostValue(createName.value),
+      email: createEmail.value?.value ?? '',
+      password: createPassword.value?.value ?? '',
+      display_name: createName.value?.value ?? '',
     })
     showCreate.value = false
     await load()

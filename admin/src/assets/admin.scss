@@ -306,10 +306,24 @@ a {
   color: var(--admin-muted);
 }
 
+.admin-form__hint {
+  margin: 0;
+  color: var(--admin-muted);
+  font-size: 0.75rem;
+}
+
 .admin-form__error {
   margin: 0;
   color: var(--admin-danger);
   font-size: 0.8125rem;
+}
+
+.admin-field-checkbox {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  font-size: 0.875rem;
+  cursor: pointer;
 }
 
 .admin-login {
@@ -378,16 +392,6 @@ a {
 .admin-badge--warn {
   color: #fde68a;
   border-color: color-mix(in srgb, #eab308 40%, var(--admin-border));
-}
-
-.admin-status-select {
-  appearance: none;
-  padding: 0.55rem 0.75rem;
-  border-radius: var(--admin-radius);
-  border: 1px solid var(--admin-border);
-  background: var(--admin-surface-2);
-  color: var(--admin-text);
-  font: inherit;
 }
 
 @media (max-width: 768px) {

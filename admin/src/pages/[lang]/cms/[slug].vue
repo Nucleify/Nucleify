@@ -25,29 +25,23 @@
     <p v-if="loading" class="admin-muted">Loading…</p>
 
     <form v-else-if="entry" class="admin-form" style="max-width: 48rem" @submit.prevent="onSave(status)">
-      <div class="admin-form__field">
-        <label class="admin-form__label">Title</label>
-        <nui-input-text ref="titleInput" type="text" fluid />
-      </div>
-      <div class="admin-form__field">
-        <label class="admin-form__label">Status</label>
-        <select v-model="status" class="admin-status-select">
-          <option value="draft">draft</option>
-          <option value="published">published</option>
-        </select>
-      </div>
-      <div class="admin-form__field">
-        <label class="admin-form__label">Body (markdown)</label>
-        <nui-textarea ref="bodyInput" fluid rows="16" />
-      </div>
+      <FieldText ref="titleInput" label="Title" />
+      <FieldSelect
+        v-model="status"
+        label="Status"
+        :options="statusOptions"
+      />
+      <FieldTextarea ref="bodyInput" label="Body (markdown)" :rows="16" />
     </form>
   </div>
 </template>
 
 <script setup lang="ts">
 import DocumentHeader from '../../../components/document/DocumentHeader.vue'
+import FieldSelect from '../../../components/fields/FieldSelect.vue'
+import FieldText from '../../../components/fields/FieldText.vue'
+import FieldTextarea from '../../../components/fields/FieldTextarea.vue'
 import { adminApiGet, adminApiSend } from '../../../composables/use_admin_api'
-import { nuiHostValue } from '../../../utils/nui_host'
 
 useHead({ title: 'CMS entry' })
 
@@ -59,6 +53,8 @@ type Entry = {
   body: string
   status: string
 }
+
+type FieldHost = { value: string }
 
 const route = useRoute()
 const lang = computed(() => String(route.params.lang || 'en'))
@@ -73,14 +69,13 @@ const deleting = ref(false)
 const error = ref('')
 const ok = ref('')
 
-const titleInput = ref<{ value?: unknown } | null>(null)
-const bodyInput = ref<{ value?: unknown } | null>(null)
+const titleInput = ref<FieldHost | null>(null)
+const bodyInput = ref<FieldHost | null>(null)
 
-function applyHostValue(host: { value?: unknown } | null | undefined, value: string) {
-  if (host && typeof host === 'object') {
-    ;(host as { value: string }).value = value
-  }
-}
+const statusOptions = [
+  { label: 'draft', value: 'draft' },
+  { label: 'published', value: 'published' },
+]
 
 async function load() {
   loading.value = true
@@ -91,8 +86,8 @@ async function load() {
     )
     status.value = entry.value.status || 'draft'
     await nextTick()
-    applyHostValue(titleInput.value, entry.value.title || '')
-    applyHostValue(bodyInput.value, entry.value.body || '')
+    if (titleInput.value) titleInput.value.value = entry.value.title || ''
+    if (bodyInput.value) bodyInput.value.value = entry.value.body || ''
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Failed to load entry'
   } finally {
@@ -110,8 +105,8 @@ async function onSave(nextStatus: string) {
       `/api/admin/cms/${encodeURIComponent(slug.value)}?locale=${encodeURIComponent(locale.value)}`,
       'PATCH',
       {
-        title: nuiHostValue(titleInput.value),
-        body: nuiHostValue(bodyInput.value),
+        title: titleInput.value?.value ?? '',
+        body: bodyInput.value?.value ?? '',
         status: nextStatus,
       }
     )

@@ -17,6 +17,7 @@ export function ensureNuiRegistered(): Promise<void> {
       .then(() => {
         registered = true
         void Promise.all([
+          import('nucleify-ui/components/nui-checkbox'),
           import('nucleify-ui/components/nui-dialog'),
           import('nucleify-ui/components/nui-input-text'),
           import('nucleify-ui/components/nui-select'),
