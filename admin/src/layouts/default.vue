@@ -33,6 +33,8 @@ const navGroups = computed((): AdminRailGroup[] => {
       label: 'Collections',
       items: [
         { label: 'Pages', to: `${base}/collections/pages` },
+        { label: 'Media', to: `${base}/collections/media` },
+        { label: 'Redirects', to: `${base}/collections/redirects` },
         { label: 'Users', to: `${base}/users` },
         { label: 'Roles', to: `${base}/roles` },
         { label: 'CMS', to: `${base}/cms` },

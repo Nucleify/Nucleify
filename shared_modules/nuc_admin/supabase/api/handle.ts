@@ -35,6 +35,18 @@ import {
   handleAdminGlobalPatch,
   handleAdminGlobalsList,
 } from './admin_globals_handlers'
+import {
+  handleAdminMediaCreate,
+  handleAdminMediaDelete,
+  handleAdminMediaList,
+  handleAdminMediaPatch,
+} from './admin_media_handlers'
+import {
+  handleAdminRedirectCreate,
+  handleAdminRedirectDelete,
+  handleAdminRedirectPatch,
+  handleAdminRedirectsList,
+} from './admin_redirects_handlers'
 import { handleAdminMePatch } from './admin_settings_handlers'
 import {
   handleAdminUserCreate,
@@ -57,6 +69,14 @@ const adminRoutes: ApiAuthRoute[] = [
   handleAdminGlobalPatch,
   handleAdminGlobalGet,
   handleAdminGlobalsList,
+  handleAdminMediaCreate,
+  handleAdminMediaPatch,
+  handleAdminMediaDelete,
+  handleAdminMediaList,
+  handleAdminRedirectCreate,
+  handleAdminRedirectPatch,
+  handleAdminRedirectDelete,
+  handleAdminRedirectsList,
   handleAdminDocumentPublish,
   handleAdminDocumentGet,
   handleAdminDocumentPatch,

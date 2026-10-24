@@ -111,6 +111,18 @@
         :model-value="modelValue[field.name]"
         @update:model-value="setField(field.name, $event)"
       />
+
+      <FieldMediaRef
+        v-else-if="
+          (field.type === 'upload' ||
+            (field.type === 'relationship' && field.relationTo === 'media')) &&
+          'name' in field
+        "
+        :label="field.label || field.name"
+        :description="field.admin?.description"
+        :model-value="stringValue(field.name)"
+        @update:model-value="setField(field.name, $event)"
+      />
     </template>
   </div>
 </template>
@@ -123,6 +135,7 @@ import FieldArray from '../fields/FieldArray.vue'
 import FieldCheckbox from '../fields/FieldCheckbox.vue'
 import FieldGroup from '../fields/FieldGroup.vue'
 import FieldJson from '../fields/FieldJson.vue'
+import FieldMediaRef from '../fields/FieldMediaRef.vue'
 import FieldNumber from '../fields/FieldNumber.vue'
 import FieldSelect from '../fields/FieldSelect.vue'
 import FieldText from '../fields/FieldText.vue'

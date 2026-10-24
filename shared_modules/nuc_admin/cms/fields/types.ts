@@ -30,7 +30,11 @@ export type TextFieldConfig = FieldBase & {
     | 'select'
     | 'date'
     | 'json'
+    | 'upload'
+    | 'relationship'
   options?: { label: string; value: string }[]
+  /** For relationship/upload — target collection slug (e.g. media). */
+  relationTo?: string
 }
 
 export type GroupFieldConfig = FieldBase & {
