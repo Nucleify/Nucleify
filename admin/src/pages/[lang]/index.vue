@@ -12,7 +12,8 @@
         <strong>{{ auth.user.value?.email || '—' }}</strong>
       </p>
       <p class="admin-muted" style="margin: 0">
-        Use the left rail: Collections (Pages, Users, Roles, CMS) and Globals (Settings).
+        Use the left rail: Collections (Pages, Media, Redirects, Users, Roles) and Globals.
+
       </p>
     </div>
   </div>

@@ -35,9 +35,8 @@ const navGroups = computed((): AdminRailGroup[] => {
         { label: 'Pages', to: `${base}/collections/pages` },
         { label: 'Media', to: `${base}/collections/media` },
         { label: 'Redirects', to: `${base}/collections/redirects` },
-        { label: 'Users', to: `${base}/users` },
+        { label: 'Users', to: `${base}/collections/users` },
         { label: 'Roles', to: `${base}/roles` },
-        { label: 'CMS', to: `${base}/cms` },
       ],
     },
     {
@@ -61,6 +60,7 @@ const title = computed(() => {
     if (item) return item.label
   }
   if (path.includes('/collections/pages/')) return 'Page'
+  if (path.includes('/collections/users/')) return 'User'
   if (path.includes('/globals/')) {
     const slug = path.split('/globals/')[1]?.split('/')[0]
     if (slug === 'settings') return 'Site settings'
@@ -68,7 +68,6 @@ const title = computed(() => {
     if (slug === 'footer') return 'Footer'
   }
   if (path.includes('/users/')) return 'User'
-  if (path.includes('/cms/')) return 'CMS entry'
   return 'Admin'
 })
 
