@@ -43,13 +43,12 @@
         />
       </div>
 
-      <FieldBlocks
+      <LayoutEditor
         v-else-if="field.type === 'blocks' && 'name' in field"
         :label="field.label || field.name"
         :description="field.admin?.description"
         :model-value="blocksValue(field.name)"
         :allowed-types="field.blocks?.length ? field.blocks : widgetTypes"
-        :type-labels="widgetLabels"
         @update:model-value="setField(field.name, $event)"
       />
 
@@ -111,7 +110,6 @@
 import type { FieldConfig } from '../../../../shared_modules/nuc_admin/cms/fields/types'
 import { listWidgets } from '../../../../shared_modules/nuc_admin/cms/registry'
 
-import FieldBlocks from '../fields/FieldBlocks.vue'
 import FieldCheckbox from '../fields/FieldCheckbox.vue'
 import FieldGroup from '../fields/FieldGroup.vue'
 import FieldJson from '../fields/FieldJson.vue'
@@ -119,6 +117,7 @@ import FieldNumber from '../fields/FieldNumber.vue'
 import FieldSelect from '../fields/FieldSelect.vue'
 import FieldText from '../fields/FieldText.vue'
 import FieldTextarea from '../fields/FieldTextarea.vue'
+import LayoutEditor from './LayoutEditor.vue'
 
 const props = withDefaults(
   defineProps<{
@@ -137,9 +136,7 @@ const emit = defineEmits<{
 
 const activeTab = ref(0)
 
-const widgets = listWidgets()
-const widgetTypes = widgets.map((w) => w.type)
-const widgetLabels = Object.fromEntries(widgets.map((w) => [w.type, w.label]))
+const widgetTypes = listWidgets().map((w) => w.type)
 
 const visibleFields = computed(() =>
   props.fields.filter((field) => {
