@@ -7,12 +7,44 @@ type NuxtPublicConfig = {
   supabaseKey?: string
 }
 
+type SupabasePublicConfig = {
+  supabaseUrl: string
+  supabaseKey: string
+}
+
+/** Injected by Nuxt/Next plugins — survives Nuxt 4 clearing `window.__NUXT__` after hydration. */
+let injectedPublicConfig: SupabasePublicConfig | null = null
+
+export function configureSupabaseClient(config: {
+  supabaseUrl?: string
+  supabaseKey?: string
+}): void {
+  const supabaseUrl = String(config.supabaseUrl || '')
+  const supabaseKey = String(config.supabaseKey || '')
+  if (!supabaseUrl || !supabaseKey) return
+  injectedPublicConfig = { supabaseUrl, supabaseKey }
+  browserClient = null
+}
+
 function readNuxtPublicSupabaseConfig(): NuxtPublicConfig {
   if (typeof window === 'undefined') return {}
 
-  const pub = (
-    window as Window & { __NUXT__?: { config?: { public?: NuxtPublicConfig } } }
-  ).__NUXT__?.config?.public
+  type NuxtWindow = Window & {
+    __NUXT__?: { config?: { public?: NuxtPublicConfig } }
+    useNuxtApp?: () => { $config?: { public?: NuxtPublicConfig } }
+  }
+
+  const w = window as NuxtWindow
+
+  let fromApp: NuxtPublicConfig | undefined
+  try {
+    fromApp = w.useNuxtApp?.()?.$config?.public
+  } catch {
+    // Outside a Nuxt request context.
+  }
+
+  const fromPayload = w.__NUXT__?.config?.public
+  const pub = fromApp || fromPayload
 
   return {
     supabaseUrl: pub?.supabaseUrl,
@@ -20,20 +52,24 @@ function readNuxtPublicSupabaseConfig(): NuxtPublicConfig {
   }
 }
 
-function resolveSupabaseConfig(): { supabaseUrl: string; supabaseKey: string } {
+function resolveSupabaseConfig(): SupabasePublicConfig {
   const nuxtPublic = readNuxtPublicSupabaseConfig()
 
   const supabaseUrl = String(
-    nuxtPublic.supabaseUrl ||
+    injectedPublicConfig?.supabaseUrl ||
+      nuxtPublic.supabaseUrl ||
       process.env.NEXT_PUBLIC_SUPABASE_URL ||
       process.env.SUPABASE_URL ||
+      process.env.NUXT_PUBLIC_SUPABASE_URL ||
       ''
   )
   const supabaseKey = String(
-    nuxtPublic.supabaseKey ||
+    injectedPublicConfig?.supabaseKey ||
+      nuxtPublic.supabaseKey ||
       process.env.NEXT_PUBLIC_SUPABASE_KEY ||
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
       process.env.SUPABASE_KEY ||
+      process.env.NUXT_PUBLIC_SUPABASE_KEY ||
       ''
   )
 

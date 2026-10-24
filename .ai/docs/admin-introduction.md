@@ -23,6 +23,8 @@ pnpm --filter @nucleify/admin dev
 pnpm -s check && pnpm -s typeslint && pnpm -s slint && pnpm -s tests
 ```
 
+Admin `nuc_server` must re-export the same gateway helpers as `web` (including `formatRowsResponseTimestamps`) — shared handlers import `nuc_server` from the host app.
+
 Manual: sign in with a Supabase Auth user → dashboard; sign out → login; unauthenticated `/en` redirects to login.
 
 ## Slices
