@@ -32,6 +32,7 @@ const navGroups = computed((): AdminRailGroup[] => {
     {
       label: 'Collections',
       items: [
+        { label: 'Pages', to: `${base}/collections/pages` },
         { label: 'Users', to: `${base}/users` },
         { label: 'Roles', to: `${base}/roles` },
         { label: 'CMS', to: `${base}/cms` },
@@ -52,6 +53,7 @@ const title = computed(() => {
     const item = group.items.find((n) => n.to === path)
     if (item) return item.label
   }
+  if (path.includes('/collections/pages/')) return 'Page'
   if (path.includes('/users/')) return 'User'
   if (path.includes('/cms/')) return 'CMS entry'
   return 'Admin'

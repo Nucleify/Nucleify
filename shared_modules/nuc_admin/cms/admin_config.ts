@@ -25,6 +25,14 @@ const pagesCollection: CollectionConfig = {
       admin: { position: 'sidebar' },
     },
     {
+      type: 'text',
+      name: 'locale',
+      label: 'Locale',
+      required: true,
+      defaultValue: 'en',
+      admin: { position: 'sidebar' },
+    },
+    {
       type: 'select',
       name: 'status',
       label: 'Status',
