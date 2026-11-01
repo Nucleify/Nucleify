@@ -1,5 +1,5 @@
 import type { Session, User } from '@supabase/supabase-js'
-import { getSupabaseClient } from '../../../shared_modules/nuc_api/supabase/client'
+import { getSupabaseClient } from '@shared_modules'
 
 const DEFAULT_LANG = 'en'
 
@@ -8,18 +8,20 @@ export function useAdminAuth() {
   const session = useState<Session | null>('admin-auth-session', () => null)
   const ready = useState<boolean>('admin-auth-ready', () => false)
 
+  function applySession(next: Session | null): void {
+    session.value = next
+    user.value = next?.user ?? null
+    ready.value = true
+  }
+
   async function refreshSession(): Promise<Session | null> {
     const client = getSupabaseClient()
     const { data, error } = await client.auth.getSession()
     if (error) {
-      user.value = null
-      session.value = null
-      ready.value = true
+      applySession(null)
       return null
     }
-    session.value = data.session
-    user.value = data.session?.user ?? null
-    ready.value = true
+    applySession(data.session)
     return data.session
   }
 
@@ -30,16 +32,13 @@ export function useAdminAuth() {
       password,
     })
     if (error) throw error
-    session.value = data.session
-    user.value = data.user
-    ready.value = true
+    applySession(data.session)
   }
 
   async function signOut(): Promise<void> {
     const client = getSupabaseClient()
     await client.auth.signOut()
-    session.value = null
-    user.value = null
+    applySession(null)
   }
 
   function langFromPath(path: string): string {
@@ -59,6 +58,7 @@ export function useAdminAuth() {
     user,
     session,
     ready,
+    applySession,
     refreshSession,
     signIn,
     signOut,

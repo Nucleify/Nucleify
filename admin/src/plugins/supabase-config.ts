@@ -1,20 +1,52 @@
 import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app'
 
-import { configureSupabaseClient } from '../../../shared_modules/nuc_api/supabase/client'
+import { configureSupabaseClient, setBrowserSupabaseClient } from '@shared_modules'
+
+import {
+  createAdminBrowserClient,
+  createAdminServerClient,
+  migrateLegacyLocalStorageSession,
+} from '../utils/supabase_auth'
+import { useAdminAuth } from '../composables/use_admin_auth'
 
 /**
- * Wire monorepo-root `.env` values (via runtimeConfig) into the shared Supabase
- * browser client. Nuxt 4 clears `window.__NUXT__` after hydration, so reading
- * public config from the payload alone is not enough.
+ * Cookie-backed Supabase auth for admin (SSR-readable sessions).
+ * Registers the browser client into the shared singleton so `apiRequest`
+ * attaches the same access token.
  */
 export default defineNuxtPlugin({
   name: 'supabase-config',
   enforce: 'pre',
-  setup() {
+  async setup() {
     const config = useRuntimeConfig()
-    configureSupabaseClient({
-      supabaseUrl: String(config.public.supabaseUrl || ''),
-      supabaseKey: String(config.public.supabaseKey || ''),
+    const supabaseUrl = String(config.public.supabaseUrl || '')
+    const supabaseKey = String(config.public.supabaseKey || '')
+    configureSupabaseClient({ supabaseUrl, supabaseKey })
+
+    const auth = useAdminAuth()
+
+    if (import.meta.server) {
+      const event = useRequestEvent()
+      if (!event) {
+        auth.applySession(null)
+        return
+      }
+      const client = createAdminServerClient(event)
+      const { data } = await client.auth.getSession()
+      auth.applySession(data.session ?? null)
+      return
+    }
+
+    const client = createAdminBrowserClient()
+    setBrowserSupabaseClient(client, { supabaseUrl, supabaseKey })
+
+    await migrateLegacyLocalStorageSession(client)
+
+    const { data } = await client.auth.getSession()
+    auth.applySession(data.session ?? null)
+
+    client.auth.onAuthStateChange((_event, next) => {
+      auth.applySession(next)
     })
   },
 })

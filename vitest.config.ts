@@ -27,7 +27,16 @@ export default defineConfig({
         root: webPkg,
         resolve: {
           alias: {
+            '@web': path.join(webPkg, 'src'),
+            '@admin': path.join(monorepo, 'admin/src'),
+            '@shared_modules': path.join(monorepo, 'shared_modules'),
+            '@portable': path.join(monorepo, 'portable'),
             nucleify: path.join(webPkg, 'src/nucleify.ts'),
+            nuc_api: path.join(
+              monorepo,
+              'shared_modules/nuc_api/supabase/api/server.ts',
+            ),
+            nuc_server: path.join(webPkg, 'src/server/nuc_server.ts'),
           },
         },
         test: {

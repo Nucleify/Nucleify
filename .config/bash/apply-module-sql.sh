@@ -4,6 +4,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/../.." && pwd)"
+# shellcheck disable=SC1091
+. "$SCRIPT_DIR/load-root-env.sh"
 PKG_DIR="$ROOT_DIR/web"
 SUPABASE_LOCAL_BIN="${PKG_DIR}/node_modules/.bin/supabase"
 if [[ ! -x "$SUPABASE_LOCAL_BIN" ]]; then SUPABASE_LOCAL_BIN="$ROOT_DIR/node_modules/.bin/supabase"; fi
@@ -23,6 +25,8 @@ fi
 DB_FLAG="--linked"
 if [[ "$MODE" == "local" ]]; then
   DB_FLAG="--local"
+else
+  require_linked_db_password || exit 1
 fi
 
 shopt -s nullglob
@@ -35,8 +39,8 @@ if [[ "$KIND" == "seeders" ]]; then
       found_any=1
       break
     fi
-    legacy_seeders=( "$module_dir"/supabase/seeders/*.sql )
-    if [[ ${#legacy_seeders[@]} -gt 0 ]]; then
+    seeders=( "$module_dir"/supabase/seeders/*.sql )
+    if [[ ${#seeders[@]} -gt 0 ]]; then
       found_any=1
       break
     fi

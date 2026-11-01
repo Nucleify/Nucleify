@@ -26,6 +26,6 @@ Rail: **Pages** under Collections.
 pnpm supabase:migrations:apply:local
 pnpm supabase:seeders:apply:local
 pnpm --filter @nucleify/admin dev
-# Collections → Pages → Create → add home.hero section → Save draft → Publish
+# Collections → Pages → Create → add section.hero section → Save draft → Publish
 pnpm -s check && pnpm -s typeslint && pnpm -s slint && pnpm -s tests
 ```

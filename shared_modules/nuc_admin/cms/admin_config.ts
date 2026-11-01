@@ -45,6 +45,16 @@ const pagesCollection: CollectionConfig = {
       admin: { position: 'sidebar' },
     },
     {
+      type: 'checkbox',
+      name: 'enableIris',
+      label: 'Enable iris animation',
+      defaultValue: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Play iris wipe animation on the initial section',
+      },
+    },
+    {
       type: 'blocks',
       name: 'sections',
       label: 'Sections',
@@ -77,6 +87,15 @@ const settingsGlobal: GlobalConfig = {
       name: 'defaultLocale',
       label: 'Default locale',
       defaultValue: 'en',
+    },
+    {
+      type: 'checkbox',
+      name: 'enableIris',
+      label: 'Enable iris animation',
+      defaultValue: true,
+      admin: {
+        description: 'Default iris animation state across pages',
+      },
     },
   ],
 }

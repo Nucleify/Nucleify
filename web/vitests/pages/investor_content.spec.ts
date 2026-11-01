@@ -11,7 +11,7 @@ import {
   NUC_INVESTOR_SEO,
   NUC_INVESTOR_SHELLS,
   NUC_INVESTOR_SURFACE,
-} from '../../src/pages/investor/constants/content'
+} from '@web'
 
 describe('investor routes', () => {
   it('builds locale-prefixed product and docs paths', () => {

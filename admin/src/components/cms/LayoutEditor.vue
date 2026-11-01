@@ -51,13 +51,13 @@
 </template>
 
 <script setup lang="ts">
-import { getWidget } from '../../../../shared_modules/nuc_admin/cms/registry'
+import { getWidget } from '@shared_modules'
 
-import { fieldsFromPropsSchema } from '../../utils/widget_props_fields'
-import FieldJson from '../fields/FieldJson.vue'
-import FieldShell from '../fields/FieldShell.vue'
-import SchemaFormRenderer from './SchemaFormRenderer.vue'
-import WidgetPicker from './WidgetPicker.vue'
+import { fieldsFromPropsSchema } from '@admin'
+import { FieldJson } from '@admin'
+import { FieldShell } from '@admin'
+import { SchemaFormRenderer } from '@admin'
+import { WidgetPicker } from '@admin'
 
 type Section = {
   id: string

@@ -1,5 +1,5 @@
-import type { FieldConfig } from '../../../shared_modules/nuc_admin/cms/fields/types'
-import type { WidgetPropSchema } from '../../../shared_modules/nuc_admin/cms/registry'
+import type { FieldConfig } from '@shared_modules'
+import type { WidgetPropSchema } from '@shared_modules'
 
 /** Map widget propsSchema → FieldConfig[] for SchemaFormRenderer. */
 export function fieldsFromPropsSchema(schema: WidgetPropSchema): FieldConfig[] {

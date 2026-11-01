@@ -1,5 +1,9 @@
 # Token budget: bulky / generated / non-source. Keep .env and source readable.
 
+# Generated product shells (convert output — edit via compiler only)
+/web-*/
+/admin-*/
+
 # Dependencies
 **/node_modules/
 

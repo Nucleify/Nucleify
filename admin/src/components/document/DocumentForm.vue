@@ -21,10 +21,10 @@
 </template>
 
 <script setup lang="ts">
-import type { FieldConfig } from '../../../../shared_modules/nuc_admin/cms/fields/types'
+import type { FieldConfig } from '@shared_modules'
 
-import SchemaFormRenderer from '../cms/SchemaFormRenderer.vue'
-import DocumentMetaSidebar from './DocumentMetaSidebar.vue'
+import { SchemaFormRenderer } from '@admin'
+import { DocumentMetaSidebar } from '@admin'
 
 defineProps<{
   fields: FieldConfig[]

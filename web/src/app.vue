@@ -9,12 +9,10 @@
 </template>
 
 <script setup lang="ts">
-import { applyRainbow } from 'nui-rainbow'
-import 'nui-rainbow/styles.css'
 import { joinURL } from 'ufo'
-import { computed, onBeforeUnmount, onMounted } from 'vue'
+import { computed } from 'vue'
 
-import { isLabUserAgent } from '~/utils/is_lab_user_agent'
+import { isLabUserAgent } from '@web'
 
 const route = useRoute()
 const config = useRuntimeConfig()
@@ -60,22 +58,6 @@ useHead({
       textContent: 'html,body{margin:0;background:#070908;color:#e7ebe8}',
     },
   ],
-})
-
-let stopRainbow: (() => void) | undefined
-
-onMounted(() => {
-  stopRainbow = applyRainbow(document.body, {
-    cycle: 'branded',
-    duration: 30,
-    reducedMotion: 'ignore',
-  })
-  // CSS shell cycle drives --rainbow-hue; drop the package keyframes to avoid dual-hue jitter.
-  document.body.style.setProperty('--nui-rainbow-animation', 'none')
-})
-
-onBeforeUnmount(() => {
-  stopRainbow?.()
 })
 </script>
 

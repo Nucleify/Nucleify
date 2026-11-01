@@ -16,12 +16,23 @@
 
     <div v-if="showCreate" class="admin-panel" style="padding: 1.25rem; margin-bottom: 1rem">
       <form class="admin-form" @submit.prevent="onCreate">
-        <FieldText v-model="draft.from_path" label="From path" placeholder="/old" />
-        <FieldText v-model="draft.to_path" label="To path" placeholder="/new" />
+        <FieldText
+          :model-value="draft.from_path"
+          label="From path"
+          placeholder="/old"
+          @update:model-value="draft.from_path = $event"
+        />
+        <FieldText
+          :model-value="draft.to_path"
+          label="To path"
+          placeholder="/new"
+          @update:model-value="draft.to_path = $event"
+        />
         <FieldSelect
-          v-model="draft.status_code"
+          :model-value="draft.status_code"
           label="Status"
           :options="statusOptions"
+          @update:model-value="draft.status_code = $event"
         />
         <FieldCheckbox
           label="Enabled"
@@ -73,10 +84,10 @@
 </template>
 
 <script setup lang="ts">
-import FieldCheckbox from '../../../../components/fields/FieldCheckbox.vue'
-import FieldSelect from '../../../../components/fields/FieldSelect.vue'
-import FieldText from '../../../../components/fields/FieldText.vue'
-import { adminApiGet, adminApiSend } from '../../../../composables/use_admin_api'
+import { FieldCheckbox } from '@admin'
+import { FieldSelect } from '@admin'
+import { FieldText } from '@admin'
+import { adminApiGet, adminApiSend } from '@admin'
 
 useHead({ title: 'Redirects' })
 

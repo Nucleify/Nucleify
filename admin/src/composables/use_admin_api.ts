@@ -1,4 +1,4 @@
-import { apiRequest } from '../../../shared_modules/nuc_api/utils/api_request'
+import { apiRequest } from '@shared_modules'
 
 type ApiEnvelope<T> = { data?: T; error?: string }
 

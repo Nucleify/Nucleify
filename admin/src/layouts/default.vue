@@ -16,9 +16,9 @@
 </template>
 
 <script setup lang="ts">
-import AdminRail from '../components/shell/AdminRail.vue'
-import AdminTopbar from '../components/shell/AdminTopbar.vue'
-import type { AdminRailGroup } from '../components/shell/AdminRail.vue'
+import { AdminRail } from '@admin'
+import { AdminTopbar } from '@admin'
+import type { AdminRailGroup } from '@admin'
 
 const route = useRoute()
 const auth = useAdminAuth()

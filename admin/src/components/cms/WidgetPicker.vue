@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { listWidgets } from '../../../../shared_modules/nuc_admin/cms/registry'
+import { listWidgets } from '@shared_modules'
 
 const props = defineProps<{
   allowedTypes?: string[]

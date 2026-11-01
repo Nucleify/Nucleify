@@ -4,7 +4,7 @@
       :is="resolve(section.type)"
       v-for="section in ordered"
       :key="section.id"
-      v-bind="sectionProps(section)"
+      :data-section-id="section.id"
     />
     <p
       v-for="section in unknown"
@@ -31,11 +31,9 @@ const props = defineProps<{
 }>()
 
 const registry: Record<string, Component> = {
-  'home.hero': defineAsyncComponent(
-    () => import('../pages/home/sections/hero/index.vue')
-  ),
+  'home.hero': defineAsyncComponent(() => import('../sections/hero/index.vue')),
   'home.pillars': defineAsyncComponent(
-    () => import('../pages/home/sections/pillars/index.vue')
+    () => import('../sections/pillars/index.vue')
   ),
 }
 
@@ -51,10 +49,5 @@ const unknown = computed(() =>
 
 function resolve(type: string): Component {
   return registry[type]!
-}
-
-function sectionProps(section: PageSection): Record<string, unknown> {
-  // Existing home sections read from constants; pass props for future binding.
-  return { ...(section.props ?? {}), 'data-section-id': section.id }
 }
 </script>

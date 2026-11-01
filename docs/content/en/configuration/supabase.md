@@ -169,8 +169,8 @@ make web
 5. Verify gateway:
 
 ```bash
-curl http://localhost:3000/api
-curl http://localhost:3000/api/colors/…   # module-specific routes
+curl http://localhost:8888/api
+curl http://localhost:8888/api/colors/…   # module-specific routes
 ```
 
 ---

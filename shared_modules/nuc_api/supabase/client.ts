@@ -1,7 +1,5 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
-let browserClient: SupabaseClient | null = null
-
 type NuxtPublicConfig = {
   supabaseUrl?: string
   supabaseKey?: string
@@ -12,8 +10,83 @@ type SupabasePublicConfig = {
   supabaseKey: string
 }
 
+type BrowserSupabaseSlot = {
+  client: SupabaseClient
+  supabaseUrl: string
+  supabaseKey: string
+}
+
+type AuthLockFn = <R>(
+  name: string,
+  acquireTimeout: number,
+  fn: () => Promise<R>,
+) => Promise<R>
+
+/** Bump when browser client options change so HMR/globalThis cannot keep a stale client. */
+const BROWSER_CLIENT_KEY = '__nucleify_supabase_browser_v2__'
+const BROWSER_AUTH_LOCK_KEY = '__nucleify_supabase_auth_lock_v2__'
+
 /** Injected by Nuxt/Next plugins — survives Nuxt 4 clearing `window.__NUXT__` after hydration. */
 let injectedPublicConfig: SupabasePublicConfig | null = null
+
+function readBrowserSlot(): BrowserSupabaseSlot | null {
+  if (typeof globalThis === 'undefined') return null
+  const slot = (globalThis as Record<string, unknown>)[BROWSER_CLIENT_KEY]
+  return slot && typeof slot === 'object' ? (slot as BrowserSupabaseSlot) : null
+}
+
+function writeBrowserSlot(slot: BrowserSupabaseSlot | null): void {
+  if (typeof globalThis === 'undefined') return
+  ;(globalThis as Record<string, unknown>)[BROWSER_CLIENT_KEY] = slot
+}
+
+/**
+ * Register a pre-built browser client (e.g. `@supabase/ssr` cookie client for admin).
+ * Replaces any prior singleton so `getSupabaseAccessToken` / `apiRequest` share the session.
+ */
+export function setBrowserSupabaseClient(
+  client: SupabaseClient,
+  config: { supabaseUrl: string; supabaseKey: string }
+): void {
+  if (typeof window === 'undefined') return
+  writeBrowserSlot({
+    client,
+    supabaseUrl: config.supabaseUrl,
+    supabaseKey: config.supabaseKey,
+  })
+}
+
+/**
+ * In-tab queue instead of `navigator.locks`.
+ * Auth-js auto-refresh uses acquireTimeout 0; Navigator LockManager then throws
+ * `NavigatorLockAcquireTimeoutError` (often as an uncaught promise) whenever
+ * getSession/signIn already holds the lock — common under Next HMR / Strict Mode.
+ */
+function getBrowserAuthLock(): AuthLockFn {
+  const g = globalThis as Record<string, unknown>
+  const existing = g[BROWSER_AUTH_LOCK_KEY]
+  if (typeof existing === 'function') return existing as AuthLockFn
+
+  const tails = new Map<string, Promise<unknown>>()
+  const lock: AuthLockFn = async (name, _acquireTimeout, fn) => {
+    const prev = tails.get(name) ?? Promise.resolve()
+    const run = prev.then(
+      () => fn(),
+      () => fn(),
+    )
+    tails.set(
+      name,
+      run.then(
+        () => undefined,
+        () => undefined,
+      ),
+    )
+    return run
+  }
+
+  g[BROWSER_AUTH_LOCK_KEY] = lock
+  return lock
+}
 
 export function configureSupabaseClient(config: {
   supabaseUrl?: string
@@ -22,8 +95,18 @@ export function configureSupabaseClient(config: {
   const supabaseUrl = String(config.supabaseUrl || '')
   const supabaseKey = String(config.supabaseKey || '')
   if (!supabaseUrl || !supabaseKey) return
+
   injectedPublicConfig = { supabaseUrl, supabaseKey }
-  browserClient = null
+
+  const slot = readBrowserSlot()
+  if (
+    slot &&
+    (slot.supabaseUrl !== supabaseUrl || slot.supabaseKey !== supabaseKey)
+  ) {
+    // Drop only when credentials change — nulling on every configure (HMR /
+    // plugin re-run) leaves the old client's auto-refresh holding the auth lock.
+    writeBrowserSlot(null)
+  }
 }
 
 function readNuxtPublicSupabaseConfig(): NuxtPublicConfig {
@@ -86,10 +169,20 @@ export function getSupabaseClient(): SupabaseClient {
   const { supabaseUrl, supabaseKey } = resolveSupabaseConfig()
 
   if (typeof window !== 'undefined') {
-    if (!browserClient) {
-      browserClient = createClient(supabaseUrl, supabaseKey)
+    const existing = readBrowserSlot()
+    if (
+      existing &&
+      existing.supabaseUrl === supabaseUrl &&
+      existing.supabaseKey === supabaseKey
+    ) {
+      return existing.client
     }
-    return browserClient
+
+    const client = createClient(supabaseUrl, supabaseKey, {
+      auth: { lock: getBrowserAuthLock() },
+    })
+    writeBrowserSlot({ client, supabaseUrl, supabaseKey })
+    return client
   }
 
   return createClient(supabaseUrl, supabaseKey, {

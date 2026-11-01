@@ -44,7 +44,7 @@
       <section class="admin-panel" style="padding: 1.25rem">
         <h2 style="margin: 0 0 1rem; font-size: 1rem">Preferences</h2>
         <FieldSelect
-          v-model="theme"
+          :model-value="theme"
           label="Theme"
           :options="themeOptions"
           @update:model-value="setTheme"
@@ -55,13 +55,13 @@
 </template>
 
 <script setup lang="ts">
-import { setupNui } from 'portable/nui'
-import { getSupabaseClient } from '../../../../../shared_modules/nuc_api/supabase/client'
+import { setupNui } from '@portable'
+import { getSupabaseClient } from '@shared_modules'
 
-import FieldSelect from '../../../components/fields/FieldSelect.vue'
-import FieldShell from '../../../components/fields/FieldShell.vue'
-import FieldText from '../../../components/fields/FieldText.vue'
-import { adminApiGet, adminApiSend } from '../../../composables/use_admin_api'
+import { FieldSelect } from '@admin'
+import { FieldShell } from '@admin'
+import { FieldText } from '@admin'
+import { adminApiGet, adminApiSend } from '@admin'
 
 useHead({ title: 'Settings' })
 

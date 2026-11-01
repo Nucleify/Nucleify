@@ -1,6 +1,6 @@
 import { addRouteMiddleware, defineNuxtPlugin } from 'nuxt/app'
 
-import { preloadTranslations } from 'nucleify'
+import { preloadTranslations } from '../nuc_languages'
 
 import translationsGlobalMiddleware from '../middlewares/translations.global'
 

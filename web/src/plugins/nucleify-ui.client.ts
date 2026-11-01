@@ -1,6 +1,6 @@
 import { defineNuxtPlugin } from 'nuxt/app'
 
-import { resolveThemeMode, setupNui } from 'portable/nui'
+import { resolveThemeMode, setupNui } from '@portable'
 
 /** Lit custom elements - client-only (HTMLElement is unavailable in CF Workers). */
 export default defineNuxtPlugin({

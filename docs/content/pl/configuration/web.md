@@ -189,7 +189,7 @@ Dostosowania per wdrożenie trafiają do `overrides/web/` lub `overrides/admin/`
 | `pnpm --filter @nucleify/web dev` | Bezpośredni filtr pnpm |
 | `pnpm --filter @nucleify/admin dev` | Bezpośredni filtr admin |
 
-Domyślny port: `3000`. Środowisko ładowane z root `.env` monorepo przez `load-env.ts`.
+Domyślne porty (każda technologia): landing `web*` → `7777` (`WEB_PORT`), `admin*` → `8888` (`ADMIN_PORT`). Środowisko ładowane z root `.env` monorepo przez `load-env.ts`.
 
 ---
 

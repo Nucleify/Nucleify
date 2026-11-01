@@ -1,7 +1,7 @@
-import type { CollectionConfig } from '../../../shared_modules/nuc_admin/cms/fields/types'
-import { getCollectionConfig } from '../../../shared_modules/nuc_admin/cms/admin_config'
+import type { CollectionConfig } from '@shared_modules'
+import { getCollectionConfig } from '@shared_modules'
 
-import { adminApiGet, adminApiSend } from './use_admin_api'
+import { adminApiGet, adminApiSend } from '@admin'
 
 export type DocumentFormModel = Record<string, unknown> & {
   title: string
@@ -33,6 +33,7 @@ function emptyModel(): DocumentFormModel {
     locale: 'en',
     sections: [],
     seo: { title: '', description: '' },
+    enableIris: true,
   }
 }
 
@@ -49,6 +50,7 @@ function fromDocument(doc: CmsDocumentRow): DocumentFormModel {
     locale: doc.locale || 'en',
     sections: Array.isArray(data.sections) ? data.sections : [],
     seo,
+    enableIris: data.enableIris !== false,
   }
 }
 
@@ -62,6 +64,7 @@ function toPayload(model: DocumentFormModel) {
       version: 1,
       sections: Array.isArray(model.sections) ? model.sections : [],
       seo: model.seo && typeof model.seo === 'object' ? model.seo : {},
+      enableIris: model.enableIris !== false,
     },
   }
 }

@@ -91,7 +91,8 @@
       <FieldCheckbox
         v-else-if="field.type === 'checkbox' && 'name' in field"
         :label="field.label || field.name"
-        :checked="Boolean(modelValue[field.name])"
+        :description="field.admin?.description"
+        :checked="checkboxValue(field)"
         @update:checked="setField(field.name, $event)"
       />
 
@@ -128,19 +129,19 @@
 </template>
 
 <script setup lang="ts">
-import type { FieldConfig } from '../../../../shared_modules/nuc_admin/cms/fields/types'
-import { listWidgets } from '../../../../shared_modules/nuc_admin/cms/registry'
+import type { FieldConfig } from '@shared_modules'
+import { listWidgets } from '@shared_modules'
 
-import FieldArray from '../fields/FieldArray.vue'
-import FieldCheckbox from '../fields/FieldCheckbox.vue'
-import FieldGroup from '../fields/FieldGroup.vue'
-import FieldJson from '../fields/FieldJson.vue'
-import FieldMediaRef from '../fields/FieldMediaRef.vue'
-import FieldNumber from '../fields/FieldNumber.vue'
-import FieldSelect from '../fields/FieldSelect.vue'
-import FieldText from '../fields/FieldText.vue'
-import FieldTextarea from '../fields/FieldTextarea.vue'
-import LayoutEditor from './LayoutEditor.vue'
+import { FieldArray } from '@admin'
+import { FieldCheckbox } from '@admin'
+import { FieldGroup } from '@admin'
+import { FieldJson } from '@admin'
+import { FieldMediaRef } from '@admin'
+import { FieldNumber } from '@admin'
+import { FieldSelect } from '@admin'
+import { FieldText } from '@admin'
+import { FieldTextarea } from '@admin'
+import { LayoutEditor } from '@admin'
 
 const props = withDefaults(
   defineProps<{
@@ -186,6 +187,16 @@ function stringValue(name: string): string {
 function numberValue(name: string): number | null {
   const v = props.modelValue[name]
   return typeof v === 'number' ? v : null
+}
+
+function checkboxValue(field: FieldConfig): boolean {
+  if (!('name' in field)) return false
+  const v = props.modelValue[field.name]
+  if (v !== undefined) return Boolean(v)
+  if ('defaultValue' in field && field.defaultValue !== undefined) {
+    return Boolean(field.defaultValue)
+  }
+  return false
 }
 
 function groupValue(name: string): Record<string, unknown> {

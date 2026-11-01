@@ -1,13 +1,4 @@
--- Same as migrations/20260501000001 - seed-only runs stay compatible with legacy tables.
-alter table public.user_colors add column if not exists user_id uuid references auth.users (id) on delete cascade;
-alter table public.user_colors add column if not exists name text;
-alter table public.user_colors add column if not exists value text;
-alter table public.user_colors add column if not exists new boolean not null default false;
-alter table public.user_colors add column if not exists is_new boolean not null default false;
-alter table public.user_colors add column if not exists created_at timestamptz not null default now();
-alter table public.user_colors add column if not exists updated_at timestamptz not null default now();
-
-create unique index if not exists user_colors_user_id_name_uidx on public.user_colors (user_id, name);
+-- System palette seed (schema comes from migrations).
 
 with prepared_colors(name, value) as (
   values
@@ -73,5 +64,3 @@ select name, value from prepared_colors
 on conflict (name) do update set
   value = excluded.value,
   updated_at = now();
-
--- Per-user entity colors are seeded in 20260502000000_user_colors_entities_seed.sql (runs after auth.users).

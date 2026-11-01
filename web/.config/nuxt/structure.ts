@@ -1,16 +1,20 @@
 import { resolve } from "node:path";
 
+const root = resolve(process.cwd(), "..");
+const webSrc = resolve(process.cwd(), "src");
+
 export const structureConfig = {
 	alias: {
-		nucleify: "~/nucleify",
-		modules: resolve(process.cwd(), "../shared_modules"),
-		"portable/nui": resolve(process.cwd(), "../portable/nui"),
-		nuc_client: "~/nuc_client",
-		nuc_server: "~/server/nuc_server",
-		"#nuc-compiler/runtime": resolve(
-			process.cwd(),
-			"../compiler/runtime/index.ts",
-		),
+		"@web": webSrc,
+		"@admin": resolve(root, "admin/src"),
+		"@shared_modules": resolve(root, "shared_modules"),
+		"@portable": resolve(root, "portable"),
+		nucleify: resolve(webSrc, "nucleify.ts"),
+		modules: resolve(root, "shared_modules"),
+		"portable/nui": resolve(root, "portable/nui"),
+		nuc_client: resolve(webSrc, "nuc_client.ts"),
+		nuc_server: resolve(webSrc, "server/nuc_server.ts"),
+		"#nuc-compiler/runtime": resolve(root, "compiler/runtime/index.ts"),
 	},
 	components: [],
 	imports: {
@@ -36,9 +40,6 @@ export const structureConfig = {
 	},
 	publicDir: "public",
 	plugins: [
-		resolve(
-			process.cwd(),
-			"../shared_modules/nuc_languages/plugins/nuc_translations.ts",
-		),
+		resolve(root, "shared_modules/nuc_languages/plugins/nuc_translations.ts"),
 	],
 };

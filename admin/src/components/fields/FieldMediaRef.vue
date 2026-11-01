@@ -13,9 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import { adminApiGet } from '../../composables/use_admin_api'
-import FieldSelect from './FieldSelect.vue'
-import FieldShell from './FieldShell.vue'
+import { adminApiGet } from '@admin'
+import { FieldSelect } from '@admin'
+import { FieldShell } from '@admin'
 
 withDefaults(
   defineProps<{

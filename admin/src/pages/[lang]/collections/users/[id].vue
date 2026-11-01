@@ -31,9 +31,10 @@
         :value="user.locale || 'en'"
       />
       <FieldSelect
-        v-model="status"
+        :model-value="status"
         label="Status"
         :options="statusOptions"
+        @update:model-value="status = $event"
       />
       <FieldShell label="Roles">
         <FieldCheckbox
@@ -50,11 +51,11 @@
 </template>
 
 <script setup lang="ts">
-import FieldCheckbox from '../../../../components/fields/FieldCheckbox.vue'
-import FieldSelect from '../../../../components/fields/FieldSelect.vue'
-import FieldShell from '../../../../components/fields/FieldShell.vue'
-import FieldText from '../../../../components/fields/FieldText.vue'
-import { adminApiGet, adminApiSend } from '../../../../composables/use_admin_api'
+import { FieldCheckbox } from '@admin'
+import { FieldSelect } from '@admin'
+import { FieldShell } from '@admin'
+import { FieldText } from '@admin'
+import { adminApiGet, adminApiSend } from '@admin'
 
 useHead({ title: 'User' })
 

@@ -4,6 +4,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 import { resolve } from 'node:path'
 
 const root = resolve(process.cwd(), '..')
+const adminSrc = resolve(process.cwd(), 'src')
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -22,17 +23,21 @@ export default defineNuxtConfig({
     },
   },
   alias: {
+    '@web': resolve(root, 'web/src'),
+    '@admin': adminSrc,
+    '@shared_modules': resolve(root, 'shared_modules'),
+    '@portable': resolve(root, 'portable'),
     'portable/nui': resolve(root, 'portable/nui'),
     modules: resolve(root, 'shared_modules'),
     'modules/*': resolve(root, 'shared_modules/*'),
     nuc_api: resolve(root, 'shared_modules/nuc_api/supabase/api/server.ts'),
-    nuc_server: resolve(process.cwd(), 'src/server/nuc_server.ts'),
+    nuc_server: resolve(adminSrc, 'server/nuc_server.ts'),
     nucleify: resolve(root, 'shared_modules/index.ts'),
   },
   runtimeConfig: {
     supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
     public: {
-      appUrl: process.env.NUXT_PUBLIC_ADMIN_URL || 'http://localhost:3001',
+      appUrl: process.env.NUXT_PUBLIC_ADMIN_URL || 'https://admin.nucleify.io',
       apiUrl: process.env.NUXT_PUBLIC_API_URL || '/api',
       supabaseUrl: process.env.SUPABASE_URL || '',
       supabaseKey: process.env.SUPABASE_KEY || '',
@@ -57,8 +62,16 @@ export default defineNuxtConfig({
   },
   nitro: {
     preset: process.env.NITRO_PRESET || 'cloudflare',
+    alias: {
+      '@web': resolve(root, 'web/src'),
+      '@admin': resolve(adminSrc, 'index.server.ts'),
+      '@shared_modules': resolve(root, 'shared_modules/index.server.ts'),
+      '@portable': resolve(root, 'portable'),
+      nuc_api: resolve(root, 'shared_modules/nuc_api/supabase/api/server.ts'),
+      nuc_server: resolve(adminSrc, 'server/nuc_server.ts'),
+    },
   },
   devServer: {
-    port: Number(process.env.ADMIN_PORT || 3001),
+    port: Number(process.env.ADMIN_PORT || 8888),
   },
 })

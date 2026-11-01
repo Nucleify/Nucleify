@@ -14,8 +14,8 @@
 </template>
 
 <script setup lang="ts">
-import { nuiHostValue, nuiValueFromEvent } from '../../utils/nui_host'
-import FieldShell from './FieldShell.vue'
+import { nuiHostValue, nuiValueFromEvent } from '@admin'
+import { FieldShell } from '@admin'
 
 const props = withDefaults(
   defineProps<{

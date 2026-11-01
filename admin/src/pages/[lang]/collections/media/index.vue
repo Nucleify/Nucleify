@@ -21,7 +21,12 @@
         Drop a file here or choose one.
       </p>
       <input ref="fileInput" type="file" @change="onFileInput" />
-      <FieldText v-model="alt" label="Alt text" placeholder="Optional alt" />
+      <FieldText
+        :model-value="alt"
+        label="Alt text"
+        placeholder="Optional alt"
+        @update:model-value="alt = $event"
+      />
       <nui-button
         variant="filled"
         :label="uploading ? 'Uploading…' : 'Upload'"
@@ -51,9 +56,9 @@
 </template>
 
 <script setup lang="ts">
-import CollectionList from '../../../../components/collection/CollectionList.vue'
-import FieldText from '../../../../components/fields/FieldText.vue'
-import { adminApiGet, adminApiSend } from '../../../../composables/use_admin_api'
+import { CollectionList } from '@admin'
+import { FieldText } from '@admin'
+import { adminApiGet, adminApiSend } from '@admin'
 
 useHead({ title: 'Media' })
 

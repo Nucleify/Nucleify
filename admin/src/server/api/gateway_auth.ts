@@ -2,7 +2,7 @@ import type { SupabaseClient, User } from '@supabase/supabase-js'
 import type { H3Event } from 'h3'
 import { getRequestHeader } from 'h3'
 
-import { resolveGatewayUserFromAccessToken } from '../../../../shared_modules/nuc_api/supabase/api/gateway_jwt'
+import { resolveGatewayUserFromAccessToken } from '../../../../shared_modules/index.server'
 
 export type GatewayListScope = { mode: 'all' } | { mode: 'own'; userId: string }
 

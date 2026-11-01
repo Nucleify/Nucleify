@@ -18,8 +18,10 @@ Notes written by workflow skills after **DO** (what changed, why, how to verify)
 | `admin-cms-v2-layout-editor.md` | Admin CMS v2 slice 5 — drag layout editor + widget picker |
 | `admin-cms-v2-globals.md` | Admin CMS v2 slice 6 — settings/header/footer globals |
 | `admin-cms-v2-media-redirects.md` | Admin CMS v2 slice 7 — media library + redirects |
-| `admin-cms-v2-web-bridge.md` | Admin CMS v2 slice 8 — public pages API + PageRenderer |
+| `admin-cms-v2-web-bridge.md` | Admin CMS v2 slice 8 — public pages API + shell layout |
 | `admin-cms-v2-cutover.md` | Admin CMS v2 slice 9 — Collections IA + legacy redirects |
+| `admin-cms-v2-web-cutover.md` | Marketing home/investor driven by published CMS layouts |
+| `supabase-merge-sql-cleanup.md` | Slim seeders/factories + merge-sql rebuild notes |
 | `investor-page.md` | Investor pitch + Next convert parity |
 | `compiler-status.md` | Compiler emit/convert status / shell paths |
 | `docs-origin.md` | Public docs host `docs.nucleify.io` + app redirects |

@@ -1,7 +1,7 @@
-import type { GlobalConfig } from '../../../shared_modules/nuc_admin/cms/fields/types'
-import { getGlobalConfig } from '../../../shared_modules/nuc_admin/cms/admin_config'
+import type { GlobalConfig } from '@shared_modules'
+import { getGlobalConfig } from '@shared_modules'
 
-import { adminApiGet, adminApiSend } from './use_admin_api'
+import { adminApiGet, adminApiSend } from '@admin'
 
 export type GlobalDocumentRow = {
   id: string | null

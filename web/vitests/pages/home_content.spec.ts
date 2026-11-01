@@ -8,7 +8,7 @@ import {
   NUC_HOME_WEB_SHARE,
   nucHomeWebShareArcs,
   nucHomeWebShareLine,
-} from '../../src/pages/home/constants/content'
+} from '@web'
 
 describe('homeDocsHref', () => {
   it('builds absolute docs.nucleify.io URLs without smashing slashes', () => {

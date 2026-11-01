@@ -58,8 +58,8 @@
 </template>
 
 <script setup lang="ts">
-import FieldCheckbox from '../../../components/fields/FieldCheckbox.vue'
-import { adminApiGet, adminApiSend } from '../../../composables/use_admin_api'
+import { FieldCheckbox } from '@admin'
+import { adminApiGet, adminApiSend } from '@admin'
 
 useHead({ title: 'Roles' })
 

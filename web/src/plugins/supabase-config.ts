@@ -1,6 +1,6 @@
 import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app'
 
-import { configureSupabaseClient } from '../../../shared_modules/nuc_api/supabase/client'
+import { configureSupabaseClient } from '@shared_modules'
 
 /**
  * Wire monorepo-root `.env` values (via runtimeConfig) into the shared Supabase

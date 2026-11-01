@@ -23,10 +23,10 @@ useHead({
   style: [
     {
       key: 'admin-critical-shell',
-      // Hide until nucleify-ui CE + theme + sheets are ready (avoids empty/jumping nui-* hosts).
+      // Hide until nui CE + auth gate are ready (no dashboard flash before login).
       textContent:
         'html,body{margin:0;background:#0a0a0a;color:#f0f0f0}' +
-        'html:not([data-nui-ready]) body{visibility:hidden}' +
+        'html:not([data-nui-ready][data-auth-ready]) body{visibility:hidden}' +
         'nui-input-text,nui-textarea,nui-select{display:block;width:100%;min-height:2.5625rem;box-sizing:border-box}' +
         'nui-button{box-sizing:border-box;min-height:2.25rem}' +
         'nui-button[fluid]{display:block;width:100%}' +

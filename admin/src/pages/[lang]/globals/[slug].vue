@@ -16,29 +16,45 @@
     <p v-if="loading" class="admin-muted">Loading…</p>
     <p v-else-if="!config" class="admin-form__error">Unknown global.</p>
 
-    <DocumentForm
-      v-else-if="fields.length"
-      v-model="model"
-      :fields="fields"
-    >
-      <template #sidebar>
+    <div v-else-if="fields.length" class="admin-document-grid">
+      <div class="admin-document-main">
+        <SchemaFormRenderer
+          :fields="fields"
+          :model-value="model"
+          position="main"
+          @update:model-value="model = $event"
+        />
+      </div>
+      <DocumentMetaSidebar>
+        <SchemaFormRenderer
+          :fields="fields"
+          :model-value="model"
+          position="sidebar"
+          @update:model-value="model = $event"
+        />
         <FieldSelect
-          v-model="status"
+          :model-value="status"
           label="Status"
           :options="statusOptions"
+          @update:model-value="status = $event"
         />
-        <FieldText v-model="locale" label="Locale" />
-      </template>
-    </DocumentForm>
+        <FieldText
+          :model-value="locale"
+          label="Locale"
+          @update:model-value="locale = $event"
+        />
+      </DocumentMetaSidebar>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import DocumentForm from '../../../components/document/DocumentForm.vue'
-import DocumentHeader from '../../../components/document/DocumentHeader.vue'
-import FieldSelect from '../../../components/fields/FieldSelect.vue'
-import FieldText from '../../../components/fields/FieldText.vue'
-import { useGlobalForm } from '../../../composables/use_global_form'
+import { DocumentHeader } from '@admin'
+import { DocumentMetaSidebar } from '@admin'
+import { FieldSelect } from '@admin'
+import { FieldText } from '@admin'
+import { SchemaFormRenderer } from '@admin'
+import { useGlobalForm } from '@admin'
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug || ''))

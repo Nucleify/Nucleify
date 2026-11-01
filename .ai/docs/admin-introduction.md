@@ -19,7 +19,7 @@ Dark left rail (Collections / Globals groups), muted content plane, **radius 0**
 ```sh
 pnpm --filter @nucleify/admin install
 pnpm --filter @nucleify/admin dev
-# open http://localhost:3001/en/login
+# open http://localhost:8888/en/login
 pnpm -s check && pnpm -s typeslint && pnpm -s slint && pnpm -s tests
 ```
 

@@ -11,8 +11,8 @@
 </template>
 
 <script setup lang="ts">
-import { nuiValueFromEvent } from '../../utils/nui_host'
-import FieldShell from './FieldShell.vue'
+import { nuiValueFromEvent } from '@admin'
+import { FieldShell } from '@admin'
 
 export type FieldSelectOption = { label: string; value: string }
 

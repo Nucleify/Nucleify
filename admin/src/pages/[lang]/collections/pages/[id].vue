@@ -29,16 +29,17 @@
 
     <DocumentForm
       v-else-if="fields.length"
-      v-model="model"
+      :model-value="model"
       :fields="fields"
+      @update:model-value="model = $event"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import DocumentForm from '../../../../components/document/DocumentForm.vue'
-import DocumentHeader from '../../../../components/document/DocumentHeader.vue'
-import { useDocumentForm } from '../../../../composables/use_document_form'
+import { DocumentForm } from '@admin'
+import { DocumentHeader } from '@admin'
+import { useDocumentForm } from '@admin'
 
 useHead({ title: 'Page' })
 

@@ -25,8 +25,8 @@
 </template>
 
 <script setup lang="ts">
-import CollectionList from '../../../../components/collection/CollectionList.vue'
-import { adminApiGet } from '../../../../composables/use_admin_api'
+import { CollectionList } from '@admin'
+import { adminApiGet } from '@admin'
 
 useHead({ title: 'Pages' })
 

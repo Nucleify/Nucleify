@@ -3,7 +3,7 @@
 ## Mobile UX (no jump)
 - Scroller keeps **`y mandatory`** section slides; tall-section gate never leaves inline `none` stuck.
 - Gate releases snap **immediately** at section bottom; re-sync on `touchend` / `scrollend`.
-- Hero CTAs are **native** `.nuc-home-btn` + Nuxt `<Icon>` (SSR SVG).
+- Hero CTAs are **native** `.nuc-btn` + Nuxt `<Icon>` (SSR SVG).
 - Below-fold sections stay **async**; eager CSS keeps pillars at `opacity: 0` until reveal.
 
 ## FOUC / CLS
@@ -14,7 +14,7 @@
 ## Iris vs CWV
 - **Never SSR `nuc-iris-boot`.** Iris at `0%` + hung JS = black mobile screen.
 - **Lab:** SSR stamps `html.nuc-lab` from the *request* UA (`Chrome-Lighthouse`).
-- **First visit:** paint open (`--home-iris: 165%`).
+- **First visit:** paint open (`--shell-iris: 165%`).
 
 ## Auto-refresh (do not regress)
 - Nuxt `experimental.checkOutdatedBuildInterval: false` - no hourly `/_nuxt/builds/latest.json` poll.

@@ -146,6 +146,11 @@ export function redirectTargetForPath(pathname: string): string | null {
   const first = parts[0]!
   if (ASSET_FIRST.has(first)) return null
 
+  // Nuxt payloadExtraction serves `/…/_payload.js` under the page path.
+  // Must not collapse those onto home or hydration loads HTML as a module.
+  const last = parts[parts.length - 1]!
+  if (last === '_payload.js' || last === '_payload.json') return null
+
   // Docs moved off nucleify.io - send locale docs paths to the docs host.
   if (LOCALE_CODES.has(first) && parts[1] === 'docs') {
     const rest = parts.slice(1).join('/')
@@ -210,23 +215,21 @@ export function redirectTargetForPath(pathname: string): string | null {
     return `/${first}/thank-you`
   }
 
-  // `/{lang}/services|legal|about-us|...` - dead marketing tree.
+  // `/{lang}/services|legal|about-us|...` — known dead marketing tree only.
+  // Arbitrary CMS slugs must reach `[lang]/[slug]` (existence → render / else → home).
   if (
     LOCALE_CODES.has(first) &&
     parts[1] &&
-    parts[1] !== 'home' &&
-    parts[1] !== 'docs' &&
-    parts[1] !== 'investor' &&
-    parts[1] !== 'thank-you'
+    DEAD_ROOTS.has(parts[1]) &&
+    parts[1] !== 'home'
   ) {
     return homeForLocale(first)
   }
 
-  // Root-level dead / smashed leftovers without a locale prefix.
-  if (
-    !LOCALE_CODES.has(first) &&
-    (DEAD_ROOTS.has(first) || isSmashedSegment(first))
-  ) {
+  // First segment must be a real locale (`en` | `pl` | `vn`). Anything else
+  // (`/afdhjzfhdsjshfdj/home`, glued junk, dead roots) is crawl noise — do not
+  // let `[lang]/[slug]` await a 404 locale fetch before painting sections.
+  if (!LOCALE_CODES.has(first)) {
     return homeForLocale(locale)
   }
 

@@ -1,5 +1,5 @@
 import { defineNuxtPlugin } from 'nuxt/app'
-import { resolveThemeMode, setupNui } from 'portable/nui'
+import { resolveThemeMode, setupNui } from '@portable'
 
 /**
  * Admin shell - portable/nui tokens + Lit registration.

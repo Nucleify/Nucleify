@@ -78,8 +78,8 @@
 </template>
 
 <script setup lang="ts">
-import FieldText from '../../../../components/fields/FieldText.vue'
-import { adminApiGet, adminApiSend } from '../../../../composables/use_admin_api'
+import { FieldText } from '@admin'
+import { adminApiGet, adminApiSend } from '@admin'
 
 useHead({ title: 'Users' })
 

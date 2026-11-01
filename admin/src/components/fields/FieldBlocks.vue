@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import LayoutEditor from '../cms/LayoutEditor.vue'
+import { LayoutEditor } from '@admin'
 
 withDefaults(
   defineProps<{

@@ -3,24 +3,22 @@
     <div class="admin-login__card">
       <h1 class="admin-login__brand">Nucleify</h1>
       <p class="admin-login__sub">Sign in to the admin panel</p>
-      <form
-        class="admin-form"
-        @submit.prevent="onSubmit"
-        @keydown.enter.prevent="onSubmit"
-      >
+      <form class="admin-form" @submit.prevent="onSubmit">
         <FieldText
-          v-model="email"
+          :model-value="email"
           label="Email"
           type="email"
           autocomplete="username"
           placeholder="you@example.com"
+          @update:model-value="email = $event"
         />
         <FieldText
-          v-model="password"
+          :model-value="password"
           label="Password"
           type="password"
           autocomplete="current-password"
           placeholder="••••••••"
+          @update:model-value="password = $event"
         />
         <FieldCheckbox
           label="Remember user"
@@ -42,8 +40,8 @@
 </template>
 
 <script setup lang="ts">
-import FieldCheckbox from '../../components/fields/FieldCheckbox.vue'
-import FieldText from '../../components/fields/FieldText.vue'
+import { FieldCheckbox } from '@admin'
+import { FieldText } from '@admin'
 
 definePageMeta({ layout: 'blank' })
 
