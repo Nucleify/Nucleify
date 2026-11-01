@@ -47,7 +47,7 @@
           :model-value="theme"
           label="Theme"
           :options="themeOptions"
-          @update:model-value="setTheme"
+          @update:model-value="applyTheme"
         />
       </section>
     </div>
@@ -150,7 +150,7 @@ async function onChangePassword() {
   }
 }
 
-function setTheme(mode: string) {
+function applyTheme(mode: string) {
   const next = mode === 'light' ? 'light' : 'dark'
   theme.value = next
   setupNui({ palette: 'nuxt', mode: next })
@@ -164,7 +164,7 @@ function setTheme(mode: string) {
 onMounted(() => {
   try {
     const stored = localStorage.getItem('admin-theme')
-    if (stored === 'light' || stored === 'dark') setTheme(stored)
+    if (stored === 'light' || stored === 'dark') applyTheme(stored)
   } catch {
     /* ignore */
   }

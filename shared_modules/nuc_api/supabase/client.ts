@@ -135,30 +135,44 @@ function readNuxtPublicSupabaseConfig(): NuxtPublicConfig {
   }
 }
 
+/**
+ * Read a bundler-inlined public env value.
+ * Keep `process.env.KEY` as a static member access so Vite/Next `define` / `env` can
+ * replace it; wrap in try so Astro/Vite browsers without a `process` polyfill do not throw.
+ */
+function readPublicEnv(read: () => string | undefined): string {
+  try {
+    const value = read()
+    return value ? String(value) : ''
+  } catch {
+    return ''
+  }
+}
+
 function resolveSupabaseConfig(): SupabasePublicConfig {
   const nuxtPublic = readNuxtPublicSupabaseConfig()
 
   const supabaseUrl = String(
     injectedPublicConfig?.supabaseUrl ||
       nuxtPublic.supabaseUrl ||
-      process.env.NEXT_PUBLIC_SUPABASE_URL ||
-      process.env.SUPABASE_URL ||
-      process.env.NUXT_PUBLIC_SUPABASE_URL ||
-      ''
+      readPublicEnv(() => process.env.NEXT_PUBLIC_SUPABASE_URL) ||
+      readPublicEnv(() => process.env.SUPABASE_URL) ||
+      readPublicEnv(() => process.env.NUXT_PUBLIC_SUPABASE_URL) ||
+      '',
   )
   const supabaseKey = String(
     injectedPublicConfig?.supabaseKey ||
       nuxtPublic.supabaseKey ||
-      process.env.NEXT_PUBLIC_SUPABASE_KEY ||
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
-      process.env.SUPABASE_KEY ||
-      process.env.NUXT_PUBLIC_SUPABASE_KEY ||
-      ''
+      readPublicEnv(() => process.env.NEXT_PUBLIC_SUPABASE_KEY) ||
+      readPublicEnv(() => process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) ||
+      readPublicEnv(() => process.env.SUPABASE_KEY) ||
+      readPublicEnv(() => process.env.NUXT_PUBLIC_SUPABASE_KEY) ||
+      '',
   )
 
   if (!supabaseUrl || !supabaseKey) {
     throw new Error(
-      'Missing Supabase config: set SUPABASE_URL and SUPABASE_KEY in .env (Nuxt: runtimeConfig.public), or NEXT_PUBLIC_* in Next.js.'
+      'Missing Supabase config: set SUPABASE_URL and SUPABASE_KEY in .env (Nuxt: runtimeConfig.public), or NEXT_PUBLIC_* in Next.js / Astro vite.define.',
     )
   }
 

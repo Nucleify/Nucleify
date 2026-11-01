@@ -47,6 +47,16 @@
   box-sizing: border-box;
 }
 
+/* Beat nucleify-ui global.css (`height:100%; overflow:hidden`) — admin uses document scroll. */
+html.nuc-nuxt,
+html.nuc-nuxt body,
+body.nuc-nuxt {
+  height: auto;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
 html,
 body {
   margin: 0;
@@ -78,18 +88,25 @@ a {
 }
 
 .admin-rail {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   width: var(--admin-rail-width);
-  min-height: 100vh;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
   padding: 1.25rem 0.75rem;
   background: var(--admin-rail);
   border-right: 1px solid var(--admin-rail-border);
 }
 
 .admin-rail__brand {
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
@@ -116,7 +133,9 @@ a {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -161,6 +180,7 @@ a {
 }
 
 .admin-rail__footer {
+  flex-shrink: 0;
   padding: 0.75rem;
   border-top: 1px solid var(--admin-rail-border);
   margin-top: 1rem;
@@ -169,6 +189,7 @@ a {
 .admin-main {
   flex: 1;
   min-width: 0;
+  margin-left: var(--admin-rail-width);
   display: flex;
   flex-direction: column;
 }
@@ -582,10 +603,19 @@ nui-button[fluid] {
 
   .admin-rail {
     position: relative;
+    left: auto;
+    bottom: auto;
+    z-index: auto;
     width: 100%;
-    min-height: unset;
+    height: auto;
+    max-height: none;
+    overflow: visible;
     border-right: none;
     border-bottom: 1px solid var(--admin-rail-border);
+  }
+
+  .admin-main {
+    margin-left: 0;
   }
 
   .admin-rail__nav {

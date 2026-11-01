@@ -19,7 +19,12 @@ export function resolveApiUrl(url: string): string {
     return path
   }
 
-  const envBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '')
+  let envBase = ''
+  try {
+    envBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') || ''
+  } catch {
+    envBase = ''
+  }
   if (envBase && /^https?:\/\//i.test(envBase)) {
     return `${envBase}${path}`
   }
