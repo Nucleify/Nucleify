@@ -1,4 +1,4 @@
-# <div align="center"> <img src="web/public/img/holo-cube.svg" width="88" alt="Nucleify"> <br> Nucleify <br> </div>
+# <div align="center"> <img src="web/public/img/logo.svg" width="88" alt="Nucleify"> <br> Nucleify <br> </div>
 <br>
 
 **Build once. Move to any framework.** Vue · React · Nuxt · Next · Astro · Svelte · Solid - without rewriting your product.
