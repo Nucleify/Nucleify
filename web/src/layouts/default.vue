@@ -19,41 +19,34 @@
 
     <main class="nuc-inner">
       <div class="nuc-scroller">
-        <p v-if="showPending" class="nuc-shell__status">Loading…</p>
-        <component
-          :is="resolveCmsSection(section.type)"
-          v-for="section in layoutSections"
-          :key="section.id"
-          v-bind="sectionBindAttrs(section)"
-        />
-        <p
-          v-for="section in unknownSections"
-          :key="`unknown-${section.id}`"
-          class="nuc-shell__unknown"
-        >
-          Unknown section type: {{ section.type }}
-        </p>
-        <slot v-if="!layoutSections.length && !showPending" />
+        <slot />
       </div>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'nuxt/app'
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 import {
-  isAutomatedAudit,
-  isKnownCmsSection,
-  NucRail,
-  NucShear,
   orderedKnownSections,
   railItemsFromSections,
-  resolveCmsSection,
-  resolveShellVariant,
-  sectionBindAttrs,
+} from '../cms/section_registry'
+import { usePublicShellPage } from '../composables/use_public_shell_page'
+import {
   useShellPage,
-} from '@web'
+  resolveShellVariant,
+} from '../composables/use_shell_page'
+import NucRail from '../templates/rail/index.vue'
+import NucShear from '../templates/shear/index.vue'
+import { isAutomatedAudit } from '../utils/is_lab'
+
+const route = useRoute()
+const slug = computed(() => String(route.params.slug || ''))
+// Layout renders before the page Suspense resolves — await the same shell
+// payload here so rail/shear are not SSR'd as empty comments.
+await usePublicShellPage(slug)
 
 const shell = useShellPage()
 
@@ -61,17 +54,11 @@ const layoutSections = computed(() =>
   orderedKnownSections(shell.value.sections)
 )
 const railSections = computed(() => railItemsFromSections(layoutSections.value))
-const unknownSections = computed(() =>
-  [...(shell.value.sections ?? [])].filter((s) => !isKnownCmsSection(s.type))
-)
 const shellVariant = computed(() =>
   resolveShellVariant(layoutSections.value, shell.value.variant)
 )
 const isPitch = computed(() => shellVariant.value === 'pitch')
 const isIrisEnabled = computed(() => shell.value.enableIris !== false)
-const showPending = computed(
-  () => shell.value.pending && layoutSections.value.length === 0
-)
 
 const rootEl = ref<HTMLElement | null>(null)
 const activeSection = ref(railSections.value[0]?.id ?? '')
@@ -85,7 +72,7 @@ const motionGate = { generation: 0 }
 function goToSection(id: string): void {
   if (!rootEl.value) return
   menuOpen.value = false
-  void import('@web').then(({ scrollSection }) => {
+  void import('../utils/shell_scroll').then(({ scrollSection }) => {
     scrollSection(rootEl.value!, id)
   })
 }
@@ -131,27 +118,24 @@ function bootMotion(): void {
       const html = document.documentElement
       html.classList.remove('nuc-iris-boot', 'nuc-iris-armed')
       delete html.dataset.nucIrisArmed
-      void import('@web').then(
-        ({
-          markShellScrollReady,
-          observeActiveSection,
-          bindSectionScrollGate,
-        }) => {
-          if (generation !== motionGate.generation) return
-          markShellScrollReady(root)
-          stopObserver = observeActiveSection(root, sectionIds, (id) => {
-            activeSection.value = id
-          })
-          stopScrollGate = bindSectionScrollGate(root)
-        }
-      )
+      void Promise.all([
+        import('../utils/shell_section_reveal'),
+        import('../utils/shell_scroll'),
+      ]).then(([{ markShellScrollReady }, scroll]) => {
+        if (generation !== motionGate.generation) return
+        markShellScrollReady(root)
+        stopObserver = scroll.observeActiveSection(root, sectionIds, (id) => {
+          activeSection.value = id
+        })
+        stopScrollGate = scroll.bindSectionScrollGate(root)
+      })
       return
     }
 
     if (isAutomatedAudit()) {
       markReady(root)
       root.classList.add('nuc-static')
-      void import('@web').then(({ observeActiveSection }) => {
+      void import('../utils/shell_scroll').then(({ observeActiveSection }) => {
         if (generation !== motionGate.generation) return
         stopObserver = observeActiveSection(root, sectionIds, (id) => {
           activeSection.value = id
@@ -160,17 +144,21 @@ function bootMotion(): void {
       return
     }
 
-    void import('@web')
-      .then((m) => {
+    void Promise.all([
+      import('../templates/shell_boot'),
+      import('../sections/thank_you/motion'),
+      import('../utils/play_shell_animations'),
+    ])
+      .then(([boot, thankYou, anim]) => {
         if (generation !== motionGate.generation) return
-        const boot =
+        const preset =
           shellVariant.value === 'thankYou'
-            ? m.thankYouShellBoot
+            ? thankYou.thankYouShellBoot
             : shellVariant.value === 'pitch'
-              ? m.pitchShellBoot
-              : m.productShellBoot
-        return m
-          .playShellAnimations(root, boot, {
+              ? boot.pitchShellBoot
+              : boot.productShellBoot
+        return anim
+          .playShellAnimations(root, preset, {
             enableIris: isIrisEnabled.value,
           })
           .then((stop) => {
@@ -187,20 +175,13 @@ function bootMotion(): void {
         markReady(root)
       })
 
-    void import('@web').then(({ whenShellReady }) => {
-      void whenShellReady(root).then(() => {
+    void import('../utils/shell_scroll').then((scroll) => {
+      void scroll.whenShellReady(root).then(() => {
         if (generation !== motionGate.generation) return
-        void import('@web').then(({ observeActiveSection }) => {
-          if (generation !== motionGate.generation) return
-          stopObserver = observeActiveSection(root, sectionIds, (id) => {
-            activeSection.value = id
-          })
+        stopObserver = scroll.observeActiveSection(root, sectionIds, (id) => {
+          activeSection.value = id
         })
-
-        void import('@web').then(({ bindSectionScrollGate }) => {
-          if (generation !== motionGate.generation) return
-          stopScrollGate = bindSectionScrollGate(root)
-        })
+        stopScrollGate = scroll.bindSectionScrollGate(root)
       })
     })
   })
@@ -239,20 +220,11 @@ onBeforeUnmount(() => {
 
 <style lang="scss">
 @import 'shell';
-</style>
 
-<style scoped>
-.nuc-shell__unknown,
-.nuc-shell__status {
+.nuc-shell__unknown {
   padding: 1rem 1.5rem;
   color: var(--shell-muted, #8a8a8a);
   font-family: ui-monospace, monospace;
   font-size: 0.85rem;
-}
-
-.nuc-shell__status {
-  min-height: 100%;
-  margin: 0;
-  background: var(--shell-bg, #03050c);
 }
 </style>

@@ -1,56 +1,56 @@
-import { type Component, defineAsyncComponent } from 'vue'
+import { type Component } from 'vue'
 
 import { isSectionVisible } from './use_section_props'
 
 import type { PageSection } from '@shared_modules'
 import { resolveSectionAnchor, SECTION_ANCHOR_BY_TYPE } from '@shared_modules'
+import AskSection from '../sections/ask/index.vue'
+import CloneSection from '../sections/clone/index.vue'
+import CloseSection from '../sections/close/index.vue'
+import CompilerDemoSection from '../sections/compiler_demo/index.vue'
 import HeroSection from '../sections/hero/index.vue'
 import IntroSection from '../sections/intro/index.vue'
+import PillarsSection from '../sections/pillars/index.vue'
+import PulseSection from '../sections/pulse/index.vue'
+import SavingsSection from '../sections/savings/index.vue'
+import StackSection from '../sections/stack/index.vue'
+import SurfaceSection from '../sections/surface/index.vue'
 import ThankYouSection from '../sections/thank_you/index.vue'
+import ThesisSection from '../sections/thesis/index.vue'
+import WedgeSection from '../sections/wedge/index.vue'
 
 export type CmsRailItem = {
   id: string
   label: string
 }
 
-/** Sync: iris/cipher boot needs these in DOM before layout `onMounted` plays motion. */
-const syncSections: Record<string, Component> = {
+/**
+ * Sync registry — async section components SSR as comment placeholders and
+ * break hydration against the client VDOM.
+ */
+const sectionsByType: Record<string, Component> = {
   'section.hero': HeroSection,
   'section.intro': IntroSection,
   'section.thank_you': ThankYouSection,
+  'section.pillars': PillarsSection,
+  'section.clone': CloneSection,
+  'section.stack': StackSection,
+  'section.compiler_demo': CompilerDemoSection,
+  'section.pulse': PulseSection,
+  'section.close': CloseSection,
+  'section.thesis': ThesisSection,
+  'section.savings': SavingsSection,
+  'section.wedge': WedgeSection,
+  'section.surface': SurfaceSection,
+  'section.ask': AskSection,
 }
-
-const loaders: Record<string, () => Promise<Component>> = {
-  'section.pillars': () => import('../sections/pillars/index.vue'),
-  'section.clone': () => import('../sections/clone/index.vue'),
-  'section.stack': () => import('../sections/stack/index.vue'),
-  'section.compiler_demo': () => import('../sections/compiler_demo/index.vue'),
-  'section.pulse': () => import('../sections/pulse/index.vue'),
-  'section.close': () => import('../sections/close/index.vue'),
-  'section.thesis': () => import('../sections/thesis/index.vue'),
-  'section.savings': () => import('../sections/savings/index.vue'),
-  'section.wedge': () => import('../sections/wedge/index.vue'),
-  'section.surface': () => import('../sections/surface/index.vue'),
-  'section.ask': () => import('../sections/ask/index.vue'),
-}
-
-const cache = new Map<string, Component>()
 
 export function resolveCmsSection(type: string): Component | undefined {
-  const sync = syncSections[type]
-  if (sync) return sync
-  const loader = loaders[type]
-  if (!loader) return undefined
-  let component = cache.get(type)
-  if (!component) {
-    component = defineAsyncComponent(loader)
-    cache.set(type, component)
-  }
-  return component
+  return sectionsByType[type]
 }
 
 export function isKnownCmsSection(type: string): boolean {
-  return Boolean(syncSections[type] || loaders[type])
+  return Boolean(sectionsByType[type])
 }
 
 export function orderedKnownSections(

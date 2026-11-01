@@ -30,6 +30,10 @@ make web                  # Nuxt product
 make vue / make solid / make svelte   # portable emit demos
 ```
 
+## Sync layout
+
+`compiler/src/sync/` is split by domain; import only via `compiler/src/sync` (barrel). See `.ai/docs/sync-module-layout.md`.
+
 ## Product convert
 
 | Item | Status |

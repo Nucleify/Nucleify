@@ -142,13 +142,17 @@
     padding: 0.65rem 0.7rem;
     border: 1px solid var(--shell-card-border);
     border-radius: 0.75rem;
+
+    /* Opaque fill under the stroke — transparent active bg + rotate makes corner ticks. */
     background: var(--shell-card-bg);
+    background-clip: padding-box;
     box-shadow: var(--shell-card-shadow);
     color: inherit;
     font: inherit;
     text-align: left;
     cursor: pointer;
     transform: translate3d(var(--sx), var(--sy), 0) rotate(var(--sr));
+    backface-visibility: hidden;
     transition:
       border-color 0.2s ease,
       background-color 0.2s ease,
@@ -220,7 +224,7 @@
     &.is-active {
       z-index: 5;
       border-color: color-mix(in srgb, var(--item-color) 58%, rgb(255 255 255 / 18%));
-      background: transparent;
+      background: color-mix(in srgb, var(--item-color) 8%, var(--shell-card-bg));
       box-shadow: 0 0 24px color-mix(in srgb, var(--item-color) 28%, transparent);
     }
   }

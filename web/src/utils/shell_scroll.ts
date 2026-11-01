@@ -25,6 +25,9 @@ export function isProgrammaticScroll(scroller: HTMLElement): boolean {
   return scroller.getAttribute(PROGRAMMATIC_ATTR) === '1'
 }
 
+/** @deprecated Prefer `isProgrammaticScroll`. */
+export const isHomeProgrammaticScroll = isProgrammaticScroll
+
 function getScroller(root: HTMLElement): HTMLElement {
   return root.querySelector<HTMLElement>('.nuc-scroller') ?? root
 }

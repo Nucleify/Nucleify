@@ -17,7 +17,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineAsyncComponent, type Component } from 'vue'
+import { computed, type Component } from 'vue'
+
+import HeroSection from '../sections/hero/index.vue'
+import PillarsSection from '../sections/pillars/index.vue'
 
 export type PageSection = {
   id: string
@@ -31,10 +34,8 @@ const props = defineProps<{
 }>()
 
 const registry: Record<string, Component> = {
-  'home.hero': defineAsyncComponent(() => import('../sections/hero/index.vue')),
-  'home.pillars': defineAsyncComponent(
-    () => import('../sections/pillars/index.vue')
-  ),
+  'home.hero': HeroSection,
+  'home.pillars': PillarsSection,
 }
 
 const ordered = computed(() =>

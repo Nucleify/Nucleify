@@ -38,14 +38,15 @@ type AnimeApi = {
   stagger: typeof import('animejs').stagger
 }
 
+/* Must match `.nuc-stack-item` --sx/--sy/--sr so settle does not jump. */
 const STACK_LATTICE_REST = [
-  { x: -8, y: 2, r: -3.5 },
-  { x: 12, y: -18, r: 3 },
-  { x: 6, y: 6, r: 2 },
-  { x: -6, y: -10, r: -2.5 },
-  { x: -14, y: 10, r: -2 },
-  { x: 10, y: 0, r: 3.5 },
-  { x: 0, y: 6, r: -1.5 },
+  { x: -4, y: 2, r: -2.5 },
+  { x: 6, y: -6, r: 2 },
+  { x: 3, y: 4, r: 1.5 },
+  { x: -3, y: -4, r: -1.5 },
+  { x: -6, y: 4, r: -1.5 },
+  { x: 6, y: 0, r: 2 },
+  { x: 0, y: 4, r: -1 },
 ] as const
 
 export const SHELL_SCROLL_READY = 'nuc-shell-scroll-ready'
@@ -366,7 +367,10 @@ async function bindShellSectionReveal(
       const stackLattice = qa(section, lattice)
       if (!stackMask.length && !stackLattice.length) return
 
+      let latticeSettled = false
       const settleStack = () => {
+        if (latticeSettled) return
+        latticeSettled = true
         settleMask(stackMask)
         for (const item of stackLattice) {
           item.style.opacity = '1'
@@ -375,6 +379,7 @@ async function bindShellSectionReveal(
           item.style.removeProperty('translate')
           item.style.removeProperty('rotate')
           item.style.removeProperty('scale')
+          item.style.removeProperty('will-change')
           item.classList.remove('nuc-anim-lattice')
         }
       }
@@ -383,18 +388,21 @@ async function bindShellSectionReveal(
         section,
         {
           prepare: () => {
+            latticeSettled = false
             for (const item of stackMask) prepareFadeWipe(item)
             stackLattice.forEach((item, index) => {
               const rest = STACK_LATTICE_REST[index] ?? STACK_LATTICE_REST[0]!
               item.classList.add('nuc-anim-lattice')
               item.style.opacity = '0'
-              item.style.transform = `translate3d(${rest.x * 5}px, ${rest.y + 64}px, 0) rotate(${rest.r * 2.4}deg) scale(0.84)`
+              // No scale — fractional scale + 1px border = flickering corners in Chrome.
+              item.style.transform = `translate3d(${rest.x * 5}px, ${rest.y + 64}px, 0) rotate(${rest.r * 2.4}deg)`
               item.style.filter = ''
               item.style.clipPath = ''
             })
           },
           settle: settleStack,
           play: (local) => {
+            latticeSettled = false
             const maskStagger = compact ? 60 : 100
             const maskDuration = compact ? 700 : 1150
             const spotlightIndex = stackMask.findIndex((el) =>
@@ -434,7 +442,6 @@ async function bindShellSectionReveal(
                   x: [rest.x * 5, rest.x],
                   y: [rest.y + 64, rest.y],
                   rotate: [rest.r * 2.4, rest.r],
-                  scale: [0.84, 1],
                   duration: latticeDuration,
                   delay: latticeStart + index * latticeStep,
                   ease: 'outElastic',
