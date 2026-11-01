@@ -66,10 +66,6 @@
             />
           </button>
         </div>
-
-        <ul class="nuc-home-hero-proof" aria-label="Highlights">
-          <li v-for="item in proof" :key="item">{{ item }}</li>
-        </ul>
       </div>
 
       <aside class="nuc-home-hero-panel is-slice" aria-label="Module slice">
@@ -83,17 +79,12 @@
 import { useRoute } from 'nuxt/app'
 import { computed } from 'vue'
 
-import {
-  homeDocsHref,
-  NUC_HOME_COPY,
-  NUC_HOME_HERO_PROOF,
-} from '../../constants/content'
+import { homeDocsHref, NUC_HOME_COPY } from '../../constants/content'
 import { scrollHomeSection } from '../../utils/observe_active_section'
 import NucHomeModuleBoard from '../core/module_board.vue'
 
 const copy = NUC_HOME_COPY
 const brandChars = [...copy.brand]
-const proof = NUC_HOME_HERO_PROOF
 const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
 

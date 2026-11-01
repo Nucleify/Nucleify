@@ -1,0 +1,8 @@
+---
+description: How the agent should write chat replies
+alwaysApply: true
+---
+
+# Replies
+
+Direct and concise. Lead with the verdict. Bold sparingly. Prefer 1–2 sentences per point; expand only when asked. No restating the task or “what won’t work” tangents.

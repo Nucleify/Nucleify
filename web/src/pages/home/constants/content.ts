@@ -185,6 +185,18 @@ export function homeDocsHref(
   return docsPageHref(lang, NUC_HOME_DOCS[page])
 }
 
+export function homeThankYouHref(lang: string): string {
+  return `/${lang}/thank-you`
+}
+
+export function homeHref(lang: string): string {
+  return `/${lang}/home`
+}
+
+export function homeInvestorHref(lang: string): string {
+  return `/${lang}/investor`
+}
+
 export const NUC_HOME_COPY = {
   brand: 'Nucleify',
   heroEyebrow: 'Migration is the product',
@@ -211,21 +223,21 @@ export const NUC_HOME_COPY = {
   pillarsEyebrow: 'Why Nucleify',
   pillarsTitle: 'Business stays. Stack moves.',
   pillarsSupport:
-    'Routes, composables, components - rewritten for Vue, then React, then whatever ships next. Nucleify ends that loop. Shared modules own the product. The compiler owns the move: emit UI, convert whole apps, import edits back. Same types. Same gateway. Seven frameworks.',
+    'Routes, composables, components - rewritten for Vue, then React, then whatever ships next. Nucleify ends that loop. Emit UI, convert whole apps, and pull edits back - same types, same gateway, across seven frameworks.',
   pillarsCta: 'Get running',
   pillarsShareUnit: 'top stacks',
   pillarsShareSource: 'Modern web. One emit surface.',
   stackEyebrow: 'Runtime surface',
-  stackTitle: 'Pick a framework. Keep the nucleus.',
+  stackTitle: 'Pick a framework.\nKeep the nucleus.',
   stackSupport:
-    'One domain. Product convert and portable emit fan the same nucleus into Vue, React, Nuxt, Next, Astro, Svelte, and Solid - full apps, not orphaned snippets.',
+    'Keep one product core, then land it on Vue, React, Nuxt, Next, Astro, Svelte, or Solid as a full app - not a pile of leftover snippets.',
   stackCta: 'See the emit',
   stackStageLabel: 'active framework',
   pulseEyebrow: 'Scale without rewrite',
   pulseTitleLead: 'Add frameworks.',
   pulseTitleTrail: 'Keep the cost flat.',
   pulseSupport:
-    'A new framework usually means another rewrite of the same product. Nucleify treats migration as the durable layer - ship the module once, convert the framework when buyers or hiring shift. Rewrite tax stays at ×1.',
+    'A new framework usually means rewriting the same product again. With Nucleify you ship the product once - when buyers or hiring force a stack change, you convert the shell, not the business. Rewrite tax stays at ×1.',
   pulseCta: 'Get in touch',
   pulseCompare:
     'Traditional cost grows with each framework. Nucleify keeps one product surface and moves the stack.',
@@ -254,7 +266,7 @@ export const NUC_HOME_COPY = {
   cloneTitleLead: 'Clone the nucleus.',
   cloneTitleTrail: 'Ship today.',
   cloneSupport:
-    'Three commands from the repo root. Then open localhost and read the docs - or ping us if you want in.',
+    'Four commands from the repo root.\nThen open localhost and read the docs - or ping us if you want in.',
   cloneCta: 'Read the docs',
   cloneCtaNext: 'Pick a framework',
   closeTitle: 'Get in touch.',
@@ -271,8 +283,7 @@ export const NUC_HOME_COPY = {
   compilerEmitLabel: 'emit',
   compilerCta: 'Read compiler docs',
   closeModalTitle: 'Start a conversation',
-  closeModalSupport:
-    'A short note on your project and timing is enough. We reply within 24h with a clear next step.',
+  closeModalSupport: 'A short note on your project and timing is enough.',
   closeNameLabel: 'Name / organisation',
   closeNamePlaceholder: 'Alex at Acme',
   closeEmailLabel: 'Work email',
@@ -289,13 +300,24 @@ export const NUC_HOME_COPY = {
   closeErrorEmail: 'Enter a valid email address.',
   closeErrorType: 'Pick what you need.',
   closeErrorMessage: 'Message is too long.',
-  closeTrust: ['Reply within 24h'],
+  thankYouEyebrow: 'Sent',
+  thankYouTitle: 'Thanks - we got it.',
+  thankYouSupport:
+    'We reply within 24h with a clear next step. Check spam if nothing lands.',
+  thankYouCta: 'Back to Nucleify',
+  thankYouInvestCta: 'Invest in us?',
+  thankYouCubeCaption: 'Nucleus online',
+  thankYouProof: ['Reply within 24h', 'Concrete next step', 'No spam'],
+  thankYouSeoTitle: 'Thank you - Nucleify',
+  thankYouSeoDescription:
+    'Your message was sent. Nucleify will reply within 24 hours.',
 } as const
 
 export const NUC_HOME_INSTALL_STEPS = [
   'git clone https://github.com/Nucleify/Nucleify.git',
-  'make run',
+  'make setup',
   'make web',
+  'make admin',
 ] as const
 
 /** Values stay API-stable; labels are developer-intent. */
@@ -304,12 +326,6 @@ export const NUC_HOME_CONTACT_TYPES = [
   { label: 'New site ready for migration', value: 'business' },
   { label: 'Migration support', value: 'blog' },
   { label: 'Contribute', value: 'help' },
-] as const
-
-export const NUC_HOME_HERO_PROOF = [
-  'Typed APIs',
-  'Portable UI',
-  'Supabase-ready',
 ] as const
 
 export interface NucHomeHeroShell {

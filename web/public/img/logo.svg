@@ -111,40 +111,20 @@
       <stop offset="100%" stop-color="#4c1d95" stop-opacity="0.03" />
     </linearGradient>
 
-    <linearGradient id="g-top-l" x1="38" y1="68" x2="100" y2="34" gradientUnits="userSpaceOnUse">
+    <!-- Face-ring strokes (closed paths) - one gradient per face -->
+    <linearGradient id="g-ring-top" x1="38" y1="68" x2="162" y2="68" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#22d3ee" />
-      <stop offset="100%" stop-color="#4ade80" />
-    </linearGradient>
-    <linearGradient id="g-top-r" x1="100" y1="34" x2="162" y2="68" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#4ade80" />
+      <stop offset="45%" stop-color="#4ade80" />
       <stop offset="100%" stop-color="#a855f7" />
     </linearGradient>
-    <linearGradient id="g-left-v" x1="38" y1="68" x2="38" y2="136" gradientUnits="userSpaceOnUse">
+    <linearGradient id="g-ring-left" x1="38" y1="68" x2="100" y2="170" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#67e8f9" />
-      <stop offset="100%" stop-color="#0891b2" />
+      <stop offset="55%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#818cf8" />
     </linearGradient>
-    <linearGradient id="g-right-v" x1="162" y1="68" x2="162" y2="136" gradientUnits="userSpaceOnUse">
+    <linearGradient id="g-ring-right" x1="162" y1="68" x2="100" y2="170" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#c084fc" />
-      <stop offset="100%" stop-color="#6d28d9" />
-    </linearGradient>
-    <linearGradient id="g-bot-l" x1="38" y1="136" x2="100" y2="170" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#22d3ee" />
-      <stop offset="100%" stop-color="#818cf8" />
-    </linearGradient>
-    <linearGradient id="g-bot-r" x1="162" y1="136" x2="100" y2="170" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#a855f7" />
-      <stop offset="100%" stop-color="#6366f1" />
-    </linearGradient>
-    <linearGradient id="g-near-l" x1="38" y1="68" x2="100" y2="102" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#22d3ee" />
-      <stop offset="100%" stop-color="#5eead4" />
-    </linearGradient>
-    <linearGradient id="g-near-r" x1="162" y1="68" x2="100" y2="102" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#a855f7" />
-      <stop offset="100%" stop-color="#818cf8" />
-    </linearGradient>
-    <linearGradient id="g-near-b" x1="100" y1="102" x2="100" y2="170" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2dd4bf" />
+      <stop offset="55%" stop-color="#a855f7" />
       <stop offset="100%" stop-color="#6366f1" />
     </linearGradient>
 
@@ -173,37 +153,52 @@
   </g>
 
   <!-- BACK spokes: dark, thin, NO glow -->
-  <g stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" opacity="0.92">
+  <g stroke-linecap="butt" stroke-linejoin="miter" stroke-width="1.35" opacity="0.92">
     <path d="M100 34 L100 102" stroke="url(#g-back-t)" />
     <path d="M38 136 L100 102" stroke="url(#g-back-bl)" />
     <path d="M162 136 L100 102" stroke="url(#g-back-br)" />
   </g>
 
-  <!-- FRONT glow + crisp stroke -->
-  <g stroke-linecap="round" stroke-linejoin="round">
-    <g opacity="0.95">
-      <path d="M38 68 L100 34" stroke="#4ade80" stroke-width="5" filter="url(#glow-green)" opacity="0.55" />
-      <path d="M100 34 L162 68" stroke="#a855f7" stroke-width="5" filter="url(#glow-purple)" opacity="0.5" />
-      <!-- outer verticals - same strength as other lit edges -->
-      <path d="M38 68 L38 136" stroke="#22d3ee" stroke-width="5" filter="url(#glow-side)" opacity="0.5" />
-      <path d="M162 68 L162 136" stroke="#a855f7" stroke-width="5" filter="url(#glow-side)" opacity="0.5" />
-      <path d="M38 136 L100 170" stroke="#22d3ee" stroke-width="5" filter="url(#glow-cyan)" opacity="0.45" />
-      <path d="M162 136 L100 170" stroke="#a855f7" stroke-width="5" filter="url(#glow-purple)" opacity="0.45" />
-      <path d="M38 68 L100 102" stroke="#22d3ee" stroke-width="4.5" filter="url(#glow-cyan)" opacity="0.5" />
-      <path d="M162 68 L100 102" stroke="#a855f7" stroke-width="4.5" filter="url(#glow-purple)" opacity="0.5" />
-      <path d="M100 102 L100 170" stroke="#2dd4bf" stroke-width="4.5" filter="url(#glow-core)" opacity="0.45" />
-    </g>
+  <!--
+    Neon via layered wider strokes (no Gaussian on corners — blur turns miters into orbs).
+    Outer hex once; front ridges run corner-to-center so glow meets the three dual-ring vertices.
+  -->
+  <g fill="none" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="8">
+    <path
+      d="M100 34 L162 68 L162 136 L100 170 L38 136 L38 68 Z"
+      stroke="#67e8f9"
+      stroke-width="7"
+      opacity="0.16"
+    />
+    <path
+      d="M100 34 L162 68 L162 136 L100 170 L38 136 L38 68 Z"
+      stroke="#67e8f9"
+      stroke-width="4.2"
+      opacity="0.28"
+    />
+    <path d="M38 68 L100 102" stroke="#22d3ee" stroke-width="7" opacity="0.14" />
+    <path d="M38 68 L100 102" stroke="#22d3ee" stroke-width="4.2" opacity="0.26" />
+    <path d="M162 68 L100 102" stroke="#a855f7" stroke-width="7" opacity="0.14" />
+    <path d="M162 68 L100 102" stroke="#a855f7" stroke-width="4.2" opacity="0.26" />
+    <path d="M100 170 L100 102" stroke="#67e8f9" stroke-width="7" opacity="0.14" />
+    <path d="M100 170 L100 102" stroke="#67e8f9" stroke-width="4.2" opacity="0.26" />
 
-    <g stroke-width="2.15">
-      <path d="M38 68 L100 34" stroke="url(#g-top-l)" />
-      <path d="M100 34 L162 68" stroke="url(#g-top-r)" />
-      <path d="M38 68 L38 136" stroke="url(#g-left-v)" />
-      <path d="M162 68 L162 136" stroke="url(#g-right-v)" />
-      <path d="M38 136 L100 170" stroke="url(#g-bot-l)" />
-      <path d="M162 136 L100 170" stroke="url(#g-bot-r)" />
-      <path d="M38 68 L100 102" stroke="url(#g-near-l)" />
-      <path d="M162 68 L100 102" stroke="url(#g-near-r)" />
-      <path d="M100 102 L100 170" stroke="url(#g-near-b)" />
-    </g>
+    <!-- Closed hex seals outer miters; colored segments sit on top -->
+    <path
+      d="M100 34 L162 68 L162 136 L100 170 L38 136 L38 68 Z"
+      stroke="#67e8f9"
+      stroke-width="2.2"
+      opacity="0.7"
+    />
+    <path d="M38 68 L100 34" stroke="#4ade80" stroke-width="2.2" />
+    <path d="M100 34 L162 68" stroke="#c084fc" stroke-width="2.2" />
+    <path d="M162 68 L162 136" stroke="#a855f7" stroke-width="2.2" />
+    <path d="M162 136 L100 170" stroke="#818cf8" stroke-width="2.2" />
+    <path d="M100 170 L38 136" stroke="#22d3ee" stroke-width="2.2" />
+    <path d="M38 136 L38 68" stroke="#22d3ee" stroke-width="2.2" />
+
+    <path d="M38 68 L100 102" stroke="url(#g-ring-left)" stroke-width="2.2" />
+    <path d="M162 68 L100 102" stroke="url(#g-ring-right)" stroke-width="2.2" />
+    <path d="M100 170 L100 102" stroke="#67e8f9" stroke-width="2.2" />
   </g>
 </svg>

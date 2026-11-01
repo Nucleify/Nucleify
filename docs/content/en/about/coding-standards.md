@@ -190,9 +190,8 @@ Husky runs these on pre-commit via `.config/bash/hook-checks.sh` (pre-push is a 
 
 ## Cursor rules & agents
 
-- Monorepo rules: `.cursor/rules/`
-- Package rules: `{pkg}/.config/rules/`
-- Sync: `pnpm sync-rules`
+- Source of truth: `{pkg}/.config/rules/` and root `.config/rules/` → synced to `.cursor/rules/` via `pnpm sync-rules` (runs on `prepare`)
+- Clones pick up agent behaviour (commits, PRs, design, replies) from project rules — do **not** paste the same text into Cursor User Rules (duplicates tokens)
 - Feature workflow agents: `web/.cursor/agents/`
 
 ---

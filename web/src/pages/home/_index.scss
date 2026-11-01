@@ -24,19 +24,18 @@ html.nuc-iris-boot .nuc-home:not(.nuc-home-ready) {
 
   @media (min-width: 960px) {
     .nuc-home-hero-eyebrow,
-    .nuc-home-hero-cta,
-    .nuc-home-hero-proof,
-    /* Investor deal panel stays painted - iris clip alone covers → reveals it. */
-    .nuc-home-hero-panel:not(.is-deal) {
+    .nuc-home-hero-panel {
       opacity: 0;
     }
 
-    .nuc-home-hero-headline {
-      clip-path: inset(0 100% 0 0);
+    /* CTA row: wipe the wrapper (keeps button borders whole). */
+    .nuc-home-hero-cta {
+      opacity: 0;
     }
 
+    .nuc-home-hero-headline,
     .nuc-home-hero-support {
-      clip-path: inset(100% 0 0 0);
+      opacity: 0;
     }
   }
 }
@@ -599,16 +598,17 @@ html.nuc-iris-boot .nuc-home.nuc-home-ready {
 .nuc-home-anim-mask {
   --home-wipe: 0;
 
+  /* Wider feather so the wipe edge is not a razor cut through glyphs. */
   mask-image: linear-gradient(
     90deg,
-    rgb(0 0 0 / 100%) calc(var(--home-wipe) * 145% - 45%),
-    rgb(0 0 0 / 0%) calc(var(--home-wipe) * 145% + 8%)
+    rgb(0 0 0 / 100%) calc(var(--home-wipe) * 130% - 55%),
+    rgb(0 0 0 / 0%) calc(var(--home-wipe) * 130% + 35%)
   );
   /* stylelint-disable-next-line property-no-vendor-prefix -- Safari mask wipe */
   -webkit-mask-image: linear-gradient(
     90deg,
-    rgb(0 0 0 / 100%) calc(var(--home-wipe) * 145% - 45%),
-    rgb(0 0 0 / 0%) calc(var(--home-wipe) * 145% + 8%)
+    rgb(0 0 0 / 100%) calc(var(--home-wipe) * 130% - 55%),
+    rgb(0 0 0 / 0%) calc(var(--home-wipe) * 130% + 35%)
   );
   mask-size: 100% 100%;
   mask-repeat: no-repeat;
@@ -616,7 +616,6 @@ html.nuc-iris-boot .nuc-home.nuc-home-ready {
 
 .nuc-home-anim-mask,
 .nuc-home-anim-mask * {
-  box-shadow: none !important;
   text-shadow: none !important;
 }
 

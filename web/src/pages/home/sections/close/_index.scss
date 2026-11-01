@@ -7,11 +7,11 @@
   padding: 4.75rem var(--home-pad) 4.5rem;
   box-sizing: border-box;
 
-  /* Clip pitch/commerce slide; allow select panel when the form is open. */
-  overflow: hidden;
+  /* Keep section overflow visible so wipe enter is not hard-cropped on the left. */
+  overflow: visible;
 
   &.is-form {
-    overflow: hidden visible;
+    overflow: visible;
   }
 
   &-stage {
@@ -22,48 +22,63 @@
     width: 100%;
     min-height: 14rem;
     isolation: isolate;
+
+    /* Both panels share one cell - height stays max(pitch, form), no shrink jump. */
+    overflow: hidden;
+
+    /* Steady wipe travel room - never toggle on is-form (that resized the card). */
+    padding-inline: 2rem;
+    margin-inline: -2rem;
+  }
+
+  &.is-form &-stage {
+    overflow: visible;
   }
 
   &-pitch,
   &-commerce {
     grid-area: 1 / 1;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    place-self: center center;
   }
 
   &-pitch {
     z-index: 2;
-    width: 100%;
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
     opacity: 1;
     visibility: visible;
 
-    /* Entering pitch (Back): hold until the form has fully faded out. */
+    /* Entering pitch (Back): wait for form fade, then slow opacity 0→1. */
     transition:
-      transform 0.38s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
-      opacity 0.34s cubic-bezier(0.22, 1, 0.36, 1) 0.3s,
-      visibility 0s linear 0.3s;
+      transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.22s,
+      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.22s,
+      visibility 0s linear 0.22s;
   }
 
   &-commerce {
     z-index: 0;
-    place-self: center;
     width: min(100%, 42rem);
     max-width: 42rem;
     margin-inline: auto;
     padding: 1.25rem 1.2rem 1.35rem;
     border: 1px solid var(--home-card-border);
     border-radius: 1.15rem;
-    background: var(--home-card-bg);
+
+    /* Opaque - translucent card-bg showed pitch through during crossfade. */
+    background: #080b12;
     box-shadow: var(--home-card-shadow);
-    transform: translateX(14%);
+    transform: translate3d(1.5rem, 0, 0);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 
     /* Leaving form (Back): fade out first; pitch waits on its own delay. */
     transition:
-      transform 0.2s cubic-bezier(0.4, 0, 1, 1),
-      opacity 0.18s cubic-bezier(0.4, 0, 1, 1),
-      visibility 0s linear 0.18s;
+      transform 0.22s cubic-bezier(0.4, 0, 1, 1),
+      opacity 0.16s cubic-bezier(0.4, 0, 1, 1),
+      visibility 0s linear 0.16s;
 
     @media (min-width: $md) {
       padding: 1.5rem 1.55rem 1.55rem;
@@ -72,26 +87,31 @@
 
   &.is-form &-pitch {
     z-index: 0;
-    transform: translateX(-16%);
+    transform: translate3d(-1.25rem, 0, 0);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+
+    /* Leave fast so pitch is gone before the form starts coming in. */
     transition:
-      transform 0.24s cubic-bezier(0.4, 0, 1, 1),
-      opacity 0.2s cubic-bezier(0.4, 0, 1, 1),
-      visibility 0s linear 0.2s;
+      transform 0.1s cubic-bezier(0.4, 0, 1, 1),
+      opacity 0.08s cubic-bezier(0.4, 0, 1, 1),
+      visibility 0s linear 0.08s;
   }
 
   &.is-form &-commerce {
     z-index: 3;
-    transform: translateX(0);
+    overflow: visible;
+    transform: translate3d(0, 0, 0);
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
+
+    /* Enter after pitch has cleared - no overlap. */
     transition:
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
-      opacity 0.36s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
-      visibility 0s linear 0s;
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.18s,
+      opacity 0.36s cubic-bezier(0.22, 1, 0.36, 1) 0.18s,
+      visibility 0s linear 0.18s;
   }
 
   &-panel {
@@ -143,9 +163,7 @@
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.75rem 1.25rem;
     align-items: start;
-    margin-bottom: 1.25rem;
-    padding-bottom: 1.1rem;
-    border-bottom: 1px solid rgb(255 255 255 / 7%);
+    margin-bottom: 0.75rem;
   }
 
   &-commerce-title {
@@ -159,8 +177,12 @@
   }
 
   &-commerce-support {
+    display: block;
+    width: 100%;
     max-width: none;
-    margin: 0.45rem 0 0;
+    margin: 0 0 1.25rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid rgb(255 255 255 / 7%);
     color: var(--home-muted);
     font-size: 0.9rem;
     line-height: 1.5;
@@ -203,7 +225,8 @@
     box-shadow: none;
 
     nui-input-text,
-    nui-select {
+    nui-select,
+    nui-textarea {
       --nui-card-background: color-mix(in srgb, var(--home-accent) 7%, #0a0c12);
       --nui-content-background: color-mix(in srgb, var(--home-accent) 11%, #0e1018);
       --nui-card-border: color-mix(in srgb, var(--home-accent) 28%, rgb(255 255 255 / 8%));
@@ -212,6 +235,7 @@
       --nui-primary-color: var(--home-accent);
       --nui-primary-focus-color: hsl(var(--rainbow-hue) 55% 52% / 45%);
       --nui-primary-highlight-color: hsl(var(--rainbow-hue) 55% 52% / 12%);
+      --nui-bg-dark-color: #0a0c12;
       --border-radius-sm: 0.75rem;
     }
 
@@ -225,7 +249,8 @@
     display: grid;
     gap: 0.85rem;
 
-    @media (min-width: $md) {
+    /* Email + type side by side from tablet up; note stays full width. */
+    @media (min-width: $sm) {
       grid-template-columns: 1fr 1fr;
 
       .nuc-home-close-field-wide {
@@ -238,14 +263,17 @@
     display: grid;
     gap: 0.4rem;
 
-    /* nui-select panel is absolute inside the host; raise the field so the
-       following textarea does not paint over the open options list. */
+    /* Keep nui-select panel above the following textarea field. */
     &:has(nui-select) {
       position: relative;
-      z-index: 5;
+      z-index: 4;
     }
 
-    &:has(.nuc-home-close-textarea) {
+    &.is-select-open {
+      z-index: 8;
+    }
+
+    &:has(nui-textarea) {
       position: relative;
       z-index: 1;
     }
@@ -259,37 +287,6 @@
     letter-spacing: 0.1em;
     line-height: 1.3;
     text-transform: uppercase;
-  }
-
-  &-textarea {
-    width: 100%;
-    min-height: 5.5rem;
-    margin: 0;
-    padding: 0.75rem 0.85rem;
-    border: 1px solid color-mix(in srgb, var(--home-accent) 28%, rgb(255 255 255 / 8%));
-    border-radius: 0.75rem;
-    background: color-mix(in srgb, var(--home-accent) 7%, #0a0c12);
-    color: var(--home-fg);
-    font-family: 'Instrument Sans', system-ui, sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.45;
-    resize: none;
-    box-sizing: border-box;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-
-    &::placeholder {
-      color: var(--home-dim);
-    }
-
-    &:focus {
-      outline: none;
-      border-color: color-mix(in srgb, var(--home-accent) 55%, rgb(255 255 255 / 18%));
-      box-shadow: 0 0 0 1px hsl(var(--rainbow-hue) 55% 52% / 28%);
-    }
-
-    &[aria-invalid='true'] {
-      border-color: #f87171;
-    }
   }
 
   &-error {
@@ -316,10 +313,26 @@
     align-items: center;
     justify-content: flex-end;
     gap: 0.65rem;
-    margin-left: auto;
+    width: 100%;
+    margin-left: 0;
 
-    nui-button[variant='primary'] {
-      min-width: 11rem;
+    /* Beat shadow :host { inline-block } so fluid/width:100% can fill the row. */
+    nui-button {
+      display: block !important;
+      box-sizing: border-box;
+      width: 100% !important;
+      max-width: none;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+
+    @media (min-width: $md) {
+      width: 14rem;
+      margin-left: auto;
+
+      nui-button {
+        flex: none;
+      }
     }
   }
 
@@ -360,6 +373,9 @@
     gap: 1rem;
     margin-top: auto;
     padding-top: 2rem;
+
+    /* Clear mobile dock / home indicator so Docs + GitHub stay tappable. */
+    padding-bottom: 50px;
     color: var(--home-dim);
     font-size: 0.8rem;
     border-top: 1px solid var(--home-holo-line-soft);
@@ -392,18 +408,106 @@
   }
 
   @media (max-width: $md) {
-    &.is-form &-pitch {
-      transform: translateY(-8%);
+    /* Fill the snap page so footer margin-top:auto pins to the bottom. */
+    min-height: 100%;
+    padding: 1.35rem var(--home-pad) 0;
+
+    &-stage {
+      flex: 1 1 auto;
+      min-height: 0;
+      place-items: center;
+
+      /* No padding toggle - card width must stay stable during slide. */
+      padding-inline: 0;
+      margin-inline: 0;
+      overflow: visible;
     }
 
+    /*
+     * Pitch layout stays centered even while is-form fades it out.
+     * Gating on :not(.is-form) snapped alignment left mid-transition.
+     */
+    .nuc-home-close-panel {
+      flex-direction: column;
+      place-content: center;
+      place-items: center;
+      gap: 1.25rem;
+      text-align: center;
+    }
+
+    .nuc-home-close-copy {
+      max-width: 100%;
+    }
+
+    .nuc-home-close-cta {
+      width: 100%;
+      margin-left: 0;
+      justify-content: center;
+
+      nui-button {
+        width: auto;
+        max-width: 100%;
+      }
+    }
+
+    &-footer {
+      margin-top: auto;
+      padding-top: 1.25rem;
+      padding-bottom: 50px;
+    }
+
+    &.is-form {
+      padding-top: 1.1rem;
+      padding-bottom: 0;
+
+      .nuc-home-close-footer {
+        margin-top: auto;
+        padding-top: 1.25rem;
+        padding-bottom: 50px;
+      }
+    }
+
+    /* Mobile: vertical slide only - fixed width, no layout morph. */
     &-commerce {
+      width: 100%;
       max-width: none;
-      padding: 1.1rem 1rem 1.2rem;
-      transform: translateY(8%);
+      justify-self: stretch;
+      padding: 1.15rem 1.05rem 1.25rem;
+      transform: translate3d(0, 1.5rem, 0);
+    }
+
+    &.is-form &-pitch {
+      transform: translate3d(0, -0.75rem, 0);
+      transition:
+        transform 0.1s cubic-bezier(0.4, 0, 1, 1),
+        opacity 0.08s cubic-bezier(0.4, 0, 1, 1),
+        visibility 0s linear 0.08s;
     }
 
     &.is-form &-commerce {
-      transform: translateY(0);
+      width: 100%;
+      max-width: none;
+      justify-self: stretch;
+      transform: translate3d(0, 0, 0);
+      transition:
+        transform 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.18s,
+        opacity 0.36s cubic-bezier(0.22, 1, 0.36, 1) 0.18s,
+        visibility 0s linear 0.18s;
+    }
+
+    &-commerce-head {
+      gap: 0.65rem 0.85rem;
+      margin-bottom: 0.65rem;
+    }
+
+    &-commerce-title {
+      font-size: clamp(1.2rem, 5.5vw, 1.45rem);
+    }
+
+    &-commerce-support {
+      margin-bottom: 1rem;
+      padding-bottom: 0.9rem;
+      font-size: 0.86rem;
     }
 
     &-foot {
@@ -412,12 +516,9 @@
     }
 
     &-actions {
+      display: flex;
       width: 100%;
       margin-left: 0;
-
-      nui-button {
-        width: 100%;
-      }
     }
   }
 }

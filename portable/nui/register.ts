@@ -20,6 +20,7 @@ export function ensureNuiRegistered(): Promise<void> {
           import('nucleify-ui/components/nui-dialog'),
           import('nucleify-ui/components/nui-input-text'),
           import('nucleify-ui/components/nui-select'),
+          import('nucleify-ui/components/nui-textarea'),
           import('nucleify-ui/components/nui-toast'),
         ])
       })

@@ -1,15 +1,17 @@
-# Contact form - nui input events and select stacking
+# Contact form - nui fields
 
-Home close and investor ask share the same contact desk UI.
+Home close and investor ask use Lit `nui-input-text`, `nui-select`, and `nui-textarea` (registered in `portable/nui/register.ts`).
 
-## Email / name not sticking
+## Email value sticking
 
-`nui-input-text` dispatches a composed `CustomEvent('input', { detail: { value } })`, and the native shadow `input` also bubbles to Vue. Handlers that read `event.detail.value` without filtering see the native event second and set the ref to `undefined`, so client validation marks email invalid after submit.
+Do **not** bind `:value` on the email (or other) hosts while typing. Vue re-renders with a stale empty ref wipe the Lit host. Fields stay uncontrolled; `formKey` remounts them on reset. On submit, `syncFromHosts()` reads live `.value` from each host via `nuiHostValue`.
 
-Fix: `nuiValueFromEvent` in `web/src/pages/home/utils/submit_contact_form.ts` - accept only `CustomEvent` with a string `detail.value`.
+`nuiValueFromEvent` still updates refs for validation UX (clearing errors on input).
 
-## Select options under the note field
+## Lit boolean `invalid`
 
-`nui-select` opens an absolute panel inside the host. The following textarea field painted on top of the open list. `.nuc-home-close-field:has(nui-select)` is raised above the textarea field; form-open allows vertical overflow so the panel is not clipped.
+Use `:invalid.prop="Boolean(...)"`, not `:invalid="..."`. Vue may set the `invalid="false"` attribute on custom elements; Lit Boolean properties treat any attribute presence as `true`, so every field with `:invalid` stayed red even with no errors.
 
-Options are bound with `:options.prop` so Lit receives a real array on custom elements.
+## Select stacking
+
+`nui-select` opens an absolute panel in the host. The type field gets `z-index` (higher while `is-select-open`). Form/commerce use `overflow: visible` when the desk is open so the panel is not clipped. Shared theme tokens set focus `box-shadow` via `--nui-primary-focus-color`.

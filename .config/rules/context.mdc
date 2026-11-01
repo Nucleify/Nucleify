@@ -1,0 +1,14 @@
+---
+description: Lean context and cost habits — avoid bulk-loading rules and agents
+alwaysApply: true
+---
+
+# Context budget
+
+- **Short chats** - one task per chat; do not drag long threads.
+- **Narrow tools** - no `@` whole dirs, no monorepo/log/CI dumps.
+- **Ask for Q&A** - `/ask` or Ask mode; Agent only when editing.
+- **One agent** - no spare subagents; no parallel explore+implement+review unless asked.
+- Do **not** bulk-read `.config/rules/`, `.cursor/rules/`, agents, or skills “just in case”.
+- Trust glob-applied rules. Open a rule/skill only when in scope or invoked.
+- Commits / PRs / landing design live in project rules - not duplicated User Rules.

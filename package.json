@@ -48,7 +48,9 @@
     "supabase:migrations:apply:linked": "bash .config/bash/apply-module-migrations.sh linked",
     "supabase:setup:local": "pnpm supabase:migrations:apply:local && pnpm supabase:factories:apply:local && pnpm supabase:seeders:apply:local",
     "supabase:setup:linked": "pnpm supabase:migrations:apply:linked && pnpm supabase:factories:apply:linked && pnpm supabase:seeders:apply:linked",
-    "wrangler": "pnpm -s --filter @nucleify/web exec wrangler deploy"
+    "wrangler": "pnpm -s --filter @nucleify/web exec wrangler deploy",
+    "deploy:web": "pnpm -s --filter @nucleify/web build && pnpm -s --filter @nucleify/web exec wrangler deploy",
+    "deploy:admin": "pnpm -s --filter @nucleify/admin build && pnpm -s --filter @nucleify/admin exec wrangler deploy"
   },
   "imports": {
     "#nuc-compiler/runtime": "./compiler/runtime/index.ts"

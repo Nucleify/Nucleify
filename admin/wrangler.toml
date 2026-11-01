@@ -1,0 +1,12 @@
+name = "nucleify-admin"
+main = ".output/server/index.mjs"
+compatibility_date = "2026-04-06"
+account_id = "7c5285307cec0088f9f25c2388e5558e"
+
+# Add custom routes when the admin host is ready (e.g. admin.nucleify.io).
+# routes = [
+#   { pattern = "admin.nucleify.io/*", zone_name = "nucleify.io" },
+# ]
+
+[site]
+bucket = ".output/public"

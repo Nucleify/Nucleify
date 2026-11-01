@@ -166,6 +166,15 @@ export function redirectTargetForPath(pathname: string): string | null {
     return null
   }
 
+  // Exact living thank-you (post contact form).
+  if (
+    LOCALE_CODES.has(first) &&
+    parts[1] === 'thank-you' &&
+    parts.length === 2
+  ) {
+    return null
+  }
+
   // Bare locale is handled by routeRules.
   if (LOCALE_CODES.has(first) && parts.length === 1) return null
 
@@ -196,13 +205,19 @@ export function redirectTargetForPath(pathname: string): string | null {
     return `/${first}/investor`
   }
 
+  // `/{lang}/thank-you/...` extras - collapse to thank-you root.
+  if (LOCALE_CODES.has(first) && parts[1] === 'thank-you' && parts.length > 2) {
+    return `/${first}/thank-you`
+  }
+
   // `/{lang}/services|legal|about-us|...` - dead marketing tree.
   if (
     LOCALE_CODES.has(first) &&
     parts[1] &&
     parts[1] !== 'home' &&
     parts[1] !== 'docs' &&
-    parts[1] !== 'investor'
+    parts[1] !== 'investor' &&
+    parts[1] !== 'thank-you'
   ) {
     return homeForLocale(first)
   }

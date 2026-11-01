@@ -1,31 +1,17 @@
 ---
-description: Commit message language and what not to reference
-alwaysApply: true
+description: Git commit safety and message style — use when creating commits
+alwaysApply: false
 ---
 
 # Commits
 
-## Language
+Commit **only** when the user asks. Never update git config; never `--force` to main/master; never `--no-verify` / skip hooks unless asked; never `-i` interactive git.
 
-- Commit **subject and body: English only**. Never Polish (or other languages) in `git commit` messages.
-- Chat with the user may stay in the user's language; that does not apply to commits.
+**Amend** only if: user asked (or hook auto-fixed staged files), HEAD is yours this chat, and not pushed. Failed/rejected hook → new commit, never amend.
 
-## Do not reference workflow artefacts
+1. Parallel: `git status`, `git diff` (staged+unstaged), `git log -8 --oneline`.
+2. Stage this batch only — never `.env` / secrets (warn if asked).
+3. HEREDOC message: English only; `feat:`/`fix:`/`chore:`/`docs:`; 1–2 sentences **why**; no `plan.md` / tor / `Tryb A/B` / `Faza` / `DoD` / `option C`.
+4. `git status` after.
 
-- Do **not** mention `plan.md`, `.ai/specs/plan.md`, “tor A/B”, pipeline skill names, or other internal planning paths in commit messages.
-- Do **not** use product-language bans from `product-language.mdc` (`Tryb A/B`, `Faza …`, `DoD`, `option C`, …) in commit subject/body.
-- Commits describe the product/repo change and **why**, not how the agent planned it.
-
-```text
-# ❌ BAD
-docs: align paths (tor A z plan.md)
-chore: follow plan.md cleanup
-
-# ✅ GOOD
-docs: align product convert paths to web-next and note shell outputs
-```
-
-## Style (unchanged)
-
-- Conventional prefixes: `feat:` / `fix:` / `chore:` / `docs:` (optional scope, e.g. `fix(web): …`)
-- 1–2 sentences on **why**; HEREDOC for the message body
+Empty tree → no empty commit. Push only if asked.

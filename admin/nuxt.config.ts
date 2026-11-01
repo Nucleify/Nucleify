@@ -8,4 +8,7 @@ export default defineNuxtConfig({
   alias: {
     'portable/nui': resolve(process.cwd(), '../portable/nui'),
   },
+  nitro: {
+    preset: process.env.NITRO_PRESET || 'cloudflare',
+  },
 })
