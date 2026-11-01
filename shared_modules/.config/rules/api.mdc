@@ -4,7 +4,7 @@ globs: shared_modules/*/supabase/**,web/src/server/**,shared_modules/nuc_api/**
 alwaysApply: false
 ---
 
-# API — shared_modules
+# API - shared_modules
 
 Backend logic in `shared_modules/nuc_*/supabase/`. Gateway dispatches to handlers.
 

@@ -4,7 +4,7 @@ globs: shared_modules/**/*.{ts,tsx,vue}
 alwaysApply: false
 ---
 
-# TypeScript — shared_modules
+# TypeScript - shared_modules
 
 - Strict mode; relative imports within a module
 - Do not import from app packages (`web`, `admin`, `docs`, `compiler`)

@@ -24,7 +24,7 @@ make web
 
 Visit [http://localhost:3000/en/home](http://localhost:3000/en/home).
 
-The landing page source lives in `web/src/pages/home/` — a set of section components composed by `web/src/pages/home/index.vue`. Routes are thin wrappers under `web/src/pages/[lang]/`:
+The landing page source lives in `web/src/pages/home/` - a set of section components composed by `web/src/pages/home/index.vue`. Routes are thin wrappers under `web/src/pages/[lang]/`:
 
 ```vue
 <!-- web/src/pages/[lang]/home.vue -->
@@ -71,7 +71,7 @@ Four modules register automatically at app startup in `web/src/plugins/modules.t
 - `nuc_dark_mode`
 - `nuc_languages`
 
-`nuc_api` and `nuc_stores` are imported where needed — no global plugin registration.
+`nuc_api` and `nuc_stores` are imported where needed - no global plugin registration.
 
 ---
 
@@ -146,7 +146,7 @@ See [Overriding](/en/docs/core-concepts/overriding).
 
 ### Author a portable component
 
-Create `Foo.nuc.tsx` next to where it will be consumed. Run `pnpm compiler:build`. Commit the `.nuc.tsx` and generated siblings (`.vue`, React/Solid `.tsx`, Svelte `.svelte`, `.css`). Do not hand-edit emit as source of truth — use `pnpm compiler -- import --from=vue|react|solid|svelte` if you edited emit.
+Create `Foo.nuc.tsx` next to where it will be consumed. Run `pnpm compiler:build`. Commit the `.nuc.tsx` and generated siblings (`.vue`, React/Solid `.tsx`, Svelte `.svelte`, `.css`). Do not hand-edit emit as source of truth - use `pnpm compiler -- import --from=vue|react|solid|svelte` if you edited emit.
 
 ---
 

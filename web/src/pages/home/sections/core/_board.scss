@@ -26,6 +26,7 @@
   &-readout {
     --core-readout-ease: cubic-bezier(0.16, 1, 0.3, 1);
 
+    display: none;
     position: relative;
     min-width: 0;
     padding: 0.15rem 0 0.2rem 0.85rem;
@@ -33,6 +34,10 @@
     border-left: 1px solid hsl(var(--rainbow-hue) 70% 58% / 22%);
     background: none;
     box-shadow: none;
+
+    @media (min-width: $md) {
+      display: block;
+    }
 
     &::before {
       content: '';
@@ -78,7 +83,7 @@
     color: var(--home-fg);
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: clamp(0.98rem, 2.6vw, 1.25rem);
-    font-weight: 650;
+    font-weight: 700;
     letter-spacing: -0.045em;
     line-height: 1.15;
     overflow-wrap: anywhere;
@@ -117,11 +122,15 @@
   }
 
   &-picks {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     gap: 0.45rem 0.7rem;
     margin-top: 0.85rem;
     padding-top: 0.7rem;
+
+    @media (min-width: $md) {
+      display: flex;
+    }
   }
 
   &-pick {

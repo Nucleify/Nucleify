@@ -1,4 +1,4 @@
-# Docs content — migrate-any-stack (audit)
+# Docs content - migrate-any-stack (audit)
 
 `docs/content/{en,pl}` (16 pages each) aligned with repo reality and README messaging:
 

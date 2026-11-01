@@ -10,12 +10,12 @@ alwaysApply: false
 
 `.husky/pre-commit` → `.config/bash/hook-checks.sh` (parity with GHA health + bash):
 
-1. `pnpm btest` — bash suite (`bash.yaml`)
-2. `pnpm check` — Biome
-3. `pnpm typeslint` — `tsc` for `@nucleify/web`
-4. `pnpm slint` — Stylelint
-5. `pnpm build` — Nuxt production build (`health-check` build job)
-6. `pnpm tests` — Vitest
+1. `pnpm btest` - bash suite (`bash.yaml`)
+2. `pnpm check` - Biome
+3. `pnpm typeslint` - `tsc` for `@nucleify/web`
+4. `pnpm slint` - Stylelint
+5. `pnpm build` - Nuxt production build (`health-check` build job)
+6. `pnpm tests` - Vitest
 
 Compiler unit / convert / emit checks live in the private `nucleify-compiler` repo (and optional local `pnpm compiler:*` when the submodule is checked out). They are not part of public CI or pre-commit.
 

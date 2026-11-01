@@ -34,7 +34,7 @@ Providing this helps reviewers apply the right level of scrutiny.
 ## Asking questions, making proposals
 
 Open a [GitHub discussion](https://github.com/Nucleify/Nucleify/discussions) for questions, proposals, or feedback.  
-Our [Discord server](https://discord.gg/NuShhvUE) is open for ad-hoc discussion — all activity is moderated under the [Code of Conduct](./CODE_OF_CONDUCT.md).
+Our [Discord server](https://discord.gg/NuShhvUE) is open for ad-hoc discussion - all activity is moderated under the [Code of Conduct](./CODE_OF_CONDUCT.md).
 
 ---
 
@@ -82,11 +82,11 @@ Tests live in `web/vitests/` and `shared_modules/nuc_*/vitests/`.
 
 `pre-commit` and `pre-push` hooks run automatically:
 
-1. `pnpm btest` — bash test suite
-2. `pnpm check` — Biome lint
-3. `pnpm typeslint` — TypeScript type check
-4. `pnpm slint` — Stylelint (SCSS)
-5. `pnpm tests` — Vitest
+1. `pnpm btest` - bash test suite
+2. `pnpm check` - Biome lint
+3. `pnpm typeslint` - TypeScript type check
+4. `pnpm slint` - Stylelint (SCSS)
+5. `pnpm tests` - Vitest
 
 ---
 

@@ -2,11 +2,11 @@ import { isHomeProgrammaticScroll } from './observe_active_section'
 import { scrollSectionOffset } from './scroll_section_offset'
 
 const END_SLACK_PX = 12
-/** Only gate when clearly taller than one viewport — near-fit panels stay snappy. */
+/** Only gate when clearly taller than one viewport - near-fit panels stay snappy. */
 const TALL_EXTRA_PX = 48
 /** Match `.nuc-home-panel` mobile `height: auto` (`$md: 768px`). */
 const MOBILE_MQ = '(max-width: 767px)'
-/** Stylesheet default — never persist inline `none` from a prior hold. */
+/** Stylesheet default - never persist inline `none` from a prior hold. */
 const SNAP_CSS = 'y mandatory'
 
 function getScroller(root: HTMLElement): HTMLElement {
@@ -67,7 +67,7 @@ export function bindHomeSectionScrollGate(root: HTMLElement): () => void {
 
   const applySnap = (on: boolean) => {
     if (on) {
-      // Always write the CSS value — removeProperty alone can leave a stale
+      // Always write the CSS value - removeProperty alone can leave a stale
       // inline `none` from rail/loop restores that blocked section slides.
       if (scroller.style.scrollSnapType === SNAP_CSS && !snapHeld) return
       scroller.style.scrollSnapType = SNAP_CSS
@@ -121,7 +121,7 @@ export function bindHomeSectionScrollGate(root: HTMLElement): () => void {
 
     const max = sectionMaxScroll(scroller, section)
     if (scroller.scrollTop >= max - END_SLACK_PX) {
-      // At bottom — ensure snap is on before this wheel can advance.
+      // At bottom - ensure snap is on before this wheel can advance.
       applySnap(true)
       return
     }

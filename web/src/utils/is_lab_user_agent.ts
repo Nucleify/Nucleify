@@ -4,7 +4,7 @@ const LAB_UA =
 
 /**
  * PSI spoofs `navigator.userAgent` to a normal mobile Chrome string, but the
- * HTTP request UA still contains `Chrome-Lighthouse` — detect labs from that.
+ * HTTP request UA still contains `Chrome-Lighthouse` - detect labs from that.
  */
 export function isLabUserAgent(ua: string | null | undefined): boolean {
   return Boolean(ua && LAB_UA.test(ua))

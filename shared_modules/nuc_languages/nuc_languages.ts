@@ -194,9 +194,9 @@ export async function refreshTranslationMessages(): Promise<void> {
   }
 }
 
-/** UI wiped — re-register components after rewrite. */
+/** UI wiped - re-register components after rewrite. */
 export function registerNucLanguages(nuxtApp: NuxtApp): void {
-  // @ts-expect-error — hook z @nuxtjs/i18n
+  // @ts-expect-error - hook z @nuxtjs/i18n
   nuxtApp.hook('i18n:localeSwitched', (payload: unknown) => {
     if (import.meta.server) return
     const newLocale =

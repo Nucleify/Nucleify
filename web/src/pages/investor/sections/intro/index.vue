@@ -13,7 +13,13 @@
 
         <div class="nuc-home-hero-mark">
           <h1 id="nuc-investor-brand" class="nuc-home-hero-brand">
-            {{ copy.brand }}
+            <span
+              v-for="(ch, i) in brandChars"
+              :key="`${ch}-${i}`"
+              class="nuc-home-hero-brand-ch"
+              :class="{ 'is-last': i === brandChars.length - 1 }"
+              >{{ ch }}</span
+            >
           </h1>
         </div>
 
@@ -104,6 +110,7 @@ import { scrollHomeSection } from '../../../home/utils/observe_active_section'
 import NucHomeHoloCube from '../../../home/sections/core/holo_cube.vue'
 
 const copy = NUC_INVESTOR_COPY
+const brandChars = [...copy.brand]
 const glance = NUC_INVESTOR_GLANCE
 const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')

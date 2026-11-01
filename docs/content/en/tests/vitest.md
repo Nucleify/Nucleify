@@ -1,6 +1,6 @@
 # Vitest
 
-Nucleify uses [Vitest](https://vitest.dev) for unit and integration tests across the monorepo. Root config defines two projects — **web** (Nuxt environment) and **shared** (happy-dom) — plus a separate compiler test suite.
+Nucleify uses [Vitest](https://vitest.dev) for unit and integration tests across the monorepo. Root config defines two projects - **web** (Nuxt environment) and **shared** (happy-dom) - plus a separate compiler test suite.
 
 ---
 
@@ -119,14 +119,14 @@ Console log suppression is enabled (`onConsoleLog: () => false`) to reduce noise
 
 Husky pre-commit runs (via `.config/bash/hook-checks.sh`), in order:
 
-1. `pnpm btest` — bash test suite
-2. `pnpm check` — Biome
-3. `pnpm typeslint` — TypeScript (`web/tsconfig.json`)
-4. `pnpm slint` — Stylelint on SCSS
-5. `pnpm build` — Nuxt production build
-6. `pnpm tests` — Vitest
-7. `pnpm compiler:test` — compiler unit tests
-8. `pnpm compiler:check` — emit fingerprints
+1. `pnpm btest` - bash test suite
+2. `pnpm check` - Biome
+3. `pnpm typeslint` - TypeScript (`web/tsconfig.json`)
+4. `pnpm slint` - Stylelint on SCSS
+5. `pnpm build` - Nuxt production build
+6. `pnpm tests` - Vitest
+7. `pnpm compiler:test` - compiler unit tests
+8. `pnpm compiler:check` - emit fingerprints
 
 Pre-push is a no-op. Fix failures locally before committing.
 
@@ -151,6 +151,6 @@ pnpm test:watch
 
 ## Related docs
 
-- [Modules](/en/docs/core-concepts/modules) — `vitests/` folder convention
-- [Coding Standards](/en/docs/about/coding-standards) — naming and structure rules
-- [Compiler](/en/docs/core-concepts/compiler) — `pnpm compiler:test`
+- [Modules](/en/docs/core-concepts/modules) - `vitests/` folder convention
+- [Coding Standards](/en/docs/about/coding-standards) - naming and structure rules
+- [Compiler](/en/docs/core-concepts/compiler) - `pnpm compiler:test`

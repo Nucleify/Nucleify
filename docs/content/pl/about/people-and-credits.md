@@ -16,7 +16,7 @@ Ludzie i projekty, które czynią Nucleify możliwym.
 
 ## Kontrybutorzy
 
-Dziękujemy wszystkim, którzy przyczynili się do Nucleify! (Tylko osoby — boty automatyzacji pomijamy.)
+Dziękujemy wszystkim, którzy przyczynili się do Nucleify! (Tylko osoby - boty automatyzacji pomijamy.)
 
 | Imię i nazwisko | GitHub |
 |-----------------|--------|
@@ -78,9 +78,9 @@ Nucleify stoi na projektach open source:
 
 | Idea | Źródło |
 |------|--------|
-| Feature-Sliced Design | [feature-sliced.design](https://feature-sliced.design) — układ modułów domena-first |
-| Atomic Design | [Brad Frost](https://atomicdesign.bradfrost.com) — hierarchia SCSS w `nuc_colors` |
-| Portable UI / IR | `@nucleify/compiler` — `*.nuc.tsx` → Vue + React + Solid + Svelte |
+| Feature-Sliced Design | [feature-sliced.design](https://feature-sliced.design) - układ modułów domena-first |
+| Atomic Design | [Brad Frost](https://atomicdesign.bradfrost.com) - hierarchia SCSS w `nuc_colors` |
+| Portable UI / IR | `@nucleify/compiler` - `*.nuc.tsx` → Vue + React + Solid + Svelte |
 
 ---
 

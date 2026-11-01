@@ -1,4 +1,4 @@
-// Vitest barrel — re-exports shared_modules utils without Nuxt/Vue plugin registrations.
+// Vitest barrel - re-exports shared_modules utils without Nuxt/Vue plugin registrations.
 // flashToast/closeToast/setToastInstance come from nuc_api via the nuc_api/index export below.
 export * from './nuc_api/index'
 export * from './nuc_colors/index'

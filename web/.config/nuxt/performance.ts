@@ -2,7 +2,7 @@
 export const performanceConfig = {
 	critters: {
 		config: {
-			// Keep leftover sheets as normal stylesheets — preload:"media" FOUCs on first paint.
+			// Keep leftover sheets as normal stylesheets - preload:"media" FOUCs on first paint.
 			preload: false,
 			inlineFonts: false,
 			preloadFonts: true,

@@ -1,6 +1,6 @@
 # Moduły
 
-Nucleify dostarcza **sześć eksportowanych** modułów funkcjonalnych z `@nucleify/shared-modules`. Każdy to samodzielny pakiet domenowy z narzędziami frontendowymi, opcjonalnymi handlerami API Supabase, migracjami, typami i testami — konsumowany przez `web/`, `admin/`, `docs/` i generowane shelle (Next, Solid, Svelte, …), żeby migrować frameworki bez przepisywania biznesu.
+Nucleify dostarcza **sześć eksportowanych** modułów funkcjonalnych z `@nucleify/shared-modules`. Każdy to samodzielny pakiet domenowy z narzędziami frontendowymi, opcjonalnymi handlerami API Supabase, migracjami, typami i testami - konsumowany przez `web/`, `admin/`, `docs/` i generowane shelle (Next, Solid, Svelte, …), żeby migrować frameworki bez przepisywania biznesu.
 
 Nie ma katalogu `modules/` w root. Aplikacje importują przez ścieżki względne lub alias Nuxt `modules` → `shared_modules/`. Flow auth żyje w `nuc_api` (nie ma osobnego `nuc_users` / `nuc_auth`).
 
@@ -74,7 +74,7 @@ export default defineNuxtPlugin({
 })
 ```
 
-`nuc_api` i `nuc_stores` są importowane na żądanie — bez globalnego pluginu.
+`nuc_api` i `nuc_stores` są importowane na żądanie - bez globalnego pluginu.
 
 Tłumaczenia ładują się też przez ścieżkę pluginu Nuxt w konfiguracji:
 
@@ -89,9 +89,9 @@ plugins: [
 
 ## Zasady importów
 
-**Wewnątrz modułu** — tylko importy względne. Nigdy z `web/`, `admin/` ani `docs/`.
+**Wewnątrz modułu** - tylko importy względne. Nigdy z `web/`, `admin/` ani `docs/`.
 
-**Z aplikacji** — alias lub ścieżka względna:
+**Z aplikacji** - alias lub ścieżka względna:
 
 ```typescript
 // przez alias (Nuxt)
@@ -101,7 +101,7 @@ import { useDarkMode } from 'modules/nuc_dark_mode/utils/use_dark_mode'
 import { apiRequest } from '../../../shared_modules/nuc_api/utils/api_request'
 ```
 
-**Publiczne API** — eksport przez `index.ts` i root barrel `shared_modules/index.ts`. Nie importuj `from 'nucleify'` w modułach (zależność cykliczna).
+**Publiczne API** - eksport przez `index.ts` i root barrel `shared_modules/index.ts`. Nie importuj `from 'nucleify'` w modułach (zależność cykliczna).
 
 ---
 
@@ -141,7 +141,7 @@ export async function handleExampleApi(ctx: ApiContext): Promise<ApiHandlerResul
 }
 ```
 
-Kod klienta woła `/api/example/...` przez helpery request `nuc_api` — nie service keys Supabase w przeglądarce.
+Kod klienta woła `/api/example/...` przez helpery request `nuc_api` - nie service keys Supabase w przeglądarce.
 
 ---
 
@@ -172,9 +172,9 @@ Skrypty scalają SQL modułów przez `.config/bash/merge-module-supabase-sql.sh`
 
 Moduły wspierające konwersję produktu eksponują odpowiedniki `.react.ts`:
 
-- `index.react.ts` — barrel React
-- `utils/use_*.react.ts` — hooki React odzwierciedlające composables Vue
-- `types/interfaces.react.ts` — typy React gdy potrzebne
+- `index.react.ts` - barrel React
+- `utils/use_*.react.ts` - hooki React odzwierciedlające composables Vue
+- `types/interfaces.react.ts` - typy React gdy potrzebne
 
 Kompilator i convert produktu używają ich przy emisji powłok Next, Solid i Svelte.
 
@@ -199,4 +199,4 @@ Zob. [Feature-Sliced Design](/pl/docs/core-concepts/feature-sliced-design) dla u
 
 - [Feature-Sliced Design](/pl/docs/core-concepts/feature-sliced-design)
 - [Supabase](/pl/docs/configuration/supabase)
-- [Nadpisywanie](/pl/docs/core-concepts/overriding) — patch modułów bez edycji upstream
+- [Nadpisywanie](/pl/docs/core-concepts/overriding) - patch modułów bez edycji upstream

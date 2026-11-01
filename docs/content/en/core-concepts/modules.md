@@ -1,6 +1,6 @@
 # Modules
 
-Nucleify ships **six exported** feature modules from `@nucleify/shared-modules`. Each is a self-contained domain package with frontend utilities, optional Supabase API handlers, migrations, types, and tests — consumed by `web/`, `admin/`, `docs/`, and generated shells (Next, Solid, Svelte, …) so you can migrate frameworks without rewriting the business.
+Nucleify ships **six exported** feature modules from `@nucleify/shared-modules`. Each is a self-contained domain package with frontend utilities, optional Supabase API handlers, migrations, types, and tests - consumed by `web/`, `admin/`, `docs/`, and generated shells (Next, Solid, Svelte, …) so you can migrate frameworks without rewriting the business.
 
 There is no root-level `modules/` folder. Apps import via relative paths or the Nuxt alias `modules` → `shared_modules/`. Auth flows live inside `nuc_api` (there is no separate `nuc_users` / `nuc_auth` package).
 
@@ -74,7 +74,7 @@ export default defineNuxtPlugin({
 })
 ```
 
-`nuc_api` and `nuc_stores` are imported on demand — no global plugin.
+`nuc_api` and `nuc_stores` are imported on demand - no global plugin.
 
 Translations also load via a Nuxt plugin path in config:
 
@@ -89,9 +89,9 @@ plugins: [
 
 ## Import rules
 
-**Inside a module** — relative imports only. Never import from `web/`, `admin/`, or `docs/`.
+**Inside a module** - relative imports only. Never import from `web/`, `admin/`, or `docs/`.
 
-**From an app** — use the alias or relative path:
+**From an app** - use the alias or relative path:
 
 ```typescript
 // via alias (Nuxt)
@@ -101,7 +101,7 @@ import { useDarkMode } from 'modules/nuc_dark_mode/utils/use_dark_mode'
 import { apiRequest } from '../../../shared_modules/nuc_api/utils/api_request'
 ```
 
-**Public surface** — export through `index.ts` and the root barrel `shared_modules/index.ts`. Do not import `from 'nucleify'` inside modules (circular dependency).
+**Public surface** - export through `index.ts` and the root barrel `shared_modules/index.ts`. Do not import `from 'nucleify'` inside modules (circular dependency).
 
 ---
 
@@ -141,7 +141,7 @@ export async function handleExampleApi(ctx: ApiContext): Promise<ApiHandlerResul
 }
 ```
 
-Client code calls `/api/example/...` through `nuc_api` request helpers — not Supabase service keys in the browser.
+Client code calls `/api/example/...` through `nuc_api` request helpers - not Supabase service keys in the browser.
 
 ---
 
@@ -172,9 +172,9 @@ Scripts merge all module SQL via `.config/bash/merge-module-supabase-sql.sh`.
 
 Modules that support product convert expose `.react.ts` siblings:
 
-- `index.react.ts` — React barrel
-- `utils/use_*.react.ts` — React hooks mirroring Vue composables
-- `types/interfaces.react.ts` — React-specific types when needed
+- `index.react.ts` - React barrel
+- `utils/use_*.react.ts` - React hooks mirroring Vue composables
+- `types/interfaces.react.ts` - React-specific types when needed
 
 The compiler and product convert use these when emitting Next, Solid, and Svelte product shells.
 
@@ -199,4 +199,4 @@ See [Feature-Sliced Design](/en/docs/core-concepts/feature-sliced-design) for ar
 
 - [Feature-Sliced Design](/en/docs/core-concepts/feature-sliced-design)
 - [Supabase](/en/docs/configuration/supabase)
-- [Overriding](/en/docs/core-concepts/overriding) — patch module files without editing upstream
+- [Overriding](/en/docs/core-concepts/overriding) - patch module files without editing upstream

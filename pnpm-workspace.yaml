@@ -9,7 +9,7 @@ packages:
   - "web-solid"
   - "admin-solid"
 
-# pnpm-only (npm ignores this file — avoids unknown .npmrc key warnings)
+# pnpm-only (npm ignores this file - avoids unknown .npmrc key warnings)
 publicHoistPattern:
   - "*"
 autoInstallPeers: true

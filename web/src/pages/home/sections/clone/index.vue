@@ -6,8 +6,11 @@
   >
     <div class="nuc-home-clone-copy">
       <p class="nuc-home-eyebrow">{{ copy.cloneEyebrow }}</p>
-      <h2 id="nuc-home-clone-title" class="nuc-home-title">
-        {{ copy.cloneTitle }}
+      <h2 id="nuc-home-clone-title" class="nuc-home-title nuc-home-clone-title">
+        <span class="nuc-home-clone-title-line">{{ copy.cloneTitleLead }}</span>
+        <span class="nuc-home-clone-title-line is-nowrap"
+          >{{ copy.cloneTitleTrail }}</span
+        >
       </h2>
       <p class="nuc-home-support">{{ copy.cloneSupport }}</p>
       <div class="nuc-home-clone-actions">

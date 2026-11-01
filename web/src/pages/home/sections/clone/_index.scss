@@ -11,6 +11,17 @@
   .nuc-home-clone-copy {
     .nuc-home-support {
       max-width: 34rem;
+      white-space: pre-line;
+    }
+  }
+
+  .nuc-home-clone-title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    &-line.is-nowrap {
+      white-space: nowrap;
     }
   }
 

@@ -41,8 +41,14 @@ describe('smashed_url', () => {
     expect(redirectTargetForPath('/pl/home')).toBeNull()
     expect(redirectTargetForPath('/en/investor')).toBeNull()
     expect(redirectTargetForPath('/pl/investor')).toBeNull()
+    expect(redirectTargetForPath('/en/thank-you')).toBeNull()
+    expect(redirectTargetForPath('/pl/thank-you')).toBeNull()
     expect(redirectTargetForPath('/_nuxt/entry.js')).toBeNull()
     expect(redirectTargetForPath('/api/test')).toBeNull()
+  })
+
+  it('collapses thank-you extras to the thank-you root', () => {
+    expect(redirectTargetForPath('/en/thank-you/extra')).toBe('/en/thank-you')
   })
 
   it('sends legacy same-host docs paths to docs.nucleify.io', () => {

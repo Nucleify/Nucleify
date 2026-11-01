@@ -16,7 +16,7 @@ export type SetupNuiOptions = {
 
 const SHELL_CLASSES = new Set(['nuc-nuxt', 'nuc-next'])
 
-/** Stable order: shell then `p-dark` — matches Next root layout (avoids hydration mismatch). */
+/** Stable order: shell then `p-dark` - matches Next root layout (avoids hydration mismatch). */
 function applyShellClasses(
   el: Element,
   shell: string,
@@ -45,7 +45,9 @@ function applySetup(opts: SetupNuiOptions): void {
   const shell = opts.palette === 'next' ? 'nuc-next' : 'nuc-nuxt'
 
   if (opts.loadFonts !== false) {
-    void import('./fonts.css')
+    void import('./fonts').then(({ ensureGoogleFontsLinked }) => {
+      ensureGoogleFontsLinked()
+    })
   }
 
   applyShellClasses(document.documentElement, shell, syncDark, mode === 'dark')

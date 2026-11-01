@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Shared modules
 
-Packages in `shared_modules/nuc_*` — absorbed into monorepo (not git submodules).
+Packages in `shared_modules/nuc_*` - absorbed into monorepo (not git submodules).
 
 Barrel: `shared_modules/index.ts`
 Plugin registration (web): `web/src/plugins/modules.ts` → `registerNuc*(app)`

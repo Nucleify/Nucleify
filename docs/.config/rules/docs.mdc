@@ -1,5 +1,5 @@
 ---
-description: Docs Astro app — conventions and structure
+description: Docs Astro app - conventions and structure
 globs: docs/**
 alwaysApply: false
 ---

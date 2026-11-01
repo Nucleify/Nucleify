@@ -1,7 +1,7 @@
 /**
  * Shell → nucleify-ui token bridge.
  * Lit `nui-*` reads `--nui-*`. Product shells use `.nuc-nuxt` / `.nuc-next`.
- * No components here — only CSS variables.
+ * No components here - only CSS variables.
  */
 
 .nuc-nuxt {

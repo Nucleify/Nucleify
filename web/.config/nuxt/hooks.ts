@@ -97,7 +97,7 @@ function injectFontPreloadsIntoServerBundle(
 	return patched;
 }
 
-/** Runs after worker emit — public-assets is too early on Cloudflare. */
+/** Runs after worker emit - public-assets is too early on Cloudflare. */
 export function injectFontPreloadsFromOutput(nitro: {
 	options: { output: { publicDir: string; serverDir: string } };
 }): void {

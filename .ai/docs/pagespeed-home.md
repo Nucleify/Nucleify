@@ -1,4 +1,4 @@
-# PageSpeed — home `/en/home`
+# PageSpeed - home `/en/home`
 
 ## Mobile UX (no jump)
 - Scroller keeps **`y mandatory`** section slides; tall-section gate never leaves inline `none` stuck.
@@ -17,10 +17,10 @@
 - **First visit:** paint open (`--home-iris: 165%`).
 
 ## Auto-refresh (do not regress)
-- Nuxt `experimental.checkOutdatedBuildInterval: false` — no hourly `/_nuxt/builds/latest.json` poll.
-- Nuxt `experimental.emitRouteChunkError: false` + `appManifest: false` — default chunk-reload was `location.reload()` on `vite:preloadError` (flaky mobile → ~10s reload loop via `nuxt:reload` TTL).
+- Nuxt `experimental.checkOutdatedBuildInterval: false` - no hourly `/_nuxt/builds/latest.json` poll.
+- Nuxt `experimental.emitRouteChunkError: false` + `appManifest: false` - default chunk-reload was `location.reload()` on `vite:preloadError` (flaky mobile → ~10s reload loop via `nuxt:reload` TTL).
 - Client plugin `no_preload_reload.client.ts` always `preventDefault()` on `vite:preloadError`.
-- No scroll-past-end loop — home/investor stop at the last section.
+- No scroll-past-end loop - home/investor stop at the last section.
 
 ## Out of repo
 Disable Cloudflare Web Analytics (beacon) in the CF dashboard if it remains on the path.

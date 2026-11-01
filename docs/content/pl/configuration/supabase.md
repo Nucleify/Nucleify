@@ -2,7 +2,7 @@
 
 Nucleify używa [Supabase](https://supabase.com) do PostgreSQL, Auth, Storage i Edge Functions. Schemat bazy i seedery są **własnością modułów funkcjonalnych** w `shared_modules/nuc_*/supabase/` i scalane na poziomie monorepo pod `supabase/`.
 
-Dostęp serwerowy z Nuxt idzie przez bramkę API Nitro — nie przez bezpośrednie wywołania service-role z przeglądarki. To samo dotyczy wygenerowanych shelli (Next, Solid, Svelte): współdzielą tę samą instancję Supabase i ten sam model modułów.
+Dostęp serwerowy z Nuxt idzie przez bramkę API Nitro - nie przez bezpośrednie wywołania service-role z przeglądarki. To samo dotyczy wygenerowanych shelli (Next, Solid, Svelte): współdzielą tę samą instancję Supabase i ten sam model modułów.
 
 ---
 
@@ -41,8 +41,8 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 SUPABASE_EDGE_BASE=
 ```
 
-- **`SUPABASE_KEY`** — eksponowany klientowi przez `runtimeConfig.public`
-- **`SUPABASE_SERVICE_ROLE_KEY`** — tylko serwer, używany przez bramkę Nitro
+- **`SUPABASE_KEY`** - eksponowany klientowi przez `runtimeConfig.public`
+- **`SUPABASE_SERVICE_ROLE_KEY`** - tylko serwer, używany przez bramkę Nitro
 
 ---
 
@@ -83,9 +83,9 @@ SQL modułów scala się do projektu Supabase monorepo skryptami bash w `.config
 
 Implementacja:
 
-- `.config/bash/merge-module-supabase-sql.sh` — zbiera SQL modułów
-- `.config/bash/apply-module-migrations.sh` — uruchamia migracje
-- `.config/bash/apply-module-sql.sh` — uruchamia factories/seeders
+- `.config/bash/merge-module-supabase-sql.sh` - zbiera SQL modułów
+- `.config/bash/apply-module-migrations.sh` - uruchamia migracje
+- `.config/bash/apply-module-sql.sh` - uruchamia factories/seeders
 
 ---
 
@@ -104,7 +104,7 @@ export async function handleExampleApi(ctx: ApiContext): Promise<ApiHandlerResul
 }
 ```
 
-Zwróć `apiNotHandled()`, gdy prefiks ścieżki nie pasuje — bramka próbuje kolejnego handlera.
+Zwróć `apiNotHandled()`, gdy prefiks ścieżki nie pasuje - bramka próbuje kolejnego handlera.
 
 ### Trasy z auth
 
@@ -177,12 +177,12 @@ curl http://localhost:3000/api/colors/…   # trasy konkretnego modułu
 
 ## Katalog monorepo `supabase/`
 
-Top-level `supabase/` trzyma config projektu, scalony output migracji i wspólną konfigurację edge — wypełniany skryptami merge ze źródeł modułów.
+Top-level `supabase/` trzyma config projektu, scalony output migracji i wspólną konfigurację edge - wypełniany skryptami merge ze źródeł modułów.
 
 ---
 
 ## Powiązana dokumentacja
 
-- [Moduły](/pl/docs/core-concepts/modules) — struktura modułu i rejestracja bramki
-- [Zmienne środowiskowe](/pl/docs/configuration/environment) — zmienne Supabase
-- [Web & Admin](/pl/docs/configuration/web) — punkt wejścia bramki Nitro
+- [Moduły](/pl/docs/core-concepts/modules) - struktura modułu i rejestracja bramki
+- [Zmienne środowiskowe](/pl/docs/configuration/environment) - zmienne Supabase
+- [Web & Admin](/pl/docs/configuration/web) - punkt wejścia bramki Nitro

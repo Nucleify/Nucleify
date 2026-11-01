@@ -1,6 +1,6 @@
 # Overrides
 
-Monorepo override layer. Each app/package has its own folder — put files that mirror the original path inside the matching package.
+Monorepo override layer. Each app/package has its own folder - put files that mirror the original path inside the matching package.
 
 ```txt
 overrides/

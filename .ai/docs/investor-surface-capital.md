@@ -1,4 +1,4 @@
-# Investor Surface — coverage strip
+# Investor Surface - coverage strip
 
 ## Change
 Coverage is a full-width **tab strip** (4 surfaces) with a sliding accent thumb and a single **detail stage** below (large index, title, outcome, description, proof). Dial + accordion ledger removed.

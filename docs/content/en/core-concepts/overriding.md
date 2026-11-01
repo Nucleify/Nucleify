@@ -10,7 +10,7 @@ Overrides are **Nuxt-only**. They do not apply to the compiler import cycle, Ast
 
 1. Mirror the original file path under `overrides/{package}/`
 2. Nuxt dev/build scans `overrides/` at startup
-3. When a match exists, the override **fully replaces** the original — no merge, no partial patch
+3. When a match exists, the override **fully replaces** the original - no merge, no partial patch
 
 ```txt
 Original:  web/src/composables/useAuth.ts
@@ -73,7 +73,7 @@ Original:  docs/src/layouts/DocsLayout.astro
 Override:  overrides/docs/src/layouts/DocsLayout.astro
 ```
 
-Note: Astro override resolution depends on your docs build setup — verify in dev after adding the file.
+Note: Astro override resolution depends on your docs build setup - verify in dev after adding the file.
 
 ---
 
@@ -83,7 +83,7 @@ When behavior differs from what you expect in source:
 
 1. Check `overrides/{package}/` for a path matching the file you are reading
 2. Temporarily rename or remove the override to confirm it is the active version
-3. Remember: overrides shadow **entire files** — a one-line change still requires copying the full file
+3. Remember: overrides shadow **entire files** - a one-line change still requires copying the full file
 
 ---
 
@@ -97,22 +97,22 @@ When behavior differs from what you expect in source:
 | Environment-specific config | No | Root `.env`, `web/.config/nuxt/runtime.ts` |
 | Database schema | No | Module migrations in `shared_modules/nuc_*/supabase/` |
 
-\*Unless you add separate override tooling for converted shells — not part of the default Nuxt override scanner.
+\*Unless you add separate override tooling for converted shells - not part of the default Nuxt override scanner.
 
 ---
 
 ## Best practices
 
-1. **Keep overrides small in count** — many overrides make upgrades hard
-2. **Document why** — add a comment at the top of override files explaining the fork reason
-3. **Prefer modules** — if multiple apps need the change, extend `shared_modules/` instead
-4. **Sync upstream** — when merging upstream Nucleify changes, diff override files against originals
-5. **Do not commit secrets** — overrides are source files; use `.env` for keys
+1. **Keep overrides small in count** - many overrides make upgrades hard
+2. **Document why** - add a comment at the top of override files explaining the fork reason
+3. **Prefer modules** - if multiple apps need the change, extend `shared_modules/` instead
+4. **Sync upstream** - when merging upstream Nucleify changes, diff override files against originals
+5. **Do not commit secrets** - overrides are source files; use `.env` for keys
 
 ---
 
 ## Related docs
 
-- [Monorepo Layout](/en/docs/core-concepts/monorepo) — `overrides/` in context
-- [Modules](/en/docs/core-concepts/modules) — when to extend a module vs override
-- [Compiler](/en/docs/core-concepts/compiler) — overrides excluded from import cycle
+- [Monorepo Layout](/en/docs/core-concepts/monorepo) - `overrides/` in context
+- [Modules](/en/docs/core-concepts/modules) - when to extend a module vs override
+- [Compiler](/en/docs/core-concepts/compiler) - overrides excluded from import cycle

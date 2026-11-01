@@ -37,8 +37,8 @@ Nigdy nie commituj `.env`. Szablony są w `web/.config/`:
 | Zmienna | Wymagane | Opis |
 |---------|----------|------|
 | `SUPABASE_URL` | Tak (dla tras API) | URL projektu |
-| `SUPABASE_KEY` | Klient | Klucz anon/public — bezpieczny w przeglądarce przez runtime config |
-| `SUPABASE_SERVICE_ROLE_KEY` | Serwer | Service role — **nigdy** nie eksponuj klientowi |
+| `SUPABASE_KEY` | Klient | Klucz anon/public - bezpieczny w przeglądarce przez runtime config |
+| `SUPABASE_SERVICE_ROLE_KEY` | Serwer | Service role - **nigdy** nie eksponuj klientowi |
 | `SUPABASE_EDGE_BASE` | Opcjonalnie | Bazowy URL Edge Functions (domyślnie z `SUPABASE_URL`) |
 
 Bramka Nitro w `web/src/server/api/[...slug].ts` czyta `SUPABASE_URL` i `SUPABASE_SERVICE_ROLE_KEY` z runtime config Nitro. Brak wartości → HTTP 503 dla tras modułów; smoke `/api` i `/api/test` nadal odpowiadają.
@@ -105,7 +105,7 @@ Wygenerowane shelle Next czytają zmienne Supabase w obu konwencjach nazewnictwa
 - `NEXT_PUBLIC_SUPABASE_URL` lub `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY` (tylko serwer)
 
-Shelle produktu Solid i Svelte (`web-solid/`, `web-svelte/`, …) używają tych samych nazw `SUPABASE_*` z roota przez Vite `import.meta.env`. Trzymaj jedno root `.env` — Nuxt i wszystkie ścieżki codegen konwersji rozwiązują je z root monorepo.
+Shelle produktu Solid i Svelte (`web-solid/`, `web-svelte/`, …) używają tych samych nazw `SUPABASE_*` z roota przez Vite `import.meta.env`. Trzymaj jedno root `.env` - Nuxt i wszystkie ścieżki codegen konwersji rozwiązują je z root monorepo.
 
 ---
 
@@ -135,6 +135,6 @@ Szczegóły merge migracji: [Supabase](/pl/docs/configuration/supabase).
 
 ## Powiązana dokumentacja
 
-- [Instalacja](/pl/docs/getting-started/installation) — pierwsze utworzenie `.env`
-- [Web & Admin](/pl/docs/configuration/web) — runtime config i rozdzielona konfiguracja Nuxt
-- [Supabase](/pl/docs/configuration/supabase) — baza i migracje
+- [Instalacja](/pl/docs/getting-started/installation) - pierwsze utworzenie `.env`
+- [Web & Admin](/pl/docs/configuration/web) - runtime config i rozdzielona konfiguracja Nuxt
+- [Supabase](/pl/docs/configuration/supabase) - baza i migracje

@@ -1,4 +1,4 @@
-# Overrides — web
+# Overrides - web
 
 Overrides for `@nucleify/web` (`web/src/…`).
 

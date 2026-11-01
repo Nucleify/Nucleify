@@ -1,4 +1,4 @@
-# Overrides — shared_modules
+# Overrides - shared_modules
 
 Overrides for packages under `shared_modules/`.
 

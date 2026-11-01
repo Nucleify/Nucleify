@@ -4,7 +4,7 @@ globs: web/src/pages/**,web/src/layouts/**,web/src/server/**
 alwaysApply: false
 ---
 
-# Routing — web
+# Routing - web
 
 ## i18n
 
@@ -12,7 +12,7 @@ Routes live under `[lang]/` (`en`, `pl`, …). `/` and `/en` redirect → `/en/h
 
 ## Page convention
 
-Thin wrapper — imports a section component:
+Thin wrapper - imports a section component:
 
 ```vue
 <!-- web/src/pages/[lang]/home.vue -->

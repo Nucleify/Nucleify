@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
   const method = getMethod(event).toUpperCase()
   const segments = parseApiSlug(getRouterParam(event, 'slug'))
 
-  // Smoke / readiness — no Supabase client required.
+  // Smoke / readiness - no Supabase client required.
   if (segments.length === 0) {
     setResponseStatus(event, 200)
     return { data: { message: 'Supabase API gateway ready.' } }

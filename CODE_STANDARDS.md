@@ -23,10 +23,10 @@ Following these standards ensures code is readable, consistent, and maintainable
 
 ```
 nucleify/
-├── web/               ← @nucleify/web — Nuxt landing app
-├── admin/              ← @nucleify/admin — Nuxt admin app
-├── docs/               ← @nucleify/docs — Astro documentation
-├── compiler/           ← @nucleify/compiler — IR/portable UI compiler
+├── web/               ← @nucleify/web - Nuxt landing app
+├── admin/              ← @nucleify/admin - Nuxt admin app
+├── docs/               ← @nucleify/docs - Astro documentation
+├── compiler/           ← @nucleify/compiler - IR/portable UI compiler
 ├── shared_modules/     ← shared nuc_* packages
 ├── overrides/          ← per-package override layers
 ├── .config/            ← monorepo-level bash scripts and CI helpers
@@ -43,8 +43,8 @@ nucleify/
 | `web/` | `@nucleify/web` | Nuxt 3 | `pnpm nuxt` |
 | `admin/` | `@nucleify/admin` | Nuxt 3 | `pnpm admin` |
 | `docs/` | `@nucleify/docs` | Astro | `pnpm docs` |
-| `compiler/` | `@nucleify/compiler` | TypeScript | — |
-| `shared_modules/` | `@nucleify/shared_modules` | TypeScript / Vue | — |
+| `compiler/` | `@nucleify/compiler` | TypeScript | - |
+| `shared_modules/` | `@nucleify/shared_modules` | TypeScript / Vue | - |
 
 Each package has its own `package.json`, `.config/`, and optional `.config/rules/`.
 
@@ -145,7 +145,7 @@ UI comes from **`nucleify-ui`** Lit web components (`nui-*`). Feature screens in
 - Prefer **readability** over cleverness
 - Follow **KISS** and **DRY**
 - Comment only when intent is unclear
-- Remove unused code — do not comment it out
+- Remove unused code - do not comment it out
 - Keep functions small and focused
 
 ### TypeScript
@@ -184,7 +184,7 @@ pnpm test:watch   # vitest watch
 
 ## Module Guidelines
 
-- Each module must be **self-contained** — no imports from app packages (`web`, `admin`, `docs`)
+- Each module must be **self-contained** - no imports from app packages (`web`, `admin`, `docs`)
 - Do not import `from 'nucleify'` inside modules (circular barrel)
 - Backend logic: `supabase/api/`, `supabase/migrations/`, `supabase/seeders/`
 - Frontend: `constants/`, `types/`, `utils/`, `pages/`, `components/`
@@ -198,7 +198,7 @@ pnpm test:watch   # vitest watch
 - Aligns with Nuxt 3, Astro, and Supabase patterns
 - Enables horizontal scaling via isolated `nuc_*` modules
 - Clear separation: shared logic in `shared_modules/`, app shell in `web/`/`admin/`/`docs/`
-- UI via `nucleify-ui` (`nui-*`) — no framework-specific coupling
+- UI via `nucleify-ui` (`nui-*`) - no framework-specific coupling
 - Easy onboarding for new contributors
 
 ---

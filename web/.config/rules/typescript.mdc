@@ -4,7 +4,7 @@ globs: web/**/*.{ts,tsx,vue}
 alwaysApply: false
 ---
 
-# TypeScript — web
+# TypeScript - web
 
 Strict mode, ESNext, bundler resolution. Config: `web/.config/tsconfig.json`.
 

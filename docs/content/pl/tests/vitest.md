@@ -1,6 +1,6 @@
 # Vitest
 
-Nucleify używa [Vitest](https://vitest.dev) do testów jednostkowych i integracyjnych w monorepo. Root config definiuje dwa projekty — **web** (środowisko Nuxt) i **shared** (happy-dom) — plus osobny suite kompilatora.
+Nucleify używa [Vitest](https://vitest.dev) do testów jednostkowych i integracyjnych w monorepo. Root config definiuje dwa projekty - **web** (środowisko Nuxt) i **shared** (happy-dom) - plus osobny suite kompilatora.
 
 ---
 
@@ -119,14 +119,14 @@ Tłumienie logów konsoli jest włączone (`onConsoleLog: () => false`), żeby z
 
 Husky pre-commit uruchamia (przez `.config/bash/hook-checks.sh`), w kolejności:
 
-1. `pnpm btest` — suite bash
-2. `pnpm check` — Biome
-3. `pnpm typeslint` — TypeScript (`web/tsconfig.json`)
-4. `pnpm slint` — Stylelint na SCSS
-5. `pnpm build` — produkcyjny build Nuxt
-6. `pnpm tests` — Vitest
-7. `pnpm compiler:test` — testy jednostkowe kompilatora
-8. `pnpm compiler:check` — odciski emit
+1. `pnpm btest` - suite bash
+2. `pnpm check` - Biome
+3. `pnpm typeslint` - TypeScript (`web/tsconfig.json`)
+4. `pnpm slint` - Stylelint na SCSS
+5. `pnpm build` - produkcyjny build Nuxt
+6. `pnpm tests` - Vitest
+7. `pnpm compiler:test` - testy jednostkowe kompilatora
+8. `pnpm compiler:check` - odciski emit
 
 Pre-push jest no-op. Napraw błędy lokalnie przed commitem.
 
@@ -151,6 +151,6 @@ pnpm test:watch
 
 ## Powiązana dokumentacja
 
-- [Moduły](/pl/docs/core-concepts/modules) — konwencja folderu `vitests/`
-- [Standardy kodowania](/pl/docs/about/coding-standards) — nazewnictwo i struktura
-- [Kompilator](/pl/docs/core-concepts/compiler) — `pnpm compiler:test`
+- [Moduły](/pl/docs/core-concepts/modules) - konwencja folderu `vitests/`
+- [Standardy kodowania](/pl/docs/about/coding-standards) - nazewnictwo i struktura
+- [Kompilator](/pl/docs/core-concepts/compiler) - `pnpm compiler:test`

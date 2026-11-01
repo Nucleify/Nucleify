@@ -1,6 +1,6 @@
 import { afterEach } from 'vitest'
 
-// Nuxt-specific — always true in browser-like test environment
+// Nuxt-specific - always true in browser-like test environment
 Object.defineProperty(import.meta, 'client', { value: true, configurable: true })
 Object.defineProperty(import.meta, 'server', { value: false, configurable: true })
 

@@ -1,6 +1,6 @@
 # Code of Conduct
 
-## Contributor Covenant Code of Conduct — Version 2.1
+## Contributor Covenant Code of Conduct - Version 2.1
 
 Nucleify follows the [Contributor Covenant Code of Conduct 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/).
 
@@ -104,5 +104,5 @@ For answers to common questions about this code of conduct, see the [FAQ](https:
 
 ## Related
 
-- [Coding Standards](/en/docs/about/coding-standards) — technical contribution guidelines
-- [People & Credits](/en/docs/about/people-and-credits) — team and acknowledgments
+- [Coding Standards](/en/docs/about/coding-standards) - technical contribution guidelines
+- [People & Credits](/en/docs/about/people-and-credits) - team and acknowledgments

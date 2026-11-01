@@ -1,9 +1,9 @@
 # <div align="center"> <img src="web/public/img/holo-cube.svg" width="88" alt="Nucleify"> <br> Nucleify <br> </div>
 <br>
 
-**Build once. Move to any framework.** Vue · React · Nuxt · Next · Astro · Svelte · Solid — without rewriting your product.
+**Build once. Move to any framework.** Vue · React · Nuxt · Next · Astro · Svelte · Solid - without rewriting your product.
 
-Locked into one stack? Changing frameworks usually means a costly rewrite. Nucleify keeps your product in shared modules, so you can migrate from one technology to another when the market, team, or client asks for it.
+**Migration is the product.** Locked into one stack? Changing frameworks usually means a costly rewrite. Nucleify keeps domain, API, and SQL in shared modules and moves whole shells with an IR-first compiler - emit UI, convert Nuxt apps, import edits back - when the market, team, or client asks for another host.
 
 | Ready to run on |
 | --- |
@@ -11,7 +11,7 @@ Locked into one stack? Changing frameworks usually means a costly rewrite. Nucle
 
 > One product. Any shell. Not stuck on React/Next or Vue/Nuxt alone.
 
-Three surfaces, one nucleus: **web**, **admin**, and **docs** — each can move to another framework when you need it. 
+Three surfaces, one nucleus: **web**, **admin**, and **docs** - each can move to another framework when you need it. 
 
 Backend on **Supabase**.
 UI with [nucleify-ui](https://www.npmjs.com/package/nucleify-ui).
@@ -20,11 +20,11 @@ UI with [nucleify-ui](https://www.npmjs.com/package/nucleify-ui).
 
 <br><a href="https://nucleify.io">Live preview</a> · <a href="https://docs.nucleify.io/en/docs/getting-started/introduction">Docs</a> · <a href="https://nucleify.io/en/investor">Investor brief</a><br><br>
 
-⭐ **Any stack → any other** — migrate without rewriting the business <br>
-⭐ **Shared modules** — API, SQL, and UI stay one product across shells <br>
-⭐ **Portable compiler** — write once, emit Vue / React / Solid / Svelte and more <br>
-⭐ **One-command setup** — `make run` + `make web` from the repo root <br>
-⭐ **Modern UI** — [nucleify-ui](https://www.npmjs.com/package/nucleify-ui) + design tokens ready to brand <br>
+⭐ **Any stack → any other** - migration sits at the core, not at the edge <br>
+⭐ **Shared modules** - API, SQL, and UI stay one product across shells <br>
+⭐ **IR-first compiler** - emit, product convert, and import back - whole shells, not orphaned snippets <br>
+⭐ **One-command setup** - `make run` + `make web` from the repo root <br>
+⭐ **Modern UI** - [nucleify-ui](https://www.npmjs.com/package/nucleify-ui) + design tokens ready to brand <br>
 
 <br>
 <hr>
@@ -69,7 +69,7 @@ Full guide: [Installation](https://docs.nucleify.io/en/docs/getting-started/inst
   <a href="https://github.com/features/actions" target="_blank"><img src="web/public/img/technologies/github.svg" height="35" width="35" alt="GitHub Actions" /></a>
 </div>
 
-<p align="center"><strong>Shells:</strong> Vue · React · Nuxt · Next · Astro · Svelte · Solid<br /><em>Not a React/Next-only or Vue/Nuxt-only product — seven emit targets from one nucleus.</em></p>
+<p align="center"><strong>Shells:</strong> Vue · React · Nuxt · Next · Astro · Svelte · Solid<br /><em>Not a React/Next-only or Vue/Nuxt-only product - seven emit targets from one nucleus.</em></p>
 
 <hr><br></details>
 

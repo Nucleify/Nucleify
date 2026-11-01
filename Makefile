@@ -1,16 +1,22 @@
-.PHONY: run setup web admin docs compiler vue react nuxt next solid svelte help
+.PHONY: run setup web admin docs compiler deploy vue react nuxt next solid svelte astro help
 
 # Product apps: default shell is Nuxt. Product convert nests products under frameworks:
 #   make web                 # top-level web/ (Nuxt)
 #   make web TARGET=next     # web-next (scaffolded product shell)
+#   make web TARGET=astro    # web-astro (Astro host + React islands)
+#   make deploy web          # build + wrangler deploy (@nucleify/web)
+#   make deploy admin        # build + wrangler deploy (@nucleify/admin)
 #
 # Portable emit demos (gitignored):
-#   make nuxt / make next / make vue / make react / make solid / make svelte  → {framework}/demo
+#   make nuxt / make next / make vue / make react / make solid / make svelte / make astro  → {framework}/demo
 #
 # SKIP_COMPILER=1  → skip portable codegen on run/setup / demos that call compiler
 
 TARGET ?= nuxt
 SKIP_COMPILER ?= 0
+
+# `make deploy web` → goals are deploy + web; pick the app from MAKECMDGOALS.
+DEPLOY_APP := $(firstword $(filter web admin,$(MAKECMDGOALS)))
 
 help:
 	@echo "Workspace:"
@@ -22,12 +28,15 @@ help:
 	@echo "  make web TARGET=next              # web-next product shell"
 	@echo "  make web TARGET=solid             # web-solid product shell"
 	@echo "  make web TARGET=svelte            # web-svelte product shell"
+	@echo "  make web TARGET=astro             # web-astro product shell"
 	@echo "  make admin TARGET=next            # admin-next product shell"
 	@echo "  make admin TARGET=solid           # admin-solid product shell"
 	@echo "  make admin TARGET=svelte          # admin-svelte product shell"
+	@echo "  make admin TARGET=astro           # admin-astro product shell"
+	@echo "  make deploy web | make deploy admin  # Nuxt build then wrangler deploy"
 	@echo ""
 	@echo "Portable emit demos (gitignored {framework}/demo):"
-	@echo "  make vue | react | nuxt | next | solid | svelte"
+	@echo "  make vue | react | nuxt | next | solid | svelte | astro"
 	@echo ""
 	@echo "Other:"
 	@echo "  make compiler"
@@ -48,7 +57,7 @@ endef
 run:
 	@if [ ! -f .env ]; then \
 		cp web/.config/.env.example .env; \
-		echo "Created .env from web/.config/.env.example — fill in SUPABASE_* before using the API."; \
+		echo "Created .env from web/.config/.env.example - fill in SUPABASE_* before using the API."; \
 	fi
 	$(MAKE) setup
 
@@ -61,8 +70,11 @@ ifeq ($(SKIP_COMPILER),0)
 	$(MAKE) compiler
 endif
 
+# When chained as `make deploy web`, skip the usual `web`/`admin` dev recipes.
 web:
-ifeq ($(TARGET),nuxt)
+ifneq ($(filter deploy,$(MAKECMDGOALS)),)
+	@:
+else ifeq ($(TARGET),nuxt)
 	pnpm --filter @nucleify/web dev
 else ifeq ($(TARGET),next)
 	pnpm exec tsx compiler/src/cli.ts convert web --target=next
@@ -76,16 +88,22 @@ else ifeq ($(TARGET),svelte)
 	pnpm exec tsx compiler/src/cli.ts convert web --target=svelte
 	pnpm exec tsx compiler/src/cli.ts build --app=svelte
 	cd web-svelte && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+else ifeq ($(TARGET),astro)
+	pnpm exec tsx compiler/src/cli.ts convert web --target=astro
+	pnpm exec tsx compiler/src/cli.ts build --app=astro
+	cd web-astro && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "TARGET=$(TARGET) is not implemented for web product shell."
-	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid | TARGET=svelte"
-	@echo "Emit-only demos (not product): make solid | make svelte"
+	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid | TARGET=svelte | TARGET=astro"
+	@echo "Emit-only demos (not product): make solid | make svelte | make astro"
 	@echo "See portable/README.md"
 	@exit 1
 endif
 
 admin:
-ifeq ($(TARGET),nuxt)
+ifneq ($(filter deploy,$(MAKECMDGOALS)),)
+	@:
+else ifeq ($(TARGET),nuxt)
 	pnpm --filter @nucleify/admin dev
 else ifeq ($(TARGET),next)
 	pnpm exec tsx compiler/src/cli.ts convert admin --target=next
@@ -96,11 +114,28 @@ else ifeq ($(TARGET),solid)
 else ifeq ($(TARGET),svelte)
 	pnpm exec tsx compiler/src/cli.ts convert admin --target=svelte
 	cd admin-svelte && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+else ifeq ($(TARGET),astro)
+	pnpm exec tsx compiler/src/cli.ts convert admin --target=astro
+	cd admin-astro && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "TARGET=$(TARGET) is not implemented for admin product shell."
-	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid | TARGET=svelte"
-	@echo "Emit-only demos (not product): make solid | make svelte"
+	@echo "Supported: TARGET=nuxt (default) | TARGET=next | TARGET=solid | TARGET=svelte | TARGET=astro"
+	@echo "Emit-only demos (not product): make solid | make svelte | make astro"
 	@exit 1
+endif
+
+# Build Nuxt app, then Cloudflare Workers deploy via wrangler.
+# Usage: make deploy web | make deploy admin
+deploy:
+ifeq ($(DEPLOY_APP),)
+	@echo "Usage: make deploy web  or  make deploy admin"
+	@exit 1
+else
+	@test -f $(DEPLOY_APP)/wrangler.toml || ( \
+		echo "Missing $(DEPLOY_APP)/wrangler.toml - add Cloudflare Workers config before deploy."; \
+		exit 1)
+	pnpm --filter @nucleify/$(DEPLOY_APP) build
+	pnpm --filter @nucleify/$(DEPLOY_APP) exec wrangler deploy
 endif
 
 docs:
@@ -127,3 +162,6 @@ solid:
 
 svelte:
 	$(call rebuild_demo,svelte,dev)
+
+astro:
+	$(call rebuild_demo,astro,dev)

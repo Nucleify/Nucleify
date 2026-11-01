@@ -35,14 +35,14 @@ make run
 
 Ta komenda:
 
-1. **Tworzy `.env`** — kopiuje `web/.config/.env.example` do root repozytorium, jeśli `.env` nie istnieje
-2. **Instaluje zależności** — `pnpm install` we wszystkich pakietach workspace
-3. **Przygotowuje Husky** — hooki git do lintu i testów
-4. **Przygotowuje web** — `pnpm --filter @nucleify/web prepare`
-5. **Synchronizuje reguły Cursor** — `pnpm sync-rules`
-6. **Buduje kompilator** — `pnpm compiler:check` + `pnpm compiler:build` (emituje sąsiednie pliki Vue / React / Solid / Svelte; pomiń przez `SKIP_COMPILER=1 make run`)
+1. **Tworzy `.env`** - kopiuje `web/.config/.env.example` do root repozytorium, jeśli `.env` nie istnieje
+2. **Instaluje zależności** - `pnpm install` we wszystkich pakietach workspace
+3. **Przygotowuje Husky** - hooki git do lintu i testów
+4. **Przygotowuje web** - `pnpm --filter @nucleify/web prepare`
+5. **Synchronizuje reguły Cursor** - `pnpm sync-rules`
+6. **Buduje kompilator** - `pnpm compiler:check` + `pnpm compiler:build` (emituje sąsiednie pliki Vue / React / Solid / Svelte; pomiń przez `SKIP_COMPILER=1 make run`)
 
-Jeśli masz już plik `.env`, użyj `make setup` — te same kroki bez nadpisywania konfiguracji środowiska.
+Jeśli masz już plik `.env`, użyj `make setup` - te same kroki bez nadpisywania konfiguracji środowiska.
 
 ---
 
@@ -148,6 +148,6 @@ corepack prepare pnpm@10.33.0 --activate
 
 ## Następne kroki
 
-- [Szybki start](/pl/docs/getting-started/quick-start) — przegląd repozytorium i typowe workflow
-- [Konfiguracja Web & Admin](/pl/docs/configuration/web) — rozdzielona konfiguracja Nuxt i aliasy
-- [Układ monorepo](/pl/docs/core-concepts/monorepo) — referencja katalogów
+- [Szybki start](/pl/docs/getting-started/quick-start) - przegląd repozytorium i typowe workflow
+- [Konfiguracja Web & Admin](/pl/docs/configuration/web) - rozdzielona konfiguracja Nuxt i aliasy
+- [Układ monorepo](/pl/docs/core-concepts/monorepo) - referencja katalogów

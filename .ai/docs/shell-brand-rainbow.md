@@ -11,10 +11,10 @@ Landing hue cycle no longer walks a full 360° rainbow. It holds on shell brand 
 
 ## Where
 
-- `web/src/assets/_index.scss` — `nuc-rainbow-shell-cycle` drives `--rainbow-hue`
-- `web/src/app.vue` — `applyRainbow(..., { cycle: 'branded' })`
+- `web/src/assets/_index.scss` - `nuc-rainbow-shell-cycle` drives `--rainbow-hue`
+- `web/src/app.vue` - `applyRainbow(..., { cycle: 'branded' })`
 - Holo cube companions use +38deg / +140deg (cyan / purple from Vue green)
-- `shared_modules/nuc_animations/constants/rainbow.ts` — shared hue tokens
+- `shared_modules/nuc_animations/constants/rainbow.ts` - shared hue tokens
 - Compiler product convert scaffolds use `cycle: 'branded'`
 
 ## Verify

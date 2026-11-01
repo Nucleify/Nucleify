@@ -10,7 +10,7 @@ export function normalizeDocHeadingText(raw: string): string {
     .normalize('NFKD')
     .replace(/\p{M}/gu, '')
     .toLowerCase()
-    .replace(/[\s:;.,!?_\-—–]+/g, ' ')
+    .replace(/[\s:;.,!?_\--–]+/g, ' ')
     .trim()
     .replace(/\s+/g, ' ')
 }
