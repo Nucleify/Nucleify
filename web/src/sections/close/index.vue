@@ -334,13 +334,12 @@ async function onSubmit(): Promise<void> {
     website_type: websiteType.value as HomeContactWebsiteType,
     ...(message ? { message } : {}),
   })
-  loading.value = false
-
   if (result.ok) {
-    resetForm()
-    formOpen.value = false
-    await navigateTo(homeThankYouHref(lang.value))
+    window.location.href = homeThankYouHref(lang.value)
+    return
   }
+
+  loading.value = false
 }
 </script>
 

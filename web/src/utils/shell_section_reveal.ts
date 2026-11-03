@@ -264,7 +264,8 @@ async function bindShellSectionReveal(
     (section.classList.contains('nuc-hero') ||
       Boolean(section.querySelector('.nuc-hero')))
   const sectionOptions = {
-    prepareOnBind: section === firstSection && !isHeroInitial,
+    // Hide targets as soon as reveal binds — CSS covers the pre-bind gap.
+    prepareOnBind: !isHeroInitial,
     skipInitialSync: isHeroInitial,
     replayOnCompact: false,
   }

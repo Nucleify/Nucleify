@@ -30,7 +30,10 @@
   --nui-primary-white-text-color: var(--admin-on-accent);
 }
 
-.nuc-nuxt {
+.nuc-nuxt,
+.nuc-next,
+.nuc-svelte,
+.nuc-solid {
   --border-radius-sm: 0;
   --border-radius-md: 0;
   --border-radius-lg: 0;
@@ -50,7 +53,16 @@
 /* Beat nucleify-ui global.css (`height:100%; overflow:hidden`) — admin uses document scroll. */
 html.nuc-nuxt,
 html.nuc-nuxt body,
-body.nuc-nuxt {
+body.nuc-nuxt,
+html.nuc-next,
+html.nuc-next body,
+body.nuc-next,
+html.nuc-svelte,
+html.nuc-svelte body,
+body.nuc-svelte,
+html.nuc-solid,
+html.nuc-solid body,
+body.nuc-solid {
   height: auto;
   min-height: 100%;
   overflow-x: hidden;

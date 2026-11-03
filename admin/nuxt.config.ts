@@ -36,6 +36,10 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY || '',
+    authEmailResendKey: process.env.AUTH_EMAIL_RESEND_KEY || '',
+    authEmailFrom: process.env.AUTH_EMAIL_FROM || 'business@nucleify.io',
+    contactFormRecipient:
+      process.env.CONTACT_FORM_EMAIL || 'business@nucleify.io',
     public: {
       appUrl: process.env.NUXT_PUBLIC_ADMIN_URL || 'https://admin.nucleify.io',
       apiUrl: process.env.NUXT_PUBLIC_API_URL || '/api',

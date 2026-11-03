@@ -98,6 +98,23 @@ html.nuc-no-iris .nuc-shell {
     --shell-iris-y: 18%;
   }
 
+  &.is-thank-you {
+    --shell-iris-x: 50%;
+    --shell-iris-y: 38%;
+
+    @media (max-width: 959px) {
+      --shell-iris-x: 50%;
+      --shell-iris-y: 38%;
+    }
+
+    .nuc-scroller {
+      scroll-padding-bottom: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
   nui-button {
     --nui-primary-color: var(--shell-accent);
     --nui-primary-hover-color: var(--shell-accent-hover);
@@ -430,21 +447,21 @@ html.nuc-iris-boot .nuc-shell.nuc-ready {
 }
 
 /*
- * Below-fold reveal targets - hide in the eager home sheet so async section
- * chunks cannot paint visible for a frame before scoped opacity:0 arrives.
- * Also covers scroll-reveal without prepareOnBind (safe for React hydration).
+ * Below-fold reveal targets - hide until scroll play (opacity 0 → 1).
+ * Section roots ARE `.nuc-pillars` / `.nuc-stack` — use `&` so nested
+ * `.nuc-stack .nuc-eyebrow` does not require a second `.nuc-stack` inside.
  */
 .nuc-shell:not(.nuc-static) .nuc-scroller > :not(:first-child) {
-  .nuc-pillars .nuc-eyebrow,
-  .nuc-pillars .nuc-title,
-  .nuc-pillars .nuc-support,
+  &.nuc-pillars .nuc-eyebrow,
+  &.nuc-pillars .nuc-title,
+  &.nuc-pillars .nuc-support,
   .nuc-pillars-cta,
   .nuc-pillars-share,
   .nuc-pillars-item,
-  .nuc-stack .nuc-eyebrow,
-  .nuc-stack .nuc-title,
-  .nuc-stack .nuc-support,
-  .nuc-stack .nuc-next,
+  &.nuc-stack .nuc-eyebrow,
+  &.nuc-stack .nuc-title,
+  &.nuc-stack .nuc-support,
+  &.nuc-stack .nuc-next,
   .nuc-stack-spotlight,
   .nuc-stack-item,
   .nuc-pulse-copy .nuc-eyebrow,

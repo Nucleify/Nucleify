@@ -22,11 +22,23 @@ export const viteConfig = {
 		rollupOptions: {
 			maxParallelFileOps: 2,
 			output: {
-				manualChunks: {
-					vue: ["vue", "vue-router", "vue-i18n"],
-					"nucleify-ui": ["lit"],
-					iconify: ["@iconify/vue", "@iconify/utils", "@iconify/types"],
-					animejs: ["animejs"],
+				manualChunks(id: string) {
+					const chunks: [string, string[]][] = [
+						["vue", ["vue", "vue-router", "vue-i18n"]],
+						["nucleify-ui", ["lit", "lit-html", "lit-element"]],
+						["iconify", ["@iconify/vue", "@iconify/utils", "@iconify/types"]],
+						["animejs", ["animejs"]],
+					];
+					for (const [chunk, pkgs] of chunks) {
+						if (
+							pkgs.some(
+								(name) =>
+									id.includes(`/node_modules/${name}/`) ||
+									id.includes(`\\node_modules\\${name}\\`),
+							)
+						)
+							return chunk;
+					}
 				},
 			},
 		},

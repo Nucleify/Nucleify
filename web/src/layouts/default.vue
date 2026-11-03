@@ -5,10 +5,11 @@
     :class="{
       'nuc-menu-open': menuOpen,
       'is-pitch': isPitch,
+      'is-thank-you': isThankYou,
       'nuc-no-iris': !isIrisEnabled,
     }"
   >
-    <NucShear v-if="railSections.length" />
+    <NucShear />
     <NucRail
       v-if="railSections.length"
       :sections="railSections"
@@ -58,6 +59,7 @@ const shellVariant = computed(() =>
   resolveShellVariant(layoutSections.value, shell.value.variant)
 )
 const isPitch = computed(() => shellVariant.value === 'pitch')
+const isThankYou = computed(() => shellVariant.value === 'thankYou')
 const isIrisEnabled = computed(() => shell.value.enableIris !== false)
 
 const rootEl = ref<HTMLElement | null>(null)
@@ -79,6 +81,7 @@ function goToSection(id: string): void {
 
 function syncShellModifiers(root: HTMLElement): void {
   root.classList.toggle('is-pitch', isPitch.value)
+  root.classList.toggle('is-thank-you', isThankYou.value)
 }
 
 function markReady(root: HTMLElement): void {
@@ -204,6 +207,7 @@ watch(
       shell.value.sections.map((s) => `${s.id}:${s.type}`).join('|'),
       shell.value.variant,
       isPitch.value,
+      isThankYou.value,
       isIrisEnabled.value,
     ] as const,
   () => {

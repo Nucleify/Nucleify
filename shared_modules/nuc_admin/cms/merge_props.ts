@@ -76,9 +76,10 @@ export function mergeCopyBag<T extends Record<string, string>>(
 /** Read string copy keys from CMS props only (no hardcoded defaults). */
 export function pickCopy(
   props: Record<string, unknown> | undefined | null,
-  keys: readonly string[]
+  keys?: readonly string[] | null
 ): Record<string, string> {
   const out: Record<string, string> = {}
+  if (!keys) return out
   for (const key of keys) {
     const v = props?.[key]
     out[key] = typeof v === 'string' ? v : ''

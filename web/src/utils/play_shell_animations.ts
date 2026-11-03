@@ -110,18 +110,23 @@ export async function playShellAnimations(
     const html = document.documentElement
     html.classList.remove('nuc-iris-boot', 'nuc-iris-armed')
     delete html.dataset.nucIrisArmed
+    html.dataset.nucBooted = '1'
   }
 
   const releaseBootClasses = () => {
     if (!ownsBoot()) return
-    root.classList.remove('nuc-ready', 'nuc-booting', 'nuc-static')
+    root.classList.remove('nuc-booting', 'nuc-static')
   }
+
+  const html = document.documentElement
+  const hasEverBooted = html.dataset.nucBooted === '1'
 
   if (
     extras?.enableIris === false ||
     options.enableIris === false ||
     root.classList.contains('nuc-no-iris') ||
-    root.dataset.irisEnabled === 'false'
+    root.dataset.irisEnabled === 'false' ||
+    hasEverBooted
   ) {
     setIrisRadius(root, '165%')
     finishBoot()
@@ -134,7 +139,6 @@ export async function playShellAnimations(
 
   // Classic iris: keep/restore html.nuc-iris-boot, arm .nuc-booting after
   // hydrate, then openShellIris does 0% → 165%.
-  const html = document.documentElement
   if (!isQuietBoot() && !root.classList.contains('nuc-ready')) {
     html.classList.add('nuc-iris-boot')
     setIrisRadius(root, '0%')
@@ -246,9 +250,12 @@ async function runThankYouMotion(
 ): Promise<void> {
   const compactMax = preset.compactMaxWidth ?? 767
   const compact = window.matchMedia(`(max-width: ${compactMax}px)`).matches
+  setVar(root, '--shell-iris-x', '50%')
+  setVar(root, '--shell-iris-y', '38%')
   const irisBoot = openShellIris(root, cleanups, {
     compact,
     ...preset.iris,
+    setOrigin: false,
   })
   markShellScrollReady(root)
 

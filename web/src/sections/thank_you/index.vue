@@ -1,51 +1,58 @@
 <template>
-  <div class="nuc-thank-you-layout">
-    <aside class="nuc-thank-you-cube" aria-label="Nucleify nucleus">
-      <NucHoloCube
-        :focus="focusId"
-        :faces="faceMeta"
-        :paused="cubePaused"
-        @focus="onCubeFocus"
-      />
-    </aside>
-
-    <div class="nuc-thank-you-copy">
-      <h1 class="nuc-thank-you-title" :aria-label="copy.title">
-        {{ copy.title }}
-      </h1>
-      <p class="nuc-thank-you-support">{{ copy.support }}</p>
-
-      <div class="nuc-thank-you-cta">
-        <button type="button" class="nuc-btn is-primary" @click="goHome">
-          <nui-icon icon="mdi:arrow-left" class="nuc-btn-icon" mode="svg" />
-          <span>{{ copy.ctaHome }}</span>
-        </button>
-        <button type="button" class="nuc-btn is-outlined" @click="goInvest">
-          <nui-icon
-            icon="mdi:chart-timeline-variant"
-            class="nuc-btn-icon"
-            mode="svg"
+  <section class="nuc-section nuc-thank-you nuc-panel" aria-label="Thank you">
+    <div class="nuc-thank-you-inner">
+      <div class="nuc-thank-you-layout">
+        <aside class="nuc-thank-you-cube" aria-label="Nucleify nucleus">
+          <NucHoloCube
+            :focus="focusId"
+            :faces="faceMeta"
+            :paused="cubePaused"
+            @focus="onCubeFocus"
           />
-          <span>{{ copy.ctaInvest }}</span>
-        </button>
+        </aside>
+
+        <div class="nuc-thank-you-copy">
+          <h1 class="nuc-thank-you-title" :aria-label="copy.title">
+            {{ copy.title }}
+          </h1>
+          <p class="nuc-thank-you-support">{{ copy.support }}</p>
+
+          <div class="nuc-thank-you-cta">
+            <a
+              :href="pageHref(lang, 'home')"
+              class="nuc-btn is-primary"
+              @click="goHome"
+            >
+              <nui-icon icon="mdi:arrow-left" class="nuc-btn-icon" mode="svg" />
+              <span>{{ copy.ctaHome }}</span>
+            </a>
+            <a
+              :href="pageHref(lang, 'investor')"
+              class="nuc-btn is-outlined"
+              @click="goInvest"
+            >
+              <nui-icon
+                icon="mdi:chart-timeline-variant"
+                class="nuc-btn-icon"
+                mode="svg"
+              />
+              <span>{{ copy.ctaInvest }}</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
-import { navigateTo, useRoute } from 'nuxt/app'
-import { computed, onBeforeUnmount, onMounted, ref, useAttrs } from 'vue'
+import { useRoute } from 'nuxt/app'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
-import { pickCopy } from '@web'
+import { NucHoloCube, pageHref, pickCopy, useCmsAttrs } from '@web'
 import type { NucHomeModuleLaneId } from '@web'
-import { NucHoloCube } from '@web'
-import { pageHref } from '@web'
 
-defineOptions({ inheritAttrs: false })
-
-const attrs = useAttrs()
-const cms = computed(() => attrs as Record<string, unknown>)
+const cms = useCmsAttrs()
 
 const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
@@ -95,12 +102,14 @@ const focusId = ref<NucHomeModuleLaneId>('sdk')
 const cubePaused = ref(false)
 let focusTimer: number | undefined
 
-function goHome(): void {
-  void navigateTo(pageHref(lang.value, 'home'))
+function goHome(e?: Event): void {
+  e?.preventDefault()
+  window.location.href = pageHref(lang.value, 'home')
 }
 
-function goInvest(): void {
-  void navigateTo(pageHref(lang.value, 'investor'))
+function goInvest(e?: Event): void {
+  e?.preventDefault()
+  window.location.href = pageHref(lang.value, 'investor')
 }
 
 function onCubeFocus(id: NucHomeModuleLaneId): void {
