@@ -130,9 +130,18 @@ export const hooksConfig = {
 			if (existsSync(publicDir)) {
 				for (const entry of readdirSync(publicDir, { withFileTypes: true })) {
 					if (entry.name.startsWith(".")) continue;
-					cpSync(join(publicDir, entry.name), join(outputDir, entry.name), {
-						recursive: true,
-					});
+					const srcPath = join(publicDir, entry.name);
+					const destPath = join(outputDir, entry.name);
+					try {
+						// Dereference symlinks so destination has actual content or replaces symlink
+						cpSync(srcPath, destPath, {
+							recursive: true,
+							dereference: true,
+							force: true,
+						});
+					} catch {
+						// Ignore if already copied by Nitro
+					}
 				}
 			}
 

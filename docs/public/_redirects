@@ -1,0 +1,5 @@
+# Docs redirects
+/ /en/docs/getting-started/introduction 302
+/en /en/docs/getting-started/introduction 302
+/pl /pl/docs/getting-started/introduction 302
+/docs /en/docs/getting-started/introduction 302
