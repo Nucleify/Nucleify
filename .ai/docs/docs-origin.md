@@ -2,7 +2,7 @@
 
 Marketing app (`nucleify.io`) no longer serves documentation. Astro docs live at **https://docs.nucleify.io**.
 
-- `web/src/utils/docs_origin.ts` - `NUC_DOCS_ORIGIN` + `docsPageHref()`
+- `web/src/utils/hrefs.ts` - `NUC_DOCS_ORIGIN` + `docsPageHref()`
 - Home / investor CTAs use `homeDocsHref` / `investorDocsHref` → absolute docs URLs
 - `redirectTargetForPath` + `web/public/_redirects` + Nuxt `smashedUrlRedirects` send legacy docs paths to the docs host (301)
 - Root `README.md` Docs / Installation links use `docs.nucleify.io`

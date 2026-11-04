@@ -43,7 +43,7 @@ make web          # Nuxt product shell (default)
 # make vue | react | nuxt | next | solid | svelte   # portable emit demos
 ```
 
-Open http://localhost:3000 after `make web`. Fill `SUPABASE_*` in `.env` (from `web/.config/.env.example`) before using the API.
+Open http://localhost:7777 after `make web` (admin: http://localhost:8888 via `make admin`). Fill `SUPABASE_*` in `.env` (from `web/.config/.env.example`) before using the API.
 
 Full guide: [Installation](https://docs.nucleify.io/en/docs/getting-started/installation).
 

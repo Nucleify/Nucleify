@@ -6,17 +6,26 @@ alwaysApply: false
 
 # TypeScript - web
 
-Strict mode, ESNext, bundler resolution. Config: `web/.config/tsconfig.json`.
+Strict mode, ESNext, bundler resolution. Config: `web/tsconfig.json`.
 
 ## Path aliases
 
+Import from package barrels only (no `../`, `~/`, or `modules/` in app code):
+
 | Alias | Resolves to |
 |-------|-------------|
-| `nucleify` | `web/src/nucleify.ts` |
-| `modules` / `modules/*` | `shared_modules` / `shared_modules/*` |
-| `nuc_api` | `shared_modules/nuc_api/supabase/api/server.ts` |
-| `nuc_server` | `web/src/server/nuc_server.ts` |
-| `~/*` | `web/src/*` |
+| `@web` | `web/src` (`web/src/index.ts`) |
+| `@admin` | `admin/src` |
+| `@shared_modules` | `shared_modules` |
+| `@portable` | `portable` |
+
+```ts
+import { usePublicPage } from '@web'
+import { HOME_PAGE_SEO } from '@shared_modules'
+import { setupNui } from '@portable'
+```
+
+Legacy aliases (`nucleify`, `modules`, `~/`) may still resolve for tooling; do not use them in new code.
 
 ```bash
 pnpm typeslint   # tsc --noEmit

@@ -135,7 +135,9 @@ nucleify/
 │   ├── nuxt.config.ts
 │   ├── .config/nuxt/       # rozdzielona konfiguracja Nuxt
 │   └── src/
-│       ├── pages/          # strony Vue (np. home/sections/)
+│       ├── pages/          # cienkie wrappery route (home, investor, …)
+│       ├── sections/       # sekcje marketingowe (hero, pillars, …)
+│       ├── templates/      # wspólne UI (holo cube, module board, …)
 │       ├── plugins/        # modules.ts, nucleify-ui.client.ts
 │       ├── composables/
 │       ├── layouts/

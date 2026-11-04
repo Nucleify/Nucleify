@@ -169,8 +169,8 @@ make web
 5. Zweryfikuj bramkę:
 
 ```bash
-curl http://localhost:3000/api
-curl http://localhost:3000/api/colors/…   # trasy konkretnego modułu
+curl http://localhost:8888/api
+curl http://localhost:8888/api/colors/…   # trasy konkretnego modułu
 ```
 
 ---

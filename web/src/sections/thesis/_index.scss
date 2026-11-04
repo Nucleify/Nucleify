@@ -1,0 +1,255 @@
+/* ─── Thesis (pillars-like) ─────────────────────────────────── */
+
+.nuc-thesis {
+  &-head {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 4vw, 3rem);
+    align-items: start;
+
+    @media (min-width: $md) {
+      grid-template-columns: minmax(0, 1.1fr) minmax(16rem, 0.9fr);
+    }
+  }
+
+  &-pitch .nuc-support {
+    max-width: 36rem;
+  }
+
+  &-cta {
+    margin-top: 1.25rem;
+  }
+
+  &-viz {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 1.15rem 1.35rem;
+    align-items: center;
+    margin: 0;
+    padding: 1.2rem 1.25rem 1.25rem;
+    border: 1px solid var(--shell-card-border);
+    border-radius: 1.15rem;
+    background: var(--shell-card-bg);
+    box-shadow: var(--shell-card-shadow);
+  }
+
+  &-viz-chart {
+    position: relative;
+    width: 9.75rem;
+    margin: 0;
+    aspect-ratio: 1;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+  }
+
+  &-viz-slice {
+    fill-opacity: 0.14;
+    stroke-width: 0.7;
+    stroke-opacity: 1;
+    stroke-linejoin: round;
+    animation: nuc-thesis-slice-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+
+    @for $i from 1 through 7 {
+      &:nth-of-type(#{$i}) {
+        animation-delay: #{0.04s * $i};
+      }
+    }
+  }
+
+  &-viz-hole {
+    position: absolute;
+    inset: 20%;
+    display: grid;
+    place-content: center;
+    text-align: center;
+    pointer-events: none;
+
+    strong {
+      color: var(--shell-fg);
+      font-size: clamp(1.85rem, 5vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.07em;
+      line-height: 0.9;
+    }
+
+    span {
+      margin-top: 0.35rem;
+      color: var(--shell-dim);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  }
+
+  &-viz-legend {
+    min-width: 0;
+
+    > p {
+      margin: 0 0 0.65rem;
+      color: var(--shell-muted);
+      font-size: 0.9rem;
+
+      em {
+        color: var(--shell-accent);
+        font-family: 'JetBrains Mono', ui-monospace, monospace;
+        font-style: normal;
+        font-weight: 700;
+      }
+    }
+
+    ul {
+      display: grid;
+      gap: 0.32rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      display: grid;
+      grid-template-columns: 0.45rem minmax(0, 1fr);
+      gap: 0.55rem;
+      align-items: center;
+    }
+
+    i {
+      box-sizing: border-box;
+      width: 0.5rem;
+      height: 0.5rem;
+      border: 1px solid var(--c);
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--c) 16%, transparent);
+      box-shadow: 0 0 10px color-mix(in srgb, var(--c) 18%, transparent);
+    }
+
+    span {
+      color: var(--shell-muted);
+      font-size: 0.82rem;
+      letter-spacing: -0.01em;
+    }
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin-top: clamp(1.75rem, 4vw, 2.5rem);
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  &-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    min-height: 100%;
+    padding: 1.25rem 1.2rem 1.3rem;
+    border: 1px solid var(--shell-card-border);
+    border-radius: 1.1rem;
+    background: var(--shell-card-bg);
+    box-shadow: var(--shell-card-shadow);
+    transition:
+      border-color 0.25s ease,
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        border-color: color-mix(in srgb, var(--shell-accent) 40%, var(--shell-card-border));
+        transform: translateY(-2px);
+        box-shadow:
+          var(--shell-card-shadow),
+          0 0 28px hsl(var(--rainbow-hue) 55% 52% / 12%);
+      }
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.08rem;
+      font-weight: 620;
+      letter-spacing: -0.025em;
+    }
+
+    > p {
+      margin: 0;
+      flex: 1;
+      color: var(--shell-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+  }
+
+  &-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-icon {
+    display: grid;
+    place-items: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border: 1px solid var(--shell-holo-line-soft);
+    border-radius: 0.7rem;
+    color: var(--shell-accent);
+    background: hsl(var(--rainbow-hue) 55% 52% / 10%);
+    box-shadow: 0 0 20px hsl(var(--rainbow-hue) 55% 52% / 16%);
+  }
+
+  &-index {
+    color: var(--shell-dim);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+  }
+
+  &-foot {
+    display: grid;
+    gap: 0.2rem;
+    margin-top: 0.25rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--shell-holo-line-soft);
+  }
+
+  &-outcome {
+    margin: 0;
+    color: var(--shell-accent);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  &-proof {
+    margin: 0;
+    color: var(--shell-dim);
+    font-size: 0.82rem;
+  }
+}
+
+@keyframes nuc-thesis-slice-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nuc-thesis-viz-slice {
+    animation: none;
+  }
+}

@@ -1,1 +1,1 @@
-export * from '../../shared_modules'
+export * from '@shared_modules'

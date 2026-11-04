@@ -22,16 +22,22 @@ Fill in `SUPABASE_*` values in the root `.env` if you plan to hit module API rou
 make web
 ```
 
-Visit [http://localhost:3000/en/home](http://localhost:3000/en/home).
+Visit [http://localhost:7777/en/home](http://localhost:7777/en/home).
 
-The landing page source lives in `web/src/pages/home/` - a set of section components composed by `web/src/pages/home/index.vue`. Routes are thin wrappers under `web/src/pages/[lang]/`:
+Marketing pages share `web/src/pages/[lang]/[slug].vue`, which loads the published CMS layout into the marketing shell (`usePublicShellPage`). Section SFCs live under `web/src/sections/`.
 
 ```vue
-<!-- web/src/pages/[lang]/home.vue -->
+<!-- web/src/pages/[lang]/[slug].vue -->
 <script setup lang="ts">
-import NucHomePage from '../home/index.vue'
+import { useRoute } from 'nuxt/app'
+import { computed } from 'vue'
+import { usePublicShellPage } from '../../composables/use_public_shell_page'
+
+const route = useRoute()
+const slug = computed(() => String(route.params.slug || ''))
+await usePublicShellPage(slug)
 </script>
-<template><NucHomePage /></template>
+<template><div /></template>
 ```
 
 ---
@@ -49,8 +55,8 @@ Browser  →  Nuxt page (web/src/pages/)
 Smoke-test the gateway:
 
 ```bash
-curl http://localhost:3000/api
-curl http://localhost:3000/api/test
+curl http://localhost:8888/api
+curl http://localhost:8888/api/test
 ```
 
 ---

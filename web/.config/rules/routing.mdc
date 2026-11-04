@@ -12,15 +12,23 @@ Routes live under `[lang]/` (`en`, `pl`, …). `/` and `/en` redirect → `/en/h
 
 ## Page convention
 
-Thin wrapper - imports a section component:
+Marketing URLs share one catch-all that hydrates the shell from CMS:
 
 ```vue
-<!-- web/src/pages/[lang]/home.vue -->
+<!-- web/src/pages/[lang]/[slug].vue -->
 <script setup lang="ts">
-import NucHomePage from '../home/index.vue'
+import { useRoute } from 'nuxt/app'
+import { computed } from 'vue'
+import { usePublicShellPage } from '../../composables/use_public_shell_page'
+
+const route = useRoute()
+const slug = computed(() => String(route.params.slug || ''))
+await usePublicShellPage(slug)
 </script>
-<template><NucHomePage /></template>
+<template><div /></template>
 ```
+
+Section SFCs live under `web/src/sections/`. SEO title/description come from the published page in admin (with hardcoded fallbacks for known marketing slugs).
 
 ## API
 

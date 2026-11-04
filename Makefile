@@ -126,6 +126,7 @@ endif
 
 # Build Nuxt app, then Cloudflare Workers deploy via wrangler.
 # Usage: make deploy web | make deploy admin
+# Public URLs are baked into Nuxt runtimeConfig at build time — override local .env.
 deploy:
 ifeq ($(DEPLOY_APP),)
 	@echo "Usage: make deploy web  or  make deploy admin"
@@ -134,6 +135,11 @@ else
 	@test -f $(DEPLOY_APP)/wrangler.toml || ( \
 		echo "Missing $(DEPLOY_APP)/wrangler.toml - add Cloudflare Workers config before deploy."; \
 		exit 1)
+	APP_ENV=production \
+	APP_DEBUG=false \
+	NUXT_PUBLIC_APP_URL=https://nucleify.io \
+	NUXT_PUBLIC_ADMIN_URL=https://admin.nucleify.io \
+	NUC_API_ORIGIN=https://admin.nucleify.io \
 	pnpm --filter @nucleify/$(DEPLOY_APP) build
 	pnpm --filter @nucleify/$(DEPLOY_APP) exec wrangler deploy
 endif

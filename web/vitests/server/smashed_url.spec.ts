@@ -1,9 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import {
-  isSmashedSegment,
-  redirectTargetForPath,
-} from '../../src/utils/smashed_url'
+import { isSmashedSegment, redirectTargetForPath } from '@web'
 
 describe('smashed_url', () => {
   it('detects glued path segments from the old canonical bug', () => {
@@ -45,6 +42,32 @@ describe('smashed_url', () => {
     expect(redirectTargetForPath('/pl/thank-you')).toBeNull()
     expect(redirectTargetForPath('/_nuxt/entry.js')).toBeNull()
     expect(redirectTargetForPath('/api/test')).toBeNull()
+  })
+
+  it('leaves Nuxt payloadExtraction paths alone', () => {
+    expect(redirectTargetForPath('/en/home/_payload.js')).toBeNull()
+    expect(redirectTargetForPath('/en/home/_payload.json')).toBeNull()
+    expect(redirectTargetForPath('/pl/investor/_payload.js')).toBeNull()
+    expect(redirectTargetForPath('/en/thank-you/_payload.js')).toBeNull()
+    expect(redirectTargetForPath('/en/custom-landing/_payload.js')).toBeNull()
+  })
+
+  it('leaves arbitrary CMS slugs alone for [lang]/[slug]', () => {
+    expect(redirectTargetForPath('/en/afdhjzfhdsjshfdj')).toBeNull()
+    expect(redirectTargetForPath('/pl/demo-page')).toBeNull()
+    expect(redirectTargetForPath('/en/custom-landing')).toBeNull()
+  })
+
+  it('collapses unknown pseudo-locales onto home', () => {
+    expect(redirectTargetForPath('/afdhjzfhdsjshfdj')).toBe('/en/home')
+    expect(redirectTargetForPath('/afdhjzfhdsjshfdj/home')).toBe('/en/home')
+    expect(redirectTargetForPath('/not-a-locale/investor')).toBe('/en/home')
+  })
+
+  it('still collapses known dead locale marketing roots', () => {
+    expect(redirectTargetForPath('/en/services')).toBe('/en/home')
+    expect(redirectTargetForPath('/pl/about-us')).toBe('/pl/home')
+    expect(redirectTargetForPath('/en/gdpr')).toBe('/en/home')
   })
 
   it('collapses thank-you extras to the thank-you root', () => {

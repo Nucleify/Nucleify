@@ -1,4 +1,3 @@
-import { createClient } from '@supabase/supabase-js'
 import {
   createError,
   defineEventHandler,
@@ -7,14 +6,15 @@ import {
   setResponseStatus,
 } from 'h3'
 
-import type { ApiContext, Json } from './_types'
+import type { ApiContext, Json } from '../nuc_server'
 
 import { useRuntimeConfig } from 'nitropack/runtime'
 import {
   dispatchSupabaseApiGateway,
+  ensureServerEnv,
+  getServiceRoleSupabaseClient,
   parseApiSlug,
-} from '../../../../shared_modules/nuc_api/supabase/api/gateway_dispatch'
-import { ensureServerEnv } from '../../../../shared_modules/nuc_api/supabase/api/server_env'
+} from '../../../../shared_modules/index.server'
 
 export default defineEventHandler(async (event) => {
   ensureServerEnv()
@@ -49,9 +49,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const supabase = createClient(supabaseUrl, serviceRoleKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  })
+  const supabase = getServiceRoleSupabaseClient(supabaseUrl, serviceRoleKey)
 
   const ok = (data: unknown, extra: Json = {}) => ({ data, ...extra })
   const ctx: ApiContext = { event, method, segments, supabase, ok }

@@ -3,17 +3,23 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --port 8888",
     "build": "nuxt build",
     "prepare": "nuxt prepare",
     "preview": "nuxt preview"
   },
   "dependencies": {
-    "nuxt": "4.4.8",
+    "@supabase/ssr": "^0.7.0",
+    "@supabase/supabase-js": "^2.105.1",
+    "lit": "^3.3.3",
+    "nucleify-ui": "^0.3.7",
+    "nuxt": "4.6.3",
     "vue": "^3.5.39",
     "vue-router": "5.2.0"
   },
   "devDependencies": {
+    "dotenv": "^16.4.7",
+    "sass": "1.89.0",
     "wrangler": "4.80.0"
   }
 }

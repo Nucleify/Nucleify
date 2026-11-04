@@ -189,7 +189,7 @@ Per-deployment customizations go in `overrides/web/` or `overrides/admin/`, mirr
 | `pnpm --filter @nucleify/web dev` | Direct pnpm filter |
 | `pnpm --filter @nucleify/admin dev` | Admin direct filter |
 
-Default port: `3000`. Environment loaded from monorepo root `.env` via `load-env.ts`.
+Default ports (every technology): landing `web*` → `7777` (`WEB_PORT`), `admin*` → `8888` (`ADMIN_PORT`). Environment loaded from monorepo root `.env` via `load-env.ts`.
 
 ---
 

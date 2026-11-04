@@ -1,4 +1,4 @@
--- After nuc_users (and any auth.users inserts): give every user entity palette overrides.
+-- After auth.users exist: give every user entity palette overrides.
 -- Keys: `{entity}-{shade}-u` - must match nuc_colors plugins / sync_colors_with_database.ts.
 
 insert into public.user_colors (user_id, name, value, is_new, new)

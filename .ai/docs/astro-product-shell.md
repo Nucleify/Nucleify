@@ -19,10 +19,12 @@ Markup-first without HTML duplication between static sections and orchestrators:
 | Vue class | `.astro` | `*.island.tsx` |
 |-----------|----------|----------------|
 | static | full template markup (via IR) | - |
-| island (interactive) | thin mount (`<Island client:load />`) | React UI (Astro SSRs it) |
+| island (interactive) | thin mount (`<Island client:load {...Astro.props} />`) | React UI (Astro SSRs it) |
 | orchestrator (home/investor) | composes child `.astro` sections | `boot.island.tsx` - motion/rail only (`return null`) |
 
 Locale pages render `views/home/index.astro` (SSR) inside `ShellNui` (nui + params). Interactive sections hydrate as islands; static sections stay Astro-only.
+
+Home/investor compositions pass `sections` / `activeSection` into `templates/rail/index.astro` from `lib/shell-rail-sections.ts` (same lists the boot islands use for scroll / active state). Island mounts must forward `Astro.props` or required props like `sections` stay undefined and crash on hydrate.
 
 ## Tests
 

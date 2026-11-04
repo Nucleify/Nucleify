@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { isLabUserAgent } from '../../src/utils/is_lab_user_agent'
+import { isLabUserAgent } from '@web'
 
 describe('isLabUserAgent', () => {
   it('detects PageSpeed / Lighthouse request UAs', () => {

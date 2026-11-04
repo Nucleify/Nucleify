@@ -70,7 +70,7 @@ Uruchom aplikację landingową:
 make web
 ```
 
-Otwórz [http://localhost:3000](http://localhost:3000). Domyślne przekierowanie locale kieruje na `/en/home`.
+Otwórz [http://localhost:7777](http://localhost:7777). Domyślne przekierowanie locale kieruje na `/en/home`. Admin działa na [http://localhost:8888](http://localhost:8888) przez `make admin`.
 
 Inne pakiety:
 
@@ -129,7 +129,7 @@ make compiler   # uruchom ręcznie, gdy deps są stabilne
 
 ### Port już zajęty
 
-Nuxt domyślnie używa portu 3000. Ustaw inny port w shellu lub zatrzymaj konfliktujący proces.
+`web/` domyślnie używa portu `7777` (`WEB_PORT`); `admin/` — `8888` (`ADMIN_PORT`). Nadpisz w `.env` lub zatrzymaj konfliktujący proces.
 
 ### Błędy brakującego Supabase w trasach API
 

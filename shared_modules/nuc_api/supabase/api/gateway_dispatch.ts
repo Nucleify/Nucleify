@@ -2,10 +2,14 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
 import type { ApiContext, ApiHandlerResult, Json } from 'nuc_server'
 
+import { handleAdminApi } from '../../../nuc_admin/supabase/api/handle'
+import { handlePublicPagesApi } from '../../../nuc_admin/supabase/api/public_pages_handlers'
 import { handleColorsApi } from '../../../nuc_colors/supabase/api/handle'
 import { handleLanguagesApi } from '../../../nuc_languages/supabase/api/handle'
 
 export const supabaseApiGatewayHandlers = [
+  handlePublicPagesApi,
+  handleAdminApi,
   handleColorsApi,
   handleLanguagesApi,
 ] as const
@@ -43,6 +47,34 @@ export async function dispatchSupabaseApiGateway(
   return { status: 404, body: { error: 'Not found' } }
 }
 
+type CachedServiceRoleClient = {
+  supabaseUrl: string
+  serviceRoleKey: string
+  client: SupabaseClient
+}
+
+let cachedServiceRoleClient: CachedServiceRoleClient | null = null
+
+/** Reuse one service-role client per process (JWKS cache + less setup). */
+export function getServiceRoleSupabaseClient(
+  supabaseUrl: string,
+  serviceRoleKey: string
+): SupabaseClient {
+  if (
+    cachedServiceRoleClient &&
+    cachedServiceRoleClient.supabaseUrl === supabaseUrl &&
+    cachedServiceRoleClient.serviceRoleKey === serviceRoleKey
+  ) {
+    return cachedServiceRoleClient.client
+  }
+
+  const client = createClient(supabaseUrl, serviceRoleKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  })
+  cachedServiceRoleClient = { supabaseUrl, serviceRoleKey, client }
+  return client
+}
+
 export function createServiceRoleSupabaseClient(): SupabaseClient {
   const supabaseUrl = String(
     process.env.NEXT_PUBLIC_SUPABASE_URL ||
@@ -58,7 +90,5 @@ export function createServiceRoleSupabaseClient(): SupabaseClient {
     )
   }
 
-  return createClient(supabaseUrl, serviceRoleKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
-  })
+  return getServiceRoleSupabaseClient(supabaseUrl, serviceRoleKey)
 }

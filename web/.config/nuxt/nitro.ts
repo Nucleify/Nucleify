@@ -47,6 +47,10 @@ export const nitroConfig = {
 			},
 		},
 		alias: {
+			"@web": resolve(root, "src/index.server.ts"),
+			"@admin": resolve(root, "../admin/src/index.server.ts"),
+			"@shared_modules": resolve(root, "../shared_modules/index.server.ts"),
+			"@portable": resolve(root, "../portable"),
 			nucleify: resolve(root, "src/nucleify.ts"),
 			modules: resolve(root, "../shared_modules"),
 			nuc_api: resolve(

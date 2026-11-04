@@ -28,7 +28,11 @@ Nigdy nie commituj `.env`. Szablony są w `web/.config/`:
 | `APP_NAME` | `Nucleify` | Wyświetlana nazwa aplikacji |
 | `APP_ENV` | `local` | `local` / `production` / `testing` |
 | `APP_DEBUG` | `true` | Flaga debug |
-| `NUXT_PUBLIC_APP_URL` | `http://localhost:3000` | Publiczny URL aplikacji (też w runtime config) |
+| `NUXT_PUBLIC_APP_URL` | `http://localhost:7777` | Publiczny URL aplikacji (też w runtime config) |
+| `NUXT_PUBLIC_ADMIN_URL` | `http://localhost:8888` | URL aplikacji admin |
+| `WEB_PORT` | `7777` | Lokalny port Nuxt dla `web/` |
+| `ADMIN_PORT` | `8888` | Lokalny port Nuxt dla `admin/` |
+| `NUC_API_ORIGIN` | `http://localhost:8888` | Shelle landingu proxy `/api/*` na ten origin (admin) |
 
 ---
 
