@@ -1,7 +1,7 @@
 import './.config/nuxt/load-env'
 
-import { defineNuxtConfig } from 'nuxt/config'
-import { resolve } from 'node:path'
+import { cpSync, existsSync, lstatSync, readdirSync, rmSync } from 'node:fs'
+import { join, resolve } from 'node:path'
 
 const root = resolve(process.cwd(), '..')
 const adminSrc = resolve(process.cwd(), 'src')
@@ -73,6 +73,36 @@ export default defineNuxtConfig({
       '@portable': resolve(root, 'portable'),
       nuc_api: resolve(root, 'shared_modules/nuc_api/supabase/api/server.ts'),
       nuc_server: resolve(adminSrc, 'server/nuc_server.ts'),
+    },
+  },
+  hooks: {
+    'nitro:build:public-assets': (nitro: {
+      options: {
+        rootDir: string
+        output: { publicDir: string; serverDir: string }
+      }
+    }) => {
+      const publicDir = join(nitro.options.rootDir, 'public')
+      const outputDir = nitro.options.output.publicDir
+      if (existsSync(publicDir)) {
+        for (const entry of readdirSync(publicDir, { withFileTypes: true })) {
+          if (entry.name.startsWith('.')) continue
+          const srcPath = join(publicDir, entry.name)
+          const destPath = join(outputDir, entry.name)
+          try {
+            if (existsSync(destPath) || lstatSync(destPath, { throwIfNoEntry: false })) {
+              rmSync(destPath, { recursive: true, force: true })
+            }
+            cpSync(srcPath, destPath, {
+              recursive: true,
+              dereference: true,
+              force: true,
+            })
+          } catch {
+            // Ignore if already copied by Nitro
+          }
+        }
+      }
     },
   },
   devServer: {

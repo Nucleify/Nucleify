@@ -1,8 +1,10 @@
 import {
 	cpSync,
 	existsSync,
+	lstatSync,
 	readdirSync,
 	readFileSync,
+	rmSync,
 	writeFileSync,
 } from "node:fs";
 import { join } from "node:path";
@@ -134,6 +136,9 @@ export const hooksConfig = {
 					const destPath = join(outputDir, entry.name);
 					try {
 						// Dereference symlinks so destination has actual content or replaces symlink
+						if (existsSync(destPath) || lstatSync(destPath, { throwIfNoEntry: false })) {
+							rmSync(destPath, { recursive: true, force: true });
+						}
 						cpSync(srcPath, destPath, {
 							recursive: true,
 							dereference: true,
