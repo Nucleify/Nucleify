@@ -1,0 +1,104 @@
+/* ─── Wedge ─────────────────────────────────────────────────── */
+
+.nuc-wedge {
+  &-head {
+    max-width: 38rem;
+
+    .nuc-title,
+    .nuc-support {
+      white-space: pre-line;
+    }
+  }
+
+  &-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
+    padding: 0;
+    list-style: none;
+
+    @media (min-width: $md) {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  &-card {
+    display: grid;
+    gap: 0.65rem;
+    min-height: 100%;
+    padding: 1.2rem 1.15rem 1.25rem;
+    border: 1px solid var(--shell-card-border);
+    border-radius: 1.1rem;
+    background:
+      linear-gradient(
+        160deg,
+        hsl(var(--rainbow-hue) 55% 52% / calc(6% + var(--step-i) * 2%)),
+        transparent 55%
+      ),
+      var(--shell-card-bg);
+    box-shadow: var(--shell-card-shadow);
+
+    h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 620;
+      letter-spacing: -0.025em;
+      line-height: 1.25;
+    }
+  }
+
+  &-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  &-icon {
+    display: grid;
+    place-items: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border: 1px solid var(--shell-holo-line-soft);
+    border-radius: 0.7rem;
+    color: var(--shell-accent);
+    background: hsl(var(--rainbow-hue) 55% 52% / 12%);
+    box-shadow: 0 0 22px hsl(var(--rainbow-hue) 55% 52% / 18%);
+  }
+
+  &-phase {
+    margin: 0;
+    color: var(--shell-accent);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.58rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: right;
+
+    span {
+      display: block;
+      color: var(--shell-dim);
+      font-weight: 500;
+    }
+  }
+
+  &-body {
+    margin: 0;
+    color: var(--shell-muted);
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  &-signal {
+    margin: 0.15rem 0 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--shell-holo-line-soft);
+    color: var(--shell-dim);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+}

@@ -58,8 +58,8 @@ make setup
 Start the landing app:
 
 ```bash
-make web       # http://localhost:3000
-make admin      # admin panel
+make web       # http://localhost:7777
+make admin      # http://localhost:8888
 make docs       # documentation
 ```
 

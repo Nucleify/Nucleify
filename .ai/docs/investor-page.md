@@ -1,7 +1,7 @@
 # Investor page (`/{lang}/investor`)
 
 ## What
-Full-viewport investor pitch at `web/src/pages/investor/`, routed via `web/src/pages/[lang]/investor.vue`. Same marketing shell as home (shear / iris / rail snap / wipe reveals / rainbow accents).
+Full-viewport investor pitch routed via `web/src/pages/[lang]/[slug].vue` (`slug=investor`, `usePublicShellPage`) into the shared marketing shell (`layouts/` + `sections/`). Same chrome as home (shear / iris / rail snap / wipe reveals / rainbow accents).
 
 ## Sections
 1. **Intro** - short pitch + at-a-glance plate (`7 → 1`, modeled savings)  
@@ -17,11 +17,11 @@ Full-viewport investor pitch at `web/src/pages/investor/`, routed via `web/src/p
 - One short support line; CTAs: Request intro / See product / Read the thesis
 - No KPI strip on the hero
 
-**Right - at-a-glance plate** (`.nuc-inv-glance`)
+**Right - at-a-glance plate** (`.nuc-glance`)
 - `7 → 1` (frameworks → codebase)
-- `$180k–$320k / year kept` (tied to `NUC_INVESTOR_SAVINGS` dollars)
+- `$180k–$320k / year kept` (tied to savings model dollars in CMS defaults)
 - One sentence + stack list + illustrative note
-- Data: `NUC_INVESTOR_GLANCE` (replaces compare / ledger / deal card)
+- Data: `INVESTOR_SECTION_DEFAULTS['section.intro'].glance`
 
 **SEO** - title `Nucleify Investor Brief - One Codebase, Every Framework`  
 **Shells** - always Vue · React · Nuxt · Next · Astro · Svelte · Solid (never React/Next-only or Vue/Nuxt-only)
@@ -31,7 +31,7 @@ Full-viewport investor pitch at `web/src/pages/investor/`, routed via `web/src/p
 - No `nui-dialog` - inline `is-form` stage: pitch fades/slides left, commerce panel enters from the right
 - Escape / Back resets; trust strip under submit
 - Home Close mirrors the same pattern with product-facing copy
-- Scroll gate (`bind_home_section_scroll_gate.ts`): on mobile, only sections taller than the viewport must reach bottom before the next gesture advances; short sections keep normal snap (Nuxt + Next home/investor)
+- Scroll gate (`shell_scroll.ts` → `bindSectionScrollGate`): on mobile, only sections taller than the viewport must reach bottom before the next gesture advances; short sections keep normal snap (Nuxt + Next home/investor)
 
 ## Next (product convert)
 - **Source of truth:** `web/` (Nuxt/Vue). `web-next/` is gitignored - regenerate after Vue polish:
@@ -41,7 +41,6 @@ Full-viewport investor pitch at `web/src/pages/investor/`, routed via `web/src/p
 - App route: `web-next/src/app/[lang]/investor/page.tsx` → `@/views/investor`
 - Bare `/investor` redirects to `/en/investor` (next.config)
 - `[lang]` is constrained to `en|pl|vn` so `/investor` is not treated as a locale
-- `nui-rainbow` CE: dynamic `import()` in `web-next/src/lib/nucleify-ui-provider.tsx` (top-level import extends `HTMLElement` and breaks SSR); layout only loads `nui-rainbow/styles.css` + body class
 
 ### Parity check (2026-09-21)
 Re-ran convert after investor polish. Verified on Next emit:
@@ -51,7 +50,7 @@ Re-ran convert after investor polish. Verified on Next emit:
 - Investor `_index.scss` includes emit cubes, wedge rail, form stage
 
 ## Motion
-`play_investor_animations.ts` - slim home engine: cipher brand, iris wipe, magnetic shear, section wipe reveals. Reuses home section observer / contact helpers.
+`playShellAnimations(root, pitchShellBoot)` (`web/src/templates/shell_boot/index.ts`) — cipher brand, iris wipe, magnetic shear. Section wipe reveals bind from each pitch section’s `motion.ts` via `useShellSectionReveal`.
 
 ## Routing
 - Route rules: `/investor` → `/en/investor`

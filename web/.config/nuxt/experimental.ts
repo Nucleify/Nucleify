@@ -1,5 +1,7 @@
 export const experimentalConfig = {
-	payloadExtraction: true,
+	// Workers Sites has no SWR payload store - `true` links `/…/_payload.js` and 404s
+	// (MIME text/html|json → broken hydration). Inline payload instead.
+	payloadExtraction: false,
 	renderJsonPayloads: false,
 	componentIslands: true,
 	asyncContext: true,

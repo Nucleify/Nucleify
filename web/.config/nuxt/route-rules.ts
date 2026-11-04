@@ -22,15 +22,11 @@ export function getRouteRules(locales: readonly { code: string }[]) {
 		},
 		...(isLocal
 			? {}
-			: {
-					'/**/_payload.js': {},
-					'/**/_payload.json': {},
-					...Object.fromEntries(
-						locales.map((locale) => [
-							`/${locale.code}/*`,
-							{ swr: true, prerender },
-						]),
-					),
-				}),
+			: Object.fromEntries(
+					locales.map((locale) => [
+						`/${locale.code}/*`,
+						{ prerender },
+					]),
+				)),
 	}
 }

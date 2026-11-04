@@ -30,11 +30,19 @@ make web                  # Nuxt product
 make vue / make solid / make svelte   # portable emit demos
 ```
 
+## Sync layout
+
+`compiler/src/sync/` is split by domain; import only via `compiler/src/sync` (barrel). See `.ai/docs/sync-module-layout.md`.
+
 ## Product convert
 
 | Item | Status |
 |------|--------|
 | `web\|admin` → `next\|solid\|svelte` (CI) | done |
+| `web` → next/solid CMS slug shell (`[lang]/[slug]`) | done (`writeWebPublicShellNext` / `writeWebPublicShellSolid`) |
+| Nuxt `navigateTo` / auto-imports → React (`redirect` / `useRouter`, hooks) | done (`script-to-react` + `finalizeReactNuxtNavigation`) |
+| Vue event modifiers (`.prevent`, `.enter`, …) → React/Solid/Svelte wraps | done (`adapters/event-modifiers` + parse/emit) |
+| Admin Next App Router from `views/**` (`writeAdminNextAppRoutes`) | done |
 | External `--path` / `--git` + `--out` | done |
 | Docs Astro → next/solid/svelte | **not implemented** (CLI returns an explicit error) |
 | Portable vs convert docs | README + this note |

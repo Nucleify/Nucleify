@@ -1,0 +1,57 @@
+import {
+  createError,
+  defineEventHandler,
+  getMethod,
+  getRouterParam,
+  setResponseStatus,
+} from 'h3'
+import { useRuntimeConfig } from 'nitropack/runtime'
+
+import {
+  dispatchSupabaseApiGateway,
+  ensureServerEnv,
+  getServiceRoleSupabaseClient,
+  parseApiSlug,
+} from '../../../../shared_modules/index.server'
+import type { ApiContext, Json } from '../nuc_server'
+
+export default defineEventHandler(async (event) => {
+  ensureServerEnv()
+  const method = getMethod(event).toUpperCase()
+  const segments = parseApiSlug(getRouterParam(event, 'slug'))
+
+  if (segments.length === 0) {
+    setResponseStatus(event, 200)
+    return { data: { message: 'Supabase API gateway ready.' } }
+  }
+  if (segments[0] === 'test') {
+    setResponseStatus(event, 200)
+    return { message: 'Hello World' }
+  }
+
+  const config = useRuntimeConfig(event)
+  const supabaseUrl = String(
+    config.public.supabaseUrl || process.env.SUPABASE_URL || ''
+  )
+  const serviceRoleKey = String(
+    config.supabaseServiceRoleKey || process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+  )
+  if (!supabaseUrl || !serviceRoleKey) {
+    throw createError({
+      statusCode: 503,
+      statusMessage: 'Supabase is not configured.',
+      data: {
+        error:
+          'Set SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in the monorepo .env.',
+      },
+    })
+  }
+
+  const supabase = getServiceRoleSupabaseClient(supabaseUrl, serviceRoleKey)
+
+  const ok = (data: unknown, extra: Json = {}) => ({ data, ...extra })
+  const ctx: ApiContext = { event, method, segments, supabase, ok }
+  const result = await dispatchSupabaseApiGateway(ctx)
+  setResponseStatus(event, result.status)
+  return result.body
+})

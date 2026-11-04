@@ -1,0 +1,71 @@
+.nuc-shear {
+  pointer-events: none;
+  position: absolute;
+  inset: -12%;
+  z-index: 0;
+  transform: perspective(1200px) rotateX(calc(var(--shell-my) * -4deg))
+    rotateY(calc(var(--shell-mx) * 5deg))
+    translate3d(calc(var(--shell-mx) * 18px), calc(var(--shell-my) * 14px), 0);
+  transform-origin: 50% 35%;
+  will-change: transform;
+}
+
+.nuc-aura {
+  display: none;
+}
+
+.nuc-stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 8% 18%, rgb(255 255 255 / 70%), transparent),
+    radial-gradient(1px 1px at 22% 42%, rgb(122 240 255 / 55%), transparent),
+    radial-gradient(1.2px 1.2px at 36% 12%, rgb(255 255 255 / 45%), transparent),
+    radial-gradient(1px 1px at 48% 28%, rgb(192 132 252 / 45%), transparent),
+    radial-gradient(1px 1px at 62% 8%, rgb(255 255 255 / 55%), transparent),
+    radial-gradient(1px 1px at 74% 36%, rgb(122 240 255 / 40%), transparent),
+    radial-gradient(1.4px 1.4px at 88% 16%, rgb(255 255 255 / 50%), transparent),
+    radial-gradient(1px 1px at 12% 68%, rgb(255 255 255 / 40%), transparent),
+    radial-gradient(1px 1px at 28% 82%, rgb(122 240 255 / 35%), transparent),
+    radial-gradient(1px 1px at 44% 74%, rgb(255 255 255 / 50%), transparent),
+    radial-gradient(1px 1px at 58% 90%, rgb(192 132 252 / 40%), transparent),
+    radial-gradient(1.2px 1.2px at 71% 64%, rgb(255 255 255 / 45%), transparent),
+    radial-gradient(1px 1px at 84% 78%, rgb(122 240 255 / 40%), transparent),
+    radial-gradient(1px 1px at 93% 52%, rgb(255 255 255 / 35%), transparent),
+    radial-gradient(1px 1px at 5% 48%, rgb(255 255 255 / 40%), transparent),
+    radial-gradient(1px 1px at 33% 56%, rgb(122 240 255 / 30%), transparent),
+    radial-gradient(1px 1px at 51% 48%, rgb(255 255 255 / 28%), transparent),
+    radial-gradient(1px 1px at 66% 50%, rgb(192 132 252 / 30%), transparent),
+    radial-gradient(1px 1px at 79% 88%, rgb(255 255 255 / 38%), transparent),
+    radial-gradient(1px 1px at 16% 8%, rgb(255 255 255 / 32%), transparent);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.nuc-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, hsl(var(--rainbow-hue) 55% 52%) 20%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, hsl(var(--rainbow-hue) 55% 52%) 20%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 72px 72px;
+  mask-image: radial-gradient(
+    circle at var(--shell-iris-x) var(--shell-iris-y),
+    #000 var(--shell-iris),
+    transparent calc(var(--shell-iris) + 18%)
+  );
+  opacity: 0.55;
+  transform: translate3d(
+    calc(var(--shell-mx) * -10px),
+    calc(var(--shell-my) * -8px),
+    0
+  );
+}
+

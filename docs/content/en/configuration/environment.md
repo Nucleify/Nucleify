@@ -28,7 +28,11 @@ Never commit `.env`. Example templates live in `web/.config/`:
 | `APP_NAME` | `Nucleify` | Application display name |
 | `APP_ENV` | `local` | `local` / `production` / `testing` |
 | `APP_DEBUG` | `true` | Debug flag |
-| `NUXT_PUBLIC_APP_URL` | `http://localhost:3000` | Public app URL (also exposed as runtime config) |
+| `NUXT_PUBLIC_APP_URL` | `http://localhost:7777` | Public app URL (also exposed as runtime config) |
+| `NUXT_PUBLIC_ADMIN_URL` | `http://localhost:8888` | Admin app URL |
+| `WEB_PORT` | `7777` | Local Nuxt port for `web/` |
+| `ADMIN_PORT` | `8888` | Local Nuxt port for `admin/` |
+| `NUC_API_ORIGIN` | `http://localhost:8888` | Landing shells proxy `/api/*` to this origin (admin) |
 
 ---
 

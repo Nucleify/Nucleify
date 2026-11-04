@@ -70,7 +70,7 @@ Start the landing app:
 make web
 ```
 
-Open [http://localhost:3000](http://localhost:3000). The default locale redirect sends you to `/en/home`.
+Open [http://localhost:7777](http://localhost:7777). The default locale redirect sends you to `/en/home`. Admin runs on [http://localhost:8888](http://localhost:8888) via `make admin`.
 
 Other packages:
 
@@ -129,7 +129,7 @@ make compiler   # run manually once deps are stable
 
 ### Port already in use
 
-Nuxt defaults to port 3000. Set a different port in your shell or stop the conflicting process.
+`web/` defaults to port `7777` (`WEB_PORT`); `admin/` to `8888` (`ADMIN_PORT`). Override in `.env` or stop the conflicting process.
 
 ### Missing Supabase errors in API routes
 

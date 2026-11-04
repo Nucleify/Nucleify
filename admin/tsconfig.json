@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
+    "skipLibCheck": true,
+    "types": ["vite/client"],
+    "baseUrl": ".",
+    "paths": {
+      "@web": ["../web/src/index.ts"],
+      "@web/*": ["../web/src/*"],
+      "@admin": ["src/index.ts"],
+      "@admin/*": ["src/*"],
+      "@shared_modules": ["../shared_modules/index.ts"],
+      "@shared_modules/*": ["../shared_modules/*"],
+      "@portable": ["../portable/index.ts"],
+      "@portable/*": ["../portable/*"],
+      "nucleify": ["../shared_modules/index.ts"],
+      "nuc_api": ["../shared_modules/nuc_api/supabase/api/server.ts"],
+      "nuc_server": ["src/server/nuc_server.ts"],
+      "modules": ["../shared_modules"],
+      "modules/*": ["../shared_modules/*"],
+      "portable/nui": ["../portable/nui/index.ts"],
+      "portable/nui/*": ["../portable/nui/*"],
+      "~/*": ["src/*"]
+    }
+  },
+  "include": [
+    "./**/*.d.ts",
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./**/*.vue",
+    "../shared_modules/**/*.ts",
+    "../shared_modules/**/*.vue",
+    "../portable/**/*.ts"
+  ],
+  "exclude": [
+    "../node_modules",
+    "./node_modules",
+    "./.nuxt",
+    "../dist",
+    "**/*.nuc.tsx",
+    "../**/*.spec.ts",
+    "../**/*.test.ts"
+  ]
+}

@@ -6,6 +6,8 @@
   "description": "Thin shared packages across web/admin/docs/compiler.",
   "exports": {
     ".": "./index.ts",
+    "./nuc_admin": "./nuc_admin/index.ts",
+    "./nuc_admin/*": "./nuc_admin/*",
     "./nuc_api": "./nuc_api/index.ts",
     "./nuc_api/*": "./nuc_api/*",
     "./nuc_colors": "./nuc_colors/index.ts",

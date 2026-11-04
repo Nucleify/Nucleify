@@ -10,6 +10,18 @@ Notes written by workflow skills after **DO** (what changed, why, how to verify)
 
 | Note | Topic |
 |------|--------|
+| `admin-introduction.md` | Admin backoffice foundation (auth, roles, users, CMS) |
+| `admin-cms-v2-visual.md` | Admin CMS v2 slice 1 — sharp shell, rail groups, document header |
+| `admin-cms-v2-fields.md` | Admin CMS v2 slice 2 — FieldShell + nui-only form controls |
+| `admin-cms-v2-schema.md` | Admin CMS v2 slice 3 — JSON docs, FieldConfig, collections API |
+| `admin-cms-v2-pages-editor.md` | Admin CMS v2 slice 4 — SchemaFormRenderer + Pages document edit |
+| `admin-cms-v2-layout-editor.md` | Admin CMS v2 slice 5 — drag layout editor + widget picker |
+| `admin-cms-v2-globals.md` | Admin CMS v2 slice 6 — settings/header/footer globals |
+| `admin-cms-v2-media-redirects.md` | Admin CMS v2 slice 7 — media library + redirects |
+| `admin-cms-v2-web-bridge.md` | Admin CMS v2 slice 8 — public pages API + shell layout |
+| `admin-cms-v2-cutover.md` | Admin CMS v2 slice 9 — Collections IA + legacy redirects |
+| `admin-cms-v2-web-cutover.md` | Marketing home/investor driven by published CMS layouts |
+| `supabase-merge-sql-cleanup.md` | Slim seeders/factories + merge-sql rebuild notes |
 | `investor-page.md` | Investor pitch + Next convert parity |
 | `compiler-status.md` | Compiler emit/convert status / shell paths |
 | `docs-origin.md` | Public docs host `docs.nucleify.io` + app redirects |

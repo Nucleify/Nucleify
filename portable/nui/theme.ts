@@ -14,7 +14,7 @@ export type SetupNuiOptions = {
   loadFonts?: boolean
 }
 
-const SHELL_CLASSES = new Set(['nuc-nuxt', 'nuc-next'])
+const SHELL_CLASSES = new Set(['nuc-nuxt', 'nuc-next', 'nuc-svelte', 'nuc-solid'])
 
 /** Stable order: shell then `p-dark` - matches Next root layout (avoids hydration mismatch). */
 function applyShellClasses(
@@ -23,17 +23,16 @@ function applyShellClasses(
   syncDark: boolean,
   dark: boolean,
 ): void {
-  const kept = Array.from(el.classList).filter((c) => {
-    if (SHELL_CLASSES.has(c)) return false
-    if (syncDark && c === 'p-dark') return false
-    return true
-  })
-  const next = [...kept, shell, ...(syncDark && dark ? (['p-dark'] as const) : [])]
-  const nextClassName = next.join(' ')
-  if (el.className !== nextClassName) {
-    el.className = nextClassName
+  if (syncDark) {
+    if (dark) el.classList.add('p-dark')
+    else el.classList.remove('p-dark')
   }
+  for (const c of SHELL_CLASSES) {
+    if (c !== shell) el.classList.remove(c)
+  }
+  el.classList.add(shell)
 }
+
 
 /**
  * Apply shell class + nucleify-ui palette/mode.
@@ -59,10 +58,11 @@ function applySetup(opts: SetupNuiOptions): void {
 /**
  * Apply shell class + nucleify-ui palette/mode.
  * Registers Lit elements on the client before applying theme.
+ * Resolves when every registered `nui-*` tag is defined.
  */
-export function setupNui(opts: SetupNuiOptions): void {
-  if (typeof document === 'undefined') return
-  void ensureNuiRegistered().then(() => applySetup(opts))
+export function setupNui(opts: SetupNuiOptions): Promise<void> {
+  if (typeof document === 'undefined') return Promise.resolve()
+  return ensureNuiRegistered().then(() => applySetup(opts))
 }
 
 export function resolveThemeMode(): ThemeMode {

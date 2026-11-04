@@ -24,7 +24,7 @@ web/src/
 
 - UI: `nui-*` from `nucleify-ui` (Lit web components)
 - Vue SFCs: `<script setup lang="ts">`
-- Import shared via `shared_modules/nuc_*/…` or `modules` alias
+- Import shared via `@shared_modules`; app code via `@web` / `@admin` / `@portable`
 - Do not place shared code under `web/`
 
 ## Portable UI (`*.nuc.tsx`)

@@ -22,16 +22,22 @@ Uzupełnij wartości `SUPABASE_*` w root `.env`, jeśli planujesz wywoływać tr
 make web
 ```
 
-Otwórz [http://localhost:3000/en/home](http://localhost:3000/en/home).
+Otwórz [http://localhost:7777/en/home](http://localhost:7777/en/home).
 
-Źródło landingu jest w `web/src/pages/home/` - sekcje złożone przez `web/src/pages/home/index.vue`. Trasy to cienkie wrappery pod `web/src/pages/[lang]/`:
+Strony marketingowe współdzielą `web/src/pages/[lang]/[slug].vue`, które ładuje opublikowany layout CMS do shella (`usePublicShellPage`). Sekcje SFC są w `web/src/sections/`.
 
 ```vue
-<!-- web/src/pages/[lang]/home.vue -->
+<!-- web/src/pages/[lang]/[slug].vue -->
 <script setup lang="ts">
-import NucHomePage from '../home/index.vue'
+import { useRoute } from 'nuxt/app'
+import { computed } from 'vue'
+import { usePublicShellPage } from '../../composables/use_public_shell_page'
+
+const route = useRoute()
+const slug = computed(() => String(route.params.slug || ''))
+await usePublicShellPage(slug)
 </script>
-<template><NucHomePage /></template>
+<template><div /></template>
 ```
 
 ---
@@ -49,8 +55,8 @@ Przeglądarka  →  strona Nuxt (web/src/pages/)
 Szybki test bramki:
 
 ```bash
-curl http://localhost:3000/api
-curl http://localhost:3000/api/test
+curl http://localhost:8888/api
+curl http://localhost:8888/api/test
 ```
 
 ---

@@ -1,0 +1,102 @@
+.nuc-thank-you {
+  --shell-iris-x: 50%;
+  --shell-iris-y: 38%;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  &-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    flex: 1;
+    padding: 3.5rem var(--shell-pad, 1.25rem) 3rem;
+    box-sizing: border-box;
+  }
+
+  &-layout {
+    display: grid;
+    gap: 1.75rem;
+    place-items: center;
+    width: min(100%, 36rem);
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  &-cube {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+
+    .nuc-holo-cube {
+      width: min(100%, 14rem);
+
+      @media (min-width: $md) {
+        width: min(100%, 18rem);
+      }
+    }
+  }
+
+  &-copy {
+    display: grid;
+    gap: 0.95rem;
+    justify-items: center;
+    width: 100%;
+  }
+
+  &-title {
+    margin: 0;
+    color: var(--shell-fg);
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    font-size: clamp(1.75rem, 4vw, 2.35rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+
+    &.is-decoding {
+      font-variant-ligatures: none;
+    }
+  }
+
+  &-glyph {
+    display: inline-block;
+    min-width: 0.45em;
+    text-align: center;
+    color: color-mix(in srgb, var(--shell-accent) 70%, var(--shell-fg));
+    transition: color 0.2s ease;
+
+    &.is-locked {
+      color: var(--shell-fg);
+    }
+  }
+
+  &-support {
+    margin: 0;
+    max-width: 28rem;
+    color: var(--shell-muted);
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+
+  &-cta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
+    margin-top: 0.35rem;
+    width: 100%;
+
+    .nuc-btn {
+      flex: 0 1 auto;
+      min-width: 10rem;
+    }
+  }
+}
