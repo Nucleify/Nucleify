@@ -25,6 +25,7 @@ const props = withDefaults(
     type?: string
     placeholder?: string
     autocomplete?: string
+    autoComplete?: string
     modelValue?: string
     /** @deprecated use modelValue */
     value?: string
@@ -37,6 +38,7 @@ const props = withDefaults(
     type: 'text',
     placeholder: '',
     autocomplete: undefined,
+    autoComplete: undefined,
     modelValue: undefined,
     value: undefined,
     disabled: false,

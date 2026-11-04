@@ -58,7 +58,11 @@ const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
 
 const copy = computed(() => {
-  const picked = pickCopy(cms.value, [
+  const source =
+    cms && typeof cms === 'object' && 'value' in cms
+      ? (cms as { value: Record<string, unknown> }).value
+      : (cms as Record<string, unknown>)
+  const picked = pickCopy(source, [
     'thankYouTitle',
     'thankYouSupport',
     'thankYouCta',

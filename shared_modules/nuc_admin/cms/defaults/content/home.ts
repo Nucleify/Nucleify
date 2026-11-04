@@ -169,9 +169,9 @@ export interface NucHomeStackItem {
 
 export const NUC_HOME_SEO = {
   title:
-    'Nucleify - Migrate across Vue, React, Nuxt, Next, Astro, Svelte & Solid',
+    'Nucleify - Migrate Between Frontend Frameworks Without Rewriting Business Logic',
   description:
-    'Open-source nucleus built for framework migration: shared_modules, typed APIs, and an IR-first compiler. Convert whole product apps - not only UI snippets - across Vue, React, Nuxt, Next, Astro, Svelte, and Solid.',
+    'Write state, validation, and domain logic once in clean TypeScript. Compile to 100% human-readable, idiomatic Next.js, Nuxt, Astro, Svelte, or Solid with an IR-first compiler. Zero runtime overhead. Zero vendor lock-in.',
   ogImage: 'https://nucleify.io/img/og-image.png',
 } as const
 
@@ -208,8 +208,8 @@ export const NUC_HOME_COPY = {
   headlineLead: 'Keep the product.',
   headlineTrail: 'Migrate the framework.',
   support:
-    'Domain, API, and SQL stay in shared_modules. An IR-first compiler emits portable UI and converts whole Nuxt apps across Vue, React, Nuxt, Next, Astro, Svelte, and Solid - full product move, not orphaned snippets.',
-  ctaPrimary: 'Read the docs',
+    'Write your state, validation, and domain logic once in clean TypeScript. Compile to 100% human-readable, idiomatic Next.js, Nuxt, Astro, Svelte, or Solid. Zero runtime overhead. Zero vendor lock-in.',
+  ctaPrimary: 'Try Interactive Playground',
   ctaSecondary: 'Star on GitHub',
   ctaTertiary: 'Why Nucleify',
   githubHref: 'https://github.com/Nucleify/Nucleify',
@@ -225,27 +225,27 @@ export const NUC_HOME_COPY = {
   navMenu: 'Menu',
   navClose: 'Close',
   sectionsLabel: 'Sections',
-  pillarsEyebrow: 'Why Nucleify',
-  pillarsTitle: 'Business stays. Stack moves.',
+  pillarsEyebrow: 'The Framework Hamster Wheel',
+  pillarsTitle: 'Why are we still rewriting entire frontends every 3 years?',
   pillarsSupport:
-    'Routes, composables, components - rewritten for Vue, then React, then whatever ships next. Nucleify ends that loop. Emit UI, convert whole apps, and pull edits back - same types, same gateway, across seven frameworks.',
-  pillarsCta: 'Get running',
+    'Modern applications are written in TypeScript from top to bottom. Yet teams remain hostage to their UI framework choice, wasting engineering budget on manual rewrites and leaky runtimes.',
+  pillarsCta: 'See how it works',
   pillarsShareUnit: 'top stacks',
-  pillarsShareSource: 'Modern web. One emit surface.',
+  pillarsShareSource: 'Modern web. One IR emit surface.',
   stackEyebrow: 'Runtime surface',
-  stackTitle: 'Pick a framework.\nKeep the nucleus.',
+  stackTitle: 'Single Source of Truth\nin Pure TypeScript.',
   stackSupport:
-    'Keep one product core, then land it on Vue, React, Nuxt, Next, Astro, Svelte, or Solid as a full app - not a pile of leftover snippets.',
+    'Write domain logic, auth, and state once in clean TypeScript. Emit 100% human-readable, idiomatic code for Next.js, Nuxt, Astro, Svelte, or Solid with zero runtime wrappers.',
   stackCta: 'See the emit',
   stackStageLabel: 'active framework',
   pulseEyebrow: 'Scale without rewrite',
-  pulseTitleLead: 'Add frameworks.',
-  pulseTitleTrail: 'Keep the cost flat.',
+  pulseTitleLead: 'Cut migration cost.',
+  pulseTitleTrail: 'Keep budget flat.',
   pulseSupport:
-    'A new framework usually means rewriting the same product again. With Nucleify you ship the product once - when buyers or hiring force a stack change, you convert the shell, not the business. Rewrite tax stays at ×1.',
+    'A framework migration usually means freezing your product roadmap for 6 to 9 months. With Nucleify, your domain logic and type contracts stay untouched - compile in 2-3 weeks, with zero vendor lock-in.',
   pulseCta: 'Get in touch',
   pulseCompare:
-    'Traditional cost grows with each framework. Nucleify keeps one product surface and moves the stack.',
+    'Traditional rewrites cost $200k+ in wasted cycles. Nucleify keeps your TypeScript core intact and converts the framework.',
   pulseTraditionalLabel: 'traditional',
   pulseNucleifyLabel: 'nucleify',
   pulseShellsAxis: 'frameworks online',
@@ -274,21 +274,21 @@ export const NUC_HOME_COPY = {
     'Four commands from the repo root.\nThen open localhost and read the docs - or ping us if you want in.',
   cloneCta: 'Read the docs',
   cloneCtaNext: 'Pick a framework',
-  closeTitle: 'Get in touch.',
+  closeTitle: 'Migrate without rewriting your domain.',
   closeSupport:
-    'Need a migration, a product convert, or a full implementation on Vue, React, Nuxt, Next, Astro, Svelte, or Solid? Drop an email - we will reply with a concrete next step.',
-  closeCta: 'Get in touch',
+    'Need to migrate from Vue to React, Nuxt to Next, or evaluate Svelte/Astro? Drop an email with 3-5 typical components - we will return idiomatic, zero-runtime emitted code within 48h.',
+  closeCta: 'Request a Free PoC',
   compilerEyebrow: 'IR-first compiler',
   compilerTitleLead: 'Any stack in.',
   compilerTitleTrail: 'Any stack out.',
   compilerSupport:
-    'Start from Vue, React, Nuxt, Next, Astro, Svelte, or Solid - or author portable UI in *.nuc.tsx. The IR converts between frameworks, emits native code, and imports emit edits back. Migration is the pipeline, not a side script.',
+    'Write clean domain logic and state once in TypeScript. The IR compiler converts reactive state machines and schemas into idiomatic React hooks, Vue composables, or Svelte runes. 100% human-readable code you would actually be proud to commit.',
   compilerHub: '.nuc',
   compilerHubLabel: 'author',
   compilerEmitLabel: 'emit',
   compilerCta: 'Read compiler docs',
-  closeModalTitle: 'Start a conversation',
-  closeModalSupport: 'A short note on your project and timing is enough.',
+  closeModalTitle: 'Start a conversation / Free PoC',
+  closeModalSupport: 'Send 3-5 components or describe your migration timeline.',
   closeNameLabel: 'Name / organisation',
   closeNamePlaceholder: 'Alex at Acme',
   closeEmailLabel: 'Work email',
@@ -296,11 +296,12 @@ export const NUC_HOME_COPY = {
   closeTypeLabel: 'What do you need?',
   closeTypePlaceholder: 'Choose one',
   closeNoteLabel: 'Project note',
-  closeNotePlaceholder: 'Stack today, timeline, and what success looks like…',
+  closeNotePlaceholder:
+    'Stack today, target framework, timeline, and what success looks like…',
   closeSubmit: 'Send message',
   closeCancel: 'Back',
   closeSending: 'Sending…',
-  closeSuccess: 'Message sent. We will reply soon.',
+  closeSuccess: 'Message sent. We will reply within 24h.',
   closeErrorGeneric: 'Could not send. Please try again.',
   closeErrorEmail: 'Enter a valid email address.',
   closeErrorType: 'Pick what you need.',
@@ -308,11 +309,11 @@ export const NUC_HOME_COPY = {
   thankYouEyebrow: 'Sent',
   thankYouTitle: 'Thanks - we got it.',
   thankYouSupport:
-    'We reply within 24h with a clear next step. Check spam if nothing lands.',
+    'We reply within 24h with a concrete next step and your migration assessment.',
   thankYouCta: 'Back to Nucleify',
   thankYouInvestCta: 'Invest in us?',
   thankYouCubeCaption: 'Nucleus online',
-  thankYouProof: ['Reply within 24h', 'Concrete next step', 'No spam'],
+  thankYouProof: ['Reply within 24h', 'Concrete next step', 'Zero lock-in PoC'],
   thankYouSeoTitle: 'Thank you - Nucleify',
   thankYouSeoDescription:
     'Your message was sent. Nucleify will reply within 24 hours.',
@@ -327,10 +328,10 @@ export const NUC_HOME_INSTALL_STEPS = [
 
 /** Values stay API-stable; labels are developer-intent. */
 export const NUC_HOME_CONTACT_TYPES = [
-  { label: 'Migrate a site to another framework', value: 'landing' },
-  { label: 'New site ready for migration', value: 'business' },
-  { label: 'Migration support', value: 'blog' },
-  { label: 'Contribute', value: 'help' },
+  { label: 'Migrate an existing app to another framework', value: 'landing' },
+  { label: 'Request a Free Migration PoC (3-5 components)', value: 'business' },
+  { label: 'Enterprise migration support & Code Escrow', value: 'blog' },
+  { label: 'Contribute / Open source inquiry', value: 'help' },
 ] as const
 
 export interface NucHomeHeroShell {
@@ -575,31 +576,31 @@ export type NucHomeSectionId = (typeof NUC_HOME_SECTIONS)[number]['id']
 
 export const NUC_HOME_PILLARS: NucHomePillar[] = [
   {
-    icon: 'mdi:cube-outline',
+    icon: 'mdi:currency-usd-off',
     index: '01',
-    title: 'Ship the slice once',
+    title: 'The $200k Refactor Trap',
     description:
-      'One shared module packs routes, UI, and data access. Product convert carries that slice across Vue, React, Nuxt, Next, Astro, Svelte, and Solid - install the feature, skip the rewrite.',
-    outcome: 'Scaffolding weeks → hours',
-    proof: 'routes · ui · data in one unit',
+      'Moving from Vue to React or SPA to Next.js shouldn’t freeze roadmap development for 9 months. Re-implementing forms, validation, and domain logic is pure wasted engineering budget.',
+    outcome: 'Reduce migration cost by 70%',
+    proof: '6-9 months → 2-3 weeks',
   },
   {
-    icon: 'mdi:file-code-outline',
+    icon: 'mdi:shield-check-outline',
     index: '02',
-    title: 'The wire survives the move',
+    title: 'Type-Safety Preservation',
     description:
-      'Shared types and fetch helpers travel with the feature. Convert the framework - the client contract stays, only the stack changes.',
-    outcome: 'One contract across frameworks',
-    proof: 'shared types · shared calls',
+      'Manual framework rewrites introduce subtle regressions. Nucleify preserves full-stack type contracts from shared TypeScript modules all the way to emitted framework components.',
+    outcome: 'Zero regression in domain logic',
+    proof: '100% typed contracts',
   },
   {
-    icon: 'mdi:palette-swatch-outline',
+    icon: 'mdi:lock-open-variant-outline',
     index: '03',
-    title: 'Design system outlives the framework',
+    title: 'Zero Runtime, Zero Lock-In',
     description:
-      'One Lit UI kit and shared CSS tokens on every framework - Vue, React, Nuxt, Next, Astro, Svelte, Solid. Theme stays put; stacks move without forking the kit.',
-    outcome: 'One UI kit, seven frameworks',
-    proof: 'tokens · theme · portable',
+      'Emitted source code looks like your Senior Engineer wrote it: clean React hooks, Vue composables, and Svelte runes. No runtime libraries, no intermediate wrappers, no vendor lock-in.',
+    outcome: 'You own 100% of emitted code',
+    proof: 'zero runtime overhead',
   },
 ]
 

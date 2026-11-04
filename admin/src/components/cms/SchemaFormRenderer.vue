@@ -91,7 +91,6 @@
       <FieldCheckbox
         v-else-if="field.type === 'checkbox' && 'name' in field"
         :label="field.label || field.name"
-        :description="field.admin?.description"
         :checked="checkboxValue(field)"
         @update:checked="setField(field.name, $event)"
       />
@@ -176,7 +175,8 @@ const visibleFields = computed(() =>
 
 function fieldKey(field: FieldConfig): string {
   if ('name' in field && field.name) return field.name
-  return `${field.type}-${field.label ?? 'anon'}`
+  const label = 'label' in field ? (field as any).label : undefined
+  return `${field.type}-${label ?? 'anon'}`
 }
 
 function stringValue(name: string): string {
@@ -190,7 +190,7 @@ function numberValue(name: string): number | null {
 }
 
 function checkboxValue(field: FieldConfig): boolean {
-  if (!('name' in field)) return false
+  if (!('name' in field) || !field.name) return false
   const v = props.modelValue[field.name]
   if (v !== undefined) return Boolean(v)
   if ('defaultValue' in field && field.defaultValue !== undefined) {

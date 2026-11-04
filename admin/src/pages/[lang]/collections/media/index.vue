@@ -93,7 +93,7 @@ function setPending(file: File | null) {
   pendingFile.value = file
 }
 
-function onFileInput(event: Event) {
+function onFileInput(event: any) {
   const input = event.target as HTMLInputElement
   setPending(input.files?.[0] ?? null)
 }

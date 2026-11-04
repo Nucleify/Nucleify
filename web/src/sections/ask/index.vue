@@ -169,6 +169,7 @@ import {
   NUC_INVESTOR_CONTACT_TYPES,
   nuiHostValue,
   nuiValueFromEvent,
+  pageHref,
   submitHomeContactForm,
   useCmsAttrs,
   useInvestorCmsCopy,
@@ -307,7 +308,7 @@ function onNoteInput(event: Event): void {
   delete errors.message
 }
 
-async function onSubmit(): Promise<void> {
+async function onSubmit(_event?: Event): Promise<void> {
   if (loading.value) return
 
   syncFromHosts()

@@ -58,11 +58,12 @@ const props = withDefaults(
 )
 
 function rowKey(row: Record<string, unknown>): string {
-  return String(row[props.rowIdKey] ?? JSON.stringify(row))
+  const key = props.rowIdKey || 'id'
+  return String(row[key] ?? JSON.stringify(row))
 }
 
-function rowLink(row: Record<string, unknown>): string | null {
-  return props.linkForRow?.(row) ?? null
+function rowLink(row: Record<string, unknown>): string {
+  return props.linkForRow?.(row) ?? ''
 }
 
 function cell(row: Record<string, unknown>, key: string): string {
