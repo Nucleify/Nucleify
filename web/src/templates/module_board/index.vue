@@ -101,8 +101,9 @@ const active = computed(
 )
 const focused = computed(
   () =>
-    active.value.lanes.find((lane) => lane.id === focusId.value) ??
-    active.value.lanes[0]!
+    active.value.lanes.find(
+      (lane: { id: NucHomeModuleLaneId }) => lane.id === focusId.value
+    ) ?? active.value.lanes[0]!
 )
 
 const laneLabels = computed(
@@ -162,7 +163,7 @@ function tick(): void {
 
 watch(
   () => active.value.id,
-  () => {
+  (_id?: string) => {
     focusId.value = 'sdk'
   }
 )

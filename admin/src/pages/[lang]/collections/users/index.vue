@@ -13,30 +13,39 @@
     <div v-if="showCreate" class="admin-panel" style="padding: 1.25rem; margin-bottom: 1rem">
       <form class="admin-form" @submit.prevent="onCreate">
         <FieldText
-          ref="createEmail"
           label="Email"
           type="email"
           placeholder="user@example.com"
+          :model-value="newEmail"
+          @update:model-value="newEmail = $event"
         />
         <FieldText
-          ref="createPassword"
           label="Password"
           type="password"
           placeholder="min 8 chars"
+          :model-value="newPassword"
+          @update:model-value="newPassword = $event"
         />
-        <FieldText ref="createName" label="Display name" placeholder="Name" />
+        <FieldText
+          label="Display name"
+          placeholder="Name"
+          :model-value="newName"
+          @update:model-value="newName = $event"
+        />
         <nui-button type="submit" variant="filled" :label="creating ? 'Creating…' : 'Create'" />
       </form>
     </div>
 
     <div class="admin-panel" style="padding: 0.75rem 1rem; margin-bottom: 1rem">
       <form class="admin-actions" @submit.prevent="load">
-        <FieldText
-          ref="searchInput"
-          type="search"
-          placeholder="Search email or name"
-          style="flex: 1; min-width: 12rem"
-        />
+        <div style="flex: 1; min-width: 12rem">
+          <FieldText
+            type="search"
+            placeholder="Search email or name"
+            :model-value="searchTerm"
+            @update:model-value="searchTerm = $event"
+          />
+        </div>
         <nui-button type="submit" variant="outlined" label="Search" />
       </form>
     </div>
@@ -102,16 +111,16 @@ const creating = ref(false)
 const showCreate = ref(false)
 const error = ref('')
 
-const searchInput = ref<FieldHost | null>(null)
-const createEmail = ref<FieldHost | null>(null)
-const createPassword = ref<FieldHost | null>(null)
-const createName = ref<FieldHost | null>(null)
+const searchTerm = ref('')
+const newEmail = ref('')
+const newPassword = ref('')
+const newName = ref('')
 
 async function load() {
   loading.value = true
   error.value = ''
   try {
-    const search = searchInput.value?.value ?? ''
+    const search = searchTerm.value
     const path = search
       ? `/api/admin/users?search=${encodeURIComponent(search)}`
       : '/api/admin/users'
@@ -128,11 +137,14 @@ async function onCreate() {
   error.value = ''
   try {
     await adminApiSend('/api/admin/users', 'POST', {
-      email: createEmail.value?.value ?? '',
-      password: createPassword.value?.value ?? '',
-      display_name: createName.value?.value ?? '',
+      email: newEmail.value,
+      password: newPassword.value,
+      display_name: newName.value,
     })
     showCreate.value = false
+    newEmail.value = ''
+    newPassword.value = ''
+    newName.value = ''
     await load()
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Create failed'

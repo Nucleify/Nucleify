@@ -15,20 +15,20 @@
 
     <form v-else-if="user" class="admin-form" style="max-width: 32rem" @submit.prevent="onSave">
       <FieldText
-        ref="nameInput"
         label="Display name"
-        :value="user.display_name"
+        :model-value="displayName"
+        @update:model-value="displayName = $event"
       />
       <FieldText
-        ref="emailInput"
         label="Email (display)"
         type="email"
-        :value="user.email || ''"
+        :model-value="email"
+        @update:model-value="email = $event"
       />
       <FieldText
-        ref="localeInput"
         label="Locale"
-        :value="user.locale || 'en'"
+        :model-value="locale"
+        @update:model-value="locale = $event"
       />
       <FieldSelect
         :model-value="status"
@@ -80,13 +80,12 @@ const user = ref<UserDetail | null>(null)
 const availableRoles = ref<RoleOpt[]>([])
 const selectedRoles = ref<string[]>([])
 const status = ref('active')
+const displayName = ref('')
+const email = ref('')
+const locale = ref('en')
 const loading = ref(true)
 const saving = ref(false)
 const error = ref('')
-
-const nameInput = ref<FieldHost | null>(null)
-const emailInput = ref<FieldHost | null>(null)
-const localeInput = ref<FieldHost | null>(null)
 
 const statusOptions = [
   { label: 'active', value: 'active' },
@@ -109,6 +108,9 @@ async function load() {
     availableRoles.value = data.available_roles ?? []
     selectedRoles.value = [...(data.role_slugs ?? [])]
     status.value = data.status || 'active'
+    displayName.value = data.display_name || ''
+    email.value = data.email || ''
+    locale.value = data.locale || 'en'
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Failed to load user'
   } finally {
@@ -121,9 +123,9 @@ async function onSave() {
   error.value = ''
   try {
     await adminApiSend(`/api/admin/users/${id.value}`, 'PATCH', {
-      display_name: nameInput.value?.value || user.value?.display_name,
-      email: emailInput.value?.value || user.value?.email,
-      locale: localeInput.value?.value || user.value?.locale || 'en',
+      display_name: displayName.value || user.value?.display_name,
+      email: email.value || user.value?.email,
+      locale: locale.value || user.value?.locale || 'en',
       status: status.value,
       role_slugs: selectedRoles.value,
     })
