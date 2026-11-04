@@ -18,19 +18,11 @@
           <p class="nuc-thank-you-support">{{ copy.support }}</p>
 
           <div class="nuc-thank-you-cta">
-            <a
-              :href="pageHref(lang, 'home')"
-              class="nuc-btn is-primary"
-              @click="goHome"
-            >
+            <a :href="pageHref(lang, 'home')" class="nuc-btn is-primary">
               <nui-icon icon="mdi:arrow-left" class="nuc-btn-icon" mode="svg" />
               <span>{{ copy.ctaHome }}</span>
             </a>
-            <a
-              :href="pageHref(lang, 'investor')"
-              class="nuc-btn is-outlined"
-              @click="goInvest"
-            >
+            <a :href="pageHref(lang, 'investor')" class="nuc-btn is-outlined">
               <nui-icon
                 icon="mdi:chart-timeline-variant"
                 class="nuc-btn-icon"
@@ -105,16 +97,6 @@ const faceMeta = computed(() =>
 const focusId = ref<NucHomeModuleLaneId>('sdk')
 const cubePaused = ref(false)
 let focusTimer: number | undefined
-
-function goHome(e?: Event): void {
-  e?.preventDefault()
-  window.location.href = pageHref(lang.value, 'home')
-}
-
-function goInvest(e?: Event): void {
-  e?.preventDefault()
-  window.location.href = pageHref(lang.value, 'investor')
-}
 
 function onCubeFocus(id: NucHomeModuleLaneId): void {
   focusId.value = id
