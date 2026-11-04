@@ -18,8 +18,17 @@
           <FieldShell label="Email">
             <p style="margin: 0">{{ me?.email || '—' }}</p>
           </FieldShell>
-          <FieldText ref="nameInput" label="Display name" />
-          <FieldText ref="localeInput" label="Locale" placeholder="en" />
+          <FieldText
+            label="Display name"
+            :model-value="displayName"
+            @update:model-value="displayName = $event"
+          />
+          <FieldText
+            label="Locale"
+            placeholder="en"
+            :model-value="locale"
+            @update:model-value="locale = $event"
+          />
           <nui-button type="submit" variant="filled" :label="saving ? 'Saving…' : 'Save profile'" />
         </form>
       </section>
@@ -28,10 +37,11 @@
         <h2 style="margin: 0 0 1rem; font-size: 1rem">Security</h2>
         <form class="admin-form" @submit.prevent="onChangePassword">
           <FieldText
-            ref="passwordInput"
             label="New password"
             type="password"
             autocomplete="new-password"
+            :model-value="newPassword"
+            @update:model-value="newPassword = $event"
           />
           <nui-button
             type="submit"
@@ -82,9 +92,9 @@ const error = ref('')
 const ok = ref('')
 const theme = ref<'dark' | 'light'>('dark')
 
-const nameInput = ref<FieldHost | null>(null)
-const localeInput = ref<FieldHost | null>(null)
-const passwordInput = ref<FieldHost | null>(null)
+const displayName = ref('')
+const locale = ref('en')
+const newPassword = ref('')
 
 const themeOptions = [
   { label: 'Dark', value: 'dark' },
@@ -96,9 +106,8 @@ async function load() {
   error.value = ''
   try {
     me.value = await adminApiGet<Me>('/api/admin/me')
-    await nextTick()
-    if (nameInput.value) nameInput.value.value = me.value?.display_name || ''
-    if (localeInput.value) localeInput.value.value = me.value?.locale || 'en'
+    displayName.value = me.value?.display_name || ''
+    locale.value = me.value?.locale || 'en'
     theme.value = document.documentElement.classList.contains('p-dark')
       ? 'dark'
       : 'light'
@@ -115,8 +124,8 @@ async function onSaveProfile() {
   ok.value = ''
   try {
     me.value = await adminApiSend<Me>('/api/admin/me', 'PATCH', {
-      display_name: nameInput.value?.value ?? '',
-      locale: localeInput.value?.value || 'en',
+      display_name: displayName.value,
+      locale: locale.value || 'en',
     })
     ok.value = 'Profile saved.'
   } catch (e) {
@@ -130,7 +139,7 @@ async function onChangePassword() {
   changingPw.value = true
   error.value = ''
   ok.value = ''
-  const password = passwordInput.value?.value ?? ''
+  const password = newPassword.value
   if (password.length < 8) {
     error.value = 'Password must be at least 8 characters'
     changingPw.value = false
@@ -142,7 +151,7 @@ async function onChangePassword() {
     })
     if (authError) throw authError
     ok.value = 'Password updated.'
-    if (passwordInput.value) passwordInput.value.value = ''
+    newPassword.value = ''
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Password update failed'
   } finally {

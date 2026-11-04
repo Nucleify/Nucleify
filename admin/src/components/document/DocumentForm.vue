@@ -5,7 +5,7 @@
         :fields="fields"
         :model-value="modelValue"
         position="main"
-        @update:model-value="emit('update:modelValue', $event)"
+        @update:model-value="emit('update:modelValue', $event as any)"
       />
     </div>
     <DocumentMetaSidebar>
@@ -13,7 +13,7 @@
         :fields="fields"
         :model-value="modelValue"
         position="sidebar"
-        @update:model-value="emit('update:modelValue', $event)"
+        @update:model-value="emit('update:modelValue', $event as any)"
       />
       <slot name="sidebar" />
     </DocumentMetaSidebar>
@@ -22,16 +22,17 @@
 
 <script setup lang="ts">
 import type { FieldConfig } from '@shared_modules'
+import type { DocumentFormModel } from '@admin'
 
 import { SchemaFormRenderer } from '@admin'
 import { DocumentMetaSidebar } from '@admin'
 
 defineProps<{
   fields: FieldConfig[]
-  modelValue: Record<string, unknown>
+  modelValue: DocumentFormModel
 }>()
 
 const emit = defineEmits<{
-  'update:modelValue': [value: Record<string, unknown>]
+  'update:modelValue': [value: DocumentFormModel]
 }>()
 </script>

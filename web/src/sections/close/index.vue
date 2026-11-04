@@ -307,7 +307,7 @@ function onNoteInput(event: Event): void {
   delete errors.message
 }
 
-async function onSubmit(): Promise<void> {
+async function onSubmit(_event?: Event): Promise<void> {
   if (loading.value) return
 
   // Prefer live Lit host values - Vue refs can lag when CE stay uncontrolled.
