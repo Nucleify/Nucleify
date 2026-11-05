@@ -27,21 +27,22 @@
         <p class="nuc-hero-support">{{ copy.support }}</p>
 
         <div class="nuc-hero-cta">
-          <button type="button" class="nuc-btn is-primary" @click="onPrimary">
+          <a
+            class="nuc-btn is-primary"
+            :href="playHref"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <nui-icon
-              icon="mdi:email-outline"
+              icon="mdi:play-circle-outline"
               class="nuc-btn-icon"
               mode="svg"
             />
             <span>{{ copy.ctaPrimary }}</span>
-          </button>
-          <button
-            type="button"
-            class="nuc-btn is-outlined"
-            @click="onSecondary"
-          >
+          </a>
+          <button type="button" class="nuc-btn is-outlined" @click="onContact">
             <nui-icon
-              icon="mdi:rocket-launch-outline"
+              icon="mdi:email-outline"
               class="nuc-btn-icon"
               mode="svg"
             />
@@ -89,11 +90,10 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'nuxt/app'
 import { computed, ref } from 'vue'
 
 import {
-  investorHomeHref,
+  homePlayHref,
   NUC_INVESTOR_GLANCE,
   type NucHomeModuleLaneId,
   NucHoloCube as NucHomeHoloCube,
@@ -106,8 +106,7 @@ defineOptions({ inheritAttrs: false })
 const copy = useInvestorCmsCopy()
 const brandChars = computed(() => [...(copy.value.brand || 'Nucleify')])
 const glance = NUC_INVESTOR_GLANCE
-const route = useRoute()
-const lang = computed(() => (route.params.lang as string) || 'en')
+const playHref = computed(() => copy.value.playgroundHref || homePlayHref())
 
 const faces = [
   { id: 'ui' as const, label: 'Product' },
@@ -126,14 +125,10 @@ function onCubeFocus(id: NucHomeModuleLaneId): void {
   focusId.value = id
 }
 
-function onPrimary(): void {
+function onContact(): void {
   const root = document.querySelector<HTMLElement>('.nuc-shell')
   if (!root) return
   scrollSection(root, 'ask')
-}
-
-function onSecondary(): void {
-  window.location.assign(investorHomeHref(lang.value))
 }
 
 function onThesis(): void {

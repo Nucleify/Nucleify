@@ -122,6 +122,7 @@ html.nuc-no-iris .nuc-shell {
     --nui-primary-highlight-color: hsl(var(--rainbow-hue) 55% 52% / 12%);
     --nui-primary-focus-color: hsl(var(--rainbow-hue) 55% 52% / 50%);
     --nui-primary-white-text-color: var(--shell-on-accent);
+    --font-weight-medium: 600;
   }
 
   /*
@@ -141,7 +142,7 @@ html.nuc-no-iris .nuc-shell {
     background: var(--shell-accent);
     color: var(--shell-on-accent);
     font-size: 0.8125rem;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.25;
     text-align: center;
 
@@ -558,7 +559,7 @@ html.nuc-iris-boot .nuc-shell.nuc-ready {
   color: var(--shell-on-accent);
   font: inherit;
   font-size: 0.78rem;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.25;
   white-space: nowrap;
   text-decoration: none;
@@ -596,13 +597,48 @@ html.nuc-iris-boot .nuc-shell.nuc-ready {
   }
 }
 
+.main-cta {
+  min-height: 2.85rem;
+  padding-inline: 1.15rem;
+  border-color: color-mix(in srgb, var(--shell-accent) 10%, #fff);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--shell-accent) 88%, #fff) 0%,
+    var(--shell-accent) 100%
+  );
+  color: #f7faf8;
+  letter-spacing: -0.01em;
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #fff 22%, transparent) inset,
+    0 10px 28px color-mix(in srgb, var(--shell-accent) 32%, transparent);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--shell-accent-hover) 82%, #fff) 0%,
+      var(--shell-accent-hover) 100%
+    );
+    border-color: color-mix(in srgb, var(--shell-accent-hover) 68%, #fff);
+    color: #fff;
+    box-shadow:
+      0 1px 0 color-mix(in srgb, #fff 28%, transparent) inset,
+      0 14px 34px color-mix(in srgb, var(--shell-accent) 42%, transparent);
+  }
+}
+
 .nuc-btn-icon,
 .nuc-next-icon {
   display: block;
-  width: 1.2em;
-  height: 1.2em;
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
-  font-size: 1.15em;
+  overflow: hidden;
+  transform: translateZ(0);
 }
 
 /* CTA control only — not document host class `.nuc-next` (Next palette scope). */
@@ -618,7 +654,7 @@ a.nuc-next {
   color: var(--shell-accent);
   font: inherit;
   font-size: 0.92rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: -0.01em;
   text-decoration: none;
   cursor: pointer;
@@ -626,7 +662,6 @@ a.nuc-next {
 
   &:hover {
     color: hsl(var(--rainbow-hue) 62% 64%);
-    gap: 0.65rem;
   }
 }
 

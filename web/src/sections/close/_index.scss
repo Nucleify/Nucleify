@@ -41,6 +41,7 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 100%;
+    min-width: 0;
     place-self: center center;
   }
 
@@ -120,6 +121,9 @@
     align-items: flex-end;
     place-content: center space-between;
     gap: 2rem;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
 
     nui-button {
       --nui-primary-white-text-color: var(--shell-on-accent, #04110c);
@@ -127,7 +131,16 @@
   }
 
   &-copy {
-    max-width: 34rem;
+    max-width: min(34rem, 100%);
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+
+    .nuc-title,
+    .nuc-support {
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
   }
 
   &-cta {
@@ -373,9 +386,6 @@
     gap: 1rem;
     margin-top: auto;
     padding-top: 2rem;
-
-    /* Clear mobile dock / home indicator so Docs + GitHub stay tappable. */
-    padding-bottom: 50px;
     color: var(--shell-dim);
     font-size: 0.8rem;
     border-top: 1px solid var(--shell-holo-line-soft);
@@ -384,12 +394,26 @@
   &-footer-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.85rem;
+    align-items: center;
+    gap: 0.2rem 0;
 
     a {
+      display: inline-flex;
+      align-items: center;
       color: var(--shell-muted);
       text-decoration: none;
       transition: color 0.2s ease;
+
+      &:not(:first-child)::before {
+        content: '·';
+        margin-inline: 0.6rem;
+        color: var(--shell-muted);
+        font-size: 1.15em;
+        font-weight: 700;
+        line-height: 1;
+        opacity: 0.9;
+        pointer-events: none;
+      }
 
       &:hover {
         color: var(--shell-fg);
@@ -436,7 +460,9 @@
     }
 
     .nuc-close-copy {
+      width: 100%;
       max-width: 100%;
+      min-width: 0;
     }
 
     .nuc-close-cta {
@@ -453,7 +479,7 @@
     &-footer {
       margin-top: auto;
       padding-top: 1.25rem;
-      padding-bottom: 50px;
+      padding-bottom: 3.75rem;
     }
 
     &.is-form {
@@ -463,7 +489,7 @@
       .nuc-close-footer {
         margin-top: auto;
         padding-top: 1.25rem;
-        padding-bottom: 50px;
+        padding-bottom: 3.75rem;
       }
     }
 

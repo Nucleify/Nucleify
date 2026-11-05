@@ -22,10 +22,15 @@
           icon-pos="right"
           @click="goDocs"
         />
-        <button type="button" class="nuc-next" @click="goStart">
+        <a
+          class="nuc-next"
+          :href="copy.githubHref"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <span>{{ copy.cloneCtaNext }}</span>
-          <nui-icon icon="mdi:arrow-down" />
-        </button>
+          <nui-icon icon="mdi:github" width="16px" height="16px" mode="svg" />
+        </a>
       </div>
     </div>
 
@@ -45,7 +50,6 @@ import { computed, ref } from 'vue'
 import {
   cmsHomeInstallSteps,
   homeDocsHref,
-  scrollSection,
   useCmsAttrs,
   useHomeCmsCopy,
   useShellSectionReveal,
@@ -65,12 +69,6 @@ const lang = computed(() => (route.params.lang as string) || 'en')
 
 function goDocs(): void {
   window.location.assign(homeDocsHref(lang.value, 'install'))
-}
-
-function goStart(): void {
-  const root = document.querySelector<HTMLElement>('.nuc-shell')
-  if (!root) return
-  scrollSection(root, 'stack')
 }
 </script>
 

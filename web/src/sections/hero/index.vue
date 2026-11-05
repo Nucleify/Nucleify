@@ -31,26 +31,36 @@
         </p>
 
         <div class="nuc-hero-cta">
-          <button type="button" class="nuc-btn is-primary" @click="onPrimary">
+          <a
+            class="nuc-btn is-primary main-cta"
+            :href="playHref"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <nui-icon
-              icon="mdi:book-open-page-variant-outline"
+              icon="mdi:play-circle-outline"
               class="nuc-btn-icon"
+              width="16px"
+              height="16px"
               mode="svg"
             />
             <span>{{ copy.ctaPrimary }}</span>
-          </button>
-          <button
-            type="button"
+          </a>
+          <a
             class="nuc-btn is-outlined"
-            @click="onSecondary"
+            :href="cliHref"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <nui-icon icon="mdi:github" class="nuc-btn-icon" mode="svg" />
+            <nui-icon
+              icon="mdi:console"
+              class="nuc-btn-icon"
+              width="16px"
+              height="16px"
+              mode="svg"
+            />
             <span>{{ copy.ctaSecondary }}</span>
-          </button>
-          <button type="button" class="nuc-next" @click="onWhy">
-            <span>{{ copy.ctaTertiary }}</span>
-            <nui-icon icon="mdi:arrow-down" class="nuc-next-icon" mode="svg" />
-          </button>
+          </a>
         </div>
       </div>
 
@@ -69,14 +79,13 @@
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'nuxt/app'
 import { computed } from 'vue'
 
 import {
   cmsHomeModules,
-  homeDocsHref,
+  homeCliHref,
+  homePlayHref,
   NucHomeModuleBoard,
-  scrollSection,
   useCmsAttrs,
   useHomeCmsCopy,
 } from '@web'
@@ -87,22 +96,8 @@ const cms = useCmsAttrs()
 const copy = useHomeCmsCopy()
 const modules = computed(() => cmsHomeModules(cms))
 const brandChars = computed(() => [...(copy.value.brand || 'Nucleify')])
-const route = useRoute()
-const lang = computed(() => (route.params.lang as string) || 'en')
-
-function onPrimary(): void {
-  window.location.assign(homeDocsHref(lang.value, 'intro'))
-}
-
-function onSecondary(): void {
-  window.open(copy.value.githubHref, '_blank', 'noopener,noreferrer')
-}
-
-function onWhy(): void {
-  const root = document.querySelector<HTMLElement>('.nuc-shell')
-  if (!root) return
-  scrollSection(root, 'architecture')
-}
+const playHref = computed(() => copy.value.playgroundHref || homePlayHref())
+const cliHref = computed(() => copy.value.cliHref || homeCliHref())
 </script>
 
 <style lang="scss" scoped>

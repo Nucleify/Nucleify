@@ -1,8 +1,18 @@
 export const NUC_DOCS_ORIGIN = 'https://docs.nucleify.io'
+export const NUC_PLAY_ORIGIN = 'https://play.nucleify.io'
+export const NUC_CLI_ORIGIN = 'https://cli.nucleify.io'
 
 export function docsPageHref(lang: string, pathWithinDocs: string): string {
   const path = pathWithinDocs.replace(/^\/+/, '')
   return `${NUC_DOCS_ORIGIN}/${lang}/docs/${path}`
+}
+
+export function homePlayHref(): string {
+  return NUC_PLAY_ORIGIN
+}
+
+export function homeCliHref(): string {
+  return NUC_CLI_ORIGIN
 }
 
 export interface NucHomePillar {
@@ -179,6 +189,8 @@ export const NUC_HOME_DOCS = {
   intro: 'getting-started/introduction',
   install: 'getting-started/installation',
   compiler: 'core-concepts/compiler',
+  cli: 'core-concepts/cli',
+  playground: 'core-concepts/playground',
   overrides: 'core-concepts/overriding',
   modules: 'core-concepts/modules',
 } as const
@@ -209,9 +221,10 @@ export const NUC_HOME_COPY = {
   headlineTrail: 'Migrate the framework.',
   support:
     'Write your state, validation, and domain logic once in clean TypeScript. Compile to 100% human-readable, idiomatic Next.js, Nuxt, Astro, Svelte, or Solid. Zero runtime overhead. Zero vendor lock-in.',
-  ctaPrimary: 'Try Interactive Playground',
-  ctaSecondary: 'Star on GitHub',
-  ctaTertiary: 'Why Nucleify',
+  ctaPrimary: 'Open Playground',
+  ctaSecondary: 'Integrate our CLI',
+  playgroundHref: 'https://play.nucleify.io',
+  cliHref: 'https://cli.nucleify.io',
   githubHref: 'https://github.com/Nucleify/Nucleify',
   heroSignal: 'multi-runtime',
   heroPanelTitle: '~/nucleify',
@@ -219,6 +232,8 @@ export const NUC_HOME_COPY = {
   heroPanelDone: 'ready',
   heroInstallLabel: 'Get running',
   navDocs: 'Docs',
+  navPlay: 'Playground',
+  navCli: 'CLI',
   navPlayground: 'Playground',
   navGitHub: 'GitHub',
   navLogin: 'Login',
@@ -273,10 +288,10 @@ export const NUC_HOME_COPY = {
   cloneSupport:
     'Four commands from the repo root.\nThen open localhost and read the docs - or ping us if you want in.',
   cloneCta: 'Read the docs',
-  cloneCtaNext: 'Pick a framework',
+  cloneCtaNext: 'Star on GitHub',
   closeTitle: 'Migrate without rewriting your domain.',
   closeSupport:
-    'Need to migrate from Vue to React, Nuxt to Next, or evaluate Svelte/Astro? Drop an email with 3-5 typical components - we will return idiomatic, zero-runtime emitted code within 48h.',
+    'Need to migrate from Vue to React, Nuxt to Next, or evaluate Svelte/Astro? Drop an email - we will reply with the help options that fit your stack and timeline.',
   closeCta: 'Request a Free PoC',
   compilerEyebrow: 'IR-first compiler',
   compilerTitleLead: 'Any stack in.',

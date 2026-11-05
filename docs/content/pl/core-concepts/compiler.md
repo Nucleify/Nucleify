@@ -223,6 +223,8 @@ Zobacz [Vitest](/pl/docs/tests/vitest) po pełną konfigurację testów.
 
 ## Powiązana dokumentacja
 
+- [CLI](/pl/docs/core-concepts/cli) - instalowalne `@nucleify/cli` · [cli.nucleify.io](https://cli.nucleify.io)
+- [Playground](/pl/docs/core-concepts/playground) - sandbox w przeglądarce · [play.nucleify.io](https://play.nucleify.io)
 - [Układ monorepo](/pl/docs/core-concepts/monorepo) - gdzie kompilator pasuje w workspace
 - [Szybki start](/pl/docs/getting-started/quick-start) - zbuduj swój pierwszy komponent przenośny
 - [Web & Admin](/pl/docs/configuration/web) - konfiguracja Nuxt podłączająca alias runtime

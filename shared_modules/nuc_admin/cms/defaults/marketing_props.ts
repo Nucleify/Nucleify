@@ -16,9 +16,10 @@ export const HOME_SECTION_DEFAULTS = {
     headlineTrail: 'Migrate the framework.',
     support:
       'Write your state, validation, and domain logic once in clean TypeScript. Compile to 100% human-readable, idiomatic Next.js, Nuxt, Astro, Svelte, or Solid. Zero runtime overhead. Zero vendor lock-in.',
-    ctaPrimary: 'Try Interactive Playground',
-    ctaSecondary: 'Star on GitHub',
-    ctaTertiary: 'Why Nucleify',
+    ctaPrimary: 'Open Playground',
+    ctaSecondary: 'Integrate our CLI',
+    playgroundHref: 'https://play.nucleify.io',
+    cliHref: 'https://cli.nucleify.io',
     githubHref: 'https://github.com/Nucleify/Nucleify',
     coreInspect: 'live slice',
     coreLive: 'seven frameworks · one module',
@@ -329,7 +330,7 @@ export const HOME_SECTION_DEFAULTS = {
     cloneSupport:
       'Four commands from the repo root.\nThen open localhost and read the docs - or ping us if you want in.',
     cloneCta: 'Read the docs',
-    cloneCtaNext: 'Pick a framework',
+    cloneCtaNext: 'Star on GitHub',
     heroInstallLabel: 'Get running',
     installSteps: [
       {
@@ -563,7 +564,7 @@ export const HOME_SECTION_DEFAULTS = {
     showSection: true,
     closeTitle: 'Migrate without rewriting your domain.',
     closeSupport:
-      'Need to migrate from Vue to React, Nuxt to Next, or evaluate Svelte/Astro? Drop an email with 3-5 typical components - we will return idiomatic, zero-runtime emitted code within 48h.',
+      'Need to migrate from Vue to React, Nuxt to Next, or evaluate Svelte/Astro? Drop an email - we will reply with the help options that fit your stack and timeline.',
     closeCta: 'Request a Free PoC',
     closeModalTitle: 'Start a conversation / Free PoC',
     closeModalSupport:
@@ -585,6 +586,13 @@ export const HOME_SECTION_DEFAULTS = {
     closeErrorEmail: 'Enter a valid email address.',
     closeErrorType: 'Pick what you need.',
     closeErrorMessage: 'Message is too long.',
+    navDocs: 'Docs',
+    navPlay: 'Playground',
+    navCli: 'CLI',
+    navGitHub: 'GitHub',
+    playgroundHref: 'https://play.nucleify.io',
+    cliHref: 'https://cli.nucleify.io',
+    githubHref: 'https://github.com/Nucleify/Nucleify',
     contactTypes: [
       {
         label: 'Migrate an existing app to another framework',
@@ -617,8 +625,8 @@ export const INVESTOR_SECTION_DEFAULTS = {
     headline: 'Stop funding the rewrite.',
     support:
       'Every stack wave burns budget rebuilding the same product. Nucleify makes migration the durable layer - so capital funds growth, not another rewrite of the same business.',
-    ctaPrimary: 'Talk to us',
-    ctaSecondary: 'See the product',
+    ctaPrimary: 'Open Playground',
+    ctaSecondary: 'Contact us',
     ctaTertiary: 'See the thesis',
     githubHref: 'https://github.com/Nucleify/Nucleify',
     glanceAria: 'Investment snapshot',
@@ -887,7 +895,11 @@ export const INVESTOR_SECTION_DEFAULTS = {
     askCancel: 'Back',
     navHome: 'Product',
     navDocs: 'Docs',
+    navPlay: 'Playground',
+    navCli: 'CLI',
     navGitHub: 'GitHub',
+    playgroundHref: 'https://play.nucleify.io',
+    cliHref: 'https://cli.nucleify.io',
     githubHref: 'https://github.com/Nucleify/Nucleify',
     contactTypes: [
       {

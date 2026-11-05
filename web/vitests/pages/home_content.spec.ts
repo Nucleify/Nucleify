@@ -21,6 +21,12 @@ describe('homeDocsHref', () => {
     expect(homeDocsHref('en', 'modules')).toBe(
       'https://docs.nucleify.io/en/docs/core-concepts/modules'
     )
+    expect(homeDocsHref('en', 'cli')).toBe(
+      'https://docs.nucleify.io/en/docs/core-concepts/cli'
+    )
+    expect(homeDocsHref('en', 'playground')).toBe(
+      'https://docs.nucleify.io/en/docs/core-concepts/playground'
+    )
   })
 })
 
