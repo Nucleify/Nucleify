@@ -11,6 +11,7 @@ import {
   NUC_INVESTOR_SEO,
   NUC_INVESTOR_SHELLS,
   NUC_INVESTOR_SURFACE,
+  NUC_INVESTOR_THESIS,
 } from '@web'
 
 describe('investor routes', () => {
@@ -62,29 +63,45 @@ describe('investor pitch content', () => {
   it('leads with investor capital messaging', () => {
     expect(NUC_INVESTOR_COPY.headline).toMatch(/rewrite|capital|burn/i)
     expect(NUC_INVESTOR_COPY.support.toLowerCase()).toMatch(
-      /capital|budget|migrations|durable/
+      /capital|supabase|shared modules|nucleus/
     )
     expect(NUC_INVESTOR_SEO.title).toMatch(/investors|framework/i)
+    expect(NUC_INVESTOR_SEO.description.toLowerCase()).not.toMatch(/\$\d/)
   })
 
-  it('labels savings as a planning model, not audited financials', () => {
-    expect(NUC_INVESTOR_SAVINGS.some((item) => item.id === 'dollars')).toBe(
+  it('frames keep metrics as product facts, not dollar forecasts', () => {
+    expect(NUC_INVESTOR_SAVINGS.map((item) => item.id)).toEqual([
+      'shells',
+      'runtime',
+      'data',
+    ])
+    expect(NUC_INVESTOR_SAVINGS.every((item) => !/\$/.test(item.value))).toBe(
       true
     )
-    const dollars = NUC_INVESTOR_SAVINGS.find((item) => item.id === 'dollars')
-    expect(dollars?.detail.toLowerCase()).toMatch(/not a forecast|rough cost/)
+    expect(NUC_INVESTOR_COPY.savingsNote.toLowerCase()).toMatch(
+      /product facts|not a forecast/
+    )
   })
 
-  it('keeps the intro glance plate on the savings model', () => {
-    const dollars = NUC_INVESTOR_SAVINGS.find((item) => item.id === 'dollars')
-    expect(NUC_INVESTOR_GLANCE.figure).toBe(dollars?.value)
+  it('keeps the intro glance on a product snapshot', () => {
     expect(
-      `${NUC_INVESTOR_GLANCE.figureLead}${NUC_INVESTOR_GLANCE.figureTrail}`
+      `${NUC_INVESTOR_GLANCE.figureLead}→${NUC_INVESTOR_GLANCE.figureTrail}`
     ).toBe(NUC_INVESTOR_GLANCE.figure)
     expect(NUC_INVESTOR_GLANCE.from).toBe('7')
     expect(NUC_INVESTOR_GLANCE.to).toBe('1')
+    expect(NUC_INVESTOR_GLANCE.figureLead).not.toMatch(/\$/)
     expect(NUC_INVESTOR_GLANCE.note.toLowerCase()).toMatch(
-      /example only|not a forecast/
+      /product facts|not a financial forecast|not a forecast/
     )
+  })
+
+  it('backs thesis cards with product proofs', () => {
+    expect(NUC_INVESTOR_THESIS).toHaveLength(3)
+    expect(NUC_INVESTOR_THESIS.map((item) => item.proof).join(' ')).toMatch(
+      /shared_modules|supabase|land/i
+    )
+    expect(
+      NUC_INVESTOR_SURFACE.find((item) => item.id === 'timing')?.metric
+    ).toBe('Wave timing')
   })
 })

@@ -19,8 +19,8 @@
             <nui-button
               :label="copy.closeCta"
               variant="primary"
-              icon="mdi:email-outline"
-              icon-pos="right"
+              icon="mdi:send-outline"
+              :iconPos.prop="'right'"
               @click="openForm"
             />
           </div>
@@ -126,7 +126,7 @@
                 fluid
                 width="100%"
                 icon="mdi:send-outline"
-                icon-pos="right"
+                :iconPos.prop="'right'"
                 @click="onSubmit"
               />
             </div>

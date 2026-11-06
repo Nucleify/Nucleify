@@ -27,12 +27,17 @@
     align-items: flex-start;
 
     &-line.is-nowrap {
-      white-space: nowrap;
+      white-space: normal;
+
+      @media (min-width: $md) {
+        white-space: nowrap;
+      }
     }
   }
 
   &-board {
     margin-top: 1.35rem;
+    min-width: 0;
 
     @media (min-width: $md) {
       margin-top: 0;
@@ -41,82 +46,184 @@
 
   &-window {
     min-width: 0;
-    padding: 0.85rem 0.9rem 0.8rem;
+    max-width: 100%;
+    padding: 0.7rem 0.65rem;
     border: 1px solid var(--shell-card-border);
     border-radius: 1.1rem;
     background: var(--shell-card-bg);
     box-shadow: var(--shell-card-shadow);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    @media (min-width: $md) {
+      padding: 0.85rem 0.9rem 0.8rem;
+    }
   }
 
   &-code {
+    --code-lines: 14;
+    --code-lh: 1.45;
+    --code-size: 0.66rem;
+
     display: grid;
     gap: 0.08rem;
     margin: 0;
     padding: 0 0 0.85rem;
     list-style: none;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+
+    // Fallback if a shell mounts before pad lines compute.
+    min-height: calc(var(--code-lines) * var(--code-size) * var(--code-lh));
+
+    @media (min-width: $md) {
+      --code-lh: 1.5;
+      --code-size: 0.74rem;
+    }
 
     li {
       display: grid;
-      grid-template-columns: 1.6rem 1fr;
-      gap: 0.7rem;
+      grid-template-columns: 1.35rem 1fr;
+      gap: 0.55rem;
       align-items: baseline;
       min-width: 0;
+      min-height: calc(var(--code-size) * var(--code-lh));
+
+      @media (min-width: $md) {
+        grid-template-columns: 1.6rem 1fr;
+        gap: 0.7rem;
+      }
+
+      &.is-pad {
+        .nuc-compiler-ln,
+        code {
+          visibility: hidden;
+        }
+      }
     }
 
-    span {
+    .nuc-compiler-ln {
       color: var(--shell-dim);
       font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       letter-spacing: 0.06em;
+
+      @media (min-width: $md) {
+        font-size: 0.62rem;
+      }
     }
 
     code {
       min-width: 0;
-      color: var(--shell-muted);
+      color: #fff;
       font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 0.74rem;
-      line-height: 1.5;
+      font-size: var(--code-size);
+      line-height: var(--code-lh);
       white-space: pre;
 
-      &.is-tag {
-        color: var(--shell-accent);
+      .is-plain,
+      .is-punct,
+      .is-attr {
+        color: #fff;
+      }
+
+      .is-kw {
+        color: #c792ea;
+      }
+
+      .is-str {
+        color: #c3e88d;
+      }
+
+      .is-type,
+      .is-fn {
+        color: #82aaff;
+      }
+
+      .is-tag {
+        color: var(--emit-color, var(--shell-accent));
+      }
+
+      .is-comment {
+        color: #8b968f;
+        font-style: italic;
+      }
+
+      .is-num {
+        color: #f78c6c;
       }
     }
   }
 
   &-shells {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.35rem;
-    padding-top: 0.75rem;
+    flex-wrap: nowrap;
+    gap: 0.4rem;
+    padding: 0.75rem 0.15rem 0.1rem;
+    margin: 0 -0.15rem;
     border-top: 1px solid rgb(255 255 255 / 5%);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (min-width: $md) {
+      flex-wrap: wrap;
+      overflow-x: visible;
+      scroll-snap-type: none;
+      margin: 0;
+      padding-top: 0.75rem;
+      padding-inline: 0;
+      padding-bottom: 0;
+    }
   }
 
   &-shell {
     display: inline-flex;
+    flex: 0 0 auto;
     align-items: center;
     gap: 0.35rem;
-    padding: 0.32rem 0.5rem;
+    min-height: 2.1rem;
+    padding: 0.4rem 0.7rem;
     border: 1px solid rgb(255 255 255 / 6%);
     border-radius: 999px;
     background: transparent;
     color: var(--shell-dim);
     cursor: pointer;
+    scroll-snap-align: start;
     transition:
       color 0.25s ease,
       border-color 0.25s ease,
       background 0.25s ease;
 
+    @media (min-width: $md) {
+      min-height: 0;
+      padding: 0.32rem 0.5rem;
+      scroll-snap-align: none;
+    }
+
     span {
       font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 0.58rem;
+      font-size: 0.62rem;
       letter-spacing: 0.04em;
+
+      @media (min-width: $md) {
+        font-size: 0.58rem;
+      }
     }
 
     nui-icon,
     iconify-icon {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+
+      @media (min-width: $md) {
+        font-size: 0.85rem;
+      }
     }
 
     &:hover,

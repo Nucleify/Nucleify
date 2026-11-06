@@ -71,12 +71,12 @@
             />
 
             <div class="nuc-deal-readout" aria-live="polite">
-              <p class="nuc-deal-kicker">
-                {{ glance.eyebrow }}
-                <em>{{ activeFace.label }}</em>
-              </p>
               <p class="nuc-deal-money">
-                <span>{{ glance.figureLead }}{{ glance.figureTrail }}</span>
+                <span class="nuc-deal-figure">
+                  <span>{{ glance.figureLead }}</span>
+                  <em aria-hidden="true">→</em>
+                  <span>{{ glance.figureTrail }}</span>
+                </span>
                 <small>{{ glance.figureUnit }}</small>
               </p>
               <p class="nuc-deal-line">{{ glance.line }}</p>
@@ -116,10 +116,6 @@ const faces = [
 
 const focusId = ref<NucHomeModuleLaneId>('sdk')
 const hovering = ref(false)
-
-const activeFace = computed(
-  () => faces.find((face) => face.id === focusId.value) ?? faces[1]!
-)
 
 function onCubeFocus(id: NucHomeModuleLaneId): void {
   focusId.value = id

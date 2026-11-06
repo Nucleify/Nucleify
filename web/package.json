@@ -3,7 +3,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "nuxt dev --port 7777",
+		"dev": "nuxt dev --host 127.0.0.1 --port 7777",
 		"build": "nuxt build",
 		"start": "node .output/server/index.mjs",
 		"generate": "nuxt generate",

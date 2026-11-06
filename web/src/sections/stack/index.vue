@@ -95,7 +95,7 @@ let timer: number | undefined
 function onCta(): void {
   const root = document.querySelector<HTMLElement>('.nuc-shell')
   if (!root) return
-  scrollSection(root, 'compiler')
+  scrollSection(root, 'clone')
 }
 
 function select(index: number, lock = false): void {

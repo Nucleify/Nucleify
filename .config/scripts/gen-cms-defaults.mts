@@ -17,14 +17,14 @@ import {
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
+/** Keep in sync with `DEFAULT_HOME_SECTIONS` in `cms/default_pages.ts`. */
 const HOME_META = [
   { id: 'home-hero', type: 'section.hero', order: 0 },
-  { id: 'home-pillars', type: 'section.pillars', order: 1 },
-  { id: 'home-clone', type: 'section.clone', order: 2 },
+  { id: 'home-compiler', type: 'section.compiler_demo', order: 1 },
+  { id: 'home-pillars', type: 'section.pillars', order: 2 },
   { id: 'home-stack', type: 'section.stack', order: 3 },
-  { id: 'home-compiler', type: 'section.compiler_demo', order: 4 },
-  { id: 'home-pulse', type: 'section.pulse', order: 5 },
-  { id: 'home-close', type: 'section.close', order: 6 },
+  { id: 'home-clone', type: 'section.clone', order: 4 },
+  { id: 'home-close', type: 'section.close', order: 5 },
 ] as const
 
 const INVESTOR_META = [

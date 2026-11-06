@@ -29,11 +29,13 @@
           :class="{ 'is-active': activeId === item.id }"
           :aria-hidden="activeId !== item.id"
         >
-          <div class="nuc-surface-badge" aria-hidden="true">
-            <nui-icon :icon="item.icon" mode="svg" />
+          <div class="nuc-surface-top">
+            <div class="nuc-surface-badge" aria-hidden="true">
+              <nui-icon :icon="item.icon" mode="svg" />
+            </div>
+            <h3 class="nuc-surface-name">{{ item.title }}</h3>
+            <p class="nuc-surface-kicker">{{ item.metric }}</p>
           </div>
-          <p class="nuc-surface-kicker">{{ item.metric }}</p>
-          <h3 class="nuc-surface-name">{{ item.title }}</h3>
           <p class="nuc-surface-outcome">{{ item.outcome }}</p>
           <p class="nuc-surface-desc">{{ item.description }}</p>
           <p class="nuc-surface-proof">{{ item.proof }}</p>
@@ -65,10 +67,7 @@
           <span class="nuc-surface-tab-icon" aria-hidden="true">
             <nui-icon :icon="item.icon" mode="svg" />
           </span>
-          <span class="nuc-surface-tab-copy">
-            <span class="nuc-surface-tab-index">{{ item.index }}</span>
-            <span class="nuc-surface-tab-title">{{ item.title }}</span>
-          </span>
+          <span class="nuc-surface-tab-title">{{ item.title }}</span>
           <span class="nuc-surface-tab-metric">{{ item.metric }}</span>
         </button>
       </div>

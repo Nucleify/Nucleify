@@ -14,19 +14,16 @@
           @focus="focusLane"
         />
 
-        <div
-          class="nuc-core-readout"
-          :key="`${active.id}:${focused.id}`"
-          aria-live="polite"
-        >
-          <p class="nuc-core-readout-kicker">
-            {{ inspectLabel }}
-            <em>{{ laneLabel(focused.id) }}</em>
-          </p>
-          <p class="nuc-core-readout-file">{{ focused.title }}</p>
-          <p class="nuc-core-readout-dir">{{ laneHint(focused.path) }}</p>
-          <p class="nuc-core-readout-detail">{{ focused.detail }}</p>
-          <p class="nuc-core-integrity">{{ liveLabel }}</p>
+        <div class="nuc-core-readout" aria-live="polite">
+          <div
+            class="nuc-core-readout-copy"
+            :key="`${active.id}:${focused.id}`"
+          >
+            <p class="nuc-core-readout-file">{{ focused.title }}</p>
+            <p class="nuc-core-readout-dir">{{ laneHint(focused.path) }}</p>
+            <p class="nuc-core-readout-detail">{{ focused.detail }}</p>
+            <p class="nuc-core-integrity">{{ liveLabel }}</p>
+          </div>
         </div>
       </div>
 
@@ -84,9 +81,6 @@ const moduleList = computed(
   () => coalesceArray(props.modules, NUC_HOME_MODULES) as NucHomeModule[]
 )
 
-const inspectLabel = computed(() =>
-  coalesceString(props.coreInspect, NUC_HOME_COPY.coreInspect)
-)
 const liveLabel = computed(() =>
   coalesceString(props.coreLive, NUC_HOME_COPY.coreLive)
 )
@@ -127,19 +121,13 @@ const faceMeta = computed(() =>
   FACE_ORDER.map((id) => ({ id, label: laneLabels.value[id] }))
 )
 
-function laneLabel(id: NucHomeModuleLaneId): string {
-  return laneLabels.value[id]
-}
-
 function shortName(name: string): string {
   return name.replace(/^nuc_/, '')
 }
 
 function laneHint(path: string): string {
   const parts = path.replace(/^shared_modules\//, '').split('/')
-  const mod = parts[0] ?? path
-  const leaf = (parts.at(-1) ?? path).replace(/\.(ts|tsx|scss)$/, '')
-  return `${mod} · ${leaf}`
+  return parts[0] ?? path
 }
 
 function focusLane(id: NucHomeModuleLaneId): void {
