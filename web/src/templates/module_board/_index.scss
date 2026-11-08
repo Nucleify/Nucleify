@@ -29,69 +29,65 @@
     display: none;
     position: relative;
     min-width: 0;
-    padding: 0.15rem 0 0.2rem 0.85rem;
+    padding: 0 0 0 0.85rem;
     border: 0;
     border-left: 1px solid hsl(var(--rainbow-hue) 70% 58% / 22%);
     background: none;
     box-shadow: none;
 
     @media (min-width: $md) {
-      display: block;
+      /* Fixed box so module/lane slides do not resize the stage. */
+      display: grid;
+      align-content: center;
+      align-items: center;
+      min-height: 10.25rem;
+      height: 10.25rem;
     }
 
     &::before {
       content: '';
       position: absolute;
       left: -1px;
-      top: 0;
+      top: 50%;
       width: 2px;
-      height: 100%;
+      height: calc(100% - 20px);
       background: linear-gradient(
         180deg,
         hsl(var(--rainbow-hue) 70% 62% / 20%),
         hsl(var(--rainbow-hue) 70% 58%) 42%,
         hsl(var(--rainbow-hue) 70% 58% / 18%)
       );
-      transform: scaleY(0);
-      transform-origin: top;
+      transform: translateY(-50%) scaleY(0);
+      transform-origin: center;
       box-shadow: 0 0 14px hsl(var(--rainbow-hue) 55% 52% / 45%);
       animation: nuc-core-rail 0.7s var(--core-readout-ease) both;
     }
   }
 
-  &-readout-kicker {
-    margin: 0;
-    color: rgb(157 176 196 / 80%);
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    animation: nuc-core-kicker 0.48s var(--core-readout-ease) both;
-
-    em {
-      display: inline-block;
-      margin-left: 0.4rem;
-      color: var(--shell-accent);
-      font-style: normal;
-      text-shadow: 0 0 14px hsl(var(--rainbow-hue) 55% 52% / 70%);
-      animation: nuc-core-lane 0.55s 0.1s var(--core-readout-ease) both;
-    }
+  &-readout-copy {
+    display: grid;
+    grid-template-rows: 1.45rem 1.05rem 2.4rem 1rem;
+    gap: 0.35rem 0;
+    min-width: 0;
+    width: 100%;
   }
 
   &-readout-file {
-    margin: 0.5rem 0 0;
+    margin: 0;
     color: var(--shell-fg);
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: clamp(0.98rem, 2.6vw, 1.25rem);
     font-weight: 700;
     letter-spacing: -0.045em;
     line-height: 1.15;
-    overflow-wrap: anywhere;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     animation: nuc-core-file 0.62s 0.08s var(--core-readout-ease) both;
   }
 
   &-readout-dir {
-    margin: 0.3rem 0 0;
+    margin: 0;
     color: var(--shell-dim);
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 0.62rem;
@@ -103,21 +99,28 @@
   }
 
   &-readout-detail {
-    margin: 0.6rem 0 0;
+    margin: 0;
     color: var(--shell-muted);
     font-size: 0.82rem;
     line-height: 1.45;
+    height: calc(1.45em * 2);
+    overflow: hidden;
+    white-space: pre-line;
     animation: nuc-core-detail 0.64s 0.24s var(--core-readout-ease) both;
   }
 
   &-integrity {
-    margin: 0.75rem 0 0;
+    margin: 0;
     color: var(--shell-accent);
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 0.62rem;
     letter-spacing: 0.08em;
+    line-height: 1.4;
     text-transform: uppercase;
     text-shadow: 0 0 14px hsl(var(--rainbow-hue) 55% 52% / 55%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     animation: nuc-core-lock 0.55s 0.36s var(--core-readout-ease) both;
   }
 
@@ -178,8 +181,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .nuc-core-readout::before,
-  .nuc-core-readout-kicker,
-  .nuc-core-readout-kicker em,
   .nuc-core-readout-file,
   .nuc-core-readout-dir,
   .nuc-core-readout-detail,
@@ -190,39 +191,13 @@
 
 @keyframes nuc-core-rail {
   from {
-    transform: scaleY(0);
+    transform: translateY(-50%) scaleY(0);
     opacity: 0.35;
   }
 
   to {
-    transform: scaleY(1);
+    transform: translateY(-50%) scaleY(1);
     opacity: 1;
-  }
-}
-
-@keyframes nuc-core-kicker {
-  from {
-    opacity: 0;
-    transform: translateX(-0.45rem);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-@keyframes nuc-core-lane {
-  from {
-    opacity: 0;
-    letter-spacing: 0.28em;
-    filter: blur(4px);
-  }
-
-  to {
-    opacity: 1;
-    letter-spacing: 0.12em;
-    filter: none;
   }
 }
 
@@ -259,13 +234,11 @@
 @keyframes nuc-core-detail {
   from {
     opacity: 0;
-    transform: translateY(0.45rem);
     filter: blur(5px);
   }
 
   to {
     opacity: 1;
-    transform: none;
     filter: none;
   }
 }

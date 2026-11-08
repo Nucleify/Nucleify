@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
 import {
+  DEFAULT_HOME_SECTIONS,
   homeDocsHref,
   NUC_HOME_COMPILER_NODES,
   NUC_HOME_COMPILER_SOURCE,
   NUC_HOME_CONTACT_TYPES,
+  NUC_HOME_PILLARS,
   NUC_HOME_WEB_SHARE,
   nucHomeWebShareArcs,
   nucHomeWebShareLine,
@@ -20,6 +22,12 @@ describe('homeDocsHref', () => {
     )
     expect(homeDocsHref('en', 'modules')).toBe(
       'https://docs.nucleify.io/en/docs/core-concepts/modules'
+    )
+    expect(homeDocsHref('en', 'cli')).toBe(
+      'https://docs.nucleify.io/en/docs/core-concepts/cli'
+    )
+    expect(homeDocsHref('en', 'playground')).toBe(
+      'https://docs.nucleify.io/en/docs/core-concepts/playground'
     )
   })
 })
@@ -77,35 +85,67 @@ describe('home web share chart', () => {
   })
 })
 
+describe('home developer concretes', () => {
+  it('orders Emit before Ship', () => {
+    expect(DEFAULT_HOME_SECTIONS.map((s) => s.type)).toEqual([
+      'section.hero',
+      'section.compiler_demo',
+      'section.pillars',
+      'section.stack',
+      'section.clone',
+      'section.close',
+    ])
+  })
+
+  it('uses ship concretes instead of ROI fluff', () => {
+    expect(NUC_HOME_PILLARS.map((p) => p.title)).toEqual([
+      'Portable UI → idiomatic emit',
+      'Domain stays in shared_modules',
+      'Data plane: Supabase',
+    ])
+    expect(
+      NUC_HOME_PILLARS.every(
+        (p) =>
+          !/\$200k|70%|9 months/i.test(`${p.title} ${p.outcome} ${p.proof}`)
+      )
+    ).toBe(true)
+  })
+})
+
 describe('home compiler emit snippets', () => {
-  it('keeps authoring in *.nuc.tsx and native syntax per shell', () => {
-    expect(NUC_HOME_COMPILER_SOURCE.file).toBe('Button.nuc.tsx')
+  it('shows InboxBadge with distinct idioms per shell', () => {
+    expect(NUC_HOME_COMPILER_SOURCE.file).toBe('InboxBadge.nuc.tsx')
     expect(NUC_HOME_COMPILER_SOURCE.snippet.join('\n')).toContain(
-      '{props.label}'
+      '#nuc-compiler/runtime'
     )
+    expect(NUC_HOME_COMPILER_SOURCE.snippet.join('\n')).toContain('InboxBadge')
 
     const byId = Object.fromEntries(
       NUC_HOME_COMPILER_NODES.map((node) => [node.id, node])
     )
 
-    expect(byId.vue?.file).toBe('Button.vue')
-    expect(byId.vue?.snippet.join('\n')).toContain('<script setup lang="ts">')
-    expect(byId.vue?.snippet.join('\n')).toContain('<template>')
-    expect(byId.vue?.snippet.join('\n')).toContain(
-      '<nui-button variant="filled">'
-    )
+    expect(byId.vue?.file).toBe('InboxBadge.vue')
+    expect(byId.vue?.snippet.join('\n')).toContain("from 'vue'")
+    expect(byId.vue?.snippet.join('\n')).toContain('ref(3)')
 
-    expect(byId.react?.file).toBe('Button.tsx')
-    expect(byId.react?.snippet.join('\n')).toContain('export function Button')
-    expect(byId.react?.snippet.join('\n')).toContain(
-      '<NuiButton variant="filled">'
-    )
+    expect(byId.nuxt?.snippet.join('\n')).toContain('useState(')
+    expect(byId.nuxt?.snippet.join('\n')).not.toContain("from 'vue'")
 
-    expect(byId.nuxt?.snippet).toEqual(byId.vue?.snippet)
-    expect(byId.next?.snippet).toEqual(byId.react?.snippet)
-    expect(byId.svelte?.snippet.join('\n')).toContain('<script lang="ts">')
+    expect(byId.react?.file).toBe('InboxBadge.tsx')
+    expect(byId.react?.snippet.join('\n')).toContain('useCallback')
+
+    expect(byId.next?.snippet.join('\n')).toContain('next/navigation')
+    expect(byId.next?.snippet.join('\n')).toContain('usePathname')
+
+    expect(byId.svelte?.snippet.join('\n')).toContain('$state')
+    expect(byId.svelte?.snippet.join('\n')).toContain('$derived')
+
     expect(byId.astro?.snippet[0]).toBe('---')
-    expect(byId.solid?.snippet.join('\n')).toContain('props.label')
+    expect(byId.astro?.snippet.join('\n')).toContain('<script is:inline>')
+
+    expect(byId.solid?.snippet.join('\n')).toContain('createSignal')
+    expect(byId.solid?.snippet.join('\n')).toContain('createMemo')
+
     expect(NUC_HOME_COMPILER_NODES.map((node) => node.id)).toEqual([
       'vue',
       'react',

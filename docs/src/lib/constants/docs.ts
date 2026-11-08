@@ -39,9 +39,19 @@ export const DOC_CATEGORIES: DocCategoryInterface[] = [
         order: 2,
       },
       {
+        slug: 'cli',
+        title: { en: 'CLI', pl: 'CLI' },
+        order: 3,
+      },
+      {
+        slug: 'playground',
+        title: { en: 'Playground', pl: 'Playground' },
+        order: 4,
+      },
+      {
         slug: 'modules',
         title: { en: 'Modules', pl: 'Moduły' },
-        order: 3,
+        order: 5,
       },
       {
         slug: 'feature-sliced-design',
@@ -49,12 +59,12 @@ export const DOC_CATEGORIES: DocCategoryInterface[] = [
           en: 'Feature Sliced Design',
           pl: 'Feature-Sliced Design',
         },
-        order: 4,
+        order: 6,
       },
       {
         slug: 'overriding',
         title: { en: 'Overriding', pl: 'Nadpisywanie' },
-        order: 5,
+        order: 7,
       },
     ],
   },

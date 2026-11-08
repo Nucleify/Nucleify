@@ -224,6 +224,8 @@ See [Vitest](/en/docs/tests/vitest) for the full testing setup.
 
 ## Related docs
 
+- [CLI](/en/docs/core-concepts/cli) - installable `@nucleify/cli` · [cli.nucleify.io](https://cli.nucleify.io)
+- [Playground](/en/docs/core-concepts/playground) - browser sandbox · [play.nucleify.io](https://play.nucleify.io)
 - [Monorepo Layout](/en/docs/core-concepts/monorepo) - where compiler fits in the workspace
 - [Quick Start](/en/docs/getting-started/quick-start) - build your first portable component
 - [Web & Admin](/en/docs/configuration/web) - Nuxt config that wires the runtime alias

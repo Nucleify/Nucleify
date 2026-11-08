@@ -13,7 +13,7 @@ export type NucInvestorSectionId =
 export const NUC_INVESTOR_SECTIONS = [
   { id: 'intro', label: 'Pitch' },
   { id: 'thesis', label: 'Why' },
-  { id: 'savings', label: 'Savings' },
+  { id: 'savings', label: 'Keep' },
   { id: 'wedge', label: 'Plan' },
   { id: 'surface', label: 'Reach' },
   { id: 'ask', label: 'Talk' },
@@ -22,7 +22,7 @@ export const NUC_INVESTOR_SECTIONS = [
 export const NUC_INVESTOR_SEO = {
   title: 'Nucleify for investors - stop funding the rewrite',
   description:
-    'Investor brief for Nucleify: less rewrite tax, durable product architecture, and a planning model of about $180k-$320k a year kept when teams stop rebuilding for every stack wave.',
+    'Investor brief for Nucleify: IR-first nucleus, seven framework shells, shared Supabase data plane, open install and paid attach after production usage.',
   ogImage: '/img/og-image.png',
 } as const
 
@@ -32,35 +32,35 @@ export const NUC_INVESTOR_COPY = {
   heroEyebrow: 'For investors',
   headline: 'Stop funding the rewrite.',
   support:
-    'Every stack wave burns budget rebuilding the same product. Nucleify makes migration the durable layer - so capital funds growth, not another rewrite of the same business.',
-  ctaPrimary: 'Talk to us',
-  ctaSecondary: 'See the product',
-  ctaTertiary: 'See the thesis',
+    'Stack waves rebuild the same product. Nucleify keeps the nucleus - shared modules, idiomatic shells, Supabase with the business - so capital funds growth, not another platform team.',
+  ctaPrimary: 'Open Playground',
+  ctaSecondary: 'Contact us',
+  ctaTertiary: 'See why it sticks',
   githubHref: 'https://github.com/Nucleify/Nucleify',
   thesisEyebrow: 'The problem',
-  thesisTitle: 'Teams pay again every time the stack changes.',
+  thesisTitle: 'Rewrite spend is a second product.',
   thesisSupport:
-    'Frameworks come and go. Products should not. Nucleify keeps domain, API, and SQL in shared modules and moves whole apps with an IR-first compiler - a stack change is a build target, not a rewrite project.',
+    'Frameworks rotate. The business should not. An IR-first compiler plus shared modules turn a stack change into a build target - domain, typed client, and Supabase stay once.',
   savingsEyebrow: 'What you keep',
-  savingsTitle: 'Less duplicate work.\nLess burn.',
+  savingsTitle: 'One nucleus.\nSeven shells.',
   savingsSupport:
-    'Simple planning model for a mid-size team running two frameworks at once.\nA clear way to talk about saved engineering time.',
-  savingsCta: 'See the growth plan',
-  savingsNote: 'Example only · mid-size product · two frameworks side by side',
+    'What stays with the product when the stack changes: domain, typed client, and data plane you can verify in the repo - not a burn model.\nSeven idiomatic shells, owned emit, one Supabase data plane.',
+  savingsCta: 'See how we grow',
+  savingsNote: 'Product facts · verify in docs and playground · not a forecast',
   pulseShellsAxis: 'Frameworks from one nucleus',
   wedgeEyebrow: 'How we grow',
   wedgeTitle: 'Start free.\nStay because it works.',
   wedgeSupport:
-    'Engineers install Nucleify because it removes rewrite pain.\nOnce the product lives in the nucleus, switching away means rewriting the business - then paid work can follow usage.',
+    'Engineers install Nucleify because it removes rewrite work.\nOnce domain and Supabase live in the nucleus, leaving means rewriting the business - then paid convert and help can follow usage.',
   surfaceEyebrow: 'Where we win',
-  surfaceTitle: 'One product. Four ways it reaches the market.',
+  surfaceTitle: 'One product.\nFour paths to market.',
   surfaceSupport:
     'Same shared modules. Different buyers, partners, timing, and paid add-ons - without hiring a second platform team for every framework.',
   surfaceTabsLabel: 'Market reach',
   surfaceStageLabel: 'Reach detail',
   askTitle: 'Want the full walkthrough?',
   askSupport:
-    'Open source at the core, with help when teams need it. Tell us what you want to check and we will reply with a short brief and next steps.',
+    'Open core install, paid attach after usage. Tell us what you want to pressure-test - we reply with a short brief and an architecture walkthrough option.',
   askCta: 'Request an intro',
   askModalTitle: 'Request an intro',
   askModalSupport:
@@ -77,95 +77,89 @@ export const NUC_INVESTOR_COPY = {
   askSubmit: 'Send request',
   askCancel: 'Back',
   navDocs: 'Docs',
+  navPlay: 'Playground',
+  navCli: 'CLI',
   navGitHub: 'GitHub',
   navHome: 'Product',
-  glanceAria: 'Investment snapshot',
+  playgroundHref: 'https://play.nucleify.io',
+  cliHref: 'https://cli.nucleify.io',
+  glanceAria: 'Product snapshot',
   pulseTraditionalLabel: 'Two stacks, separate teams',
   pulseNucleifyLabel: 'One nucleus, seven frameworks',
   pulseCostSuffix: '×',
   pulseUnitLabel: 'platform effort',
   pulseStatus: 'Same product. Far less rewrite tax.',
-  thesisCta: 'See the savings',
+  thesisCta: 'See what you keep',
 } as const
 
 export const NUC_INVESTOR_THESIS = [
   {
     index: '01',
     icon: 'mdi:swap-horizontal',
-    title: 'Stacks keep changing',
-    body: 'Vue or React. Nuxt or Next. Then Astro, Svelte, or Solid. Each change often means building the same product again.',
+    title: 'Rewrite is a second product',
+    body: 'Vue to React, SPA to Next, docs to Astro - each wave often rebuilds UI and glue while the domain stays the same. Capital pays twice for one business.',
     outcome: 'Rewrite tax',
-    proof: '18-36 month cycles',
+    proof: 'shared_modules + emit',
   },
   {
     index: '02',
-    icon: 'mdi:account-group-outline',
-    title: 'Hiring follows the framework',
-    body: 'Teams hire for one stack, then scramble for another. One nucleus that ships seven frameworks widens who you can hire without a second product org.',
-    outcome: 'Wider funnel',
-    proof: 'One hiring bar',
+    icon: 'mdi:cube-outline',
+    title: 'Nucleus is the durable asset',
+    body: 'Domain logic, typed client, and Supabase handlers/SQL live once. Shells are build targets. Leaving means rewriting the business, not swapping a UI kit.',
+    outcome: 'Hard to rip out',
+    proof: 'Supabase gateway + SQL',
   },
   {
     index: '03',
-    icon: 'mdi:briefcase-outline',
-    title: 'Agencies sell rewrites',
-    body: 'The usual pitch is still “rebuild it in X.” Nucleify flips that: keep the product, change the framework when the brief changes.',
-    outcome: 'Keep the brief',
-    proof: 'Framework, not rewrite',
+    icon: 'mdi:cash-check',
+    title: 'Budget follows usage, not demos',
+    body: 'Open install through engineers. Paid convert and consulting attach after the nucleus is already in production - high intent, shorter cycle.',
+    outcome: 'Paid after prod',
+    proof: 'Land → earn wedge',
   },
 ] as const
 
-/**
- * Planning model - sprints / year avoided vs dual-framework maintenance.
- * Dollars use a blended fully-loaded eng cost for diligence framing only.
- */
+/** Product facts diligence can verify - not a dollar forecast. */
 export const NUC_INVESTOR_SAVINGS = [
   {
-    id: 'sprints',
-    value: '18-30',
-    unit: 'sprints / year',
-    label: 'Duplicate work you skip',
-    detail: 'Shared API and UI instead of building the same feature twice.',
+    id: 'shells',
+    value: '7',
+    unit: 'idiomatic shells',
+    label: 'One install → seven frameworks',
+    detail:
+      'Vue, React, Nuxt, Next, Astro, Svelte, Solid from the same shared modules.',
   },
   {
-    id: 'dollars',
-    value: '$180k-$320k',
-    unit: 'modeled / year',
-    label: 'About $10k per sprint loaded',
-    detail: 'Rough cost for a mid-size product team - not a forecast.',
+    id: 'runtime',
+    value: '0',
+    unit: 'runtime lock-in',
+    label: 'Commit the emit',
+    detail:
+      'Output is host-native source you own - no forever SDK tax on the shell.',
   },
   {
-    id: 'cycles',
-    value: '1→7',
-    unit: 'frameworks from one install',
-    label: 'One install, many stacks',
-    detail: 'Vue, React, Nuxt, Next, Astro, Svelte, Solid from shared modules.',
+    id: 'data',
+    value: '1',
+    unit: 'shared data plane',
+    label: 'Supabase stays with the product',
+    detail:
+      'Module SQL, typed client, and gateway align across shells - one backend story.',
   },
 ] as const
 
-function investorSaving(
-  id: (typeof NUC_INVESTOR_SAVINGS)[number]['id']
-): (typeof NUC_INVESTOR_SAVINGS)[number] {
-  const item = NUC_INVESTOR_SAVINGS.find((entry) => entry.id === id)
-  if (!item) {
-    throw new Error(`Missing investor saving: ${id}`)
-  }
-  return item
-}
-
-/** Intro plate - capital framing. Dollars from savings model. */
+/** Intro plate - product snapshot for capital diligence. */
 export const NUC_INVESTOR_GLANCE = {
-  eyebrow: 'Planning model',
+  eyebrow: 'Product snapshot',
   from: '7',
   to: '1',
-  fromLabel: 'rebuild bets',
-  toLabel: 'product core',
-  figure: investorSaving('dollars').value,
-  figureLead: '$180k',
-  figureTrail: '-$320k',
-  figureUnit: '/ year kept',
-  line: 'One team. Capital stays on product.',
-  note: 'Example only · mid-size product · not a forecast',
+  fromLabel: 'framework shells',
+  toLabel: 'shared nucleus',
+  figure: '7→1',
+  figureLead: '7',
+  figureTrail: '1',
+  figureUnit: 'shells / nucleus',
+  line: 'Owned emit.\nShared Supabase.\nCapital on growth.',
+  note: 'Product facts · not a financial forecast',
 } as const
 
 export const NUC_INVESTOR_WEDGE = [
@@ -173,29 +167,29 @@ export const NUC_INVESTOR_WEDGE = [
     phase: 'Land',
     icon: 'mdi:download-outline',
     title: 'People install it themselves',
-    body: 'Engineers pull Nucleify because it kills rewrite work - not because a salesperson booked a demo.',
-    signal: 'Low cost to start',
+    body: 'Clone, playground, and CLI - engineers pull Nucleify because it kills rewrite work, not because a salesperson booked a demo.',
+    signal: 'Open core install',
   },
   {
     phase: 'Stick',
     icon: 'mdi:lock-outline',
     title: 'Leaving gets expensive',
-    body: 'Once domain logic lives in the nucleus, ripping it out means rewriting the business. That stickiness comes from architecture, not contracts.',
-    signal: 'Hard to rip out',
+    body: 'Once domain logic and Supabase live in the nucleus, ripping it out means rewriting the business. Stickiness is architecture, not a contract.',
+    signal: 'Architecture lock-in',
   },
   {
     phase: 'Expand',
     icon: 'mdi:expand-all-outline',
     title: 'More stacks, same team',
-    body: 'Each new framework is more market reach, not another platform team. Nuxt today, Next or Solid tomorrow - same shared base.',
-    signal: 'Reach without headcount',
+    body: 'Each new framework is more market reach, not another platform org. Nuxt today, Next or Solid tomorrow - same nucleus.',
+    signal: 'Same nucleus',
   },
   {
     phase: 'Earn',
     icon: 'mdi:cash-multiple',
     title: 'Paid work follows usage',
-    body: 'Convert and consulting attach after the nucleus is already in production. High intent, shorter sales cycle.',
-    signal: 'Money after install',
+    body: 'Convert, PoC, and consulting attach after the nucleus is already in production. High intent, shorter sales cycle.',
+    signal: 'Paid after prod',
   },
 ] as const
 
@@ -261,7 +255,7 @@ export const NUC_INVESTOR_SURFACE = [
     color: '#00dc82',
     title: 'Teams already paying twice',
     description:
-      'Product teams stuck on two stacks at once (often React/Next plus Vue/Nuxt, plus docs or experiments). They feel rewrite cost this quarter - not someday.',
+      'Dual-stack product teams (often React/Next plus Vue/Nuxt, plus docs or experiments) feel rewrite cost this quarter - migration briefs land when the second stack is already burning.',
     outcome: 'They need it now',
     proof: 'Dual-stack product teams',
     metric: 'Now',
@@ -273,7 +267,7 @@ export const NUC_INVESTOR_SURFACE = [
     color: '#61dafb',
     title: 'Agencies that move stacks',
     description:
-      'Agencies sell migrations. With a nucleus story they keep the client brief and drop the second platform team - inbound, not cold outreach.',
+      'Agencies sell migrations. With a nucleus story they keep the client brief and drop the second platform team - inbound from rewrite budgets, not cold outreach.',
     outcome: 'Partners bring deals',
     proof: 'Rewrite budgets → nucleus',
     metric: 'Pull',
@@ -285,10 +279,10 @@ export const NUC_INVESTOR_SURFACE = [
     color: '#ff5d01',
     title: 'When frameworks shift',
     description:
-      'Every 18-36 months a new stack wave opens budgets. Each wave grows the market without hiring a new platform org.',
+      'Stack waves open budgets as teams re-platform. Each wave grows reach without hiring a new platform org - timing is a market thesis, not a forecast metric.',
     outcome: 'Timing helps us',
-    proof: '18-36 month stack waves',
-    metric: '18-36mo',
+    proof: 'Stack-wave budgets',
+    metric: 'Wave timing',
   },
   {
     id: 'attach',
@@ -297,7 +291,7 @@ export const NUC_INVESTOR_SURFACE = [
     color: '#42b883',
     title: 'Paid help after install',
     description:
-      'Convert and consulting attach once the nucleus is already in production. People already using it are ready to buy help.',
+      'Convert and consulting attach once the nucleus is already in production. Post-install PoC buyers already feel the switching cost.',
     outcome: 'Revenue after usage',
     proof: 'Usage → paid attach',
     metric: 'Attach',

@@ -19,8 +19,8 @@
             <nui-button
               :label="copy.askCta"
               variant="primary"
-              icon="mdi:email-outline"
-              icon-pos="right"
+              icon="mdi:send-outline"
+              :iconPos.prop="'right'"
               @click="openForm"
             />
           </div>
@@ -126,7 +126,7 @@
                 fluid
                 width="100%"
                 icon="mdi:send-outline"
-                icon-pos="right"
+                :iconPos.prop="'right'"
                 @click="onSubmit"
               />
             </div>
@@ -140,6 +140,12 @@
       <nav class="nuc-close-footer-links" aria-label="Footer">
         <a :href="homeHref">{{ copy.navHome }}</a>
         <a :href="docsHref">{{ copy.navDocs }}</a>
+        <a :href="playHref" target="_blank" rel="noopener noreferrer"
+          >{{ copy.navPlay }}</a
+        >
+        <a :href="cliHref" target="_blank" rel="noopener noreferrer"
+          >{{ copy.navCli }}</a
+        >
         <a :href="copy.githubHref" target="_blank" rel="noopener noreferrer">
           {{ copy.navGitHub }}
         </a>
@@ -162,6 +168,8 @@ import {
 import {
   coalesceArray,
   composeHomeContactMessage,
+  homeCliHref,
+  homePlayHref,
   homeThankYouHref,
   type HomeContactWebsiteType,
   investorDocsHref,
@@ -200,6 +208,8 @@ const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
 const docsHref = computed(() => investorDocsHref(lang.value))
 const homeHref = computed(() => investorHomeHref(lang.value))
+const playHref = computed(() => copy.value.playgroundHref || homePlayHref())
+const cliHref = computed(() => copy.value.cliHref || homeCliHref())
 
 const formOpen = ref(false)
 const formKey = ref(0)

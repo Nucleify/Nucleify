@@ -29,17 +29,16 @@ function section(
 /** Canonical home composition — matches published `home` layout sections. */
 export const DEFAULT_HOME_SECTIONS: PageSection[] = [
   section('home-hero', 'section.hero', 0, HOME_SECTION_DEFAULTS as never),
-  section('home-pillars', 'section.pillars', 1, HOME_SECTION_DEFAULTS as never),
-  section('home-clone', 'section.clone', 2, HOME_SECTION_DEFAULTS as never),
-  section('home-stack', 'section.stack', 3, HOME_SECTION_DEFAULTS as never),
   section(
     'home-compiler',
     'section.compiler_demo',
-    4,
+    1,
     HOME_SECTION_DEFAULTS as never
   ),
-  section('home-pulse', 'section.pulse', 5, HOME_SECTION_DEFAULTS as never),
-  section('home-close', 'section.close', 6, HOME_SECTION_DEFAULTS as never),
+  section('home-pillars', 'section.pillars', 2, HOME_SECTION_DEFAULTS as never),
+  section('home-stack', 'section.stack', 3, HOME_SECTION_DEFAULTS as never),
+  section('home-clone', 'section.clone', 4, HOME_SECTION_DEFAULTS as never),
+  section('home-close', 'section.close', 5, HOME_SECTION_DEFAULTS as never),
 ]
 
 /** Canonical investor composition — matches published `investor` layout sections. */

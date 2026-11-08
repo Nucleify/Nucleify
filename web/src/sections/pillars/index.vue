@@ -105,7 +105,7 @@ const shareLabel = computed(
 function onCta(): void {
   const root = document.querySelector<HTMLElement>('.nuc-shell')
   if (!root) return
-  scrollSection(root, 'clone')
+  scrollSection(root, 'stack')
 }
 </script>
 

@@ -29,13 +29,28 @@
       @mouseleave="hovering = false"
     >
       <div class="nuc-compiler-window">
-        <ol class="nuc-compiler-code" :key="active.id">
+        <ol
+          class="nuc-compiler-code"
+          :key="active.id"
+          :style="{ '--code-lines': maxLines }"
+        >
           <li
-            v-for="(line, index) in active.snippet"
+            v-for="(line, index) in displayLines"
             :key="`${active.id}-${index}`"
+            :class="{ 'is-pad': index >= active.snippet.length }"
+            :aria-hidden="index >= active.snippet.length ? 'true' : undefined"
           >
-            <span>{{ String(index + 1).padStart(2, '0') }}</span>
-            <code :class="{ 'is-tag': isTag(line) }">{{ line || ' ' }}</code>
+            <span class="nuc-compiler-ln"
+              >{{ String(index + 1).padStart(2, '0') }}</span
+            >
+            <code>
+              <span
+                v-for="(tok, tokIndex) in highlightSnippetLine(line)"
+                :key="`${active.id}-${index}-${tokIndex}`"
+                :class="`is-${tok.kind}`"
+                >{{ tok.text }}</span
+              >
+            </code>
           </li>
         </ol>
 
@@ -74,6 +89,7 @@ import {
   useHomeCmsCopy,
   useShellSectionReveal,
 } from '@web'
+import { highlightSnippetLine } from './highlight'
 import { compilerReveal } from './motion'
 
 defineOptions({ inheritAttrs: false })
@@ -88,30 +104,49 @@ const route = useRoute()
 const lang = computed(() => (route.params.lang as string) || 'en')
 const docsHref = computed(() => homeDocsHref(lang.value, 'compiler'))
 const activeId = ref('')
-const paused = ref(false)
 const hovering = ref(false)
+const ROTATE_MS = 10_000
 
 const active = computed(() => {
   const list = nodes.value
   return list.find((n) => n.id === activeId.value) ?? list[0]!
 })
 
-function isTag(line: string): boolean {
-  return (
-    /<\/?(script|template|nui-button|NuiButton)\b/.test(line) ||
-    line.trim() === '---'
-  )
-}
+/** Tallest emit snippet — pad shorter shells so the card height stays put. */
+const maxLines = computed(() =>
+  nodes.value.reduce((max, node) => Math.max(max, node.snippet.length), 0)
+)
 
-function select(id: string, lock = false): void {
-  activeId.value = id
-  if (lock) paused.value = true
-}
+const displayLines = computed(() => {
+  const lines = active.value.snippet
+  const pad = maxLines.value - lines.length
+  if (pad <= 0) return lines
+  return [...lines, ...Array.from({ length: pad }, () => '')]
+})
 
 let timer: number | undefined
+let rotateEnabled = false
+
+function clearRotateTimer(): void {
+  if (timer) {
+    window.clearInterval(timer)
+    timer = undefined
+  }
+}
+
+function startRotateTimer(): void {
+  clearRotateTimer()
+  if (!rotateEnabled) return
+  timer = window.setInterval(tick, ROTATE_MS)
+}
+
+function select(id: string, resetClock = false): void {
+  activeId.value = id
+  if (resetClock) startRotateTimer()
+}
 
 function tick(): void {
-  if (paused.value || hovering.value) return
+  if (hovering.value) return
   const list = nodes.value
   if (list.length === 0) return
   const idx = list.findIndex((n) => n.id === activeId.value)
@@ -126,11 +161,13 @@ onMounted(() => {
     isAutomatedAudit()
   )
     return
-  timer = window.setInterval(tick, 2800)
+  rotateEnabled = true
+  startRotateTimer()
 })
 
 onBeforeUnmount(() => {
-  if (timer) window.clearInterval(timer)
+  rotateEnabled = false
+  clearRotateTimer()
 })
 </script>
 
