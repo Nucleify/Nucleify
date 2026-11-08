@@ -24,7 +24,7 @@ pnpm --filter @nucleify/docs dev
 - `docs/` - this Astro app
 - `compiler/` - portable UI compiler
 - `shared_modules/` - `nuc_*` feature modules
-- `web-{next,solid,svelte}/` / `admin-{next,solid,svelte}/` - generated product shells
+- `web-{next,solid,svelte,astro}/` / `admin-{next,solid,svelte,astro}/` - generated product hosts
 
 ## URLs
 

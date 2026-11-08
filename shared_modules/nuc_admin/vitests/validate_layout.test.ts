@@ -71,14 +71,17 @@ describe('admin_config', () => {
 })
 
 describe('default marketing layouts', () => {
-  it('registers every default home and investor section type', async () => {
-    const { DEFAULT_HOME_SECTIONS, DEFAULT_INVESTOR_SECTIONS } = await import(
-      '../cms/default_pages'
-    )
+  it('registers every default home, investor, and company section type', async () => {
+    const {
+      DEFAULT_COMPANY_SECTIONS,
+      DEFAULT_HOME_SECTIONS,
+      DEFAULT_INVESTOR_SECTIONS,
+    } = await import('../cms/default_pages')
     const { isRegisteredWidgetType } = await import('../cms/registry')
     for (const section of [
       ...DEFAULT_HOME_SECTIONS,
       ...DEFAULT_INVESTOR_SECTIONS,
+      ...DEFAULT_COMPANY_SECTIONS,
     ]) {
       expect(isRegisteredWidgetType(section.type)).toBe(true)
     }

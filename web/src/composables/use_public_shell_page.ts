@@ -5,6 +5,7 @@ import { type PublicPagePayload, usePublicPage } from './use_public_page'
 import { type ShellVariant, useShellPage } from './use_shell_page'
 
 import {
+  COMPANY_PAGE_SEO,
   HOME_PAGE_SEO,
   INVESTOR_PAGE_SEO,
   THANK_YOU_PAGE_SEO,
@@ -16,6 +17,7 @@ const SITE_ORIGIN = 'https://nucleify.io'
 const VARIANT_BY_SLUG: Record<string, ShellVariant> = {
   home: 'product',
   investor: 'pitch',
+  'migrations-company': 'pitch',
   'thank-you': 'thankYou',
 }
 
@@ -25,6 +27,7 @@ const SEO_FALLBACK_BY_SLUG: Record<
 > = {
   home: HOME_PAGE_SEO,
   investor: INVESTOR_PAGE_SEO,
+  'migrations-company': COMPANY_PAGE_SEO,
   'thank-you': THANK_YOU_PAGE_SEO,
 }
 

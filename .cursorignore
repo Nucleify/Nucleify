@@ -36,10 +36,8 @@ bun.lockb
 **/*.log
 
 # Binary / media (indexed as noise; SVG stays available)
-**/*.png
 **/*.jpg
 **/*.jpeg
-**/*.webp
 **/*.gif
 **/*.ico
 **/*.mp4

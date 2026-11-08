@@ -7,6 +7,11 @@
     gap: clamp(1.75rem, 4vw, 3rem);
     align-items: start;
 
+    .nuc-title,
+    .nuc-support {
+      white-space: pre-line;
+    }
+
     @media (min-width: $md) {
       grid-template-columns: minmax(0, 1.1fr) minmax(16rem, 0.9fr);
     }

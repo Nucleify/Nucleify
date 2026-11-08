@@ -1,19 +1,23 @@
 # Playground
 
-The Nucleify Playground is a browser sandbox for portable components. Edit source on the left, watch live emit for modern shells on the right - no local install required.
+The Nucleify Playground is a **browser sandbox for optional portable components** - not the product-migration path. Migrating an existing app does **not** require `*.nuc.tsx`; use [product convert](/en/docs/core-concepts/cli#convert) (`nuc emit convert`) on your framework source as-is.
 
-Live product surface: [play.nucleify.io](https://play.nucleify.io).
+Here you edit portable source on the left and watch live emit for modern frameworks on the right - no local install required.
+
+Live surface: [play.nucleify.io](https://play.nucleify.io).
 
 ---
 
 ## Why use it
 
-Playground answers the first question every engineer asks: *does the emitted code look like something I would ship?*
+Playground answers: *does optional portable emit look like something I would ship?*
+
+It does **not** replace convert. Bring an existing Nuxt/Vue/React app and convert it without rewriting into Nucleify authoring format.
 
 - Open [play.nucleify.io](https://play.nucleify.io)
-- Edit portable TypeScript (props, `state`, `derived`, `handler`, styles)
-- See idiomatic output for React, Vue, Svelte, Astro, Solid (and related Nuxt / Next shells where shown)
-- Copy snippets or continue in the [CLI](/en/docs/core-concepts/cli) for a real project
+- Edit portable TypeScript only if you want shared presentational UI (`props`, `state`, `derived`, `handler`, styles)
+- See idiomatic output for React, Vue, Svelte, Astro, Solid (and related Nuxt / Next hosts where shown)
+- For a real app migration: [CLI convert](/en/docs/core-concepts/cli) · [Compiler](/en/docs/core-concepts/compiler)
 
 Compile requests from the playground hit the same cloud compile surface the CLI uses (`compileApiUrl` → `https://cli.nucleify.io`).
 
@@ -23,7 +27,7 @@ Compile requests from the playground hit the same cloud compile surface the CLI 
 
 | Pane | Purpose |
 |------|---------|
-| **Source** | Portable component authoring (`#nuc-compiler/runtime`) |
+| **Source** | Optional portable component authoring (`#nuc-compiler/runtime`) |
 | **Emit** | Framework-native preview / code for the selected target |
 | **Examples** | Starter components (for example a counter with state + derived values) |
 
@@ -55,15 +59,16 @@ export default component({
 })
 ```
 
-Use the playground to validate authoring rules before you wire emit into CI or a local app.
+Use the playground to validate portable authoring rules before you wire optional emit into CI. To migrate a whole product, stay on convert - not this sandbox.
 
 ---
 
 ## Next steps
 
-1. Experiment at [play.nucleify.io](https://play.nucleify.io)
-2. Install the CLI from [cli.nucleify.io](https://cli.nucleify.io) · [CLI docs](/en/docs/core-concepts/cli)
-3. Read [Compiler](/en/docs/core-concepts/compiler) for IR, portable emit, and product convert inside the monorepo
+1. Migrate an existing app: `nuc emit convert web --target=next` · [CLI](/en/docs/core-concepts/cli)
+2. Optionally experiment with portable UI at [play.nucleify.io](https://play.nucleify.io)
+3. Install the CLI from [cli.nucleify.io](https://cli.nucleify.io)
+4. Read [Compiler](/en/docs/core-concepts/compiler) for convert vs portable emit
 
 ---
 

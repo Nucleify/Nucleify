@@ -1,8 +1,8 @@
 # @nucleify/web
 
-Nuxt landing app (marketing site) - **canonical product shell** (`TARGET=nuxt`).
+Nuxt landing app (marketing site) - **canonical product host** (`--target=nuxt` / default).
 
-Alternate shells: `make web TARGET=next|solid|svelte` → gitignored `web-next/` / `web-solid/` / `web-svelte/`.
+Alternate hosts: `make web --target=next|solid|svelte|astro` → gitignored `web-next/` / `web-solid/` / `web-svelte/` / `web-astro/` (needs `PATH="$PWD/.config/bin:$PATH"`).
 
 - `.cursor/agents/` - shared agents for the monorepo
 - Rules: monorepo `.config/rules/` + `web/.config/rules/`
@@ -10,12 +10,14 @@ Alternate shells: `make web TARGET=next|solid|svelte` → gitignored `web-next/`
 - Shared packages: monorepo `shared_modules/`
 
 ```bash
-make web                    # Nuxt (default TARGET=nuxt)
-make web TARGET=nuxt
-make web TARGET=next        # → web-next/
-make web TARGET=solid       # → web-solid/
-make web TARGET=svelte      # → web-svelte/
+export PATH="$PWD/.config/bin:$PATH"
+make web                    # Nuxt (default)
+make web --target=next      # → web-next/
+make web -t=solid           # → web-solid/
+make web --target=svelte    # → web-svelte/
+make web --target=astro     # → web-astro/
+# classic (no shim): make web TARGET=next
 pnpm --filter @nucleify/web nuxt
 ```
 
-Portable UI demos (not this app): `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` - see `portable/README.md`.
+Optional portable UI demos (not this app): `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` / `astro` - see `portable/README.md`. Product convert does **not** require `*.nuc.tsx`.

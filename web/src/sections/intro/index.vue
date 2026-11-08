@@ -75,7 +75,9 @@
                 <span class="nuc-deal-figure">
                   <span>{{ glance.figureLead }}</span>
                   <em aria-hidden="true">→</em>
-                  <span>{{ glance.figureTrail }}</span>
+                  <span class="nuc-deal-figure-to"
+                    >{{ glance.figureTrail }}</span
+                  >
                 </span>
                 <small>{{ glance.figureUnit }}</small>
               </p>
@@ -93,26 +95,50 @@
 import { computed, ref } from 'vue'
 
 import {
+  coalesceArray,
+  coalesceString,
   homePlayHref,
+  isPlainObject,
   NUC_INVESTOR_GLANCE,
   type NucHomeModuleLaneId,
   NucHoloCube as NucHomeHoloCube,
   scrollSection,
+  useCmsAttrs,
   useInvestorCmsCopy,
 } from '@web'
 
 defineOptions({ inheritAttrs: false })
 
+const cms = useCmsAttrs()
 const copy = useInvestorCmsCopy()
 const brandChars = computed(() => [...(copy.value.brand || 'Nucleify')])
-const glance = NUC_INVESTOR_GLANCE
+const glance = computed(() => {
+  const raw = cms.glance
+  if (!isPlainObject(raw)) return { ...NUC_INVESTOR_GLANCE }
+  return {
+    eyebrow: coalesceString(raw.eyebrow, NUC_INVESTOR_GLANCE.eyebrow),
+    from: coalesceString(raw.from, NUC_INVESTOR_GLANCE.from),
+    to: coalesceString(raw.to, NUC_INVESTOR_GLANCE.to),
+    fromLabel: coalesceString(raw.fromLabel, NUC_INVESTOR_GLANCE.fromLabel),
+    toLabel: coalesceString(raw.toLabel, NUC_INVESTOR_GLANCE.toLabel),
+    figure: coalesceString(raw.figure, NUC_INVESTOR_GLANCE.figure),
+    figureLead: coalesceString(raw.figureLead, NUC_INVESTOR_GLANCE.figureLead),
+    figureTrail: coalesceString(
+      raw.figureTrail,
+      NUC_INVESTOR_GLANCE.figureTrail
+    ),
+    figureUnit: coalesceString(raw.figureUnit, NUC_INVESTOR_GLANCE.figureUnit),
+    line: coalesceString(raw.line, NUC_INVESTOR_GLANCE.line),
+    note: coalesceString(raw.note, NUC_INVESTOR_GLANCE.note),
+  }
+})
 const playHref = computed(() => copy.value.playgroundHref || homePlayHref())
 
-const faces = [
-  { id: 'ui' as const, label: 'Product' },
-  { id: 'sdk' as const, label: 'Nucleus' },
-  { id: 'data' as const, label: 'Capital' },
-]
+const faces = coalesceArray(cms.cubeFaces, [
+  { id: 'ui', label: 'Product' },
+  { id: 'sdk', label: 'Nucleus' },
+  { id: 'data', label: 'Capital' },
+]) as { id: NucHomeModuleLaneId; label: string }[]
 
 const focusId = ref<NucHomeModuleLaneId>('sdk')
 const hovering = ref(false)

@@ -10,7 +10,7 @@
       <h2 id="nuc-savings-title" class="nuc-title">
         {{ copy.savingsTitle }}
       </h2>
-      <p class="nuc-support">{{ copy.savingsSupport }}</p>
+      <p v-if="support" class="nuc-support">{{ support }}</p>
       <button type="button" class="nuc-next nuc-savings-cta" @click="go">
         <span>{{ copy.savingsCta }}</span>
         <nui-icon icon="mdi:arrow-down" mode="svg" />
@@ -41,29 +41,43 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useShellSectionReveal } from '@web'
 import { savingsReveal } from './motion'
 
 const rootEl = ref<HTMLElement | null>(null)
 useShellSectionReveal(rootEl, savingsReveal)
 
-import { NUC_INVESTOR_SAVINGS, scrollSection, useInvestorCmsCopy } from '@web'
+import {
+  coalesceArray,
+  NUC_INVESTOR_SAVINGS,
+  scrollSection,
+  useCmsAttrs,
+  useInvestorCmsCopy,
+} from '@web'
 
 defineOptions({ inheritAttrs: false })
 
+const cms = useCmsAttrs()
 const copy = useInvestorCmsCopy()
-const rail = NUC_INVESTOR_SAVINGS
+const support = computed(() =>
+  typeof cms.savingsSupport === 'string'
+    ? cms.savingsSupport
+    : copy.value.savingsSupport
+)
+const rail = coalesceArray(
+  cms.items,
+  NUC_INVESTOR_SAVINGS
+) as (typeof NUC_INVESTOR_SAVINGS)[number][]
 
-const FACT_ICONS: Record<(typeof NUC_INVESTOR_SAVINGS)[number]['id'], string> =
-  {
-    shells: 'mdi:layers-triple',
-    runtime: 'mdi:file-code-outline',
-    data: 'mdi:database-outline',
-  }
+const FACT_ICONS: Record<string, string> = {
+  shells: 'mdi:layers-triple',
+  runtime: 'mdi:file-code-outline',
+  data: 'mdi:database-outline',
+}
 
-function iconFor(id: (typeof NUC_INVESTOR_SAVINGS)[number]['id']): string {
-  return FACT_ICONS[id]
+function iconFor(id: string): string {
+  return FACT_ICONS[id] ?? 'mdi:circle-outline'
 }
 
 function go(): void {

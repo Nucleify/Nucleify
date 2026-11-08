@@ -19,7 +19,7 @@ export const appConfig = {
 		],
 		link: [
 			{ rel: "icon", type: "image/x-icon", href: "/favicon.ico", sizes: "any" },
-			{ rel: "apple-touch-icon", href: "/img/logo.svg" },
+			{ rel: "apple-touch-icon", href: "/img/logo.webp" },
 		],
 		// Sync before first paint: lab stays iris-open (CWV); humans get 0→165 wipe.
 		script: [

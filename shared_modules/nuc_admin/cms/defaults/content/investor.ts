@@ -22,7 +22,7 @@ export const NUC_INVESTOR_SECTIONS = [
 export const NUC_INVESTOR_SEO = {
   title: 'Nucleify for investors - stop funding the rewrite',
   description:
-    'Investor brief for Nucleify: IR-first nucleus, seven framework shells, shared Supabase data plane, open install and paid attach after production usage.',
+    'Investor brief for Nucleify: IR-first nucleus, seven frameworks, shared Supabase data plane, open install and paid attach after production usage.',
   ogImage: '/img/og-image.png',
 } as const
 
@@ -32,7 +32,7 @@ export const NUC_INVESTOR_COPY = {
   heroEyebrow: 'For investors',
   headline: 'Stop funding the rewrite.',
   support:
-    'Stack waves rebuild the same product. Nucleify keeps the nucleus - shared modules, idiomatic shells, Supabase with the business - so capital funds growth, not another platform team.',
+    'Stack waves rebuild the same product. Nucleify keeps the nucleus - shared modules, idiomatic frameworks, Supabase with the business - so capital funds growth, not another platform team.',
   ctaPrimary: 'Open Playground',
   ctaSecondary: 'Contact us',
   ctaTertiary: 'See why it sticks',
@@ -42,9 +42,9 @@ export const NUC_INVESTOR_COPY = {
   thesisSupport:
     'Frameworks rotate. The business should not. An IR-first compiler plus shared modules turn a stack change into a build target - domain, typed client, and Supabase stay once.',
   savingsEyebrow: 'What you keep',
-  savingsTitle: 'One nucleus.\nSeven shells.',
+  savingsTitle: 'One nucleus.\nSeven frameworks.',
   savingsSupport:
-    'What stays with the product when the stack changes: domain, typed client, and data plane you can verify in the repo - not a burn model.\nSeven idiomatic shells, owned emit, one Supabase data plane.',
+    'What stays with the product when the stack changes: domain, typed client, and data plane you can verify in the repo - not a burn model.\nSeven idiomatic frameworks, owned emit, one Supabase data plane.',
   savingsCta: 'See how we grow',
   savingsNote: 'Product facts · verify in docs and playground · not a forecast',
   pulseShellsAxis: 'Frameworks from one nucleus',
@@ -105,7 +105,7 @@ export const NUC_INVESTOR_THESIS = [
     index: '02',
     icon: 'mdi:cube-outline',
     title: 'Nucleus is the durable asset',
-    body: 'Domain logic, typed client, and Supabase handlers/SQL live once. Shells are build targets. Leaving means rewriting the business, not swapping a UI kit.',
+    body: 'Domain logic, typed client, and Supabase handlers/SQL live once. Frameworks are build targets. Leaving means rewriting the business, not swapping a UI kit.',
     outcome: 'Hard to rip out',
     proof: 'Supabase gateway + SQL',
   },
@@ -124,7 +124,7 @@ export const NUC_INVESTOR_SAVINGS = [
   {
     id: 'shells',
     value: '7',
-    unit: 'idiomatic shells',
+    unit: 'idiomatic frameworks',
     label: 'One install → seven frameworks',
     detail:
       'Vue, React, Nuxt, Next, Astro, Svelte, Solid from the same shared modules.',
@@ -135,7 +135,7 @@ export const NUC_INVESTOR_SAVINGS = [
     unit: 'runtime lock-in',
     label: 'Commit the emit',
     detail:
-      'Output is host-native source you own - no forever SDK tax on the shell.',
+      'Output is host-native source you own - no forever SDK tax on the framework.',
   },
   {
     id: 'data',
@@ -143,7 +143,7 @@ export const NUC_INVESTOR_SAVINGS = [
     unit: 'shared data plane',
     label: 'Supabase stays with the product',
     detail:
-      'Module SQL, typed client, and gateway align across shells - one backend story.',
+      'Module SQL, typed client, and gateway align across frameworks - one backend story.',
   },
 ] as const
 
@@ -152,12 +152,12 @@ export const NUC_INVESTOR_GLANCE = {
   eyebrow: 'Product snapshot',
   from: '7',
   to: '1',
-  fromLabel: 'framework shells',
+  fromLabel: 'frameworks',
   toLabel: 'shared nucleus',
   figure: '7→1',
   figureLead: '7',
   figureTrail: '1',
-  figureUnit: 'shells / nucleus',
+  figureUnit: 'frameworks / nucleus',
   line: 'Owned emit.\nShared Supabase.\nCapital on growth.',
   note: 'Product facts · not a financial forecast',
 } as const

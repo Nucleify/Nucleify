@@ -7,9 +7,9 @@ import {
   NUC_HOME_COMPILER_SOURCE,
   NUC_HOME_CONTACT_TYPES,
   NUC_HOME_PILLARS,
-  NUC_HOME_WEB_SHARE,
-  nucHomeWebShareArcs,
-  nucHomeWebShareLine,
+  NUC_HOME_SHELLS,
+  nucHomeShellArcs,
+  nucHomeShellLine,
 } from '@web'
 
 describe('homeDocsHref', () => {
@@ -43,42 +43,41 @@ describe('home contact types', () => {
   })
 })
 
-describe('home web share chart', () => {
-  it('covers emit shells as a range, not a unique-site percentage', () => {
-    expect(NUC_HOME_WEB_SHARE.slices).toHaveLength(7)
-    expect(nucHomeWebShareLine()).toBe(
-      'React & Next.js · Vue & Nuxt · Astro · Svelte · Solid'
+describe('home shells chart', () => {
+  it('matches investor equal-shell donut: seven frameworks, one nucleus', () => {
+    expect(NUC_HOME_SHELLS).toHaveLength(7)
+    expect(nucHomeShellLine()).toBe(
+      'Vue · Nuxt · React · Next · Astro · Svelte · Solid'
     )
-    expect(NUC_HOME_WEB_SHARE.groups.map((group) => group.id)).toEqual([
-      'react-next',
-      'vue-nuxt',
+    expect(NUC_HOME_SHELLS.map((shell) => shell.id)).toEqual([
+      'vue',
+      'nuxt',
+      'react',
+      'next',
       'astro',
       'svelte',
       'solid',
     ])
-    expect(nucHomeWebShareArcs().map((arc) => arc.id)).toEqual([
-      'react-next',
-      'vue-nuxt',
+    expect(nucHomeShellArcs().map((arc) => arc.id)).toEqual([
+      'vue',
+      'nuxt',
+      'react',
+      'next',
       'astro',
       'svelte',
       'solid',
     ])
-    expect(
-      nucHomeWebShareArcs().find((arc) => arc.id === 'react-next')?.color
-    ).toBe('#61dafb')
-    expect(
-      nucHomeWebShareArcs().find((arc) => arc.id === 'vue-nuxt')?.color
-    ).toBe('#42b883')
-    const weight = Object.fromEntries(
-      NUC_HOME_WEB_SHARE.slices.map((slice) => [slice.id, slice.pct])
+    expect(nucHomeShellArcs().find((arc) => arc.id === 'react')?.color).toBe(
+      '#61dafb'
     )
-    const reactNext = weight.react! + weight.next!
-    const vueNuxt = weight.vue! + weight.nuxt!
-    expect(reactNext / vueNuxt).toBeGreaterThan(2)
-    expect(vueNuxt).toBeGreaterThan(weight.svelte!)
-    expect(weight.svelte!).toBeGreaterThan(weight.astro!)
+    expect(nucHomeShellArcs().find((arc) => arc.id === 'next')?.color).toBe(
+      '#e8e8e8'
+    )
+    expect(nucHomeShellArcs().find((arc) => arc.id === 'solid')?.color).toBe(
+      '#2c4f7c'
+    )
     expect(
-      nucHomeWebShareArcs().every(
+      nucHomeShellArcs().every(
         (arc) => arc.d.startsWith('M') && arc.d.endsWith('Z')
       )
     ).toBe(true)
@@ -99,8 +98,8 @@ describe('home developer concretes', () => {
 
   it('uses ship concretes instead of ROI fluff', () => {
     expect(NUC_HOME_PILLARS.map((p) => p.title)).toEqual([
-      'Portable UI → idiomatic emit',
-      'Domain stays in shared_modules',
+      'Any framework → any other',
+      'One business core. Many hosts.',
       'Data plane: Supabase',
     ])
     expect(
@@ -113,12 +112,10 @@ describe('home developer concretes', () => {
 })
 
 describe('home compiler emit snippets', () => {
-  it('shows InboxBadge with distinct idioms per shell', () => {
-    expect(NUC_HOME_COMPILER_SOURCE.file).toBe('InboxBadge.nuc.tsx')
-    expect(NUC_HOME_COMPILER_SOURCE.snippet.join('\n')).toContain(
-      '#nuc-compiler/runtime'
-    )
-    expect(NUC_HOME_COMPILER_SOURCE.snippet.join('\n')).toContain('InboxBadge')
+  it('shows InboxBadge with distinct idioms per framework', () => {
+    expect(NUC_HOME_COMPILER_SOURCE.file).toBe('InboxBadge.vue')
+    expect(NUC_HOME_COMPILER_SOURCE.snippet.join('\n')).toContain('defineProps')
+    expect(NUC_HOME_COMPILER_SOURCE.snippet.join('\n')).toContain('nui-button')
 
     const byId = Object.fromEntries(
       NUC_HOME_COMPILER_NODES.map((node) => [node.id, node])

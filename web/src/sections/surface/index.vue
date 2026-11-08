@@ -79,7 +79,9 @@
 import { computed, ref } from 'vue'
 
 import {
+  coalesceArray,
   NUC_INVESTOR_SURFACE,
+  useCmsAttrs,
   useInvestorCmsCopy,
   useShellSectionReveal,
 } from '@web'
@@ -90,9 +92,13 @@ defineOptions({ inheritAttrs: false })
 const rootEl = ref<HTMLElement | null>(null)
 useShellSectionReveal(rootEl, surfaceReveal)
 
+const cms = useCmsAttrs()
 const copy = useInvestorCmsCopy()
-const surface = NUC_INVESTOR_SURFACE
-const activeId = ref<(typeof surface)[number]['id']>(surface[0]!.id)
+const surface = coalesceArray(
+  cms.items,
+  NUC_INVESTOR_SURFACE
+) as (typeof NUC_INVESTOR_SURFACE)[number][]
+const activeId = ref(surface[0]!.id)
 
 const activeIndex = computed(() =>
   Math.max(

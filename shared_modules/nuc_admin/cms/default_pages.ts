@@ -1,6 +1,8 @@
 import type { PageSection } from './validate_layout'
 
 import {
+  COMPANY_PAGE_SEO,
+  COMPANY_SECTION_DEFAULTS,
   HOME_PAGE_SEO,
   HOME_SECTION_DEFAULTS,
   INVESTOR_PAGE_SEO,
@@ -76,6 +78,46 @@ export const DEFAULT_INVESTOR_SECTIONS: PageSection[] = [
   section('investor-ask', 'section.ask', 5, INVESTOR_SECTION_DEFAULTS as never),
 ]
 
+/** Canonical composition — matches published `migrations-company` layout. */
+export const DEFAULT_COMPANY_SECTIONS: PageSection[] = [
+  section(
+    'migrations-company-intro',
+    'section.intro',
+    0,
+    COMPANY_SECTION_DEFAULTS as never
+  ),
+  section(
+    'migrations-company-thesis',
+    'section.thesis',
+    1,
+    COMPANY_SECTION_DEFAULTS as never
+  ),
+  section(
+    'migrations-company-savings',
+    'section.savings',
+    2,
+    COMPANY_SECTION_DEFAULTS as never
+  ),
+  section(
+    'migrations-company-wedge',
+    'section.wedge',
+    3,
+    COMPANY_SECTION_DEFAULTS as never
+  ),
+  section(
+    'migrations-company-surface',
+    'section.surface',
+    4,
+    COMPANY_SECTION_DEFAULTS as never
+  ),
+  section(
+    'migrations-company-ask',
+    'section.ask',
+    5,
+    COMPANY_SECTION_DEFAULTS as never
+  ),
+]
+
 /** Canonical thank-you composition — single confirmation section. */
 export const DEFAULT_THANK_YOU_SECTIONS: PageSection[] = [
   section(
@@ -94,6 +136,11 @@ export const DEFAULT_HOME_SEO = {
 export const DEFAULT_INVESTOR_SEO = {
   title: INVESTOR_PAGE_SEO.title,
   description: INVESTOR_PAGE_SEO.description,
+}
+
+export const DEFAULT_COMPANY_SEO = {
+  title: COMPANY_PAGE_SEO.title,
+  description: COMPANY_PAGE_SEO.description,
 }
 
 export const DEFAULT_THANK_YOU_SEO = {
@@ -121,6 +168,7 @@ export const SECTION_ANCHOR_BY_TYPE: Record<string, string> = {
 export const CMS_CANONICAL_PAGE_SLUGS = [
   'home',
   'investor',
+  'migrations-company',
   'thank-you',
 ] as const
 
@@ -132,6 +180,8 @@ export function defaultSectionsForSlug(slug: string): PageSection[] {
   if (slug === 'home') return DEFAULT_HOME_SECTIONS.map((s) => ({ ...s }))
   if (slug === 'investor')
     return DEFAULT_INVESTOR_SECTIONS.map((s) => ({ ...s }))
+  if (slug === 'migrations-company')
+    return DEFAULT_COMPANY_SECTIONS.map((s) => ({ ...s }))
   if (slug === 'thank-you')
     return DEFAULT_THANK_YOU_SECTIONS.map((s) => ({ ...s }))
   return []

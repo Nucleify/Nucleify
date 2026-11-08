@@ -103,17 +103,17 @@ Gateway dispatch in `nuc_api` is the orchestration point for HTTP - individual m
 
 ---
 
-## Portable UI vs domain logic
+## Optional portable UI vs domain logic
 
-The compiler adds a second axis:
+Product convert migrates an existing app **without** `*.nuc.tsx`. Portable authoring is an **optional** second axis for shared presentational UI only:
 
 | Layer | Location | Framework coupling |
 |-------|----------|-------------------|
-| Portable UI | `*.nuc.tsx` | None - emits Vue + React + Solid + Svelte |
+| App source (convert) | `web/` / external tree | Existing framework - convert to Next / Solid / Svelte / Astro |
 | Domain logic | `shared_modules/nuc_*/utils/` | Vue composables + `.react.ts` hooks |
-| App shell | `web/src/pages/` | Nuxt (canonical) or Next / Solid / Svelte (converted) |
+| Optional portable UI | `*.nuc.tsx` | None - emits Vue + React + Solid + Svelte (+ Astro) |
 
-Keep stores, routers, i18n containers, and API calls **out of** `*.nuc.tsx`. Portable components receive data via props and emit events - domain slices own the wiring in app or module utils.
+Keep stores, routers, i18n containers, and API calls **out of** optional `*.nuc.tsx`. Portable components receive data via props and emit events - domain slices own the wiring in app or module utils.
 
 ---
 
@@ -142,4 +142,4 @@ They coexist: a `nuc_colors` organism partial is still part of the `nuc_colors` 
 
 - [Modules](/en/docs/core-concepts/modules) - module reference
 - [Monorepo Layout](/en/docs/core-concepts/monorepo) - app vs shared boundaries
-- [Compiler](/en/docs/core-concepts/compiler) - portable UI layer
+- [Compiler](/en/docs/core-concepts/compiler) - product convert + optional portable UI

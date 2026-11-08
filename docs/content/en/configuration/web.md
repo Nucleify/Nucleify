@@ -152,25 +152,28 @@ Prerender locale prefixes are controlled by `PRERENDER_LOCALES` in `.env`.
 
 ---
 
-## Migrate product shells
+## Migrate product hosts
 
-Generated apps live at `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/` (or a custom `--out` name):
+Generated apps live at `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/`, `admin-astro/` (or a custom `--out` name):
 
 ```bash
-make web TARGET=next      # convert + start Next dev
-make web TARGET=solid     # convert + start Solid dev
-make web TARGET=svelte    # convert + start Svelte dev
-make admin TARGET=next    # admin → next|solid|svelte likewise
-make admin TARGET=solid
-make admin TARGET=svelte
+export PATH="$PWD/.config/bin:$PATH"
 
-# External Nuxt-like tree (from monorepo root):
-pnpm compiler -- convert web --target=next --path=/path/to/app --out=my-next --force
-pnpm compiler -- convert web --target=solid --path=/path/to/app --out=my-solid --force
-pnpm compiler -- convert web --target=svelte --path=/path/to/app --out=my-svelte --force
+make web --target=next      # convert + start Next dev
+make web -t=solid           # convert + start Solid dev
+make web --target=svelte    # convert + start Svelte dev
+make web --target=astro     # convert + start Astro + React islands
+make admin --target=next    # admin → next|solid|svelte|astro likewise
+make admin -t=solid
+make admin --target=svelte
+
+# Published CLI / external Nuxt-like tree (from monorepo root):
+nuc emit convert web --target=next --path=/path/to/app --out=my-next --force
+nuc emit convert web --target=solid --path=/path/to/app --out=my-solid --force
+nuc emit convert web --target=svelte --path=/path/to/app --out=my-svelte --force
 ```
 
-Develop in Nuxt (`web/`, `admin/`), convert when you need another framework deployment. Astro `docs/` convert is not available yet. See [Compiler](/en/docs/core-concepts/compiler).
+Develop in Nuxt (`web/`, `admin/`), convert when you need another framework deployment. Astro `docs/` convert is not available yet. See [Compiler](/en/docs/core-concepts/compiler) · [CLI](/en/docs/core-concepts/cli).
 
 ---
 

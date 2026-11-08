@@ -2,11 +2,11 @@
 
 ## Build once. Move to any framework.
 
-**Nucleify** is a modular full-stack monorepo built around **framework migration**. Keep your product in shared modules, develop day-to-day in Nuxt (`web/`), and move web or admin to another shell when hiring, buyers, or clients demand it - without rewriting the business. The IR-first compiler is how that move happens: portable emit, product convert, and import back from emit.
+**Nucleify** is a modular full-stack monorepo built around **framework migration**. Keep your product in shared modules, develop day-to-day in Nuxt (`web/`), and move web or admin - or an external app - to another framework when hiring, buyers, or clients demand it. **Product convert** migrates an existing framework tree as-is: you do **not** rewrite the app into `*.nuc.tsx` first. Portable emit is an optional path for new shared UI; import brings emit edits back.
 
-**Shells:** Vue · React · Nuxt · Next · Astro · Svelte · Solid - not a React/Next-only or Vue/Nuxt-only product.
+**Frameworks:** Vue · React · Nuxt · Next · Astro · Svelte · Solid - not a React/Next-only or Vue/Nuxt-only product.
 
-> Keep the product. Migrate the shell.
+> Keep the product. Migrate the framework.
 
 ---
 
@@ -19,7 +19,8 @@ Nucleify is a **pnpm workspace** that bundles everything for a modern product:
 | `@nucleify/web` | `web/` | Nuxt 4 landing app (canonical) |
 | `@nucleify/admin` | `admin/` | Nuxt 4 admin panel |
 | `@nucleify/docs` | `docs/` | Astro 5 documentation site |
-| `@nucleify/compiler` | `compiler/` | IR portable UI compiler |
+| `@nucleify/compiler` | `compiler/` | IR portable UI + product convert |
+| `@nucleify/cli` | published | Installable `nuc emit` CLI ([cli.nucleify.io](https://cli.nucleify.io)) |
 | `@nucleify/shared-modules` | `shared_modules/` | Six exported feature modules |
 
 Supporting directories:
@@ -27,19 +28,19 @@ Supporting directories:
 - `portable/nui/` - design tokens and Lit `nui-*` registration
 - `overrides/` - per-package file overrides (`overrides/{web,admin,docs,shared_modules}/`)
 - `supabase/` - DB config, migrations, edge functions
-- `.config/` - Biome, Vitest, bash scripts
+- `.config/` - Biome, Vitest, bash scripts, Make shim (`.config/bin/make`)
 
 ---
 
-## Canonical Nuxt and generated shells
+## Canonical Nuxt and generated hosts
 
 | Mode | Stack | Command | Output |
 |------|-------|---------|--------|
 | **Canonical** (default) | Nuxt 4 + Vue 3.5 | `make web` | `web/` |
-| **Converted** (generated) | Next / Solid / Svelte / Astro product apps | `make web TARGET=next` · `solid` · `svelte` · `astro` | gitignored emit tree (see [Compiler](/en/docs/core-concepts/compiler)) |
+| **Converted** (generated) | Next / Solid / Svelte / Astro | `make web --target=next` · `-t=solid` · … | gitignored emit tree (see [Compiler](/en/docs/core-concepts/compiler)) |
 | **Emit demos** | Vue · React · Nuxt · Next · Solid · Svelte · Astro | `make vue` · `react` · `nuxt` · `next` · `solid` · `svelte` · `astro` | `{framework}/demo` |
 
-**Canonical Nuxt** is where you develop daily - pages, composables, and shared modules live in Vue. **Product convert** and portable emit demos fan the same nucleus into other frameworks (Next, Solid, Svelte, Astro hosts, and demos including React/Vue/Nuxt). The docs site itself stays in tracked `docs/`; `web-astro/` is a converted product emit, not that site.
+**Canonical Nuxt** is where this monorepo develops daily - pages, composables, and shared modules live in Vue. **Product convert** takes that tree (or an external app via `--path` / `--git`) and emits another host **without** a `*.nuc.tsx` rewrite. Portable emit demos are optional shared-UI samples. The docs site itself stays in tracked `docs/`; `web-astro/` is a converted product emit, not that site.
 
 All paths share `shared_modules/`, Supabase, and design tokens. You do not maintain seven unrelated codebases.
 
@@ -47,11 +48,32 @@ All paths share `shared_modules/`, Supabase, and design tokens. You do not maint
 
 ## The compiler
 
-The compiler (`@nucleify/compiler`) is the migration core. It is not limited to presentational snippets - it works at two levels:
+The compiler (`@nucleify/compiler`) is the migration core. It works at two levels - **product convert first** for existing apps, portable emit second for optional shared UI. Day-to-day you usually call it through **`nuc emit`** ([CLI](/en/docs/core-concepts/cli)) or Make.
 
-### 1. Portable components (`*.nuc.tsx`)
+### 1. Product convert (existing apps - no `*.nuc.tsx` rewrite)
 
-Author framework-agnostic UI with `#nuc-compiler/runtime`. The compiler emits sibling `.vue`, React `.tsx`, Solid `.tsx`, Svelte `.svelte`, and `.css` files:
+Convert a whole product app - or an external app via `--path` / `--git` - to Next, Solid, Svelte, or Astro. Bring the project as framework source; do **not** rewrite pages and components into `*.nuc.tsx` before converting.
+
+```bash
+export PATH="$PWD/.config/bin:$PATH"
+
+make web --target=next    # → web-next/
+make web -t=solid         # → web-solid/
+make web --target=svelte  # → web-svelte/
+make web --target=astro   # → web-astro/
+
+# Published CLI (same convert):
+nuc emit convert web --target=next
+
+# External tree (from Nucleify monorepo root):
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
+```
+
+Same routes, shared modules, different framework host. Output is generated by the compiler - not part of the canonical monorepo layout. Full details: [Compiler](/en/docs/core-concepts/compiler).
+
+### 2. Portable components (`*.nuc.tsx`) - optional
+
+Author framework-agnostic **presentational** UI with `#nuc-compiler/runtime` when you want one source that emits sibling `.vue`, React `.tsx`, Solid `.tsx`, Svelte `.svelte`, and `.css` files. This is optional shared-UI authoring - **not** a gate before product convert.
 
 ```tsx
 import { component, state, handler } from '#nuc-compiler/runtime'
@@ -72,19 +94,6 @@ export default component({
 ```
 
 See [Compiler](/en/docs/core-concepts/compiler) and `compiler/PORTABLE.md` for the full authoring rules.
-
-### 2. Product convert
-
-Convert an entire Nuxt app to Next, Solid, Svelte, or Astro:
-
-```bash
-make web TARGET=next    # → web-next/
-make web TARGET=solid   # → web-solid/
-make web TARGET=svelte  # → web-svelte/
-make web TARGET=astro   # → web-astro/
-```
-
-Same routes, shared modules, different framework host. Output is generated by the compiler - not part of the canonical monorepo layout.
 
 ---
 
@@ -123,7 +132,7 @@ Module handlers register in `shared_modules/nuc_api/supabase/api/gateway_dispatc
 
 ## Design system
 
-UI primitives are **Lit web components** from `nucleify-ui` (`nui-button`, `nui-icon`, …). Design tokens and registration live in `portable/nui/`. Every shell consumes the same custom elements; the compiler maps `nui-*` tags in `*.nuc.tsx` across emit targets (Vue, React, Solid, Svelte, and sibling shells).
+UI primitives are **Lit web components** from `nucleify-ui` (`nui-button`, `nui-icon`, …). Design tokens and registration live in `portable/nui/`. Every host consumes the same custom elements; the compiler maps `nui-*` tags in `*.nuc.tsx` across emit targets (Vue, React, Solid, Svelte, and related hosts).
 
 ---
 
@@ -144,12 +153,12 @@ nucleify/
 │       └── server/api/     # Nitro API gateway [...slug].ts
 ├── admin/                  # @nucleify/admin - Nuxt 4 admin
 ├── docs/                   # @nucleify/docs - Astro 5 docs
-├── compiler/               # @nucleify/compiler - IR portable UI compiler
+├── compiler/               # @nucleify/compiler - IR + product convert
 ├── shared_modules/         # six exported nuc_* modules
 ├── portable/nui/           # design tokens, Lit nui-* registration
 ├── overrides/              # overrides/{web,admin,docs,shared_modules}/
 ├── supabase/
-├── .config/
+├── .config/                # tooling + bin/make shim for --target= / -t=
 ├── Makefile
 └── package.json
 ```
@@ -160,20 +169,29 @@ Full breakdown: [Monorepo Layout](/en/docs/core-concepts/monorepo)
 
 ## Quick commands
 
+Enable CLI-style Make flags once per shell:
+
+```bash
+export PATH="$PWD/.config/bin:$PATH"
+```
+
 | Command | What it does |
 |---------|--------------|
+| `make help` | Commands, flags (`-t` / `--target`), variables |
 | `make run` | Create `.env`, install deps, husky, sync rules, build compiler |
 | `make web` | Start Nuxt dev server (`web/`) |
-| `make web TARGET=next` | Convert Vue app to Next, start dev (generated output) |
-| `make web TARGET=solid` | Convert Vue app to Solid, start dev (generated output) |
-| `make web TARGET=svelte` | Convert Vue app to Svelte, start dev (generated output) |
-| `make web TARGET=astro` | Convert Vue app to Astro + React islands, start dev |
+| `make web --target=next` | Convert web → Next, start dev (`web-next/`) |
+| `make web -t=solid` | Convert web → Solid, start dev |
+| `make web --target=svelte` | Convert web → Svelte, start dev |
+| `make web --target=astro` | Convert web → Astro + React islands |
+| `make admin --target=next` | Admin convert equivalents |
 | `make vue` / `react` / `nuxt` / `next` / `solid` / `svelte` / `astro` | Portable emit demos (`{framework}/demo`) |
-| `make admin` | Start admin Nuxt dev |
 | `make docs` | Start Astro docs dev |
-| `make compiler` | Run `pnpm compiler:check` + `pnpm compiler:build` |
+| `make compiler` | `pnpm compiler:check` + `pnpm compiler:build` |
+| `nuc emit convert web --target=next` | Same convert via published CLI |
+| `nuc emit build` / `nuc emit check` | Portable emit + fingerprint check |
 
-Equivalent pnpm shortcuts: `pnpm dev`, `pnpm admin`, `pnpm docs`.
+Classic assignment without the shim: `make web TARGET=next`. Root pnpm shortcuts: `pnpm dev`, `pnpm admin`, `pnpm docs`.
 
 ---
 
@@ -181,5 +199,6 @@ Equivalent pnpm shortcuts: `pnpm dev`, `pnpm admin`, `pnpm docs`.
 
 1. [Installation](/en/docs/getting-started/installation) - prerequisites and first setup
 2. [Quick Start](/en/docs/getting-started/quick-start) - run the landing app in minutes
-3. [Monorepo Layout](/en/docs/core-concepts/monorepo) - where everything lives
-4. [Environment](/en/docs/configuration/environment) - configure Supabase and app vars
+3. [CLI](/en/docs/core-concepts/cli) - full `nuc emit` reference
+4. [Monorepo Layout](/en/docs/core-concepts/monorepo) - where everything lives
+5. [Environment](/en/docs/configuration/environment) - configure Supabase and app vars

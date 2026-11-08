@@ -5,11 +5,12 @@ Home marketing narrative shifted from ROI fluff to shippable artefacts.
 ## What changed
 
 - **Order:** `hero → compiler_demo (Emit) → pillars (Ship) → stack → clone → close` (pulse removed).
-- **Pillars:** three concretes — portable emit, `shared_modules` domain, Supabase data plane — instead of `$200k` / `70%` / months.
+- **Pillars:** three concretes — existing-app convert (no `*.nuc.tsx` gate), `shared_modules` domain, Supabase data plane — instead of `$200k` / `70%` / months.
+- **Migration messaging:** product convert first; portable `*.nuc.tsx` is optional shared UI, not a rewrite prerequisite.
 - **Compiler demo:** `InboxBadge.nuc.tsx` with distinct idioms per shell (Vue `ref`/`computed`, Nuxt `useState` auto-import, React hooks, Next `usePathname`, Svelte runes, Solid signals, Astro frontmatter + `<script>`).
 - **Emit board highlighting:** lightweight token spans via `web/src/sections/compiler_demo/highlight.ts` (keywords, strings, tags, attrs) — no Shiki.
 - Sync compiler CMS props from `home.ts`: `pnpm exec vite-node --config vitest.config.ts .config/scripts/sync-compiler-cms-props.mts`
-- **Copy:** hero/stack/clone/close name artefacts (`shared_modules`, Supabase gateway, `make web target=…`).
+- **Copy:** hero/stack/clone/close name convert-without-`.nuc.tsx` + artefacts (`shared_modules`, Supabase gateway, `make web TARGET=…`).
 - **Modules board (hero):** `nuc_api` note/lane call out Supabase gateway explicitly.
 
 ## Sources

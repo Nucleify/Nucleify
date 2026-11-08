@@ -20,7 +20,7 @@
 .nuc-hero.is-intro {
   .nuc-hero-headline {
     max-width: none;
-    white-space: nowrap;
+    white-space: pre-line;
     font-size: clamp(1.55rem, 5.4vw, 2.2rem);
   }
 }
@@ -114,16 +114,21 @@
       line-height: 1;
       margin-top: -10px;
     }
+
+    &-to {
+      color: var(--shell-accent);
+      text-shadow: 0 0 18px hsl(var(--rainbow-hue) 55% 52% / 45%);
+    }
   }
 
   &-line {
     margin: 0.4rem 0 0;
-    max-width: 18ch;
+    max-width: 22ch;
     color: var(--shell-fg);
     font-size: 1.02rem;
     font-weight: 600;
     letter-spacing: -0.03em;
-    line-height: 1.3;
+    line-height: 1.35;
     white-space: pre-line;
   }
 

@@ -152,25 +152,28 @@ Prefiksy locale do prerenderowania kontroluje `PRERENDER_LOCALES` w `.env`.
 
 ---
 
-## Migracja shelli produktu
+## Migracja hostów produktu
 
-Wygenerowane aplikacje: `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/` (lub własna nazwa `--out`):
+Wygenerowane aplikacje: `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/`, `admin-astro/` (lub własna nazwa `--out`):
 
 ```bash
-make web TARGET=next      # konwersja + start dev Next
-make web TARGET=solid     # konwersja + start dev Solid
-make web TARGET=svelte    # konwersja + start dev Svelte
-make admin TARGET=next    # admin → next|solid|svelte analogicznie
-make admin TARGET=solid
-make admin TARGET=svelte
+export PATH="$PWD/.config/bin:$PATH"
 
-# Zewnętrzne drzewo Nuxt-like (z roota monorepo):
-pnpm compiler -- convert web --target=next --path=/path/to/app --out=my-next --force
-pnpm compiler -- convert web --target=solid --path=/path/to/app --out=my-solid --force
-pnpm compiler -- convert web --target=svelte --path=/path/to/app --out=my-svelte --force
+make web --target=next      # konwersja + start dev Next
+make web -t=solid           # konwersja + start dev Solid
+make web --target=svelte    # konwersja + start dev Svelte
+make web --target=astro     # konwersja + start Astro + wyspy React
+make admin --target=next    # admin → next|solid|svelte|astro analogicznie
+make admin -t=solid
+make admin --target=svelte
+
+# Opublikowane CLI / zewnętrzne drzewo Nuxt-like (z roota monorepo):
+nuc emit convert web --target=next --path=/path/to/app --out=my-next --force
+nuc emit convert web --target=solid --path=/path/to/app --out=my-solid --force
+nuc emit convert web --target=svelte --path=/path/to/app --out=my-svelte --force
 ```
 
-Rozwijaj w Nuxt (`web/`, `admin/`), konwertuj gdy potrzebujesz innego frameworka. Konwersja Astro `docs/` nie jest jeszcze dostępna. Zobacz [Kompilator](/pl/docs/core-concepts/compiler).
+Rozwijaj w Nuxt (`web/`, `admin/`), konwertuj gdy potrzebujesz innego frameworka. Konwersja Astro `docs/` nie jest jeszcze dostępna. Zobacz [Kompilator](/pl/docs/core-concepts/compiler) · [CLI](/pl/docs/core-concepts/cli).
 
 ---
 

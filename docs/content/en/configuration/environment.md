@@ -109,7 +109,7 @@ Generated Next shells read Supabase vars with both naming conventions where supp
 - `NEXT_PUBLIC_SUPABASE_URL` or `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY` (server only)
 
-Solid and Svelte product shells (`web-solid/`, `web-svelte/`, …) use the same root `SUPABASE_*` names via Vite `import.meta.env`. Keep one root `.env` - Nuxt and all product-convert codegen paths resolve from the monorepo root.
+Solid and Svelte product hosts (`web-solid/`, `web-svelte/`, …) use the same root `SUPABASE_*` names via Vite `import.meta.env`. Keep one root `.env` - Nuxt and all product-convert codegen paths resolve from the monorepo root.
 
 ---
 

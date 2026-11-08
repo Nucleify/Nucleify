@@ -93,7 +93,7 @@ Gdy zachowanie różni się od tego, co widzisz w źródle:
 |----------|-----------|-------------|
 | Emit komponentu portable | Nie | Edytuj `*.nuc.tsx`, uruchom `pnpm compiler:build` |
 | Import emit z powrotem do źródła autorstwa | Nie | `pnpm compiler -- import --from=vue\|react\|solid\|svelte` |
-| Generowana powłoka (Next / Solid / Svelte) | Nie* | Edytuj `web/`, konwertuj przez `make web TARGET=next\|solid\|svelte` |
+| Generowany host (Next / Solid / Svelte) | Nie* | Edytuj `web/`, konwertuj przez `make web --target=next\|solid\|svelte` |
 | Konfiguracja per środowisko | Nie | Root `.env`, `web/.config/nuxt/runtime.ts` |
 | Schemat bazy | Nie | Migracje modułów w `shared_modules/nuc_*/supabase/` |
 

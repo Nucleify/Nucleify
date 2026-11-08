@@ -1,0 +1,57 @@
+#!/usr/bin/env bash
+# Nucleify make shim: translate --target= / -t= into TARGET= for GNU make.
+# Stock `make` rejects unknown long options before reading the Makefile.
+# Prefer: PATH="$PWD/.config/bin:$PATH" make web --target=next
+set -euo pipefail
+
+here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+resolve_make() {
+  local candidate
+  while IFS= read -r candidate; do
+    [[ "$candidate" == "$here/make" ]] && continue
+    [[ -x "$candidate" ]] || continue
+    printf '%s\n' "$candidate"
+    return 0
+  done < <(type -aP make 2>/dev/null || true)
+  return 1
+}
+
+real_make="$(resolve_make)" || {
+  echo "nucleify make shim: could not find GNU make on PATH" >&2
+  exit 127
+}
+
+target=""
+forward=()
+args=("$@")
+i=0
+while (( i < ${#args[@]} )); do
+  arg="${args[$i]}"
+  case "$arg" in
+    --target=*)
+      target="${arg#--target=}"
+      ;;
+    --target)
+      i=$((i + 1))
+      target="${args[$i]:-}"
+      ;;
+    -t=*)
+      target="${arg#-t=}"
+      ;;
+    -t)
+      i=$((i + 1))
+      target="${args[$i]:-}"
+      ;;
+    *)
+      forward+=("$arg")
+      ;;
+  esac
+  i=$((i + 1))
+done
+
+if [[ -n "$target" ]]; then
+  exec "$real_make" "${forward[@]}" "TARGET=$target"
+fi
+
+exec "$real_make" "${forward[@]}"

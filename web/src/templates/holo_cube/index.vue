@@ -13,26 +13,81 @@
       <div class="nuc-holo-cube-aura" aria-hidden="true" />
       <svg class="nuc-holo-cube-bloom" viewBox="0 0 200 188" aria-hidden="true">
         <defs>
+          <!--
+            userSpaceOnUse: a lone vertical stroke has ~0 bbox width, so
+            objectBoundingBox filter regions collapse and kill the bloom.
+          -->
           <filter
             :id="`${uid}-bloom`"
-            x="-45%"
-            y="-45%"
-            width="190%"
-            height="190%"
+            filterUnits="userSpaceOnUse"
+            x="-40"
+            y="-40"
+            width="280"
+            height="280"
             color-interpolation-filters="sRGB"
           >
             <feGaussianBlur stdDeviation="5" />
           </filter>
+          <clipPath :id="`${uid}-glow-left`">
+            <rect x="0" y="0" width="100" height="188" />
+          </clipPath>
+          <clipPath :id="`${uid}-glow-right`">
+            <rect x="100" y="0" width="100" height="188" />
+          </clipPath>
+          <!-- Underside of front Y arms = side faces -->
+          <clipPath :id="`${uid}-face-left`">
+            <path d="M38 68 L100 102 L100 170 L38 136 Z" />
+          </clipPath>
+          <clipPath :id="`${uid}-face-right`">
+            <path d="M162 68 L100 102 L100 170 L162 136 Z" />
+          </clipPath>
+          <clipPath :id="`${uid}-face-top`">
+            <path d="M100 34 L162 68 L100 102 L38 68 Z" />
+          </clipPath>
         </defs>
         <g
           fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          stroke-linecap="butt"
+          stroke-linejoin="miter"
+          stroke-miterlimit="8"
           :filter="`url(#${uid}-bloom)`"
         >
-          <path class="is-ui" d="M100 34 L162 68 L100 102 L38 68 Z" />
-          <path class="is-sdk" d="M38 68 L100 102 L100 170 L38 136 Z" />
-          <path class="is-data" d="M162 68 L100 102 L100 170 L162 136 Z" />
+          <path class="is-ui" d="M38 68 L100 34 L162 68" />
+          <!-- Left/right verticals -->
+          <path class="is-sdk" d="M38 68 L38 136" />
+          <path class="is-data" d="M162 68 L162 136" />
+          <!-- Bottom rim: TL-side → secondary, TR-side → tertiary -->
+          <path class="is-bottom-left" d="M38 136 L100 170" />
+          <path class="is-bottom-right" d="M162 136 L100 170" />
+        </g>
+        <!-- Y-arm main bloom only on top face — not spilling under into side faces -->
+        <g :clip-path="`url(#${uid}-face-top)`">
+          <g fill="none" stroke-linecap="butt" :filter="`url(#${uid}-bloom)`">
+            <path class="is-mid" d="M38 68 L100 102" />
+            <path class="is-lo" d="M162 68 L100 102" />
+          </g>
+        </g>
+        <!-- Y-arm underside glow: secondary left / tertiary right; stroke stays main -->
+        <g :clip-path="`url(#${uid}-face-left)`">
+          <g fill="none" stroke-linecap="butt" :filter="`url(#${uid}-bloom)`">
+            <path class="is-mid-under" d="M38 68 L100 102" />
+          </g>
+        </g>
+        <g :clip-path="`url(#${uid}-face-right)`">
+          <g fill="none" stroke-linecap="butt" :filter="`url(#${uid}-bloom)`">
+            <path class="is-lo-under" d="M162 68 L100 102" />
+          </g>
+        </g>
+        <!-- Mild overshoot only — enough for corner fill, not past the tip -->
+        <g :clip-path="`url(#${uid}-glow-left)`">
+          <g fill="none" stroke-linecap="butt" :filter="`url(#${uid}-bloom)`">
+            <path class="is-spine-sec" d="M100 98 L100 172" />
+          </g>
+        </g>
+        <g :clip-path="`url(#${uid}-glow-right)`">
+          <g fill="none" stroke-linecap="butt" :filter="`url(#${uid}-bloom)`">
+            <path class="is-spine-tert" d="M100 98 L100 172" />
+          </g>
         </g>
       </svg>
 
@@ -41,23 +96,20 @@
           <radialGradient :id="`${uid}-g`" cx="58%" cy="58%" r="52%">
             <stop
               offset="0%"
-              style="stop-color: hsl(var(--rainbow-hue) 88% 68%); stop-opacity: 0.55"
+              style="stop-color: hsl(var(--rainbow-hue) 55% 22%); stop-opacity: 0.42"
             />
             <stop
               offset="55%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 38deg) 86% 58%); stop-opacity: 0.28"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 38deg) 45% 14%); stop-opacity: 0.28"
             />
             <stop
               offset="100%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 140deg) 88% 54%); stop-opacity: 0"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 140deg) 40% 10%); stop-opacity: 0.12"
             />
           </radialGradient>
           <clipPath :id="`${uid}-c`">
             <path d="M100 34 L162 68 L162 136 L100 170 L38 136 L38 68 Z" />
           </clipPath>
-          <filter :id="`${uid}-b`" x="-28%" y="-28%" width="156%" height="156%">
-            <feGaussianBlur stdDeviation="2.2" />
-          </filter>
           <linearGradient
             :id="`${uid}-top`"
             x1="50%"
@@ -67,11 +119,11 @@
           >
             <stop
               offset="0%"
-              style="stop-color: hsl(var(--rainbow-hue) 95% 72%); stop-opacity: 0.52"
+              style="stop-color: hsl(var(--rainbow-hue) 90% 52%); stop-opacity: 0.28"
             />
             <stop
               offset="100%"
-              style="stop-color: hsl(var(--rainbow-hue) 90% 58%); stop-opacity: 0.22"
+              style="stop-color: hsl(var(--rainbow-hue) 70% 28%); stop-opacity: 0.1"
             />
           </linearGradient>
           <linearGradient
@@ -83,11 +135,11 @@
           >
             <stop
               offset="0%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 38deg) 90% 62%); stop-opacity: 0.36"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 38deg) 85% 52%); stop-opacity: 0.24"
             />
             <stop
               offset="100%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 38deg) 80% 42%); stop-opacity: 0.12"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 38deg) 65% 26%); stop-opacity: 0.1"
             />
           </linearGradient>
           <linearGradient
@@ -99,37 +151,36 @@
           >
             <stop
               offset="0%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 140deg) 90% 58%); stop-opacity: 0.28"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 140deg) 90% 52%); stop-opacity: 0.22"
             />
             <stop
               offset="100%"
-              style="stop-color: hsl(calc(var(--rainbow-hue) + 140deg) 70% 32%); stop-opacity: 0.1"
+              style="stop-color: hsl(calc(var(--rainbow-hue) + 140deg) 65% 26%); stop-opacity: 0.08"
             />
           </linearGradient>
         </defs>
 
-        <g :clip-path="`url(#${uid}-c)`">
-          <path
-            class="nuc-holo-cube-glob"
-            :fill="`url(#${uid}-g)`"
-            :filter="`url(#${uid}-b)`"
-            d="M100 34 L162 68 L162 136 L100 170 L38 136 L38 68 Z"
-          />
-        </g>
+        <!-- No blur+clip — that soft-cuts the fill short of the wire -->
+        <path
+          class="nuc-holo-cube-glob"
+          :fill="`url(#${uid}-g)`"
+          :clip-path="`url(#${uid}-c)`"
+          d="M100 34 L162 68 L162 136 L100 170 L38 136 L38 68 Z"
+        />
 
         <g
           class="nuc-holo-cube-back"
           fill="none"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          stroke-linecap="butt"
+          stroke-linejoin="miter"
+          stroke-miterlimit="8"
         >
-          <path
-            class="nuc-holo-cube-back-edge"
-            d="M38 136 L100 102 L162 136 M100 34 L100 102"
-          />
+          <path class="nuc-holo-cube-back-edge is-main" d="M100 34 L100 102" />
+          <path class="nuc-holo-cube-back-edge is-sec" d="M38 136 L100 102" />
+          <path class="nuc-holo-cube-back-edge is-tert" d="M162 136 L100 102" />
         </g>
 
-        <g stroke-linecap="round" stroke-linejoin="round">
+        <g stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="8">
           <path
             class="nuc-holo-cube-face is-ui"
             :fill="`url(#${uid}-top)`"

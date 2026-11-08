@@ -1,14 +1,17 @@
 # CLI
 
-CLI Nucleify (`@nucleify/cli`) to lokalny punkt wejścia dla uniwersalnych komponentów: piszesz raz w przenośnym TypeScript, emitujesz idiomatyczne UI dla **React · Vue · Svelte · Astro · Solid** bez wiązania produktu z jednym runtime frameworka.
+CLI Nucleify (`nuc`) migruje i emituje UI frameworków. **Najpierw konwersja produktu:** `nuc emit convert` wskazuje na istniejącą aplikację (drzewo Nuxt/Vue albo `--path` / `--git`) i ląduje na Next / Solid / Svelte / Astro - **bez przepisywania na `*.nuc.tsx`**. Opcjonalny emit przenośny (`nuc emit build`) jest tylko dla współdzielonego UI prezentacyjnego, które świadomie tak autoryzujesz.
 
-Żywa powierzchnia produktu: [cli.nucleify.io](https://cli.nucleify.io).
+Pokrycie: **Vue · React · Nuxt · Next · Astro · Svelte · Solid** - bez wiązania produktu z jednym runtime.
+
+- Pakiet produktowy: [`@nucleify/cli`](https://cli.nucleify.io) · [cli.nucleify.io](https://cli.nucleify.io)
+- Binarka: **`nuc`** - wszystkie komendy to `nuc emit …`
+
+Poniższa referencja opisuje **aktualną** powierzchnię komend (`emit`). Logika mapowania IR na idiomatyczne hooki React, composable Vue, runy Svelte itd. działa jako usługa kompilacji - tę samą ścieżkę wykorzystuje [play.nucleify.io](https://play.nucleify.io) dla opcjonalnego sandboxu przenośnego.
 
 ---
 
 ## Instalacja
-
-Wybierz jedną opcję:
 
 ```bash
 npm install -g @nucleify/cli
@@ -22,31 +25,285 @@ pnpm add -g @nucleify/cli
 npx @nucleify/cli@latest
 ```
 
-Instalacja globalna sprawdza się na co dzień. `npx` wystarczy do jednorazowego uruchomienia bez instalacji globalnej.
+Po instalacji:
+
+```bash
+nuc emit --help
+nuc emit <komenda> [opcje] [argumenty]
+nuc emit convert web --target=next
+nuc emit build --target=vue
+nuc emit ./Button.vue --target=next
+```
+
+`npx @nucleify/cli@latest …` wystarczy do jednorazowego uruchomienia bez instalacji globalnej. W monorepo Nucleify używaj tej samej formy `nuc emit …` z roota (po zainstalowanym CLI).
 
 ---
 
-## Co robi
+## Co robi CLI
 
 | Zdolność | Rola |
 |----------|------|
-| **Emit** | Zamienia przenośne źródło komponentu na natywne pliki frameworka, które możesz commitować |
-| **Skan projektu** | Przechodzi drzewo, zbiera przenośne moduły, przygotowuje żądania kompilacji |
-| **Kompilacja w chmurze** | Rozmawia z usługą kompilacji Nucleify używaną przez CLI i przeglądarkowy playground |
-| **Zapis z powrotem** | Wrzuca wyemitowane pliki do folderów aplikacji, żeby shell został czytelny |
+| **Emit (`build`)** | `*.nuc.tsx` → IR → natywne pliki frameworka, które możesz commitować |
+| **Skan projektu** | Przechodzi drzewo, zbiera przenośne moduły, przygotowuje emisję |
+| **Konwersja produktu (`convert`)** | Istniejąca aplikacja → Next / Solid / Svelte / Astro **bez** przepisywania na `*.nuc.tsx` |
+| **Import** | Wciąga edycje z brudnego emitu z powrotem do `*.nuc.tsx` |
+| **Check** | Weryfikuje fingerprinty emisji (brudny emit = exit ≠ 0) |
+| **Scaffold** | Odtwarza tymczasowe demo `{framework}/demo` z template’ów |
 
-CLI to **lokalna** połowa pipeline’u. Logika mapowania IR na idiomatyczne hooki React, composable Vue, runy Svelte itd. działa jako usługa - tę samą ścieżkę wykorzystuje [play.nucleify.io](https://play.nucleify.io) w przeglądarce.
+CLI to **lokalna** połowa pipeline’u. Szczegóły IR, reguł przenośnych i cyklu autorstwa: [Kompilator](/pl/docs/core-concepts/compiler).
+
+---
+
+## Struktura komend
+
+```txt
+emit
+├── version
+├── scaffold <app> [--cwd]
+├── convert <product> --target=<…> [--force] [--path] [--git] [--out] [--cwd]
+├── build [--target] [--app] [--force] [--dump-ir] [--cwd]
+├── check [--cwd]
+├── watch
+└── import [path] [--from] [--force]
+```
+
+Pomoc wbudowana:
+
+```bash
+nuc emit --help
+nuc emit <komenda> --help
+```
+
+---
+
+## `version`
+
+Wypisuje tożsamość pakietu (`nazwa` + `phase`).
+
+```bash
+nuc emit version
+```
+
+Brak argumentów i opcji.
+
+---
+
+## `scaffold`
+
+Odtwarza gitignored demo w `{framework}/demo` z `compiler/templates/{framework}/demo`.
+
+```bash
+nuc emit scaffold <app> [--cwd=<root>]
+```
+
+| Argument / opcja | Wymagane | Wartości / domyślne | Opis |
+|------------------|----------|---------------------|------|
+| `<app>` | tak | `vue` \| `react` \| `nuxt` \| `next` \| `solid` \| `svelte` \| `astro` | Framework demo |
+| `--cwd` | nie | `process.cwd()` | Root workspace |
+
+Przykłady:
+
+```bash
+nuc emit scaffold solid
+nuc emit scaffold svelte
+nuc emit scaffold next
+nuc emit scaffold vue --cwd=/path/to/nucleify
+```
+
+---
+
+## `convert`
+
+Generuje aplikację produktu w `{product}-{target}/` (albo w katalogu z `--out`) z profilu `web` / `admin` - **bez** przepisywania aplikacji na `*.nuc.tsx`.
+
+```bash
+nuc emit convert <product> --target=<framework> \
+  [--force] [--path=<dir>] [--git=<url>] [--out=<name>] [--cwd=<root>]
+```
+
+| Argument / opcja | Wymagane | Wartości / domyślne | Opis |
+|------------------|----------|---------------------|------|
+| `<product>` | tak | `web` \| `admin` \| `docs` | Profil produktu (`docs` - convert jeszcze niedostępny) |
+| `--target` | tak | `next` \| `solid` \| `svelte` \| `astro` | Docelowy framework |
+| `--force` | nie | `false` | Wytrzyj i utwórz output od nowa |
+| `--path` | nie | — | Zewnętrzny folder aplikacji Nuxt (musi zawierać `src/`) |
+| `--git` | nie | — | URL gita do płytkiego clone jako źródło convert |
+| `--out` | nie | `{product}-{target}` | Nazwa katalogu wyjściowego pod `--cwd` |
+| `--cwd` | nie | `process.cwd()` | Root workspace |
+
+Ograniczenia:
+
+- Podaj **tylko jedno** z `--path` albo `--git` (nie oba).
+- Uruchamiaj z **roota monorepo Nucleify**, żeby aliasy `modules` / `portable` działały.
+- Wygenerowany output traktuj jako emit - edytuj źródło produktu, potem convert ponownie.
+
+Przykłady:
+
+```bash
+nuc emit convert web --target=next
+nuc emit convert admin --target=next
+nuc emit convert web --target=solid
+nuc emit convert web --target=svelte
+nuc emit convert web --target=astro
+nuc emit convert web --target=vue
+nuc emit convert admin --target=svelte
+
+nuc emit convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
+nuc emit convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
+```
+
+Równoważne skróty Make w repo: `make web --target=next` / `make admin -t=next` (wymaga `PATH="$PWD/.config/bin:$PATH"`) albo klasycznie `make web --target=next` - zob. [Kompilator](/pl/docs/core-concepts/compiler).
+
+---
+
+## `build`
+
+Parsuje wszystkie `*.nuc.tsx` w workspace → IR → emituje do demo / aplikacji docelowych.
+
+```bash
+nuc emit build \
+  [--target=all|vue|react|solid|svelte|astro] \
+  [--app=vue|react|nuxt|next|solid|svelte|astro] \
+  [--force] [--dump-ir] [--cwd=<root>]
+```
+
+| Opcja | Wymagane | Wartości / domyślne | Opis |
+|-------|----------|---------------------|------|
+| `--target` | nie | `all` | Rodzina emisji: `vue` \| `react` \| `solid` \| `svelte` \| `astro` \| `all` |
+| `--app` | nie | wszystkie dopasowane | Tylko to demo: `vue` \| `react` \| `nuxt` \| `next` \| `solid` \| `svelte` \| `astro` |
+| `--force` | nie | `false` | Nadpisz brudny emit (bez `--force` brudne pliki są pomijane, exit ≠ 0) |
+| `--dump-ir` | nie | `false` | Zapisz `*.ir.json` obok źródła przenośnego |
+| `--cwd` | nie | `process.cwd()` | Root workspace |
+
+Zachowanie:
+
+- Brak `*.nuc.tsx` → komunikat `build: no *.nuc.tsx found` (sukces).
+- Brudny emit bez `--force` → `skipped dirty … (use import or --force)` i niezerowy kod wyjścia.
+- Po sukcesie: `build: ok (N file(s), target=…)`.
+
+Przykłady:
+
+```bash
+nuc emit build
+nuc emit build --force
+nuc emit build --target=vue
+nuc emit build --target=react
+nuc emit build --app=solid
+nuc emit build --app=svelte --force
+nuc emit build --dump-ir --target=astro
+```
+
+---
+
+## `check`
+
+Waliduje fingerprinty IR / emisji. Brudny emit kończy się błędem.
+
+```bash
+nuc emit check [--cwd=<root>]
+```
+
+| Opcja | Wymagane | Domyślne | Opis |
+|-------|----------|----------|------|
+| `--cwd` | nie | `process.cwd()` | Root workspace |
+
+Wyjście:
+
+| Sygnał | Znaczenie |
+|--------|-----------|
+| `dirty <path>` (stderr) + exit ≠ 0 | Emisja rozjechała się ze źródłem |
+| `orphan emit <path>` (warn) | Emisja bez sparowanego źródła - ostrzeżenie |
+| `check: ok` | Wszystko zsynchronizowane |
+
+```bash
+nuc emit check
+nuc emit check
+```
+
+---
+
+## `watch`
+
+Rezerwacja pod watch `*.nuc.tsx` i przebudowę.
+
+```bash
+nuc emit watch
+```
+
+**Status:** jeszcze niezaimplementowane - komenda kończy się błędem (`watch: not implemented yet`).
+
+---
+
+## `import`
+
+Wciąga edycje z brudnego emitu z powrotem do odpowiadającego `*.nuc.tsx`.
+
+```bash
+nuc emit import [--from=<framework>] [--force] <path>
+```
+
+| Argument / opcja | Wymagane | Wartości | Opis |
+|------------------|----------|----------|------|
+| `<path>` | tak | ścieżka do `.vue` / `.tsx` / `.svelte` / `.astro` / sąsiedniego `.css` | Plik emisji do zaimportowania |
+| `--from` | warunkowo | `vue` \| `react` \| `solid` \| `svelte` \| `astro` | Źródłowy framework emisji - **wymagane**, gdy więcej niż jeden sibling jest niezsynchronizowany |
+| `--force` | nie | `false` | Wymuś import mimo konfliktów / stanu dirty |
+
+Przykłady:
+
+```bash
+nuc emit import --from=vue path/Foo.vue
+nuc emit import --from=react path/Foo.tsx
+nuc emit import --from=solid path/Foo.tsx
+nuc emit import --from=svelte path/Foo.svelte
+nuc emit import --from=astro path/Foo.astro
+```
+
+Po imporcie źródłem prawdy znów jest `*.nuc.tsx`. Żeby **odrzucić** ręczne edycje emisji zamiast je importować: `nuc emit build --force`.
 
 ---
 
 ## Typowy przebieg
 
-1. Zainstaluj CLI (albo uruchom przez `npx`)
-2. Napisz przenośne UI (albo otwórz przykład w [Playground](/pl/docs/core-concepts/playground))
-3. Emituj do wybranej powłoki / powłok
-4. Iteruj w frameworku, który dziś shipujesz - później zmień shell bez przepisywania logiki domenowej
+### Emisja przenośna
 
-Emit i konwersja produktu wewnątrz tego monorepo: zobacz [Kompilator](/pl/docs/core-concepts/compiler) (`pnpm compiler -- …`). Opublikowany pakiet `@nucleify/cli` to narzędzie instalowalne dla projektów, które konsumują Nucleify jako zależność.
+1. Napisz lub edytuj `Foo.nuc.tsx` (reguły: [Kompilator](/pl/docs/core-concepts/compiler), `compiler/PORTABLE.md`)
+2. `nuc emit build`
+3. Commituj źródło + wygenerowane sąsiednie pliki
+4. CI / lokalnie: `nuc emit check`
+
+### Najpierw emisja, potem import
+
+1. Dopracuj wygenerowany `Foo.vue` / `Foo.tsx` / `Foo.svelte` / …
+2. `nuc emit import --from=vue|react|solid|svelte|astro path/Foo.…`
+3. Źródło wraca do `Foo.nuc.tsx`
+
+### Konwersja produktu (migracja frameworka)
+
+1. Z roota monorepo: `nuc emit convert web --target=next` (lub `--path` / `--git` dla zewnętrznej aplikacji)
+2. Wejdź w wygenerowany katalog (`web-next/` itd.) i uruchom dev server hosta
+3. Iteruj w frameworku, który dziś shipujesz - później zmień framework bez przepisywania logiki domenowej
+
+Playground w przeglądarce (bez lokalnej instalacji): [Playground](/pl/docs/core-concepts/playground) · [play.nucleify.io](https://play.nucleify.io).
+
+---
+
+## Kody wyjścia i diagnostyka
+
+| Sytuacja | Typowy skutek |
+|----------|----------------|
+| Nieznany `<app>` / `<product>` / `--target` | komunikat na stderr, exit ≠ 0 |
+| `convert` z `--path` **i** `--git` | `convert: pass only one of --path or --git` |
+| `import` bez ścieżki | `import: path required …` |
+| Brudny emit przy `build` bez `--force` | `skipped dirty …`, exit ≠ 0 |
+| Brudny emit przy `check` | `check: N dirty emit file(s)`, exit ≠ 0 |
+| `watch` | zawsze exit ≠ 0 (niezaimplementowane) |
+
+Pomijanie emisji przy bootstrapie / hookach (gdy potrzeba lokalnie):
+
+```bash
+SKIP_COMPILER=1 make run
+HUSKY=0 git commit -m "…"
+```
 
 ---
 
@@ -54,4 +311,4 @@ Emit i konwersja produktu wewnątrz tego monorepo: zobacz [Kompilator](/pl/docs/
 
 - Strona produktu: [cli.nucleify.io](https://cli.nucleify.io)
 - Emit w przeglądarce: [play.nucleify.io](https://play.nucleify.io) · [Playground](/pl/docs/core-concepts/playground)
-- IR / autorstwo przenośne w monorepo: [Kompilator](/pl/docs/core-concepts/compiler)
+- IR, autorstwo przenośne, reguły `*.nuc.tsx`, układ pakietu: [Kompilator](/pl/docs/core-concepts/compiler)

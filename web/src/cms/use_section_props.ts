@@ -72,7 +72,27 @@ export function cmsHomePillars(cms: Record<string, unknown>): NucHomePillar[] {
 }
 
 export function cmsHomeStack(cms: Record<string, unknown>): NucHomeStackItem[] {
-  return coalesceArray(cms.items, NUC_HOME_STACK) as NucHomeStackItem[]
+  const items = coalesceArray(cms.items, NUC_HOME_STACK) as NucHomeStackItem[]
+  return items.map((item) => {
+    const command = String(item.command ?? '')
+    const target =
+      command.match(/--target=([a-z0-9-]+)/i)?.[1]?.toLowerCase() ??
+      command.match(/-t=([a-z0-9-]+)/i)?.[1]?.toLowerCase() ??
+      command.match(/TARGET=([a-z0-9-]+)/i)?.[1]?.toLowerCase()
+    const adminCommand =
+      typeof item.adminCommand === 'string' && item.adminCommand.length > 0
+        ? item.adminCommand
+        : target
+          ? `make admin --target=${target}`
+          : command.replace(/^make web\b/, 'make admin')
+    const cliCommand =
+      typeof item.cliCommand === 'string' && item.cliCommand.length > 0
+        ? item.cliCommand
+        : target
+          ? `nuc emit ./Button.vue --target=${target}`
+          : command
+    return { ...item, command, adminCommand, cliCommand }
+  })
 }
 
 export function cmsHomeInstallSteps(cms: Record<string, unknown>): string[] {

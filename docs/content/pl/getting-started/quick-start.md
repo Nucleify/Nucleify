@@ -7,8 +7,9 @@ Uruchom Nucleify, poznaj repozytorium i wprowadź pierwszą zmianę w mniej niż
 ## 1. Bootstrap
 
 ```bash
-git clone https://github.com/Nucleify/Nucleify.git
+git clone --recurse-submodules https://github.com/Nucleify/Nucleify.git
 cd Nucleify
+export PATH="$PWD/.config/bin:$PATH"   # make web --target= / -t=
 make run
 ```
 
@@ -24,7 +25,7 @@ make web
 
 Otwórz [http://localhost:7777/en/home](http://localhost:7777/en/home).
 
-Strony marketingowe współdzielą `web/src/pages/[lang]/[slug].vue`, które ładuje opublikowany layout CMS do shella (`usePublicShellPage`). Sekcje SFC są w `web/src/sections/`.
+Strony marketingowe współdzielą `web/src/pages/[lang]/[slug].vue`, które ładuje opublikowany layout CMS (`usePublicShellPage`). Sekcje SFC są w `web/src/sections/`.
 
 ```vue
 <!-- web/src/pages/[lang]/[slug].vue -->
@@ -81,24 +82,29 @@ Cztery moduły rejestrują się automatycznie przy starcie aplikacji w `web/src/
 
 ---
 
-## 5. Wypróbuj kompilator
+## 5. Wypróbuj convert i kompilator
 
-Zbuduj emisję przenośną z dowolnych `*.nuc.tsx` pod korzeniami odkrywania (`web/`, `admin/`, `shared_modules/`, `portable/`):
-
-```bash
-pnpm compiler:build
-pnpm compiler:check   # exit 1, jeśli emit jest brudny względem autorstwa
-```
-
-Skonwertuj cały produkt web na Next, Solid lub Svelte:
+Skonwertuj cały produkt web na Next, Solid, Svelte lub Astro (**bez** przepisywania na `*.nuc.tsx`):
 
 ```bash
-make web TARGET=next    # → web-next/
-make web TARGET=solid   # → web-solid/
-make web TARGET=svelte  # → web-svelte/
+make web --target=next    # → web-next/
+make web -t=solid         # → web-solid/
+make web --target=svelte  # → web-svelte/
+make web --target=astro   # → web-astro/
+
+# To samo przez opublikowane CLI:
+nuc emit convert web --target=next
 ```
 
-To uruchamia `pnpm compiler -- convert web --target=…`, buduje, instaluje i startuje wygenerowany shell. Demo emit portable Svelte: `make svelte`. Zewnętrzne aplikacje Nuxt-like: `--path` / `--git` + `--out` z roota monorepo (zob. [Kompilator](/pl/docs/core-concepts/compiler)).
+Zbuduj opcjonalną emisję przenośną z dowolnych `*.nuc.tsx` pod korzeniami odkrywania (`web/`, `admin/`, `shared_modules/`, `portable/`):
+
+```bash
+nuc emit build
+nuc emit check            # exit ≠ 0, jeśli emit jest brudny względem autorstwa
+# odpowiedniki monorepo: pnpm compiler:build / pnpm compiler:check
+```
+
+Demo emit portable Svelte: `make svelte`. Zewnętrzne aplikacje Nuxt-like: `--path` / `--git` + `--out` z roota monorepo (zob. [Kompilator](/pl/docs/core-concepts/compiler) · [CLI](/pl/docs/core-concepts/cli)).
 
 ---
 
@@ -152,7 +158,7 @@ Zobacz [Nadpisywanie](/pl/docs/core-concepts/overriding).
 
 ### Autorsuj komponent przenośny
 
-Utwórz `Foo.nuc.tsx` obok miejsca użycia. Uruchom `pnpm compiler:build`. Commituj `.nuc.tsx` i wygenerowane sąsiednie pliki (`.vue`, React/Solid `.tsx`, Svelte `.svelte`, `.css`). Nie edytuj ręcznie emitu jako źródła prawdy - użyj `pnpm compiler -- import --from=vue|react|solid|svelte`, jeśli edytowałeś emit.
+Utwórz `Foo.nuc.tsx` obok miejsca użycia. Uruchom `nuc emit build`. Commituj `.nuc.tsx` i wygenerowane sąsiednie pliki (`.vue`, React/Solid `.tsx`, Svelte `.svelte`, `.css`). Nie edytuj ręcznie emitu jako źródła prawdy - użyj `nuc emit import --from=vue|react|solid|svelte`, jeśli edytowałeś emit.
 
 ---
 

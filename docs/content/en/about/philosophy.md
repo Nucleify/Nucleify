@@ -2,7 +2,7 @@
 
 > Build once. Move to any framework - without rewriting the product.
 
-**Migration is the product.** Shared modules are the nucleus. An IR-first compiler is how shells change. Seven modern web runtimes.
+**Migration is the product.** Shared modules are the nucleus. An IR-first compiler is how you change frameworks. Seven modern web runtimes.
 
 ---
 
@@ -10,20 +10,20 @@
 
 Teams lock into a stack early - Vue or React, Nuxt or Next - then pay a rewrite tax when the market, hiring, or a client demands another framework. Auth, i18n, theming, and API shape get copied into every project. Component-only toolchains leave the app, the routes, and the domain behind.
 
-Nucleify treats **migration between technologies** as the durable layer of the monorepo - not a side experiment. Coverage is seven shells: **Vue · React · Nuxt · Next · Astro · Svelte · Solid**.
+Nucleify treats **migration between technologies** as the durable layer of the monorepo - not a side experiment. Coverage is seven frameworks: **Vue · React · Nuxt · Next · Astro · Svelte · Solid**.
 
 ---
 
 ## The vision
 
-One nucleus. Three product surfaces. Seven shells. One migration pipeline.
+One nucleus. Three product surfaces. Seven frameworks. One migration pipeline.
 
 1. **Shared modules** - API, SQL, UI, and domain logic in `shared_modules/`
 2. **Three surfaces** - `web/`, `admin/`, and `docs/` from the same nucleus
-3. **Migrate as a command** - portable emit for UI, product convert for whole apps, import back from dirty emit - without rewriting the business
+3. **Migrate as a command** - product convert for whole existing apps (no `*.nuc.tsx` rewrite), optional portable emit for shared UI, import back from dirty emit
 4. **One Supabase backend** - gateway-mediated, module-owned SQL
 
-Day-to-day editing stays on Nuxt (`web/`). Switching shells is a compiler pass, not a rewrite project.
+Day-to-day editing stays on Nuxt (`web/`). Switching frameworks is a compiler pass on your existing source - not a rewrite into Nucleify authoring format.
 
 ---
 
@@ -34,7 +34,7 @@ Like a cell nucleus, Nucleify coordinates the product. Each exported `nuc_*` mod
 - **Self-contained modules** - vertical slices, not scattered layers
 - **Clear boundaries** - apps compose; modules do not import apps
 - **Organic growth** - add or remove modules without rewiring the monorepo
-- **Collective strength** - one domain model across web, admin, docs, and every shell
+- **Collective strength** - one domain model across web, admin, docs, and every framework host
 
 ---
 
@@ -42,16 +42,25 @@ Like a cell nucleus, Nucleify coordinates the product. Each exported `nuc_*` mod
 
 ### 1. Any stack → any other
 
-This is the core loop. Portable `*.nuc.tsx` components emit through a custom IR to Vue, React, Solid, Svelte, and Astro. Product shells (`web` / `admin`) convert with a single command - including an external Nuxt-like folder or git URL via `--path` / `--git` (see [Compiler](/en/docs/core-concepts/compiler)). Emit edits import back to source. The business does not fork per host.
+This is the core loop. **Product convert** moves an existing app - including an external folder or git URL via `--path` / `--git` - to another framework **without** rewriting into `*.nuc.tsx` (see [Compiler](/en/docs/core-concepts/compiler)). Optional portable `*.nuc.tsx` components emit through a custom IR when you want shared presentational UI. Emit edits import back to source. The business does not fork per host.
 
 ```bash
-make web TARGET=next
-make web TARGET=solid
-make web TARGET=svelte
-make web TARGET=astro
-make admin TARGET=next
-make admin TARGET=solid
-make admin TARGET=svelte
+export PATH="$PWD/.config/bin:$PATH"   # enables --target= / -t=
+make web --target=next
+make web -t=solid
+make web --target=svelte
+make web --target=astro
+make admin --target=next
+make admin -t=solid
+make admin --target=svelte
+# classic (no shim): make web TARGET=next
+```
+
+Published CLI form (same convert):
+
+```bash
+nuc emit convert web --target=next
+nuc emit convert admin --target=next
 ```
 
 Framework choice becomes a **build target**, not an architectural fork.
@@ -66,7 +75,7 @@ Privileged server access flows through `web/src/server/api/[...slug].ts`. Client
 
 ### 4. Convention over configuration
 
-Split Nuxt config, consistent module layout, Makefile shortcuts, Husky-enforced checks - predictable paths reduce decision fatigue.
+Split Nuxt config, consistent module layout, Makefile shortcuts (`make help`), Husky-enforced checks - predictable paths reduce decision fatigue.
 
 ### 5. Overrides for forks, modules for sharing
 
@@ -74,24 +83,24 @@ White-label diffs use `overrides/`. Cross-product behavior belongs in `shared_mo
 
 ### 6. Compiler honesty
 
-Portable authoring has explicit allowed/forbidden lists (`compiler/PORTABLE.md`). The IR bridges frameworks - we do not pretend Vue and React are identical. Round-trip import and product convert are first-class; a one-way component dump is not the goal.
+Product convert is the migration path for existing apps. Portable authoring is optional and has explicit allowed/forbidden lists (`compiler/PORTABLE.md`). The IR bridges frameworks - we do not pretend Vue and React are identical. Round-trip import and product convert are first-class; a one-way component dump is not the goal.
 
 ---
 
-## Canonical vs generated shells
+## Canonical Nuxt vs generated hosts
 
 | Day-to-day (Nuxt) | Migrate / emit (convert) |
-|---------------------|-------------------------|
-| Edit Nuxt + Vue in `web/` | Next, Solid, Svelte, Astro product shells + portable demos |
-| Source of truth | Generated mirrors when a client or team needs another shell |
+|---------------------|--------------------------|
+| Edit Nuxt + Vue in `web/` | Next, Solid, Svelte, Astro product hosts + portable demos |
+| Source of truth | Generated mirrors when a client or team needs another framework |
 
-Converted shells are not a second hand-maintained codebase. Fix the nucleus, re-run convert. Product messaging always lists **all seven shells**, even when daily editing stays on Nuxt.
+Converted hosts are not a second hand-maintained codebase. Fix the nucleus, re-run convert. Product messaging always lists **all seven frameworks**, even when daily editing stays on Nuxt.
 
 ---
 
 ## Design system stance
 
-UI primitives are **framework-agnostic Lit components** (`nui-*` from `nucleify-ui`). Tokens live in `portable/nui/`. Every shell wraps the same custom elements - no duplicate button implementations per framework.
+UI primitives are **framework-agnostic Lit components** (`nui-*` from `nucleify-ui`). Tokens live in `portable/nui/`. Every host wraps the same custom elements - no duplicate button implementations per framework.
 
 ---
 
@@ -107,7 +116,7 @@ The monorepo enforces quality on pre-commit (pre-push is a no-op):
 
 ## What Nucleify is not
 
-- Not a meta-framework that hides hosts - the seven shells stay visible
+- Not a meta-framework that hides hosts - the seven frameworks stay visible
 - Not a component-only emit layer - product convert moves whole apps with shared modules
 - Not a low-code builder - you write real TypeScript
 - Not a hosted SaaS - you own Supabase and deployment
@@ -118,6 +127,7 @@ The monorepo enforces quality on pre-commit (pre-push is a no-op):
 ## Related docs
 
 - [Introduction](/en/docs/getting-started/introduction) - technical overview
+- [CLI](/en/docs/core-concepts/cli) - `nuc emit` reference
 - [Modules](/en/docs/core-concepts/modules) - module architecture
 - [Compiler](/en/docs/core-concepts/compiler) - emit and convert
 - [Coding Standards](/en/docs/about/coding-standards) - day-to-day conventions
