@@ -1,4 +1,4 @@
-/** Prefer CMS override when present; keep defaults for missing / empty values. */
+/** Prefer CMS string when the key is present (including ""); missing keys keep defaults. */
 
 export function isPlainObject(
   value: unknown
@@ -66,7 +66,8 @@ export function mergeCopyBag<T extends Record<string, string>>(
   if (!props) return out
   for (const key of keys) {
     const v = props[key]
-    if (typeof v === 'string' && v.trim()) {
+    // Present string wins — including "" so CMS can intentionally blank a field.
+    if (typeof v === 'string') {
       ;(out as Record<string, string>)[key] = v
     }
   }

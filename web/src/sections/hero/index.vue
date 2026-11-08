@@ -33,12 +33,12 @@
         <div class="nuc-hero-cta">
           <a
             class="nuc-btn is-primary main-cta"
-            :href="playHref"
+            :href="cliHref"
             target="_blank"
             rel="noopener noreferrer"
           >
             <nui-icon
-              icon="mdi:play-circle-outline"
+              icon="mdi:console"
               class="nuc-btn-icon"
               width="16px"
               height="16px"
@@ -48,12 +48,12 @@
           </a>
           <a
             class="nuc-btn is-outlined"
-            :href="cliHref"
+            :href="playHref"
             target="_blank"
             rel="noopener noreferrer"
           >
             <nui-icon
-              icon="mdi:console"
+              icon="mdi:play-circle-outline"
               class="nuc-btn-icon"
               width="16px"
               height="16px"

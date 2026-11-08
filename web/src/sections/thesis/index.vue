@@ -75,18 +75,27 @@ const rootEl = ref<HTMLElement | null>(null)
 useShellSectionReveal(rootEl, thesisReveal)
 
 import {
+  coalesceArray,
   NUC_INVESTOR_SHELLS,
   NUC_INVESTOR_THESIS,
   nucInvestorShellArcs,
   scrollSection,
+  useCmsAttrs,
   useInvestorCmsCopy,
 } from '@web'
 
 defineOptions({ inheritAttrs: false })
 
+const cms = useCmsAttrs()
 const copy = useInvestorCmsCopy()
-const thesis = NUC_INVESTOR_THESIS
-const shells = NUC_INVESTOR_SHELLS
+const thesis = coalesceArray(
+  cms.items,
+  NUC_INVESTOR_THESIS
+) as typeof NUC_INVESTOR_THESIS
+const shells = coalesceArray(
+  cms.shells,
+  NUC_INVESTOR_SHELLS
+) as typeof NUC_INVESTOR_SHELLS
 const shellCount = shells.length
 const arcs = nucInvestorShellArcs()
 const shareLabel = `Seven shells from one nucleus: ${shells

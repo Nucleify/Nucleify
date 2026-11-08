@@ -1,14 +1,16 @@
 # @nucleify/admin
 
-Nuxt admin app - **canonical product shell** (`TARGET=nuxt`).
+Nuxt admin app - **canonical product host** (`--target=nuxt` / default).
 
 ```bash
+export PATH="$PWD/.config/bin:$PATH"
 make admin
-make admin TARGET=nuxt
-make admin TARGET=next      # → admin-next/
-make admin TARGET=solid     # → admin-solid/
-make admin TARGET=svelte    # → admin-svelte/
+make admin --target=next      # → admin-next/
+make admin -t=solid           # → admin-solid/
+make admin --target=svelte    # → admin-svelte/
+make admin --target=astro     # → admin-astro/
+# classic (no shim): make admin TARGET=next
 pnpm --filter @nucleify/admin dev
 ```
 
-Alternate shells: `make admin TARGET=next|solid|svelte` → gitignored `admin-next/` / `admin-solid/` / `admin-svelte/`.
+Alternate hosts: `make admin --target=next|solid|svelte|astro` → gitignored `admin-*`. Product convert does **not** require `*.nuc.tsx`.

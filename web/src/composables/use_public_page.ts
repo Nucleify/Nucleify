@@ -3,6 +3,7 @@ import { type ComputedRef, computed, type Ref } from 'vue'
 
 import {
   CMS_CANONICAL_PAGE_SLUGS,
+  DEFAULT_COMPANY_SEO,
   DEFAULT_HOME_SEO,
   DEFAULT_INVESTOR_SEO,
   DEFAULT_THANK_YOU_SEO,
@@ -63,6 +64,7 @@ function normalizeSections(raw: unknown): PageSection[] {
 function fallbackSeo(slug: string): PublicPagePayload['seo'] {
   if (slug === 'home') return { ...DEFAULT_HOME_SEO }
   if (slug === 'investor') return { ...DEFAULT_INVESTOR_SEO }
+  if (slug === 'migrations-company') return { ...DEFAULT_COMPANY_SEO }
   if (slug === 'thank-you') return { ...DEFAULT_THANK_YOU_SEO }
   return null
 }

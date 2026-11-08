@@ -24,88 +24,76 @@ export interface NucHomePillar {
   proof: string
 }
 
-export interface NucHomeWebShareSlice {
+export interface NucHomeShell {
   id: string
   label: string
-  pct: number
-}
-
-export interface NucHomeWebShareGroup {
-  id: string
-  label: string
+  detail: string
+  icon: string
   color: string
-  sliceIds: readonly string[]
 }
 
-export interface NucHomeWebShareArc {
+export interface NucHomeShellArc {
   id: string
   label: string
   d: string
   color: string
 }
 
-/**
- * Relative origin counts among Nucleify emit targets - not % of all websites.
- * HTTP Archive (Jul 2026) for React / Next / Vue / Nuxt / Svelte / Astro;
- * Solid from Wappalyzer live-site count, scaled to the same unit (thousands).
- * Family pairs share one wedge and one color: React/Next blue, Vue/Nuxt green.
- */
-export const NUC_HOME_WEB_SHARE = {
-  cx: 50,
-  cy: 50,
-  radius: 46,
-  innerRadius: 30,
-  gapDeg: 1.6,
-  slices: [
-    { id: 'react', label: 'React', pct: 1306 },
-    { id: 'next', label: 'Next.js', pct: 358 },
-    { id: 'vue', label: 'Vue', pct: 610 },
-    { id: 'nuxt', label: 'Nuxt', pct: 93 },
-    { id: 'astro', label: 'Astro', pct: 41 },
-    { id: 'svelte', label: 'Svelte', pct: 90 },
-    { id: 'solid', label: 'Solid', pct: 19 },
-  ],
-  groups: [
-    {
-      id: 'react-next',
-      label: 'React & Next.js',
-      color: '#61dafb',
-      sliceIds: ['react', 'next'],
-    },
-    {
-      id: 'vue-nuxt',
-      label: 'Vue & Nuxt',
-      color: '#42b883',
-      sliceIds: ['vue', 'nuxt'],
-    },
-    { id: 'astro', label: 'Astro', color: '#ff5d01', sliceIds: ['astro'] },
-    { id: 'svelte', label: 'Svelte', color: '#ff3e00', sliceIds: ['svelte'] },
-    { id: 'solid', label: 'Solid', color: '#72b7eb', sliceIds: ['solid'] },
-  ],
-} as const satisfies {
-  cx: number
-  cy: number
-  radius: number
-  innerRadius: number
-  gapDeg: number
-  slices: readonly NucHomeWebShareSlice[]
-  groups: readonly NucHomeWebShareGroup[]
-}
+/** Equal framework slices for the pillars donut - same layout as investor thesis. */
+export const NUC_HOME_SHELLS: readonly NucHomeShell[] = [
+  {
+    id: 'vue',
+    label: 'Vue',
+    detail: 'UI',
+    icon: 'simple-icons:vuedotjs',
+    color: '#42b883',
+  },
+  {
+    id: 'nuxt',
+    label: 'Nuxt',
+    detail: 'Full stack',
+    icon: 'simple-icons:nuxtdotjs',
+    color: '#00dc82',
+  },
+  {
+    id: 'react',
+    label: 'React',
+    detail: 'UI',
+    icon: 'simple-icons:react',
+    color: '#61dafb',
+  },
+  {
+    id: 'next',
+    label: 'Next',
+    detail: 'Full stack',
+    icon: 'simple-icons:nextdotjs',
+    color: '#e8e8e8',
+  },
+  {
+    id: 'astro',
+    label: 'Astro',
+    detail: 'Docs',
+    icon: 'simple-icons:astro',
+    color: '#ff5d01',
+  },
+  {
+    id: 'svelte',
+    label: 'Svelte',
+    detail: 'UI',
+    icon: 'simple-icons:svelte',
+    color: '#ff3e00',
+  },
+  {
+    id: 'solid',
+    label: 'Solid',
+    detail: 'UI',
+    icon: 'simple-icons:solid',
+    color: '#2c4f7c',
+  },
+]
 
-export function nucHomeWebShareLine(): string {
-  return NUC_HOME_WEB_SHARE.groups.map((group) => group.label).join(' · ')
-}
-
-export function nucHomeWebShareLegend(): Array<{
-  id: string
-  label: string
-  color: string
-}> {
-  return NUC_HOME_WEB_SHARE.groups.map((group) => ({
-    id: group.id,
-    label: group.label,
-    color: group.color,
-  }))
+export function nucHomeShellLine(): string {
+  return NUC_HOME_SHELLS.map((shell) => shell.label).join(' · ')
 }
 
 function polar(
@@ -144,44 +132,42 @@ function annularSector(
   ].join(' ')
 }
 
-export function nucHomeWebShareArcs(): NucHomeWebShareArc[] {
-  const { cx, cy, radius, innerRadius, gapDeg, slices, groups } =
-    NUC_HOME_WEB_SHARE
-  const byId = Object.fromEntries(slices.map((slice) => [slice.id, slice]))
-  const packed = groups.map((group) => {
-    const weight = group.sliceIds.reduce((sum, id) => sum + byId[id]!.pct, 0)
-    return { group, weight }
-  })
-  const total = packed.reduce((sum, item) => sum + item.weight, 0)
+export function nucHomeShellArcs(): NucHomeShellArc[] {
+  const cx = 50
+  const cy = 50
+  const radius = 46
+  const innerRadius = 28
+  const gapDeg = 3
+  const sweep = 360 / NUC_HOME_SHELLS.length
   let cursor = -90
-  return packed.map(({ group, weight }) => {
-    const sweep = (weight / total) * 360
+  return NUC_HOME_SHELLS.map((shell) => {
     const pad = Math.min(gapDeg / 2, sweep / 6)
     const start = cursor + pad
     const end = cursor + sweep - pad
     cursor += sweep
     return {
-      id: group.id,
-      label: group.label,
+      id: shell.id,
+      label: shell.label,
       d: annularSector(cx, cy, innerRadius, radius, start, end),
-      color: group.color,
+      color: shell.color,
     }
   })
 }
 
 export interface NucHomeStackItem {
   label: string
-  detail: string
   icon: string
   color: string
   command: string
+  adminCommand: string
+  cliCommand: string
 }
 
 export const NUC_HOME_SEO = {
   title:
     'Nucleify - Migrate Between Frontend Frameworks Without Rewriting Business Logic',
   description:
-    'Author shared TypeScript modules and portable UI once. Emit idiomatic Next.js, Nuxt, Astro, Svelte, or Solid - with a shared Supabase gateway. Zero runtime overhead. Zero vendor lock-in.',
+    'Convert an existing app to another framework without rewriting into *.nuc.tsx. Shared TypeScript modules and Supabase stay put. Emit idiomatic Next.js, Nuxt, Astro, Svelte, or Solid.',
   ogImage: 'https://nucleify.io/img/og-image.png',
 } as const
 
@@ -216,13 +202,13 @@ export function homeInvestorHref(lang: string): string {
 
 export const NUC_HOME_COPY = {
   brand: 'Nucleify',
-  heroEyebrow: 'IR emit · shared TypeScript',
+  heroEyebrow: 'Migrate any framework',
   headlineLead: 'Keep the product.',
   headlineTrail: 'Migrate the framework.',
   support:
-    'Author portable UI and domain logic in shared TypeScript. Emit idiomatic Next.js, Nuxt, Astro, Svelte, or Solid - Supabase gateway and SQL stay in shared_modules. Zero runtime. You own the emit.',
-  ctaPrimary: 'Open Playground',
-  ctaSecondary: 'Integrate our CLI',
+    'Bring an existing app and convert the framework - Nuxt to Next, Vue to React, and more - without rewriting into *.nuc.tsx. Domain and Supabase stay in shared_modules.',
+  ctaPrimary: 'Integrate our CLI',
+  ctaSecondary: 'Open Playground',
   playgroundHref: 'https://play.nucleify.io',
   cliHref: 'https://cli.nucleify.io',
   githubHref: 'https://github.com/Nucleify/Nucleify',
@@ -241,26 +227,33 @@ export const NUC_HOME_COPY = {
   navClose: 'Close',
   sectionsLabel: 'Sections',
   pillarsEyebrow: 'What you actually ship',
-  pillarsTitle: 'One TypeScript nucleus. Framework shells are output.',
+  pillarsTitle: 'Bring any framework. Convert to any other.',
   pillarsSupport:
-    'Write once in shared_modules and portable .nuc sources. Emit commit-ready UI for seven stacks, keep the same typed API client, and route every shell through one Supabase gateway.',
-  pillarsCta: 'Pick a shell',
+    'Migrate any framework to any other without adapting the project for migration. *.nuc.tsx is only an optional connector for shared UI, not a rewrite gate. Domain stays in shared_modules; every framework hits the same Supabase gateway.',
+  pillarsCta: 'Pick a framework',
   pillarsShareUnit: 'emit targets',
-  pillarsShareSource: 'One IR surface. Seven framework shells.',
-  stackEyebrow: 'Framework = build target',
-  stackTitle: 'Single Source of Truth\nin Pure TypeScript.',
+  pillarsShareSource: '',
+  stackEyebrow: 'Web + admin · migrate both',
+  stackTitle: 'Migrate every surface.\nTo any framework.',
   stackSupport:
-    'Domain logic, auth helpers, and state live in shared TypeScript. Pick a shell with make web target=… - emit stays human-readable with zero runtime wrappers.',
-  stackCta: 'Clone and run',
-  stackStageLabel: 'active framework',
+    'Nucleify ships a dedicated web app and a dedicated admin - migrate either one to Vue, React, Nuxt, Next, Astro, Svelte, or Solid. Convert each product on its own; no *.nuc.tsx rewrite required.',
+  stackCta: 'Pick a framework',
+  stackStageLabel: 'target framework',
+  stackWebLabel: 'Web',
+  stackAdminLabel: 'Admin',
+  stackCliLabel: 'CLI',
+  stackCopyLabel: 'Copy',
+  stackCopiedLabel: 'Copied!',
+  stackCliInstallLead: 'To install the CLI, go to',
+  stackCliInstallHost: 'cli.nucleify.io',
   pulseEyebrow: 'Same nucleus',
-  pulseTitleLead: 'Seven shells.',
+  pulseTitleLead: 'Seven frameworks.',
   pulseTitleTrail: 'One product core.',
   pulseSupport:
-    'Add another framework shell without rewriting shared modules. Domain types, Supabase handlers, and portable UI stay put - only the host changes.',
+    'Add another framework without rewriting shared modules - and without rewriting the app into *.nuc.tsx. Domain types and Supabase handlers stay put; only the host changes.',
   pulseCta: 'Get in touch',
   pulseCompare:
-    'Nucleify keeps your TypeScript core intact and converts the framework shell. Emitted source is yours to commit.',
+    'Nucleify keeps your TypeScript core intact and converts the framework. Emitted source is yours to commit.',
   pulseTraditionalLabel: 'traditional',
   pulseNucleifyLabel: 'nucleify',
   pulseShellsAxis: 'frameworks online',
@@ -283,28 +276,28 @@ export const NUC_HOME_COPY = {
   startTitle: 'A module is a product slice.',
   startCta: 'Get in touch',
   cloneEyebrow: 'Get running',
-  cloneTitleLead: 'Clone the nucleus.',
-  cloneTitleTrail: 'Open the Nuxt shell.',
+  cloneTitleLead: 'Clone once.',
+  cloneTitleTrail: 'Migrate anywhere.',
   cloneSupport:
-    'Four commands from the repo root.\nThen open localhost, read the docs, or ping us if you want a guided PoC.',
+    'Four commands from the repo root. Spin up web and admin, then convert either product to any framework when you need another stack.',
   cloneCta: 'Read the docs',
   cloneCtaNext: 'Star on GitHub',
-  closeTitle: 'Migrate without rewriting your domain.',
+  closeTitle: 'Migrate without rewriting into *.nuc.tsx.',
   closeSupport:
-    'Moving Vue → React, Nuxt → Next, or evaluating Svelte/Astro? Tell us where you are and where you want to land - we reply with a concrete next step.',
+    'Moving Vue → React, Nuxt → Next, or evaluating Svelte/Astro? Bring the existing project - convert does not require a Nucleify rewrite first. Tell us where you are and where you want to land.',
   closeCta: 'Talk through a migration',
-  compilerEyebrow: 'Code you would commit',
-  compilerTitleLead: 'Author once.',
-  compilerTitleTrail: 'Emit idioms.',
+  compilerEyebrow: 'Migration in a blink',
+  compilerTitleLead: 'Bring the app.',
+  compilerTitleTrail: 'Skip the rewrite.',
   compilerSupport:
-    'Portable .nuc sources compile to React hooks, Vue composables, or Svelte runes - readable source you would actually merge. Domain and Supabase stay in shared_modules beside the UI.',
-  compilerHub: '.nuc',
-  compilerHubLabel: 'author',
-  compilerEmitLabel: 'emit',
+    'Migrate any framework to any other without adapting the project. Convert reads your source as-is - *.nuc.tsx is only an optional connector for shared UI. Domain and Supabase stay in shared_modules.',
+  compilerHub: '.vue',
+  compilerHubLabel: 'source',
+  compilerEmitLabel: 'convert',
   compilerCta: 'Read compiler docs',
   closeModalTitle: 'Tell us about the move',
   closeModalSupport:
-    'Current stack, target shell, timeline - we reply with a concrete next step.',
+    'Current stack, target framework, timeline - we reply with a concrete next step.',
   closeNameLabel: 'Name / organisation',
   closeNamePlaceholder: 'Alex at Acme',
   closeEmailLabel: 'Work email',
@@ -363,7 +356,7 @@ export const NUC_HOME_HERO_SHELLS: NucHomeHeroShell[] = [
   {
     id: 'nuxt',
     label: 'Nuxt',
-    command: 'make web target=NUXT',
+    command: 'make web --target=nuxt',
     result: 'nuxt product · online',
     icon: 'simple-icons:nuxtdotjs',
     color: '#00dc82',
@@ -371,7 +364,7 @@ export const NUC_HOME_HERO_SHELLS: NucHomeHeroShell[] = [
   {
     id: 'next',
     label: 'Next',
-    command: 'make web target=NEXT',
+    command: 'make web --target=next',
     result: 'next product · online',
     icon: 'simple-icons:nextdotjs',
     color: '#e8e8e8',
@@ -379,7 +372,7 @@ export const NUC_HOME_HERO_SHELLS: NucHomeHeroShell[] = [
   {
     id: 'astro',
     label: 'Astro',
-    command: 'make web target=ASTRO',
+    command: 'make web --target=astro',
     result: 'astro docs host · online',
     icon: 'simple-icons:astro',
     color: '#ff5d01',
@@ -387,7 +380,7 @@ export const NUC_HOME_HERO_SHELLS: NucHomeHeroShell[] = [
   {
     id: 'svelte',
     label: 'Svelte',
-    command: 'make web target=SVELTE',
+    command: 'make web --target=svelte',
     result: 'reactive ui · online',
     icon: 'simple-icons:svelte',
     color: '#ff3e00',
@@ -395,7 +388,7 @@ export const NUC_HOME_HERO_SHELLS: NucHomeHeroShell[] = [
   {
     id: 'solid',
     label: 'Solid',
-    command: 'make web target=SOLID',
+    command: 'make web --target=solid',
     result: 'fine-grained ui · online',
     icon: 'simple-icons:solid',
     color: '#72b7eb',
@@ -569,7 +562,7 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
         id: 'sdk',
         title: 'Media helpers',
         path: 'shared_modules/nuc_globals/media/utils/is_mobile.ts',
-        detail: 'Shared helpers every shell already imports.',
+        detail: 'Shared helpers every framework already imports.',
       },
       {
         id: 'data',
@@ -581,7 +574,7 @@ export const NUC_HOME_MODULES: NucHomeModule[] = [
         id: 'ui',
         title: 'Global styles',
         path: 'shared_modules/nuc_globals/styles/_index.scss',
-        detail: 'Shared SCSS DNA every shell speaks.',
+        detail: 'Shared SCSS DNA every framework speaks.',
       },
     ],
   },
@@ -591,21 +584,21 @@ export type NucHomeSectionId = (typeof NUC_HOME_SECTIONS)[number]['id']
 
 export const NUC_HOME_PILLARS: NucHomePillar[] = [
   {
-    icon: 'mdi:file-code-outline',
+    icon: 'mdi:swap-horizontal',
     index: '01',
-    title: 'Portable UI → idiomatic emit',
+    title: 'Any framework → any other',
     description:
-      'Author presentational UI once in *.nuc.tsx. The IR compiler emits commit-ready Vue SFCs, React hooks, Svelte runes, Solid, or Astro - no runtime wrappers in the bundle.',
-    outcome: '*.nuc.tsx → InboxBadge.vue / .tsx',
-    proof: 'pnpm compiler -- emit',
+      'Bring Nuxt, Next, Vue, React, or another supported framework as-is and convert to the target. *.nuc.tsx is only an optional connector for shared presentational UI - never a prerequisite to migrate.',
+    outcome: 'any stack → convert → emit',
+    proof: 'nuc emit convert',
   },
   {
     icon: 'mdi:package-variant',
     index: '02',
-    title: 'Domain stays in shared_modules',
+    title: 'One business core. Many hosts.',
     description:
-      'Validation, session helpers, and the typed API client live in nuc_* packages. Framework shells only consume them - Next and Nuxt share the same contracts.',
-    outcome: 'Same types on every shell',
+      'Auth helpers, validation, and the typed API client are written once. Move any framework to any other - the product contracts stay the same. A stack change becomes a host swap - not another rewrite of forms, session, and API glue.',
+    outcome: 'Same types on every framework',
     proof: 'api_request.ts',
   },
   {
@@ -613,8 +606,8 @@ export const NUC_HOME_PILLARS: NucHomePillar[] = [
     index: '03',
     title: 'Data plane: Supabase',
     description:
-      'Each module can ship SQL migrations, Nitro gateway handlers, and UI together. Every generated shell hits the same Supabase-backed gateway - auth and tables stay with the nucleus.',
-    outcome: 'SQL + handlers + UI in nuc_*',
+      'Each module ships SQL migrations, Nitro gateway handlers, and UI together. Every emit target hits the same Supabase gateway - auth and tables stay with the nucleus. One data plane per framework - nothing forks on stack change.',
+    outcome: 'SQL + handlers',
     proof: 'gateway_dispatch.ts',
   },
 ]
@@ -622,52 +615,59 @@ export const NUC_HOME_PILLARS: NucHomePillar[] = [
 export const NUC_HOME_STACK: NucHomeStackItem[] = [
   {
     label: 'Vue',
-    detail: 'Composition API',
     icon: 'simple-icons:vuedotjs',
     color: '#42b883',
-    command: 'make web target=VUE',
+    command: 'make web --target=vue',
+    adminCommand: 'make admin --target=vue',
+    cliCommand: 'nuc emit ./Button.vue --target=vue',
   },
   {
     label: 'React',
-    detail: 'App components',
     icon: 'simple-icons:react',
     color: '#61dafb',
-    command: 'make web target=REACT',
+    command: 'make web --target=react',
+    adminCommand: 'make admin --target=react',
+    cliCommand: 'nuc emit ./Button.vue --target=react',
   },
   {
     label: 'Nuxt',
-    detail: 'Vue SSR',
     icon: 'simple-icons:nuxtdotjs',
     color: '#00dc82',
-    command: 'make web target=NUXT',
+    command: 'make web --target=nuxt',
+    adminCommand: 'make admin --target=nuxt',
+    cliCommand: 'nuc emit ./Button.vue --target=nuxt',
   },
   {
     label: 'Next',
-    detail: 'React App Router',
     icon: 'simple-icons:nextdotjs',
     color: '#e8e8e8',
-    command: 'make web target=NEXT',
+    command: 'make web --target=next',
+    adminCommand: 'make admin --target=next',
+    cliCommand: 'nuc emit ./Button.vue --target=next',
   },
   {
     label: 'Astro',
-    detail: 'Docs host',
     icon: 'simple-icons:astro',
     color: '#ff5d01',
-    command: 'make web target=ASTRO',
+    command: 'make web --target=astro',
+    adminCommand: 'make admin --target=astro',
+    cliCommand: 'nuc emit ./Button.vue --target=astro',
   },
   {
     label: 'Svelte',
-    detail: 'Reactive UI',
     icon: 'simple-icons:svelte',
     color: '#ff3e00',
-    command: 'make web target=SVELTE',
+    command: 'make web --target=svelte',
+    adminCommand: 'make admin --target=svelte',
+    cliCommand: 'nuc emit ./Button.vue --target=svelte',
   },
   {
     label: 'Solid',
-    detail: 'Fine-grained UI',
     icon: 'simple-icons:solid',
     color: '#72b7eb',
-    command: 'make web target=SOLID',
+    command: 'make web --target=solid',
+    adminCommand: 'make admin --target=solid',
+    cliCommand: 'nuc emit ./Button.vue --target=solid',
   },
 ]
 
@@ -813,40 +813,20 @@ const SNIPPET_SOLID = [
   '}',
 ]
 
+/** Convert input: existing framework source (not `*.nuc.tsx`). */
 export const NUC_HOME_COMPILER_SOURCE = {
-  file: 'InboxBadge.nuc.tsx',
-  snippet: [
-    'import { component, state, derived, handler }',
-    "  from '#nuc-compiler/runtime'",
-    '',
-    'export default component({',
-    "  name: 'InboxBadge',",
-    "  props: { inbox: { type: 'string' } },",
-    '  setup(props) {',
-    '    const unread = state(3)',
-    '    const label = derived(() =>',
-    '      unread.value',
-    '        ? `${props.inbox}: ${unread.value}`',
-    "        : 'Caught up')",
-    '    const clear = handler(() => unread.set(0))',
-    '    return () => (',
-    '      <nui-button variant="filled" onClick={clear}>',
-    '        {label.value}',
-    '      </nui-button>',
-    '    )',
-    '  },',
-    '})',
-  ],
+  file: 'InboxBadge.vue',
+  snippet: SNIPPET_VUE,
 } as const
 
-/** Framework targets around the portable `.nuc` hub (Vite-style emit graph). */
+/** Framework targets around the convert hub (existing app → host emit). */
 export const NUC_HOME_COMPILER_NODES: NucHomeCompilerNode[] = [
   {
     id: 'vue',
     label: 'Vue',
     icon: 'simple-icons:vuedotjs',
     color: '#42b883',
-    command: 'make web target=VUE',
+    command: 'make web --target=vue',
     file: 'InboxBadge.vue',
     snippet: SNIPPET_VUE,
     x: 26,
@@ -857,7 +837,7 @@ export const NUC_HOME_COMPILER_NODES: NucHomeCompilerNode[] = [
     label: 'React',
     icon: 'simple-icons:react',
     color: '#61dafb',
-    command: 'make web target=REACT',
+    command: 'make web --target=react',
     file: 'InboxBadge.tsx',
     snippet: SNIPPET_REACT,
     x: 74,
@@ -868,7 +848,7 @@ export const NUC_HOME_COMPILER_NODES: NucHomeCompilerNode[] = [
     label: 'Nuxt',
     icon: 'simple-icons:nuxtdotjs',
     color: '#00dc82',
-    command: 'make web target=NUXT',
+    command: 'make web --target=nuxt',
     file: 'InboxBadge.vue',
     snippet: SNIPPET_NUXT,
     x: 18,
@@ -879,7 +859,7 @@ export const NUC_HOME_COMPILER_NODES: NucHomeCompilerNode[] = [
     label: 'Next',
     icon: 'simple-icons:nextdotjs',
     color: '#e8e8e8',
-    command: 'make web target=NEXT',
+    command: 'make web --target=next',
     file: 'InboxBadge.tsx',
     snippet: SNIPPET_NEXT,
     x: 82,
@@ -890,7 +870,7 @@ export const NUC_HOME_COMPILER_NODES: NucHomeCompilerNode[] = [
     label: 'Astro',
     icon: 'simple-icons:astro',
     color: '#ff5d01',
-    command: 'make web target=ASTRO',
+    command: 'make web --target=astro',
     file: 'InboxBadge.astro',
     snippet: SNIPPET_ASTRO,
     x: 34,
@@ -901,7 +881,7 @@ export const NUC_HOME_COMPILER_NODES: NucHomeCompilerNode[] = [
     label: 'Svelte',
     icon: 'simple-icons:svelte',
     color: '#ff3e00',
-    command: 'make web target=SVELTE',
+    command: 'make web --target=svelte',
     file: 'InboxBadge.svelte',
     snippet: SNIPPET_SVELTE,
     x: 66,
@@ -912,7 +892,7 @@ export const NUC_HOME_COMPILER_NODES: NucHomeCompilerNode[] = [
     label: 'Solid',
     icon: 'simple-icons:solid',
     color: '#72b7eb',
-    command: 'make web target=SOLID',
+    command: 'make web --target=solid',
     file: 'InboxBadge.tsx',
     snippet: SNIPPET_SOLID,
     x: 50,

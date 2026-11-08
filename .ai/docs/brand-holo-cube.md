@@ -12,8 +12,8 @@
 
 ## Synced copies
 
-- `web/public/img/logo.svg` / `logo.png` - logo alias (may still be classic holo; docs UI uses `favicon.svg`)
-- `docs/public/img/favicon.svg` + `favicon.ico` + `logo.svg` / `logo.png` (logo aliased to favicon for docs)
+- `public/img/logo.webp` / `logo-transparent.webp` - shared brand mark (symlinked into web/docs/admin `public/img`)
+- docs brand mark loads `/img/logo.webp`; apple-touch icons use the same asset
 - `docs/public/img/holo-cube.svg` - synced from web classic mark
 
 ## Wired in

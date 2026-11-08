@@ -1,6 +1,6 @@
 # Monorepo Layout
 
-Nucleify is a pnpm workspace built for **migration across frameworks** as a first-class product capability. Every package has a clear boundary, shared tooling lives in `.config/`, and product apps (`web/`, `admin/`, `docs/`) consume feature logic from `shared_modules/` - never the other way around. The compiler owns emit, import, and product convert; generated shells (Next, Solid, Svelte, Astro, …) are output, not a second source of truth.
+Nucleify is a pnpm workspace built for **migration across frameworks** as a first-class product capability. Every package has a clear boundary, shared tooling lives in `.config/`, and product apps (`web/`, `admin/`, `docs/`) consume feature logic from `shared_modules/` - never the other way around. The compiler owns emit, import, and product convert; generated hosts (Next, Solid, Svelte, Astro, …) are output, not a second source of truth.
 
 ---
 
@@ -96,7 +96,7 @@ compiler/
 │   ├── parse/              # *.nuc.tsx → AST
 │   ├── ir/                 # intermediate representation
 │   ├── emit/               # IR → .vue / React .tsx / Solid .tsx / Svelte .svelte / .css
-│   └── sync/               # import back from emit, convert product shells
+│   └── sync/               # import back from emit, convert product hosts
 ├── runtime/                # #nuc-compiler/runtime (component, state, handler, …)
 ├── templates/              # scaffold sources for gitignored demos
 ├── tests/
@@ -187,14 +187,16 @@ web / admin / docs
 
 | Command | Action |
 |---------|--------|
+| `make help` | commands, `-t` / `--target`, variables |
 | `make run` | `.env` + setup + compiler |
 | `make setup` | install, husky, prepare, sync-rules, compiler |
-| `make web` | Nuxt product dev (`TARGET=nuxt` default) |
-| `make web TARGET=next` | convert + Next product app (`web-next/`) |
-| `make web TARGET=solid` | convert + Solid product app (`web-solid/`) |
-| `make web TARGET=svelte` | convert + Svelte product app (`web-svelte/`) |
-| `make web TARGET=astro` | convert + Astro host + React islands (`web-astro/`) |
-| `make admin` / `make admin TARGET=next\|solid\|svelte\|astro` | admin equivalents |
+| `export PATH="$PWD/.config/bin:$PATH"` | enable Make `--target=` / `-t=` shim |
+| `make web` | Nuxt product dev (`--target=nuxt` default) |
+| `make web --target=next` | convert + Next product app (`web-next/`) |
+| `make web --target=solid` | convert + Solid product app (`web-solid/`) |
+| `make web --target=svelte` | convert + Svelte product app (`web-svelte/`) |
+| `make web --target=astro` | convert + Astro host + React islands (`web-astro/`) |
+| `make admin` / `make admin --target=next\|solid\|svelte\|astro` | admin equivalents |
 | `make docs` | Astro docs site (`docs/`) |
 | `make compiler` | check + build |
 | `make vue` / `make react` / `make nuxt` / `make next` / `make solid` / `make svelte` / `make astro` | gitignored portable demos (`{framework}/demo`) |

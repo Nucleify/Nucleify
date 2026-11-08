@@ -58,7 +58,7 @@
 
     .nuc-holo-cube-back-edge {
       stroke-width: 0.9;
-      opacity: 0.32;
+      opacity: 0.12;
     }
   }
 
@@ -66,23 +66,28 @@
     pointer-events: none;
 
     // Sass rewrites `hsl(a b c / α)` → invalid comma form; keep modern syntax via #{}
-    fill: #{'hsl(var(--rainbow-hue) 88% 68% / 0.08)'} !important;
+
+    /* Keep neutral depth under the per-face lane washes */
+    fill: #{'hsl(var(--rainbow-hue) 40% 12% / 0.12)'} !important;
   }
 
   &-aura {
     position: absolute;
-    inset: 16% 18% 14%;
+
+    /* Slightly inside the wire so soft edges still reach the rim */
+    inset: 12% 14% 10%;
     z-index: 2;
     pointer-events: none;
     background: radial-gradient(
       circle at 52% 48%,
-      #{'hsl(var(--rainbow-hue) 88% 68% / 0.16)'} 0%,
-      #{'hsl(calc(var(--rainbow-hue) + 38deg) 86% 58% / 0.07)'} 45%,
-      transparent 72%
+      #{'hsl(var(--rainbow-hue) 60% 22% / 0.28)'} 0%,
+      #{'hsl(calc(var(--rainbow-hue) + 38deg) 50% 16% / 0.16)'} 50%,
+      #{'hsl(calc(var(--rainbow-hue) + 140deg) 45% 12% / 0.08)'} 78%,
+      transparent 100%
     );
-    clip-path: polygon(50% 6%, 100% 28%, 100% 72%, 50% 94%, 0 72%, 0 28%);
-    filter: blur(7px);
-    opacity: 0.7;
+    clip-path: polygon(50% 4%, 100% 26%, 100% 74%, 50% 96%, 0 74%, 0 26%);
+    filter: blur(3px);
+    opacity: 0.9;
   }
 
   &-bloom,
@@ -108,42 +113,49 @@
       fill: none;
       stroke-width: 4.8;
 
-      &.is-ui {
+      &.is-ui,
+      &.is-mid,
+      &.is-lo {
         stroke: var(--holo-cyan);
       }
 
-      &.is-sdk {
+      &.is-spine-sec,
+      &.is-mid-under,
+      &.is-sdk,
+      &.is-bottom-left {
         stroke: var(--holo-blue);
       }
 
-      &.is-data {
-        stroke: var(--holo-mag);
+      &.is-spine-tert,
+      &.is-lo-under,
+      &.is-data,
+      &.is-bottom-right {
+        stroke: hsl(calc(var(--rainbow-hue) + 140deg) 95% 68%);
       }
     }
   }
 
   &-back-edge {
     fill: none;
-    stroke: hsl(calc(var(--rainbow-hue) + 100deg) 40% 42%);
     stroke-width: 1.05;
-    opacity: 0.38;
+    opacity: 0.12;
+
+    &.is-main {
+      stroke: var(--holo-cyan);
+    }
+
+    &.is-sec {
+      stroke: var(--holo-blue);
+    }
+
+    &.is-tert {
+      stroke: var(--holo-mag);
+    }
   }
 
   &-face {
     stroke: none;
     transition: opacity 0.28s ease;
-
-    &.is-ui {
-      fill: #{'hsl(var(--rainbow-hue) 95% 72% / 0.12)'} !important;
-    }
-
-    &.is-sdk {
-      fill: #{'hsl(calc(var(--rainbow-hue) + 38deg) 90% 62% / 0.08)'} !important;
-    }
-
-    &.is-data {
-      fill: #{'hsl(calc(var(--rainbow-hue) + 140deg) 90% 58% / 0.05)'} !important;
-    }
   }
 
   &-rim {
@@ -169,14 +181,14 @@
 
     &.is-bottom-left {
       stroke: var(--holo-blue);
-      stroke-width: 2.3;
-      opacity: 0.92;
+      stroke-width: 2.4;
+      opacity: 1;
     }
 
     &.is-bottom-right {
       stroke: var(--holo-mag);
-      stroke-width: 2.15;
-      opacity: 0.68;
+      stroke-width: 2.4;
+      opacity: 1;
     }
   }
 
@@ -189,16 +201,11 @@
       opacity: 1;
     }
 
-    &.is-mid {
-      stroke: hsl(calc(var(--rainbow-hue) + 38deg) 92% 72%);
-      stroke-width: 2.3;
-      opacity: 0.86;
-    }
-
+    &.is-mid,
     &.is-lo {
-      stroke: hsl(calc(var(--rainbow-hue) + 140deg) 88% 62%);
-      stroke-width: 2.1;
-      opacity: 0.66;
+      stroke: var(--holo-cyan);
+      stroke-width: 2.4;
+      opacity: 1;
     }
   }
 

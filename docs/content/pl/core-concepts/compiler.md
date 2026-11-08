@@ -1,10 +1,15 @@
 # Kompilator
 
-Migracja między frameworkami to **rdzeń** Nucleify - nie doklejka. Pakiet `@nucleify/compiler` prowadzi tę ścieżkę: przenośny kompilator **oparty na IR**, który zamienia `*.nuc.tsx` na Vue SFC, React, Solid, Svelte i Astro (oraz współdzielony CSS), **importuje zmiany z emitów z powrotem** do źródła i **konwertuje całe powłoki produktu Nuxt** (`web/`, `admin/`) - albo zewnętrzne drzewo Nuxt-like - na Next.js, Solid, Svelte lub Astro.
+Migracja między frameworkami to **rdzeń** Nucleify - nie doklejka. Pakiet `@nucleify/compiler` prowadzi tę ścieżkę: **konwersja produktu** przenosi całe aplikacje (`web/`, `admin/`, albo zewnętrzne drzewo przez `--path` / `--git`) na Next.js, Solid, Svelte lub Astro **bez przepisywania na `*.nuc.tsx`**, opcjonalna **emisja przenośna** zamienia `*.nuc.tsx` na Vue SFC, React, Solid, Svelte i Astro (oraz współdzielony CSS), a **import** wraca z edycji emitu do źródła.
 
-Ten zakres wykracza poza samą emisję komponentów: domena, trasy i współdzielone moduły idą razem z shellem. Framework staje się celem builda; produkt zostaje w `shared_modules/`.
+Ten zakres wykracza poza samą emisję komponentów: domena, trasy i współdzielone moduły idą razem z hostem. Framework staje się celem builda; produkt zostaje w `shared_modules/`.
 
 **Pokrycie:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next lub Vue/Nuxt to punkty startowe, nie granica.
+
+**Warunek migracji:** brak dla `*.nuc.tsx`. Wrzucasz istniejący projekt frameworkowy i odpalasz convert. Autorstwo przenośne jest opcjonalne dla nowego współdzielonego UI prezentacyjnego.
+
+Codzienne wejścia: **`nuc emit …`** ([CLI](/pl/docs/core-concepts/cli)) oraz Make (`export PATH="$PWD/.config/bin:$PATH"` dla `--target=` / `-t=`). W tym monorepo `pnpm compiler -- …` pozostaje lokalnym odpowiednikiem pakietu.
+
 
 ---
 
@@ -12,12 +17,12 @@ Ten zakres wykracza poza samą emisję komponentów: domena, trasy i współdzie
 
 | Tryb pracy | Co robi | Przykład |
 |------|---------|----------|
-| **Emisja przenośna** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + Svelte `.svelte` + `.astro` + `.css` | `pnpm compiler:build` / `make solid` / `make svelte` / `make astro` |
-| **Konwersja produktu** | Aplikacja Nuxt (lub zewnętrzny folder/git) → Next.js, Solid, Svelte lub Astro | `pnpm compiler -- convert web --target=next` |
+| **Konwersja produktu** | Istniejąca aplikacja / produkt Nuxt (lub zewnętrzny folder/git) → Next.js, Solid, Svelte lub Astro - **bez przepisywania na `*.nuc.tsx`** | `nuc emit convert web --target=next` |
+| **Emisja przenośna** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + Svelte `.svelte` + `.astro` + `.css` (opcjonalne współdzielone UI) | `nuc emit build` / `make solid` / `make svelte` / `make astro` |
 
-**Emisja przenośna** służy komponentom prezentacyjnym z round-tripem (`import --from=…`). **Konwersja produktu** generuje `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/` lub `admin-astro/` z drzewa źródeł Vue - te same trasy, współdzielone moduły, inna powłoka frameworka. Konwersja produktu Astro `docs/` **nie** jest jeszcze zaimplementowana.
+**Konwersja produktu** generuje `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/` lub `admin-astro/` z drzewa źródeł - te same trasy, współdzielone moduły, inny host frameworka. **Emisja przenośna** służy komponentom prezentacyjnym z round-tripem (`import --from=…`) - nie jest warunkiem przed convert. Konwersja produktu Astro `docs/` **nie** jest jeszcze zaimplementowana.
 
-Nie re-eksportuj `*.nuc.tsx` z publicznych barreli (`index.ts`, `modules.ts`, …) - autorstwo zostaje poza entrypointami aplikacji.
+Nie re-eksportuj `*.nuc.tsx` z publicznych barreli (`index.ts`, `modules.ts`, …) - opcjonalne autorstwo zostaje poza entrypointami aplikacji.
 
 ---
 
@@ -31,9 +36,9 @@ Przenośny IR jest wersjonowany jako `IR_VERSION` (obecnie **0.1.0**) w `compile
 
 ---
 
-## Autorstwo przenośne (`*.nuc.tsx`)
+## Autorstwo przenośne (`*.nuc.tsx`) - opcjonalnie
 
-Twórz UI niezależne od frameworka z `#nuc-compiler/runtime`:
+Opcjonalna ścieżka dla **prezentacyjnego** UI niezależnego od frameworka - nie jest wymagana, żeby zmigrować istniejącą aplikację. Twórz z `#nuc-compiler/runtime`:
 
 ```tsx
 import { component, state, handler } from '#nuc-compiler/runtime'
@@ -83,28 +88,24 @@ Pełne reguły: `compiler/PORTABLE.md`.
 
 ## Referencja CLI
 
+Opublikowana binarka ([dokumentacja CLI](/pl/docs/core-concepts/cli)):
+
 ```bash
-pnpm compiler:build                              # emituj wszystkie *.nuc.tsx
-pnpm compiler:check                              # weryfikuj fingerprinty (exit 1 jeśli emisja nie jest zsynchronizowana)
-pnpm compiler:test                               # zestaw testów golden-file
-
-pnpm compiler -- import --from=vue path/Foo.vue  # importuj edycje emisji z powrotem do źródła
-pnpm compiler -- import --from=react path/Foo.tsx
-pnpm compiler -- build --force                   # odrzuć edycje emisji; regeneruj
-
-pnpm compiler -- convert web --target=next       # konwersja produktu → web-next/
-pnpm compiler -- convert admin --target=next     # konwersja produktu → admin-next/
-pnpm compiler -- convert web --target=solid      # konwersja produktu → web-solid/
-pnpm compiler -- convert web --target=svelte     # konwersja produktu → web-svelte/
-pnpm compiler -- convert web --target=astro      # konwersja produktu → web-astro/
-pnpm compiler -- convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
-pnpm compiler -- convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
-pnpm compiler -- scaffold solid                  # tymczasowe demo → solid/demo/
-pnpm compiler -- scaffold svelte                 # tymczasowe demo → svelte/demo/
-pnpm compiler -- scaffold next                   # tymczasowe demo → next/demo/
-pnpm compiler -- build --app=solid               # emisja do solid/demo
-pnpm compiler -- build --app=svelte              # emisja do svelte/demo
+nuc emit build                                   # emituj wszystkie *.nuc.tsx
+nuc emit check                                   # weryfikuj fingerprinty (exit ≠ 0 jeśli brudne)
+nuc emit import --from=vue path/Foo.vue          # importuj edycje emisji z powrotem do źródła
+nuc emit convert web --target=next               # konwersja produktu → web-next/
+nuc emit convert admin --target=next
+nuc emit convert web --target=solid
+nuc emit convert web --target=svelte
+nuc emit convert web --target=astro
+nuc emit convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
+nuc emit convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
+nuc emit scaffold solid                          # tymczasowe demo → solid/demo/
+nuc emit build --app=solid
 ```
+
+Odpowiedniki w monorepo (`pnpm compiler …` / `pnpm compiler:build` / `pnpm compiler:check` / `pnpm compiler:test`) wołają te same entrypointy `@nucleify/compiler`.
 
 Pomiń kompilator przy bootstrapie / pomiń hooki gdy trzeba:
 
@@ -142,7 +143,7 @@ compiler/
 │   ├── parse/              # *.nuc.tsx → AST
 │   ├── ir/                 # reprezentacja pośrednia (IR_VERSION)
 │   ├── emit/               # IR → .vue / React .tsx / Solid .tsx / Svelte .svelte / .css
-│   └── sync/               # import zwrotny, konwersja powłok produktu
+│   └── sync/               # import zwrotny, konwersja hostów produktu
 ├── runtime/                # #nuc-compiler/runtime
 ├── templates/              # źródła scaffold dla gitignored demo
 ├── tests/                  # testy golden-file
@@ -156,20 +157,22 @@ Gitignored demo emisji: `{vue,react,nuxt,next,solid,svelte}/demo/` (przez `make 
 
 ## Konwersja produktu
 
+Zmigruj istniejącą aplikację na inny framework **bez** przepisywania jej na `*.nuc.tsx`. Convert to główna ścieżka migracji; autorstwo przenośne jest opcjonalne później dla nowego współdzielonego UI.
+
 ```bash
-make web TARGET=next
+make web --target=next
 # równoważne:
-pnpm compiler -- convert web --target=next
+nuc emit convert web --target=next
 cd web-next && pnpm dev
 
-make web TARGET=solid
-pnpm compiler -- convert web --target=solid
+make web --target=solid
+nuc emit convert web --target=solid
 
-make web TARGET=svelte
-pnpm compiler -- convert web --target=svelte
+make web --target=svelte
+nuc emit convert web --target=svelte
 
-make web TARGET=astro
-pnpm compiler -- convert web --target=astro
+make web --target=astro
+nuc emit convert web --target=astro
 ```
 
 Aplikacje produktu Svelte to Vite SPA z runami Svelte 5 (jeszcze nie SvelteKit SSR). Portable emit Svelte używa `$state` / `$derived` / `$props` i eventów DOM jak `onclick`. Konwersja Astro hostuje te same wyspy React pod stronami Astro (`client:load`).
@@ -178,19 +181,19 @@ Hosty po konwersji ładują **Instrument Sans** i **JetBrains Mono** przez tagi 
 
 ### Zewnętrzny folder lub URL git
 
-Użyj tego samego profilu `web|admin` z zewnętrznym drzewem Nuxt-like (wymagane `src/`). Uruchamiaj z **roota monorepo Nucleify**, żeby aliasy `modules` / `portable` działały:
+Wskaż ten sam profil `web|admin` na zewnętrzne drzewo aplikacji (wymagane `src/`) - Twój istniejący projekt, nie przepisany pod Nucleify. Uruchamiaj z **roota monorepo Nucleify**, żeby aliasy `modules` / `portable` działały:
 
 ```bash
-pnpm compiler -- convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
-pnpm compiler -- convert admin --target=solid --git=https://github.com/org/app.git --out=fork-admin-solid --force
-pnpm compiler -- convert web --target=svelte --path=/path/to/nuxt-app --out=my-svelte --force
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
+nuc emit convert admin --target=solid --git=https://github.com/org/app.git --out=fork-admin-solid --force
+nuc emit convert web --target=svelte --path=/path/to/your-app --out=my-svelte --force
 ```
 
 Aplikacje po konwersji instalują się przez `pnpm install --ignore-workspace` - wersje w template `package.json` pozostają przypięte; nie wchodzą w graph workspace monorepo.
 
-Konwerter czyta Vue SFC pod `src/`, mapuje strony i composables na hosty React, Solid, Svelte lub Astro i zapisuje output **bez** plików `.vue`. Moduły współdzielone są konsumowane przez barrel frameworka.
+Konwerter mapuje strony i composables z drzewa źródłowego na hosty React, Solid, Svelte lub Astro i zapisuje idiomatyczny output. Moduły współdzielone są konsumowane przez barrel frameworka. **Nie** musisz ręcznie pisać `*.nuc.tsx` na potrzeby przebiegu convert.
 
-Traktuj `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/` i `admin-astro/` (oraz własne katalogi `--out`) jako **generowany output**. Edytuj `web/` lub `admin/`, potem konwertuj ponownie - nie ręcznie łataj drzewa emit.
+Traktuj `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/` i `admin-astro/` (oraz własne katalogi `--out`) jako **generowany output**. Edytuj drzewo źródłowe produktu, potem konwertuj ponownie - nie ręcznie łataj drzewa emit.
 
 ---
 

@@ -31,20 +31,22 @@
             />
           </svg>
           <div class="nuc-pillars-share-hole">
-            <strong>{{ stackCount }}</strong>
+            <strong>{{ shellCount }}</strong>
             <span>{{ copy.pillarsShareUnit }}</span>
           </div>
         </div>
         <figcaption class="nuc-pillars-share-legend">
           <ul>
-            <li v-for="item in legend" :key="item.id">
-              <i aria-hidden="true" :style="{ '--c1': item.color }" />
-              <span>{{ item.label }}</span>
+            <li
+              v-for="shell in shells"
+              :key="shell.id"
+              :style="{ '--c': shell.color }"
+              :title="shell.label"
+            >
+              <nui-icon :icon="shell.icon" mode="svg" />
+              <span class="sr-only">{{ shell.label }}</span>
             </li>
           </ul>
-          <p class="nuc-pillars-share-note">
-            {{ copy.pillarsShareSource }}
-          </p>
         </figcaption>
       </figure>
     </div>
@@ -77,9 +79,9 @@ import { computed, ref } from 'vue'
 
 import {
   cmsHomePillars,
-  nucHomeWebShareArcs,
-  nucHomeWebShareLegend,
-  NUC_HOME_WEB_SHARE,
+  coalesceArray,
+  nucHomeShellArcs,
+  NUC_HOME_SHELLS,
   scrollSection,
   useCmsAttrs,
   useHomeCmsCopy,
@@ -95,11 +97,15 @@ useShellSectionReveal(rootEl, pillarsReveal)
 const cms = useCmsAttrs()
 const copy = useHomeCmsCopy()
 const pillars = computed(() => cmsHomePillars(cms))
-const stackCount = NUC_HOME_WEB_SHARE.slices.length
-const arcs = nucHomeWebShareArcs()
-const legend = nucHomeWebShareLegend()
+const shells = coalesceArray(
+  cms.shells,
+  NUC_HOME_SHELLS
+) as typeof NUC_HOME_SHELLS
+const shellCount = shells.length
+const arcs = nucHomeShellArcs()
 const shareLabel = computed(
-  () => `Nucleify emits to ${stackCount} core web stacks`
+  () =>
+    `Seven shells from one nucleus: ${shells.map((s) => s.label).join(', ')}`
 )
 
 function onCta(): void {

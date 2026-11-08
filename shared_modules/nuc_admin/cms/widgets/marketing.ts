@@ -51,6 +51,21 @@ export const homeStackWidget: WidgetDefinition = {
       { type: 'textarea', name: 'stackSupport', label: 'Support' },
       { type: 'text', name: 'stackCta', label: 'CTA' },
       { type: 'text', name: 'stackStageLabel', label: 'Stage label' },
+      { type: 'text', name: 'stackWebLabel', label: 'Web label' },
+      { type: 'text', name: 'stackAdminLabel', label: 'Admin label' },
+      { type: 'text', name: 'stackCliLabel', label: 'CLI label' },
+      { type: 'text', name: 'stackCopyLabel', label: 'Copy label' },
+      { type: 'text', name: 'stackCopiedLabel', label: 'Copied label' },
+      {
+        type: 'text',
+        name: 'stackCliInstallLead',
+        label: 'CLI install lead',
+      },
+      {
+        type: 'text',
+        name: 'stackCliInstallHost',
+        label: 'CLI install host',
+      },
     ],
     [
       {
@@ -59,10 +74,11 @@ export const homeStackWidget: WidgetDefinition = {
         label: 'Frameworks',
         fields: [
           { type: 'text', name: 'label', label: 'Label' },
-          { type: 'text', name: 'detail', label: 'Detail' },
           { type: 'text', name: 'icon', label: 'Icon' },
           { type: 'text', name: 'color', label: 'Color' },
-          { type: 'text', name: 'command', label: 'Command' },
+          { type: 'text', name: 'command', label: 'Web command' },
+          { type: 'text', name: 'adminCommand', label: 'Admin command' },
+          { type: 'text', name: 'cliCommand', label: 'CLI command' },
         ],
       },
     ],

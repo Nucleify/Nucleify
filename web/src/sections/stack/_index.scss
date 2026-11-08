@@ -21,8 +21,6 @@
   &-spotlight {
     position: relative;
     display: grid;
-    align-content: center;
-    gap: 0.85rem;
     min-height: 0;
     padding: 1.1rem 1.05rem;
     border: 1px solid var(--shell-card-border);
@@ -48,9 +46,32 @@
     pointer-events: none;
   }
 
+  &-spotlight-copy {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    min-height: 100%;
+    height: 100%;
+  }
+
+  &-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+  }
+
+  &-foot {
+    display: grid;
+    gap: 0.55rem;
+  }
+
   &-badge {
     position: relative;
     z-index: 1;
+    flex: 0 0 auto;
     display: grid;
     place-items: center;
     width: 3.25rem;
@@ -71,22 +92,6 @@
     }
   }
 
-  &-spotlight-copy {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    gap: 0.4rem;
-  }
-
-  &-kicker {
-    margin: 0;
-    color: color-mix(in srgb, var(--stack-color) 85%, #fff);
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
   &-name {
     margin: 0;
     font-size: clamp(1.55rem, 6vw, 2rem);
@@ -95,25 +100,141 @@
     line-height: 1;
   }
 
-  &-detail {
-    margin: 0.15rem 0 0;
-    color: var(--shell-muted);
-    font-size: 0.92rem;
+  &-commands {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  &-cmd-block {
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  &-cmd-label {
+    margin: 0;
+    color: color-mix(in srgb, var(--stack-color) 85%, #fff);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   &-command {
-    margin: 0.55rem 0 0;
-    padding: 0.55rem 0.7rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0.45rem 0.45rem 0.45rem 0.7rem;
     border: 1px solid var(--shell-card-border);
     border-radius: 0.65rem;
     background: rgb(3 6 12 / 55%);
     color: var(--shell-fg);
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 0.8rem;
+  }
 
-    span {
+  &-command-text {
+    margin: 0;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font: inherit;
+    color: color-mix(in srgb, var(--shell-fg) 78%, transparent);
+
+    .is-prompt {
       color: var(--stack-color);
       margin-right: 0.45rem;
+    }
+
+    .is-bin {
+      color: color-mix(in srgb, var(--stack-color) 55%, #9ad7ff);
+      font-weight: 600;
+    }
+
+    .is-cmd {
+      color: #e8eef8;
+      font-weight: 600;
+    }
+
+    .is-flag {
+      color: color-mix(in srgb, var(--stack-color) 35%, #b8a4ff);
+    }
+
+    .is-key {
+      color: color-mix(in srgb, var(--stack-color) 40%, #9ad7ff);
+    }
+
+    .is-op {
+      color: color-mix(in srgb, var(--shell-muted) 70%, #fff);
+    }
+
+    .is-val {
+      color: color-mix(in srgb, var(--stack-color) 55%, #ffd39a);
+    }
+
+    .is-path {
+      color: color-mix(in srgb, var(--stack-color) 25%, #8dffc1);
+    }
+
+    .is-plain {
+      color: inherit;
+    }
+  }
+
+  &-copy {
+    display: grid;
+    place-items: center;
+    width: 1.85rem;
+    height: 1.85rem;
+    margin: 0;
+    padding: 0;
+    border: 1px solid color-mix(in srgb, var(--stack-color) 35%, transparent);
+    border-radius: 0.45rem;
+    background: transparent;
+    color: color-mix(in srgb, var(--stack-color) 88%, #fff);
+    cursor: pointer;
+    transition:
+      color 0.15s ease,
+      border-color 0.15s ease,
+      background 0.15s ease;
+
+    nui-icon,
+    iconify-icon {
+      font-size: 0.95rem;
+      width: 0.95rem;
+      height: 0.95rem;
+    }
+
+    &:hover,
+    &:focus-visible {
+      border-color: color-mix(in srgb, var(--stack-color) 70%, transparent);
+      color: #fff;
+      outline: none;
+    }
+
+    &.is-copied {
+      border-color: color-mix(in srgb, var(--stack-color) 80%, transparent);
+      background: color-mix(in srgb, var(--stack-color) 22%, transparent);
+      color: #fff;
+    }
+  }
+
+  &-cli-note {
+    margin: 0;
+    color: var(--shell-muted);
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
+
+  &-cli-link {
+    color: color-mix(in srgb, var(--stack-color) 88%, #fff);
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+
+    &:hover {
+      color: #fff;
     }
   }
 
@@ -134,10 +255,9 @@
     z-index: 1;
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-rows: auto auto;
-    gap: 0.1rem 0.55rem;
+    gap: 0.55rem;
     align-items: center;
-    min-height: 3.6rem;
+    min-height: 3.2rem;
     margin: 0;
     padding: 0.65rem 0.7rem;
     border: 1px solid var(--shell-card-border);
@@ -230,7 +350,6 @@
   }
 
   &-item-icon {
-    grid-row: 1 / span 2;
     display: grid;
     place-items: center;
     width: 2.2rem;
@@ -255,15 +374,7 @@
     letter-spacing: -0.02em;
   }
 
-  &-item-detail {
-    color: var(--shell-dim);
-    font-size: 0.68rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  /* -- Desktop: spotlight left + shell grid right (as designed) -- */
+  /* -- Desktop: spotlight left + framework grid right -- */
   @media (min-width: $md) {
     &-stage {
       grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.2fr);
@@ -273,9 +384,13 @@
 
     &-spotlight {
       min-height: 18rem;
-      gap: 1.25rem;
+      height: 100%;
       padding: 1.5rem 1.4rem;
       border-radius: 1.2rem;
+    }
+
+    &-spotlight-copy {
+      gap: 1.25rem;
     }
 
     &-badge {
@@ -295,12 +410,11 @@
       font-size: clamp(2rem, 4vw, 2.75rem);
     }
 
-    &-detail {
-      font-size: 1rem;
+    &-heading {
+      gap: 1rem;
     }
 
     &-command {
-      margin-top: 0.85rem;
       padding: 0.7rem 0.85rem;
       border-radius: 0.7rem;
       font-size: 0.88rem;
@@ -385,13 +499,6 @@
 
     &-label {
       font-size: 0.92rem;
-    }
-
-    &-item-detail {
-      font-size: 0.78rem;
-      white-space: normal;
-      overflow: visible;
-      text-overflow: clip;
     }
   }
 }

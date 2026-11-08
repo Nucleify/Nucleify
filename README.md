@@ -1,28 +1,32 @@
-# <div align="center"> <img src="/public/img/logo.svg" width="88" alt="Nucleify"> <br> Nucleify <br> </div>
+# <div align="center"> <img src="/public/img/logo.webp" width="88" alt="Nucleify"> <br> Nucleify <br> </div>
 <br>
 
 **Build once. Move to any framework.** Vue · React · Nuxt · Next · Astro · Svelte · Solid - without rewriting your product.
 
-**Migration is the product.** Locked into one stack? Changing frameworks usually means a costly rewrite. Nucleify keeps domain, API, and SQL in shared modules and moves whole shells with an IR-first compiler - emit UI, convert Nuxt apps, import edits back - when the market, team, or client asks for another host.
+<br><a href="https://cli.nucleify.io"><strong>CLI</strong></a> · <a href="https://play.nucleify.io"><strong>Playground</strong></a><br><br>
+
+**Framework migration is the product.** Locked into one stack? Switching hosts usually means a costly rewrite. Nucleify keeps domain, API, and SQL in shared modules and **converts whole apps between frameworks** - Nuxt → Next, Vue → Solid, React → Svelte, and the rest - with an IR-first compiler. Point convert at your existing project as-is, emit another host, import edits back.
+
+**No `*.nuc.tsx` migration required.** Product convert works on your framework source directly. Portable `*.nuc.tsx` authoring is optional for new shared UI - it is not a gate for moving between frameworks.
 
 | Ready to run on |
 | --- |
 | **Vue** · **React** · **Nuxt** · **Next** · **Astro** · **Svelte** · **Solid** |
 
-> One product. Any shell. Not stuck on React/Next or Vue/Nuxt alone.
+> One product. Any framework. Not stuck on React/Next or Vue/Nuxt alone.
 
-Three surfaces, one nucleus: **web**, **admin**, and **docs** - each can move to another framework when you need it. 
+Three surfaces, one nucleus: **web**, **admin**, and **docs** - each can move to another framework when you need it.
 
 Backend on **Supabase**.
 UI with [nucleify-ui](https://www.npmjs.com/package/nucleify-ui).
 
-**Build portable products. Join the nucleus.**
+**Convert existing apps. Join the nucleus.**
 
 <br><a href="https://nucleify.io">Live preview</a> · <a href="https://docs.nucleify.io/en/docs/getting-started/introduction">Docs</a> · <a href="https://nucleify.io/en/investor">Investor brief</a><br><br>
 
-⭐ **Any stack → any other** - migration sits at the core, not at the edge <br>
-⭐ **Shared modules** - API, SQL, and UI stay one product across shells <br>
-⭐ **IR-first compiler** - emit, product convert, and import back - whole shells, not orphaned snippets <br>
+⭐ **Any stack → any other** - migrate between frameworks; no `*.nuc.tsx` rewrite required <br>
+⭐ **Shared modules** - API, SQL, and UI stay one product across frameworks <br>
+⭐ **IR-first compiler** - product convert first; optional portable emit; import back - whole apps, not orphaned snippets <br>
 ⭐ **One-command setup** - `make run` + `make web` from the repo root <br>
 ⭐ **Modern UI** - [nucleify-ui](https://www.npmjs.com/package/nucleify-ui) + design tokens ready to brand <br>
 
@@ -36,10 +40,11 @@ git clone --recurse-submodules https://github.com/Nucleify/Nucleify.git
 cd Nucleify
 # Private `compiler/` submodule: needs access to Nucleify/nucleify-compiler
 make run          # .env, install, husky, compiler
-make web          # Nuxt product shell (default)
-# make web TARGET=next     # Next product shell
-# make web TARGET=solid    # Solid product shell
-# make web TARGET=svelte   # Svelte product shell
+export PATH="$PWD/.config/bin:$PATH"   # make web --target= / -t=
+make web          # Nuxt web (default)
+# make web --target=next     # web-next
+# make web -t=solid          # web-solid
+# make web TARGET=svelte     # classic assignment (no shim)
 # make vue | react | nuxt | next | solid | svelte   # portable emit demos
 ```
 

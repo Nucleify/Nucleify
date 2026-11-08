@@ -11,16 +11,18 @@ Get the Nucleify monorepo running on your machine.
 | **Node.js** | ≥ 20 | Required by root `package.json` |
 | **pnpm** | 10.x | Workspace manager (`packageManager: pnpm@10.33.0`) |
 | **Git** | any recent | Clone the repository |
-| **Make** | any | Runs workspace shortcuts from the root `Makefile` |
+| **Make** | any | Workspace shortcuts from the root `Makefile` (`make help`) |
 | **Supabase CLI** | optional | Only if you run a local Supabase stack |
+| **`@nucleify/cli`** | optional | Published `nuc emit` binary ([cli.nucleify.io](https://cli.nucleify.io)) |
 
 ---
 
 ## Clone the repository
 
 ```bash
-git clone https://github.com/Nucleify/Nucleify.git
+git clone --recurse-submodules https://github.com/Nucleify/Nucleify.git
 cd Nucleify
+# Private `compiler/` submodule: needs access to Nucleify/nucleify-compiler
 ```
 
 ---
@@ -30,6 +32,7 @@ cd Nucleify
 From the repo root, run:
 
 ```bash
+export PATH="$PWD/.config/bin:$PATH"   # make web --target= / -t=
 make run
 ```
 
@@ -72,12 +75,15 @@ make web
 
 Open [http://localhost:7777](http://localhost:7777). The default locale redirect sends you to `/en/home`. Admin runs on [http://localhost:8888](http://localhost:8888) via `make admin`.
 
-Other packages:
+Other packages and convert:
 
 ```bash
-make admin    # admin panel (Nuxt)
-make docs     # documentation site (Astro)
-make compiler # compiler check + build only
+make help                 # commands, -t / --target, variables
+make admin                # admin panel (Nuxt)
+make docs                 # documentation site (Astro)
+make compiler             # compiler check + build only
+make web --target=next    # product convert → web-next/ (needs PATH shim)
+nuc emit convert web --target=next   # same convert via published CLI
 ```
 
 ---

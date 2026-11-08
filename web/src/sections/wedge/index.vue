@@ -45,12 +45,21 @@ import { wedgeReveal } from './motion'
 const rootEl = ref<HTMLElement | null>(null)
 useShellSectionReveal(rootEl, wedgeReveal)
 
-import { NUC_INVESTOR_WEDGE, useInvestorCmsCopy } from '@web'
+import {
+  coalesceArray,
+  NUC_INVESTOR_WEDGE,
+  useCmsAttrs,
+  useInvestorCmsCopy,
+} from '@web'
 
 defineOptions({ inheritAttrs: false })
 
+const cms = useCmsAttrs()
 const copy = useInvestorCmsCopy()
-const wedge = NUC_INVESTOR_WEDGE
+const wedge = coalesceArray(
+  cms.items,
+  NUC_INVESTOR_WEDGE
+) as typeof NUC_INVESTOR_WEDGE
 </script>
 
 <style lang="scss" scoped>

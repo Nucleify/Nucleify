@@ -171,6 +171,20 @@ export function redirectTargetForPath(pathname: string): string | null {
     return null
   }
 
+  // Exact living migrations-company pitch.
+  if (
+    LOCALE_CODES.has(first) &&
+    parts[1] === 'migrations-company' &&
+    parts.length === 2
+  ) {
+    return null
+  }
+
+  // Legacy `/company` → migrations-company.
+  if (LOCALE_CODES.has(first) && parts[1] === 'company') {
+    return `/${first}/migrations-company`
+  }
+
   // Exact living thank-you (post contact form).
   if (
     LOCALE_CODES.has(first) &&
@@ -208,6 +222,15 @@ export function redirectTargetForPath(pathname: string): string | null {
   // `/{lang}/investor/...` extras - collapse to investor root.
   if (LOCALE_CODES.has(first) && parts[1] === 'investor' && parts.length > 2) {
     return `/${first}/investor`
+  }
+
+  // `/{lang}/migrations-company/...` extras - collapse to page root.
+  if (
+    LOCALE_CODES.has(first) &&
+    parts[1] === 'migrations-company' &&
+    parts.length > 2
+  ) {
+    return `/${first}/migrations-company`
   }
 
   // `/{lang}/thank-you/...` extras - collapse to thank-you root.

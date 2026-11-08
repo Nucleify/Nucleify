@@ -1,19 +1,23 @@
 # Playground
 
-Playground Nucleify to przeglądarkowy sandbox dla przenośnych komponentów. Edytujesz źródło po lewej, na żywo oglądasz emit do nowoczesnych shelli po prawej - bez lokalnej instalacji.
+Playground Nucleify to **przeglądarkowy sandbox opcjonalnych komponentów przenośnych** - nie ścieżka migracji produktu. Migracja istniejącej aplikacji **nie** wymaga `*.nuc.tsx`; użyj [konwersji produktu](/pl/docs/core-concepts/cli#convert) (`nuc emit convert`) na źródle frameworka takim, jakie jest.
 
-Żywa powierzchnia produktu: [play.nucleify.io](https://play.nucleify.io).
+Tu edytujesz źródło przenośne po lewej i na żywo oglądasz emit do nowoczesnych frameworków po prawej - bez lokalnej instalacji.
+
+Żywa powierzchnia: [play.nucleify.io](https://play.nucleify.io).
 
 ---
 
 ## Po co
 
-Playground odpowiada na pierwsze pytanie każdego inżyniera: *czy wyemitowany kod wygląda jak coś, co bym shipował?*
+Playground odpowiada na pytanie: *czy opcjonalny emit przenośny wygląda jak coś, co bym shipował?*
+
+**Nie** zastępuje convert. Istniejącą aplikację Nuxt/Vue/React konwertujesz bez przepisywania na format autorstwa Nucleify.
 
 - Otwórz [play.nucleify.io](https://play.nucleify.io)
-- Edytuj przenośny TypeScript (props, `state`, `derived`, `handler`, style)
-- Zobacz idiomatyczny wynik dla React, Vue, Svelte, Astro, Solid (oraz powiązanych shelli Nuxt / Next, gdy są pokazane)
-- Skopiuj snippety albo przejdź do [CLI](/pl/docs/core-concepts/cli) w prawdziwym projekcie
+- Edytuj przenośny TypeScript tylko gdy chcesz współdzielone UI prezentacyjne (`props`, `state`, `derived`, `handler`, style)
+- Zobacz idiomatyczny wynik dla React, Vue, Svelte, Astro, Solid (oraz powiązanych hostów Nuxt / Next, gdy są pokazane)
+- Dla migracji prawdziwej aplikacji: [CLI convert](/pl/docs/core-concepts/cli) · [Kompilator](/pl/docs/core-concepts/compiler)
 
 Żądania kompilacji z playgroundu trafiają na tę samą chmurową powierzchnię co CLI (`compileApiUrl` → `https://cli.nucleify.io`).
 
@@ -23,7 +27,7 @@ Playground odpowiada na pierwsze pytanie każdego inżyniera: *czy wyemitowany k
 
 | Panel | Cel |
 |-------|-----|
-| **Źródło** | Autorstwo przenośnego komponentu (`#nuc-compiler/runtime`) |
+| **Źródło** | Opcjonalne autorstwo przenośnego komponentu (`#nuc-compiler/runtime`) |
 | **Emit** | Natywny podgląd / kod dla wybranego targetu |
 | **Przykłady** | Komponenty startowe (np. licznik ze `state` + `derived`) |
 
@@ -55,15 +59,16 @@ export default component({
 })
 ```
 
-Użyj playgroundu, żeby zweryfikować reguły autorstwa zanim włączysz emit do CI albo lokalnej aplikacji.
+Użyj playgroundu, żeby zweryfikować reguły opcjonalnego autorstwa przenośnego zanim włączysz emit do CI. Cały produkt migrujesz przez convert - nie przez ten sandbox.
 
 ---
 
 ## Kolejne kroki
 
-1. Eksperymentuj na [play.nucleify.io](https://play.nucleify.io)
-2. Zainstaluj CLI z [cli.nucleify.io](https://cli.nucleify.io) · [CLI](/pl/docs/core-concepts/cli)
-3. Przeczytaj [Kompilator](/pl/docs/core-concepts/compiler) pod kątem IR, emitów przenośnych i konwersji produktu w monorepo
+1. Migruj istniejącą aplikację: `nuc emit convert web --target=next` · [CLI](/pl/docs/core-concepts/cli)
+2. Opcjonalnie eksperymentuj z przenośnym UI na [play.nucleify.io](https://play.nucleify.io)
+3. Zainstaluj CLI z [cli.nucleify.io](https://cli.nucleify.io)
+4. Przeczytaj [Kompilator](/pl/docs/core-concepts/compiler) pod kątem convert vs emit przenośny
 
 ---
 

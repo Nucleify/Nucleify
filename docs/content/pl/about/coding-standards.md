@@ -126,14 +126,16 @@ const open = ref(false)
 
 ---
 
-## Komponenty przenośne
+## Komponenty przenośne (opcjonalne)
 
-Autoruj w `*.nuc.tsx` zgodnie z `compiler/PORTABLE.md`:
+`*.nuc.tsx` to **opcjonalne współdzielone UI prezentacyjne** - nie warunek migracji. Konwersja produktu (`nuc emit convert` / `make web --target=…`) migruje istniejącą aplikację frameworkową **bez** przepisywania na `*.nuc.tsx`.
+
+Gdy używasz autorstwa przenośnego, trzymaj się `compiler/PORTABLE.md`:
 
 - Bez store, routerów ani Supabase w plikach przenośnych
 - Na zewnątrz tylko props + events
-- Po zmianach: `pnpm compiler:build`; commituj autorstwo + emit
-- Import edycji: `pnpm compiler -- import --from=vue|react|solid|svelte`
+- Po zmianach: `nuc emit build` (lub `pnpm compiler:build`); commituj autorstwo + emit
+- Import edycji: `nuc emit import --from=vue|react|solid|svelte`
 - Nie re-eksportuj `*.nuc.tsx` z publicznych barreli (`index.ts`, `modules.ts`, …)
 - Łamiące zmiany IR podnoszą `IR_VERSION` i migrują fixture’y w tym samym PR
 

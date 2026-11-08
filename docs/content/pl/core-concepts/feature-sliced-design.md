@@ -103,17 +103,17 @@ Dispatch gateway w `nuc_api` to punkt orkiestracji HTTP - moduły rejestrują ha
 
 ---
 
-## Portable UI vs logika domeny
+## Opcjonalne portable UI vs logika domeny
 
-Kompilator dodaje drugą oś:
+Konwersja produktu migruje istniejącą aplikację **bez** `*.nuc.tsx`. Autorstwo przenośne to **opcjonalna** druga oś tylko dla współdzielonego UI prezentacyjnego:
 
 | Warstwa | Lokalizacja | Powiązanie z frameworkiem |
 |---------|-------------|---------------------------|
-| Portable UI | `*.nuc.tsx` | Brak - emit Vue + React + Solid + Svelte |
+| Źródło aplikacji (convert) | `web/` / zewnętrzne drzewo | Istniejący framework - convert do Next / Solid / Svelte / Astro |
 | Logika domeny | `shared_modules/nuc_*/utils/` | Composables Vue + hooki `.react.ts` |
-| Powłoka app | `web/src/pages/` | Nuxt (kanoniczny) lub Next / Solid / Svelte (skonwertowany) |
+| Opcjonalne portable UI | `*.nuc.tsx` | Brak - emit Vue + React + Solid + Svelte (+ Astro) |
 
-Trzymaj store, routery, kontenery i18n i wywołania API **poza** `*.nuc.tsx`. Komponenty portable dostają dane przez props i emitują eventy - slice domeny łączy dane w utils aplikacji lub modułu.
+Trzymaj store, routery, kontenery i18n i wywołania API **poza** opcjonalnymi `*.nuc.tsx`. Komponenty portable dostają dane przez props i emitują eventy - slice domeny łączy dane w utils aplikacji lub modułu.
 
 ---
 
@@ -142,4 +142,4 @@ Współistnieją: partial organismu `nuc_colors` nadal jest częścią slice `nu
 
 - [Moduły](/pl/docs/core-concepts/modules) - referencja modułów
 - [Układ monorepo](/pl/docs/core-concepts/monorepo) - granice app vs shared
-- [Kompilator](/pl/docs/core-concepts/compiler) - warstwa portable UI
+- [Kompilator](/pl/docs/core-concepts/compiler) - konwersja produktu + opcjonalne portable UI

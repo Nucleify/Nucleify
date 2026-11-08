@@ -174,6 +174,7 @@ import {
   type HomeContactWebsiteType,
   investorDocsHref,
   investorHomeHref,
+  NUC_COMPANY_CONTACT_TYPES,
   NUC_INVESTOR_CONTACT_TYPES,
   nuiHostValue,
   nuiValueFromEvent,
@@ -194,18 +195,22 @@ useShellSectionReveal(rootEl, askReveal)
 const cms = useCmsAttrs()
 const copy = useInvestorCmsCopy()
 const year = new Date().getFullYear()
-const contactTypes = coalesceArray(
-  cms.contactTypes,
-  NUC_INVESTOR_CONTACT_TYPES
-) as { label: string; value: string }[]
+const route = useRoute()
+const lang = computed(() => (route.params.lang as string) || 'en')
+const slug = computed(() => String(route.params.slug || ''))
+const contactFallback =
+  slug.value === 'migrations-company'
+    ? NUC_COMPANY_CONTACT_TYPES
+    : NUC_INVESTOR_CONTACT_TYPES
+const contactTypes = coalesceArray(cms.contactTypes, contactFallback) as {
+  label: string
+  value: string
+}[]
 const typeOptions = contactTypes.map((opt) => ({
   label: opt.label,
   value: opt.value,
 }))
-const defaultWebsiteType =
-  contactTypes[0]?.value ?? NUC_INVESTOR_CONTACT_TYPES[0].value
-const route = useRoute()
-const lang = computed(() => (route.params.lang as string) || 'en')
+const defaultWebsiteType = contactTypes[0]?.value ?? contactFallback[0].value
 const docsHref = computed(() => investorDocsHref(lang.value))
 const homeHref = computed(() => investorHomeHref(lang.value))
 const playHref = computed(() => copy.value.playgroundHref || homePlayHref())

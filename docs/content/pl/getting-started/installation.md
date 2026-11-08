@@ -11,16 +11,18 @@ Uruchom monorepo Nucleify na swoim komputerze.
 | **Node.js** | ≥ 20 | Wymagane przez root `package.json` |
 | **pnpm** | 10.x | Menedżer workspace (`packageManager: pnpm@10.33.0`) |
 | **Git** | dowolna nowsza | Klonowanie repozytorium |
-| **Make** | dowolny | Skróty workspace z root `Makefile` |
+| **Make** | dowolny | Skróty workspace z root `Makefile` (`make help`) |
 | **Supabase CLI** | opcjonalnie | Tylko przy lokalnym stacku Supabase |
+| **`@nucleify/cli`** | opcjonalnie | Opublikowana binarka `nuc emit` ([cli.nucleify.io](https://cli.nucleify.io)) |
 
 ---
 
 ## Klonowanie repozytorium
 
 ```bash
-git clone https://github.com/Nucleify/Nucleify.git
+git clone --recurse-submodules https://github.com/Nucleify/Nucleify.git
 cd Nucleify
+# Prywatny submodule `compiler/`: dostęp do Nucleify/nucleify-compiler
 ```
 
 ---
@@ -30,6 +32,7 @@ cd Nucleify
 Z katalogu głównego repozytorium uruchom:
 
 ```bash
+export PATH="$PWD/.config/bin:$PATH"   # make web --target= / -t=
 make run
 ```
 
@@ -72,12 +75,15 @@ make web
 
 Otwórz [http://localhost:7777](http://localhost:7777). Domyślne przekierowanie locale kieruje na `/en/home`. Admin działa na [http://localhost:8888](http://localhost:8888) przez `make admin`.
 
-Inne pakiety:
+Inne pakiety i convert:
 
 ```bash
-make admin    # panel admin (Nuxt)
-make docs     # strona dokumentacji (Astro)
-make compiler # tylko check + build kompilatora
+make help                 # komendy, -t / --target, zmienne
+make admin                # panel admin (Nuxt)
+make docs                 # strona dokumentacji (Astro)
+make compiler             # tylko check + build kompilatora
+make web --target=next    # konwersja produktu → web-next/ (wymaga shima PATH)
+nuc emit convert web --target=next   # ta sama konwersja przez opublikowane CLI
 ```
 
 ---

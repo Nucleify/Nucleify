@@ -187,14 +187,16 @@ web / admin / docs
 
 | Komenda | Akcja |
 |---------|-------|
+| `make help` | komendy, `-t` / `--target`, zmienne |
 | `make run` | `.env` + setup + kompilator |
 | `make setup` | install, husky, prepare, sync-rules, kompilator |
-| `make web` | dev produktu Nuxt (`TARGET=nuxt` domyślnie) |
-| `make web TARGET=next` | konwersja + aplikacja Next (`web-next/`) |
-| `make web TARGET=solid` | konwersja + aplikacja Solid (`web-solid/`) |
-| `make web TARGET=svelte` | konwersja + aplikacja Svelte (`web-svelte/`) |
-| `make web TARGET=astro` | konwersja + host Astro + wyspy React (`web-astro/`) |
-| `make admin` / `make admin TARGET=next|solid|svelte|astro` | odpowiedniki admin |
+| `export PATH="$PWD/.config/bin:$PATH"` | włącza shim Make `--target=` / `-t=` |
+| `make web` | dev produktu Nuxt (`--target=nuxt` domyślnie) |
+| `make web --target=next` | konwersja + aplikacja Next (`web-next/`) |
+| `make web --target=solid` | konwersja + aplikacja Solid (`web-solid/`) |
+| `make web --target=svelte` | konwersja + aplikacja Svelte (`web-svelte/`) |
+| `make web --target=astro` | konwersja + host Astro + wyspy React (`web-astro/`) |
+| `make admin` / `make admin --target=next|solid|svelte|astro` | odpowiedniki admin |
 | `make docs` | witryna docs Astro (`docs/`) |
 | `make compiler` | check + build |
 | `make vue` / `make react` / `make nuxt` / `make next` / `make solid` / `make svelte` / `make astro` | gitignored demo portable (`{framework}/demo`) |
