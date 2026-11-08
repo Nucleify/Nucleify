@@ -1,4 +1,4 @@
-# <div align="center"> <img src="/public/img/logo.webp" width="88" alt="Nucleify"> <br> Nucleify <br> </div>
+# <div align="center"> <img src="/public/img/logo-transparent.webp" width="88" alt="Nucleify"> <br> Nucleify <br> </div>
 <br>
 
 **Build once. Move to any framework.** Vue · React · Nuxt · Next · Astro · Svelte · Solid - without rewriting your product.
