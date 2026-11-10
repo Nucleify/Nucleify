@@ -2,7 +2,7 @@
 
 > Zbuduj raz. Przenieś na dowolny framework - bez przepisywania produktu.
 
-**Migracja jest produktem.** Współdzielone moduły to jądro. Kompilator oparty na IR to sposób zmiany frameworka. Siedem nowoczesnych runtime’ów webowych.
+**Migracja jest produktem.** **Tak - wrzucasz dowolną istniejącą aplikację Next, Nuxt, Vue, React albo inny wspierany stack takim, jaki jest.** Konwersja produktu zmienia host frameworka; opcjonalny przenośny IR jest tylko dla współdzielonego UI prezentacyjnego. Współdzielone moduły to jądro, gdy dołączasz do tego monorepo - nie warunek migracji. Siedem nowoczesnych runtime’ów webowych.
 
 ---
 
@@ -16,14 +16,15 @@ Nucleify traktuje **migrację między technologiami** jako trwałą warstwę mon
 
 ## Wizja
 
-Jedno jądro. Trzy powierzchnie produktu. Siedem frameworków. Jeden pipeline migracji.
+Jeden pipeline migracji. Siedem frameworków. Trzy powierzchnie. Jedno jądro (opcjonalnie po dołączeniu).
 
-1. **Współdzielone moduły** - API, SQL, UI i logika domenowa w `shared_modules/`
-2. **Trzy powierzchnie** - `web/`, `admin/` i `docs/` z tego samego jądra
-3. **Migracja jako komenda** - konwersja produktu dla całych istniejących aplikacji (bez przepisywania na `*.nuc.tsx`), opcjonalny emit przenośny dla współdzielonego UI, import z powrotem z brudnego emitu
+1. **Migracja jako komenda** - konwersja produktu dla całych istniejących aplikacji **takim, jakie są** (bez przepisywania na `*.nuc.tsx`, bez wcześniejszego refaktoru do `shared_modules`) - [FAQ migracji](/pl/docs/getting-started/migrate-faq)
+2. **Trzy powierzchnie** - `web/`, `admin/` i `docs/` w tym monorepo
+3. **Współdzielone moduły** - API, SQL, UI i logika domenowa w `shared_modules/` po dołączeniu do jądra - **nie** warunek convert
 4. **Jeden backend Supabase** - przez bramkę, SQL w rękach modułów
+5. **Opcjonalny emit przenośny** - `*.nuc.tsx` dla współdzielonego UI prezentacyjnego; import z brudnego emitu
 
-Codzienna edycja zostaje na Nuxt (`web/`). Zmiana frameworka to przebieg kompilatora na Twoim istniejącym źródle - nie przepisywanie na format autorstwa Nucleify.
+Codzienna edycja zostaje na Nuxt (`web/`) w tym monorepo. Zmiana frameworka to przebieg convert na Twoim istniejącym źródle - nie przepisywanie na format autorstwa Nucleify.
 
 ---
 
@@ -42,7 +43,7 @@ Jak jądro komórki, Nucleify koordynuje produkt. Każdy eksportowany moduł `nu
 
 ### 1. Dowolny stack → dowolny inny
 
-To jest pętla rdzeniowa. **Konwersja produktu** przenosi istniejącą aplikację - także zewnętrzny folder lub URL git przez `--path` / `--git` - na inny framework **bez** przepisywania na `*.nuc.tsx` (zob. [Kompilator](/pl/docs/core-concepts/compiler)). Opcjonalne przenośne komponenty `*.nuc.tsx` emitują przez własny IR, gdy chcesz współdzielone UI prezentacyjne. Zmiany z emitu wracają do źródła. Biznes nie forkuje się per host.
+To jest pętla rdzeniowa. **Tak - konwersja produktu** przenosi istniejącą aplikację takim, jaka jest - także zewnętrzny folder Next / Nuxt / Vue / React / … lub URL git przez `--path` / `--git` - na inny framework. **Bez** przepisywania na `*.nuc.tsx`, **bez** wcześniejszego podziału na `shared_modules`, **bez** tokenów (zob. [Kompilator](/pl/docs/core-concepts/compiler)). Opcjonalne przenośne komponenty `*.nuc.tsx` emitują przez własny IR, gdy chcesz współdzielone UI prezentacyjne - ta ścieżka nie jest warunkiem migracji. Zmiany z emitu wracają do źródła. Biznes nie forkuje się per host.
 
 ```bash
 export PATH="$PWD/.config/bin:$PATH"   # włącza --target= / -t=
@@ -56,18 +57,20 @@ make admin --target=svelte
 # klasycznie (bez shima): make web TARGET=next
 ```
 
-Forma opublikowanego CLI (ta sama konwersja):
+Forma opublikowanego CLI:
 
 ```bash
+# Nuxt web/ tego monorepo → web-next/ (nie Twoja zewnętrzna aplikacja)
 nuc emit convert web --target=next
-nuc emit convert admin --target=next
+# Twój produkt takim, jaki jest:
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
 ```
 
 Wybór frameworka staje się **celem builda**, nie forkiem architektury.
 
 ### 2. Moduły zamiast monolitu
 
-Logika domenowa żyje w `shared_modules/nuc_*`, nie jest kopiowana między aplikacjami. Zob. [Feature-Sliced Design](/pl/docs/core-concepts/feature-sliced-design).
+W tym monorepo logika domenowa żyje w `shared_modules/nuc_*`, nie jest kopiowana między aplikacjami - korzyść jądra **po** dołączeniu, nie warunek convert ([FAQ migracji](/pl/docs/getting-started/migrate-faq)). Zob. [Feature-Sliced Design](/pl/docs/core-concepts/feature-sliced-design).
 
 ### 3. Bramka, nie spaghetti
 

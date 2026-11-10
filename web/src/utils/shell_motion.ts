@@ -168,13 +168,31 @@ export function settleHeroBits(items: HTMLElement[]): void {
   }
 }
 
+/** Kick font fetch without blocking (non-boot callers). */
 export function warmBrandFonts(): void {
-  void Promise.all([
-    document.fonts.load("700 4rem 'JetBrains Mono'"),
-    document.fonts.load("600 4rem 'JetBrains Mono'"),
-  ]).catch(() => {
-    /* fallback stack is fine for first paint */
-  })
+  void awaitBrandFonts(400)
+}
+
+/** Resolve when JetBrains Mono is ready, or after timeout (slow 3G). */
+export async function awaitBrandFonts(timeoutMs = 1200): Promise<boolean> {
+  if (typeof document === 'undefined' || !document.fonts?.load) return false
+  try {
+    let ready = false
+    await Promise.race([
+      Promise.all([
+        document.fonts.load("700 4rem 'JetBrains Mono'"),
+        document.fonts.load("600 4rem 'JetBrains Mono'"),
+      ]).then(() => {
+        ready = true
+      }),
+      new Promise<void>((resolve) => {
+        window.setTimeout(resolve, timeoutMs)
+      }),
+    ])
+    return ready
+  } catch {
+    return false
+  }
 }
 
 export type CipherDecodeOptions = {

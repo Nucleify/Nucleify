@@ -84,27 +84,30 @@ Four modules register automatically at app startup in `web/src/plugins/modules.t
 
 ## 5. Try convert and the compiler
 
-Convert the entire web product to Next, Solid, Svelte, or Astro (**no** `*.nuc.tsx` rewrite):
+**Your product (as-is):**
+
+```bash
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
+```
+
+**This monorepo’s Nuxt `web/` → shells** (not a substitute for your `--path`):
 
 ```bash
 make web --target=next    # → web-next/
 make web -t=solid         # → web-solid/
 make web --target=svelte  # → web-svelte/
 make web --target=astro   # → web-astro/
-
-# Same via published CLI:
-nuc emit convert web --target=next
+nuc emit convert web --target=next   # same, Nucleify web/ only
 ```
 
-Build optional portable emit from any `*.nuc.tsx` under discover roots (`web/`, `admin/`, `shared_modules/`, `portable/`):
+Optional portable emit (`*.nuc.tsx` - not a migrate gate):
 
 ```bash
 nuc emit build
-nuc emit check            # exits ≠ 0 if emit is dirty vs authoring
-# monorepo equivalents: pnpm compiler:build / pnpm compiler:check
+nuc emit check
 ```
 
-Portable Svelte emit demo: `make svelte`. External Nuxt-like apps: `--path` / `--git` + `--out` from the monorepo root (see [Compiler](/en/docs/core-concepts/compiler) · [CLI](/en/docs/core-concepts/cli)).
+Full FAQ: [Migrate FAQ](/en/docs/getting-started/migrate-faq).
 
 ---
 
@@ -166,6 +169,7 @@ Create `Foo.nuc.tsx` next to where it will be consumed. Run `nuc emit build`. Co
 
 | Topic | Doc |
 |-------|-----|
+| Migrate any existing app | [Migrate FAQ](/en/docs/getting-started/migrate-faq) |
 | Directory map | [Monorepo Layout](/en/docs/core-concepts/monorepo) |
 | Module anatomy | [Modules](/en/docs/core-concepts/modules) |
 | Compiler cycles | [Compiler](/en/docs/core-concepts/compiler) |

@@ -178,7 +178,7 @@ export const NUC_COMPANY_WEDGE = [
     phase: 'Stick',
     icon: 'mdi:lock-outline',
     title: 'More stacks, same load',
-    body: 'Any framework can move to any other - Vue to React, Nuxt to Next, or reverse. Bring the existing project; convert needs no *.nuc.tsx rewrite. Nucleus + compiler turn the next stack into emit, not a rewrite.',
+    body: 'Yes - any framework can move to any other, including Next → Nuxt and Nuxt → Next. Bring the existing project as-is; convert needs no *.nuc.tsx rewrite, no shared_modules split, and no token rewrite. Nucleus + compiler turn the next stack into emit, not a rewrite.',
     signal: 'Convert, not rewrite',
   },
   {

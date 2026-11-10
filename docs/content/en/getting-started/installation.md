@@ -83,7 +83,7 @@ make admin                # admin panel (Nuxt)
 make docs                 # documentation site (Astro)
 make compiler             # compiler check + build only
 make web --target=next    # product convert → web-next/ (needs PATH shim)
-nuc emit convert web --target=next   # same convert via published CLI
+nuc emit convert web --target=next   # this monorepo web/ → web-next/ (add --path/--out for your app)
 ```
 
 ---

@@ -19,4 +19,6 @@ pnpm --filter @nucleify/docs run generate:markdown-bundle
 
 Register new pages in `DOC_CATEGORIES` (`src/lib/constants/docs.ts`) with `title: { en, pl }`.
 
+Migrate scrapers: [Migrate FAQ](https://docs.nucleify.io/en/docs/getting-started/migrate-faq) · [llms.txt](/llms.txt) (`public/llms.txt`).
+
 See `docs/README.md` for run commands.

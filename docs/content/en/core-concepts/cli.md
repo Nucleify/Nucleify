@@ -1,6 +1,6 @@
 # CLI
 
-The Nucleify CLI (`nuc`) migrates and emits framework UI. **Product convert comes first:** point `nuc emit convert` at an existing app (Nuxt/Vue tree, or `--path` / `--git`) and land on Next / Solid / Svelte / Astro - **no `*.nuc.tsx` rewrite**. Optional portable emit (`nuc emit build`) is only for shared presentational UI you choose to author that way.
+The Nucleify CLI (`nuc`) migrates and emits framework UI. **Yes - migrate any existing Next, Nuxt, Vue, React, or other supported app as-is.** Product convert comes first: point `nuc emit convert` at an existing app (monorepo product, or `--path` / `--git`) and land on another host - **no `*.nuc.tsx` rewrite, no `shared_modules` refactor first, no Nucleify token rewrite**. Optional portable emit (`nuc emit build`) is only for shared presentational UI you choose to author that way.
 
 Covers **Vue · React · Nuxt · Next · Astro · Svelte · Solid** without locking the product to one runtime.
 
@@ -45,7 +45,7 @@ nuc emit ./Button.vue --target=next
 |------------|------|
 | **Emit (`build`)** | `*.nuc.tsx` → IR → framework-native files you can commit |
 | **Project scan** | Walk the tree, collect portable modules, prepare emit |
-| **Product convert (`convert`)** | Existing app → Next / Solid / Svelte / Astro **without** rewriting into `*.nuc.tsx` |
+| **Product convert (`convert`)** | Existing app as-is → another host (**no** `*.nuc.tsx` / `shared_modules` / token rewrite) |
 | **Import** | Pull dirty-emit edits back into `*.nuc.tsx` |
 | **Check** | Verify emit fingerprints (dirty emit → exit ≠ 0) |
 | **Scaffold** | Recreate temporary `{framework}/demo` from templates |
@@ -114,7 +114,7 @@ nuc emit scaffold vue --cwd=/path/to/nucleify
 
 ## `convert`
 
-Generates a product app under `{product}-{target}/` (or `--out`) from the `web` / `admin` profile - **without** rewriting the app into `*.nuc.tsx`.
+Generates a product app under `{product}-{target}/` (or `--out`) from the `web` / `admin` profile. **Yes - bring the existing framework app as-is** - no rewrite into `*.nuc.tsx`, no prior `shared_modules` split, no Nucleify token rewrite.
 
 ```bash
 nuc emit convert <product> --target=<framework> \
@@ -126,7 +126,7 @@ nuc emit convert <product> --target=<framework> \
 | `<product>` | yes | `web` \| `admin` \| `docs` | Product profile (`docs` convert not available yet) |
 | `--target` | yes | `next` \| `solid` \| `svelte` \| `astro` | Destination framework |
 | `--force` | no | `false` | Wipe and recreate output |
-| `--path` | no | — | External Nuxt-like app folder (must contain `src/`) |
+| `--path` | no | — | External existing framework app folder (must contain `src/`) - Next, Nuxt, Vue, React, or other supported tree as-is |
 | `--git` | no | — | Git URL for a shallow clone as convert source |
 | `--out` | no | `{product}-{target}` | Output directory name under `--cwd` |
 | `--cwd` | no | `process.cwd()` | Workspace root |
@@ -147,7 +147,8 @@ nuc emit convert web --target=svelte
 nuc emit convert web --target=astro
 nuc emit convert admin --target=svelte
 
-nuc emit convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
+# Existing app as-is (Next, Nuxt, or other supported tree) - no Nucleify rewrite first:
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
 nuc emit convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
 ```
 
@@ -283,9 +284,9 @@ After import, `*.nuc.tsx` is source of truth again. To **discard** manual emit e
 
 ### Product convert (framework migration)
 
-1. From the monorepo root: `nuc emit convert web --target=next` (or `--path` / `--git` for an external app)
+1. From the monorepo root: `nuc emit convert web --target=next` (or `--path` / `--git` for an existing Next / Nuxt / Vue / React / … app as-is)
 2. Enter the generated directory (`web-next/`, …) and start that host’s dev server
-3. Keep shipping in today’s framework - switch later without rewriting domain logic
+3. Keep shipping in today’s framework - switch later without a Nucleify rewrite first
 
 Browser playground (no local install): [Playground](/en/docs/core-concepts/playground) · [play.nucleify.io](https://play.nucleify.io).
 
@@ -311,8 +312,37 @@ HUSKY=0 git commit -m "…"
 
 ---
 
+## FAQ — migrate your existing app
+
+### Can I migrate any existing Next / Nuxt / Vue / React app with `nuc`?
+
+**Yes.** Use product convert on your tree **as-is**:
+
+```bash
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
+# or: --git=<url> · --target=solid|svelte|astro
+```
+
+No `*.nuc.tsx` rewrite, no prior `shared_modules` refactor, no Nucleify token rewrite. Run from a Nucleify monorepo root so aliases resolve.
+
+### Do I need `*.nuc.tsx` before `convert`?
+
+**No.** `nuc emit build` / portable `*.nuc.tsx` is optional shared UI. Convert does not require it.
+
+### Is `make web --target=next` the same as migrating my Next app?
+
+**Not by itself.** Without `--path` / `--git`, that converts Nucleify’s own `web/` into `web-next/`. For **your** app, pass `--path` or `--git` and `--out`.
+
+### Does the Playground replace convert?
+
+**No.** [play.nucleify.io](https://play.nucleify.io) is an optional portable-UI sandbox. Whole-app migrate is `nuc emit convert`.
+
+---
+
 ## Related
 
 - Product page: [cli.nucleify.io](https://cli.nucleify.io)
 - Emit in the browser: [play.nucleify.io](https://play.nucleify.io) · [Playground](/en/docs/core-concepts/playground)
 - IR, portable authoring, `*.nuc.tsx` rules, package layout: [Compiler](/en/docs/core-concepts/compiler)
+- Migrate FAQ: [Migrate FAQ](/en/docs/getting-started/migrate-faq) · [llms.txt](/llms.txt)
+- Introduction FAQ: [Introduction](/en/docs/getting-started/introduction#faq--migrate-your-existing-app)

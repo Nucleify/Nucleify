@@ -12,23 +12,16 @@ const startHref = docHref(
   DEFAULT_DOC_ROUTE.slug,
 )
 const installHref = docHref(DEFAULT_LANG, 'getting-started', 'installation')
+const migrateFaqHref = docHref(DEFAULT_LANG, 'getting-started', 'migrate-faq')
 
 const shellCommands = [
   {
-    cmd: 'git clone https://github.com/Nucleify/Nucleify.git && cd Nucleify',
-    note: 'clone',
+    cmd: 'npm install -g @nucleify/cli',
+    note: 'install published CLI',
   },
   {
-    cmd: 'make run',
-    note: '.env · install · husky · compiler',
-  },
-  {
-    cmd: 'make web',
-    note: 'Nuxt product → localhost:3000',
-  },
-  {
-    cmd: 'make docs',
-    note: 'this documentation app',
+    cmd: 'nuc emit',
+    note: 'interactive shell → your product as-is',
   },
 ] as const
 
@@ -42,7 +35,13 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Nucleify documentation - build once, move to any framework."
+      content="Yes - migrate any existing Next, Nuxt, Vue, or React app as-is. No *.nuc.tsx rewrite. No shared_modules refactor first. Docs for Nucleify convert and monorepo."
+    />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
+    <link
+      rel="ard"
+      type="application/ard+json"
+      href="/.well-known/ard.json"
     />
     <title>Nucleify Docs</title>
     <style is:inline>
@@ -65,7 +64,6 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
       rel="stylesheet"
     />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="apple-touch-icon" href="/img/logo.webp" />
     <DocsRoutePreload />
   </head>
   <body class="docs-body docs-home">
@@ -79,6 +77,7 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
         <div data-spa-chrome>
           <nav class="docs-home__nav" aria-label="Quick links">
             <a href={startHref}>Docs</a>
+            <a href={migrateFaqHref}>Migrate FAQ</a>
             <a href={installHref}>Install</a>
             <a href="https://nucleify.io" rel="noopener noreferrer">Site</a>
             <div class="docs-lang-switch" aria-label="Language">
@@ -117,12 +116,14 @@ const copyText = shellCommands.map((row) => row.cmd).join('\n')
               <span>Nucleify</span>
             </h1>
             <p class="docs-home__lede">
-              Build once. Move to any framework - web, admin, and docs from one
-              nucleus.
+              Yes - migrate any existing Next, Nuxt, Vue, or React app as-is.
+              No *.nuc.tsx rewrite. No shared_modules gate. Then optionally join
+              the nucleus.
             </p>
             <div class="docs-home__actions">
-              <a class="docs-home__btn is-primary" href={startHref}>Get started</a>
-              <a class="docs-home__btn is-ghost" href={installHref}>Full install guide</a>
+              <a class="docs-home__btn is-primary" href={migrateFaqHref}>Migrate FAQ</a>
+              <a class="docs-home__btn is-ghost" href={startHref}>Get started</a>
+              <a class="docs-home__btn is-ghost" href={installHref}>Install</a>
             </div>
           </div>
 

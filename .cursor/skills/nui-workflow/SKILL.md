@@ -37,7 +37,7 @@ Never write agent notes into `docs/markdown/`, `docs/pdf/`, or the Astro content
 3. **Always** update agent documentation before this step ends:
    - Write or extend files under `.ai/docs/` (what changed, why, how to verify).
    - Create new files when a domain or area is new; edit existing ones when they would be stale.
-   - Prefer dated or topic slugs, e.g. `.ai/docs/home-holo-cube-glow.md`, `.ai/docs/2026-09-19-rainbow.md`.
+   - Prefer lane prefixes: `nucleify-*` (monorepo `web/` / `admin/` / `web-*` shells), `your-product-*` (external migrate). Avoid dumping “how it works” slice notes.
 4. After code edits run from repo root:
 
 ```sh

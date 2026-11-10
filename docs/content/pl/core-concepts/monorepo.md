@@ -2,6 +2,8 @@
 
 Nucleify to workspace pnpm zbudowany pod **migrację między frameworkami** jako pierwszorzędną zdolność produktu. Każdy pakiet ma wyraźną granicę, współdzielone narzędzia są w `.config/`, a aplikacje produktowe (`web/`, `admin/`, `docs/`) konsumują logikę funkcjonalną z `shared_modules/` - nigdy odwrotnie. Kompilator prowadzi emit, import i konwersję produktu; generowane shelle (Next, Solid, Svelte, Astro, …) to output, nie drugie źródło prawdy.
 
+**Twój produkt vs to monorepo:** zewnętrzne aplikacje migrują **takim, jakie są** przez `--path` / `--git` + `--out` ([FAQ migracji](/pl/docs/getting-started/migrate-faq)). `make web --target=…` → `web-next/` / `web-astro/` konwertuje drzewa Nuxt **tego** repo - to nie zastępuje Twojego `--path`.
+
 ---
 
 ## Mapa najwyższego poziomu
@@ -11,7 +13,7 @@ nucleify/
 ├── web/                    # @nucleify/web - landing Nuxt 4 (kanoniczny)
 ├── admin/                  # @nucleify/admin - panel admin Nuxt 4
 ├── docs/                   # @nucleify/docs - dokumentacja Astro 5
-├── compiler/               # @nucleify/compiler - przenośny kompilator UI IR
+├── compiler/               # @nucleify/compiler - convert produktu + opcjonalny emit przenośny
 ├── shared_modules/         # @nucleify/shared-modules - sześć eksportowanych modułów nuc_*
 ├── portable/nui/           # design tokeny, rejestracja Lit nui-*
 ├── overrides/              # overrides/{web,admin,docs,shared_modules}/
@@ -88,7 +90,7 @@ Kategorie są zdefiniowane w `docs/src/lib/constants/docs.ts`. Host produkcyjny:
 
 ## `compiler/` - `@nucleify/compiler`
 
-Przenośny kompilator UI oparty na IR. Samodzielny - nie importuje z `web/`, `admin/` ani `docs/`.
+Convert produktu + opcjonalny emit przenośny (IR). Samodzielny - nie importuje z `web/`, `admin/` ani `docs/`.
 
 ```txt
 compiler/

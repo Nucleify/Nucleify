@@ -16,6 +16,10 @@
     align-items: start;
   }
 
+  &-pitch .nuc-title {
+    white-space: pre-line;
+  }
+
   &-pitch .nuc-support {
     max-width: 38rem;
   }

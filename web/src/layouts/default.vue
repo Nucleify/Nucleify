@@ -86,7 +86,7 @@ function syncShellModifiers(root: HTMLElement): void {
 
 function markReady(root: HTMLElement): void {
   root.style.setProperty('--shell-iris', '165%')
-  root.classList.remove('nuc-booting')
+  root.classList.remove('nuc-booting', 'nuc-iris-live')
   root.classList.add('nuc-ready')
   syncShellModifiers(root)
 }
@@ -191,13 +191,8 @@ function bootMotion(): void {
 }
 
 onMounted(() => {
-  if (
-    rootEl.value &&
-    isIrisEnabled.value &&
-    !rootEl.value.classList.contains('nuc-ready')
-  ) {
-    rootEl.value.classList.add('nuc-booting')
-  }
+  // Do NOT add `.nuc-booting` here — that lifts opacity:1 before iris/anime
+  // chunks load (slow Safari/Firefox flash). playShellAnimations arms it.
   bootMotion()
 })
 

@@ -54,9 +54,11 @@ const ASSET_FIRST = new Set([
   '_nuxt',
   '_redirects',
   '_robots.txt',
+  '.well-known',
   'api',
   'img',
   'favicon.ico',
+  'llms.txt',
   'robots.txt',
   'sitemap.xml',
 ])

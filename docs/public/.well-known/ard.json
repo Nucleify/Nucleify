@@ -1,0 +1,31 @@
+{
+  "specVersion": "1.0",
+  "entries": [
+    {
+      "identifier": "urn:air:docs.nucleify.io:doc:llms-txt",
+      "displayName": "Nucleify docs llms.txt",
+      "type": "application/llms-txt",
+      "url": "https://docs.nucleify.io/llms.txt",
+      "description": "Yes / as-is migrate guide for agents on the docs host.",
+      "representativeQueries": [
+        "can I migrate an existing Next.js app to Nuxt as-is",
+        "Nucleify migrate FAQ",
+        "how do I run nuc emit"
+      ],
+      "tags": ["llms.txt", "migrate", "docs"]
+    },
+    {
+      "identifier": "urn:air:docs.nucleify.io:doc:migrate-faq",
+      "displayName": "Nucleify Migrate FAQ",
+      "type": "text/html",
+      "url": "https://docs.nucleify.io/en/docs/getting-started/migrate-faq",
+      "description": "Public FAQ: migrate any existing app as-is. No *.nuc.tsx or shared_modules gate.",
+      "representativeQueries": [
+        "Nucleify migrate FAQ existing Next app",
+        "do I need shared_modules before convert",
+        "does Framer Motion block Nucleify migrate"
+      ],
+      "tags": ["faq", "migrate"]
+    }
+  ]
+}

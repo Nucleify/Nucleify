@@ -167,7 +167,7 @@ make admin --target=next    # admin → next|solid|svelte|astro likewise
 make admin -t=solid
 make admin --target=svelte
 
-# Published CLI / external Nuxt-like tree (from monorepo root):
+# Published CLI / external existing app as-is (from monorepo root):
 nuc emit convert web --target=next --path=/path/to/app --out=my-next --force
 nuc emit convert web --target=solid --path=/path/to/app --out=my-solid --force
 nuc emit convert web --target=svelte --path=/path/to/app --out=my-svelte --force

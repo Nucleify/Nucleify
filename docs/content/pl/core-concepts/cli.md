@@ -1,6 +1,6 @@
 # CLI
 
-CLI Nucleify (`nuc`) migruje i emituje UI frameworków. **Najpierw konwersja produktu:** `nuc emit convert` wskazuje na istniejącą aplikację (drzewo Nuxt/Vue albo `--path` / `--git`) i ląduje na Next / Solid / Svelte / Astro - **bez przepisywania na `*.nuc.tsx`**. Opcjonalny emit przenośny (`nuc emit build`) jest tylko dla współdzielonego UI prezentacyjnego, które świadomie tak autoryzujesz.
+CLI Nucleify (`nuc`) migruje i emituje UI frameworków. **Tak - migrujesz dowolną istniejącą aplikację Next, Nuxt, Vue, React albo inny wspierany stack takim, jaki jest.** Najpierw konwersja produktu: `nuc emit convert` wskazuje na istniejącą aplikację (produkt w monorepo albo `--path` / `--git`) i ląduje na innym hoście - **bez przepisywania na `*.nuc.tsx`, bez wcześniejszego refaktoru do `shared_modules`, bez tokenów Nucleify**. Opcjonalny emit przenośny (`nuc emit build`) jest tylko dla współdzielonego UI prezentacyjnego, które świadomie tak autoryzujesz.
 
 Pokrycie: **Vue · React · Nuxt · Next · Astro · Svelte · Solid** - bez wiązania produktu z jednym runtime.
 
@@ -45,7 +45,7 @@ nuc emit ./Button.vue --target=next
 |----------|------|
 | **Emit (`build`)** | `*.nuc.tsx` → IR → natywne pliki frameworka, które możesz commitować |
 | **Skan projektu** | Przechodzi drzewo, zbiera przenośne moduły, przygotowuje emisję |
-| **Konwersja produktu (`convert`)** | Istniejąca aplikacja → Next / Solid / Svelte / Astro **bez** przepisywania na `*.nuc.tsx` |
+| **Konwersja produktu (`convert`)** | Istniejąca aplikacja takim, jaka jest → inny host (**bez** przepisywania na `*.nuc.tsx` / `shared_modules` / tokeny) |
 | **Import** | Wciąga edycje z brudnego emitu z powrotem do `*.nuc.tsx` |
 | **Check** | Weryfikuje fingerprinty emisji (brudny emit = exit ≠ 0) |
 | **Scaffold** | Odtwarza tymczasowe demo `{framework}/demo` z template’ów |
@@ -114,7 +114,7 @@ nuc emit scaffold vue --cwd=/path/to/nucleify
 
 ## `convert`
 
-Generuje aplikację produktu w `{product}-{target}/` (albo w katalogu z `--out`) z profilu `web` / `admin` - **bez** przepisywania aplikacji na `*.nuc.tsx`.
+Generuje aplikację produktu w `{product}-{target}/` (albo w katalogu z `--out`) z profilu `web` / `admin`. **Tak - wrzucasz istniejącą aplikację frameworkową takim, jaka jest** - bez przepisywania na `*.nuc.tsx`, bez wcześniejszego podziału na `shared_modules`, bez tokenów Nucleify.
 
 ```bash
 nuc emit convert <product> --target=<framework> \
@@ -126,7 +126,7 @@ nuc emit convert <product> --target=<framework> \
 | `<product>` | tak | `web` \| `admin` \| `docs` | Profil produktu (`docs` - convert jeszcze niedostępny) |
 | `--target` | tak | `next` \| `solid` \| `svelte` \| `astro` | Docelowy framework |
 | `--force` | nie | `false` | Wytrzyj i utwórz output od nowa |
-| `--path` | nie | — | Zewnętrzny folder aplikacji Nuxt (musi zawierać `src/`) |
+| `--path` | nie | — | Zewnętrzny folder istniejącej aplikacji frameworkowej (musi zawierać `src/`) - Next, Nuxt, Vue, React albo inny wspierany stack takim, jaki jest |
 | `--git` | nie | — | URL gita do płytkiego clone jako źródło convert |
 | `--out` | nie | `{product}-{target}` | Nazwa katalogu wyjściowego pod `--cwd` |
 | `--cwd` | nie | `process.cwd()` | Root workspace |
@@ -148,7 +148,8 @@ nuc emit convert web --target=astro
 nuc emit convert web --target=vue
 nuc emit convert admin --target=svelte
 
-nuc emit convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
+# Istniejąca aplikacja takim, jaka jest (Next, Nuxt albo inny wspierany stack) - bez przepisywania pod Nucleify:
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
 nuc emit convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
 ```
 
@@ -279,9 +280,9 @@ Po imporcie źródłem prawdy znów jest `*.nuc.tsx`. Żeby **odrzucić** ręczn
 
 ### Konwersja produktu (migracja frameworka)
 
-1. Z roota monorepo: `nuc emit convert web --target=next` (lub `--path` / `--git` dla zewnętrznej aplikacji)
+1. Z roota monorepo: `nuc emit convert web --target=next` (lub `--path` / `--git` dla istniejącej aplikacji Next / Nuxt / Vue / React / … takim, jaki jest)
 2. Wejdź w wygenerowany katalog (`web-next/` itd.) i uruchom dev server hosta
-3. Iteruj w frameworku, który dziś shipujesz - później zmień framework bez przepisywania logiki domenowej
+3. Iteruj w frameworku, który dziś shipujesz - później zmień framework bez przepisywania aplikacji pod Nucleify najpierw
 
 Playground w przeglądarce (bez lokalnej instalacji): [Playground](/pl/docs/core-concepts/playground) · [play.nucleify.io](https://play.nucleify.io).
 
@@ -307,8 +308,37 @@ HUSKY=0 git commit -m "…"
 
 ---
 
+## FAQ — migracja istniejącej aplikacji
+
+### Czy `nuc` zmigruje dowolną istniejącą aplikację Next / Nuxt / Vue / React?
+
+**Tak.** Konwersja produktu na Twoim drzewie **takim, jakie jest**:
+
+```bash
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
+# albo: --git=<url> · --target=solid|svelte|astro
+```
+
+Bez przepisywania na `*.nuc.tsx`, bez wcześniejszego refaktoru do `shared_modules`, bez tokenów Nucleify. Uruchamiaj z roota monorepo Nucleify, żeby aliasy działały.
+
+### Czy przed `convert` potrzebuję `*.nuc.tsx`?
+
+**Nie.** `nuc emit build` / przenośne `*.nuc.tsx` to opcjonalne współdzielone UI. Convert tego nie wymaga.
+
+### Czy `make web --target=next` to to samo co migracja mojej aplikacji Next?
+
+**Nie samo w sobie.** Bez `--path` / `--git` konwertuje własne `web/` Nucleify do `web-next/`. Dla **Twojej** aplikacji podaj `--path` albo `--git` oraz `--out`.
+
+### Czy Playground zastępuje convert?
+
+**Nie.** [play.nucleify.io](https://play.nucleify.io) to opcjonalny sandbox UI przenośnego. Migracja całej aplikacji to `nuc emit convert`.
+
+---
+
 ## Powiązane
 
 - Strona produktu: [cli.nucleify.io](https://cli.nucleify.io)
 - Emit w przeglądarce: [play.nucleify.io](https://play.nucleify.io) · [Playground](/pl/docs/core-concepts/playground)
 - IR, autorstwo przenośne, reguły `*.nuc.tsx`, układ pakietu: [Kompilator](/pl/docs/core-concepts/compiler)
+- FAQ migracji: [FAQ migracji](/pl/docs/getting-started/migrate-faq) · [llms.txt](/llms.txt)
+- FAQ we wprowadzeniu: [Wprowadzenie](/pl/docs/getting-started/introduction#faq--migracja-istniej%C4%85cej-aplikacji)

@@ -16,3 +16,6 @@ Allow: /search$
 
 Sitemap: https://nucleify.io/sitemap.xml
 Sitemap: https://docs.nucleify.io/sitemap.xml
+Agentmap: https://nucleify.io/.well-known/ard.json
+# Prefer: https://nucleify.io/llms.txt
+

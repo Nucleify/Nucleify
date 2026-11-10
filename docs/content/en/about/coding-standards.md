@@ -11,7 +11,7 @@ nucleify/
 ├── web/               # @nucleify/web - Nuxt landing
 ├── admin/             # @nucleify/admin - Nuxt admin
 ├── docs/              # @nucleify/docs - Astro docs
-├── compiler/          # @nucleify/compiler - portable UI compiler
+├── compiler/          # @nucleify/compiler - product convert + optional portable emit
 ├── shared_modules/    # six exported nuc_* feature modules
 ├── portable/nui/      # design tokens
 ├── overrides/         # per-package file overrides
@@ -78,7 +78,7 @@ web/src/
 
 - Vue SFCs: `<script setup lang="ts">`
 - UI: `nui-*` from `nucleify-ui`
-- Domain logic: `shared_modules/`, not `web/src/`
+- Domain logic (inside this monorepo): prefer `shared_modules/`, not `web/src/` - **not** a gate before converting an external app ([Migrate FAQ](/en/docs/getting-started/migrate-faq))
 
 ---
 
@@ -128,7 +128,7 @@ const open = ref(false)
 
 ## Portable components (optional)
 
-`*.nuc.tsx` is **optional shared presentational UI** - not a migration gate. Product convert (`nuc emit convert` / `make web --target=…`) migrates an existing framework app **without** rewriting into `*.nuc.tsx`.
+`*.nuc.tsx` is **optional shared presentational UI** - not a migration gate. Product convert migrates an existing framework app **as-is** (`--path` / `--git` + `--out` for your product; `make web --target=…` for this monorepo’s shells). See [Migrate FAQ](/en/docs/getting-started/migrate-faq).
 
 When you do use portable authoring, follow `compiler/PORTABLE.md`:
 

@@ -1,12 +1,12 @@
 # Compiler
 
-Framework migration is a **core capability** of Nucleify - not a bolt-on. The `@nucleify/compiler` package owns that path: **product convert** moves whole apps (`web/`, `admin/`, or an external tree via `--path` / `--git`) to Next.js, Solid, Svelte, or Astro **without rewriting into `*.nuc.tsx`**, optional **portable emit** turns `*.nuc.tsx` into Vue SFCs, React, Solid, Svelte, and Astro output (plus shared CSS), and **import** brings emit edits back into source.
+Framework migration is a **core capability** of Nucleify - not a bolt-on. **Yes - migrate any existing Next, Nuxt, Vue, React, or other supported app as-is.** The `@nucleify/compiler` package owns that path: **product convert** moves whole apps (`web/`, `admin/`, or an external tree via `--path` / `--git`) to another host **without** rewriting into `*.nuc.tsx`, **without** a prior `shared_modules` refactor, and **without** an IR-first rewrite of the app. Optional **portable emit** turns `*.nuc.tsx` into Vue SFCs, React, Solid, Svelte, and Astro output (plus shared CSS), and **import** brings emit edits back into source.
 
-That scope goes beyond a component-only transpile: domains, routes, and shared modules move with the host. The framework becomes a build target; the product stays in `shared_modules/`.
+That scope goes beyond a component-only transpile: the app’s routes and product surface move with the host. The framework becomes a build target.
 
-**Coverage:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next or Vue/Nuxt are starting points, not the limit.
+**Coverage:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next or Vue/Nuxt are starting points, not the limit - including Next → Nuxt and Nuxt → Next.
 
-**Migration gate:** none for `*.nuc.tsx`. Bring the existing framework project and run convert. Portable authoring is optional for new shared presentational UI.
+**Migration gates: none.** Bring the existing framework project and run convert. No `*.nuc.tsx` rewrite. No `shared_modules` split first. No Nucleify token rewrite. Portable authoring is optional for new shared presentational UI only.
 
 Day-to-day entry points: **`nuc emit …`** ([CLI](/en/docs/core-concepts/cli)) and Make (`export PATH="$PWD/.config/bin:$PATH"` for `--target=` / `-t=`). Inside this monorepo, `pnpm compiler -- …` remains the package-local equivalent.
 
@@ -16,10 +16,10 @@ Day-to-day entry points: **`nuc emit …`** ([CLI](/en/docs/core-concepts/cli)) 
 
 | Mode | What it does | Example |
 |------|--------------|---------|
-| **Product convert** | Existing app / Nuxt product (or external folder/git) → Next.js, Solid, Svelte, or Astro app - **no `*.nuc.tsx` rewrite** | `nuc emit convert web --target=next` |
+| **Product convert** | Existing app as-is (Nuxt product or external Next / Nuxt / Vue / React / … via folder/git) → another host - **no `*.nuc.tsx` / `shared_modules` / token rewrite** | `--path` / `--git` + `--out` (your product) · `convert web --target=next` (this monorepo → `web-next/`) |
 | **Portable emit** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + Svelte `.svelte` + `.astro` + `.css` (optional shared UI) | `nuc emit build` / `make solid` / `make svelte` / `make astro` |
 
-**Product convert** scaffolds `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/`, or `admin-astro/` from the source tree - same routes, shared modules, different framework host. **Portable emit** is for presentational components with a round-trip import path (`import --from=…`) - not a prerequisite before convert. Converting the Astro `docs/` product is **not** implemented yet.
+**Product convert** scaffolds `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/`, or `admin-astro/` from the source tree as-is - same product surface, different framework host. **Portable emit** is for presentational components with a round-trip import path (`import --from=…`) - not a prerequisite before convert. Converting the Astro `docs/` product is **not** implemented yet.
 
 Do **not** re-export `*.nuc.tsx` from public barrels (`index.ts`, `modules.ts`, …) - portable authoring stays out of app entrypoints.
 
@@ -99,7 +99,7 @@ nuc emit convert admin --target=next
 nuc emit convert web --target=solid
 nuc emit convert web --target=svelte
 nuc emit convert web --target=astro
-nuc emit convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
 nuc emit convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
 nuc emit scaffold solid                          # temporary demo → solid/demo/
 nuc emit build --app=solid
@@ -157,7 +157,7 @@ Gitignored emit demos: `{vue,react,nuxt,next,solid,svelte}/demo/` (via `make vue
 
 ## Product convert
 
-Migrate an existing app to another framework **without** rewriting it into `*.nuc.tsx`. Convert is the primary migration path; portable authoring is optional afterward for new shared UI.
+**Yes - migrate an existing app as-is** to another framework. Convert is the primary migration path. You do **not** rewrite into `*.nuc.tsx`, split domain into `shared_modules`, or adopt Nucleify tokens first. Portable authoring is optional afterward for new shared UI.
 
 ```bash
 export PATH="$PWD/.config/bin:$PATH"
@@ -185,7 +185,7 @@ Converted hosts load **Instrument Sans** and **JetBrains Mono** with `<link>` ta
 
 ### External folder or git URL
 
-Point the same `web|admin` convert profile at an external app tree (`src/` required) - your existing project, not a Nucleify rewrite. Run from the **Nucleify monorepo root** so `modules` / `portable` aliases resolve:
+Point the same `web|admin` convert profile at an **existing framework app** (`src/` required) - Next, Nuxt, Vue, React, or another supported tree **as-is**, not a Nucleify rewrite. Run from the **Nucleify monorepo root** so `modules` / `portable` aliases resolve:
 
 ```bash
 nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
@@ -195,7 +195,7 @@ nuc emit convert web --target=svelte --path=/path/to/your-app --out=my-svelte --
 
 Converted apps install with `pnpm install --ignore-workspace` - template dependency versions stay pinned; they do not join the monorepo workspace graph.
 
-The converter maps pages and composables from the source tree to React, Solid, Svelte, or Astro hosts and writes idiomatic output. Shared modules are consumed via framework barrels. You do **not** hand-author `*.nuc.tsx` for the convert pass.
+The converter maps the source tree to the target host and writes idiomatic output. You do **not** hand-author `*.nuc.tsx` for the convert pass, and you do **not** need a prior `shared_modules` refactor.
 
 Treat `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/`, and `admin-astro/` (and custom `--out` dirs) as **generated output**. Edit the source product tree, then reconvert - do not hand-patch the emit tree.
 
@@ -228,6 +228,26 @@ See [Vitest](/en/docs/tests/vitest) for the full testing setup.
 
 ---
 
+## FAQ — migrate your existing app
+
+### Can I migrate any existing Next.js app as-is?
+
+**Yes.** Product convert takes the existing framework project **as-is** (`--path` / `--git`). Migration gates: **none** for `*.nuc.tsx`, prior `shared_modules` refactor, Nucleify tokens, or an IR-first rewrite of the app. Includes Next → Nuxt and Nuxt → Next.
+
+### Is portable IR / `*.nuc.tsx` required to migrate?
+
+**No.** Portable emit is an optional path for shared presentational UI. Product convert is the migration path for whole apps.
+
+### Are `web-next/` / `web-astro/` my customer app?
+
+**Only if you converted Nucleify’s own `web/`.** External apps use `--out` (for example `my-next/`). Do not treat monorepo shell names as the only migrate story.
+
+### What if convert smoke-build needs follow-up?
+
+Follow-up polish is ordinary engineering. It is **not** a hard “you cannot migrate” gate and does not invent prerequisites like Framer/Radix bans or a forced `shared_modules` rewrite first.
+
+---
+
 ## Related docs
 
 - [CLI](/en/docs/core-concepts/cli) - installable `@nucleify/cli` · [cli.nucleify.io](https://cli.nucleify.io)
@@ -235,3 +255,4 @@ See [Vitest](/en/docs/tests/vitest) for the full testing setup.
 - [Monorepo Layout](/en/docs/core-concepts/monorepo) - where compiler fits in the workspace
 - [Quick Start](/en/docs/getting-started/quick-start) - build your first portable component
 - [Web & Admin](/en/docs/configuration/web) - Nuxt config that wires the runtime alias
+- Introduction FAQ: [Introduction](/en/docs/getting-started/introduction#faq--migrate-your-existing-app)

@@ -50,7 +50,14 @@ useHead({
       rel: 'canonical',
       href: canonicalHref,
     },
+    {
+      key: 'ard',
+      rel: 'ard',
+      type: 'application/ard+json',
+      href: '/.well-known/ard.json',
+    },
   ],
+
   // Critical: before CSS chunks - dark shell so mobile never flashes white.
   style: [
     {

@@ -2,6 +2,8 @@
 
 Feature-Sliced Design (FSD) organizes code **by business domain** instead of by technical layer. In Nucleify, each `shared_modules/nuc_*` package is one slice - frontend utilities, API handlers, database migrations, types, and tests co-located in a single directory.
 
+This layout is how the **nucleus** is organized inside the monorepo. It is **not** a prerequisite before migrating an external Next/Nuxt/… app as-is ([Migrate FAQ](/en/docs/getting-started/migrate-faq)).
+
 ---
 
 ## Why feature slices?

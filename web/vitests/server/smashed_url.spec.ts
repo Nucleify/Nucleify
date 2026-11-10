@@ -44,6 +44,12 @@ describe('smashed_url', () => {
     expect(redirectTargetForPath('/api/test')).toBeNull()
   })
 
+  it('leaves agent discovery assets alone', () => {
+    expect(redirectTargetForPath('/.well-known/ard.json')).toBeNull()
+    expect(redirectTargetForPath('/.well-known/anything')).toBeNull()
+    expect(redirectTargetForPath('/llms.txt')).toBeNull()
+  })
+
   it('leaves Nuxt payloadExtraction paths alone', () => {
     expect(redirectTargetForPath('/en/home/_payload.js')).toBeNull()
     expect(redirectTargetForPath('/en/home/_payload.json')).toBeNull()

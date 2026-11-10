@@ -28,7 +28,7 @@ export const HOME_SECTION_DEFAULTS = {
     headlineLead: 'Keep the product.',
     headlineTrail: 'Migrate the framework.',
     support:
-      'Bring an existing app and convert the framework - Nuxt to Next, Vue to React, and more - without rewriting into *.nuc.tsx. Domain and Supabase stay in shared_modules.',
+      'Yes - bring any existing Next, Nuxt, Vue, React, or other supported app as-is and convert the framework (Next → Nuxt, Nuxt → Next, Vue → React, and reverse). No *.nuc.tsx rewrite. No shared_modules refactor first. No Nucleify token rewrite.',
     ctaPrimary: 'Integrate our CLI',
     ctaSecondary: 'Open Playground',
     playgroundHref: 'https://play.nucleify.io',
@@ -201,9 +201,9 @@ export const HOME_SECTION_DEFAULTS = {
     showSection: true,
     showShareChart: true,
     pillarsEyebrow: 'What you actually ship',
-    pillarsTitle: 'Bring any framework. Convert to any other.',
+    pillarsTitle: 'Bring any framework.\nConvert to any other.',
     pillarsSupport:
-      'Migrate any framework to any other without adapting the project for migration. *.nuc.tsx is only an optional connector for shared UI, not a rewrite gate. Domain stays in shared_modules; every framework hits the same Supabase gateway.',
+      'Yes: migrate any framework to any other without adapting the project first. Convert reads your source as-is. No *.nuc.tsx rewrite, no shared_modules split, no IR-first rewrite of the app. *.nuc.tsx is optional shared UI only - never a migrate gate.',
     pillarsCta: 'Pick a framework',
     pillarsShareUnit: 'emit targets',
     pillarsShareSource: '',
@@ -213,7 +213,7 @@ export const HOME_SECTION_DEFAULTS = {
         index: '01',
         title: 'Any framework → any other',
         description:
-          'Bring Nuxt, Next, Vue, React, or another supported framework as-is and convert to the target. *.nuc.tsx is only an optional connector for shared presentational UI - never a prerequisite to migrate.',
+          'Yes. Bring Nuxt, Next, Vue, React, or another supported framework as-is - including a traditional Next or Nuxt app - and convert to the target. No *.nuc.tsx rewrite, no shared_modules split, no token rewrite. *.nuc.tsx is optional shared UI only.',
         outcome: 'any stack → convert → emit',
         proof: 'nuc emit convert',
       },
@@ -289,32 +289,23 @@ export const HOME_SECTION_DEFAULTS = {
     ],
   },
   'section.clone': {
-    railLabel: 'Clone',
+    railLabel: 'CLI',
     anchorId: 'clone',
     showSection: true,
-    cloneEyebrow: 'Get running',
-    cloneTitleLead: 'Clone once.',
-    cloneTitleTrail: 'Migrate anywhere.',
+    cloneEyebrow: 'Migrate your app',
+    cloneTitleLead: 'Install the CLI.',
+    cloneTitleTrail: 'Run framework migration.',
     cloneSupport:
-      'Four commands from the repo root. Spin up web and admin, then convert either product to any framework when you need another stack.',
-    cloneCta: 'Read the docs',
+      'Point nuc emit at your finished React, Vue, Next, or Nuxt app. Interactive shell picks source, target, path, and output. No rewrite into Nucleify syntax.',
+    cloneCta: 'Open CLI site',
     cloneCtaNext: 'Star on GitHub',
-    heroInstallLabel: 'Get running',
+    heroInstallLabel: 'Migrate with CLI',
     installSteps: [
-      {
-        value: 'git clone https://github.com/Nucleify/Nucleify.git',
-      },
-      {
-        value: 'make setup',
-      },
-      {
-        value: 'make web',
-      },
-      {
-        value: 'make admin',
-      },
+      { value: 'npm install -g @nucleify/cli' },
+      { value: 'nuc emit' },
     ],
   },
+
   'section.stack': {
     railLabel: 'Stack',
     anchorId: 'stack',
@@ -323,7 +314,7 @@ export const HOME_SECTION_DEFAULTS = {
     stackEyebrow: 'Web + admin · migrate both',
     stackTitle: 'Migrate every surface.\nTo any framework.',
     stackSupport:
-      'Nucleify ships a dedicated web app and a dedicated admin - migrate either one to Vue, React, Nuxt, Next, Astro, Svelte, or Solid. Convert each product on its own; no *.nuc.tsx rewrite required.',
+      'Nucleify ships a dedicated web app and a dedicated admin - migrate either one to Vue, React, Nuxt, Next, Astro, Svelte, or Solid. Convert each product as-is; no *.nuc.tsx rewrite, no shared_modules refactor, no token rewrite required.',
     stackCta: 'Pick a framework',
     stackStageLabel: 'target framework',
     stackWebLabel: 'Web',
@@ -401,7 +392,7 @@ export const HOME_SECTION_DEFAULTS = {
     compilerTitleLead: 'Bring the app.',
     compilerTitleTrail: 'Skip the rewrite.',
     compilerSupport:
-      'Migrate any framework to any other without adapting the project. Convert reads your source as-is - *.nuc.tsx is only an optional connector for shared UI. Domain and Supabase stay in shared_modules.',
+      'Yes - convert reads your existing Next, Nuxt, Vue, React, or other supported app as-is. No *.nuc.tsx rewrite, no shared_modules prerequisite, no IR-first rewrite of the app. Portable *.nuc.tsx is optional shared UI only.',
     compilerCta: 'Read compiler docs',
     compilerHub: '.vue',
     compilerHubLabel: 'source',
@@ -505,9 +496,9 @@ export const HOME_SECTION_DEFAULTS = {
     pulseTitleLead: 'Seven frameworks.',
     pulseTitleTrail: 'One product core.',
     pulseSupport:
-      'Add another framework without rewriting shared modules - and without rewriting the app into *.nuc.tsx. Domain types and Supabase handlers stay put; only the host changes.',
+      'Yes - add another framework from your existing app as-is. No *.nuc.tsx rewrite and no shared_modules refactor required before convert. Only the host changes.',
     pulseCompare:
-      'Nucleify keeps your TypeScript core intact and converts the framework. Emitted source is yours to commit.',
+      'Convert takes your framework source as-is and emits another host. Emitted source is yours to commit.',
     pulseCta: 'Get in touch',
     pulseShellsAxis: 'frameworks online',
     pulseTraditionalLabel: 'traditional',
@@ -544,9 +535,9 @@ export const HOME_SECTION_DEFAULTS = {
     railLabel: 'Contact',
     anchorId: 'start',
     showSection: true,
-    closeTitle: 'Migrate without rewriting into *.nuc.tsx.',
+    closeTitle: 'Same app. Different framework.',
     closeSupport:
-      'Moving Vue → React, Nuxt → Next, or evaluating Svelte/Astro? Bring the existing project - convert does not require a Nucleify rewrite first. Tell us where you are and where you want to land.',
+      'Next → Nuxt, Nuxt → Next, Vue → React, or the reverse - bring the finished project as-is. No Nucleify rewrite first. Tell us where you are and where you want to land.',
     closeCta: 'Talk through a migration',
     closeModalTitle: 'Tell us about the move',
     closeModalSupport:
@@ -634,7 +625,7 @@ export const INVESTOR_SECTION_DEFAULTS = {
     thesisEyebrow: 'The problem',
     thesisTitle: 'Rewrite spend is a second product.',
     thesisSupport:
-      'Frameworks rotate. The business should not. An IR-first compiler plus shared modules turn a stack change into a build target - domain, typed client, and Supabase stay once.',
+      'Frameworks rotate. The business should not. Product convert takes existing apps as-is; the nucleus keeps domain, typed client, and Supabase once - a stack change becomes a build target, not a rewrite gate.',
     thesisCta: 'See what you keep',
     items: [
       {
@@ -643,7 +634,7 @@ export const INVESTOR_SECTION_DEFAULTS = {
         title: 'Rewrite is a second product',
         body: 'Vue to React, SPA to Next, docs to Astro - each wave often rebuilds UI and glue while the domain stays the same. Capital pays twice for one business.',
         outcome: 'Rewrite tax',
-        proof: 'shared_modules + emit',
+        proof: 'convert as-is + nucleus',
       },
       {
         index: '02',
@@ -907,16 +898,15 @@ export const INVESTOR_SECTION_DEFAULTS = {
 } as const
 
 export const HOME_PAGE_SEO = {
-  title:
-    'Nucleify - Migrate Between Frontend Frameworks Without Rewriting Business Logic',
+  title: 'Nucleify - Yes, Migrate Any Existing App Between Frameworks As-Is',
   description:
-    'Convert an existing app to another framework without rewriting into *.nuc.tsx. Shared TypeScript modules and Supabase stay put. Emit idiomatic Next.js, Nuxt, Astro, Svelte, or Solid.',
+    'Yes - migrate a finished Next, Nuxt, Vue, or React app as-is. npm i -g @nucleify/cli && nuc emit. No Nucleify syntax rewrite. No *.nuc.tsx gate. No shared_modules refactor first. Any framework → any other.',
 } as const
 
 export const INVESTOR_PAGE_SEO = {
   title: 'Nucleify for investors - stop funding the rewrite',
   description:
-    'Investor brief for Nucleify: IR-first nucleus, seven frameworks, shared Supabase data plane, open install and paid attach after production usage.',
+    'Investor brief for Nucleify: migrate existing apps as-is, seven frameworks, shared Supabase data plane, open install and paid attach after production usage.',
 } as const
 
 export const COMPANY_PAGE_SEO = {

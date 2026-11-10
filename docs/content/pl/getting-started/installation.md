@@ -83,7 +83,7 @@ make admin                # panel admin (Nuxt)
 make docs                 # strona dokumentacji (Astro)
 make compiler             # tylko check + build kompilatora
 make web --target=next    # konwersja produktu → web-next/ (wymaga shima PATH)
-nuc emit convert web --target=next   # ta sama konwersja przez opublikowane CLI
+nuc emit convert web --target=next   # web/ tego monorepo → web-next/ (dodaj --path/--out dla Twojej aplikacji)
 ```
 
 ---

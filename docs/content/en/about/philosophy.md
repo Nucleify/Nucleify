@@ -2,7 +2,7 @@
 
 > Build once. Move to any framework - without rewriting the product.
 
-**Migration is the product.** Shared modules are the nucleus. An IR-first compiler is how you change frameworks. Seven modern web runtimes.
+**Migration is the product.** **Yes - bring any existing Next, Nuxt, Vue, React, or other supported app as-is.** Product convert changes the framework host; optional portable IR is only for shared presentational UI. Shared modules are the nucleus when you join this monorepo - not a migrate gate. Seven modern web runtimes.
 
 ---
 
@@ -16,14 +16,15 @@ Nucleify treats **migration between technologies** as the durable layer of the m
 
 ## The vision
 
-One nucleus. Three product surfaces. Seven frameworks. One migration pipeline.
+One migration pipeline. Seven frameworks. Three surfaces. One nucleus (optional after join).
 
-1. **Shared modules** - API, SQL, UI, and domain logic in `shared_modules/`
-2. **Three surfaces** - `web/`, `admin/`, and `docs/` from the same nucleus
-3. **Migrate as a command** - product convert for whole existing apps (no `*.nuc.tsx` rewrite), optional portable emit for shared UI, import back from dirty emit
+1. **Migrate as a command** - product convert for whole existing apps **as-is** (no `*.nuc.tsx` rewrite, no `shared_modules` refactor first) - [Migrate FAQ](/en/docs/getting-started/migrate-faq)
+2. **Three surfaces** - `web/`, `admin/`, and `docs/` in this monorepo
+3. **Shared modules** - API, SQL, UI, and domain logic in `shared_modules/` when you join the nucleus - **not** a convert gate
 4. **One Supabase backend** - gateway-mediated, module-owned SQL
+5. **Optional portable emit** - `*.nuc.tsx` for shared presentational UI; import back from dirty emit
 
-Day-to-day editing stays on Nuxt (`web/`). Switching frameworks is a compiler pass on your existing source - not a rewrite into Nucleify authoring format.
+Day-to-day editing stays on Nuxt (`web/`) in this monorepo. Switching frameworks is a convert pass on your existing source - not a rewrite into Nucleify authoring format.
 
 ---
 
@@ -42,7 +43,7 @@ Like a cell nucleus, Nucleify coordinates the product. Each exported `nuc_*` mod
 
 ### 1. Any stack → any other
 
-This is the core loop. **Product convert** moves an existing app - including an external folder or git URL via `--path` / `--git` - to another framework **without** rewriting into `*.nuc.tsx` (see [Compiler](/en/docs/core-concepts/compiler)). Optional portable `*.nuc.tsx` components emit through a custom IR when you want shared presentational UI. Emit edits import back to source. The business does not fork per host.
+This is the core loop. **Yes - product convert** moves an existing app as-is - including an external Next / Nuxt / Vue / React / … folder or git URL via `--path` / `--git` - to another framework. **No** rewrite into `*.nuc.tsx`, **no** prior `shared_modules` split, **no** token rewrite (see [Compiler](/en/docs/core-concepts/compiler)). Optional portable `*.nuc.tsx` components emit through a custom IR when you want shared presentational UI - that path is not a migrate gate. Emit edits import back to source. The business does not fork per host.
 
 ```bash
 export PATH="$PWD/.config/bin:$PATH"   # enables --target= / -t=
@@ -56,18 +57,20 @@ make admin --target=svelte
 # classic (no shim): make web TARGET=next
 ```
 
-Published CLI form (same convert):
+Published CLI form:
 
 ```bash
+# This monorepo’s Nuxt web/ → web-next/ (not your external app)
 nuc emit convert web --target=next
-nuc emit convert admin --target=next
+# Your product as-is:
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
 ```
 
 Framework choice becomes a **build target**, not an architectural fork.
 
 ### 2. Modules over monoliths
 
-Domain logic lives in `shared_modules/nuc_*`, not duplicated across apps. See [Feature-Sliced Design](/en/docs/core-concepts/feature-sliced-design).
+Inside this monorepo, domain logic lives in `shared_modules/nuc_*`, not duplicated across apps - a nucleus benefit **after** join, not a convert gate ([Migrate FAQ](/en/docs/getting-started/migrate-faq)). See [Feature-Sliced Design](/en/docs/core-concepts/feature-sliced-design).
 
 ### 3. Gateway, not spaghetti
 
