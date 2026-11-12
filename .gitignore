@@ -16,6 +16,7 @@
 **/dist
 **/build
 **/.wrangler
+**/.vercel
 **/.stylelintcache
 
 # Public build artefacts

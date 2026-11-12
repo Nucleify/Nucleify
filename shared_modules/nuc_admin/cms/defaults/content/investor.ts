@@ -22,7 +22,7 @@ export const NUC_INVESTOR_SECTIONS = [
 export const NUC_INVESTOR_SEO = {
   title: 'Nucleify for investors - stop funding the rewrite',
   description:
-    'Investor brief for Nucleify: IR-first nucleus, seven frameworks, shared Supabase data plane, open install and paid attach after production usage.',
+    'Investor brief for Nucleify: migrate existing apps as-is, seven frameworks, shared Supabase data plane, open install and paid attach after production usage.',
   ogImage: '/img/og-image.png',
 } as const
 
@@ -40,7 +40,7 @@ export const NUC_INVESTOR_COPY = {
   thesisEyebrow: 'The problem',
   thesisTitle: 'Rewrite spend is a second product.',
   thesisSupport:
-    'Frameworks rotate. The business should not. An IR-first compiler plus shared modules turn a stack change into a build target - domain, typed client, and Supabase stay once.',
+    'Frameworks rotate. The business should not. Product convert takes existing apps as-is; the nucleus keeps domain, typed client, and Supabase once - a stack change becomes a build target, not a rewrite gate.',
   savingsEyebrow: 'What you keep',
   savingsTitle: 'One nucleus.\nSeven frameworks.',
   savingsSupport:
@@ -99,7 +99,7 @@ export const NUC_INVESTOR_THESIS = [
     title: 'Rewrite is a second product',
     body: 'Vue to React, SPA to Next, docs to Astro - each wave often rebuilds UI and glue while the domain stays the same. Capital pays twice for one business.',
     outcome: 'Rewrite tax',
-    proof: 'shared_modules + emit',
+    proof: 'convert as-is + nucleus',
   },
   {
     index: '02',

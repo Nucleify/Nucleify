@@ -6,7 +6,8 @@ export const googleFontsConfig = {
 		// No 650 on Google Fonts; 600/700 cover brand + UI mono.
 		"JetBrains Mono": [600, 700],
 	},
-	display: "optional" as const,
+	// swap + await JetBrains before iris reveal (optional left brand on fallback).
+	display: "swap" as const,
 	subsets: ["latin"],
 	preload: true,
 	prefetch: false,

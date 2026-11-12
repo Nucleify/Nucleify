@@ -1,6 +1,6 @@
 # Playground
 
-Playground Nucleify to **przeglądarkowy sandbox opcjonalnych komponentów przenośnych** - nie ścieżka migracji produktu. Migracja istniejącej aplikacji **nie** wymaga `*.nuc.tsx`; użyj [konwersji produktu](/pl/docs/core-concepts/cli#convert) (`nuc emit convert`) na źródle frameworka takim, jakie jest.
+Playground Nucleify to **przeglądarkowy sandbox opcjonalnych komponentów przenośnych** - nie ścieżka migracji produktu. **Tak - migrujesz dowolną istniejącą aplikację Next, Nuxt, Vue, React albo inny wspierany stack takim, jaki jest** przez [konwersję produktu](/pl/docs/core-concepts/cli#convert) (`nuc emit convert`). Bez przepisywania na `*.nuc.tsx`. Bez wcześniejszego refaktoru do `shared_modules`.
 
 Tu edytujesz źródło przenośne po lewej i na żywo oglądasz emit do nowoczesnych frameworków po prawej - bez lokalnej instalacji.
 
@@ -12,12 +12,12 @@ Tu edytujesz źródło przenośne po lewej i na żywo oglądasz emit do nowoczes
 
 Playground odpowiada na pytanie: *czy opcjonalny emit przenośny wygląda jak coś, co bym shipował?*
 
-**Nie** zastępuje convert. Istniejącą aplikację Nuxt/Vue/React konwertujesz bez przepisywania na format autorstwa Nucleify.
+**Nie** zastępuje convert. Istniejącą aplikację Next / Nuxt / Vue / React konwertujesz takim, jaki jest - bez przepisywania na format autorstwa Nucleify i bez wcześniejszego podziału na `shared_modules`.
 
 - Otwórz [play.nucleify.io](https://play.nucleify.io)
 - Edytuj przenośny TypeScript tylko gdy chcesz współdzielone UI prezentacyjne (`props`, `state`, `derived`, `handler`, style)
 - Zobacz idiomatyczny wynik dla React, Vue, Svelte, Astro, Solid (oraz powiązanych hostów Nuxt / Next, gdy są pokazane)
-- Dla migracji prawdziwej aplikacji: [CLI convert](/pl/docs/core-concepts/cli) · [Kompilator](/pl/docs/core-concepts/compiler)
+- Dla migracji prawdziwej aplikacji: [FAQ migracji](/pl/docs/getting-started/migrate-faq) · [CLI convert](/pl/docs/core-concepts/cli) · [Kompilator](/pl/docs/core-concepts/compiler)
 
 Żądania kompilacji z playgroundu trafiają na tę samą chmurową powierzchnię co CLI (`compileApiUrl` → `https://cli.nucleify.io`).
 
@@ -65,7 +65,7 @@ Użyj playgroundu, żeby zweryfikować reguły opcjonalnego autorstwa przenośne
 
 ## Kolejne kroki
 
-1. Migruj istniejącą aplikację: `nuc emit convert web --target=next` · [CLI](/pl/docs/core-concepts/cli)
+1. Migruj istniejącą aplikację takim, jaki jest: `nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force` · [FAQ migracji](/pl/docs/getting-started/migrate-faq)
 2. Opcjonalnie eksperymentuj z przenośnym UI na [play.nucleify.io](https://play.nucleify.io)
 3. Zainstaluj CLI z [cli.nucleify.io](https://cli.nucleify.io)
 4. Przeczytaj [Kompilator](/pl/docs/core-concepts/compiler) pod kątem convert vs emit przenośny

@@ -11,9 +11,29 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://docs.nucleify.io/en/docs/getting-started/migrate-faq</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://docs.nucleify.io/llms.txt</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
         <loc>https://docs.nucleify.io/en/docs/getting-started/installation</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://docs.nucleify.io/en/docs/core-concepts/cli</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://docs.nucleify.io/en/docs/core-concepts/playground</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://docs.nucleify.io/en/docs/getting-started/quick-start</loc>
@@ -91,9 +111,24 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://docs.nucleify.io/pl/docs/getting-started/migrate-faq</loc>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
         <loc>https://docs.nucleify.io/pl/docs/getting-started/installation</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://docs.nucleify.io/pl/docs/core-concepts/cli</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://docs.nucleify.io/pl/docs/core-concepts/playground</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
     <url>
         <loc>https://docs.nucleify.io/pl/docs/getting-started/quick-start</loc>

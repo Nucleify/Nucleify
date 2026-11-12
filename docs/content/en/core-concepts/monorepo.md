@@ -2,6 +2,8 @@
 
 Nucleify is a pnpm workspace built for **migration across frameworks** as a first-class product capability. Every package has a clear boundary, shared tooling lives in `.config/`, and product apps (`web/`, `admin/`, `docs/`) consume feature logic from `shared_modules/` - never the other way around. The compiler owns emit, import, and product convert; generated hosts (Next, Solid, Svelte, Astro, …) are output, not a second source of truth.
 
+**Your product vs this monorepo:** external apps migrate **as-is** via `--path` / `--git` + `--out` ([Migrate FAQ](/en/docs/getting-started/migrate-faq)). `make web --target=…` → `web-next/` / `web-astro/` converts **this** repo’s Nuxt trees - not a substitute for your `--path`.
+
 ---
 
 ## Top-level map
@@ -11,7 +13,7 @@ nucleify/
 ├── web/                    # @nucleify/web - Nuxt 4 landing (canonical)
 ├── admin/                  # @nucleify/admin - Nuxt 4 admin panel
 ├── docs/                   # @nucleify/docs - Astro 5 documentation
-├── compiler/               # @nucleify/compiler - IR portable UI compiler
+├── compiler/               # @nucleify/compiler - product convert + optional portable emit
 ├── shared_modules/         # @nucleify/shared-modules - six exported nuc_* modules
 ├── portable/nui/           # design tokens, Lit nui-* registration
 ├── overrides/              # overrides/{web,admin,docs,shared_modules}/
@@ -88,7 +90,7 @@ Categories are defined in `docs/src/lib/constants/docs.ts`. Production host: [do
 
 ## `compiler/` - `@nucleify/compiler`
 
-IR-first portable UI compiler. Self-contained - does not import from `web/`, `admin/`, or `docs/`.
+Compiler package: **product convert** for whole apps as-is, plus optional **portable** IR UI (`*.nuc.tsx`). Self-contained - does not import from `web/`, `admin/`, or `docs/`. IR-first authoring is the portable path only - not a migrate gate.
 
 ```txt
 compiler/

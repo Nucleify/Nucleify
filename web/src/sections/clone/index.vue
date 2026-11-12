@@ -20,7 +20,7 @@
           variant="primary"
           icon="mdi:book-open-page-variant-outline"
           icon-pos="right"
-          @click="goDocs"
+          @click="goCli"
         />
         <a
           class="nuc-next"
@@ -34,41 +34,98 @@
       </div>
     </div>
 
-    <ol class="nuc-clone-term" :aria-label="copy.heroInstallLabel">
-      <li v-for="(step, index) in install" :key="step">
-        <span>{{ String(index + 1).padStart(2, '0') }}</span>
-        <code><em>$</em>{{ step }}</code>
-      </li>
-    </ol>
+    <div class="nuc-clone-term-wrap">
+      <div
+        class="nuc-clone-pm"
+        role="tablist"
+        :aria-label="copy.heroInstallLabel"
+      >
+        <button
+          v-for="(pm, index) in packageManagers"
+          :key="pm.id"
+          type="button"
+          role="tab"
+          class="nuc-clone-pm-btn"
+          :class="{ 'is-active': index === activePm }"
+          :aria-selected="index === activePm"
+          @click="selectPm(index)"
+        >
+          {{ pm.label }}
+        </button>
+      </div>
+      <ol
+        :key="termKey"
+        class="nuc-clone-term"
+        :class="{ 'is-enter': termEnter }"
+        :aria-label="active.label"
+      >
+        <li
+          v-for="(step, index) in active.steps"
+          :key="`${active.id}-${step}`"
+          :style="{ '--line-i': index }"
+        >
+          <span>{{ String(index + 1).padStart(2, '0') }}</span>
+          <code><em>$</em>{{ step }}</code>
+        </li>
+      </ol>
+    </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import { useRoute } from 'nuxt/app'
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 
-import {
-  cmsHomeInstallSteps,
-  homeDocsHref,
-  useCmsAttrs,
-  useHomeCmsCopy,
-  useShellSectionReveal,
-} from '@web'
+import { useHomeCmsCopy, useShellSectionReveal } from '@web'
 import { cloneReveal } from './motion'
 
 defineOptions({ inheritAttrs: false })
 
+const packageManagers = [
+  {
+    id: 'npm',
+    label: 'npm',
+    steps: ['npm install -g @nucleify/cli', 'nuc emit'],
+  },
+  {
+    id: 'pnpm',
+    label: 'pnpm',
+    steps: ['pnpm add -g @nucleify/cli', 'nuc emit'],
+  },
+  {
+    id: 'yarn',
+    label: 'yarn',
+    steps: ['yarn global add @nucleify/cli', 'nuc emit'],
+  },
+  {
+    id: 'npx',
+    label: 'npx',
+    steps: ['npx @nucleify/cli@latest emit'],
+  },
+] as const
+
 const rootEl = ref<HTMLElement | null>(null)
 useShellSectionReveal(rootEl, cloneReveal)
 
-const cms = useCmsAttrs()
 const copy = useHomeCmsCopy()
-const install = computed(() => cmsHomeInstallSteps(cms))
-const route = useRoute()
-const lang = computed(() => (route.params.lang as string) || 'en')
+const activePm = ref(0)
+const termKey = ref(0)
+const termEnter = ref(false)
+const active = computed(
+  () => packageManagers[activePm.value] ?? packageManagers[0]!
+)
 
-function goDocs(): void {
-  window.location.assign(homeDocsHref(lang.value, 'install'))
+function selectPm(index: number): void {
+  if (index === activePm.value) return
+  activePm.value = index
+  termKey.value += 1
+  termEnter.value = false
+  void nextTick(() => {
+    termEnter.value = true
+  })
+}
+
+function goCli(): void {
+  window.location.assign(copy.value.cliHref || 'https://cli.nucleify.io')
 }
 </script>
 

@@ -1,28 +1,49 @@
 # Agent docs
 
-Notes written by workflow skills after **DO** (what changed, why, how to verify).
+Session notes after **DO**. Plans: `.ai/specs/`. Public docs site: `docs/`.
 
-- Put session / change write-ups here (`.ai/docs/*.md`).
-- Feature plans live in `.ai/specs/plan.md`.
-- The public documentation site is `docs/` (`@nucleify/docs`) - not this folder.
-
-## Index
+## your-product (external migrate)
 
 | Note | Topic |
 |------|--------|
-| `admin-introduction.md` | Admin backoffice foundation (auth, roles, users, CMS) |
-| `admin-cms-v2-visual.md` | Admin CMS v2 slice 1 — sharp shell, rail groups, document header |
-| `admin-cms-v2-fields.md` | Admin CMS v2 slice 2 — FieldShell + nui-only form controls |
-| `admin-cms-v2-schema.md` | Admin CMS v2 slice 3 — JSON docs, FieldConfig, collections API |
-| `admin-cms-v2-pages-editor.md` | Admin CMS v2 slice 4 — SchemaFormRenderer + Pages document edit |
-| `admin-cms-v2-layout-editor.md` | Admin CMS v2 slice 5 — drag layout editor + widget picker |
-| `admin-cms-v2-globals.md` | Admin CMS v2 slice 6 — settings/header/footer globals |
-| `admin-cms-v2-media-redirects.md` | Admin CMS v2 slice 7 — media library + redirects |
-| `admin-cms-v2-web-bridge.md` | Admin CMS v2 slice 8 — public pages API + shell layout |
-| `admin-cms-v2-cutover.md` | Admin CMS v2 slice 9 — Collections IA + legacy redirects |
-| `admin-cms-v2-web-cutover.md` | Marketing home/investor driven by published CMS layouts |
-| `supabase-merge-sql-cleanup.md` | Slim seeders/factories + merge-sql rebuild notes |
-| `investor-page.md` | Investor pitch + Next convert parity |
-| `compiler-status.md` | Compiler emit/convert status / shell paths |
-| `docs-origin.md` | Public docs host `docs.nucleify.io` + app redirects |
-| `nui-workflow-skills.md` | Pipeline skill paths |
+| [your-product-faq.md](./your-product-faq.md) | **FAQ** — can I migrate Next as-is? (public: [migrate-faq](https://docs.nucleify.io/en/docs/getting-started/migrate-faq) · [llms.txt](https://docs.nucleify.io/llms.txt)) |
+| [your-product-migrate.md](./your-product-migrate.md) | Lead answer — yes / as-is |
+| [your-product-convert.md](./your-product-convert.md) | `--path` / `--git` / `--out` |
+| [your-product-cli.md](./your-product-cli.md) | `@nucleify/cli` + monorepo root |
+| [your-product-targets.md](./your-product-targets.md) | `--target` destinations |
+| [your-product-shells.md](./your-product-shells.md) | Customer `--out` hosts |
+| [your-product-after-convert.md](./your-product-after-convert.md) | Own emit, install, reconvert |
+| [your-product-gates.md](./your-product-gates.md) | Explicit non-gates |
+| [your-product-anti-patterns.md](./your-product-anti-patterns.md) | Bad AI answers to rewrite |
+
+## nucleify (monorepo)
+
+| Note | Topic |
+|------|--------|
+| [nucleify-migrate.md](./nucleify-migrate.md) | `web/` / `admin/` → `web-*` / `admin-*` |
+| [nucleify-convert.md](./nucleify-convert.md) | Nucleify convert commands / CI |
+| [migrate-messaging.md](./migrate-messaging.md) | Lane split + scraped answer rules |
+
+## nucleify shells & ops
+
+| Note | Topic |
+|------|--------|
+| [nucleify-astro-shell.md](./nucleify-astro-shell.md) | `web-astro` / `admin-astro` |
+| [nucleify-solid-shell.md](./nucleify-solid-shell.md) | `web-solid` |
+| [nucleify-emit-barrels.md](./nucleify-emit-barrels.md) | `@web` / `@shared_modules` on convert hosts |
+| [nucleify-cms-slug.md](./nucleify-cms-slug.md) | `/[lang]/[slug]` |
+| [nucleify-dev-ports.md](./nucleify-dev-ports.md) | `:7777` / `:8888` |
+| [nucleify-deploy.md](./nucleify-deploy.md) | `make deploy web\|admin\|docs` |
+| [nucleify-home-copy.md](./nucleify-home-copy.md) | Home CMS copy |
+| [nucleify-investor-copy.md](./nucleify-investor-copy.md) | Investor CMS copy |
+| [nucleify-company-copy.md](./nucleify-company-copy.md) | migrations-company copy |
+
+## Other
+
+| Note | Topic |
+|------|--------|
+| [docs-origin.md](./docs-origin.md) | `docs.nucleify.io` |
+| [docs-content-migrate.md](./docs-content-migrate.md) | Docs migrate-any-stack audit |
+| [cms-copy-source.md](./cms-copy-source.md) | CMS defaults → seeder |
+| [nui-workflow-skills.md](./nui-workflow-skills.md) | Pipeline skill paths |
+| [agent-context-budget.md](./agent-context-budget.md) | Context / rules budget |

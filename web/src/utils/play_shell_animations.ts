@@ -1,4 +1,5 @@
 import {
+  awaitBrandFonts,
   clearFadeWipe,
   clearMotionStyles,
   fadeWipeAnimation,
@@ -13,7 +14,6 @@ import {
   settleHeroBits,
   setVar,
   track,
-  warmBrandFonts,
 } from './shell_motion'
 import {
   bindHeroScrollReveal,
@@ -104,7 +104,7 @@ export async function playShellAnimations(
   const finishBoot = () => {
     if (!ownsBoot()) return
     setIrisRadius(root, '165%')
-    root.classList.remove('nuc-booting')
+    root.classList.remove('nuc-booting', 'nuc-iris-live')
     root.classList.add('nuc-ready')
     // Drop boot flags so CSS cannot yank --shell-iris back to 0% (grid mask).
     const html = document.documentElement
@@ -115,7 +115,7 @@ export async function playShellAnimations(
 
   const releaseBootClasses = () => {
     if (!ownsBoot()) return
-    root.classList.remove('nuc-booting', 'nuc-static')
+    root.classList.remove('nuc-booting', 'nuc-iris-live', 'nuc-static')
   }
 
   const html = document.documentElement
@@ -137,18 +137,18 @@ export async function playShellAnimations(
     }
   }
 
-  // Classic iris: keep/restore html.nuc-iris-boot, arm .nuc-booting after
-  // hydrate, then openShellIris does 0% → 165%.
+  // Keep iris closed + opacity 0 until anime + brand font are ready.
+  // Arming `.nuc-booting` too early flashes full UI on slow Safari/Firefox.
   if (!isQuietBoot() && !root.classList.contains('nuc-ready')) {
     html.classList.add('nuc-iris-boot')
     setIrisRadius(root, '0%')
   } else if (html.classList.contains('nuc-iris-boot')) {
     setIrisRadius(root, '0%')
   }
-  root.classList.add('nuc-booting')
-  root.classList.remove('nuc-ready', 'nuc-static')
+  root.classList.remove('nuc-booting', 'nuc-ready', 'nuc-static')
 
   if (isQuietBoot()) {
+    root.classList.add('nuc-booting')
     setIrisRadius(root, '165%')
     if (options.mode === 'marketing') {
       setVar(root, '--shell-iris-x', '18%')
@@ -163,10 +163,26 @@ export async function playShellAnimations(
     }
   }
 
+  // Preload motion deps while section stays opacity 0.
+  const anime = await loadAnime(cleanups)
+  await awaitBrandFonts(1200)
+  if (!ownsBoot()) return () => undefined
+
+  root.classList.add('nuc-booting')
+  if (!anime) {
+    setIrisRadius(root, '165%')
+    finishBoot()
+    markShellScrollReady(root)
+    return () => {
+      clearShellScrollReady(root)
+      releaseBootClasses()
+    }
+  }
+
   if (options.mode === 'thankYou') {
-    await runThankYouMotion(root, cleanups, finishBoot, options)
+    await runThankYouMotion(root, cleanups, finishBoot, options, anime)
   } else {
-    await runMarketingMotion(root, cleanups, finishBoot, options)
+    await runMarketingMotion(root, cleanups, finishBoot, options, anime)
   }
 
   return () => {
@@ -246,7 +262,8 @@ async function runThankYouMotion(
   root: HTMLElement,
   cleanups: Array<() => void>,
   finishBoot: () => void,
-  preset: ThankYouShellBoot
+  preset: ThankYouShellBoot,
+  anime: AnimeApi
 ): Promise<void> {
   const compactMax = preset.compactMaxWidth ?? 767
   const compact = window.matchMedia(`(max-width: ${compactMax}px)`).matches
@@ -257,6 +274,7 @@ async function runThankYouMotion(
     ...preset.iris,
     setOrigin: false,
   })
+  root.classList.add('nuc-iris-live')
   markShellScrollReady(root)
 
   const title = q(root, preset.bits.title)
@@ -266,12 +284,6 @@ async function runThankYouMotion(
 
   for (const el of [title, support, cta, cube]) {
     if (el) el.style.opacity = '0'
-  }
-
-  const anime = await loadAnime(cleanups)
-  if (!anime) {
-    finishBoot()
-    return
   }
 
   const { animate, createTimeline } = anime
@@ -368,7 +380,8 @@ async function runMarketingMotion(
   root: HTMLElement,
   cleanups: Array<() => void>,
   finishBoot: () => void,
-  preset: MarketingShellBoot
+  preset: MarketingShellBoot,
+  anime: AnimeApi
 ): Promise<void> {
   let heroBooted = false
   const markHeroBooted = () => {
@@ -407,19 +420,13 @@ async function runMarketingMotion(
     compact,
     ...preset.iris,
   })
+  // Reveal under the wipe only after open has been armed (not while waiting
+  // for anime/font chunks).
+  root.classList.add('nuc-iris-live')
   // First section must settle during the wipe (section SCSS starts at opacity 0).
   markShellScrollReady(root)
 
-  const anime = await loadAnime(cleanups)
-  if (!anime) {
-    setIrisRadius(root, '165%')
-    finishBoot()
-    markHeroBooted()
-    return
-  }
-
   const { animate, createTimeline, stagger } = anime
-  warmBrandFonts()
 
   if (!compact) {
     for (const el of [nav, rail, eyebrow, mark, panel]) {

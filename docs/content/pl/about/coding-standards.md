@@ -11,7 +11,7 @@ nucleify/
 ├── web/               # @nucleify/web - landing Nuxt
 ├── admin/             # @nucleify/admin - admin Nuxt
 ├── docs/              # @nucleify/docs - docs Astro
-├── compiler/          # @nucleify/compiler - przenośny kompilator UI
+├── compiler/          # @nucleify/compiler - convert produktu + opcjonalny emit przenośny
 ├── shared_modules/    # sześć eksportowanych modułów nuc_*
 ├── portable/nui/      # design tokeny
 ├── overrides/         # nadpisania plików per pakiet
@@ -78,7 +78,7 @@ web/src/
 
 - Vue SFC: `<script setup lang="ts">`
 - UI: `nui-*` z `nucleify-ui`
-- Logika domenowa: `shared_modules/`, nie `web/src/`
+- Logika domenowa (w tym monorepo): preferuj `shared_modules/`, nie `web/src/` - **nie** warunek przed konwersją zewnętrznej aplikacji ([FAQ migracji](/pl/docs/getting-started/migrate-faq))
 
 ---
 
@@ -128,7 +128,7 @@ const open = ref(false)
 
 ## Komponenty przenośne (opcjonalne)
 
-`*.nuc.tsx` to **opcjonalne współdzielone UI prezentacyjne** - nie warunek migracji. Konwersja produktu (`nuc emit convert` / `make web --target=…`) migruje istniejącą aplikację frameworkową **bez** przepisywania na `*.nuc.tsx`.
+`*.nuc.tsx` to **opcjonalne współdzielone UI prezentacyjne** - nie warunek migracji. Konwersja produktu migruje istniejącą aplikację frameworkową **takim, jaki jest** (`--path` / `--git` + `--out` dla Twojego produktu; `make web --target=…` dla shelli tego monorepo). Zob. [FAQ migracji](/pl/docs/getting-started/migrate-faq).
 
 Gdy używasz autorstwa przenośnego, trzymaj się `compiler/PORTABLE.md`:
 

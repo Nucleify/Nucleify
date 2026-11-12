@@ -1,6 +1,8 @@
 # @nucleify/shared-modules
 
-Thin shared surface used by `root` (and later admin/docs/compiler).
+Thin shared surface used by `web/`, `admin/`, `docs/` (and convert hosts).
+
+**Not a migrate gate.** External apps convert **as-is** without a prior `shared_modules` refactor - see [Migrate FAQ](https://docs.nucleify.io/en/docs/getting-started/migrate-faq).
 
 Currently absorbed (not git submodules):
 

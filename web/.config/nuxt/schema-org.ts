@@ -6,7 +6,7 @@ import {
 } from "nuxt-schema-org/schema";
 
 const baseDescription =
-	"Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, Astro, Svelte, and Solid from one install.";
+	"Yes - migrate any existing Next, Nuxt, Vue, React, or other supported app as-is. Install @nucleify/cli and run nuc emit (interactive shell). No *.nuc.tsx rewrite, no shared_modules gate. Vue · React · Nuxt · Next · Astro · Svelte · Solid.";
 
 const person = definePerson({
 	name: "Szymon Radomski",

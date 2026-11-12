@@ -1,6 +1,8 @@
 # Moduły
 
-Nucleify dostarcza **sześć eksportowanych** modułów funkcjonalnych z `@nucleify/shared-modules`. Każdy to samodzielny pakiet domenowy z narzędziami frontendowymi, opcjonalnymi handlerami API Supabase, migracjami, typami i testami - konsumowany przez `web/`, `admin/`, `docs/` i generowane shelle (Next, Solid, Svelte, …), żeby migrować frameworki bez przepisywania biznesu.
+Nucleify dostarcza **sześć eksportowanych** modułów funkcjonalnych z `@nucleify/shared-modules`. Każdy to samodzielny pakiet domenowy z narzędziami frontendowymi, opcjonalnymi handlerami API Supabase, migracjami, typami i testami - konsumowany przez `web/`, `admin/`, `docs/` i generowane shelle (Next, Solid, Svelte, …).
+
+**Warunek migracji: brak.** Dołączenie do `shared_modules` to korzyść jądra **po** konwersji istniejącej aplikacji - nie warunek wstępny. Zewnętrzne aplikacje migrują **takim, jakie są** przez konwersję produktu (`--path` / `--git`). Zob. [FAQ migracji](/pl/docs/getting-started/migrate-faq).
 
 Nie ma katalogu `modules/` w root. Aplikacje importują przez ścieżki względne lub alias Nuxt `modules` → `shared_modules/`. Flow auth żyje w `nuc_api` (nie ma osobnego `nuc_users` / `nuc_auth`).
 

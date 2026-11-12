@@ -2,6 +2,8 @@
 
 Feature-Sliced Design (FSD) organizuje kod **według domeny biznesowej**, a nie według warstw technicznych. W Nucleify każdy pakiet `shared_modules/nuc_*` to jeden slice - narzędzia frontendowe, handlery API, migracje bazy, typy i testy w jednym katalogu.
 
+Ten układ opisuje **jądro** w monorepo. To **nie** jest warunek przed migracją zewnętrznej aplikacji Next/Nuxt/… takim, jaki jest ([FAQ migracji](/pl/docs/getting-started/migrate-faq)).
+
 ---
 
 ## Dlaczego feature slices?

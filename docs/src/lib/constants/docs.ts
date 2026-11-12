@@ -12,14 +12,22 @@ export const DOC_CATEGORIES: DocCategoryInterface[] = [
         order: 1,
       },
       {
+        slug: 'migrate-faq',
+        title: {
+          en: 'Migrate FAQ',
+          pl: 'FAQ migracji',
+        },
+        order: 2,
+      },
+      {
         slug: 'installation',
         title: { en: 'Installation', pl: 'Instalacja' },
-        order: 2,
+        order: 3,
       },
       {
         slug: 'quick-start',
         title: { en: 'Quick Start', pl: 'Szybki start' },
-        order: 3,
+        order: 4,
       },
     ],
   },

@@ -5,9 +5,9 @@
 
 <br><a href="https://cli.nucleify.io"><strong>CLI</strong></a> · <a href="https://play.nucleify.io"><strong>Playground</strong></a><br><br>
 
-**Framework migration is the product.** Locked into one stack? Switching hosts usually means a costly rewrite. Nucleify keeps domain, API, and SQL in shared modules and **converts whole apps between frameworks** - Nuxt → Next, Vue → Solid, React → Svelte, and the rest - with an IR-first compiler. Point convert at your existing project as-is, emit another host, import edits back.
+**Yes - migrate any existing Next, Nuxt, Vue, React, or other supported app as-is.** Locked into one stack? Switching hosts usually means a costly rewrite. Nucleify **converts whole apps between frameworks** - Next → Nuxt, Nuxt → Next, Vue → Solid, React → Svelte, and the reverse. Point convert at your existing project as-is, emit another host, import edits back. Shared modules are the nucleus when you join this monorepo - not a migrate gate.
 
-**No `*.nuc.tsx` migration required.** Product convert works on your framework source directly. Portable `*.nuc.tsx` authoring is optional for new shared UI - it is not a gate for moving between frameworks.
+**No migrate rewrite required.** No `*.nuc.tsx` rewrite. No prior `shared_modules` refactor. No Nucleify token rewrite. Portable `*.nuc.tsx` authoring is optional for new shared UI only.
 
 | Ready to run on |
 | --- |
@@ -22,12 +22,12 @@ UI with [nucleify-ui](https://www.npmjs.com/package/nucleify-ui).
 
 **Convert existing apps. Join the nucleus.**
 
-<br><a href="https://nucleify.io">Live preview</a> · <a href="https://docs.nucleify.io/en/docs/getting-started/introduction">Docs</a> · <a href="https://nucleify.io/en/investor">Investor brief</a><br><br>
+<br><a href="https://nucleify.io">Live preview</a> · <a href="https://docs.nucleify.io/en/docs/getting-started/migrate-faq">Migrate FAQ</a> · <a href="https://docs.nucleify.io/llms.txt">llms.txt</a> · <a href="https://docs.nucleify.io/en/docs/getting-started/introduction">Docs</a> · <a href="https://nucleify.io/en/investor">Investor brief</a><br><br>
 
-⭐ **Any stack → any other** - migrate between frameworks; no `*.nuc.tsx` rewrite required <br>
-⭐ **Shared modules** - API, SQL, and UI stay one product across frameworks <br>
-⭐ **IR-first compiler** - product convert first; optional portable emit; import back - whole apps, not orphaned snippets <br>
-⭐ **One-command setup** - `make run` + `make web` from the repo root <br>
+⭐ **Any stack → any other** - yes, migrate existing apps as-is; no `*.nuc.tsx` / `shared_modules` / token rewrite required <br>
+⭐ **Shared modules** - optional nucleus benefit: API, SQL, and UI stay one product across frameworks <br>
+⭐ **Product convert first** - existing apps as-is; optional portable emit; import back - whole apps, not orphaned snippets <br>
+⭐ **CLI first** - `npm i -g @nucleify/cli` then `nuc emit` (interactive shell for your product) <br>
 ⭐ **Modern UI** - [nucleify-ui](https://www.npmjs.com/package/nucleify-ui) + design tokens ready to brand <br>
 
 <br>
@@ -35,22 +35,24 @@ UI with [nucleify-ui](https://www.npmjs.com/package/nucleify-ui).
 
 ### Quick start
 
+**Migrate your existing app** ([cli.nucleify.io](https://cli.nucleify.io)):
+
+```bash
+npm install -g @nucleify/cli
+nuc emit
+```
+
+Interactive shell: pick source, target (Vue · React · Nuxt · Next · Astro · Svelte · Solid), path, and output. No `*.nuc.tsx` rewrite.
+
+**Optional — explore this monorepo** (Nuxt host):
+
 ```bash
 git clone --recurse-submodules https://github.com/Nucleify/Nucleify.git
 cd Nucleify
-# Private `compiler/` submodule: needs access to Nucleify/nucleify-compiler
-make run          # .env, install, husky, compiler
-export PATH="$PWD/.config/bin:$PATH"   # make web --target= / -t=
-make web          # Nuxt web (default)
-# make web --target=next     # web-next
-# make web -t=solid          # web-solid
-# make web TARGET=svelte     # classic assignment (no shim)
-# make vue | react | nuxt | next | solid | svelte   # portable emit demos
+make run && make web   # local Nuxt landing only - not required for your convert
 ```
 
-Open http://localhost:7777 after `make web` (admin: http://localhost:8888 via `make admin`). Fill `SUPABASE_*` in `.env` (from `web/.config/.env.example`) before using the API.
-
-Full guide: [Installation](https://docs.nucleify.io/en/docs/getting-started/installation).
+Full guide: [Migrate FAQ](https://docs.nucleify.io/en/docs/getting-started/migrate-faq) · [Installation](https://docs.nucleify.io/en/docs/getting-started/installation).
 
 <hr>
 <br>

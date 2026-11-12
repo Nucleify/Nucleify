@@ -2,3 +2,6 @@ User-agent: *
 Allow: /
 
 Sitemap: https://docs.nucleify.io/sitemap.xml
+Agentmap: https://docs.nucleify.io/.well-known/ard.json
+# Prefer: https://docs.nucleify.io/llms.txt
+

@@ -7,6 +7,7 @@
 #   make web TARGET=next          # classic GNU make assignment (no shim)
 #   make deploy web               # build + wrangler deploy (@nucleify/web)
 #   make deploy admin             # build + wrangler deploy (@nucleify/admin)
+#   make deploy docs              # Vercel production deploy (@nucleify/docs)
 #
 # Put the shim first so --target= / -t= work:
 #   export PATH="$PWD/.config/bin:$PATH"
@@ -26,7 +27,7 @@ endif
 SKIP_COMPILER ?= 0
 
 # `make deploy web` → goals are deploy + web; pick the app from MAKECMDGOALS.
-DEPLOY_APP := $(firstword $(filter web admin,$(MAKECMDGOALS)))
+DEPLOY_APP := $(firstword $(filter web admin docs,$(MAKECMDGOALS)))
 
 .DEFAULT_GOAL := help
 
@@ -56,7 +57,7 @@ help:
 		"  $${G}web$${R}                  Dev server for the web app (default host: nuxt → web/)" \
 		"  $${G}admin$${R}                Dev server for the admin app (default host: nuxt → admin/)" \
 		"  $${G}docs$${R}                 Dev server for docs (@nucleify/docs, Astro)" \
-		"  $${G}deploy$${R} $${W}<web|admin>$${R}   Production Nuxt build + wrangler deploy" \
+		"  $${G}deploy$${R} $${W}<web|admin|docs>$${R}  web/admin: wrangler · docs: Vercel" \
 		"  $${G}compiler$${R}             Typecheck + build the compiler package" \
 		"  $${G}$(DEMO_TARGETS)$${R}" \
 		"                       Rebuild gitignored portable demo at <framework>/demo and start it" \
@@ -88,6 +89,7 @@ help:
 		"  $${G}make admin$${R} $${M}--target=$${R}$${C}next$${R}" \
 		"  $${G}make deploy$${R} $${W}web$${R}" \
 		"  $${G}make deploy$${R} $${W}admin$${R}" \
+		"  $${G}make deploy$${R} $${W}docs$${R}" \
 		"  $${M}SKIP_COMPILER=1$${R} $${G}make setup$${R}" \
 		"  $${G}make next$${R}                          $${D}# portable demo only$${R}"
 
@@ -119,7 +121,7 @@ ifeq ($(SKIP_COMPILER),0)
 	$(MAKE) compiler
 endif
 
-# When chained as `make deploy web`, skip the usual `web`/`admin` dev recipes.
+# When chained as `make deploy web|admin|docs`, skip the usual dev recipes.
 web:
 ifneq ($(filter deploy,$(MAKECMDGOALS)),)
 	@:
@@ -173,13 +175,21 @@ else
 	@exit 1
 endif
 
-# Build Nuxt app, then Cloudflare Workers deploy via wrangler.
-# Usage: make deploy web | make deploy admin
-# Public URLs are baked into Nuxt runtimeConfig at build time — override local .env.
+# Usage: make deploy web | make deploy admin | make deploy docs
+# web/admin: Nuxt build + Cloudflare Workers (wrangler). Public URLs baked at build time.
+# docs: Astro → Vercel production (link once: cd docs && pnpm dlx vercel link).
+# Newer CLI writes monorepo `.vercel/repo.json` at the repo root; classic is docs/.vercel/.
 deploy:
 ifeq ($(DEPLOY_APP),)
-	@echo "Usage: make deploy web  or  make deploy admin"
+	@echo "Usage: make deploy web | make deploy admin | make deploy docs"
 	@exit 1
+else ifeq ($(DEPLOY_APP),docs)
+	@test -f .vercel/repo.json -o -f docs/.vercel/project.json || ( \
+		echo "Missing Vercel link - run: (cd docs && pnpm dlx vercel link)"; \
+		exit 1)
+	pnpm --filter @nucleify/docs build
+	@test -d docs/dist || (echo "Missing docs/dist after build"; exit 1)
+	bash docs/scripts/deploy-vercel-static.sh
 else
 	@test -f $(DEPLOY_APP)/wrangler.toml || ( \
 		echo "Missing $(DEPLOY_APP)/wrangler.toml - add Cloudflare Workers config before deploy."; \
@@ -194,9 +204,13 @@ else
 endif
 
 docs:
+ifneq ($(filter deploy,$(MAKECMDGOALS)),)
+	@:
+else
 	@echo "docs default host is Astro (@nucleify/docs)."
 	@echo "TARGET=$(TARGET) is reserved for future multi-shell docs hosts."
 	pnpm --filter @nucleify/docs dev
+endif
 
 # --- Portable emit demos → {framework}/demo ---
 

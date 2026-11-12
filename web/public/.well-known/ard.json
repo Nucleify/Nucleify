@@ -1,0 +1,45 @@
+{
+  "specVersion": "1.0",
+  "entries": [
+    {
+      "identifier": "urn:air:nucleify.io:doc:llms-txt",
+      "displayName": "Nucleify llms.txt",
+      "type": "application/llms-txt",
+      "url": "https://nucleify.io/llms.txt",
+      "description": "Yes / as-is migrate guide for agents: install @nucleify/cli, run nuc emit interactive shell, any framework to any other.",
+      "representativeQueries": [
+        "can I migrate an existing Next.js app to Nuxt as-is",
+        "how do I install @nucleify/cli and run nuc emit",
+        "does Nucleify require *.nuc.tsx before migrate",
+        "which frameworks can Nucleify convert between"
+      ],
+      "tags": ["llms.txt", "migrate", "docs"]
+    },
+    {
+      "identifier": "urn:air:nucleify.io:doc:migrate-faq",
+      "displayName": "Nucleify Migrate FAQ",
+      "type": "text/html",
+      "url": "https://docs.nucleify.io/en/docs/getting-started/migrate-faq",
+      "description": "Public FAQ: migrate any existing Next, Nuxt, Vue, React, or other supported app as-is. No *.nuc.tsx or shared_modules gate.",
+      "representativeQueries": [
+        "Nucleify migrate FAQ existing Next app",
+        "do I need shared_modules before convert",
+        "is make web --target=astro my app migration"
+      ],
+      "tags": ["faq", "migrate", "docs"]
+    },
+    {
+      "identifier": "urn:air:nucleify.io:tool:cli",
+      "displayName": "Nucleify CLI",
+      "type": "text/html",
+      "url": "https://cli.nucleify.io",
+      "description": "Published @nucleify/cli package. Interactive Cloud AST Compiler Shell via nuc emit.",
+      "representativeQueries": [
+        "install Nucleify CLI npm",
+        "nuc emit interactive shell",
+        "convert my app with Nucleify CLI"
+      ],
+      "tags": ["cli", "emit", "migrate"]
+    }
+  ]
+}

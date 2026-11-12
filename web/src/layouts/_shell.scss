@@ -6,8 +6,8 @@
 }
 
 /* Real visitors only - sync head script adds html.nuc-iris-boot before paint.
- * JS opens 0→165% after hydrate (inline --shell-iris beats this while booting).
- * Hide assemble chrome + iris clip only during human boot - never in lab. */
+ * Stay opacity 0 until `.nuc-iris-live` (iris open armed) — not merely
+ * `.nuc-booting`, which used to flash full UI while animejs was still loading. */
 html.nuc-iris-boot .nuc-shell:not(.nuc-ready) {
   --shell-iris: 0%;
 
@@ -17,8 +17,23 @@ html.nuc-iris-boot .nuc-shell:not(.nuc-ready) {
   }
 
   .nuc-inner,
-  .nuc-shear {
-    clip-path: circle(var(--shell-iris) at var(--shell-iris-x) var(--shell-iris-y));
+  .nuc-shear,
+  .nuc-rail {
+    opacity: 0;
+  }
+
+  &.nuc-iris-live {
+    .nuc-inner,
+    .nuc-shear {
+      opacity: 1;
+      clip-path: circle(var(--shell-iris) at var(--shell-iris-x) var(--shell-iris-y));
+      transition: --shell-iris 1.05s cubic-bezier(0.65, 0, 0.35, 1);
+      will-change: clip-path;
+
+      @media (min-width: 960px) {
+        transition: --shell-iris 1.7s cubic-bezier(0.65, 0, 0.35, 1);
+      }
+    }
   }
 
   @media (min-width: 960px) {
@@ -371,19 +386,6 @@ html.nuc-no-iris .nuc-shell {
   }
 }
 
-/* Iris wipe while booting (humans) — `.nuc-booting` is set after hydrate. */
-html.nuc-iris-boot .nuc-shell.nuc-booting:not(.nuc-ready) {
-  .nuc-inner,
-  .nuc-shear {
-    transition: --shell-iris 1.7s cubic-bezier(0.65, 0, 0.35, 1);
-    will-change: clip-path;
-
-    @media (max-width: 959px) {
-      transition: --shell-iris 1.05s cubic-bezier(0.65, 0, 0.35, 1);
-    }
-  }
-}
-
 html.nuc-iris-boot .nuc-shell.nuc-ready {
   .nuc-inner,
   .nuc-shear {
@@ -480,7 +482,7 @@ html.nuc-iris-boot .nuc-shell.nuc-ready {
   .nuc-clone-copy .nuc-title,
   .nuc-clone-copy .nuc-support,
   .nuc-clone-actions,
-  .nuc-clone-term,
+  .nuc-clone-term-wrap,
   .nuc-close-copy,
   .nuc-close-cta,
   .nuc-close-footer {

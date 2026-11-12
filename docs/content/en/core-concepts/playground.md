@@ -1,6 +1,6 @@
 # Playground
 
-The Nucleify Playground is a **browser sandbox for optional portable components** - not the product-migration path. Migrating an existing app does **not** require `*.nuc.tsx`; use [product convert](/en/docs/core-concepts/cli#convert) (`nuc emit convert`) on your framework source as-is.
+The Nucleify Playground is a **browser sandbox for optional portable components** - not the product-migration path. **Yes - migrate any existing Next, Nuxt, Vue, React, or other supported app as-is** with [product convert](/en/docs/core-concepts/cli#convert) (`nuc emit convert`). No `*.nuc.tsx` rewrite. No `shared_modules` refactor first.
 
 Here you edit portable source on the left and watch live emit for modern frameworks on the right - no local install required.
 
@@ -12,12 +12,12 @@ Live surface: [play.nucleify.io](https://play.nucleify.io).
 
 Playground answers: *does optional portable emit look like something I would ship?*
 
-It does **not** replace convert. Bring an existing Nuxt/Vue/React app and convert it without rewriting into Nucleify authoring format.
+It does **not** replace convert. Bring an existing Next / Nuxt / Vue / React app as-is and convert it - without rewriting into Nucleify authoring format and without a `shared_modules` split first.
 
 - Open [play.nucleify.io](https://play.nucleify.io)
 - Edit portable TypeScript only if you want shared presentational UI (`props`, `state`, `derived`, `handler`, styles)
 - See idiomatic output for React, Vue, Svelte, Astro, Solid (and related Nuxt / Next hosts where shown)
-- For a real app migration: [CLI convert](/en/docs/core-concepts/cli) · [Compiler](/en/docs/core-concepts/compiler)
+- For a real app migration: [Migrate FAQ](/en/docs/getting-started/migrate-faq) · [CLI convert](/en/docs/core-concepts/cli) · [Compiler](/en/docs/core-concepts/compiler)
 
 Compile requests from the playground hit the same cloud compile surface the CLI uses (`compileApiUrl` → `https://cli.nucleify.io`).
 
@@ -65,7 +65,7 @@ Use the playground to validate portable authoring rules before you wire optional
 
 ## Next steps
 
-1. Migrate an existing app: `nuc emit convert web --target=next` · [CLI](/en/docs/core-concepts/cli)
+1. Migrate an existing app as-is: `nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force` · [Migrate FAQ](/en/docs/getting-started/migrate-faq)
 2. Optionally experiment with portable UI at [play.nucleify.io](https://play.nucleify.io)
 3. Install the CLI from [cli.nucleify.io](https://cli.nucleify.io)
 4. Read [Compiler](/en/docs/core-concepts/compiler) for convert vs portable emit

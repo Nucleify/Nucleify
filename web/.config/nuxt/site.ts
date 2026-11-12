@@ -13,7 +13,7 @@ export const siteConfig = {
 	url: siteUrl,
 	name: 'Nucleify',
 	description:
-		'Open-source nucleus for developers: shared_modules, typed APIs, and a portable UI compiler. Ship Vue, React, Nuxt, Next, Astro, Svelte, and Solid from one install.',
+		'Yes - migrate any existing Next, Nuxt, Vue, React, or other supported app as-is. Install @nucleify/cli, run nuc emit. No *.nuc.tsx rewrite. Vue · React · Nuxt · Next · Astro · Svelte · Solid.',
 	defaultLocale: 'en',
 	trailingSlash: false,
 }

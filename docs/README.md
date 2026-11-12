@@ -9,6 +9,15 @@ make docs
 pnpm --filter @nucleify/docs dev
 ```
 
+## Deploy
+
+Production host is Vercel (`https://docs.nucleify.io`). One-time link, then deploy:
+
+```bash
+cd docs && pnpm dlx vercel link   # writes .vercel/ at repo root (gitignored)
+make deploy docs                  # Astro build → stage docs/dist → Vercel prod
+```
+
 ## Content layout
 
 | Path | Purpose |

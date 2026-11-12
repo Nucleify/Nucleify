@@ -61,7 +61,8 @@
     "supabase:setup:linked": "pnpm supabase:migrations:apply:linked && pnpm supabase:factories:apply:linked && pnpm supabase:seeders:apply:linked",
     "wrangler": "pnpm -s --filter @nucleify/web exec wrangler deploy",
     "deploy:web": "APP_ENV=production APP_DEBUG=false NUXT_PUBLIC_APP_URL=https://nucleify.io NUXT_PUBLIC_ADMIN_URL=https://admin.nucleify.io NUC_API_ORIGIN=https://admin.nucleify.io pnpm -s --filter @nucleify/web build && pnpm -s --filter @nucleify/web exec wrangler deploy",
-    "deploy:admin": "APP_ENV=production APP_DEBUG=false NUXT_PUBLIC_APP_URL=https://nucleify.io NUXT_PUBLIC_ADMIN_URL=https://admin.nucleify.io NUC_API_ORIGIN=https://admin.nucleify.io pnpm -s --filter @nucleify/admin build && pnpm -s --filter @nucleify/admin exec wrangler deploy"
+    "deploy:admin": "APP_ENV=production APP_DEBUG=false NUXT_PUBLIC_APP_URL=https://nucleify.io NUXT_PUBLIC_ADMIN_URL=https://admin.nucleify.io NUC_API_ORIGIN=https://admin.nucleify.io pnpm -s --filter @nucleify/admin build && pnpm -s --filter @nucleify/admin exec wrangler deploy",
+    "deploy:docs": "pnpm -s --filter @nucleify/docs build && bash docs/scripts/deploy-vercel-static.sh"
   },
   "imports": {
     "#nuc-compiler/runtime": "./compiler/runtime/index.ts"

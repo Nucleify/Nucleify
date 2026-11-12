@@ -20,6 +20,20 @@ export function getRouteRules(locales: readonly { code: string }[]) {
 				'cache-control': 'public, max-age=31536000, immutable',
 			},
 		},
+		'/.well-known/ard.json': {
+			headers: {
+				'content-type': 'application/ard+json; charset=utf-8',
+				'access-control-allow-origin': '*',
+				'cache-control': 'public, max-age=3600',
+			},
+		},
+		'/llms.txt': {
+			headers: {
+				'content-type': 'text/plain; charset=utf-8',
+				'cache-control': 'public, max-age=3600',
+			},
+		},
+
 		...(isLocal
 			? {}
 			: Object.fromEntries(

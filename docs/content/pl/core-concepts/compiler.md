@@ -1,12 +1,12 @@
 # Kompilator
 
-Migracja między frameworkami to **rdzeń** Nucleify - nie doklejka. Pakiet `@nucleify/compiler` prowadzi tę ścieżkę: **konwersja produktu** przenosi całe aplikacje (`web/`, `admin/`, albo zewnętrzne drzewo przez `--path` / `--git`) na Next.js, Solid, Svelte lub Astro **bez przepisywania na `*.nuc.tsx`**, opcjonalna **emisja przenośna** zamienia `*.nuc.tsx` na Vue SFC, React, Solid, Svelte i Astro (oraz współdzielony CSS), a **import** wraca z edycji emitu do źródła.
+Migracja między frameworkami to **rdzeń** Nucleify - nie doklejka. **Tak - migrujesz dowolną istniejącą aplikację Next, Nuxt, Vue, React albo inny wspierany stack takim, jaki jest.** Pakiet `@nucleify/compiler` prowadzi tę ścieżkę: **konwersja produktu** przenosi całe aplikacje (`web/`, `admin/`, albo zewnętrzne drzewo przez `--path` / `--git`) na inny host **bez** przepisywania na `*.nuc.tsx`, **bez** wcześniejszego refaktoru do `shared_modules` i **bez** przepisywania aplikacji pod IR. Opcjonalna **emisja przenośna** zamienia `*.nuc.tsx` na Vue SFC, React, Solid, Svelte i Astro (oraz współdzielony CSS), a **import** wraca z edycji emitu do źródła.
 
-Ten zakres wykracza poza samą emisję komponentów: domena, trasy i współdzielone moduły idą razem z hostem. Framework staje się celem builda; produkt zostaje w `shared_modules/`.
+Ten zakres wykracza poza samą emisję komponentów: trasy i powierzchnia produktu idą razem z hostem. Framework staje się celem builda.
 
-**Pokrycie:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next lub Vue/Nuxt to punkty startowe, nie granica.
+**Pokrycie:** Vue · React · Nuxt · Next · Astro · Svelte · Solid. React/Next lub Vue/Nuxt to punkty startowe, nie granica - w tym Next → Nuxt i Nuxt → Next.
 
-**Warunek migracji:** brak dla `*.nuc.tsx`. Wrzucasz istniejący projekt frameworkowy i odpalasz convert. Autorstwo przenośne jest opcjonalne dla nowego współdzielonego UI prezentacyjnego.
+**Warunki migracji: brak.** Wrzucasz istniejący projekt frameworkowy i odpalasz convert. Bez przepisywania na `*.nuc.tsx`. Bez wcześniejszego podziału na `shared_modules`. Bez tokenów Nucleify. Autorstwo przenośne jest opcjonalne tylko dla nowego współdzielonego UI prezentacyjnego.
 
 Codzienne wejścia: **`nuc emit …`** ([CLI](/pl/docs/core-concepts/cli)) oraz Make (`export PATH="$PWD/.config/bin:$PATH"` dla `--target=` / `-t=`). W tym monorepo `pnpm compiler -- …` pozostaje lokalnym odpowiednikiem pakietu.
 
@@ -17,10 +17,10 @@ Codzienne wejścia: **`nuc emit …`** ([CLI](/pl/docs/core-concepts/cli)) oraz 
 
 | Tryb pracy | Co robi | Przykład |
 |------|---------|----------|
-| **Konwersja produktu** | Istniejąca aplikacja / produkt Nuxt (lub zewnętrzny folder/git) → Next.js, Solid, Svelte lub Astro - **bez przepisywania na `*.nuc.tsx`** | `nuc emit convert web --target=next` |
+| **Konwersja produktu** | Istniejąca aplikacja takim, jaka jest (produkt Nuxt albo zewnętrzny Next / Nuxt / Vue / React / … przez folder/git) → inny host - **bez** przepisywania na `*.nuc.tsx` / `shared_modules` / tokeny | `--path` / `--git` + `--out` (Twój produkt) · `convert web --target=next` (to monorepo → `web-next/`) |
 | **Emisja przenośna** | `*.nuc.tsx` → IR → `.vue` + React `.tsx` + Solid `.tsx` + Svelte `.svelte` + `.astro` + `.css` (opcjonalne współdzielone UI) | `nuc emit build` / `make solid` / `make svelte` / `make astro` |
 
-**Konwersja produktu** generuje `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/` lub `admin-astro/` z drzewa źródeł - te same trasy, współdzielone moduły, inny host frameworka. **Emisja przenośna** służy komponentom prezentacyjnym z round-tripem (`import --from=…`) - nie jest warunkiem przed convert. Konwersja produktu Astro `docs/` **nie** jest jeszcze zaimplementowana.
+**Konwersja produktu** generuje `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/` lub `admin-astro/` z drzewa źródeł takim, jakie jest - ta sama powierzchnia produktu, inny host frameworka. **Emisja przenośna** służy komponentom prezentacyjnym z round-tripem (`import --from=…`) - nie jest warunkiem przed convert. Konwersja produktu Astro `docs/` **nie** jest jeszcze zaimplementowana.
 
 Nie re-eksportuj `*.nuc.tsx` z publicznych barreli (`index.ts`, `modules.ts`, …) - opcjonalne autorstwo zostaje poza entrypointami aplikacji.
 
@@ -99,7 +99,7 @@ nuc emit convert admin --target=next
 nuc emit convert web --target=solid
 nuc emit convert web --target=svelte
 nuc emit convert web --target=astro
-nuc emit convert web --target=next --path=/path/to/nuxt-app --out=my-next --force
+nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
 nuc emit convert web --target=svelte --git=https://github.com/org/app.git --out=fork-svelte --force
 nuc emit scaffold solid                          # tymczasowe demo → solid/demo/
 nuc emit build --app=solid
@@ -157,7 +157,7 @@ Gitignored demo emisji: `{vue,react,nuxt,next,solid,svelte}/demo/` (przez `make 
 
 ## Konwersja produktu
 
-Zmigruj istniejącą aplikację na inny framework **bez** przepisywania jej na `*.nuc.tsx`. Convert to główna ścieżka migracji; autorstwo przenośne jest opcjonalne później dla nowego współdzielonego UI.
+**Tak - migrujesz istniejącą aplikację takim, jaka jest** na inny framework. Convert to główna ścieżka migracji. **Nie** przepisujesz na `*.nuc.tsx`, **nie** dzielisz domeny do `shared_modules` i **nie** adopujesz tokenów Nucleify najpierw. Autorstwo przenośne jest opcjonalne później dla nowego współdzielonego UI.
 
 ```bash
 make web --target=next
@@ -181,7 +181,7 @@ Hosty po konwersji ładują **Instrument Sans** i **JetBrains Mono** przez tagi 
 
 ### Zewnętrzny folder lub URL git
 
-Wskaż ten sam profil `web|admin` na zewnętrzne drzewo aplikacji (wymagane `src/`) - Twój istniejący projekt, nie przepisany pod Nucleify. Uruchamiaj z **roota monorepo Nucleify**, żeby aliasy `modules` / `portable` działały:
+Wskaż ten sam profil `web|admin` na **istniejącą aplikację frameworkową** (wymagane `src/`) - Next, Nuxt, Vue, React albo inny wspierany stack **takim, jaki jest**, nie przepisany pod Nucleify. Uruchamiaj z **roota monorepo Nucleify**, żeby aliasy `modules` / `portable` działały:
 
 ```bash
 nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
@@ -191,7 +191,7 @@ nuc emit convert web --target=svelte --path=/path/to/your-app --out=my-svelte --
 
 Aplikacje po konwersji instalują się przez `pnpm install --ignore-workspace` - wersje w template `package.json` pozostają przypięte; nie wchodzą w graph workspace monorepo.
 
-Konwerter mapuje strony i composables z drzewa źródłowego na hosty React, Solid, Svelte lub Astro i zapisuje idiomatyczny output. Moduły współdzielone są konsumowane przez barrel frameworka. **Nie** musisz ręcznie pisać `*.nuc.tsx` na potrzeby przebiegu convert.
+Konwerter mapuje drzewo źródłowe na host docelowy i zapisuje idiomatyczny output. **Nie** musisz ręcznie pisać `*.nuc.tsx` na potrzeby przebiegu convert i **nie** potrzebujesz wcześniejszego refaktoru do `shared_modules`.
 
 Traktuj `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/` i `admin-astro/` (oraz własne katalogi `--out`) jako **generowany output**. Edytuj drzewo źródłowe produktu, potem konwertuj ponownie - nie ręcznie łataj drzewa emit.
 
@@ -224,6 +224,26 @@ Zobacz [Vitest](/pl/docs/tests/vitest) po pełną konfigurację testów.
 
 ---
 
+## FAQ — migracja istniejącej aplikacji
+
+### Czy mogę zmigrować dowolną istniejącą aplikację Next.js takim, jaki jest?
+
+**Tak.** Konwersja produktu bierze istniejący projekt frameworkowy **takim, jaki jest** (`--path` / `--git`). Warunki migracji: **brak** dla `*.nuc.tsx`, wcześniejszego refaktoru do `shared_modules`, tokenów Nucleify albo przepisywania aplikacji pod IR. W tym Next → Nuxt i Nuxt → Next.
+
+### Czy przenośny IR / `*.nuc.tsx` jest wymagany do migracji?
+
+**Nie.** Emisja przenośna to opcjonalna ścieżka dla współdzielonego UI prezentacyjnego. Ścieżka migracji całych aplikacji to konwersja produktu.
+
+### Czy `web-next/` / `web-astro/` to moja aplikacja klienta?
+
+**Tylko jeśli skonwertowałeś własne `web/` Nucleify.** Zewnętrzne aplikacje używają `--out` (np. `my-next/`). Nie traktuj nazw shelli monorepo jako jedynej historii migracji.
+
+### Co jeśli po convert smoke-build wymaga dopracowania?
+
+Dopracowanie to zwykła inżynieria. To **nie** jest twarde „nie możesz migrować” i nie wymyśla warunków w stylu zakazów Framer/Radix ani wymuszonego przepisywania do `shared_modules`.
+
+---
+
 ## Powiązana dokumentacja
 
 - [CLI](/pl/docs/core-concepts/cli) - instalowalne `@nucleify/cli` · [cli.nucleify.io](https://cli.nucleify.io)
@@ -231,3 +251,4 @@ Zobacz [Vitest](/pl/docs/tests/vitest) po pełną konfigurację testów.
 - [Układ monorepo](/pl/docs/core-concepts/monorepo) - gdzie kompilator pasuje w workspace
 - [Szybki start](/pl/docs/getting-started/quick-start) - zbuduj swój pierwszy komponent przenośny
 - [Web & Admin](/pl/docs/configuration/web) - konfiguracja Nuxt podłączająca alias runtime
+- FAQ we wprowadzeniu: [Wprowadzenie](/pl/docs/getting-started/introduction#faq--migracja-istniej%C4%85cej-aplikacji)
