@@ -77,17 +77,20 @@ export async function usePublicShellPage(
   useSeoMeta({
     title: () => pageTitle(page.value, slugValue.value),
     description: () => pageDescription(page.value, slugValue.value),
-    ogTitle: () => pageTitle(page.value, slugValue.value),
+    ogTitle: () =>
+      page.value.seo?.shareTitle || pageTitle(page.value, slugValue.value),
     ogDescription: () => pageDescription(page.value, slugValue.value),
     ogType: 'website',
-    ogUrl: seoUrl,
-    ogImage: OG_IMAGE,
+    ogUrl: () => page.value.seo?.canonical || seoUrl.value,
+    ogImage: () => page.value.seo?.ogImage || OG_IMAGE,
     twitterCard: 'summary',
-    twitterTitle: () => pageTitle(page.value, slugValue.value),
+    twitterTitle: () =>
+      page.value.seo?.shareTitle || pageTitle(page.value, slugValue.value),
     twitterDescription: () => pageDescription(page.value, slugValue.value),
-    twitterImage: OG_IMAGE,
+    twitterImage: () => page.value.seo?.ogImage || OG_IMAGE,
     robots: () =>
-      slugValue.value === 'thank-you' ? 'noindex, follow' : 'index, follow',
+      page.value.seo?.robots ||
+      (slugValue.value === 'thank-you' ? 'noindex, follow' : 'index, follow'),
   })
 
   const redirectHome = () =>
@@ -107,6 +110,7 @@ export async function usePublicShellPage(
         variant: 'auto',
         pending: pending.value,
         enableIris: page.value.enableIris !== false,
+        template: page.value.template || 'default',
       }
       return
     }
@@ -116,6 +120,7 @@ export async function usePublicShellPage(
       variant: VARIANT_BY_SLUG[s] ?? 'auto',
       pending: pending.value && page.value.sections.length === 0,
       enableIris: page.value.enableIris !== false,
+      template: page.value.template || 'default',
     }
   }
 

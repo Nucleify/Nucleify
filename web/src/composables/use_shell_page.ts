@@ -9,6 +9,8 @@ export type ShellPageConfig = {
   variant: ShellVariant
   pending: boolean
   enableIris?: boolean
+  /** CMS page template key (default | shear | holo_cube). */
+  template?: string
 }
 
 const PITCH_TYPES = new Set([

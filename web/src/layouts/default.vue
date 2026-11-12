@@ -2,14 +2,18 @@
   <div
     ref="rootEl"
     class="nuc-shell"
-    :class="{
-      'nuc-menu-open': menuOpen,
-      'is-pitch': isPitch,
-      'is-thank-you': isThankYou,
-      'nuc-no-iris': !isIrisEnabled,
-    }"
+    :class="[
+      {
+        'nuc-menu-open': menuOpen,
+        'is-pitch': isPitch,
+        'is-thank-you': isThankYou,
+        'nuc-no-iris': !isIrisEnabled,
+      },
+      templateClass,
+    ]"
   >
     <NucShear />
+    <CmsHeaderNav />
     <NucRail
       v-if="railSections.length"
       :sections="railSections"
@@ -39,6 +43,7 @@ import {
   useShellPage,
   resolveShellVariant,
 } from '../composables/use_shell_page'
+import CmsHeaderNav from '../components/CmsHeaderNav.vue'
 import NucRail from '../templates/rail/index.vue'
 import NucShear from '../templates/shear/index.vue'
 import { isAutomatedAudit } from '../utils/is_lab'
@@ -61,6 +66,10 @@ const shellVariant = computed(() =>
 const isPitch = computed(() => shellVariant.value === 'pitch')
 const isThankYou = computed(() => shellVariant.value === 'thankYou')
 const isIrisEnabled = computed(() => shell.value.enableIris !== false)
+const templateClass = computed(() => {
+  const t = String(shell.value.template || 'default')
+  return t && t !== 'default' ? `nuc-template-${t}` : ''
+})
 
 const rootEl = ref<HTMLElement | null>(null)
 const activeSection = ref(railSections.value[0]?.id ?? '')

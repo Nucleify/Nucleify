@@ -7,11 +7,12 @@ import {
   readJsonBody,
 } from 'nuc_api'
 import type { ApiContext, ApiHandlerResult } from 'nuc_server'
+import { getQuery } from 'h3'
 
 import { requirePermission } from '../../utils/permissions'
 
 const MEDIA_SELECT =
-  'id, filename, mime, size, storage_path, alt, created_by, created_at'
+  'id, filename, mime, size, storage_path, alt, caption, folder, public_url, created_by, created_at'
 
 export async function handleAdminMediaList(
   ctx: ApiContext,
@@ -26,6 +27,7 @@ export async function handleAdminMediaList(
   const { data, error } = await ctx.supabase
     .from('cms_media')
     .select(MEDIA_SELECT)
+    .is('deleted_at', null)
     .order('created_at', { ascending: false })
     .limit(200)
   if (error) return fromSupabaseError(error)
@@ -110,7 +112,12 @@ export async function handleAdminMediaPatch(
   const body = await readJsonBody(ctx)
   const patch: Record<string, unknown> = {}
   if (body.alt !== undefined) patch.alt = String(body.alt ?? '')
+  if (body.caption !== undefined) patch.caption = String(body.caption ?? '')
+  if (body.folder !== undefined) patch.folder = String(body.folder ?? '').trim()
   if (body.filename !== undefined) patch.filename = String(body.filename ?? '').trim()
+  if (body.public_url !== undefined || body.publicUrl !== undefined) {
+    patch.public_url = String(body.public_url ?? body.publicUrl ?? '')
+  }
 
   const { data, error } = await ctx.supabase
     .from('cms_media')
@@ -139,6 +146,17 @@ export async function handleAdminMediaDelete(
 
   const id = decodeSeg(ctx.segments[2] || '')
   if (!id) return apiError(400, 'id required')
+
+  // Soft-delete by default; ?hard=1 removes storage object.
+  const hard = String(getQuery(ctx.event).hard ?? '') === '1'
+  if (!hard) {
+    const { error } = await ctx.supabase
+      .from('cms_media')
+      .update({ deleted_at: new Date().toISOString() })
+      .eq('id', id)
+    if (error) return fromSupabaseError(error)
+    return apiDeleted()
+  }
 
   const { data: existing } = await ctx.supabase
     .from('cms_media')

@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { listWidgets } from '@shared_modules'
+import { postBlockWidgets, listWidgets } from '@shared_modules'
 
 const props = defineProps<{
   allowedTypes?: string[]
@@ -28,8 +28,8 @@ const emit = defineEmits<{
 }>()
 
 const widgets = computed(() => {
-  const all = listWidgets()
-  if (!props.allowedTypes?.length) return all
+  const all = [...listWidgets(), ...postBlockWidgets]
+  if (!props.allowedTypes?.length) return listWidgets()
   const allow = new Set(props.allowedTypes)
   return all.filter((w) => allow.has(w.type))
 })

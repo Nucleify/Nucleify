@@ -3,11 +3,13 @@ import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 import type { ApiContext, ApiHandlerResult, Json } from 'nuc_server'
 
 import { handleAdminApi } from '../../../nuc_admin/supabase/api/handle'
+import { handlePublicCmsApi } from '../../../nuc_admin/supabase/api/public_cms_handlers'
 import { handlePublicPagesApi } from '../../../nuc_admin/supabase/api/public_pages_handlers'
 import { handleColorsApi } from '../../../nuc_colors/supabase/api/handle'
 import { handleLanguagesApi } from '../../../nuc_languages/supabase/api/handle'
 
 export const supabaseApiGatewayHandlers = [
+  handlePublicCmsApi,
   handlePublicPagesApi,
   handleAdminApi,
   handleColorsApi,

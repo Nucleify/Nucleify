@@ -45,5 +45,6 @@ Session notes after **DO**. Plans: `.ai/specs/`. Public docs site: `docs/`.
 | [docs-origin.md](./docs-origin.md) | `docs.nucleify.io` |
 | [docs-content-migrate.md](./docs-content-migrate.md) | Docs migrate-any-stack audit |
 | [cms-copy-source.md](./cms-copy-source.md) | CMS defaults → seeder |
+| [nucleify-cms-widgets.md](./nucleify-cms-widgets.md) | Add section/post widgets + feature packs |
 | [nui-workflow-skills.md](./nui-workflow-skills.md) | Pipeline skill paths |
 | [agent-context-budget.md](./agent-context-budget.md) | Context / rules budget |

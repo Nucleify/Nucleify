@@ -201,6 +201,15 @@ export default defineEventHandler(async (event) => {
         },
       })
     }
+    // Also mirror into CMS contact inbox (WordPress-class admin).
+    await supabase.from('cms_contact_submissions').insert({
+      name: '',
+      email,
+      type: websiteType,
+      message,
+      status: 'new',
+      meta: { source: 'contact-form' },
+    })
   }
 
   try {

@@ -26,19 +26,65 @@ const auth = useAdminAuth()
 const lang = computed(() => auth.langFromPath(route.path))
 const email = computed(() => auth.user.value?.email || 'Signed in')
 
+const features = ref({
+  featureBlog: true,
+  featureComments: true,
+  featureContactInbox: true,
+  featureRedirects: true,
+})
+
+onMounted(async () => {
+  try {
+    const { adminApiGet } = await import('@admin')
+    const row = await adminApiGet<{ data?: Record<string, unknown> }>(
+      '/api/admin/globals/settings'
+    )
+    const data = row?.data && typeof row.data === 'object' ? row.data : {}
+    features.value = {
+      featureBlog: data.featureBlog !== false,
+      featureComments: data.featureComments !== false,
+      featureContactInbox: data.featureContactInbox !== false,
+      featureRedirects: data.featureRedirects !== false,
+    }
+  } catch {
+    // Keep defaults when settings are missing.
+  }
+})
+
 const navGroups = computed((): AdminRailGroup[] => {
   const base = `/${lang.value}`
+  const collectionItems = [
+    { label: 'Pages', to: `${base}/collections/pages` },
+  ]
+  if (features.value.featureBlog) {
+    collectionItems.push({ label: 'Posts', to: `${base}/collections/posts` })
+  }
+  collectionItems.push({ label: 'Media', to: `${base}/collections/media` })
+  collectionItems.push({ label: 'Menus', to: `${base}/collections/menus` })
+  if (features.value.featureRedirects) {
+    collectionItems.push({
+      label: 'Redirects',
+      to: `${base}/collections/redirects`,
+    })
+  }
+  if (features.value.featureComments) {
+    collectionItems.push({
+      label: 'Comments',
+      to: `${base}/collections/comments`,
+    })
+  }
+  if (features.value.featureContactInbox) {
+    collectionItems.push({
+      label: 'Contact',
+      to: `${base}/collections/contact`,
+    })
+  }
+  collectionItems.push(
+    { label: 'Users', to: `${base}/collections/users` },
+    { label: 'Roles', to: `${base}/roles` }
+  )
   return [
-    {
-      label: 'Collections',
-      items: [
-        { label: 'Pages', to: `${base}/collections/pages` },
-        { label: 'Media', to: `${base}/collections/media` },
-        { label: 'Redirects', to: `${base}/collections/redirects` },
-        { label: 'Users', to: `${base}/collections/users` },
-        { label: 'Roles', to: `${base}/roles` },
-      ],
-    },
+    { label: 'Collections', items: collectionItems },
     {
       label: 'Globals',
       items: [

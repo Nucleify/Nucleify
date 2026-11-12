@@ -13,6 +13,7 @@ import {
   investorSurfaceWidget,
   investorThesisWidget,
   investorWedgeWidget,
+  thankYouWidget,
 } from './widgets/marketing'
 
 export type WidgetPropSchema = Record<
@@ -48,6 +49,7 @@ const widgets: WidgetDefinition[] = [
   investorWedgeWidget,
   investorSurfaceWidget,
   investorAskWidget,
+  thankYouWidget,
 ]
 
 const byType = new Map(widgets.map((w) => [w.type, w]))

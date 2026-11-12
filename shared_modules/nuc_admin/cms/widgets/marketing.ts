@@ -261,6 +261,7 @@ export const investorIntroWidget: WidgetDefinition = {
       { type: 'text', name: 'ctaSecondary', label: 'Secondary CTA' },
       { type: 'text', name: 'ctaTertiary', label: 'Tertiary CTA' },
       { type: 'text', name: 'githubHref', label: 'GitHub URL' },
+      { type: 'text', name: 'glanceAria', label: 'Glance aria label' },
     ],
     [
       {
@@ -279,6 +280,15 @@ export const investorIntroWidget: WidgetDefinition = {
           { type: 'text', name: 'figureUnit', label: 'Figure unit' },
           { type: 'text', name: 'line', label: 'Line' },
           { type: 'text', name: 'note', label: 'Note' },
+        ],
+      },
+      {
+        type: 'array',
+        name: 'cubeFaces',
+        label: 'Cube faces',
+        fields: [
+          { type: 'text', name: 'id', label: 'Id' },
+          { type: 'text', name: 'label', label: 'Label' },
         ],
       },
     ],
@@ -359,6 +369,8 @@ export const investorSavingsWidget: WidgetDefinition = {
       { type: 'textarea', name: 'savingsSupport', label: 'Support' },
       { type: 'text', name: 'savingsCta', label: 'CTA' },
       { type: 'text', name: 'savingsNote', label: 'Note' },
+      { type: 'text', name: 'glanceAria', label: 'Glance aria label' },
+      { type: 'text', name: 'pulseStatus', label: 'Pulse status' },
     ],
     [
       {
@@ -483,6 +495,39 @@ export const investorAskWidget: WidgetDefinition = {
           { type: 'text', name: 'label', label: 'Label' },
           { type: 'text', name: 'value', label: 'Value' },
         ],
+      },
+    ]
+  ),
+}
+
+export const thankYouWidget: WidgetDefinition = {
+  type: 'section.thank_you',
+  label: 'Thank you',
+  webComponentKey: 'sections/thank_you',
+  propsSchema: {
+    thankYouTitle: { type: 'string' },
+    thankYouSupport: { type: 'string' },
+    thankYouCta: { type: 'string' },
+    thankYouInvestCta: { type: 'string' },
+  },
+  defaultProps: () => defaultPropsForWidget('section.thank_you'),
+  adminFields: tabsFields(
+    [
+      { type: 'text', name: 'thankYouTitle', label: 'Title' },
+      { type: 'textarea', name: 'thankYouSupport', label: 'Support' },
+      { type: 'text', name: 'thankYouCta', label: 'Home CTA' },
+      { type: 'text', name: 'thankYouInvestCta', label: 'Investor CTA' },
+      { type: 'text', name: 'coreLaneUi', label: 'Cube lane UI' },
+      { type: 'text', name: 'coreLaneSdk', label: 'Cube lane SDK' },
+      { type: 'text', name: 'coreLaneData', label: 'Cube lane data' },
+    ],
+    [],
+    [
+      {
+        type: 'checkbox',
+        name: 'showSection',
+        label: 'Show section',
+        defaultValue: true,
       },
     ]
   ),

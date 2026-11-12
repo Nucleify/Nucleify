@@ -18,7 +18,15 @@ export type PublicPagePayload = {
   title: string
   version: number
   sections: PageSection[]
-  seo?: { title?: string; description?: string } | null
+  seo?: {
+    title?: string
+    description?: string
+    shareTitle?: string
+    ogImage?: string
+    canonical?: string
+    robots?: string
+  } | null
+  template?: string
   /** When false, skip iris wipe on shell boot (admin layout field). */
   enableIris?: boolean
   /** cms = published doc; fallback = canonical hardcoded; missing = no page → home */
@@ -33,7 +41,8 @@ type PublicPageApiBody = {
     title?: string
     version?: number
     sections?: PageSection[]
-    seo?: { title?: string; description?: string } | null
+    seo?: PublicPagePayload['seo']
+    template?: string
     enableIris?: boolean
   }
 }
@@ -152,6 +161,7 @@ export function usePublicPage(
           version: Number(page.version ?? 1),
           sections: normalizeSections(page.sections),
           seo: page.seo ?? null,
+          template: page.template || 'default',
           enableIris: page.enableIris !== false,
           source: 'cms',
         }

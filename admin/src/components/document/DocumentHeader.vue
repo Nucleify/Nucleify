@@ -20,6 +20,14 @@
         @click="emit('save-draft')"
       />
       <nui-button
+        v-if="showUnpublish"
+        type="button"
+        variant="outlined"
+        label="Unpublish"
+        :disabled.prop="unpublishDisabled"
+        @click="emit('unpublish')"
+      />
+      <nui-button
         type="button"
         variant="filled"
         :label="publishLabel"
@@ -41,14 +49,18 @@ withDefaults(
     previewDisabled?: boolean
     draftDisabled?: boolean
     publishDisabled?: boolean
+    unpublishDisabled?: boolean
+    showUnpublish?: boolean
   }>(),
   {
     meta: '',
     draftLabel: 'Save draft',
     publishLabel: 'Publish',
-    previewDisabled: true,
+    previewDisabled: false,
     draftDisabled: false,
     publishDisabled: false,
+    unpublishDisabled: false,
+    showUnpublish: false,
   }
 )
 
@@ -56,5 +68,6 @@ const emit = defineEmits<{
   preview: []
   'save-draft': []
   publish: []
+  unpublish: []
 }>()
 </script>

@@ -51,7 +51,11 @@
 </template>
 
 <script setup lang="ts">
-import { getWidget } from '@shared_modules'
+import {
+  defaultPropsForType,
+  getPostBlock,
+  getWidget,
+} from '@shared_modules'
 
 import { fieldsFromPropsSchema } from '@admin'
 import { FieldJson } from '@admin'
@@ -93,13 +97,19 @@ const sections = computed(() =>
   [...(props.modelValue ?? [])].sort((a, b) => a.order - b.order)
 )
 
+function resolveWidget(type: string) {
+  return getWidget(type) || getPostBlock(type)
+}
+
 function labelFor(type: string): string {
-  return getWidget(type)?.label || type
+  return resolveWidget(type)?.label || type
 }
 
 function propsFields(type: string) {
-  const schema = getWidget(type)?.propsSchema
-  return schema ? fieldsFromPropsSchema(schema) : []
+  const widget = resolveWidget(type)
+  if (!widget) return []
+  if (widget.adminFields?.length) return widget.adminFields
+  return fieldsFromPropsSchema(widget.propsSchema)
 }
 
 function emitOrdered(next: Section[]) {
@@ -135,7 +145,15 @@ function addSection(type: string) {
   const id = `sec_${Date.now().toString(36)}`
   emitOrdered([
     ...sections.value,
-    { id, type, order: sections.value.length, props: {} },
+    {
+      id,
+      type,
+      order: sections.value.length,
+      props:
+        defaultPropsForType(type) ||
+        getPostBlock(type)?.defaultProps?.() ||
+        {},
+    },
   ])
 }
 

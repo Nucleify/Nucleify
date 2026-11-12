@@ -32,6 +32,12 @@ export const homeHeroWidget: WidgetDefinition = {
       { type: 'text', name: 'githubHref', label: 'GitHub URL' },
       { type: 'text', name: 'coreInspect', label: 'Panel kicker' },
       { type: 'text', name: 'coreLive', label: 'Panel footer' },
+      {
+        type: 'upload',
+        name: 'ogImage',
+        label: 'Hero / OG image',
+        relationTo: 'media',
+      },
     ],
     [
       {

@@ -163,6 +163,7 @@ export const SECTION_ANCHOR_BY_TYPE: Record<string, string> = {
   'section.wedge': 'wedge',
   'section.surface': 'surface',
   'section.ask': 'ask',
+  'section.thank_you': 'thanks',
 }
 
 export const CMS_CANONICAL_PAGE_SLUGS = [

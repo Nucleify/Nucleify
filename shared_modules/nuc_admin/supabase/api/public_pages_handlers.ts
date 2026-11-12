@@ -52,7 +52,7 @@ export async function handlePublicPagesApi(
   const { data, error } = await ctx.supabase
     .from('cms_documents')
     .select(
-      'id, collection_slug, locale, title, slug, status, published_at, data, updated_at'
+      'id, collection_slug, locale, title, slug, status, published_at, data, updated_at, template'
     )
     .eq('collection_slug', 'pages')
     .eq('slug', slug)
@@ -90,6 +90,7 @@ export async function handlePublicPagesApi(
       title: data.title,
       published_at: data.published_at,
       updated_at: data.updated_at,
+      template: (data as { template?: string }).template || 'default',
       version: Number((payload as { version?: number }).version ?? 1),
       sections,
       seo: (payload as { seo?: unknown }).seo ?? null,

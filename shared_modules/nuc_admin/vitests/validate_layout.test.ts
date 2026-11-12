@@ -71,19 +71,28 @@ describe('admin_config', () => {
 })
 
 describe('default marketing layouts', () => {
-  it('registers every default home, investor, and company section type', async () => {
+  it('registers every default home, investor, company, and thank-you section type', async () => {
     const {
       DEFAULT_COMPANY_SECTIONS,
       DEFAULT_HOME_SECTIONS,
       DEFAULT_INVESTOR_SECTIONS,
+      DEFAULT_THANK_YOU_SECTIONS,
     } = await import('../cms/default_pages')
     const { isRegisteredWidgetType } = await import('../cms/registry')
     for (const section of [
       ...DEFAULT_HOME_SECTIONS,
       ...DEFAULT_INVESTOR_SECTIONS,
       ...DEFAULT_COMPANY_SECTIONS,
+      ...DEFAULT_THANK_YOU_SECTIONS,
     ]) {
       expect(isRegisteredWidgetType(section.type)).toBe(true)
+    }
+  })
+
+  it('exposes adminFields for every registered widget', async () => {
+    const { listWidgets } = await import('../cms/registry')
+    for (const widget of listWidgets()) {
+      expect(widget.adminFields?.length ?? 0).toBeGreaterThan(0)
     }
   })
 
@@ -94,5 +103,31 @@ describe('default marketing layouts', () => {
       sections: DEFAULT_HOME_SECTIONS,
     })
     expect(result.ok).toBe(true)
+  })
+
+  it('registers pages and posts collections', async () => {
+    const { getCollectionConfig, listCollectionSlugs } = await import(
+      '../cms/admin_config'
+    )
+    expect(listCollectionSlugs()).toEqual(['pages', 'posts'])
+    expect(getCollectionConfig('posts')?.labels.plural).toBe('Posts')
+  })
+})
+
+describe('preview tokens', () => {
+  it('signs and verifies a preview token', async () => {
+    const { signPreviewToken, verifyPreviewToken } = await import(
+      '../cms/preview_token'
+    )
+    const token = signPreviewToken({
+      slug: 'home',
+      locale: 'en',
+      collection: 'pages',
+      ttlSec: 60,
+    })
+    const payload = verifyPreviewToken(token)
+    expect(payload?.slug).toBe('home')
+    expect(payload?.locale).toBe('en')
+    expect(payload?.collection).toBe('pages')
   })
 })
