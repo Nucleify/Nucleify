@@ -12,13 +12,13 @@ Landing Nuxt app. Source in `web/src/`. Shared code comes from `shared_modules/`
 
 ```
 web/src/
-├── pages/[lang]/     # Thin route wrappers
-├── pages/home/       # Landing sections (migrated from nuc_pages)
+├── pages/[lang]/     # Thin CMS route hosts ([slug], preview)
 ├── plugins/          # nucleify-ui + registerNuc*
-├── server/api/       # Nitro gateway catch-all
-├── assets/           # SCSS entry (imports from shared_modules)
-└── nucleify.ts       # Re-exports shared_modules + flashToast
+├── server/           # Nitro gateway, redirects, Workers glue
+└── assets/           # SCSS entry (imports from shared_modules)
 ```
+# Aliases: `nucleify` → shared_modules/index.ts, `nuc_client` → nuc_api client
+# Blog pages: pages:extend → nuc_cms/pages/blog
 
 ## Conventions
 

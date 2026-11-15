@@ -33,14 +33,24 @@ export async function readMarkdownFile(
   slug: string
 ): Promise<string> {
   const contentDir = resolveContentDir()
-  const filePath = join(contentDir, lang, category, `${slug}.md`)
+  const snakeCategory = category.replace(/-/g, '_')
+  const snakeSlug = slug.replace(/-/g, '_')
+  const filePath = join(contentDir, lang, snakeCategory, `${snakeSlug}.md`)
+  const directPath = join(contentDir, lang, category, `${slug}.md`)
 
   // Prefer on-disk content/ (source of truth). Fall back to the client bundle.
   if (existsSync(filePath)) {
     return readFile(filePath, 'utf-8')
   }
+  if (existsSync(directPath)) {
+    return readFile(directPath, 'utf-8')
+  }
 
-  const bundled = getBundledMarkdown(lang, category, slug)
+  const bundled =
+    getBundledMarkdown(lang, category, slug) ??
+    getBundledMarkdown(lang, snakeCategory, snakeSlug) ??
+    getBundledMarkdown(lang, category, snakeSlug) ??
+    getBundledMarkdown(lang, snakeCategory, slug)
   if (bundled !== null) {
     return bundled
   }

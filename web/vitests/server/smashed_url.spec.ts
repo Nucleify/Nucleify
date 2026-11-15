@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { isSmashedSegment, redirectTargetForPath } from '@web'
+import { isSmashedSegment, redirectTargetForPath } from '@shared_modules'
 
 describe('smashed_url', () => {
   it('detects glued path segments from the old canonical bug', () => {
@@ -38,8 +38,13 @@ describe('smashed_url', () => {
     expect(redirectTargetForPath('/pl/home')).toBeNull()
     expect(redirectTargetForPath('/en/investor')).toBeNull()
     expect(redirectTargetForPath('/pl/investor')).toBeNull()
+    expect(redirectTargetForPath('/en/company')).toBeNull()
+    expect(redirectTargetForPath('/pl/company')).toBeNull()
+    expect(redirectTargetForPath('/en/migrations-company')).toBeNull()
     expect(redirectTargetForPath('/en/thank-you')).toBeNull()
     expect(redirectTargetForPath('/pl/thank-you')).toBeNull()
+    expect(redirectTargetForPath('/en/blog')).toBeNull()
+    expect(redirectTargetForPath('/en/blog/hello')).toBeNull()
     expect(redirectTargetForPath('/_nuxt/entry.js')).toBeNull()
     expect(redirectTargetForPath('/api/test')).toBeNull()
   })

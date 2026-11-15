@@ -1,7 +1,8 @@
 import type { CollectionConfig } from '@shared_modules'
-import { getCollectionConfig } from '@shared_modules'
+import { defaultSeoForSlug, getCollectionConfig } from '@shared_modules'
 
 import { adminApiGet, adminApiSend } from '@admin'
+import { useToast } from './use_toast'
 
 export type DocumentFormModel = Record<string, unknown> & {
   title: string
@@ -11,11 +12,18 @@ export type DocumentFormModel = Record<string, unknown> & {
   sections: unknown[]
   body: unknown[]
   seo: Record<string, unknown>
-  template: string
   publishedAt: string
   excerpt: string
   featuredImage: string
   enableIris: boolean
+  showMenu: boolean
+  menuSlug: string
+  showRail: boolean
+  showShear: boolean
+  showFooter: boolean
+  footerMenuSlug: string
+  footerTemplate: string
+  template: string
   translationGroup: string
 }
 
@@ -43,21 +51,56 @@ function emptyModel(): DocumentFormModel {
     sections: [],
     body: [],
     seo: { title: '', description: '', robots: 'index,follow' },
-    template: 'default',
     publishedAt: '',
     excerpt: '',
     featuredImage: '',
     enableIris: true,
+    showMenu: false,
+    menuSlug: 'primary',
+    showRail: true,
+    showShear: true,
+    showFooter: true,
+    footerMenuSlug: '',
+    footerTemplate: 'home',
+    template: 'rail',
     translationGroup: '',
   }
 }
 
+function chromeFlag(value: unknown, fallback = true): boolean {
+  if (value === undefined || value === null) return fallback
+  return value !== false && value !== 0 && value !== '0' && value !== 'false'
+}
+
+function resolveSeo(
+  slug: string,
+  raw: unknown
+): Record<string, unknown> {
+  const fromDoc =
+    raw && typeof raw === 'object' && !Array.isArray(raw)
+      ? (raw as Record<string, unknown>)
+      : {}
+  const defaults = defaultSeoForSlug(slug)
+  if (!defaults) {
+    return {
+      title: '',
+      description: '',
+      robots: 'index,follow',
+      ...fromDoc,
+    }
+  }
+  const title = typeof fromDoc.title === 'string' ? fromDoc.title.trim() : ''
+  const description =
+    typeof fromDoc.description === 'string' ? fromDoc.description.trim() : ''
+  // Canonical marketing pages: empty CMS seo falls back to product defaults so
+  // admin matches what the public shell already serves.
+  if (!title && !description) return { ...defaults }
+  return { ...defaults, ...fromDoc }
+}
+
 function fromDocument(doc: CmsDocumentRow): DocumentFormModel {
   const data = doc.data ?? {}
-  const seo =
-    data.seo && typeof data.seo === 'object' && !Array.isArray(data.seo)
-      ? (data.seo as Record<string, unknown>)
-      : { title: '', description: '', robots: 'index,follow' }
+  const seo = resolveSeo(doc.slug || '', data.seo)
   return {
     title: doc.title || '',
     slug: doc.slug || '',
@@ -66,12 +109,26 @@ function fromDocument(doc: CmsDocumentRow): DocumentFormModel {
     sections: Array.isArray(data.sections) ? data.sections : [],
     body: Array.isArray(data.body) ? data.body : [],
     seo,
-    template: doc.template || String(data.template ?? 'default'),
     publishedAt: doc.published_at || '',
     excerpt: typeof data.excerpt === 'string' ? data.excerpt : '',
     featuredImage:
       typeof data.featuredImage === 'string' ? data.featuredImage : '',
-    enableIris: data.enableIris !== false,
+    enableIris: chromeFlag(data.enableIris),
+    showMenu: chromeFlag(data.showMenu, false),
+    menuSlug:
+      typeof data.menuSlug === 'string' && data.menuSlug.trim()
+        ? data.menuSlug.trim()
+        : 'primary',
+    showRail: chromeFlag(data.showRail),
+    showShear: chromeFlag(data.showShear),
+    showFooter: chromeFlag(data.showFooter),
+    footerMenuSlug:
+      typeof data.footerMenuSlug === 'string' ? data.footerMenuSlug.trim() : '',
+    footerTemplate:
+      typeof data.footerTemplate === 'string' && data.footerTemplate.trim()
+        ? data.footerTemplate.trim()
+        : 'home',
+    template: String(doc.template || 'rail').trim() || 'rail',
     translationGroup: doc.translation_group || '',
   }
 }
@@ -91,14 +148,22 @@ function toPayload(
     data.featuredImage = model.featuredImage || ''
   } else {
     data.sections = Array.isArray(model.sections) ? model.sections : []
-    data.enableIris = model.enableIris !== false
+    data.enableIris = chromeFlag(model.enableIris)
+    data.showMenu = chromeFlag(model.showMenu, false)
+    data.menuSlug = String(model.menuSlug || 'primary').trim() || 'primary'
+    data.showRail = chromeFlag(model.showRail)
+    data.showShear = chromeFlag(model.showShear)
+    data.showFooter = chromeFlag(model.showFooter)
+    data.footerMenuSlug = String(model.footerMenuSlug || '').trim()
+    data.footerTemplate =
+      String(model.footerTemplate || 'home').trim() || 'home'
   }
   return {
     title: String(model.title ?? ''),
     slug: String(model.slug ?? ''),
     locale: String(model.locale ?? 'en'),
     status: String(model.status ?? 'draft'),
-    template: String(model.template ?? 'default'),
+    template: String(model.template || 'rail').trim() || 'rail',
     publishedAt: model.publishedAt || undefined,
     translationGroup: model.translationGroup || undefined,
     expectedUpdatedAt,
@@ -107,6 +172,7 @@ function toPayload(
 }
 
 export function useDocumentForm(collectionSlug: string) {
+  const toast = useToast()
   const config = computed<CollectionConfig | undefined>(() =>
     getCollectionConfig(collectionSlug)
   )
@@ -202,12 +268,14 @@ export function useDocumentForm(collectionSlug: string) {
       updatedAt.value = doc.updated_at ?? null
       dirty.value = false
       if (!opts?.silent) {
-        ok.value =
+        const message =
           payload.status === 'published'
             ? 'Published.'
             : payload.status === 'scheduled'
               ? 'Scheduled.'
               : 'Draft saved.'
+        ok.value = message
+        toast.success(message)
       }
       return doc
     } catch (e) {
@@ -215,7 +283,10 @@ export function useDocumentForm(collectionSlug: string) {
       if (message.toLowerCase().includes('modified by someone else')) {
         conflict.value = true
       }
-      if (!opts?.silent) error.value = message
+      if (!opts?.silent) {
+        error.value = message
+        toast.error(message)
+      }
       return null
     } finally {
       saving.value = false
@@ -238,9 +309,12 @@ export function useDocumentForm(collectionSlug: string) {
       updatedAt.value = doc.updated_at ?? null
       dirty.value = false
       ok.value = 'Published.'
+      toast.success('Published.')
       return doc
     } catch (e) {
-      error.value = e instanceof Error ? e.message : 'Publish failed'
+      const message = e instanceof Error ? e.message : 'Publish failed'
+      error.value = message
+      toast.error(message)
       return null
     } finally {
       saving.value = false
@@ -261,9 +335,12 @@ export function useDocumentForm(collectionSlug: string) {
       updatedAt.value = doc.updated_at ?? null
       dirty.value = false
       ok.value = 'Unpublished.'
+      toast.success('Unpublished.')
       return doc
     } catch (e) {
-      error.value = e instanceof Error ? e.message : 'Unpublish failed'
+      const message = e instanceof Error ? e.message : 'Unpublish failed'
+      error.value = message
+      toast.error(message)
       return null
     } finally {
       saving.value = false

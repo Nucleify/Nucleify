@@ -7,6 +7,8 @@ import type { SupabaseClient } from '@supabase/supabase-js'
 import type { H3Event } from 'h3'
 import { getCookie, parseCookies, setCookie } from 'h3'
 
+import { getBrowserAuthLock } from '@shared_modules'
+
 type PublicSupabase = { supabaseUrl: string; supabaseKey: string }
 
 function publicConfig(): PublicSupabase {
@@ -22,7 +24,9 @@ function publicConfig(): PublicSupabase {
 /** Cookie-backed browser client — session survives SSR + hard refresh. */
 export function createAdminBrowserClient(): SupabaseClient {
   const { supabaseUrl, supabaseKey } = publicConfig()
-  return createBrowserClient(supabaseUrl, supabaseKey)
+  return createBrowserClient(supabaseUrl, supabaseKey, {
+    auth: { lock: getBrowserAuthLock() },
+  })
 }
 
 /** Cookie-backed server client for Nuxt middleware / SSR. */

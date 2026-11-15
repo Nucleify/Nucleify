@@ -154,7 +154,7 @@ Prerender locale prefixes are controlled by `PRERENDER_LOCALES` in `.env`.
 
 ## Migrate product hosts
 
-Generated apps live at `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/`, `admin-astro/` (or a custom `--out` name):
+Generated apps live at `web_next/`, `admin_next/`, `web_solid/`, `admin_solid/`, `web_svelte/`, `admin_svelte/`, `web_astro/`, `admin_astro/` (or a custom `--out` name):
 
 ```bash
 export PATH="$PWD/.config/bin:$PATH"
@@ -173,13 +173,13 @@ nuc emit convert web --target=solid --path=/path/to/app --out=my-solid --force
 nuc emit convert web --target=svelte --path=/path/to/app --out=my-svelte --force
 ```
 
-Develop in Nuxt (`web/`, `admin/`), convert when you need another framework deployment. Astro `docs/` convert is not available yet. See [Compiler](/en/docs/core-concepts/compiler) · [CLI](/en/docs/core-concepts/cli).
+Develop in Nuxt (`web/`, `admin/`), convert when you need another framework deployment. Astro `docs/` convert is not available yet. See [Compiler](/en/docs/core_concepts/compiler) · [CLI](/en/docs/core_concepts/cli).
 
 ---
 
 ## Overrides
 
-Per-deployment customizations go in `overrides/web/` or `overrides/admin/`, mirroring the original file path. See [Overriding](/en/docs/core-concepts/overriding).
+Per-deployment customizations go in `overrides/web/` or `overrides/admin/`, mirroring the original file path. See [Overriding](/en/docs/core_concepts/overriding).
 
 ---
 
@@ -200,4 +200,4 @@ Default ports (every technology): landing `web*` → `7777` (`WEB_PORT`), `admin
 
 - [Environment](/en/docs/configuration/environment) - `.env` variables
 - [Supabase](/en/docs/configuration/supabase) - backend and API handlers
-- [Modules](/en/docs/core-concepts/modules) - shared module structure
+- [Modules](/en/docs/core_concepts/modules) - shared module structure

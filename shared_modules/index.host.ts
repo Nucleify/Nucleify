@@ -3,12 +3,6 @@
  * No Vue plugins or `nuxt/app` — CMS, toast, browser Supabase client, and admin helpers.
  */
 
-export * from './nuc_admin/cms/admin_config'
-export * from './nuc_admin/cms/default_pages'
-export * from './nuc_admin/cms/defaults/marketing_props'
-export * from './nuc_admin/cms/fields/types'
-export * from './nuc_admin/cms/merge_props'
-export * from './nuc_admin/cms/registry'
 export {
   configureSupabaseClient,
   getSupabaseAccessToken,
@@ -21,3 +15,10 @@ export {
   flashToast,
   setToastInstance,
 } from './nuc_api/utils/use_toast'
+export * from './nuc_cms/cms/admin_config'
+export * from './nuc_cms/cms/default_pages'
+export * from './nuc_cms/cms/defaults/marketing_props'
+export * from './nuc_cms/cms/fields/types'
+export * from './nuc_cms/cms/merge_props'
+export * from './nuc_cms/cms/page_templates'
+export * from './nuc_cms/cms/registry'

@@ -51,10 +51,6 @@
 </template>
 
 <script setup lang="ts">
-import { FieldCheckbox } from '@admin'
-import { FieldSelect } from '@admin'
-import { FieldShell } from '@admin'
-import { FieldText } from '@admin'
 import { adminApiGet, adminApiSend } from '@admin'
 
 useHead({ title: 'User' })

@@ -1,4 +1,3 @@
-/** Read string value from a Lit nui-* host event (detail.value → host.value). */
 export function nuiValueFromEvent(event: Event): string | null {
   if (event instanceof CustomEvent) {
     const detail = (event as CustomEvent<{ value?: unknown }>).detail
@@ -29,7 +28,6 @@ export function nuiValueFromEvent(event: Event): string | null {
   return null
 }
 
-/** Live value from a Lit host ref. */
 export function nuiHostValue(
   host: { value?: unknown } | null | undefined
 ): string {

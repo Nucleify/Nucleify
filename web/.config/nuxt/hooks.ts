@@ -7,7 +7,9 @@ import {
 	rmSync,
 	writeFileSync,
 } from "node:fs";
-import { join } from "node:path";
+import { join, resolve } from "node:path";
+
+const monorepoRoot = resolve(process.cwd(), "..");
 
 const PLACEHOLDER = "__NUC_FONT_PRELOADS_JSON__";
 
@@ -121,6 +123,27 @@ export function injectFontPreloadsFromOutput(nitro: {
 
 export const hooksConfig = {
 	hooks: {
+		"pages:extend"(
+			pages: { name?: string; path?: string; file?: string }[],
+		) {
+			const blogDir = resolve(
+				monorepoRoot,
+				"shared_modules/nuc_cms/pages/blog",
+			);
+			pages.push(
+				{
+					name: "lang-blog-index",
+					path: "/:lang()/blog",
+					file: resolve(blogDir, "index.vue"),
+				},
+				{
+					name: "lang-blog-slug",
+					path: "/:lang()/blog/:slug()",
+					file: resolve(blogDir, "[slug].vue"),
+				},
+			);
+		},
+
 		"nitro:build:public-assets": (nitro: {
 			options: {
 				rootDir: string;

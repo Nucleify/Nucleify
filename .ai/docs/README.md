@@ -32,6 +32,8 @@ Session notes after **DO**. Plans: `.ai/specs/`. Public docs site: `docs/`.
 | [nucleify-solid-shell.md](./nucleify-solid-shell.md) | `web-solid` |
 | [nucleify-emit-barrels.md](./nucleify-emit-barrels.md) | `@web` / `@shared_modules` on convert hosts |
 | [nucleify-cms-slug.md](./nucleify-cms-slug.md) | `/[lang]/[slug]` |
+| [nucleify-cms-widgets.md](./nucleify-cms-widgets.md) | Add section / block / template |
+| [nucleify-cms-emit-catalog.md](./nucleify-cms-emit-catalog.md) | One section register → emit shells |
 | [nucleify-dev-ports.md](./nucleify-dev-ports.md) | `:7777` / `:8888` |
 | [nucleify-deploy.md](./nucleify-deploy.md) | `make deploy web\|admin\|docs` |
 | [nucleify-home-copy.md](./nucleify-home-copy.md) | Home CMS copy |

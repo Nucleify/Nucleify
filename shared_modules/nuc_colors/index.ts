@@ -1,8 +1,8 @@
 export * from './nuc_colors'
 
-export * from './components/color-picker/types/interfaces'
-export * from './components/color-picker/utils/persist_item_color_shades'
-export * from './components/color-picker/utils/use_color_picker'
+export * from './components/color_picker/types/interfaces'
+export * from './components/color_picker/utils/persist_item_color_shades'
+export * from './components/color_picker/utils/use_color_picker'
 export * from './constants/default'
 export * from './constants/is_next_runtime'
 export * from './constants/keys'

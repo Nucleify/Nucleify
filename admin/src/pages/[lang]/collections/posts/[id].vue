@@ -3,6 +3,9 @@
     <DocumentHeader
       :title="headerTitle"
       :meta="headerMeta"
+      :status="String(model.status || 'draft')"
+      :dirty="dirty"
+      :crumbs="crumbs"
       :preview-disabled="saving || loading || !canPreview"
       :draft-disabled="saving || loading"
       :publish-disabled="saving || loading"
@@ -10,29 +13,23 @@
       :show-unpublish="model.status === 'published'"
       :draft-label="saving ? 'Saving…' : dirty ? 'Save draft*' : 'Save draft'"
       :publish-label="saving ? 'Publishing…' : 'Publish'"
+      :more="moreActions"
       @preview="onPreview"
       @save-draft="onDraft"
       @publish="onPublish"
       @unpublish="onUnpublish"
-    >
-      <nui-button
-        v-if="documentId"
-        type="button"
-        variant="outlined"
-        label="Trash"
-        :disabled.prop="saving"
-        @click="onDelete"
-      />
-      <NuxtLink :to="`/${lang}/collections/posts`" class="admin-muted">
-        ← Posts
-      </NuxtLink>
-    </DocumentHeader>
+    />
 
-    <p v-if="conflict" class="admin-form__error">
-      Someone else edited this post. Reload before saving again.
-    </p>
+    <div v-if="conflict" class="admin-conflict-banner">
+      <p class="admin-form__error" style="margin: 0">
+        Someone else edited this post. Reload before saving again.
+      </p>
+      <div class="admin-actions">
+        <nui-button type="button" variant="outlined" label="Reload" @click="reloadDoc" />
+        <nui-button type="button" variant="filled" label="Overwrite" @click="onOverwrite" />
+      </div>
+    </div>
     <p v-if="error" class="admin-form__error">{{ error }}</p>
-    <p v-if="ok" style="color: #86efac">{{ ok }}</p>
     <p v-if="loading" class="admin-muted">Loading…</p>
 
     <DocumentForm
@@ -41,18 +38,29 @@
       :fields="fields"
       @update:model-value="onModel"
     />
+
+    <AdminConfirmDialog
+      :open="confirmTrash"
+      title="Move to trash?"
+      message="This post will be moved to trash."
+      confirm-label="Trash"
+      @confirm="doTrash"
+      @cancel="confirmTrash = false"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { DocumentForm } from '@admin'
-import { DocumentHeader } from '@admin'
+import type { AdminAction } from '@admin'
 import { useDocumentForm } from '@admin'
+import { adminApiSend } from '@admin'
+import { useAdminToast } from '@admin'
 
 useHead({ title: 'Post' })
 
 const route = useRoute()
 const config = useRuntimeConfig()
+const toast = useAdminToast()
 const lang = computed(() => String(route.params.lang || 'en'))
 const idParam = computed(() => String(route.params.id || ''))
 const isNew = computed(() => idParam.value === 'new')
@@ -66,7 +74,6 @@ const {
   dirty,
   conflict,
   error,
-  ok,
   load,
   resetCreate,
   save,
@@ -79,6 +86,13 @@ const {
 
 const fields = computed(() => collectionConfig.value?.fields ?? [])
 const canPreview = computed(() => Boolean(documentId.value || model.value.slug))
+const confirmTrash = ref(false)
+
+const crumbs = computed(() => [
+  { label: 'Collections' },
+  { label: 'Posts', to: `/${lang.value}/collections/posts` },
+  { label: isNew.value ? 'New' : String(model.value.title || 'Edit') },
+])
 
 const headerTitle = computed(
   () => String(model.value.title || (isNew.value ? 'New post' : 'Post'))
@@ -86,9 +100,103 @@ const headerTitle = computed(
 const headerMeta = computed(() => {
   const slug = String(model.value.slug || '—')
   const locale = String(model.value.locale || 'en')
-  const status = String(model.value.status || 'draft')
-  return `${slug} · ${locale} · ${status}`
+  return `${slug} · ${locale}`
 })
+
+const moreActions = computed((): AdminAction[] => [
+  {
+    id: 'schedule',
+    label: 'Schedule…',
+    disabled: saving.value,
+    onClick: async () => {
+      const when = window.prompt(
+        'Publish at (ISO datetime)',
+        model.value.publishedAt || new Date().toISOString()
+      )
+      if (!when) return
+      model.value = { ...model.value, publishedAt: when, status: 'scheduled' }
+      markDirty()
+      await save('scheduled')
+    },
+  },
+  {
+    id: 'permalink',
+    label: 'Copy permalink',
+    onClick: async () => {
+      const path = `/${model.value.locale || 'en'}/blog/${model.value.slug || ''}`
+      await navigator.clipboard.writeText(path)
+      toast.success('Permalink copied.')
+    },
+  },
+  {
+    id: 'live',
+    label: 'Open live',
+    onClick: () => {
+      const webOrigin =
+        String((config.public as { webOrigin?: string }).webOrigin || '').replace(
+          /\/$/,
+          ''
+        ) || 'http://localhost:3000'
+      window.open(
+        `${webOrigin}/${model.value.locale || 'en'}/blog/${model.value.slug || ''}`,
+        '_blank',
+        'noopener,noreferrer'
+      )
+    },
+  },
+  {
+    id: 'export',
+    label: 'Export JSON',
+    onClick: () => {
+      const blob = new Blob([JSON.stringify(model.value, null, 2)], {
+        type: 'application/json',
+      })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `${model.value.slug || 'post'}.json`
+      a.click()
+      URL.revokeObjectURL(url)
+    },
+  },
+  {
+    id: 'duplicate',
+    label: 'Duplicate',
+    disabled: !documentId.value,
+    onClick: async () => {
+      const doc = await adminApiSend<Record<string, unknown>>(
+        '/api/admin/collections/posts',
+        'POST',
+        {
+          title: `${model.value.title} (copy)`,
+          slug: `${model.value.slug}-copy`,
+          locale: model.value.locale,
+          status: 'draft',
+          data: {
+            version: 1,
+            body: model.value.body,
+            excerpt: model.value.excerpt,
+            featuredImage: model.value.featuredImage,
+            seo: model.value.seo,
+          },
+        }
+      )
+      if (doc?.id) {
+        toast.success('Duplicated.')
+        await navigateTo(`/${lang.value}/collections/posts/${doc.id}`)
+      }
+    },
+  },
+  {
+    id: 'trash',
+    label: 'Trash',
+    danger: true,
+    disabled: !documentId.value || saving.value,
+    onClick: () => {
+      confirmTrash.value = true
+    },
+  },
+])
 
 function onModel(next: typeof model.value) {
   model.value = next
@@ -120,7 +228,6 @@ async function onUnpublish() {
 async function onPreview() {
   const result = await preview()
   if (!result?.path) return
-  // Preview route for posts uses same token path under /preview
   const webOrigin =
     String((config.public as { webOrigin?: string }).webOrigin || '').replace(
       /\/$/,
@@ -129,10 +236,19 @@ async function onPreview() {
   window.open(`${webOrigin}${result.path}`, '_blank', 'noopener,noreferrer')
 }
 
-async function onDelete() {
-  if (!confirm('Move this post to trash?')) return
+async function doTrash() {
+  confirmTrash.value = false
   const deleted = await remove(false)
   if (deleted) await navigateTo(`/${lang.value}/collections/posts`)
+}
+
+async function reloadDoc() {
+  if (!documentId.value) return
+  await load(documentId.value)
+}
+
+async function onOverwrite() {
+  await save(undefined)
 }
 
 onMounted(() => {

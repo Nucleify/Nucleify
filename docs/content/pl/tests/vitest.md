@@ -151,6 +151,6 @@ pnpm test:watch
 
 ## Powiązana dokumentacja
 
-- [Moduły](/pl/docs/core-concepts/modules) - konwencja folderu `vitests/`
-- [Standardy kodowania](/pl/docs/about/coding-standards) - nazewnictwo i struktura
-- [Kompilator](/pl/docs/core-concepts/compiler) - `pnpm compiler:test`
+- [Moduły](/pl/docs/core_concepts/modules) - konwencja folderu `vitests/`
+- [Standardy kodowania](/pl/docs/about/coding_standards) - nazewnictwo i struktura
+- [Kompilator](/pl/docs/core_concepts/compiler) - `pnpm compiler:test`

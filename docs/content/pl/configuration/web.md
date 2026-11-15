@@ -154,7 +154,7 @@ Prefiksy locale do prerenderowania kontroluje `PRERENDER_LOCALES` w `.env`.
 
 ## Migracja hostów produktu
 
-Wygenerowane aplikacje: `web-next/`, `admin-next/`, `web-solid/`, `admin-solid/`, `web-svelte/`, `admin-svelte/`, `web-astro/`, `admin-astro/` (lub własna nazwa `--out`):
+Wygenerowane aplikacje: `web_next/`, `admin_next/`, `web_solid/`, `admin_solid/`, `web_svelte/`, `admin_svelte/`, `web_astro/`, `admin_astro/` (lub własna nazwa `--out`):
 
 ```bash
 export PATH="$PWD/.config/bin:$PATH"
@@ -173,13 +173,13 @@ nuc emit convert web --target=solid --path=/path/to/app --out=my-solid --force
 nuc emit convert web --target=svelte --path=/path/to/app --out=my-svelte --force
 ```
 
-Rozwijaj w Nuxt (`web/`, `admin/`), konwertuj gdy potrzebujesz innego frameworka. Konwersja Astro `docs/` nie jest jeszcze dostępna. Zobacz [Kompilator](/pl/docs/core-concepts/compiler) · [CLI](/pl/docs/core-concepts/cli).
+Rozwijaj w Nuxt (`web/`, `admin/`), konwertuj gdy potrzebujesz innego frameworka. Konwersja Astro `docs/` nie jest jeszcze dostępna. Zobacz [Kompilator](/pl/docs/core_concepts/compiler) · [CLI](/pl/docs/core_concepts/cli).
 
 ---
 
 ## Nadpisania
 
-Dostosowania per wdrożenie trafiają do `overrides/web/` lub `overrides/admin/`, odzwierciedlając oryginalną ścieżkę pliku. Zobacz [Nadpisywanie](/pl/docs/core-concepts/overriding).
+Dostosowania per wdrożenie trafiają do `overrides/web/` lub `overrides/admin/`, odzwierciedlając oryginalną ścieżkę pliku. Zobacz [Nadpisywanie](/pl/docs/core_concepts/overriding).
 
 ---
 
@@ -200,4 +200,4 @@ Domyślne porty (każda technologia): landing `web*` → `7777` (`WEB_PORT`), `a
 
 - [Zmienne środowiskowe](/pl/docs/configuration/environment) - zmienne `.env`
 - [Supabase](/pl/docs/configuration/supabase) - backend i handlery API
-- [Moduły](/pl/docs/core-concepts/modules) - struktura modułów współdzielonych
+- [Moduły](/pl/docs/core_concepts/modules) - struktura modułów współdzielonych

@@ -1,6 +1,7 @@
 <template>
   <div>
     <nui-toast position="top-right" />
+    <AdminToastHost />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -8,6 +9,7 @@
 </template>
 
 <script setup lang="ts">
+
 useHead({
   htmlAttrs: { class: 'nuc-nuxt p-dark' },
   bodyAttrs: { class: 'nuc-nuxt p-dark' },
@@ -27,8 +29,10 @@ useHead({
       textContent:
         'html,body{margin:0;background:#0a0a0a;color:#f0f0f0}' +
         'html:not([data-nui-ready][data-auth-ready]) body{visibility:hidden}' +
-        'nui-input-text,nui-textarea,nui-select{display:block;width:100%;min-height:2.5625rem;box-sizing:border-box}' +
-        'nui-button{box-sizing:border-box;min-height:2.25rem}' +
+        /* Closed/unupgraded dialogs must not flash light-DOM (Lit treats visible="false" as true). */
+        'nui-dialog:not(:defined),nui-dialog:not([visible]){display:none!important}' +
+        'nui-input-text,nui-textarea,nui-select{display:block;width:100%;min-height:var(--admin-control-h,36px);box-sizing:border-box}' +
+        'nui-button{box-sizing:border-box;min-height:var(--admin-control-h,36px)}' +
         'nui-button[fluid]{display:block;width:100%}' +
         'nui-button:not(:defined)::before{content:attr(label)}',
     },

@@ -40,8 +40,6 @@
 </template>
 
 <script setup lang="ts">
-import { FieldCheckbox } from '@admin'
-import { FieldText } from '@admin'
 
 definePageMeta({ layout: 'blank' })
 

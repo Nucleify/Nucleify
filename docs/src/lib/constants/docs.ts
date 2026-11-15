@@ -3,7 +3,7 @@ import type { DocCategoryInterface } from '../types/interfaces'
 export const DOC_CATEGORIES: DocCategoryInterface[] = [
   {
     name: { en: 'Getting Started', pl: 'Pierwsze kroki' },
-    slug: 'getting-started',
+    slug: 'getting_started',
     order: 1,
     pages: [
       {
@@ -12,7 +12,7 @@ export const DOC_CATEGORIES: DocCategoryInterface[] = [
         order: 1,
       },
       {
-        slug: 'migrate-faq',
+        slug: 'migrate_faq',
         title: {
           en: 'Migrate FAQ',
           pl: 'FAQ migracji',
@@ -25,7 +25,7 @@ export const DOC_CATEGORIES: DocCategoryInterface[] = [
         order: 3,
       },
       {
-        slug: 'quick-start',
+        slug: 'quick_start',
         title: { en: 'Quick Start', pl: 'Szybki start' },
         order: 4,
       },
@@ -33,7 +33,7 @@ export const DOC_CATEGORIES: DocCategoryInterface[] = [
   },
   {
     name: { en: 'Core Concepts', pl: 'Koncepcje' },
-    slug: 'core-concepts',
+    slug: 'core_concepts',
     order: 2,
     pages: [
       {
@@ -62,7 +62,7 @@ export const DOC_CATEGORIES: DocCategoryInterface[] = [
         order: 5,
       },
       {
-        slug: 'feature-sliced-design',
+        slug: 'feature_sliced_design',
         title: {
           en: 'Feature Sliced Design',
           pl: 'Feature-Sliced Design',
@@ -115,17 +115,17 @@ export const DOC_CATEGORIES: DocCategoryInterface[] = [
         order: 1,
       },
       {
-        slug: 'coding-standards',
+        slug: 'coding_standards',
         title: { en: 'Coding Standards', pl: 'Standardy kodowania' },
         order: 2,
       },
       {
-        slug: 'code-of-conduct',
+        slug: 'code_of_conduct',
         title: { en: 'Code of Conduct', pl: 'Kodeks postępowania' },
         order: 3,
       },
       {
-        slug: 'people-and-credits',
+        slug: 'people_and_credits',
         title: { en: 'People & Credits', pl: 'Ludzie i podziękowania' },
         order: 4,
       },

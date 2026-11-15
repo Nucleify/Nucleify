@@ -2,34 +2,36 @@
 import { useRoute } from 'nuxt/app'
 import { computed } from 'vue'
 
-import ShellSections from '../../components/ShellSections'
-import { usePublicShellPage } from '../../composables/use_public_shell_page'
-import { useShellPage } from '../../composables/use_shell_page'
+import FrameSections from '@shared_modules/nuc_cms/components/FrameSections'
+import { usePublicFramePage } from '@shared_modules'
+import { useFramePage } from '@shared_modules'
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug || ''))
 
-await usePublicShellPage(slug)
+await usePublicFramePage(slug)
 
-const shell = useShellPage()
-const sections = computed(() => shell.value.sections)
+const frame = useFramePage()
+const sections = computed(() => frame.value.sections)
 const showPending = computed(
-  () => shell.value.pending && sections.value.length === 0
+  () => frame.value.pending && sections.value.length === 0
 )
 </script>
 
 <template>
-  <p v-if="showPending" class="nuc-shell__status">Loading…</p>
-  <ShellSections v-else :sections="sections" />
+  <p v-if="showPending" class="nuc-frame__status">Loading…</p>
+  <Suspense v-else>
+    <FrameSections :sections="sections" />
+  </Suspense>
 </template>
 
 <style scoped>
-.nuc-shell__status {
+.nuc-frame__status {
   min-height: 100%;
   margin: 0;
   padding: 1rem 1.5rem;
-  background: var(--shell-bg, #03050c);
-  color: var(--shell-muted, #8a8a8a);
+  background: var(--frame-bg, #03050c);
+  color: var(--frame-muted, #8a8a8a);
   font-family: ui-monospace, monospace;
   font-size: 0.85rem;
 }

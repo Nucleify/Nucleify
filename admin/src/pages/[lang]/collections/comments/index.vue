@@ -1,47 +1,56 @@
 <template>
   <div>
-    <div class="admin-page-header">
-      <div>
-        <h1>Comments</h1>
-        <p>Moderate blog comments.</p>
-      </div>
+    <AdminPageHeader
+      title="Comments"
+      description="Moderate blog comments."
+      :primary="primary"
+      :more="more"
+    />
+    <div class="admin-filter-chips" style="margin-bottom: 0.75rem">
+      <button
+        v-for="chip in statusFilters"
+        :key="chip.value"
+        type="button"
+        class="admin-filter-chip"
+        :class="{ 'is-active': status === chip.value }"
+        @click="setStatus(chip.value)"
+      >
+        {{ chip.label }}
+      </button>
     </div>
     <p v-if="error" class="admin-form__error">{{ error }}</p>
-    <p v-if="loading" class="admin-muted">Loading…</p>
+    <AdminSkeleton v-if="loading" height="10rem" />
     <CollectionList
       v-else
       :columns="columns"
       :rows="rows"
+      :row-actions-for="rowActions"
+      searchable
+      storage-key="comments"
       empty-label="No comments yet."
     />
-    <div v-if="rows.length" class="admin-actions" style="margin-top: 1rem">
-      <template v-for="row in rows" :key="String(row.id)">
-        <nui-button
-          type="button"
-          variant="filled"
-          :label="`Approve ${row.author_name}`"
-          @click="setStatus(String(row.id), 'approved')"
-        />
-        <nui-button
-          type="button"
-          variant="outlined"
-          label="Spam"
-          @click="setStatus(String(row.id), 'spam')"
-        />
-      </template>
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { CollectionList } from '@admin'
+import type { AdminAction } from '@admin'
 import { adminApiGet, adminApiSend } from '@admin'
+import { useAdminToast } from '@admin'
 
 useHead({ title: 'Comments' })
 
+const toast = useAdminToast()
 const rows = ref<Record<string, unknown>[]>([])
 const loading = ref(true)
 const error = ref('')
+const status = ref('pending')
+
+const statusFilters = [
+  { label: 'Pending', value: 'pending' },
+  { label: 'Approved', value: 'approved' },
+  { label: 'Spam', value: 'spam' },
+  { label: 'All', value: 'all' },
+]
 
 const columns = [
   { key: 'author_name', label: 'Author' },
@@ -51,13 +60,48 @@ const columns = [
   { key: 'created_at', label: 'When', muted: true },
 ]
 
+const primary = computed((): AdminAction[] => [
+  {
+    id: 'approve-all',
+    label: 'Approve visible',
+    disabled: !rows.value.length,
+    onClick: async () => {
+      for (const row of rows.value) {
+        await setStatusRow(String(row.id), 'approved')
+      }
+      toast.success('Approved visible comments.')
+    },
+  },
+])
+
+const more = computed((): AdminAction[] => [
+  { id: 'refresh', label: 'Refresh', onClick: () => load() },
+  {
+    id: 'spam-all',
+    label: 'Mark visible as spam',
+    danger: true,
+    onClick: async () => {
+      for (const row of rows.value) {
+        await setStatusRow(String(row.id), 'spam')
+      }
+    },
+  },
+])
+
+function setStatus(value: string) {
+  status.value = value
+  void load()
+}
+
 async function load() {
   loading.value = true
   error.value = ''
   try {
+    const qs =
+      status.value === 'all' ? '' : `?status=${encodeURIComponent(status.value)}`
     const data =
       (await adminApiGet<Record<string, unknown>[]>(
-        '/api/admin/comments?status=pending'
+        `/api/admin/comments${qs}`
       )) ?? []
     rows.value = data.map((row) => ({
       ...row,
@@ -73,9 +117,39 @@ async function load() {
   }
 }
 
-async function setStatus(id: string, status: string) {
-  await adminApiSend(`/api/admin/comments/${id}`, 'PATCH', { status })
-  await load()
+async function setStatusRow(id: string, next: string) {
+  await adminApiSend(`/api/admin/comments/${id}`, 'PATCH', { status: next })
+}
+
+function rowActions(row: Record<string, unknown>): AdminAction[] {
+  const id = String(row.id)
+  return [
+    {
+      id: 'approve',
+      label: 'Approve',
+      onClick: async () => {
+        await setStatusRow(id, 'approved')
+        await load()
+      },
+    },
+    {
+      id: 'spam',
+      label: 'Spam',
+      danger: true,
+      onClick: async () => {
+        await setStatusRow(id, 'spam')
+        await load()
+      },
+    },
+    {
+      id: 'archive',
+      label: 'Archive',
+      onClick: async () => {
+        await setStatusRow(id, 'archived')
+        await load()
+      },
+    },
+  ]
 }
 
 onMounted(() => {

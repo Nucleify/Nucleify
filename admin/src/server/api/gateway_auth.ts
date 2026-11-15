@@ -24,9 +24,6 @@ export async function gatewayUserFromJwt(
   return resolveGatewayUserFromAccessToken(supabase, jwt)
 }
 
-/**
- * Admin host always lists with service-role scope after JWT validation.
- */
 export async function resolveGatewayListScope(
   supabase: SupabaseClient,
   event: H3Event

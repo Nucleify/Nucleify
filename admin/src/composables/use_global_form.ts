@@ -1,5 +1,5 @@
-import type { GlobalConfig } from '@shared_modules'
-import { getGlobalConfig } from '@shared_modules'
+import type { FieldConfig, GlobalConfig } from '@shared_modules'
+import { getGlobalConfig, normalizeFooterGlobalData } from '@shared_modules'
 
 import { adminApiGet, adminApiSend } from '@admin'
 
@@ -9,6 +9,38 @@ export type GlobalDocumentRow = {
   locale: string
   status: string
   data: Record<string, unknown>
+}
+
+function fieldDefaults(fields: FieldConfig[] | undefined): Record<string, unknown> {
+  const next: Record<string, unknown> = {}
+  for (const field of fields ?? []) {
+    if (
+      'name' in field &&
+      field.name &&
+      'defaultValue' in field &&
+      field.defaultValue !== undefined
+    ) {
+      next[field.name] = structuredClone(field.defaultValue)
+    }
+  }
+  return next
+}
+
+function mergeDefaults(
+  data: Record<string, unknown>,
+  defaults: Record<string, unknown>
+): Record<string, unknown> {
+  const next = { ...defaults, ...data }
+  for (const [key, value] of Object.entries(defaults)) {
+    const current = data[key]
+    if (current === undefined || current === null || current === '') {
+      next[key] = structuredClone(value)
+    }
+    if (Array.isArray(current) && current.length === 0 && Array.isArray(value)) {
+      next[key] = structuredClone(value)
+    }
+  }
+  return next
 }
 
 export function useGlobalForm(globalSlug: MaybeRefOrGetter<string>) {
@@ -37,7 +69,11 @@ export function useGlobalForm(globalSlug: MaybeRefOrGetter<string>) {
       )
       documentId.value = doc.id
       status.value = doc.status || 'draft'
-      model.value = { ...(doc.data ?? {}) }
+      const raw = { ...(doc.data ?? {}) }
+      model.value =
+        slug.value === 'footer'
+          ? normalizeFooterGlobalData(raw, nextLocale)
+          : mergeDefaults(raw, fieldDefaults(config.value?.fields))
     } catch (e) {
       error.value = e instanceof Error ? e.message : 'Failed to load global'
     } finally {

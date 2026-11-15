@@ -47,7 +47,12 @@ function applyEnvFile(filePath: string, onlyMissing: boolean): void {
   }
 }
 
+let envLoaded = false
+
 export function ensureServerEnv(): void {
+  if (envLoaded) return
+  envLoaded = true
+
   const mode = process.env.NODE_ENV || 'development'
   const files = ['.env', '.env.local', `.env.${mode}`, `.env.${mode}.local`]
 

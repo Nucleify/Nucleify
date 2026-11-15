@@ -3,7 +3,7 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "nuxt dev --host 127.0.0.1 --port 7777",
+		"dev": "nuxt dev --host 127.0.0.1",
 		"build": "nuxt build",
 		"start": "node .output/server/index.mjs",
 		"generate": "nuxt generate",
@@ -19,7 +19,6 @@
 		"@nuxtjs/i18n": "10.3.0",
 		"@nuxtjs/robots": "5.2.10",
 		"@nuxtjs/sitemap": "7.6.0",
-		"@nuxtjs/web-vitals": "0.2.7",
 		"@supabase/supabase-js": "^2.105.1",
 		"animejs": "^4.5.0",
 		"lit": "^3.3.3",
@@ -32,7 +31,6 @@
 		"vue-router": "5.2.0"
 	},
 	"devDependencies": {
-		"@nuxt/fonts": "0.11.2",
 		"@nuxtjs/html-validator": "2.1.0",
 		"html-validate": "9.5.3",
 		"nuxt-link-checker": "4.3.0",

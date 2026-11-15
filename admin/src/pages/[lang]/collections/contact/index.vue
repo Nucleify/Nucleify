@@ -1,41 +1,56 @@
 <template>
   <div>
-    <div class="admin-page-header">
-      <div>
-        <h1>Contact inbox</h1>
-        <p>Submissions from the public contact form.</p>
-      </div>
+    <AdminPageHeader
+      title="Contact inbox"
+      description="Submissions from the public contact form."
+      :primary="primary"
+      :more="more"
+    />
+    <div class="admin-filter-chips" style="margin-bottom: 0.75rem">
+      <button
+        v-for="chip in statusFilters"
+        :key="chip.value"
+        type="button"
+        class="admin-filter-chip"
+        :class="{ 'is-active': status === chip.value }"
+        @click="status = chip.value"
+      >
+        {{ chip.label }}
+      </button>
     </div>
     <p v-if="error" class="admin-form__error">{{ error }}</p>
-    <p v-if="loading" class="admin-muted">Loading…</p>
+    <AdminSkeleton v-if="loading" height="10rem" />
     <CollectionList
       v-else
       :columns="columns"
-      :rows="rows"
+      :rows="filtered"
+      :row-actions-for="rowActions"
+      searchable
+      storage-key="contact"
       empty-label="No submissions yet."
     />
-    <div v-if="rows.length" class="admin-actions" style="margin-top: 1rem">
-      <nui-button
-        v-for="row in rows"
-        :key="String(row.id)"
-        type="button"
-        variant="outlined"
-        :label="`Mark read · ${row.email}`"
-        @click="markRead(String(row.id))"
-      />
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { CollectionList } from '@admin'
+import type { AdminAction } from '@admin'
 import { adminApiGet, adminApiSend } from '@admin'
+import { useAdminToast } from '@admin'
 
 useHead({ title: 'Contact inbox' })
 
+const toast = useAdminToast()
 const rows = ref<Record<string, unknown>[]>([])
 const loading = ref(true)
 const error = ref('')
+const status = ref('all')
+
+const statusFilters = [
+  { label: 'All', value: 'all' },
+  { label: 'New', value: 'new' },
+  { label: 'Read', value: 'read' },
+  { label: 'Archived', value: 'archived' },
+]
 
 const columns = [
   { key: 'email', label: 'Email' },
@@ -45,6 +60,46 @@ const columns = [
   { key: 'message', label: 'Message', muted: true },
   { key: 'created_at', label: 'When', muted: true },
 ]
+
+const filtered = computed(() => {
+  if (status.value === 'all') return rows.value
+  return rows.value.filter(
+    (row) => String(row.status || '').toLowerCase() === status.value
+  )
+})
+
+const primary = computed((): AdminAction[] => [
+  {
+    id: 'mark-all',
+    label: 'Mark all read',
+    disabled: !filtered.value.length,
+    onClick: async () => {
+      for (const row of filtered.value) {
+        await adminApiSend(`/api/admin/contact/${row.id}`, 'PATCH', {
+          status: 'read',
+        })
+      }
+      toast.success('Marked read.')
+      await load()
+    },
+  },
+])
+
+const more = computed((): AdminAction[] => [
+  { id: 'refresh', label: 'Refresh', onClick: () => load() },
+  {
+    id: 'archive-all',
+    label: 'Archive visible',
+    onClick: async () => {
+      for (const row of filtered.value) {
+        await adminApiSend(`/api/admin/contact/${row.id}`, 'PATCH', {
+          status: 'archived',
+        })
+      }
+      await load()
+    },
+  },
+])
 
 async function load() {
   loading.value = true
@@ -66,9 +121,30 @@ async function load() {
   }
 }
 
-async function markRead(id: string) {
-  await adminApiSend(`/api/admin/contact/${id}`, 'PATCH', { status: 'read' })
-  await load()
+function rowActions(row: Record<string, unknown>): AdminAction[] {
+  const id = String(row.id)
+  return [
+    {
+      id: 'read',
+      label: 'Mark read',
+      onClick: async () => {
+        await adminApiSend(`/api/admin/contact/${id}`, 'PATCH', {
+          status: 'read',
+        })
+        await load()
+      },
+    },
+    {
+      id: 'archive',
+      label: 'Archive',
+      onClick: async () => {
+        await adminApiSend(`/api/admin/contact/${id}`, 'PATCH', {
+          status: 'archived',
+        })
+        await load()
+      },
+    },
+  ]
 }
 
 onMounted(() => {

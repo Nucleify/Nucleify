@@ -109,7 +109,7 @@ Wygenerowane shelle Next czytają zmienne Supabase w obu konwencjach nazewnictwa
 - `NEXT_PUBLIC_SUPABASE_URL` lub `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY` (tylko serwer)
 
-Shelle produktu Solid i Svelte (`web-solid/`, `web-svelte/`, …) używają tych samych nazw `SUPABASE_*` z roota przez Vite `import.meta.env`. Trzymaj jedno root `.env` - Nuxt i wszystkie ścieżki codegen konwersji rozwiązują je z root monorepo.
+Shelle produktu Solid i Svelte (`web_solid/`, `web_svelte/`, …) używają tych samych nazw `SUPABASE_*` z roota przez Vite `import.meta.env`. Trzymaj jedno root `.env` - Nuxt i wszystkie ścieżki codegen konwersji rozwiązują je z root monorepo.
 
 ---
 
@@ -139,6 +139,6 @@ Szczegóły merge migracji: [Supabase](/pl/docs/configuration/supabase).
 
 ## Powiązana dokumentacja
 
-- [Instalacja](/pl/docs/getting-started/installation) - pierwsze utworzenie `.env`
+- [Instalacja](/pl/docs/getting_started/installation) - pierwsze utworzenie `.env`
 - [Web & Admin](/pl/docs/configuration/web) - runtime config i rozdzielona konfiguracja Nuxt
 - [Supabase](/pl/docs/configuration/supabase) - baza i migracje

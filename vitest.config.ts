@@ -28,10 +28,14 @@ const webProject = await defineVitestProject({
       '@admin': path.join(monorepo, 'admin/src'),
       '@shared_modules': path.join(monorepo, 'shared_modules'),
       '@portable': path.join(monorepo, 'portable'),
-      nucleify: path.join(webPkg, 'src/nucleify.ts'),
+      nucleify: path.join(monorepo, 'shared_modules/index.ts'),
       nuc_api: path.join(
         monorepo,
         'shared_modules/nuc_api/supabase/api/server.ts',
+      ),
+      nuc_client: path.join(
+        monorepo,
+        'shared_modules/nuc_api/supabase/client.ts',
       ),
       nuc_server: path.join(webPkg, 'src/server/nuc_server.ts'),
     },

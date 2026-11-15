@@ -22,6 +22,32 @@ export default defineNuxtConfig({
       isCustomElement: (tag: string) => tag.startsWith('nui-'),
     },
   },
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    },
+    {
+      path: '~/components/fields',
+      prefix: 'Field',
+      pathPrefix: false,
+    },
+    {
+      path: '~/components/media',
+      prefix: 'Media',
+      pathPrefix: false,
+    },
+    {
+      path: '~/components/shell',
+      prefix: 'Admin',
+      pathPrefix: false,
+    },
+    {
+      path: '~/components/ui',
+      prefix: 'Admin',
+      pathPrefix: false,
+    },
+  ],
   alias: {
     '@web': resolve(root, 'web/src'),
     '@admin': adminSrc,
@@ -42,6 +68,8 @@ export default defineNuxtConfig({
       process.env.CONTACT_FORM_EMAIL || 'business@nucleify.io',
     public: {
       appUrl: process.env.NUXT_PUBLIC_ADMIN_URL || 'https://admin.nucleify.io',
+      webOrigin:
+        process.env.NUXT_PUBLIC_APP_URL || 'http://localhost:7777',
       apiUrl: process.env.NUXT_PUBLIC_API_URL || '/api',
       supabaseUrl: process.env.SUPABASE_URL || '',
       supabaseKey: process.env.SUPABASE_KEY || '',
@@ -60,6 +88,8 @@ export default defineNuxtConfig({
       preprocessorOptions: {
         scss: {
           api: 'modern-compiler',
+          // Shared parts (e.g. holo_cube) expect marketing breakpoints.
+          additionalData: '$md: 768px; $lg: 1024px;',
         },
       },
     },

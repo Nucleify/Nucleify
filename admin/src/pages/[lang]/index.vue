@@ -1,27 +1,21 @@
 <template>
   <div>
-    <div class="admin-page-header">
-      <div>
-        <h1>Dashboard</h1>
-        <p>Recent drafts, scheduled publishes, and inbox.</p>
-      </div>
-      <nui-button
-        variant="outlined"
-        label="Promote scheduled"
-        @click="promoteScheduled"
-      />
-    </div>
+    <AdminPageHeader
+      title="Dashboard"
+      description="Recent drafts, scheduled publishes, and inbox."
+      :primary="primary"
+      :secondary="secondary"
+      :more="more"
+    />
 
     <p v-if="error" class="admin-form__error">{{ error }}</p>
-    <p v-if="ok" style="color: #86efac">{{ ok }}</p>
-    <p v-if="loading" class="admin-muted">Loading…</p>
+    <AdminSkeleton v-if="loading" height="16rem" />
 
-    <div v-else class="admin-dashboard-grid" style="display: grid; gap: 1rem">
-      <section class="admin-panel" style="padding: 1rem 1.25rem">
-        <h2 style="margin: 0 0 0.75rem; font-size: 1rem">Drafts</h2>
-        <p v-if="!data.drafts.length" class="admin-muted">No drafts.</p>
-        <ul v-else style="list-style: none; padding: 0; margin: 0">
-          <li v-for="row in data.drafts" :key="row.id" style="margin: 0.35rem 0">
+    <div v-else class="admin-dashboard-grid">
+      <AdminPanel title="Drafts" class="admin-dashboard-card">
+        <AdminEmpty v-if="!data.drafts.length" title="No drafts." />
+        <ul v-else>
+          <li v-for="row in data.drafts" :key="row.id">
             <NuxtLink
               :to="`/${lang}/collections/${row.collection_slug}/${row.id}`"
             >
@@ -30,70 +24,72 @@
             <span class="admin-muted"> · {{ row.collection_slug }}</span>
           </li>
         </ul>
-      </section>
+      </AdminPanel>
 
-      <section class="admin-panel" style="padding: 1rem 1.25rem">
-        <h2 style="margin: 0 0 0.75rem; font-size: 1rem">Scheduled</h2>
-        <p v-if="!data.scheduled.length" class="admin-muted">Nothing scheduled.</p>
-        <ul v-else style="list-style: none; padding: 0; margin: 0">
-          <li
-            v-for="row in data.scheduled"
-            :key="row.id"
-            style="margin: 0.35rem 0"
-          >
+      <AdminPanel title="Scheduled" class="admin-dashboard-card">
+        <AdminEmpty v-if="!data.scheduled.length" title="Nothing scheduled." />
+        <ul v-else>
+          <li v-for="row in data.scheduled" :key="row.id">
             <NuxtLink
               :to="`/${lang}/collections/${row.collection_slug}/${row.id}`"
             >
               {{ row.title || row.slug }}
             </NuxtLink>
-            <span class="admin-muted">
-              · {{ formatTime(row.published_at) }}
-            </span>
+            <span class="admin-muted"> · {{ formatTime(row.published_at) }}</span>
           </li>
         </ul>
-      </section>
+      </AdminPanel>
 
-      <section class="admin-panel" style="padding: 1rem 1.25rem">
-        <h2 style="margin: 0 0 0.75rem; font-size: 1rem">Contact inbox</h2>
-        <p v-if="!data.contactNew.length" class="admin-muted">Inbox clear.</p>
-        <ul v-else style="list-style: none; padding: 0; margin: 0">
-          <li
-            v-for="row in data.contactNew"
-            :key="row.id"
-            style="margin: 0.35rem 0"
-          >
+      <AdminPanel title="Contact inbox" class="admin-dashboard-card">
+        <AdminEmpty v-if="!data.contactNew.length" title="Inbox clear." />
+        <ul v-else>
+          <li v-for="row in data.contactNew" :key="row.id">
             <NuxtLink :to="`/${lang}/collections/contact`">
               {{ row.email || row.name || 'Submission' }}
             </NuxtLink>
             <span class="admin-muted"> · {{ row.type }}</span>
           </li>
         </ul>
-      </section>
+      </AdminPanel>
 
-      <section class="admin-panel" style="padding: 1rem 1.25rem">
-        <h2 style="margin: 0 0 0.75rem; font-size: 1rem">Activity</h2>
-        <p v-if="!data.activity.length" class="admin-muted">No activity yet.</p>
-        <ul v-else style="list-style: none; padding: 0; margin: 0">
+      <AdminPanel title="Activity" class="admin-dashboard-card">
+        <div class="admin-filter-chips" style="margin-bottom: 0.75rem">
+          <button
+            v-for="chip in activityFilters"
+            :key="chip"
+            type="button"
+            class="admin-filter-chip"
+            :class="{ 'is-active': activityFilter === chip }"
+            @click="activityFilter = chip"
+          >
+            {{ chip }}
+          </button>
+        </div>
+        <AdminEmpty v-if="!filteredActivity.length" title="No activity yet." />
+        <ul v-else>
           <li
-            v-for="row in data.activity"
+            v-for="row in filteredActivity"
             :key="row.id"
             class="admin-muted"
-            style="margin: 0.35rem 0; font-size: 0.85rem"
+            style="font-size: 0.85rem"
           >
             {{ row.action }} · {{ formatTime(row.created_at) }}
           </li>
         </ul>
-      </section>
+      </AdminPanel>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { AdminAction } from '@admin'
 import { adminApiGet, adminApiSend } from '@admin'
+import { useAdminToast } from '@admin'
 
 useHead({ title: 'Dashboard' })
 
 const route = useRoute()
+const toast = useAdminToast()
 const lang = computed(() => String(route.params.lang || 'en'))
 
 type Dash = {
@@ -122,7 +118,64 @@ const data = ref<Dash>({
 })
 const loading = ref(true)
 const error = ref('')
-const ok = ref('')
+const activityFilter = ref('all')
+const activityFilters = ['all', 'publish', 'save', 'trash']
+
+const filteredActivity = computed(() => {
+  if (activityFilter.value === 'all') return data.value.activity
+  return data.value.activity.filter((row) =>
+    String(row.action || '')
+      .toLowerCase()
+      .includes(activityFilter.value)
+  )
+})
+
+const primary = computed((): AdminAction[] => [
+  {
+    id: 'page',
+    label: 'New page',
+    onClick: () => navigateTo(`/${lang.value}/collections/pages/new`),
+  },
+])
+
+const secondary = computed((): AdminAction[] => [
+  {
+    id: 'post',
+    label: 'New post',
+    variant: 'outlined',
+    onClick: () => navigateTo(`/${lang.value}/collections/posts/new`),
+  },
+  {
+    id: 'promote',
+    label: 'Promote scheduled',
+    variant: 'outlined',
+    onClick: () => promoteScheduled(),
+  },
+  {
+    id: 'refresh',
+    label: 'Refresh',
+    variant: 'outlined',
+    onClick: () => load(),
+  },
+])
+
+const more = computed((): AdminAction[] => [
+  {
+    id: 'trash',
+    label: 'Open pages trash',
+    onClick: () => navigateTo(`/${lang.value}/collections/pages`),
+  },
+  {
+    id: 'comments',
+    label: 'Pending comments',
+    onClick: () => navigateTo(`/${lang.value}/collections/comments`),
+  },
+  {
+    id: 'contact',
+    label: 'Contact inbox',
+    onClick: () => navigateTo(`/${lang.value}/collections/contact`),
+  },
+])
 
 function formatTime(value?: string) {
   if (!value) return '—'
@@ -147,16 +200,16 @@ async function load() {
 }
 
 async function promoteScheduled() {
-  ok.value = ''
   try {
     const result = await adminApiSend<{ promoted: number }>(
       '/api/admin/cms/promote-scheduled',
       'POST'
     )
-    ok.value = `Promoted ${result?.promoted ?? 0} scheduled document(s).`
+    toast.success(`Promoted ${result?.promoted ?? 0} scheduled document(s).`)
     await load()
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Promote failed'
+    toast.error(error.value)
   }
 }
 

@@ -1,0 +1,8 @@
+{
+  "name": "nuc_cms",
+  "description": "CMS sections, page templates, admin schema, and public document APIs.",
+  "version": "0.1.0",
+  "category": "core",
+  "installed": true,
+  "enabled": true
+}
