@@ -8,26 +8,22 @@ export function useAuth() {
   const session = useState<Session | null>('admin-auth-session', () => null)
   const ready = useState<boolean>('admin-auth-ready', () => false)
 
-  function applySession(next: Session | null): void {
+  const applySession = (next: Session | null): void => {
     session.value = next
     user.value = next?.user ?? null
     ready.value = true
   }
 
-  async function refreshSession(): Promise<Session | null> {
-    const client = getSupabaseClient()
-    const { data, error } = await client.auth.getSession()
-    if (error) {
-      applySession(null)
-      return null
-    }
-    applySession(data.session)
-    return data.session
+  const auth = () => getSupabaseClient().auth
+
+  const refreshSession = async (): Promise<Session | null> => {
+    const { data, error } = await auth().getSession()
+    applySession(error ? null : data.session)
+    return error ? null : data.session
   }
 
-  async function signIn(email: string, password: string): Promise<void> {
-    const client = getSupabaseClient()
-    const { data, error } = await client.auth.signInWithPassword({
+  const signIn = async (email: string, password: string): Promise<void> => {
+    const { data, error } = await auth().signInWithPassword({
       email: email.trim(),
       password,
     })
@@ -35,24 +31,15 @@ export function useAuth() {
     applySession(data.session)
   }
 
-  async function signOut(): Promise<void> {
-    const client = getSupabaseClient()
-    await client.auth.signOut()
+  const signOut = async (): Promise<void> => {
+    await auth().signOut()
     applySession(null)
   }
 
-  function langFromPath(path: string): string {
-    const match = path.match(/^\/([a-z]{2})(?:\/|$)/)
-    return match?.[1] || DEFAULT_LANG
-  }
-
-  function loginPath(lang = DEFAULT_LANG): string {
-    return `/${lang}/login`
-  }
-
-  function homePath(lang = DEFAULT_LANG): string {
-    return `/${lang}`
-  }
+  const langFromPath = (path: string): string =>
+    path.match(/^\/([a-z]{2})(?:\/|$)/)?.[1] || DEFAULT_LANG
+  const loginPath = (lang = DEFAULT_LANG): string => `/${lang}/login`
+  const homePath = (lang = DEFAULT_LANG): string => `/${lang}`
 
   return {
     user,

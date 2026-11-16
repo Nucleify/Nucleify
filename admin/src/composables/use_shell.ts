@@ -1,4 +1,5 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import type { AdminRailGroup } from '../components/shell/rail.vue'
 import { apiGet } from './use_api'
 import { useAuth } from './use_auth'
 
@@ -7,6 +8,22 @@ export interface Breadcrumb {
   to?: string
 }
 export type AdminBreadcrumb = Breadcrumb
+
+const SHORTCUTS: Record<string, string> = {
+  p: '/collections/pages',
+  m: '/collections/media',
+  d: '',
+  s: '/settings',
+}
+
+const COLLECTION_LABELS: Record<string, string> = {
+  pages: 'Pages',
+  media: 'Media',
+  menus: 'Menus',
+  contact: 'Contact',
+  redirects: 'Redirects',
+  users: 'Users',
+}
 
 export function useShell() {
   const route = useRoute()
@@ -18,38 +35,6 @@ export function useShell() {
   const railOpen = ref(false)
   const cmdkOpen = ref(false)
   const badges = ref({ drafts: 0, comments: 0, contact: 0 })
-
-  onMounted(async () => {
-    if (import.meta.client) {
-      railCollapsed.value = localStorage.getItem('admin-rail-collapsed') === '1'
-      window.addEventListener('keydown', onKeydown)
-    }
-
-    try {
-      const dash = await apiGet<{
-        drafts?: unknown[]
-        contactNew?: unknown[]
-      }>('/api/admin/dashboard')
-      badges.value.drafts = dash?.drafts?.length ?? 0
-      badges.value.contact = dash?.contactNew?.length ?? 0
-    } catch {
-      // optional
-    }
-
-    try {
-      const comments =
-        (await apiGet<unknown[]>('/api/admin/comments?status=pending')) ?? []
-      badges.value.comments = comments.length
-    } catch {
-      // optional
-    }
-  })
-
-  onBeforeUnmount(() => {
-    if (import.meta.client) {
-      window.removeEventListener('keydown', onKeydown)
-    }
-  })
 
   let gPending = false
   let gTimer: ReturnType<typeof setTimeout> | null = null
@@ -77,12 +62,37 @@ export function useShell() {
     }
     if (!gPending) return
     gPending = false
-    const base = `/${lang.value}`
-    if (event.key === 'p') void navigateTo(`${base}/collections/pages`)
-    if (event.key === 'm') void navigateTo(`${base}/collections/media`)
-    if (event.key === 'd') void navigateTo(base)
-    if (event.key === 's') void navigateTo(`${base}/settings`)
+    const target = SHORTCUTS[event.key]
+    if (target !== undefined) void navigateTo(`/${lang.value}${target}`)
   }
+
+  onMounted(async () => {
+    if (import.meta.client) {
+      railCollapsed.value = localStorage.getItem('admin-rail-collapsed') === '1'
+      window.addEventListener('keydown', onKeydown)
+    }
+
+    const [dashRes, commRes] = await Promise.allSettled([
+      apiGet<{ drafts?: unknown[]; contactNew?: unknown[] }>(
+        '/api/admin/dashboard'
+      ),
+      apiGet<unknown[]>('/api/admin/comments?status=pending'),
+    ])
+
+    if (dashRes.status === 'fulfilled' && dashRes.value) {
+      badges.value.drafts = dashRes.value.drafts?.length ?? 0
+      badges.value.contact = dashRes.value.contactNew?.length ?? 0
+    }
+    if (commRes.status === 'fulfilled' && commRes.value) {
+      badges.value.comments = commRes.value.length ?? 0
+    }
+  })
+
+  onBeforeUnmount(() => {
+    if (import.meta.client) {
+      window.removeEventListener('keydown', onKeydown)
+    }
+  })
 
   function toggleCollapse() {
     railCollapsed.value = !railCollapsed.value
@@ -149,13 +159,13 @@ export function useShell() {
     }
     if (path.includes('/collections/pages/')) return 'Page'
     if (path.includes('/collections/posts/')) return 'Post'
-    if (path.includes('/collections/users/')) return 'User'
+    if (path.includes('/collections/users/') || path.includes('/users/'))
+      return 'User'
     if (path.includes('/globals/')) {
       const slug = path.split('/globals/')[1]?.split('/')[0]
       if (slug === 'header') return 'Header'
       if (slug === 'footer') return 'Footer'
     }
-    if (path.includes('/users/')) return 'User'
     return 'Admin'
   })
 
@@ -163,43 +173,30 @@ export function useShell() {
     const path = route.path.replace(/\/$/, '') || '/'
     const base = `/${lang.value}`
     const parts: AdminBreadcrumb[] = [{ label: 'Admin', to: base }]
+
     if (
       path.includes('/collections/posts') ||
       path.includes('/collections/comments')
     ) {
-      parts.push({ label: 'Blog' })
-      if (path.includes('/posts')) {
-        parts.push({
-          label: 'Posts',
-          to: `${base}/collections/posts`,
-        })
-      } else {
-        parts.push({
-          label: 'Comments',
-          to: `${base}/collections/comments`,
-        })
-      }
+      const isPost = path.includes('/posts')
+      parts.push(
+        { label: 'Blog' },
+        {
+          label: isPost ? 'Posts' : 'Comments',
+          to: `${base}/collections/${isPost ? 'posts' : 'comments'}`,
+        }
+      )
     } else if (path.includes('/collections/')) {
       parts.push({ label: 'Collections' })
-      if (path.includes('/pages')) {
+      const col = path.match(/\/collections\/([^/]+)/)?.[1]
+      if (col && COLLECTION_LABELS[col]) {
         parts.push({
-          label: 'Pages',
-          to: `${base}/collections/pages`,
+          label: COLLECTION_LABELS[col],
+          to: `${base}/collections/${col}`,
         })
-      } else if (path.includes('/media')) {
-        parts.push({ label: 'Media', to: `${base}/collections/media` })
-      } else if (path.includes('/menus')) {
-        parts.push({ label: 'Menus', to: `${base}/collections/menus` })
-      } else if (path.includes('/contact')) {
-        parts.push({ label: 'Contact', to: `${base}/collections/contact` })
-      } else if (path.includes('/redirects')) {
-        parts.push({ label: 'Redirects', to: `${base}/collections/redirects` })
-      } else if (path.includes('/users')) {
-        parts.push({ label: 'Users', to: `${base}/collections/users` })
       }
     } else if (path.includes('/globals/')) {
-      parts.push({ label: 'Globals' })
-      parts.push({ label: title.value })
+      parts.push({ label: 'Globals' }, { label: title.value })
     } else if (path.includes('/roles')) {
       parts.push({ label: 'Roles', to: `${base}/roles` })
     } else if (path.includes('/settings')) {
@@ -235,5 +232,3 @@ export function useShell() {
 }
 
 export const useAdminShell = useShell
-
-

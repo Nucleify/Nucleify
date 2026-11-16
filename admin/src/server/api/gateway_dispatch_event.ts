@@ -66,38 +66,14 @@ export function resolveSupabaseClient(event: H3Event): SupabaseClient {
 }
 
 export async function handleApiGatewayEvent(event: H3Event): Promise<unknown> {
-  const rawSlug = getRouterParam(event, 'slug')
-
-  if (!rawSlug) {
-    return GATEWAY_READY_RESPONSE
-  }
-
-  if (
-    rawSlug === 'test' ||
-    (Array.isArray(rawSlug) && rawSlug.length === 1 && rawSlug[0] === 'test')
-  ) {
-    return TEST_RESPONSE
-  }
-
-  const segments = parseApiSlug(rawSlug)
-  if (segments.length === 0) {
-    return GATEWAY_READY_RESPONSE
-  }
-  if (segments[0] === 'test') {
-    return TEST_RESPONSE
-  }
+  const segments = parseApiSlug(getRouterParam(event, 'slug'))
+  if (segments.length === 0) return GATEWAY_READY_RESPONSE
+  if (segments[0] === 'test') return TEST_RESPONSE
 
   const supabase = resolveSupabaseClient(event)
   const method = (event.method || 'GET').toUpperCase()
 
-  const ctx: ApiContext = {
-    event,
-    method,
-    segments,
-    supabase,
-    ok,
-  }
-
+  const ctx: ApiContext = { event, method, segments, supabase, ok }
   const result = await dispatchSupabaseApiGateway(ctx)
   if (result.status && result.status !== 200 && event.node?.res) {
     setResponseStatus(event, result.status)
