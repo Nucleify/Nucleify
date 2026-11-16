@@ -7,12 +7,8 @@ import { resolveGatewayUserFromAccessToken } from '../../../../shared_modules/in
 export type GatewayListScope = { mode: 'all' } | { mode: 'own'; userId: string }
 
 export function gatewayBearerJwt(event: H3Event): string | null {
-  const raw =
-    getRequestHeader(event, 'authorization') ??
-    getRequestHeader(event, 'Authorization')
-  if (!raw?.toLowerCase().startsWith('bearer ')) return null
-  const token = raw.slice(7).trim()
-  return token || null
+  const raw = getRequestHeader(event, 'authorization')
+  return raw?.toLowerCase().startsWith('bearer ') ? raw.slice(7).trim() || null : null
 }
 
 export async function gatewayUserFromJwt(
