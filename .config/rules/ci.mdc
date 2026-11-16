@@ -25,7 +25,7 @@ Compiler unit / convert / emit checks live in the private `nucleify-compiler` re
 
 ## GitHub Actions
 
-### `health-check.yml` (all branches)
+### `health_check.yml` (all branches)
 
 Node 22, pnpm. Parallel jobs after setup: biome, typeslint, stylelint, build, test.
 

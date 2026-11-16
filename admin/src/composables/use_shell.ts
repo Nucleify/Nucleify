@@ -1,5 +1,4 @@
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
-import type { AdminRailGroup, RailGroup } from '../components/shell/rail.vue'
 import { apiGet } from './use_api'
 import { useAuth } from './use_auth'
 
