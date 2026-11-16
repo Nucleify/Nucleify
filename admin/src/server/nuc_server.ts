@@ -11,3 +11,8 @@ export {
   gatewayUserFromJwt,
   resolveGatewayListScope,
 } from './api/gateway_auth'
+export {
+  _resetSupabaseClientCache,
+  handleApiGatewayEvent,
+  resolveSupabaseClient,
+} from './api/gateway_dispatch_event'
