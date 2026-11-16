@@ -42,6 +42,11 @@ export type CmsDocumentRow = {
   created_at?: string
 }
 
+const chromeFlag = (val: unknown, fallback = true): boolean =>
+  val === undefined || val === null
+    ? fallback
+    : val !== false && val !== 0 && val !== '0' && val !== 'false'
+
 function emptyModel(): DocumentFormModel {
   return {
     title: '',
@@ -67,52 +72,37 @@ function emptyModel(): DocumentFormModel {
   }
 }
 
-function chromeFlag(value: unknown, fallback = true): boolean {
-  if (value === undefined || value === null) return fallback
-  return value !== false && value !== 0 && value !== '0' && value !== 'false'
-}
-
-function resolveSeo(
-  slug: string,
-  raw: unknown
-): Record<string, unknown> {
+function resolveSeo(slug: string, raw: unknown): Record<string, unknown> {
   const fromDoc =
     raw && typeof raw === 'object' && !Array.isArray(raw)
       ? (raw as Record<string, unknown>)
       : {}
   const defaults = defaultSeoForSlug(slug)
   if (!defaults) {
-    return {
-      title: '',
-      description: '',
-      robots: 'index,follow',
-      ...fromDoc,
-    }
+    return { title: '', description: '', robots: 'index,follow', ...fromDoc }
   }
-  const title = typeof fromDoc.title === 'string' ? fromDoc.title.trim() : ''
-  const description =
-    typeof fromDoc.description === 'string' ? fromDoc.description.trim() : ''
-  // Canonical marketing pages: empty CMS seo falls back to product defaults so
-  // admin matches what the public shell already serves.
-  if (!title && !description) return { ...defaults }
-  return { ...defaults, ...fromDoc }
+  const hasCustom = Boolean(
+    String(fromDoc.title || '').trim() ||
+      String(fromDoc.description || '').trim()
+  )
+  return hasCustom ? { ...defaults, ...fromDoc } : { ...defaults }
 }
 
 function fromDocument(doc: CmsDocumentRow): DocumentFormModel {
   const data = doc.data ?? {}
-  const seo = resolveSeo(doc.slug || '', data.seo)
   return {
+    ...emptyModel(),
+    ...data,
     title: doc.title || '',
     slug: doc.slug || '',
     status: doc.status || 'draft',
     locale: doc.locale || 'en',
+    template: String(doc.template || 'rail').trim() || 'rail',
+    publishedAt: doc.published_at || '',
+    translationGroup: doc.translation_group || '',
     sections: Array.isArray(data.sections) ? data.sections : [],
     body: Array.isArray(data.body) ? data.body : [],
-    seo,
-    publishedAt: doc.published_at || '',
-    excerpt: typeof data.excerpt === 'string' ? data.excerpt : '',
-    featuredImage:
-      typeof data.featuredImage === 'string' ? data.featuredImage : '',
+    seo: resolveSeo(doc.slug || '', data.seo),
     enableIris: chromeFlag(data.enableIris),
     showMenu: chromeFlag(data.showMenu, false),
     menuSlug:
@@ -128,8 +118,6 @@ function fromDocument(doc: CmsDocumentRow): DocumentFormModel {
       typeof data.footerTemplate === 'string' && data.footerTemplate.trim()
         ? data.footerTemplate.trim()
         : 'home',
-    template: String(doc.template || 'rail').trim() || 'rail',
-    translationGroup: doc.translation_group || '',
   }
 }
 
@@ -138,26 +126,30 @@ function toPayload(
   collectionSlug: string,
   expectedUpdatedAt?: string
 ) {
+  const isPosts = collectionSlug === 'posts'
   const data: Record<string, unknown> = {
     version: 1,
     seo: model.seo && typeof model.seo === 'object' ? model.seo : {},
+    ...(isPosts
+      ? {
+          body: Array.isArray(model.body) ? model.body : [],
+          excerpt: model.excerpt || '',
+          featuredImage: model.featuredImage || '',
+        }
+      : {
+          sections: Array.isArray(model.sections) ? model.sections : [],
+          enableIris: chromeFlag(model.enableIris),
+          showMenu: chromeFlag(model.showMenu, false),
+          menuSlug: String(model.menuSlug || 'primary').trim() || 'primary',
+          showRail: chromeFlag(model.showRail),
+          showShear: chromeFlag(model.showShear),
+          showFooter: chromeFlag(model.showFooter),
+          footerMenuSlug: String(model.footerMenuSlug || '').trim(),
+          footerTemplate:
+            String(model.footerTemplate || 'home').trim() || 'home',
+        }),
   }
-  if (collectionSlug === 'posts') {
-    data.body = Array.isArray(model.body) ? model.body : []
-    data.excerpt = model.excerpt || ''
-    data.featuredImage = model.featuredImage || ''
-  } else {
-    data.sections = Array.isArray(model.sections) ? model.sections : []
-    data.enableIris = chromeFlag(model.enableIris)
-    data.showMenu = chromeFlag(model.showMenu, false)
-    data.menuSlug = String(model.menuSlug || 'primary').trim() || 'primary'
-    data.showRail = chromeFlag(model.showRail)
-    data.showShear = chromeFlag(model.showShear)
-    data.showFooter = chromeFlag(model.showFooter)
-    data.footerMenuSlug = String(model.footerMenuSlug || '').trim()
-    data.footerTemplate =
-      String(model.footerTemplate || 'home').trim() || 'home'
-  }
+
   return {
     title: String(model.title ?? ''),
     slug: String(model.slug ?? ''),
@@ -188,6 +180,16 @@ export function useDocumentForm(collectionSlug: string) {
 
   let autosaveTimer: ReturnType<typeof setTimeout> | null = null
 
+  const colUrl = (sub = '') =>
+    `/api/admin/collections/${encodeURIComponent(collectionSlug)}${sub ? `/${sub}` : ''}`
+
+  function applyDoc(doc: CmsDocumentRow) {
+    documentId.value = doc.id
+    updatedAt.value = doc.updated_at ?? null
+    model.value = fromDocument(doc)
+    dirty.value = false
+  }
+
   function markDirty() {
     dirty.value = true
     ok.value = ''
@@ -209,12 +211,9 @@ export function useDocumentForm(collectionSlug: string) {
     conflict.value = false
     try {
       const doc = await adminApiGet<CmsDocumentRow>(
-        `/api/admin/collections/${encodeURIComponent(collectionSlug)}/${encodeURIComponent(id)}`
+        colUrl(encodeURIComponent(id))
       )
-      documentId.value = doc.id
-      updatedAt.value = doc.updated_at ?? null
-      model.value = fromDocument(doc)
-      dirty.value = false
+      applyDoc(doc)
     } catch (e) {
       error.value = e instanceof Error ? e.message : 'Failed to load document'
     } finally {
@@ -232,41 +231,28 @@ export function useDocumentForm(collectionSlug: string) {
     conflict.value = false
   }
 
-  async function save(
-    status?: string,
-    opts?: { silent?: boolean }
-  ) {
+  async function save(status?: string, opts?: { silent?: boolean }) {
     saving.value = true
     if (!opts?.silent) {
       error.value = ''
       ok.value = ''
     }
     conflict.value = false
-    if (status) model.value = { ...model.value, status }
+    if (status) model.value.status = status
+
     const payload = toPayload(
       model.value,
       collectionSlug,
       updatedAt.value || undefined
     )
+    const url = documentId.value
+      ? colUrl(encodeURIComponent(documentId.value))
+      : colUrl()
+    const method = documentId.value ? 'PATCH' : 'POST'
+
     try {
-      let doc: CmsDocumentRow
-      if (documentId.value) {
-        doc = await adminApiSend<CmsDocumentRow>(
-          `/api/admin/collections/${encodeURIComponent(collectionSlug)}/${encodeURIComponent(documentId.value)}`,
-          'PATCH',
-          payload
-        )
-      } else {
-        doc = await adminApiSend<CmsDocumentRow>(
-          `/api/admin/collections/${encodeURIComponent(collectionSlug)}`,
-          'POST',
-          payload
-        )
-        documentId.value = doc.id
-      }
-      model.value = fromDocument(doc)
-      updatedAt.value = doc.updated_at ?? null
-      dirty.value = false
+      const doc = await adminApiSend<CmsDocumentRow>(url, method, payload)
+      applyDoc(doc)
       if (!opts?.silent) {
         const message =
           payload.status === 'published'
@@ -293,52 +279,19 @@ export function useDocumentForm(collectionSlug: string) {
     }
   }
 
-  async function publish() {
-    if (!documentId.value) return save('published')
-    saving.value = true
-    error.value = ''
-    ok.value = ''
-    try {
-      // Persist current edits first
-      await save(undefined, { silent: true })
-      const doc = await adminApiSend<CmsDocumentRow>(
-        `/api/admin/collections/${encodeURIComponent(collectionSlug)}/${encodeURIComponent(documentId.value)}/publish`,
-        'POST'
-      )
-      model.value = fromDocument(doc)
-      updatedAt.value = doc.updated_at ?? null
-      dirty.value = false
-      ok.value = 'Published.'
-      toast.success('Published.')
-      return doc
-    } catch (e) {
-      const message = e instanceof Error ? e.message : 'Publish failed'
-      error.value = message
-      toast.error(message)
-      return null
-    } finally {
-      saving.value = false
-    }
-  }
-
-  async function unpublish() {
+  async function mutateDoc(endpoint: string, actionLabel: string) {
     if (!documentId.value) return null
     saving.value = true
     error.value = ''
     ok.value = ''
     try {
-      const doc = await adminApiSend<CmsDocumentRow>(
-        `/api/admin/collections/${encodeURIComponent(collectionSlug)}/${encodeURIComponent(documentId.value)}/unpublish`,
-        'POST'
-      )
-      model.value = fromDocument(doc)
-      updatedAt.value = doc.updated_at ?? null
-      dirty.value = false
-      ok.value = 'Unpublished.'
-      toast.success('Unpublished.')
+      const doc = await adminApiSend<CmsDocumentRow>(endpoint, 'POST')
+      applyDoc(doc)
+      ok.value = actionLabel
+      toast.success(actionLabel)
       return doc
     } catch (e) {
-      const message = e instanceof Error ? e.message : 'Unpublish failed'
+      const message = e instanceof Error ? e.message : `${actionLabel} failed`
       error.value = message
       toast.error(message)
       return null
@@ -347,16 +300,28 @@ export function useDocumentForm(collectionSlug: string) {
     }
   }
 
+  async function publish() {
+    if (!documentId.value) return save('published')
+    await save(undefined, { silent: true })
+    return mutateDoc(
+      colUrl(`${encodeURIComponent(documentId.value)}/publish`),
+      'Published.'
+    )
+  }
+
+  async function unpublish() {
+    return mutateDoc(
+      colUrl(`${encodeURIComponent(documentId.value!)}/unpublish`),
+      'Unpublished.'
+    )
+  }
+
   async function preview() {
-    if (!documentId.value) {
-      const doc = await save('draft')
-      if (!doc) return null
-    }
-    const result = await adminApiSend<{ token: string; path: string }>(
-      `/api/admin/collections/${encodeURIComponent(collectionSlug)}/${encodeURIComponent(documentId.value!)}/preview-token`,
+    if (!documentId.value && !(await save('draft'))) return null
+    return adminApiSend<{ token: string; path: string }>(
+      colUrl(`${encodeURIComponent(documentId.value!)}/preview-token`),
       'POST'
     )
-    return result
   }
 
   async function remove(hard = false) {
@@ -366,7 +331,7 @@ export function useDocumentForm(collectionSlug: string) {
     try {
       const qs = hard ? '?hard=1' : ''
       await adminApiSend(
-        `/api/admin/collections/${encodeURIComponent(collectionSlug)}/${encodeURIComponent(documentId.value)}${qs}`,
+        colUrl(`${encodeURIComponent(documentId.value)}${qs}`),
         'DELETE'
       )
       return true
@@ -390,9 +355,9 @@ export function useDocumentForm(collectionSlug: string) {
         event.returnValue = ''
       }
       window.addEventListener('beforeunload', onBeforeUnload)
-      onBeforeUnmount(() => {
+      onBeforeUnmount(() =>
         window.removeEventListener('beforeunload', onBeforeUnload)
-      })
+      )
     })
   }
 
