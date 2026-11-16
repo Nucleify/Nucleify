@@ -23,7 +23,7 @@ web/src/
 ## Conventions
 
 - UI: `nui-*` from `nucleify-ui` (Lit web components)
-- Vue SFCs: `<script setup lang="ts">`
+- Vue SFCs: always `<template>` first, then `<script setup lang="ts">`, then `<style>`
 - Import shared via `@shared_modules`; app code via `@web` / `@admin` / `@portable`
 - Do not place shared code under `web/`
 

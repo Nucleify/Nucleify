@@ -10,6 +10,7 @@ Separate Nuxt app for admin UI. Source under `admin/src/`.
 
 ## Conventions
 
+- Vue SFCs: always `<template>` first, then `<script setup lang="ts">`, then `<style>`
 - Shared code: import from `shared_modules/nuc_*/…`
 - Admin-only UI: keep in `admin/src/` - do not put in `web/` or `shared_modules/`
 - Overrides: `overrides/admin/`

@@ -76,7 +76,7 @@ web/src/
 └── server/api/[...slug].ts  # gateway
 ```
 
-- Vue SFCs: `<script setup lang="ts">`
+- Vue SFCs: `<template>` first, then `<script setup lang="ts">`, then `<style>` (template-first block order)
 - UI: `nui-*` from `nucleify-ui`
 - Domain logic (inside this monorepo): prefer `shared_modules/`, not `web/src/` - **not** a gate before converting an external app ([Migrate FAQ](/en/docs/getting_started/migrate_faq))
 

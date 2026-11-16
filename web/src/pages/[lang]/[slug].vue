@@ -1,10 +1,16 @@
+<template>
+  <p v-if="showPending" class="nuc-frame__status">Loading…</p>
+  <Suspense v-else>
+    <FrameSections :sections="sections" />
+  </Suspense>
+</template>
+
 <script setup lang="ts">
 import { useRoute } from 'nuxt/app'
 import { computed } from 'vue'
 
 import FrameSections from '@shared_modules/nuc_cms/components/FrameSections'
-import { usePublicFramePage } from '@shared_modules'
-import { useFramePage } from '@shared_modules'
+import { useFramePage, usePublicFramePage } from '@shared_modules'
 
 const route = useRoute()
 const slug = computed(() => String(route.params.slug || ''))
@@ -17,13 +23,6 @@ const showPending = computed(
   () => frame.value.pending && sections.value.length === 0
 )
 </script>
-
-<template>
-  <p v-if="showPending" class="nuc-frame__status">Loading…</p>
-  <Suspense v-else>
-    <FrameSections :sections="sections" />
-  </Suspense>
-</template>
 
 <style scoped>
 .nuc-frame__status {

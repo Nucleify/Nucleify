@@ -76,7 +76,7 @@ web/src/
 └── server/api/[...slug].ts  # bramka
 ```
 
-- Vue SFC: `<script setup lang="ts">`
+- Vue SFC: zawsze `<template>` jako pierwszy, potem `<script setup lang="ts">`, na końcu `<style>`
 - UI: `nui-*` z `nucleify-ui`
 - Logika domenowa (w tym monorepo): preferuj `shared_modules/`, nie `web/src/` - **nie** warunek przed konwersją zewnętrznej aplikacji ([FAQ migracji](/pl/docs/getting_started/migrate_faq))
 
