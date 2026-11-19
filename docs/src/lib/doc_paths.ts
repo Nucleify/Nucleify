@@ -31,8 +31,12 @@ export function findDocPage(
   slug: string,
   lang: string = DEFAULT_LANG,
 ): ResolvedDocPage | null {
-  const cat = DOC_CATEGORIES.find((c) => c.slug === category)
-  const page = cat?.pages.find((p) => p.slug === slug)
+  const normCat = category.replace(/-/g, '_')
+  const normSlug = slug.replace(/-/g, '_')
+  const cat = DOC_CATEGORIES.find(
+    (c) => c.slug === category || c.slug === normCat
+  )
+  const page = cat?.pages.find((p) => p.slug === slug || p.slug === normSlug)
   if (!cat || !page) return null
   return {
     categoryName: resolveLocalized(cat.name, lang),
@@ -46,6 +50,6 @@ export function docHref(lang: string, category: string, slug: string): string {
 
 export const DEFAULT_DOC_ROUTE = {
   lang: 'en',
-  category: 'getting-started',
+  category: 'getting_started',
   slug: 'introduction',
 } as const

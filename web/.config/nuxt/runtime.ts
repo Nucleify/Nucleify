@@ -8,6 +8,8 @@ export const runtimeConfig = {
 		process.env.CONTACT_FORM_EMAIL || 'business@nucleify.io',
 	public: {
 		appUrl: process.env.NUXT_PUBLIC_APP_URL || 'https://nucleify.io',
+		adminOrigin:
+			process.env.NUXT_PUBLIC_ADMIN_URL || 'https://admin.nucleify.io',
 		apiUrl: process.env.NUXT_PUBLIC_API_URL || '/api',
 		supabaseEdgeBase:
 			process.env.SUPABASE_EDGE_BASE ||

@@ -1,0 +1,120 @@
+<template>
+  <section
+    ref="rootEl"
+    :id="domId"
+    class="nuc-section nuc-pillars nuc-panel"
+    aria-labelledby="nuc-pillars-title"
+  >
+    <div class="nuc-pillars-head">
+      <div class="nuc-pillars-pitch">
+        <p class="nuc-eyebrow">{{ copy.pillarsEyebrow }}</p>
+        <h2 id="nuc-pillars-title" class="nuc-title">
+          {{ copy.pillarsTitle }}
+        </h2>
+        <p class="nuc-support">{{ copy.pillarsSupport }}</p>
+        <button type="button" class="nuc-next nuc-pillars-cta" @click="onCta">
+          <span>{{ copy.pillarsCta }}</span>
+          <nui-icon icon="mdi:arrow-down" mode="svg" />
+        </button>
+      </div>
+
+      <figure class="nuc-pillars-share">
+        <div class="nuc-pillars-share-chart">
+          <svg viewBox="0 0 100 100" role="img" :aria-label="shareLabel">
+            <path
+              v-for="arc in arcs"
+              :key="arc.id"
+              class="nuc-pillars-share-slice"
+              :d="arc.d"
+              :fill="arc.color"
+              :stroke="arc.color"
+            />
+          </svg>
+          <div class="nuc-pillars-share-hole">
+            <strong>{{ shellCount }}</strong>
+            <span>{{ copy.pillarsShareUnit }}</span>
+          </div>
+        </div>
+        <figcaption class="nuc-pillars-share-legend">
+          <ul>
+            <li
+              v-for="shell in shells"
+              :key="shell.id"
+              :style="{ '--c': shell.color }"
+              :title="shell.label"
+            >
+              <nui-icon :icon="shell.icon" mode="svg" />
+              <span class="sr-only">{{ shell.label }}</span>
+            </li>
+          </ul>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="nuc-pillars-grid">
+      <article
+        v-for="pillar in pillars"
+        :key="pillar.title"
+        class="nuc-pillars-item"
+      >
+        <div class="nuc-pillars-item-top">
+          <span class="nuc-pillars-icon" aria-hidden="true">
+            <nui-icon :icon="pillar.icon" mode="svg" />
+          </span>
+          <span class="nuc-pillars-index">{{ pillar.index }}</span>
+        </div>
+        <h3 class="nuc-pillars-title">{{ pillar.title }}</h3>
+        <p class="nuc-pillars-desc">{{ pillar.description }}</p>
+        <div class="nuc-pillars-foot">
+          <p class="nuc-pillars-outcome">{{ pillar.outcome }}</p>
+          <p class="nuc-pillars-proof">{{ pillar.proof }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
+</template>
+
+<script setup lang="ts">
+import { computed, ref } from 'vue'
+
+import {
+  cmsHomePillars,
+  coalesceArray,
+  NUC_HOME_SHELLS,
+  nucHomeShellArcs,
+  pillarsReveal,
+  scrollFrameTo,
+  useCmsAttrs,
+  useFrameSectionReveal,
+  useHomeCmsCopy,
+  useSectionDomId,
+} from '@shared_modules'
+
+defineOptions({ inheritAttrs: false })
+
+const rootEl = ref<HTMLElement | null>(null)
+useFrameSectionReveal(rootEl, pillarsReveal)
+
+const cms = useCmsAttrs()
+const domId = useSectionDomId('architecture')
+const copy = useHomeCmsCopy()
+const pillars = computed(() => cmsHomePillars(cms))
+const shells = coalesceArray(
+  cms.shells,
+  NUC_HOME_SHELLS
+) as typeof NUC_HOME_SHELLS
+const shellCount = shells.length
+const arcs = nucHomeShellArcs()
+const shareLabel = computed(
+  () =>
+    `Seven shells from one nucleus: ${shells.map((s) => s.label).join(', ')}`
+)
+
+function onCta(): void {
+  scrollFrameTo('stack')
+}
+</script>
+
+<style lang="scss" scoped>
+@import 'index';
+</style>

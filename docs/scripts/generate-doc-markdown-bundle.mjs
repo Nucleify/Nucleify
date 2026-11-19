@@ -41,7 +41,15 @@ export function getBundledMarkdown(
   category: string,
   slug: string
 ): string | null {
-  return MARKDOWN_BUNDLE[\`\${lang}/\${category}/\${slug}\`] ?? null
+  const cat = category.replace(/-/g, '_')
+  const s = slug.replace(/-/g, '_')
+  return (
+    MARKDOWN_BUNDLE[\`\${lang}/\${category}/\${slug}\`] ??
+    MARKDOWN_BUNDLE[\`\${lang}/\${cat}/\${s}\`] ??
+    MARKDOWN_BUNDLE[\`\${lang}/\${category}/\${s}\`] ??
+    MARKDOWN_BUNDLE[\`\${lang}/\${cat}/\${slug}\`] ??
+    null
+  )
 }
 `
 

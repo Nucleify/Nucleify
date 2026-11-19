@@ -32,33 +32,33 @@ export const appConfig = {
 		script: [
 			{
 				key: "nuc-iris-boot",
-				innerHTML: `(function(){try{if(navigator.webdriver)return;var u=navigator.userAgent||"";if(/Chrome-Lighthouse|PageSpeed|HeadlessChrome|HeadlessChromium|PTST|GTmetrix|Pingdom|Speed Insights|Lighthouse/i.test(u))return;if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;var d=document.documentElement;d.classList.add("nuc-iris-boot");setTimeout(function(){try{if(!d.classList.contains("nuc-iris-boot"))return;var h=document.querySelector(".nuc-shell");if(h&&h.classList.contains("nuc-ready"))return;d.classList.remove("nuc-iris-boot");if(h){h.style.setProperty("--shell-iris","165%");h.classList.add("nuc-ready");h.classList.remove("nuc-booting","nuc-iris-live")}}catch(e){}},8000)}catch(e){}})();`,
+				innerHTML: `(function(){try{if(navigator.webdriver)return;var u=navigator.userAgent||"";if(/Chrome-Lighthouse|PageSpeed|HeadlessChrome|HeadlessChromium|PTST|GTmetrix|Pingdom|Speed Insights|Lighthouse/i.test(u))return;if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;var d=document.documentElement;d.classList.add("nuc-iris-boot");setTimeout(function(){try{if(!d.classList.contains("nuc-iris-boot"))return;var h=document.querySelector(".nuc-frame");if(h&&h.classList.contains("nuc-ready"))return;d.classList.remove("nuc-iris-boot");if(h){h.style.setProperty("--frame-iris","165%");h.classList.add("nuc-ready");h.classList.remove("nuc-booting","nuc-iris-live")}}catch(e){}},8000)}catch(e){}})();`,
 				tagPosition: "head" as const,
 			},
 		],
 		style: [
 			{
-				// Thin critical shell only - full layout comes from blocking `/_nuxt/style.*.css`
+				// Thin critical frame only - full layout comes from blocking `/_nuxt/style.*.css`
 				textContent: [
 					"html,body{margin:0;background:#03050c;color:#e7ebe8}",
-					/* Safari / Firefox need @property before transition: --shell-iris works. */
-					'@property --shell-iris{syntax:"<percentage>";inherits:true;initial-value:165%}',
+					/* Safari / Firefox need @property before transition: --frame-iris works. */
+					'@property --frame-iris{syntax:"<percentage>";inherits:true;initial-value:165%}',
 					/* Default open, no clip-path - lab first paint must stay fully visible. */
-					".nuc-shell{--shell-iris:165%;--shell-iris-x:18%;--shell-iris-y:40%;--shell-accent:hsl(var(--rainbow-hue,152deg) 55% 52%);--shell-on-accent:#04110c;position:relative;height:100svh;color:#e7ebe8;background:#03050c;overflow:hidden}",
-					"@media(max-width:959px){.nuc-shell{--shell-iris-x:12%;--shell-iris-y:18%}}",
-					"html.nuc-iris-boot .nuc-shell:not(.nuc-ready){--shell-iris:0%}",
+					".nuc-frame{--frame-iris:165%;--frame-iris-x:18%;--frame-iris-y:40%;--frame-accent:hsl(var(--rainbow-hue,152deg) 55% 52%);--frame-on-accent:#04110c;position:relative;height:100svh;color:#e7ebe8;background:#03050c;overflow:hidden}",
+					"@media(max-width:959px){.nuc-frame{--frame-iris-x:12%;--frame-iris-y:18%}}",
+					"html.nuc-iris-boot .nuc-frame:not(.nuc-ready){--frame-iris:0%}",
 					/* Hold whole section invisible until iris open is armed — no brand flash. */
-					"html.nuc-iris-boot .nuc-shell:not(.nuc-ready) .nuc-inner,html.nuc-iris-boot .nuc-shell:not(.nuc-ready) .nuc-shear,html.nuc-iris-boot .nuc-shell:not(.nuc-ready) .nuc-rail{opacity:0}",
-					"html.nuc-iris-boot .nuc-shell.nuc-iris-live:not(.nuc-ready) .nuc-inner,html.nuc-iris-boot .nuc-shell.nuc-iris-live:not(.nuc-ready) .nuc-shear{opacity:1;clip-path:circle(var(--shell-iris) at var(--shell-iris-x) var(--shell-iris-y));transition:--shell-iris 1.05s cubic-bezier(.65,0,.35,1);will-change:clip-path}",
-					"@media(min-width:960px){html.nuc-iris-boot .nuc-shell.nuc-iris-live:not(.nuc-ready) .nuc-inner,html.nuc-iris-boot .nuc-shell.nuc-iris-live:not(.nuc-ready) .nuc-shear{transition:--shell-iris 1.7s cubic-bezier(.65,0,.35,1)}}",
-					".nuc-btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;box-sizing:border-box;min-height:2.625rem;padding:.5rem 1rem;border:1px solid var(--shell-accent,#3dba7a);border-radius:.375rem;background:var(--shell-accent,#3dba7a);color:var(--shell-on-accent,#04110c);font-size:.8125rem;font-weight:600;line-height:1.25;text-decoration:none}",
-					".nuc-btn.is-outlined{background:transparent;color:var(--shell-accent,#3dba7a)}",
+					"html.nuc-iris-boot .nuc-frame:not(.nuc-ready) .nuc-inner,html.nuc-iris-boot .nuc-frame:not(.nuc-ready) .nuc-shear,html.nuc-iris-boot .nuc-frame:not(.nuc-ready) .nuc-rail{opacity:0}",
+					"html.nuc-iris-boot .nuc-frame.nuc-iris-live:not(.nuc-ready) .nuc-inner,html.nuc-iris-boot .nuc-frame.nuc-iris-live:not(.nuc-ready) .nuc-shear{opacity:1;clip-path:circle(var(--frame-iris) at var(--frame-iris-x) var(--frame-iris-y));transition:--frame-iris 1.05s cubic-bezier(.65,0,.35,1);will-change:clip-path}",
+					"@media(min-width:960px){html.nuc-iris-boot .nuc-frame.nuc-iris-live:not(.nuc-ready) .nuc-inner,html.nuc-iris-boot .nuc-frame.nuc-iris-live:not(.nuc-ready) .nuc-shear{transition:--frame-iris 1.7s cubic-bezier(.65,0,.35,1)}}",
+					".nuc-btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;box-sizing:border-box;min-height:2.625rem;padding:.5rem 1rem;border:1px solid var(--frame-accent,#3dba7a);border-radius:.375rem;background:var(--frame-accent,#3dba7a);color:var(--frame-on-accent,#04110c);font-size:.8125rem;font-weight:600;line-height:1.25;text-decoration:none}",
+					".nuc-btn.is-outlined{background:transparent;color:var(--frame-accent,#3dba7a)}",
 					".nuc-hero-cta{display:flex;flex-wrap:wrap;gap:.55rem}",
 					".nuc-hero-cta .nuc-btn{flex:1 1 0;width:auto;min-width:0}",
 					".main-cta{min-height:2.85rem;color:#f7faf8}",
-					"nui-button:not(:defined){display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:2.625rem;padding:.5rem 1rem;border:1px solid var(--shell-accent,#3dba7a);border-radius:.375rem;background:var(--shell-accent,#3dba7a);color:var(--shell-on-accent,#04110c);font-size:.8125rem;font-weight:600}",
+					"nui-button:not(:defined){display:flex;align-items:center;justify-content:center;box-sizing:border-box;min-height:2.625rem;padding:.5rem 1rem;border:1px solid var(--frame-accent,#3dba7a);border-radius:.375rem;background:var(--frame-accent,#3dba7a);color:var(--frame-on-accent,#04110c);font-size:.8125rem;font-weight:600}",
 					"nui-button:not(:defined)::before{content:attr(label)}",
-					"nui-button:not(:defined)[variant=outlined]{background:transparent;color:var(--shell-accent,#3dba7a)}",
+					"nui-button:not(:defined)[variant=outlined]{background:transparent;color:var(--frame-accent,#3dba7a)}",
 				].join(""),
 			},
 		],

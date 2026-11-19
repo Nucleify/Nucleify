@@ -28,30 +28,30 @@ Coverage story for marketing and docs: **Vue · React · Nuxt · Next · Astro �
 | Command | What it is | Default |
 |---------|------------|---------|
 | `make web` | Landing product host | **Nuxt** (`--target=nuxt`) |
-| `make web --target=next` | Landing on Next | `web-next/` |
-| `make web --target=solid` | Landing on Solid | `web-solid/` |
-| `make web --target=svelte` | Landing on Svelte | `web-svelte/` |
-| `make web --target=astro` | Landing on Astro (React islands) | `web-astro/` |
+| `make web --target=next` | Landing on Next | `web_next/` |
+| `make web --target=solid` | Landing on Solid | `web_solid/` |
+| `make web --target=svelte` | Landing on Svelte | `web_svelte/` |
+| `make web --target=astro` | Landing on Astro (React islands) | `web_astro/` |
 | `make admin` | Admin product host | **Nuxt** |
-| `make admin --target=next` | Admin on Next | `admin-next/` |
-| `make admin --target=solid` | Admin on Solid | `admin-solid/` |
-| `make admin --target=svelte` | Admin on Svelte | `admin-svelte/` |
-| `make admin --target=astro` | Admin on Astro (React islands) | `admin-astro/` |
-| `make docs` | Docs product host | **Astro** (`@nucleify/docs`, not `web-astro/`) |
+| `make admin --target=next` | Admin on Next | `admin_next/` |
+| `make admin --target=solid` | Admin on Solid | `admin_solid/` |
+| `make admin --target=svelte` | Admin on Svelte | `admin_svelte/` |
+| `make admin --target=astro` | Admin on Astro (React islands) | `admin_astro/` |
+| `make docs` | Docs product host | **Astro** (`@nucleify/docs`, not `web_astro/`) |
 | `make nuxt` / `next` / `vue` / `react` / `solid` / `svelte` / `astro` | Throwaway emit demos | `{framework}/demo` (gitignored) |
 
 **Product convert:** `convert` turns existing framework source into Next (React), Solid, Svelte, or Astro (React islands) product trees. Output under `{product}-{framework}/` has **no source `.vue` files**.
 
 ```bash
 export PATH="$PWD/.config/bin:$PATH"
-make web --target=next      # → web-next/
-make web -t=solid           # → web-solid/
-make web --target=svelte    # → web-svelte/
-make web --target=astro     # → web-astro/
-make admin --target=next    # → admin-next/
-make admin --target=solid   # → admin-solid/
-make admin --target=svelte  # → admin-svelte/
-make admin --target=astro   # → admin-astro/
+make web --target=next      # → web_next/
+make web -t=solid           # → web_solid/
+make web --target=svelte    # → web_svelte/
+make web --target=astro     # → web_astro/
+make admin --target=next    # → admin_next/
+make admin --target=solid   # → admin_solid/
+make admin --target=svelte  # → admin_svelte/
+make admin --target=astro   # → admin_astro/
 # classic (no shim): make web TARGET=next
 ```
 

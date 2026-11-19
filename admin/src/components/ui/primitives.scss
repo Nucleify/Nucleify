@@ -1,0 +1,382 @@
+/* Cross-cutting admin UI primitives (@use'd from assets/admin.scss). */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Reserve CE host boxes before/while shadow sheets settle (avoids CLS). */
+nui-input-text,
+nui-textarea,
+nui-select {
+  display: block;
+  width: 100%;
+  min-height: var(--admin-control-h);
+  box-sizing: border-box;
+}
+
+nui-button {
+  box-sizing: border-box;
+  min-height: var(--admin-control-h);
+}
+
+nui-button[size='small'] {
+  min-height: var(--admin-control-h-sm);
+}
+
+nui-button[fluid] {
+  display: block;
+  width: 100%;
+}
+
+nui-dialog .admin-form {
+  width: 100%;
+  max-width: none;
+}
+
+.admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.admin-muted {
+  color: var(--admin-muted);
+}
+
+.admin-badge {
+  display: inline-block;
+  padding: 0.05rem 0.35rem;
+  border-radius: var(--admin-radius);
+  font-family: var(--admin-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  background: var(--admin-surface-2);
+  border: 1px solid var(--admin-border);
+  color: var(--admin-muted);
+}
+
+.admin-badge--ok {
+  color: #86efac;
+  border-color: color-mix(in srgb, #22c55e 40%, var(--admin-border));
+}
+
+.admin-badge--warn {
+  color: #fde68a;
+  border-color: color-mix(in srgb, #eab308 40%, var(--admin-border));
+}
+
+.admin-badge--info {
+  color: #93c5fd;
+  border-color: color-mix(in srgb, #3b82f6 40%, var(--admin-border));
+}
+
+.admin-badge--danger {
+  color: #fca5a5;
+  border-color: color-mix(in srgb, #ef4444 40%, var(--admin-border));
+}
+
+.admin-control-btn {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--admin-control-h);
+  min-height: var(--admin-control-h);
+  padding: 0 1rem;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface-2);
+  color: var(--admin-text);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.admin-control-btn:hover:not(:disabled) {
+  border-color: var(--admin-text);
+}
+
+.admin-control-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.admin-control-btn--filled {
+  background: var(--admin-accent);
+  border-color: var(--admin-accent);
+  color: var(--admin-on-accent);
+}
+
+.admin-control-btn--filled:hover:not(:disabled) {
+  background: var(--admin-accent-hover);
+  border-color: var(--admin-accent-hover);
+}
+
+/* Shared list / table / chip primitives (must be global — used across pages). */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  height: var(--admin-row-h);
+  padding: 0 0.65rem;
+  text-align: left;
+  border-bottom: 1px solid var(--admin-border);
+  vertical-align: middle;
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  box-sizing: border-box;
+}
+
+.admin-table th {
+  font-family: var(--admin-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--admin-muted);
+  background: var(--admin-surface-2);
+}
+
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table a {
+  color: var(--admin-text);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.admin-table a:hover {
+  color: var(--admin-accent-hover);
+}
+
+.admin-table nui-button,
+.admin-table__actions nui-button,
+.admin-bulk-bar nui-button {
+  min-height: var(--admin-control-h-sm);
+}
+
+.admin-table__actions {
+  width: 2.25rem;
+  padding-right: 0.35rem !important;
+  text-align: right;
+}
+
+.admin-table th.admin-table__check,
+.admin-table td.admin-table__check {
+  width: 2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.25rem;
+}
+
+.admin-table__check nui-checkbox {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.admin-list-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.admin-list-toolbar nui-input-text,
+.admin-list-toolbar nui-select {
+  min-height: var(--admin-control-h);
+  height: var(--admin-control-h);
+}
+
+.admin-list-toolbar__search {
+  flex: 1 1 14rem;
+  min-width: 10rem;
+}
+
+.admin-list-toolbar__options {
+  flex-shrink: 0;
+  align-self: flex-end;
+}
+
+.admin-list-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.admin-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.admin-filter-chip {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--admin-control-h);
+  min-height: var(--admin-control-h);
+  padding: 0 1rem 0 0.5rem;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface-2);
+  color: var(--admin-muted);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.admin-filter-chip.is-active {
+  color: var(--admin-text);
+  border-color: var(--admin-text);
+  background: color-mix(
+    in srgb,
+    var(--admin-surface-2) 60%,
+    var(--admin-text) 8%
+  );
+}
+
+.admin-filter-chip--icon {
+  width: var(--admin-control-h);
+  min-width: var(--admin-control-h);
+  padding: 0;
+}
+
+.admin-bulk-bar {
+  position: sticky;
+  top: var(--admin-sticky-h);
+  z-index: 12;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+}
+
+.admin-screen-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface-2);
+}
+
+.admin-conflict-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid color-mix(in srgb, #ef4444 45%, var(--admin-border));
+  background: color-mix(in srgb, #ef4444 12%, var(--admin-surface));
+}
+
+.admin-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  width: min(100%, 22rem);
+  display: flex;
+  flex-direction: column;
+  background: var(--admin-surface);
+  border-left: 1px solid var(--admin-border);
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.35);
+}
+
+.admin-drawer__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-drawer__body {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+}
+
+.admin-drawer__item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.admin-media-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.5rem;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.admin-media-card.is-selected {
+  border-color: var(--admin-text);
+}
+
+.admin-media-card__thumb {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--admin-surface-2);
+  color: var(--admin-muted);
+  font-size: 0.7rem;
+}
+
+.admin-media-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.admin-media-card__name {
+  margin: 0;
+  font-size: 0.75rem;
+  word-break: break-all;
+}
+
+.admin-media-card__meta {
+  margin: 0;
+  font-size: 0.65rem;
+  color: var(--admin-muted);
+}

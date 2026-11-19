@@ -1,6 +1,6 @@
 # nucleify home copy
 
-Sources: `shared_modules/nuc_admin/cms/defaults/content/home.ts` + `marketing_props.ts`.
+Sources: `shared_modules/nuc_cms/cms/defaults/content/home.ts` + `marketing_props.ts`.
 
 Order: `hero → compiler_demo → pillars → stack → clone → close`.
 

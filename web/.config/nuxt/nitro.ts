@@ -51,18 +51,52 @@ export const nitroConfig = {
 			"@admin": resolve(root, "../admin/src/index.server.ts"),
 			"@shared_modules": resolve(root, "../shared_modules/index.server.ts"),
 			"@portable": resolve(root, "../portable"),
-			nucleify: resolve(root, "src/nucleify.ts"),
+			nucleify: resolve(root, "../shared_modules/index.ts"),
 			modules: resolve(root, "../shared_modules"),
 			nuc_api: resolve(
 				root,
 				"../shared_modules/nuc_api/supabase/api/server.ts",
 			),
-			nuc_client: resolve(root, "src/nuc_client.ts"),
+			nuc_client: resolve(
+				root,
+				"../shared_modules/nuc_api/supabase/client.ts",
+			),
 			nuc_server: resolve(root, "src/server/nuc_server.ts"),
 		},
 		externals: {
 			inline: ["vue", "vue-router", "@unhead/vue"],
 		},
+		handlers: [
+			{
+				route: "/api/contact-form",
+				method: "post",
+				handler: resolve(
+					root,
+					"../shared_modules/nuc_cms/server/api/contact-form.post.ts",
+				),
+			},
+			{
+				middleware: true,
+				handler: resolve(
+					root,
+					"../shared_modules/nuc_cms/server/middleware/fix_smashed_urls.ts",
+				),
+			},
+			{
+				middleware: true,
+				handler: resolve(
+					root,
+					"../shared_modules/nuc_cms/server/middleware/cms_redirects.ts",
+				),
+			},
+			{
+				middleware: true,
+				handler: resolve(
+					root,
+					"../shared_modules/nuc_cms/server/middleware/frame_ancestors.ts",
+				),
+			},
+		],
 		prerender: {
 			crawlLinks: process.env.PRERENDER_CRAWL_LINKS === "true",
 			failOnError: isPrerenderEnabled(),

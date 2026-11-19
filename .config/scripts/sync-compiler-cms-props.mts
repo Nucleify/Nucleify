@@ -11,12 +11,12 @@ import {
   NUC_HOME_COMPILER_SOURCE,
   NUC_HOME_COPY,
   NUC_HOME_PILLARS,
-} from '../../shared_modules/nuc_admin/cms/defaults/content/home'
+} from '../../shared_modules/nuc_cms/cms/defaults/content/home'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const target = path.join(
   root,
-  'shared_modules/nuc_admin/cms/defaults/marketing_props.ts'
+  'shared_modules/nuc_cms/cms/defaults/marketing_props.ts'
 )
 
 let text = fs.readFileSync(target, 'utf8')
@@ -56,8 +56,7 @@ const block = `  'section.compiler_demo': {
     showSection: true,
     showBoard: true,
     compilerEyebrow: ${asTsString(NUC_HOME_COPY.compilerEyebrow)},
-    compilerTitleLead: ${asTsString(NUC_HOME_COPY.compilerTitleLead)},
-    compilerTitleTrail: ${asTsString(NUC_HOME_COPY.compilerTitleTrail)},
+    compilerTitle: ${asTsString(NUC_HOME_COPY.compilerTitle)},
     compilerSupport:
       ${asTsString(NUC_HOME_COPY.compilerSupport)},
     compilerCta: ${asTsString(NUC_HOME_COPY.compilerCta)},

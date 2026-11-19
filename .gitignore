@@ -55,18 +55,18 @@
 /solid/
 /svelte/
 /astro/
-/web-next/
-/admin-next/
-/web-solid/
-/admin-solid/
-/web-svelte/
-/admin-svelte/
-/web-astro/
-/admin-astro/
+/web_next/
+/admin_next/
+/web_solid/
+/admin_solid/
+/web_svelte/
+/admin_svelte/
+/web_astro/
+/admin_astro/
 .nucleify-nm-*/
 .nucleify-convert-git-*/
 .nucleify-fixture-ext-*/
-/ext-web-next-*/
+/ext_web_next_*/
 # AI workflow
 .ai/specs/*
 !.ai/docs/

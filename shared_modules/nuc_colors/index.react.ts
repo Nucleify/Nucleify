@@ -1,4 +1,4 @@
-export * from './components/color-picker/utils/persist_item_color_shades'
+export * from './components/color_picker/utils/persist_item_color_shades'
 export * from './constants/default'
 export * from './constants/is_next_runtime'
 export * from './constants/keys'

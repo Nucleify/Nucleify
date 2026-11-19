@@ -2,7 +2,7 @@
 
 # Product apps: default host is Nuxt. Product convert nests products under frameworks:
 #   make web                      # top-level web/ (Nuxt)
-#   make web --target=next        # web-next (via .config/bin/make shim)
+#   make web --target=next        # web_next (via .config/bin/make shim)
 #   make web -t=astro             # short form (same shim)
 #   make web TARGET=next          # classic GNU make assignment (no shim)
 #   make deploy web               # build + wrangler deploy (@nucleify/web)
@@ -130,19 +130,19 @@ else ifeq ($(TARGET),nuxt)
 else ifeq ($(TARGET),next)
 	pnpm exec tsx compiler/src/cli.ts convert web --target=next
 	pnpm exec tsx compiler/src/cli.ts build --app=next
-	cd web-next && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+	cd web_next && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else ifeq ($(TARGET),solid)
 	pnpm exec tsx compiler/src/cli.ts convert web --target=solid
 	pnpm exec tsx compiler/src/cli.ts build --app=solid
-	cd web-solid && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+	cd web_solid && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else ifeq ($(TARGET),svelte)
 	pnpm exec tsx compiler/src/cli.ts convert web --target=svelte
 	pnpm exec tsx compiler/src/cli.ts build --app=svelte
-	cd web-svelte && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+	cd web_svelte && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else ifeq ($(TARGET),astro)
 	pnpm exec tsx compiler/src/cli.ts convert web --target=astro
 	pnpm exec tsx compiler/src/cli.ts build --app=astro
-	cd web-astro && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+	cd web_astro && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "--target=$(TARGET) is not implemented for web."
 	@echo "Supported: nuxt (default) | next | solid | svelte | astro"
@@ -158,16 +158,16 @@ else ifeq ($(TARGET),nuxt)
 	pnpm --filter @nucleify/admin dev
 else ifeq ($(TARGET),next)
 	pnpm exec tsx compiler/src/cli.ts convert admin --target=next
-	cd admin-next && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+	cd admin_next && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else ifeq ($(TARGET),solid)
 	pnpm exec tsx compiler/src/cli.ts convert admin --target=solid
-	cd admin-solid && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+	cd admin_solid && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else ifeq ($(TARGET),svelte)
 	pnpm exec tsx compiler/src/cli.ts convert admin --target=svelte
-	cd admin-svelte && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+	cd admin_svelte && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else ifeq ($(TARGET),astro)
 	pnpm exec tsx compiler/src/cli.ts convert admin --target=astro
-	cd admin-astro && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
+	cd admin_astro && pnpm install --ignore-workspace --config.dangerouslyAllowAllBuilds=true && pnpm run --ignore-workspace dev
 else
 	@echo "--target=$(TARGET) is not implemented for admin."
 	@echo "Supported: nuxt (default) | next | solid | svelte | astro"

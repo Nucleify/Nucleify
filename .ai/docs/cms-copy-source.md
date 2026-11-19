@@ -1,6 +1,6 @@
 # CMS copy source
 
-Defaults: `shared_modules/nuc_admin/cms/defaults/{content/,marketing_props.ts}`. Web reads published CMS layouts.
+Defaults: `shared_modules/nuc_cms/cms/defaults/{content/,marketing_props.ts}`. Web reads published CMS layouts.
 
 ```bash
 pnpm exec vite-node --config vitest.config.ts .config/scripts/gen-cms-defaults.mts

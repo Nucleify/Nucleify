@@ -151,6 +151,6 @@ pnpm test:watch
 
 ## Related docs
 
-- [Modules](/en/docs/core-concepts/modules) - `vitests/` folder convention
-- [Coding Standards](/en/docs/about/coding-standards) - naming and structure rules
-- [Compiler](/en/docs/core-concepts/compiler) - `pnpm compiler:test`
+- [Modules](/en/docs/core_concepts/modules) - `vitests/` folder convention
+- [Coding Standards](/en/docs/about/coding_standards) - naming and structure rules
+- [Compiler](/en/docs/core_concepts/compiler) - `pnpm compiler:test`

@@ -1,4 +1,4 @@
-import { beforeEach, expect, it, vi } from 'vitest'
+import { expect, it } from 'vitest'
 
 import { registerNucGlobals } from '.'
 
@@ -12,11 +12,6 @@ const constants = {
   technologiesImgUrl: '/img/technologies/',
 }
 
-beforeEach(() => {
-  vi.stubGlobal('appEnv', () => 'production')
-  vi.stubGlobal('appUrl', () => '')
-})
-
 it('registers all constants on app.config.globalProperties', (): void => {
   const app = { config: { globalProperties: {} } }
 
@@ -27,4 +22,12 @@ it('registers all constants on app.config.globalProperties', (): void => {
       value
     )
   }
+})
+
+it('prefixes asset URLs when assetPrefix is set', (): void => {
+  const app = { config: { globalProperties: {} } }
+
+  registerNucGlobals(app as never, { assetPrefix: 'http://localhost:7777' })
+
+  expect(app.config.globalProperties.imgUrl).toBe('http://localhost:7777/img/')
 })

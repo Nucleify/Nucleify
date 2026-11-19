@@ -183,6 +183,6 @@ Top-level `supabase/` holds project config, merged migration output, and shared 
 
 ## Related docs
 
-- [Modules](/en/docs/core-concepts/modules) - module structure and gateway registration
+- [Modules](/en/docs/core_concepts/modules) - module structure and gateway registration
 - [Environment](/en/docs/configuration/environment) - Supabase env vars
 - [Web & Admin](/en/docs/configuration/web) - Nitro gateway entry point

@@ -40,8 +40,6 @@
 </template>
 
 <script setup lang="ts">
-import { FieldCheckbox } from '@admin'
-import { FieldText } from '@admin'
 
 definePageMeta({ layout: 'blank' })
 
@@ -92,3 +90,33 @@ async function onSubmit() {
   }
 }
 </script>
+
+<style lang="scss">
+.admin-login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  background: var(--admin-bg);
+}
+.admin-login nui-button[fluid] {
+  width: 100%;
+}
+.admin-login__card {
+  width: min(100%, 24rem);
+  padding: 2rem 1.75rem;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+}
+.admin-login__brand {
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.admin-login__sub {
+  margin: 0 0 1.5rem;
+  color: var(--admin-muted);
+  font-size: 0.875rem;
+}
+</style>

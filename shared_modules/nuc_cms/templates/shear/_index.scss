@@ -1,0 +1,43 @@
+.nuc-shear {
+  pointer-events: none;
+  position: absolute;
+  inset: -12%;
+  z-index: 0;
+  transform: perspective(1200px) rotateX(calc(var(--frame-my) * -4deg))
+    rotateY(calc(var(--frame-mx) * 5deg))
+    translate3d(calc(var(--frame-mx) * 18px), calc(var(--frame-my) * 14px), 0);
+  transform-origin: 50% 35%;
+  will-change: transform;
+}
+
+.nuc-aura {
+  display: none;
+}
+
+.nuc-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, hsl(var(--rainbow-hue) 55% 52%) 20%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, hsl(var(--rainbow-hue) 55% 52%) 20%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 72px 72px;
+  mask-image: radial-gradient(
+    circle at var(--frame-iris-x) var(--frame-iris-y),
+    #000 var(--frame-iris),
+    transparent calc(var(--frame-iris) + 18%)
+  );
+  opacity: 0.55;
+  transform: translate3d(
+    calc(var(--frame-mx) * -10px),
+    calc(var(--frame-my) * -8px),
+    0
+  );
+}
+

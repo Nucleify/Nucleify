@@ -13,40 +13,6 @@ import {
   handleAdminRolePermissionsPut,
   handleAdminRolesList,
 } from './admin_handlers'
-import {
-  handleAdminCmsCreate,
-  handleAdminCmsDelete,
-  handleAdminCmsGet,
-  handleAdminCmsList,
-  handleAdminCmsPatch,
-} from './admin_cms_handlers'
-import {
-  handleAdminCollectionsList,
-  handleAdminConfigGet,
-  handleAdminDocumentDelete,
-  handleAdminDocumentGet,
-  handleAdminDocumentPatch,
-  handleAdminDocumentPublish,
-  handleAdminDocumentsCreate,
-  handleAdminDocumentsList,
-} from './admin_documents_handlers'
-import {
-  handleAdminGlobalGet,
-  handleAdminGlobalPatch,
-  handleAdminGlobalsList,
-} from './admin_globals_handlers'
-import {
-  handleAdminMediaCreate,
-  handleAdminMediaDelete,
-  handleAdminMediaList,
-  handleAdminMediaPatch,
-} from './admin_media_handlers'
-import {
-  handleAdminRedirectCreate,
-  handleAdminRedirectDelete,
-  handleAdminRedirectPatch,
-  handleAdminRedirectsList,
-} from './admin_redirects_handlers'
 import { handleAdminMePatch } from './admin_settings_handlers'
 import {
   handleAdminUserCreate,
@@ -65,32 +31,9 @@ const adminRoutes: ApiAuthRoute[] = [
   handleAdminUserGet,
   handleAdminUserPatch,
   handleAdminUsersList,
-  handleAdminConfigGet,
-  handleAdminGlobalPatch,
-  handleAdminGlobalGet,
-  handleAdminGlobalsList,
-  handleAdminMediaCreate,
-  handleAdminMediaPatch,
-  handleAdminMediaDelete,
-  handleAdminMediaList,
-  handleAdminRedirectCreate,
-  handleAdminRedirectPatch,
-  handleAdminRedirectDelete,
-  handleAdminRedirectsList,
-  handleAdminDocumentPublish,
-  handleAdminDocumentGet,
-  handleAdminDocumentPatch,
-  handleAdminDocumentDelete,
-  handleAdminDocumentsCreate,
-  handleAdminDocumentsList,
-  handleAdminCollectionsList,
-  handleAdminCmsCreate,
-  handleAdminCmsDelete,
-  handleAdminCmsGet,
-  handleAdminCmsPatch,
-  handleAdminCmsList,
 ]
 
+/** Authenticated admin routes for users / roles / settings. */
 export async function handleAdminApi(
   ctx: ApiContext
 ): Promise<ApiHandlerResult> {

@@ -18,7 +18,7 @@ Nucleify treats **migration between technologies** as the durable layer of the m
 
 One migration pipeline. Seven frameworks. Three surfaces. One nucleus (optional after join).
 
-1. **Migrate as a command** - product convert for whole existing apps **as-is** (no `*.nuc.tsx` rewrite, no `shared_modules` refactor first) - [Migrate FAQ](/en/docs/getting-started/migrate-faq)
+1. **Migrate as a command** - product convert for whole existing apps **as-is** (no `*.nuc.tsx` rewrite, no `shared_modules` refactor first) - [Migrate FAQ](/en/docs/getting_started/migrate_faq)
 2. **Three surfaces** - `web/`, `admin/`, and `docs/` in this monorepo
 3. **Shared modules** - API, SQL, UI, and domain logic in `shared_modules/` when you join the nucleus - **not** a convert gate
 4. **One Supabase backend** - gateway-mediated, module-owned SQL
@@ -43,7 +43,7 @@ Like a cell nucleus, Nucleify coordinates the product. Each exported `nuc_*` mod
 
 ### 1. Any stack → any other
 
-This is the core loop. **Yes - product convert** moves an existing app as-is - including an external Next / Nuxt / Vue / React / … folder or git URL via `--path` / `--git` - to another framework. **No** rewrite into `*.nuc.tsx`, **no** prior `shared_modules` split, **no** token rewrite (see [Compiler](/en/docs/core-concepts/compiler)). Optional portable `*.nuc.tsx` components emit through a custom IR when you want shared presentational UI - that path is not a migrate gate. Emit edits import back to source. The business does not fork per host.
+This is the core loop. **Yes - product convert** moves an existing app as-is - including an external Next / Nuxt / Vue / React / … folder or git URL via `--path` / `--git` - to another framework. **No** rewrite into `*.nuc.tsx`, **no** prior `shared_modules` split, **no** token rewrite (see [Compiler](/en/docs/core_concepts/compiler)). Optional portable `*.nuc.tsx` components emit through a custom IR when you want shared presentational UI - that path is not a migrate gate. Emit edits import back to source. The business does not fork per host.
 
 ```bash
 export PATH="$PWD/.config/bin:$PATH"   # enables --target= / -t=
@@ -60,7 +60,7 @@ make admin --target=svelte
 Published CLI form:
 
 ```bash
-# This monorepo’s Nuxt web/ → web-next/ (not your external app)
+# This monorepo’s Nuxt web/ → web_next/ (not your external app)
 nuc emit convert web --target=next
 # Your product as-is:
 nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
@@ -70,7 +70,7 @@ Framework choice becomes a **build target**, not an architectural fork.
 
 ### 2. Modules over monoliths
 
-Inside this monorepo, domain logic lives in `shared_modules/nuc_*`, not duplicated across apps - a nucleus benefit **after** join, not a convert gate ([Migrate FAQ](/en/docs/getting-started/migrate-faq)). See [Feature-Sliced Design](/en/docs/core-concepts/feature-sliced-design).
+Inside this monorepo, domain logic lives in `shared_modules/nuc_*`, not duplicated across apps - a nucleus benefit **after** join, not a convert gate ([Migrate FAQ](/en/docs/getting_started/migrate_faq)). See [Feature-Sliced Design](/en/docs/core_concepts/feature_sliced_design).
 
 ### 3. Gateway, not spaghetti
 
@@ -129,8 +129,8 @@ The monorepo enforces quality on pre-commit (pre-push is a no-op):
 
 ## Related docs
 
-- [Introduction](/en/docs/getting-started/introduction) - technical overview
-- [CLI](/en/docs/core-concepts/cli) - `nuc emit` reference
-- [Modules](/en/docs/core-concepts/modules) - module architecture
-- [Compiler](/en/docs/core-concepts/compiler) - emit and convert
-- [Coding Standards](/en/docs/about/coding-standards) - day-to-day conventions
+- [Introduction](/en/docs/getting_started/introduction) - technical overview
+- [CLI](/en/docs/core_concepts/cli) - `nuc emit` reference
+- [Modules](/en/docs/core_concepts/modules) - module architecture
+- [Compiler](/en/docs/core_concepts/compiler) - emit and convert
+- [Coding Standards](/en/docs/about/coding_standards) - day-to-day conventions

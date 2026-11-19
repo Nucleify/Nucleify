@@ -32,6 +32,8 @@ Session notes after **DO**. Plans: `.ai/specs/`. Public docs site: `docs/`.
 | [nucleify-solid-shell.md](./nucleify-solid-shell.md) | `web-solid` |
 | [nucleify-emit-barrels.md](./nucleify-emit-barrels.md) | `@web` / `@shared_modules` on convert hosts |
 | [nucleify-cms-slug.md](./nucleify-cms-slug.md) | `/[lang]/[slug]` |
+| [nucleify-cms-widgets.md](./nucleify-cms-widgets.md) | Add section / block / template |
+| [nucleify-cms-emit-catalog.md](./nucleify-cms-emit-catalog.md) | One section register → emit shells |
 | [nucleify-dev-ports.md](./nucleify-dev-ports.md) | `:7777` / `:8888` |
 | [nucleify-deploy.md](./nucleify-deploy.md) | `make deploy web\|admin\|docs` |
 | [nucleify-home-copy.md](./nucleify-home-copy.md) | Home CMS copy |
@@ -45,5 +47,6 @@ Session notes after **DO**. Plans: `.ai/specs/`. Public docs site: `docs/`.
 | [docs-origin.md](./docs-origin.md) | `docs.nucleify.io` |
 | [docs-content-migrate.md](./docs-content-migrate.md) | Docs migrate-any-stack audit |
 | [cms-copy-source.md](./cms-copy-source.md) | CMS defaults → seeder |
+| [nucleify-cms-widgets.md](./nucleify-cms-widgets.md) | Add section/post widgets + feature packs |
 | [nui-workflow-skills.md](./nui-workflow-skills.md) | Pipeline skill paths |
 | [agent-context-budget.md](./agent-context-budget.md) | Context / rules budget |
