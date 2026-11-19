@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { adminApiGet } from '../../composables/use_admin_api'
+import { adminApiGet } from '../../composables/use_api'
 
 const props = defineProps<{
   open: boolean
@@ -122,3 +122,60 @@ async function go(hit: Record<string, unknown>) {
   }
 }
 </script>
+
+<style lang="scss">
+.admin-cmdk {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: start center;
+  padding: 12vh 1rem 1rem;
+}
+.admin-cmdk__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+.admin-cmdk__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 32rem);
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+}
+.admin-cmdk__input {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: 0;
+  border-bottom: 1px solid var(--admin-border);
+  background: transparent;
+  color: var(--admin-text);
+  font: inherit;
+  font-size: 1rem;
+  outline: none;
+}
+.admin-cmdk__list {
+  max-height: 20rem;
+  overflow: auto;
+  padding: 0.35rem 0;
+}
+.admin-cmdk__item {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 0;
+  background: transparent;
+  color: var(--admin-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.admin-cmdk__item:hover,
+.admin-cmdk__item.is-active {
+  background: var(--admin-surface-2);
+}
+</style>

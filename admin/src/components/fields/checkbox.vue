@@ -35,3 +35,13 @@ function onChange(event: Event) {
   emit('update:checked', Boolean(host?.checked))
 }
 </script>
+
+<style lang="scss">
+.admin-field-checkbox {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+</style>

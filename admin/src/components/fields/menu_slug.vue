@@ -11,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-import { adminApiGet } from '../../composables/use_admin_api'
+import { adminApiGet } from '../../composables/use_api'
 import type { FieldSelectOption } from './field_select.vue'
 
 const props = withDefaults(

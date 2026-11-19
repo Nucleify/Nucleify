@@ -217,3 +217,26 @@ onMounted(() => {
   void load()
 })
 </script>
+
+<style lang="scss">
+.admin-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+.admin-dashboard-card {
+  padding: 1rem 1.25rem;
+}
+.admin-dashboard-card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+}
+.admin-dashboard-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.admin-dashboard-card li {
+  margin: 0.35rem 0;
+}
+</style>

@@ -14,3 +14,38 @@ defineProps<{
   error?: string
 }>()
 </script>
+
+<style lang="scss">
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 28rem;
+}
+.admin-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-width: 0;
+}
+.admin-form__label {
+  display: block;
+  margin: 0;
+  font-family: var(--admin-mono);
+  font-size: 0.65rem;
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--admin-muted);
+}
+.admin-form__hint {
+  margin: 0;
+  color: var(--admin-muted);
+  font-size: 0.75rem;
+}
+.admin-form__error {
+  margin: 0;
+  color: var(--admin-danger);
+  font-size: 0.8125rem;
+}
+</style>

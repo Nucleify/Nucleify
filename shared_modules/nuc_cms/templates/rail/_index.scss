@@ -89,51 +89,55 @@
   letter-spacing: 0.02em;
 }
 
-/* Side rail from desktop only — tablet keeps the bottom dock like mobile. */
-@media (min-width: $lg) {
-.nuc-rail {
-  inset: 50% clamp(0.75rem, 2.5vw, 1.75rem) auto auto;
-  transform: translateY(-50%);
-  display: block;
-  pointer-events: auto;
-}
-
-.nuc-rail-list {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 0.65rem;
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  backdrop-filter: none;
-}
-
-.nuc-rail-item {
-  gap: 0.7rem;
-  padding: 0.2rem 0;
-  border-radius: 0;
-
-  &::before {
-    display: block;
+/* Side rail only when the frame has room beside --frame-max (~1200px).
+ * Flex column centers the list — avoid translateY, anime entrance uses transform. */
+@media (min-width: $doc-layout-min) {
+  .nuc-rail {
+    inset: 0 clamp(0.75rem, 2.5vw, 1.75rem) 0 auto;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    pointer-events: none;
   }
 
-  &.is-active {
+  .nuc-rail-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
     background: transparent;
-    box-shadow: none;
+    backdrop-filter: none;
+    pointer-events: auto;
   }
-}
 
-.nuc-rail-label {
-  position: static;
-  width: auto;
-  height: auto;
-  padding: 0;
-  margin: 0;
-  overflow: visible;
-  clip: auto;
-  white-space: normal;
-  border: 0;
-}
+  .nuc-rail-item {
+    gap: 0.7rem;
+    padding: 0.2rem 0;
+    border-radius: 0;
 
+    &::before {
+      display: block;
+    }
+
+    &.is-active {
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+
+  .nuc-rail-label {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    border: 0;
+  }
 }

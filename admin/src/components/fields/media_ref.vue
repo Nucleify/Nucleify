@@ -173,3 +173,41 @@ watch(
   }
 )
 </script>
+
+<style lang="scss">
+.admin-media-ref {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-2);
+}
+.admin-media-ref__frame,
+.admin-media-ref__empty {
+  box-sizing: border-box;
+  width: min(100%, 18rem);
+  aspect-ratio: 1.91 / 1;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface-2);
+}
+.admin-media-ref__frame {
+  overflow: hidden;
+}
+.admin-media-ref__empty {
+  display: grid;
+  place-items: center;
+  color: var(--admin-muted);
+  font-size: 0.75rem;
+}
+.admin-media-ref__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.admin-media-ref__actions {
+  flex-wrap: wrap;
+}
+.admin-media-ref__meta {
+  margin: 0;
+  font-size: 0.75rem;
+}
+</style>

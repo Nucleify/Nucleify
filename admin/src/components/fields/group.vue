@@ -12,3 +12,15 @@ defineProps<{
   description?: string
 }>()
 </script>
+
+<style lang="scss">
+.admin-field-group {
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface-2);
+}
+.admin-field-group legend {
+  padding: 0 0.35rem;
+}
+</style>

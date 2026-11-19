@@ -231,3 +231,11 @@ onMounted(() => {
   void load()
 })
 </script>
+
+<style lang="scss">
+.admin-settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem;
+}
+</style>

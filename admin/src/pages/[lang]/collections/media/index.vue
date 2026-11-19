@@ -492,3 +492,25 @@ onMounted(() => {
   void load()
 })
 </script>
+
+<style lang="scss">
+.admin-media-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-3);
+}
+.admin-dropzone {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-3);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  border-style: dashed;
+}
+.admin-dropzone.is-dragover {
+  border-color: var(--admin-text);
+}
+.admin-dropzone input[type='file'] {
+  margin: 0;
+}
+</style>

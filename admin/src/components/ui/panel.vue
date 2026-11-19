@@ -22,3 +22,32 @@ withDefaults(
   }
 )
 </script>
+
+<style lang="scss">
+.admin-panel {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+}
+.admin-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-4);
+  padding: var(--admin-space-5);
+}
+.admin-panel--flush {
+  padding: 0;
+}
+.admin-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--admin-space-3);
+  margin-bottom: 0;
+}
+.admin-panel__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+</style>

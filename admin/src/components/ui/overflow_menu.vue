@@ -122,3 +122,96 @@ async function onPick(action: AdminAction) {
   await action.onClick()
 }
 </script>
+
+<style lang="scss">
+.admin-overflow {
+  position: relative;
+  display: inline-flex;
+}
+.admin-overflow__trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--admin-icon-btn);
+  height: var(--admin-icon-btn);
+  padding: 0;
+  border: 1px solid var(--admin-border);
+  background: transparent;
+  color: var(--admin-muted);
+  line-height: 0;
+  cursor: pointer;
+}
+.admin-overflow__trigger--toolbar {
+  width: auto;
+  height: var(--admin-control-h);
+  min-height: var(--admin-control-h);
+  padding: 0 1rem;
+  gap: 0.45rem;
+  background: var(--admin-surface-2);
+  color: var(--admin-text);
+  font-family: var(--admin-font);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+.admin-overflow__trigger--toolbar:hover:not(:disabled) {
+  border-color: var(--admin-text);
+  color: var(--admin-text);
+}
+.admin-overflow__trigger-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.admin-overflow__trigger-icon svg {
+  display: block;
+}
+.admin-overflow__trigger-text {
+  line-height: 1;
+}
+.admin-overflow__trigger:hover:not(:disabled) {
+  color: var(--admin-text);
+  border-color: var(--admin-text);
+}
+.admin-overflow__trigger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.admin-overflow__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.25rem);
+  z-index: 40;
+  min-width: 10.5rem;
+  padding: 0.2rem 0;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.admin-overflow__item {
+  display: block;
+  width: 100%;
+  padding: 0.4rem 0.7rem;
+  border: 0;
+  background: transparent;
+  color: var(--admin-text);
+  font: inherit;
+  font-size: 0.8125rem;
+  text-align: left;
+  cursor: pointer;
+}
+.admin-overflow__item:hover:not(:disabled) {
+  background: var(--admin-surface-2);
+}
+.admin-overflow__item:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.admin-overflow__item.is-danger {
+  color: #fca5a5;
+}
+</style>

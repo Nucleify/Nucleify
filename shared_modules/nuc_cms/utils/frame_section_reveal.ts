@@ -437,10 +437,10 @@ async function bindShellSectionReveal(
       const stackLattice = qa(section, lattice)
       if (!stackMask.length && !stackLattice.length) return
 
-      let latticeSettled = false
       const settleStack = () => {
-        if (latticeSettled) return
-        latticeSettled = true
+        // Always restore paint — leave() clearLocal() anime.revert() can put
+        // inline opacity:0 back even after a prior settle; skipping restore then
+        // leaves the stack blank on compact re-entry (CSS cannot beat inline).
         settleMask(stackMask)
         for (const item of stackLattice) {
           item.style.opacity = '1'
@@ -459,7 +459,6 @@ async function bindShellSectionReveal(
         section,
         {
           prepare: () => {
-            latticeSettled = false
             for (const item of stackMask) prepareFadeWipe(item)
             stackLattice.forEach((item, index) => {
               const rest = STACK_LATTICE_REST[index] ?? STACK_LATTICE_REST[0]!
@@ -473,7 +472,6 @@ async function bindShellSectionReveal(
           },
           settle: settleStack,
           play: (local) => {
-            latticeSettled = false
             const maskStagger = compact ? 60 : 100
             const maskDuration = compact ? 700 : 1150
             const spotlightIndex = stackMask.findIndex((el) =>

@@ -1,6 +1,6 @@
 <template>
   <div class="admin-page-editor is-creator">
-    <AdminInteractiveCreator
+    <InteractiveCreator
       :preview-url="previewUrl"
       :frame-key="frameKey"
       :refreshing="creatorRefreshing"
@@ -44,7 +44,7 @@
         :fields="fields"
         @update:model-value="onModel"
       />
-    </AdminInteractiveCreator>
+    </InteractiveCreator>
 
     <AdminConfirmDialog
       :open="leaveOpen"

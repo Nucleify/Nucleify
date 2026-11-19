@@ -20,3 +20,20 @@ withDefaults(
   }
 )
 </script>
+
+<style lang="scss">
+.admin-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--admin-muted);
+}
+.admin-empty--rich {
+  padding: 2.5rem 1.25rem;
+}
+.admin-empty__title {
+  margin: 0 0 0.35rem;
+  color: var(--admin-text);
+  font-size: 1rem;
+  font-weight: 600;
+}
+</style>

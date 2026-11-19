@@ -166,8 +166,8 @@ import {
   type NucHomeModuleLaneId,
   type PreviewLivePayload,
 } from '@shared_modules'
-import { NucHoloCube } from '@shared_modules'
-import type { AdminViewport } from '../ui/admin_viewport'
+import NucHoloCube from '@shared_modules/nuc_cms/parts/holo_cube/index.vue'
+import type { AdminViewport } from '../ui/viewport'
 
 const bootFaces: Array<{ id: NucHomeModuleLaneId; label: string }> = [
   { id: 'ui', label: 'UI' },
@@ -361,3 +361,397 @@ onBeforeUnmount(() => {
   if (resizeTimer) clearTimeout(resizeTimer)
 })
 </script>
+
+<style lang="scss">
+html.admin-creator-active,
+html.admin-creator-active body {
+  overflow: hidden;
+}
+
+@keyframes admin-creator-boot-loader {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+
+@keyframes admin-creator-refresh-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.admin-creator {
+  --admin-creator-sidebar-w: 26rem;
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: #fff;
+}
+.admin-creator__stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: #0b0f14;
+  /* Keep preview clear of the edit rail — same geometry in every viewport. */
+  transition: right 0.18s ease;
+}
+.admin-creator.is-sidebar-open .admin-creator__stage {
+  right: var(--admin-creator-sidebar-w);
+}
+.admin-creator__viewport-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #11161d;
+}
+.admin-creator__exit {
+  width: var(--admin-control-h);
+  min-width: var(--admin-control-h);
+  padding: 0;
+  border-color: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.85);
+  background: transparent;
+
+  nui-icon {
+    transform: scaleX(-1);
+  }
+}
+.admin-creator__exit:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+}
+.admin-creator__draft-badge {
+  margin: 0;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+  border-radius: 0.25rem;
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.admin-creator__viewport-hint {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.72rem;
+}
+.admin-creator__device {
+  --admin-creator-preview-w: 100%;
+  --admin-creator-preview-h: 100%;
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 0;
+  min-height: 0;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+.admin-creator__device.is-mobile {
+  --admin-creator-preview-w: 390px;
+  --admin-creator-preview-h: 844px;
+}
+.admin-creator__device.is-tablet {
+  --admin-creator-preview-w: 834px;
+  --admin-creator-preview-h: 1024px;
+}
+.admin-creator__device.is-desktop {
+  --admin-creator-preview-w: 100%;
+  --admin-creator-preview-h: 100%;
+  align-items: stretch;
+}
+.admin-creator__frame {
+  flex: 0 1 auto;
+  align-self: center;
+  width: 100%;
+  max-width: var(--admin-creator-preview-w);
+  height: var(--admin-creator-preview-h);
+  max-height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.35rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  background: #03050c;
+  transition:
+    max-width 0.22s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.admin-creator__device.is-desktop .admin-creator__frame {
+  align-self: stretch;
+}
+@media (prefers-reduced-motion: reduce) {
+  .admin-creator__frame {
+    transition: none;
+  }
+
+  .admin-creator__stage {
+    transition: none;
+  }
+}
+.admin-creator__frame.is-booting {
+  opacity: 0;
+  pointer-events: none;
+}
+.admin-creator__boot {
+  --rainbow-hue: 152deg;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #03050c;
+  color: #e7ebe8;
+}
+.admin-creator__boot-cube {
+  flex: 0 0 auto;
+  width: 150px;
+  max-width: 150px;
+  height: 150px;
+  max-height: 150px;
+  margin: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  /* Kill marketing size / compact 100% — boot is a fixed chip. */
+  .nuc-holo-cube {
+    width: 150px !important;
+    max-width: 150px !important;
+    height: 150px !important;
+    max-height: 150px !important;
+    min-height: 0 !important;
+    aspect-ratio: auto;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .nuc-holo-cube-aura {
+    inset: 18% 20% 14%;
+    filter: blur(2px);
+    opacity: 0.7;
+  }
+
+  .nuc-holo-cube-bloom {
+    opacity: 0.7;
+
+    path {
+      stroke-width: 3.2;
+    }
+  }
+}
+.admin-creator__boot-loader {
+  flex: 0 0 auto;
+  width: 150px;
+  max-width: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 10%);
+  overflow: hidden;
+}
+.admin-creator__boot-loader-bar {
+  display: block;
+  width: 40%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    hsl(var(--rainbow-hue) 55% 52% / 35%),
+    hsl(var(--rainbow-hue) 55% 52%),
+    hsl(calc(var(--rainbow-hue) + 38deg) 90% 62%)
+  );
+  animation: admin-creator-boot-loader 1.1s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .admin-creator__boot-loader-bar {
+    width: 100%;
+    animation: none;
+    opacity: 0.55;
+  }
+}
+.admin-creator__empty {
+  flex: 0 1 auto;
+  align-self: center;
+  width: 100%;
+  max-width: var(--admin-creator-preview-w);
+  height: var(--admin-creator-preview-h);
+  max-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.35rem;
+  background: var(--admin-bg);
+}
+.admin-creator__device.is-desktop .admin-creator__empty {
+  align-self: stretch;
+}
+.admin-creator__sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 71;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, var(--admin-creator-sidebar-w));
+  min-width: 0;
+  overflow: hidden;
+  background: var(--admin-surface);
+  border-left: 1px solid var(--admin-border);
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.35);
+  transform: translateX(0);
+  transition: transform 0.18s ease;
+}
+.admin-creator:not(.is-sidebar-open) .admin-creator__sidebar {
+  transform: translateX(100%);
+  pointer-events: none;
+  box-shadow: none;
+}
+.admin-creator__sidebar-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--admin-border);
+}
+.admin-creator__sidebar-titles {
+  min-width: 0;
+}
+.admin-creator__sidebar-head-actions {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.35rem;
+}
+.admin-creator__refresh {
+  color: var(--admin-muted);
+}
+.admin-creator__refresh:hover:not(:disabled) {
+  color: var(--admin-text);
+}
+.admin-creator__refresh-icon {
+  display: block;
+}
+.admin-creator__refresh.is-spinning .admin-creator__refresh-icon,
+.admin-creator__refresh.is-spinning nui-icon {
+  animation: admin-creator-refresh-spin 0.7s linear infinite;
+}
+.admin-creator__sidebar-head h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+.admin-creator__sidebar-meta {
+  margin: 0.2rem 0 0;
+  color: var(--admin-muted);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.admin-creator__sidebar-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--admin-border);
+}
+.admin-creator__sidebar-body {
+  flex: 1;
+  overflow: auto;
+  padding: 1rem;
+}
+/*
+ * Preview still booting — shell keeps pointer-events so cursor: not-allowed
+ * paints; children are none so fields/buttons cannot be hit.
+ * (Do not use `inert` here — it lets events fall through to the iframe.)
+ */
+.admin-creator__sidebar.is-locked .admin-creator__sidebar-actions,
+.admin-creator__sidebar.is-locked .admin-creator__sidebar-body,
+.admin-creator__sidebar.is-locked .admin-creator__refresh {
+  opacity: 0.55;
+  cursor: not-allowed;
+  user-select: none;
+  pointer-events: auto;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    cursor: not-allowed;
+  }
+
+  * {
+    pointer-events: none !important;
+  }
+}
+.admin-creator__sidebar.is-locked .admin-creator__sidebar-actions,
+.admin-creator__sidebar.is-locked .admin-creator__sidebar-body,
+.admin-creator__sidebar.is-locked .admin-creator__refresh {
+  position: relative;
+}
+.admin-creator__sidebar-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 12rem;
+  height: 100%;
+  padding: 2rem 1rem;
+}
+.admin-creator__sidebar-body .admin-document-grid {
+  grid-template-columns: 1fr;
+}
+.admin-creator__rail-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 0;
+  z-index: 72;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  height: auto;
+  min-height: 5rem;
+  padding: 0.75rem 0.45rem;
+  border: 1px solid var(--admin-border);
+  border-right: 0;
+  border-radius: var(--admin-radius) 0 0 var(--admin-radius);
+  background: var(--admin-surface-2);
+  color: var(--admin-text);
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.25);
+}
+.admin-creator__viewport-bar .admin-viewport-toggle__label {
+  color: rgba(255, 255, 255, 0.45);
+}
+.admin-creator__viewport-bar .admin-viewport-toggle__btn {
+  border-color: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.55);
+}
+.admin-creator__viewport-bar .admin-viewport-toggle__btn.is-active {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+</style>

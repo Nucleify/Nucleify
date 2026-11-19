@@ -476,3 +476,4 @@ watch(filteredRows, (rows) => {
   if (next.length !== selectedIds.value.length) selectedIds.value = next
 })
 </script>
+

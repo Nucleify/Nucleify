@@ -2,37 +2,35 @@
   <FieldShell :label="label" :description="description" :error="error">
     <div class="admin-layout-editor">
       <div class="admin-layout-editor__toolbar">
-        <div class="admin-layout-editor__toolbar-row">
+        <div class="admin-layout-editor__toolbar-secondary">
           <nui-button
             type="button"
-            fluid
             variant="outlined"
             label="Collapse all"
             @click="collapseAll"
           />
           <nui-button
             type="button"
-            fluid
             variant="outlined"
             label="Expand all"
             @click="expandAll"
           />
         </div>
-        <nui-button
-          type="button"
-          fluid
-          variant="filled"
-          label="Add section"
-          @click="pickerOpen = true"
-        />
-        <nui-button
-          v-if="clipboard"
-          type="button"
-          fluid
-          variant="outlined"
-          label="Paste props"
-          @click="pasteOntoFirst"
-        />
+        <div class="admin-layout-editor__toolbar-primary">
+          <nui-button
+            v-if="clipboard"
+            type="button"
+            variant="outlined"
+            label="Paste props"
+            @click="pasteOntoFirst"
+          />
+          <nui-button
+            type="button"
+            variant="filled"
+            label="Add section"
+            @click="pickerOpen = true"
+          />
+        </div>
       </div>
 
       <TransitionGroup
@@ -709,3 +707,241 @@ function teardownDrag() {
   dropSlot.value = null
 }
 </script>
+
+<style lang="scss">
+.admin-layout-editor {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-3);
+}
+.admin-layout-editor__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-3);
+}
+.admin-layout-editor__list.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+.admin-layout-editor__row {
+  display: grid;
+  grid-template-columns: var(--admin-control-h) minmax(0, 1fr);
+  gap: var(--admin-space-3);
+  align-items: start;
+  padding: var(--admin-space-2) var(--admin-space-3);
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface);
+}
+.admin-layout-editor__row.is-collapsed {
+  align-items: center;
+}
+.admin-layout-editor__row.is-draggable {
+  cursor: grab;
+  touch-action: none;
+}
+.admin-layout-editor__list.is-dragging .admin-layout-editor__row.is-draggable {
+  cursor: grabbing;
+}
+.admin-layout-editor__row--ghost {
+  box-sizing: border-box;
+  box-shadow: 0 12px 28px rgb(0 0 0 / 45%);
+  opacity: 0.96;
+  cursor: grabbing;
+}
+.admin-layout-editor__placeholder {
+  box-sizing: border-box;
+  border: 1px dashed color-mix(in srgb, var(--admin-border) 55%, var(--admin-text) 45%);
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 5px,
+    color-mix(in srgb, var(--admin-border) 55%, transparent) 5px,
+    color-mix(in srgb, var(--admin-border) 55%, transparent) 10px
+  );
+}
+/* FLIP reorder while dragging — no enter/leave flash on mount or placeholder swap. */
+.admin-layout-editor-shift-move {
+  transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.admin-layout-editor-shift-enter-active,
+.admin-layout-editor-shift-leave-active {
+  transition: none;
+}
+.admin-layout-editor__handle {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+  width: var(--admin-control-h);
+  height: var(--admin-control-h);
+  gap: 0;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface-2);
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+.admin-layout-editor__handle:active {
+  cursor: grabbing;
+}
+.admin-layout-editor__move {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--admin-border);
+  background: transparent;
+  color: var(--admin-muted);
+  font: inherit;
+  font-size: 0.7rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.admin-layout-editor__move:last-child {
+  border-bottom: 0;
+}
+.admin-layout-editor__move:hover:not(:disabled) {
+  color: var(--admin-text);
+  background: color-mix(in srgb, var(--admin-surface-2) 50%, var(--admin-text) 8%);
+}
+.admin-layout-editor__move:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.admin-layout-editor__body {
+  min-width: 0;
+}
+.admin-layout-editor__meta {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--admin-space-2);
+  min-height: var(--admin-control-h);
+  margin-bottom: var(--admin-space-3);
+}
+.admin-layout-editor__meta-main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--admin-space-2);
+  min-width: 0;
+}
+.admin-layout-editor__toggle {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 0.45rem;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  justify-content: flex-start;
+  padding-inline: 0.4rem 0.75rem;
+}
+.admin-layout-editor__toggle-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  color: var(--admin-muted);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+}
+.admin-layout-editor__toggle-label {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.admin-layout-editor__type {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-family: var(--admin-mono);
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--admin-muted);
+  white-space: nowrap;
+}
+.admin-layout-editor__actions {
+  flex-shrink: 0;
+}
+.admin-layout-editor__meta .admin-overflow {
+  flex-shrink: 0;
+}
+.admin-layout-editor__meta .admin-overflow__trigger {
+  width: var(--admin-control-h);
+  height: var(--admin-control-h);
+}
+.admin-layout-editor__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--admin-space-2);
+  margin-bottom: var(--admin-space-1);
+}
+.admin-layout-editor__toolbar-secondary,
+.admin-layout-editor__toolbar-primary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--admin-space-2);
+}
+.admin-layout-editor__toolbar-primary {
+  margin-left: auto;
+}
+@media (max-width: 768px) {
+  .admin-layout-editor__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-layout-editor__toolbar-secondary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-layout-editor__toolbar-primary {
+    margin-left: 0;
+  }
+
+  .admin-layout-editor__toolbar-primary nui-button,
+  .admin-layout-editor__toolbar-secondary nui-button {
+    width: 100%;
+  }
+}
+.admin-layout-editor__row.is-collapsed .admin-layout-editor__body-fields {
+  display: none;
+}
+.admin-layout-editor__row.is-collapsed .admin-layout-editor__meta {
+  margin-bottom: 0;
+}
+.admin-layout-editor__tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+.admin-layout-editor__tab {
+  padding: 0.3rem 0.55rem;
+  border: 1px solid var(--admin-border);
+  background: transparent;
+  color: var(--admin-muted);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.admin-layout-editor__tab.is-active {
+  color: var(--admin-text);
+  border-color: var(--admin-text);
+}
+</style>

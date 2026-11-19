@@ -195,6 +195,13 @@
     width: 100%;
     max-width: none;
     min-height: 0;
+    padding: 0.65rem 0.7rem 0.75rem;
+    border: 1px solid var(--frame-card-border);
+    border-radius: 1.1rem;
+    background: var(--frame-card-bg);
+    box-shadow: var(--frame-card-shadow);
+    overflow: hidden;
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
 
     /* Home: side panel — CMS showCube / showGlance per breakpoint. */
     &.is-slice {
@@ -230,14 +237,6 @@
         }
       }
     }
-
-    padding: 0.65rem 0.7rem 0.75rem;
-    border: 1px solid var(--frame-card-border);
-    border-radius: 1.1rem;
-    background: var(--frame-card-bg);
-    box-shadow: var(--frame-card-shadow);
-    overflow: hidden;
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
   }
 
   &-chrome {

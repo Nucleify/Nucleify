@@ -34,3 +34,25 @@ const emit = defineEmits<{
   'update:modelValue': [value: DocumentFormModel]
 }>()
 </script>
+
+<style lang="scss">
+@media (max-width: 900px) {
+  .admin-document-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-document-sidebar {
+    position: static;
+  }
+}
+
+.admin-document-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 16rem;
+  gap: 1.25rem;
+  align-items: start;
+}
+.admin-document-main {
+  min-width: 0;
+}
+</style>

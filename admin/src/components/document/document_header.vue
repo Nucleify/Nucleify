@@ -117,3 +117,65 @@ const primaryActions = computed((): AdminAction[] => [
 
 const moreActions = computed(() => props.more)
 </script>
+
+<style lang="scss">
+@media (max-width: 768px) {
+  .admin-document-header {
+    flex-direction: column;
+  }
+}
+
+.admin-document-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--admin-border);
+}
+.admin-document-header__title {
+  margin: 0 0 0.25rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.admin-document-header__meta {
+  margin: 0;
+  font-family: var(--admin-mono);
+  font-size: 0.75rem;
+  color: var(--admin-muted);
+}
+.admin-document-header__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+.admin-document-header {
+  position: sticky;
+  top: 0;
+  z-index: 16;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 0 1rem;
+  background: color-mix(in srgb, var(--admin-bg) 94%, transparent);
+  border-bottom: 1px solid var(--admin-border);
+  backdrop-filter: blur(8px);
+}
+.admin-document-header__title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+.admin-document-header .admin-document-header__title {
+  margin: 0;
+}
+.admin-dirty-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: #fde68a;
+}
+</style>

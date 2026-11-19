@@ -121,3 +121,28 @@ function pick(type: string) {
   emit('pick', type)
 }
 </script>
+
+<style lang="scss">
+.admin-widget-picker__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.admin-widget-picker__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: flex-start;
+  padding: 0.75rem;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-surface-2);
+  color: var(--admin-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.admin-widget-picker__item:hover {
+  border-color: var(--admin-text);
+}
+</style>

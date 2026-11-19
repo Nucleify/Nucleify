@@ -243,3 +243,16 @@ function setGroup(name: string, value: Record<string, unknown>) {
   setField(name, value)
 }
 </script>
+
+<style lang="scss">
+.admin-schema-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+}
+.admin-schema-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+</style>

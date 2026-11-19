@@ -127,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-import { adminApiGet, adminApiSend } from '../../composables/use_admin_api'
+import { adminApiGet, adminApiSend } from '../../composables/use_api'
 import { useFilePreview } from '../../composables/use_file_preview'
 import { mediaPublicUrl } from '../../utils/media_url'
 
@@ -262,3 +262,83 @@ watch(
   }
 )
 </script>
+
+<style lang="scss">
+.admin-media-picker__dropzone {
+  display: grid;
+  place-items: center;
+  position: relative;
+  min-height: 7rem;
+  padding: 1.25rem;
+  border: 1px dashed var(--admin-border);
+  background: var(--admin-surface-2);
+  color: var(--admin-muted);
+  font-size: 0.8125rem;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+.admin-media-picker__dropzone.is-dragover {
+  border-color: var(--admin-text);
+  color: var(--admin-text);
+}
+.admin-media-picker__dropzone.has-preview {
+  min-height: 11rem;
+  padding: 0;
+  border-style: solid;
+}
+.admin-media-picker__preview {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 11rem;
+  max-height: 16rem;
+  object-fit: contain;
+  pointer-events: none;
+}
+.admin-media-picker__filename,
+.admin-media-picker__filename-note {
+  margin: 0;
+  font-size: 0.75rem;
+  word-break: break-all;
+}
+.admin-media-picker__filename-note {
+  color: var(--admin-muted);
+}
+.admin-media-picker__tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0 0 0.85rem;
+}
+.admin-media-picker__tab {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--admin-control-h-sm);
+  padding: 0 0.75rem;
+  border: 1px solid var(--admin-border);
+  background: transparent;
+  color: var(--admin-muted);
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.admin-media-picker__tab.is-active {
+  color: var(--admin-text);
+  border-color: var(--admin-text);
+  background: color-mix(in srgb, var(--admin-surface-2) 60%, var(--admin-text) 8%);
+}
+.admin-media-picker__upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--admin-space-3);
+}
+.admin-media-picker__file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  overflow: hidden;
+}
+</style>
