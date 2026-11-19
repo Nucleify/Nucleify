@@ -5,6 +5,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 import { devConfig } from './.config/nuxt/dev'
 import { hooksConfig } from './.config/nuxt/hooks'
 import { nitroConfig } from './.config/nuxt/nitro'
+import { getRouteRules } from './.config/nuxt/route-rules'
 import { runtimeConfig } from './.config/nuxt/runtime'
 import { structureConfig } from './.config/nuxt/structure'
 import { viteConfig } from './.config/nuxt/vite'
@@ -18,5 +19,6 @@ export default defineNuxtConfig({
   ...structureConfig,
   ...nitroConfig,
   ...hooksConfig,
+  routeRules: getRouteRules(),
   // biome-ignore lint/suspicious/noExplicitAny: Nuxt config complexity @typescript-eslint/no-explicit-any
 } as any)

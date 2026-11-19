@@ -6,6 +6,7 @@ const adminSrc = resolve(process.cwd(), 'src')
 export const nitroConfig = {
   nitro: {
     preset: process.env.NITRO_PRESET || 'cloudflare',
+    poweredByHeader: false,
     alias: {
       '@web': resolve(root, 'web/src'),
       '@admin': resolve(adminSrc, 'index.server.ts'),
