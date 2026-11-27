@@ -1,0 +1,225 @@
+/* Pitch intro shares product hero chrome, then deal-stage overrides. */
+@import '../hero/index';
+
+.nuc-hero-panel.is-deal {
+  display: none;
+  align-self: center;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  overflow: visible;
+
+  /* CMS: showCube / showGlance per breakpoint. */
+  &.show-cube-mobile,
+  &.show-glance-mobile {
+    @media (max-width: ($md - 1px)) {
+      display: flex;
+    }
+  }
+
+  &.show-cube-tablet,
+  &.show-glance-tablet {
+    @media (min-width: $md) and (max-width: ($lg - 1px)) {
+      display: flex;
+    }
+  }
+
+  &.show-cube-desktop,
+  &.show-glance-desktop {
+    @media (min-width: $lg) {
+      display: flex;
+    }
+  }
+
+  &.show-cube-mobile .nuc-holo-cube {
+    @media (max-width: ($md - 1px)) {
+      display: block;
+    }
+  }
+
+  &.show-cube-tablet .nuc-holo-cube {
+    @media (min-width: $md) and (max-width: ($lg - 1px)) {
+      display: block;
+    }
+  }
+
+  &.show-cube-desktop .nuc-holo-cube {
+    @media (min-width: $lg) {
+      display: block;
+    }
+  }
+
+  &.show-glance-mobile .nuc-deal-readout {
+    @media (max-width: ($md - 1px)) {
+      display: block;
+    }
+  }
+
+  &.show-glance-tablet .nuc-deal-readout {
+    @media (min-width: $md) and (max-width: ($lg - 1px)) {
+      display: block;
+    }
+  }
+
+  &.show-glance-desktop .nuc-deal-readout {
+    @media (min-width: $lg) {
+      display: block;
+    }
+  }
+
+  /* Single-column stage when only one of cube/glance is on at this viewport. */
+  &.show-glance-mobile:not(.show-cube-mobile) .nuc-deal-stage,
+  &.show-cube-mobile:not(.show-glance-mobile) .nuc-deal-stage {
+    @media (max-width: ($md - 1px)) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.show-glance-tablet:not(.show-cube-tablet) .nuc-deal-stage,
+  &.show-cube-tablet:not(.show-glance-tablet) .nuc-deal-stage {
+    @media (min-width: $md) and (max-width: ($lg - 1px)) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &.show-glance-desktop:not(.show-cube-desktop) .nuc-deal-stage,
+  &.show-cube-desktop:not(.show-glance-desktop) .nuc-deal-stage {
+    @media (min-width: $lg) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.nuc-hero.is-intro {
+  .nuc-hero-headline {
+    max-width: none;
+    font-size: clamp(1.55rem, 5.4vw, 2.2rem);
+  }
+}
+
+/* ─── Hero deal (holo cube + open capital readout) ──────────── */
+
+.nuc-deal {
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+
+  &-stage {
+    display: grid;
+    gap: 1rem;
+    place-items: center center;
+
+    /* Tablet: cube alone to the right of copy. */
+    @media (min-width: $md) {
+      min-height: 12rem;
+    }
+
+    /* Desktop: cube + capital readout. */
+    @media (min-width: $lg) {
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      gap: 1.15rem;
+      justify-items: stretch;
+      min-height: 15rem;
+    }
+  }
+
+  .nuc-holo-cube {
+    display: none;
+    width: min(100%, 15rem);
+
+    @media (min-width: $md) {
+      width: min(100%, 16.5rem);
+    }
+
+    @media (min-width: $lg) {
+      width: min(100%, 18rem);
+    }
+  }
+
+  &-readout {
+    display: none;
+    position: relative;
+    min-width: 0;
+    padding: 0.2rem 0 0.2rem 0.9rem;
+    border-left: 1px solid hsl(var(--rainbow-hue) 70% 58% / 22%);
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -1px;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        hsl(var(--rainbow-hue) 70% 62% / 20%),
+        hsl(var(--rainbow-hue) 70% 58%) 42%,
+        hsl(var(--rainbow-hue) 70% 58% / 18%)
+      );
+    }
+  }
+
+  &-money {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin: 0;
+    color: var(--frame-fg);
+    font-size: clamp(1.85rem, 4.5vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    line-height: 0.95;
+
+    small {
+      color: var(--frame-muted);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  }
+
+  &-figure {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.22em;
+    line-height: 1;
+
+    em {
+      color: var(--frame-dim);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 0.72em;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1;
+      margin-top: -10px;
+    }
+
+    &-to {
+      color: var(--frame-accent);
+      text-shadow: 0 0 18px hsl(var(--rainbow-hue) 55% 52% / 45%);
+    }
+  }
+
+  &-line {
+    margin: 0.4rem 0 0;
+    color: var(--frame-fg);
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.35;
+    white-space: pre-line;
+  }
+
+  &-note {
+    margin: 0.7rem 0 0;
+    color: var(--frame-dim);
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 0.52rem;
+    letter-spacing: 0.04em;
+  }
+}

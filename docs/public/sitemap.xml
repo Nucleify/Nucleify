@@ -6,12 +6,12 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/getting-started/introduction</loc>
+        <loc>https://docs.nucleify.io/en/docs/getting_started/introduction</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/getting-started/migrate-faq</loc>
+        <loc>https://docs.nucleify.io/en/docs/getting_started/migrate_faq</loc>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -21,47 +21,47 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/getting-started/installation</loc>
+        <loc>https://docs.nucleify.io/en/docs/getting_started/installation</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/core-concepts/cli</loc>
+        <loc>https://docs.nucleify.io/en/docs/core_concepts/cli</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/core-concepts/playground</loc>
+        <loc>https://docs.nucleify.io/en/docs/core_concepts/playground</loc>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/getting-started/quick-start</loc>
+        <loc>https://docs.nucleify.io/en/docs/getting_started/quick_start</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/core-concepts/monorepo</loc>
+        <loc>https://docs.nucleify.io/en/docs/core_concepts/monorepo</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/core-concepts/compiler</loc>
+        <loc>https://docs.nucleify.io/en/docs/core_concepts/compiler</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/core-concepts/modules</loc>
+        <loc>https://docs.nucleify.io/en/docs/core_concepts/modules</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/core-concepts/feature-sliced-design</loc>
+        <loc>https://docs.nucleify.io/en/docs/core_concepts/feature_sliced_design</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/core-concepts/overriding</loc>
+        <loc>https://docs.nucleify.io/en/docs/core_concepts/overriding</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -91,72 +91,72 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/about/coding-standards</loc>
+        <loc>https://docs.nucleify.io/en/docs/about/coding_standards</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/about/code-of-conduct</loc>
+        <loc>https://docs.nucleify.io/en/docs/about/code_of_conduct</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/en/docs/about/people-and-credits</loc>
+        <loc>https://docs.nucleify.io/en/docs/about/people_and_credits</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/getting-started/introduction</loc>
+        <loc>https://docs.nucleify.io/pl/docs/getting_started/introduction</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/getting-started/migrate-faq</loc>
+        <loc>https://docs.nucleify.io/pl/docs/getting_started/migrate_faq</loc>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/getting-started/installation</loc>
+        <loc>https://docs.nucleify.io/pl/docs/getting_started/installation</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/core-concepts/cli</loc>
+        <loc>https://docs.nucleify.io/pl/docs/core_concepts/cli</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/core-concepts/playground</loc>
+        <loc>https://docs.nucleify.io/pl/docs/core_concepts/playground</loc>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/getting-started/quick-start</loc>
+        <loc>https://docs.nucleify.io/pl/docs/getting_started/quick_start</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/core-concepts/monorepo</loc>
+        <loc>https://docs.nucleify.io/pl/docs/core_concepts/monorepo</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/core-concepts/compiler</loc>
+        <loc>https://docs.nucleify.io/pl/docs/core_concepts/compiler</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/core-concepts/modules</loc>
+        <loc>https://docs.nucleify.io/pl/docs/core_concepts/modules</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/core-concepts/feature-sliced-design</loc>
+        <loc>https://docs.nucleify.io/pl/docs/core_concepts/feature_sliced_design</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/core-concepts/overriding</loc>
+        <loc>https://docs.nucleify.io/pl/docs/core_concepts/overriding</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -186,17 +186,17 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/about/coding-standards</loc>
+        <loc>https://docs.nucleify.io/pl/docs/about/coding_standards</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/about/code-of-conduct</loc>
+        <loc>https://docs.nucleify.io/pl/docs/about/code_of_conduct</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://docs.nucleify.io/pl/docs/about/people-and-credits</loc>
+        <loc>https://docs.nucleify.io/pl/docs/about/people_and_credits</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

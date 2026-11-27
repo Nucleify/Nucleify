@@ -5,20 +5,23 @@ const webSrc = resolve(process.cwd(), "src");
 
 export const structureConfig = {
 	alias: {
-		"@web": webSrc,
+		"@web": resolve(webSrc, "index.ts"),
 		"@admin": resolve(root, "admin/src"),
 		"@shared_modules": resolve(root, "shared_modules"),
 		"@portable": resolve(root, "portable"),
-		nucleify: resolve(webSrc, "nucleify.ts"),
+		nucleify: resolve(root, "shared_modules/index.ts"),
 		modules: resolve(root, "shared_modules"),
 		"portable/nui": resolve(root, "portable/nui"),
-		nuc_client: resolve(webSrc, "nuc_client.ts"),
+		nuc_client: resolve(
+			root,
+			"shared_modules/nuc_api/supabase/client.ts",
+		),
 		nuc_server: resolve(webSrc, "server/nuc_server.ts"),
 		"#nuc-compiler/runtime": resolve(root, "compiler/runtime/index.ts"),
 	},
 	components: [],
 	imports: {
-		dirs: ["~/composables/**"],
+		dirs: [],
 		exclude: [
 			"**/*.nuc.tsx",
 			"../shared_modules/**/*.nuc.tsx",

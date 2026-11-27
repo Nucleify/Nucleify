@@ -17,7 +17,10 @@
       "@web/*": ["../web/src/*"],
       "@admin": ["src/index.ts"],
       "@admin/*": ["src/*"],
-      "@shared_modules": ["../shared_modules/index.ts"],
+      "@shared_modules": [
+        "../shared_modules/index.ts",
+        "../shared_modules/index.server.ts"
+      ],
       "@shared_modules/*": ["../shared_modules/*"],
       "@portable": ["../portable/index.ts"],
       "@portable/*": ["../portable/*"],

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { highlightSnippetLine } from '../../src/sections/compiler_demo/highlight'
+import { highlightSnippetLine } from '@shared_modules'
 
 function kinds(line: string): string[] {
   return highlightSnippetLine(line).map((t) => `${t.kind}:${t.text}`)

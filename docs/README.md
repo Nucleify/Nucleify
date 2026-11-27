@@ -39,6 +39,6 @@ make deploy docs                  # Astro build → stage docs/dist → Vercel p
 
 Production: [https://docs.nucleify.io](https://docs.nucleify.io)
 
-- `/` → `/en/docs/getting-started/introduction`
+- `/` → `/en/docs/getting_started/introduction`
 - `/{lang}/docs/{category}/{slug}`
 - Sitemap: `public/sitemap.xml` · robots: `public/robots.txt`

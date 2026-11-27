@@ -12,7 +12,7 @@
 import { joinURL } from 'ufo'
 import { computed } from 'vue'
 
-import { isLabUserAgent } from '@web'
+import { isLabUserAgent } from '@shared_modules'
 
 const route = useRoute()
 const config = useRuntimeConfig()

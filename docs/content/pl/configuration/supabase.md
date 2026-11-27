@@ -183,6 +183,6 @@ Top-level `supabase/` trzyma config projektu, scalony output migracji i wspóln�
 
 ## Powiązana dokumentacja
 
-- [Moduły](/pl/docs/core-concepts/modules) - struktura modułu i rejestracja bramki
+- [Moduły](/pl/docs/core_concepts/modules) - struktura modułu i rejestracja bramki
 - [Zmienne środowiskowe](/pl/docs/configuration/environment) - zmienne Supabase
 - [Web & Admin](/pl/docs/configuration/web) - punkt wejścia bramki Nitro

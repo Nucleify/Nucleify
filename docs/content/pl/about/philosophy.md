@@ -18,7 +18,7 @@ Nucleify traktuje **migrację między technologiami** jako trwałą warstwę mon
 
 Jeden pipeline migracji. Siedem frameworków. Trzy powierzchnie. Jedno jądro (opcjonalnie po dołączeniu).
 
-1. **Migracja jako komenda** - konwersja produktu dla całych istniejących aplikacji **takim, jakie są** (bez przepisywania na `*.nuc.tsx`, bez wcześniejszego refaktoru do `shared_modules`) - [FAQ migracji](/pl/docs/getting-started/migrate-faq)
+1. **Migracja jako komenda** - konwersja produktu dla całych istniejących aplikacji **takim, jakie są** (bez przepisywania na `*.nuc.tsx`, bez wcześniejszego refaktoru do `shared_modules`) - [FAQ migracji](/pl/docs/getting_started/migrate_faq)
 2. **Trzy powierzchnie** - `web/`, `admin/` i `docs/` w tym monorepo
 3. **Współdzielone moduły** - API, SQL, UI i logika domenowa w `shared_modules/` po dołączeniu do jądra - **nie** warunek convert
 4. **Jeden backend Supabase** - przez bramkę, SQL w rękach modułów
@@ -43,7 +43,7 @@ Jak jądro komórki, Nucleify koordynuje produkt. Każdy eksportowany moduł `nu
 
 ### 1. Dowolny stack → dowolny inny
 
-To jest pętla rdzeniowa. **Tak - konwersja produktu** przenosi istniejącą aplikację takim, jaka jest - także zewnętrzny folder Next / Nuxt / Vue / React / … lub URL git przez `--path` / `--git` - na inny framework. **Bez** przepisywania na `*.nuc.tsx`, **bez** wcześniejszego podziału na `shared_modules`, **bez** tokenów (zob. [Kompilator](/pl/docs/core-concepts/compiler)). Opcjonalne przenośne komponenty `*.nuc.tsx` emitują przez własny IR, gdy chcesz współdzielone UI prezentacyjne - ta ścieżka nie jest warunkiem migracji. Zmiany z emitu wracają do źródła. Biznes nie forkuje się per host.
+To jest pętla rdzeniowa. **Tak - konwersja produktu** przenosi istniejącą aplikację takim, jaka jest - także zewnętrzny folder Next / Nuxt / Vue / React / … lub URL git przez `--path` / `--git` - na inny framework. **Bez** przepisywania na `*.nuc.tsx`, **bez** wcześniejszego podziału na `shared_modules`, **bez** tokenów (zob. [Kompilator](/pl/docs/core_concepts/compiler)). Opcjonalne przenośne komponenty `*.nuc.tsx` emitują przez własny IR, gdy chcesz współdzielone UI prezentacyjne - ta ścieżka nie jest warunkiem migracji. Zmiany z emitu wracają do źródła. Biznes nie forkuje się per host.
 
 ```bash
 export PATH="$PWD/.config/bin:$PATH"   # włącza --target= / -t=
@@ -60,7 +60,7 @@ make admin --target=svelte
 Forma opublikowanego CLI:
 
 ```bash
-# Nuxt web/ tego monorepo → web-next/ (nie Twoja zewnętrzna aplikacja)
+# Nuxt web/ tego monorepo → web_next/ (nie Twoja zewnętrzna aplikacja)
 nuc emit convert web --target=next
 # Twój produkt takim, jaki jest:
 nuc emit convert web --target=next --path=/path/to/your-app --out=my-next --force
@@ -70,7 +70,7 @@ Wybór frameworka staje się **celem builda**, nie forkiem architektury.
 
 ### 2. Moduły zamiast monolitu
 
-W tym monorepo logika domenowa żyje w `shared_modules/nuc_*`, nie jest kopiowana między aplikacjami - korzyść jądra **po** dołączeniu, nie warunek convert ([FAQ migracji](/pl/docs/getting-started/migrate-faq)). Zob. [Feature-Sliced Design](/pl/docs/core-concepts/feature-sliced-design).
+W tym monorepo logika domenowa żyje w `shared_modules/nuc_*`, nie jest kopiowana między aplikacjami - korzyść jądra **po** dołączeniu, nie warunek convert ([FAQ migracji](/pl/docs/getting_started/migrate_faq)). Zob. [Feature-Sliced Design](/pl/docs/core_concepts/feature_sliced_design).
 
 ### 3. Bramka, nie spaghetti
 
@@ -129,8 +129,8 @@ Monorepo egzekwuje jakość na pre-commit (pre-push jest no-op):
 
 ## Powiązane dokumenty
 
-- [Wprowadzenie](/pl/docs/getting-started/introduction) - przegląd techniczny
-- [CLI](/pl/docs/core-concepts/cli) - referencja `nuc emit`
-- [Moduły](/pl/docs/core-concepts/modules) - architektura modułów
-- [Kompilator](/pl/docs/core-concepts/compiler) - emit i convert
-- [Standardy kodowania](/pl/docs/about/coding-standards) - konwencje dnia codziennego
+- [Wprowadzenie](/pl/docs/getting_started/introduction) - przegląd techniczny
+- [CLI](/pl/docs/core_concepts/cli) - referencja `nuc emit`
+- [Moduły](/pl/docs/core_concepts/modules) - architektura modułów
+- [Kompilator](/pl/docs/core_concepts/compiler) - emit i convert
+- [Standardy kodowania](/pl/docs/about/coding_standards) - konwencje dnia codziennego

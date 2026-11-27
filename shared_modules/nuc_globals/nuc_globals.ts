@@ -12,8 +12,16 @@ import {
 import { isDesktop } from './media/utils/is_desktop'
 import { isMobile } from './media/utils/is_mobile'
 
-export function registerNucGlobals(app: App): void {
-  const prefix = appEnv() === 'production' ? '' : appUrl()
+export type NucGlobalsOptions = {
+  /** Prepend to image URL constants (empty in production). */
+  assetPrefix?: string
+}
+
+export function registerNucGlobals(
+  app: App,
+  options: NucGlobalsOptions = {}
+): void {
+  const prefix = options.assetPrefix ?? ''
 
   app.config.globalProperties.isMobile = isMobile
   app.config.globalProperties.isDesktop = isDesktop

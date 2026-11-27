@@ -1,0 +1,35 @@
+---
+description: Vue SFC block order and component standards
+globs: **/*.vue
+alwaysApply: true
+---
+
+# Vue Single File Components (SFC)
+
+## Block order
+
+Always place `<template>` first in every Vue SFC, followed by `<script>`, followed by `<style>`:
+
+1. `<template>` - Component markup and structure
+2. `<script setup lang="ts">` - Component logic and composition
+3. `<style scoped>` - Component styles (when present)
+
+### Standard template layout
+
+```vue
+<template>
+  <div>
+    <!-- markup -->
+  </div>
+</template>
+
+<script setup lang="ts">
+// logic
+</script>
+
+<style scoped>
+/* styles */
+</style>
+```
+
+Never place `<script>` before `<template>`.

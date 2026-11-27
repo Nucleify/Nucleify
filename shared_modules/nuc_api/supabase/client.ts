@@ -60,9 +60,10 @@ export function setBrowserSupabaseClient(
  * In-tab queue instead of `navigator.locks`.
  * Auth-js auto-refresh uses acquireTimeout 0; Navigator LockManager then throws
  * `NavigatorLockAcquireTimeoutError` (often as an uncaught promise) whenever
- * getSession/signIn already holds the lock — common under Next HMR / Strict Mode.
+ * getSession/signIn already holds the lock — common under Nuxt/Next HMR / Strict Mode.
+ * Pass into `@supabase/ssr` `createBrowserClient({ auth: { lock } })` as well.
  */
-function getBrowserAuthLock(): AuthLockFn {
+export function getBrowserAuthLock(): AuthLockFn {
   const g = globalThis as Record<string, unknown>
   const existing = g[BROWSER_AUTH_LOCK_KEY]
   if (typeof existing === 'function') return existing as AuthLockFn

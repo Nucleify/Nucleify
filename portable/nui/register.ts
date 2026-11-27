@@ -9,6 +9,7 @@
  */
 const NUI_TAGS = [
   'nui-button',
+  'nui-chart',
   'nui-icon',
   'nui-checkbox',
   'nui-data-table',
@@ -111,6 +112,7 @@ export function ensureNuiRegistered(): Promise<void> {
   if (!loading) {
     loading = Promise.all([
       import('nucleify-ui/components/nui-button'),
+      import('nucleify-ui/components/nui-chart'),
       import('nucleify-ui/components/nui-icon'),
       import('nucleify-ui/components/nui-checkbox'),
       import('nucleify-ui/components/nui-data-table'),

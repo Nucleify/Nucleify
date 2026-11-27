@@ -1,5 +1,6 @@
 export * from './nuc_admin'
 export * from './nuc_api'
+export * from './nuc_cms'
 export * from './nuc_colors'
 export * from './nuc_dark_mode'
 export * from './nuc_globals'

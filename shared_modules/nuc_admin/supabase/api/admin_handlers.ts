@@ -140,8 +140,11 @@ export async function handleAdminRolePermissionsPut(
     .maybeSingle()
   if (roleError) return fromSupabaseError(roleError)
   if (!role) return apiError(404, 'Role not found')
+  if (String(role.slug) === 'owner') {
+    return apiError(403, 'Owner permissions cannot be changed')
+  }
 
-  const { data: perms, error: permError } = await ctx.supabase
+  let { data: perms, error: permError } = await ctx.supabase
     .from('permissions')
     .select('id, slug')
     .in('slug', slugs.length ? slugs : ['__none__'])
@@ -150,7 +153,38 @@ export async function handleAdminRolePermissionsPut(
   const found = new Set((perms ?? []).map((p) => String(p.slug)))
   const missing = slugs.filter((s) => !found.has(s))
   if (missing.length) {
-    return apiError(400, `Unknown permissions: ${missing.join(', ')}`)
+    const created = missing.map((slug) => ({
+      slug,
+      name: slug
+        .split('.')
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(' '),
+    }))
+    const { error: upsertError } = await ctx.supabase
+      .from('permissions')
+      .upsert(created, { onConflict: 'slug' })
+    if (upsertError) return fromSupabaseError(upsertError)
+
+    const refreshed = await ctx.supabase
+      .from('permissions')
+      .select('id, slug')
+      .in('slug', slugs)
+    if (refreshed.error) return fromSupabaseError(refreshed.error)
+    perms = refreshed.data
+
+    const { data: owner } = await ctx.supabase
+      .from('roles')
+      .select('id')
+      .eq('slug', 'owner')
+      .maybeSingle()
+    if (owner?.id) {
+      const newIds = (perms ?? [])
+        .filter((p) => missing.includes(String(p.slug)))
+        .map((p) => ({ role_id: owner.id, permission_id: p.id }))
+      if (newIds.length) {
+        await ctx.supabase.from('role_permissions').upsert(newIds)
+      }
+    }
   }
 
   const { error: delError } = await ctx.supabase

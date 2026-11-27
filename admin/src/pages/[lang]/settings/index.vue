@@ -1,19 +1,17 @@
 <template>
   <div>
-    <div class="admin-page-header">
-      <div>
-        <h1>Settings</h1>
-        <p>Your profile, password, and theme preference.</p>
-      </div>
-    </div>
+    <AdminPageHeader
+      title="Settings"
+      description="Your profile, password, and theme preference."
+      :primary="primary"
+      :more="more"
+    />
 
     <p v-if="error" class="admin-form__error">{{ error }}</p>
-    <p v-if="ok" class="admin-muted" style="color: #86efac">{{ ok }}</p>
-    <p v-if="loading" class="admin-muted">Loading…</p>
+    <AdminSkeleton v-if="loading" height="12rem" />
 
     <div v-else class="admin-settings-grid">
-      <section class="admin-panel" style="padding: 1.25rem">
-        <h2 style="margin: 0 0 1rem; font-size: 1rem">Profile</h2>
+      <AdminPanel title="Profile">
         <form class="admin-form" @submit.prevent="onSaveProfile">
           <FieldShell label="Email">
             <p style="margin: 0">{{ me?.email || '—' }}</p>
@@ -29,12 +27,10 @@
             :model-value="locale"
             @update:model-value="locale = $event"
           />
-          <nui-button type="submit" variant="filled" :label="saving ? 'Saving…' : 'Save profile'" />
         </form>
-      </section>
+      </AdminPanel>
 
-      <section class="admin-panel" style="padding: 1.25rem">
-        <h2 style="margin: 0 0 1rem; font-size: 1rem">Security</h2>
+      <AdminPanel title="Security">
         <form class="admin-form" @submit.prevent="onChangePassword">
           <FieldText
             label="New password"
@@ -49,17 +45,22 @@
             :label="changingPw ? 'Updating…' : 'Update password'"
           />
         </form>
-      </section>
+      </AdminPanel>
 
-      <section class="admin-panel" style="padding: 1.25rem">
-        <h2 style="margin: 0 0 1rem; font-size: 1rem">Preferences</h2>
+      <AdminPanel title="Preferences">
         <FieldSelect
           :model-value="theme"
           label="Theme"
           :options="themeOptions"
           @update:model-value="applyTheme"
         />
-      </section>
+        <FieldSelect
+          :model-value="density"
+          label="Density"
+          :options="densityOptions"
+          @update:model-value="applyDensity"
+        />
+      </AdminPanel>
     </div>
   </div>
 </template>
@@ -68,10 +69,9 @@
 import { setupNui } from '@portable'
 import { getSupabaseClient } from '@shared_modules'
 
-import { FieldSelect } from '@admin'
-import { FieldShell } from '@admin'
-import { FieldText } from '@admin'
+import type { AdminAction } from '@admin'
 import { adminApiGet, adminApiSend } from '@admin'
+import { useAdminToast } from '@admin'
 
 useHead({ title: 'Settings' })
 
@@ -82,15 +82,14 @@ type Me = {
   locale: string
 }
 
-type FieldHost = { value: string }
-
+const toast = useAdminToast()
 const me = ref<Me | null>(null)
 const loading = ref(true)
 const saving = ref(false)
 const changingPw = ref(false)
 const error = ref('')
-const ok = ref('')
 const theme = ref<'dark' | 'light'>('dark')
+const density = ref('compact')
 
 const displayName = ref('')
 const locale = ref('en')
@@ -100,6 +99,45 @@ const themeOptions = [
   { label: 'Dark', value: 'dark' },
   { label: 'Light', value: 'light' },
 ]
+
+const densityOptions = [
+  { label: 'Compact', value: 'compact' },
+  { label: 'Comfortable', value: 'comfortable' },
+]
+
+const primary = computed((): AdminAction[] => [
+  {
+    id: 'save',
+    label: saving.value ? 'Saving…' : 'Save profile',
+    disabled: saving.value,
+    onClick: () => onSaveProfile(),
+  },
+])
+
+const more = computed((): AdminAction[] => [
+  {
+    id: 'reset',
+    label: 'Reset form',
+    onClick: () => {
+      displayName.value = me.value?.display_name || ''
+      locale.value = me.value?.locale || 'en'
+      toast.info('Form reset.')
+    },
+  },
+  {
+    id: 'session',
+    label: 'Session info',
+    onClick: () => {
+      toast.info(me.value?.email || 'Signed in')
+    },
+  },
+  {
+    id: 'density',
+    label: 'Toggle density',
+    onClick: () =>
+      applyDensity(density.value === 'compact' ? 'comfortable' : 'compact'),
+  },
+])
 
 async function load() {
   loading.value = true
@@ -121,15 +159,15 @@ async function load() {
 async function onSaveProfile() {
   saving.value = true
   error.value = ''
-  ok.value = ''
   try {
     me.value = await adminApiSend<Me>('/api/admin/me', 'PATCH', {
       display_name: displayName.value,
       locale: locale.value || 'en',
     })
-    ok.value = 'Profile saved.'
+    toast.success('Profile saved.')
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Save failed'
+    toast.error(error.value)
   } finally {
     saving.value = false
   }
@@ -138,7 +176,6 @@ async function onSaveProfile() {
 async function onChangePassword() {
   changingPw.value = true
   error.value = ''
-  ok.value = ''
   const password = newPassword.value
   if (password.length < 8) {
     error.value = 'Password must be at least 8 characters'
@@ -150,10 +187,11 @@ async function onChangePassword() {
       password,
     })
     if (authError) throw authError
-    ok.value = 'Password updated.'
+    toast.success('Password updated.')
     newPassword.value = ''
   } catch (e) {
     error.value = e instanceof Error ? e.message : 'Password update failed'
+    toast.error(error.value)
   } finally {
     changingPw.value = false
   }
@@ -170,10 +208,23 @@ function applyTheme(mode: string) {
   }
 }
 
+function applyDensity(mode: string) {
+  density.value = mode === 'comfortable' ? 'comfortable' : 'compact'
+  document.documentElement.dataset.adminDensity = density.value
+  try {
+    localStorage.setItem('admin-density', density.value)
+  } catch {
+    /* ignore */
+  }
+  toast.info(`Density: ${density.value}`)
+}
+
 onMounted(() => {
   try {
     const stored = localStorage.getItem('admin-theme')
     if (stored === 'light' || stored === 'dark') applyTheme(stored)
+    const dens = localStorage.getItem('admin-density')
+    if (dens === 'compact' || dens === 'comfortable') applyDensity(dens)
   } catch {
     /* ignore */
   }
@@ -181,10 +232,10 @@ onMounted(() => {
 })
 </script>
 
-<style scoped>
+<style lang="scss">
 .admin-settings-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
 }
 </style>
