@@ -34,6 +34,16 @@
 **/*npm-debug.log
 **/*yarn-error.log
 
+# Python
+**/__pycache__/
+**/*.py[cod]
+
+# Python HTTP probe artefacts
+pentest/out/*.json
+!pentest/out/.gitkeep
+pentest/logs/**
+!pentest/logs/.gitkeep
+
 # IDE / OS
 **/.DS_Store
 **/.fleet

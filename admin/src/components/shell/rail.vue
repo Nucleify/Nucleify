@@ -113,6 +113,8 @@ const ICONS: Record<string, string> = {
     '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3.5h10v7H7l-3 2v-2H3z"/></svg>',
   Contact:
     '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2.5" y="4" width="11" height="8"/><path d="m2.5 4.5 5.5 4 5.5-4"/></svg>',
+  Activity:
+    '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12.5 6.5 8l2.5 2.5L13 4.5"/><path d="M11 4.5h2v2"/></svg>',
   Users:
     '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="5.5" r="2.2"/><path d="M3.5 13c.8-2.2 2.4-3.3 4.5-3.3s3.7 1.1 4.5 3.3"/></svg>',
   Roles:

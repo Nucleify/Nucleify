@@ -156,6 +156,10 @@ const {
   .admin-main {
     margin-left: 0;
   }
+
+  .admin-content {
+    padding: 1.25rem 1.25rem 2rem;
+  }
 }
 .admin-main {
   flex: 1;
@@ -167,7 +171,7 @@ const {
 }
 .admin-content {
   flex: 1;
-  padding: 1.5rem;
+  padding: 1.75rem 2rem 2.25rem;
 }
 .admin-rail-edge {
   position: fixed;

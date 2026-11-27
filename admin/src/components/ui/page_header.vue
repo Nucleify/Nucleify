@@ -55,10 +55,10 @@ withDefaults(
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 .admin-page-header h1 {
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.35rem;
   font-size: 1.35rem;
   font-weight: 600;
 }
@@ -66,6 +66,8 @@ withDefaults(
   margin: 0;
   color: var(--admin-muted);
   font-size: 0.875rem;
+  line-height: 1.45;
+  max-width: 42rem;
 }
 .admin-breadcrumbs {
   margin: 0 0 0.35rem;

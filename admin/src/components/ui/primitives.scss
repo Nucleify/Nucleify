@@ -20,6 +20,12 @@ nui-button {
   min-height: var(--admin-control-h);
 }
 
+nui-chart {
+  display: block;
+  width: 100%;
+  min-height: 12rem;
+}
+
 nui-button[size='small'] {
   min-height: var(--admin-control-h-sm);
 }
@@ -188,7 +194,11 @@ nui-dialog .admin-form {
   flex-wrap: wrap;
   align-items: flex-end;
   gap: 0.5rem;
-  margin-bottom: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.admin-list-toolbar .admin-filter-chips {
+  margin-bottom: 0;
 }
 
 .admin-list-toolbar nui-input-text,
@@ -220,7 +230,8 @@ nui-dialog .admin-form {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .admin-filter-chip {
@@ -228,9 +239,10 @@ nui-dialog .admin-form {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.45rem;
   height: var(--admin-control-h);
   min-height: var(--admin-control-h);
-  padding: 0 1rem 0 0.5rem;
+  padding: 0 0.9rem;
   border: 1px solid var(--admin-border);
   background: var(--admin-surface-2);
   color: var(--admin-muted);
@@ -239,6 +251,12 @@ nui-dialog .admin-form {
   font-weight: 500;
   line-height: 1;
   cursor: pointer;
+}
+
+.admin-filter-chip nui-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  opacity: 0.9;
 }
 
 .admin-filter-chip.is-active {
@@ -251,10 +269,15 @@ nui-dialog .admin-form {
   );
 }
 
+.admin-filter-chip.is-active nui-icon {
+  opacity: 1;
+}
+
 .admin-filter-chip--icon {
   width: var(--admin-control-h);
   min-width: var(--admin-control-h);
   padding: 0;
+  gap: 0;
 }
 
 .admin-bulk-bar {

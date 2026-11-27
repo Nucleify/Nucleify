@@ -6,7 +6,7 @@
       :primary="primary"
       :more="more"
     />
-    <div class="admin-filter-chips" style="margin-bottom: 0.75rem">
+    <div class="admin-filter-chips" role="group" aria-label="Filter comments">
       <button
         v-for="chip in statusFilters"
         :key="chip.value"
@@ -15,7 +15,8 @@
         :class="{ 'is-active': status === chip.value }"
         @click="setStatus(chip.value)"
       >
-        {{ chip.label }}
+        <nui-icon :icon="chip.icon" width="1.05em" height="1.05em" />
+        <span>{{ chip.label }}</span>
       </button>
     </div>
     <p v-if="error" class="admin-form__error">{{ error }}</p>
@@ -46,10 +47,10 @@ const error = ref('')
 const status = ref('pending')
 
 const statusFilters = [
-  { label: 'Pending', value: 'pending' },
-  { label: 'Approved', value: 'approved' },
-  { label: 'Spam', value: 'spam' },
-  { label: 'All', value: 'all' },
+  { label: 'Pending', value: 'pending', icon: 'mdi:clock-outline' },
+  { label: 'Approved', value: 'approved', icon: 'mdi:check-circle-outline' },
+  { label: 'Spam', value: 'spam', icon: 'mdi:alert-octagon-outline' },
+  { label: 'All', value: 'all', icon: 'mdi:forum-outline' },
 ]
 
 const columns = [

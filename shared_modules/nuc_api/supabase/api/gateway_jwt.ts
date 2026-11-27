@@ -9,9 +9,18 @@ export async function resolveGatewayUserFromAccessToken(
   supabase: SupabaseClient,
   jwt: string
 ): Promise<{ user: User } | { error: string; status: number }> {
-  const { data, error } = await supabase.auth.getClaims(jwt)
+  let data: Awaited<ReturnType<SupabaseClient['auth']['getClaims']>>['data']
+  let error: Awaited<ReturnType<SupabaseClient['auth']['getClaims']>>['error']
+  try {
+    ;({ data, error } = await supabase.auth.getClaims(jwt))
+  } catch (e) {
+    // auth-js may throw (e.g. missing `exp` on forged/alg=none tokens) instead
+    // of returning `{ error }` — never surface that as an uncaught 500.
+    const message = e instanceof Error ? e.message : 'Invalid token'
+    return { error: message || 'Invalid token', status: 401 }
+  }
   const sub = data?.claims?.sub
-  if (error || !sub) {
+  if (error || !data?.claims || !sub) {
     return { error: error?.message ?? 'Invalid token', status: 401 }
   }
 

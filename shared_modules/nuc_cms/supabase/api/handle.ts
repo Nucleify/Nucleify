@@ -12,6 +12,7 @@ import {
 import {
   handleAdminCommentPatch,
   handleAdminCommentsList,
+  handleAdminActivityList,
   handleAdminContactList,
   handleAdminContactPatch,
   handleAdminDashboard,
@@ -59,6 +60,7 @@ import {
 const cmsAdminRoutes: ApiAuthRoute[] = [
   handleAdminConfigGet,
   handleAdminDashboard,
+  handleAdminActivityList,
   handleAdminDocumentsSearch,
   handleAdminSchedulePromote,
   handleAdminGlobalPatch,

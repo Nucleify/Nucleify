@@ -11,6 +11,7 @@
   "dependencies": {
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.105.1",
+    "chart.js": "4.5.1",
     "lit": "^3.3.3",
     "nucleify-ui": "^0.3.7",
     "nuxt": "4.6.3",

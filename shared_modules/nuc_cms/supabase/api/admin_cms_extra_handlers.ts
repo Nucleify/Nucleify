@@ -229,6 +229,38 @@ export async function handleAdminSchedulePromote(
   return apiBody({ data: { promoted: data?.length ?? 0, items: data ?? [] } })
 }
 
+async function countRows(
+  ctx: ApiContext,
+  table: string,
+  filters?: { column: string; value: string }[]
+): Promise<number> {
+  let q = ctx.supabase.from(table).select('id', { count: 'exact', head: true })
+  for (const f of filters ?? []) {
+    q = q.eq(f.column, f.value)
+  }
+  const { count } = await q
+  return count ?? 0
+}
+
+function dayKey(iso: string): string {
+  try {
+    return new Date(iso).toISOString().slice(0, 10)
+  } catch {
+    return ''
+  }
+}
+
+function lastNDayKeys(n: number): string[] {
+  const keys: string[] = []
+  const now = new Date()
+  for (let i = n - 1; i >= 0; i -= 1) {
+    const d = new Date(now)
+    d.setUTCDate(d.getUTCDate() - i)
+    keys.push(d.toISOString().slice(0, 10))
+  }
+  return keys
+}
+
 export async function handleAdminDashboard(
   ctx: ApiContext,
   userId: string
@@ -243,41 +275,137 @@ export async function handleAdminDashboard(
   const gate = await requirePermission(ctx.supabase, userId, 'cms.read')
   if (!gate.ok) return apiError(gate.status, gate.error)
 
-  const [{ data: drafts }, { data: scheduled }, { data: activity }, { data: contact }] =
-    await Promise.all([
-      ctx.supabase
-        .from('cms_documents')
-        .select('id, title, slug, collection_slug, locale, status, updated_at')
-        .eq('status', 'draft')
-        .order('updated_at', { ascending: false })
-        .limit(10),
-      ctx.supabase
-        .from('cms_documents')
-        .select('id, title, slug, collection_slug, locale, published_at')
-        .eq('status', 'scheduled')
-        .order('published_at', { ascending: true })
-        .limit(10),
-      ctx.supabase
-        .from('cms_activity')
-        .select('id, action, entity_type, entity_id, meta, created_at')
-        .order('created_at', { ascending: false })
-        .limit(15),
-      ctx.supabase
-        .from('cms_contact_submissions')
-        .select('id, name, email, type, status, created_at')
-        .eq('status', 'new')
-        .order('created_at', { ascending: false })
-        .limit(5),
-    ])
+  const since14 = new Date()
+  since14.setUTCDate(since14.getUTCDate() - 13)
+  since14.setUTCHours(0, 0, 0, 0)
+  const since7 = new Date()
+  since7.setUTCDate(since7.getUTCDate() - 6)
+  since7.setUTCHours(0, 0, 0, 0)
+
+  const [
+    draftsRes,
+    scheduledRes,
+    contactRes,
+    activityRes,
+    draftCount,
+    publishedCount,
+    scheduledCount,
+    trashCount,
+    contactNewCount,
+    commentsPendingCount,
+    mediaCount,
+  ] = await Promise.all([
+    ctx.supabase
+      .from('cms_documents')
+      .select('id, title, slug, collection_slug, locale, status, updated_at')
+      .eq('status', 'draft')
+      .order('updated_at', { ascending: false })
+      .limit(10),
+    ctx.supabase
+      .from('cms_documents')
+      .select('id, title, slug, collection_slug, locale, published_at')
+      .eq('status', 'scheduled')
+      .order('published_at', { ascending: true })
+      .limit(10),
+    ctx.supabase
+      .from('cms_contact_submissions')
+      .select('id, name, email, type, status, created_at')
+      .eq('status', 'new')
+      .order('created_at', { ascending: false })
+      .limit(5),
+    ctx.supabase
+      .from('cms_activity')
+      .select('id, action, created_at')
+      .gte('created_at', since14.toISOString())
+      .order('created_at', { ascending: true })
+      .limit(500),
+    countRows(ctx, 'cms_documents', [{ column: 'status', value: 'draft' }]),
+    countRows(ctx, 'cms_documents', [
+      { column: 'status', value: 'published' },
+    ]),
+    countRows(ctx, 'cms_documents', [
+      { column: 'status', value: 'scheduled' },
+    ]),
+    countRows(ctx, 'cms_documents', [{ column: 'status', value: 'trash' }]),
+    countRows(ctx, 'cms_contact_submissions', [
+      { column: 'status', value: 'new' },
+    ]),
+    countRows(ctx, 'cms_comments', [{ column: 'status', value: 'pending' }]),
+    countRows(ctx, 'cms_media'),
+  ])
+
+  const dayKeys = lastNDayKeys(14)
+  const byDay = Object.fromEntries(dayKeys.map((k) => [k, 0])) as Record<
+    string,
+    number
+  >
+  let activity7d = 0
+  for (const row of activityRes.data ?? []) {
+    const key = dayKey(String(row.created_at ?? ''))
+    if (key && key in byDay) byDay[key] += 1
+    if (row.created_at && new Date(String(row.created_at)) >= since7) {
+      activity7d += 1
+    }
+  }
 
   return apiBody({
     data: {
-      drafts: drafts ?? [],
-      scheduled: scheduled ?? [],
-      activity: activity ?? [],
-      contactNew: contact ?? [],
+      drafts: draftsRes.data ?? [],
+      scheduled: scheduledRes.data ?? [],
+      contactNew: contactRes.data ?? [],
+      stats: {
+        drafts: draftCount,
+        published: publishedCount,
+        scheduled: scheduledCount,
+        trash: trashCount,
+        contactNew: contactNewCount,
+        commentsPending: commentsPendingCount,
+        media: mediaCount,
+        activity7d,
+      },
+      charts: {
+        activityByDay: dayKeys.map((day) => ({
+          day,
+          count: byDay[day] ?? 0,
+        })),
+        statusBreakdown: [
+          { label: 'Published', count: publishedCount },
+          { label: 'Drafts', count: draftCount },
+          { label: 'Scheduled', count: scheduledCount },
+          { label: 'Trash', count: trashCount },
+        ],
+      },
     },
   })
+}
+
+export async function handleAdminActivityList(
+  ctx: ApiContext,
+  userId: string
+): Promise<ApiHandlerResult | null> {
+  if (
+    ctx.method !== 'GET' ||
+    ctx.segments.length !== 2 ||
+    ctx.segments[1] !== 'activity'
+  ) {
+    return null
+  }
+  const gate = await requirePermission(ctx.supabase, userId, 'cms.read')
+  if (!gate.ok) return apiError(gate.status, gate.error)
+
+  const filter = String(getQuery(ctx.event).filter ?? '').trim().toLowerCase()
+  const allowed = new Set(['publish', 'save', 'trash'])
+  let q = ctx.supabase
+    .from('cms_activity')
+    .select('id, action, entity_type, entity_id, meta, created_at')
+    .order('created_at', { ascending: false })
+    .limit(100)
+  if (allowed.has(filter)) {
+    q = q.ilike('action', `%${filter}%`)
+  }
+  const { data, error } = await q
+  if (error) return fromSupabaseError(error)
+  return apiBody({ data: data ?? [] })
 }
 
 export async function handleAdminDocumentsSearch(

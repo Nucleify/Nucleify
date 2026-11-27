@@ -78,6 +78,11 @@ export default defineConfig({
         resolve: {
           alias: {
             nucleify: path.join(sharedPkg, 'nucleify.ts'),
+            nuc_api: path.join(
+              sharedPkg,
+              'nuc_api/supabase/api/server.ts',
+            ),
+            nuc_server: path.join(webPkg, 'src/server/nuc_server.ts'),
           },
         },
         define: {

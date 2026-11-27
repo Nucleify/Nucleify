@@ -1,4 +1,4 @@
-.PHONY: run setup web admin docs compiler deploy vue react nuxt next solid svelte astro help
+.PHONY: run setup web admin docs compiler deploy pentest rbac staff verbs static fingerprint headers cors path-traversal private-cache pressure vue react nuxt next solid svelte astro help
 
 # Product apps: default host is Nuxt. Product convert nests products under frameworks:
 #   make web                      # top-level web/ (Nuxt)
@@ -28,6 +28,10 @@ SKIP_COMPILER ?= 0
 
 # `make deploy web` → goals are deploy + web; pick the app from MAKECMDGOALS.
 DEPLOY_APP := $(firstword $(filter web admin docs,$(MAKECMDGOALS)))
+
+# `make pentest` | `make pentest rbac` → optional check group for ./pentest/run probe
+PENTEST_GROUPS := rbac staff verbs static fingerprint headers cors path-traversal private-cache pressure
+PENTEST_GROUP := $(firstword $(filter $(PENTEST_GROUPS),$(MAKECMDGOALS)))
 
 .DEFAULT_GOAL := help
 
@@ -59,6 +63,7 @@ help:
 		"  $${G}docs$${R}                 Dev server for docs (@nucleify/docs, Astro)" \
 		"  $${G}deploy$${R} $${W}<web|admin|docs>$${R}  web/admin: wrangler · docs: Vercel" \
 		"  $${G}compiler$${R}             Typecheck + build the compiler package" \
+		"  $${G}pentest$${R} $${D}[group]$${R}       Live admin HTTP probes (needs pnpm admin on :8888)" \
 		"  $${G}$(DEMO_TARGETS)$${R}" \
 		"                       Rebuild gitignored portable demo at <framework>/demo and start it" \
 		"" \
@@ -90,6 +95,8 @@ help:
 		"  $${G}make deploy$${R} $${W}web$${R}" \
 		"  $${G}make deploy$${R} $${W}admin$${R}" \
 		"  $${G}make deploy$${R} $${W}docs$${R}" \
+		"  $${G}make pentest$${R}" \
+		"  $${G}make pentest$${R} $${W}rbac$${R}                 $${D}# groups: $(PENTEST_GROUPS)$${R}" \
 		"  $${M}SKIP_COMPILER=1$${R} $${G}make setup$${R}" \
 		"  $${G}make next$${R}                          $${D}# portable demo only$${R}"
 
@@ -211,6 +218,19 @@ else
 	@echo "TARGET=$(TARGET) is reserved for future multi-shell docs hosts."
 	pnpm --filter @nucleify/docs dev
 endif
+
+# Usage: make pentest | make pentest rbac
+# Requires a running admin (`make admin` / `pnpm admin` on :8888).
+pentest:
+ifeq ($(PENTEST_GROUP),)
+	./pentest/run probe
+else
+	./pentest/run probe $(PENTEST_GROUP)
+endif
+
+# Extra goals used only as `make pentest <group>` selectors — no-op recipes.
+rbac staff verbs static fingerprint headers cors path-traversal private-cache pressure:
+	@:
 
 # --- Portable emit demos → {framework}/demo ---
 

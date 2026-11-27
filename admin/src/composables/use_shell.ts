@@ -123,6 +123,7 @@ export function useShell() {
             to: `${base}/collections/contact`,
             badge: badges.value.contact || undefined,
           },
+          { label: 'Activity', to: `${base}/activity` },
           { label: 'Users', to: `${base}/collections/users` },
           { label: 'Roles', to: `${base}/roles` },
         ],
@@ -197,6 +198,8 @@ export function useShell() {
       }
     } else if (path.includes('/globals/')) {
       parts.push({ label: 'Globals' }, { label: title.value })
+    } else if (path.includes('/activity')) {
+      parts.push({ label: 'Activity', to: `${base}/activity` })
     } else if (path.includes('/roles')) {
       parts.push({ label: 'Roles', to: `${base}/roles` })
     } else if (path.includes('/settings')) {
